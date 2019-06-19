@@ -82,6 +82,18 @@ func (a *IntegrationApiService) CreateReferral(ctx context.Context, localVarOpti
 			} else {
 				key = auth.Key
 			}
+			localVarHeaderParams["Authorization"] = key
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
 			localVarHeaderParams["Content-Signature"] = key
 		}
 	}
@@ -148,6 +160,18 @@ func (a *IntegrationApiService) DeleteCustomerData(ctx context.Context, integrat
 	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Authorization"] = key
+		}
 	}
 	if ctx != nil {
 		// API Key Authentication
@@ -234,6 +258,18 @@ func (a *IntegrationApiService) TrackEvent(ctx context.Context, localVarOptional
 			} else {
 				key = auth.Key
 			}
+			localVarHeaderParams["Authorization"] = key
+		}
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
 			localVarHeaderParams["Content-Signature"] = key
 		}
 	}
@@ -307,6 +343,18 @@ func (a *IntegrationApiService) UpdateCustomerProfile(ctx context.Context, integ
 	// body params
 	if localVarTempParam, localVarOk := localVarOptionals["body"].(NewCustomerProfile); localVarOk {
 		localVarPostBody = &localVarTempParam
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Authorization"] = key
+		}
 	}
 	if ctx != nil {
 		// API Key Authentication

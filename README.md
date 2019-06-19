@@ -15,49 +15,6 @@ Put the package under your project folder and add the following in import:
     "./talon"
 ```
 
-## Usage Example
-
-```go
-package main
-
-import (
-	"fmt"
-
-	talon "github.com/aungerh/talon_go"
-	"golang.org/x/net/context"
-)
-
-func main() {
-	configuration := talon.NewConfiguration()
-	configuration.BasePath = "http://localhost:9000"
-
-	client := talon.NewAPIClient(configuration)
-	auth := context.WithValue(context.Background(), talon.ContextAPIKey, talon.APIKey{
-		Prefix: "ApiKey-v1",
-		Key:    "0f6fb6a48399b248127bcd0a9c03db1d507b0088bf681c704ffe407b0188234b",
-	})
-
-	body := map[string]interface{}{
-		"body": talon.NewCustomerSession{
-			ProfileId: "DEADBEEF",
-			Coupon:    "",
-			Referral:  "",
-			State:     "open",
-			CartItems: []talon.CartItem{},
-			Total:     42.0,
-		},
-	}
-
-	if integrationState, response, err := client.IntegrationApi.UpdateCustomerSession(auth, "deetdoot", body); err != nil {
-		fmt.Println(err)
-	} else {
-		fmt.Println(integrationState.Session)
-		fmt.Println(response)
-	}
-}
-
-```
-
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://localhost*

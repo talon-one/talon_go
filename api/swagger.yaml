@@ -99,6 +99,7 @@ paths:
           schema:
             $ref: "#/definitions/IntegrationState"
       security:
+      - api_key_v1: []
       - integration_auth: []
   /v1/customer_sessions/{customerSessionId}:
     put:
@@ -178,6 +179,7 @@ paths:
           schema:
             $ref: "#/definitions/IntegrationState"
       security:
+      - api_key_v1: []
       - integration_auth: []
   /v1/referrals:
     post:
@@ -202,6 +204,7 @@ paths:
           schema:
             $ref: "#/definitions/Referral"
       security:
+      - api_key_v1: []
       - integration_auth: []
   /v1/customer_data/{integrationId}:
     delete:
@@ -223,6 +226,7 @@ paths:
         204:
           description: "No Content"
       security:
+      - api_key_v1: []
       - integration_auth: []
   /v1/applications:
     get:
@@ -5847,6 +5851,13 @@ definitions:
         type: "string"
         description: "The integration ID for this coupon's beneficiary's profile"
         title: "Receiving customer profile integration ID"
+      reservation:
+        type: "boolean"
+        description: "This value controls what reservations mean to a coupon. If set\
+          \ to true the coupon reservation is used to mark it as a favourite, if set\
+          \ to false the coupon reservation is used as a requirement of usage. This\
+          \ value defaults to false if not specified."
+        title: "reservation status"
     description: ""
     example:
       expiryDate: "2000-01-23T04:56:07.000+00:00"
@@ -5858,6 +5869,7 @@ definitions:
       - "validCharacters"
       usageLimit: 80082
       numberOfCoupons: 6
+      reservation: true
       attributes: "{}"
       startDate: "2000-01-23T04:56:07.000+00:00"
   UpdateCoupon:
@@ -5886,11 +5898,19 @@ definitions:
         type: "object"
         description: "Arbitrary properties associated with this item"
         properties: {}
+      reservation:
+        type: "boolean"
+        description: "This value controls what reservations mean to a coupon. If set\
+          \ to true the coupon reservation is used to mark it as a favourite, if set\
+          \ to false the coupon reservation is used as a requirement of usage. This\
+          \ value defaults to false if not specified."
+        title: "reservation status"
     description: ""
     example:
       expiryDate: "2000-01-23T04:56:07.000+00:00"
       recipientIntegrationId: "recipientIntegrationId"
       usageLimit: 80082
+      reservation: true
       attributes: "{}"
       startDate: "2000-01-23T04:56:07.000+00:00"
   UpdateCouponBatch:
@@ -5991,6 +6011,13 @@ definitions:
         type: "integer"
         description: "The ID of the Import which created this coupon."
         title: "Import ID"
+      reservation:
+        type: "boolean"
+        description: "This value controls what reservations mean to a coupon. If set\
+          \ to true the coupon reservation is used to mark it as a favourite, if set\
+          \ to false the coupon reservation is used as a requirement of usage. This\
+          \ value defaults to false if not specified."
+        title: "reservation status"
       batchId:
         type: "string"
         description: "The id of the batch the coupon belongs to."
@@ -6006,6 +6033,7 @@ definitions:
       batchId: "batchId"
       expiryDate: "2000-01-23T04:56:07.000+00:00"
       importId: 7
+      reservation: true
       attributes: "{}"
       id: 6
       value: "value"
@@ -9267,7 +9295,6 @@ definitions:
     - "accountID"
     - "applicationID"
     - "created"
-    - "createdBy"
     - "expires"
     - "id"
     - "key"
@@ -9276,9 +9303,6 @@ definitions:
       id:
         type: "integer"
         description: "ID of the API Key"
-      createdBy:
-        type: "integer"
-        description: "ID of user who created"
       title:
         type: "string"
         description: "Title for API Key"
@@ -9299,7 +9323,6 @@ definitions:
       key:
         type: "string"
         description: "Raw API Key"
-    description: ""
   CreateApplicationAPIKey:
     type: "object"
     required:
@@ -9727,6 +9750,7 @@ definitions:
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
         importId: 7
+        reservation: true
         attributes: "{}"
         id: 6
         value: "value"
@@ -9740,6 +9764,7 @@ definitions:
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
         importId: 7
+        reservation: true
         attributes: "{}"
         id: 6
         value: "value"
@@ -9767,6 +9792,7 @@ definitions:
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
         importId: 7
+        reservation: true
         attributes: "{}"
         id: 6
         value: "value"
@@ -9780,6 +9806,7 @@ definitions:
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
         importId: 7
+        reservation: true
         attributes: "{}"
         id: 6
         value: "value"

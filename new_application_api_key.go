@@ -13,14 +13,10 @@ import (
 	"time"
 )
 
-// 
 type NewApplicationApiKey struct {
 
 	// ID of the API Key
 	Id int32 `json:"id"`
-
-	// ID of user who created
-	CreatedBy int32 `json:"createdBy"`
 
 	// Title for API Key
 	Title string `json:"title"`

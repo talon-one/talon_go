@@ -37,7 +37,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
 
 ### HTTP request headers
 
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
 
 ### HTTP request headers
 
@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
 
 ### HTTP request headers
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
 
 ### HTTP request headers
 

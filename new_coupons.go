@@ -42,4 +42,7 @@ type NewCoupons struct {
 
 	// The integration ID for this coupon's beneficiary's profile
 	RecipientIntegrationId string `json:"recipientIntegrationId,omitempty"`
+
+	// This value controls what reservations mean to a coupon. If set to true the coupon reservation is used to mark it as a favourite, if set to false the coupon reservation is used as a requirement of usage. This value defaults to false if not specified.
+	Reservation bool `json:"reservation,omitempty"`
 }
