@@ -16,6 +16,7 @@ import (
 	"strings"
 	"context"
 	"fmt"
+  "github.com/antihax/optional"
 )
 
 // Linger please
