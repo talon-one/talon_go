@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **int32** | ID of the API Key | [default to null]
+**CreatedBy** | **int32** | ID of user who created | [default to null]
 **Title** | **string** | Title for API Key | [default to null]
 **AccountID** | **int32** | ID of account the key is used for | [default to null]
 **ApplicationID** | **int32** | ID of application the key is used for | [default to null]
