@@ -12,5 +12,5 @@ package talon
 // Customer specific information about loyalty points.
 type Loyalty struct {
 	// A map holding information about the loyalty programs balance
-	Programs map[string]LoyaltyProgramBalance `json:"programs"`
+	Programs map[string]LoyaltyProgramLedgers `json:"programs"`
 }

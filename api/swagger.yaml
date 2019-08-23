@@ -314,7 +314,7 @@ paths:
       security:
       - api_key_v1: []
       - integration_auth: []
-  /v1/coupon_reservations/coupons/{integrationID}:
+  /v1/coupon_reservations/coupons/{integrationId}:
     get:
       tags:
       - "integration"
@@ -5459,6 +5459,7 @@ definitions:
       loyaltyPrograms:
       - accountID: 2
         defaultValidity: "defaultValidity"
+        allowSubledger: true
         name: "name"
         description: "description"
         id: 5
@@ -5468,6 +5469,7 @@ definitions:
         - 7
       - accountID: 2
         defaultValidity: "defaultValidity"
+        allowSubledger: true
         name: "name"
         description: "description"
         id: 5
@@ -7164,15 +7166,21 @@ definitions:
         description: "Indicates the duration after which the added loyalty points\
           \ should expire. The format is a number followed by one letter indicating\
           \ the unit, like '1h' or '40m' or '30d'."
+      subLedgerID:
+        type: "string"
+        description: "This specifies if we are adding loyalty points to the main ledger\
+          \ or a subledger"
     description: "Points to add or deduct"
     example:
       name: "name"
+      subLedgerID: "subLedgerID"
       expiryDuration: "expiryDuration"
       points: 0.80082819046101150206595775671303272247314453125
   LoyaltyProgram:
     type: "object"
     required:
     - "accountID"
+    - "allowSubledger"
     - "defaultValidity"
     - "description"
     - "id"
@@ -7206,10 +7214,14 @@ definitions:
         description: "Indicates the default duration after which new loyalty points\
           \ should expire. The format is a number, followed by one letter indicating\
           \ the unit; like '1h' or '40m' or '30d'."
+      allowSubledger:
+        type: "boolean"
+        description: "Indicates if this program supports subledgers inside the program"
     description: "A Loyalty Program"
     example:
       accountID: 2
       defaultValidity: "defaultValidity"
+      allowSubledger: true
       name: "name"
       description: "description"
       id: 5
@@ -7220,6 +7232,7 @@ definitions:
   NewLoyaltyProgram:
     type: "object"
     required:
+    - "allowSubledger"
     - "defaultValidity"
     - "name"
     - "title"
@@ -7245,6 +7258,9 @@ definitions:
         description: "Indicates the default duration after which new loyalty points\
           \ should expire. The format is a number, followed by one letter indicating\
           \ the unit; like '1h' or '40m' or '30d'."
+      allowSubledger:
+        type: "boolean"
+        description: "Indicates if this program supports subledgers inside the program"
     description: "A new loyalty program"
   UpdateLoyaltyProgram:
     type: "object"
@@ -7266,6 +7282,9 @@ definitions:
         description: "Indicates the default duration after which new loyalty points\
           \ should expire. The format is a number, followed by one letter indicating\
           \ the unit; like '1h' or '40m' or '30d'."
+      allowSubledger:
+        type: "boolean"
+        description: "Indicates if this program supports subledgers inside the program"
     description: "Update Loyalty Program"
   LoyaltyLedgerEntry:
     type: "object"
@@ -7275,6 +7294,7 @@ definitions:
     - "customerProfileID"
     - "name"
     - "programID"
+    - "subLedgerID"
     - "type"
     properties:
       created:
@@ -7302,6 +7322,10 @@ definitions:
         type: "string"
         description: "A name referencing the condition or effect that added this entry,\
           \ or the specific name provided in an API call."
+      subLedgerID:
+        type: "string"
+        description: "This specifies if we are adding loyalty points to the main ledger\
+          \ or a subledger"
     description: "A single row of the ledger, describing one addition or deduction."
     example:
       expiryDate: "2000-01-23T04:56:07.000+00:00"
@@ -7310,18 +7334,123 @@ definitions:
       customerProfileID: "customerProfileID"
       created: "2000-01-23T04:56:07.000+00:00"
       name: "name"
+      subLedgerID: "subLedgerID"
       customerSessionID: "customerSessionID"
       type: "addition"
       programID: 6
   LoyaltyLedger:
     type: "object"
     required:
+    - "ledger"
+    properties:
+      ledger:
+        description: "The balance of the main ledger in the loyalty program"
+        title: "Customer's current loyalty program balance."
+        $ref: "#/definitions/LoyaltySubLedger"
+      subLedgers:
+        type: "object"
+        description: "A map containing a list of all loyalty subledger balances"
+        additionalProperties:
+          $ref: "#/definitions/LoyaltySubLedger"
+    description: "Ledger of Balance in Loyalty Program for a Customer"
+    example:
+      ledger:
+        total: 0.80082819046101150206595775671303272247314453125
+        expiringPoints:
+        - expiryDate: "2000-01-23T04:56:07.000+00:00"
+          eventID: 1
+          amount: 5.962133916683182377482808078639209270477294921875
+          customerProfileID: "customerProfileID"
+          created: "2000-01-23T04:56:07.000+00:00"
+          name: "name"
+          subLedgerID: "subLedgerID"
+          customerSessionID: "customerSessionID"
+          type: "addition"
+          programID: 6
+        - expiryDate: "2000-01-23T04:56:07.000+00:00"
+          eventID: 1
+          amount: 5.962133916683182377482808078639209270477294921875
+          customerProfileID: "customerProfileID"
+          created: "2000-01-23T04:56:07.000+00:00"
+          name: "name"
+          subLedgerID: "subLedgerID"
+          customerSessionID: "customerSessionID"
+          type: "addition"
+          programID: 6
+        transactions:
+        - expiryDate: "2000-01-23T04:56:07.000+00:00"
+          eventID: 1
+          amount: 5.962133916683182377482808078639209270477294921875
+          customerProfileID: "customerProfileID"
+          created: "2000-01-23T04:56:07.000+00:00"
+          name: "name"
+          subLedgerID: "subLedgerID"
+          customerSessionID: "customerSessionID"
+          type: "addition"
+          programID: 6
+        - expiryDate: "2000-01-23T04:56:07.000+00:00"
+          eventID: 1
+          amount: 5.962133916683182377482808078639209270477294921875
+          customerProfileID: "customerProfileID"
+          created: "2000-01-23T04:56:07.000+00:00"
+          name: "name"
+          subLedgerID: "subLedgerID"
+          customerSessionID: "customerSessionID"
+          type: "addition"
+          programID: 6
+      subLedgers:
+        key:
+          total: 0.80082819046101150206595775671303272247314453125
+          expiringPoints:
+          - expiryDate: "2000-01-23T04:56:07.000+00:00"
+            eventID: 1
+            amount: 5.962133916683182377482808078639209270477294921875
+            customerProfileID: "customerProfileID"
+            created: "2000-01-23T04:56:07.000+00:00"
+            name: "name"
+            subLedgerID: "subLedgerID"
+            customerSessionID: "customerSessionID"
+            type: "addition"
+            programID: 6
+          - expiryDate: "2000-01-23T04:56:07.000+00:00"
+            eventID: 1
+            amount: 5.962133916683182377482808078639209270477294921875
+            customerProfileID: "customerProfileID"
+            created: "2000-01-23T04:56:07.000+00:00"
+            name: "name"
+            subLedgerID: "subLedgerID"
+            customerSessionID: "customerSessionID"
+            type: "addition"
+            programID: 6
+          transactions:
+          - expiryDate: "2000-01-23T04:56:07.000+00:00"
+            eventID: 1
+            amount: 5.962133916683182377482808078639209270477294921875
+            customerProfileID: "customerProfileID"
+            created: "2000-01-23T04:56:07.000+00:00"
+            name: "name"
+            subLedgerID: "subLedgerID"
+            customerSessionID: "customerSessionID"
+            type: "addition"
+            programID: 6
+          - expiryDate: "2000-01-23T04:56:07.000+00:00"
+            eventID: 1
+            amount: 5.962133916683182377482808078639209270477294921875
+            customerProfileID: "customerProfileID"
+            created: "2000-01-23T04:56:07.000+00:00"
+            name: "name"
+            subLedgerID: "subLedgerID"
+            customerSessionID: "customerSessionID"
+            type: "addition"
+            programID: 6
+  LoyaltySubLedger:
+    type: "object"
+    required:
     - "total"
-    - "transactions"
     properties:
       total:
         type: "number"
-        description: "The current balance in the program."
+        title: "Current Balance"
       transactions:
         type: "array"
         description: "Transactions contains a list of all events that have happened\
@@ -7334,14 +7463,6 @@ definitions:
           \ and when"
         items:
           $ref: "#/definitions/LoyaltyLedgerEntry"
-      loyaltyProgramId:
-        type: "integer"
-        description: "The ID of the loyalty program this ledger belongs to."
-        title: "Loyalty program ID"
-      loyaltyProgramName:
-        type: "string"
-        description: "The name of the loyalty program this ledger belongs to."
-        title: "Loyalty program Name"
     description: "Ledger of Balance in Loyalty Program for a Customer"
     example:
       total: 0.80082819046101150206595775671303272247314453125
@@ -7352,6 +7473,7 @@ definitions:
         customerProfileID: "customerProfileID"
         created: "2000-01-23T04:56:07.000+00:00"
         name: "name"
+        subLedgerID: "subLedgerID"
         customerSessionID: "customerSessionID"
         type: "addition"
         programID: 6
@@ -7361,11 +7483,10 @@ definitions:
         customerProfileID: "customerProfileID"
         created: "2000-01-23T04:56:07.000+00:00"
         name: "name"
+        subLedgerID: "subLedgerID"
         customerSessionID: "customerSessionID"
         type: "addition"
         programID: 6
-      loyaltyProgramName: "loyaltyProgramName"
-      loyaltyProgramId: 5
       transactions:
       - expiryDate: "2000-01-23T04:56:07.000+00:00"
         eventID: 1
@@ -7373,6 +7494,7 @@ definitions:
         customerProfileID: "customerProfileID"
         created: "2000-01-23T04:56:07.000+00:00"
         name: "name"
+        subLedgerID: "subLedgerID"
         customerSessionID: "customerSessionID"
         type: "addition"
         programID: 6
@@ -7382,6 +7504,7 @@ definitions:
         customerProfileID: "customerProfileID"
         created: "2000-01-23T04:56:07.000+00:00"
         name: "name"
+        subLedgerID: "subLedgerID"
         customerSessionID: "customerSessionID"
         type: "addition"
         programID: 6
@@ -7395,12 +7518,49 @@ definitions:
         description: "A map holding information about the loyalty programs balance"
         title: "Customer's current loyalty program balance."
         additionalProperties:
-          $ref: "#/definitions/LoyaltyProgramBalance"
+          $ref: "#/definitions/LoyaltyProgramLedgers"
     description: "Customer specific information about loyalty points."
     example:
       programs:
         key:
+          ledger:
+            currentBalance: 6.96511769763884558415156789124011993408203125
+          subLedgers:
+            key:
+              currentBalance: 6.96511769763884558415156789124011993408203125
+          name: "name"
+          title: "title"
+  LoyaltyProgramLedgers:
+    type: "object"
+    required:
+    - "ledger"
+    - "name"
+    - "title"
+    properties:
+      title:
+        type: "string"
+        description: "Visable name of loyalty program"
+      name:
+        type: "string"
+        description: "Internal name of loyalty program"
+      ledger:
+        description: "The balance of the main ledger in the loyalty program"
+        title: "Customer's current loyalty program balance."
+        $ref: "#/definitions/LoyaltyProgramBalance"
+      subLedgers:
+        type: "object"
+        description: "A map containing a list of all loyalty subledger balances"
+        additionalProperties:
+          $ref: "#/definitions/LoyaltyProgramBalance"
+    description: "Customer specific information about loyalty points."
+    example:
+      ledger:
+        currentBalance: 6.96511769763884558415156789124011993408203125
+      subLedgers:
+        key:
           currentBalance: 6.96511769763884558415156789124011993408203125
+      name: "name"
+      title: "title"
   LoyaltyProgramBalance:
     type: "object"
     required:
@@ -8139,7 +8299,13 @@ definitions:
       loyalty:
         programs:
           key:
-            currentBalance: 6.96511769763884558415156789124011993408203125
+            ledger:
+              currentBalance: 6.96511769763884558415156789124011993408203125
+            subLedgers:
+              key:
+                currentBalance: 6.96511769763884558415156789124011993408203125
+            name: "name"
+            title: "title"
       event:
         effects:
         - "{}"
@@ -10167,6 +10333,7 @@ definitions:
         loyaltyPrograms:
         - accountID: 2
           defaultValidity: "defaultValidity"
+          allowSubledger: true
           name: "name"
           description: "description"
           id: 5
@@ -10176,6 +10343,7 @@ definitions:
           - 7
         - accountID: 2
           defaultValidity: "defaultValidity"
+          allowSubledger: true
           name: "name"
           description: "description"
           id: 5
@@ -10208,6 +10376,7 @@ definitions:
         loyaltyPrograms:
         - accountID: 2
           defaultValidity: "defaultValidity"
+          allowSubledger: true
           name: "name"
           description: "description"
           id: 5
@@ -10217,6 +10386,7 @@ definitions:
           - 7
         - accountID: 2
           defaultValidity: "defaultValidity"
+          allowSubledger: true
           name: "name"
           description: "description"
           id: 5
@@ -10605,6 +10775,7 @@ definitions:
       data:
       - accountID: 2
         defaultValidity: "defaultValidity"
+        allowSubledger: true
         name: "name"
         description: "description"
         id: 5
@@ -10614,6 +10785,7 @@ definitions:
         - 7
       - accountID: 2
         defaultValidity: "defaultValidity"
+        allowSubledger: true
         name: "name"
         description: "description"
         id: 5

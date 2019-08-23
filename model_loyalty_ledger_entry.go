@@ -25,4 +25,6 @@ type LoyaltyLedgerEntry struct {
 	ExpiryDate time.Time `json:"expiryDate,omitempty"`
 	// A name referencing the condition or effect that added this entry, or the specific name provided in an API call.
 	Name string `json:"name"`
+	// This specifies if we are adding loyalty points to the main ledger or a subledger
+	SubLedgerID string `json:"subLedgerID"`
 }

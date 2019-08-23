@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Amount** | **float32** |  | [default to null]
 **ExpiryDate** | [**time.Time**](time.Time.md) |  | [optional] [default to null]
 **Name** | **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | [default to null]
+**SubLedgerID** | **string** | This specifies if we are adding loyalty points to the main ledger or a subledger | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

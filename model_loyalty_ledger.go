@@ -11,14 +11,8 @@ package talon
 
 // Ledger of Balance in Loyalty Program for a Customer
 type LoyaltyLedger struct {
-	// The current balance in the program.
-	Total float32 `json:"total"`
-	// Transactions contains a list of all events that have happened such as additions, subtractions and expiries
-	Transactions []LoyaltyLedgerEntry `json:"transactions"`
-	// ExpiringPoints contains a list of all points that will expiry and when
-	ExpiringPoints []LoyaltyLedgerEntry `json:"expiringPoints,omitempty"`
-	// The ID of the loyalty program this ledger belongs to.
-	LoyaltyProgramId int32 `json:"loyaltyProgramId,omitempty"`
-	// The name of the loyalty program this ledger belongs to.
-	LoyaltyProgramName string `json:"loyaltyProgramName,omitempty"`
+	// The balance of the main ledger in the loyalty program
+	Ledger *LoyaltySubLedger `json:"ledger"`
+	// A map containing a list of all loyalty subledger balances
+	SubLedgers map[string]LoyaltySubLedger `json:"subLedgers,omitempty"`
 }

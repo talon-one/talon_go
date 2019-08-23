@@ -21,4 +21,6 @@ type NewLoyaltyProgram struct {
 	SubscribedApplications []int32 `json:"subscribedApplications,omitempty"`
 	// Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like '1h' or '40m' or '30d'.
 	DefaultValidity string `json:"defaultValidity"`
+	// Indicates if this program supports subledgers inside the program
+	AllowSubledger bool `json:"allowSubledger"`
 }

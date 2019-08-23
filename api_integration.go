@@ -474,7 +474,7 @@ func (a *IntegrationApiService) GetReservedCoupons(ctx context.Context, integrat
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/v1/coupon_reservations/coupons/{integrationID}"
+	localVarPath := a.client.cfg.BasePath + "/v1/coupon_reservations/coupons/{integrationId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", fmt.Sprintf("%v", integrationId), -1)
 
 	localVarHeaderParams := make(map[string]string)

@@ -9,14 +9,14 @@
 
 package talon
 
-// Points to add or deduct
-type LoyaltyPoints struct {
-	// Amount of loyalty points
-	Points float32 `json:"points"`
-	// Allows to specify a name for the addition or deduction
-	Name string `json:"name,omitempty"`
-	// Indicates the duration after which the added loyalty points should expire. The format is a number followed by one letter indicating the unit, like '1h' or '40m' or '30d'.
-	ExpiryDuration string `json:"expiryDuration,omitempty"`
-	// This specifies if we are adding loyalty points to the main ledger or a subledger
-	SubLedgerID string `json:"subLedgerID,omitempty"`
+// Customer specific information about loyalty points.
+type LoyaltyProgramLedgers struct {
+	// Visable name of loyalty program
+	Title string `json:"title"`
+	// Internal name of loyalty program
+	Name string `json:"name"`
+	// The balance of the main ledger in the loyalty program
+	Ledger *LoyaltyProgramBalance `json:"ledger"`
+	// A map containing a list of all loyalty subledger balances
+	SubLedgers map[string]LoyaltyProgramBalance `json:"subLedgers,omitempty"`
 }

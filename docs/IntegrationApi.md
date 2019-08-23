@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**CreateReferral**](IntegrationApi.md#CreateReferral) | **Post** /v1/referrals | Create a referral code for an advocate
 [**DeleteCouponReservation**](IntegrationApi.md#DeleteCouponReservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 [**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer.
-[**GetReservedCoupons**](IntegrationApi.md#GetReservedCoupons) | **Get** /v1/coupon_reservations/coupons/{integrationID} | Get all valid reserved coupons
+[**GetReservedCoupons**](IntegrationApi.md#GetReservedCoupons) | **Get** /v1/coupon_reservations/coupons/{integrationId} | Get all valid reserved coupons
 [**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
 [**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track an Event
 [**UpdateCustomerProfile**](IntegrationApi.md#UpdateCustomerProfile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile
