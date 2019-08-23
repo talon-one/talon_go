@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 
 # **CreateCouponReservation**
-> Coupon CreateCouponReservation(ctx, couponValue, optional)
+> Coupon CreateCouponReservation(ctx, couponValue, body)
 Create a new coupon reservation
 
 Creates a coupon reservation for all passed customer profiles on this couponID 
@@ -27,15 +27,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **couponValue** | **string**| The value of a coupon | 
- **optional** | ***CreateCouponReservationOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreateCouponReservationOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of CouponReservations**](CouponReservations.md)|  | 
+  **body** | [**CouponReservations**](CouponReservations.md)|  | 
 
 ### Return type
 
@@ -53,7 +45,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateReferral**
-> Referral CreateReferral(ctx, optional)
+> Referral CreateReferral(ctx, body)
 Create a referral code for an advocate
 
 Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile. 
@@ -63,14 +55,7 @@ Creates a referral code for an advocate. The code will be valid for the referral
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CreateReferralOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreateReferralOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of NewReferral**](NewReferral.md)|  | 
+  **body** | [**NewReferral**](NewReferral.md)|  | 
 
 ### Return type
 
@@ -88,7 +73,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **DeleteCouponReservation**
-> DeleteCouponReservation(ctx, couponValue, optional)
+> DeleteCouponReservation(ctx, couponValue, body)
 Delete coupon reservations
 
 Removes all passed customer profiles reservation from this coupon 
@@ -99,15 +84,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **couponValue** | **string**| The value of a coupon | 
- **optional** | ***DeleteCouponReservationOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a DeleteCouponReservationOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of CouponReservations**](CouponReservations.md)|  | 
+  **body** | [**CouponReservations**](CouponReservations.md)|  | 
 
 ### Return type
 
@@ -209,7 +186,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **TrackEvent**
-> IntegrationState TrackEvent(ctx, optional)
+> IntegrationState TrackEvent(ctx, body)
 Track an Event
 
 Records an arbitrary event in a customer session. For example, an integration might record an event when a user updates their payment information.  The `sessionId` body parameter is required, an event is always part of a session. Much like updating a customer session, if either the profile or the session do not exist, a new empty one will be created. Note that if the specified session already exists, it must belong to the same `profileId` or an error will be returned.  As with customer sessions, you can use an empty string for `profileId` to indicate that this is an anonymous session.  Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place. 
@@ -219,14 +196,7 @@ Records an arbitrary event in a customer session. For example, an integration mi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***TrackEventOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a TrackEventOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of NewEvent**](NewEvent.md)|  | 
+  **body** | [**NewEvent**](NewEvent.md)|  | 
 
 ### Return type
 
@@ -244,7 +214,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCustomerProfile**
-> IntegrationState UpdateCustomerProfile(ctx, integrationId, optional)
+> IntegrationState UpdateCustomerProfile(ctx, integrationId, body)
 Update a Customer Profile
 
 Update (or create) a [Customer Profile][]. This profile information can then be matched and/or updated by campaign [Rules][].  The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.  Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.  [Customer Profile]: /Getting-Started/entities#customer-profile [Rules]: /Getting-Started/entities#campaigns-rulesets-and-coupons 
@@ -255,15 +225,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **integrationId** | **string**| The custom identifier for this profile, must be unique within the account. | 
- **optional** | ***UpdateCustomerProfileOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateCustomerProfileOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of NewCustomerProfile**](NewCustomerProfile.md)|  | 
+  **body** | [**NewCustomerProfile**](NewCustomerProfile.md)|  | 
 
 ### Return type
 
@@ -281,7 +243,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCustomerSession**
-> IntegrationState UpdateCustomerSession(ctx, customerSessionId, optional)
+> IntegrationState UpdateCustomerSession(ctx, customerSessionId, body)
 Update a Customer Session
 
 Update (or create) a [Customer Session][]. For example, the items in a customers cart are part of a session.  The Talon.One platform supports multiple simultaneous sessions for the same profile, so if you have multiple ways of accessing the same application you have the option of either tracking multiple independent sessions or using the same session across all of them. You should share sessions when application access points share other state, such as the users cart. If two points of access to the application have independent state (e.g. a user can have different items in their cart across the two) they should use independent customer session ID's.  The `profileId` parameter in the request body should correspond to an `integrationId` for a customer profile, to track an anonymous session use the empty string (`\"\"`) as the `profileId`. Note that you do **not** need to create a customer profile first: if the specified profile does not yet exist, an empty profile will be created automatically.  Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.  The currency for the session and the cart items in the session is the same as that of the application with which the session is associated.  [Customer Session]: /Getting-Started/entities#customer-session 
@@ -292,15 +254,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **customerSessionId** | **string**| The custom identifier for this session, must be unique within the account. | 
- **optional** | ***UpdateCustomerSessionOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateCustomerSessionOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of NewCustomerSession**](NewCustomerSession.md)|  | 
+  **body** | [**NewCustomerSession**](NewCustomerSession.md)|  | 
 
 ### Return type
 

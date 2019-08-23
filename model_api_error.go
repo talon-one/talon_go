@@ -10,12 +10,9 @@
 package talon
 
 type ApiError struct {
-
 	// Short description of the problem.
 	Title string `json:"title"`
-
 	// Longer description of this specific instance of the problem.
 	Details string `json:"details,omitempty"`
-
 	Source *ErrorSource `json:"source"`
 }

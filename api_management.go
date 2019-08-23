@@ -33,17 +33,11 @@ ManagementApiService Add points in a certain loyalty program for the specified c
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param programID
  * @param integrationID
- * @param optional nil or *AddLoyaltyPointsOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of LoyaltyPoints) - 
+ * @param body
 
 
 */
-
-type AddLoyaltyPointsOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) AddLoyaltyPoints(ctx context.Context, programID string, integrationID string, localVarOptionals *AddLoyaltyPointsOpts) (*http.Response, error) {
+func (a *ManagementApiService) AddLoyaltyPoints(ctx context.Context, programID string, integrationID string, body LoyaltyPoints) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -79,14 +73,7 @@ func (a *ManagementApiService) AddLoyaltyPoints(ctx context.Context, programID s
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(LoyaltyPoints)
-		if !localVarOptionalBodyok {
-				return nil, reportError("body should be LoyaltyPoints")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -135,17 +122,11 @@ Copy the campaign into every specified application.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
- * @param optional nil or *CopyCampaignToApplicationsOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of CampaignCopy) - 
+ * @param body
 
 @return InlineResponse2003
 */
-
-type CopyCampaignToApplicationsOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) CopyCampaignToApplications(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *CopyCampaignToApplicationsOpts) (InlineResponse2003, *http.Response, error) {
+func (a *ManagementApiService) CopyCampaignToApplications(ctx context.Context, applicationId int32, campaignId int32, body CampaignCopy) (InlineResponse2003, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -181,14 +162,7 @@ func (a *ManagementApiService) CopyCampaignToApplications(ctx context.Context, a
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(CampaignCopy)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be CampaignCopy")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -259,17 +233,11 @@ ManagementApiService Create a Campaign
 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
- * @param optional nil or *CreateCampaignOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewCampaign) - 
+ * @param body
 
 @return Campaign
 */
-
-type CreateCampaignOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) CreateCampaign(ctx context.Context, applicationId int32, localVarOptionals *CreateCampaignOpts) (Campaign, *http.Response, error) {
+func (a *ManagementApiService) CreateCampaign(ctx context.Context, applicationId int32, body NewCampaign) (Campaign, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -304,14 +272,7 @@ func (a *ManagementApiService) CreateCampaign(ctx context.Context, applicationId
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewCampaign)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewCampaign")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -383,19 +344,18 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
+ * @param body
  * @param optional nil or *CreateCouponsOpts - Optional Parameters:
      * @param "Silent" (optional.String) -  If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the coupons generated (to to 1000).
-     * @param "Body" (optional.Interface of NewCoupons) - 
 
 @return InlineResponse2001
 */
 
 type CreateCouponsOpts struct { 
 	Silent optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) CreateCoupons(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *CreateCouponsOpts) (InlineResponse2001, *http.Response, error) {
+func (a *ManagementApiService) CreateCoupons(ctx context.Context, applicationId int32, campaignId int32, body NewCoupons, localVarOptionals *CreateCouponsOpts) (InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -434,14 +394,7 @@ func (a *ManagementApiService) CreateCoupons(ctx context.Context, applicationId 
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewCoupons)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewCoupons")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -511,17 +464,11 @@ func (a *ManagementApiService) CreateCoupons(ctx context.Context, applicationId 
 ManagementApiService Request a password reset
 Sends an email with a password recovery link to the email of an existing account. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *CreatePasswordRecoveryEmailOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewPasswordEmail) - 
+ * @param body
 
 @return NewPasswordEmail
 */
-
-type CreatePasswordRecoveryEmailOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) CreatePasswordRecoveryEmail(ctx context.Context, localVarOptionals *CreatePasswordRecoveryEmailOpts) (NewPasswordEmail, *http.Response, error) {
+func (a *ManagementApiService) CreatePasswordRecoveryEmail(ctx context.Context, body NewPasswordEmail) (NewPasswordEmail, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -555,14 +502,7 @@ func (a *ManagementApiService) CreatePasswordRecoveryEmail(ctx context.Context, 
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewPasswordEmail)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewPasswordEmail")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -634,17 +574,11 @@ ManagementApiService Create a Ruleset
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
- * @param optional nil or *CreateRulesetOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewRuleset) - 
+ * @param body
 
 @return Ruleset
 */
-
-type CreateRulesetOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) CreateRuleset(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *CreateRulesetOpts) (Ruleset, *http.Response, error) {
+func (a *ManagementApiService) CreateRuleset(ctx context.Context, applicationId int32, campaignId int32, body NewRuleset) (Ruleset, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -680,14 +614,7 @@ func (a *ManagementApiService) CreateRuleset(ctx context.Context, applicationId 
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewRuleset)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewRuleset")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -757,17 +684,11 @@ func (a *ManagementApiService) CreateRuleset(ctx context.Context, applicationId 
 ManagementApiService Create a Session
 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *CreateSessionOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of LoginParams) - 
+ * @param body
 
 @return Session
 */
-
-type CreateSessionOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) CreateSession(ctx context.Context, localVarOptionals *CreateSessionOpts) (Session, *http.Response, error) {
+func (a *ManagementApiService) CreateSession(ctx context.Context, body LoginParams) (Session, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -801,14 +722,7 @@ func (a *ManagementApiService) CreateSession(ctx context.Context, localVarOption
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(LoginParams)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be LoginParams")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -2675,17 +2589,11 @@ func (a *ManagementApiService) GetApplicationCustomers(ctx context.Context, appl
 ManagementApiService Get a list of the customer profiles that match the given attributes
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id&#x3D;14115#customer-profile 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *GetApplicationCustomersByAttributesOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of ApplicationCustomerSearch) - 
+ * @param body
 
 @return InlineResponse20013
 */
-
-type GetApplicationCustomersByAttributesOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx context.Context, localVarOptionals *GetApplicationCustomersByAttributesOpts) (InlineResponse20013, *http.Response, error) {
+func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx context.Context, body ApplicationCustomerSearch) (InlineResponse20013, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -2719,14 +2627,7 @@ func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx context.C
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(ApplicationCustomerSearch)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be ApplicationCustomerSearch")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -4003,12 +3904,12 @@ ManagementApiService Get a list of all campaigns that match the given attributes
 Gets a list of all the campaigns that exactly match a set of attributes. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
+ * @param body
  * @param optional nil or *GetCampaignByAttributesOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
      * @param "Sort" (optional.String) -  The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order.
      * @param "CampaignState" (optional.String) -  Filter results by the state of the campaign.
-     * @param "Body" (optional.Interface of CampaignSearch) - 
 
 @return InlineResponse2003
 */
@@ -4018,10 +3919,9 @@ type GetCampaignByAttributesOpts struct {
 	Skip optional.Int32
 	Sort optional.String
 	CampaignState optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) GetCampaignByAttributes(ctx context.Context, applicationId int32, localVarOptionals *GetCampaignByAttributesOpts) (InlineResponse2003, *http.Response, error) {
+func (a *ManagementApiService) GetCampaignByAttributes(ctx context.Context, applicationId int32, body CampaignSearch, localVarOptionals *GetCampaignByAttributesOpts) (InlineResponse2003, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -4068,14 +3968,7 @@ func (a *ManagementApiService) GetCampaignByAttributes(ctx context.Context, appl
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(CampaignSearch)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be CampaignSearch")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -4725,6 +4618,7 @@ Gets a list of all the coupons that exactly match a set of attributes.  The matc
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
+ * @param body
  * @param optional nil or *GetCouponsByAttributesOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -4738,7 +4632,6 @@ Gets a list of all the coupons that exactly match a set of attributes.  The matc
      * @param "RecipientIntegrationId" (optional.String) -  Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field
      * @param "ExactMatch" (optional.Bool) -  Filter results to an exact case-insensitive matching against the coupon code
      * @param "BatchId" (optional.String) -  Filter results by batches of coupons
-     * @param "Body" (optional.Interface of CouponSearch) - 
 
 @return InlineResponse2001
 */
@@ -4756,10 +4649,9 @@ type GetCouponsByAttributesOpts struct {
 	RecipientIntegrationId optional.String
 	ExactMatch optional.Bool
 	BatchId optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) GetCouponsByAttributes(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *GetCouponsByAttributesOpts) (InlineResponse2001, *http.Response, error) {
+func (a *ManagementApiService) GetCouponsByAttributes(ctx context.Context, applicationId int32, campaignId int32, body CouponSearch, localVarOptionals *GetCouponsByAttributesOpts) (InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -4831,14 +4723,7 @@ func (a *ManagementApiService) GetCouponsByAttributes(ctx context.Context, appli
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(CouponSearch)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be CouponSearch")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -4909,6 +4794,7 @@ ManagementApiService Get a list of the coupons that match the given attributes i
 Gets a list of all the coupons with attributes matching the query criteria Application wide 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
+ * @param body
  * @param optional nil or *GetCouponsByAttributesApplicationWideOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -4923,7 +4809,6 @@ Gets a list of all the coupons with attributes matching the query criteria Appli
      * @param "BatchId" (optional.String) -  Filter results by batches of coupons
      * @param "ExactMatch" (optional.Bool) -  Filter results to an exact case-insensitive matching against the coupon code
      * @param "CampaignState" (optional.String) -  Filter results by the state of the campaign.
-     * @param "Body" (optional.Interface of CouponSearch) - 
 
 @return InlineResponse2001
 */
@@ -4942,10 +4827,9 @@ type GetCouponsByAttributesApplicationWideOpts struct {
 	BatchId optional.String
 	ExactMatch optional.Bool
 	CampaignState optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) GetCouponsByAttributesApplicationWide(ctx context.Context, applicationId int32, localVarOptionals *GetCouponsByAttributesApplicationWideOpts) (InlineResponse2001, *http.Response, error) {
+func (a *ManagementApiService) GetCouponsByAttributesApplicationWide(ctx context.Context, applicationId int32, body CouponSearch, localVarOptionals *GetCouponsByAttributesApplicationWideOpts) (InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -5019,14 +4903,7 @@ func (a *ManagementApiService) GetCouponsByAttributesApplicationWide(ctx context
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(CouponSearch)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be CouponSearch")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -6058,10 +5935,10 @@ func (a *ManagementApiService) GetCustomerProfiles(ctx context.Context, localVar
 ManagementApiService Get a list of the customer profiles that match the given attributes
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id&#x3D;14115#customer-profile 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param body
  * @param optional nil or *GetCustomersByAttributesOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
-     * @param "Body" (optional.Interface of ApplicationCustomerSearch) - 
 
 @return InlineResponse20013
 */
@@ -6069,10 +5946,9 @@ Gets a list of all the customer profiles for the account that exactly match a se
 type GetCustomersByAttributesOpts struct { 
 	PageSize optional.Int32
 	Skip optional.Int32
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) GetCustomersByAttributes(ctx context.Context, localVarOptionals *GetCustomersByAttributesOpts) (InlineResponse20013, *http.Response, error) {
+func (a *ManagementApiService) GetCustomersByAttributes(ctx context.Context, body ApplicationCustomerSearch, localVarOptionals *GetCustomersByAttributesOpts) (InlineResponse20013, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -6112,14 +5988,7 @@ func (a *ManagementApiService) GetCustomersByAttributes(ctx context.Context, loc
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(ApplicationCustomerSearch)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be ApplicationCustomerSearch")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -8437,17 +8306,11 @@ ManagementApiService Deduct points in a certain loyalty program for the specifie
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param programID
  * @param integrationID
- * @param optional nil or *RemoveLoyaltyPointsOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of LoyaltyPoints) - 
+ * @param body
 
 
 */
-
-type RemoveLoyaltyPointsOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) RemoveLoyaltyPoints(ctx context.Context, programID string, integrationID string, localVarOptionals *RemoveLoyaltyPointsOpts) (*http.Response, error) {
+func (a *ManagementApiService) RemoveLoyaltyPoints(ctx context.Context, programID string, integrationID string, body LoyaltyPoints) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -8483,14 +8346,7 @@ func (a *ManagementApiService) RemoveLoyaltyPoints(ctx context.Context, programI
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(LoyaltyPoints)
-		if !localVarOptionalBodyok {
-				return nil, reportError("body should be LoyaltyPoints")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -8537,17 +8393,11 @@ func (a *ManagementApiService) RemoveLoyaltyPoints(ctx context.Context, programI
 ManagementApiService Reset password
 Consumes the supplied password reset token and updates the password for the associated account. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *ResetPasswordOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewPassword) - 
+ * @param body
 
 @return NewPassword
 */
-
-type ResetPasswordOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) ResetPassword(ctx context.Context, localVarOptionals *ResetPasswordOpts) (NewPassword, *http.Response, error) {
+func (a *ManagementApiService) ResetPassword(ctx context.Context, body NewPassword) (NewPassword, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -8581,14 +8431,7 @@ func (a *ManagementApiService) ResetPassword(ctx context.Context, localVarOption
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewPassword)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewPassword")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -8660,6 +8503,7 @@ Gets a list of all the coupons with attributes matching the query criteria
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
+ * @param body
  * @param optional nil or *SearchCouponsAdvancedOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -8673,7 +8517,6 @@ Gets a list of all the coupons with attributes matching the query criteria
      * @param "RecipientIntegrationId" (optional.String) -  Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field
      * @param "ExactMatch" (optional.Bool) -  Filter results to an exact case-insensitive matching against the coupon code
      * @param "BatchId" (optional.String) -  Filter results by batches of coupons
-     * @param "Body" (optional.Interface of AttributeQuery) - 
 
 @return InlineResponse2001
 */
@@ -8691,10 +8534,9 @@ type SearchCouponsAdvancedOpts struct {
 	RecipientIntegrationId optional.String
 	ExactMatch optional.Bool
 	BatchId optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) SearchCouponsAdvanced(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *SearchCouponsAdvancedOpts) (InlineResponse2001, *http.Response, error) {
+func (a *ManagementApiService) SearchCouponsAdvanced(ctx context.Context, applicationId int32, campaignId int32, body AttributeQuery, localVarOptionals *SearchCouponsAdvancedOpts) (InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -8766,14 +8608,7 @@ func (a *ManagementApiService) SearchCouponsAdvanced(ctx context.Context, applic
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(AttributeQuery)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be AttributeQuery")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -8844,6 +8679,7 @@ ManagementApiService Get a list of the coupons that match the given attributes i
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
+ * @param body
  * @param optional nil or *SearchCouponsAdvancedApplicationWideOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -8858,7 +8694,6 @@ Gets a list of all the coupons with attributes matching the query criteria in al
      * @param "BatchId" (optional.String) -  Filter results by batches of coupons
      * @param "ExactMatch" (optional.Bool) -  Filter results to an exact case-insensitive matching against the coupon code
      * @param "CampaignState" (optional.String) -  Filter results by the state of the campaign.
-     * @param "Body" (optional.Interface of AttributeQuery) - 
 
 @return InlineResponse2001
 */
@@ -8877,10 +8712,9 @@ type SearchCouponsAdvancedApplicationWideOpts struct {
 	BatchId optional.String
 	ExactMatch optional.Bool
 	CampaignState optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) SearchCouponsAdvancedApplicationWide(ctx context.Context, applicationId int32, localVarOptionals *SearchCouponsAdvancedApplicationWideOpts) (InlineResponse2001, *http.Response, error) {
+func (a *ManagementApiService) SearchCouponsAdvancedApplicationWide(ctx context.Context, applicationId int32, body AttributeQuery, localVarOptionals *SearchCouponsAdvancedApplicationWideOpts) (InlineResponse2001, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -8954,14 +8788,7 @@ func (a *ManagementApiService) SearchCouponsAdvancedApplicationWide(ctx context.
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(AttributeQuery)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be AttributeQuery")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9032,6 +8859,7 @@ ManagementApiService Get a list of the coupons that match the given attributes i
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
+ * @param body
  * @param optional nil or *SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -9046,7 +8874,6 @@ Gets a list of all the coupons with attributes matching the query criteria in al
      * @param "BatchId" (optional.String) -  Filter results by batches of coupons
      * @param "ExactMatch" (optional.Bool) -  Filter results to an exact case-insensitive matching against the coupon code
      * @param "CampaignState" (optional.String) -  Filter results by the state of the campaign.
-     * @param "Body" (optional.Interface of AttributeQuery) - 
 
 @return InlineResponse2005
 */
@@ -9065,10 +8892,9 @@ type SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts struct {
 	BatchId optional.String
 	ExactMatch optional.Bool
 	CampaignState optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx context.Context, applicationId int32, localVarOptionals *SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts) (InlineResponse2005, *http.Response, error) {
+func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx context.Context, applicationId int32, body AttributeQuery, localVarOptionals *SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts) (InlineResponse2005, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -9142,14 +8968,7 @@ func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalC
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(AttributeQuery)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be AttributeQuery")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9221,6 +9040,7 @@ Gets a list of all the coupons with attributes matching the query criteria
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
+ * @param body
  * @param optional nil or *SearchCouponsAdvancedWithoutTotalCountOpts - Optional Parameters:
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -9234,7 +9054,6 @@ Gets a list of all the coupons with attributes matching the query criteria
      * @param "RecipientIntegrationId" (optional.String) -  Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field
      * @param "ExactMatch" (optional.Bool) -  Filter results to an exact case-insensitive matching against the coupon code
      * @param "BatchId" (optional.String) -  Filter results by batches of coupons
-     * @param "Body" (optional.Interface of AttributeQuery) - 
 
 @return InlineResponse2005
 */
@@ -9252,10 +9071,9 @@ type SearchCouponsAdvancedWithoutTotalCountOpts struct {
 	RecipientIntegrationId optional.String
 	ExactMatch optional.Bool
 	BatchId optional.String
-	Body optional.Interface
 }
 
-func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *SearchCouponsAdvancedWithoutTotalCountOpts) (InlineResponse2005, *http.Response, error) {
+func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx context.Context, applicationId int32, campaignId int32, body AttributeQuery, localVarOptionals *SearchCouponsAdvancedWithoutTotalCountOpts) (InlineResponse2005, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -9327,14 +9145,7 @@ func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx contex
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(AttributeQuery)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be AttributeQuery")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9405,17 +9216,11 @@ ManagementApiService Set account limits
 sets account limits  
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountId 
- * @param optional nil or *SetAccountLimitsOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of AccountLimits) - 
+ * @param body
 
 
 */
-
-type SetAccountLimitsOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) SetAccountLimits(ctx context.Context, accountId int32, localVarOptionals *SetAccountLimitsOpts) (*http.Response, error) {
+func (a *ManagementApiService) SetAccountLimits(ctx context.Context, accountId int32, body AccountLimits) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -9450,14 +9255,7 @@ func (a *ManagementApiService) SetAccountLimits(ctx context.Context, accountId i
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(AccountLimits)
-		if !localVarOptionalBodyok {
-				return nil, reportError("body should be AccountLimits")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9506,17 +9304,11 @@ ManagementApiService Update a Campaign
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
- * @param optional nil or *UpdateCampaignOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of UpdateCampaign) - 
+ * @param body
 
 @return Campaign
 */
-
-type UpdateCampaignOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) UpdateCampaign(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *UpdateCampaignOpts) (Campaign, *http.Response, error) {
+func (a *ManagementApiService) UpdateCampaign(ctx context.Context, applicationId int32, campaignId int32, body UpdateCampaign) (Campaign, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -9552,14 +9344,7 @@ func (a *ManagementApiService) UpdateCampaign(ctx context.Context, applicationId
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(UpdateCampaign)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be UpdateCampaign")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9630,17 +9415,11 @@ ManagementApiService Update a Campaign Set
 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId 
- * @param optional nil or *UpdateCampaignSetOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewCampaignSet) - 
+ * @param body
 
 @return CampaignSet
 */
-
-type UpdateCampaignSetOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) UpdateCampaignSet(ctx context.Context, applicationId int32, localVarOptionals *UpdateCampaignSetOpts) (CampaignSet, *http.Response, error) {
+func (a *ManagementApiService) UpdateCampaignSet(ctx context.Context, applicationId int32, body NewCampaignSet) (CampaignSet, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -9675,14 +9454,7 @@ func (a *ManagementApiService) UpdateCampaignSet(ctx context.Context, applicatio
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewCampaignSet)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewCampaignSet")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9755,17 +9527,11 @@ ManagementApiService Update a Coupon
  * @param applicationId 
  * @param campaignId 
  * @param couponId The ID of the coupon code to update
- * @param optional nil or *UpdateCouponOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of UpdateCoupon) - 
+ * @param body
 
 @return Coupon
 */
-
-type UpdateCouponOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) UpdateCoupon(ctx context.Context, applicationId int32, campaignId int32, couponId string, localVarOptionals *UpdateCouponOpts) (Coupon, *http.Response, error) {
+func (a *ManagementApiService) UpdateCoupon(ctx context.Context, applicationId int32, campaignId int32, couponId string, body UpdateCoupon) (Coupon, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -9802,14 +9568,7 @@ func (a *ManagementApiService) UpdateCoupon(ctx context.Context, applicationId i
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(UpdateCoupon)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be UpdateCoupon")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9881,17 +9640,11 @@ ManagementApiService Update a Batch of Coupons
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
- * @param optional nil or *UpdateCouponBatchOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of UpdateCouponBatch) - 
+ * @param body
 
 
 */
-
-type UpdateCouponBatchOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) UpdateCouponBatch(ctx context.Context, applicationId int32, campaignId int32, localVarOptionals *UpdateCouponBatchOpts) (*http.Response, error) {
+func (a *ManagementApiService) UpdateCouponBatch(ctx context.Context, applicationId int32, campaignId int32, body UpdateCouponBatch) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -9927,14 +9680,7 @@ func (a *ManagementApiService) UpdateCouponBatch(ctx context.Context, applicatio
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(UpdateCouponBatch)
-		if !localVarOptionalBodyok {
-				return nil, reportError("body should be UpdateCouponBatch")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -9984,17 +9730,11 @@ ManagementApiService Update a Ruleset
  * @param applicationId
  * @param campaignId 
  * @param rulesetId 
- * @param optional nil or *UpdateRulesetOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewRuleset) - 
+ * @param body
 
 @return Ruleset
 */
-
-type UpdateRulesetOpts struct { 
-	Body optional.Interface
-}
-
-func (a *ManagementApiService) UpdateRuleset(ctx context.Context, applicationId int32, campaignId int32, rulesetId int32, localVarOptionals *UpdateRulesetOpts) (Ruleset, *http.Response, error) {
+func (a *ManagementApiService) UpdateRuleset(ctx context.Context, applicationId int32, campaignId int32, rulesetId int32, body NewRuleset) (Ruleset, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -10031,14 +9771,7 @@ func (a *ManagementApiService) UpdateRuleset(ctx context.Context, applicationId 
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewRuleset)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewRuleset")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

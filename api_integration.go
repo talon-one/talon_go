@@ -16,7 +16,6 @@ import (
 	"strings"
 	"context"
 	"fmt"
-  "github.com/antihax/optional"
 )
 
 // Linger please
@@ -31,17 +30,11 @@ IntegrationApiService Create a new coupon reservation
 Creates a coupon reservation for all passed customer profiles on this couponID 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param couponValue The value of a coupon
- * @param optional nil or *CreateCouponReservationOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of CouponReservations) - 
+ * @param body
 
 @return Coupon
 */
-
-type CreateCouponReservationOpts struct { 
-	Body optional.Interface
-}
-
-func (a *IntegrationApiService) CreateCouponReservation(ctx context.Context, couponValue string, localVarOptionals *CreateCouponReservationOpts) (Coupon, *http.Response, error) {
+func (a *IntegrationApiService) CreateCouponReservation(ctx context.Context, couponValue string, body CouponReservations) (Coupon, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -76,14 +69,7 @@ func (a *IntegrationApiService) CreateCouponReservation(ctx context.Context, cou
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(CouponReservations)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be CouponReservations")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -166,17 +152,11 @@ func (a *IntegrationApiService) CreateCouponReservation(ctx context.Context, cou
 IntegrationApiService Create a referral code for an advocate
 Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the &#x60;campaignId&#x60; parameter, and will be associated with the profile specified in the &#x60;advocateProfileIntegrationId&#x60; parameter as the advocate&#39;s profile. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *CreateReferralOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewReferral) - 
+ * @param body
 
 @return Referral
 */
-
-type CreateReferralOpts struct { 
-	Body optional.Interface
-}
-
-func (a *IntegrationApiService) CreateReferral(ctx context.Context, localVarOptionals *CreateReferralOpts) (Referral, *http.Response, error) {
+func (a *IntegrationApiService) CreateReferral(ctx context.Context, body NewReferral) (Referral, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -210,14 +190,7 @@ func (a *IntegrationApiService) CreateReferral(ctx context.Context, localVarOpti
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewReferral)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewReferral")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -301,17 +274,11 @@ IntegrationApiService Delete coupon reservations
 Removes all passed customer profiles reservation from this coupon 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param couponValue The value of a coupon
- * @param optional nil or *DeleteCouponReservationOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of CouponReservations) - 
+ * @param body
 
 
 */
-
-type DeleteCouponReservationOpts struct { 
-	Body optional.Interface
-}
-
-func (a *IntegrationApiService) DeleteCouponReservation(ctx context.Context, couponValue string, localVarOptionals *DeleteCouponReservationOpts) (*http.Response, error) {
+func (a *IntegrationApiService) DeleteCouponReservation(ctx context.Context, couponValue string, body CouponReservations) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
@@ -346,14 +313,7 @@ func (a *IntegrationApiService) DeleteCouponReservation(ctx context.Context, cou
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(CouponReservations)
-		if !localVarOptionalBodyok {
-				return nil, reportError("body should be CouponReservations")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -750,17 +710,11 @@ func (a *IntegrationApiService) GetReservedCustomers(ctx context.Context, coupon
 IntegrationApiService Track an Event
 Records an arbitrary event in a customer session. For example, an integration might record an event when a user updates their payment information.  The &#x60;sessionId&#x60; body parameter is required, an event is always part of a session. Much like updating a customer session, if either the profile or the session do not exist, a new empty one will be created. Note that if the specified session already exists, it must belong to the same &#x60;profileId&#x60; or an error will be returned.  As with customer sessions, you can use an empty string for &#x60;profileId&#x60; to indicate that this is an anonymous session.  Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *TrackEventOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewEvent) - 
+ * @param body
 
 @return IntegrationState
 */
-
-type TrackEventOpts struct { 
-	Body optional.Interface
-}
-
-func (a *IntegrationApiService) TrackEvent(ctx context.Context, localVarOptionals *TrackEventOpts) (IntegrationState, *http.Response, error) {
+func (a *IntegrationApiService) TrackEvent(ctx context.Context, body NewEvent) (IntegrationState, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
@@ -794,14 +748,7 @@ func (a *IntegrationApiService) TrackEvent(ctx context.Context, localVarOptional
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewEvent)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewEvent")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -885,17 +832,11 @@ IntegrationApiService Update a Customer Profile
 Update (or create) a [Customer Profile][]. This profile information can then be matched and/or updated by campaign [Rules][].  The &#x60;integrationId&#x60; may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the &#x60;integrationId&#x60;. It is vital that this ID **not** change over time, so **don&#39;t** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.  Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.  [Customer Profile]: /Getting-Started/entities#customer-profile [Rules]: /Getting-Started/entities#campaigns-rulesets-and-coupons 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param integrationId The custom identifier for this profile, must be unique within the account.
- * @param optional nil or *UpdateCustomerProfileOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewCustomerProfile) - 
+ * @param body
 
 @return IntegrationState
 */
-
-type UpdateCustomerProfileOpts struct { 
-	Body optional.Interface
-}
-
-func (a *IntegrationApiService) UpdateCustomerProfile(ctx context.Context, integrationId string, localVarOptionals *UpdateCustomerProfileOpts) (IntegrationState, *http.Response, error) {
+func (a *IntegrationApiService) UpdateCustomerProfile(ctx context.Context, integrationId string, body NewCustomerProfile) (IntegrationState, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -930,14 +871,7 @@ func (a *IntegrationApiService) UpdateCustomerProfile(ctx context.Context, integ
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewCustomerProfile)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewCustomerProfile")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
@@ -1021,17 +955,11 @@ IntegrationApiService Update a Customer Session
 Update (or create) a [Customer Session][]. For example, the items in a customers cart are part of a session.  The Talon.One platform supports multiple simultaneous sessions for the same profile, so if you have multiple ways of accessing the same application you have the option of either tracking multiple independent sessions or using the same session across all of them. You should share sessions when application access points share other state, such as the users cart. If two points of access to the application have independent state (e.g. a user can have different items in their cart across the two) they should use independent customer session ID&#39;s.  The &#x60;profileId&#x60; parameter in the request body should correspond to an &#x60;integrationId&#x60; for a customer profile, to track an anonymous session use the empty string (&#x60;\&quot;\&quot;&#x60;) as the &#x60;profileId&#x60;. Note that you do **not** need to create a customer profile first: if the specified profile does not yet exist, an empty profile will be created automatically.  Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.  The currency for the session and the cart items in the session is the same as that of the application with which the session is associated.  [Customer Session]: /Getting-Started/entities#customer-session 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param customerSessionId The custom identifier for this session, must be unique within the account.
- * @param optional nil or *UpdateCustomerSessionOpts - Optional Parameters:
-     * @param "Body" (optional.Interface of NewCustomerSession) - 
+ * @param body
 
 @return IntegrationState
 */
-
-type UpdateCustomerSessionOpts struct { 
-	Body optional.Interface
-}
-
-func (a *IntegrationApiService) UpdateCustomerSession(ctx context.Context, customerSessionId string, localVarOptionals *UpdateCustomerSessionOpts) (IntegrationState, *http.Response, error) {
+func (a *IntegrationApiService) UpdateCustomerSession(ctx context.Context, customerSessionId string, body NewCustomerSession) (IntegrationState, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
@@ -1066,14 +994,7 @@ func (a *IntegrationApiService) UpdateCustomerSession(ctx context.Context, custo
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
 	// body params
-	if localVarOptionals != nil && localVarOptionals.Body.IsSet() {
-		
-		localVarOptionalBody, localVarOptionalBodyok := localVarOptionals.Body.Value().(NewCustomerSession)
-		if !localVarOptionalBodyok {
-				return localVarReturnValue, nil, reportError("body should be NewCustomerSession")
-		}
-		localVarPostBody = &localVarOptionalBody
-	}
+	localVarPostBody = &body
 	if ctx != nil {
 		// API Key Authentication
 		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {

@@ -89,7 +89,7 @@ paths:
         x-exportParamName: "IntegrationId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCustomerProfile"
         x-exportParamName: "Body"
@@ -136,7 +136,7 @@ paths:
         x-exportParamName: "CustomerSessionId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCustomerSession"
         x-exportParamName: "Body"
@@ -169,7 +169,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewEvent"
         x-exportParamName: "Body"
@@ -194,7 +194,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewReferral"
         x-exportParamName: "Body"
@@ -245,7 +245,7 @@ paths:
         x-exportParamName: "CouponValue"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CouponReservations"
         x-exportParamName: "Body"
@@ -272,7 +272,7 @@ paths:
         x-exportParamName: "CouponValue"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CouponReservations"
         x-exportParamName: "Body"
@@ -492,7 +492,7 @@ paths:
         x-exportParamName: "ApplicationId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCampaign"
         x-exportParamName: "Body"
@@ -535,7 +535,7 @@ paths:
         x-exportParamName: "ApplicationId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCampaignSet"
         x-exportParamName: "Body"
@@ -588,7 +588,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/UpdateCampaign"
         x-exportParamName: "Body"
@@ -639,7 +639,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CampaignCopy"
         x-exportParamName: "Body"
@@ -703,7 +703,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CampaignSearch"
         x-exportParamName: "Body"
@@ -782,7 +782,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewRuleset"
         x-exportParamName: "Body"
@@ -847,7 +847,7 @@ paths:
         x-exportParamName: "RulesetId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewRuleset"
         x-exportParamName: "Body"
@@ -1085,7 +1085,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCoupons"
         x-exportParamName: "Body"
@@ -1116,7 +1116,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/UpdateCouponBatch"
         x-exportParamName: "Body"
@@ -1432,7 +1432,7 @@ paths:
         x-exportParamName: "CouponId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/UpdateCoupon"
         x-exportParamName: "Body"
@@ -1605,7 +1605,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CouponSearch"
         x-exportParamName: "Body"
@@ -1758,7 +1758,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CouponSearch"
         x-exportParamName: "Body"
@@ -1901,7 +1901,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -2044,7 +2044,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -2197,7 +2197,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -2350,7 +2350,7 @@ paths:
         x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -2690,7 +2690,7 @@ paths:
         x-exportParamName: "IntegrationID"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/LoyaltyPoints"
         x-exportParamName: "Body"
@@ -2717,7 +2717,7 @@ paths:
         x-exportParamName: "IntegrationID"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/LoyaltyPoints"
         x-exportParamName: "Body"
@@ -3117,7 +3117,7 @@ paths:
         x-optionalDataType: "Int32"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/ApplicationCustomerSearch"
         x-exportParamName: "Body"
@@ -3194,7 +3194,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/ApplicationCustomerSearch"
         x-exportParamName: "Body"
@@ -4354,7 +4354,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewPasswordEmail"
         x-exportParamName: "Body"
@@ -4374,7 +4374,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewPassword"
         x-exportParamName: "Body"
@@ -4455,7 +4455,7 @@ paths:
         x-exportParamName: "AccountId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AccountLimits"
         x-exportParamName: "Body"
@@ -4472,7 +4472,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/LoginParams"
         x-exportParamName: "Body"

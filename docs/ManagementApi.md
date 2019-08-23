@@ -85,7 +85,7 @@ Method | HTTP request | Description
 
 
 # **AddLoyaltyPoints**
-> AddLoyaltyPoints(ctx, programID, integrationID, optional)
+> AddLoyaltyPoints(ctx, programID, integrationID, body)
 Add points in a certain loyalty program for the specified customer
 
 
@@ -97,16 +97,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **programID** | **string**|  | 
   **integrationID** | **string**|  | 
- **optional** | ***AddLoyaltyPointsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a AddLoyaltyPointsOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of LoyaltyPoints**](LoyaltyPoints.md)|  | 
+  **body** | [**LoyaltyPoints**](LoyaltyPoints.md)|  | 
 
 ### Return type
 
@@ -124,7 +115,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CopyCampaignToApplications**
-> InlineResponse2003 CopyCampaignToApplications(ctx, applicationId, campaignId, optional)
+> InlineResponse2003 CopyCampaignToApplications(ctx, applicationId, campaignId, body)
 Copy the campaign into every specified application
 
 Copy the campaign into every specified application.
@@ -136,16 +127,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | ***CopyCampaignToApplicationsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CopyCampaignToApplicationsOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of CampaignCopy**](CampaignCopy.md)|  | 
+  **body** | [**CampaignCopy**](CampaignCopy.md)|  | 
 
 ### Return type
 
@@ -163,7 +145,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateCampaign**
-> Campaign CreateCampaign(ctx, applicationId, optional)
+> Campaign CreateCampaign(ctx, applicationId, body)
 Create a Campaign
 
 
@@ -174,15 +156,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | ***CreateCampaignOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreateCampaignOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of NewCampaign**](NewCampaign.md)|  | 
+  **body** | [**NewCampaign**](NewCampaign.md)|  | 
 
 ### Return type
 
@@ -200,7 +174,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateCoupons**
-> InlineResponse2001 CreateCoupons(ctx, applicationId, campaignId, optional)
+> InlineResponse2001 CreateCoupons(ctx, applicationId, campaignId, body, optional)
 Create Coupons
 
 Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupns can be created.
@@ -212,6 +186,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
+  **body** | [**NewCoupons**](NewCoupons.md)|  | 
  **optional** | ***CreateCouponsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -221,8 +196,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
+
  **silent** | **optional.String**| If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the coupons generated (to to 1000). | 
- **body** | [**optional.Interface of NewCoupons**](NewCoupons.md)|  | 
 
 ### Return type
 
@@ -240,7 +215,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreatePasswordRecoveryEmail**
-> NewPasswordEmail CreatePasswordRecoveryEmail(ctx, optional)
+> NewPasswordEmail CreatePasswordRecoveryEmail(ctx, body)
 Request a password reset
 
 Sends an email with a password recovery link to the email of an existing account. 
@@ -250,14 +225,7 @@ Sends an email with a password recovery link to the email of an existing account
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CreatePasswordRecoveryEmailOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreatePasswordRecoveryEmailOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of NewPasswordEmail**](NewPasswordEmail.md)|  | 
+  **body** | [**NewPasswordEmail**](NewPasswordEmail.md)|  | 
 
 ### Return type
 
@@ -275,7 +243,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateRuleset**
-> Ruleset CreateRuleset(ctx, applicationId, campaignId, optional)
+> Ruleset CreateRuleset(ctx, applicationId, campaignId, body)
 Create a Ruleset
 
 
@@ -287,16 +255,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | ***CreateRulesetOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreateRulesetOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of NewRuleset**](NewRuleset.md)|  | 
+  **body** | [**NewRuleset**](NewRuleset.md)|  | 
 
 ### Return type
 
@@ -314,7 +273,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateSession**
-> Session CreateSession(ctx, optional)
+> Session CreateSession(ctx, body)
 Create a Session
 
 
@@ -324,14 +283,7 @@ Create a Session
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***CreateSessionOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a CreateSessionOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of LoginParams**](LoginParams.md)|  | 
+  **body** | [**LoginParams**](LoginParams.md)|  | 
 
 ### Return type
 
@@ -874,7 +826,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationCustomersByAttributes**
-> InlineResponse20013 GetApplicationCustomersByAttributes(ctx, optional)
+> InlineResponse20013 GetApplicationCustomersByAttributes(ctx, body)
 Get a list of the customer profiles that match the given attributes
 
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile 
@@ -884,14 +836,7 @@ Gets a list of all the customer profiles for the account that exactly match a se
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetApplicationCustomersByAttributesOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a GetApplicationCustomersByAttributesOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
+  **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
 
 ### Return type
 
@@ -1256,7 +1201,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCampaignByAttributes**
-> InlineResponse2003 GetCampaignByAttributes(ctx, applicationId, optional)
+> InlineResponse2003 GetCampaignByAttributes(ctx, applicationId, body, optional)
 Get a list of all campaigns that match the given attributes
 
 Gets a list of all the campaigns that exactly match a set of attributes. 
@@ -1267,6 +1212,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
+  **body** | [**CampaignSearch**](CampaignSearch.md)|  | 
  **optional** | ***GetCampaignByAttributesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1275,11 +1221,11 @@ Optional parameters are passed through a pointer to a GetCampaignByAttributesOpt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
  **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
  **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
- **body** | [**optional.Interface of CampaignSearch**](CampaignSearch.md)|  | 
 
 ### Return type
 
@@ -1460,7 +1406,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCouponsByAttributes**
-> InlineResponse2001 GetCouponsByAttributes(ctx, applicationId, campaignId, optional)
+> InlineResponse2001 GetCouponsByAttributes(ctx, applicationId, campaignId, body, optional)
 Get a list of the coupons that match the given attributes
 
 Gets a list of all the coupons that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request. 
@@ -1472,6 +1418,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
+  **body** | [**CouponSearch**](CouponSearch.md)|  | 
  **optional** | ***GetCouponsByAttributesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1479,6 +1426,7 @@ Optional parameters are passed through a pointer to a GetCouponsByAttributesOpts
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
@@ -1493,7 +1441,6 @@ Name | Type | Description  | Notes
  **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **batchId** | **optional.String**| Filter results by batches of coupons | 
- **body** | [**optional.Interface of CouponSearch**](CouponSearch.md)|  | 
 
 ### Return type
 
@@ -1511,7 +1458,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCouponsByAttributesApplicationWide**
-> InlineResponse2001 GetCouponsByAttributesApplicationWide(ctx, applicationId, optional)
+> InlineResponse2001 GetCouponsByAttributesApplicationWide(ctx, applicationId, body, optional)
 Get a list of the coupons that match the given attributes in all active campaigns of an application
 
 Gets a list of all the coupons with attributes matching the query criteria Application wide 
@@ -1522,6 +1469,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
+  **body** | [**CouponSearch**](CouponSearch.md)|  | 
  **optional** | ***GetCouponsByAttributesApplicationWideOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1529,6 +1477,7 @@ Optional parameters are passed through a pointer to a GetCouponsByAttributesAppl
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
@@ -1543,7 +1492,6 @@ Name | Type | Description  | Notes
  **batchId** | **optional.String**| Filter results by batches of coupons | 
  **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
- **body** | [**optional.Interface of CouponSearch**](CouponSearch.md)|  | 
 
 ### Return type
 
@@ -1855,7 +1803,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCustomersByAttributes**
-> InlineResponse20013 GetCustomersByAttributes(ctx, optional)
+> InlineResponse20013 GetCustomersByAttributes(ctx, body, optional)
 Get a list of the customer profiles that match the given attributes
 
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile 
@@ -1865,6 +1813,7 @@ Gets a list of all the customer profiles for the account that exactly match a se
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
  **optional** | ***GetCustomersByAttributesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1872,9 +1821,9 @@ Optional parameters are passed through a pointer to a GetCustomersByAttributesOp
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
- **body** | [**optional.Interface of ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
 
 ### Return type
 
@@ -2521,7 +2470,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RemoveLoyaltyPoints**
-> RemoveLoyaltyPoints(ctx, programID, integrationID, optional)
+> RemoveLoyaltyPoints(ctx, programID, integrationID, body)
 Deduct points in a certain loyalty program for the specified customer
 
 
@@ -2533,16 +2482,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **programID** | **string**|  | 
   **integrationID** | **string**|  | 
- **optional** | ***RemoveLoyaltyPointsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a RemoveLoyaltyPointsOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of LoyaltyPoints**](LoyaltyPoints.md)|  | 
+  **body** | [**LoyaltyPoints**](LoyaltyPoints.md)|  | 
 
 ### Return type
 
@@ -2560,7 +2500,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ResetPassword**
-> NewPassword ResetPassword(ctx, optional)
+> NewPassword ResetPassword(ctx, body)
 Reset password
 
 Consumes the supplied password reset token and updates the password for the associated account. 
@@ -2570,14 +2510,7 @@ Consumes the supplied password reset token and updates the password for the asso
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***ResetPasswordOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a ResetPasswordOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**optional.Interface of NewPassword**](NewPassword.md)|  | 
+  **body** | [**NewPassword**](NewPassword.md)|  | 
 
 ### Return type
 
@@ -2595,7 +2528,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvanced**
-> InlineResponse2001 SearchCouponsAdvanced(ctx, applicationId, campaignId, optional)
+> InlineResponse2001 SearchCouponsAdvanced(ctx, applicationId, campaignId, body, optional)
 Get a list of the coupons that match the given attributes
 
 Gets a list of all the coupons with attributes matching the query criteria 
@@ -2607,6 +2540,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
  **optional** | ***SearchCouponsAdvancedOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2614,6 +2548,7 @@ Optional parameters are passed through a pointer to a SearchCouponsAdvancedOpts 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
@@ -2628,7 +2563,6 @@ Name | Type | Description  | Notes
  **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **batchId** | **optional.String**| Filter results by batches of coupons | 
- **body** | [**optional.Interface of AttributeQuery**](AttributeQuery.md)|  | 
 
 ### Return type
 
@@ -2646,7 +2580,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvancedApplicationWide**
-> InlineResponse2001 SearchCouponsAdvancedApplicationWide(ctx, applicationId, optional)
+> InlineResponse2001 SearchCouponsAdvancedApplicationWide(ctx, applicationId, body, optional)
 Get a list of the coupons that match the given attributes in all active campaigns of an application
 
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application 
@@ -2657,6 +2591,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
  **optional** | ***SearchCouponsAdvancedApplicationWideOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2664,6 +2599,7 @@ Optional parameters are passed through a pointer to a SearchCouponsAdvancedAppli
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
@@ -2678,7 +2614,6 @@ Name | Type | Description  | Notes
  **batchId** | **optional.String**| Filter results by batches of coupons | 
  **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
- **body** | [**optional.Interface of AttributeQuery**](AttributeQuery.md)|  | 
 
 ### Return type
 
@@ -2696,7 +2631,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvancedApplicationWideWithoutTotalCount**
-> InlineResponse2005 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, optional)
+> InlineResponse2005 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, body, optional)
 Get a list of the coupons that match the given attributes in all active campaigns of an application
 
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application 
@@ -2707,6 +2642,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
  **optional** | ***SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2714,6 +2650,7 @@ Optional parameters are passed through a pointer to a SearchCouponsAdvancedAppli
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
@@ -2728,7 +2665,6 @@ Name | Type | Description  | Notes
  **batchId** | **optional.String**| Filter results by batches of coupons | 
  **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
- **body** | [**optional.Interface of AttributeQuery**](AttributeQuery.md)|  | 
 
 ### Return type
 
@@ -2746,7 +2682,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvancedWithoutTotalCount**
-> InlineResponse2005 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse2005 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, body, optional)
 Get a list of the coupons that match the given attributes
 
 Gets a list of all the coupons with attributes matching the query criteria 
@@ -2758,6 +2694,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
  **optional** | ***SearchCouponsAdvancedWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2765,6 +2702,7 @@ Optional parameters are passed through a pointer to a SearchCouponsAdvancedWitho
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
@@ -2779,7 +2717,6 @@ Name | Type | Description  | Notes
  **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **batchId** | **optional.String**| Filter results by batches of coupons | 
- **body** | [**optional.Interface of AttributeQuery**](AttributeQuery.md)|  | 
 
 ### Return type
 
@@ -2797,7 +2734,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SetAccountLimits**
-> SetAccountLimits(ctx, accountId, optional)
+> SetAccountLimits(ctx, accountId, body)
 Set account limits
 
 sets account limits  
@@ -2808,15 +2745,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountId** | **int32**|  | 
- **optional** | ***SetAccountLimitsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a SetAccountLimitsOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of AccountLimits**](AccountLimits.md)|  | 
+  **body** | [**AccountLimits**](AccountLimits.md)|  | 
 
 ### Return type
 
@@ -2834,7 +2763,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCampaign**
-> Campaign UpdateCampaign(ctx, applicationId, campaignId, optional)
+> Campaign UpdateCampaign(ctx, applicationId, campaignId, body)
 Update a Campaign
 
 
@@ -2846,16 +2775,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | ***UpdateCampaignOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateCampaignOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of UpdateCampaign**](UpdateCampaign.md)|  | 
+  **body** | [**UpdateCampaign**](UpdateCampaign.md)|  | 
 
 ### Return type
 
@@ -2873,7 +2793,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCampaignSet**
-> CampaignSet UpdateCampaignSet(ctx, applicationId, optional)
+> CampaignSet UpdateCampaignSet(ctx, applicationId, body)
 Update a Campaign Set
 
 
@@ -2884,15 +2804,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | ***UpdateCampaignSetOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateCampaignSetOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**optional.Interface of NewCampaignSet**](NewCampaignSet.md)|  | 
+  **body** | [**NewCampaignSet**](NewCampaignSet.md)|  | 
 
 ### Return type
 
@@ -2910,7 +2822,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCoupon**
-> Coupon UpdateCoupon(ctx, applicationId, campaignId, couponId, optional)
+> Coupon UpdateCoupon(ctx, applicationId, campaignId, couponId, body)
 Update a Coupon
 
 
@@ -2923,17 +2835,7 @@ Name | Type | Description  | Notes
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **couponId** | **string**| The ID of the coupon code to update | 
- **optional** | ***UpdateCouponOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateCouponOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **body** | [**optional.Interface of UpdateCoupon**](UpdateCoupon.md)|  | 
+  **body** | [**UpdateCoupon**](UpdateCoupon.md)|  | 
 
 ### Return type
 
@@ -2951,7 +2853,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCouponBatch**
-> UpdateCouponBatch(ctx, applicationId, campaignId, optional)
+> UpdateCouponBatch(ctx, applicationId, campaignId, body)
 Update a Batch of Coupons
 
 
@@ -2963,16 +2865,7 @@ Name | Type | Description  | Notes
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | ***UpdateCouponBatchOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateCouponBatchOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**optional.Interface of UpdateCouponBatch**](UpdateCouponBatch.md)|  | 
+  **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md)|  | 
 
 ### Return type
 
@@ -2990,7 +2883,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateRuleset**
-> Ruleset UpdateRuleset(ctx, applicationId, campaignId, rulesetId, optional)
+> Ruleset UpdateRuleset(ctx, applicationId, campaignId, rulesetId, body)
 Update a Ruleset
 
 
@@ -3003,17 +2896,7 @@ Name | Type | Description  | Notes
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **rulesetId** | **int32**|  | 
- **optional** | ***UpdateRulesetOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a pointer to a UpdateRulesetOpts struct
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
- **body** | [**optional.Interface of NewRuleset**](NewRuleset.md)|  | 
+  **body** | [**NewRuleset**](NewRuleset.md)|  | 
 
 ### Return type
 
