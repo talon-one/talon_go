@@ -10,11 +10,11 @@
 package talon
 
 import (
+	"context"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"context"
 	"fmt"
 )
 
@@ -127,11 +127,6 @@ func (a *IntegrationApiService) CreateCouponReservation(ctx context.Context, cou
 		}
 		
 		if localVarHttpResponse.StatusCode == 201 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v Coupon
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
@@ -248,11 +243,6 @@ func (a *IntegrationApiService) CreateReferral(ctx context.Context, body NewRefe
 		}
 		
 		if localVarHttpResponse.StatusCode == 201 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v Referral
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
@@ -565,11 +555,6 @@ func (a *IntegrationApiService) GetReservedCoupons(ctx context.Context, integrat
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v InlineResponse2001
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
@@ -685,11 +670,6 @@ func (a *IntegrationApiService) GetReservedCustomers(ctx context.Context, coupon
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v InlineResponse200
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
@@ -806,11 +786,6 @@ func (a *IntegrationApiService) TrackEvent(ctx context.Context, body NewEvent) (
 		}
 		
 		if localVarHttpResponse.StatusCode == 201 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v IntegrationState
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
@@ -929,11 +904,6 @@ func (a *IntegrationApiService) UpdateCustomerProfile(ctx context.Context, integ
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v IntegrationState
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
@@ -1052,11 +1022,6 @@ func (a *IntegrationApiService) UpdateCustomerSession(ctx context.Context, custo
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-			if err != nil {
-				return localVarReturnValue, localVarHttpResponse, err
-			}
-
 			var v IntegrationState
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {

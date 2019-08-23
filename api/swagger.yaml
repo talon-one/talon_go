@@ -300,7 +300,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CustomerProfile"
       security:
       - api_key_v1: []
       - integration_auth: []
@@ -324,7 +334,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
       security:
       - api_key_v1: []
       - integration_auth: []
@@ -365,7 +385,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_2"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Application"
   /v1/applications/{applicationId}:
     get:
       tags:
@@ -477,7 +507,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Campaign"
     post:
       tags:
       - "management"
@@ -647,7 +687,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Campaign"
   /v1/applications/{applicationId}/campaigns_search:
     post:
       tags:
@@ -711,7 +761,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Campaign"
   /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets:
     get:
       tags:
@@ -761,7 +821,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_4"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Ruleset"
     post:
       tags:
       - "management"
@@ -1054,7 +1124,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
     post:
       tags:
       - "management"
@@ -1093,7 +1173,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
         204:
           description: "No Content"
     put:
@@ -1403,7 +1493,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_5"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId}:
     put:
       tags:
@@ -1613,7 +1713,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/coupons_search:
     post:
       tags:
@@ -1766,7 +1876,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced:
     post:
       tags:
@@ -1909,7 +2029,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total:
     post:
       tags:
@@ -2052,7 +2182,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_5"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/coupons_search_advanced:
     post:
       tags:
@@ -2205,7 +2345,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/coupons_search_advanced/no_total:
     post:
       tags:
@@ -2358,7 +2508,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_5"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/referrals:
     get:
       tags:
@@ -2470,7 +2630,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_6"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Referral"
   /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId}:
     delete:
       tags:
@@ -2611,7 +2781,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_7"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Referral"
   /v1/loyalty_programs:
     get:
       tags:
@@ -2624,7 +2804,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_8"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/LoyaltyProgram"
   /v1/loyalty_programs/{programID}:
     get:
       tags:
@@ -2834,7 +3024,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_9"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/AccessLogEntry"
   /v1/applications/{applicationId}/access_logs/no_total:
     get:
       tags:
@@ -2926,7 +3126,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_10"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/AccessLogEntry"
   /v1/access_logs:
     get:
       tags:
@@ -3013,7 +3223,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_9"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/AccessLogEntry"
   /v1/applications/{applicationId}/campaigns/{campaignId}/analytics:
     get:
       tags:
@@ -3067,7 +3287,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_11"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CampaignAnalytics"
   /v1/applications/{applicationId}/customers:
     get:
       tags:
@@ -3086,7 +3316,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_12"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
   /v1/customer_search/no_total:
     post:
       tags:
@@ -3125,7 +3365,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_13"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
   /v1/customers/{customerId}:
     get:
       tags:
@@ -3179,7 +3429,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_13"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
   /v1/application_customer_search:
     post:
       tags:
@@ -3202,7 +3462,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_13"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
       security:
       - integration_auth: []
       deprecated: true
@@ -3319,7 +3589,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_14"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CustomerActivityReport"
   /v1/applications/{applicationId}/customer_activity_reports/no_total:
     get:
       tags:
@@ -3409,7 +3689,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_15"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CustomerActivityReport"
   /v1/applications/{applicationId}/customer_activity_reports/{customerId}:
     get:
       tags:
@@ -3586,7 +3876,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_16"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationSession"
   /v1/applications/{applicationId}/sessions/{sessionId}:
     get:
       tags:
@@ -3740,7 +4040,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_17"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationEvent"
   /v1/applications/{applicationId}/events/no_total:
     get:
       tags:
@@ -3871,7 +4181,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_18"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationEvent"
   /v1/applications/{applicationId}/event_types:
     get:
       tags:
@@ -3915,7 +4235,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_19"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  type: "string"
   /v1/attributes/{attributeId}:
     get:
       tags:
@@ -3978,7 +4308,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_20"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Webhook"
   /v1/webhooks/{webhookId}:
     get:
       tags:
@@ -4079,7 +4419,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_21"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/WebhookActivationLogEntry"
   /v1/webhook_logs:
     get:
       tags:
@@ -4172,7 +4522,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_22"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/WebhookLogEntry"
   /v1/event_types:
     get:
       tags:
@@ -4234,7 +4594,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_23"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/EventType"
   /v1/refresh_analytics:
     post:
       tags:
@@ -4283,7 +4653,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_24"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/User"
   /v1/users/{userId}:
     get:
       tags:
@@ -4342,7 +4722,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_25"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Change"
   /v1/password_recovery_emails:
     post:
       tags:
@@ -4532,7 +4922,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_26"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Export"
   /v1/imports:
     get:
       tags:
@@ -4561,7 +4961,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_27"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Import"
   /v1/roles:
     get:
       tags:
@@ -4573,7 +4983,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_28"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Role"
   /v1/roles/{roleId}:
     get:
       tags:
