@@ -15,22 +15,16 @@ import (
 
 // 
 type ModelImport struct {
-
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
-
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`
-
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`
-
 	// The ID of the account that owns this entity.
 	UserId int32 `json:"userId"`
-
 	// The name of the entity that was imported.
 	Entity string `json:"entity"`
-
 	// The number of members that imported.
 	Amount int32 `json:"amount"`
 }

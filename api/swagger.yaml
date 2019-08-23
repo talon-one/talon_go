@@ -89,7 +89,7 @@ paths:
         x-exportParamName: "IntegrationId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCustomerProfile"
         x-exportParamName: "Body"
@@ -136,7 +136,7 @@ paths:
         x-exportParamName: "CustomerSessionId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCustomerSession"
         x-exportParamName: "Body"
@@ -169,7 +169,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewEvent"
         x-exportParamName: "Body"
@@ -194,7 +194,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewReferral"
         x-exportParamName: "Body"
@@ -228,6 +228,126 @@ paths:
       security:
       - api_key_v1: []
       - integration_auth: []
+  /v1/coupon_reservations/{couponValue}:
+    post:
+      tags:
+      - "integration"
+      summary: "Create a new coupon reservation"
+      description: "Creates a coupon reservation for all passed customer profiles\
+        \ on this couponID\n"
+      operationId: "createCouponReservation"
+      parameters:
+      - name: "couponValue"
+        in: "path"
+        description: "The value of a coupon"
+        required: true
+        type: "string"
+        x-exportParamName: "CouponValue"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CouponReservations"
+        x-exportParamName: "Body"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/Coupon"
+      security:
+      - api_key_v1: []
+      - integration_auth: []
+    delete:
+      tags:
+      - "integration"
+      summary: "Delete coupon reservations"
+      description: "Removes all passed customer profiles reservation from this coupon\n"
+      operationId: "deleteCouponReservation"
+      parameters:
+      - name: "couponValue"
+        in: "path"
+        description: "The value of a coupon"
+        required: true
+        type: "string"
+        x-exportParamName: "CouponValue"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/CouponReservations"
+        x-exportParamName: "Body"
+      responses:
+        204:
+          description: "No Content"
+      security:
+      - api_key_v1: []
+      - integration_auth: []
+  /v1/coupon_reservations/customerprofiles/{couponValue}:
+    get:
+      tags:
+      - "integration"
+      summary: "Get the users that have this coupon reserved"
+      description: "Returns all users that have this coupon marked as reserved\n"
+      operationId: "getReservedCustomers"
+      parameters:
+      - name: "couponValue"
+        in: "path"
+        description: "The value of a coupon"
+        required: true
+        type: "string"
+        x-exportParamName: "CouponValue"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CustomerProfile"
+      security:
+      - api_key_v1: []
+      - integration_auth: []
+  /v1/coupon_reservations/coupons/{integrationID}:
+    get:
+      tags:
+      - "integration"
+      summary: "Get all valid reserved coupons"
+      description: "Returns all coupons this user is subscribed to that are valid\
+        \ and usable\n"
+      operationId: "getReservedCoupons"
+      parameters:
+      - name: "integrationId"
+        in: "path"
+        description: "The custom identifier for this profile, must be unique within\
+          \ the account."
+        required: true
+        type: "string"
+        x-exportParamName: "IntegrationId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
+      security:
+      - api_key_v1: []
+      - integration_auth: []
   /v1/applications:
     get:
       tags:
@@ -239,10 +359,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -250,6 +371,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -258,11 +380,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Application"
   /v1/applications/{applicationId}:
     get:
       tags:
@@ -292,10 +425,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -303,6 +437,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -311,6 +446,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -330,11 +466,58 @@ paths:
         - "running"
         - "expired"
         x-exportParamName: "CampaignState"
+        x-optionalDataType: "String"
+      - name: "name"
+        in: "query"
+        description: "Filter results performing case-insensitive matching against\
+          \ the name of the campaign."
+        required: false
+        type: "string"
+        x-exportParamName: "Name"
+        x-optionalDataType: "String"
+      - name: "tags"
+        in: "query"
+        description: "Filter results performing case-insensitive matching against\
+          \ the tags of the campaign. When used in conjunction with the \"name\" query\
+          \ parameter, a logical OR will be performed to search both tags and name\
+          \ for the provided values\n"
+        required: false
+        type: "string"
+        x-exportParamName: "Tags"
+        x-optionalDataType: "String"
+      - name: "createdBefore"
+        in: "query"
+        description: "Filter results comparing the parameter value, expected to be\
+          \ an RFC3339 timestamp string, to the campaign creation timestamp."
+        required: false
+        type: "string"
+        format: "date-time"
+        x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
+      - name: "createdAfter"
+        in: "query"
+        description: "Filter results comparing the parameter value, expected to be\
+          \ an RFC3339 timestamp string, to the campaign creation timestamp."
+        required: false
+        type: "string"
+        format: "date-time"
+        x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Campaign"
     post:
       tags:
       - "management"
@@ -349,7 +532,7 @@ paths:
         x-exportParamName: "ApplicationId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCampaign"
         x-exportParamName: "Body"
@@ -392,7 +575,7 @@ paths:
         x-exportParamName: "ApplicationId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCampaignSet"
         x-exportParamName: "Body"
@@ -445,7 +628,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/UpdateCampaign"
         x-exportParamName: "Body"
@@ -496,7 +679,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CampaignCopy"
         x-exportParamName: "Body"
@@ -504,7 +687,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Campaign"
   /v1/applications/{applicationId}/campaigns_search:
     post:
       tags:
@@ -516,10 +709,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -527,6 +721,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -535,6 +730,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -554,9 +750,10 @@ paths:
         - "running"
         - "expired"
         x-exportParamName: "CampaignState"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CampaignSearch"
         x-exportParamName: "Body"
@@ -564,7 +761,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_1"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Campaign"
   /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets:
     get:
       tags:
@@ -576,10 +783,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -587,6 +795,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -595,6 +804,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -611,7 +821,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_2"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Ruleset"
     post:
       tags:
       - "management"
@@ -632,7 +852,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewRuleset"
         x-exportParamName: "Body"
@@ -697,7 +917,7 @@ paths:
         x-exportParamName: "RulesetId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewRuleset"
         x-exportParamName: "Body"
@@ -744,10 +964,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -755,6 +976,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -763,6 +985,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -782,6 +1005,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -790,6 +1014,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -798,6 +1023,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "startsAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -806,6 +1032,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "StartsAfter"
+        x-optionalDataType: "Time"
       - name: "startsBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -814,6 +1041,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "StartsBefore"
+        x-optionalDataType: "Time"
       - name: "expiresAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -822,6 +1050,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "ExpiresAfter"
+        x-optionalDataType: "Time"
       - name: "expiresBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -830,6 +1059,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "ExpiresBefore"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -844,12 +1074,14 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -861,6 +1093,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -869,6 +1102,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -876,6 +1110,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -884,11 +1119,22 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
     post:
       tags:
       - "management"
@@ -905,6 +1151,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Silent"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -918,7 +1165,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewCoupons"
         x-exportParamName: "Body"
@@ -926,7 +1173,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
         204:
           description: "No Content"
     put:
@@ -949,7 +1206,7 @@ paths:
         x-exportParamName: "CampaignId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/UpdateCouponBatch"
         x-exportParamName: "Body"
@@ -983,6 +1240,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -991,6 +1249,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -999,6 +1258,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "startsAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1007,6 +1267,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "StartsAfter"
+        x-optionalDataType: "Time"
       - name: "startsBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1015,6 +1276,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "StartsBefore"
+        x-optionalDataType: "Time"
       - name: "expiresAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1023,6 +1285,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "ExpiresAfter"
+        x-optionalDataType: "Time"
       - name: "expiresBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1031,6 +1294,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "ExpiresBefore"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1045,12 +1309,14 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1062,6 +1328,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1070,6 +1337,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1077,6 +1345,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1085,6 +1354,7 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       responses:
         204:
           description: "No Content"
@@ -1099,10 +1369,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1110,6 +1381,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1118,6 +1390,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1137,6 +1410,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1145,6 +1419,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1153,6 +1428,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1167,6 +1443,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1178,6 +1455,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1186,6 +1464,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1193,12 +1472,14 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1207,11 +1488,22 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_4"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId}:
     put:
       tags:
@@ -1240,7 +1532,7 @@ paths:
         x-exportParamName: "CouponId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/UpdateCoupon"
         x-exportParamName: "Body"
@@ -1291,10 +1583,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1302,6 +1595,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1310,6 +1604,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1329,6 +1624,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1337,6 +1633,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1345,6 +1642,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1359,6 +1657,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1370,6 +1669,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1378,6 +1678,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1385,6 +1686,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1393,15 +1695,17 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CouponSearch"
         x-exportParamName: "Body"
@@ -1409,7 +1713,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/coupons_search:
     post:
       tags:
@@ -1423,10 +1737,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1434,6 +1749,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1442,6 +1758,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1455,6 +1772,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1463,6 +1781,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1471,6 +1790,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1485,6 +1805,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1496,6 +1817,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1504,6 +1826,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1511,12 +1834,14 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1525,6 +1850,7 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       - name: "campaignState"
         in: "query"
         description: "Filter results by the state of the campaign."
@@ -1539,9 +1865,10 @@ paths:
         - "running"
         - "expired"
         x-exportParamName: "CampaignState"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/CouponSearch"
         x-exportParamName: "Body"
@@ -1549,7 +1876,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced:
     post:
       tags:
@@ -1562,10 +1899,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1573,6 +1911,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1581,6 +1920,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1600,6 +1940,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1608,6 +1949,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1616,6 +1958,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1630,6 +1973,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1641,6 +1985,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1649,6 +1994,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1656,6 +2002,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1664,15 +2011,17 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -1680,7 +2029,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total:
     post:
       tags:
@@ -1693,10 +2052,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1704,6 +2064,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1712,6 +2073,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1731,6 +2093,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1739,6 +2102,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1747,6 +2111,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1761,6 +2126,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1772,6 +2138,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1780,6 +2147,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1787,6 +2155,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1795,15 +2164,17 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -1811,7 +2182,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_4"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/coupons_search_advanced:
     post:
       tags:
@@ -1825,10 +2206,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1836,6 +2218,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1844,6 +2227,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1857,6 +2241,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1865,6 +2250,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -1873,6 +2259,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -1887,6 +2274,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -1898,6 +2286,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -1906,6 +2295,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -1913,12 +2303,14 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -1927,6 +2319,7 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       - name: "campaignState"
         in: "query"
         description: "Filter results by the state of the campaign."
@@ -1941,9 +2334,10 @@ paths:
         - "running"
         - "expired"
         x-exportParamName: "CampaignState"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -1951,7 +2345,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_3"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/coupons_search_advanced/no_total:
     post:
       tags:
@@ -1965,10 +2369,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -1976,6 +2381,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -1984,6 +2390,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -1997,6 +2404,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Value"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -2005,6 +2413,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -2013,6 +2422,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -2027,6 +2437,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only coupons where\
@@ -2038,6 +2449,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "referralId"
         in: "query"
         description: "Filter the results by matching them with the Id of a referral,\
@@ -2046,6 +2458,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "ReferralId"
+        x-optionalDataType: "Int32"
       - name: "recipientIntegrationId"
         in: "query"
         description: "Filter results by match with a profile id specified in the coupon's\
@@ -2053,12 +2466,14 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "RecipientIntegrationId"
+        x-optionalDataType: "String"
       - name: "batchId"
         in: "query"
         description: "Filter results by batches of coupons"
         required: false
         type: "string"
         x-exportParamName: "BatchId"
+        x-optionalDataType: "String"
       - name: "exactMatch"
         in: "query"
         description: "Filter results to an exact case-insensitive matching against\
@@ -2067,6 +2482,7 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "ExactMatch"
+        x-optionalDataType: "Bool"
       - name: "campaignState"
         in: "query"
         description: "Filter results by the state of the campaign."
@@ -2081,9 +2497,10 @@ paths:
         - "running"
         - "expired"
         x-exportParamName: "CampaignState"
+        x-optionalDataType: "String"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AttributeQuery"
         x-exportParamName: "Body"
@@ -2091,7 +2508,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_4"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Coupon"
   /v1/applications/{applicationId}/campaigns/{campaignId}/referrals:
     get:
       tags:
@@ -2103,10 +2530,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2114,6 +2542,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -2122,6 +2551,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -2142,6 +2572,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Code"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -2150,6 +2581,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -2158,6 +2590,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -2172,6 +2605,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only referrals where\
@@ -2183,6 +2617,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "advocate"
         in: "query"
         description: "Filter results by match with a profile id specified in the referral's\
@@ -2190,11 +2625,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Advocate"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_5"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Referral"
   /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId}:
     delete:
       tags:
@@ -2235,10 +2681,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2246,6 +2693,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -2254,6 +2702,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -2274,6 +2723,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Code"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -2282,6 +2732,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results comparing the parameter value, expected to be\
@@ -2290,6 +2741,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "valid"
         in: "query"
         description: "Either \"expired\", \"validNow\", or \"validFuture\". The first\
@@ -2304,6 +2756,7 @@ paths:
         - "validNow"
         - "validFuture"
         x-exportParamName: "Valid"
+        x-optionalDataType: "String"
       - name: "usable"
         in: "query"
         description: "Either \"true\" or \"false\". If \"true\", only referrals where\
@@ -2315,6 +2768,7 @@ paths:
         - "true"
         - "false"
         x-exportParamName: "Usable"
+        x-optionalDataType: "String"
       - name: "advocate"
         in: "query"
         description: "Filter results by match with a profile id specified in the referral's\
@@ -2322,11 +2776,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Advocate"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_6"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Referral"
   /v1/loyalty_programs:
     get:
       tags:
@@ -2339,7 +2804,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_7"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/LoyaltyProgram"
   /v1/loyalty_programs/{programID}:
     get:
       tags:
@@ -2405,7 +2880,7 @@ paths:
         x-exportParamName: "IntegrationID"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/LoyaltyPoints"
         x-exportParamName: "Body"
@@ -2432,7 +2907,7 @@ paths:
         x-exportParamName: "IntegrationID"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/LoyaltyPoints"
         x-exportParamName: "Body"
@@ -2479,6 +2954,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Path"
+        x-optionalDataType: "String"
       - name: "method"
         in: "query"
         description: "Only return results where the request method matches the given\
@@ -2492,6 +2968,7 @@ paths:
         - "delete"
         - "patch"
         x-exportParamName: "Method"
+        x-optionalDataType: "String"
       - name: "status"
         in: "query"
         description: "Filter results by HTTP status codes."
@@ -2501,6 +2978,7 @@ paths:
         - "success"
         - "error"
         x-exportParamName: "Status"
+        x-optionalDataType: "String"
       - name: "rangeStart"
         in: "query"
         description: "Only return results from after this timestamp, must be an RFC3339\
@@ -2520,10 +2998,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2531,6 +3010,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -2539,11 +3019,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_8"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/AccessLogEntry"
   /v1/applications/{applicationId}/access_logs/no_total:
     get:
       tags:
@@ -2565,6 +3056,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Path"
+        x-optionalDataType: "String"
       - name: "method"
         in: "query"
         description: "Only return results where the request method matches the given\
@@ -2578,6 +3070,7 @@ paths:
         - "delete"
         - "patch"
         x-exportParamName: "Method"
+        x-optionalDataType: "String"
       - name: "status"
         in: "query"
         description: "Filter results by HTTP status codes."
@@ -2587,6 +3080,7 @@ paths:
         - "success"
         - "error"
         x-exportParamName: "Status"
+        x-optionalDataType: "String"
       - name: "rangeStart"
         in: "query"
         description: "Only return results from after this timestamp, must be an RFC3339\
@@ -2606,10 +3100,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2617,6 +3112,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -2625,11 +3121,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_9"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/AccessLogEntry"
   /v1/access_logs:
     get:
       tags:
@@ -2662,6 +3169,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Path"
+        x-optionalDataType: "String"
       - name: "method"
         in: "query"
         description: "Only return results where the request method matches the given\
@@ -2675,6 +3183,7 @@ paths:
         - "delete"
         - "patch"
         x-exportParamName: "Method"
+        x-optionalDataType: "String"
       - name: "status"
         in: "query"
         description: "Filter results by HTTP status codes."
@@ -2684,13 +3193,15 @@ paths:
         - "success"
         - "error"
         x-exportParamName: "Status"
+        x-optionalDataType: "String"
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2698,6 +3209,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -2706,11 +3218,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_8"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/AccessLogEntry"
   /v1/applications/{applicationId}/campaigns/{campaignId}/analytics:
     get:
       tags:
@@ -2759,11 +3282,22 @@ paths:
         - "1 month"
         - "1 year"
         x-exportParamName: "Granularity"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_10"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CampaignAnalytics"
   /v1/applications/{applicationId}/customers:
     get:
       tags:
@@ -2782,7 +3316,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_11"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
   /v1/customer_search/no_total:
     post:
       tags:
@@ -2798,10 +3342,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2809,9 +3354,10 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/ApplicationCustomerSearch"
         x-exportParamName: "Body"
@@ -2819,7 +3365,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_12"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
   /v1/customers/{customerId}:
     get:
       tags:
@@ -2856,10 +3412,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2867,11 +3424,22 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_12"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
   /v1/application_customer_search:
     post:
       tags:
@@ -2886,7 +3454,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/ApplicationCustomerSearch"
         x-exportParamName: "Body"
@@ -2894,7 +3462,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_12"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationCustomer"
       security:
       - integration_auth: []
       deprecated: true
@@ -2935,10 +3513,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -2946,6 +3525,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -2954,6 +3534,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "rangeStart"
         in: "query"
         description: "Only return results from after this timestamp, must be an RFC3339\
@@ -2982,29 +3563,43 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Name"
+        x-optionalDataType: "String"
       - name: "integrationId"
         in: "query"
         description: "Only return reports matching the integrationId"
         required: false
         type: "string"
         x-exportParamName: "IntegrationId"
+        x-optionalDataType: "String"
       - name: "campaignName"
         in: "query"
         description: "Only return reports matching the campaignName"
         required: false
         type: "string"
         x-exportParamName: "CampaignName"
+        x-optionalDataType: "String"
       - name: "advocateName"
         in: "query"
         description: "Only return reports matching the current customer referrer name"
         required: false
         type: "string"
         x-exportParamName: "AdvocateName"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_13"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CustomerActivityReport"
   /v1/applications/{applicationId}/customer_activity_reports/no_total:
     get:
       tags:
@@ -3018,10 +3613,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3029,6 +3625,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3037,6 +3634,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "rangeStart"
         in: "query"
         description: "Only return results from after this timestamp, must be an RFC3339\
@@ -3065,29 +3663,43 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Name"
+        x-optionalDataType: "String"
       - name: "integrationId"
         in: "query"
         description: "Only return reports matching the integrationId"
         required: false
         type: "string"
         x-exportParamName: "IntegrationId"
+        x-optionalDataType: "String"
       - name: "campaignName"
         in: "query"
         description: "Only return reports matching the campaignName"
         required: false
         type: "string"
         x-exportParamName: "CampaignName"
+        x-optionalDataType: "String"
       - name: "advocateName"
         in: "query"
         description: "Only return reports matching the current customer referrer name"
         required: false
         type: "string"
         x-exportParamName: "AdvocateName"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_14"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/CustomerActivityReport"
   /v1/applications/{applicationId}/customer_activity_reports/{customerId}:
     get:
       tags:
@@ -3100,10 +3712,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3111,6 +3724,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "rangeStart"
         in: "query"
         description: "Only return results from after this timestamp, must be an RFC3339\
@@ -3155,10 +3769,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3166,6 +3781,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3174,6 +3790,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -3202,10 +3819,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3213,6 +3831,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3221,12 +3840,32 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "profile"
         in: "query"
         description: "Profile integration ID filter for sessions. Must be exact match."
         required: false
         type: "string"
         x-exportParamName: "Profile"
+        x-optionalDataType: "String"
+      - name: "state"
+        in: "query"
+        description: "Filter by sessions with this state. Must be exact match."
+        required: false
+        type: "string"
+        enum:
+        - "open"
+        - "closed"
+        - "cancelled"
+        x-exportParamName: "State"
+        x-optionalDataType: "String"
+      - name: "coupon"
+        in: "query"
+        description: "Filter by sessions with this coupon. Must be exact match."
+        required: false
+        type: "string"
+        x-exportParamName: "Coupon"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -3237,7 +3876,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_15"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationSession"
   /v1/applications/{applicationId}/sessions/{sessionId}:
     get:
       tags:
@@ -3274,10 +3923,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3285,6 +3935,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3293,6 +3944,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "type"
         in: "query"
         description: "Comma-separated list of types by which to filter events. Must\
@@ -3300,6 +3952,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Type_"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Only return events created before this date"
@@ -3307,6 +3960,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Only return events created after this date"
@@ -3314,18 +3968,21 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "session"
         in: "query"
         description: "Session integration ID filter for events. Must be exact match."
         required: false
         type: "string"
         x-exportParamName: "Session"
+        x-optionalDataType: "String"
       - name: "profile"
         in: "query"
         description: "Profile integration ID filter for events. Must be exact match."
         required: false
         type: "string"
         x-exportParamName: "Profile"
+        x-optionalDataType: "String"
       - name: "customerName"
         in: "query"
         description: "Customer name filter for events. Will match substrings case-insensitively."
@@ -3333,6 +3990,7 @@ paths:
         type: "string"
         minLength: 2
         x-exportParamName: "CustomerName"
+        x-optionalDataType: "String"
       - name: "customerEmail"
         in: "query"
         description: "Customer e-mail address filter for events. Will match substrings\
@@ -3341,6 +3999,7 @@ paths:
         type: "string"
         minLength: 2
         x-exportParamName: "CustomerEmail"
+        x-optionalDataType: "String"
       - name: "effectsQuery"
         in: "query"
         description: "Effects filter for events. Will perform a full-text search on\
@@ -3348,6 +4007,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "EffectsQuery"
+        x-optionalDataType: "String"
       - name: "attributesQuery"
         in: "query"
         description: "Attributes filter for events. Will perform a full-text search\
@@ -3355,18 +4015,21 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "AttributesQuery"
+        x-optionalDataType: "String"
       - name: "ruleQuery"
         in: "query"
         description: "Rule name filter for events"
         required: false
         type: "string"
         x-exportParamName: "RuleQuery"
+        x-optionalDataType: "String"
       - name: "campaignQuery"
         in: "query"
         description: "Campaign name filter for events"
         required: false
         type: "string"
         x-exportParamName: "CampaignQuery"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -3377,7 +4040,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_16"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationEvent"
   /v1/applications/{applicationId}/events/no_total:
     get:
       tags:
@@ -3391,10 +4064,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3402,6 +4076,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3410,6 +4085,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "type"
         in: "query"
         description: "Comma-separated list of types by which to filter events. Must\
@@ -3417,6 +4093,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Type_"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Only return events created before this date"
@@ -3424,6 +4101,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Only return events created after this date"
@@ -3431,18 +4109,21 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       - name: "session"
         in: "query"
         description: "Session integration ID filter for events. Must be exact match."
         required: false
         type: "string"
         x-exportParamName: "Session"
+        x-optionalDataType: "String"
       - name: "profile"
         in: "query"
         description: "Profile integration ID filter for events. Must be exact match."
         required: false
         type: "string"
         x-exportParamName: "Profile"
+        x-optionalDataType: "String"
       - name: "customerName"
         in: "query"
         description: "Customer name filter for events. Will match substrings case-insensitively."
@@ -3450,6 +4131,7 @@ paths:
         type: "string"
         minLength: 2
         x-exportParamName: "CustomerName"
+        x-optionalDataType: "String"
       - name: "customerEmail"
         in: "query"
         description: "Customer e-mail address filter for events. Will match substrings\
@@ -3458,6 +4140,7 @@ paths:
         type: "string"
         minLength: 2
         x-exportParamName: "CustomerEmail"
+        x-optionalDataType: "String"
       - name: "effectsQuery"
         in: "query"
         description: "Effects filter for events. Will perform a full-text search on\
@@ -3465,6 +4148,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "EffectsQuery"
+        x-optionalDataType: "String"
       - name: "attributesQuery"
         in: "query"
         description: "Attributes filter for events. Will perform a full-text search\
@@ -3472,18 +4156,21 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "AttributesQuery"
+        x-optionalDataType: "String"
       - name: "ruleQuery"
         in: "query"
         description: "Rule name filter for events"
         required: false
         type: "string"
         x-exportParamName: "RuleQuery"
+        x-optionalDataType: "String"
       - name: "campaignQuery"
         in: "query"
         description: "Campaign name filter for events"
         required: false
         type: "string"
         x-exportParamName: "CampaignQuery"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         description: ""
@@ -3494,7 +4181,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_17"
+            type: "object"
+            required:
+            - "data"
+            - "hasMore"
+            properties:
+              hasMore:
+                type: "boolean"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/ApplicationEvent"
   /v1/applications/{applicationId}/event_types:
     get:
       tags:
@@ -3507,10 +4204,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3518,6 +4216,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3526,6 +4225,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "applicationId"
         in: "path"
         required: true
@@ -3535,7 +4235,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_18"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  type: "string"
   /v1/attributes/{attributeId}:
     get:
       tags:
@@ -3568,6 +4278,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "ApplicationIds"
+        x-optionalDataType: "String"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3576,13 +4287,15 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3590,11 +4303,22 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_19"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Webhook"
   /v1/webhooks/{webhookId}:
     get:
       tags:
@@ -3625,10 +4349,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3636,6 +4361,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3644,29 +4370,34 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "integrationRequestUuid"
         in: "query"
         description: "Filter results by integration request UUID."
         required: false
         type: "string"
         x-exportParamName: "IntegrationRequestUuid"
+        x-optionalDataType: "String"
       - name: "webhookId"
         in: "query"
         description: "Filter results by Webhook."
         required: false
         type: "number"
         x-exportParamName: "WebhookId"
+        x-optionalDataType: "Float32"
       - name: "applicationId"
         in: "query"
         required: false
         type: "number"
         x-exportParamName: "ApplicationId"
+        x-optionalDataType: "Float32"
       - name: "campaignId"
         in: "query"
         description: "Filter results by campaign."
         required: false
         type: "number"
         x-exportParamName: "CampaignId"
+        x-optionalDataType: "Float32"
       - name: "createdBefore"
         in: "query"
         description: "Only return events created before this date."
@@ -3674,6 +4405,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results where request and response times to return entries\
@@ -3682,11 +4414,22 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_20"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/WebhookActivationLogEntry"
   /v1/webhook_logs:
     get:
       tags:
@@ -3698,10 +4441,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3709,6 +4453,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3717,6 +4462,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       - name: "status"
         in: "query"
         description: "Filter results by HTTP status codes."
@@ -3726,29 +4472,34 @@ paths:
         - "success"
         - "error"
         x-exportParamName: "Status"
+        x-optionalDataType: "String"
       - name: "webhookId"
         in: "query"
         description: "Filter results by Webhook."
         required: false
         type: "number"
         x-exportParamName: "WebhookId"
+        x-optionalDataType: "Float32"
       - name: "applicationId"
         in: "query"
         required: false
         type: "number"
         x-exportParamName: "ApplicationId"
+        x-optionalDataType: "Float32"
       - name: "campaignId"
         in: "query"
         description: "Filter results by campaign."
         required: false
         type: "number"
         x-exportParamName: "CampaignId"
+        x-optionalDataType: "Float32"
       - name: "requestUuid"
         in: "query"
         description: "Filter results by request UUID."
         required: false
         type: "string"
         x-exportParamName: "RequestUuid"
+        x-optionalDataType: "String"
       - name: "createdBefore"
         in: "query"
         description: "Filter results where request and response times to return entries\
@@ -3757,6 +4508,7 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
       - name: "createdAfter"
         in: "query"
         description: "Filter results where request and response times to return entries\
@@ -3765,11 +4517,22 @@ paths:
         type: "string"
         format: "date-time"
         x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_21"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/WebhookLogEntry"
   /v1/event_types:
     get:
       tags:
@@ -3785,6 +4548,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "ApplicationIds"
+        x-optionalDataType: "String"
       - name: "name"
         in: "query"
         description: "Filter results to event types with the given name. This parameter\
@@ -3792,6 +4556,7 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Name"
+        x-optionalDataType: "String"
       - name: "includeOldVersions"
         in: "query"
         description: "Include all versions of every event type."
@@ -3799,13 +4564,15 @@ paths:
         type: "boolean"
         default: false
         x-exportParamName: "IncludeOldVersions"
+        x-optionalDataType: "Bool"
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3813,6 +4580,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3821,11 +4589,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_22"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/EventType"
   /v1/refresh_analytics:
     post:
       tags:
@@ -3848,10 +4627,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3859,6 +4639,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3867,11 +4648,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_23"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/User"
   /v1/users/{userId}:
     get:
       tags:
@@ -3904,10 +4696,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -3915,6 +4708,7 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "sort"
         in: "query"
         description: "The field by which results should be sorted. Sorting defaults\
@@ -3923,11 +4717,22 @@ paths:
         required: false
         type: "string"
         x-exportParamName: "Sort"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_24"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Change"
   /v1/password_recovery_emails:
     post:
       tags:
@@ -3939,7 +4744,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewPasswordEmail"
         x-exportParamName: "Body"
@@ -3959,7 +4764,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/NewPassword"
         x-exportParamName: "Body"
@@ -4040,7 +4845,7 @@ paths:
         x-exportParamName: "AccountId"
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/AccountLimits"
         x-exportParamName: "Body"
@@ -4057,7 +4862,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        required: false
+        required: true
         schema:
           $ref: "#/definitions/LoginParams"
         x-exportParamName: "Body"
@@ -4077,10 +4882,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -4088,16 +4894,19 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       - name: "applicationId"
         in: "query"
         required: false
         type: "integer"
         x-exportParamName: "ApplicationId"
+        x-optionalDataType: "Int32"
       - name: "campaignId"
         in: "query"
         required: false
         type: "integer"
         x-exportParamName: "CampaignId"
+        x-optionalDataType: "Int32"
       - name: "entity"
         in: "query"
         description: "The name of the entity type that was exported."
@@ -4108,11 +4917,22 @@ paths:
         - "Effect"
         - "CustomerSession"
         x-exportParamName: "Entity"
+        x-optionalDataType: "String"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_25"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Export"
   /v1/imports:
     get:
       tags:
@@ -4124,10 +4944,11 @@ paths:
       - name: "pageSize"
         in: "query"
         description: "The number of items to include in this response. When omitted,\
-          \ the maximum value of 1500 will be used."
+          \ the maximum value of 1000 will be used."
         required: false
         type: "integer"
         x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
       - name: "skip"
         in: "query"
         description: "Skips the given number of items when paging through large result\
@@ -4135,11 +4956,22 @@ paths:
         required: false
         type: "integer"
         x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_26"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Import"
   /v1/roles:
     get:
       tags:
@@ -4151,7 +4983,17 @@ paths:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/inline_response_200_27"
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Role"
   /v1/roles/{roleId}:
     get:
       tags:
@@ -4530,6 +5372,11 @@ definitions:
         type: "object"
         description: "Arbitrary properties associated with this campaign"
         properties: {}
+      limits:
+        type: "array"
+        description: "Default limits for campaigns created in this application"
+        items:
+          $ref: "#/definitions/LimitConfig"
   Application:
     type: "object"
     required:
@@ -4591,6 +5438,11 @@ definitions:
         type: "object"
         description: "Arbitrary properties associated with this campaign"
         properties: {}
+      limits:
+        type: "array"
+        description: "Default limits for campaigns created in this application"
+        items:
+          $ref: "#/definitions/LimitConfig"
       loyaltyPrograms:
         type: "array"
         description: "An array containing all the loyalty programs to which this application\
@@ -4599,36 +5451,47 @@ definitions:
           $ref: "#/definitions/LoyaltyProgram"
     description: ""
     example:
-      accountId: 1
       created: "2000-01-23T04:56:07.000+00:00"
       timezone: "timezone"
+      description: "description"
+      caseSensitivity: "sensitive"
+      accountId: 1
       loyaltyPrograms:
-      - accountID: 5
+      - accountID: 2
         defaultValidity: "defaultValidity"
         name: "name"
         description: "description"
         id: 5
         title: "title"
         subscribedApplications:
-        - 2
-        - 2
-      - accountID: 5
+        - 7
+        - 7
+      - accountID: 2
         defaultValidity: "defaultValidity"
         name: "name"
         description: "description"
         id: 5
         title: "title"
         subscribedApplications:
-        - 2
-        - 2
+        - 7
+        - 7
       name: "name"
       modified: "2000-01-23T04:56:07.000+00:00"
-      description: "description"
       currency: "currency"
       attributes: "{}"
       id: 6
-      caseSensitivity: "sensitive"
       key: "key"
+      limits:
+      - entities:
+        - "Coupon"
+        - "Coupon"
+        limit: 0.59621339166831821554382031536079011857509613037109375
+        action: "redeemCoupon"
+      - entities:
+        - "Coupon"
+        - "Coupon"
+        limit: 0.59621339166831821554382031536079011857509613037109375
+        action: "redeemCoupon"
   NewCampaign:
     type: "object"
     required:
@@ -4725,54 +5588,14 @@ definitions:
       - entities:
         - "Coupon"
         - "Coupon"
-        limit: 0.23021358869347652298387174596427939832210540771484375
+        limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
       - entities:
         - "Coupon"
         - "Coupon"
-        limit: 0.23021358869347652298387174596427939832210540771484375
+        limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
       tags:
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
       - "tags"
       - "tags"
       - "tags"
@@ -4878,54 +5701,14 @@ definitions:
       - entities:
         - "Coupon"
         - "Coupon"
-        limit: 0.23021358869347652298387174596427939832210540771484375
+        limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
       - entities:
         - "Coupon"
         - "Coupon"
-        limit: 0.23021358869347652298387174596427939832210540771484375
+        limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
       tags:
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
       - "tags"
       - "tags"
       - "tags"
@@ -5053,51 +5836,11 @@ definitions:
       activeRulesetId: 5
       updatedBy: "updatedBy"
       created: "2000-01-23T04:56:07.000+00:00"
-      discountCount: 3
+      discountCount: 9
       description: "description"
-      couponRedemptionCount: 7
+      couponRedemptionCount: 2
       userId: 5
       tags:
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
       - "tags"
       - "tags"
       - "tags"
@@ -5131,18 +5874,18 @@ definitions:
       endTime: "2000-01-23T04:56:07.000+00:00"
       state: "enabled"
       applicationId: 1
-      referralRedemptionCount: 9
+      referralRedemptionCount: 7
       updated: "2000-01-23T04:56:07.000+00:00"
       limits:
       - entities:
         - "Coupon"
         - "Coupon"
-        limit: 0.23021358869347652298387174596427939832210540771484375
+        limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
       - entities:
         - "Coupon"
         - "Coupon"
-        limit: 0.23021358869347652298387174596427939832210540771484375
+        limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
   NewRuleset:
     type: "object"
@@ -5395,12 +6138,17 @@ definitions:
     type: "object"
     required:
     - "key"
+    - "value"
     properties:
       key:
         type: "string"
         description: "Key information that will map to a value, e.g. SKU number \"\
           LEV-JN-SL-36-GN\"."
         minLength: 1
+      value:
+        type: "object"
+        description: "Value of the tuple that will be mapped to the key."
+        properties: {}
   ApplicationStorageTuple:
     type: "object"
     required:
@@ -5409,6 +6157,7 @@ definitions:
     - "key"
     - "modified"
     - "storageId"
+    - "value"
     properties:
       id:
         type: "integer"
@@ -5426,6 +6175,10 @@ definitions:
         description: "Key information that will map to a value, e.g. SKU number \"\
           LEV-JN-SL-36-GN\"."
         minLength: 1
+      value:
+        type: "object"
+        description: "Value of the tuple that will be mapped to the key."
+        properties: {}
       storageId:
         type: "integer"
         description: "ID of the storage in which the data resides"
@@ -5533,11 +6286,12 @@ definitions:
           - "Coupon"
           - "Referral"
           - "Profile"
+          - "Identifier"
     example:
       entities:
       - "Coupon"
       - "Coupon"
-      limit: 0.23021358869347652298387174596427939832210540771484375
+      limit: 0.59621339166831821554382031536079011857509613037109375
       action: "redeemCoupon"
   CampaignSet:
     type: "object"
@@ -5851,13 +6605,6 @@ definitions:
         type: "string"
         description: "The integration ID for this coupon's beneficiary's profile"
         title: "Receiving customer profile integration ID"
-      reservation:
-        type: "boolean"
-        description: "This value controls what reservations mean to a coupon. If set\
-          \ to true the coupon reservation is used to mark it as a favourite, if set\
-          \ to false the coupon reservation is used as a requirement of usage. This\
-          \ value defaults to false if not specified."
-        title: "reservation status"
     description: ""
     example:
       expiryDate: "2000-01-23T04:56:07.000+00:00"
@@ -5869,7 +6616,6 @@ definitions:
       - "validCharacters"
       usageLimit: 80082
       numberOfCoupons: 6
-      reservation: true
       attributes: "{}"
       startDate: "2000-01-23T04:56:07.000+00:00"
   UpdateCoupon:
@@ -5898,19 +6644,11 @@ definitions:
         type: "object"
         description: "Arbitrary properties associated with this item"
         properties: {}
-      reservation:
-        type: "boolean"
-        description: "This value controls what reservations mean to a coupon. If set\
-          \ to true the coupon reservation is used to mark it as a favourite, if set\
-          \ to false the coupon reservation is used as a requirement of usage. This\
-          \ value defaults to false if not specified."
-        title: "reservation status"
     description: ""
     example:
       expiryDate: "2000-01-23T04:56:07.000+00:00"
       recipientIntegrationId: "recipientIntegrationId"
       usageLimit: 80082
-      reservation: true
       attributes: "{}"
       startDate: "2000-01-23T04:56:07.000+00:00"
   UpdateCouponBatch:
@@ -6016,7 +6754,7 @@ definitions:
         description: "This value controls what reservations mean to a coupon. If set\
           \ to true the coupon reservation is used to mark it as a favourite, if set\
           \ to false the coupon reservation is used as a requirement of usage. This\
-          \ value defaults to false if not specified."
+          \ value defaults to true if not specified."
         title: "reservation status"
       batchId:
         type: "string"
@@ -6026,16 +6764,16 @@ definitions:
     example:
       recipientIntegrationId: "recipientIntegrationId"
       created: "2000-01-23T04:56:07.000+00:00"
-      campaignId: 1
-      usageLimit: 596212
-      referralId: 2
+      campaignId: 6
+      usageLimit: 146581
+      referralId: 5
       usageCounter: 5
       batchId: "batchId"
       expiryDate: "2000-01-23T04:56:07.000+00:00"
-      importId: 7
+      importId: 2
       reservation: true
       attributes: "{}"
-      id: 6
+      id: 0
       value: "value"
       startDate: "2000-01-23T04:56:07.000+00:00"
   CampaignAnalytics:
@@ -6470,15 +7208,15 @@ definitions:
           \ the unit; like '1h' or '40m' or '30d'."
     description: "A Loyalty Program"
     example:
-      accountID: 5
+      accountID: 2
       defaultValidity: "defaultValidity"
       name: "name"
       description: "description"
       id: 5
       title: "title"
       subscribedApplications:
-      - 2
-      - 2
+      - 7
+      - 7
   NewLoyaltyProgram:
     type: "object"
     required:
@@ -6818,6 +7556,12 @@ definitions:
         title: "Items in customer's cart"
         items:
           $ref: "#/definitions/CartItem"
+      identifiers:
+        type: "array"
+        description: "Identifiers for the customer, this can be used for limits on\
+          \ values such as device ID."
+        items:
+          type: "string"
       total:
         type: "number"
         description: "The total sum of the cart in one session."
@@ -6833,6 +7577,9 @@ definitions:
       referral: "referral"
       coupon: "coupon"
       profileId: "profileId"
+      identifiers:
+      - "identifiers"
+      - "identifiers"
       attributes: "{}"
       state: "open"
       cartItems:
@@ -7037,6 +7784,12 @@ definitions:
         title: "Items in customer's cart"
         items:
           $ref: "#/definitions/CartItem"
+      identifiers:
+        type: "array"
+        description: "Identifiers for the customer, this can be used for limits on\
+          \ values such as device ID."
+        items:
+          type: "string"
       total:
         type: "number"
         description: "The total sum of the cart in one session."
@@ -7060,14 +7813,17 @@ definitions:
           type: "number"
     description: ""
     example:
+      coupon: "coupon"
+      created: "2000-01-23T04:56:07.000+00:00"
+      identifiers:
+      - "identifiers"
+      - "identifiers"
+      integrationId: "integrationId"
       total: 7.3862819483858839220147274318151175975799560546875
       referral: "referral"
-      coupon: "coupon"
       discounts:
         key: 1.231513536777255612975068288506008684635162353515625
-      created: "2000-01-23T04:56:07.000+00:00"
       profileId: "profileId"
-      integrationId: "integrationId"
       attributes: "{}"
       state: "open"
       applicationId: 0
@@ -7321,14 +8077,17 @@ definitions:
       \ This is the response type returned by all of the Integration API operations.\n"
     example:
       session:
+        coupon: "coupon"
+        created: "2000-01-23T04:56:07.000+00:00"
+        identifiers:
+        - "identifiers"
+        - "identifiers"
+        integrationId: "integrationId"
         total: 7.3862819483858839220147274318151175975799560546875
         referral: "referral"
-        coupon: "coupon"
         discounts:
           key: 1.231513536777255612975068288506008684635162353515625
-        created: "2000-01-23T04:56:07.000+00:00"
         profileId: "profileId"
-        integrationId: "integrationId"
         attributes: "{}"
         state: "open"
         applicationId: 0
@@ -8459,46 +9218,6 @@ definitions:
       - "suggestions"
       - "suggestions"
       - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
-      - "suggestions"
       usedAt:
       - "usedAt"
       - "usedAt"
@@ -9101,6 +9820,10 @@ definitions:
         description: "List of Integration IDs"
         items:
           type: "string"
+    example:
+      integrationIDs:
+      - "integrationIDs"
+      - "integrationIDs"
   LedgerEntry:
     type: "object"
     required:
@@ -9244,6 +9967,8 @@ definitions:
         - "CouponNotFound"
         - "CouponPartOfNotRunningCampaign"
         - "CouponLimitReached"
+        - "CampaignLimitReached"
+        - "ProfileLimitReached"
         - "CouponRecipientDoesNotMatch"
         - "CouponExpired"
         - "CouponStartDateInFuture"
@@ -9295,6 +10020,7 @@ definitions:
     - "accountID"
     - "applicationID"
     - "created"
+    - "createdBy"
     - "expires"
     - "id"
     - "key"
@@ -9303,6 +10029,9 @@ definitions:
       id:
         type: "integer"
         description: "ID of the API Key"
+      createdBy:
+        type: "integer"
+        description: "ID of user who created"
       title:
         type: "string"
         description: "Title for API Key"
@@ -9323,6 +10052,7 @@ definitions:
       key:
         type: "string"
         description: "Raw API Key"
+    description: ""
   CreateApplicationAPIKey:
     type: "object"
     required:
@@ -9346,71 +10076,173 @@ definitions:
       data:
         type: "array"
         items:
-          $ref: "#/definitions/Application"
+          $ref: "#/definitions/CustomerProfile"
     example:
       data:
       - accountId: 1
+        closedSessions: 1
         created: "2000-01-23T04:56:07.000+00:00"
-        timezone: "timezone"
-        loyaltyPrograms:
-        - accountID: 5
-          defaultValidity: "defaultValidity"
-          name: "name"
-          description: "description"
-          id: 5
-          title: "title"
-          subscribedApplications:
-          - 2
-          - 2
-        - accountID: 5
-          defaultValidity: "defaultValidity"
-          name: "name"
-          description: "description"
-          id: 5
-          title: "title"
-          subscribedApplications:
-          - 2
-          - 2
-        name: "name"
-        modified: "2000-01-23T04:56:07.000+00:00"
-        description: "description"
-        currency: "currency"
+        integrationId: "integrationId"
         attributes: "{}"
-        id: 6
-        caseSensitivity: "sensitive"
-        key: "key"
+        totalSales: 6.8468526983526398765889098285697400569915771484375
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        loyaltyMemberships:
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
       - accountId: 1
+        closedSessions: 1
         created: "2000-01-23T04:56:07.000+00:00"
-        timezone: "timezone"
-        loyaltyPrograms:
-        - accountID: 5
-          defaultValidity: "defaultValidity"
-          name: "name"
-          description: "description"
-          id: 5
-          title: "title"
-          subscribedApplications:
-          - 2
-          - 2
-        - accountID: 5
-          defaultValidity: "defaultValidity"
-          name: "name"
-          description: "description"
-          id: 5
-          title: "title"
-          subscribedApplications:
-          - 2
-          - 2
-        name: "name"
-        modified: "2000-01-23T04:56:07.000+00:00"
-        description: "description"
-        currency: "currency"
+        integrationId: "integrationId"
         attributes: "{}"
-        id: 6
-        caseSensitivity: "sensitive"
-        key: "key"
+        totalSales: 6.8468526983526398765889098285697400569915771484375
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        loyaltyMemberships:
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
       totalResultSize: 0
   inline_response_200_1:
+    required:
+    - "data"
+    - "totalResultSize"
+    properties:
+      totalResultSize:
+        type: "integer"
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/Coupon"
+    example:
+      data:
+      - recipientIntegrationId: "recipientIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 146581
+        referralId: 5
+        usageCounter: 5
+        batchId: "batchId"
+        expiryDate: "2000-01-23T04:56:07.000+00:00"
+        importId: 2
+        reservation: true
+        attributes: "{}"
+        id: 0
+        value: "value"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+      - recipientIntegrationId: "recipientIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 146581
+        referralId: 5
+        usageCounter: 5
+        batchId: "batchId"
+        expiryDate: "2000-01-23T04:56:07.000+00:00"
+        importId: 2
+        reservation: true
+        attributes: "{}"
+        id: 0
+        value: "value"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+      totalResultSize: 0
+  inline_response_200_2:
+    required:
+    - "data"
+    - "totalResultSize"
+    properties:
+      totalResultSize:
+        type: "integer"
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/Application"
+    example:
+      data:
+      - created: "2000-01-23T04:56:07.000+00:00"
+        timezone: "timezone"
+        description: "description"
+        caseSensitivity: "sensitive"
+        accountId: 1
+        loyaltyPrograms:
+        - accountID: 2
+          defaultValidity: "defaultValidity"
+          name: "name"
+          description: "description"
+          id: 5
+          title: "title"
+          subscribedApplications:
+          - 7
+          - 7
+        - accountID: 2
+          defaultValidity: "defaultValidity"
+          name: "name"
+          description: "description"
+          id: 5
+          title: "title"
+          subscribedApplications:
+          - 7
+          - 7
+        name: "name"
+        modified: "2000-01-23T04:56:07.000+00:00"
+        currency: "currency"
+        attributes: "{}"
+        id: 6
+        key: "key"
+        limits:
+        - entities:
+          - "Coupon"
+          - "Coupon"
+          limit: 0.59621339166831821554382031536079011857509613037109375
+          action: "redeemCoupon"
+        - entities:
+          - "Coupon"
+          - "Coupon"
+          limit: 0.59621339166831821554382031536079011857509613037109375
+          action: "redeemCoupon"
+      - created: "2000-01-23T04:56:07.000+00:00"
+        timezone: "timezone"
+        description: "description"
+        caseSensitivity: "sensitive"
+        accountId: 1
+        loyaltyPrograms:
+        - accountID: 2
+          defaultValidity: "defaultValidity"
+          name: "name"
+          description: "description"
+          id: 5
+          title: "title"
+          subscribedApplications:
+          - 7
+          - 7
+        - accountID: 2
+          defaultValidity: "defaultValidity"
+          name: "name"
+          description: "description"
+          id: 5
+          title: "title"
+          subscribedApplications:
+          - 7
+          - 7
+        name: "name"
+        modified: "2000-01-23T04:56:07.000+00:00"
+        currency: "currency"
+        attributes: "{}"
+        id: 6
+        key: "key"
+        limits:
+        - entities:
+          - "Coupon"
+          - "Coupon"
+          limit: 0.59621339166831821554382031536079011857509613037109375
+          action: "redeemCoupon"
+        - entities:
+          - "Coupon"
+          - "Coupon"
+          limit: 0.59621339166831821554382031536079011857509613037109375
+          action: "redeemCoupon"
+      totalResultSize: 0
+  inline_response_200_3:
     required:
     - "data"
     - "totalResultSize"
@@ -9426,51 +10258,11 @@ definitions:
       - activeRulesetId: 5
         updatedBy: "updatedBy"
         created: "2000-01-23T04:56:07.000+00:00"
-        discountCount: 3
+        discountCount: 9
         description: "description"
-        couponRedemptionCount: 7
+        couponRedemptionCount: 2
         userId: 5
         tags:
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
         - "tags"
         - "tags"
         - "tags"
@@ -9504,67 +10296,27 @@ definitions:
         endTime: "2000-01-23T04:56:07.000+00:00"
         state: "enabled"
         applicationId: 1
-        referralRedemptionCount: 9
+        referralRedemptionCount: 7
         updated: "2000-01-23T04:56:07.000+00:00"
         limits:
         - entities:
           - "Coupon"
           - "Coupon"
-          limit: 0.23021358869347652298387174596427939832210540771484375
+          limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
         - entities:
           - "Coupon"
           - "Coupon"
-          limit: 0.23021358869347652298387174596427939832210540771484375
+          limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
       - activeRulesetId: 5
         updatedBy: "updatedBy"
         created: "2000-01-23T04:56:07.000+00:00"
-        discountCount: 3
+        discountCount: 9
         description: "description"
-        couponRedemptionCount: 7
+        couponRedemptionCount: 2
         userId: 5
         tags:
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
         - "tags"
         - "tags"
         - "tags"
@@ -9598,21 +10350,21 @@ definitions:
         endTime: "2000-01-23T04:56:07.000+00:00"
         state: "enabled"
         applicationId: 1
-        referralRedemptionCount: 9
+        referralRedemptionCount: 7
         updated: "2000-01-23T04:56:07.000+00:00"
         limits:
         - entities:
           - "Coupon"
           - "Coupon"
-          limit: 0.23021358869347652298387174596427939832210540771484375
+          limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
         - entities:
           - "Coupon"
           - "Coupon"
-          limit: 0.23021358869347652298387174596427939832210540771484375
+          limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
       totalResultSize: 0
-  inline_response_200_2:
+  inline_response_200_4:
     required:
     - "data"
     - "totalResultSize"
@@ -9728,93 +10480,51 @@ definitions:
         id: 6
         userId: 5
       totalResultSize: 0
-  inline_response_200_3:
-    required:
-    - "data"
-    - "totalResultSize"
-    properties:
-      totalResultSize:
-        type: "integer"
-      data:
-        type: "array"
-        items:
-          $ref: "#/definitions/Coupon"
-    example:
-      data:
-      - recipientIntegrationId: "recipientIntegrationId"
-        created: "2000-01-23T04:56:07.000+00:00"
-        campaignId: 1
-        usageLimit: 596212
-        referralId: 2
-        usageCounter: 5
-        batchId: "batchId"
-        expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 7
-        reservation: true
-        attributes: "{}"
-        id: 6
-        value: "value"
-        startDate: "2000-01-23T04:56:07.000+00:00"
-      - recipientIntegrationId: "recipientIntegrationId"
-        created: "2000-01-23T04:56:07.000+00:00"
-        campaignId: 1
-        usageLimit: 596212
-        referralId: 2
-        usageCounter: 5
-        batchId: "batchId"
-        expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 7
-        reservation: true
-        attributes: "{}"
-        id: 6
-        value: "value"
-        startDate: "2000-01-23T04:56:07.000+00:00"
-      totalResultSize: 0
-  inline_response_200_4:
-    required:
-    - "data"
-    - "hasMore"
-    properties:
-      hasMore:
-        type: "boolean"
-      data:
-        type: "array"
-        items:
-          $ref: "#/definitions/Coupon"
-    example:
-      data:
-      - recipientIntegrationId: "recipientIntegrationId"
-        created: "2000-01-23T04:56:07.000+00:00"
-        campaignId: 1
-        usageLimit: 596212
-        referralId: 2
-        usageCounter: 5
-        batchId: "batchId"
-        expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 7
-        reservation: true
-        attributes: "{}"
-        id: 6
-        value: "value"
-        startDate: "2000-01-23T04:56:07.000+00:00"
-      - recipientIntegrationId: "recipientIntegrationId"
-        created: "2000-01-23T04:56:07.000+00:00"
-        campaignId: 1
-        usageLimit: 596212
-        referralId: 2
-        usageCounter: 5
-        batchId: "batchId"
-        expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 7
-        reservation: true
-        attributes: "{}"
-        id: 6
-        value: "value"
-        startDate: "2000-01-23T04:56:07.000+00:00"
-      hasMore: true
   inline_response_200_5:
     required:
     - "data"
+    - "hasMore"
+    properties:
+      hasMore:
+        type: "boolean"
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/Coupon"
+    example:
+      data:
+      - recipientIntegrationId: "recipientIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 146581
+        referralId: 5
+        usageCounter: 5
+        batchId: "batchId"
+        expiryDate: "2000-01-23T04:56:07.000+00:00"
+        importId: 2
+        reservation: true
+        attributes: "{}"
+        id: 0
+        value: "value"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+      - recipientIntegrationId: "recipientIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 146581
+        referralId: 5
+        usageCounter: 5
+        batchId: "batchId"
+        expiryDate: "2000-01-23T04:56:07.000+00:00"
+        importId: 2
+        reservation: true
+        attributes: "{}"
+        id: 0
+        value: "value"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+      hasMore: true
+  inline_response_200_6:
+    required:
+    - "data"
     - "totalResultSize"
     properties:
       totalResultSize:
@@ -9846,7 +10556,7 @@ definitions:
         advocateProfileIntegrationId: "advocateProfileIntegrationId"
         startDate: "2000-01-23T04:56:07.000+00:00"
       totalResultSize: 0
-  inline_response_200_6:
+  inline_response_200_7:
     required:
     - "data"
     - "hasMore"
@@ -9880,7 +10590,7 @@ definitions:
         advocateProfileIntegrationId: "advocateProfileIntegrationId"
         startDate: "2000-01-23T04:56:07.000+00:00"
       hasMore: true
-  inline_response_200_7:
+  inline_response_200_8:
     required:
     - "data"
     - "totalResultSize"
@@ -9893,26 +10603,26 @@ definitions:
           $ref: "#/definitions/LoyaltyProgram"
     example:
       data:
-      - accountID: 5
+      - accountID: 2
         defaultValidity: "defaultValidity"
         name: "name"
         description: "description"
         id: 5
         title: "title"
         subscribedApplications:
-        - 2
-        - 2
-      - accountID: 5
+        - 7
+        - 7
+      - accountID: 2
         defaultValidity: "defaultValidity"
         name: "name"
         description: "description"
         id: 5
         title: "title"
         subscribedApplications:
-        - 2
-        - 2
+        - 7
+        - 7
       totalResultSize: 0
-  inline_response_200_8:
+  inline_response_200_9:
     required:
     - "data"
     - "totalResultSize"
@@ -9940,7 +10650,7 @@ definitions:
         uuid: "uuid"
         status: 6
       totalResultSize: 0
-  inline_response_200_9:
+  inline_response_200_10:
     required:
     - "data"
     - "hasMore"
@@ -9968,7 +10678,7 @@ definitions:
         uuid: "uuid"
         status: 6
       hasMore: true
-  inline_response_200_10:
+  inline_response_200_11:
     required:
     - "data"
     - "totalResultSize"
@@ -10012,49 +10722,49 @@ definitions:
         referralsCreated: 1
         totalReferralsCreated: 1
       totalResultSize: 0
-  inline_response_200_11:
-    required:
-    - "data"
-    - "totalResultSize"
-    properties:
-      totalResultSize:
-        type: "integer"
-      data:
-        type: "array"
-        items:
-          $ref: "#/definitions/ApplicationCustomer"
-    example:
-      data:
-      - accountId: 1
-        closedSessions: 5
-        created: "2000-01-23T04:56:07.000+00:00"
-        integrationId: "integrationId"
-        attributes: "{}"
-        totalSales: 5.63737665663332876420099637471139430999755859375
-        lastActivity: "2000-01-23T04:56:07.000+00:00"
-        id: 6
-        loyaltyMemberships:
-        - joined: "2000-01-23T04:56:07.000+00:00"
-          loyaltyProgramId: 7
-        - joined: "2000-01-23T04:56:07.000+00:00"
-          loyaltyProgramId: 7
-      - accountId: 1
-        closedSessions: 5
-        created: "2000-01-23T04:56:07.000+00:00"
-        integrationId: "integrationId"
-        attributes: "{}"
-        totalSales: 5.63737665663332876420099637471139430999755859375
-        lastActivity: "2000-01-23T04:56:07.000+00:00"
-        id: 6
-        loyaltyMemberships:
-        - joined: "2000-01-23T04:56:07.000+00:00"
-          loyaltyProgramId: 7
-        - joined: "2000-01-23T04:56:07.000+00:00"
-          loyaltyProgramId: 7
-      totalResultSize: 0
   inline_response_200_12:
     required:
     - "data"
+    - "totalResultSize"
+    properties:
+      totalResultSize:
+        type: "integer"
+      data:
+        type: "array"
+        items:
+          $ref: "#/definitions/ApplicationCustomer"
+    example:
+      data:
+      - accountId: 1
+        closedSessions: 5
+        created: "2000-01-23T04:56:07.000+00:00"
+        integrationId: "integrationId"
+        attributes: "{}"
+        totalSales: 5.63737665663332876420099637471139430999755859375
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        id: 6
+        loyaltyMemberships:
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+      - accountId: 1
+        closedSessions: 5
+        created: "2000-01-23T04:56:07.000+00:00"
+        integrationId: "integrationId"
+        attributes: "{}"
+        totalSales: 5.63737665663332876420099637471139430999755859375
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        id: 6
+        loyaltyMemberships:
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+      totalResultSize: 0
+  inline_response_200_13:
+    required:
+    - "data"
     - "hasMore"
     properties:
       hasMore:
@@ -10092,7 +10802,7 @@ definitions:
         - joined: "2000-01-23T04:56:07.000+00:00"
           loyaltyProgramId: 7
       hasMore: true
-  inline_response_200_13:
+  inline_response_200_14:
     required:
     - "data"
     - "totalResultSize"
@@ -10132,7 +10842,7 @@ definitions:
         campaignName: "campaignName"
         accruedDiscounts: 2.3021358869347654518833223846741020679473876953125
       totalResultSize: 0
-  inline_response_200_14:
+  inline_response_200_15:
     required:
     - "data"
     - "hasMore"
@@ -10172,7 +10882,7 @@ definitions:
         campaignName: "campaignName"
         accruedDiscounts: 2.3021358869347654518833223846741020679473876953125
       hasMore: true
-  inline_response_200_15:
+  inline_response_200_16:
     required:
     - "data"
     - "totalResultSize"
@@ -10270,7 +10980,7 @@ definitions:
           category: "category"
           height: 5.63737665663332876420099637471139430999755859375
       totalResultSize: 0
-  inline_response_200_16:
+  inline_response_200_17:
     required:
     - "data"
     - "totalResultSize"
@@ -10304,7 +11014,7 @@ definitions:
         applicationId: 1
         type: "type"
       totalResultSize: 0
-  inline_response_200_17:
+  inline_response_200_18:
     required:
     - "data"
     - "hasMore"
@@ -10338,7 +11048,7 @@ definitions:
         applicationId: 1
         type: "type"
       hasMore: true
-  inline_response_200_18:
+  inline_response_200_19:
     required:
     - "data"
     - "totalResultSize"
@@ -10354,7 +11064,7 @@ definitions:
       - "data"
       - "data"
       totalResultSize: 0
-  inline_response_200_19:
+  inline_response_200_20:
     required:
     - "data"
     - "totalResultSize"
@@ -10420,7 +11130,7 @@ definitions:
         - 1
         - 1
       totalResultSize: 0
-  inline_response_200_20:
+  inline_response_200_21:
     required:
     - "data"
     - "totalResultSize"
@@ -10444,7 +11154,7 @@ definitions:
         integrationRequestUuid: "integrationRequestUuid"
         applicationId: 1
       totalResultSize: 0
-  inline_response_200_21:
+  inline_response_200_22:
     required:
     - "data"
     - "totalResultSize"
@@ -10478,7 +11188,7 @@ definitions:
         url: "url"
         status: 5
       totalResultSize: 0
-  inline_response_200_22:
+  inline_response_200_23:
     required:
     - "data"
     - "totalResultSize"
@@ -10520,7 +11230,7 @@ definitions:
         - 1
         - 1
       totalResultSize: 0
-  inline_response_200_23:
+  inline_response_200_24:
     required:
     - "data"
     - "totalResultSize"
@@ -10562,7 +11272,7 @@ definitions:
         email: "email"
         policy: "policy"
       totalResultSize: 0
-  inline_response_200_24:
+  inline_response_200_25:
     required:
     - "data"
     - "totalResultSize"
@@ -10588,7 +11298,7 @@ definitions:
         userId: 1
         entity: "entity"
       totalResultSize: 0
-  inline_response_200_25:
+  inline_response_200_26:
     required:
     - "data"
     - "totalResultSize"
@@ -10614,7 +11324,7 @@ definitions:
         userId: 5
         entity: "Coupon"
       totalResultSize: 0
-  inline_response_200_26:
+  inline_response_200_27:
     required:
     - "data"
     - "totalResultSize"
@@ -10640,7 +11350,7 @@ definitions:
         userId: 5
         entity: "Coupon"
       totalResultSize: 0
-  inline_response_200_27:
+  inline_response_200_28:
     required:
     - "data"
     - "totalResultSize"

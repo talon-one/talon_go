@@ -85,7 +85,7 @@ Method | HTTP request | Description
 
 
 # **AddLoyaltyPoints**
-> AddLoyaltyPoints(ctx, programID, integrationID, optional)
+> AddLoyaltyPoints(ctx, programID, integrationID, body)
 Add points in a certain loyalty program for the specified customer
 
 
@@ -94,19 +94,10 @@ Add points in a certain loyalty program for the specified customer
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **programID** | **string**|  | 
   **integrationID** | **string**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **programID** | **string**|  | 
- **integrationID** | **string**|  | 
- **body** | [**LoyaltyPoints**](LoyaltyPoints.md)|  | 
+  **body** | [**LoyaltyPoints**](LoyaltyPoints.md)|  | 
 
 ### Return type
 
@@ -124,7 +115,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CopyCampaignToApplications**
-> InlineResponse2001 CopyCampaignToApplications(ctx, applicationId, campaignId, optional)
+> InlineResponse2003 CopyCampaignToApplications(ctx, applicationId, campaignId, body)
 Copy the campaign into every specified application
 
 Copy the campaign into every specified application.
@@ -133,23 +124,14 @@ Copy the campaign into every specified application.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **body** | [**CampaignCopy**](CampaignCopy.md)|  | 
+  **body** | [**CampaignCopy**](CampaignCopy.md)|  | 
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -163,7 +145,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateCampaign**
-> Campaign CreateCampaign(ctx, applicationId, optional)
+> Campaign CreateCampaign(ctx, applicationId, body)
 Create a Campaign
 
 
@@ -172,17 +154,9 @@ Create a Campaign
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **body** | [**NewCampaign**](NewCampaign.md)|  | 
+  **body** | [**NewCampaign**](NewCampaign.md)|  | 
 
 ### Return type
 
@@ -200,7 +174,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateCoupons**
-> InlineResponse2003 CreateCoupons(ctx, applicationId, campaignId, optional)
+> InlineResponse2001 CreateCoupons(ctx, applicationId, campaignId, body, optional)
 Create Coupons
 
 Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupns can be created.
@@ -209,24 +183,25 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**NewCoupons**](NewCoupons.md)|  | 
+ **optional** | ***CreateCouponsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a CreateCouponsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **silent** | **string**| If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the coupons generated (to to 1000). | 
- **body** | [**NewCoupons**](NewCoupons.md)|  | 
+
+
+
+ **silent** | **optional.String**| If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the coupons generated (to to 1000). | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -240,7 +215,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreatePasswordRecoveryEmail**
-> NewPasswordEmail CreatePasswordRecoveryEmail(ctx, optional)
+> NewPasswordEmail CreatePasswordRecoveryEmail(ctx, body)
 Request a password reset
 
 Sends an email with a password recovery link to the email of an existing account. 
@@ -249,15 +224,8 @@ Sends an email with a password recovery link to the email of an existing account
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**NewPasswordEmail**](NewPasswordEmail.md)|  | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**NewPasswordEmail**](NewPasswordEmail.md)|  | 
 
 ### Return type
 
@@ -275,7 +243,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateRuleset**
-> Ruleset CreateRuleset(ctx, applicationId, campaignId, optional)
+> Ruleset CreateRuleset(ctx, applicationId, campaignId, body)
 Create a Ruleset
 
 
@@ -284,19 +252,10 @@ Create a Ruleset
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **body** | [**NewRuleset**](NewRuleset.md)|  | 
+  **body** | [**NewRuleset**](NewRuleset.md)|  | 
 
 ### Return type
 
@@ -314,7 +273,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **CreateSession**
-> Session CreateSession(ctx, optional)
+> Session CreateSession(ctx, body)
 Create a Session
 
 
@@ -323,15 +282,8 @@ Create a Session
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**LoginParams**](LoginParams.md)|  | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**LoginParams**](LoginParams.md)|  | 
 
 ### Return type
 
@@ -358,7 +310,7 @@ Delete a Campaign
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
 
@@ -387,7 +339,7 @@ Delete one Coupon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **couponId** | **string**| The ID of the coupon code to delete | 
@@ -417,31 +369,31 @@ Delete Coupons
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***DeleteCouponsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a DeleteCouponsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **startsAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **startsBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **expiresAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **expiresBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **batchId** | **string**| Filter results by batches of coupons | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+
+
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **startsAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **startsBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **expiresAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **expiresBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
 
 ### Return type
 
@@ -468,7 +420,7 @@ Delete one Referral
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **referralId** | **string**| The ID of the referral code to delete | 
@@ -498,7 +450,7 @@ Delete a Ruleset
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **rulesetId** | **int32**|  | 
@@ -519,7 +471,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetAccessLogs**
-> InlineResponse2008 GetAccessLogs(ctx, applicationId, rangeStart, rangeEnd, optional)
+> InlineResponse2009 GetAccessLogs(ctx, applicationId, rangeStart, rangeEnd, optional)
 Get access logs for application
 
 
@@ -528,30 +480,30 @@ Get access logs for application
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetAccessLogsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetAccessLogsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **path** | **string**| Only return results where the request path matches the given regular expresssion. | 
- **method** | **string**| Only return results where the request method matches the given regular expresssion. | 
- **status** | **string**| Filter results by HTTP status codes. | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+
+
+ **path** | **optional.String**| Only return results where the request path matches the given regular expresssion. | 
+ **method** | **optional.String**| Only return results where the request method matches the given regular expresssion. | 
+ **status** | **optional.String**| Filter results by HTTP status codes. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -565,7 +517,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetAccessLogsWithoutTotalCount**
-> InlineResponse2009 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
+> InlineResponse20010 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
 Get access logs for application
 
 
@@ -574,30 +526,30 @@ Get access logs for application
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetAccessLogsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetAccessLogsWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **path** | **string**| Only return results where the request path matches the given regular expresssion. | 
- **method** | **string**| Only return results where the request method matches the given regular expresssion. | 
- **status** | **string**| Filter results by HTTP status codes. | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+
+
+ **path** | **optional.String**| Only return results where the request path matches the given regular expresssion. | 
+ **method** | **optional.String**| Only return results where the request method matches the given regular expresssion. | 
+ **status** | **optional.String**| Filter results by HTTP status codes. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -620,7 +572,7 @@ Return the details of your companies Talon.One account.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountId** | **int32**|  | 
 
 ### Return type
@@ -648,7 +600,7 @@ Return the analytics of your companies Talon.One account.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountId** | **int32**|  | 
 
 ### Return type
@@ -676,7 +628,7 @@ Returns a list of all account limits set
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountId** | **int32**|  | 
 
 ### Return type
@@ -695,7 +647,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetAllAccessLogs**
-> InlineResponse2008 GetAllAccessLogs(ctx, rangeStart, rangeEnd, optional)
+> InlineResponse2009 GetAllAccessLogs(ctx, rangeStart, rangeEnd, optional)
 Get all access logs
 
 Fetches the access logs for the entire account. Sensitive requests (logins) are _always_ filtered from the logs. 
@@ -704,28 +656,28 @@ Fetches the access logs for the entire account. Sensitive requests (logins) are 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetAllAccessLogsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetAllAccessLogsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **path** | **string**| Only return results where the request path matches the given regular expresssion. | 
- **method** | **string**| Only return results where the request method matches the given regular expresssion. | 
- **status** | **string**| Filter results by HTTP status codes. | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+
+ **path** | **optional.String**| Only return results where the request path matches the given regular expresssion. | 
+ **method** | **optional.String**| Only return results where the request method matches the given regular expresssion. | 
+ **status** | **optional.String**| Filter results by HTTP status codes. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -739,7 +691,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetAllRoles**
-> InlineResponse20027 GetAllRoles(ctx, )
+> InlineResponse20028 GetAllRoles(ctx, )
 Get all roles.
 
 ### Required Parameters
@@ -747,7 +699,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
@@ -770,7 +722,7 @@ Get the application specified by the ID.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
 
 ### Return type
@@ -798,7 +750,7 @@ Get report of health of application API
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
 
 ### Return type
@@ -826,7 +778,7 @@ Get Application Customer
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **customerId** | **int32**|  | 
 
@@ -846,7 +798,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationCustomers**
-> InlineResponse20011 GetApplicationCustomers(ctx, applicationId)
+> InlineResponse20012 GetApplicationCustomers(ctx, applicationId)
 List Application Customers
 
 
@@ -855,12 +807,12 @@ List Application Customers
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -874,7 +826,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationCustomersByAttributes**
-> InlineResponse20012 GetApplicationCustomersByAttributes(ctx, optional)
+> InlineResponse20013 GetApplicationCustomersByAttributes(ctx, body)
 Get a list of the customer profiles that match the given attributes
 
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile 
@@ -883,19 +835,12 @@ Gets a list of all the customer profiles for the account that exactly match a se
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -909,7 +854,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationEventTypes**
-> InlineResponse20018 GetApplicationEventTypes(ctx, applicationId, optional)
+> InlineResponse20019 GetApplicationEventTypes(ctx, applicationId, optional)
 List Applications Event Types
 
 Get all of the distinct values of the Event `type` property for events recorded in the application.  See also: [Track an event](/integration-api/reference/#trackEvent) 
@@ -918,23 +863,23 @@ Get all of the distinct values of the Event `type` property for events recorded 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetApplicationEventTypesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetApplicationEventTypesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
@@ -948,7 +893,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationEvents**
-> InlineResponse20016 GetApplicationEvents(ctx, applicationId, optional)
+> InlineResponse20017 GetApplicationEvents(ctx, applicationId, optional)
 List Applications Events
 
 Lists all events recorded for an application. 
@@ -957,34 +902,34 @@ Lists all events recorded for an application.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetApplicationEventsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetApplicationEventsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **type_** | **string**| Comma-separated list of types by which to filter events. Must be exact match(es). | 
- **createdBefore** | **time.Time**| Only return events created before this date | 
- **createdAfter** | **time.Time**| Only return events created after this date | 
- **session** | **string**| Session integration ID filter for events. Must be exact match. | 
- **profile** | **string**| Profile integration ID filter for events. Must be exact match. | 
- **customerName** | **string**| Customer name filter for events. Will match substrings case-insensitively. | 
- **customerEmail** | **string**| Customer e-mail address filter for events. Will match substrings case-insensitively. | 
- **effectsQuery** | **string**| Effects filter for events. Will perform a full-text search on the text content of the events effects, if any. | 
- **attributesQuery** | **string**| Attributes filter for events. Will perform a full-text search on the text content of the events attributes, both keys and values. | 
- **ruleQuery** | **string**| Rule name filter for events | 
- **campaignQuery** | **string**| Campaign name filter for events | 
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **type_** | **optional.String**| Comma-separated list of types by which to filter events. Must be exact match(es). | 
+ **createdBefore** | **optional.Time**| Only return events created before this date | 
+ **createdAfter** | **optional.Time**| Only return events created after this date | 
+ **session** | **optional.String**| Session integration ID filter for events. Must be exact match. | 
+ **profile** | **optional.String**| Profile integration ID filter for events. Must be exact match. | 
+ **customerName** | **optional.String**| Customer name filter for events. Will match substrings case-insensitively. | 
+ **customerEmail** | **optional.String**| Customer e-mail address filter for events. Will match substrings case-insensitively. | 
+ **effectsQuery** | **optional.String**| Effects filter for events. Will perform a full-text search on the text content of the events effects, if any. | 
+ **attributesQuery** | **optional.String**| Attributes filter for events. Will perform a full-text search on the text content of the events attributes, both keys and values. | 
+ **ruleQuery** | **optional.String**| Rule name filter for events | 
+ **campaignQuery** | **optional.String**| Campaign name filter for events | 
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -998,7 +943,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationEventsWithoutTotalCount**
-> InlineResponse20017 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
+> InlineResponse20018 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
 List Applications Events
 
 Lists all events recorded for an application. Instead of having the total number of results in the response, this endpoint only if there are more results. 
@@ -1007,34 +952,34 @@ Lists all events recorded for an application. Instead of having the total number
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetApplicationEventsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetApplicationEventsWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **type_** | **string**| Comma-separated list of types by which to filter events. Must be exact match(es). | 
- **createdBefore** | **time.Time**| Only return events created before this date | 
- **createdAfter** | **time.Time**| Only return events created after this date | 
- **session** | **string**| Session integration ID filter for events. Must be exact match. | 
- **profile** | **string**| Profile integration ID filter for events. Must be exact match. | 
- **customerName** | **string**| Customer name filter for events. Will match substrings case-insensitively. | 
- **customerEmail** | **string**| Customer e-mail address filter for events. Will match substrings case-insensitively. | 
- **effectsQuery** | **string**| Effects filter for events. Will perform a full-text search on the text content of the events effects, if any. | 
- **attributesQuery** | **string**| Attributes filter for events. Will perform a full-text search on the text content of the events attributes, both keys and values. | 
- **ruleQuery** | **string**| Rule name filter for events | 
- **campaignQuery** | **string**| Campaign name filter for events | 
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **type_** | **optional.String**| Comma-separated list of types by which to filter events. Must be exact match(es). | 
+ **createdBefore** | **optional.Time**| Only return events created before this date | 
+ **createdAfter** | **optional.Time**| Only return events created after this date | 
+ **session** | **optional.String**| Session integration ID filter for events. Must be exact match. | 
+ **profile** | **optional.String**| Profile integration ID filter for events. Must be exact match. | 
+ **customerName** | **optional.String**| Customer name filter for events. Will match substrings case-insensitively. | 
+ **customerEmail** | **optional.String**| Customer e-mail address filter for events. Will match substrings case-insensitively. | 
+ **effectsQuery** | **optional.String**| Effects filter for events. Will perform a full-text search on the text content of the events effects, if any. | 
+ **attributesQuery** | **optional.String**| Attributes filter for events. Will perform a full-text search on the text content of the events attributes, both keys and values. | 
+ **ruleQuery** | **optional.String**| Rule name filter for events | 
+ **campaignQuery** | **optional.String**| Campaign name filter for events | 
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -1057,7 +1002,7 @@ Get Application Session
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **sessionId** | **int32**|  | 
 
@@ -1077,7 +1022,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplicationSessions**
-> InlineResponse20015 GetApplicationSessions(ctx, applicationId, optional)
+> InlineResponse20016 GetApplicationSessions(ctx, applicationId, optional)
 List Application Sessions
 
 
@@ -1086,24 +1031,26 @@ List Application Sessions
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetApplicationSessionsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetApplicationSessionsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **profile** | **string**| Profile integration ID filter for sessions. Must be exact match. | 
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **profile** | **optional.String**| Profile integration ID filter for sessions. Must be exact match. | 
+ **state** | **optional.String**| Filter by sessions with this state. Must be exact match. | 
+ **coupon** | **optional.String**| Filter by sessions with this coupon. Must be exact match. | 
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
@@ -1117,7 +1064,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetApplications**
-> InlineResponse200 GetApplications(ctx, optional)
+> InlineResponse2002 GetApplications(ctx, optional)
 List Applications
 
 List all application in the current account.
@@ -1126,21 +1073,21 @@ List all application in the current account.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetApplicationsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetApplicationsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse200**](inline_response_200.md)
+[**InlineResponse2002**](inline_response_200_2.md)
 
 ### Authorization
 
@@ -1163,7 +1110,7 @@ Returns custom attribute for the account by its id.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **attributeId** | **int32**|  | 
 
 ### Return type
@@ -1191,7 +1138,7 @@ Get a Campaign
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
 
@@ -1211,7 +1158,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCampaignAnalytics**
-> InlineResponse20010 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
+> InlineResponse20011 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
 Get analytics of campaigns
 
 
@@ -1220,27 +1167,27 @@ Get analytics of campaigns
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**| The identifier for the application | 
   **campaignId** | **int32**|  | 
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCampaignAnalyticsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCampaignAnalyticsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**| The identifier for the application | 
- **campaignId** | **int32**|  | 
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **granularity** | **string**| The time interval between the results in the returned time-series. | 
+
+
+
+
+ **granularity** | **optional.String**| The time interval between the results in the returned time-series. | 
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse20011**](inline_response_200_11.md)
 
 ### Authorization
 
@@ -1254,7 +1201,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCampaignByAttributes**
-> InlineResponse2001 GetCampaignByAttributes(ctx, applicationId, optional)
+> InlineResponse2003 GetCampaignByAttributes(ctx, applicationId, body, optional)
 Get a list of all campaigns that match the given attributes
 
 Gets a list of all the campaigns that exactly match a set of attributes. 
@@ -1263,25 +1210,26 @@ Gets a list of all the campaigns that exactly match a set of attributes.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**CampaignSearch**](CampaignSearch.md)|  | 
+ **optional** | ***GetCampaignByAttributesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCampaignByAttributesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **campaignState** | **string**| Filter results by the state of the campaign. | 
- **body** | [**CampaignSearch**](CampaignSearch.md)|  | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -1304,7 +1252,7 @@ List CampaignSet
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
 
 ### Return type
@@ -1323,7 +1271,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCampaigns**
-> InlineResponse2001 GetCampaigns(ctx, applicationId, optional)
+> InlineResponse2003 GetCampaigns(ctx, applicationId, optional)
 List your Campaigns
 
 
@@ -1332,20 +1280,115 @@ List your Campaigns
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCampaignsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCampaignsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **campaignState** | **string**| Filter results by the state of the campaign. | 
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
+ **name** | **optional.String**| Filter results performing case-insensitive matching against the name of the campaign. | 
+ **tags** | **optional.String**| Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. | 
+
+### Return type
+
+[**InlineResponse2003**](inline_response_200_3.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetChanges**
+> InlineResponse20025 GetChanges(ctx, optional)
+Get audit log for an account
+
+Get list of changes caused by API calls for an account. Only accessible for admins.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetChangesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetChangesOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+### Return type
+
+[**InlineResponse20025**](inline_response_200_25.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetCoupons**
+> InlineResponse2001 GetCoupons(ctx, applicationId, campaignId, optional)
+List Coupons
+
+
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **applicationId** | **int32**|  | 
+  **campaignId** | **int32**|  | 
+ **optional** | ***GetCouponsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetCouponsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **startsAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **startsBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **expiresAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **expiresBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
 
 ### Return type
 
@@ -1362,99 +1405,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetChanges**
-> InlineResponse20024 GetChanges(ctx, optional)
-Get audit log for an account
-
-Get list of changes caused by API calls for an account. Only accessible for admins.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
-
-### Return type
-
-[**InlineResponse20024**](inline_response_200_24.md)
-
-### Authorization
-
-[manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetCoupons**
-> InlineResponse2003 GetCoupons(ctx, applicationId, campaignId, optional)
-List Coupons
-
-
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
-  **applicationId** | **int32**|  | 
-  **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **startsAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **startsBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **expiresAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **expiresBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **batchId** | **string**| Filter results by batches of coupons | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
-
-### Return type
-
-[**InlineResponse2003**](inline_response_200_3.md)
-
-### Authorization
-
-[manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **GetCouponsByAttributes**
-> InlineResponse2003 GetCouponsByAttributes(ctx, applicationId, campaignId, optional)
+> InlineResponse2001 GetCouponsByAttributes(ctx, applicationId, campaignId, body, optional)
 Get a list of the coupons that match the given attributes
 
 Gets a list of all the coupons that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request. 
@@ -1463,35 +1415,36 @@ Gets a list of all the coupons that exactly match a set of attributes.  The matc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**CouponSearch**](CouponSearch.md)|  | 
+ **optional** | ***GetCouponsByAttributesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCouponsByAttributesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
- **batchId** | **string**| Filter results by batches of coupons | 
- **body** | [**CouponSearch**](CouponSearch.md)|  | 
+
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -1505,7 +1458,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCouponsByAttributesApplicationWide**
-> InlineResponse2003 GetCouponsByAttributesApplicationWide(ctx, applicationId, optional)
+> InlineResponse2001 GetCouponsByAttributesApplicationWide(ctx, applicationId, body, optional)
 Get a list of the coupons that match the given attributes in all active campaigns of an application
 
 Gets a list of all the coupons with attributes matching the query criteria Application wide 
@@ -1514,34 +1467,35 @@ Gets a list of all the coupons with attributes matching the query criteria Appli
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**CouponSearch**](CouponSearch.md)|  | 
+ **optional** | ***GetCouponsByAttributesApplicationWideOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCouponsByAttributesApplicationWideOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **batchId** | **string**| Filter results by batches of coupons | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
- **campaignState** | **string**| Filter results by the state of the campaign. | 
- **body** | [**CouponSearch**](CouponSearch.md)|  | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -1555,7 +1509,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCouponsWithoutTotalCount**
-> InlineResponse2004 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse2005 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId, optional)
 List Coupons
 
 
@@ -1564,34 +1518,34 @@ List Coupons
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCouponsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCouponsWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **batchId** | **string**| Filter results by batches of coupons | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -1614,24 +1568,24 @@ Fetch summary report for single application customer based on a time range
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
   **applicationId** | **int32**|  | 
   **customerId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCustomerActivityReportOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCustomerActivityReportOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **applicationId** | **int32**|  | 
- **customerId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
+
+
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
@@ -1649,7 +1603,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCustomerActivityReports**
-> InlineResponse20013 GetCustomerActivityReports(ctx, rangeStart, rangeEnd, applicationId, optional)
+> InlineResponse20014 GetCustomerActivityReports(ctx, rangeStart, rangeEnd, applicationId, optional)
 Get Activity Reports for Application Customers
 
 Fetch summary reports for all application customers based on a time range
@@ -1658,31 +1612,31 @@ Fetch summary reports for all application customers based on a time range
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCustomerActivityReportsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCustomerActivityReportsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **name** | **string**| Only return reports matching the customer name | 
- **integrationId** | **string**| Only return reports matching the integrationId | 
- **campaignName** | **string**| Only return reports matching the campaignName | 
- **advocateName** | **string**| Only return reports matching the current customer referrer name | 
+
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **name** | **optional.String**| Only return reports matching the customer name | 
+ **integrationId** | **optional.String**| Only return reports matching the integrationId | 
+ **campaignName** | **optional.String**| Only return reports matching the campaignName | 
+ **advocateName** | **optional.String**| Only return reports matching the current customer referrer name | 
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20014**](inline_response_200_14.md)
 
 ### Authorization
 
@@ -1696,7 +1650,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCustomerActivityReportsWithoutTotalCount**
-> InlineResponse20014 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
+> InlineResponse20015 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
 Get Activity Reports for Application Customers
 
 Fetch summary reports for all application customers based on a time range. Instead of having the total number of results in the response, this endpoint only if there are more results.
@@ -1705,31 +1659,31 @@ Fetch summary reports for all application customers based on a time range. Inste
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCustomerActivityReportsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCustomerActivityReportsWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
- **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **name** | **string**| Only return reports matching the customer name | 
- **integrationId** | **string**| Only return reports matching the integrationId | 
- **campaignName** | **string**| Only return reports matching the campaignName | 
- **advocateName** | **string**| Only return reports matching the current customer referrer name | 
+
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **name** | **optional.String**| Only return reports matching the customer name | 
+ **integrationId** | **optional.String**| Only return reports matching the integrationId | 
+ **campaignName** | **optional.String**| Only return reports matching the campaignName | 
+ **advocateName** | **optional.String**| Only return reports matching the current customer referrer name | 
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
@@ -1752,21 +1706,21 @@ Fetch analytics for single application customer
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **customerId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetCustomerAnalyticsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCustomerAnalyticsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **customerId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
@@ -1793,7 +1747,7 @@ Get Customer Profile
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **customerId** | **int32**|  | 
 
@@ -1813,7 +1767,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCustomerProfiles**
-> InlineResponse20012 GetCustomerProfiles(ctx, optional)
+> InlineResponse20013 GetCustomerProfiles(ctx, optional)
 List Customer Profiles
 
 
@@ -1822,20 +1776,20 @@ List Customer Profiles
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetCustomerProfilesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCustomerProfilesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -1849,7 +1803,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetCustomersByAttributes**
-> InlineResponse20012 GetCustomersByAttributes(ctx, optional)
+> InlineResponse20013 GetCustomersByAttributes(ctx, body, optional)
 Get a list of the customer profiles that match the given attributes
 
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile 
@@ -1858,21 +1812,22 @@ Gets a list of all the customer profiles for the account that exactly match a se
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
+ **optional** | ***GetCustomersByAttributesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetCustomersByAttributesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md)|  | 
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -1886,7 +1841,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetEventTypes**
-> InlineResponse20022 GetEventTypes(ctx, optional)
+> InlineResponse20023 GetEventTypes(ctx, optional)
 List Event Types
 
 Fetch all event type definitions for your account. Each event type can be 
@@ -1895,24 +1850,24 @@ Fetch all event type definitions for your account. Each event type can be
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetEventTypesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetEventTypesOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationIds** | **string**| Filter by one or more application ids separated by comma | 
- **name** | **string**| Filter results to event types with the given name. This parameter implies &#x60;includeOldVersions&#x60;. | 
- **includeOldVersions** | **bool**| Include all versions of every event type. | [default to false]
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **applicationIds** | **optional.String**| Filter by one or more application ids separated by comma | 
+ **name** | **optional.String**| Filter results to event types with the given name. This parameter implies &#x60;includeOldVersions&#x60;. | 
+ **includeOldVersions** | **optional.Bool**| Include all versions of every event type. | [default to false]
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
@@ -1926,7 +1881,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetExports**
-> InlineResponse20025 GetExports(ctx, optional)
+> InlineResponse20026 GetExports(ctx, optional)
 Get Exports
 
 Get a list of all past exports 
@@ -1935,23 +1890,23 @@ Get a list of all past exports
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetExportsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetExportsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **entity** | **string**| The name of the entity type that was exported. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **applicationId** | **optional.Int32**|  | 
+ **campaignId** | **optional.Int32**|  | 
+ **entity** | **optional.String**| The name of the entity type that was exported. | 
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
@@ -1965,7 +1920,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetImports**
-> InlineResponse20026 GetImports(ctx, optional)
+> InlineResponse20027 GetImports(ctx, optional)
 Get Imports
 
 Get a list of all past imports 
@@ -1974,20 +1929,20 @@ Get a list of all past imports
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetImportsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetImportsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
@@ -2010,7 +1965,7 @@ Get the Loyalty Ledger for this profile integration ID.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **programID** | **string**| The identifier for the application, must be unique within the account. | 
   **integrationID** | **string**| The identifier for the application, must be unique within the account. | 
 
@@ -2039,7 +1994,7 @@ Get a loyalty program
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **programID** | **string**|  | 
 
 ### Return type
@@ -2058,7 +2013,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetLoyaltyPrograms**
-> InlineResponse2007 GetLoyaltyPrograms(ctx, )
+> InlineResponse2008 GetLoyaltyPrograms(ctx, )
 List all loyalty Programs
 
 
@@ -2068,7 +2023,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -2082,7 +2037,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetReferrals**
-> InlineResponse2005 GetReferrals(ctx, applicationId, campaignId, optional)
+> InlineResponse2006 GetReferrals(ctx, applicationId, campaignId, optional)
 List Referrals
 
 
@@ -2091,31 +2046,31 @@ List Referrals
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetReferralsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetReferralsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **code** | **string**| Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiry date is set and in the past. The second matches referrals in which start date is null or in the past and expiry date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **advocate** | **string**| Filter results by match with a profile id specified in the referral&#39;s AdvocateProfileIntegrationId field | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **code** | **optional.String**| Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiry date is set and in the past. The second matches referrals in which start date is null or in the past and expiry date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **advocate** | **optional.String**| Filter results by match with a profile id specified in the referral&#39;s AdvocateProfileIntegrationId field | 
 
 ### Return type
 
-[**InlineResponse2005**](inline_response_200_5.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -2129,7 +2084,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetReferralsWithoutTotalCount**
-> InlineResponse2006 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse2007 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId, optional)
 List Referrals
 
 
@@ -2138,31 +2093,31 @@ List Referrals
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetReferralsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetReferralsWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **code** | **string**| Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiry date is set and in the past. The second matches referrals in which start date is null or in the past and expiry date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **advocate** | **string**| Filter results by match with a profile id specified in the referral&#39;s AdvocateProfileIntegrationId field | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **code** | **optional.String**| Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiry date is set and in the past. The second matches referrals in which start date is null or in the past and expiry date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **advocate** | **optional.String**| Filter results by match with a profile id specified in the referral&#39;s AdvocateProfileIntegrationId field | 
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
@@ -2183,7 +2138,7 @@ Get information for the specified role.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **roleId** | **int32**|  | 
 
 ### Return type
@@ -2211,7 +2166,7 @@ Get a Ruleset
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **rulesetId** | **int32**|  | 
@@ -2232,7 +2187,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetRulesets**
-> InlineResponse2002 GetRulesets(ctx, applicationId, campaignId, optional)
+> InlineResponse2004 GetRulesets(ctx, applicationId, campaignId, optional)
 List Campaign Rulesets
 
 
@@ -2241,25 +2196,25 @@ List Campaign Rulesets
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **optional** | ***GetRulesetsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetRulesetsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
@@ -2282,7 +2237,7 @@ Retrieves the data (including an invitation code) for a user. Non-admin users ca
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **userId** | **int32**|  | 
 
 ### Return type
@@ -2301,7 +2256,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetUsers**
-> InlineResponse20023 GetUsers(ctx, optional)
+> InlineResponse20024 GetUsers(ctx, optional)
 List Users in your account
 
 Retrieve all users in your account. 
@@ -2310,21 +2265,21 @@ Retrieve all users in your account.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetUsersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetUsersOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
@@ -2347,7 +2302,7 @@ Returns an webhook by its id.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **webhookId** | **int32**|  | 
 
 ### Return type
@@ -2366,7 +2321,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetWebhookActivationLogs**
-> InlineResponse20020 GetWebhookActivationLogs(ctx, optional)
+> InlineResponse20021 GetWebhookActivationLogs(ctx, optional)
 List Webhook activation Log Entries
 
 Webhook activation log entries would be created as soon as an integration request triggered an effect with a webhook
@@ -2375,67 +2330,23 @@ Webhook activation log entries would be created as soon as an integration reques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetWebhookActivationLogsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetWebhookActivationLogsOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **integrationRequestUuid** | **string**| Filter results by integration request UUID. | 
- **webhookId** | **float32**| Filter results by Webhook. | 
- **applicationId** | **float32**|  | 
- **campaignId** | **float32**| Filter results by campaign. | 
- **createdBefore** | **time.Time**| Only return events created before this date. | 
- **createdAfter** | **time.Time**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. | 
-
-### Return type
-
-[**InlineResponse20020**](inline_response_200_20.md)
-
-### Authorization
-
-[manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **GetWebhookLogs**
-> InlineResponse20021 GetWebhookLogs(ctx, optional)
-List Webhook Log Entries
-
-
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **status** | **string**| Filter results by HTTP status codes. | 
- **webhookId** | **float32**| Filter results by Webhook. | 
- **applicationId** | **float32**|  | 
- **campaignId** | **float32**| Filter results by campaign. | 
- **requestUuid** | **string**| Filter results by request UUID. | 
- **createdBefore** | **time.Time**| Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. | 
- **createdAfter** | **time.Time**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **integrationRequestUuid** | **optional.String**| Filter results by integration request UUID. | 
+ **webhookId** | **optional.Float32**| Filter results by Webhook. | 
+ **applicationId** | **optional.Float32**|  | 
+ **campaignId** | **optional.Float32**| Filter results by campaign. | 
+ **createdBefore** | **optional.Time**| Only return events created before this date. | 
+ **createdAfter** | **optional.Time**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. | 
 
 ### Return type
 
@@ -2452,8 +2363,52 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **GetWebhookLogs**
+> InlineResponse20022 GetWebhookLogs(ctx, optional)
+List Webhook Log Entries
+
+
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetWebhookLogsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetWebhookLogsOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **status** | **optional.String**| Filter results by HTTP status codes. | 
+ **webhookId** | **optional.Float32**| Filter results by Webhook. | 
+ **applicationId** | **optional.Float32**|  | 
+ **campaignId** | **optional.Float32**| Filter results by campaign. | 
+ **requestUuid** | **optional.String**| Filter results by request UUID. | 
+ **createdBefore** | **optional.Time**| Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. | 
+ **createdAfter** | **optional.Time**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. | 
+
+### Return type
+
+[**InlineResponse20022**](inline_response_200_22.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **GetWebhooks**
-> InlineResponse20019 GetWebhooks(ctx, optional)
+> InlineResponse20020 GetWebhooks(ctx, optional)
 List Webhooks
 
 
@@ -2462,22 +2417,22 @@ List Webhooks
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetWebhooksOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a GetWebhooksOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationIds** | **string**| Filter by one or more application ids separated by comma | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
+ **applicationIds** | **optional.String**| Filter by one or more application ids separated by comma | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20020**](inline_response_200_20.md)
 
 ### Authorization
 
@@ -2515,7 +2470,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **RemoveLoyaltyPoints**
-> RemoveLoyaltyPoints(ctx, programID, integrationID, optional)
+> RemoveLoyaltyPoints(ctx, programID, integrationID, body)
 Deduct points in a certain loyalty program for the specified customer
 
 
@@ -2524,19 +2479,10 @@ Deduct points in a certain loyalty program for the specified customer
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **programID** | **string**|  | 
   **integrationID** | **string**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **programID** | **string**|  | 
- **integrationID** | **string**|  | 
- **body** | [**LoyaltyPoints**](LoyaltyPoints.md)|  | 
+  **body** | [**LoyaltyPoints**](LoyaltyPoints.md)|  | 
 
 ### Return type
 
@@ -2554,7 +2500,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **ResetPassword**
-> NewPassword ResetPassword(ctx, optional)
+> NewPassword ResetPassword(ctx, body)
 Reset password
 
 Consumes the supplied password reset token and updates the password for the associated account. 
@@ -2563,15 +2509,8 @@ Consumes the supplied password reset token and updates the password for the asso
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**NewPassword**](NewPassword.md)|  | 
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**NewPassword**](NewPassword.md)|  | 
 
 ### Return type
 
@@ -2589,7 +2528,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvanced**
-> InlineResponse2003 SearchCouponsAdvanced(ctx, applicationId, campaignId, optional)
+> InlineResponse2001 SearchCouponsAdvanced(ctx, applicationId, campaignId, body, optional)
 Get a list of the coupons that match the given attributes
 
 Gets a list of all the coupons with attributes matching the query criteria 
@@ -2598,35 +2537,36 @@ Gets a list of all the coupons with attributes matching the query criteria
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+ **optional** | ***SearchCouponsAdvancedOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a SearchCouponsAdvancedOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
- **batchId** | **string**| Filter results by batches of coupons | 
- **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -2640,7 +2580,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvancedApplicationWide**
-> InlineResponse2003 SearchCouponsAdvancedApplicationWide(ctx, applicationId, optional)
+> InlineResponse2001 SearchCouponsAdvancedApplicationWide(ctx, applicationId, body, optional)
 Get a list of the coupons that match the given attributes in all active campaigns of an application
 
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application 
@@ -2649,34 +2589,35 @@ Gets a list of all the coupons with attributes matching the query criteria in al
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+ **optional** | ***SearchCouponsAdvancedApplicationWideOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a SearchCouponsAdvancedApplicationWideOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **batchId** | **string**| Filter results by batches of coupons | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
- **campaignState** | **string**| Filter results by the state of the campaign. | 
- **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -2690,7 +2631,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvancedApplicationWideWithoutTotalCount**
-> InlineResponse2004 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, optional)
+> InlineResponse2005 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, body, optional)
 Get a list of the coupons that match the given attributes in all active campaigns of an application
 
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application 
@@ -2699,34 +2640,35 @@ Gets a list of all the coupons with attributes matching the query criteria in al
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+ **optional** | ***SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **batchId** | **string**| Filter results by batches of coupons | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
- **campaignState** | **string**| Filter results by the state of the campaign. | 
- **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **campaignState** | **optional.String**| Filter results by the state of the campaign. | 
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -2740,7 +2682,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SearchCouponsAdvancedWithoutTotalCount**
-> InlineResponse2004 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse2005 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, body, optional)
 Get a list of the coupons that match the given attributes
 
 Gets a list of all the coupons with attributes matching the query criteria 
@@ -2749,35 +2691,36 @@ Gets a list of all the coupons with attributes matching the query criteria
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
+  **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+ **optional** | ***SearchCouponsAdvancedWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
+Optional parameters are passed through a pointer to a SearchCouponsAdvancedWithoutTotalCountOpts struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **pageSize** | **int32**| The number of items to include in this response. When omitted, the maximum value of 1500 will be used. | 
- **skip** | **int32**| Skips the given number of items when paging through large result sets. | 
- **sort** | **string**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **value** | **string**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **createdAfter** | **time.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
- **valid** | **string**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
- **usable** | **string**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
- **recipientIntegrationId** | **string**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
- **exactMatch** | **bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
- **batchId** | **string**| Filter results by batches of coupons | 
- **body** | [**AttributeQuery**](AttributeQuery.md)|  | 
+
+
+
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **value** | **optional.String**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. | 
+ **valid** | **optional.String**| Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **usable** | **optional.String**| Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
+ **referralId** | **optional.Int32**| Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **recipientIntegrationId** | **optional.String**| Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **exactMatch** | **optional.Bool**| Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **batchId** | **optional.String**| Filter results by batches of coupons | 
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -2791,7 +2734,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **SetAccountLimits**
-> SetAccountLimits(ctx, accountId, optional)
+> SetAccountLimits(ctx, accountId, body)
 Set account limits
 
 sets account limits  
@@ -2800,17 +2743,9 @@ sets account limits
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **accountId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **accountId** | **int32**|  | 
- **body** | [**AccountLimits**](AccountLimits.md)|  | 
+  **body** | [**AccountLimits**](AccountLimits.md)|  | 
 
 ### Return type
 
@@ -2828,7 +2763,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCampaign**
-> Campaign UpdateCampaign(ctx, applicationId, campaignId, optional)
+> Campaign UpdateCampaign(ctx, applicationId, campaignId, body)
 Update a Campaign
 
 
@@ -2837,19 +2772,10 @@ Update a Campaign
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **body** | [**UpdateCampaign**](UpdateCampaign.md)|  | 
+  **body** | [**UpdateCampaign**](UpdateCampaign.md)|  | 
 
 ### Return type
 
@@ -2867,7 +2793,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCampaignSet**
-> CampaignSet UpdateCampaignSet(ctx, applicationId, optional)
+> CampaignSet UpdateCampaignSet(ctx, applicationId, body)
 Update a Campaign Set
 
 
@@ -2876,17 +2802,9 @@ Update a Campaign Set
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **body** | [**NewCampaignSet**](NewCampaignSet.md)|  | 
+  **body** | [**NewCampaignSet**](NewCampaignSet.md)|  | 
 
 ### Return type
 
@@ -2904,7 +2822,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCoupon**
-> Coupon UpdateCoupon(ctx, applicationId, campaignId, couponId, optional)
+> Coupon UpdateCoupon(ctx, applicationId, campaignId, couponId, body)
 Update a Coupon
 
 
@@ -2913,21 +2831,11 @@ Update a Coupon
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **couponId** | **string**| The ID of the coupon code to update | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **couponId** | **string**| The ID of the coupon code to update | 
- **body** | [**UpdateCoupon**](UpdateCoupon.md)|  | 
+  **body** | [**UpdateCoupon**](UpdateCoupon.md)|  | 
 
 ### Return type
 
@@ -2945,7 +2853,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateCouponBatch**
-> UpdateCouponBatch(ctx, applicationId, campaignId, optional)
+> UpdateCouponBatch(ctx, applicationId, campaignId, body)
 Update a Batch of Coupons
 
 
@@ -2954,19 +2862,10 @@ Update a Batch of Coupons
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md)|  | 
+  **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md)|  | 
 
 ### Return type
 
@@ -2984,7 +2883,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **UpdateRuleset**
-> Ruleset UpdateRuleset(ctx, applicationId, campaignId, rulesetId, optional)
+> Ruleset UpdateRuleset(ctx, applicationId, campaignId, rulesetId, body)
 Update a Ruleset
 
 
@@ -2993,21 +2892,11 @@ Update a Ruleset
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for logging, tracing, authentication, etc.
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
   **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **rulesetId** | **int32**|  | 
- **optional** | **map[string]interface{}** | optional parameters | nil if no parameters
-
-### Optional Parameters
-Optional parameters are passed through a map[string]interface{}.
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **applicationId** | **int32**|  | 
- **campaignId** | **int32**|  | 
- **rulesetId** | **int32**|  | 
- **body** | [**NewRuleset**](NewRuleset.md)|  | 
+  **body** | [**NewRuleset**](NewRuleset.md)|  | 
 
 ### Return type
 
