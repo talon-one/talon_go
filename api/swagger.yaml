@@ -48,10 +48,6 @@ tags:
 - name: "Accounts & Users"
   description: "Operations for updating account information such as billing email\
     \ addresses, inviting users, etc.\n"
-- name: "Storage"
-  description: "Operations for interacting with the Application Storage. Store any\
-    \ data you want in a storage and then use it in the Rule Builder using a custom\
-    \ template (to be provided by Talon.One)\n"
 schemes:
 - "https"
 consumes:
@@ -3244,7 +3240,6 @@ paths:
       parameters:
       - name: "applicationId"
         in: "path"
-        description: "The identifier for the application"
         required: true
         type: "integer"
         x-exportParamName: "ApplicationId"
@@ -4834,7 +4829,7 @@ paths:
       tags:
       - "management"
       summary: "Set account limits"
-      description: "sets account limits \n"
+      description: "sets account limits\n"
       operationId: "setAccountLimits"
       parameters:
       - name: "accountId"
@@ -6065,126 +6060,6 @@ definitions:
         title: "title"
       id: 6
       userId: 5
-  NewApplicationStorage:
-    type: "object"
-    required:
-    - "datatype"
-    - "name"
-    properties:
-      name:
-        type: "string"
-        description: "Identifier for the information to be saved, e.g. \"Loyalty points\
-          \ for SKU\"."
-      datatype:
-        type: "object"
-        description: "A JSON Schema describing the information to be saved in the\
-          \ storage"
-        properties: {}
-      description:
-        type: "string"
-        description: "Description of the application store"
-  ApplicationStorage:
-    type: "object"
-    required:
-    - "applicationId"
-    - "created"
-    - "datatype"
-    - "id"
-    - "modified"
-    - "name"
-    - "usedAt"
-    properties:
-      id:
-        type: "integer"
-        description: "Unique ID for this entity."
-      created:
-        type: "string"
-        format: "date-time"
-        description: "The exact moment this entity was created."
-      modified:
-        type: "string"
-        format: "date-time"
-        description: "The exact moment this entity was last modified."
-      applicationId:
-        type: "integer"
-        description: "The ID of the application that owns this entity."
-      name:
-        type: "string"
-        description: "Identifier for the information to be saved, e.g. \"Loyalty points\
-          \ for SKU\"."
-      datatype:
-        type: "object"
-        description: "A JSON Schema describing the information to be saved in the\
-          \ storage"
-        properties: {}
-      description:
-        type: "string"
-        description: "Description of the application store"
-      usedAt:
-        type: "array"
-        description: "array of rulesets where the application storage is used"
-        items:
-          type: "string"
-    description: ""
-  ApplicationStorageData:
-    type: "array"
-    description: "Array of ApplicationStorageData."
-    items:
-      $ref: "#/definitions/ApplicationStorageTuple"
-  NewApplicationStorageData:
-    type: "array"
-    description: "Array of ApplicationStorageData to be created."
-    items:
-      $ref: "#/definitions/NewApplicationStorageTuple"
-  NewApplicationStorageTuple:
-    type: "object"
-    required:
-    - "key"
-    - "value"
-    properties:
-      key:
-        type: "string"
-        description: "Key information that will map to a value, e.g. SKU number \"\
-          LEV-JN-SL-36-GN\"."
-        minLength: 1
-      value:
-        type: "object"
-        description: "Value of the tuple that will be mapped to the key."
-        properties: {}
-  ApplicationStorageTuple:
-    type: "object"
-    required:
-    - "created"
-    - "id"
-    - "key"
-    - "modified"
-    - "storageId"
-    - "value"
-    properties:
-      id:
-        type: "integer"
-        description: "Unique ID for this entity."
-      created:
-        type: "string"
-        format: "date-time"
-        description: "The exact moment this entity was created."
-      modified:
-        type: "string"
-        format: "date-time"
-        description: "The exact moment this entity was last modified."
-      key:
-        type: "string"
-        description: "Key information that will map to a value, e.g. SKU number \"\
-          LEV-JN-SL-36-GN\"."
-        minLength: 1
-      value:
-        type: "object"
-        description: "Value of the tuple that will be mapped to the key."
-        properties: {}
-      storageId:
-        type: "integer"
-        description: "ID of the storage in which the data resides"
-    description: ""
   Binding:
     type: "object"
     required:
@@ -7630,7 +7505,6 @@ definitions:
     - "created"
     - "integrationId"
     - "lastActivity"
-    - "loyaltyMemberships"
     - "totalSales"
     properties:
       integrationId:
@@ -8356,7 +8230,6 @@ definitions:
     - "id"
     - "integrationId"
     - "lastActivity"
-    - "loyaltyMemberships"
     - "totalSales"
     properties:
       id:

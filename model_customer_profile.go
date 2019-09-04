@@ -28,7 +28,7 @@ type CustomerProfile struct {
 	// Sum of all purchases made by this customer
 	TotalSales float32 `json:"totalSales"`
 	// A list of loyalty programs joined by the customer
-	LoyaltyMemberships []LoyaltyMembership `json:"loyaltyMemberships"`
+	LoyaltyMemberships []LoyaltyMembership `json:"loyaltyMemberships,omitempty"`
 	// Timestamp of the most recent event received from this customer
 	LastActivity time.Time `json:"lastActivity"`
 }
