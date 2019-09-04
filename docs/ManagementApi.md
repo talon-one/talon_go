@@ -1168,7 +1168,7 @@ Get analytics of campaigns
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **applicationId** | **int32**| The identifier for the application | 
+  **applicationId** | **int32**|  | 
   **campaignId** | **int32**|  | 
   **rangeStart** | **time.Time**| Only return results from after this timestamp, must be an RFC3339 timestamp string | 
   **rangeEnd** | **time.Time**| Only return results from before this timestamp, must be an RFC3339 timestamp string | 
@@ -2737,7 +2737,7 @@ Name | Type | Description  | Notes
 > SetAccountLimits(ctx, accountId, body)
 Set account limits
 
-sets account limits  
+sets account limits 
 
 ### Required Parameters
 

@@ -3650,7 +3650,7 @@ func (a *ManagementApiService) GetCampaign(ctx context.Context, applicationId in
 ManagementApiService Get analytics of campaigns
 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The identifier for the application
+ * @param applicationId
  * @param campaignId 
  * @param rangeStart Only return results from after this timestamp, must be an RFC3339 timestamp string
  * @param rangeEnd Only return results from before this timestamp, must be an RFC3339 timestamp string
@@ -8893,7 +8893,7 @@ func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx contex
 
 /* 
 ManagementApiService Set account limits
-sets account limits  
+sets account limits 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param accountId 
  * @param body
