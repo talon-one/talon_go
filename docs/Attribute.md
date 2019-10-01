@@ -14,8 +14,6 @@ Name | Type | Description | Notes
 **Description** | **string** | A description of this attribute. | [default to null]
 **Suggestions** | **[]string** | A list of suggestions for the attribute. | [default to null]
 **Editable** | **bool** | Whether or not this attribute can be edited. | [default to null]
-**Locked** | **bool** | Indicates whether this attribute is in use. If in use only title can be changed and other operations are prohibited. | [default to null]
-**UsedAt** | **[]string** | array of rulesets where the attribute is used | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

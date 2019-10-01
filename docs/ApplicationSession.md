@@ -9,10 +9,11 @@ Name | Type | Description | Notes
 **ProfileId** | **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] [default to null]
 **IntegrationId** | **string** | The ID used for this entity in the application system. | [default to null]
 **Coupon** | **string** | Any coupon code entered. | [default to null]
-**Referral** | **string** | Any referal code entered. | [default to null]
+**Referral** | **string** | Any referral code entered. | [default to null]
 **State** | **string** | Indicating if the customer session is in progress (\&quot;open\&quot;), \&quot;closed\&quot;, or \&quot;cancelled\&quot;. | [default to null]
 **CartItems** | [**[]CartItem**](CartItem.md) | Serialized JSON representation. | [default to null]
 **Discounts** | **map[string]float32** | A map of labelled discount values, in the same currency as the session. | [default to null]
+**Total** | **float32** | The total sum of the session before any discounts applied. | [optional] [default to null]
 **Attributes** | [***interface{}**](interface{}.md) | Arbitrary properties associated with this item | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

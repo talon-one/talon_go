@@ -27,7 +27,7 @@ type ApplicationSession struct {
 	IntegrationId string `json:"integrationId"`
 	// Any coupon code entered.
 	Coupon string `json:"coupon"`
-	// Any referal code entered.
+	// Any referral code entered.
 	Referral string `json:"referral"`
 	// Indicating if the customer session is in progress (\"open\"), \"closed\", or \"cancelled\".
 	State string `json:"state"`
@@ -35,6 +35,8 @@ type ApplicationSession struct {
 	CartItems []CartItem `json:"cartItems"`
 	// A map of labelled discount values, in the same currency as the session.
 	Discounts map[string]float32 `json:"discounts"`
+	// The total sum of the session before any discounts applied.
+	Total float32 `json:"total,omitempty"`
 	// Arbitrary properties associated with this item
 	Attributes *interface{} `json:"attributes,omitempty"`
 }

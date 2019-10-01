@@ -5124,6 +5124,9 @@ definitions:
         type: "string"
         description: "Line number in uploaded multipart file that caused this error.\
           \ 'N/A' if unknown."
+      resource:
+        type: "string"
+        description: "Pointer to the resource that caused this error"
     description: "The source of the current error, exactly one of `pointer`, `parameter`\
       \ or `line` will be defined.\n"
   Entity:
@@ -6951,15 +6954,19 @@ definitions:
         description: "Contains a list of all roles a user is a memeber of"
         items:
           type: "integer"
+      applicationNotificationSubscriptions:
+        type: "object"
+        properties: {}
     description: ""
     example:
-      accountId: 1
-      inviteToken: "inviteToken"
       releaseUpdate: true
       created: "2000-01-23T04:56:07.000+00:00"
       roles:
       - 5
       - 5
+      accountId: 1
+      applicationNotificationSubscriptions: "{}"
+      inviteToken: "inviteToken"
       name: "name"
       modified: "2000-01-23T04:56:07.000+00:00"
       id: 6
@@ -7399,10 +7406,10 @@ definitions:
       programs:
         key:
           ledger:
-            currentBalance: 6.96511769763884558415156789124011993408203125
+            currentBalance: 2.884162126668780246063761296682059764862060546875
           subLedgers:
             key:
-              currentBalance: 6.96511769763884558415156789124011993408203125
+              currentBalance: 2.884162126668780246063761296682059764862060546875
           name: "name"
           title: "title"
   LoyaltyProgramLedgers:
@@ -7430,10 +7437,10 @@ definitions:
     description: "Customer specific information about loyalty points."
     example:
       ledger:
-        currentBalance: 6.96511769763884558415156789124011993408203125
+        currentBalance: 2.884162126668780246063761296682059764862060546875
       subLedgers:
         key:
-          currentBalance: 6.96511769763884558415156789124011993408203125
+          currentBalance: 2.884162126668780246063761296682059764862060546875
       name: "name"
       title: "title"
   LoyaltyProgramBalance:
@@ -7446,7 +7453,7 @@ definitions:
         title: "Current Balance"
     description: "The balance in a Loyalty Program for some Customer."
     example:
-      currentBalance: 6.96511769763884558415156789124011993408203125
+      currentBalance: 2.884162126668780246063761296682059764862060546875
   CustomerProfileSearchQuery:
     type: "object"
     properties:
@@ -8081,6 +8088,10 @@ definitions:
       meta:
         campaigns: "{}"
         coupons: "{}"
+        referralRejectionReason:
+          reason: "ReferralNotFound"
+          campaignId: 6
+          referralId: 1
         warnings: "{}"
         couponRejectionReason:
           reason: "CouponNotFound"
@@ -8194,10 +8205,10 @@ definitions:
         programs:
           key:
             ledger:
-              currentBalance: 6.96511769763884558415156789124011993408203125
+              currentBalance: 2.884162126668780246063761296682059764862060546875
             subLedgers:
               key:
-                currentBalance: 6.96511769763884558415156789124011993408203125
+                currentBalance: 2.884162126668780246063761296682059764862060546875
             name: "name"
             title: "title"
       event:
@@ -8209,6 +8220,10 @@ definitions:
         meta:
           campaigns: "{}"
           coupons: "{}"
+          referralRejectionReason:
+            reason: "ReferralNotFound"
+            campaignId: 6
+            referralId: 1
           warnings: "{}"
           couponRejectionReason:
             reason: "CouponNotFound"
@@ -8345,7 +8360,7 @@ definitions:
         description: "Any coupon code entered."
       referral:
         type: "string"
-        description: "Any referal code entered."
+        description: "Any referral code entered."
       state:
         type: "string"
         description: "Indicating if the customer session is in progress (\"open\"\
@@ -8365,12 +8380,16 @@ definitions:
           \ session."
         additionalProperties:
           type: "number"
+      total:
+        type: "number"
+        description: "The total sum of the session before any discounts applied."
       attributes:
         type: "object"
         description: "Arbitrary properties associated with this item"
         properties: {}
     description: ""
     example:
+      total: 2.3021358869347654518833223846741020679473876953125
       referral: "referral"
       coupon: "coupon"
       discounts:
@@ -8811,6 +8830,9 @@ definitions:
         description: "Update"
         items:
           type: "integer"
+      applicationNotificationSubscriptions:
+        type: "object"
+        properties: {}
     description: ""
   NewInviteEmail:
     type: "object"
@@ -9174,12 +9196,10 @@ definitions:
     - "editable"
     - "entity"
     - "id"
-    - "locked"
     - "name"
     - "suggestions"
     - "title"
     - "type"
-    - "usedAt"
     properties:
       id:
         type: "integer"
@@ -9246,26 +9266,13 @@ definitions:
       editable:
         type: "boolean"
         description: "Whether or not this attribute can be edited."
-      locked:
-        type: "boolean"
-        description: "Indicates whether this attribute is in use. If in use only title\
-          \ can be changed and other operations are prohibited."
-        default: false
-      usedAt:
-        type: "array"
-        description: "array of rulesets where the attribute is used"
-        items:
-          type: "string"
     description: ""
     example:
+      accountId: 6
       created: "2000-01-23T04:56:07.000+00:00"
       editable: true
-      description: "description"
-      eventType: "eventType"
-      title: "title"
-      type: "string"
-      accountId: 6
       name: "name"
+      description: "description"
       suggestions:
       - "suggestions"
       - "suggestions"
@@ -9277,11 +9284,10 @@ definitions:
       - "suggestions"
       - "suggestions"
       - "suggestions"
-      usedAt:
-      - "usedAt"
-      - "usedAt"
       id: 0
-      locked: false
+      eventType: "eventType"
+      title: "title"
+      type: "string"
       entity: "Account"
   NewEventType:
     type: "object"
@@ -9508,7 +9514,6 @@ definitions:
     - "params"
     - "title"
     - "url"
-    - "usedAt"
     - "verb"
     properties:
       id:
@@ -9562,11 +9567,6 @@ definitions:
       enabled:
         type: "boolean"
         description: "Enables or disables webhook from showing in rule builder"
-      usedAt:
-        type: "array"
-        description: "array of rulesets where webhook is used"
-        items:
-          type: "string"
     description: ""
     example:
       headers:
@@ -9576,9 +9576,6 @@ definitions:
       created: "2000-01-23T04:56:07.000+00:00"
       verb: "POST"
       modified: "2000-01-23T04:56:07.000+00:00"
-      usedAt:
-      - "usedAt"
-      - "usedAt"
       id: 6
       title: "title"
       params:
@@ -9998,12 +9995,18 @@ definitions:
         properties: {}
       couponRejectionReason:
         $ref: "#/definitions/CouponRejectionReason"
+      referralRejectionReason:
+        $ref: "#/definitions/ReferralRejectionReason"
       warnings:
         type: "object"
         properties: {}
     example:
       campaigns: "{}"
       coupons: "{}"
+      referralRejectionReason:
+        reason: "ReferralNotFound"
+        campaignId: 6
+        referralId: 1
       warnings: "{}"
       couponRejectionReason:
         reason: "CouponNotFound"
@@ -10025,6 +10028,7 @@ definitions:
         enum:
         - "CouponNotFound"
         - "CouponPartOfNotRunningCampaign"
+        - "CouponValidConditionMissing"
         - "CouponLimitReached"
         - "CampaignLimitReached"
         - "ProfileLimitReached"
@@ -10032,6 +10036,7 @@ definitions:
         - "CouponExpired"
         - "CouponStartDateInFuture"
         - "CouponRejectedByCondition"
+        - "EffectCouldNotBeApplied"
     description: "Holds a reference to the campaign, the coupon and the reason for\
       \ which that coupon was rejected. Should only be present when there is a 'rejectCoupon'\
       \ effect."
@@ -10039,6 +10044,39 @@ definitions:
       reason: "CouponNotFound"
       campaignId: 6
       couponId: 3
+  ReferralRejectionReason:
+    type: "object"
+    required:
+    - "campaignId"
+    - "reason"
+    - "referralId"
+    properties:
+      campaignId:
+        type: "integer"
+      referralId:
+        type: "integer"
+      reason:
+        type: "string"
+        enum:
+        - "ReferralNotFound"
+        - "ReferralRecipientIdSameAsAdvocate"
+        - "ReferralPartOfNotRunningCampaign"
+        - "ReferralValidConditionMissing"
+        - "ReferralLimitReached"
+        - "CampaignLimitReached"
+        - "ProfileLimitReached"
+        - "ReferralRecipientDoesNotMatch"
+        - "ReferralExpired"
+        - "ReferralStartDateInFuture"
+        - "ReferralRejectedByCondition"
+        - "EffectCouldNotBeApplied"
+    description: "Holds a reference to the campaign, the referral and the reason for\
+      \ which that referral was rejected. Should only be present when there is a 'rejectReferral'\
+      \ effect."
+    example:
+      reason: "ReferralNotFound"
+      campaignId: 6
+      referralId: 1
   ApplicationAPIKey:
     type: "object"
     required:
@@ -10125,6 +10163,26 @@ definitions:
         type: "string"
         format: "date-time"
         description: "The date the API key expired"
+  Notification:
+    type: "object"
+    required:
+    - "description"
+    - "id"
+    - "name"
+    properties:
+      id:
+        type: "integer"
+        description: "id of the notification"
+      name:
+        type: "string"
+        description: "name of the notification"
+      description:
+        type: "string"
+        description: "description of the notification"
+  Notifications:
+    type: "array"
+    items:
+      $ref: "#/definitions/Notification"
   inline_response_200:
     required:
     - "data"
@@ -10960,7 +11018,8 @@ definitions:
           $ref: "#/definitions/ApplicationSession"
     example:
       data:
-      - referral: "referral"
+      - total: 2.3021358869347654518833223846741020679473876953125
+        referral: "referral"
         coupon: "coupon"
         discounts:
           key: 5.63737665663332876420099637471139430999755859375
@@ -11002,7 +11061,8 @@ definitions:
           sku: "sku"
           category: "category"
           height: 5.63737665663332876420099637471139430999755859375
-      - referral: "referral"
+      - total: 2.3021358869347654518833223846741020679473876953125
+        referral: "referral"
         coupon: "coupon"
         discounts:
           key: 5.63737665663332876420099637471139430999755859375
@@ -11149,9 +11209,6 @@ definitions:
         created: "2000-01-23T04:56:07.000+00:00"
         verb: "POST"
         modified: "2000-01-23T04:56:07.000+00:00"
-        usedAt:
-        - "usedAt"
-        - "usedAt"
         id: 6
         title: "title"
         params:
@@ -11175,9 +11232,6 @@ definitions:
         created: "2000-01-23T04:56:07.000+00:00"
         verb: "POST"
         modified: "2000-01-23T04:56:07.000+00:00"
-        usedAt:
-        - "usedAt"
-        - "usedAt"
         id: 6
         title: "title"
         params:
@@ -11308,13 +11362,14 @@ definitions:
           $ref: "#/definitions/User"
     example:
       data:
-      - accountId: 1
-        inviteToken: "inviteToken"
-        releaseUpdate: true
+      - releaseUpdate: true
         created: "2000-01-23T04:56:07.000+00:00"
         roles:
         - 5
         - 5
+        accountId: 1
+        applicationNotificationSubscriptions: "{}"
+        inviteToken: "inviteToken"
         name: "name"
         modified: "2000-01-23T04:56:07.000+00:00"
         id: 6
@@ -11322,13 +11377,14 @@ definitions:
         latestFeature: "latestFeature"
         email: "email"
         policy: "policy"
-      - accountId: 1
-        inviteToken: "inviteToken"
-        releaseUpdate: true
+      - releaseUpdate: true
         created: "2000-01-23T04:56:07.000+00:00"
         roles:
         - 5
         - 5
+        accountId: 1
+        applicationNotificationSubscriptions: "{}"
+        inviteToken: "inviteToken"
         name: "name"
         modified: "2000-01-23T04:56:07.000+00:00"
         id: 6

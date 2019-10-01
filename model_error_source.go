@@ -17,4 +17,6 @@ type ErrorSource struct {
 	Parameter string `json:"parameter,omitempty"`
 	// Line number in uploaded multipart file that caused this error. 'N/A' if unknown.
 	Line string `json:"line,omitempty"`
+	// Pointer to the resource that caused this error
+	Resource string `json:"resource,omitempty"`
 }

@@ -37,6 +37,4 @@ type Webhook struct {
 	Params []TemplateArgDef `json:"params"`
 	// Enables or disables webhook from showing in rule builder
 	Enabled bool `json:"enabled"`
-	// array of rulesets where webhook is used
-	UsedAt []string `json:"usedAt"`
 }

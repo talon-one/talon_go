@@ -9,12 +9,9 @@
 
 package talon
 
-type Meta struct {
-	// Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted.
-	Campaigns *interface{} `json:"campaigns,omitempty"`
-	// Maps the coupon value to a key-value list of that coupons attributes.
-	Coupons *interface{} `json:"coupons,omitempty"`
-	CouponRejectionReason *CouponRejectionReason `json:"couponRejectionReason,omitempty"`
-	ReferralRejectionReason *ReferralRejectionReason `json:"referralRejectionReason,omitempty"`
-	Warnings *interface{} `json:"warnings,omitempty"`
+// Holds a reference to the campaign, the referral and the reason for which that referral was rejected. Should only be present when there is a 'rejectReferral' effect.
+type ReferralRejectionReason struct {
+	CampaignId int32 `json:"campaignId"`
+	ReferralId int32 `json:"referralId"`
+	Reason string `json:"reason"`
 }
