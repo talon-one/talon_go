@@ -36,8 +36,4 @@ type Attribute struct {
 	Suggestions []string `json:"suggestions"`
 	// Whether or not this attribute can be edited.
 	Editable bool `json:"editable"`
-	// Indicates whether this attribute is in use. If in use only title can be changed and other operations are prohibited.
-	Locked bool `json:"locked"`
-	// array of rulesets where the attribute is used
-	UsedAt []string `json:"usedAt"`
 }

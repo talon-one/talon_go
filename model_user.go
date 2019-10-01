@@ -39,4 +39,5 @@ type User struct {
 	LatestFeature string `json:"latestFeature,omitempty"`
 	// Contains a list of all roles a user is a memeber of
 	Roles []int32 `json:"roles,omitempty"`
+	ApplicationNotificationSubscriptions *interface{} `json:"applicationNotificationSubscriptions,omitempty"`
 }

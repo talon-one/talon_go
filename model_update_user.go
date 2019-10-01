@@ -29,4 +29,5 @@ type UpdateUser struct {
 	LatestFeature string `json:"latestFeature,omitempty"`
 	// Update
 	Roles []int32 `json:"roles,omitempty"`
+	ApplicationNotificationSubscriptions *interface{} `json:"applicationNotificationSubscriptions,omitempty"`
 }

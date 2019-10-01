@@ -9,12 +9,11 @@
 
 package talon
 
-type Meta struct {
-	// Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted.
-	Campaigns *interface{} `json:"campaigns,omitempty"`
-	// Maps the coupon value to a key-value list of that coupons attributes.
-	Coupons *interface{} `json:"coupons,omitempty"`
-	CouponRejectionReason *CouponRejectionReason `json:"couponRejectionReason,omitempty"`
-	ReferralRejectionReason *ReferralRejectionReason `json:"referralRejectionReason,omitempty"`
-	Warnings *interface{} `json:"warnings,omitempty"`
+type Notification struct {
+	// id of the notification
+	Id int32 `json:"id"`
+	// name of the notification
+	Name string `json:"name"`
+	// description of the notification
+	Description string `json:"description"`
 }
