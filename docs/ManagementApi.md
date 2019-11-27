@@ -1335,6 +1335,11 @@ Name | Type | Description  | Notes
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
  **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **applicationId** | **optional.Int32**|  | 
+ **createdBefore** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. | 
+ **createdAfter** | **optional.Time**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. | 
+ **withTotalResultSize** | **optional.Bool**| When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
+ **includeOld** | **optional.Bool**| When this flag is set to false, the state without the change will not be returned. The default value is true. | 
 
 ### Return type
 

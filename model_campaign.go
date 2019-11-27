@@ -51,6 +51,10 @@ type Campaign struct {
 	ReferralRedemptionCount int32 `json:"referralRedemptionCount,omitempty"`
 	// Total amount of discounts redeemed in the campaign.
 	DiscountCount int32 `json:"discountCount,omitempty"`
+	// Total number of times discounts were redeemed in this campaign.
+	DiscountEffectCount int32 `json:"discountEffectCount,omitempty"`
+	// Total number of coupons created by rules in this campaign.
+	CouponCreationCount int32 `json:"couponCreationCount,omitempty"`
 	// Timestamp of the most recent event received by this campaign.
 	LastActivity time.Time `json:"lastActivity,omitempty"`
 	// Timestamp of the most recent update to the campaign or any of its elements.

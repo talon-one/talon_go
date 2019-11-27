@@ -40,4 +40,6 @@ type User struct {
 	// Contains a list of all roles a user is a memeber of
 	Roles []int32 `json:"roles,omitempty"`
 	ApplicationNotificationSubscriptions *interface{} `json:"applicationNotificationSubscriptions,omitempty"`
+	// The Authentication method for this user
+	AuthMethod string `json:"authMethod,omitempty"`
 }

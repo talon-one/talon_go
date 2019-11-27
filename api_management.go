@@ -4151,6 +4151,11 @@ Get list of changes caused by API calls for an account. Only accessible for admi
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
      * @param "Sort" (optional.String) -  The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order.
+     * @param "ApplicationId" (optional.Int32) - 
+     * @param "CreatedBefore" (optional.Time) -  Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp.
+     * @param "CreatedAfter" (optional.Time) -  Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp.
+     * @param "WithTotalResultSize" (optional.Bool) -  When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query. 
+     * @param "IncludeOld" (optional.Bool) -  When this flag is set to false, the state without the change will not be returned. The default value is true.
 
 @return InlineResponse20025
 */
@@ -4159,6 +4164,11 @@ type GetChangesOpts struct {
 	PageSize optional.Int32
 	Skip optional.Int32
 	Sort optional.String
+	ApplicationId optional.Int32
+	CreatedBefore optional.Time
+	CreatedAfter optional.Time
+	WithTotalResultSize optional.Bool
+	IncludeOld optional.Bool
 }
 
 func (a *ManagementApiService) GetChanges(ctx context.Context, localVarOptionals *GetChangesOpts) (InlineResponse20025, *http.Response, error) {
@@ -4185,6 +4195,21 @@ func (a *ManagementApiService) GetChanges(ctx context.Context, localVarOptionals
 	}
 	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
 		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.ApplicationId.IsSet() {
+		localVarQueryParams.Add("applicationId", parameterToString(localVarOptionals.ApplicationId.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.CreatedBefore.IsSet() {
+		localVarQueryParams.Add("createdBefore", parameterToString(localVarOptionals.CreatedBefore.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.CreatedAfter.IsSet() {
+		localVarQueryParams.Add("createdAfter", parameterToString(localVarOptionals.CreatedAfter.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.WithTotalResultSize.IsSet() {
+		localVarQueryParams.Add("withTotalResultSize", parameterToString(localVarOptionals.WithTotalResultSize.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.IncludeOld.IsSet() {
+		localVarQueryParams.Add("includeOld", parameterToString(localVarOptionals.IncludeOld.Value(), ""))
 	}
 	// to determine the Content-Type header
 	localVarHttpContentTypes := []string{"application/json"}

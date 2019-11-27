@@ -9,11 +9,22 @@
 
 package talon
 
-// Contains all state that might interest application integration plugins. This is the response type returned by all of the Integration API operations. 
-type IntegrationState struct {
-	Session *CustomerSession `json:"session"`
-	Profile *CustomerProfile `json:"profile"`
-	Event *Event `json:"event"`
-	Loyalty *Loyalty `json:"loyalty,omitempty"`
-	Coupon *Coupon `json:"coupon,omitempty"`
+// A new SAML 2.0 connection.
+type NewSamlConnection struct {
+	// ID of the SAML service.
+	Name string `json:"name"`
+	// Determines if this SAML connection active.
+	Enabled bool `json:"enabled"`
+	// Identity Provider Entity ID.
+	Issuer string `json:"issuer"`
+	// Single Sign-On URL.
+	SignOnURL string `json:"signOnURL"`
+	// Single Sign-Out URL.
+	SignOutURL string `json:"signOutURL,omitempty"`
+	// Metadata URL.
+	MetadataURL string `json:"metadataURL,omitempty"`
+	// X.509 Certificate.
+	X509certificate string `json:"x509certificate"`
+	// The application-defined unique identifier that is the intended audience of the SAML assertion.  This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used. 
+	Audience string `json:"audience,omitempty"`
 }

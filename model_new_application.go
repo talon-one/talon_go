@@ -9,13 +9,12 @@
 
 package talon
 
+// 
 type NewApplication struct {
 	// The name of this application.
 	Name string `json:"name"`
 	// A longer description of the application.
 	Description string `json:"description,omitempty"`
-	// Hex key for HMAC-signing API calls as coming from this application (16 hex digits)
-	Key string `json:"key"`
 	// A string containing an IANA timezone descriptor.
 	Timezone string `json:"timezone"`
 	// A string describing a default currency for new customer sessions.
@@ -26,4 +25,6 @@ type NewApplication struct {
 	Attributes *interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application
 	Limits []LimitConfig `json:"limits,omitempty"`
+	// Hex key for HMAC-signing API calls as coming from this application (16 hex digits)
+	Key string `json:"key,omitempty"`
 }

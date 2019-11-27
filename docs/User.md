@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **LatestFeature** | **string** | Latest feature the user has been notified. | [optional] [default to null]
 **Roles** | **[]int32** | Contains a list of all roles a user is a memeber of | [optional] [default to null]
 **ApplicationNotificationSubscriptions** | [***interface{}**](interface{}.md) |  | [optional] [default to null]
+**AuthMethod** | **string** | The Authentication method for this user | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

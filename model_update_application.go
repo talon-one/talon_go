@@ -9,11 +9,19 @@
 
 package talon
 
-// Contains all state that might interest application integration plugins. This is the response type returned by all of the Integration API operations. 
-type IntegrationState struct {
-	Session *CustomerSession `json:"session"`
-	Profile *CustomerProfile `json:"profile"`
-	Event *Event `json:"event"`
-	Loyalty *Loyalty `json:"loyalty,omitempty"`
-	Coupon *Coupon `json:"coupon,omitempty"`
+type UpdateApplication struct {
+	// The name of this application.
+	Name string `json:"name"`
+	// A longer description of the application.
+	Description string `json:"description,omitempty"`
+	// A string containing an IANA timezone descriptor.
+	Timezone string `json:"timezone"`
+	// A string describing a default currency for new customer sessions.
+	Currency string `json:"currency"`
+	// A string indicating how should campaigns in this application deal with case sensitivity on coupon codes.
+	CaseSensitivity string `json:"caseSensitivity,omitempty"`
+	// Arbitrary properties associated with this campaign
+	Attributes *interface{} `json:"attributes,omitempty"`
+	// Default limits for campaigns created in this application
+	Limits []LimitConfig `json:"limits,omitempty"`
 }
