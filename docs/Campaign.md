@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **CouponRedemptionCount** | **int32** | Number of coupons redeemed in the campaign. | [optional] [default to null]
 **ReferralRedemptionCount** | **int32** | Number of referral codes redeemed in the campaign. | [optional] [default to null]
 **DiscountCount** | **int32** | Total amount of discounts redeemed in the campaign. | [optional] [default to null]
+**DiscountEffectCount** | **int32** | Total number of times discounts were redeemed in this campaign. | [optional] [default to null]
+**CouponCreationCount** | **int32** | Total number of coupons created by rules in this campaign. | [optional] [default to null]
 **LastActivity** | [**time.Time**](time.Time.md) | Timestamp of the most recent event received by this campaign. | [optional] [default to null]
 **Updated** | [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign or any of its elements. | [optional] [default to null]
 **CreatedBy** | **string** | Name of the user who created this campaign if available. | [optional] [default to null]

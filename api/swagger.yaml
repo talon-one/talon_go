@@ -4713,6 +4713,50 @@ paths:
         type: "string"
         x-exportParamName: "Sort"
         x-optionalDataType: "String"
+      - name: "applicationId"
+        in: "query"
+        required: false
+        type: "integer"
+        x-exportParamName: "ApplicationId"
+        x-optionalDataType: "Int32"
+      - name: "createdBefore"
+        in: "query"
+        description: "Filter results comparing the parameter value, expected to be\
+          \ an RFC3339 timestamp string, to the change creation timestamp."
+        required: false
+        type: "string"
+        format: "date-time"
+        x-exportParamName: "CreatedBefore"
+        x-optionalDataType: "Time"
+      - name: "createdAfter"
+        in: "query"
+        description: "Filter results comparing the parameter value, expected to be\
+          \ an RFC3339 timestamp string, to the change creation timestamp."
+        required: false
+        type: "string"
+        format: "date-time"
+        x-exportParamName: "CreatedAfter"
+        x-optionalDataType: "Time"
+      - name: "withTotalResultSize"
+        in: "query"
+        description: "When this flag is set, the result will include the total size\
+          \ of the result, across all pages. This might decrease performance on large\
+          \ data sets.\nWith this flag set to true, hasMore will be be true whenever\
+          \ there is a next page. totalResultSize will always be zero.\nWith this\
+          \ flag set to false, hasMore will always be set to false. totalResultSize\
+          \ will contain the total number of results for this query.\n"
+        required: false
+        type: "boolean"
+        x-exportParamName: "WithTotalResultSize"
+        x-optionalDataType: "Bool"
+      - name: "includeOld"
+        in: "query"
+        description: "When this flag is set to false, the state without the change\
+          \ will not be returned. The default value is true."
+        required: false
+        type: "boolean"
+        x-exportParamName: "IncludeOld"
+        x-optionalDataType: "Bool"
       responses:
         200:
           description: "OK"
@@ -4720,10 +4764,11 @@ paths:
             type: "object"
             required:
             - "data"
-            - "totalResultSize"
             properties:
               totalResultSize:
                 type: "integer"
+              hasMore:
+                type: "boolean"
               data:
                 type: "array"
                 items:
@@ -5328,11 +5373,10 @@ definitions:
     example:
       password: "password"
       email: "email"
-  NewApplication:
+  UpdateApplication:
     type: "object"
     required:
     - "currency"
-    - "key"
     - "name"
     - "timezone"
     properties:
@@ -5343,13 +5387,6 @@ definitions:
       description:
         type: "string"
         description: "A longer description of the application."
-      key:
-        type: "string"
-        description: "Hex key for HMAC-signing API calls as coming from this application\
-          \ (16 hex digits)"
-        minLength: 16
-        maxLength: 16
-        pattern: "^[a-fA-F0-9]{16}$"
       timezone:
         type: "string"
         description: "A string containing an IANA timezone descriptor."
@@ -5375,6 +5412,53 @@ definitions:
         description: "Default limits for campaigns created in this application"
         items:
           $ref: "#/definitions/LimitConfig"
+  NewApplication:
+    type: "object"
+    required:
+    - "currency"
+    - "name"
+    - "timezone"
+    properties:
+      name:
+        type: "string"
+        description: "The name of this application."
+        minLength: 1
+      description:
+        type: "string"
+        description: "A longer description of the application."
+      timezone:
+        type: "string"
+        description: "A string containing an IANA timezone descriptor."
+        minLength: 1
+      currency:
+        type: "string"
+        description: "A string describing a default currency for new customer sessions."
+        minLength: 1
+      caseSensitivity:
+        type: "string"
+        description: "A string indicating how should campaigns in this application\
+          \ deal with case sensitivity on coupon codes."
+        enum:
+        - "sensitive"
+        - "insensitive-uppercase"
+        - "insensitive-lowercase"
+      attributes:
+        type: "object"
+        description: "Arbitrary properties associated with this campaign"
+        properties: {}
+      limits:
+        type: "array"
+        description: "Default limits for campaigns created in this application"
+        items:
+          $ref: "#/definitions/LimitConfig"
+      key:
+        type: "string"
+        description: "Hex key for HMAC-signing API calls as coming from this application\
+          \ (16 hex digits)"
+        minLength: 16
+        maxLength: 16
+        pattern: "^[a-fA-F0-9]{16}$"
+    description: ""
   Application:
     type: "object"
     required:
@@ -5409,13 +5493,6 @@ definitions:
       description:
         type: "string"
         description: "A longer description of the application."
-      key:
-        type: "string"
-        description: "Hex key for HMAC-signing API calls as coming from this application\
-          \ (16 hex digits)"
-        minLength: 16
-        maxLength: 16
-        pattern: "^[a-fA-F0-9]{16}$"
       timezone:
         type: "string"
         description: "A string containing an IANA timezone descriptor."
@@ -5441,6 +5518,13 @@ definitions:
         description: "Default limits for campaigns created in this application"
         items:
           $ref: "#/definitions/LimitConfig"
+      key:
+        type: "string"
+        description: "Hex key for HMAC-signing API calls as coming from this application\
+          \ (16 hex digits)"
+        minLength: 16
+        maxLength: 16
+        pattern: "^[a-fA-F0-9]{16}$"
       loyaltyPrograms:
         type: "array"
         description: "An array containing all the loyalty programs to which this application\
@@ -5480,7 +5564,6 @@ definitions:
       currency: "currency"
       attributes: "{}"
       id: 6
-      key: "key"
       limits:
       - entities:
         - "Coupon"
@@ -5492,6 +5575,7 @@ definitions:
         - "Coupon"
         limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
+      key: "key"
   NewCampaign:
     type: "object"
     required:
@@ -5816,6 +5900,12 @@ definitions:
       discountCount:
         type: "integer"
         description: "Total amount of discounts redeemed in the campaign."
+      discountEffectCount:
+        type: "integer"
+        description: "Total number of times discounts were redeemed in this campaign."
+      couponCreationCount:
+        type: "integer"
+        description: "Total number of coupons created by rules in this campaign."
       lastActivity:
         type: "string"
         format: "date-time"
@@ -5833,49 +5923,20 @@ definitions:
         description: "Name of the user who last updated this campaign if available."
     description: ""
     example:
-      activeRulesetId: 5
-      updatedBy: "updatedBy"
-      created: "2000-01-23T04:56:07.000+00:00"
       discountCount: 9
       description: "description"
-      couponRedemptionCount: 2
-      userId: 5
-      tags:
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
-      - "tags"
       features:
       - "coupons"
       - "coupons"
       - "coupons"
-      createdBy: "createdBy"
-      name: "name"
-      referralSettings:
-        couponPattern: "couponPattern"
-        validCharacters:
-        - "validCharacters"
-        - "validCharacters"
       couponSettings:
         couponPattern: "couponPattern"
         validCharacters:
         - "validCharacters"
         - "validCharacters"
       startTime: "2000-01-23T04:56:07.000+00:00"
-      attributes: "{}"
-      lastActivity: "2000-01-23T04:56:07.000+00:00"
       id: 6
-      endTime: "2000-01-23T04:56:07.000+00:00"
       state: "enabled"
-      applicationId: 1
-      referralRedemptionCount: 7
-      updated: "2000-01-23T04:56:07.000+00:00"
       limits:
       - entities:
         - "Coupon"
@@ -5887,6 +5948,37 @@ definitions:
         - "Coupon"
         limit: 0.59621339166831821554382031536079011857509613037109375
         action: "redeemCoupon"
+      activeRulesetId: 5
+      updatedBy: "updatedBy"
+      created: "2000-01-23T04:56:07.000+00:00"
+      couponRedemptionCount: 2
+      userId: 5
+      couponCreationCount: 2
+      tags:
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      discountEffectCount: 3
+      createdBy: "createdBy"
+      name: "name"
+      referralSettings:
+        couponPattern: "couponPattern"
+        validCharacters:
+        - "validCharacters"
+        - "validCharacters"
+      attributes: "{}"
+      lastActivity: "2000-01-23T04:56:07.000+00:00"
+      endTime: "2000-01-23T04:56:07.000+00:00"
+      applicationId: 1
+      referralRedemptionCount: 7
+      updated: "2000-01-23T04:56:07.000+00:00"
   NewRuleset:
     type: "object"
     required:
@@ -6153,6 +6245,7 @@ definitions:
         - "redeemReferral"
         - "setDiscount"
         - "createCoupon"
+        - "setDiscountEffect"
       limit:
         type: "number"
         description: "The value to set for the limit"
@@ -6645,15 +6738,15 @@ definitions:
       recipientIntegrationId: "recipientIntegrationId"
       created: "2000-01-23T04:56:07.000+00:00"
       campaignId: 6
-      usageLimit: 146581
-      referralId: 5
-      usageCounter: 5
+      usageLimit: 594488
+      referralId: 3
+      usageCounter: 6
       batchId: "batchId"
       expiryDate: "2000-01-23T04:56:07.000+00:00"
-      importId: 2
+      importId: 3
       reservation: true
       attributes: "{}"
-      id: 0
+      id: 6
       value: "value"
       startDate: "2000-01-23T04:56:07.000+00:00"
   CampaignAnalytics:
@@ -6957,6 +7050,9 @@ definitions:
       applicationNotificationSubscriptions:
         type: "object"
         properties: {}
+      authMethod:
+        type: "string"
+        description: "The Authentication method for this user"
     description: ""
     example:
       releaseUpdate: true
@@ -6971,6 +7067,7 @@ definitions:
       modified: "2000-01-23T04:56:07.000+00:00"
       id: 6
       state: "invited"
+      authMethod: "authMethod"
       latestFeature: "latestFeature"
       email: "email"
       policy: "policy"
@@ -8138,9 +8235,26 @@ definitions:
         $ref: "#/definitions/Event"
       loyalty:
         $ref: "#/definitions/Loyalty"
+      coupon:
+        $ref: "#/definitions/Coupon"
     description: "Contains all state that might interest application integration plugins.\
       \ This is the response type returned by all of the Integration API operations.\n"
     example:
+      coupon:
+        recipientIntegrationId: "recipientIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 594488
+        referralId: 3
+        usageCounter: 6
+        batchId: "batchId"
+        expiryDate: "2000-01-23T04:56:07.000+00:00"
+        importId: 3
+        reservation: true
+        attributes: "{}"
+        id: 6
+        value: "value"
+        startDate: "2000-01-23T04:56:07.000+00:00"
       session:
         coupon: "coupon"
         created: "2000-01-23T04:56:07.000+00:00"
@@ -10183,6 +10297,103 @@ definitions:
     type: "array"
     items:
       $ref: "#/definitions/Notification"
+  SamlConnection:
+    type: "object"
+    required:
+    - "accountId"
+    - "assertionConsumerServiceURL"
+    - "audience"
+    - "created"
+    - "enabled"
+    - "id"
+    - "issuer"
+    - "name"
+    - "signOnURL"
+    - "x509certificate"
+    properties:
+      id:
+        type: "integer"
+      created:
+        type: "string"
+        format: "date-time"
+        description: "Unix timestamp indicating when the session was first created."
+      accountId:
+        type: "integer"
+        description: "The ID of the account that owns this SAML Service."
+      assertionConsumerServiceURL:
+        type: "string"
+        description: "The location where the SAML assertion is sent with a HTTP POST."
+      name:
+        type: "string"
+        description: "ID of the SAML service."
+        minLength: 1
+      enabled:
+        type: "boolean"
+        description: "Determines if this SAML connection active."
+      issuer:
+        type: "string"
+        description: "Identity Provider Entity ID."
+        minLength: 1
+      signOnURL:
+        type: "string"
+        description: "Single Sign-On URL."
+        minLength: 1
+      signOutURL:
+        type: "string"
+        description: "Single Sign-Out URL."
+      metadataURL:
+        type: "string"
+        description: "Metadata URL."
+      x509certificate:
+        type: "string"
+        description: "X.509 Certificate."
+        minLength: 1
+      audience:
+        type: "string"
+        description: "The application-defined unique identifier that is the intended\
+          \ audience of the SAML assertion. \nThis is most often the SP Entity ID\
+          \ of your application. When not specified, the ACS URL will be used.\n"
+    description: ""
+  NewSamlConnection:
+    type: "object"
+    required:
+    - "enabled"
+    - "issuer"
+    - "name"
+    - "signOnURL"
+    - "x509certificate"
+    properties:
+      name:
+        type: "string"
+        description: "ID of the SAML service."
+        minLength: 1
+      enabled:
+        type: "boolean"
+        description: "Determines if this SAML connection active."
+      issuer:
+        type: "string"
+        description: "Identity Provider Entity ID."
+        minLength: 1
+      signOnURL:
+        type: "string"
+        description: "Single Sign-On URL."
+        minLength: 1
+      signOutURL:
+        type: "string"
+        description: "Single Sign-Out URL."
+      metadataURL:
+        type: "string"
+        description: "Metadata URL."
+      x509certificate:
+        type: "string"
+        description: "X.509 Certificate."
+        minLength: 1
+      audience:
+        type: "string"
+        description: "The application-defined unique identifier that is the intended\
+          \ audience of the SAML assertion. \nThis is most often the SP Entity ID\
+          \ of your application. When not specified, the ACS URL will be used.\n"
+    description: "A new SAML 2.0 connection."
   inline_response_200:
     required:
     - "data"
@@ -10237,29 +10448,29 @@ definitions:
       - recipientIntegrationId: "recipientIntegrationId"
         created: "2000-01-23T04:56:07.000+00:00"
         campaignId: 6
-        usageLimit: 146581
-        referralId: 5
-        usageCounter: 5
+        usageLimit: 594488
+        referralId: 3
+        usageCounter: 6
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 2
+        importId: 3
         reservation: true
         attributes: "{}"
-        id: 0
+        id: 6
         value: "value"
         startDate: "2000-01-23T04:56:07.000+00:00"
       - recipientIntegrationId: "recipientIntegrationId"
         created: "2000-01-23T04:56:07.000+00:00"
         campaignId: 6
-        usageLimit: 146581
-        referralId: 5
-        usageCounter: 5
+        usageLimit: 594488
+        referralId: 3
+        usageCounter: 6
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 2
+        importId: 3
         reservation: true
         attributes: "{}"
-        id: 0
+        id: 6
         value: "value"
         startDate: "2000-01-23T04:56:07.000+00:00"
       totalResultSize: 0
@@ -10307,7 +10518,6 @@ definitions:
         currency: "currency"
         attributes: "{}"
         id: 6
-        key: "key"
         limits:
         - entities:
           - "Coupon"
@@ -10319,6 +10529,7 @@ definitions:
           - "Coupon"
           limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
+        key: "key"
       - created: "2000-01-23T04:56:07.000+00:00"
         timezone: "timezone"
         description: "description"
@@ -10350,7 +10561,6 @@ definitions:
         currency: "currency"
         attributes: "{}"
         id: 6
-        key: "key"
         limits:
         - entities:
           - "Coupon"
@@ -10362,6 +10572,7 @@ definitions:
           - "Coupon"
           limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
+        key: "key"
       totalResultSize: 0
   inline_response_200_3:
     required:
@@ -10376,49 +10587,20 @@ definitions:
           $ref: "#/definitions/Campaign"
     example:
       data:
-      - activeRulesetId: 5
-        updatedBy: "updatedBy"
-        created: "2000-01-23T04:56:07.000+00:00"
-        discountCount: 9
+      - discountCount: 9
         description: "description"
-        couponRedemptionCount: 2
-        userId: 5
-        tags:
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
-        - "tags"
         features:
         - "coupons"
         - "coupons"
         - "coupons"
-        createdBy: "createdBy"
-        name: "name"
-        referralSettings:
-          couponPattern: "couponPattern"
-          validCharacters:
-          - "validCharacters"
-          - "validCharacters"
         couponSettings:
           couponPattern: "couponPattern"
           validCharacters:
           - "validCharacters"
           - "validCharacters"
         startTime: "2000-01-23T04:56:07.000+00:00"
-        attributes: "{}"
-        lastActivity: "2000-01-23T04:56:07.000+00:00"
         id: 6
-        endTime: "2000-01-23T04:56:07.000+00:00"
         state: "enabled"
-        applicationId: 1
-        referralRedemptionCount: 7
-        updated: "2000-01-23T04:56:07.000+00:00"
         limits:
         - entities:
           - "Coupon"
@@ -10430,13 +10612,12 @@ definitions:
           - "Coupon"
           limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
-      - activeRulesetId: 5
+        activeRulesetId: 5
         updatedBy: "updatedBy"
         created: "2000-01-23T04:56:07.000+00:00"
-        discountCount: 9
-        description: "description"
         couponRedemptionCount: 2
         userId: 5
+        couponCreationCount: 2
         tags:
         - "tags"
         - "tags"
@@ -10448,10 +10629,7 @@ definitions:
         - "tags"
         - "tags"
         - "tags"
-        features:
-        - "coupons"
-        - "coupons"
-        - "coupons"
+        discountEffectCount: 3
         createdBy: "createdBy"
         name: "name"
         referralSettings:
@@ -10459,20 +10637,26 @@ definitions:
           validCharacters:
           - "validCharacters"
           - "validCharacters"
+        attributes: "{}"
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        endTime: "2000-01-23T04:56:07.000+00:00"
+        applicationId: 1
+        referralRedemptionCount: 7
+        updated: "2000-01-23T04:56:07.000+00:00"
+      - discountCount: 9
+        description: "description"
+        features:
+        - "coupons"
+        - "coupons"
+        - "coupons"
         couponSettings:
           couponPattern: "couponPattern"
           validCharacters:
           - "validCharacters"
           - "validCharacters"
         startTime: "2000-01-23T04:56:07.000+00:00"
-        attributes: "{}"
-        lastActivity: "2000-01-23T04:56:07.000+00:00"
         id: 6
-        endTime: "2000-01-23T04:56:07.000+00:00"
         state: "enabled"
-        applicationId: 1
-        referralRedemptionCount: 7
-        updated: "2000-01-23T04:56:07.000+00:00"
         limits:
         - entities:
           - "Coupon"
@@ -10484,6 +10668,37 @@ definitions:
           - "Coupon"
           limit: 0.59621339166831821554382031536079011857509613037109375
           action: "redeemCoupon"
+        activeRulesetId: 5
+        updatedBy: "updatedBy"
+        created: "2000-01-23T04:56:07.000+00:00"
+        couponRedemptionCount: 2
+        userId: 5
+        couponCreationCount: 2
+        tags:
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        - "tags"
+        discountEffectCount: 3
+        createdBy: "createdBy"
+        name: "name"
+        referralSettings:
+          couponPattern: "couponPattern"
+          validCharacters:
+          - "validCharacters"
+          - "validCharacters"
+        attributes: "{}"
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        endTime: "2000-01-23T04:56:07.000+00:00"
+        applicationId: 1
+        referralRedemptionCount: 7
+        updated: "2000-01-23T04:56:07.000+00:00"
       totalResultSize: 0
   inline_response_200_4:
     required:
@@ -10617,29 +10832,29 @@ definitions:
       - recipientIntegrationId: "recipientIntegrationId"
         created: "2000-01-23T04:56:07.000+00:00"
         campaignId: 6
-        usageLimit: 146581
-        referralId: 5
-        usageCounter: 5
+        usageLimit: 594488
+        referralId: 3
+        usageCounter: 6
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 2
+        importId: 3
         reservation: true
         attributes: "{}"
-        id: 0
+        id: 6
         value: "value"
         startDate: "2000-01-23T04:56:07.000+00:00"
       - recipientIntegrationId: "recipientIntegrationId"
         created: "2000-01-23T04:56:07.000+00:00"
         campaignId: 6
-        usageLimit: 146581
-        referralId: 5
-        usageCounter: 5
+        usageLimit: 594488
+        referralId: 3
+        usageCounter: 6
         batchId: "batchId"
         expiryDate: "2000-01-23T04:56:07.000+00:00"
-        importId: 2
+        importId: 3
         reservation: true
         attributes: "{}"
-        id: 0
+        id: 6
         value: "value"
         startDate: "2000-01-23T04:56:07.000+00:00"
       hasMore: true
@@ -11374,6 +11589,7 @@ definitions:
         modified: "2000-01-23T04:56:07.000+00:00"
         id: 6
         state: "invited"
+        authMethod: "authMethod"
         latestFeature: "latestFeature"
         email: "email"
         policy: "policy"
@@ -11389,6 +11605,7 @@ definitions:
         modified: "2000-01-23T04:56:07.000+00:00"
         id: 6
         state: "invited"
+        authMethod: "authMethod"
         latestFeature: "latestFeature"
         email: "email"
         policy: "policy"
@@ -11396,10 +11613,11 @@ definitions:
   inline_response_200_25:
     required:
     - "data"
-    - "totalResultSize"
     properties:
       totalResultSize:
         type: "integer"
+      hasMore:
+        type: "boolean"
       data:
         type: "array"
         items:
@@ -11418,6 +11636,7 @@ definitions:
         id: 6
         userId: 1
         entity: "entity"
+      hasMore: true
       totalResultSize: 0
   inline_response_200_26:
     required:
