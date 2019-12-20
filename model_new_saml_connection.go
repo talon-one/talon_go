@@ -9,8 +9,12 @@
 
 package talon
 
-// A new SAML 2.0 connection.
+// 
 type NewSamlConnection struct {
+	// X.509 Certificate.
+	X509certificate string `json:"x509certificate"`
+	// The ID of the account that owns this entity.
+	AccountId int32 `json:"accountId"`
 	// ID of the SAML service.
 	Name string `json:"name"`
 	// Determines if this SAML connection active.
@@ -23,8 +27,6 @@ type NewSamlConnection struct {
 	SignOutURL string `json:"signOutURL,omitempty"`
 	// Metadata URL.
 	MetadataURL string `json:"metadataURL,omitempty"`
-	// X.509 Certificate.
-	X509certificate string `json:"x509certificate"`
-	// The application-defined unique identifier that is the intended audience of the SAML assertion.  This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used. 
-	Audience string `json:"audience,omitempty"`
+	// The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used. 
+	AudienceURI string `json:"audienceURI,omitempty"`
 }

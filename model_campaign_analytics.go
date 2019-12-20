@@ -16,22 +16,34 @@ import (
 // 
 type CampaignAnalytics struct {
 	Date time.Time `json:"date"`
-	// Amount of revenue in this campaign.
+	// Amount of revenue in this campaign (for coupon or discount sessions).
 	CampaignRevenue float32 `json:"campaignRevenue"`
-	// Amount of revenue in this campaign since it began.
+	// Amount of revenue in this campaign since it began (for coupon or discount sessions).
 	TotalCampaignRevenue float32 `json:"totalCampaignRevenue"`
+	// Amount of refunds in this campaign (for coupon or discount sessions).
+	CampaignRefund float32 `json:"campaignRefund"`
+	// Amount of refunds in this campaign since it began (for coupon or discount sessions).
+	TotalCampaignRefund float32 `json:"totalCampaignRefund"`
 	// Amount of cost caused by discounts given in the campaign.
 	CampaignDiscountCosts float32 `json:"campaignDiscountCosts"`
 	// Amount of cost caused by discounts given in the campaign since it began.
 	TotalCampaignDiscountCosts float32 `json:"totalCampaignDiscountCosts"`
+	// Amount of discounts rolledback due to refund in the campaign.
+	CampaignRefundedDiscounts float32 `json:"campaignRefundedDiscounts"`
+	// Amount of discounts rolledback due to refund in the campaign since it began.
+	TotalCampaignRefundedDiscounts float32 `json:"totalCampaignRefundedDiscounts"`
 	// Amount of free items given in the campaign.
 	CampaignFreeItems int32 `json:"campaignFreeItems"`
 	// Amount of free items given in the campaign since it began.
 	TotalCampaignFreeItems int32 `json:"totalCampaignFreeItems"`
-	// Number of coupon redemptions in the campaign (only accepted referrals on sessions that were closed are considered).
+	// Number of coupon redemptions in the campaign.
 	CouponRedemptions int32 `json:"couponRedemptions"`
 	// Number of coupon redemptions in the campaign since it began.
 	TotalCouponRedemptions int32 `json:"totalCouponRedemptions"`
+	// Number of coupon redemptions that have been rolled back (due to canceling closed session) in the campaign.
+	CouponRolledbackRedemptions int32 `json:"couponRolledbackRedemptions"`
+	// Number of coupon redemptions that have been rolled back (due to canceling closed session) in the campaign since it began.
+	TotalCouponRolledbackRedemptions int32 `json:"totalCouponRolledbackRedemptions"`
 	// Number of referral redemptions in the campaign.
 	ReferralRedemptions int32 `json:"referralRedemptions"`
 	// Number of referral redemptions in the campaign since it began.

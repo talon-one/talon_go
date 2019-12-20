@@ -9,7 +9,12 @@
 
 package talon
 
-type InlineResponse20028 struct {
-	TotalResultSize int32 `json:"totalResultSize"`
-	Data []ModelImport `json:"data"`
+type SamlConnectionMetadata struct {
+	// ID of the SAML service.
+	Name string `json:"name"`
+	// Determines if this SAML connection active.
+	Enabled bool `json:"enabled"`
+	AccountId float32 `json:"accountId"`
+	// Identity Provider metadata XML document.
+	MetadataDocument string `json:"metadataDocument"`
 }

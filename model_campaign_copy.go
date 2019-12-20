@@ -9,9 +9,21 @@
 
 package talon
 
+import (
+	"time"
+)
+
 type CampaignCopy struct {
 	// Name of the copied campaign (Defaults to \"Copy of original campaign name\")
 	Name string `json:"name,omitempty"`
 	// Application IDs of the applications to which a campaign should be copied to
 	ApplicationIds []string `json:"applicationIds"`
+	// A detailed description of the campaign.
+	Description string `json:"description,omitempty"`
+	// Datetime when the campaign will become active.
+	StartTime time.Time `json:"startTime,omitempty"`
+	// Datetime when the campaign will become in-active.
+	EndTime time.Time `json:"endTime,omitempty"`
+	// A list of tags for the campaign.
+	Tags []string `json:"tags,omitempty"`
 }

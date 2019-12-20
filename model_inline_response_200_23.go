@@ -11,5 +11,5 @@ package talon
 
 type InlineResponse20023 struct {
 	TotalResultSize int32 `json:"totalResultSize"`
-	Data []EventType `json:"data"`
+	Data []WebhookLogEntry `json:"data"`
 }

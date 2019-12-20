@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/add_points | Add points in a certain loyalty program for the specified customer
 [**CopyCampaignToApplications**](ManagementApi.md#CopyCampaignToApplications) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into every specified application
+[**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Define a new custom attribute
 [**CreateCampaign**](ManagementApi.md#CreateCampaign) | **Post** /v1/applications/{applicationId}/campaigns | Create a Campaign
 [**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create Coupons
 [**CreatePasswordRecoveryEmail**](ManagementApi.md#CreatePasswordRecoveryEmail) | **Post** /v1/password_recovery_emails | Request a password reset
@@ -20,7 +21,6 @@ Method | HTTP request | Description
 [**GetAccessLogsWithoutTotalCount**](ManagementApi.md#GetAccessLogsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for application
 [**GetAccount**](ManagementApi.md#GetAccount) | **Get** /v1/accounts/{accountId} | Get Account Details
 [**GetAccountAnalytics**](ManagementApi.md#GetAccountAnalytics) | **Get** /v1/accounts/{accountId}/analytics | Get Account Analytics
-[**GetAccountLimits**](ManagementApi.md#GetAccountLimits) | **Get** /v1/accounts/{accountId}/limits | Get Account Limits
 [**GetAllAccessLogs**](ManagementApi.md#GetAllAccessLogs) | **Get** /v1/access_logs | Get all access logs
 [**GetAllRoles**](ManagementApi.md#GetAllRoles) | **Get** /v1/roles | Get all roles.
 [**GetApplication**](ManagementApi.md#GetApplication) | **Get** /v1/applications/{applicationId} | Get Application
@@ -35,6 +35,7 @@ Method | HTTP request | Description
 [**GetApplicationSessions**](ManagementApi.md#GetApplicationSessions) | **Get** /v1/applications/{applicationId}/sessions | List Application Sessions
 [**GetApplications**](ManagementApi.md#GetApplications) | **Get** /v1/applications | List Applications
 [**GetAttribute**](ManagementApi.md#GetAttribute) | **Get** /v1/attributes/{attributeId} | Get a custom attribute
+[**GetAttributes**](ManagementApi.md#GetAttributes) | **Get** /v1/attributes | List custom attributes
 [**GetCampaign**](ManagementApi.md#GetCampaign) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId} | Get a Campaign
 [**GetCampaignAnalytics**](ManagementApi.md#GetCampaignAnalytics) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/analytics | Get analytics of campaigns
 [**GetCampaignByAttributes**](ManagementApi.md#GetCampaignByAttributes) | **Post** /v1/applications/{applicationId}/campaigns_search | Get a list of all campaigns that match the given attributes
@@ -76,7 +77,7 @@ Method | HTTP request | Description
 [**SearchCouponsAdvancedApplicationWide**](ManagementApi.md#SearchCouponsAdvancedApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search_advanced | Get a list of the coupons that match the given attributes in all active campaigns of an application
 [**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | Get a list of the coupons that match the given attributes in all active campaigns of an application
 [**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | Get a list of the coupons that match the given attributes
-[**SetAccountLimits**](ManagementApi.md#SetAccountLimits) | **Put** /v1/accounts/{accountId}/limits | Set account limits
+[**UpdateAttribute**](ManagementApi.md#UpdateAttribute) | **Put** /v1/attributes/{attributeId} | Update a custom attribute
 [**UpdateCampaign**](ManagementApi.md#UpdateCampaign) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId} | Update a Campaign
 [**UpdateCampaignSet**](ManagementApi.md#UpdateCampaignSet) | **Put** /v1/applications/{applicationId}/campaign_set | Update a Campaign Set
 [**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update a Coupon
@@ -144,6 +145,34 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **CreateAttribute**
+> Attribute CreateAttribute(ctx, body)
+Define a new custom attribute
+
+Defines a new _custom attribute_ in this account. Custom attributes allow you to attach new fields to Talon.One domain objects like campaigns, coupons, customers and so on. These attributes can then be given values when creating / updating these objects, and these values can be used in your campaign rules. For example, you could define a `zipCode` field for customer sessions, and add a rule to your campaign that only allows certain ZIP codes.  These attributes are shared across all applications in your account, and are never required. 
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **body** | [**NewAttribute**](NewAttribute.md)|  | 
+
+### Return type
+
+[**Attribute**](Attribute.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **CreateCampaign**
 > Campaign CreateCampaign(ctx, applicationId, body)
 Create a Campaign
@@ -177,7 +206,7 @@ Name | Type | Description  | Notes
 > InlineResponse2001 CreateCoupons(ctx, applicationId, campaignId, body, optional)
 Create Coupons
 
-Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupns can be created.
+Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
 
 ### Required Parameters
 
@@ -494,8 +523,8 @@ Name | Type | Description  | Notes
 
 
 
- **path** | **optional.String**| Only return results where the request path matches the given regular expresssion. | 
- **method** | **optional.String**| Only return results where the request method matches the given regular expresssion. | 
+ **path** | **optional.String**| Only return results where the request path matches the given regular expression. | 
+ **method** | **optional.String**| Only return results where the request method matches the given regular expression. | 
  **status** | **optional.String**| Filter results by HTTP status codes. | 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
@@ -540,8 +569,8 @@ Name | Type | Description  | Notes
 
 
 
- **path** | **optional.String**| Only return results where the request path matches the given regular expresssion. | 
- **method** | **optional.String**| Only return results where the request method matches the given regular expresssion. | 
+ **path** | **optional.String**| Only return results where the request path matches the given regular expression. | 
+ **method** | **optional.String**| Only return results where the request method matches the given regular expression. | 
  **status** | **optional.String**| Filter results by HTTP status codes. | 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
@@ -618,34 +647,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **GetAccountLimits**
-> AccountLimits GetAccountLimits(ctx, accountId)
-Get Account Limits
-
-Returns a list of all account limits set 
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountId** | **int32**|  | 
-
-### Return type
-
-[**AccountLimits**](AccountLimits.md)
-
-### Authorization
-
-[manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **GetAllAccessLogs**
 > InlineResponse2009 GetAllAccessLogs(ctx, rangeStart, rangeEnd, optional)
 Get all access logs
@@ -668,8 +669,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **path** | **optional.String**| Only return results where the request path matches the given regular expresssion. | 
- **method** | **optional.String**| Only return results where the request method matches the given regular expresssion. | 
+ **path** | **optional.String**| Only return results where the request path matches the given regular expression. | 
+ **method** | **optional.String**| Only return results where the request method matches the given regular expression. | 
  **status** | **optional.String**| Filter results by HTTP status codes. | 
  **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
@@ -691,7 +692,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetAllRoles**
-> InlineResponse20028 GetAllRoles(ctx, )
+> InlineResponse20029 GetAllRoles(ctx, )
 Get all roles.
 
 ### Required Parameters
@@ -699,7 +700,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20028**](inline_response_200_28.md)
+[**InlineResponse20029**](inline_response_200_29.md)
 
 ### Authorization
 
@@ -829,7 +830,7 @@ Name | Type | Description  | Notes
 > InlineResponse20013 GetApplicationCustomersByAttributes(ctx, body)
 Get a list of the customer profiles that match the given attributes
 
-Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile 
+Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile 
 
 ### Required Parameters
 
@@ -1128,6 +1129,43 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **GetAttributes**
+> InlineResponse20020 GetAttributes(ctx, optional)
+List custom attributes
+
+Returns all the defined custom attributes for the account. 
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***GetAttributesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetAttributesOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **optional.Int32**| The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **optional.Int32**| Skips the given number of items when paging through large result sets. | 
+ **sort** | **optional.String**| The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+
+### Return type
+
+[**InlineResponse20020**](inline_response_200_20.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **GetCampaign**
 > Campaign GetCampaign(ctx, applicationId, campaignId)
 Get a Campaign
@@ -1315,7 +1353,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetChanges**
-> InlineResponse20025 GetChanges(ctx, optional)
+> InlineResponse20026 GetChanges(ctx, optional)
 Get audit log for an account
 
 Get list of changes caused by API calls for an account. Only accessible for admins.
@@ -1343,7 +1381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
@@ -1811,7 +1849,7 @@ Name | Type | Description  | Notes
 > InlineResponse20013 GetCustomersByAttributes(ctx, body, optional)
 Get a list of the customer profiles that match the given attributes
 
-Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile 
+Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile 
 
 ### Required Parameters
 
@@ -1846,7 +1884,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetEventTypes**
-> InlineResponse20023 GetEventTypes(ctx, optional)
+> InlineResponse20024 GetEventTypes(ctx, optional)
 List Event Types
 
 Fetch all event type definitions for your account. Each event type can be 
@@ -1872,7 +1910,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
@@ -1886,7 +1924,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetExports**
-> InlineResponse20026 GetExports(ctx, optional)
+> InlineResponse20027 GetExports(ctx, optional)
 Get Exports
 
 Get a list of all past exports 
@@ -1911,7 +1949,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
@@ -1925,7 +1963,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetImports**
-> InlineResponse20027 GetImports(ctx, optional)
+> InlineResponse20028 GetImports(ctx, optional)
 Get Imports
 
 Get a list of all past imports 
@@ -1947,7 +1985,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
@@ -2261,7 +2299,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetUsers**
-> InlineResponse20024 GetUsers(ctx, optional)
+> InlineResponse20025 GetUsers(ctx, optional)
 List Users in your account
 
 Retrieve all users in your account. 
@@ -2284,7 +2322,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](inline_response_200_24.md)
+[**InlineResponse20025**](inline_response_200_25.md)
 
 ### Authorization
 
@@ -2326,7 +2364,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetWebhookActivationLogs**
-> InlineResponse20021 GetWebhookActivationLogs(ctx, optional)
+> InlineResponse20022 GetWebhookActivationLogs(ctx, optional)
 List Webhook activation Log Entries
 
 Webhook activation log entries would be created as soon as an integration request triggered an effect with a webhook
@@ -2355,7 +2393,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](inline_response_200_21.md)
+[**InlineResponse20022**](inline_response_200_22.md)
 
 ### Authorization
 
@@ -2369,7 +2407,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetWebhookLogs**
-> InlineResponse20022 GetWebhookLogs(ctx, optional)
+> InlineResponse20023 GetWebhookLogs(ctx, optional)
 List Webhook Log Entries
 
 
@@ -2399,7 +2437,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
@@ -2413,7 +2451,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **GetWebhooks**
-> InlineResponse20020 GetWebhooks(ctx, optional)
+> InlineResponse20021 GetWebhooks(ctx, optional)
 List Webhooks
 
 
@@ -2437,7 +2475,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](inline_response_200_20.md)
+[**InlineResponse20021**](inline_response_200_21.md)
 
 ### Authorization
 
@@ -2738,23 +2776,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **SetAccountLimits**
-> SetAccountLimits(ctx, accountId, body)
-Set account limits
+# **UpdateAttribute**
+> Attribute UpdateAttribute(ctx, attributeId, body)
+Update a custom attribute
 
-sets account limits 
+Updates an existing custom attribute. Once created, the only property of a custom attribute that can be changed is the title (human readable description). This restriction is in place to prevent accidentally breaking live integrations. E.g. if you have a customer profile attribute with the name `region`, and your integration is sending `attributes.region` with customer profile updates, changing the name to `locale` would cause the integration requests to begin failing.  If you **really** need to change the `type` or `name` property of a custom attribute, create a new attribute and update any relevant integrations and rules to use the new attribute. Then delete the old attribute when you are confident you have migrated any needed data from the old attribute to the new one. 
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-  **accountId** | **int32**|  | 
-  **body** | [**AccountLimits**](AccountLimits.md)|  | 
+  **attributeId** | **int32**|  | 
+  **body** | [**NewAttribute**](NewAttribute.md)|  | 
 
 ### Return type
 
- (empty response body)
+[**Attribute**](Attribute.md)
 
 ### Authorization
 

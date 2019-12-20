@@ -10,6 +10,7 @@
 package talon
 
 type InlineResponse20026 struct {
-	TotalResultSize int32 `json:"totalResultSize"`
-	Data []Export `json:"data"`
+	TotalResultSize int32 `json:"totalResultSize,omitempty"`
+	HasMore bool `json:"hasMore,omitempty"`
+	Data []Change `json:"data"`
 }

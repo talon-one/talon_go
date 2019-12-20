@@ -224,6 +224,109 @@ func (a *ManagementApiService) CopyCampaignToApplications(ctx context.Context, a
 }
 
 /* 
+ManagementApiService Define a new custom attribute
+Defines a new _custom attribute_ in this account. Custom attributes allow you to attach new fields to Talon.One domain objects like campaigns, coupons, customers and so on. These attributes can then be given values when creating / updating these objects, and these values can be used in your campaign rules. For example, you could define a &#x60;zipCode&#x60; field for customer sessions, and add a rule to your campaign that only allows certain ZIP codes.  These attributes are shared across all applications in your account, and are never required. 
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param body
+
+@return Attribute
+*/
+func (a *ManagementApiService) CreateAttribute(ctx context.Context, body NewAttribute) (Attribute, *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Post")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+		localVarReturnValue Attribute
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/v1/attributes"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	// body params
+	localVarPostBody = &body
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Authorization"] = key
+			
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		if err == nil { 
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body: localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		
+		if localVarHttpResponse.StatusCode == 201 {
+			var v Attribute
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+				if err != nil {
+					newErr.error = err.Error()
+					return localVarReturnValue, localVarHttpResponse, newErr
+				}
+				newErr.model = v
+				return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/* 
 ManagementApiService Create a Campaign
 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -330,7 +433,7 @@ func (a *ManagementApiService) CreateCampaign(ctx context.Context, applicationId
 
 /* 
 ManagementApiService Create Coupons
-Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupns can be created.
+Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId 
@@ -1272,8 +1375,8 @@ ManagementApiService Get access logs for application
  * @param rangeStart Only return results from after this timestamp, must be an RFC3339 timestamp string
  * @param rangeEnd Only return results from before this timestamp, must be an RFC3339 timestamp string
  * @param optional nil or *GetAccessLogsOpts - Optional Parameters:
-     * @param "Path" (optional.String) -  Only return results where the request path matches the given regular expresssion.
-     * @param "Method" (optional.String) -  Only return results where the request method matches the given regular expresssion.
+     * @param "Path" (optional.String) -  Only return results where the request path matches the given regular expression.
+     * @param "Method" (optional.String) -  Only return results where the request method matches the given regular expression.
      * @param "Status" (optional.String) -  Filter results by HTTP status codes.
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -1413,8 +1516,8 @@ ManagementApiService Get access logs for application
  * @param rangeStart Only return results from after this timestamp, must be an RFC3339 timestamp string
  * @param rangeEnd Only return results from before this timestamp, must be an RFC3339 timestamp string
  * @param optional nil or *GetAccessLogsWithoutTotalCountOpts - Optional Parameters:
-     * @param "Path" (optional.String) -  Only return results where the request path matches the given regular expresssion.
-     * @param "Method" (optional.String) -  Only return results where the request method matches the given regular expresssion.
+     * @param "Path" (optional.String) -  Only return results where the request path matches the given regular expression.
+     * @param "Method" (optional.String) -  Only return results where the request method matches the given regular expression.
      * @param "Status" (optional.String) -  Filter results by HTTP status codes.
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -1751,116 +1854,14 @@ func (a *ManagementApiService) GetAccountAnalytics(ctx context.Context, accountI
 }
 
 /* 
-ManagementApiService Get Account Limits
-Returns a list of all account limits set 
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountId 
-
-@return AccountLimits
-*/
-func (a *ManagementApiService) GetAccountLimits(ctx context.Context, accountId int32) (AccountLimits, *http.Response, error) {
-	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
-		localVarReturnValue AccountLimits
-	)
-
-	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/v1/accounts/{accountId}/limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", fmt.Sprintf("%v", accountId), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHttpContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
-	if localVarHttpContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHttpContentType
-	}
-
-	// to determine the Accept header
-	localVarHttpHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
-	if localVarHttpHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
-	}
-	if ctx != nil {
-		// API Key Authentication
-		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
-			var key string
-			if auth.Prefix != "" {
-				key = auth.Prefix + " " + auth.Key
-			} else {
-				key = auth.Key
-			}
-			localVarHeaderParams["Authorization"] = key
-			
-		}
-	}
-	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHttpResponse, err := a.client.callAPI(r)
-	if err != nil || localVarHttpResponse == nil {
-		return localVarReturnValue, localVarHttpResponse, err
-	}
-
-	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
-	localVarHttpResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHttpResponse, err
-	}
-
-	if localVarHttpResponse.StatusCode < 300 {
-		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
-			return localVarReturnValue, localVarHttpResponse, err
-		}
-	}
-
-	if localVarHttpResponse.StatusCode >= 300 {
-		newErr := GenericSwaggerError{
-			body: localVarBody,
-			error: localVarHttpResponse.Status,
-		}
-		
-		if localVarHttpResponse.StatusCode == 200 {
-			var v AccountLimits
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
-				return localVarReturnValue, localVarHttpResponse, newErr
-		}
-		
-		return localVarReturnValue, localVarHttpResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHttpResponse, nil
-}
-
-/* 
 ManagementApiService Get all access logs
 Fetches the access logs for the entire account. Sensitive requests (logins) are _always_ filtered from the logs. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param rangeStart Only return results from after this timestamp, must be an RFC3339 timestamp string
  * @param rangeEnd Only return results from before this timestamp, must be an RFC3339 timestamp string
  * @param optional nil or *GetAllAccessLogsOpts - Optional Parameters:
-     * @param "Path" (optional.String) -  Only return results where the request path matches the given regular expresssion.
-     * @param "Method" (optional.String) -  Only return results where the request method matches the given regular expresssion.
+     * @param "Path" (optional.String) -  Only return results where the request path matches the given regular expression.
+     * @param "Method" (optional.String) -  Only return results where the request method matches the given regular expression.
      * @param "Status" (optional.String) -  Filter results by HTTP status codes.
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
@@ -1995,15 +1996,15 @@ func (a *ManagementApiService) GetAllAccessLogs(ctx context.Context, rangeStart 
 ManagementApiService Get all roles.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
-@return InlineResponse20028
+@return InlineResponse20029
 */
-func (a *ManagementApiService) GetAllRoles(ctx context.Context) (InlineResponse20028, *http.Response, error) {
+func (a *ManagementApiService) GetAllRoles(ctx context.Context) (InlineResponse20029, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20028
+		localVarReturnValue InlineResponse20029
 	)
 
 	// create path and map variables
@@ -2074,7 +2075,7 @@ func (a *ManagementApiService) GetAllRoles(ctx context.Context) (InlineResponse2
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20028
+			var v InlineResponse20029
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -2502,7 +2503,7 @@ func (a *ManagementApiService) GetApplicationCustomers(ctx context.Context, appl
 
 /* 
 ManagementApiService Get a list of the customer profiles that match the given attributes
-Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id&#x3D;14115#customer-profile 
+Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body
 
@@ -3543,6 +3544,126 @@ func (a *ManagementApiService) GetAttribute(ctx context.Context, attributeId int
 }
 
 /* 
+ManagementApiService List custom attributes
+Returns all the defined custom attributes for the account. 
+ * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param optional nil or *GetAttributesOpts - Optional Parameters:
+     * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
+     * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
+     * @param "Sort" (optional.String) -  The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order.
+
+@return InlineResponse20020
+*/
+
+type GetAttributesOpts struct { 
+	PageSize optional.Int32
+	Skip optional.Int32
+	Sort optional.String
+}
+
+func (a *ManagementApiService) GetAttributes(ctx context.Context, localVarOptionals *GetAttributesOpts) (InlineResponse20020, *http.Response, error) {
+	var (
+		localVarHttpMethod = strings.ToUpper("Get")
+		localVarPostBody   interface{}
+		localVarFileName   string
+		localVarFileBytes  []byte
+		localVarReturnValue InlineResponse20020
+	)
+
+	// create path and map variables
+	localVarPath := a.client.cfg.BasePath + "/v1/attributes"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if localVarOptionals != nil && localVarOptionals.PageSize.IsSet() {
+		localVarQueryParams.Add("pageSize", parameterToString(localVarOptionals.PageSize.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Skip.IsSet() {
+		localVarQueryParams.Add("skip", parameterToString(localVarOptionals.Skip.Value(), ""))
+	}
+	if localVarOptionals != nil && localVarOptionals.Sort.IsSet() {
+		localVarQueryParams.Add("sort", parameterToString(localVarOptionals.Sort.Value(), ""))
+	}
+	// to determine the Content-Type header
+	localVarHttpContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHttpContentType := selectHeaderContentType(localVarHttpContentTypes)
+	if localVarHttpContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHttpContentType
+	}
+
+	// to determine the Accept header
+	localVarHttpHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHttpHeaderAccept := selectHeaderAccept(localVarHttpHeaderAccepts)
+	if localVarHttpHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
+	}
+	if ctx != nil {
+		// API Key Authentication
+		if auth, ok := ctx.Value(ContextAPIKey).(APIKey); ok {
+			var key string
+			if auth.Prefix != "" {
+				key = auth.Prefix + " " + auth.Key
+			} else {
+				key = auth.Key
+			}
+			localVarHeaderParams["Authorization"] = key
+			
+		}
+	}
+	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHttpResponse, err := a.client.callAPI(r)
+	if err != nil || localVarHttpResponse == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
+	localVarHttpResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	}
+
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		if err == nil { 
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
+
+	if localVarHttpResponse.StatusCode >= 300 {
+		newErr := GenericSwaggerError{
+			body: localVarBody,
+			error: localVarHttpResponse.Status,
+		}
+		
+		if localVarHttpResponse.StatusCode == 200 {
+			var v InlineResponse20020
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+				if err != nil {
+					newErr.error = err.Error()
+					return localVarReturnValue, localVarHttpResponse, newErr
+				}
+				newErr.model = v
+				return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		
+		return localVarReturnValue, localVarHttpResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHttpResponse, nil
+}
+
+/* 
 ManagementApiService Get a Campaign
 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -4157,7 +4278,7 @@ Get list of changes caused by API calls for an account. Only accessible for admi
      * @param "WithTotalResultSize" (optional.Bool) -  When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query. 
      * @param "IncludeOld" (optional.Bool) -  When this flag is set to false, the state without the change will not be returned. The default value is true.
 
-@return InlineResponse20025
+@return InlineResponse20026
 */
 
 type GetChangesOpts struct { 
@@ -4171,13 +4292,13 @@ type GetChangesOpts struct {
 	IncludeOld optional.Bool
 }
 
-func (a *ManagementApiService) GetChanges(ctx context.Context, localVarOptionals *GetChangesOpts) (InlineResponse20025, *http.Response, error) {
+func (a *ManagementApiService) GetChanges(ctx context.Context, localVarOptionals *GetChangesOpts) (InlineResponse20026, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20025
+		localVarReturnValue InlineResponse20026
 	)
 
 	// create path and map variables
@@ -4272,7 +4393,7 @@ func (a *ManagementApiService) GetChanges(ctx context.Context, localVarOptionals
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20025
+			var v InlineResponse20026
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -5753,7 +5874,7 @@ func (a *ManagementApiService) GetCustomerProfiles(ctx context.Context, localVar
 
 /* 
 ManagementApiService Get a list of the customer profiles that match the given attributes
-Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id&#x3D;14115#customer-profile 
+Gets a list of all the customer profiles for the account that exactly match a set of attributes.  The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.  [Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param body
  * @param optional nil or *GetCustomersByAttributesOpts - Optional Parameters:
@@ -5881,7 +6002,7 @@ Fetch all event type definitions for your account. Each event type can be
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
      * @param "Sort" (optional.String) -  The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order.
 
-@return InlineResponse20023
+@return InlineResponse20024
 */
 
 type GetEventTypesOpts struct { 
@@ -5893,13 +6014,13 @@ type GetEventTypesOpts struct {
 	Sort optional.String
 }
 
-func (a *ManagementApiService) GetEventTypes(ctx context.Context, localVarOptionals *GetEventTypesOpts) (InlineResponse20023, *http.Response, error) {
+func (a *ManagementApiService) GetEventTypes(ctx context.Context, localVarOptionals *GetEventTypesOpts) (InlineResponse20024, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20023
+		localVarReturnValue InlineResponse20024
 	)
 
 	// create path and map variables
@@ -5988,7 +6109,7 @@ func (a *ManagementApiService) GetEventTypes(ctx context.Context, localVarOption
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20023
+			var v InlineResponse20024
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -6015,7 +6136,7 @@ Get a list of all past exports
      * @param "CampaignId" (optional.Int32) - 
      * @param "Entity" (optional.String) -  The name of the entity type that was exported.
 
-@return InlineResponse20026
+@return InlineResponse20027
 */
 
 type GetExportsOpts struct { 
@@ -6026,13 +6147,13 @@ type GetExportsOpts struct {
 	Entity optional.String
 }
 
-func (a *ManagementApiService) GetExports(ctx context.Context, localVarOptionals *GetExportsOpts) (InlineResponse20026, *http.Response, error) {
+func (a *ManagementApiService) GetExports(ctx context.Context, localVarOptionals *GetExportsOpts) (InlineResponse20027, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20026
+		localVarReturnValue InlineResponse20027
 	)
 
 	// create path and map variables
@@ -6118,7 +6239,7 @@ func (a *ManagementApiService) GetExports(ctx context.Context, localVarOptionals
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20026
+			var v InlineResponse20027
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -6142,7 +6263,7 @@ Get a list of all past imports
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
 
-@return InlineResponse20027
+@return InlineResponse20028
 */
 
 type GetImportsOpts struct { 
@@ -6150,13 +6271,13 @@ type GetImportsOpts struct {
 	Skip optional.Int32
 }
 
-func (a *ManagementApiService) GetImports(ctx context.Context, localVarOptionals *GetImportsOpts) (InlineResponse20027, *http.Response, error) {
+func (a *ManagementApiService) GetImports(ctx context.Context, localVarOptionals *GetImportsOpts) (InlineResponse20028, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20027
+		localVarReturnValue InlineResponse20028
 	)
 
 	// create path and map variables
@@ -6233,7 +6354,7 @@ func (a *ManagementApiService) GetImports(ctx context.Context, localVarOptionals
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20027
+			var v InlineResponse20028
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -7305,7 +7426,7 @@ Retrieve all users in your account.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
      * @param "Sort" (optional.String) -  The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order.
 
-@return InlineResponse20024
+@return InlineResponse20025
 */
 
 type GetUsersOpts struct { 
@@ -7314,13 +7435,13 @@ type GetUsersOpts struct {
 	Sort optional.String
 }
 
-func (a *ManagementApiService) GetUsers(ctx context.Context, localVarOptionals *GetUsersOpts) (InlineResponse20024, *http.Response, error) {
+func (a *ManagementApiService) GetUsers(ctx context.Context, localVarOptionals *GetUsersOpts) (InlineResponse20025, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20024
+		localVarReturnValue InlineResponse20025
 	)
 
 	// create path and map variables
@@ -7400,7 +7521,7 @@ func (a *ManagementApiService) GetUsers(ctx context.Context, localVarOptionals *
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20024
+			var v InlineResponse20025
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -7533,7 +7654,7 @@ Webhook activation log entries would be created as soon as an integration reques
      * @param "CreatedBefore" (optional.Time) -  Only return events created before this date.
      * @param "CreatedAfter" (optional.Time) -  Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string.
 
-@return InlineResponse20021
+@return InlineResponse20022
 */
 
 type GetWebhookActivationLogsOpts struct { 
@@ -7548,13 +7669,13 @@ type GetWebhookActivationLogsOpts struct {
 	CreatedAfter optional.Time
 }
 
-func (a *ManagementApiService) GetWebhookActivationLogs(ctx context.Context, localVarOptionals *GetWebhookActivationLogsOpts) (InlineResponse20021, *http.Response, error) {
+func (a *ManagementApiService) GetWebhookActivationLogs(ctx context.Context, localVarOptionals *GetWebhookActivationLogsOpts) (InlineResponse20022, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20021
+		localVarReturnValue InlineResponse20022
 	)
 
 	// create path and map variables
@@ -7652,7 +7773,7 @@ func (a *ManagementApiService) GetWebhookActivationLogs(ctx context.Context, loc
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20021
+			var v InlineResponse20022
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -7684,7 +7805,7 @@ ManagementApiService List Webhook Log Entries
      * @param "CreatedBefore" (optional.Time) -  Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string.
      * @param "CreatedAfter" (optional.Time) -  Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string.
 
-@return InlineResponse20022
+@return InlineResponse20023
 */
 
 type GetWebhookLogsOpts struct { 
@@ -7700,13 +7821,13 @@ type GetWebhookLogsOpts struct {
 	CreatedAfter optional.Time
 }
 
-func (a *ManagementApiService) GetWebhookLogs(ctx context.Context, localVarOptionals *GetWebhookLogsOpts) (InlineResponse20022, *http.Response, error) {
+func (a *ManagementApiService) GetWebhookLogs(ctx context.Context, localVarOptionals *GetWebhookLogsOpts) (InlineResponse20023, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20022
+		localVarReturnValue InlineResponse20023
 	)
 
 	// create path and map variables
@@ -7807,7 +7928,7 @@ func (a *ManagementApiService) GetWebhookLogs(ctx context.Context, localVarOptio
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20022
+			var v InlineResponse20023
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -7833,7 +7954,7 @@ ManagementApiService List Webhooks
      * @param "PageSize" (optional.Int32) -  The number of items to include in this response. When omitted, the maximum value of 1000 will be used.
      * @param "Skip" (optional.Int32) -  Skips the given number of items when paging through large result sets.
 
-@return InlineResponse20020
+@return InlineResponse20021
 */
 
 type GetWebhooksOpts struct { 
@@ -7843,13 +7964,13 @@ type GetWebhooksOpts struct {
 	Skip optional.Int32
 }
 
-func (a *ManagementApiService) GetWebhooks(ctx context.Context, localVarOptionals *GetWebhooksOpts) (InlineResponse20020, *http.Response, error) {
+func (a *ManagementApiService) GetWebhooks(ctx context.Context, localVarOptionals *GetWebhooksOpts) (InlineResponse20021, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue InlineResponse20020
+		localVarReturnValue InlineResponse20021
 	)
 
 	// create path and map variables
@@ -7932,7 +8053,7 @@ func (a *ManagementApiService) GetWebhooks(ctx context.Context, localVarOptional
 		}
 		
 		if localVarHttpResponse.StatusCode == 200 {
-			var v InlineResponse20020
+			var v InlineResponse20021
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
@@ -8917,26 +9038,26 @@ func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx contex
 }
 
 /* 
-ManagementApiService Set account limits
-sets account limits 
+ManagementApiService Update a custom attribute
+Updates an existing custom attribute. Once created, the only property of a custom attribute that can be changed is the title (human readable description). This restriction is in place to prevent accidentally breaking live integrations. E.g. if you have a customer profile attribute with the name &#x60;region&#x60;, and your integration is sending &#x60;attributes.region&#x60; with customer profile updates, changing the name to &#x60;locale&#x60; would cause the integration requests to begin failing.  If you **really** need to change the &#x60;type&#x60; or &#x60;name&#x60; property of a custom attribute, create a new attribute and update any relevant integrations and rules to use the new attribute. Then delete the old attribute when you are confident you have migrated any needed data from the old attribute to the new one. 
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountId 
+ * @param attributeId
  * @param body
 
-
+@return Attribute
 */
-func (a *ManagementApiService) SetAccountLimits(ctx context.Context, accountId int32, body AccountLimits) (*http.Response, error) {
+func (a *ManagementApiService) UpdateAttribute(ctx context.Context, attributeId int32, body NewAttribute) (Attribute, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		
+		localVarReturnValue Attribute
 	)
 
 	// create path and map variables
-	localVarPath := a.client.cfg.BasePath + "/v1/accounts/{accountId}/limits"
-	localVarPath = strings.Replace(localVarPath, "{"+"accountId"+"}", fmt.Sprintf("%v", accountId), -1)
+	localVarPath := a.client.cfg.BasePath + "/v1/attributes/{attributeId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"attributeId"+"}", fmt.Sprintf("%v", attributeId), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -8976,20 +9097,27 @@ func (a *ManagementApiService) SetAccountLimits(ctx context.Context, accountId i
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarHttpResponse, err
+		return localVarReturnValue, localVarHttpResponse, err
 	}
 
+	if localVarHttpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+		if err == nil { 
+			return localVarReturnValue, localVarHttpResponse, err
+		}
+	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
@@ -8997,10 +9125,21 @@ func (a *ManagementApiService) SetAccountLimits(ctx context.Context, accountId i
 			error: localVarHttpResponse.Status,
 		}
 		
-		return localVarHttpResponse, newErr
+		if localVarHttpResponse.StatusCode == 200 {
+			var v Attribute
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+				if err != nil {
+					newErr.error = err.Error()
+					return localVarReturnValue, localVarHttpResponse, newErr
+				}
+				newErr.model = v
+				return localVarReturnValue, localVarHttpResponse, newErr
+		}
+		
+		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
-	return localVarHttpResponse, nil
+	return localVarReturnValue, localVarHttpResponse, nil
 }
 
 /* 

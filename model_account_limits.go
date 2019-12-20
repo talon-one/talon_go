@@ -30,6 +30,8 @@ type AccountLimits struct {
 	Users int32 `json:"users"`
 	// Total allowed api volume
 	ApiVolume int32 `json:"apiVolume"`
+	// Total allowed active rulesets
+	ActiveRules int32 `json:"activeRules,omitempty"`
 	// array of rulesets where webhook is used
 	PromotionTypes []string `json:"promotionTypes"`
 }

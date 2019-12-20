@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**CreateReferral**](IntegrationApi.md#CreateReferral) | **Post** /v1/referrals | Create a referral code for an advocate
 [**DeleteCouponReservation**](IntegrationApi.md#DeleteCouponReservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 [**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer.
+[**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile.
 [**GetReservedCoupons**](IntegrationApi.md#GetReservedCoupons) | **Get** /v1/coupon_reservations/coupons/{integrationId} | Get all valid reserved coupons
 [**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
 [**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track an Event
@@ -117,6 +118,44 @@ Name | Type | Description  | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **GetCustomerInventory**
+> CustomerInventory GetCustomerInventory(ctx, integrationId, optional)
+Get an inventory of all data associated with a specific customer profile.
+
+Get information regarding entities referencing this customer profile's integrationId. Currently we support customer profile information and referral codes. In the future, this will be expanded with coupon codes and loyalty points.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+  **integrationId** | **string**| The custom identifier for this profile, must be unique within the account. | 
+ **optional** | ***GetCustomerInventoryOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+Optional parameters are passed through a pointer to a GetCustomerInventoryOpts struct
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **profile** | [**optional.Interface of interface{}**](.md)| optional flag to decide if you would like customer profile information in the response | 
+ **referrals** | [**optional.Interface of interface{}**](.md)| optional flag to decide if you would like referral information in the response | 
+
+### Return type
+
+[**CustomerInventory**](CustomerInventory.md)
 
 ### Authorization
 

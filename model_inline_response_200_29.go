@@ -9,7 +9,7 @@
 
 package talon
 
-type InlineResponse20028 struct {
+type InlineResponse20029 struct {
 	TotalResultSize int32 `json:"totalResultSize"`
-	Data []ModelImport `json:"data"`
+	Data []Role `json:"data"`
 }
