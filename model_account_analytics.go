@@ -38,4 +38,6 @@ type AccountAnalytics struct {
 	Webhooks int32 `json:"webhooks"`
 	// Total Number of loyalty programs inside the account
 	LoyaltyPrograms int32 `json:"loyaltyPrograms"`
+	// Total Number of active rules in the account
+	ActiveRules int32 `json:"activeRules"`
 }

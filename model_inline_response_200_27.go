@@ -11,5 +11,5 @@ package talon
 
 type InlineResponse20027 struct {
 	TotalResultSize int32 `json:"totalResultSize"`
-	Data []ModelImport `json:"data"`
+	Data []Export `json:"data"`
 }

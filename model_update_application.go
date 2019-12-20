@@ -24,4 +24,5 @@ type UpdateApplication struct {
 	Attributes *interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application
 	Limits []LimitConfig `json:"limits,omitempty"`
+	AttributesSettings *AttributesSettings `json:"attributesSettings,omitempty"`
 }

@@ -23,8 +23,8 @@ type Change struct {
 	UserId int32 `json:"userId"`
 	// API endpoint on which the change was initiated.
 	Entity string `json:"entity"`
-	// Resource before the change occured.
+	// Resource before the change occurred.
 	Old *interface{} `json:"old,omitempty"`
-	// Resource after the change occured.
+	// Resource after the change occurred.
 	New *interface{} `json:"new,omitempty"`
 }

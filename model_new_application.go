@@ -25,6 +25,7 @@ type NewApplication struct {
 	Attributes *interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application
 	Limits []LimitConfig `json:"limits,omitempty"`
+	AttributesSettings *AttributesSettings `json:"attributesSettings,omitempty"`
 	// Hex key for HMAC-signing API calls as coming from this application (16 hex digits)
 	Key string `json:"key,omitempty"`
 }

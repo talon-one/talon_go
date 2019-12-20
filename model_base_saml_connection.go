@@ -9,14 +9,7 @@
 
 package talon
 
-import (
-	"time"
-)
-
-// 
-type SamlConnection struct {
-	// The location where the SAML assertion is sent with a HTTP POST.
-	AssertionConsumerServiceURL string `json:"assertionConsumerServiceURL"`
+type BaseSamlConnection struct {
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`
 	// ID of the SAML service.
@@ -32,9 +25,5 @@ type SamlConnection struct {
 	// Metadata URL.
 	MetadataURL string `json:"metadataURL,omitempty"`
 	// The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used. 
-	AudienceURI string `json:"audienceURI"`
-	// Unique ID for this entity.
-	Id int32 `json:"id"`
-	// The exact moment this entity was created.
-	Created time.Time `json:"created"`
+	AudienceURI string `json:"audienceURI,omitempty"`
 }

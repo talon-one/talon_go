@@ -9,7 +9,7 @@
 
 package talon
 
-type InlineResponse20028 struct {
-	TotalResultSize int32 `json:"totalResultSize"`
-	Data []ModelImport `json:"data"`
+// Arbitrary settings associated with attributes.
+type AttributesSettings struct {
+	Mandatory *AttributesMandatory `json:"mandatory,omitempty"`
 }

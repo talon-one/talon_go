@@ -23,14 +23,14 @@ tags:
 - name: "Applications"
 - name: "Analytics"
   description: "Analytics are used to retrieve statistical data about the performance\
-    \ ofcampaigns within an application.\n"
+    \ of campaigns within an application.\n"
 - name: "Campaigns"
-  description: "Campaigns are the primary resource used to control the behaviour of\
+  description: "Campaigns are the primary resource used to control the behavior of\
     \ the Talon.One Rule Engine. They combine rulesets, coupons, and limits into a\
     \ single unit.\n"
 - name: "Coupons"
   description: "Coupons are unique codes belonging to a particular campaign. They\
-    \ don't define any behaviour on their own, instead the campaign ruleset can include\
+    \ don't define any behavior on their own, instead the campaign ruleset can include\
     \ rules that validate coupons and carry out particular effects.\n"
 - name: "Customization"
   description: "Talon.One is extremely customizable. These API operations allow you\
@@ -341,6 +341,44 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/definitions/Coupon"
+      security:
+      - api_key_v1: []
+      - integration_auth: []
+  /v1/customer_profiles/{integrationId}/inventory:
+    get:
+      tags:
+      - "integration"
+      summary: "Get an inventory of all data associated with a specific customer profile."
+      description: "Get information regarding entities referencing this customer profile's\
+        \ integrationId. Currently we support customer profile information and referral\
+        \ codes. In the future, this will be expanded with coupon codes and loyalty\
+        \ points."
+      operationId: "getCustomerInventory"
+      parameters:
+      - name: "integrationId"
+        in: "path"
+        description: "The custom identifier for this profile, must be unique within\
+          \ the account."
+        required: true
+        type: "string"
+        x-exportParamName: "IntegrationId"
+      - name: "profile"
+        in: "query"
+        description: "optional flag to decide if you would like customer profile information\
+          \ in the response"
+        required: false
+        x-exportParamName: "Profile"
+      - name: "referrals"
+        in: "query"
+        description: "optional flag to decide if you would like referral information\
+          \ in the response"
+        required: false
+        x-exportParamName: "Referrals"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/CustomerInventory"
       security:
       - api_key_v1: []
       - integration_auth: []
@@ -1137,7 +1175,7 @@ paths:
       summary: "Create Coupons"
       description: "Create coupons according to some pattern. Up to 20.000 coupons\
         \ can be created without a unique prefix. When a unique prefix is provided,\
-        \ up to 200.000 coupns can be created."
+        \ up to 200.000 coupons can be created."
       operationId: "createCoupons"
       parameters:
       - name: "silent"
@@ -2946,7 +2984,7 @@ paths:
       - name: "path"
         in: "query"
         description: "Only return results where the request path matches the given\
-          \ regular expresssion."
+          \ regular expression."
         required: false
         type: "string"
         x-exportParamName: "Path"
@@ -2954,7 +2992,7 @@ paths:
       - name: "method"
         in: "query"
         description: "Only return results where the request method matches the given\
-          \ regular expresssion."
+          \ regular expression."
         required: false
         type: "string"
         enum:
@@ -3048,7 +3086,7 @@ paths:
       - name: "path"
         in: "query"
         description: "Only return results where the request path matches the given\
-          \ regular expresssion."
+          \ regular expression."
         required: false
         type: "string"
         x-exportParamName: "Path"
@@ -3056,7 +3094,7 @@ paths:
       - name: "method"
         in: "query"
         description: "Only return results where the request method matches the given\
-          \ regular expresssion."
+          \ regular expression."
         required: false
         type: "string"
         enum:
@@ -3161,7 +3199,7 @@ paths:
       - name: "path"
         in: "query"
         description: "Only return results where the request path matches the given\
-          \ regular expresssion."
+          \ regular expression."
         required: false
         type: "string"
         x-exportParamName: "Path"
@@ -3169,7 +3207,7 @@ paths:
       - name: "method"
         in: "query"
         description: "Only return results where the request method matches the given\
-          \ regular expresssion."
+          \ regular expression."
         required: false
         type: "string"
         enum:
@@ -3331,7 +3369,7 @@ paths:
         \ exactly match a set of attributes.\n\nThe match is successful if all the\
         \ attributes of the request are found in a profile, even if the profile has\
         \ more attributes that are not present on the request.\n\n[Customer Profile]:\
-        \ http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile\n"
+        \ https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile\n"
       operationId: "getCustomersByAttributes"
       parameters:
       - name: "pageSize"
@@ -3444,7 +3482,7 @@ paths:
         \ exactly match a set of attributes.\n\nThe match is successful if all the\
         \ attributes of the request are found in a profile, even if the profile has\
         \ more attributes that are not present on the request.\n\n[Customer Profile]:\
-        \ http://help.talon.one/customer/en/portal/articles/2525263-data-model?b_id=14115#customer-profile\n"
+        \ https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile\n"
       operationId: "getApplicationCustomersByAttributes"
       parameters:
       - in: "body"
@@ -4241,6 +4279,79 @@ paths:
                 type: "array"
                 items:
                   type: "string"
+  /v1/attributes:
+    get:
+      tags:
+      - "management"
+      summary: "List custom attributes"
+      description: "Returns all the defined custom attributes for the account.\n"
+      operationId: "getAttributes"
+      parameters:
+      - name: "pageSize"
+        in: "query"
+        description: "The number of items to include in this response. When omitted,\
+          \ the maximum value of 1000 will be used."
+        required: false
+        type: "integer"
+        x-exportParamName: "PageSize"
+        x-optionalDataType: "Int32"
+      - name: "skip"
+        in: "query"
+        description: "Skips the given number of items when paging through large result\
+          \ sets."
+        required: false
+        type: "integer"
+        x-exportParamName: "Skip"
+        x-optionalDataType: "Int32"
+      - name: "sort"
+        in: "query"
+        description: "The field by which results should be sorted. Sorting defaults\
+          \ to ascending order, prefix the field name with `-` to sort in descending\
+          \ order."
+        required: false
+        type: "string"
+        x-exportParamName: "Sort"
+        x-optionalDataType: "String"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "object"
+            required:
+            - "data"
+            - "totalResultSize"
+            properties:
+              totalResultSize:
+                type: "integer"
+              data:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Attribute"
+    post:
+      tags:
+      - "management"
+      summary: "Define a new custom attribute"
+      description: "Defines a new _custom attribute_ in this account. Custom attributes\
+        \ allow you to attach new fields to Talon.One domain objects like campaigns,\
+        \ coupons, customers and so on. These attributes can then be given values\
+        \ when creating / updating these objects, and these values can be used in\
+        \ your campaign rules. For example, you could define a `zipCode` field for\
+        \ customer sessions, and add a rule to your campaign that only allows certain\
+        \ ZIP codes.\n\nThese attributes are shared across all applications in your\
+        \ account, and are never required.\n"
+      operationId: "createAttribute"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/NewAttribute"
+        x-exportParamName: "Body"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/Attribute"
   /v1/attributes/{attributeId}:
     get:
       tags:
@@ -4254,6 +4365,39 @@ paths:
         required: true
         type: "integer"
         x-exportParamName: "AttributeId"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Attribute"
+    put:
+      tags:
+      - "management"
+      summary: "Update a custom attribute"
+      description: "Updates an existing custom attribute. Once created, the only property\
+        \ of a custom attribute that can be changed is the title (human readable description).\
+        \ This restriction is in place to prevent accidentally breaking live integrations.\
+        \ E.g. if you have a customer profile attribute with the name `region`, and\
+        \ your integration is sending `attributes.region` with customer profile updates,\
+        \ changing the name to `locale` would cause the integration requests to begin\
+        \ failing.\n\nIf you **really** need to change the `type` or `name` property\
+        \ of a custom attribute, create a new attribute and update any relevant integrations\
+        \ and rules to use the new attribute. Then delete the old attribute when you\
+        \ are confident you have migrated any needed data from the old attribute to\
+        \ the new one.\n"
+      operationId: "updateAttribute"
+      parameters:
+      - name: "attributeId"
+        in: "path"
+        required: true
+        type: "integer"
+        x-exportParamName: "AttributeId"
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/NewAttribute"
+        x-exportParamName: "Body"
       responses:
         200:
           description: "OK"
@@ -4851,47 +4995,6 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/AccountAnalytics"
-  /v1/accounts/{accountId}/limits:
-    get:
-      tags:
-      - "management"
-      summary: "Get Account Limits"
-      description: "Returns a list of all account limits set\n"
-      operationId: "getAccountLimits"
-      parameters:
-      - name: "accountId"
-        in: "path"
-        description: ""
-        required: true
-        type: "integer"
-        x-exportParamName: "AccountId"
-      responses:
-        200:
-          description: "OK"
-          schema:
-            $ref: "#/definitions/AccountLimits"
-    put:
-      tags:
-      - "management"
-      summary: "Set account limits"
-      description: "sets account limits\n"
-      operationId: "setAccountLimits"
-      parameters:
-      - name: "accountId"
-        in: "path"
-        description: ""
-        required: true
-        type: "integer"
-        x-exportParamName: "AccountId"
-      - in: "body"
-        name: "body"
-        required: true
-        schema:
-          $ref: "#/definitions/AccountLimits"
-        x-exportParamName: "Body"
-      responses:
-        204:
-          description: "No Content"
   /v1/sessions:
     post:
       tags:
@@ -5373,6 +5476,41 @@ definitions:
     example:
       password: "password"
       email: "email"
+  AttributesMandatory:
+    type: "object"
+    properties:
+      campaigns:
+        type: "array"
+        description: "List of mandatory attributes for campaigns."
+        items:
+          type: "string"
+      coupons:
+        type: "array"
+        description: "List of mandatory attributes for campaigns."
+        items:
+          type: "string"
+    description: "Arbitrary settings associated with attributes."
+    example:
+      campaigns:
+      - "campaigns"
+      - "campaigns"
+      coupons:
+      - "coupons"
+      - "coupons"
+  AttributesSettings:
+    type: "object"
+    properties:
+      mandatory:
+        $ref: "#/definitions/AttributesMandatory"
+    description: "Arbitrary settings associated with attributes."
+    example:
+      mandatory:
+        campaigns:
+        - "campaigns"
+        - "campaigns"
+        coupons:
+        - "coupons"
+        - "coupons"
   UpdateApplication:
     type: "object"
     required:
@@ -5412,6 +5550,8 @@ definitions:
         description: "Default limits for campaigns created in this application"
         items:
           $ref: "#/definitions/LimitConfig"
+      attributesSettings:
+        $ref: "#/definitions/AttributesSettings"
   NewApplication:
     type: "object"
     required:
@@ -5451,6 +5591,8 @@ definitions:
         description: "Default limits for campaigns created in this application"
         items:
           $ref: "#/definitions/LimitConfig"
+      attributesSettings:
+        $ref: "#/definitions/AttributesSettings"
       key:
         type: "string"
         description: "Hex key for HMAC-signing API calls as coming from this application\
@@ -5518,6 +5660,8 @@ definitions:
         description: "Default limits for campaigns created in this application"
         items:
           $ref: "#/definitions/LimitConfig"
+      attributesSettings:
+        $ref: "#/definitions/AttributesSettings"
       key:
         type: "string"
         description: "Hex key for HMAC-signing API calls as coming from this application\
@@ -5536,6 +5680,14 @@ definitions:
       created: "2000-01-23T04:56:07.000+00:00"
       timezone: "timezone"
       description: "description"
+      attributesSettings:
+        mandatory:
+          campaigns:
+          - "campaigns"
+          - "campaigns"
+          coupons:
+          - "coupons"
+          - "coupons"
       caseSensitivity: "sensitive"
       accountId: 1
       loyaltyPrograms:
@@ -6522,11 +6674,45 @@ definitions:
           \ be copied to"
         items:
           type: "string"
+      description:
+        type: "string"
+        description: "A detailed description of the campaign."
+        title: "Campaign Description"
+      startTime:
+        type: "string"
+        format: "date-time"
+        description: "Datetime when the campaign will become active."
+      endTime:
+        type: "string"
+        format: "date-time"
+        description: "Datetime when the campaign will become in-active."
+      tags:
+        type: "array"
+        description: "A list of tags for the campaign."
+        items:
+          type: "string"
+          minLength: 1
+          maxLength: 50
+        maxItems: 50
     example:
       name: "name"
+      description: "description"
+      startTime: "2000-01-23T04:56:07.000+00:00"
+      endTime: "2000-01-23T04:56:07.000+00:00"
       applicationIds:
       - "applicationIds"
       - "applicationIds"
+      tags:
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
+      - "tags"
   NewCoupons:
     type: "object"
     required:
@@ -6754,16 +6940,22 @@ definitions:
     required:
     - "campaignDiscountCosts"
     - "campaignFreeItems"
+    - "campaignRefund"
+    - "campaignRefundedDiscounts"
     - "campaignRevenue"
     - "couponRedemptions"
+    - "couponRolledbackRedemptions"
     - "couponsCreated"
     - "date"
     - "referralRedemptions"
     - "referralsCreated"
     - "totalCampaignDiscountCosts"
     - "totalCampaignFreeItems"
+    - "totalCampaignRefund"
+    - "totalCampaignRefundedDiscounts"
     - "totalCampaignRevenue"
     - "totalCouponRedemptions"
+    - "totalCouponRolledbackRedemptions"
     - "totalCouponsCreated"
     - "totalReferralRedemptions"
     - "totalReferralsCreated"
@@ -6773,10 +6965,18 @@ definitions:
         format: "date-time"
       campaignRevenue:
         type: "number"
-        description: "Amount of revenue in this campaign."
+        description: "Amount of revenue in this campaign (for coupon or discount sessions)."
       totalCampaignRevenue:
         type: "number"
-        description: "Amount of revenue in this campaign since it began."
+        description: "Amount of revenue in this campaign since it began (for coupon\
+          \ or discount sessions)."
+      campaignRefund:
+        type: "number"
+        description: "Amount of refunds in this campaign (for coupon or discount sessions)."
+      totalCampaignRefund:
+        type: "number"
+        description: "Amount of refunds in this campaign since it began (for coupon\
+          \ or discount sessions)."
       campaignDiscountCosts:
         type: "number"
         description: "Amount of cost caused by discounts given in the campaign."
@@ -6784,6 +6984,13 @@ definitions:
         type: "number"
         description: "Amount of cost caused by discounts given in the campaign since\
           \ it began."
+      campaignRefundedDiscounts:
+        type: "number"
+        description: "Amount of discounts rolledback due to refund in the campaign."
+      totalCampaignRefundedDiscounts:
+        type: "number"
+        description: "Amount of discounts rolledback due to refund in the campaign\
+          \ since it began."
       campaignFreeItems:
         type: "integer"
         description: "Amount of free items given in the campaign."
@@ -6792,11 +6999,18 @@ definitions:
         description: "Amount of free items given in the campaign since it began."
       couponRedemptions:
         type: "integer"
-        description: "Number of coupon redemptions in the campaign (only accepted\
-          \ referrals on sessions that were closed are considered)."
+        description: "Number of coupon redemptions in the campaign."
       totalCouponRedemptions:
         type: "integer"
         description: "Number of coupon redemptions in the campaign since it began."
+      couponRolledbackRedemptions:
+        type: "integer"
+        description: "Number of coupon redemptions that have been rolled back (due\
+          \ to canceling closed session) in the campaign."
+      totalCouponRolledbackRedemptions:
+        type: "integer"
+        description: "Number of coupon redemptions that have been rolled back (due\
+          \ to canceling closed session) in the campaign since it began."
       referralRedemptions:
         type: "integer"
         description: "Number of referral redemptions in the campaign."
@@ -6820,20 +7034,26 @@ definitions:
     description: ""
     example:
       date: "2000-01-23T04:56:07.000+00:00"
+      couponRolledbackRedemptions: 1
+      totalCouponRolledbackRedemptions: 1
+      campaignRefundedDiscounts: 9.301444243932575517419536481611430644989013671875
       campaignFreeItems: 2
-      totalCampaignFreeItems: 7
-      couponRedemptions: 9
-      totalCampaignDiscountCosts: 5.63737665663332876420099637471139430999755859375
-      referralRedemptions: 2
+      totalCampaignFreeItems: 4
+      totalCampaignRefundedDiscounts: 3.61607674925191080461672754609026014804840087890625
+      couponRedemptions: 7
+      totalCampaignDiscountCosts: 7.061401241503109105224211816675961017608642578125
+      referralRedemptions: 6
       totalCampaignRevenue: 1.46581298050294517310021547018550336360931396484375
       campaignRevenue: 6.02745618307040320615897144307382404804229736328125
-      campaignDiscountCosts: 5.962133916683182377482808078639209270477294921875
-      totalCouponsCreated: 1
-      totalCouponRedemptions: 3
-      totalReferralRedemptions: 4
-      couponsCreated: 7
-      referralsCreated: 1
-      totalReferralsCreated: 1
+      campaignDiscountCosts: 2.3021358869347654518833223846741020679473876953125
+      totalCampaignRefund: 5.63737665663332876420099637471139430999755859375
+      totalCouponsCreated: 4
+      totalCouponRedemptions: 1
+      totalReferralRedemptions: 7
+      couponsCreated: 1
+      referralsCreated: 5
+      totalReferralsCreated: 9
+      campaignRefund: 5.962133916683182377482808078639209270477294921875
   ApplicationApiHealth:
     type: "object"
     required:
@@ -7115,11 +7335,11 @@ definitions:
         description: "API endpoint on which the change was initiated."
       old:
         type: "object"
-        description: "Resource before the change occured."
+        description: "Resource before the change occurred."
         properties: {}
       new:
         type: "object"
-        description: "Resource after the change occured."
+        description: "Resource after the change occurred."
         properties: {}
     description: ""
     example:
@@ -7661,6 +7881,50 @@ definitions:
         loyaltyProgramId: 7
       - joined: "2000-01-23T04:56:07.000+00:00"
         loyaltyProgramId: 7
+  CustomerInventory:
+    type: "object"
+    properties:
+      profile:
+        $ref: "#/definitions/CustomerProfile"
+      referrals:
+        type: "array"
+        items:
+          $ref: "#/definitions/Referral"
+    example:
+      referrals:
+      - expiryDate: "2000-01-23T04:56:07.000+00:00"
+        code: "code"
+        friendProfileIntegrationId: "friendProfileIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 0
+        id: 0
+        usageCounter: 1
+        advocateProfileIntegrationId: "advocateProfileIntegrationId"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+      - expiryDate: "2000-01-23T04:56:07.000+00:00"
+        code: "code"
+        friendProfileIntegrationId: "friendProfileIntegrationId"
+        created: "2000-01-23T04:56:07.000+00:00"
+        campaignId: 6
+        usageLimit: 0
+        id: 0
+        usageCounter: 1
+        advocateProfileIntegrationId: "advocateProfileIntegrationId"
+        startDate: "2000-01-23T04:56:07.000+00:00"
+      profile:
+        accountId: 1
+        closedSessions: 1
+        created: "2000-01-23T04:56:07.000+00:00"
+        integrationId: "integrationId"
+        attributes: "{}"
+        totalSales: 6.8468526983526398765889098285697400569915771484375
+        lastActivity: "2000-01-23T04:56:07.000+00:00"
+        loyaltyMemberships:
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
+        - joined: "2000-01-23T04:56:07.000+00:00"
+          loyaltyProgramId: 7
   NewCustomerSession:
     type: "object"
     properties:
@@ -8615,6 +8879,7 @@ definitions:
     - "activeCampaigns"
     - "activeCoupons"
     - "activeReferralCodes"
+    - "activeRules"
     - "applications"
     - "campaigns"
     - "coupons"
@@ -8669,12 +8934,16 @@ definitions:
       loyaltyPrograms:
         type: "integer"
         description: "Total Number of loyalty programs inside the account"
+      activeRules:
+        type: "integer"
+        description: "Total Number of active rules in the account"
     example:
       expiredCoupons: 2
       roles: 7
       activeCampaigns: 6
       activeCoupons: 5
       users: 4
+      activeRules: 1
       campaigns: 1
       coupons: 5
       expiredReferralCodes: 2
@@ -8729,25 +8998,14 @@ definitions:
       apiVolume:
         type: "integer"
         description: "Total allowed api volume"
+      activeRules:
+        type: "integer"
+        description: "Total allowed active rulesets"
       promotionTypes:
         type: "array"
         description: "array of rulesets where webhook is used"
         items:
           type: "string"
-    example:
-      liveApplications: 0
-      coupons: 5
-      webhooks: 9
-      promotionTypes:
-      - "promotionTypes"
-      - "promotionTypes"
-      referralCodes: 5
-      sandboxLoyaltyPrograms: 7
-      apiVolume: 2
-      activeCampaigns: 1
-      liveLoyaltyPrograms: 2
-      sandboxApplications: 6
-      users: 3
   UpdateAccount:
     type: "object"
     required:
@@ -9301,6 +9559,25 @@ definitions:
         type: "boolean"
         description: "Whether or not this attribute can be edited."
     description: ""
+    example:
+      editable: true
+      name: "name"
+      description: "description"
+      suggestions:
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      - "suggestions"
+      eventType: "eventType"
+      title: "title"
+      type: "string"
+      entity: "Account"
   Attribute:
     type: "object"
     required:
@@ -9382,7 +9659,7 @@ definitions:
         description: "Whether or not this attribute can be edited."
     description: ""
     example:
-      accountId: 6
+      accountId: 1
       created: "2000-01-23T04:56:07.000+00:00"
       editable: true
       name: "name"
@@ -9398,7 +9675,7 @@ definitions:
       - "suggestions"
       - "suggestions"
       - "suggestions"
-      id: 0
+      id: 6
       eventType: "eventType"
       title: "title"
       type: "string"
@@ -10302,27 +10579,20 @@ definitions:
     required:
     - "accountId"
     - "assertionConsumerServiceURL"
-    - "audience"
+    - "audienceURI"
     - "created"
     - "enabled"
     - "id"
     - "issuer"
     - "name"
     - "signOnURL"
-    - "x509certificate"
     properties:
-      id:
-        type: "integer"
-      created:
-        type: "string"
-        format: "date-time"
-        description: "Unix timestamp indicating when the session was first created."
-      accountId:
-        type: "integer"
-        description: "The ID of the account that owns this SAML Service."
       assertionConsumerServiceURL:
         type: "string"
         description: "The location where the SAML assertion is sent with a HTTP POST."
+      accountId:
+        type: "integer"
+        description: "The ID of the account that owns this entity."
       name:
         type: "string"
         description: "ID of the SAML service."
@@ -10344,25 +10614,36 @@ definitions:
       metadataURL:
         type: "string"
         description: "Metadata URL."
-      x509certificate:
-        type: "string"
-        description: "X.509 Certificate."
-        minLength: 1
-      audience:
+      audienceURI:
         type: "string"
         description: "The application-defined unique identifier that is the intended\
-          \ audience of the SAML assertion. \nThis is most often the SP Entity ID\
-          \ of your application. When not specified, the ACS URL will be used.\n"
+          \ audience of the SAML assertion.\nThis is most often the SP Entity ID of\
+          \ your application. When not specified, the ACS URL will be used.\n"
+      id:
+        type: "integer"
+        description: "Unique ID for this entity."
+      created:
+        type: "string"
+        format: "date-time"
+        description: "The exact moment this entity was created."
     description: ""
   NewSamlConnection:
     type: "object"
     required:
+    - "accountId"
     - "enabled"
     - "issuer"
     - "name"
     - "signOnURL"
     - "x509certificate"
     properties:
+      x509certificate:
+        type: "string"
+        description: "X.509 Certificate."
+        minLength: 1
+      accountId:
+        type: "integer"
+        description: "The ID of the account that owns this entity."
       name:
         type: "string"
         description: "ID of the SAML service."
@@ -10384,16 +10665,71 @@ definitions:
       metadataURL:
         type: "string"
         description: "Metadata URL."
-      x509certificate:
-        type: "string"
-        description: "X.509 Certificate."
-        minLength: 1
-      audience:
+      audienceURI:
         type: "string"
         description: "The application-defined unique identifier that is the intended\
-          \ audience of the SAML assertion. \nThis is most often the SP Entity ID\
-          \ of your application. When not specified, the ACS URL will be used.\n"
-    description: "A new SAML 2.0 connection."
+          \ audience of the SAML assertion.\nThis is most often the SP Entity ID of\
+          \ your application. When not specified, the ACS URL will be used.\n"
+    description: ""
+  SamlConnectionMetadata:
+    type: "object"
+    required:
+    - "accountId"
+    - "enabled"
+    - "metadataDocument"
+    - "name"
+    properties:
+      name:
+        type: "string"
+        description: "ID of the SAML service."
+        minLength: 1
+      enabled:
+        type: "boolean"
+        description: "Determines if this SAML connection active."
+      accountId:
+        type: "number"
+      metadataDocument:
+        type: "string"
+        description: "Identity Provider metadata XML document."
+        minLength: 1
+  BaseSamlConnection:
+    type: "object"
+    required:
+    - "accountId"
+    - "enabled"
+    - "issuer"
+    - "name"
+    - "signOnURL"
+    properties:
+      accountId:
+        type: "integer"
+        description: "The ID of the account that owns this entity."
+      name:
+        type: "string"
+        description: "ID of the SAML service."
+        minLength: 1
+      enabled:
+        type: "boolean"
+        description: "Determines if this SAML connection active."
+      issuer:
+        type: "string"
+        description: "Identity Provider Entity ID."
+        minLength: 1
+      signOnURL:
+        type: "string"
+        description: "Single Sign-On URL."
+        minLength: 1
+      signOutURL:
+        type: "string"
+        description: "Single Sign-Out URL."
+      metadataURL:
+        type: "string"
+        description: "Metadata URL."
+      audienceURI:
+        type: "string"
+        description: "The application-defined unique identifier that is the intended\
+          \ audience of the SAML assertion.\nThis is most often the SP Entity ID of\
+          \ your application. When not specified, the ACS URL will be used.\n"
   inline_response_200:
     required:
     - "data"
@@ -10490,6 +10826,14 @@ definitions:
       - created: "2000-01-23T04:56:07.000+00:00"
         timezone: "timezone"
         description: "description"
+        attributesSettings:
+          mandatory:
+            campaigns:
+            - "campaigns"
+            - "campaigns"
+            coupons:
+            - "coupons"
+            - "coupons"
         caseSensitivity: "sensitive"
         accountId: 1
         loyaltyPrograms:
@@ -10533,6 +10877,14 @@ definitions:
       - created: "2000-01-23T04:56:07.000+00:00"
         timezone: "timezone"
         description: "description"
+        attributesSettings:
+          mandatory:
+            campaigns:
+            - "campaigns"
+            - "campaigns"
+            coupons:
+            - "coupons"
+            - "coupons"
         caseSensitivity: "sensitive"
         accountId: 1
         loyaltyPrograms:
@@ -11030,35 +11382,47 @@ definitions:
     example:
       data:
       - date: "2000-01-23T04:56:07.000+00:00"
+        couponRolledbackRedemptions: 1
+        totalCouponRolledbackRedemptions: 1
+        campaignRefundedDiscounts: 9.301444243932575517419536481611430644989013671875
         campaignFreeItems: 2
-        totalCampaignFreeItems: 7
-        couponRedemptions: 9
-        totalCampaignDiscountCosts: 5.63737665663332876420099637471139430999755859375
-        referralRedemptions: 2
+        totalCampaignFreeItems: 4
+        totalCampaignRefundedDiscounts: 3.61607674925191080461672754609026014804840087890625
+        couponRedemptions: 7
+        totalCampaignDiscountCosts: 7.061401241503109105224211816675961017608642578125
+        referralRedemptions: 6
         totalCampaignRevenue: 1.46581298050294517310021547018550336360931396484375
         campaignRevenue: 6.02745618307040320615897144307382404804229736328125
-        campaignDiscountCosts: 5.962133916683182377482808078639209270477294921875
-        totalCouponsCreated: 1
-        totalCouponRedemptions: 3
-        totalReferralRedemptions: 4
-        couponsCreated: 7
-        referralsCreated: 1
-        totalReferralsCreated: 1
+        campaignDiscountCosts: 2.3021358869347654518833223846741020679473876953125
+        totalCampaignRefund: 5.63737665663332876420099637471139430999755859375
+        totalCouponsCreated: 4
+        totalCouponRedemptions: 1
+        totalReferralRedemptions: 7
+        couponsCreated: 1
+        referralsCreated: 5
+        totalReferralsCreated: 9
+        campaignRefund: 5.962133916683182377482808078639209270477294921875
       - date: "2000-01-23T04:56:07.000+00:00"
+        couponRolledbackRedemptions: 1
+        totalCouponRolledbackRedemptions: 1
+        campaignRefundedDiscounts: 9.301444243932575517419536481611430644989013671875
         campaignFreeItems: 2
-        totalCampaignFreeItems: 7
-        couponRedemptions: 9
-        totalCampaignDiscountCosts: 5.63737665663332876420099637471139430999755859375
-        referralRedemptions: 2
+        totalCampaignFreeItems: 4
+        totalCampaignRefundedDiscounts: 3.61607674925191080461672754609026014804840087890625
+        couponRedemptions: 7
+        totalCampaignDiscountCosts: 7.061401241503109105224211816675961017608642578125
+        referralRedemptions: 6
         totalCampaignRevenue: 1.46581298050294517310021547018550336360931396484375
         campaignRevenue: 6.02745618307040320615897144307382404804229736328125
-        campaignDiscountCosts: 5.962133916683182377482808078639209270477294921875
-        totalCouponsCreated: 1
-        totalCouponRedemptions: 3
-        totalReferralRedemptions: 4
-        couponsCreated: 7
-        referralsCreated: 1
-        totalReferralsCreated: 1
+        campaignDiscountCosts: 2.3021358869347654518833223846741020679473876953125
+        totalCampaignRefund: 5.63737665663332876420099637471139430999755859375
+        totalCouponsCreated: 4
+        totalCouponRedemptions: 1
+        totalReferralRedemptions: 7
+        couponsCreated: 1
+        referralsCreated: 5
+        totalReferralsCreated: 9
+        campaignRefund: 5.962133916683182377482808078639209270477294921875
       totalResultSize: 0
   inline_response_200_12:
     required:
@@ -11414,6 +11778,62 @@ definitions:
       data:
         type: "array"
         items:
+          $ref: "#/definitions/Attribute"
+    example:
+      data:
+      - accountId: 1
+        created: "2000-01-23T04:56:07.000+00:00"
+        editable: true
+        name: "name"
+        description: "description"
+        suggestions:
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        id: 6
+        eventType: "eventType"
+        title: "title"
+        type: "string"
+        entity: "Account"
+      - accountId: 1
+        created: "2000-01-23T04:56:07.000+00:00"
+        editable: true
+        name: "name"
+        description: "description"
+        suggestions:
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        - "suggestions"
+        id: 6
+        eventType: "eventType"
+        title: "title"
+        type: "string"
+        entity: "Account"
+      totalResultSize: 0
+  inline_response_200_21:
+    required:
+    - "data"
+    - "totalResultSize"
+    properties:
+      totalResultSize:
+        type: "integer"
+      data:
+        type: "array"
+        items:
           $ref: "#/definitions/Webhook"
     example:
       data:
@@ -11464,7 +11884,7 @@ definitions:
         - 1
         - 1
       totalResultSize: 0
-  inline_response_200_21:
+  inline_response_200_22:
     required:
     - "data"
     - "totalResultSize"
@@ -11488,7 +11908,7 @@ definitions:
         integrationRequestUuid: "integrationRequestUuid"
         applicationId: 1
       totalResultSize: 0
-  inline_response_200_22:
+  inline_response_200_23:
     required:
     - "data"
     - "totalResultSize"
@@ -11522,7 +11942,7 @@ definitions:
         url: "url"
         status: 5
       totalResultSize: 0
-  inline_response_200_23:
+  inline_response_200_24:
     required:
     - "data"
     - "totalResultSize"
@@ -11564,7 +11984,7 @@ definitions:
         - 1
         - 1
       totalResultSize: 0
-  inline_response_200_24:
+  inline_response_200_25:
     required:
     - "data"
     - "totalResultSize"
@@ -11610,7 +12030,7 @@ definitions:
         email: "email"
         policy: "policy"
       totalResultSize: 0
-  inline_response_200_25:
+  inline_response_200_26:
     required:
     - "data"
     properties:
@@ -11638,7 +12058,7 @@ definitions:
         entity: "entity"
       hasMore: true
       totalResultSize: 0
-  inline_response_200_26:
+  inline_response_200_27:
     required:
     - "data"
     - "totalResultSize"
@@ -11664,7 +12084,7 @@ definitions:
         userId: 5
         entity: "Coupon"
       totalResultSize: 0
-  inline_response_200_27:
+  inline_response_200_28:
     required:
     - "data"
     - "totalResultSize"
@@ -11690,7 +12110,7 @@ definitions:
         userId: 5
         entity: "Coupon"
       totalResultSize: 0
-  inline_response_200_28:
+  inline_response_200_29:
     required:
     - "data"
     - "totalResultSize"
