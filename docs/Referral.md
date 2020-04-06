@@ -1,18 +1,272 @@
 # Referral
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **int32** | Unique ID for this entity. | [default to null]
-**Created** | [**time.Time**](time.Time.md) | The exact moment this entity was created. | [default to null]
-**CampaignId** | **int32** | ID of the campaign from which the referral received the referral code. | [default to null]
-**AdvocateProfileIntegrationId** | **string** | The Integration Id of the Advocate&#39;s Profile | [default to null]
-**FriendProfileIntegrationId** | **string** | An optional Integration ID of the Friend&#39;s Profile | [optional] [default to null]
-**StartDate** | [**time.Time**](time.Time.md) | Timestamp at which point the referral code becomes valid. | [optional] [default to null]
-**ExpiryDate** | [**time.Time**](time.Time.md) | Expiry date of the referral code. Referral never expires if this is omitted, zero, or negative. | [optional] [default to null]
-**Code** | **string** | The actual referral code. | [default to null]
-**UsageCounter** | **int32** | The number of times this referral code has been successfully used. | [default to null]
-**UsageLimit** | **int32** | The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | [default to null]
+**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**CampaignId** | Pointer to **int32** | ID of the campaign from which the referral received the referral code. | 
+**AdvocateProfileIntegrationId** | Pointer to **string** | The Integration Id of the Advocate&#39;s Profile | 
+**FriendProfileIntegrationId** | Pointer to **string** | An optional Integration ID of the Friend&#39;s Profile | [optional] 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the referral code becomes valid. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the referral code. Referral never expires if this is omitted, zero, or negative. | [optional] 
+**Code** | Pointer to **string** | The actual referral code. | 
+**UsageCounter** | Pointer to **int32** | The number of times this referral code has been successfully used. | 
+**UsageLimit** | Pointer to **int32** | The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | 
+
+## Methods
+
+### GetId
+
+`func (o *Referral) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Referral) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *Referral) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *Referral) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
+### GetCreated
+
+`func (o *Referral) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *Referral) GetCreatedOk() (time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *Referral) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *Referral) SetCreated(v time.Time)`
+
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetCampaignId
+
+`func (o *Referral) GetCampaignId() int32`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *Referral) GetCampaignIdOk() (int32, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignId
+
+`func (o *Referral) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### SetCampaignId
+
+`func (o *Referral) SetCampaignId(v int32)`
+
+SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
+
+### GetAdvocateProfileIntegrationId
+
+`func (o *Referral) GetAdvocateProfileIntegrationId() string`
+
+GetAdvocateProfileIntegrationId returns the AdvocateProfileIntegrationId field if non-nil, zero value otherwise.
+
+### GetAdvocateProfileIntegrationIdOk
+
+`func (o *Referral) GetAdvocateProfileIntegrationIdOk() (string, bool)`
+
+GetAdvocateProfileIntegrationIdOk returns a tuple with the AdvocateProfileIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdvocateProfileIntegrationId
+
+`func (o *Referral) HasAdvocateProfileIntegrationId() bool`
+
+HasAdvocateProfileIntegrationId returns a boolean if a field has been set.
+
+### SetAdvocateProfileIntegrationId
+
+`func (o *Referral) SetAdvocateProfileIntegrationId(v string)`
+
+SetAdvocateProfileIntegrationId gets a reference to the given string and assigns it to the AdvocateProfileIntegrationId field.
+
+### GetFriendProfileIntegrationId
+
+`func (o *Referral) GetFriendProfileIntegrationId() string`
+
+GetFriendProfileIntegrationId returns the FriendProfileIntegrationId field if non-nil, zero value otherwise.
+
+### GetFriendProfileIntegrationIdOk
+
+`func (o *Referral) GetFriendProfileIntegrationIdOk() (string, bool)`
+
+GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasFriendProfileIntegrationId
+
+`func (o *Referral) HasFriendProfileIntegrationId() bool`
+
+HasFriendProfileIntegrationId returns a boolean if a field has been set.
+
+### SetFriendProfileIntegrationId
+
+`func (o *Referral) SetFriendProfileIntegrationId(v string)`
+
+SetFriendProfileIntegrationId gets a reference to the given string and assigns it to the FriendProfileIntegrationId field.
+
+### GetStartDate
+
+`func (o *Referral) GetStartDate() time.Time`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *Referral) GetStartDateOk() (time.Time, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStartDate
+
+`func (o *Referral) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
+
+### SetStartDate
+
+`func (o *Referral) SetStartDate(v time.Time)`
+
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+
+### GetExpiryDate
+
+`func (o *Referral) GetExpiryDate() time.Time`
+
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+
+### GetExpiryDateOk
+
+`func (o *Referral) GetExpiryDateOk() (time.Time, bool)`
+
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiryDate
+
+`func (o *Referral) HasExpiryDate() bool`
+
+HasExpiryDate returns a boolean if a field has been set.
+
+### SetExpiryDate
+
+`func (o *Referral) SetExpiryDate(v time.Time)`
+
+SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+
+### GetCode
+
+`func (o *Referral) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *Referral) GetCodeOk() (string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCode
+
+`func (o *Referral) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCode
+
+`func (o *Referral) SetCode(v string)`
+
+SetCode gets a reference to the given string and assigns it to the Code field.
+
+### GetUsageCounter
+
+`func (o *Referral) GetUsageCounter() int32`
+
+GetUsageCounter returns the UsageCounter field if non-nil, zero value otherwise.
+
+### GetUsageCounterOk
+
+`func (o *Referral) GetUsageCounterOk() (int32, bool)`
+
+GetUsageCounterOk returns a tuple with the UsageCounter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUsageCounter
+
+`func (o *Referral) HasUsageCounter() bool`
+
+HasUsageCounter returns a boolean if a field has been set.
+
+### SetUsageCounter
+
+`func (o *Referral) SetUsageCounter(v int32)`
+
+SetUsageCounter gets a reference to the given int32 and assigns it to the UsageCounter field.
+
+### GetUsageLimit
+
+`func (o *Referral) GetUsageLimit() int32`
+
+GetUsageLimit returns the UsageLimit field if non-nil, zero value otherwise.
+
+### GetUsageLimitOk
+
+`func (o *Referral) GetUsageLimitOk() (int32, bool)`
+
+GetUsageLimitOk returns a tuple with the UsageLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUsageLimit
+
+`func (o *Referral) HasUsageLimit() bool`
+
+HasUsageLimit returns a boolean if a field has been set.
+
+### SetUsageLimit
+
+`func (o *Referral) SetUsageLimit(v int32)`
+
+SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
