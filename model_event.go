@@ -32,7 +32,7 @@ type Event struct {
 	// The ID of the session that this event occurred in.
 	SessionId *string `json:"sessionId,omitempty"`
 	// An array of \"effects\" that must be applied in response to this event. Example effects include `addItemToCart` or `setDiscount`.
-	Effects []interface{} `json:"effects"`
+	Effects [][]interface{} `json:"effects"`
 	// Ledger entries for the event.
 	LedgerEntries []LedgerEntry `json:"ledgerEntries"`
 	Meta          *Meta         `json:"meta,omitempty"`
