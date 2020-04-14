@@ -56,7 +56,15 @@ As well, this paradigm helps when properties are required vs. optional - you wil
 ### Examples
 1. [`LoginParams`](https://github.com/talon-one/talon_go/blob/master/model_login_params.go#L18-L23)
 As we can see in the definition below, both the `Email` and `Password` properties are required:
-https://github.com/talon-one/talon_go/blob/8868f0141255093a7376118a5813c99f241bc9e0/model_login_params.go#L18-L23
+```go
+type LoginParams struct {
+	// The email address associated with your account.
+	Email string `json:"email"`
+	// The password for your account.
+	Password string `json:"password"`
+}
+```
+
 Therefore, when instantiating a new struct of the `LoginParams` type you must provide them:
 ```go
 loginParams := talon.LoginParams{
@@ -67,7 +75,27 @@ loginParams := talon.LoginParams{
 
 2. [`NewCustomerSession`](https://github.com/talon-one/talon_go/blob/master/model_new_customer_session.go#L18-L35)
 At the below definition, we can see that none of the properties is required. Therefore you can use both struct literals combined with the property-setters to achieve the state of model you wish:
-https://github.com/talon-one/talon_go/blob/8868f0141255093a7376118a5813c99f241bc9e0/model_new_customer_session.go#L18-L35
+```go
+type NewCustomerSession struct {
+	// ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID.
+	ProfileId *string `json:"profileId,omitempty"`
+	// Any coupon code entered.
+	Coupon *string `json:"coupon,omitempty"`
+	// Any referral code entered.
+	Referral *string `json:"referral,omitempty"`
+	// Indicates the current state of the session. All sessions must start in the \"open\" state, after which valid transitions are...  1. open -> closed 2. open -> cancelled 3. closed -> cancelled
+	State *string `json:"state,omitempty"`
+	// Serialized JSON representation.
+	CartItems *[]CartItem `json:"cartItems,omitempty"`
+	// Identifiers for the customer, this can be used for limits on values such as device ID.
+	Identifiers *[]string `json:"identifiers,omitempty"`
+	// The total sum of the cart in one session.
+	Total *float32 `json:"total,omitempty"`
+	// A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+}
+```
+
 Usage example:
 ```go
 customerSession := talon.NewCustomerSession{
