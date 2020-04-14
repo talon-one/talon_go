@@ -180,9 +180,9 @@ func (o *Event) SetSessionId(v string) {
 }
 
 // GetEffects returns the Effects field value
-func (o *Event) GetEffects() []interface{} {
+func (o *Event) GetEffects() [][]interface{} {
 	if o == nil {
-		var ret []interface{}
+		var ret [][]interface{}
 		return ret
 	}
 
@@ -190,7 +190,7 @@ func (o *Event) GetEffects() []interface{} {
 }
 
 // SetEffects sets field value
-func (o *Event) SetEffects(v []interface{}) {
+func (o *Event) SetEffects(v [][]interface{}) {
 	o.Effects = v
 }
 
