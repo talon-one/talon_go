@@ -1,6 +1,7 @@
 # Migration to v2.0.0
 As part of migrating our code generation to a new, more modernized and more modular one, a few _minor_ changes needed to take place in the provided API of the library.
-This guide will explore these new feature and walk you through those in order to migrate any existing code from versions prior to [v2.0.0](https://github.com/talon-one/talon_go/releases/tag/v2.0.0)
+
+This guide will explore these new feature and walk you through those in order to migrate any existing code from versions prior to [v2.0.0](https://github.com/talon-one/talon_go/releases/tag/v2.0.0).
 
 # Table of Contents
 1. [Configuration Initialization](#configuration-initialization)
