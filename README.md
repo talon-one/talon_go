@@ -99,7 +99,7 @@ func main() {
 	configuration.Servers = talon.ServerConfigurations{
 		{
 			// Notice that there is no trailing '/'
-			URL:         "http://localhost:9000",
+			URL:         "https://mycompany.talon.one",
 			Description: "Talon.One's API base URL",
 		},
 	}
@@ -225,7 +225,7 @@ func main() {
 	configuration.Servers = talon.ServerConfigurations{
 		{
 			// Notice that there is no trailing '/'
-			URL:         "http://localhost:9000",
+			URL:         "https://mycompany.talon.one",
 			Description: "Talon.One's API base URL",
 		},
 	}
@@ -285,7 +285,7 @@ func main() {
 	configuration.Servers = talon.ServerConfigurations{
 		{
 			// Notice that there is no trailing '/'
-			URL:         "http://localhost:9000",
+			URL:         "https://mycompany.talon.one",
 			Description: "Talon.One's API base URL",
 		},
 	}
