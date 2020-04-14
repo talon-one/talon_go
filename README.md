@@ -156,7 +156,7 @@ func main() {
 
 	// Create/update a customer session using `UpdateCustomerSessionV2` function
 	integrationState, _, err := integrationClient.IntegrationApi.
-		UpdateCustomerSessionV2(integrationAuth, "deetdoot_2").
+		UpdateCustomerSessionV2(integrationAuthContext, "deetdoot_2").
 		Body(integrationRequest).
 		Execute()
 
@@ -254,7 +254,7 @@ func main() {
 
 	// Create/update a customer session using `UpdateCustomerSession` function
 	integrationState, response, err := integrationClient.IntegrationApi.
-		UpdateCustomerSession(integrationAuth, "deetdoot").
+		UpdateCustomerSession(integrationAuthContext, "deetdoot").
 		Body(customerSession).
 		Execute()
 
