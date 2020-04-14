@@ -1,16 +1,220 @@
 # NewCustomerSession
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProfileId** | **string** | ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID. | [optional] [default to null]
-**Coupon** | **string** | Any coupon code entered. | [optional] [default to null]
-**Referral** | **string** | Any referral code entered. | [optional] [default to null]
-**State** | **string** | Indicates the current state of the session. All sessions must start in the \&quot;open\&quot; state, after which valid transitions are...  1. open -&gt; closed 2. open -&gt; cancelled 3. closed -&gt; cancelled  | [optional] [default to null]
-**CartItems** | [**[]CartItem**](CartItem.md) | Serialized JSON representation. | [optional] [default to null]
-**Identifiers** | **[]string** | Identifiers for the customer, this can be used for limits on values such as device ID. | [optional] [default to null]
-**Total** | **float32** | The total sum of the cart in one session. | [optional] [default to null]
-**Attributes** | [***interface{}**](interface{}.md) | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | [optional] [default to null]
+**ProfileId** | Pointer to **string** | ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID. | [optional] 
+**Coupon** | Pointer to **string** | Any coupon code entered. | [optional] 
+**Referral** | Pointer to **string** | Any referral code entered. | [optional] 
+**State** | Pointer to **string** | Indicates the current state of the session. All sessions must start in the \&quot;open\&quot; state, after which valid transitions are...  1. open -&gt; closed 2. open -&gt; cancelled 3. closed -&gt; cancelled  | [optional] [default to STATE_OPEN]
+**CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | [optional] 
+**Identifiers** | Pointer to **[]string** | Identifiers for the customer, this can be used for limits on values such as device ID. | [optional] 
+**Total** | Pointer to **float32** | The total sum of the cart in one session. | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | [optional] 
+
+## Methods
+
+### GetProfileId
+
+`func (o *NewCustomerSession) GetProfileId() string`
+
+GetProfileId returns the ProfileId field if non-nil, zero value otherwise.
+
+### GetProfileIdOk
+
+`func (o *NewCustomerSession) GetProfileIdOk() (string, bool)`
+
+GetProfileIdOk returns a tuple with the ProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProfileId
+
+`func (o *NewCustomerSession) HasProfileId() bool`
+
+HasProfileId returns a boolean if a field has been set.
+
+### SetProfileId
+
+`func (o *NewCustomerSession) SetProfileId(v string)`
+
+SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
+
+### GetCoupon
+
+`func (o *NewCustomerSession) GetCoupon() string`
+
+GetCoupon returns the Coupon field if non-nil, zero value otherwise.
+
+### GetCouponOk
+
+`func (o *NewCustomerSession) GetCouponOk() (string, bool)`
+
+GetCouponOk returns a tuple with the Coupon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCoupon
+
+`func (o *NewCustomerSession) HasCoupon() bool`
+
+HasCoupon returns a boolean if a field has been set.
+
+### SetCoupon
+
+`func (o *NewCustomerSession) SetCoupon(v string)`
+
+SetCoupon gets a reference to the given string and assigns it to the Coupon field.
+
+### GetReferral
+
+`func (o *NewCustomerSession) GetReferral() string`
+
+GetReferral returns the Referral field if non-nil, zero value otherwise.
+
+### GetReferralOk
+
+`func (o *NewCustomerSession) GetReferralOk() (string, bool)`
+
+GetReferralOk returns a tuple with the Referral field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReferral
+
+`func (o *NewCustomerSession) HasReferral() bool`
+
+HasReferral returns a boolean if a field has been set.
+
+### SetReferral
+
+`func (o *NewCustomerSession) SetReferral(v string)`
+
+SetReferral gets a reference to the given string and assigns it to the Referral field.
+
+### GetState
+
+`func (o *NewCustomerSession) GetState() string`
+
+GetState returns the State field if non-nil, zero value otherwise.
+
+### GetStateOk
+
+`func (o *NewCustomerSession) GetStateOk() (string, bool)`
+
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasState
+
+`func (o *NewCustomerSession) HasState() bool`
+
+HasState returns a boolean if a field has been set.
+
+### SetState
+
+`func (o *NewCustomerSession) SetState(v string)`
+
+SetState gets a reference to the given string and assigns it to the State field.
+
+### GetCartItems
+
+`func (o *NewCustomerSession) GetCartItems() []CartItem`
+
+GetCartItems returns the CartItems field if non-nil, zero value otherwise.
+
+### GetCartItemsOk
+
+`func (o *NewCustomerSession) GetCartItemsOk() ([]CartItem, bool)`
+
+GetCartItemsOk returns a tuple with the CartItems field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCartItems
+
+`func (o *NewCustomerSession) HasCartItems() bool`
+
+HasCartItems returns a boolean if a field has been set.
+
+### SetCartItems
+
+`func (o *NewCustomerSession) SetCartItems(v []CartItem)`
+
+SetCartItems gets a reference to the given []CartItem and assigns it to the CartItems field.
+
+### GetIdentifiers
+
+`func (o *NewCustomerSession) GetIdentifiers() []string`
+
+GetIdentifiers returns the Identifiers field if non-nil, zero value otherwise.
+
+### GetIdentifiersOk
+
+`func (o *NewCustomerSession) GetIdentifiersOk() ([]string, bool)`
+
+GetIdentifiersOk returns a tuple with the Identifiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIdentifiers
+
+`func (o *NewCustomerSession) HasIdentifiers() bool`
+
+HasIdentifiers returns a boolean if a field has been set.
+
+### SetIdentifiers
+
+`func (o *NewCustomerSession) SetIdentifiers(v []string)`
+
+SetIdentifiers gets a reference to the given []string and assigns it to the Identifiers field.
+
+### GetTotal
+
+`func (o *NewCustomerSession) GetTotal() float32`
+
+GetTotal returns the Total field if non-nil, zero value otherwise.
+
+### GetTotalOk
+
+`func (o *NewCustomerSession) GetTotalOk() (float32, bool)`
+
+GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotal
+
+`func (o *NewCustomerSession) HasTotal() bool`
+
+HasTotal returns a boolean if a field has been set.
+
+### SetTotal
+
+`func (o *NewCustomerSession) SetTotal(v float32)`
+
+SetTotal gets a reference to the given float32 and assigns it to the Total field.
+
+### GetAttributes
+
+`func (o *NewCustomerSession) GetAttributes() map[string]interface{}`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *NewCustomerSession) GetAttributesOk() (map[string]interface{}, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAttributes
+
+`func (o *NewCustomerSession) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributes
+
+`func (o *NewCustomerSession) SetAttributes(v map[string]interface{})`
+
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
