@@ -9,10 +9,10 @@ Method | HTTP request | Description
 [**DeleteCouponReservation**](IntegrationApi.md#DeleteCouponReservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 [**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer.
 [**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile.
-[**GetReservedCoupons**](IntegrationApi.md#GetReservedCoupons) | **Get** /v1/coupon_reservations/coupons/{integrationId} | Get all valid reserved coupons
 [**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
 [**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track an Event
 [**UpdateCustomerProfile**](IntegrationApi.md#UpdateCustomerProfile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile
+[**UpdateCustomerProfileV2**](IntegrationApi.md#UpdateCustomerProfileV2) | **Put** /v2/customer_profiles/{customerProfileId} | Update a Customer Profile
 [**UpdateCustomerSession**](IntegrationApi.md#UpdateCustomerSession) | **Put** /v1/customer_sessions/{customerSessionId} | Update a Customer Session
 [**UpdateCustomerSessionV2**](IntegrationApi.md#UpdateCustomerSessionV2) | **Put** /v2/customer_sessions/{customerSessionId} | Update a Customer Session
 
@@ -190,7 +190,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerInventory
 
-> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Execute()
+> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Execute()
 
 Get an inventory of all data associated with a specific customer profile.
 
@@ -214,53 +214,11 @@ Name | Type | Description  | Notes
 
  **profile** | **bool** | optional flag to decide if you would like customer profile information in the response | 
  **referrals** | **bool** | optional flag to decide if you would like referral information in the response | 
+ **coupons** | **bool** | optional flag to decide if you would like coupon information in the response | 
 
 ### Return type
 
 [**CustomerInventory**](CustomerInventory.md)
-
-### Authorization
-
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetReservedCoupons
-
-> InlineResponse2001 GetReservedCoupons(ctx, integrationId).Execute()
-
-Get all valid reserved coupons
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | The custom identifier for this profile, must be unique within the account. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetReservedCouponsRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 
@@ -321,7 +279,7 @@ Name | Type | Description  | Notes
 
 ## TrackEvent
 
-> IntegrationState TrackEvent(ctx).Body(body).Execute()
+> IntegrationState TrackEvent(ctx).Body(body).Dry(dry).Execute()
 
 Track an Event
 
@@ -339,6 +297,7 @@ Other parameters are passed through a pointer to a apiTrackEventRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**NewEvent**](NewEvent.md) |  | 
+ **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 
@@ -360,7 +319,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerProfile
 
-> IntegrationState UpdateCustomerProfile(ctx, integrationId).Body(body).Execute()
+> IntegrationState UpdateCustomerProfile(ctx, integrationId).Body(body).Dry(dry).Execute()
 
 Update a Customer Profile
 
@@ -383,6 +342,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
+ **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 
@@ -402,9 +362,53 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateCustomerProfileV2
+
+> CustomerProfileUpdate UpdateCustomerProfileV2(ctx, customerProfileId).Body(body).Execute()
+
+Update a Customer Profile
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**customerProfileId** | **string** | The custom identifier for this profile, must be unique within the account. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateCustomerProfileV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
+
+### Return type
+
+[**CustomerProfileUpdate**](CustomerProfileUpdate.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateCustomerSession
 
-> IntegrationState UpdateCustomerSession(ctx, customerSessionId).Body(body).Execute()
+> IntegrationState UpdateCustomerSession(ctx, customerSessionId).Body(body).Dry(dry).Execute()
 
 Update a Customer Session
 
@@ -427,6 +431,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**NewCustomerSession**](NewCustomerSession.md) |  | 
+ **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 
@@ -448,7 +453,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerSessionV2
 
-> IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).Body(body).Execute()
+> IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).Body(body).Dry(dry).Execute()
 
 Update a Customer Session
 
@@ -471,6 +476,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**IntegrationRequest**](IntegrationRequest.md) |  | 
+ **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 

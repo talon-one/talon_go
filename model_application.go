@@ -38,7 +38,9 @@ type Application struct {
 	// Arbitrary properties associated with this campaign
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application
-	Limits             *[]LimitConfig      `json:"limits,omitempty"`
+	Limits *[]LimitConfig `json:"limits,omitempty"`
+	// Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive)
+	CampaignPriority   *string             `json:"campaignPriority,omitempty"`
 	AttributesSettings *AttributesSettings `json:"attributesSettings,omitempty"`
 	// An array containing all the loyalty programs to which this application is subscribed
 	LoyaltyPrograms []LoyaltyProgram `json:"loyaltyPrograms"`
@@ -279,6 +281,39 @@ func (o *Application) HasLimits() bool {
 // SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
 func (o *Application) SetLimits(v []LimitConfig) {
 	o.Limits = &v
+}
+
+// GetCampaignPriority returns the CampaignPriority field value if set, zero value otherwise.
+func (o *Application) GetCampaignPriority() string {
+	if o == nil || o.CampaignPriority == nil {
+		var ret string
+		return ret
+	}
+	return *o.CampaignPriority
+}
+
+// GetCampaignPriorityOk returns a tuple with the CampaignPriority field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetCampaignPriorityOk() (string, bool) {
+	if o == nil || o.CampaignPriority == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CampaignPriority, true
+}
+
+// HasCampaignPriority returns a boolean if a field has been set.
+func (o *Application) HasCampaignPriority() bool {
+	if o != nil && o.CampaignPriority != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
+func (o *Application) SetCampaignPriority(v string) {
+	o.CampaignPriority = &v
 }
 
 // GetAttributesSettings returns the AttributesSettings field value if set, zero value otherwise.

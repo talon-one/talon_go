@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UsageLimit** | Pointer to **int32** | The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | [optional] 
+**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 
@@ -34,6 +35,31 @@ HasUsageLimit returns a boolean if a field has been set.
 `func (o *CouponConstraints) SetUsageLimit(v int32)`
 
 SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
+
+### GetDiscountLimit
+
+`func (o *CouponConstraints) GetDiscountLimit() float32`
+
+GetDiscountLimit returns the DiscountLimit field if non-nil, zero value otherwise.
+
+### GetDiscountLimitOk
+
+`func (o *CouponConstraints) GetDiscountLimitOk() (float32, bool)`
+
+GetDiscountLimitOk returns a tuple with the DiscountLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDiscountLimit
+
+`func (o *CouponConstraints) HasDiscountLimit() bool`
+
+HasDiscountLimit returns a boolean if a field has been set.
+
+### SetDiscountLimit
+
+`func (o *CouponConstraints) SetDiscountLimit(v float32)`
+
+SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
 
 ### GetStartDate
 

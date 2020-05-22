@@ -577,6 +577,7 @@ type apiGetCustomerInventoryRequest struct {
 	integrationId string
 	profile       *bool
 	referrals     *bool
+	coupons       *bool
 }
 
 func (r apiGetCustomerInventoryRequest) Profile(profile bool) apiGetCustomerInventoryRequest {
@@ -589,9 +590,14 @@ func (r apiGetCustomerInventoryRequest) Referrals(referrals bool) apiGetCustomer
 	return r
 }
 
+func (r apiGetCustomerInventoryRequest) Coupons(coupons bool) apiGetCustomerInventoryRequest {
+	r.coupons = &coupons
+	return r
+}
+
 /*
 GetCustomerInventory Get an inventory of all data associated with a specific customer profile.
-Get information regarding entities referencing this customer profile's integrationId. Currently we support customer profile information and referral codes. In the future, this will be expanded with coupon codes and loyalty points.
+Get information regarding entities referencing this customer profile's integrationId. Currently we support customer profile information, referral codes and reserved coupons. In the future, this will be expanded with loyalty points.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param integrationId The custom identifier for this profile, must be unique within the account.
 @return apiGetCustomerInventoryRequest
@@ -635,6 +641,9 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 	}
 	if r.referrals != nil {
 		localVarQueryParams.Add("referrals", parameterToString(*r.referrals, ""))
+	}
+	if r.coupons != nil {
+		localVarQueryParams.Add("coupons", parameterToString(*r.coupons, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -704,144 +713,6 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v CustomerInventory
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type apiGetReservedCouponsRequest struct {
-	ctx           _context.Context
-	apiService    *IntegrationApiService
-	integrationId string
-}
-
-/*
-GetReservedCoupons Get all valid reserved coupons
-Returns all coupons this user is subscribed to that are valid and usable
-
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param integrationId The custom identifier for this profile, must be unique within the account.
-@return apiGetReservedCouponsRequest
-*/
-func (a *IntegrationApiService) GetReservedCoupons(ctx _context.Context, integrationId string) apiGetReservedCouponsRequest {
-	return apiGetReservedCouponsRequest{
-		apiService:    a,
-		ctx:           ctx,
-		integrationId: integrationId,
-	}
-}
-
-/*
-Execute executes the request
- @return InlineResponse2001
-*/
-func (r apiGetReservedCouponsRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2001
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetReservedCoupons")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/coupon_reservations/coupons/{integrationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2001
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1006,10 +877,16 @@ type apiTrackEventRequest struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
 	body       *NewEvent
+	dry        *bool
 }
 
 func (r apiTrackEventRequest) Body(body NewEvent) apiTrackEventRequest {
 	r.body = &body
+	return r
+}
+
+func (r apiTrackEventRequest) Dry(dry bool) apiTrackEventRequest {
+	r.dry = &dry
 	return r
 }
 
@@ -1062,6 +939,9 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	if r.dry != nil {
+		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1159,10 +1039,16 @@ type apiUpdateCustomerProfileRequest struct {
 	apiService    *IntegrationApiService
 	integrationId string
 	body          *NewCustomerProfile
+	dry           *bool
 }
 
 func (r apiUpdateCustomerProfileRequest) Body(body NewCustomerProfile) apiUpdateCustomerProfileRequest {
 	r.body = &body
+	return r
+}
+
+func (r apiUpdateCustomerProfileRequest) Dry(dry bool) apiUpdateCustomerProfileRequest {
+	r.dry = &dry
 	return r
 }
 
@@ -1219,6 +1105,9 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	if r.dry != nil {
+		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1311,15 +1200,161 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiUpdateCustomerProfileV2Request struct {
+	ctx               _context.Context
+	apiService        *IntegrationApiService
+	customerProfileId string
+	body              *NewCustomerProfile
+}
+
+func (r apiUpdateCustomerProfileV2Request) Body(body NewCustomerProfile) apiUpdateCustomerProfileV2Request {
+	r.body = &body
+	return r
+}
+
+/*
+UpdateCustomerProfileV2 Update a Customer Profile
+Update (or create) a [Customer Profile][].
+
+The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.
+
+[Customer Profile]: /Getting-Started/entities#customer-profile
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param customerProfileId The custom identifier for this profile, must be unique within the account.
+@return apiUpdateCustomerProfileV2Request
+*/
+func (a *IntegrationApiService) UpdateCustomerProfileV2(ctx _context.Context, customerProfileId string) apiUpdateCustomerProfileV2Request {
+	return apiUpdateCustomerProfileV2Request{
+		apiService:        a,
+		ctx:               ctx,
+		customerProfileId: customerProfileId,
+	}
+}
+
+/*
+Execute executes the request
+ @return CustomerProfileUpdate
+*/
+func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileUpdate, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  CustomerProfileUpdate
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerProfileV2")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/customer_profiles/{customerProfileId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"customerProfileId"+"}", _neturl.QueryEscape(parameterToString(r.customerProfileId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v CustomerProfileUpdate
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiUpdateCustomerSessionRequest struct {
 	ctx               _context.Context
 	apiService        *IntegrationApiService
 	customerSessionId string
 	body              *NewCustomerSession
+	dry               *bool
 }
 
 func (r apiUpdateCustomerSessionRequest) Body(body NewCustomerSession) apiUpdateCustomerSessionRequest {
 	r.body = &body
+	return r
+}
+
+func (r apiUpdateCustomerSessionRequest) Dry(dry bool) apiUpdateCustomerSessionRequest {
+	r.dry = &dry
 	return r
 }
 
@@ -1379,6 +1414,9 @@ func (r apiUpdateCustomerSessionRequest) Execute() (IntegrationState, *_nethttp.
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	if r.dry != nil {
+		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1476,10 +1514,16 @@ type apiUpdateCustomerSessionV2Request struct {
 	apiService        *IntegrationApiService
 	customerSessionId string
 	body              *IntegrationRequest
+	dry               *bool
 }
 
 func (r apiUpdateCustomerSessionV2Request) Body(body IntegrationRequest) apiUpdateCustomerSessionV2Request {
 	r.body = &body
+	return r
+}
+
+func (r apiUpdateCustomerSessionV2Request) Dry(dry bool) apiUpdateCustomerSessionV2Request {
+	r.dry = &dry
 	return r
 }
 
@@ -1539,6 +1583,9 @@ func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_neth
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	if r.dry != nil {
+		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

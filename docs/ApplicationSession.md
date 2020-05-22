@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | Indicating if the customer session is in progress (\&quot;open\&quot;), \&quot;closed\&quot;, or \&quot;cancelled\&quot;. | 
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
 **Discounts** | Pointer to **map[string]float32** | A map of labelled discount values, in the same currency as the session. | 
-**Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | [optional] 
+**Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | [optional] 
 
 ## Methods

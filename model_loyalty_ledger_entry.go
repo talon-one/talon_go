@@ -29,6 +29,8 @@ type LoyaltyLedgerEntry struct {
 	Name string `json:"name"`
 	// This specifies if we are adding loyalty points to the main ledger or a subledger
 	SubLedgerID string `json:"subLedgerID"`
+	// This is the ID of the user who created this entry, if the addition or subtraction was done manually.
+	UserID *int32 `json:"userID,omitempty"`
 }
 
 // GetCreated returns the Created field value
@@ -233,6 +235,39 @@ func (o *LoyaltyLedgerEntry) GetSubLedgerID() string {
 // SetSubLedgerID sets field value
 func (o *LoyaltyLedgerEntry) SetSubLedgerID(v string) {
 	o.SubLedgerID = v
+}
+
+// GetUserID returns the UserID field value if set, zero value otherwise.
+func (o *LoyaltyLedgerEntry) GetUserID() int32 {
+	if o == nil || o.UserID == nil {
+		var ret int32
+		return ret
+	}
+	return *o.UserID
+}
+
+// GetUserIDOk returns a tuple with the UserID field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyLedgerEntry) GetUserIDOk() (int32, bool) {
+	if o == nil || o.UserID == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.UserID, true
+}
+
+// HasUserID returns a boolean if a field has been set.
+func (o *LoyaltyLedgerEntry) HasUserID() bool {
+	if o != nil && o.UserID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUserID gets a reference to the given int32 and assigns it to the UserID field.
+func (o *LoyaltyLedgerEntry) SetUserID(v int32) {
+	o.UserID = &v
 }
 
 type NullableLoyaltyLedgerEntry struct {

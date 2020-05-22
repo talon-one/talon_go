@@ -9,12 +9,15 @@ Name | Type | Description | Notes
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **Value** | Pointer to **string** | The actual coupon code. | 
 **UsageLimit** | Pointer to **int32** | The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | 
+**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **UsageCounter** | Pointer to **int32** | The number of times this coupon has been successfully used. | 
+**DiscountCounter** | Pointer to **float32** | The amount of discounts given on rules redeeming this coupon. Only usable if a coupon discount budget was set for this coupon. | [optional] 
+**DiscountRemainder** | Pointer to **float32** | The remaining discount this coupon can give. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | [optional] 
 **ReferralId** | Pointer to **int32** | The integration ID of the referring customer (if any) for whom this coupon was created as an effect. | [optional] 
-**RecipientIntegrationId** | Pointer to **string** | The integration ID of a referred customer profile. | [optional] 
+**RecipientIntegrationId** | Pointer to **string** | The Integration ID of the customer that is allowed to redeem this coupon. | [optional] 
 **ImportId** | Pointer to **int32** | The ID of the Import which created this coupon. | [optional] 
 **Reservation** | Pointer to **bool** | This value controls what reservations mean to a coupon. If set to true the coupon reservation is used to mark it as a favourite, if set to false the coupon reservation is used as a requirement of usage. This value defaults to true if not specified. | [optional] 
 **BatchId** | Pointer to **string** | The id of the batch the coupon belongs to. | [optional] 
@@ -146,6 +149,31 @@ HasUsageLimit returns a boolean if a field has been set.
 
 SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
 
+### GetDiscountLimit
+
+`func (o *Coupon) GetDiscountLimit() float32`
+
+GetDiscountLimit returns the DiscountLimit field if non-nil, zero value otherwise.
+
+### GetDiscountLimitOk
+
+`func (o *Coupon) GetDiscountLimitOk() (float32, bool)`
+
+GetDiscountLimitOk returns a tuple with the DiscountLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDiscountLimit
+
+`func (o *Coupon) HasDiscountLimit() bool`
+
+HasDiscountLimit returns a boolean if a field has been set.
+
+### SetDiscountLimit
+
+`func (o *Coupon) SetDiscountLimit(v float32)`
+
+SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+
 ### GetStartDate
 
 `func (o *Coupon) GetStartDate() time.Time`
@@ -220,6 +248,56 @@ HasUsageCounter returns a boolean if a field has been set.
 `func (o *Coupon) SetUsageCounter(v int32)`
 
 SetUsageCounter gets a reference to the given int32 and assigns it to the UsageCounter field.
+
+### GetDiscountCounter
+
+`func (o *Coupon) GetDiscountCounter() float32`
+
+GetDiscountCounter returns the DiscountCounter field if non-nil, zero value otherwise.
+
+### GetDiscountCounterOk
+
+`func (o *Coupon) GetDiscountCounterOk() (float32, bool)`
+
+GetDiscountCounterOk returns a tuple with the DiscountCounter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDiscountCounter
+
+`func (o *Coupon) HasDiscountCounter() bool`
+
+HasDiscountCounter returns a boolean if a field has been set.
+
+### SetDiscountCounter
+
+`func (o *Coupon) SetDiscountCounter(v float32)`
+
+SetDiscountCounter gets a reference to the given float32 and assigns it to the DiscountCounter field.
+
+### GetDiscountRemainder
+
+`func (o *Coupon) GetDiscountRemainder() float32`
+
+GetDiscountRemainder returns the DiscountRemainder field if non-nil, zero value otherwise.
+
+### GetDiscountRemainderOk
+
+`func (o *Coupon) GetDiscountRemainderOk() (float32, bool)`
+
+GetDiscountRemainderOk returns a tuple with the DiscountRemainder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDiscountRemainder
+
+`func (o *Coupon) HasDiscountRemainder() bool`
+
+HasDiscountRemainder returns a boolean if a field has been set.
+
+### SetDiscountRemainder
+
+`func (o *Coupon) SetDiscountRemainder(v float32)`
+
+SetDiscountRemainder gets a reference to the given float32 and assigns it to the DiscountRemainder field.
 
 ### GetAttributes
 
