@@ -40,7 +40,7 @@ type ApplicationSession struct {
 	// A map of labelled discount values, in the same currency as the session.
 	Discounts map[string]float32 `json:"discounts"`
 	// The total sum of the session before any discounts applied.
-	Total *float32 `json:"total,omitempty"`
+	Total float32 `json:"total"`
 	// Arbitrary properties associated with this item
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
@@ -246,37 +246,19 @@ func (o *ApplicationSession) SetDiscounts(v map[string]float32) {
 	o.Discounts = v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
+// GetTotal returns the Total field value
 func (o *ApplicationSession) GetTotal() float32 {
-	if o == nil || o.Total == nil {
+	if o == nil {
 		var ret float32
 		return ret
 	}
-	return *o.Total
+
+	return o.Total
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ApplicationSession) GetTotalOk() (float32, bool) {
-	if o == nil || o.Total == nil {
-		var ret float32
-		return ret, false
-	}
-	return *o.Total, true
-}
-
-// HasTotal returns a boolean if a field has been set.
-func (o *ApplicationSession) HasTotal() bool {
-	if o != nil && o.Total != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotal gets a reference to the given float32 and assigns it to the Total field.
+// SetTotal sets field value
 func (o *ApplicationSession) SetTotal(v float32) {
-	o.Total = &v
+	o.Total = v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.

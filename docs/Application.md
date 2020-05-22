@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **CaseSensitivity** | Pointer to **string** | A string indicating how should campaigns in this application deal with case sensitivity on coupon codes. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Default limits for campaigns created in this application | [optional] 
+**CampaignPriority** | Pointer to **string** | Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive) | [optional] 
 **AttributesSettings** | Pointer to [**AttributesSettings**](AttributesSettings.md) |  | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | An array containing all the loyalty programs to which this application is subscribed | 
 
@@ -294,6 +295,31 @@ HasLimits returns a boolean if a field has been set.
 `func (o *Application) SetLimits(v []LimitConfig)`
 
 SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
+
+### GetCampaignPriority
+
+`func (o *Application) GetCampaignPriority() string`
+
+GetCampaignPriority returns the CampaignPriority field if non-nil, zero value otherwise.
+
+### GetCampaignPriorityOk
+
+`func (o *Application) GetCampaignPriorityOk() (string, bool)`
+
+GetCampaignPriorityOk returns a tuple with the CampaignPriority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignPriority
+
+`func (o *Application) HasCampaignPriority() bool`
+
+HasCampaignPriority returns a boolean if a field has been set.
+
+### SetCampaignPriority
+
+`func (o *Application) SetCampaignPriority(v string)`
+
+SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
 
 ### GetAttributesSettings
 

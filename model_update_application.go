@@ -29,7 +29,9 @@ type UpdateApplication struct {
 	// Arbitrary properties associated with this campaign
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application
-	Limits             *[]LimitConfig      `json:"limits,omitempty"`
+	Limits *[]LimitConfig `json:"limits,omitempty"`
+	// Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive)
+	CampaignPriority   *string             `json:"campaignPriority,omitempty"`
 	AttributesSettings *AttributesSettings `json:"attributesSettings,omitempty"`
 }
 
@@ -208,6 +210,39 @@ func (o *UpdateApplication) HasLimits() bool {
 // SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
 func (o *UpdateApplication) SetLimits(v []LimitConfig) {
 	o.Limits = &v
+}
+
+// GetCampaignPriority returns the CampaignPriority field value if set, zero value otherwise.
+func (o *UpdateApplication) GetCampaignPriority() string {
+	if o == nil || o.CampaignPriority == nil {
+		var ret string
+		return ret
+	}
+	return *o.CampaignPriority
+}
+
+// GetCampaignPriorityOk returns a tuple with the CampaignPriority field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateApplication) GetCampaignPriorityOk() (string, bool) {
+	if o == nil || o.CampaignPriority == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CampaignPriority, true
+}
+
+// HasCampaignPriority returns a boolean if a field has been set.
+func (o *UpdateApplication) HasCampaignPriority() bool {
+	if o != nil && o.CampaignPriority != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
+func (o *UpdateApplication) SetCampaignPriority(v string) {
+	o.CampaignPriority = &v
 }
 
 // GetAttributesSettings returns the AttributesSettings field value if set, zero value otherwise.

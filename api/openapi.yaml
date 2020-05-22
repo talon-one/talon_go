@@ -66,6 +66,12 @@ paths:
         [Rules]: /Getting-Started/entities#campaigns-rulesets-and-coupons
       operationId: updateCustomerProfile
       parameters:
+      - description: Flag to indicate whether to skip persisting the changes or not
+          (Will not persist if set to 'true').
+        in: query
+        name: dry
+        schema:
+          type: boolean
       - description: The custom identifier for this profile, must be unique within
           the account.
         in: path
@@ -109,6 +115,12 @@ paths:
         [Customer Session]: /Getting-Started/entities#customer-session
       operationId: updateCustomerSession
       parameters:
+      - description: Flag to indicate whether to skip persisting the changes or not
+          (Will not persist if set to 'true').
+        in: query
+        name: dry
+        schema:
+          type: boolean
       - description: The custom identifier for this session, must be unique within
           the account.
         in: path
@@ -147,6 +159,13 @@ paths:
 
         Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.
       operationId: trackEvent
+      parameters:
+      - description: Flag to indicate whether to skip persisting the changes or not
+          (Will not persist if set to 'true').
+        in: query
+        name: dry
+        schema:
+          type: boolean
       requestBody:
         content:
           application/json:
@@ -300,37 +319,11 @@ paths:
       summary: Get the users that have this coupon reserved
       tags:
       - integration
-  /v1/coupon_reservations/coupons/{integrationId}:
-    get:
-      description: |
-        Returns all coupons this user is subscribed to that are valid and usable
-      operationId: getReservedCoupons
-      parameters:
-      - description: The custom identifier for this profile, must be unique within
-          the account.
-        in: path
-        name: integrationId
-        required: true
-        schema:
-          type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200_1'
-          description: OK
-      security:
-      - api_key_v1: []
-      - integration_auth: []
-      summary: Get all valid reserved coupons
-      tags:
-      - integration
   /v1/customer_profiles/{integrationId}/inventory:
     get:
       description: Get information regarding entities referencing this customer profile's
-        integrationId. Currently we support customer profile information and referral
-        codes. In the future, this will be expanded with coupon codes and loyalty
+        integrationId. Currently we support customer profile information, referral
+        codes and reserved coupons. In the future, this will be expanded with loyalty
         points.
       operationId: getCustomerInventory
       parameters:
@@ -351,6 +344,12 @@ paths:
           in the response
         in: query
         name: referrals
+        schema:
+          type: boolean
+      - description: optional flag to decide if you would like coupon information
+          in the response
+        in: query
+        name: coupons
         schema:
           type: boolean
       responses:
@@ -382,6 +381,12 @@ paths:
         [Customer Session]: /Getting-Started/entities#customer-session
       operationId: updateCustomerSessionV2
       parameters:
+      - description: Flag to indicate whether to skip persisting the changes or not
+          (Will not persist if set to 'true').
+        in: query
+        name: dry
+        schema:
+          type: boolean
       - description: The custom identifier for this session, must be unique within
           the account.
         in: path
@@ -405,6 +410,43 @@ paths:
       security:
       - api_key_v1: []
       summary: Update a Customer Session
+      tags:
+      - integration
+      x-codegen-request-body-name: body
+  /v2/customer_profiles/{customerProfileId}:
+    put:
+      description: "Update (or create) a [Customer Profile][]. \n\nThe `integrationId`\
+        \ may be any identifier that will remain stable for the customer. For example,\
+        \ you might use a database ID, an email, or a phone number as the `integrationId`.\
+        \ It is vital that this ID **not** change over time, so **don't** use any\
+        \ identifier that the customer can update themselves. E.g. if your application\
+        \ allows a customer to update their e-mail address, you should instead use\
+        \ a database ID.\n\n[Customer Profile]: /Getting-Started/entities#customer-profile\n"
+      operationId: updateCustomerProfileV2
+      parameters:
+      - description: The custom identifier for this profile, must be unique within
+          the account.
+        in: path
+        name: customerProfileId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCustomerProfile'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerProfileUpdate'
+          description: OK
+      security:
+      - api_key_v1: []
+      summary: Update a Customer Profile
       tags:
       - integration
       x-codegen-request-body-name: body
@@ -437,7 +479,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+                $ref: '#/components/schemas/inline_response_200_1'
           description: OK
       summary: List Applications
       tags:
@@ -534,7 +576,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_3'
+                $ref: '#/components/schemas/inline_response_200_2'
           description: OK
       summary: List your Campaigns
       tags:
@@ -561,50 +603,6 @@ paths:
                 $ref: '#/components/schemas/Campaign'
           description: Created
       summary: Create a Campaign
-      tags:
-      - management
-      x-codegen-request-body-name: body
-  /v1/applications/{applicationId}/campaign_set:
-    get:
-      operationId: getCampaignSet
-      parameters:
-      - in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CampaignSet'
-          description: OK
-      summary: List CampaignSet
-      tags:
-      - management
-    put:
-      operationId: updateCampaignSet
-      parameters:
-      - in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewCampaignSet'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CampaignSet'
-          description: OK
-      summary: Update a Campaign Set
       tags:
       - management
       x-codegen-request-body-name: body
@@ -708,7 +706,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_3'
+                $ref: '#/components/schemas/inline_response_200_2'
           description: OK
       summary: Copy the campaign into every specified application
       tags:
@@ -768,7 +766,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_3'
+                $ref: '#/components/schemas/inline_response_200_2'
           description: OK
       summary: Get a list of all campaigns that match the given attributes
       tags:
@@ -812,7 +810,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                $ref: '#/components/schemas/inline_response_200_3'
           description: OK
       summary: List Campaign Rulesets
       tags:
@@ -1180,7 +1178,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: List Coupons
       tags:
@@ -1218,7 +1216,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
         "204":
           content: {}
@@ -1538,7 +1536,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: Get a list of the coupons that match the given attributes
       tags:
@@ -1663,7 +1661,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: Get a list of the coupons that match the given attributes in all active
         campaigns of an application
@@ -1781,7 +1779,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: Get a list of the coupons that match the given attributes
       tags:
@@ -2023,7 +2021,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: Get a list of the coupons that match the given attributes in all active
         campaigns of an application
@@ -4569,6 +4567,12 @@ components:
           maximum: 999999
           minimum: 0
           type: integer
+        discountLimit:
+          description: |
+            The amount of discounts that can be given with this coupon code.
+          maximum: 999999
+          minimum: 0
+          type: number
         startDate:
           description: Timestamp at which point the coupon becomes valid.
           format: date-time
@@ -4708,6 +4712,14 @@ components:
           items:
             $ref: '#/components/schemas/LimitConfig'
           type: array
+        campaignPriority:
+          description: Default priority for campaigns created in this application,
+            can be one of (universal, stackable, exclusive)
+          enum:
+          - universal
+          - stackable
+          - exclusive
+          type: string
         attributesSettings:
           $ref: '#/components/schemas/AttributesSettings'
       required:
@@ -4750,13 +4762,19 @@ components:
           items:
             $ref: '#/components/schemas/LimitConfig'
           type: array
+        campaignPriority:
+          description: Default priority for campaigns created in this application,
+            can be one of (universal, stackable, exclusive)
+          enum:
+          - universal
+          - stackable
+          - exclusive
+          type: string
         attributesSettings:
           $ref: '#/components/schemas/AttributesSettings'
         key:
           description: Hex key for HMAC-signing API calls as coming from this application
             (16 hex digits)
-          maxLength: 16
-          minLength: 16
           pattern: ^[a-fA-F0-9]{16}$
           type: string
       required:
@@ -4780,6 +4798,7 @@ components:
             - coupons
         caseSensitivity: sensitive
         accountId: 1
+        campaignPriority: universal
         loyaltyPrograms:
         - accountID: 5
           defaultValidity: defaultValidity
@@ -4864,6 +4883,14 @@ components:
           items:
             $ref: '#/components/schemas/LimitConfig'
           type: array
+        campaignPriority:
+          description: Default priority for campaigns created in this application,
+            can be one of (universal, stackable, exclusive)
+          enum:
+          - universal
+          - stackable
+          - exclusive
+          type: string
         attributesSettings:
           $ref: '#/components/schemas/AttributesSettings'
         loyaltyPrograms:
@@ -5559,17 +5586,6 @@ components:
       type: object
     CampaignSet:
       description: ""
-      example:
-        set:
-          elements:
-          - type: type
-          - type: type
-          name: name
-          type: SET
-          operator: ALL
-        created: 2000-01-23T04:56:07.000+00:00
-        id: 0
-        applicationId: 6
       properties:
         id:
           description: Unique ID for this entity.
@@ -5581,6 +5597,10 @@ components:
         applicationId:
           description: The ID of the application that owns this entity.
           type: integer
+        version:
+          description: Version of the campaign set
+          minimum: 1
+          type: integer
         set:
           $ref: '#/components/schemas/CampaignSetBranchNode'
       required:
@@ -5588,10 +5608,9 @@ components:
       - created
       - id
       - set
+      - version
       type: object
     CampaignSetNode:
-      example:
-        type: type
       properties:
         type:
           type: string
@@ -5599,13 +5618,6 @@ components:
       - type
       type: object
     CampaignSetBranchNode:
-      example:
-        elements:
-        - type: type
-        - type: type
-        name: name
-        type: SET
-        operator: ALL
       properties:
         type:
           description: Indicates the node type
@@ -5648,24 +5660,20 @@ components:
       type: object
     NewCampaignSet:
       description: ""
-      example:
-        set:
-          elements:
-          - type: type
-          - type: type
-          name: name
-          type: SET
-          operator: ALL
-        applicationId: 0
       properties:
         applicationId:
           description: The ID of the application that owns this entity.
+          type: integer
+        version:
+          description: Version of the campaign set
+          minimum: 1
           type: integer
         set:
           $ref: '#/components/schemas/CampaignSetBranchNode'
       required:
       - applicationId
       - set
+      - version
       type: object
     NewReferral:
       example:
@@ -5756,12 +5764,13 @@ components:
         usageCounter:
           description: The number of times this referral code has been successfully
             used.
-          title: Referral Code Usages
+          title: Referral code Usages
           type: integer
         usageLimit:
           description: |
             The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
           minimum: 0
+          title: Referral code Usage Limit
           type: integer
       required:
       - advocateProfileIntegrationId
@@ -5858,8 +5867,9 @@ components:
         - validCharacters
         - validCharacters
         usageLimit: 80082
-        numberOfCoupons: 6
+        numberOfCoupons: 1
         attributes: '{}'
+        discountLimit: 602745.015561422
         startDate: 2000-01-23T04:56:07.000+00:00
       properties:
         usageLimit:
@@ -5868,6 +5878,12 @@ components:
           maximum: 999999
           minimum: 0
           type: integer
+        discountLimit:
+          description: |
+            The amount of discounts that can be given with this coupon code.
+          maximum: 999999
+          minimum: 0
+          type: number
         startDate:
           description: Timestamp at which point the coupon becomes valid.
           format: date-time
@@ -5917,6 +5933,7 @@ components:
         recipientIntegrationId: recipientIntegrationId
         usageLimit: 80082
         attributes: '{}'
+        discountLimit: 602745.015561422
         startDate: 2000-01-23T04:56:07.000+00:00
       properties:
         usageLimit:
@@ -5925,6 +5942,12 @@ components:
           maximum: 999999
           minimum: 0
           type: integer
+        discountLimit:
+          description: |
+            The amount of discounts that can be given with this coupon code.
+          maximum: 999999
+          minimum: 0
+          type: number
         startDate:
           description: Timestamp at which point the coupon becomes valid.
           format: date-time
@@ -5950,6 +5973,7 @@ components:
         usageLimit: 80082
         attributes: '{}'
         batchID: batchID
+        discountLimit: 602745.015561422
         startDate: 2000-01-23T04:56:07.000+00:00
       properties:
         usageLimit:
@@ -5958,6 +5982,12 @@ components:
           maximum: 999999
           minimum: 0
           type: integer
+        discountLimit:
+          description: |
+            The amount of discounts that can be given with this coupon code.
+          maximum: 999999
+          minimum: 0
+          type: number
         startDate:
           description: Timestamp at which point the coupon becomes valid.
           format: date-time
@@ -5985,16 +6015,19 @@ components:
         created: 2000-01-23T04:56:07.000+00:00
         campaignId: 6
         usageLimit: 594488
-        referralId: 3
-        usageCounter: 6
+        referralId: 0
+        usageCounter: 3
         batchId: batchId
+        discountCounter: 3.0937452626664474
         expiryDate: 2000-01-23T04:56:07.000+00:00
-        importId: 3
+        importId: 7
         reservation: true
         attributes: '{}'
         id: 6
         value: value
+        discountLimit: 670401.2593930737
         startDate: 2000-01-23T04:56:07.000+00:00
+        discountRemainder: 7.143538047012306
       properties:
         id:
           description: Unique ID for this entity.
@@ -6018,6 +6051,12 @@ components:
           maximum: 999999
           minimum: 0
           type: integer
+        discountLimit:
+          description: |
+            The amount of discounts that can be given with this coupon code.
+          maximum: 999999
+          minimum: 0
+          type: number
         startDate:
           description: Timestamp at which point the coupon becomes valid.
           format: date-time
@@ -6031,6 +6070,15 @@ components:
           description: The number of times this coupon has been successfully used.
           title: Number of coupon usages
           type: integer
+        discountCounter:
+          description: The amount of discounts given on rules redeeming this coupon.
+            Only usable if a coupon discount budget was set for this coupon.
+          title: Discounts Given
+          type: number
+        discountRemainder:
+          description: The remaining discount this coupon can give.
+          title: Coupon Discount Remainder
+          type: number
         attributes:
           description: Arbitrary properties associated with this item
           properties: {}
@@ -6042,8 +6090,9 @@ components:
           title: Advocate ID
           type: integer
         recipientIntegrationId:
-          description: The integration ID of a referred customer profile.
-          title: Friend ID
+          description: The Integration ID of the customer that is allowed to redeem
+            this coupon.
+          title: Recipient ID
           type: string
         importId:
           description: The ID of the Import which created this coupon.
@@ -6054,7 +6103,7 @@ components:
             set to true the coupon reservation is used to mark it as a favourite,
             if set to false the coupon reservation is used as a requirement of usage.
             This value defaults to true if not specified.
-          title: reservation status
+          title: Reservation Status
           type: boolean
         batchId:
           description: The id of the batch the coupon belongs to.
@@ -6633,6 +6682,7 @@ components:
         subLedgerID: subLedgerID
         customerSessionID: customerSessionID
         type: addition
+        userID: 5
         programID: 6
       properties:
         created:
@@ -6664,6 +6714,10 @@ components:
           description: This specifies if we are adding loyalty points to the main
             ledger or a subledger
           type: string
+        userID:
+          description: This is the ID of the user who created this entry, if the addition
+            or subtraction was done manually.
+          type: integer
       required:
       - amount
       - created
@@ -6688,6 +6742,7 @@ components:
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
             type: addition
+            userID: 5
             programID: 6
           - expiryDate: 2000-01-23T04:56:07.000+00:00
             eventID: 1
@@ -6698,6 +6753,7 @@ components:
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
             type: addition
+            userID: 5
             programID: 6
           transactions:
           - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6709,6 +6765,7 @@ components:
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
             type: addition
+            userID: 5
             programID: 6
           - expiryDate: 2000-01-23T04:56:07.000+00:00
             eventID: 1
@@ -6719,6 +6776,7 @@ components:
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
             type: addition
+            userID: 5
             programID: 6
         subLedgers:
           key:
@@ -6733,6 +6791,7 @@ components:
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
               type: addition
+              userID: 5
               programID: 6
             - expiryDate: 2000-01-23T04:56:07.000+00:00
               eventID: 1
@@ -6743,6 +6802,7 @@ components:
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
               type: addition
+              userID: 5
               programID: 6
             transactions:
             - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6754,6 +6814,7 @@ components:
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
               type: addition
+              userID: 5
               programID: 6
             - expiryDate: 2000-01-23T04:56:07.000+00:00
               eventID: 1
@@ -6764,6 +6825,7 @@ components:
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
               type: addition
+              userID: 5
               programID: 6
       properties:
         ledger:
@@ -6790,6 +6852,7 @@ components:
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
           type: addition
+          userID: 5
           programID: 6
         - expiryDate: 2000-01-23T04:56:07.000+00:00
           eventID: 1
@@ -6800,6 +6863,7 @@ components:
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
           type: addition
+          userID: 5
           programID: 6
         transactions:
         - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6811,6 +6875,7 @@ components:
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
           type: addition
+          userID: 5
           programID: 6
         - expiryDate: 2000-01-23T04:56:07.000+00:00
           eventID: 1
@@ -6821,6 +6886,7 @@ components:
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
           type: addition
+          userID: 5
           programID: 6
       properties:
         total:
@@ -7013,8 +7079,64 @@ components:
       - lastActivity
       - totalSales
       type: object
+    CustomerProfileUpdate:
+      example:
+        customerProfile:
+          accountId: 1
+          closedSessions: 1
+          created: 2000-01-23T04:56:07.000+00:00
+          integrationId: integrationId
+          attributes: '{}'
+          totalSales: 6.84685269835264
+          lastActivity: 2000-01-23T04:56:07.000+00:00
+          loyaltyMemberships:
+          - joined: 2000-01-23T04:56:07.000+00:00
+            loyaltyProgramId: 7
+          - joined: 2000-01-23T04:56:07.000+00:00
+            loyaltyProgramId: 7
+      properties:
+        customerProfile:
+          $ref: '#/components/schemas/CustomerProfile'
+      required:
+      - customerProfile
+      type: object
     CustomerInventory:
       example:
+        coupons:
+        - recipientIntegrationId: recipientIntegrationId
+          created: 2000-01-23T04:56:07.000+00:00
+          campaignId: 6
+          usageLimit: 594488
+          referralId: 0
+          usageCounter: 3
+          batchId: batchId
+          discountCounter: 3.0937452626664474
+          expiryDate: 2000-01-23T04:56:07.000+00:00
+          importId: 7
+          reservation: true
+          attributes: '{}'
+          id: 6
+          value: value
+          discountLimit: 670401.2593930737
+          startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
+        - recipientIntegrationId: recipientIntegrationId
+          created: 2000-01-23T04:56:07.000+00:00
+          campaignId: 6
+          usageLimit: 594488
+          referralId: 0
+          usageCounter: 3
+          batchId: batchId
+          discountCounter: 3.0937452626664474
+          expiryDate: 2000-01-23T04:56:07.000+00:00
+          importId: 7
+          reservation: true
+          attributes: '{}'
+          id: 6
+          value: value
+          discountLimit: 670401.2593930737
+          startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         referrals:
         - expiryDate: 2000-01-23T04:56:07.000+00:00
           code: code
@@ -7055,6 +7177,10 @@ components:
         referrals:
           items:
             $ref: '#/components/schemas/Referral'
+          type: array
+        coupons:
+          items:
+            $ref: '#/components/schemas/Coupon'
           type: array
       type: object
     NewCustomerSession:
@@ -7897,16 +8023,19 @@ components:
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         session:
           coupon: coupon
           created: 2000-01-23T04:56:07.000+00:00
@@ -8173,30 +8302,36 @@ components:
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         - recipientIntegrationId: recipientIntegrationId
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         customerProfile:
           accountId: 1
           closedSessions: 1
@@ -8321,30 +8456,36 @@ components:
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         - recipientIntegrationId: recipientIntegrationId
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         createdReferrals:
         - expiryDate: 2000-01-23T04:56:07.000+00:00
           code: code
@@ -8582,6 +8723,7 @@ components:
       - integrationId
       - referral
       - state
+      - total
       type: object
     ApplicationEvent:
       description: ""
@@ -11113,48 +11255,6 @@ components:
     inline_response_200_1:
       example:
         data:
-        - recipientIntegrationId: recipientIntegrationId
-          created: 2000-01-23T04:56:07.000+00:00
-          campaignId: 6
-          usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
-          batchId: batchId
-          expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
-          reservation: true
-          attributes: '{}'
-          id: 6
-          value: value
-          startDate: 2000-01-23T04:56:07.000+00:00
-        - recipientIntegrationId: recipientIntegrationId
-          created: 2000-01-23T04:56:07.000+00:00
-          campaignId: 6
-          usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
-          batchId: batchId
-          expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
-          reservation: true
-          attributes: '{}'
-          id: 6
-          value: value
-          startDate: 2000-01-23T04:56:07.000+00:00
-        totalResultSize: 0
-      properties:
-        totalResultSize:
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/Coupon'
-          type: array
-      required:
-      - data
-      - totalResultSize
-    inline_response_200_2:
-      example:
-        data:
         - created: 2000-01-23T04:56:07.000+00:00
           timezone: timezone
           description: description
@@ -11168,6 +11268,7 @@ components:
               - coupons
           caseSensitivity: sensitive
           accountId: 1
+          campaignPriority: universal
           loyaltyPrograms:
           - accountID: 5
             defaultValidity: defaultValidity
@@ -11218,6 +11319,7 @@ components:
               - coupons
           caseSensitivity: sensitive
           accountId: 1
+          campaignPriority: universal
           loyaltyPrograms:
           - accountID: 5
             defaultValidity: defaultValidity
@@ -11266,7 +11368,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_3:
+    inline_response_200_2:
       example:
         data:
         - discountCount: 1
@@ -11382,7 +11484,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_4:
+    inline_response_200_3:
       example:
         data:
         - rbVersion: rbVersion
@@ -11498,6 +11600,54 @@ components:
       required:
       - data
       - totalResultSize
+    inline_response_200_4:
+      example:
+        data:
+        - recipientIntegrationId: recipientIntegrationId
+          created: 2000-01-23T04:56:07.000+00:00
+          campaignId: 6
+          usageLimit: 594488
+          referralId: 0
+          usageCounter: 3
+          batchId: batchId
+          discountCounter: 3.0937452626664474
+          expiryDate: 2000-01-23T04:56:07.000+00:00
+          importId: 7
+          reservation: true
+          attributes: '{}'
+          id: 6
+          value: value
+          discountLimit: 670401.2593930737
+          startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
+        - recipientIntegrationId: recipientIntegrationId
+          created: 2000-01-23T04:56:07.000+00:00
+          campaignId: 6
+          usageLimit: 594488
+          referralId: 0
+          usageCounter: 3
+          batchId: batchId
+          discountCounter: 3.0937452626664474
+          expiryDate: 2000-01-23T04:56:07.000+00:00
+          importId: 7
+          reservation: true
+          attributes: '{}'
+          id: 6
+          value: value
+          discountLimit: 670401.2593930737
+          startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
+        totalResultSize: 0
+      properties:
+        totalResultSize:
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Coupon'
+          type: array
+      required:
+      - data
+      - totalResultSize
     inline_response_200_5:
       example:
         data:
@@ -11505,30 +11655,36 @@ components:
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         - recipientIntegrationId: recipientIntegrationId
           created: 2000-01-23T04:56:07.000+00:00
           campaignId: 6
           usageLimit: 594488
-          referralId: 3
-          usageCounter: 6
+          referralId: 0
+          usageCounter: 3
           batchId: batchId
+          discountCounter: 3.0937452626664474
           expiryDate: 2000-01-23T04:56:07.000+00:00
-          importId: 3
+          importId: 7
           reservation: true
           attributes: '{}'
           id: 6
           value: value
+          discountLimit: 670401.2593930737
           startDate: 2000-01-23T04:56:07.000+00:00
+          discountRemainder: 7.143538047012306
         hasMore: true
       properties:
         hasMore:

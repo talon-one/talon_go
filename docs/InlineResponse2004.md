@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]Ruleset**](Ruleset.md) |  | 
+**Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse2004) GetData() []Ruleset`
+`func (o *InlineResponse2004) GetData() []Coupon`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2004) GetDataOk() ([]Ruleset, bool)`
+`func (o *InlineResponse2004) GetDataOk() ([]Coupon, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse2004) SetData(v []Ruleset)`
+`func (o *InlineResponse2004) SetData(v []Coupon)`
 
-SetData gets a reference to the given []Ruleset and assigns it to the Data field.
+SetData gets a reference to the given []Coupon and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

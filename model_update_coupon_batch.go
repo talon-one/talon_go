@@ -19,6 +19,8 @@ import (
 type UpdateCouponBatch struct {
 	// The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.
 	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	// The amount of discounts that can be given with this coupon code.
+	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative.
@@ -60,6 +62,39 @@ func (o *UpdateCouponBatch) HasUsageLimit() bool {
 // SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
 func (o *UpdateCouponBatch) SetUsageLimit(v int32) {
 	o.UsageLimit = &v
+}
+
+// GetDiscountLimit returns the DiscountLimit field value if set, zero value otherwise.
+func (o *UpdateCouponBatch) GetDiscountLimit() float32 {
+	if o == nil || o.DiscountLimit == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DiscountLimit
+}
+
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateCouponBatch) GetDiscountLimitOk() (float32, bool) {
+	if o == nil || o.DiscountLimit == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.DiscountLimit, true
+}
+
+// HasDiscountLimit returns a boolean if a field has been set.
+func (o *UpdateCouponBatch) HasDiscountLimit() bool {
+	if o != nil && o.DiscountLimit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+func (o *UpdateCouponBatch) SetDiscountLimit(v float32) {
+	o.DiscountLimit = &v
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.

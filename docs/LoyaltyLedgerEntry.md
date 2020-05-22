@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Name** | Pointer to **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | 
 **SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger | 
+**UserID** | Pointer to **int32** | This is the ID of the user who created this entry, if the addition or subtraction was done manually. | [optional] 
 
 ## Methods
 
@@ -266,6 +267,31 @@ HasSubLedgerID returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetSubLedgerID(v string)`
 
 SetSubLedgerID gets a reference to the given string and assigns it to the SubLedgerID field.
+
+### GetUserID
+
+`func (o *LoyaltyLedgerEntry) GetUserID() int32`
+
+GetUserID returns the UserID field if non-nil, zero value otherwise.
+
+### GetUserIDOk
+
+`func (o *LoyaltyLedgerEntry) GetUserIDOk() (int32, bool)`
+
+GetUserIDOk returns a tuple with the UserID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUserID
+
+`func (o *LoyaltyLedgerEntry) HasUserID() bool`
+
+HasUserID returns a boolean if a field has been set.
+
+### SetUserID
+
+`func (o *LoyaltyLedgerEntry) SetUserID(v int32)`
+
+SetUserID gets a reference to the given int32 and assigns it to the UserID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

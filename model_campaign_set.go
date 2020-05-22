@@ -22,8 +22,10 @@ type CampaignSet struct {
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the application that owns this entity.
-	ApplicationId int32                 `json:"applicationId"`
-	Set           CampaignSetBranchNode `json:"set"`
+	ApplicationId int32 `json:"applicationId"`
+	// Version of the campaign set
+	Version int32                 `json:"version"`
+	Set     CampaignSetBranchNode `json:"set"`
 }
 
 // GetId returns the Id field value
@@ -69,6 +71,21 @@ func (o *CampaignSet) GetApplicationId() int32 {
 // SetApplicationId sets field value
 func (o *CampaignSet) SetApplicationId(v int32) {
 	o.ApplicationId = v
+}
+
+// GetVersion returns the Version field value
+func (o *CampaignSet) GetVersion() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Version
+}
+
+// SetVersion sets field value
+func (o *CampaignSet) SetVersion(v int32) {
+	o.Version = v
 }
 
 // GetSet returns the Set field value

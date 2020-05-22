@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**Version** | Pointer to **int32** | Version of the campaign set | 
 **Set** | Pointer to [**CampaignSetBranchNode**](CampaignSetBranchNode.md) |  | 
 
 ## Methods
@@ -85,6 +86,31 @@ HasApplicationId returns a boolean if a field has been set.
 `func (o *CampaignSet) SetApplicationId(v int32)`
 
 SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+
+### GetVersion
+
+`func (o *CampaignSet) GetVersion() int32`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *CampaignSet) GetVersionOk() (int32, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasVersion
+
+`func (o *CampaignSet) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersion
+
+`func (o *CampaignSet) SetVersion(v int32)`
+
+SetVersion gets a reference to the given int32 and assigns it to the Version field.
 
 ### GetSet
 

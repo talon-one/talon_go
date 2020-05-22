@@ -27,17 +27,23 @@ type Coupon struct {
 	Value string `json:"value"`
 	// The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.
 	UsageLimit int32 `json:"usageLimit"`
+	// The amount of discounts that can be given with this coupon code.
+	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times this coupon has been successfully used.
 	UsageCounter int32 `json:"usageCounter"`
+	// The amount of discounts given on rules redeeming this coupon. Only usable if a coupon discount budget was set for this coupon.
+	DiscountCounter *float32 `json:"discountCounter,omitempty"`
+	// The remaining discount this coupon can give.
+	DiscountRemainder *float32 `json:"discountRemainder,omitempty"`
 	// Arbitrary properties associated with this item
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// The integration ID of the referring customer (if any) for whom this coupon was created as an effect.
 	ReferralId *int32 `json:"referralId,omitempty"`
-	// The integration ID of a referred customer profile.
+	// The Integration ID of the customer that is allowed to redeem this coupon.
 	RecipientIntegrationId *string `json:"recipientIntegrationId,omitempty"`
 	// The ID of the Import which created this coupon.
 	ImportId *int32 `json:"importId,omitempty"`
@@ -122,6 +128,39 @@ func (o *Coupon) SetUsageLimit(v int32) {
 	o.UsageLimit = v
 }
 
+// GetDiscountLimit returns the DiscountLimit field value if set, zero value otherwise.
+func (o *Coupon) GetDiscountLimit() float32 {
+	if o == nil || o.DiscountLimit == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DiscountLimit
+}
+
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Coupon) GetDiscountLimitOk() (float32, bool) {
+	if o == nil || o.DiscountLimit == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.DiscountLimit, true
+}
+
+// HasDiscountLimit returns a boolean if a field has been set.
+func (o *Coupon) HasDiscountLimit() bool {
+	if o != nil && o.DiscountLimit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+func (o *Coupon) SetDiscountLimit(v float32) {
+	o.DiscountLimit = &v
+}
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *Coupon) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
@@ -201,6 +240,72 @@ func (o *Coupon) GetUsageCounter() int32 {
 // SetUsageCounter sets field value
 func (o *Coupon) SetUsageCounter(v int32) {
 	o.UsageCounter = v
+}
+
+// GetDiscountCounter returns the DiscountCounter field value if set, zero value otherwise.
+func (o *Coupon) GetDiscountCounter() float32 {
+	if o == nil || o.DiscountCounter == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DiscountCounter
+}
+
+// GetDiscountCounterOk returns a tuple with the DiscountCounter field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Coupon) GetDiscountCounterOk() (float32, bool) {
+	if o == nil || o.DiscountCounter == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.DiscountCounter, true
+}
+
+// HasDiscountCounter returns a boolean if a field has been set.
+func (o *Coupon) HasDiscountCounter() bool {
+	if o != nil && o.DiscountCounter != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscountCounter gets a reference to the given float32 and assigns it to the DiscountCounter field.
+func (o *Coupon) SetDiscountCounter(v float32) {
+	o.DiscountCounter = &v
+}
+
+// GetDiscountRemainder returns the DiscountRemainder field value if set, zero value otherwise.
+func (o *Coupon) GetDiscountRemainder() float32 {
+	if o == nil || o.DiscountRemainder == nil {
+		var ret float32
+		return ret
+	}
+	return *o.DiscountRemainder
+}
+
+// GetDiscountRemainderOk returns a tuple with the DiscountRemainder field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Coupon) GetDiscountRemainderOk() (float32, bool) {
+	if o == nil || o.DiscountRemainder == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.DiscountRemainder, true
+}
+
+// HasDiscountRemainder returns a boolean if a field has been set.
+func (o *Coupon) HasDiscountRemainder() bool {
+	if o != nil && o.DiscountRemainder != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDiscountRemainder gets a reference to the given float32 and assigns it to the DiscountRemainder field.
+func (o *Coupon) SetDiscountRemainder(v float32) {
+	o.DiscountRemainder = &v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.

@@ -14,48 +14,32 @@ import (
 	"encoding/json"
 )
 
-// InlineResponse2003 struct for InlineResponse2003
-type InlineResponse2003 struct {
-	TotalResultSize int32     `json:"totalResultSize"`
-	Data            []Ruleset `json:"data"`
+// CustomerProfileUpdate struct for CustomerProfileUpdate
+type CustomerProfileUpdate struct {
+	CustomerProfile CustomerProfile `json:"customerProfile"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2003) GetTotalResultSize() int32 {
+// GetCustomerProfile returns the CustomerProfile field value
+func (o *CustomerProfileUpdate) GetCustomerProfile() CustomerProfile {
 	if o == nil {
-		var ret int32
+		var ret CustomerProfile
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.CustomerProfile
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2003) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetCustomerProfile sets field value
+func (o *CustomerProfileUpdate) SetCustomerProfile(v CustomerProfile) {
+	o.CustomerProfile = v
 }
 
-// GetData returns the Data field value
-func (o *InlineResponse2003) GetData() []Ruleset {
-	if o == nil {
-		var ret []Ruleset
-		return ret
-	}
-
-	return o.Data
-}
-
-// SetData sets field value
-func (o *InlineResponse2003) SetData(v []Ruleset) {
-	o.Data = v
-}
-
-type NullableInlineResponse2003 struct {
-	Value        InlineResponse2003
+type NullableCustomerProfileUpdate struct {
+	Value        CustomerProfileUpdate
 	ExplicitNull bool
 }
 
-func (v NullableInlineResponse2003) MarshalJSON() ([]byte, error) {
+func (v NullableCustomerProfileUpdate) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -64,7 +48,7 @@ func (v NullableInlineResponse2003) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableInlineResponse2003) UnmarshalJSON(src []byte) error {
+func (v *NullableCustomerProfileUpdate) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil
