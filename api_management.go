@@ -1954,7 +1954,7 @@ func (r apiGetAccessLogsRequest) Sort(sort string) apiGetAccessLogsRequest {
 }
 
 /*
-GetAccessLogs Get access logs for application
+GetAccessLogs Get access logs for application (with total count)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
 @return apiGetAccessLogsRequest
@@ -3633,7 +3633,7 @@ func (r apiGetApplicationCustomersByAttributesRequest) Body(body ApplicationCust
 }
 
 /*
-GetApplicationCustomersByAttributes Get a list of the customer profiles that match the given attributes
+GetApplicationCustomersByAttributes Get a list of the customer profiles that match the given attributes (with total count)
 Gets a list of all the customer profiles for the account that exactly match a set of attributes.
 
 The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.
@@ -4001,7 +4001,7 @@ func (r apiGetApplicationEventsRequest) CampaignQuery(campaignQuery string) apiG
 }
 
 /*
-GetApplicationEvents List Applications Events
+GetApplicationEvents List Applications Events (with total count)
 Lists all events recorded for an application.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6100,7 +6100,7 @@ func (r apiGetCouponsRequest) ExactMatch(exactMatch bool) apiGetCouponsRequest {
 }
 
 /*
-GetCoupons List Coupons
+GetCoupons List Coupons (with total count)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -6607,7 +6607,7 @@ func (r apiGetCouponsByAttributesApplicationWideRequest) CampaignState(campaignS
 }
 
 /*
-GetCouponsByAttributesApplicationWide Get a list of the coupons that match the given attributes in all active campaigns of an application
+GetCouponsByAttributesApplicationWide Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
 Gets a list of all the coupons with attributes matching the query criteria Application wide
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -7231,7 +7231,7 @@ func (r apiGetCustomerActivityReportsRequest) AdvocateName(advocateName string) 
 }
 
 /*
-GetCustomerActivityReports Get Activity Reports for Application Customers
+GetCustomerActivityReports Get Activity Reports for Application Customers (with total count)
 Fetch summary reports for all application customers based on a time range
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -9062,7 +9062,7 @@ func (r apiGetReferralsRequest) Advocate(advocate string) apiGetReferralsRequest
 }
 
 /*
-GetReferrals List Referrals
+GetReferrals List Referrals (with total count)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -11113,7 +11113,7 @@ func (r apiSearchCouponsAdvancedRequest) BatchId(batchId string) apiSearchCoupon
 }
 
 /*
-SearchCouponsAdvanced Get a list of the coupons that match the given attributes
+SearchCouponsAdvanced Get a list of the coupons that match the given attributes (with total count)
 Gets a list of all the coupons with attributes matching the query criteria
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -11366,7 +11366,7 @@ func (r apiSearchCouponsAdvancedApplicationWideRequest) CampaignState(campaignSt
 }
 
 /*
-SearchCouponsAdvancedApplicationWide Get a list of the coupons that match the given attributes in all active campaigns of an application
+SearchCouponsAdvancedApplicationWide Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
 Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().

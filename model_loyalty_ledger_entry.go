@@ -17,14 +17,15 @@ import (
 
 // LoyaltyLedgerEntry A single row of the ledger, describing one addition or deduction.
 type LoyaltyLedgerEntry struct {
-	Created           time.Time  `json:"created"`
-	ProgramID         int32      `json:"programID"`
-	CustomerProfileID string     `json:"customerProfileID"`
-	CustomerSessionID *string    `json:"customerSessionID,omitempty"`
-	EventID           *int32     `json:"eventID,omitempty"`
-	Type              string     `json:"type"`
-	Amount            float32    `json:"amount"`
-	ExpiryDate        *time.Time `json:"expiryDate,omitempty"`
+	Created           time.Time `json:"created"`
+	ProgramID         int32     `json:"programID"`
+	CustomerProfileID string    `json:"customerProfileID"`
+	CustomerSessionID *string   `json:"customerSessionID,omitempty"`
+	EventID           *int32    `json:"eventID,omitempty"`
+	// The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)
+	Type       string     `json:"type"`
+	Amount     float32    `json:"amount"`
+	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// A name referencing the condition or effect that added this entry, or the specific name provided in an API call.
 	Name string `json:"name"`
 	// This specifies if we are adding loyalty points to the main ledger or a subledger

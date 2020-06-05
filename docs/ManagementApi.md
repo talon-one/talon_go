@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**DeleteCoupons**](ManagementApi.md#DeleteCoupons) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Delete Coupons
 [**DeleteReferral**](ManagementApi.md#DeleteReferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete one Referral
 [**DeleteRuleset**](ManagementApi.md#DeleteRuleset) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Delete a Ruleset
-[**GetAccessLogs**](ManagementApi.md#GetAccessLogs) | **Get** /v1/applications/{applicationId}/access_logs | Get access logs for application
+[**GetAccessLogs**](ManagementApi.md#GetAccessLogs) | **Get** /v1/applications/{applicationId}/access_logs | Get access logs for application (with total count)
 [**GetAccessLogsWithoutTotalCount**](ManagementApi.md#GetAccessLogsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for application
 [**GetAccount**](ManagementApi.md#GetAccount) | **Get** /v1/accounts/{accountId} | Get Account Details
 [**GetAccountAnalytics**](ManagementApi.md#GetAccountAnalytics) | **Get** /v1/accounts/{accountId}/analytics | Get Account Analytics
@@ -30,9 +30,9 @@ Method | HTTP request | Description
 [**GetApplicationApiHealth**](ManagementApi.md#GetApplicationApiHealth) | **Get** /v1/applications/{applicationId}/health_report | Get report of health of application API
 [**GetApplicationCustomer**](ManagementApi.md#GetApplicationCustomer) | **Get** /v1/applications/{applicationId}/customers/{customerId} | Get Application Customer
 [**GetApplicationCustomers**](ManagementApi.md#GetApplicationCustomers) | **Get** /v1/applications/{applicationId}/customers | List Application Customers
-[**GetApplicationCustomersByAttributes**](ManagementApi.md#GetApplicationCustomersByAttributes) | **Post** /v1/application_customer_search | Get a list of the customer profiles that match the given attributes
+[**GetApplicationCustomersByAttributes**](ManagementApi.md#GetApplicationCustomersByAttributes) | **Post** /v1/application_customer_search | Get a list of the customer profiles that match the given attributes (with total count)
 [**GetApplicationEventTypes**](ManagementApi.md#GetApplicationEventTypes) | **Get** /v1/applications/{applicationId}/event_types | List Applications Event Types
-[**GetApplicationEvents**](ManagementApi.md#GetApplicationEvents) | **Get** /v1/applications/{applicationId}/events | List Applications Events
+[**GetApplicationEvents**](ManagementApi.md#GetApplicationEvents) | **Get** /v1/applications/{applicationId}/events | List Applications Events (with total count)
 [**GetApplicationEventsWithoutTotalCount**](ManagementApi.md#GetApplicationEventsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/events/no_total | List Applications Events
 [**GetApplicationSession**](ManagementApi.md#GetApplicationSession) | **Get** /v1/applications/{applicationId}/sessions/{sessionId} | Get Application Session
 [**GetApplicationSessions**](ManagementApi.md#GetApplicationSessions) | **Get** /v1/applications/{applicationId}/sessions | List Application Sessions
@@ -44,12 +44,12 @@ Method | HTTP request | Description
 [**GetCampaignByAttributes**](ManagementApi.md#GetCampaignByAttributes) | **Post** /v1/applications/{applicationId}/campaigns_search | Get a list of all campaigns that match the given attributes
 [**GetCampaigns**](ManagementApi.md#GetCampaigns) | **Get** /v1/applications/{applicationId}/campaigns | List your Campaigns
 [**GetChanges**](ManagementApi.md#GetChanges) | **Get** /v1/changes | Get audit log for an account
-[**GetCoupons**](ManagementApi.md#GetCoupons) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | List Coupons
+[**GetCoupons**](ManagementApi.md#GetCoupons) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | List Coupons (with total count)
 [**GetCouponsByAttributes**](ManagementApi.md#GetCouponsByAttributes) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search | Get a list of the coupons that match the given attributes
-[**GetCouponsByAttributesApplicationWide**](ManagementApi.md#GetCouponsByAttributesApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search | Get a list of the coupons that match the given attributes in all active campaigns of an application
+[**GetCouponsByAttributesApplicationWide**](ManagementApi.md#GetCouponsByAttributesApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search | Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
 [**GetCouponsWithoutTotalCount**](ManagementApi.md#GetCouponsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List Coupons
 [**GetCustomerActivityReport**](ManagementApi.md#GetCustomerActivityReport) | **Get** /v1/applications/{applicationId}/customer_activity_reports/{customerId} | Get Activity Report for Single Customer
-[**GetCustomerActivityReports**](ManagementApi.md#GetCustomerActivityReports) | **Get** /v1/applications/{applicationId}/customer_activity_reports | Get Activity Reports for Application Customers
+[**GetCustomerActivityReports**](ManagementApi.md#GetCustomerActivityReports) | **Get** /v1/applications/{applicationId}/customer_activity_reports | Get Activity Reports for Application Customers (with total count)
 [**GetCustomerActivityReportsWithoutTotalCount**](ManagementApi.md#GetCustomerActivityReportsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/customer_activity_reports/no_total | Get Activity Reports for Application Customers
 [**GetCustomerAnalytics**](ManagementApi.md#GetCustomerAnalytics) | **Get** /v1/applications/{applicationId}/customers/{customerId}/analytics | Get Analytics Report for a Customer
 [**GetCustomerProfile**](ManagementApi.md#GetCustomerProfile) | **Get** /v1/customers/{customerId} | Get Customer Profile
@@ -61,7 +61,7 @@ Method | HTTP request | Description
 [**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{programID}/profile/{integrationID} | get the Loyalty Ledger for this integrationID
 [**GetLoyaltyProgram**](ManagementApi.md#GetLoyaltyProgram) | **Get** /v1/loyalty_programs/{programID} | Get a loyalty program
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List all loyalty Programs
-[**GetReferrals**](ManagementApi.md#GetReferrals) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals | List Referrals
+[**GetReferrals**](ManagementApi.md#GetReferrals) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals | List Referrals (with total count)
 [**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List Referrals
 [**GetRole**](ManagementApi.md#GetRole) | **Get** /v1/roles/{roleId} | Get information for the specified role.
 [**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get a Ruleset
@@ -74,8 +74,8 @@ Method | HTTP request | Description
 [**GetWebhooks**](ManagementApi.md#GetWebhooks) | **Get** /v1/webhooks | List Webhooks
 [**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/deduct_points | Deduct points in a certain loyalty program for the specified customer
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
-[**SearchCouponsAdvanced**](ManagementApi.md#SearchCouponsAdvanced) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced | Get a list of the coupons that match the given attributes
-[**SearchCouponsAdvancedApplicationWide**](ManagementApi.md#SearchCouponsAdvancedApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search_advanced | Get a list of the coupons that match the given attributes in all active campaigns of an application
+[**SearchCouponsAdvanced**](ManagementApi.md#SearchCouponsAdvanced) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced | Get a list of the coupons that match the given attributes (with total count)
+[**SearchCouponsAdvancedApplicationWide**](ManagementApi.md#SearchCouponsAdvancedApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search_advanced | Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
 [**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | Get a list of the coupons that match the given attributes in all active campaigns of an application
 [**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | Get a list of the coupons that match the given attributes
 [**UpdateAdditionalCost**](ManagementApi.md#UpdateAdditionalCost) | **Put** /v1/additional_costs/{additionalCostId} | Update an additional cost
@@ -702,7 +702,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2009 GetAccessLogs(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
-Get access logs for application
+Get access logs for application (with total count)
 
 ### Path Parameters
 
@@ -1217,7 +1217,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20013 GetApplicationCustomersByAttributes(ctx).Body(body).Execute()
 
-Get a list of the customer profiles that match the given attributes
+Get a list of the customer profiles that match the given attributes (with total count)
 
 
 
@@ -1302,7 +1302,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20017 GetApplicationEvents(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
-List Applications Events
+List Applications Events (with total count)
 
 
 
@@ -1866,7 +1866,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 GetCoupons(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).StartsAfter(startsAfter).StartsBefore(startsBefore).ExpiresAfter(expiresAfter).ExpiresBefore(expiresBefore).Valid(valid).BatchId(batchId).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).Execute()
 
-List Coupons
+List Coupons (with total count)
 
 ### Path Parameters
 
@@ -1983,7 +1983,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 GetCouponsByAttributesApplicationWide(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
-Get a list of the coupons that match the given attributes in all active campaigns of an application
+Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
 
 
 
@@ -2144,7 +2144,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20014 GetCustomerActivityReports(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
-Get Activity Reports for Application Customers
+Get Activity Reports for Application Customers (with total count)
 
 
 
@@ -2664,7 +2664,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 > InlineResponse2006 GetReferrals(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
-List Referrals
+List Referrals (with total count)
 
 ### Path Parameters
 
@@ -3243,7 +3243,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 SearchCouponsAdvanced(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
-Get a list of the coupons that match the given attributes
+Get a list of the coupons that match the given attributes (with total count)
 
 
 
@@ -3301,7 +3301,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 SearchCouponsAdvancedApplicationWide(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
-Get a list of the coupons that match the given attributes in all active campaigns of an application
+Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
 
 
 

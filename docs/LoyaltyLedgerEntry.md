@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **CustomerProfileID** | Pointer to **string** |  | 
 **CustomerSessionID** | Pointer to **string** |  | [optional] 
 **EventID** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** |  | 
+**Type** | Pointer to **string** | The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)  | 
 **Amount** | Pointer to **float32** |  | 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Name** | Pointer to **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | 
