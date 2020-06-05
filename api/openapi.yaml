@@ -1180,7 +1180,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_4'
           description: OK
-      summary: List Coupons
+      summary: List Coupons (with total count)
       tags:
       - management
     post:
@@ -1664,7 +1664,7 @@ paths:
                 $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: Get a list of the coupons that match the given attributes in all active
-        campaigns of an application
+        campaigns of an application (with total count)
       tags:
       - management
       x-codegen-request-body-name: body
@@ -1781,7 +1781,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_4'
           description: OK
-      summary: Get a list of the coupons that match the given attributes
+      summary: Get a list of the coupons that match the given attributes (with total
+        count)
       tags:
       - management
       x-codegen-request-body-name: body
@@ -2024,7 +2025,7 @@ paths:
                 $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: Get a list of the coupons that match the given attributes in all active
-        campaigns of an application
+        campaigns of an application (with total count)
       tags:
       - management
       x-codegen-request-body-name: body
@@ -2240,7 +2241,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_6'
           description: OK
-      summary: List Referrals
+      summary: List Referrals (with total count)
       tags:
       - management
   /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId}:
@@ -2572,7 +2573,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_9'
           description: OK
-      summary: Get access logs for application
+      summary: Get access logs for application (with total count)
       tags:
       - management
   /v1/applications/{applicationId}/access_logs/no_total:
@@ -2917,6 +2918,7 @@ paths:
       security:
       - integration_auth: []
       summary: Get a list of the customer profiles that match the given attributes
+        (with total count)
       tags:
       - management
       x-codegen-request-body-name: body
@@ -3017,7 +3019,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_14'
           description: OK
-      summary: Get Activity Reports for Application Customers
+      summary: Get Activity Reports for Application Customers (with total count)
       tags:
       - management
   /v1/applications/{applicationId}/customer_activity_reports/no_total:
@@ -3389,7 +3391,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/inline_response_200_17'
           description: OK
-      summary: List Applications Events
+      summary: List Applications Events (with total count)
       tags:
       - management
   /v1/applications/{applicationId}/events/no_total:
@@ -6681,7 +6683,7 @@ components:
         name: name
         subLedgerID: subLedgerID
         customerSessionID: customerSessionID
-        type: addition
+        type: type
         userID: 5
         programID: 6
       properties:
@@ -6697,9 +6699,8 @@ components:
         eventID:
           type: integer
         type:
-          enum:
-          - addition
-          - subtraction
+          description: |
+            The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)
           type: string
         amount:
           type: number
@@ -6741,7 +6742,7 @@ components:
             name: name
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
-            type: addition
+            type: type
             userID: 5
             programID: 6
           - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6752,7 +6753,7 @@ components:
             name: name
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
-            type: addition
+            type: type
             userID: 5
             programID: 6
           transactions:
@@ -6764,7 +6765,7 @@ components:
             name: name
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
-            type: addition
+            type: type
             userID: 5
             programID: 6
           - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6775,7 +6776,7 @@ components:
             name: name
             subLedgerID: subLedgerID
             customerSessionID: customerSessionID
-            type: addition
+            type: type
             userID: 5
             programID: 6
         subLedgers:
@@ -6790,7 +6791,7 @@ components:
               name: name
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
-              type: addition
+              type: type
               userID: 5
               programID: 6
             - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6801,7 +6802,7 @@ components:
               name: name
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
-              type: addition
+              type: type
               userID: 5
               programID: 6
             transactions:
@@ -6813,7 +6814,7 @@ components:
               name: name
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
-              type: addition
+              type: type
               userID: 5
               programID: 6
             - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6824,7 +6825,7 @@ components:
               name: name
               subLedgerID: subLedgerID
               customerSessionID: customerSessionID
-              type: addition
+              type: type
               userID: 5
               programID: 6
       properties:
@@ -6851,7 +6852,7 @@ components:
           name: name
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
-          type: addition
+          type: type
           userID: 5
           programID: 6
         - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6862,7 +6863,7 @@ components:
           name: name
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
-          type: addition
+          type: type
           userID: 5
           programID: 6
         transactions:
@@ -6874,7 +6875,7 @@ components:
           name: name
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
-          type: addition
+          type: type
           userID: 5
           programID: 6
         - expiryDate: 2000-01-23T04:56:07.000+00:00
@@ -6885,7 +6886,7 @@ components:
           name: name
           subLedgerID: subLedgerID
           customerSessionID: customerSessionID
-          type: addition
+          type: type
           userID: 5
           programID: 6
       properties:
