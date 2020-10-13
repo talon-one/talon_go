@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationId** | Pointer to **string** | The ID used for this entity in the application system. | 
+**IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | 
 **AccountId** | Pointer to **int32** | The ID of the Talon.One account that owns this profile. | 
 **ClosedSessions** | Pointer to **int32** | The total amount of closed sessions by a customer. A closed session is a successful purchase. | 
 **TotalSales** | Pointer to **float32** | Sum of all purchases made by this customer | 
 **LoyaltyMemberships** | Pointer to [**[]LoyaltyMembership**](LoyaltyMembership.md) | A list of loyalty programs joined by the customer | [optional] 
+**AudienceMemberships** | Pointer to [**[]AudienceMembership**](AudienceMembership.md) | A list of audiences the customer belongs to | [optional] 
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received from this customer | 
 
 ## Methods
@@ -189,6 +190,31 @@ HasLoyaltyMemberships returns a boolean if a field has been set.
 `func (o *CustomerProfile) SetLoyaltyMemberships(v []LoyaltyMembership)`
 
 SetLoyaltyMemberships gets a reference to the given []LoyaltyMembership and assigns it to the LoyaltyMemberships field.
+
+### GetAudienceMemberships
+
+`func (o *CustomerProfile) GetAudienceMemberships() []AudienceMembership`
+
+GetAudienceMemberships returns the AudienceMemberships field if non-nil, zero value otherwise.
+
+### GetAudienceMembershipsOk
+
+`func (o *CustomerProfile) GetAudienceMembershipsOk() ([]AudienceMembership, bool)`
+
+GetAudienceMembershipsOk returns a tuple with the AudienceMemberships field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAudienceMemberships
+
+`func (o *CustomerProfile) HasAudienceMemberships() bool`
+
+HasAudienceMemberships returns a boolean if a field has been set.
+
+### SetAudienceMemberships
+
+`func (o *CustomerProfile) SetAudienceMemberships(v []AudienceMembership)`
+
+SetAudienceMemberships gets a reference to the given []AudienceMembership and assigns it to the AudienceMemberships field.
 
 ### GetLastActivity
 

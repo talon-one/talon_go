@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Title** | Pointer to **string** | Title for API Key | 
 **Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired | 
+**Platform** | Pointer to **string** | Platform the API key is valid for. | [optional] 
 
 ## Methods
 
@@ -58,6 +59,31 @@ HasExpires returns a boolean if a field has been set.
 `func (o *CreateApplicationApiKey) SetExpires(v time.Time)`
 
 SetExpires gets a reference to the given time.Time and assigns it to the Expires field.
+
+### GetPlatform
+
+`func (o *CreateApplicationApiKey) GetPlatform() string`
+
+GetPlatform returns the Platform field if non-nil, zero value otherwise.
+
+### GetPlatformOk
+
+`func (o *CreateApplicationApiKey) GetPlatformOk() (string, bool)`
+
+GetPlatformOk returns a tuple with the Platform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPlatform
+
+`func (o *CreateApplicationApiKey) HasPlatform() bool`
+
+HasPlatform returns a boolean if a field has been set.
+
+### SetPlatform
+
+`func (o *CreateApplicationApiKey) SetPlatform(v string)`
+
+SetPlatform gets a reference to the given string and assigns it to the Platform field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

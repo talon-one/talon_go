@@ -11,9 +11,11 @@ Method | HTTP request | Description
 [**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile.
 [**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
 [**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track an Event
-[**UpdateCustomerProfile**](IntegrationApi.md#UpdateCustomerProfile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile
-[**UpdateCustomerProfileV2**](IntegrationApi.md#UpdateCustomerProfileV2) | **Put** /v2/customer_profiles/{customerProfileId} | Update a Customer Profile
-[**UpdateCustomerSession**](IntegrationApi.md#UpdateCustomerSession) | **Put** /v1/customer_sessions/{customerSessionId} | Update a Customer Session
+[**UpdateCustomerProfile**](IntegrationApi.md#UpdateCustomerProfile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile V1
+[**UpdateCustomerProfileAudiences**](IntegrationApi.md#UpdateCustomerProfileAudiences) | **Post** /v2/customer_audiences | Update a Customer Profile Audiences
+[**UpdateCustomerProfileV2**](IntegrationApi.md#UpdateCustomerProfileV2) | **Put** /v2/customer_profiles/{integrationId} | Update a Customer Profile
+[**UpdateCustomerProfilesV2**](IntegrationApi.md#UpdateCustomerProfilesV2) | **Put** /v2/customer_profiles | Update multiple Customer Profiles
+[**UpdateCustomerSession**](IntegrationApi.md#UpdateCustomerSession) | **Put** /v1/customer_sessions/{customerSessionId} | Update a Customer Session V1
 [**UpdateCustomerSessionV2**](IntegrationApi.md#UpdateCustomerSessionV2) | **Put** /v2/customer_sessions/{customerSessionId} | Update a Customer Session
 
 
@@ -190,7 +192,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerInventory
 
-> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Execute()
+> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Execute()
 
 Get an inventory of all data associated with a specific customer profile.
 
@@ -215,6 +217,7 @@ Name | Type | Description  | Notes
  **profile** | **bool** | optional flag to decide if you would like customer profile information in the response | 
  **referrals** | **bool** | optional flag to decide if you would like referral information in the response | 
  **coupons** | **bool** | optional flag to decide if you would like coupon information in the response | 
+ **loyalty** | **bool** | optional flag to decide if you would like loyalty information in the response | 
 
 ### Return type
 
@@ -321,7 +324,7 @@ Name | Type | Description  | Notes
 
 > IntegrationState UpdateCustomerProfile(ctx, integrationId).Body(body).Dry(dry).Execute()
 
-Update a Customer Profile
+Update a Customer Profile V1
 
 
 
@@ -362,9 +365,48 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateCustomerProfileAudiences
+
+> UpdateCustomerProfileAudiences(ctx).Body(body).Execute()
+
+Update a Customer Profile Audiences
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateCustomerProfileAudiencesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**CustomerProfileAudienceRequest**](CustomerProfileAudienceRequest.md) |  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateCustomerProfileV2
 
-> CustomerProfileUpdate UpdateCustomerProfileV2(ctx, customerProfileId).Body(body).Execute()
+> IntegrationStateV2 UpdateCustomerProfileV2(ctx, integrationId).Body(body).RunRuleEngine(runRuleEngine).Dry(dry).Execute()
 
 Update a Customer Profile
 
@@ -376,7 +418,7 @@ Update a Customer Profile
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customerProfileId** | **string** | The custom identifier for this profile, must be unique within the account. | 
+**integrationId** | **string** | The custom identifier for this profile, must be unique within the account. | 
 
 ### Other Parameters
 
@@ -386,11 +428,53 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfileV2Req
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
+ **body** | [**CustomerProfileIntegrationRequestV2**](CustomerProfileIntegrationRequestV2.md) |  | 
+ **runRuleEngine** | **bool** | Flag to indicate whether to run the rule engine (Defaults to false). | 
+ **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;. Only used when &#39;runRuleEngine&#39; is set to &#39;true&#39;). | 
 
 ### Return type
 
-[**CustomerProfileUpdate**](CustomerProfileUpdate.md)
+[**IntegrationStateV2**](IntegrationStateV2.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateCustomerProfilesV2
+
+> MultipleCustomerProfileIntegrationResponseV2 UpdateCustomerProfilesV2(ctx).Body(body).Silent(silent).Execute()
+
+Update multiple Customer Profiles
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateCustomerProfilesV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**MultipleCustomerProfileIntegrationRequest**](MultipleCustomerProfileIntegrationRequest.md) |  | 
+ **silent** | **string** | If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the IntegrationStateV2  generated. | 
+
+### Return type
+
+[**MultipleCustomerProfileIntegrationResponseV2**](MultipleCustomerProfileIntegrationResponseV2.md)
 
 ### Authorization
 
@@ -410,7 +494,7 @@ Name | Type | Description  | Notes
 
 > IntegrationState UpdateCustomerSession(ctx, customerSessionId).Body(body).Dry(dry).Execute()
 
-Update a Customer Session
+Update a Customer Session V1
 
 
 

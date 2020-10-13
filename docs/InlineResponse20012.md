@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | 
+**TotalResultSize** | Pointer to **int32** |  | [optional] 
+**HasMore** | Pointer to **bool** |  | [optional] 
 **Data** | Pointer to [**[]ApplicationCustomer**](ApplicationCustomer.md) |  | 
 
 ## Methods
@@ -33,6 +34,31 @@ HasTotalResultSize returns a boolean if a field has been set.
 `func (o *InlineResponse20012) SetTotalResultSize(v int32)`
 
 SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
+
+### GetHasMore
+
+`func (o *InlineResponse20012) GetHasMore() bool`
+
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+
+### GetHasMoreOk
+
+`func (o *InlineResponse20012) GetHasMoreOk() (bool, bool)`
+
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasHasMore
+
+`func (o *InlineResponse20012) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
+
+### SetHasMore
+
+`func (o *InlineResponse20012) SetHasMore(v bool)`
+
+SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
 ### GetData
 

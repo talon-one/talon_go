@@ -33,12 +33,10 @@ type User struct {
 	State string `json:"state"`
 	// Full name
 	Name string `json:"name"`
-	// A blob of ACL JSON
-	Policy string `json:"policy"`
-	// Update the user via email
-	ReleaseUpdate bool `json:"releaseUpdate"`
-	// Latest feature the user has been notified.
-	LatestFeature *string `json:"latestFeature,omitempty"`
+	// User ACL Policy
+	Policy map[string]interface{} `json:"policy"`
+	// Latest timestamp the user has been notified for feed.
+	LatestFeedTimestamp *time.Time `json:"latestFeedTimestamp,omitempty"`
 	// Contains a list of all roles the user is a member of
 	Roles                                *[]int32                `json:"roles,omitempty"`
 	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
@@ -167,9 +165,9 @@ func (o *User) SetName(v string) {
 }
 
 // GetPolicy returns the Policy field value
-func (o *User) GetPolicy() string {
+func (o *User) GetPolicy() map[string]interface{} {
 	if o == nil {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -177,56 +175,41 @@ func (o *User) GetPolicy() string {
 }
 
 // SetPolicy sets field value
-func (o *User) SetPolicy(v string) {
+func (o *User) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
 }
 
-// GetReleaseUpdate returns the ReleaseUpdate field value
-func (o *User) GetReleaseUpdate() bool {
-	if o == nil {
-		var ret bool
+// GetLatestFeedTimestamp returns the LatestFeedTimestamp field value if set, zero value otherwise.
+func (o *User) GetLatestFeedTimestamp() time.Time {
+	if o == nil || o.LatestFeedTimestamp == nil {
+		var ret time.Time
 		return ret
 	}
-
-	return o.ReleaseUpdate
+	return *o.LatestFeedTimestamp
 }
 
-// SetReleaseUpdate sets field value
-func (o *User) SetReleaseUpdate(v bool) {
-	o.ReleaseUpdate = v
-}
-
-// GetLatestFeature returns the LatestFeature field value if set, zero value otherwise.
-func (o *User) GetLatestFeature() string {
-	if o == nil || o.LatestFeature == nil {
-		var ret string
-		return ret
-	}
-	return *o.LatestFeature
-}
-
-// GetLatestFeatureOk returns a tuple with the LatestFeature field value if set, zero value otherwise
+// GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetLatestFeatureOk() (string, bool) {
-	if o == nil || o.LatestFeature == nil {
-		var ret string
+func (o *User) GetLatestFeedTimestampOk() (time.Time, bool) {
+	if o == nil || o.LatestFeedTimestamp == nil {
+		var ret time.Time
 		return ret, false
 	}
-	return *o.LatestFeature, true
+	return *o.LatestFeedTimestamp, true
 }
 
-// HasLatestFeature returns a boolean if a field has been set.
-func (o *User) HasLatestFeature() bool {
-	if o != nil && o.LatestFeature != nil {
+// HasLatestFeedTimestamp returns a boolean if a field has been set.
+func (o *User) HasLatestFeedTimestamp() bool {
+	if o != nil && o.LatestFeedTimestamp != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLatestFeature gets a reference to the given string and assigns it to the LatestFeature field.
-func (o *User) SetLatestFeature(v string) {
-	o.LatestFeature = &v
+// SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
+func (o *User) SetLatestFeedTimestamp(v time.Time) {
+	o.LatestFeedTimestamp = &v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.

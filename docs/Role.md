@@ -6,10 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | The ID of the role corresponding to the DB row | 
 **AccountID** | Pointer to **int32** | The ID of the Talon.One account that owns this role. | 
+**CampaignGroupID** | Pointer to **int32** | The ID of the Campaign Group this role was created for. | [optional] 
 **Name** | Pointer to **string** | Name of the role | [optional] 
 **Description** | Pointer to **string** | Description of the role | [optional] 
 **Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role | [optional] 
-**Acl** | Pointer to **string** | Role Policy this should be a stringified blob of json | [optional] 
+**Acl** | Pointer to [**map[string]interface{}**](.md) | Role ACL Policy | [optional] 
 
 ## Methods
 
@@ -62,6 +63,31 @@ HasAccountID returns a boolean if a field has been set.
 `func (o *Role) SetAccountID(v int32)`
 
 SetAccountID gets a reference to the given int32 and assigns it to the AccountID field.
+
+### GetCampaignGroupID
+
+`func (o *Role) GetCampaignGroupID() int32`
+
+GetCampaignGroupID returns the CampaignGroupID field if non-nil, zero value otherwise.
+
+### GetCampaignGroupIDOk
+
+`func (o *Role) GetCampaignGroupIDOk() (int32, bool)`
+
+GetCampaignGroupIDOk returns a tuple with the CampaignGroupID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignGroupID
+
+`func (o *Role) HasCampaignGroupID() bool`
+
+HasCampaignGroupID returns a boolean if a field has been set.
+
+### SetCampaignGroupID
+
+`func (o *Role) SetCampaignGroupID(v int32)`
+
+SetCampaignGroupID gets a reference to the given int32 and assigns it to the CampaignGroupID field.
 
 ### GetName
 
@@ -140,13 +166,13 @@ SetMembers gets a reference to the given []int32 and assigns it to the Members f
 
 ### GetAcl
 
-`func (o *Role) GetAcl() string`
+`func (o *Role) GetAcl() map[string]interface{}`
 
 GetAcl returns the Acl field if non-nil, zero value otherwise.
 
 ### GetAclOk
 
-`func (o *Role) GetAclOk() (string, bool)`
+`func (o *Role) GetAclOk() (map[string]interface{}, bool)`
 
 GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -159,9 +185,9 @@ HasAcl returns a boolean if a field has been set.
 
 ### SetAcl
 
-`func (o *Role) SetAcl(v string)`
+`func (o *Role) SetAcl(v map[string]interface{})`
 
-SetAcl gets a reference to the given string and assigns it to the Acl field.
+SetAcl gets a reference to the given map[string]interface{} and assigns it to the Acl field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

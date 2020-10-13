@@ -22,10 +22,6 @@ type UpdateUser struct {
 	Policy *string `json:"policy,omitempty"`
 	// New state (\"deactivated\" or \"active\") for the user. Only usable by admins for the user.
 	State *string `json:"state,omitempty"`
-	// Update the user via email
-	ReleaseUpdate *bool `json:"releaseUpdate,omitempty"`
-	// The latest feature you've been notified.
-	LatestFeature *string `json:"latestFeature,omitempty"`
 	// Update
 	Roles                                *[]int32                `json:"roles,omitempty"`
 	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
@@ -128,72 +124,6 @@ func (o *UpdateUser) HasState() bool {
 // SetState gets a reference to the given string and assigns it to the State field.
 func (o *UpdateUser) SetState(v string) {
 	o.State = &v
-}
-
-// GetReleaseUpdate returns the ReleaseUpdate field value if set, zero value otherwise.
-func (o *UpdateUser) GetReleaseUpdate() bool {
-	if o == nil || o.ReleaseUpdate == nil {
-		var ret bool
-		return ret
-	}
-	return *o.ReleaseUpdate
-}
-
-// GetReleaseUpdateOk returns a tuple with the ReleaseUpdate field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateUser) GetReleaseUpdateOk() (bool, bool) {
-	if o == nil || o.ReleaseUpdate == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.ReleaseUpdate, true
-}
-
-// HasReleaseUpdate returns a boolean if a field has been set.
-func (o *UpdateUser) HasReleaseUpdate() bool {
-	if o != nil && o.ReleaseUpdate != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetReleaseUpdate gets a reference to the given bool and assigns it to the ReleaseUpdate field.
-func (o *UpdateUser) SetReleaseUpdate(v bool) {
-	o.ReleaseUpdate = &v
-}
-
-// GetLatestFeature returns the LatestFeature field value if set, zero value otherwise.
-func (o *UpdateUser) GetLatestFeature() string {
-	if o == nil || o.LatestFeature == nil {
-		var ret string
-		return ret
-	}
-	return *o.LatestFeature
-}
-
-// GetLatestFeatureOk returns a tuple with the LatestFeature field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateUser) GetLatestFeatureOk() (string, bool) {
-	if o == nil || o.LatestFeature == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.LatestFeature, true
-}
-
-// HasLatestFeature returns a boolean if a field has been set.
-func (o *UpdateUser) HasLatestFeature() bool {
-	if o != nil && o.LatestFeature != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLatestFeature gets a reference to the given string and assigns it to the LatestFeature field.
-func (o *UpdateUser) SetLatestFeature(v string) {
-	o.LatestFeature = &v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.

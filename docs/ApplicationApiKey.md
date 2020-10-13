@@ -4,15 +4,91 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Title** | Pointer to **string** | Title for API Key | 
+**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired | 
+**Platform** | Pointer to **string** | Platform the API key is valid for. | [optional] 
 **Id** | Pointer to **int32** | ID of the API Key | 
 **CreatedBy** | Pointer to **int32** | ID of user who created | 
-**Title** | Pointer to **string** | Title for API Key | 
 **AccountID** | Pointer to **int32** | ID of account the key is used for | 
 **ApplicationID** | Pointer to **int32** | ID of application the key is used for | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The date the API key was created | 
-**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired | 
 
 ## Methods
+
+### GetTitle
+
+`func (o *ApplicationApiKey) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *ApplicationApiKey) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *ApplicationApiKey) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *ApplicationApiKey) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
+
+### GetExpires
+
+`func (o *ApplicationApiKey) GetExpires() time.Time`
+
+GetExpires returns the Expires field if non-nil, zero value otherwise.
+
+### GetExpiresOk
+
+`func (o *ApplicationApiKey) GetExpiresOk() (time.Time, bool)`
+
+GetExpiresOk returns a tuple with the Expires field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpires
+
+`func (o *ApplicationApiKey) HasExpires() bool`
+
+HasExpires returns a boolean if a field has been set.
+
+### SetExpires
+
+`func (o *ApplicationApiKey) SetExpires(v time.Time)`
+
+SetExpires gets a reference to the given time.Time and assigns it to the Expires field.
+
+### GetPlatform
+
+`func (o *ApplicationApiKey) GetPlatform() string`
+
+GetPlatform returns the Platform field if non-nil, zero value otherwise.
+
+### GetPlatformOk
+
+`func (o *ApplicationApiKey) GetPlatformOk() (string, bool)`
+
+GetPlatformOk returns a tuple with the Platform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPlatform
+
+`func (o *ApplicationApiKey) HasPlatform() bool`
+
+HasPlatform returns a boolean if a field has been set.
+
+### SetPlatform
+
+`func (o *ApplicationApiKey) SetPlatform(v string)`
+
+SetPlatform gets a reference to the given string and assigns it to the Platform field.
 
 ### GetId
 
@@ -63,31 +139,6 @@ HasCreatedBy returns a boolean if a field has been set.
 `func (o *ApplicationApiKey) SetCreatedBy(v int32)`
 
 SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-
-### GetTitle
-
-`func (o *ApplicationApiKey) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *ApplicationApiKey) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *ApplicationApiKey) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *ApplicationApiKey) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetAccountID
 
@@ -163,31 +214,6 @@ HasCreated returns a boolean if a field has been set.
 `func (o *ApplicationApiKey) SetCreated(v time.Time)`
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetExpires
-
-`func (o *ApplicationApiKey) GetExpires() time.Time`
-
-GetExpires returns the Expires field if non-nil, zero value otherwise.
-
-### GetExpiresOk
-
-`func (o *ApplicationApiKey) GetExpiresOk() (time.Time, bool)`
-
-GetExpiresOk returns a tuple with the Expires field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExpires
-
-`func (o *ApplicationApiKey) HasExpires() bool`
-
-HasExpires returns a boolean if a field has been set.
-
-### SetExpires
-
-`func (o *ApplicationApiKey) SetExpires(v time.Time)`
-
-SetExpires gets a reference to the given time.Time and assigns it to the Expires field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

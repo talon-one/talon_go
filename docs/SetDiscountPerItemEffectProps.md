@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name/description of this discount | 
 **Value** | Pointer to **float32** | The total monetary value of the discount | 
 **Position** | Pointer to **float32** | The index of the item in the cart items list on which this discount should be applied | 
+**SubPosition** | Pointer to **float32** | The sub-index of the item in an item stack on which this discount should be applied | [optional] 
 
 ## Methods
 
@@ -84,6 +85,31 @@ HasPosition returns a boolean if a field has been set.
 `func (o *SetDiscountPerItemEffectProps) SetPosition(v float32)`
 
 SetPosition gets a reference to the given float32 and assigns it to the Position field.
+
+### GetSubPosition
+
+`func (o *SetDiscountPerItemEffectProps) GetSubPosition() float32`
+
+GetSubPosition returns the SubPosition field if non-nil, zero value otherwise.
+
+### GetSubPositionOk
+
+`func (o *SetDiscountPerItemEffectProps) GetSubPositionOk() (float32, bool)`
+
+GetSubPositionOk returns a tuple with the SubPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSubPosition
+
+`func (o *SetDiscountPerItemEffectProps) HasSubPosition() bool`
+
+HasSubPosition returns a boolean if a field has been set.
+
+### SetSubPosition
+
+`func (o *SetDiscountPerItemEffectProps) SetSubPosition(v float32)`
+
+SetSubPosition gets a reference to the given float32 and assigns it to the SubPosition field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

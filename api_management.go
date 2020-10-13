@@ -3500,9 +3500,33 @@ func (r apiGetApplicationCustomerRequest) Execute() (ApplicationCustomer, *_neth
 }
 
 type apiGetApplicationCustomersRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
+	ctx                 _context.Context
+	apiService          *ManagementApiService
+	applicationId       int32
+	integrationId       *string
+	pageSize            *int32
+	skip                *int32
+	withTotalResultSize *bool
+}
+
+func (r apiGetApplicationCustomersRequest) IntegrationId(integrationId string) apiGetApplicationCustomersRequest {
+	r.integrationId = &integrationId
+	return r
+}
+
+func (r apiGetApplicationCustomersRequest) PageSize(pageSize int32) apiGetApplicationCustomersRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiGetApplicationCustomersRequest) Skip(skip int32) apiGetApplicationCustomersRequest {
+	r.skip = &skip
+	return r
+}
+
+func (r apiGetApplicationCustomersRequest) WithTotalResultSize(withTotalResultSize bool) apiGetApplicationCustomersRequest {
+	r.withTotalResultSize = &withTotalResultSize
+	return r
 }
 
 /*
@@ -3545,6 +3569,18 @@ func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20012, *_net
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.integrationId != nil {
+		localVarQueryParams.Add("integrationId", parameterToString(*r.integrationId, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	if r.withTotalResultSize != nil {
+		localVarQueryParams.Add("withTotalResultSize", parameterToString(*r.withTotalResultSize, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -4545,10 +4581,11 @@ type apiGetApplicationSessionsRequest struct {
 	sort          *string
 	profile       *string
 	state         *string
+	createdBefore *time.Time
+	createdAfter  *time.Time
 	coupon        *string
 	referral      *string
 	integrationId *string
-	customerId    *string
 }
 
 func (r apiGetApplicationSessionsRequest) PageSize(pageSize int32) apiGetApplicationSessionsRequest {
@@ -4576,6 +4613,16 @@ func (r apiGetApplicationSessionsRequest) State(state string) apiGetApplicationS
 	return r
 }
 
+func (r apiGetApplicationSessionsRequest) CreatedBefore(createdBefore time.Time) apiGetApplicationSessionsRequest {
+	r.createdBefore = &createdBefore
+	return r
+}
+
+func (r apiGetApplicationSessionsRequest) CreatedAfter(createdAfter time.Time) apiGetApplicationSessionsRequest {
+	r.createdAfter = &createdAfter
+	return r
+}
+
 func (r apiGetApplicationSessionsRequest) Coupon(coupon string) apiGetApplicationSessionsRequest {
 	r.coupon = &coupon
 	return r
@@ -4588,11 +4635,6 @@ func (r apiGetApplicationSessionsRequest) Referral(referral string) apiGetApplic
 
 func (r apiGetApplicationSessionsRequest) IntegrationId(integrationId string) apiGetApplicationSessionsRequest {
 	r.integrationId = &integrationId
-	return r
-}
-
-func (r apiGetApplicationSessionsRequest) CustomerId(customerId string) apiGetApplicationSessionsRequest {
-	r.customerId = &customerId
 	return r
 }
 
@@ -4651,6 +4693,12 @@ func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20016, *_neth
 	if r.state != nil {
 		localVarQueryParams.Add("state", parameterToString(*r.state, ""))
 	}
+	if r.createdBefore != nil {
+		localVarQueryParams.Add("createdBefore", parameterToString(*r.createdBefore, ""))
+	}
+	if r.createdAfter != nil {
+		localVarQueryParams.Add("createdAfter", parameterToString(*r.createdAfter, ""))
+	}
 	if r.coupon != nil {
 		localVarQueryParams.Add("coupon", parameterToString(*r.coupon, ""))
 	}
@@ -4659,9 +4707,6 @@ func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20016, *_neth
 	}
 	if r.integrationId != nil {
 		localVarQueryParams.Add("integrationId", parameterToString(*r.integrationId, ""))
-	}
-	if r.customerId != nil {
-		localVarQueryParams.Add("customerId", parameterToString(*r.customerId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -5612,17 +5657,18 @@ func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2002, *_neth
 }
 
 type apiGetCampaignsRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	pageSize      *int32
-	skip          *int32
-	sort          *string
-	campaignState *string
-	name          *string
-	tags          *string
-	createdBefore *time.Time
-	createdAfter  *time.Time
+	ctx             _context.Context
+	apiService      *ManagementApiService
+	applicationId   int32
+	pageSize        *int32
+	skip            *int32
+	sort            *string
+	campaignState   *string
+	name            *string
+	tags            *string
+	createdBefore   *time.Time
+	createdAfter    *time.Time
+	campaignGroupId *int32
 }
 
 func (r apiGetCampaignsRequest) PageSize(pageSize int32) apiGetCampaignsRequest {
@@ -5662,6 +5708,11 @@ func (r apiGetCampaignsRequest) CreatedBefore(createdBefore time.Time) apiGetCam
 
 func (r apiGetCampaignsRequest) CreatedAfter(createdAfter time.Time) apiGetCampaignsRequest {
 	r.createdAfter = &createdAfter
+	return r
+}
+
+func (r apiGetCampaignsRequest) CampaignGroupId(campaignGroupId int32) apiGetCampaignsRequest {
+	r.campaignGroupId = &campaignGroupId
 	return r
 }
 
@@ -5728,6 +5779,9 @@ func (r apiGetCampaignsRequest) Execute() (InlineResponse2002, *_nethttp.Respons
 	}
 	if r.createdAfter != nil {
 		localVarQueryParams.Add("createdAfter", parameterToString(*r.createdAfter, ""))
+	}
+	if r.campaignGroupId != nil {
+		localVarQueryParams.Add("campaignGroupId", parameterToString(*r.campaignGroupId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -7741,25 +7795,22 @@ func (r apiGetCustomerAnalyticsRequest) Execute() (CustomerAnalytics, *_nethttp.
 }
 
 type apiGetCustomerProfileRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	customerId    int32
+	ctx        _context.Context
+	apiService *ManagementApiService
+	customerId int32
 }
 
 /*
 GetCustomerProfile Get Customer Profile
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId
  * @param customerId
 @return apiGetCustomerProfileRequest
 */
-func (a *ManagementApiService) GetCustomerProfile(ctx _context.Context, applicationId int32, customerId int32) apiGetCustomerProfileRequest {
+func (a *ManagementApiService) GetCustomerProfile(ctx _context.Context, customerId int32) apiGetCustomerProfileRequest {
 	return apiGetCustomerProfileRequest{
-		apiService:    a,
-		ctx:           ctx,
-		applicationId: applicationId,
-		customerId:    customerId,
+		apiService: a,
+		ctx:        ctx,
+		customerId: customerId,
 	}
 }
 
@@ -7783,7 +7834,6 @@ func (r apiGetCustomerProfileRequest) Execute() (ApplicationCustomer, *_nethttp.
 	}
 
 	localVarPath := localBasePath + "/v1/customers/{customerId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"customerId"+"}", _neturl.QueryEscape(parameterToString(r.customerId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -8978,6 +9028,128 @@ func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse2008, *_nethttp.R
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
 			var v InlineResponse2008
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetLoyaltyStatisticsRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+	programID  string
+}
+
+/*
+GetLoyaltyStatistics Get loyalty program statistics by loyalty program ID
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param programID
+@return apiGetLoyaltyStatisticsRequest
+*/
+func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, programID string) apiGetLoyaltyStatisticsRequest {
+	return apiGetLoyaltyStatisticsRequest{
+		apiService: a,
+		ctx:        ctx,
+		programID:  programID,
+	}
+}
+
+/*
+Execute executes the request
+ @return LoyaltyStatistics
+*/
+func (r apiGetLoyaltyStatisticsRequest) Execute() (LoyaltyStatistics, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  LoyaltyStatistics
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetLoyaltyStatistics")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/loyalty_programs/{programID}/statistics"
+	localVarPath = strings.Replace(localVarPath, "{"+"programID"+"}", _neturl.QueryEscape(parameterToString(r.programID, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v LoyaltyStatistics
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

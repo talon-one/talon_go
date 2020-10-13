@@ -17,6 +17,7 @@ import (
 // CustomerInventory struct for CustomerInventory
 type CustomerInventory struct {
 	Profile   *CustomerProfile `json:"profile,omitempty"`
+	Loyalty   *Loyalty         `json:"loyalty,omitempty"`
 	Referrals *[]Referral      `json:"referrals,omitempty"`
 	Coupons   *[]Coupon        `json:"coupons,omitempty"`
 }
@@ -52,6 +53,39 @@ func (o *CustomerInventory) HasProfile() bool {
 // SetProfile gets a reference to the given CustomerProfile and assigns it to the Profile field.
 func (o *CustomerInventory) SetProfile(v CustomerProfile) {
 	o.Profile = &v
+}
+
+// GetLoyalty returns the Loyalty field value if set, zero value otherwise.
+func (o *CustomerInventory) GetLoyalty() Loyalty {
+	if o == nil || o.Loyalty == nil {
+		var ret Loyalty
+		return ret
+	}
+	return *o.Loyalty
+}
+
+// GetLoyaltyOk returns a tuple with the Loyalty field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerInventory) GetLoyaltyOk() (Loyalty, bool) {
+	if o == nil || o.Loyalty == nil {
+		var ret Loyalty
+		return ret, false
+	}
+	return *o.Loyalty, true
+}
+
+// HasLoyalty returns a boolean if a field has been set.
+func (o *CustomerInventory) HasLoyalty() bool {
+	if o != nil && o.Loyalty != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty field.
+func (o *CustomerInventory) SetLoyalty(v Loyalty) {
+	o.Loyalty = &v
 }
 
 // GetReferrals returns the Referrals field value if set, zero value otherwise.

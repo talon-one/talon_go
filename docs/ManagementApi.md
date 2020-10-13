@@ -61,6 +61,7 @@ Method | HTTP request | Description
 [**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{programID}/profile/{integrationID} | get the Loyalty Ledger for this integrationID
 [**GetLoyaltyProgram**](ManagementApi.md#GetLoyaltyProgram) | **Get** /v1/loyalty_programs/{programID} | Get a loyalty program
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List all loyalty Programs
+[**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{programID}/statistics | Get loyalty program statistics by loyalty program ID
 [**GetReferrals**](ManagementApi.md#GetReferrals) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals | List Referrals (with total count)
 [**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List Referrals
 [**GetRole**](ManagementApi.md#GetRole) | **Get** /v1/roles/{roleId} | Get information for the specified role.
@@ -1174,7 +1175,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20012 GetApplicationCustomers(ctx, applicationId).Execute()
+> InlineResponse20012 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List Application Customers
 
@@ -1194,6 +1195,10 @@ Other parameters are passed through a pointer to a apiGetApplicationCustomersReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
+ **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
 
 ### Return type
 
@@ -1457,7 +1462,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20016 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).Coupon(coupon).Referral(referral).IntegrationId(integrationId).CustomerId(customerId).Execute()
+> InlineResponse20016 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
 
 List Application Sessions
 
@@ -1482,10 +1487,11 @@ Name | Type | Description  | Notes
  **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
  **profile** | **string** | Profile integration ID filter for sessions. Must be exact match. | 
  **state** | **string** | Filter by sessions with this state. Must be exact match. | 
+ **createdBefore** | **time.Time** | Only return events created before this date | 
+ **createdAfter** | **time.Time** | Only return events created after this date | 
  **coupon** | **string** | Filter by sessions with this coupon. Must be exact match. | 
  **referral** | **string** | Filter by sessions with this referral. Must be exact match. | 
  **integrationId** | **string** | Filter by sessions with this integrationId. Must be exact match. | 
- **customerId** | **string** | Filter by integration ID of the customer for the session | 
 
 ### Return type
 
@@ -1769,7 +1775,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaigns
 
-> InlineResponse2002 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse2002 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).Execute()
 
 List your Campaigns
 
@@ -1797,6 +1803,7 @@ Name | Type | Description  | Notes
  **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. | 
+ **campaignGroupId** | **int32** | Filter results to campaigns owned by the specified campaign group ID. | 
 
 ### Return type
 
@@ -2294,7 +2301,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfile
 
-> ApplicationCustomer GetCustomerProfile(ctx, applicationId, customerId).Execute()
+> ApplicationCustomer GetCustomerProfile(ctx, customerId).Execute()
 
 Get Customer Profile
 
@@ -2304,7 +2311,6 @@ Get Customer Profile
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32** |  | 
 **customerId** | **int32** |  | 
 
 ### Other Parameters
@@ -2314,7 +2320,6 @@ Other parameters are passed through a pointer to a apiGetCustomerProfileRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -2645,6 +2650,47 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 ### Return type
 
 [**InlineResponse2008**](inline_response_200_8.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLoyaltyStatistics
+
+> LoyaltyStatistics GetLoyaltyStatistics(ctx, programID).Execute()
+
+Get loyalty program statistics by loyalty program ID
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**programID** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyStatisticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**LoyaltyStatistics**](LoyaltyStatistics.md)
 
 ### Authorization
 

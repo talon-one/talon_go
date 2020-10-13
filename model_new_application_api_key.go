@@ -17,22 +17,87 @@ import (
 
 // NewApplicationApiKey
 type NewApplicationApiKey struct {
+	// Title for API Key
+	Title string `json:"title"`
+	// The date the API key expired
+	Expires time.Time `json:"expires"`
+	// Platform the API key is valid for.
+	Platform *string `json:"platform,omitempty"`
 	// ID of the API Key
 	Id int32 `json:"id"`
 	// ID of user who created
 	CreatedBy int32 `json:"createdBy"`
-	// Title for API Key
-	Title string `json:"title"`
 	// ID of account the key is used for
 	AccountID int32 `json:"accountID"`
 	// ID of application the key is used for
 	ApplicationID int32 `json:"applicationID"`
 	// The date the API key was created
 	Created time.Time `json:"created"`
-	// The date the API key expired
-	Expires time.Time `json:"expires"`
 	// Raw API Key
 	Key string `json:"key"`
+}
+
+// GetTitle returns the Title field value
+func (o *NewApplicationApiKey) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// SetTitle sets field value
+func (o *NewApplicationApiKey) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetExpires returns the Expires field value
+func (o *NewApplicationApiKey) GetExpires() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Expires
+}
+
+// SetExpires sets field value
+func (o *NewApplicationApiKey) SetExpires(v time.Time) {
+	o.Expires = v
+}
+
+// GetPlatform returns the Platform field value if set, zero value otherwise.
+func (o *NewApplicationApiKey) GetPlatform() string {
+	if o == nil || o.Platform == nil {
+		var ret string
+		return ret
+	}
+	return *o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewApplicationApiKey) GetPlatformOk() (string, bool) {
+	if o == nil || o.Platform == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Platform, true
+}
+
+// HasPlatform returns a boolean if a field has been set.
+func (o *NewApplicationApiKey) HasPlatform() bool {
+	if o != nil && o.Platform != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatform gets a reference to the given string and assigns it to the Platform field.
+func (o *NewApplicationApiKey) SetPlatform(v string) {
+	o.Platform = &v
 }
 
 // GetId returns the Id field value
@@ -63,21 +128,6 @@ func (o *NewApplicationApiKey) GetCreatedBy() int32 {
 // SetCreatedBy sets field value
 func (o *NewApplicationApiKey) SetCreatedBy(v int32) {
 	o.CreatedBy = v
-}
-
-// GetTitle returns the Title field value
-func (o *NewApplicationApiKey) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// SetTitle sets field value
-func (o *NewApplicationApiKey) SetTitle(v string) {
-	o.Title = v
 }
 
 // GetAccountID returns the AccountID field value
@@ -123,21 +173,6 @@ func (o *NewApplicationApiKey) GetCreated() time.Time {
 // SetCreated sets field value
 func (o *NewApplicationApiKey) SetCreated(v time.Time) {
 	o.Created = v
-}
-
-// GetExpires returns the Expires field value
-func (o *NewApplicationApiKey) GetExpires() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.Expires
-}
-
-// SetExpires sets field value
-func (o *NewApplicationApiKey) SetExpires(v time.Time) {
-	o.Expires = v
 }
 
 // GetKey returns the Key field value

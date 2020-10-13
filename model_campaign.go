@@ -47,6 +47,8 @@ type Campaign struct {
 	ReferralSettings *CodeGeneratorSettings `json:"referralSettings,omitempty"`
 	// The set of limits that will operate for this campaign
 	Limits []LimitConfig `json:"limits"`
+	// The IDs of the campaign groups that own this entity.
+	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
 	// Number of coupons redeemed in the campaign.
 	CouponRedemptionCount *int32 `json:"couponRedemptionCount,omitempty"`
 	// Number of referral codes redeemed in the campaign.
@@ -413,6 +415,39 @@ func (o *Campaign) GetLimits() []LimitConfig {
 // SetLimits sets field value
 func (o *Campaign) SetLimits(v []LimitConfig) {
 	o.Limits = v
+}
+
+// GetCampaignGroups returns the CampaignGroups field value if set, zero value otherwise.
+func (o *Campaign) GetCampaignGroups() []int32 {
+	if o == nil || o.CampaignGroups == nil {
+		var ret []int32
+		return ret
+	}
+	return *o.CampaignGroups
+}
+
+// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetCampaignGroupsOk() ([]int32, bool) {
+	if o == nil || o.CampaignGroups == nil {
+		var ret []int32
+		return ret, false
+	}
+	return *o.CampaignGroups, true
+}
+
+// HasCampaignGroups returns a boolean if a field has been set.
+func (o *Campaign) HasCampaignGroups() bool {
+	if o != nil && o.CampaignGroups != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
+func (o *Campaign) SetCampaignGroups(v []int32) {
+	o.CampaignGroups = &v
 }
 
 // GetCouponRedemptionCount returns the CouponRedemptionCount field value if set, zero value otherwise.

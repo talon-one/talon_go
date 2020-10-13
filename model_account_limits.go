@@ -16,29 +16,29 @@ import (
 
 // AccountLimits struct for AccountLimits
 type AccountLimits struct {
-	// Total Number of allowed live applications in the account
+	// Total number of allowed live applications in the account
 	LiveApplications int32 `json:"liveApplications"`
-	// Total Number of allowed sandbox applications in the account
+	// Total number of allowed sandbox applications in the account
 	SandboxApplications int32 `json:"sandboxApplications"`
-	// Total Number of allowed active campaigns in the account
+	// Total number of allowed active campaigns in live applications in the account
 	ActiveCampaigns int32 `json:"activeCampaigns"`
-	// Total Number of allowed coupons in the account
+	// Total number of allowed coupons in the account
 	Coupons int32 `json:"coupons"`
-	// Total Number of allowed referral codes in the account
+	// Total number of allowed referral codes in the account
 	ReferralCodes int32 `json:"referralCodes"`
-	// Total Number of allowed live loyalty programs in the account
+	// Total number of allowed active rulesets in the account
+	ActiveRules int32 `json:"activeRules"`
+	// Total number of allowed live loyalty programs in the account
 	LiveLoyaltyPrograms int32 `json:"liveLoyaltyPrograms"`
-	// Total Number of allowed sandbox loyalty programs in the account
+	// Total number of allowed sandbox loyalty programs in the account
 	SandboxLoyaltyPrograms int32 `json:"sandboxLoyaltyPrograms"`
-	// Total Number of allowed webhooks in the account
+	// Total number of allowed webhooks in the account
 	Webhooks int32 `json:"webhooks"`
-	// Total Number of allowed users in the account
+	// Total number of allowed users in the account
 	Users int32 `json:"users"`
-	// Total allowed api volume
+	// Allowed volume of API requests to the account
 	ApiVolume int32 `json:"apiVolume"`
-	// Total allowed active rulesets
-	ActiveRules *int32 `json:"activeRules,omitempty"`
-	// array of rulesets where webhook is used
+	// Array of promotion types that are employed in the account
 	PromotionTypes []string `json:"promotionTypes"`
 }
 
@@ -117,6 +117,21 @@ func (o *AccountLimits) SetReferralCodes(v int32) {
 	o.ReferralCodes = v
 }
 
+// GetActiveRules returns the ActiveRules field value
+func (o *AccountLimits) GetActiveRules() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.ActiveRules
+}
+
+// SetActiveRules sets field value
+func (o *AccountLimits) SetActiveRules(v int32) {
+	o.ActiveRules = v
+}
+
 // GetLiveLoyaltyPrograms returns the LiveLoyaltyPrograms field value
 func (o *AccountLimits) GetLiveLoyaltyPrograms() int32 {
 	if o == nil {
@@ -190,39 +205,6 @@ func (o *AccountLimits) GetApiVolume() int32 {
 // SetApiVolume sets field value
 func (o *AccountLimits) SetApiVolume(v int32) {
 	o.ApiVolume = v
-}
-
-// GetActiveRules returns the ActiveRules field value if set, zero value otherwise.
-func (o *AccountLimits) GetActiveRules() int32 {
-	if o == nil || o.ActiveRules == nil {
-		var ret int32
-		return ret
-	}
-	return *o.ActiveRules
-}
-
-// GetActiveRulesOk returns a tuple with the ActiveRules field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountLimits) GetActiveRulesOk() (int32, bool) {
-	if o == nil || o.ActiveRules == nil {
-		var ret int32
-		return ret, false
-	}
-	return *o.ActiveRules, true
-}
-
-// HasActiveRules returns a boolean if a field has been set.
-func (o *AccountLimits) HasActiveRules() bool {
-	if o != nil && o.ActiveRules != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetActiveRules gets a reference to the given int32 and assigns it to the ActiveRules field.
-func (o *AccountLimits) SetActiveRules(v int32) {
-	o.ActiveRules = &v
 }
 
 // GetPromotionTypes returns the PromotionTypes field value

@@ -25,6 +25,7 @@ type LoyaltyLedgerEntry struct {
 	// The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)
 	Type       string     `json:"type"`
 	Amount     float32    `json:"amount"`
+	StartDate  *time.Time `json:"startDate,omitempty"`
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// A name referencing the condition or effect that added this entry, or the specific name provided in an API call.
 	Name string `json:"name"`
@@ -173,6 +174,39 @@ func (o *LoyaltyLedgerEntry) GetAmount() float32 {
 // SetAmount sets field value
 func (o *LoyaltyLedgerEntry) SetAmount(v float32) {
 	o.Amount = v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *LoyaltyLedgerEntry) GetStartDate() time.Time {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyLedgerEntry) GetStartDateOk() (time.Time, bool) {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *LoyaltyLedgerEntry) HasStartDate() bool {
+	if o != nil && o.StartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+func (o *LoyaltyLedgerEntry) SetStartDate(v time.Time) {
+	o.StartDate = &v
 }
 
 // GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.

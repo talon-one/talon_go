@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Points** | Pointer to **float32** | Amount of loyalty points | 
 **Name** | Pointer to **string** | Allows to specify a name for the addition or deduction | [optional] 
-**ExpiryDuration** | Pointer to **string** | Indicates the duration after which the added loyalty points should expire. The format is a number followed by one letter indicating the unit, like &#39;1h&#39; or &#39;40m&#39; or &#39;30d&#39;. | [optional] 
+**ValidityDuration** | Pointer to **string** | Indicates the duration after which the added loyalty points should expire. The format is a number followed by one letter indicating the time unit, like &#39;1h&#39; or &#39;40m&#39; (defined by Go time package). | [optional] 
+**PendingDuration** | Pointer to **string** | Indicates the amount of time before the points are considered valid. The format is a number followed by one letter indicating the time unit, like &#39;1h&#39; or &#39;40m&#39; (defined by Go time package). | [optional] 
 **SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger | [optional] 
 
 ## Methods
@@ -61,30 +62,55 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetExpiryDuration
+### GetValidityDuration
 
-`func (o *LoyaltyPoints) GetExpiryDuration() string`
+`func (o *LoyaltyPoints) GetValidityDuration() string`
 
-GetExpiryDuration returns the ExpiryDuration field if non-nil, zero value otherwise.
+GetValidityDuration returns the ValidityDuration field if non-nil, zero value otherwise.
 
-### GetExpiryDurationOk
+### GetValidityDurationOk
 
-`func (o *LoyaltyPoints) GetExpiryDurationOk() (string, bool)`
+`func (o *LoyaltyPoints) GetValidityDurationOk() (string, bool)`
 
-GetExpiryDurationOk returns a tuple with the ExpiryDuration field if it's non-nil, zero value otherwise
+GetValidityDurationOk returns a tuple with the ValidityDuration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpiryDuration
+### HasValidityDuration
 
-`func (o *LoyaltyPoints) HasExpiryDuration() bool`
+`func (o *LoyaltyPoints) HasValidityDuration() bool`
 
-HasExpiryDuration returns a boolean if a field has been set.
+HasValidityDuration returns a boolean if a field has been set.
 
-### SetExpiryDuration
+### SetValidityDuration
 
-`func (o *LoyaltyPoints) SetExpiryDuration(v string)`
+`func (o *LoyaltyPoints) SetValidityDuration(v string)`
 
-SetExpiryDuration gets a reference to the given string and assigns it to the ExpiryDuration field.
+SetValidityDuration gets a reference to the given string and assigns it to the ValidityDuration field.
+
+### GetPendingDuration
+
+`func (o *LoyaltyPoints) GetPendingDuration() string`
+
+GetPendingDuration returns the PendingDuration field if non-nil, zero value otherwise.
+
+### GetPendingDurationOk
+
+`func (o *LoyaltyPoints) GetPendingDurationOk() (string, bool)`
+
+GetPendingDurationOk returns a tuple with the PendingDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPendingDuration
+
+`func (o *LoyaltyPoints) HasPendingDuration() bool`
+
+HasPendingDuration returns a boolean if a field has been set.
+
+### SetPendingDuration
+
+`func (o *LoyaltyPoints) SetPendingDuration(v string)`
+
+SetPendingDuration gets a reference to the given string and assigns it to the PendingDuration field.
 
 ### GetSubLedgerID
 

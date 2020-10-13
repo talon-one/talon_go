@@ -17,7 +17,7 @@ import (
 
 // CustomerProfile
 type CustomerProfile struct {
-	// The ID used for this entity in the application system.
+	// The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`
@@ -31,6 +31,8 @@ type CustomerProfile struct {
 	TotalSales float32 `json:"totalSales"`
 	// A list of loyalty programs joined by the customer
 	LoyaltyMemberships *[]LoyaltyMembership `json:"loyaltyMemberships,omitempty"`
+	// A list of audiences the customer belongs to
+	AudienceMemberships *[]AudienceMembership `json:"audienceMemberships,omitempty"`
 	// Timestamp of the most recent event received from this customer
 	LastActivity time.Time `json:"lastActivity"`
 }
@@ -156,6 +158,39 @@ func (o *CustomerProfile) HasLoyaltyMemberships() bool {
 // SetLoyaltyMemberships gets a reference to the given []LoyaltyMembership and assigns it to the LoyaltyMemberships field.
 func (o *CustomerProfile) SetLoyaltyMemberships(v []LoyaltyMembership) {
 	o.LoyaltyMemberships = &v
+}
+
+// GetAudienceMemberships returns the AudienceMemberships field value if set, zero value otherwise.
+func (o *CustomerProfile) GetAudienceMemberships() []AudienceMembership {
+	if o == nil || o.AudienceMemberships == nil {
+		var ret []AudienceMembership
+		return ret
+	}
+	return *o.AudienceMemberships
+}
+
+// GetAudienceMembershipsOk returns a tuple with the AudienceMemberships field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerProfile) GetAudienceMembershipsOk() ([]AudienceMembership, bool) {
+	if o == nil || o.AudienceMemberships == nil {
+		var ret []AudienceMembership
+		return ret, false
+	}
+	return *o.AudienceMemberships, true
+}
+
+// HasAudienceMemberships returns a boolean if a field has been set.
+func (o *CustomerProfile) HasAudienceMemberships() bool {
+	if o != nil && o.AudienceMemberships != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudienceMemberships gets a reference to the given []AudienceMembership and assigns it to the AudienceMemberships field.
+func (o *CustomerProfile) SetAudienceMemberships(v []AudienceMembership) {
+	o.AudienceMemberships = &v
 }
 
 // GetLastActivity returns the LastActivity field value

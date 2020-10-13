@@ -9,7 +9,8 @@ Name | Type | Description | Notes
 **SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added | 
 **Value** | Pointer to **float32** | The amount of points that were added | 
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were added | 
-**ExpiryCondition** | Pointer to **string** | The amount of time (in days) these points are valid | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which points will be valid | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which points will expire | [optional] 
 
 ## Methods
 
@@ -138,30 +139,55 @@ HasRecipientIntegrationId returns a boolean if a field has been set.
 
 SetRecipientIntegrationId gets a reference to the given string and assigns it to the RecipientIntegrationId field.
 
-### GetExpiryCondition
+### GetStartDate
 
-`func (o *AddLoyaltyPointsEffectProps) GetExpiryCondition() string`
+`func (o *AddLoyaltyPointsEffectProps) GetStartDate() time.Time`
 
-GetExpiryCondition returns the ExpiryCondition field if non-nil, zero value otherwise.
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
-### GetExpiryConditionOk
+### GetStartDateOk
 
-`func (o *AddLoyaltyPointsEffectProps) GetExpiryConditionOk() (string, bool)`
+`func (o *AddLoyaltyPointsEffectProps) GetStartDateOk() (time.Time, bool)`
 
-GetExpiryConditionOk returns a tuple with the ExpiryCondition field if it's non-nil, zero value otherwise
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpiryCondition
+### HasStartDate
 
-`func (o *AddLoyaltyPointsEffectProps) HasExpiryCondition() bool`
+`func (o *AddLoyaltyPointsEffectProps) HasStartDate() bool`
 
-HasExpiryCondition returns a boolean if a field has been set.
+HasStartDate returns a boolean if a field has been set.
 
-### SetExpiryCondition
+### SetStartDate
 
-`func (o *AddLoyaltyPointsEffectProps) SetExpiryCondition(v string)`
+`func (o *AddLoyaltyPointsEffectProps) SetStartDate(v time.Time)`
 
-SetExpiryCondition gets a reference to the given string and assigns it to the ExpiryCondition field.
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+
+### GetExpiryDate
+
+`func (o *AddLoyaltyPointsEffectProps) GetExpiryDate() time.Time`
+
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+
+### GetExpiryDateOk
+
+`func (o *AddLoyaltyPointsEffectProps) GetExpiryDateOk() (time.Time, bool)`
+
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiryDate
+
+`func (o *AddLoyaltyPointsEffectProps) HasExpiryDate() bool`
+
+HasExpiryDate returns a boolean if a field has been set.
+
+### SetExpiryDate
+
+`func (o *AddLoyaltyPointsEffectProps) SetExpiryDate(v time.Time)`
+
+SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

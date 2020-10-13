@@ -20,7 +20,7 @@ type CampaignCopy struct {
 	// Name of the copied campaign (Defaults to \"Copy of original campaign name\")
 	Name *string `json:"name,omitempty"`
 	// Application IDs of the applications to which a campaign should be copied to
-	ApplicationIds []string `json:"applicationIds"`
+	ApplicationIds []int32 `json:"applicationIds"`
 	// A detailed description of the campaign.
 	Description *string `json:"description,omitempty"`
 	// Datetime when the campaign will become active.
@@ -65,9 +65,9 @@ func (o *CampaignCopy) SetName(v string) {
 }
 
 // GetApplicationIds returns the ApplicationIds field value
-func (o *CampaignCopy) GetApplicationIds() []string {
+func (o *CampaignCopy) GetApplicationIds() []int32 {
 	if o == nil {
-		var ret []string
+		var ret []int32
 		return ret
 	}
 
@@ -75,7 +75,7 @@ func (o *CampaignCopy) GetApplicationIds() []string {
 }
 
 // SetApplicationIds sets field value
-func (o *CampaignCopy) SetApplicationIds(v []string) {
+func (o *CampaignCopy) SetApplicationIds(v []int32) {
 	o.ApplicationIds = v
 }
 

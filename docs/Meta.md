@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Coupons** | Pointer to [**map[string]interface{}**](.md) | Maps the coupon value to a key-value list of that coupons attributes. | [optional] 
 **CouponRejectionReason** | Pointer to [**CouponRejectionReason**](CouponRejectionReason.md) |  | [optional] 
 **ReferralRejectionReason** | Pointer to [**ReferralRejectionReason**](ReferralRejectionReason.md) |  | [optional] 
-**Warnings** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
+**Warnings** | Pointer to [**map[string]interface{}**](.md) | Contains warnings about possible misuse. | [optional] 
 
 ## Methods
 

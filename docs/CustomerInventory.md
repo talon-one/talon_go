@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | [optional] 
+**Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
 **Referrals** | Pointer to [**[]Referral**](Referral.md) |  | [optional] 
 **Coupons** | Pointer to [**[]Coupon**](Coupon.md) |  | [optional] 
 
@@ -34,6 +35,31 @@ HasProfile returns a boolean if a field has been set.
 `func (o *CustomerInventory) SetProfile(v CustomerProfile)`
 
 SetProfile gets a reference to the given CustomerProfile and assigns it to the Profile field.
+
+### GetLoyalty
+
+`func (o *CustomerInventory) GetLoyalty() Loyalty`
+
+GetLoyalty returns the Loyalty field if non-nil, zero value otherwise.
+
+### GetLoyaltyOk
+
+`func (o *CustomerInventory) GetLoyaltyOk() (Loyalty, bool)`
+
+GetLoyaltyOk returns a tuple with the Loyalty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLoyalty
+
+`func (o *CustomerInventory) HasLoyalty() bool`
+
+HasLoyalty returns a boolean if a field has been set.
+
+### SetLoyalty
+
+`func (o *CustomerInventory) SetLoyalty(v Loyalty)`
+
+SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty field.
 
 ### GetReferrals
 

@@ -16,36 +16,42 @@ import (
 
 // AccountAnalytics struct for AccountAnalytics
 type AccountAnalytics struct {
-	// Total Number of Applications inside the account
+	// Total number of applications in the account
 	Applications int32 `json:"applications"`
-	// Total Number of Active Applications inside the account
-	ActiveCampaigns int32 `json:"activeCampaigns"`
-	// Total Number of campaigns inside the account
+	// Total number of live applications in the account
+	LiveApplications int32 `json:"liveApplications"`
+	// Total number of sandbox applications in the account
+	SandboxApplications int32 `json:"sandboxApplications"`
+	// Total number of campaigns in the account
 	Campaigns int32 `json:"campaigns"`
-	// Total Number of coupons inside the account
+	// Total number of active campaigns in the account
+	ActiveCampaigns int32 `json:"activeCampaigns"`
+	// Total number of active campaigns in live applications in the account
+	LiveActiveCampaigns int32 `json:"liveActiveCampaigns"`
+	// Total number of coupons in the account
 	Coupons int32 `json:"coupons"`
-	// Total Number of active coupons inside the account
+	// Total number of active coupons in the account
 	ActiveCoupons int32 `json:"activeCoupons"`
-	// Total Number of expired coupons inside the account
+	// Total number of expired coupons in the account
 	ExpiredCoupons int32 `json:"expiredCoupons"`
-	// Total Number of custom attributes inside the account
-	CustomAttributes int32 `json:"customAttributes"`
-	// Total Number of referral codes inside the account
+	// Total number of referral codes in the account
 	ReferralCodes int32 `json:"referralCodes"`
-	// Total Number of active referral codes inside the account
+	// Total number of active referral codes in the account
 	ActiveReferralCodes int32 `json:"activeReferralCodes"`
-	// Total Number of expired referral codes inside the account
+	// Total number of expired referral codes in the account
 	ExpiredReferralCodes int32 `json:"expiredReferralCodes"`
-	// Total Number of users inside the account
-	Users int32 `json:"users"`
-	// Total Number of roles inside the account
-	Roles int32 `json:"roles"`
-	// Total Number of webhooks inside the account
-	Webhooks int32 `json:"webhooks"`
-	// Total Number of loyalty programs inside the account
-	LoyaltyPrograms int32 `json:"loyaltyPrograms"`
-	// Total Number of active rules in the account
+	// Total number of active rules in the account
 	ActiveRules int32 `json:"activeRules"`
+	// Total number of users in the account
+	Users int32 `json:"users"`
+	// Total number of roles in the account
+	Roles int32 `json:"roles"`
+	// Total number of custom attributes in the account
+	CustomAttributes int32 `json:"customAttributes"`
+	// Total number of webhooks in the account
+	Webhooks int32 `json:"webhooks"`
+	// Total number of loyalty programs in the account
+	LoyaltyPrograms int32 `json:"loyaltyPrograms"`
 }
 
 // GetApplications returns the Applications field value
@@ -63,19 +69,34 @@ func (o *AccountAnalytics) SetApplications(v int32) {
 	o.Applications = v
 }
 
-// GetActiveCampaigns returns the ActiveCampaigns field value
-func (o *AccountAnalytics) GetActiveCampaigns() int32 {
+// GetLiveApplications returns the LiveApplications field value
+func (o *AccountAnalytics) GetLiveApplications() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.ActiveCampaigns
+	return o.LiveApplications
 }
 
-// SetActiveCampaigns sets field value
-func (o *AccountAnalytics) SetActiveCampaigns(v int32) {
-	o.ActiveCampaigns = v
+// SetLiveApplications sets field value
+func (o *AccountAnalytics) SetLiveApplications(v int32) {
+	o.LiveApplications = v
+}
+
+// GetSandboxApplications returns the SandboxApplications field value
+func (o *AccountAnalytics) GetSandboxApplications() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.SandboxApplications
+}
+
+// SetSandboxApplications sets field value
+func (o *AccountAnalytics) SetSandboxApplications(v int32) {
+	o.SandboxApplications = v
 }
 
 // GetCampaigns returns the Campaigns field value
@@ -91,6 +112,36 @@ func (o *AccountAnalytics) GetCampaigns() int32 {
 // SetCampaigns sets field value
 func (o *AccountAnalytics) SetCampaigns(v int32) {
 	o.Campaigns = v
+}
+
+// GetActiveCampaigns returns the ActiveCampaigns field value
+func (o *AccountAnalytics) GetActiveCampaigns() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.ActiveCampaigns
+}
+
+// SetActiveCampaigns sets field value
+func (o *AccountAnalytics) SetActiveCampaigns(v int32) {
+	o.ActiveCampaigns = v
+}
+
+// GetLiveActiveCampaigns returns the LiveActiveCampaigns field value
+func (o *AccountAnalytics) GetLiveActiveCampaigns() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.LiveActiveCampaigns
+}
+
+// SetLiveActiveCampaigns sets field value
+func (o *AccountAnalytics) SetLiveActiveCampaigns(v int32) {
+	o.LiveActiveCampaigns = v
 }
 
 // GetCoupons returns the Coupons field value
@@ -138,21 +189,6 @@ func (o *AccountAnalytics) SetExpiredCoupons(v int32) {
 	o.ExpiredCoupons = v
 }
 
-// GetCustomAttributes returns the CustomAttributes field value
-func (o *AccountAnalytics) GetCustomAttributes() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.CustomAttributes
-}
-
-// SetCustomAttributes sets field value
-func (o *AccountAnalytics) SetCustomAttributes(v int32) {
-	o.CustomAttributes = v
-}
-
 // GetReferralCodes returns the ReferralCodes field value
 func (o *AccountAnalytics) GetReferralCodes() int32 {
 	if o == nil {
@@ -198,6 +234,21 @@ func (o *AccountAnalytics) SetExpiredReferralCodes(v int32) {
 	o.ExpiredReferralCodes = v
 }
 
+// GetActiveRules returns the ActiveRules field value
+func (o *AccountAnalytics) GetActiveRules() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.ActiveRules
+}
+
+// SetActiveRules sets field value
+func (o *AccountAnalytics) SetActiveRules(v int32) {
+	o.ActiveRules = v
+}
+
 // GetUsers returns the Users field value
 func (o *AccountAnalytics) GetUsers() int32 {
 	if o == nil {
@@ -228,6 +279,21 @@ func (o *AccountAnalytics) SetRoles(v int32) {
 	o.Roles = v
 }
 
+// GetCustomAttributes returns the CustomAttributes field value
+func (o *AccountAnalytics) GetCustomAttributes() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.CustomAttributes
+}
+
+// SetCustomAttributes sets field value
+func (o *AccountAnalytics) SetCustomAttributes(v int32) {
+	o.CustomAttributes = v
+}
+
 // GetWebhooks returns the Webhooks field value
 func (o *AccountAnalytics) GetWebhooks() int32 {
 	if o == nil {
@@ -256,21 +322,6 @@ func (o *AccountAnalytics) GetLoyaltyPrograms() int32 {
 // SetLoyaltyPrograms sets field value
 func (o *AccountAnalytics) SetLoyaltyPrograms(v int32) {
 	o.LoyaltyPrograms = v
-}
-
-// GetActiveRules returns the ActiveRules field value
-func (o *AccountAnalytics) GetActiveRules() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.ActiveRules
-}
-
-// SetActiveRules sets field value
-func (o *AccountAnalytics) SetActiveRules(v int32) {
-	o.ActiveRules = v
 }
 
 type NullableAccountAnalytics struct {

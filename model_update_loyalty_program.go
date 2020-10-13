@@ -22,8 +22,10 @@ type UpdateLoyaltyProgram struct {
 	Description *string `json:"description,omitempty"`
 	// A list containing the IDs of all applications that are subscribed to this Loyalty Program.
 	SubscribedApplications *[]int32 `json:"subscribedApplications,omitempty"`
-	// Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like '1h' or '40m' or '30d'.
+	// Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like '1h' or '40m'.
 	DefaultValidity *string `json:"defaultValidity,omitempty"`
+	// Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like '1h' or '40m'.
+	DefaultPending *string `json:"defaultPending,omitempty"`
 	// Indicates if this program supports subledgers inside the program
 	AllowSubledger *bool `json:"allowSubledger,omitempty"`
 }
@@ -158,6 +160,39 @@ func (o *UpdateLoyaltyProgram) HasDefaultValidity() bool {
 // SetDefaultValidity gets a reference to the given string and assigns it to the DefaultValidity field.
 func (o *UpdateLoyaltyProgram) SetDefaultValidity(v string) {
 	o.DefaultValidity = &v
+}
+
+// GetDefaultPending returns the DefaultPending field value if set, zero value otherwise.
+func (o *UpdateLoyaltyProgram) GetDefaultPending() string {
+	if o == nil || o.DefaultPending == nil {
+		var ret string
+		return ret
+	}
+	return *o.DefaultPending
+}
+
+// GetDefaultPendingOk returns a tuple with the DefaultPending field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoyaltyProgram) GetDefaultPendingOk() (string, bool) {
+	if o == nil || o.DefaultPending == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.DefaultPending, true
+}
+
+// HasDefaultPending returns a boolean if a field has been set.
+func (o *UpdateLoyaltyProgram) HasDefaultPending() bool {
+	if o != nil && o.DefaultPending != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultPending gets a reference to the given string and assigns it to the DefaultPending field.
+func (o *UpdateLoyaltyProgram) SetDefaultPending(v string) {
+	o.DefaultPending = &v
 }
 
 // GetAllowSubledger returns the AllowSubledger field value if set, zero value otherwise.

@@ -15,8 +15,12 @@ Name | Type | Description | Notes
 **CaseSensitivity** | Pointer to **string** | A string indicating how should campaigns in this application deal with case sensitivity on coupon codes. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Default limits for campaigns created in this application | [optional] 
-**CampaignPriority** | Pointer to **string** | Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive) | [optional] 
+**CampaignPriority** | Pointer to **string** | Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive). If no value is provided, this is set to \&quot;universal\&quot; | [optional] 
+**ExclusiveCampaignsStrategy** | Pointer to **string** | The strategy used when choosing exclusive campaigns for evaluation, can be one of (listOrder, lowestDiscount, highestDiscount). If no value is provided, this is set to \&quot;listOrder\&quot; | [optional] 
+**EnableCascadingDiscounts** | Pointer to **bool** | Flag indicating if discounts should cascade for this application | [optional] 
+**EnableFlattenedCartItems** | Pointer to **bool** | Flag indicating if cart items of quantity larger than one should be separated into different items of quantity one | [optional] 
 **AttributesSettings** | Pointer to [**AttributesSettings**](AttributesSettings.md) |  | [optional] 
+**Sandbox** | Pointer to **bool** | Flag indicating if this is a live or sandbox application | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | An array containing all the loyalty programs to which this application is subscribed | 
 
 ## Methods
@@ -321,6 +325,81 @@ HasCampaignPriority returns a boolean if a field has been set.
 
 SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
 
+### GetExclusiveCampaignsStrategy
+
+`func (o *Application) GetExclusiveCampaignsStrategy() string`
+
+GetExclusiveCampaignsStrategy returns the ExclusiveCampaignsStrategy field if non-nil, zero value otherwise.
+
+### GetExclusiveCampaignsStrategyOk
+
+`func (o *Application) GetExclusiveCampaignsStrategyOk() (string, bool)`
+
+GetExclusiveCampaignsStrategyOk returns a tuple with the ExclusiveCampaignsStrategy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExclusiveCampaignsStrategy
+
+`func (o *Application) HasExclusiveCampaignsStrategy() bool`
+
+HasExclusiveCampaignsStrategy returns a boolean if a field has been set.
+
+### SetExclusiveCampaignsStrategy
+
+`func (o *Application) SetExclusiveCampaignsStrategy(v string)`
+
+SetExclusiveCampaignsStrategy gets a reference to the given string and assigns it to the ExclusiveCampaignsStrategy field.
+
+### GetEnableCascadingDiscounts
+
+`func (o *Application) GetEnableCascadingDiscounts() bool`
+
+GetEnableCascadingDiscounts returns the EnableCascadingDiscounts field if non-nil, zero value otherwise.
+
+### GetEnableCascadingDiscountsOk
+
+`func (o *Application) GetEnableCascadingDiscountsOk() (bool, bool)`
+
+GetEnableCascadingDiscountsOk returns a tuple with the EnableCascadingDiscounts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEnableCascadingDiscounts
+
+`func (o *Application) HasEnableCascadingDiscounts() bool`
+
+HasEnableCascadingDiscounts returns a boolean if a field has been set.
+
+### SetEnableCascadingDiscounts
+
+`func (o *Application) SetEnableCascadingDiscounts(v bool)`
+
+SetEnableCascadingDiscounts gets a reference to the given bool and assigns it to the EnableCascadingDiscounts field.
+
+### GetEnableFlattenedCartItems
+
+`func (o *Application) GetEnableFlattenedCartItems() bool`
+
+GetEnableFlattenedCartItems returns the EnableFlattenedCartItems field if non-nil, zero value otherwise.
+
+### GetEnableFlattenedCartItemsOk
+
+`func (o *Application) GetEnableFlattenedCartItemsOk() (bool, bool)`
+
+GetEnableFlattenedCartItemsOk returns a tuple with the EnableFlattenedCartItems field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEnableFlattenedCartItems
+
+`func (o *Application) HasEnableFlattenedCartItems() bool`
+
+HasEnableFlattenedCartItems returns a boolean if a field has been set.
+
+### SetEnableFlattenedCartItems
+
+`func (o *Application) SetEnableFlattenedCartItems(v bool)`
+
+SetEnableFlattenedCartItems gets a reference to the given bool and assigns it to the EnableFlattenedCartItems field.
+
 ### GetAttributesSettings
 
 `func (o *Application) GetAttributesSettings() AttributesSettings`
@@ -345,6 +424,31 @@ HasAttributesSettings returns a boolean if a field has been set.
 `func (o *Application) SetAttributesSettings(v AttributesSettings)`
 
 SetAttributesSettings gets a reference to the given AttributesSettings and assigns it to the AttributesSettings field.
+
+### GetSandbox
+
+`func (o *Application) GetSandbox() bool`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *Application) GetSandboxOk() (bool, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandbox
+
+`func (o *Application) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
+
+### SetSandbox
+
+`func (o *Application) SetSandbox(v bool)`
+
+SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
 ### GetLoyaltyPrograms
 
