@@ -7,8 +7,6 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Your name. | [optional] 
 **Policy** | Pointer to **string** | a blob of acl json | [optional] 
 **State** | Pointer to **string** | New state (\&quot;deactivated\&quot; or \&quot;active\&quot;) for the user. Only usable by admins for the user. | [optional] 
-**ReleaseUpdate** | Pointer to **bool** | Update the user via email | [optional] 
-**LatestFeature** | Pointer to **string** | The latest feature you&#39;ve been notified. | [optional] 
 **Roles** | Pointer to **[]int32** | Update | [optional] 
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
 
@@ -88,56 +86,6 @@ HasState returns a boolean if a field has been set.
 `func (o *UpdateUser) SetState(v string)`
 
 SetState gets a reference to the given string and assigns it to the State field.
-
-### GetReleaseUpdate
-
-`func (o *UpdateUser) GetReleaseUpdate() bool`
-
-GetReleaseUpdate returns the ReleaseUpdate field if non-nil, zero value otherwise.
-
-### GetReleaseUpdateOk
-
-`func (o *UpdateUser) GetReleaseUpdateOk() (bool, bool)`
-
-GetReleaseUpdateOk returns a tuple with the ReleaseUpdate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasReleaseUpdate
-
-`func (o *UpdateUser) HasReleaseUpdate() bool`
-
-HasReleaseUpdate returns a boolean if a field has been set.
-
-### SetReleaseUpdate
-
-`func (o *UpdateUser) SetReleaseUpdate(v bool)`
-
-SetReleaseUpdate gets a reference to the given bool and assigns it to the ReleaseUpdate field.
-
-### GetLatestFeature
-
-`func (o *UpdateUser) GetLatestFeature() string`
-
-GetLatestFeature returns the LatestFeature field if non-nil, zero value otherwise.
-
-### GetLatestFeatureOk
-
-`func (o *UpdateUser) GetLatestFeatureOk() (string, bool)`
-
-GetLatestFeatureOk returns a tuple with the LatestFeature field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLatestFeature
-
-`func (o *UpdateUser) HasLatestFeature() bool`
-
-HasLatestFeature returns a boolean if a field has been set.
-
-### SetLatestFeature
-
-`func (o *UpdateUser) SetLatestFeature(v string)`
-
-SetLatestFeature gets a reference to the given string and assigns it to the LatestFeature field.
 
 ### GetRoles
 

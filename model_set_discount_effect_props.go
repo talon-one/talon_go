@@ -14,12 +14,14 @@ import (
 	"encoding/json"
 )
 
-// SetDiscountEffectProps The properties specific to the \"setDiscount\" effect. This gets triggered whenever a validated rule contained a \"set discount\" effect. This is a discount that should be applied globally on the session total.
+// SetDiscountEffectProps The properties specific to the \"setDiscount\" effect. This gets triggered whenever a validated rule contained a \"set discount\" effect. This is a discount that should be applied on the scope of defined with it.
 type SetDiscountEffectProps struct {
 	// The name/description of this discount
 	Name string `json:"name"`
 	// The total monetary value of the discount
 	Value float32 `json:"value"`
+	// The scope which the discount was applied on, can be one of (cartItems,additionalCosts,sessionTotal)
+	Scope *string `json:"scope,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -50,6 +52,39 @@ func (o *SetDiscountEffectProps) GetValue() float32 {
 // SetValue sets field value
 func (o *SetDiscountEffectProps) SetValue(v float32) {
 	o.Value = v
+}
+
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *SetDiscountEffectProps) GetScope() string {
+	if o == nil || o.Scope == nil {
+		var ret string
+		return ret
+	}
+	return *o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *SetDiscountEffectProps) GetScopeOk() (string, bool) {
+	if o == nil || o.Scope == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *SetDiscountEffectProps) HasScope() bool {
+	if o != nil && o.Scope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetScope gets a reference to the given string and assigns it to the Scope field.
+func (o *SetDiscountEffectProps) SetScope(v string) {
+	o.Scope = &v
 }
 
 type NullableSetDiscountEffectProps struct {

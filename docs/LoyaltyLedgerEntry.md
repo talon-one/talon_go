@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **EventID** | Pointer to **int32** |  | [optional] 
 **Type** | Pointer to **string** | The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)  | 
 **Amount** | Pointer to **float32** |  | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Name** | Pointer to **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | 
 **SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger | 
@@ -192,6 +193,31 @@ HasAmount returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetAmount(v float32)`
 
 SetAmount gets a reference to the given float32 and assigns it to the Amount field.
+
+### GetStartDate
+
+`func (o *LoyaltyLedgerEntry) GetStartDate() time.Time`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *LoyaltyLedgerEntry) GetStartDateOk() (time.Time, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStartDate
+
+`func (o *LoyaltyLedgerEntry) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
+
+### SetStartDate
+
+`func (o *LoyaltyLedgerEntry) SetStartDate(v time.Time)`
+
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
 ### GetExpiryDate
 

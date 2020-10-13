@@ -39,9 +39,17 @@ type Application struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application
 	Limits *[]LimitConfig `json:"limits,omitempty"`
-	// Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive)
-	CampaignPriority   *string             `json:"campaignPriority,omitempty"`
-	AttributesSettings *AttributesSettings `json:"attributesSettings,omitempty"`
+	// Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive). If no value is provided, this is set to \"universal\"
+	CampaignPriority *string `json:"campaignPriority,omitempty"`
+	// The strategy used when choosing exclusive campaigns for evaluation, can be one of (listOrder, lowestDiscount, highestDiscount). If no value is provided, this is set to \"listOrder\"
+	ExclusiveCampaignsStrategy *string `json:"exclusiveCampaignsStrategy,omitempty"`
+	// Flag indicating if discounts should cascade for this application
+	EnableCascadingDiscounts *bool `json:"enableCascadingDiscounts,omitempty"`
+	// Flag indicating if cart items of quantity larger than one should be separated into different items of quantity one
+	EnableFlattenedCartItems *bool               `json:"enableFlattenedCartItems,omitempty"`
+	AttributesSettings       *AttributesSettings `json:"attributesSettings,omitempty"`
+	// Flag indicating if this is a live or sandbox application
+	Sandbox *bool `json:"sandbox,omitempty"`
 	// An array containing all the loyalty programs to which this application is subscribed
 	LoyaltyPrograms []LoyaltyProgram `json:"loyaltyPrograms"`
 }
@@ -316,6 +324,105 @@ func (o *Application) SetCampaignPriority(v string) {
 	o.CampaignPriority = &v
 }
 
+// GetExclusiveCampaignsStrategy returns the ExclusiveCampaignsStrategy field value if set, zero value otherwise.
+func (o *Application) GetExclusiveCampaignsStrategy() string {
+	if o == nil || o.ExclusiveCampaignsStrategy == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExclusiveCampaignsStrategy
+}
+
+// GetExclusiveCampaignsStrategyOk returns a tuple with the ExclusiveCampaignsStrategy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetExclusiveCampaignsStrategyOk() (string, bool) {
+	if o == nil || o.ExclusiveCampaignsStrategy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.ExclusiveCampaignsStrategy, true
+}
+
+// HasExclusiveCampaignsStrategy returns a boolean if a field has been set.
+func (o *Application) HasExclusiveCampaignsStrategy() bool {
+	if o != nil && o.ExclusiveCampaignsStrategy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExclusiveCampaignsStrategy gets a reference to the given string and assigns it to the ExclusiveCampaignsStrategy field.
+func (o *Application) SetExclusiveCampaignsStrategy(v string) {
+	o.ExclusiveCampaignsStrategy = &v
+}
+
+// GetEnableCascadingDiscounts returns the EnableCascadingDiscounts field value if set, zero value otherwise.
+func (o *Application) GetEnableCascadingDiscounts() bool {
+	if o == nil || o.EnableCascadingDiscounts == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableCascadingDiscounts
+}
+
+// GetEnableCascadingDiscountsOk returns a tuple with the EnableCascadingDiscounts field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetEnableCascadingDiscountsOk() (bool, bool) {
+	if o == nil || o.EnableCascadingDiscounts == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.EnableCascadingDiscounts, true
+}
+
+// HasEnableCascadingDiscounts returns a boolean if a field has been set.
+func (o *Application) HasEnableCascadingDiscounts() bool {
+	if o != nil && o.EnableCascadingDiscounts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableCascadingDiscounts gets a reference to the given bool and assigns it to the EnableCascadingDiscounts field.
+func (o *Application) SetEnableCascadingDiscounts(v bool) {
+	o.EnableCascadingDiscounts = &v
+}
+
+// GetEnableFlattenedCartItems returns the EnableFlattenedCartItems field value if set, zero value otherwise.
+func (o *Application) GetEnableFlattenedCartItems() bool {
+	if o == nil || o.EnableFlattenedCartItems == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableFlattenedCartItems
+}
+
+// GetEnableFlattenedCartItemsOk returns a tuple with the EnableFlattenedCartItems field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetEnableFlattenedCartItemsOk() (bool, bool) {
+	if o == nil || o.EnableFlattenedCartItems == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.EnableFlattenedCartItems, true
+}
+
+// HasEnableFlattenedCartItems returns a boolean if a field has been set.
+func (o *Application) HasEnableFlattenedCartItems() bool {
+	if o != nil && o.EnableFlattenedCartItems != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableFlattenedCartItems gets a reference to the given bool and assigns it to the EnableFlattenedCartItems field.
+func (o *Application) SetEnableFlattenedCartItems(v bool) {
+	o.EnableFlattenedCartItems = &v
+}
+
 // GetAttributesSettings returns the AttributesSettings field value if set, zero value otherwise.
 func (o *Application) GetAttributesSettings() AttributesSettings {
 	if o == nil || o.AttributesSettings == nil {
@@ -347,6 +454,39 @@ func (o *Application) HasAttributesSettings() bool {
 // SetAttributesSettings gets a reference to the given AttributesSettings and assigns it to the AttributesSettings field.
 func (o *Application) SetAttributesSettings(v AttributesSettings) {
 	o.AttributesSettings = &v
+}
+
+// GetSandbox returns the Sandbox field value if set, zero value otherwise.
+func (o *Application) GetSandbox() bool {
+	if o == nil || o.Sandbox == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Sandbox
+}
+
+// GetSandboxOk returns a tuple with the Sandbox field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetSandboxOk() (bool, bool) {
+	if o == nil || o.Sandbox == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.Sandbox, true
+}
+
+// HasSandbox returns a boolean if a field has been set.
+func (o *Application) HasSandbox() bool {
+	if o != nil && o.Sandbox != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+func (o *Application) SetSandbox(v bool) {
+	o.Sandbox = &v
 }
 
 // GetLoyaltyPrograms returns the LoyaltyPrograms field value

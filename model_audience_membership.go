@@ -14,32 +14,50 @@ import (
 	"encoding/json"
 )
 
-// CustomerProfileUpdate struct for CustomerProfileUpdate
-type CustomerProfileUpdate struct {
-	CustomerProfile CustomerProfile `json:"customerProfile"`
+// AudienceMembership struct for AudienceMembership
+type AudienceMembership struct {
+	// The ID of the audience belonging to this entity.
+	Id int32 `json:"id"`
+	// The Name of the audience belonging to this entity.
+	Name string `json:"name"`
 }
 
-// GetCustomerProfile returns the CustomerProfile field value
-func (o *CustomerProfileUpdate) GetCustomerProfile() CustomerProfile {
+// GetId returns the Id field value
+func (o *AudienceMembership) GetId() int32 {
 	if o == nil {
-		var ret CustomerProfile
+		var ret int32
 		return ret
 	}
 
-	return o.CustomerProfile
+	return o.Id
 }
 
-// SetCustomerProfile sets field value
-func (o *CustomerProfileUpdate) SetCustomerProfile(v CustomerProfile) {
-	o.CustomerProfile = v
+// SetId sets field value
+func (o *AudienceMembership) SetId(v int32) {
+	o.Id = v
 }
 
-type NullableCustomerProfileUpdate struct {
-	Value        CustomerProfileUpdate
+// GetName returns the Name field value
+func (o *AudienceMembership) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// SetName sets field value
+func (o *AudienceMembership) SetName(v string) {
+	o.Name = v
+}
+
+type NullableAudienceMembership struct {
+	Value        AudienceMembership
 	ExplicitNull bool
 }
 
-func (v NullableCustomerProfileUpdate) MarshalJSON() ([]byte, error) {
+func (v NullableAudienceMembership) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -48,7 +66,7 @@ func (v NullableCustomerProfileUpdate) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableCustomerProfileUpdate) UnmarshalJSON(src []byte) error {
+func (v *NullableAudienceMembership) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

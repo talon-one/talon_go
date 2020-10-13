@@ -58,6 +58,14 @@ type CampaignAnalytics struct {
 	ReferralsCreated int32 `json:"referralsCreated"`
 	// Number of referrals created in the campaign by the rule engine since it began.
 	TotalReferralsCreated int32 `json:"totalReferralsCreated"`
+	// Number of added loyalty points in the campaign in a specific interval.
+	AddedLoyaltyPoints float32 `json:"addedLoyaltyPoints"`
+	// Number of added loyalty points in the campaign since it began.
+	TotalAddedLoyaltyPoints float32 `json:"totalAddedLoyaltyPoints"`
+	// Number of deducted loyalty points in the campaign in a specific interval.
+	DeductedLoyaltyPoints float32 `json:"deductedLoyaltyPoints"`
+	// Number of deducted loyalty points in the campaign since it began.
+	TotalDeductedLoyaltyPoints float32 `json:"totalDeductedLoyaltyPoints"`
 }
 
 // GetDate returns the Date field value
@@ -373,6 +381,66 @@ func (o *CampaignAnalytics) GetTotalReferralsCreated() int32 {
 // SetTotalReferralsCreated sets field value
 func (o *CampaignAnalytics) SetTotalReferralsCreated(v int32) {
 	o.TotalReferralsCreated = v
+}
+
+// GetAddedLoyaltyPoints returns the AddedLoyaltyPoints field value
+func (o *CampaignAnalytics) GetAddedLoyaltyPoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.AddedLoyaltyPoints
+}
+
+// SetAddedLoyaltyPoints sets field value
+func (o *CampaignAnalytics) SetAddedLoyaltyPoints(v float32) {
+	o.AddedLoyaltyPoints = v
+}
+
+// GetTotalAddedLoyaltyPoints returns the TotalAddedLoyaltyPoints field value
+func (o *CampaignAnalytics) GetTotalAddedLoyaltyPoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalAddedLoyaltyPoints
+}
+
+// SetTotalAddedLoyaltyPoints sets field value
+func (o *CampaignAnalytics) SetTotalAddedLoyaltyPoints(v float32) {
+	o.TotalAddedLoyaltyPoints = v
+}
+
+// GetDeductedLoyaltyPoints returns the DeductedLoyaltyPoints field value
+func (o *CampaignAnalytics) GetDeductedLoyaltyPoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.DeductedLoyaltyPoints
+}
+
+// SetDeductedLoyaltyPoints sets field value
+func (o *CampaignAnalytics) SetDeductedLoyaltyPoints(v float32) {
+	o.DeductedLoyaltyPoints = v
+}
+
+// GetTotalDeductedLoyaltyPoints returns the TotalDeductedLoyaltyPoints field value
+func (o *CampaignAnalytics) GetTotalDeductedLoyaltyPoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalDeductedLoyaltyPoints
+}
+
+// SetTotalDeductedLoyaltyPoints sets field value
+func (o *CampaignAnalytics) SetTotalDeductedLoyaltyPoints(v float32) {
+	o.TotalDeductedLoyaltyPoints = v
 }
 
 type NullableCampaignAnalytics struct {

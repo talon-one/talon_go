@@ -22,7 +22,8 @@ type Meta struct {
 	Coupons                 *map[string]interface{}  `json:"coupons,omitempty"`
 	CouponRejectionReason   *CouponRejectionReason   `json:"couponRejectionReason,omitempty"`
 	ReferralRejectionReason *ReferralRejectionReason `json:"referralRejectionReason,omitempty"`
-	Warnings                *map[string]interface{}  `json:"warnings,omitempty"`
+	// Contains warnings about possible misuse.
+	Warnings *map[string]interface{} `json:"warnings,omitempty"`
 }
 
 // GetCampaigns returns the Campaigns field value if set, zero value otherwise.

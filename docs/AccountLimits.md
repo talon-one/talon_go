@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LiveApplications** | Pointer to **int32** | Total Number of allowed live applications in the account | 
-**SandboxApplications** | Pointer to **int32** | Total Number of allowed sandbox applications in the account | 
-**ActiveCampaigns** | Pointer to **int32** | Total Number of allowed active campaigns in the account | 
-**Coupons** | Pointer to **int32** | Total Number of allowed coupons in the account | 
-**ReferralCodes** | Pointer to **int32** | Total Number of allowed referral codes in the account | 
-**LiveLoyaltyPrograms** | Pointer to **int32** | Total Number of allowed live loyalty programs in the account | 
-**SandboxLoyaltyPrograms** | Pointer to **int32** | Total Number of allowed sandbox loyalty programs in the account | 
-**Webhooks** | Pointer to **int32** | Total Number of allowed webhooks in the account | 
-**Users** | Pointer to **int32** | Total Number of allowed users in the account | 
-**ApiVolume** | Pointer to **int32** | Total allowed api volume | 
-**ActiveRules** | Pointer to **int32** | Total allowed active rulesets | [optional] 
-**PromotionTypes** | Pointer to **[]string** | array of rulesets where webhook is used | 
+**LiveApplications** | Pointer to **int32** | Total number of allowed live applications in the account | 
+**SandboxApplications** | Pointer to **int32** | Total number of allowed sandbox applications in the account | 
+**ActiveCampaigns** | Pointer to **int32** | Total number of allowed active campaigns in live applications in the account | 
+**Coupons** | Pointer to **int32** | Total number of allowed coupons in the account | 
+**ReferralCodes** | Pointer to **int32** | Total number of allowed referral codes in the account | 
+**ActiveRules** | Pointer to **int32** | Total number of allowed active rulesets in the account | 
+**LiveLoyaltyPrograms** | Pointer to **int32** | Total number of allowed live loyalty programs in the account | 
+**SandboxLoyaltyPrograms** | Pointer to **int32** | Total number of allowed sandbox loyalty programs in the account | 
+**Webhooks** | Pointer to **int32** | Total number of allowed webhooks in the account | 
+**Users** | Pointer to **int32** | Total number of allowed users in the account | 
+**ApiVolume** | Pointer to **int32** | Allowed volume of API requests to the account | 
+**PromotionTypes** | Pointer to **[]string** | Array of promotion types that are employed in the account | 
 
 ## Methods
 
@@ -144,6 +144,31 @@ HasReferralCodes returns a boolean if a field has been set.
 
 SetReferralCodes gets a reference to the given int32 and assigns it to the ReferralCodes field.
 
+### GetActiveRules
+
+`func (o *AccountLimits) GetActiveRules() int32`
+
+GetActiveRules returns the ActiveRules field if non-nil, zero value otherwise.
+
+### GetActiveRulesOk
+
+`func (o *AccountLimits) GetActiveRulesOk() (int32, bool)`
+
+GetActiveRulesOk returns a tuple with the ActiveRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasActiveRules
+
+`func (o *AccountLimits) HasActiveRules() bool`
+
+HasActiveRules returns a boolean if a field has been set.
+
+### SetActiveRules
+
+`func (o *AccountLimits) SetActiveRules(v int32)`
+
+SetActiveRules gets a reference to the given int32 and assigns it to the ActiveRules field.
+
 ### GetLiveLoyaltyPrograms
 
 `func (o *AccountLimits) GetLiveLoyaltyPrograms() int32`
@@ -268,31 +293,6 @@ HasApiVolume returns a boolean if a field has been set.
 `func (o *AccountLimits) SetApiVolume(v int32)`
 
 SetApiVolume gets a reference to the given int32 and assigns it to the ApiVolume field.
-
-### GetActiveRules
-
-`func (o *AccountLimits) GetActiveRules() int32`
-
-GetActiveRules returns the ActiveRules field if non-nil, zero value otherwise.
-
-### GetActiveRulesOk
-
-`func (o *AccountLimits) GetActiveRulesOk() (int32, bool)`
-
-GetActiveRulesOk returns a tuple with the ActiveRules field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasActiveRules
-
-`func (o *AccountLimits) HasActiveRules() bool`
-
-HasActiveRules returns a boolean if a field has been set.
-
-### SetActiveRules
-
-`func (o *AccountLimits) SetActiveRules(v int32)`
-
-SetActiveRules gets a reference to the given int32 and assigns it to the ActiveRules field.
 
 ### GetPromotionTypes
 

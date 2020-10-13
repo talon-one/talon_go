@@ -25,7 +25,7 @@ type ApplicationSession struct {
 	ApplicationId int32 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
 	ProfileId *int32 `json:"profileId,omitempty"`
-	// The ID used for this entity in the application system.
+	// The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`
 	// Integration ID of the customer for the session.
 	Profileintegrationid *string `json:"profileintegrationid,omitempty"`

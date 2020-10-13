@@ -25,6 +25,10 @@ Name | Type | Description | Notes
 **TotalCouponsCreated** | Pointer to **int32** | Number of coupons created in the campaign by the rule engine since it began. | 
 **ReferralsCreated** | Pointer to **int32** | Number of referrals created in the campaign by the rule engine. | 
 **TotalReferralsCreated** | Pointer to **int32** | Number of referrals created in the campaign by the rule engine since it began. | 
+**AddedLoyaltyPoints** | Pointer to **float32** | Number of added loyalty points in the campaign in a specific interval. | 
+**TotalAddedLoyaltyPoints** | Pointer to **float32** | Number of added loyalty points in the campaign since it began. | 
+**DeductedLoyaltyPoints** | Pointer to **float32** | Number of deducted loyalty points in the campaign in a specific interval. | 
+**TotalDeductedLoyaltyPoints** | Pointer to **float32** | Number of deducted loyalty points in the campaign since it began. | 
 
 ## Methods
 
@@ -552,6 +556,106 @@ HasTotalReferralsCreated returns a boolean if a field has been set.
 `func (o *CampaignAnalytics) SetTotalReferralsCreated(v int32)`
 
 SetTotalReferralsCreated gets a reference to the given int32 and assigns it to the TotalReferralsCreated field.
+
+### GetAddedLoyaltyPoints
+
+`func (o *CampaignAnalytics) GetAddedLoyaltyPoints() float32`
+
+GetAddedLoyaltyPoints returns the AddedLoyaltyPoints field if non-nil, zero value otherwise.
+
+### GetAddedLoyaltyPointsOk
+
+`func (o *CampaignAnalytics) GetAddedLoyaltyPointsOk() (float32, bool)`
+
+GetAddedLoyaltyPointsOk returns a tuple with the AddedLoyaltyPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAddedLoyaltyPoints
+
+`func (o *CampaignAnalytics) HasAddedLoyaltyPoints() bool`
+
+HasAddedLoyaltyPoints returns a boolean if a field has been set.
+
+### SetAddedLoyaltyPoints
+
+`func (o *CampaignAnalytics) SetAddedLoyaltyPoints(v float32)`
+
+SetAddedLoyaltyPoints gets a reference to the given float32 and assigns it to the AddedLoyaltyPoints field.
+
+### GetTotalAddedLoyaltyPoints
+
+`func (o *CampaignAnalytics) GetTotalAddedLoyaltyPoints() float32`
+
+GetTotalAddedLoyaltyPoints returns the TotalAddedLoyaltyPoints field if non-nil, zero value otherwise.
+
+### GetTotalAddedLoyaltyPointsOk
+
+`func (o *CampaignAnalytics) GetTotalAddedLoyaltyPointsOk() (float32, bool)`
+
+GetTotalAddedLoyaltyPointsOk returns a tuple with the TotalAddedLoyaltyPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalAddedLoyaltyPoints
+
+`func (o *CampaignAnalytics) HasTotalAddedLoyaltyPoints() bool`
+
+HasTotalAddedLoyaltyPoints returns a boolean if a field has been set.
+
+### SetTotalAddedLoyaltyPoints
+
+`func (o *CampaignAnalytics) SetTotalAddedLoyaltyPoints(v float32)`
+
+SetTotalAddedLoyaltyPoints gets a reference to the given float32 and assigns it to the TotalAddedLoyaltyPoints field.
+
+### GetDeductedLoyaltyPoints
+
+`func (o *CampaignAnalytics) GetDeductedLoyaltyPoints() float32`
+
+GetDeductedLoyaltyPoints returns the DeductedLoyaltyPoints field if non-nil, zero value otherwise.
+
+### GetDeductedLoyaltyPointsOk
+
+`func (o *CampaignAnalytics) GetDeductedLoyaltyPointsOk() (float32, bool)`
+
+GetDeductedLoyaltyPointsOk returns a tuple with the DeductedLoyaltyPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDeductedLoyaltyPoints
+
+`func (o *CampaignAnalytics) HasDeductedLoyaltyPoints() bool`
+
+HasDeductedLoyaltyPoints returns a boolean if a field has been set.
+
+### SetDeductedLoyaltyPoints
+
+`func (o *CampaignAnalytics) SetDeductedLoyaltyPoints(v float32)`
+
+SetDeductedLoyaltyPoints gets a reference to the given float32 and assigns it to the DeductedLoyaltyPoints field.
+
+### GetTotalDeductedLoyaltyPoints
+
+`func (o *CampaignAnalytics) GetTotalDeductedLoyaltyPoints() float32`
+
+GetTotalDeductedLoyaltyPoints returns the TotalDeductedLoyaltyPoints field if non-nil, zero value otherwise.
+
+### GetTotalDeductedLoyaltyPointsOk
+
+`func (o *CampaignAnalytics) GetTotalDeductedLoyaltyPointsOk() (float32, bool)`
+
+GetTotalDeductedLoyaltyPointsOk returns a tuple with the TotalDeductedLoyaltyPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalDeductedLoyaltyPoints
+
+`func (o *CampaignAnalytics) HasTotalDeductedLoyaltyPoints() bool`
+
+HasTotalDeductedLoyaltyPoints returns a boolean if a field has been set.
+
+### SetTotalDeductedLoyaltyPoints
+
+`func (o *CampaignAnalytics) SetTotalDeductedLoyaltyPoints(v float32)`
+
+SetTotalDeductedLoyaltyPoints gets a reference to the given float32 and assigns it to the TotalDeductedLoyaltyPoints field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

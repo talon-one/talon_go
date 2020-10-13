@@ -12,9 +12,8 @@ Name | Type | Description | Notes
 **InviteToken** | Pointer to **string** | Invite token, empty if the user as already accepted their invite. | 
 **State** | Pointer to **string** | Current user state. | 
 **Name** | Pointer to **string** | Full name | 
-**Policy** | Pointer to **string** | A blob of ACL JSON | 
-**ReleaseUpdate** | Pointer to **bool** | Update the user via email | 
-**LatestFeature** | Pointer to **string** | Latest feature the user has been notified. | [optional] 
+**Policy** | Pointer to [**map[string]interface{}**](.md) | User ACL Policy | 
+**LatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | Latest timestamp the user has been notified for feed. | [optional] 
 **Roles** | Pointer to **[]int32** | Contains a list of all roles the user is a member of | [optional] 
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
 **AuthMethod** | Pointer to **string** | The Authentication method for this user | [optional] 
@@ -223,13 +222,13 @@ SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPolicy
 
-`func (o *User) GetPolicy() string`
+`func (o *User) GetPolicy() map[string]interface{}`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *User) GetPolicyOk() (string, bool)`
+`func (o *User) GetPolicyOk() (map[string]interface{}, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -242,59 +241,34 @@ HasPolicy returns a boolean if a field has been set.
 
 ### SetPolicy
 
-`func (o *User) SetPolicy(v string)`
+`func (o *User) SetPolicy(v map[string]interface{})`
 
-SetPolicy gets a reference to the given string and assigns it to the Policy field.
+SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
 
-### GetReleaseUpdate
+### GetLatestFeedTimestamp
 
-`func (o *User) GetReleaseUpdate() bool`
+`func (o *User) GetLatestFeedTimestamp() time.Time`
 
-GetReleaseUpdate returns the ReleaseUpdate field if non-nil, zero value otherwise.
+GetLatestFeedTimestamp returns the LatestFeedTimestamp field if non-nil, zero value otherwise.
 
-### GetReleaseUpdateOk
+### GetLatestFeedTimestampOk
 
-`func (o *User) GetReleaseUpdateOk() (bool, bool)`
+`func (o *User) GetLatestFeedTimestampOk() (time.Time, bool)`
 
-GetReleaseUpdateOk returns a tuple with the ReleaseUpdate field if it's non-nil, zero value otherwise
+GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasReleaseUpdate
+### HasLatestFeedTimestamp
 
-`func (o *User) HasReleaseUpdate() bool`
+`func (o *User) HasLatestFeedTimestamp() bool`
 
-HasReleaseUpdate returns a boolean if a field has been set.
+HasLatestFeedTimestamp returns a boolean if a field has been set.
 
-### SetReleaseUpdate
+### SetLatestFeedTimestamp
 
-`func (o *User) SetReleaseUpdate(v bool)`
+`func (o *User) SetLatestFeedTimestamp(v time.Time)`
 
-SetReleaseUpdate gets a reference to the given bool and assigns it to the ReleaseUpdate field.
-
-### GetLatestFeature
-
-`func (o *User) GetLatestFeature() string`
-
-GetLatestFeature returns the LatestFeature field if non-nil, zero value otherwise.
-
-### GetLatestFeatureOk
-
-`func (o *User) GetLatestFeatureOk() (string, bool)`
-
-GetLatestFeatureOk returns a tuple with the LatestFeature field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLatestFeature
-
-`func (o *User) HasLatestFeature() bool`
-
-HasLatestFeature returns a boolean if a field has been set.
-
-### SetLatestFeature
-
-`func (o *User) SetLatestFeature(v string)`
-
-SetLatestFeature gets a reference to the given string and assigns it to the LatestFeature field.
+SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
 
 ### GetRoles
 

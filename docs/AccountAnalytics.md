@@ -4,21 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Applications** | Pointer to **int32** | Total Number of Applications inside the account | 
-**ActiveCampaigns** | Pointer to **int32** | Total Number of Active Applications inside the account | 
-**Campaigns** | Pointer to **int32** | Total Number of campaigns inside the account | 
-**Coupons** | Pointer to **int32** | Total Number of coupons inside the account | 
-**ActiveCoupons** | Pointer to **int32** | Total Number of active coupons inside the account | 
-**ExpiredCoupons** | Pointer to **int32** | Total Number of expired coupons inside the account | 
-**CustomAttributes** | Pointer to **int32** | Total Number of custom attributes inside the account | 
-**ReferralCodes** | Pointer to **int32** | Total Number of referral codes inside the account | 
-**ActiveReferralCodes** | Pointer to **int32** | Total Number of active referral codes inside the account | 
-**ExpiredReferralCodes** | Pointer to **int32** | Total Number of expired referral codes inside the account | 
-**Users** | Pointer to **int32** | Total Number of users inside the account | 
-**Roles** | Pointer to **int32** | Total Number of roles inside the account | 
-**Webhooks** | Pointer to **int32** | Total Number of webhooks inside the account | 
-**LoyaltyPrograms** | Pointer to **int32** | Total Number of loyalty programs inside the account | 
-**ActiveRules** | Pointer to **int32** | Total Number of active rules in the account | 
+**Applications** | Pointer to **int32** | Total number of applications in the account | 
+**LiveApplications** | Pointer to **int32** | Total number of live applications in the account | 
+**SandboxApplications** | Pointer to **int32** | Total number of sandbox applications in the account | 
+**Campaigns** | Pointer to **int32** | Total number of campaigns in the account | 
+**ActiveCampaigns** | Pointer to **int32** | Total number of active campaigns in the account | 
+**LiveActiveCampaigns** | Pointer to **int32** | Total number of active campaigns in live applications in the account | 
+**Coupons** | Pointer to **int32** | Total number of coupons in the account | 
+**ActiveCoupons** | Pointer to **int32** | Total number of active coupons in the account | 
+**ExpiredCoupons** | Pointer to **int32** | Total number of expired coupons in the account | 
+**ReferralCodes** | Pointer to **int32** | Total number of referral codes in the account | 
+**ActiveReferralCodes** | Pointer to **int32** | Total number of active referral codes in the account | 
+**ExpiredReferralCodes** | Pointer to **int32** | Total number of expired referral codes in the account | 
+**ActiveRules** | Pointer to **int32** | Total number of active rules in the account | 
+**Users** | Pointer to **int32** | Total number of users in the account | 
+**Roles** | Pointer to **int32** | Total number of roles in the account | 
+**CustomAttributes** | Pointer to **int32** | Total number of custom attributes in the account | 
+**Webhooks** | Pointer to **int32** | Total number of webhooks in the account | 
+**LoyaltyPrograms** | Pointer to **int32** | Total number of loyalty programs in the account | 
 
 ## Methods
 
@@ -47,30 +50,55 @@ HasApplications returns a boolean if a field has been set.
 
 SetApplications gets a reference to the given int32 and assigns it to the Applications field.
 
-### GetActiveCampaigns
+### GetLiveApplications
 
-`func (o *AccountAnalytics) GetActiveCampaigns() int32`
+`func (o *AccountAnalytics) GetLiveApplications() int32`
 
-GetActiveCampaigns returns the ActiveCampaigns field if non-nil, zero value otherwise.
+GetLiveApplications returns the LiveApplications field if non-nil, zero value otherwise.
 
-### GetActiveCampaignsOk
+### GetLiveApplicationsOk
 
-`func (o *AccountAnalytics) GetActiveCampaignsOk() (int32, bool)`
+`func (o *AccountAnalytics) GetLiveApplicationsOk() (int32, bool)`
 
-GetActiveCampaignsOk returns a tuple with the ActiveCampaigns field if it's non-nil, zero value otherwise
+GetLiveApplicationsOk returns a tuple with the LiveApplications field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasActiveCampaigns
+### HasLiveApplications
 
-`func (o *AccountAnalytics) HasActiveCampaigns() bool`
+`func (o *AccountAnalytics) HasLiveApplications() bool`
 
-HasActiveCampaigns returns a boolean if a field has been set.
+HasLiveApplications returns a boolean if a field has been set.
 
-### SetActiveCampaigns
+### SetLiveApplications
 
-`func (o *AccountAnalytics) SetActiveCampaigns(v int32)`
+`func (o *AccountAnalytics) SetLiveApplications(v int32)`
 
-SetActiveCampaigns gets a reference to the given int32 and assigns it to the ActiveCampaigns field.
+SetLiveApplications gets a reference to the given int32 and assigns it to the LiveApplications field.
+
+### GetSandboxApplications
+
+`func (o *AccountAnalytics) GetSandboxApplications() int32`
+
+GetSandboxApplications returns the SandboxApplications field if non-nil, zero value otherwise.
+
+### GetSandboxApplicationsOk
+
+`func (o *AccountAnalytics) GetSandboxApplicationsOk() (int32, bool)`
+
+GetSandboxApplicationsOk returns a tuple with the SandboxApplications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandboxApplications
+
+`func (o *AccountAnalytics) HasSandboxApplications() bool`
+
+HasSandboxApplications returns a boolean if a field has been set.
+
+### SetSandboxApplications
+
+`func (o *AccountAnalytics) SetSandboxApplications(v int32)`
+
+SetSandboxApplications gets a reference to the given int32 and assigns it to the SandboxApplications field.
 
 ### GetCampaigns
 
@@ -96,6 +124,56 @@ HasCampaigns returns a boolean if a field has been set.
 `func (o *AccountAnalytics) SetCampaigns(v int32)`
 
 SetCampaigns gets a reference to the given int32 and assigns it to the Campaigns field.
+
+### GetActiveCampaigns
+
+`func (o *AccountAnalytics) GetActiveCampaigns() int32`
+
+GetActiveCampaigns returns the ActiveCampaigns field if non-nil, zero value otherwise.
+
+### GetActiveCampaignsOk
+
+`func (o *AccountAnalytics) GetActiveCampaignsOk() (int32, bool)`
+
+GetActiveCampaignsOk returns a tuple with the ActiveCampaigns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasActiveCampaigns
+
+`func (o *AccountAnalytics) HasActiveCampaigns() bool`
+
+HasActiveCampaigns returns a boolean if a field has been set.
+
+### SetActiveCampaigns
+
+`func (o *AccountAnalytics) SetActiveCampaigns(v int32)`
+
+SetActiveCampaigns gets a reference to the given int32 and assigns it to the ActiveCampaigns field.
+
+### GetLiveActiveCampaigns
+
+`func (o *AccountAnalytics) GetLiveActiveCampaigns() int32`
+
+GetLiveActiveCampaigns returns the LiveActiveCampaigns field if non-nil, zero value otherwise.
+
+### GetLiveActiveCampaignsOk
+
+`func (o *AccountAnalytics) GetLiveActiveCampaignsOk() (int32, bool)`
+
+GetLiveActiveCampaignsOk returns a tuple with the LiveActiveCampaigns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLiveActiveCampaigns
+
+`func (o *AccountAnalytics) HasLiveActiveCampaigns() bool`
+
+HasLiveActiveCampaigns returns a boolean if a field has been set.
+
+### SetLiveActiveCampaigns
+
+`func (o *AccountAnalytics) SetLiveActiveCampaigns(v int32)`
+
+SetLiveActiveCampaigns gets a reference to the given int32 and assigns it to the LiveActiveCampaigns field.
 
 ### GetCoupons
 
@@ -172,31 +250,6 @@ HasExpiredCoupons returns a boolean if a field has been set.
 
 SetExpiredCoupons gets a reference to the given int32 and assigns it to the ExpiredCoupons field.
 
-### GetCustomAttributes
-
-`func (o *AccountAnalytics) GetCustomAttributes() int32`
-
-GetCustomAttributes returns the CustomAttributes field if non-nil, zero value otherwise.
-
-### GetCustomAttributesOk
-
-`func (o *AccountAnalytics) GetCustomAttributesOk() (int32, bool)`
-
-GetCustomAttributesOk returns a tuple with the CustomAttributes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCustomAttributes
-
-`func (o *AccountAnalytics) HasCustomAttributes() bool`
-
-HasCustomAttributes returns a boolean if a field has been set.
-
-### SetCustomAttributes
-
-`func (o *AccountAnalytics) SetCustomAttributes(v int32)`
-
-SetCustomAttributes gets a reference to the given int32 and assigns it to the CustomAttributes field.
-
 ### GetReferralCodes
 
 `func (o *AccountAnalytics) GetReferralCodes() int32`
@@ -272,6 +325,31 @@ HasExpiredReferralCodes returns a boolean if a field has been set.
 
 SetExpiredReferralCodes gets a reference to the given int32 and assigns it to the ExpiredReferralCodes field.
 
+### GetActiveRules
+
+`func (o *AccountAnalytics) GetActiveRules() int32`
+
+GetActiveRules returns the ActiveRules field if non-nil, zero value otherwise.
+
+### GetActiveRulesOk
+
+`func (o *AccountAnalytics) GetActiveRulesOk() (int32, bool)`
+
+GetActiveRulesOk returns a tuple with the ActiveRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasActiveRules
+
+`func (o *AccountAnalytics) HasActiveRules() bool`
+
+HasActiveRules returns a boolean if a field has been set.
+
+### SetActiveRules
+
+`func (o *AccountAnalytics) SetActiveRules(v int32)`
+
+SetActiveRules gets a reference to the given int32 and assigns it to the ActiveRules field.
+
 ### GetUsers
 
 `func (o *AccountAnalytics) GetUsers() int32`
@@ -322,6 +400,31 @@ HasRoles returns a boolean if a field has been set.
 
 SetRoles gets a reference to the given int32 and assigns it to the Roles field.
 
+### GetCustomAttributes
+
+`func (o *AccountAnalytics) GetCustomAttributes() int32`
+
+GetCustomAttributes returns the CustomAttributes field if non-nil, zero value otherwise.
+
+### GetCustomAttributesOk
+
+`func (o *AccountAnalytics) GetCustomAttributesOk() (int32, bool)`
+
+GetCustomAttributesOk returns a tuple with the CustomAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCustomAttributes
+
+`func (o *AccountAnalytics) HasCustomAttributes() bool`
+
+HasCustomAttributes returns a boolean if a field has been set.
+
+### SetCustomAttributes
+
+`func (o *AccountAnalytics) SetCustomAttributes(v int32)`
+
+SetCustomAttributes gets a reference to the given int32 and assigns it to the CustomAttributes field.
+
 ### GetWebhooks
 
 `func (o *AccountAnalytics) GetWebhooks() int32`
@@ -371,31 +474,6 @@ HasLoyaltyPrograms returns a boolean if a field has been set.
 `func (o *AccountAnalytics) SetLoyaltyPrograms(v int32)`
 
 SetLoyaltyPrograms gets a reference to the given int32 and assigns it to the LoyaltyPrograms field.
-
-### GetActiveRules
-
-`func (o *AccountAnalytics) GetActiveRules() int32`
-
-GetActiveRules returns the ActiveRules field if non-nil, zero value otherwise.
-
-### GetActiveRulesOk
-
-`func (o *AccountAnalytics) GetActiveRulesOk() (int32, bool)`
-
-GetActiveRulesOk returns a tuple with the ActiveRules field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasActiveRules
-
-`func (o *AccountAnalytics) HasActiveRules() bool`
-
-HasActiveRules returns a boolean if a field has been set.
-
-### SetActiveRules
-
-`func (o *AccountAnalytics) SetActiveRules(v int32)`
-
-SetActiveRules gets a reference to the given int32 and assigns it to the ActiveRules field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -578,6 +578,7 @@ type apiGetCustomerInventoryRequest struct {
 	profile       *bool
 	referrals     *bool
 	coupons       *bool
+	loyalty       *bool
 }
 
 func (r apiGetCustomerInventoryRequest) Profile(profile bool) apiGetCustomerInventoryRequest {
@@ -592,6 +593,11 @@ func (r apiGetCustomerInventoryRequest) Referrals(referrals bool) apiGetCustomer
 
 func (r apiGetCustomerInventoryRequest) Coupons(coupons bool) apiGetCustomerInventoryRequest {
 	r.coupons = &coupons
+	return r
+}
+
+func (r apiGetCustomerInventoryRequest) Loyalty(loyalty bool) apiGetCustomerInventoryRequest {
+	r.loyalty = &loyalty
 	return r
 }
 
@@ -644,6 +650,9 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 	}
 	if r.coupons != nil {
 		localVarQueryParams.Add("coupons", parameterToString(*r.coupons, ""))
+	}
+	if r.loyalty != nil {
+		localVarQueryParams.Add("loyalty", parameterToString(*r.loyalty, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1053,7 +1062,9 @@ func (r apiUpdateCustomerProfileRequest) Dry(dry bool) apiUpdateCustomerProfileR
 }
 
 /*
-UpdateCustomerProfile Update a Customer Profile
+UpdateCustomerProfile Update a Customer Profile V1
+⚠️ Deprecation Notice: Support for requests to this endpoint will end on 15.07.2021. We will not remove the endpoint, and it will still be accessible for you to use. For new features support, please migrate to [API V2.0](/Getting-Started/APIV2).
+
 Update (or create) a [Customer Profile][]. This profile information can then be matched and/or updated by campaign [Rules][].
 
 The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.
@@ -1200,15 +1211,140 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateCustomerProfileV2Request struct {
-	ctx               _context.Context
-	apiService        *IntegrationApiService
-	customerProfileId string
-	body              *NewCustomerProfile
+type apiUpdateCustomerProfileAudiencesRequest struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	body       *CustomerProfileAudienceRequest
 }
 
-func (r apiUpdateCustomerProfileV2Request) Body(body NewCustomerProfile) apiUpdateCustomerProfileV2Request {
+func (r apiUpdateCustomerProfileAudiencesRequest) Body(body CustomerProfileAudienceRequest) apiUpdateCustomerProfileAudiencesRequest {
 	r.body = &body
+	return r
+}
+
+/*
+UpdateCustomerProfileAudiences Update a Customer Profile Audiences
+Update one ore multiple Customer Profiles with the specified Audiences
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return apiUpdateCustomerProfileAudiencesRequest
+*/
+func (a *IntegrationApiService) UpdateCustomerProfileAudiences(ctx _context.Context) apiUpdateCustomerProfileAudiencesRequest {
+	return apiUpdateCustomerProfileAudiencesRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+
+*/
+func (r apiUpdateCustomerProfileAudiencesRequest) Execute() (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerProfileAudiences")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/customer_audiences"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type apiUpdateCustomerProfileV2Request struct {
+	ctx           _context.Context
+	apiService    *IntegrationApiService
+	integrationId string
+	body          *CustomerProfileIntegrationRequestV2
+	runRuleEngine *bool
+	dry           *bool
+}
+
+func (r apiUpdateCustomerProfileV2Request) Body(body CustomerProfileIntegrationRequestV2) apiUpdateCustomerProfileV2Request {
+	r.body = &body
+	return r
+}
+
+func (r apiUpdateCustomerProfileV2Request) RunRuleEngine(runRuleEngine bool) apiUpdateCustomerProfileV2Request {
+	r.runRuleEngine = &runRuleEngine
+	return r
+}
+
+func (r apiUpdateCustomerProfileV2Request) Dry(dry bool) apiUpdateCustomerProfileV2Request {
+	r.dry = &dry
 	return r
 }
 
@@ -1221,29 +1357,29 @@ The `integrationId` may be any identifier that will remain stable for the custom
 [Customer Profile]: /Getting-Started/entities#customer-profile
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param customerProfileId The custom identifier for this profile, must be unique within the account.
+ * @param integrationId The custom identifier for this profile, must be unique within the account.
 @return apiUpdateCustomerProfileV2Request
 */
-func (a *IntegrationApiService) UpdateCustomerProfileV2(ctx _context.Context, customerProfileId string) apiUpdateCustomerProfileV2Request {
+func (a *IntegrationApiService) UpdateCustomerProfileV2(ctx _context.Context, integrationId string) apiUpdateCustomerProfileV2Request {
 	return apiUpdateCustomerProfileV2Request{
-		apiService:        a,
-		ctx:               ctx,
-		customerProfileId: customerProfileId,
+		apiService:    a,
+		ctx:           ctx,
+		integrationId: integrationId,
 	}
 }
 
 /*
 Execute executes the request
- @return CustomerProfileUpdate
+ @return IntegrationStateV2
 */
-func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileUpdate, *_nethttp.Response, error) {
+func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CustomerProfileUpdate
+		localVarReturnValue  IntegrationStateV2
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerProfileV2")
@@ -1251,8 +1387,8 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileUpdate, *_n
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/customer_profiles/{customerProfileId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"customerProfileId"+"}", _neturl.QueryEscape(parameterToString(r.customerProfileId, "")), -1)
+	localVarPath := localBasePath + "/v2/customer_profiles/{integrationId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1262,6 +1398,12 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileUpdate, *_n
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	if r.runRuleEngine != nil {
+		localVarQueryParams.Add("runRuleEngine", parameterToString(*r.runRuleEngine, ""))
+	}
+	if r.dry != nil {
+		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1317,7 +1459,152 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileUpdate, *_n
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v CustomerProfileUpdate
+			var v IntegrationStateV2
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiUpdateCustomerProfilesV2Request struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	body       *MultipleCustomerProfileIntegrationRequest
+	silent     *string
+}
+
+func (r apiUpdateCustomerProfilesV2Request) Body(body MultipleCustomerProfileIntegrationRequest) apiUpdateCustomerProfilesV2Request {
+	r.body = &body
+	return r
+}
+
+func (r apiUpdateCustomerProfilesV2Request) Silent(silent string) apiUpdateCustomerProfilesV2Request {
+	r.silent = &silent
+	return r
+}
+
+/*
+UpdateCustomerProfilesV2 Update multiple Customer Profiles
+Update (or create) up to 1000 [Customer Profiles][] in 1 request.
+
+The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.
+
+[Customer Profiles]: /Getting-Started/entities#customer-profile
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return apiUpdateCustomerProfilesV2Request
+*/
+func (a *IntegrationApiService) UpdateCustomerProfilesV2(ctx _context.Context) apiUpdateCustomerProfilesV2Request {
+	return apiUpdateCustomerProfilesV2Request{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return MultipleCustomerProfileIntegrationResponseV2
+*/
+func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIntegrationResponseV2, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  MultipleCustomerProfileIntegrationResponseV2
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerProfilesV2")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/customer_profiles"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	if r.silent != nil {
+		localVarQueryParams.Add("silent", parameterToString(*r.silent, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v MultipleCustomerProfileIntegrationResponseV2
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1359,7 +1646,9 @@ func (r apiUpdateCustomerSessionRequest) Dry(dry bool) apiUpdateCustomerSessionR
 }
 
 /*
-UpdateCustomerSession Update a Customer Session
+UpdateCustomerSession Update a Customer Session V1
+⚠️ Deprecation Notice: Support for requests to this endpoint will end on 15.07.2021. We will not remove the endpoint, and it will still be accessible for you to use. For new features support, please migrate to [API V2.0](/Getting-Started/APIV2).
+
 Update (or create) a [Customer Session][]. For example, the items in a customers cart are part of a session.
 
 The Talon.One platform supports multiple simultaneous sessions for the same profile, so if you have multiple ways of accessing the same application you have the option of either tracking multiple independent sessions or using the same session across all of them. You should share sessions when application access points share other state, such as the users cart. If two points of access to the application have independent state (e.g. a user can have different items in their cart across the two) they should use independent customer session ID's.

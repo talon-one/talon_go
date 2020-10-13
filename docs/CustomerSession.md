@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationId** | Pointer to **string** | The ID used for this entity in the application system. | 
+**IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **string** | ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID. | 

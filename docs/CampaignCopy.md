@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the copied campaign (Defaults to \&quot;Copy of original campaign name\&quot;) | [optional] 
-**ApplicationIds** | Pointer to **[]string** | Application IDs of the applications to which a campaign should be copied to | 
+**ApplicationIds** | Pointer to **[]int32** | Application IDs of the applications to which a campaign should be copied to | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become in-active. | [optional] 
@@ -40,13 +40,13 @@ SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetApplicationIds
 
-`func (o *CampaignCopy) GetApplicationIds() []string`
+`func (o *CampaignCopy) GetApplicationIds() []int32`
 
 GetApplicationIds returns the ApplicationIds field if non-nil, zero value otherwise.
 
 ### GetApplicationIdsOk
 
-`func (o *CampaignCopy) GetApplicationIdsOk() ([]string, bool)`
+`func (o *CampaignCopy) GetApplicationIdsOk() ([]int32, bool)`
 
 GetApplicationIdsOk returns a tuple with the ApplicationIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -59,9 +59,9 @@ HasApplicationIds returns a boolean if a field has been set.
 
 ### SetApplicationIds
 
-`func (o *CampaignCopy) SetApplicationIds(v []string)`
+`func (o *CampaignCopy) SetApplicationIds(v []int32)`
 
-SetApplicationIds gets a reference to the given []string and assigns it to the ApplicationIds field.
+SetApplicationIds gets a reference to the given []int32 and assigns it to the ApplicationIds field.
 
 ### GetDescription
 

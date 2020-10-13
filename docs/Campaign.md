@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of limits that will operate for this campaign | 
+**CampaignGroups** | Pointer to **[]int32** | The IDs of the campaign groups that own this entity. | [optional] 
 **CouponRedemptionCount** | Pointer to **int32** | Number of coupons redeemed in the campaign. | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | Number of referral codes redeemed in the campaign. | [optional] 
 **DiscountCount** | Pointer to **int32** | Total amount of discounts redeemed in the campaign. | [optional] 
@@ -431,6 +432,31 @@ HasLimits returns a boolean if a field has been set.
 `func (o *Campaign) SetLimits(v []LimitConfig)`
 
 SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
+
+### GetCampaignGroups
+
+`func (o *Campaign) GetCampaignGroups() []int32`
+
+GetCampaignGroups returns the CampaignGroups field if non-nil, zero value otherwise.
+
+### GetCampaignGroupsOk
+
+`func (o *Campaign) GetCampaignGroupsOk() ([]int32, bool)`
+
+GetCampaignGroupsOk returns a tuple with the CampaignGroups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignGroups
+
+`func (o *Campaign) HasCampaignGroups() bool`
+
+HasCampaignGroups returns a boolean if a field has been set.
+
+### SetCampaignGroups
+
+`func (o *Campaign) SetCampaignGroups(v []int32)`
+
+SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
 
 ### GetCouponRedemptionCount
 

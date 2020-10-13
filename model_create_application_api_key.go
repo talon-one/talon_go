@@ -21,6 +21,8 @@ type CreateApplicationApiKey struct {
 	Title string `json:"title"`
 	// The date the API key expired
 	Expires time.Time `json:"expires"`
+	// Platform the API key is valid for.
+	Platform *string `json:"platform,omitempty"`
 }
 
 // GetTitle returns the Title field value
@@ -51,6 +53,39 @@ func (o *CreateApplicationApiKey) GetExpires() time.Time {
 // SetExpires sets field value
 func (o *CreateApplicationApiKey) SetExpires(v time.Time) {
 	o.Expires = v
+}
+
+// GetPlatform returns the Platform field value if set, zero value otherwise.
+func (o *CreateApplicationApiKey) GetPlatform() string {
+	if o == nil || o.Platform == nil {
+		var ret string
+		return ret
+	}
+	return *o.Platform
+}
+
+// GetPlatformOk returns a tuple with the Platform field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateApplicationApiKey) GetPlatformOk() (string, bool) {
+	if o == nil || o.Platform == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Platform, true
+}
+
+// HasPlatform returns a boolean if a field has been set.
+func (o *CreateApplicationApiKey) HasPlatform() bool {
+	if o != nil && o.Platform != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatform gets a reference to the given string and assigns it to the Platform field.
+func (o *CreateApplicationApiKey) SetPlatform(v string) {
+	o.Platform = &v
 }
 
 type NullableCreateApplicationApiKey struct {

@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // AddLoyaltyPointsEffectProps The properties specific to the \"addLoyaltyPoints\" effect. This gets triggered whenever a validated rule contained an \"add loyalty\" effect. These points are automatically stored and managed inside Talon.One.
@@ -26,8 +27,10 @@ type AddLoyaltyPointsEffectProps struct {
 	Value float32 `json:"value"`
 	// The user for whom these points were added
 	RecipientIntegrationId string `json:"recipientIntegrationId"`
-	// The amount of time (in days) these points are valid
-	ExpiryCondition string `json:"expiryCondition"`
+	// Date after which points will be valid
+	StartDate *time.Time `json:"startDate,omitempty"`
+	// Date after which points will expire
+	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -105,19 +108,70 @@ func (o *AddLoyaltyPointsEffectProps) SetRecipientIntegrationId(v string) {
 	o.RecipientIntegrationId = v
 }
 
-// GetExpiryCondition returns the ExpiryCondition field value
-func (o *AddLoyaltyPointsEffectProps) GetExpiryCondition() string {
-	if o == nil {
-		var ret string
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *AddLoyaltyPointsEffectProps) GetStartDate() time.Time {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
 		return ret
 	}
-
-	return o.ExpiryCondition
+	return *o.StartDate
 }
 
-// SetExpiryCondition sets field value
-func (o *AddLoyaltyPointsEffectProps) SetExpiryCondition(v string) {
-	o.ExpiryCondition = v
+// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetStartDateOk() (time.Time, bool) {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *AddLoyaltyPointsEffectProps) HasStartDate() bool {
+	if o != nil && o.StartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+func (o *AddLoyaltyPointsEffectProps) SetStartDate(v time.Time) {
+	o.StartDate = &v
+}
+
+// GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.
+func (o *AddLoyaltyPointsEffectProps) GetExpiryDate() time.Time {
+	if o == nil || o.ExpiryDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiryDate
+}
+
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetExpiryDateOk() (time.Time, bool) {
+	if o == nil || o.ExpiryDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.ExpiryDate, true
+}
+
+// HasExpiryDate returns a boolean if a field has been set.
+func (o *AddLoyaltyPointsEffectProps) HasExpiryDate() bool {
+	if o != nil && o.ExpiryDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+func (o *AddLoyaltyPointsEffectProps) SetExpiryDate(v time.Time) {
+	o.ExpiryDate = &v
 }
 
 type NullableAddLoyaltyPointsEffectProps struct {

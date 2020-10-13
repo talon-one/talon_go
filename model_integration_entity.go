@@ -17,7 +17,7 @@ import (
 
 // IntegrationEntity struct for IntegrationEntity
 type IntegrationEntity struct {
-	// The ID used for this entity in the application system.
+	// The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`

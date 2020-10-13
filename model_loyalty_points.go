@@ -20,8 +20,10 @@ type LoyaltyPoints struct {
 	Points float32 `json:"points"`
 	// Allows to specify a name for the addition or deduction
 	Name *string `json:"name,omitempty"`
-	// Indicates the duration after which the added loyalty points should expire. The format is a number followed by one letter indicating the unit, like '1h' or '40m' or '30d'.
-	ExpiryDuration *string `json:"expiryDuration,omitempty"`
+	// Indicates the duration after which the added loyalty points should expire. The format is a number followed by one letter indicating the time unit, like '1h' or '40m' (defined by Go time package).
+	ValidityDuration *string `json:"validityDuration,omitempty"`
+	// Indicates the amount of time before the points are considered valid. The format is a number followed by one letter indicating the time unit, like '1h' or '40m' (defined by Go time package).
+	PendingDuration *string `json:"pendingDuration,omitempty"`
 	// This specifies if we are adding loyalty points to the main ledger or a subledger
 	SubLedgerID *string `json:"subLedgerID,omitempty"`
 }
@@ -74,37 +76,70 @@ func (o *LoyaltyPoints) SetName(v string) {
 	o.Name = &v
 }
 
-// GetExpiryDuration returns the ExpiryDuration field value if set, zero value otherwise.
-func (o *LoyaltyPoints) GetExpiryDuration() string {
-	if o == nil || o.ExpiryDuration == nil {
+// GetValidityDuration returns the ValidityDuration field value if set, zero value otherwise.
+func (o *LoyaltyPoints) GetValidityDuration() string {
+	if o == nil || o.ValidityDuration == nil {
 		var ret string
 		return ret
 	}
-	return *o.ExpiryDuration
+	return *o.ValidityDuration
 }
 
-// GetExpiryDurationOk returns a tuple with the ExpiryDuration field value if set, zero value otherwise
+// GetValidityDurationOk returns a tuple with the ValidityDuration field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyPoints) GetExpiryDurationOk() (string, bool) {
-	if o == nil || o.ExpiryDuration == nil {
+func (o *LoyaltyPoints) GetValidityDurationOk() (string, bool) {
+	if o == nil || o.ValidityDuration == nil {
 		var ret string
 		return ret, false
 	}
-	return *o.ExpiryDuration, true
+	return *o.ValidityDuration, true
 }
 
-// HasExpiryDuration returns a boolean if a field has been set.
-func (o *LoyaltyPoints) HasExpiryDuration() bool {
-	if o != nil && o.ExpiryDuration != nil {
+// HasValidityDuration returns a boolean if a field has been set.
+func (o *LoyaltyPoints) HasValidityDuration() bool {
+	if o != nil && o.ValidityDuration != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetExpiryDuration gets a reference to the given string and assigns it to the ExpiryDuration field.
-func (o *LoyaltyPoints) SetExpiryDuration(v string) {
-	o.ExpiryDuration = &v
+// SetValidityDuration gets a reference to the given string and assigns it to the ValidityDuration field.
+func (o *LoyaltyPoints) SetValidityDuration(v string) {
+	o.ValidityDuration = &v
+}
+
+// GetPendingDuration returns the PendingDuration field value if set, zero value otherwise.
+func (o *LoyaltyPoints) GetPendingDuration() string {
+	if o == nil || o.PendingDuration == nil {
+		var ret string
+		return ret
+	}
+	return *o.PendingDuration
+}
+
+// GetPendingDurationOk returns a tuple with the PendingDuration field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyPoints) GetPendingDurationOk() (string, bool) {
+	if o == nil || o.PendingDuration == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.PendingDuration, true
+}
+
+// HasPendingDuration returns a boolean if a field has been set.
+func (o *LoyaltyPoints) HasPendingDuration() bool {
+	if o != nil && o.PendingDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPendingDuration gets a reference to the given string and assigns it to the PendingDuration field.
+func (o *LoyaltyPoints) SetPendingDuration(v string) {
+	o.PendingDuration = &v
 }
 
 // GetSubLedgerID returns the SubLedgerID field value if set, zero value otherwise.

@@ -22,6 +22,8 @@ type SetDiscountPerItemEffectProps struct {
 	Value float32 `json:"value"`
 	// The index of the item in the cart items list on which this discount should be applied
 	Position float32 `json:"position"`
+	// The sub-index of the item in an item stack on which this discount should be applied
+	SubPosition *float32 `json:"subPosition,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -67,6 +69,39 @@ func (o *SetDiscountPerItemEffectProps) GetPosition() float32 {
 // SetPosition sets field value
 func (o *SetDiscountPerItemEffectProps) SetPosition(v float32) {
 	o.Position = v
+}
+
+// GetSubPosition returns the SubPosition field value if set, zero value otherwise.
+func (o *SetDiscountPerItemEffectProps) GetSubPosition() float32 {
+	if o == nil || o.SubPosition == nil {
+		var ret float32
+		return ret
+	}
+	return *o.SubPosition
+}
+
+// GetSubPositionOk returns a tuple with the SubPosition field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerItemEffectProps) GetSubPositionOk() (float32, bool) {
+	if o == nil || o.SubPosition == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.SubPosition, true
+}
+
+// HasSubPosition returns a boolean if a field has been set.
+func (o *SetDiscountPerItemEffectProps) HasSubPosition() bool {
+	if o != nil && o.SubPosition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubPosition gets a reference to the given float32 and assigns it to the SubPosition field.
+func (o *SetDiscountPerItemEffectProps) SetSubPosition(v float32) {
+	o.SubPosition = &v
 }
 
 type NullableSetDiscountPerItemEffectProps struct {

@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | The display title for the Loyalty Program. | [optional] 
 **Description** | Pointer to **string** | Description of our Loyalty Program. | [optional] 
 **SubscribedApplications** | Pointer to **[]int32** | A list containing the IDs of all applications that are subscribed to this Loyalty Program. | [optional] 
-**DefaultValidity** | Pointer to **string** | Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like &#39;1h&#39; or &#39;40m&#39; or &#39;30d&#39;. | [optional] 
+**DefaultValidity** | Pointer to **string** | Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like &#39;1h&#39; or &#39;40m&#39;. | [optional] 
+**DefaultPending** | Pointer to **string** | Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like &#39;1h&#39; or &#39;40m&#39;. | [optional] 
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program | [optional] 
 
 ## Methods
@@ -111,6 +112,31 @@ HasDefaultValidity returns a boolean if a field has been set.
 `func (o *UpdateLoyaltyProgram) SetDefaultValidity(v string)`
 
 SetDefaultValidity gets a reference to the given string and assigns it to the DefaultValidity field.
+
+### GetDefaultPending
+
+`func (o *UpdateLoyaltyProgram) GetDefaultPending() string`
+
+GetDefaultPending returns the DefaultPending field if non-nil, zero value otherwise.
+
+### GetDefaultPendingOk
+
+`func (o *UpdateLoyaltyProgram) GetDefaultPendingOk() (string, bool)`
+
+GetDefaultPendingOk returns a tuple with the DefaultPending field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDefaultPending
+
+`func (o *UpdateLoyaltyProgram) HasDefaultPending() bool`
+
+HasDefaultPending returns a boolean if a field has been set.
+
+### SetDefaultPending
+
+`func (o *UpdateLoyaltyProgram) SetDefaultPending(v string)`
+
+SetDefaultPending gets a reference to the given string and assigns it to the DefaultPending field.
 
 ### GetAllowSubledger
 

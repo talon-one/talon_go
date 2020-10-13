@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
-**IntegrationId** | Pointer to **string** | The ID used for this entity in the application system. | 
+**IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. | 
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 

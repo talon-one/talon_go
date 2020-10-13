@@ -20,14 +20,16 @@ type Role struct {
 	Id int32 `json:"id"`
 	// The ID of the Talon.One account that owns this role.
 	AccountID int32 `json:"accountID"`
+	// The ID of the Campaign Group this role was created for.
+	CampaignGroupID *int32 `json:"campaignGroupID,omitempty"`
 	// Name of the role
 	Name *string `json:"name,omitempty"`
 	// Description of the role
 	Description *string `json:"description,omitempty"`
 	// A list of user identifiers assigned to this role
 	Members *[]int32 `json:"members,omitempty"`
-	// Role Policy this should be a stringified blob of json
-	Acl *string `json:"acl,omitempty"`
+	// Role ACL Policy
+	Acl *map[string]interface{} `json:"acl,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -58,6 +60,39 @@ func (o *Role) GetAccountID() int32 {
 // SetAccountID sets field value
 func (o *Role) SetAccountID(v int32) {
 	o.AccountID = v
+}
+
+// GetCampaignGroupID returns the CampaignGroupID field value if set, zero value otherwise.
+func (o *Role) GetCampaignGroupID() int32 {
+	if o == nil || o.CampaignGroupID == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CampaignGroupID
+}
+
+// GetCampaignGroupIDOk returns a tuple with the CampaignGroupID field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Role) GetCampaignGroupIDOk() (int32, bool) {
+	if o == nil || o.CampaignGroupID == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CampaignGroupID, true
+}
+
+// HasCampaignGroupID returns a boolean if a field has been set.
+func (o *Role) HasCampaignGroupID() bool {
+	if o != nil && o.CampaignGroupID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignGroupID gets a reference to the given int32 and assigns it to the CampaignGroupID field.
+func (o *Role) SetCampaignGroupID(v int32) {
+	o.CampaignGroupID = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -160,9 +195,9 @@ func (o *Role) SetMembers(v []int32) {
 }
 
 // GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *Role) GetAcl() string {
+func (o *Role) GetAcl() map[string]interface{} {
 	if o == nil || o.Acl == nil {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
 	return *o.Acl
@@ -170,9 +205,9 @@ func (o *Role) GetAcl() string {
 
 // GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetAclOk() (string, bool) {
+func (o *Role) GetAclOk() (map[string]interface{}, bool) {
 	if o == nil || o.Acl == nil {
-		var ret string
+		var ret map[string]interface{}
 		return ret, false
 	}
 	return *o.Acl, true
@@ -187,8 +222,8 @@ func (o *Role) HasAcl() bool {
 	return false
 }
 
-// SetAcl gets a reference to the given string and assigns it to the Acl field.
-func (o *Role) SetAcl(v string) {
+// SetAcl gets a reference to the given map[string]interface{} and assigns it to the Acl field.
+func (o *Role) SetAcl(v map[string]interface{}) {
 	o.Acl = &v
 }
 

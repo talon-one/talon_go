@@ -28,8 +28,10 @@ type LoyaltyProgram struct {
 	Description string `json:"description"`
 	// A list containing the IDs of all applications that are subscribed to this Loyalty Program.
 	SubscribedApplications []int32 `json:"subscribedApplications"`
-	// Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like '1h' or '40m' or '30d'.
+	// Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like '1h' or '40m'.
 	DefaultValidity string `json:"defaultValidity"`
+	// Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like '1h' or '40m'.
+	DefaultPending string `json:"defaultPending"`
 	// Indicates if this program supports subledgers inside the program
 	AllowSubledger bool `json:"allowSubledger"`
 }
@@ -137,6 +139,21 @@ func (o *LoyaltyProgram) GetDefaultValidity() string {
 // SetDefaultValidity sets field value
 func (o *LoyaltyProgram) SetDefaultValidity(v string) {
 	o.DefaultValidity = v
+}
+
+// GetDefaultPending returns the DefaultPending field value
+func (o *LoyaltyProgram) GetDefaultPending() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DefaultPending
+}
+
+// SetDefaultPending sets field value
+func (o *LoyaltyProgram) SetDefaultPending(v string) {
+	o.DefaultPending = v
 }
 
 // GetAllowSubledger returns the AllowSubledger field value
