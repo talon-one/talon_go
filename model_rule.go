@@ -25,7 +25,7 @@ type Rule struct {
 	// A Talang expression that will be evaluated in the context of the given event.
 	Condition []interface{} `json:"condition"`
 	// An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.
-	Effects []map[string]interface{} `json:"effects"`
+	Effects [][]interface{} `json:"effects"`
 }
 
 // GetTitle returns the Title field value
@@ -125,9 +125,9 @@ func (o *Rule) SetCondition(v []interface{}) {
 }
 
 // GetEffects returns the Effects field value
-func (o *Rule) GetEffects() []map[string]interface{} {
+func (o *Rule) GetEffects() [][]interface{} {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret [][]interface{}
 		return ret
 	}
 
@@ -135,7 +135,7 @@ func (o *Rule) GetEffects() []map[string]interface{} {
 }
 
 // SetEffects sets field value
-func (o *Rule) SetEffects(v []map[string]interface{}) {
+func (o *Rule) SetEffects(v [][]interface{}) {
 	o.Effects = v
 }
 
