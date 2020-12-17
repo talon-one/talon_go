@@ -32,7 +32,7 @@ type ApplicationEvent struct {
 	// Additional JSON serialized data associated with the event.
 	Attributes map[string]interface{} `json:"attributes"`
 	// An array containing the effects that were applied as a result of this event.
-	Effects []map[string]interface{} `json:"effects"`
+	Effects [][]interface{} `json:"effects"`
 }
 
 // GetId returns the Id field value
@@ -177,9 +177,9 @@ func (o *ApplicationEvent) SetAttributes(v map[string]interface{}) {
 }
 
 // GetEffects returns the Effects field value
-func (o *ApplicationEvent) GetEffects() []map[string]interface{} {
+func (o *ApplicationEvent) GetEffects() [][]interface{} {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret [][]interface{}
 		return ret
 	}
 
@@ -187,7 +187,7 @@ func (o *ApplicationEvent) GetEffects() []map[string]interface{} {
 }
 
 // SetEffects sets field value
-func (o *ApplicationEvent) SetEffects(v []map[string]interface{}) {
+func (o *ApplicationEvent) SetEffects(v [][]interface{}) {
 	o.Effects = v
 }
 
