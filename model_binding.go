@@ -19,7 +19,7 @@ type Binding struct {
 	// A descriptive name for the value to be bound.
 	Name string `json:"name"`
 	// A Talang expression that will be evaluated and its result attached to the name of the binding.
-	Expression []map[string]interface{} `json:"expression"`
+	Expression []interface{} `json:"expression"`
 }
 
 // GetName returns the Name field value
@@ -38,9 +38,9 @@ func (o *Binding) SetName(v string) {
 }
 
 // GetExpression returns the Expression field value
-func (o *Binding) GetExpression() []map[string]interface{} {
+func (o *Binding) GetExpression() []interface{} {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 
@@ -48,7 +48,7 @@ func (o *Binding) GetExpression() []map[string]interface{} {
 }
 
 // SetExpression sets field value
-func (o *Binding) SetExpression(v []map[string]interface{}) {
+func (o *Binding) SetExpression(v []interface{}) {
 	o.Expression = v
 }
 
