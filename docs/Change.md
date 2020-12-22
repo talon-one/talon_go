@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | ID of application associated with change | [optional] 
 **Entity** | Pointer to **string** | API endpoint on which the change was initiated. | 
 **Old** | Pointer to [**map[string]interface{}**](.md) | Resource before the change occurred. | [optional] 
 **New** | Pointer to [**map[string]interface{}**](.md) | Resource after the change occurred. | [optional] 
@@ -87,6 +88,31 @@ HasUserId returns a boolean if a field has been set.
 `func (o *Change) SetUserId(v int32)`
 
 SetUserId gets a reference to the given int32 and assigns it to the UserId field.
+
+### GetApplicationId
+
+`func (o *Change) GetApplicationId() int32`
+
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
+
+### GetApplicationIdOk
+
+`func (o *Change) GetApplicationIdOk() (int32, bool)`
+
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasApplicationId
+
+`func (o *Change) HasApplicationId() bool`
+
+HasApplicationId returns a boolean if a field has been set.
+
+### SetApplicationId
+
+`func (o *Change) SetApplicationId(v int32)`
+
+SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
 
 ### GetEntity
 

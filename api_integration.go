@@ -1354,6 +1354,8 @@ Update (or create) a [Customer Profile][].
 
 The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.
 
+Updating a customer profile will return a response with the requested integration state. If `runRuleEngine` is set to `true`, this includes the effects that were generated due to triggered campaigns, the created coupons and referral objects, as well as any entity that was requested in the request parameter "responseContent".
+
 [Customer Profile]: /Getting-Started/entities#customer-profile
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1822,9 +1824,9 @@ Update (or create) a [Customer Session][]. For example, the items in a customers
 
 The Talon.One platform supports multiple simultaneous sessions for the same profile, so if you have multiple ways of accessing the same application you have the option of either tracking multiple independent sessions or using the same session across all of them. You should share sessions when application access points share other state, such as the users cart. If two points of access to the application have independent state (e.g. a user can have different items in their cart across the two) they should use independent customer session ID's.
 
-The `profileId` parameter in the request body should correspond to an `integrationId` for a customer profile, to track an anonymous session use the empty string (`""`) as the `profileId`. Note that you do **not** need to create a customer profile first: if the specified profile does not yet exist, an empty profile will be created automatically.
+The `customerProfileId` parameter in the request body should correspond to an `integrationId` for a customer profile, to track an anonymous session you can simply omit the `customerProfileId` property from the request. Note that you do **not** need to create a customer profile first: if the specified profile does not yet exist, an empty profile will be created automatically.
 
-Updating a customer profile will return a response with the requested integration state. This includes the effects that were generated due to triggered campaigns, the created coupons and referral objects, as well as any entity that was requested in the request parameter "responseContent".
+Updating a customer session will return a response with the requested integration state. If `runRuleEngine` is set to `true`, this includes the effects that were generated due to triggered campaigns, the created coupons and referral objects, as well as any entity that was requested in the request parameter "responseContent".
 
 The currency for the session and the cart items in the session is the same as that of the application with which the session is associated.
 

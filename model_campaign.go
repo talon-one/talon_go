@@ -54,11 +54,19 @@ type Campaign struct {
 	// Number of referral codes redeemed in the campaign.
 	ReferralRedemptionCount *int32 `json:"referralRedemptionCount,omitempty"`
 	// Total amount of discounts redeemed in the campaign.
-	DiscountCount *int32 `json:"discountCount,omitempty"`
+	DiscountCount *float32 `json:"discountCount,omitempty"`
 	// Total number of times discounts were redeemed in this campaign.
 	DiscountEffectCount *int32 `json:"discountEffectCount,omitempty"`
 	// Total number of coupons created by rules in this campaign.
 	CouponCreationCount *int32 `json:"couponCreationCount,omitempty"`
+	// Total number of loyalty points created by rules in this campaign.
+	CreatedLoyaltyPointsCount *float32 `json:"createdLoyaltyPointsCount,omitempty"`
+	// Total number of loyalty point creation effects triggered by rules in this campaign.
+	CreatedLoyaltyPointsEffectCount *int32 `json:"createdLoyaltyPointsEffectCount,omitempty"`
+	// Total number of loyalty points redeemed by rules in this campaign.
+	RedeemedLoyaltyPointsCount *float32 `json:"redeemedLoyaltyPointsCount,omitempty"`
+	// Total number of loyalty point redemption effects triggered by rules in this campaign.
+	RedeemedLoyaltyPointsEffectCount *int32 `json:"redeemedLoyaltyPointsEffectCount,omitempty"`
 	// Timestamp of the most recent event received by this campaign.
 	LastActivity *time.Time `json:"lastActivity,omitempty"`
 	// Timestamp of the most recent update to the campaign or any of its elements.
@@ -517,9 +525,9 @@ func (o *Campaign) SetReferralRedemptionCount(v int32) {
 }
 
 // GetDiscountCount returns the DiscountCount field value if set, zero value otherwise.
-func (o *Campaign) GetDiscountCount() int32 {
+func (o *Campaign) GetDiscountCount() float32 {
 	if o == nil || o.DiscountCount == nil {
-		var ret int32
+		var ret float32
 		return ret
 	}
 	return *o.DiscountCount
@@ -527,9 +535,9 @@ func (o *Campaign) GetDiscountCount() int32 {
 
 // GetDiscountCountOk returns a tuple with the DiscountCount field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetDiscountCountOk() (int32, bool) {
+func (o *Campaign) GetDiscountCountOk() (float32, bool) {
 	if o == nil || o.DiscountCount == nil {
-		var ret int32
+		var ret float32
 		return ret, false
 	}
 	return *o.DiscountCount, true
@@ -544,8 +552,8 @@ func (o *Campaign) HasDiscountCount() bool {
 	return false
 }
 
-// SetDiscountCount gets a reference to the given int32 and assigns it to the DiscountCount field.
-func (o *Campaign) SetDiscountCount(v int32) {
+// SetDiscountCount gets a reference to the given float32 and assigns it to the DiscountCount field.
+func (o *Campaign) SetDiscountCount(v float32) {
 	o.DiscountCount = &v
 }
 
@@ -613,6 +621,138 @@ func (o *Campaign) HasCouponCreationCount() bool {
 // SetCouponCreationCount gets a reference to the given int32 and assigns it to the CouponCreationCount field.
 func (o *Campaign) SetCouponCreationCount(v int32) {
 	o.CouponCreationCount = &v
+}
+
+// GetCreatedLoyaltyPointsCount returns the CreatedLoyaltyPointsCount field value if set, zero value otherwise.
+func (o *Campaign) GetCreatedLoyaltyPointsCount() float32 {
+	if o == nil || o.CreatedLoyaltyPointsCount == nil {
+		var ret float32
+		return ret
+	}
+	return *o.CreatedLoyaltyPointsCount
+}
+
+// GetCreatedLoyaltyPointsCountOk returns a tuple with the CreatedLoyaltyPointsCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetCreatedLoyaltyPointsCountOk() (float32, bool) {
+	if o == nil || o.CreatedLoyaltyPointsCount == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.CreatedLoyaltyPointsCount, true
+}
+
+// HasCreatedLoyaltyPointsCount returns a boolean if a field has been set.
+func (o *Campaign) HasCreatedLoyaltyPointsCount() bool {
+	if o != nil && o.CreatedLoyaltyPointsCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedLoyaltyPointsCount gets a reference to the given float32 and assigns it to the CreatedLoyaltyPointsCount field.
+func (o *Campaign) SetCreatedLoyaltyPointsCount(v float32) {
+	o.CreatedLoyaltyPointsCount = &v
+}
+
+// GetCreatedLoyaltyPointsEffectCount returns the CreatedLoyaltyPointsEffectCount field value if set, zero value otherwise.
+func (o *Campaign) GetCreatedLoyaltyPointsEffectCount() int32 {
+	if o == nil || o.CreatedLoyaltyPointsEffectCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CreatedLoyaltyPointsEffectCount
+}
+
+// GetCreatedLoyaltyPointsEffectCountOk returns a tuple with the CreatedLoyaltyPointsEffectCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetCreatedLoyaltyPointsEffectCountOk() (int32, bool) {
+	if o == nil || o.CreatedLoyaltyPointsEffectCount == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CreatedLoyaltyPointsEffectCount, true
+}
+
+// HasCreatedLoyaltyPointsEffectCount returns a boolean if a field has been set.
+func (o *Campaign) HasCreatedLoyaltyPointsEffectCount() bool {
+	if o != nil && o.CreatedLoyaltyPointsEffectCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the CreatedLoyaltyPointsEffectCount field.
+func (o *Campaign) SetCreatedLoyaltyPointsEffectCount(v int32) {
+	o.CreatedLoyaltyPointsEffectCount = &v
+}
+
+// GetRedeemedLoyaltyPointsCount returns the RedeemedLoyaltyPointsCount field value if set, zero value otherwise.
+func (o *Campaign) GetRedeemedLoyaltyPointsCount() float32 {
+	if o == nil || o.RedeemedLoyaltyPointsCount == nil {
+		var ret float32
+		return ret
+	}
+	return *o.RedeemedLoyaltyPointsCount
+}
+
+// GetRedeemedLoyaltyPointsCountOk returns a tuple with the RedeemedLoyaltyPointsCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetRedeemedLoyaltyPointsCountOk() (float32, bool) {
+	if o == nil || o.RedeemedLoyaltyPointsCount == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.RedeemedLoyaltyPointsCount, true
+}
+
+// HasRedeemedLoyaltyPointsCount returns a boolean if a field has been set.
+func (o *Campaign) HasRedeemedLoyaltyPointsCount() bool {
+	if o != nil && o.RedeemedLoyaltyPointsCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRedeemedLoyaltyPointsCount gets a reference to the given float32 and assigns it to the RedeemedLoyaltyPointsCount field.
+func (o *Campaign) SetRedeemedLoyaltyPointsCount(v float32) {
+	o.RedeemedLoyaltyPointsCount = &v
+}
+
+// GetRedeemedLoyaltyPointsEffectCount returns the RedeemedLoyaltyPointsEffectCount field value if set, zero value otherwise.
+func (o *Campaign) GetRedeemedLoyaltyPointsEffectCount() int32 {
+	if o == nil || o.RedeemedLoyaltyPointsEffectCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.RedeemedLoyaltyPointsEffectCount
+}
+
+// GetRedeemedLoyaltyPointsEffectCountOk returns a tuple with the RedeemedLoyaltyPointsEffectCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetRedeemedLoyaltyPointsEffectCountOk() (int32, bool) {
+	if o == nil || o.RedeemedLoyaltyPointsEffectCount == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.RedeemedLoyaltyPointsEffectCount, true
+}
+
+// HasRedeemedLoyaltyPointsEffectCount returns a boolean if a field has been set.
+func (o *Campaign) HasRedeemedLoyaltyPointsEffectCount() bool {
+	if o != nil && o.RedeemedLoyaltyPointsEffectCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRedeemedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the RedeemedLoyaltyPointsEffectCount field.
+func (o *Campaign) SetRedeemedLoyaltyPointsEffectCount(v int32) {
+	o.RedeemedLoyaltyPointsEffectCount = &v
 }
 
 // GetLastActivity returns the LastActivity field value if set, zero value otherwise.

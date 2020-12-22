@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were added | 
 **SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added | 
 **Value** | Pointer to **float32** | The amount of points that were deducted | 
+**TransactionUUID** | Pointer to **string** | The identifier of this deduction in the loyalty ledger | 
 
 ## Methods
 
@@ -110,6 +111,31 @@ HasValue returns a boolean if a field has been set.
 `func (o *DeductLoyaltyPointsEffectProps) SetValue(v float32)`
 
 SetValue gets a reference to the given float32 and assigns it to the Value field.
+
+### GetTransactionUUID
+
+`func (o *DeductLoyaltyPointsEffectProps) GetTransactionUUID() string`
+
+GetTransactionUUID returns the TransactionUUID field if non-nil, zero value otherwise.
+
+### GetTransactionUUIDOk
+
+`func (o *DeductLoyaltyPointsEffectProps) GetTransactionUUIDOk() (string, bool)`
+
+GetTransactionUUIDOk returns a tuple with the TransactionUUID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTransactionUUID
+
+`func (o *DeductLoyaltyPointsEffectProps) HasTransactionUUID() bool`
+
+HasTransactionUUID returns a boolean if a field has been set.
+
+### SetTransactionUUID
+
+`func (o *DeductLoyaltyPointsEffectProps) SetTransactionUUID(v string)`
+
+SetTransactionUUID gets a reference to the given string and assigns it to the TransactionUUID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

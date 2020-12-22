@@ -24,6 +24,8 @@ type DeductLoyaltyPointsEffectProps struct {
 	SubLedgerId string `json:"subLedgerId"`
 	// The amount of points that were deducted
 	Value float32 `json:"value"`
+	// The identifier of this deduction in the loyalty ledger
+	TransactionUUID string `json:"transactionUUID"`
 }
 
 // GetRuleTitle returns the RuleTitle field value
@@ -84,6 +86,21 @@ func (o *DeductLoyaltyPointsEffectProps) GetValue() float32 {
 // SetValue sets field value
 func (o *DeductLoyaltyPointsEffectProps) SetValue(v float32) {
 	o.Value = v
+}
+
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *DeductLoyaltyPointsEffectProps) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// SetTransactionUUID sets field value
+func (o *DeductLoyaltyPointsEffectProps) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
 }
 
 type NullableDeductLoyaltyPointsEffectProps struct {

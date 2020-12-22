@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | [optional] 
+**AudiencesChanges** | Pointer to [**ProfileAudiencesChanges**](ProfileAudiencesChanges.md) |  | [optional] 
 **ResponseContent** | Pointer to **[]string** | Optional list of requested information to be present on the response related to the customer profile update. Currently supported: \&quot;customerProfile\&quot;, \&quot;triggeredCampaigns\&quot;, \&quot;loyalty\&quot; and \&quot;event\&quot;.  | [optional] 
 
 ## Methods
@@ -33,6 +34,31 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *CustomerProfileIntegrationRequestV2) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
+### GetAudiencesChanges
+
+`func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChanges() ProfileAudiencesChanges`
+
+GetAudiencesChanges returns the AudiencesChanges field if non-nil, zero value otherwise.
+
+### GetAudiencesChangesOk
+
+`func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChangesOk() (ProfileAudiencesChanges, bool)`
+
+GetAudiencesChangesOk returns a tuple with the AudiencesChanges field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAudiencesChanges
+
+`func (o *CustomerProfileIntegrationRequestV2) HasAudiencesChanges() bool`
+
+HasAudiencesChanges returns a boolean if a field has been set.
+
+### SetAudiencesChanges
+
+`func (o *CustomerProfileIntegrationRequestV2) SetAudiencesChanges(v ProfileAudiencesChanges)`
+
+SetAudiencesChanges gets a reference to the given ProfileAudiencesChanges and assigns it to the AudiencesChanges field.
 
 ### GetResponseContent
 

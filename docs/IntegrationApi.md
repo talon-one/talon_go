@@ -470,7 +470,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfilesV2Re
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**MultipleCustomerProfileIntegrationRequest**](MultipleCustomerProfileIntegrationRequest.md) |  | 
- **silent** | **string** | If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the IntegrationStateV2  generated. | 
+ **silent** | **string** | If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Entity** | Pointer to **string** | The name of the entity that was imported. | 
+**Entity** | Pointer to **string** | The name of the entity that was imported. Possible values are Coupons and LoyaltyPoints. | 
 **Amount** | Pointer to **int32** | The number of members that imported. | 
 
 ## Methods

@@ -23,6 +23,8 @@ type Change struct {
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
 	UserId int32 `json:"userId"`
+	// ID of application associated with change
+	ApplicationId *int32 `json:"applicationId,omitempty"`
 	// API endpoint on which the change was initiated.
 	Entity string `json:"entity"`
 	// Resource before the change occurred.
@@ -74,6 +76,39 @@ func (o *Change) GetUserId() int32 {
 // SetUserId sets field value
 func (o *Change) SetUserId(v int32) {
 	o.UserId = v
+}
+
+// GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
+func (o *Change) GetApplicationId() int32 {
+	if o == nil || o.ApplicationId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.ApplicationId
+}
+
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Change) GetApplicationIdOk() (int32, bool) {
+	if o == nil || o.ApplicationId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.ApplicationId, true
+}
+
+// HasApplicationId returns a boolean if a field has been set.
+func (o *Change) HasApplicationId() bool {
+	if o != nil && o.ApplicationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+func (o *Change) SetApplicationId(v int32) {
+	o.ApplicationId = &v
 }
 
 // GetEntity returns the Entity field value

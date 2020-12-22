@@ -25,8 +25,10 @@ type Effect struct {
 	// The name of the rule that triggered this effect
 	RuleName string `json:"ruleName"`
 	// The type of effect that was triggered
-	EffectType string                 `json:"effectType"`
-	Props      map[string]interface{} `json:"props"`
+	EffectType string `json:"effectType"`
+	// The ID of the coupon that was being evaluated when this effect was triggered
+	TriggeredByCoupon *int32                 `json:"triggeredByCoupon,omitempty"`
+	Props             map[string]interface{} `json:"props"`
 }
 
 // GetCampaignId returns the CampaignId field value
@@ -102,6 +104,39 @@ func (o *Effect) GetEffectType() string {
 // SetEffectType sets field value
 func (o *Effect) SetEffectType(v string) {
 	o.EffectType = v
+}
+
+// GetTriggeredByCoupon returns the TriggeredByCoupon field value if set, zero value otherwise.
+func (o *Effect) GetTriggeredByCoupon() int32 {
+	if o == nil || o.TriggeredByCoupon == nil {
+		var ret int32
+		return ret
+	}
+	return *o.TriggeredByCoupon
+}
+
+// GetTriggeredByCouponOk returns a tuple with the TriggeredByCoupon field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Effect) GetTriggeredByCouponOk() (int32, bool) {
+	if o == nil || o.TriggeredByCoupon == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.TriggeredByCoupon, true
+}
+
+// HasTriggeredByCoupon returns a boolean if a field has been set.
+func (o *Effect) HasTriggeredByCoupon() bool {
+	if o != nil && o.TriggeredByCoupon != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTriggeredByCoupon gets a reference to the given int32 and assigns it to the TriggeredByCoupon field.
+func (o *Effect) SetTriggeredByCoupon(v int32) {
+	o.TriggeredByCoupon = &v
 }
 
 // GetProps returns the Props field value

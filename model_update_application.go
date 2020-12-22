@@ -34,6 +34,8 @@ type UpdateApplication struct {
 	CampaignPriority *string `json:"campaignPriority,omitempty"`
 	// The strategy used when choosing exclusive campaigns for evaluation, can be one of (listOrder, lowestDiscount, highestDiscount). If no value is provided, this is set to \"listOrder\"
 	ExclusiveCampaignsStrategy *string `json:"exclusiveCampaignsStrategy,omitempty"`
+	// The default scope to apply \"setDiscount\" effects on if no scope was provided with the effect.
+	DefaultDiscountScope *string `json:"defaultDiscountScope,omitempty"`
 	// Flag indicating if discounts should cascade for this application
 	EnableCascadingDiscounts *bool `json:"enableCascadingDiscounts,omitempty"`
 	// Flag indicating if cart items of quantity larger than one should be separated into different items of quantity one
@@ -284,6 +286,39 @@ func (o *UpdateApplication) HasExclusiveCampaignsStrategy() bool {
 // SetExclusiveCampaignsStrategy gets a reference to the given string and assigns it to the ExclusiveCampaignsStrategy field.
 func (o *UpdateApplication) SetExclusiveCampaignsStrategy(v string) {
 	o.ExclusiveCampaignsStrategy = &v
+}
+
+// GetDefaultDiscountScope returns the DefaultDiscountScope field value if set, zero value otherwise.
+func (o *UpdateApplication) GetDefaultDiscountScope() string {
+	if o == nil || o.DefaultDiscountScope == nil {
+		var ret string
+		return ret
+	}
+	return *o.DefaultDiscountScope
+}
+
+// GetDefaultDiscountScopeOk returns a tuple with the DefaultDiscountScope field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateApplication) GetDefaultDiscountScopeOk() (string, bool) {
+	if o == nil || o.DefaultDiscountScope == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.DefaultDiscountScope, true
+}
+
+// HasDefaultDiscountScope returns a boolean if a field has been set.
+func (o *UpdateApplication) HasDefaultDiscountScope() bool {
+	if o != nil && o.DefaultDiscountScope != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultDiscountScope gets a reference to the given string and assigns it to the DefaultDiscountScope field.
+func (o *UpdateApplication) SetDefaultDiscountScope(v string) {
+	o.DefaultDiscountScope = &v
 }
 
 // GetEnableCascadingDiscounts returns the EnableCascadingDiscounts field value if set, zero value otherwise.

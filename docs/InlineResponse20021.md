@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) |  | 
+**Data** | Pointer to [**[]Attribute**](Attribute.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20021) GetData() []AccountAdditionalCost`
+`func (o *InlineResponse20021) GetData() []Attribute`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20021) GetDataOk() ([]AccountAdditionalCost, bool)`
+`func (o *InlineResponse20021) GetDataOk() ([]Attribute, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20021) SetData(v []AccountAdditionalCost)`
+`func (o *InlineResponse20021) SetData(v []Attribute)`
 
-SetData gets a reference to the given []AccountAdditionalCost and assigns it to the Data field.
+SetData gets a reference to the given []Attribute and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

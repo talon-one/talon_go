@@ -14,33 +14,50 @@ import (
 	"encoding/json"
 )
 
-// NewImport
-type NewImport struct {
-	// The name of the entity that was imported.
-	Entity string `json:"entity"`
+// ProfileAudiencesChanges struct for ProfileAudiencesChanges
+type ProfileAudiencesChanges struct {
+	// The IDs of the audiences for the customer to join.
+	Adds []int32 `json:"adds"`
+	// The IDs of the audiences for the customer to leave.
+	Deletes []int32 `json:"deletes"`
 }
 
-// GetEntity returns the Entity field value
-func (o *NewImport) GetEntity() string {
+// GetAdds returns the Adds field value
+func (o *ProfileAudiencesChanges) GetAdds() []int32 {
 	if o == nil {
-		var ret string
+		var ret []int32
 		return ret
 	}
 
-	return o.Entity
+	return o.Adds
 }
 
-// SetEntity sets field value
-func (o *NewImport) SetEntity(v string) {
-	o.Entity = v
+// SetAdds sets field value
+func (o *ProfileAudiencesChanges) SetAdds(v []int32) {
+	o.Adds = v
 }
 
-type NullableNewImport struct {
-	Value        NewImport
+// GetDeletes returns the Deletes field value
+func (o *ProfileAudiencesChanges) GetDeletes() []int32 {
+	if o == nil {
+		var ret []int32
+		return ret
+	}
+
+	return o.Deletes
+}
+
+// SetDeletes sets field value
+func (o *ProfileAudiencesChanges) SetDeletes(v []int32) {
+	o.Deletes = v
+}
+
+type NullableProfileAudiencesChanges struct {
+	Value        ProfileAudiencesChanges
 	ExplicitNull bool
 }
 
-func (v NullableNewImport) MarshalJSON() ([]byte, error) {
+func (v NullableProfileAudiencesChanges) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -49,7 +66,7 @@ func (v NullableNewImport) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableNewImport) UnmarshalJSON(src []byte) error {
+func (v *NullableProfileAudiencesChanges) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

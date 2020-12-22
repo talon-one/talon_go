@@ -16,8 +16,8 @@ import (
 
 // InlineResponse20021 struct for InlineResponse20021
 type InlineResponse20021 struct {
-	TotalResultSize int32                   `json:"totalResultSize"`
-	Data            []AccountAdditionalCost `json:"data"`
+	TotalResultSize int32       `json:"totalResultSize"`
+	Data            []Attribute `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20021) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20021) GetData() []AccountAdditionalCost {
+func (o *InlineResponse20021) GetData() []Attribute {
 	if o == nil {
-		var ret []AccountAdditionalCost
+		var ret []Attribute
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20021) GetData() []AccountAdditionalCost {
 }
 
 // SetData sets field value
-func (o *InlineResponse20021) SetData(v []AccountAdditionalCost) {
+func (o *InlineResponse20021) SetData(v []Attribute) {
 	o.Data = v
 }
 
