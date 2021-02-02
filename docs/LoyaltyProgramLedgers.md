@@ -4,12 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **int32** | The internal ID of loyalty program | 
 **Title** | Pointer to **string** | Visible name of loyalty program | 
 **Name** | Pointer to **string** | Internal name of loyalty program | 
 **Ledger** | Pointer to [**LoyaltyProgramBalance**](LoyaltyProgramBalance.md) |  | 
 **SubLedgers** | Pointer to [**map[string]LoyaltyProgramBalance**](LoyaltyProgramBalance.md) | A map containing a list of all loyalty subledger balances | [optional] 
 
 ## Methods
+
+### GetId
+
+`func (o *LoyaltyProgramLedgers) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *LoyaltyProgramLedgers) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *LoyaltyProgramLedgers) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *LoyaltyProgramLedgers) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetTitle
 

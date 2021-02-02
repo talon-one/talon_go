@@ -33,6 +33,8 @@ type ApplicationEvent struct {
 	Attributes map[string]interface{} `json:"attributes"`
 	// An array containing the effects that were applied as a result of this event.
 	Effects [][]interface{} `json:"effects"`
+	// An array containing the rule failure reasons which happened during this event.
+	RuleFailureReasons *[]RuleFailureReason `json:"ruleFailureReasons,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -189,6 +191,39 @@ func (o *ApplicationEvent) GetEffects() [][]interface{} {
 // SetEffects sets field value
 func (o *ApplicationEvent) SetEffects(v [][]interface{}) {
 	o.Effects = v
+}
+
+// GetRuleFailureReasons returns the RuleFailureReasons field value if set, zero value otherwise.
+func (o *ApplicationEvent) GetRuleFailureReasons() []RuleFailureReason {
+	if o == nil || o.RuleFailureReasons == nil {
+		var ret []RuleFailureReason
+		return ret
+	}
+	return *o.RuleFailureReasons
+}
+
+// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool) {
+	if o == nil || o.RuleFailureReasons == nil {
+		var ret []RuleFailureReason
+		return ret, false
+	}
+	return *o.RuleFailureReasons, true
+}
+
+// HasRuleFailureReasons returns a boolean if a field has been set.
+func (o *ApplicationEvent) HasRuleFailureReasons() bool {
+	if o != nil && o.RuleFailureReasons != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleFailureReasons gets a reference to the given []RuleFailureReason and assigns it to the RuleFailureReasons field.
+func (o *ApplicationEvent) SetRuleFailureReasons(v []RuleFailureReason) {
+	o.RuleFailureReasons = &v
 }
 
 type NullableApplicationEvent struct {

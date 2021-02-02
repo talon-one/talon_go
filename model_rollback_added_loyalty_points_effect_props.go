@@ -24,6 +24,8 @@ type RollbackAddedLoyaltyPointsEffectProps struct {
 	Value float32 `json:"value"`
 	// The user for whom these points were originally added
 	RecipientIntegrationId string `json:"recipientIntegrationId"`
+	// The identifier of 'deduction' entry added to the ledger as the `addLoyaltyPoints` effect is rolled back.
+	TransactionUUID string `json:"transactionUUID"`
 }
 
 // GetProgramId returns the ProgramId field value
@@ -84,6 +86,21 @@ func (o *RollbackAddedLoyaltyPointsEffectProps) GetRecipientIntegrationId() stri
 // SetRecipientIntegrationId sets field value
 func (o *RollbackAddedLoyaltyPointsEffectProps) SetRecipientIntegrationId(v string) {
 	o.RecipientIntegrationId = v
+}
+
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *RollbackAddedLoyaltyPointsEffectProps) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// SetTransactionUUID sets field value
+func (o *RollbackAddedLoyaltyPointsEffectProps) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
 }
 
 type NullableRollbackAddedLoyaltyPointsEffectProps struct {

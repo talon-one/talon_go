@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were reimbursed | 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will be valid | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire | [optional] 
+**TransactionUUID** | Pointer to **string** | The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back | 
 
 ## Methods
 
@@ -162,6 +163,31 @@ HasExpiryDate returns a boolean if a field has been set.
 `func (o *RollbackDeductedLoyaltyPointsEffectProps) SetExpiryDate(v time.Time)`
 
 SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+
+### GetTransactionUUID
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetTransactionUUID() string`
+
+GetTransactionUUID returns the TransactionUUID field if non-nil, zero value otherwise.
+
+### GetTransactionUUIDOk
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetTransactionUUIDOk() (string, bool)`
+
+GetTransactionUUIDOk returns a tuple with the TransactionUUID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTransactionUUID
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasTransactionUUID() bool`
+
+HasTransactionUUID returns a boolean if a field has been set.
+
+### SetTransactionUUID
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetTransactionUUID(v string)`
+
+SetTransactionUUID gets a reference to the given string and assigns it to the TransactionUUID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

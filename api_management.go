@@ -14,7 +14,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"os"
 	"strings"
 	"time"
 )
@@ -2233,7 +2232,7 @@ func (r apiExportCouponsRequest) CampaignState(campaignState string) apiExportCo
 }
 
 /*
-ExportCoupons Export Coupons to a CSV file.
+ExportCoupons Export Coupons to a CSV file
 Download a file with the coupons that match the given attributes.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -2249,16 +2248,16 @@ func (a *ManagementApiService) ExportCoupons(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return *os.File
+ @return string
 */
-func (r apiExportCouponsRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r apiExportCouponsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ExportCoupons")
@@ -2365,7 +2364,7 @@ func (r apiExportCouponsRequest) Execute() (*os.File, *_nethttp.Response, error)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v *os.File
+			var v string
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2425,7 +2424,7 @@ func (r apiExportCustomerSessionsRequest) CustomerSessionState(customerSessionSt
 }
 
 /*
-ExportCustomerSessions Export Customer Sessions to a CSV file.
+ExportCustomerSessions Export Customer Sessions to a CSV file
 Download a file with the customer sessions that match the request.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -2441,16 +2440,16 @@ func (a *ManagementApiService) ExportCustomerSessions(ctx _context.Context, appl
 
 /*
 Execute executes the request
- @return *os.File
+ @return string
 */
-func (r apiExportCustomerSessionsRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r apiExportCustomerSessionsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ExportCustomerSessions")
@@ -2533,7 +2532,7 @@ func (r apiExportCustomerSessionsRequest) Execute() (*os.File, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v *os.File
+			var v string
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2587,7 +2586,7 @@ func (r apiExportEffectsRequest) DateFormat(dateFormat string) apiExportEffectsR
 }
 
 /*
-ExportEffects Export triggered Effects to a CSV file.
+ExportEffects Export triggered Effects to a CSV file
 Download a file with the triggered effects that match the given attributes.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -2603,16 +2602,16 @@ func (a *ManagementApiService) ExportEffects(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return *os.File
+ @return string
 */
-func (r apiExportEffectsRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r apiExportEffectsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ExportEffects")
@@ -2692,7 +2691,7 @@ func (r apiExportEffectsRequest) Execute() (*os.File, *_nethttp.Response, error)
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v *os.File
+			var v string
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2738,16 +2737,16 @@ func (a *ManagementApiService) ExportLoyaltyBalance(ctx _context.Context, progra
 
 /*
 Execute executes the request
- @return *os.File
+ @return string
 */
-func (r apiExportLoyaltyBalanceRequest) Execute() (*os.File, *_nethttp.Response, error) {
+func (r apiExportLoyaltyBalanceRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ExportLoyaltyBalance")
@@ -2815,7 +2814,165 @@ func (r apiExportLoyaltyBalanceRequest) Execute() (*os.File, *_nethttp.Response,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v *os.File
+			var v string
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiExportLoyaltyLedgerRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	rangeStart    *time.Time
+	rangeEnd      *time.Time
+	programID     string
+	integrationID string
+	dateFormat    *string
+}
+
+func (r apiExportLoyaltyLedgerRequest) RangeStart(rangeStart time.Time) apiExportLoyaltyLedgerRequest {
+	r.rangeStart = &rangeStart
+	return r
+}
+
+func (r apiExportLoyaltyLedgerRequest) RangeEnd(rangeEnd time.Time) apiExportLoyaltyLedgerRequest {
+	r.rangeEnd = &rangeEnd
+	return r
+}
+
+func (r apiExportLoyaltyLedgerRequest) DateFormat(dateFormat string) apiExportLoyaltyLedgerRequest {
+	r.dateFormat = &dateFormat
+	return r
+}
+
+/*
+ExportLoyaltyLedger Export a customer's loyalty ledger log to a CSV file
+Download a file with a customer's ledger log in the loyalty program
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param programID
+ * @param integrationID
+@return apiExportLoyaltyLedgerRequest
+*/
+func (a *ManagementApiService) ExportLoyaltyLedger(ctx _context.Context, programID string, integrationID string) apiExportLoyaltyLedgerRequest {
+	return apiExportLoyaltyLedgerRequest{
+		apiService:    a,
+		ctx:           ctx,
+		programID:     programID,
+		integrationID: integrationID,
+	}
+}
+
+/*
+Execute executes the request
+ @return string
+*/
+func (r apiExportLoyaltyLedgerRequest) Execute() (string, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ExportLoyaltyLedger")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/loyalty_programs/{programID}/profile/{integrationID}/export_log"
+	localVarPath = strings.Replace(localVarPath, "{"+"programID"+"}", _neturl.QueryEscape(parameterToString(r.programID, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationID"+"}", _neturl.QueryEscape(parameterToString(r.integrationID, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.rangeStart == nil {
+		return localVarReturnValue, nil, reportError("rangeStart is required and must be specified")
+	}
+
+	if r.rangeEnd == nil {
+		return localVarReturnValue, nil, reportError("rangeEnd is required and must be specified")
+	}
+
+	localVarQueryParams.Add("rangeStart", parameterToString(*r.rangeStart, ""))
+	localVarQueryParams.Add("rangeEnd", parameterToString(*r.rangeEnd, ""))
+	if r.dateFormat != nil {
+		localVarQueryParams.Add("dateFormat", parameterToString(*r.dateFormat, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/csv"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v string
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3955,7 +4112,7 @@ type apiGetAllRolesRequest struct {
 }
 
 /*
-GetAllRoles Get all roles.
+GetAllRoles Get all roles
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllRolesRequest
 */
@@ -10568,7 +10725,7 @@ type apiGetRoleRequest struct {
 }
 
 /*
-GetRole Get information for the specified role.
+GetRole Get information for the specified role
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param roleId
 @return apiGetRoleRequest

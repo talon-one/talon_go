@@ -16,7 +16,7 @@ import (
 
 // LoyaltySubLedger Ledger of Balance in Loyalty Program for a Customer
 type LoyaltySubLedger struct {
-	// ⚠️ Deprecated: Please use 'totalActivePoints' property instead. Total amount of currently active and available points in the customer's balance
+	// ⚠️ Deprecated: Use 'totalActivePoints' property instead. Total amount of currently active and available points in the customer's balance
 	Total float32 `json:"total"`
 	// Total amount of currently active and available points in the customer's balance
 	TotalActivePoints float32 `json:"totalActivePoints"`

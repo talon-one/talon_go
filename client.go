@@ -373,7 +373,6 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		}
 		return nil
 	}
-
 	return errors.New("undefined response type")
 }
 

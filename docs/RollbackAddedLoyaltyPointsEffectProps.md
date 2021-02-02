@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were originally added | 
 **Value** | Pointer to **float32** | The amount of points that were rolled back | 
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were originally added | 
+**TransactionUUID** | Pointer to **string** | The identifier of &#39;deduction&#39; entry added to the ledger as the &#x60;addLoyaltyPoints&#x60; effect is rolled back. | 
 
 ## Methods
 
@@ -110,6 +111,31 @@ HasRecipientIntegrationId returns a boolean if a field has been set.
 `func (o *RollbackAddedLoyaltyPointsEffectProps) SetRecipientIntegrationId(v string)`
 
 SetRecipientIntegrationId gets a reference to the given string and assigns it to the RecipientIntegrationId field.
+
+### GetTransactionUUID
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetTransactionUUID() string`
+
+GetTransactionUUID returns the TransactionUUID field if non-nil, zero value otherwise.
+
+### GetTransactionUUIDOk
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetTransactionUUIDOk() (string, bool)`
+
+GetTransactionUUIDOk returns a tuple with the TransactionUUID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTransactionUUID
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) HasTransactionUUID() bool`
+
+HasTransactionUUID returns a boolean if a field has been set.
+
+### SetTransactionUUID
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) SetTransactionUUID(v string)`
+
+SetTransactionUUID gets a reference to the given string and assigns it to the TransactionUUID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

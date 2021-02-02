@@ -29,6 +29,8 @@ type RollbackDeductedLoyaltyPointsEffectProps struct {
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Date after which the reimbursed points will expire
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
+	// The identifier of 'addition' entries added to the ledger as the `deductLoyaltyPoints` effect is rolled back
+	TransactionUUID string `json:"transactionUUID"`
 }
 
 // GetProgramId returns the ProgramId field value
@@ -155,6 +157,21 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) HasExpiryDate() bool {
 // SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
 func (o *RollbackDeductedLoyaltyPointsEffectProps) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
+}
+
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// SetTransactionUUID sets field value
+func (o *RollbackDeductedLoyaltyPointsEffectProps) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
 }
 
 type NullableRollbackDeductedLoyaltyPointsEffectProps struct {

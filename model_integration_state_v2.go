@@ -16,16 +16,17 @@ import (
 
 // IntegrationStateV2 Contains all entities that might interest Talon.One integrations. This is the response type returned by the V2 PUT customer_session endpoint
 type IntegrationStateV2 struct {
-	CustomerSession    *CustomerSessionV2 `json:"customerSession,omitempty"`
-	CustomerProfile    *CustomerProfile   `json:"customerProfile,omitempty"`
-	Event              *Event             `json:"event,omitempty"`
-	Loyalty            *Loyalty           `json:"loyalty,omitempty"`
-	Referral           *Referral          `json:"referral,omitempty"`
-	Coupons            *[]Coupon          `json:"coupons,omitempty"`
-	TriggeredCampaigns *[]Campaign        `json:"triggeredCampaigns,omitempty"`
-	Effects            []Effect           `json:"effects"`
-	CreatedCoupons     []Coupon           `json:"createdCoupons"`
-	CreatedReferrals   []Referral         `json:"createdReferrals"`
+	CustomerSession    *CustomerSessionV2   `json:"customerSession,omitempty"`
+	CustomerProfile    *CustomerProfile     `json:"customerProfile,omitempty"`
+	Event              *Event               `json:"event,omitempty"`
+	Loyalty            *Loyalty             `json:"loyalty,omitempty"`
+	Referral           *Referral            `json:"referral,omitempty"`
+	Coupons            *[]Coupon            `json:"coupons,omitempty"`
+	TriggeredCampaigns *[]Campaign          `json:"triggeredCampaigns,omitempty"`
+	Effects            []Effect             `json:"effects"`
+	RuleFailureReasons *[]RuleFailureReason `json:"ruleFailureReasons,omitempty"`
+	CreatedCoupons     []Coupon             `json:"createdCoupons"`
+	CreatedReferrals   []Referral           `json:"createdReferrals"`
 }
 
 // GetCustomerSession returns the CustomerSession field value if set, zero value otherwise.
@@ -272,6 +273,39 @@ func (o *IntegrationStateV2) GetEffects() []Effect {
 // SetEffects sets field value
 func (o *IntegrationStateV2) SetEffects(v []Effect) {
 	o.Effects = v
+}
+
+// GetRuleFailureReasons returns the RuleFailureReasons field value if set, zero value otherwise.
+func (o *IntegrationStateV2) GetRuleFailureReasons() []RuleFailureReason {
+	if o == nil || o.RuleFailureReasons == nil {
+		var ret []RuleFailureReason
+		return ret
+	}
+	return *o.RuleFailureReasons
+}
+
+// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationStateV2) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool) {
+	if o == nil || o.RuleFailureReasons == nil {
+		var ret []RuleFailureReason
+		return ret, false
+	}
+	return *o.RuleFailureReasons, true
+}
+
+// HasRuleFailureReasons returns a boolean if a field has been set.
+func (o *IntegrationStateV2) HasRuleFailureReasons() bool {
+	if o != nil && o.RuleFailureReasons != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleFailureReasons gets a reference to the given []RuleFailureReason and assigns it to the RuleFailureReasons field.
+func (o *IntegrationStateV2) SetRuleFailureReasons(v []RuleFailureReason) {
+	o.RuleFailureReasons = &v
 }
 
 // GetCreatedCoupons returns the CreatedCoupons field value

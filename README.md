@@ -76,6 +76,7 @@ ctx = context.WithValue(context.Background(), sw.ContextOperationServerVariables
 })
 ```
 
+
 ## Getting Started
 
 ### Integration API
@@ -339,8 +340,8 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**CreateCouponReservation**](docs/IntegrationApi.md#createcouponreservation) | **Post** /v1/coupon_reservations/{couponValue} | Create a new coupon reservation
 *IntegrationApi* | [**CreateReferral**](docs/IntegrationApi.md#createreferral) | **Post** /v1/referrals | Create a referral code for an advocate
 *IntegrationApi* | [**DeleteCouponReservation**](docs/IntegrationApi.md#deletecouponreservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
-*IntegrationApi* | [**DeleteCustomerData**](docs/IntegrationApi.md#deletecustomerdata) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer.
-*IntegrationApi* | [**GetCustomerInventory**](docs/IntegrationApi.md#getcustomerinventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile.
+*IntegrationApi* | [**DeleteCustomerData**](docs/IntegrationApi.md#deletecustomerdata) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer
+*IntegrationApi* | [**GetCustomerInventory**](docs/IntegrationApi.md#getcustomerinventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile
 *IntegrationApi* | [**GetReservedCustomers**](docs/IntegrationApi.md#getreservedcustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
 *IntegrationApi* | [**TrackEvent**](docs/IntegrationApi.md#trackevent) | **Post** /v1/events | Track an Event
 *IntegrationApi* | [**UpdateCustomerProfile**](docs/IntegrationApi.md#updatecustomerprofile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile V1
@@ -365,10 +366,11 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**DeleteReferral**](docs/ManagementApi.md#deletereferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete one Referral
 *ManagementApi* | [**DeleteRuleset**](docs/ManagementApi.md#deleteruleset) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Delete a Ruleset
 *ManagementApi* | [**DestroySession**](docs/ManagementApi.md#destroysession) | **Delete** /v1/sessions | Destroy a Session
-*ManagementApi* | [**ExportCoupons**](docs/ManagementApi.md#exportcoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export Coupons to a CSV file.
-*ManagementApi* | [**ExportCustomerSessions**](docs/ManagementApi.md#exportcustomersessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export Customer Sessions to a CSV file.
-*ManagementApi* | [**ExportEffects**](docs/ManagementApi.md#exporteffects) | **Get** /v1/applications/{applicationId}/export_effects | Export triggered Effects to a CSV file.
+*ManagementApi* | [**ExportCoupons**](docs/ManagementApi.md#exportcoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export Coupons to a CSV file
+*ManagementApi* | [**ExportCustomerSessions**](docs/ManagementApi.md#exportcustomersessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export Customer Sessions to a CSV file
+*ManagementApi* | [**ExportEffects**](docs/ManagementApi.md#exporteffects) | **Get** /v1/applications/{applicationId}/export_effects | Export triggered Effects to a CSV file
 *ManagementApi* | [**ExportLoyaltyBalance**](docs/ManagementApi.md#exportloyaltybalance) | **Get** /v1/loyalty_programs/{programID}/export_customer_balance | Export customer loyalty balance to a CSV file
+*ManagementApi* | [**ExportLoyaltyLedger**](docs/ManagementApi.md#exportloyaltyledger) | **Get** /v1/loyalty_programs/{programID}/profile/{integrationID}/export_log | Export a customer&#39;s loyalty ledger log to a CSV file
 *ManagementApi* | [**GetAccessLogs**](docs/ManagementApi.md#getaccesslogs) | **Get** /v1/applications/{applicationId}/access_logs | Get access logs for application (with total count)
 *ManagementApi* | [**GetAccessLogsWithoutTotalCount**](docs/ManagementApi.md#getaccesslogswithouttotalcount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for application
 *ManagementApi* | [**GetAccount**](docs/ManagementApi.md#getaccount) | **Get** /v1/accounts/{accountId} | Get Account Details
@@ -376,7 +378,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetAdditionalCost**](docs/ManagementApi.md#getadditionalcost) | **Get** /v1/additional_costs/{additionalCostId} | Get an additional cost
 *ManagementApi* | [**GetAdditionalCosts**](docs/ManagementApi.md#getadditionalcosts) | **Get** /v1/additional_costs | List additional costs
 *ManagementApi* | [**GetAllAccessLogs**](docs/ManagementApi.md#getallaccesslogs) | **Get** /v1/access_logs | Get all access logs
-*ManagementApi* | [**GetAllRoles**](docs/ManagementApi.md#getallroles) | **Get** /v1/roles | Get all roles.
+*ManagementApi* | [**GetAllRoles**](docs/ManagementApi.md#getallroles) | **Get** /v1/roles | Get all roles
 *ManagementApi* | [**GetApplication**](docs/ManagementApi.md#getapplication) | **Get** /v1/applications/{applicationId} | Get Application
 *ManagementApi* | [**GetApplicationApiHealth**](docs/ManagementApi.md#getapplicationapihealth) | **Get** /v1/applications/{applicationId}/health_report | Get report of health of application API
 *ManagementApi* | [**GetApplicationCustomer**](docs/ManagementApi.md#getapplicationcustomer) | **Get** /v1/applications/{applicationId}/customers/{customerId} | Get Application Customer
@@ -415,7 +417,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetLoyaltyStatistics**](docs/ManagementApi.md#getloyaltystatistics) | **Get** /v1/loyalty_programs/{programID}/statistics | Get loyalty program statistics by loyalty program ID
 *ManagementApi* | [**GetReferrals**](docs/ManagementApi.md#getreferrals) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals | List Referrals (with total count)
 *ManagementApi* | [**GetReferralsWithoutTotalCount**](docs/ManagementApi.md#getreferralswithouttotalcount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List Referrals
-*ManagementApi* | [**GetRole**](docs/ManagementApi.md#getrole) | **Get** /v1/roles/{roleId} | Get information for the specified role.
+*ManagementApi* | [**GetRole**](docs/ManagementApi.md#getrole) | **Get** /v1/roles/{roleId} | Get information for the specified role
 *ManagementApi* | [**GetRuleset**](docs/ManagementApi.md#getruleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get a Ruleset
 *ManagementApi* | [**GetRulesets**](docs/ManagementApi.md#getrulesets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List Campaign Rulesets
 *ManagementApi* | [**GetUser**](docs/ManagementApi.md#getuser) | **Get** /v1/users/{userId} | Get a single User
@@ -625,7 +627,9 @@ Class | Method | HTTP request | Description
  - [RollbackCouponEffectProps](docs/RollbackCouponEffectProps.md)
  - [RollbackDeductedLoyaltyPointsEffectProps](docs/RollbackDeductedLoyaltyPointsEffectProps.md)
  - [RollbackDiscountEffectProps](docs/RollbackDiscountEffectProps.md)
+ - [RollbackReferralEffectProps](docs/RollbackReferralEffectProps.md)
  - [Rule](docs/Rule.md)
+ - [RuleFailureReason](docs/RuleFailureReason.md)
  - [Ruleset](docs/Ruleset.md)
  - [SamlConnection](docs/SamlConnection.md)
  - [SamlConnectionMetadata](docs/SamlConnectionMetadata.md)

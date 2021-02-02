@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **DiscountCount** | Pointer to **float32** | Total amount of discounts redeemed in the campaign. | [optional] 
 **DiscountEffectCount** | Pointer to **int32** | Total number of times discounts were redeemed in this campaign. | [optional] 
 **CouponCreationCount** | Pointer to **int32** | Total number of coupons created by rules in this campaign. | [optional] 
+**ReferralCreationCount** | Pointer to **int32** | Total number of referrals created by rules in this campaign. | [optional] 
 **CreatedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points created by rules in this campaign. | [optional] 
 **CreatedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point creation effects triggered by rules in this campaign. | [optional] 
 **RedeemedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points redeemed by rules in this campaign. | [optional] 
@@ -586,6 +587,31 @@ HasCouponCreationCount returns a boolean if a field has been set.
 `func (o *Campaign) SetCouponCreationCount(v int32)`
 
 SetCouponCreationCount gets a reference to the given int32 and assigns it to the CouponCreationCount field.
+
+### GetReferralCreationCount
+
+`func (o *Campaign) GetReferralCreationCount() int32`
+
+GetReferralCreationCount returns the ReferralCreationCount field if non-nil, zero value otherwise.
+
+### GetReferralCreationCountOk
+
+`func (o *Campaign) GetReferralCreationCountOk() (int32, bool)`
+
+GetReferralCreationCountOk returns a tuple with the ReferralCreationCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReferralCreationCount
+
+`func (o *Campaign) HasReferralCreationCount() bool`
+
+HasReferralCreationCount returns a boolean if a field has been set.
+
+### SetReferralCreationCount
+
+`func (o *Campaign) SetReferralCreationCount(v int32)`
+
+SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
 
 ### GetCreatedLoyaltyPointsCount
 

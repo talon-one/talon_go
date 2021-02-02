@@ -59,6 +59,8 @@ type Campaign struct {
 	DiscountEffectCount *int32 `json:"discountEffectCount,omitempty"`
 	// Total number of coupons created by rules in this campaign.
 	CouponCreationCount *int32 `json:"couponCreationCount,omitempty"`
+	// Total number of referrals created by rules in this campaign.
+	ReferralCreationCount *int32 `json:"referralCreationCount,omitempty"`
 	// Total number of loyalty points created by rules in this campaign.
 	CreatedLoyaltyPointsCount *float32 `json:"createdLoyaltyPointsCount,omitempty"`
 	// Total number of loyalty point creation effects triggered by rules in this campaign.
@@ -621,6 +623,39 @@ func (o *Campaign) HasCouponCreationCount() bool {
 // SetCouponCreationCount gets a reference to the given int32 and assigns it to the CouponCreationCount field.
 func (o *Campaign) SetCouponCreationCount(v int32) {
 	o.CouponCreationCount = &v
+}
+
+// GetReferralCreationCount returns the ReferralCreationCount field value if set, zero value otherwise.
+func (o *Campaign) GetReferralCreationCount() int32 {
+	if o == nil || o.ReferralCreationCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.ReferralCreationCount
+}
+
+// GetReferralCreationCountOk returns a tuple with the ReferralCreationCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetReferralCreationCountOk() (int32, bool) {
+	if o == nil || o.ReferralCreationCount == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.ReferralCreationCount, true
+}
+
+// HasReferralCreationCount returns a boolean if a field has been set.
+func (o *Campaign) HasReferralCreationCount() bool {
+	if o != nil && o.ReferralCreationCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
+func (o *Campaign) SetReferralCreationCount(v int32) {
+	o.ReferralCreationCount = &v
 }
 
 // GetCreatedLoyaltyPointsCount returns the CreatedLoyaltyPointsCount field value if set, zero value otherwise.

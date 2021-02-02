@@ -16,6 +16,8 @@ import (
 
 // LoyaltyProgramLedgers Customer specific information about loyalty points.
 type LoyaltyProgramLedgers struct {
+	// The internal ID of loyalty program
+	Id int32 `json:"id"`
 	// Visible name of loyalty program
 	Title string `json:"title"`
 	// Internal name of loyalty program
@@ -23,6 +25,21 @@ type LoyaltyProgramLedgers struct {
 	Ledger LoyaltyProgramBalance `json:"ledger"`
 	// A map containing a list of all loyalty subledger balances
 	SubLedgers *map[string]LoyaltyProgramBalance `json:"subLedgers,omitempty"`
+}
+
+// GetId returns the Id field value
+func (o *LoyaltyProgramLedgers) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// SetId sets field value
+func (o *LoyaltyProgramLedgers) SetId(v int32) {
+	o.Id = v
 }
 
 // GetTitle returns the Title field value
