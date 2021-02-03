@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **Length** | Pointer to **float32** | Length of item in mm | [optional] 
 **Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally) | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | [optional] 
-**Adjustment** | Pointer to [**CartItemAdjustment**](CartItemAdjustment.md) |  | [optional] 
 
 ## Methods
 
@@ -293,31 +292,6 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *CartItem) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-
-### GetAdjustment
-
-`func (o *CartItem) GetAdjustment() CartItemAdjustment`
-
-GetAdjustment returns the Adjustment field if non-nil, zero value otherwise.
-
-### GetAdjustmentOk
-
-`func (o *CartItem) GetAdjustmentOk() (CartItemAdjustment, bool)`
-
-GetAdjustmentOk returns a tuple with the Adjustment field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAdjustment
-
-`func (o *CartItem) HasAdjustment() bool`
-
-HasAdjustment returns a boolean if a field has been set.
-
-### SetAdjustment
-
-`func (o *CartItem) SetAdjustment(v CartItemAdjustment)`
-
-SetAdjustment gets a reference to the given CartItemAdjustment and assigns it to the Adjustment field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

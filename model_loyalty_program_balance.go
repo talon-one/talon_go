@@ -16,7 +16,16 @@ import (
 
 // LoyaltyProgramBalance The balance in a Loyalty Program for some Customer.
 type LoyaltyProgramBalance struct {
+	// Sum of current active points amounts
 	CurrentBalance float32 `json:"currentBalance"`
+	// Sum of pending points amounts
+	PendingBalance float32 `json:"pendingBalance"`
+	// Sum of expired points amounts
+	ExpiredBalance float32 `json:"expiredBalance"`
+	// Sum of spent points amounts
+	SpentBalance float32 `json:"spentBalance"`
+	// Sum of current active points amounts, including additions and deductions on open sessions
+	TentativeCurrentBalance float32 `json:"tentativeCurrentBalance"`
 }
 
 // GetCurrentBalance returns the CurrentBalance field value
@@ -32,6 +41,66 @@ func (o *LoyaltyProgramBalance) GetCurrentBalance() float32 {
 // SetCurrentBalance sets field value
 func (o *LoyaltyProgramBalance) SetCurrentBalance(v float32) {
 	o.CurrentBalance = v
+}
+
+// GetPendingBalance returns the PendingBalance field value
+func (o *LoyaltyProgramBalance) GetPendingBalance() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.PendingBalance
+}
+
+// SetPendingBalance sets field value
+func (o *LoyaltyProgramBalance) SetPendingBalance(v float32) {
+	o.PendingBalance = v
+}
+
+// GetExpiredBalance returns the ExpiredBalance field value
+func (o *LoyaltyProgramBalance) GetExpiredBalance() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.ExpiredBalance
+}
+
+// SetExpiredBalance sets field value
+func (o *LoyaltyProgramBalance) SetExpiredBalance(v float32) {
+	o.ExpiredBalance = v
+}
+
+// GetSpentBalance returns the SpentBalance field value
+func (o *LoyaltyProgramBalance) GetSpentBalance() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.SpentBalance
+}
+
+// SetSpentBalance sets field value
+func (o *LoyaltyProgramBalance) SetSpentBalance(v float32) {
+	o.SpentBalance = v
+}
+
+// GetTentativeCurrentBalance returns the TentativeCurrentBalance field value
+func (o *LoyaltyProgramBalance) GetTentativeCurrentBalance() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TentativeCurrentBalance
+}
+
+// SetTentativeCurrentBalance sets field value
+func (o *LoyaltyProgramBalance) SetTentativeCurrentBalance(v float32) {
+	o.TentativeCurrentBalance = v
 }
 
 type NullableLoyaltyProgramBalance struct {

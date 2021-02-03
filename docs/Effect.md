@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset | 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect | 
 **EffectType** | Pointer to **string** | The type of effect that was triggered | 
+**TriggeredByCoupon** | Pointer to **int32** | The ID of the coupon that was being evaluated when this effect was triggered | [optional] 
 **Props** | Pointer to [**map[string]interface{}**](.md) |  | 
 
 ## Methods
@@ -137,6 +138,31 @@ HasEffectType returns a boolean if a field has been set.
 `func (o *Effect) SetEffectType(v string)`
 
 SetEffectType gets a reference to the given string and assigns it to the EffectType field.
+
+### GetTriggeredByCoupon
+
+`func (o *Effect) GetTriggeredByCoupon() int32`
+
+GetTriggeredByCoupon returns the TriggeredByCoupon field if non-nil, zero value otherwise.
+
+### GetTriggeredByCouponOk
+
+`func (o *Effect) GetTriggeredByCouponOk() (int32, bool)`
+
+GetTriggeredByCouponOk returns a tuple with the TriggeredByCoupon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTriggeredByCoupon
+
+`func (o *Effect) HasTriggeredByCoupon() bool`
+
+HasTriggeredByCoupon returns a boolean if a field has been set.
+
+### SetTriggeredByCoupon
+
+`func (o *Effect) SetTriggeredByCoupon(v int32)`
+
+SetTriggeredByCoupon gets a reference to the given int32 and assigns it to the TriggeredByCoupon field.
 
 ### GetProps
 

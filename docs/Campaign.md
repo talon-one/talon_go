@@ -23,9 +23,14 @@ Name | Type | Description | Notes
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the campaign groups that own this entity. | [optional] 
 **CouponRedemptionCount** | Pointer to **int32** | Number of coupons redeemed in the campaign. | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | Number of referral codes redeemed in the campaign. | [optional] 
-**DiscountCount** | Pointer to **int32** | Total amount of discounts redeemed in the campaign. | [optional] 
+**DiscountCount** | Pointer to **float32** | Total amount of discounts redeemed in the campaign. | [optional] 
 **DiscountEffectCount** | Pointer to **int32** | Total number of times discounts were redeemed in this campaign. | [optional] 
 **CouponCreationCount** | Pointer to **int32** | Total number of coupons created by rules in this campaign. | [optional] 
+**ReferralCreationCount** | Pointer to **int32** | Total number of referrals created by rules in this campaign. | [optional] 
+**CreatedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points created by rules in this campaign. | [optional] 
+**CreatedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point creation effects triggered by rules in this campaign. | [optional] 
+**RedeemedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points redeemed by rules in this campaign. | [optional] 
+**RedeemedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point redemption effects triggered by rules in this campaign. | [optional] 
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received by this campaign. | [optional] 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign or any of its elements. | [optional] 
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
@@ -510,13 +515,13 @@ SetReferralRedemptionCount gets a reference to the given int32 and assigns it to
 
 ### GetDiscountCount
 
-`func (o *Campaign) GetDiscountCount() int32`
+`func (o *Campaign) GetDiscountCount() float32`
 
 GetDiscountCount returns the DiscountCount field if non-nil, zero value otherwise.
 
 ### GetDiscountCountOk
 
-`func (o *Campaign) GetDiscountCountOk() (int32, bool)`
+`func (o *Campaign) GetDiscountCountOk() (float32, bool)`
 
 GetDiscountCountOk returns a tuple with the DiscountCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -529,9 +534,9 @@ HasDiscountCount returns a boolean if a field has been set.
 
 ### SetDiscountCount
 
-`func (o *Campaign) SetDiscountCount(v int32)`
+`func (o *Campaign) SetDiscountCount(v float32)`
 
-SetDiscountCount gets a reference to the given int32 and assigns it to the DiscountCount field.
+SetDiscountCount gets a reference to the given float32 and assigns it to the DiscountCount field.
 
 ### GetDiscountEffectCount
 
@@ -582,6 +587,131 @@ HasCouponCreationCount returns a boolean if a field has been set.
 `func (o *Campaign) SetCouponCreationCount(v int32)`
 
 SetCouponCreationCount gets a reference to the given int32 and assigns it to the CouponCreationCount field.
+
+### GetReferralCreationCount
+
+`func (o *Campaign) GetReferralCreationCount() int32`
+
+GetReferralCreationCount returns the ReferralCreationCount field if non-nil, zero value otherwise.
+
+### GetReferralCreationCountOk
+
+`func (o *Campaign) GetReferralCreationCountOk() (int32, bool)`
+
+GetReferralCreationCountOk returns a tuple with the ReferralCreationCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReferralCreationCount
+
+`func (o *Campaign) HasReferralCreationCount() bool`
+
+HasReferralCreationCount returns a boolean if a field has been set.
+
+### SetReferralCreationCount
+
+`func (o *Campaign) SetReferralCreationCount(v int32)`
+
+SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
+
+### GetCreatedLoyaltyPointsCount
+
+`func (o *Campaign) GetCreatedLoyaltyPointsCount() float32`
+
+GetCreatedLoyaltyPointsCount returns the CreatedLoyaltyPointsCount field if non-nil, zero value otherwise.
+
+### GetCreatedLoyaltyPointsCountOk
+
+`func (o *Campaign) GetCreatedLoyaltyPointsCountOk() (float32, bool)`
+
+GetCreatedLoyaltyPointsCountOk returns a tuple with the CreatedLoyaltyPointsCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreatedLoyaltyPointsCount
+
+`func (o *Campaign) HasCreatedLoyaltyPointsCount() bool`
+
+HasCreatedLoyaltyPointsCount returns a boolean if a field has been set.
+
+### SetCreatedLoyaltyPointsCount
+
+`func (o *Campaign) SetCreatedLoyaltyPointsCount(v float32)`
+
+SetCreatedLoyaltyPointsCount gets a reference to the given float32 and assigns it to the CreatedLoyaltyPointsCount field.
+
+### GetCreatedLoyaltyPointsEffectCount
+
+`func (o *Campaign) GetCreatedLoyaltyPointsEffectCount() int32`
+
+GetCreatedLoyaltyPointsEffectCount returns the CreatedLoyaltyPointsEffectCount field if non-nil, zero value otherwise.
+
+### GetCreatedLoyaltyPointsEffectCountOk
+
+`func (o *Campaign) GetCreatedLoyaltyPointsEffectCountOk() (int32, bool)`
+
+GetCreatedLoyaltyPointsEffectCountOk returns a tuple with the CreatedLoyaltyPointsEffectCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreatedLoyaltyPointsEffectCount
+
+`func (o *Campaign) HasCreatedLoyaltyPointsEffectCount() bool`
+
+HasCreatedLoyaltyPointsEffectCount returns a boolean if a field has been set.
+
+### SetCreatedLoyaltyPointsEffectCount
+
+`func (o *Campaign) SetCreatedLoyaltyPointsEffectCount(v int32)`
+
+SetCreatedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the CreatedLoyaltyPointsEffectCount field.
+
+### GetRedeemedLoyaltyPointsCount
+
+`func (o *Campaign) GetRedeemedLoyaltyPointsCount() float32`
+
+GetRedeemedLoyaltyPointsCount returns the RedeemedLoyaltyPointsCount field if non-nil, zero value otherwise.
+
+### GetRedeemedLoyaltyPointsCountOk
+
+`func (o *Campaign) GetRedeemedLoyaltyPointsCountOk() (float32, bool)`
+
+GetRedeemedLoyaltyPointsCountOk returns a tuple with the RedeemedLoyaltyPointsCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRedeemedLoyaltyPointsCount
+
+`func (o *Campaign) HasRedeemedLoyaltyPointsCount() bool`
+
+HasRedeemedLoyaltyPointsCount returns a boolean if a field has been set.
+
+### SetRedeemedLoyaltyPointsCount
+
+`func (o *Campaign) SetRedeemedLoyaltyPointsCount(v float32)`
+
+SetRedeemedLoyaltyPointsCount gets a reference to the given float32 and assigns it to the RedeemedLoyaltyPointsCount field.
+
+### GetRedeemedLoyaltyPointsEffectCount
+
+`func (o *Campaign) GetRedeemedLoyaltyPointsEffectCount() int32`
+
+GetRedeemedLoyaltyPointsEffectCount returns the RedeemedLoyaltyPointsEffectCount field if non-nil, zero value otherwise.
+
+### GetRedeemedLoyaltyPointsEffectCountOk
+
+`func (o *Campaign) GetRedeemedLoyaltyPointsEffectCountOk() (int32, bool)`
+
+GetRedeemedLoyaltyPointsEffectCountOk returns a tuple with the RedeemedLoyaltyPointsEffectCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRedeemedLoyaltyPointsEffectCount
+
+`func (o *Campaign) HasRedeemedLoyaltyPointsEffectCount() bool`
+
+HasRedeemedLoyaltyPointsEffectCount returns a boolean if a field has been set.
+
+### SetRedeemedLoyaltyPointsEffectCount
+
+`func (o *Campaign) SetRedeemedLoyaltyPointsEffectCount(v int32)`
+
+SetRedeemedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the RedeemedLoyaltyPointsEffectCount field.
 
 ### GetLastActivity
 

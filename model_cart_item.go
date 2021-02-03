@@ -33,7 +33,6 @@ type CartItem struct {
 	Position *float32 `json:"position,omitempty"`
 	// Arbitrary properties associated with this item
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	Adjustment *CartItemAdjustment     `json:"adjustment,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -325,39 +324,6 @@ func (o *CartItem) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *CartItem) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
-}
-
-// GetAdjustment returns the Adjustment field value if set, zero value otherwise.
-func (o *CartItem) GetAdjustment() CartItemAdjustment {
-	if o == nil || o.Adjustment == nil {
-		var ret CartItemAdjustment
-		return ret
-	}
-	return *o.Adjustment
-}
-
-// GetAdjustmentOk returns a tuple with the Adjustment field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *CartItem) GetAdjustmentOk() (CartItemAdjustment, bool) {
-	if o == nil || o.Adjustment == nil {
-		var ret CartItemAdjustment
-		return ret, false
-	}
-	return *o.Adjustment, true
-}
-
-// HasAdjustment returns a boolean if a field has been set.
-func (o *CartItem) HasAdjustment() bool {
-	if o != nil && o.Adjustment != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAdjustment gets a reference to the given CartItemAdjustment and assigns it to the Adjustment field.
-func (o *CartItem) SetAdjustment(v CartItemAdjustment) {
-	o.Adjustment = &v
 }
 
 type NullableCartItem struct {

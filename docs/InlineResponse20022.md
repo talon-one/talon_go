@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]Webhook**](Webhook.md) |  | 
+**Data** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20022) GetData() []Webhook`
+`func (o *InlineResponse20022) GetData() []AccountAdditionalCost`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20022) GetDataOk() ([]Webhook, bool)`
+`func (o *InlineResponse20022) GetDataOk() ([]AccountAdditionalCost, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20022) SetData(v []Webhook)`
+`func (o *InlineResponse20022) SetData(v []AccountAdditionalCost)`
 
-SetData gets a reference to the given []Webhook and assigns it to the Data field.
+SetData gets a reference to the given []AccountAdditionalCost and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

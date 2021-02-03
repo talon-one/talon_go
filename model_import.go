@@ -25,7 +25,7 @@ type Import struct {
 	AccountId int32 `json:"accountId"`
 	// The ID of the account that owns this entity.
 	UserId int32 `json:"userId"`
-	// The name of the entity that was imported.
+	// The name of the entity that was imported. Possible values are Coupons and LoyaltyPoints.
 	Entity string `json:"entity"`
 	// The number of members that imported.
 	Amount int32 `json:"amount"`

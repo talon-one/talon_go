@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**CreateCouponReservation**](IntegrationApi.md#CreateCouponReservation) | **Post** /v1/coupon_reservations/{couponValue} | Create a new coupon reservation
 [**CreateReferral**](IntegrationApi.md#CreateReferral) | **Post** /v1/referrals | Create a referral code for an advocate
 [**DeleteCouponReservation**](IntegrationApi.md#DeleteCouponReservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
-[**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer.
-[**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile.
+[**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer
+[**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile
 [**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
 [**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track an Event
 [**UpdateCustomerProfile**](IntegrationApi.md#UpdateCustomerProfile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile V1
@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 > DeleteCustomerData(ctx, integrationId).Execute()
 
-Delete the personal data of a customer.
+Delete the personal data of a customer
 
 
 
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 > CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Execute()
 
-Get an inventory of all data associated with a specific customer profile.
+Get an inventory of all data associated with a specific customer profile
 
 
 
@@ -300,7 +300,7 @@ Other parameters are passed through a pointer to a apiTrackEventRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**NewEvent**](NewEvent.md) |  | 
- **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 
@@ -345,7 +345,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
- **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 
@@ -418,7 +418,7 @@ Update a Customer Profile
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | The custom identifier for this profile, must be unique within the account. | 
+**integrationId** | **string** | The custom identifier for this profile. Must be unique within the account. | 
 
 ### Other Parameters
 
@@ -429,8 +429,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**CustomerProfileIntegrationRequestV2**](CustomerProfileIntegrationRequestV2.md) |  | 
- **runRuleEngine** | **bool** | Flag to indicate whether to run the rule engine (Defaults to false). | 
- **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;. Only used when &#39;runRuleEngine&#39; is set to &#39;true&#39;). | 
+ **runRuleEngine** | **bool** | Indicates whether to run the rule engine. | [default to false]
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are persisted with &#x60;true&#x60;. Only used when &#x60;runRuleEngine&#x60; is set to &#x60;true&#x60;.  | 
 
 ### Return type
 
@@ -470,7 +470,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfilesV2Re
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**MultipleCustomerProfileIntegrationRequest**](MultipleCustomerProfileIntegrationRequest.md) |  | 
- **silent** | **string** | If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the IntegrationStateV2  generated. | 
+ **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
 
@@ -515,7 +515,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**NewCustomerSession**](NewCustomerSession.md) |  | 
- **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 
@@ -560,7 +560,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**IntegrationRequest**](IntegrationRequest.md) |  | 
- **dry** | **bool** | Flag to indicate whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
 
 ### Return type
 

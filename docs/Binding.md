@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | A descriptive name for the value to be bound. | 
-**Expression** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | A Talang expression that will be evaluated and its result attached to the name of the binding. | 
+**Type** | Pointer to **string** | The kind of binding. Possible values are cartItemFilter, subledgerBalance. | [optional] 
+**Expression** | Pointer to [**[]interface{}**]([]interface{}.md) | A Talang expression that will be evaluated and its result attached to the name of the binding. | 
 
 ## Methods
 
@@ -34,15 +35,40 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
+### GetType
+
+`func (o *Binding) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *Binding) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *Binding) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *Binding) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
+
 ### GetExpression
 
-`func (o *Binding) GetExpression() []map[string]interface{}`
+`func (o *Binding) GetExpression() []interface{}`
 
 GetExpression returns the Expression field if non-nil, zero value otherwise.
 
 ### GetExpressionOk
 
-`func (o *Binding) GetExpressionOk() ([]map[string]interface{}, bool)`
+`func (o *Binding) GetExpressionOk() ([]interface{}, bool)`
 
 GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +81,9 @@ HasExpression returns a boolean if a field has been set.
 
 ### SetExpression
 
-`func (o *Binding) SetExpression(v []map[string]interface{})`
+`func (o *Binding) SetExpression(v []interface{})`
 
-SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
+SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -17,8 +17,9 @@ import (
 // CustomerProfileIntegrationRequestV2
 type CustomerProfileIntegrationRequestV2 struct {
 	// Arbitrary properties associated with this item
-	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// Optional list of requested information to be present on the response related to the customer profile update. Currently supported: \"customerProfile\", \"triggeredCampaigns\", \"loyalty\" and \"event\".
+	Attributes       *map[string]interface{}  `json:"attributes,omitempty"`
+	AudiencesChanges *ProfileAudiencesChanges `json:"audiencesChanges,omitempty"`
+	// Optional list of requested information to be present on the response related to the customer profile update. Currently supported: \"customerProfile\", \"triggeredCampaigns\", \"loyalty\", \"event\" and \"ruleFailureReasons\".
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 }
 
@@ -53,6 +54,39 @@ func (o *CustomerProfileIntegrationRequestV2) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *CustomerProfileIntegrationRequestV2) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
+}
+
+// GetAudiencesChanges returns the AudiencesChanges field value if set, zero value otherwise.
+func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChanges() ProfileAudiencesChanges {
+	if o == nil || o.AudiencesChanges == nil {
+		var ret ProfileAudiencesChanges
+		return ret
+	}
+	return *o.AudiencesChanges
+}
+
+// GetAudiencesChangesOk returns a tuple with the AudiencesChanges field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChangesOk() (ProfileAudiencesChanges, bool) {
+	if o == nil || o.AudiencesChanges == nil {
+		var ret ProfileAudiencesChanges
+		return ret, false
+	}
+	return *o.AudiencesChanges, true
+}
+
+// HasAudiencesChanges returns a boolean if a field has been set.
+func (o *CustomerProfileIntegrationRequestV2) HasAudiencesChanges() bool {
+	if o != nil && o.AudiencesChanges != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudiencesChanges gets a reference to the given ProfileAudiencesChanges and assigns it to the AudiencesChanges field.
+func (o *CustomerProfileIntegrationRequestV2) SetAudiencesChanges(v ProfileAudiencesChanges) {
+	o.AudiencesChanges = &v
 }
 
 // GetResponseContent returns the ResponseContent field value if set, zero value otherwise.

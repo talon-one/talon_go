@@ -18,8 +18,10 @@ import (
 type Binding struct {
 	// A descriptive name for the value to be bound.
 	Name string `json:"name"`
+	// The kind of binding. Possible values are cartItemFilter, subledgerBalance.
+	Type *string `json:"type,omitempty"`
 	// A Talang expression that will be evaluated and its result attached to the name of the binding.
-	Expression []map[string]interface{} `json:"expression"`
+	Expression []interface{} `json:"expression"`
 }
 
 // GetName returns the Name field value
@@ -37,10 +39,43 @@ func (o *Binding) SetName(v string) {
 	o.Name = v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *Binding) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Binding) GetTypeOk() (string, bool) {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *Binding) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *Binding) SetType(v string) {
+	o.Type = &v
+}
+
 // GetExpression returns the Expression field value
-func (o *Binding) GetExpression() []map[string]interface{} {
+func (o *Binding) GetExpression() []interface{} {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 
@@ -48,7 +83,7 @@ func (o *Binding) GetExpression() []map[string]interface{} {
 }
 
 // SetExpression sets field value
-func (o *Binding) SetExpression(v []map[string]interface{}) {
+func (o *Binding) SetExpression(v []interface{}) {
 	o.Expression = v
 }
 

@@ -14,32 +14,50 @@ import (
 	"encoding/json"
 )
 
-// ImportCoupons struct for ImportCoupons
-type ImportCoupons struct {
-	Coupons string `json:"coupons"`
+// ProfileAudiencesChanges struct for ProfileAudiencesChanges
+type ProfileAudiencesChanges struct {
+	// The IDs of the audiences for the customer to join.
+	Adds []int32 `json:"adds"`
+	// The IDs of the audiences for the customer to leave.
+	Deletes []int32 `json:"deletes"`
 }
 
-// GetCoupons returns the Coupons field value
-func (o *ImportCoupons) GetCoupons() string {
+// GetAdds returns the Adds field value
+func (o *ProfileAudiencesChanges) GetAdds() []int32 {
 	if o == nil {
-		var ret string
+		var ret []int32
 		return ret
 	}
 
-	return o.Coupons
+	return o.Adds
 }
 
-// SetCoupons sets field value
-func (o *ImportCoupons) SetCoupons(v string) {
-	o.Coupons = v
+// SetAdds sets field value
+func (o *ProfileAudiencesChanges) SetAdds(v []int32) {
+	o.Adds = v
 }
 
-type NullableImportCoupons struct {
-	Value        ImportCoupons
+// GetDeletes returns the Deletes field value
+func (o *ProfileAudiencesChanges) GetDeletes() []int32 {
+	if o == nil {
+		var ret []int32
+		return ret
+	}
+
+	return o.Deletes
+}
+
+// SetDeletes sets field value
+func (o *ProfileAudiencesChanges) SetDeletes(v []int32) {
+	o.Deletes = v
+}
+
+type NullableProfileAudiencesChanges struct {
+	Value        ProfileAudiencesChanges
 	ExplicitNull bool
 }
 
-func (v NullableImportCoupons) MarshalJSON() ([]byte, error) {
+func (v NullableProfileAudiencesChanges) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -48,7 +66,7 @@ func (v NullableImportCoupons) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableImportCoupons) UnmarshalJSON(src []byte) error {
+func (v *NullableProfileAudiencesChanges) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

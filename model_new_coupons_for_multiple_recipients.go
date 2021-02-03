@@ -15,8 +15,8 @@ import (
 	"time"
 )
 
-// NewCoupons
-type NewCoupons struct {
+// NewCouponsForMultipleRecipients
+type NewCouponsForMultipleRecipients struct {
 	// The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.
 	UsageLimit int32 `json:"usageLimit"`
 	// The amount of discounts that can be given with this coupon code.
@@ -25,14 +25,10 @@ type NewCoupons struct {
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
-	// The number of new coupon codes to generate for the campaign. Must be at least 1.
-	NumberOfCoupons int32 `json:"numberOfCoupons"`
-	// A unique prefix to prepend to all generated coupons.
-	UniquePrefix *string `json:"uniquePrefix,omitempty"`
 	// Arbitrary properties associated with this item
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// The integration ID for this coupon's beneficiary's profile
-	RecipientIntegrationId *string `json:"recipientIntegrationId,omitempty"`
+	// The integration IDs for recipients
+	RecipientsIntegrationIds []string `json:"recipientsIntegrationIds"`
 	// Set of characters to be used when generating random part of code. Defaults to [A-Z, 0-9] (in terms of RegExp).
 	ValidCharacters *[]string `json:"validCharacters,omitempty"`
 	// The pattern that will be used to generate coupon codes. The character `#` acts as a placeholder and will be replaced by a random character from the `validCharacters` set.
@@ -40,7 +36,7 @@ type NewCoupons struct {
 }
 
 // GetUsageLimit returns the UsageLimit field value
-func (o *NewCoupons) GetUsageLimit() int32 {
+func (o *NewCouponsForMultipleRecipients) GetUsageLimit() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -50,12 +46,12 @@ func (o *NewCoupons) GetUsageLimit() int32 {
 }
 
 // SetUsageLimit sets field value
-func (o *NewCoupons) SetUsageLimit(v int32) {
+func (o *NewCouponsForMultipleRecipients) SetUsageLimit(v int32) {
 	o.UsageLimit = v
 }
 
 // GetDiscountLimit returns the DiscountLimit field value if set, zero value otherwise.
-func (o *NewCoupons) GetDiscountLimit() float32 {
+func (o *NewCouponsForMultipleRecipients) GetDiscountLimit() float32 {
 	if o == nil || o.DiscountLimit == nil {
 		var ret float32
 		return ret
@@ -65,7 +61,7 @@ func (o *NewCoupons) GetDiscountLimit() float32 {
 
 // GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCoupons) GetDiscountLimitOk() (float32, bool) {
+func (o *NewCouponsForMultipleRecipients) GetDiscountLimitOk() (float32, bool) {
 	if o == nil || o.DiscountLimit == nil {
 		var ret float32
 		return ret, false
@@ -74,7 +70,7 @@ func (o *NewCoupons) GetDiscountLimitOk() (float32, bool) {
 }
 
 // HasDiscountLimit returns a boolean if a field has been set.
-func (o *NewCoupons) HasDiscountLimit() bool {
+func (o *NewCouponsForMultipleRecipients) HasDiscountLimit() bool {
 	if o != nil && o.DiscountLimit != nil {
 		return true
 	}
@@ -83,12 +79,12 @@ func (o *NewCoupons) HasDiscountLimit() bool {
 }
 
 // SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
-func (o *NewCoupons) SetDiscountLimit(v float32) {
+func (o *NewCouponsForMultipleRecipients) SetDiscountLimit(v float32) {
 	o.DiscountLimit = &v
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *NewCoupons) GetStartDate() time.Time {
+func (o *NewCouponsForMultipleRecipients) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
 		var ret time.Time
 		return ret
@@ -98,7 +94,7 @@ func (o *NewCoupons) GetStartDate() time.Time {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCoupons) GetStartDateOk() (time.Time, bool) {
+func (o *NewCouponsForMultipleRecipients) GetStartDateOk() (time.Time, bool) {
 	if o == nil || o.StartDate == nil {
 		var ret time.Time
 		return ret, false
@@ -107,7 +103,7 @@ func (o *NewCoupons) GetStartDateOk() (time.Time, bool) {
 }
 
 // HasStartDate returns a boolean if a field has been set.
-func (o *NewCoupons) HasStartDate() bool {
+func (o *NewCouponsForMultipleRecipients) HasStartDate() bool {
 	if o != nil && o.StartDate != nil {
 		return true
 	}
@@ -116,12 +112,12 @@ func (o *NewCoupons) HasStartDate() bool {
 }
 
 // SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
-func (o *NewCoupons) SetStartDate(v time.Time) {
+func (o *NewCouponsForMultipleRecipients) SetStartDate(v time.Time) {
 	o.StartDate = &v
 }
 
 // GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.
-func (o *NewCoupons) GetExpiryDate() time.Time {
+func (o *NewCouponsForMultipleRecipients) GetExpiryDate() time.Time {
 	if o == nil || o.ExpiryDate == nil {
 		var ret time.Time
 		return ret
@@ -131,7 +127,7 @@ func (o *NewCoupons) GetExpiryDate() time.Time {
 
 // GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCoupons) GetExpiryDateOk() (time.Time, bool) {
+func (o *NewCouponsForMultipleRecipients) GetExpiryDateOk() (time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
 		var ret time.Time
 		return ret, false
@@ -140,7 +136,7 @@ func (o *NewCoupons) GetExpiryDateOk() (time.Time, bool) {
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
-func (o *NewCoupons) HasExpiryDate() bool {
+func (o *NewCouponsForMultipleRecipients) HasExpiryDate() bool {
 	if o != nil && o.ExpiryDate != nil {
 		return true
 	}
@@ -149,60 +145,12 @@ func (o *NewCoupons) HasExpiryDate() bool {
 }
 
 // SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
-func (o *NewCoupons) SetExpiryDate(v time.Time) {
+func (o *NewCouponsForMultipleRecipients) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
 }
 
-// GetNumberOfCoupons returns the NumberOfCoupons field value
-func (o *NewCoupons) GetNumberOfCoupons() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.NumberOfCoupons
-}
-
-// SetNumberOfCoupons sets field value
-func (o *NewCoupons) SetNumberOfCoupons(v int32) {
-	o.NumberOfCoupons = v
-}
-
-// GetUniquePrefix returns the UniquePrefix field value if set, zero value otherwise.
-func (o *NewCoupons) GetUniquePrefix() string {
-	if o == nil || o.UniquePrefix == nil {
-		var ret string
-		return ret
-	}
-	return *o.UniquePrefix
-}
-
-// GetUniquePrefixOk returns a tuple with the UniquePrefix field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewCoupons) GetUniquePrefixOk() (string, bool) {
-	if o == nil || o.UniquePrefix == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.UniquePrefix, true
-}
-
-// HasUniquePrefix returns a boolean if a field has been set.
-func (o *NewCoupons) HasUniquePrefix() bool {
-	if o != nil && o.UniquePrefix != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUniquePrefix gets a reference to the given string and assigns it to the UniquePrefix field.
-func (o *NewCoupons) SetUniquePrefix(v string) {
-	o.UniquePrefix = &v
-}
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *NewCoupons) GetAttributes() map[string]interface{} {
+func (o *NewCouponsForMultipleRecipients) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
 		var ret map[string]interface{}
 		return ret
@@ -212,7 +160,7 @@ func (o *NewCoupons) GetAttributes() map[string]interface{} {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCoupons) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *NewCouponsForMultipleRecipients) GetAttributesOk() (map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
 		var ret map[string]interface{}
 		return ret, false
@@ -221,7 +169,7 @@ func (o *NewCoupons) GetAttributesOk() (map[string]interface{}, bool) {
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *NewCoupons) HasAttributes() bool {
+func (o *NewCouponsForMultipleRecipients) HasAttributes() bool {
 	if o != nil && o.Attributes != nil {
 		return true
 	}
@@ -230,45 +178,27 @@ func (o *NewCoupons) HasAttributes() bool {
 }
 
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-func (o *NewCoupons) SetAttributes(v map[string]interface{}) {
+func (o *NewCouponsForMultipleRecipients) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
-// GetRecipientIntegrationId returns the RecipientIntegrationId field value if set, zero value otherwise.
-func (o *NewCoupons) GetRecipientIntegrationId() string {
-	if o == nil || o.RecipientIntegrationId == nil {
-		var ret string
+// GetRecipientsIntegrationIds returns the RecipientsIntegrationIds field value
+func (o *NewCouponsForMultipleRecipients) GetRecipientsIntegrationIds() []string {
+	if o == nil {
+		var ret []string
 		return ret
 	}
-	return *o.RecipientIntegrationId
+
+	return o.RecipientsIntegrationIds
 }
 
-// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewCoupons) GetRecipientIntegrationIdOk() (string, bool) {
-	if o == nil || o.RecipientIntegrationId == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.RecipientIntegrationId, true
-}
-
-// HasRecipientIntegrationId returns a boolean if a field has been set.
-func (o *NewCoupons) HasRecipientIntegrationId() bool {
-	if o != nil && o.RecipientIntegrationId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRecipientIntegrationId gets a reference to the given string and assigns it to the RecipientIntegrationId field.
-func (o *NewCoupons) SetRecipientIntegrationId(v string) {
-	o.RecipientIntegrationId = &v
+// SetRecipientsIntegrationIds sets field value
+func (o *NewCouponsForMultipleRecipients) SetRecipientsIntegrationIds(v []string) {
+	o.RecipientsIntegrationIds = v
 }
 
 // GetValidCharacters returns the ValidCharacters field value if set, zero value otherwise.
-func (o *NewCoupons) GetValidCharacters() []string {
+func (o *NewCouponsForMultipleRecipients) GetValidCharacters() []string {
 	if o == nil || o.ValidCharacters == nil {
 		var ret []string
 		return ret
@@ -278,7 +208,7 @@ func (o *NewCoupons) GetValidCharacters() []string {
 
 // GetValidCharactersOk returns a tuple with the ValidCharacters field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCoupons) GetValidCharactersOk() ([]string, bool) {
+func (o *NewCouponsForMultipleRecipients) GetValidCharactersOk() ([]string, bool) {
 	if o == nil || o.ValidCharacters == nil {
 		var ret []string
 		return ret, false
@@ -287,7 +217,7 @@ func (o *NewCoupons) GetValidCharactersOk() ([]string, bool) {
 }
 
 // HasValidCharacters returns a boolean if a field has been set.
-func (o *NewCoupons) HasValidCharacters() bool {
+func (o *NewCouponsForMultipleRecipients) HasValidCharacters() bool {
 	if o != nil && o.ValidCharacters != nil {
 		return true
 	}
@@ -296,12 +226,12 @@ func (o *NewCoupons) HasValidCharacters() bool {
 }
 
 // SetValidCharacters gets a reference to the given []string and assigns it to the ValidCharacters field.
-func (o *NewCoupons) SetValidCharacters(v []string) {
+func (o *NewCouponsForMultipleRecipients) SetValidCharacters(v []string) {
 	o.ValidCharacters = &v
 }
 
 // GetCouponPattern returns the CouponPattern field value if set, zero value otherwise.
-func (o *NewCoupons) GetCouponPattern() string {
+func (o *NewCouponsForMultipleRecipients) GetCouponPattern() string {
 	if o == nil || o.CouponPattern == nil {
 		var ret string
 		return ret
@@ -311,7 +241,7 @@ func (o *NewCoupons) GetCouponPattern() string {
 
 // GetCouponPatternOk returns a tuple with the CouponPattern field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCoupons) GetCouponPatternOk() (string, bool) {
+func (o *NewCouponsForMultipleRecipients) GetCouponPatternOk() (string, bool) {
 	if o == nil || o.CouponPattern == nil {
 		var ret string
 		return ret, false
@@ -320,7 +250,7 @@ func (o *NewCoupons) GetCouponPatternOk() (string, bool) {
 }
 
 // HasCouponPattern returns a boolean if a field has been set.
-func (o *NewCoupons) HasCouponPattern() bool {
+func (o *NewCouponsForMultipleRecipients) HasCouponPattern() bool {
 	if o != nil && o.CouponPattern != nil {
 		return true
 	}
@@ -329,16 +259,16 @@ func (o *NewCoupons) HasCouponPattern() bool {
 }
 
 // SetCouponPattern gets a reference to the given string and assigns it to the CouponPattern field.
-func (o *NewCoupons) SetCouponPattern(v string) {
+func (o *NewCouponsForMultipleRecipients) SetCouponPattern(v string) {
 	o.CouponPattern = &v
 }
 
-type NullableNewCoupons struct {
-	Value        NewCoupons
+type NullableNewCouponsForMultipleRecipients struct {
+	Value        NewCouponsForMultipleRecipients
 	ExplicitNull bool
 }
 
-func (v NullableNewCoupons) MarshalJSON() ([]byte, error) {
+func (v NullableNewCouponsForMultipleRecipients) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -347,7 +277,7 @@ func (v NullableNewCoupons) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableNewCoupons) UnmarshalJSON(src []byte) error {
+func (v *NullableNewCouponsForMultipleRecipients) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

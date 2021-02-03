@@ -14,33 +14,33 @@ import (
 	"encoding/json"
 )
 
-// NewImport
-type NewImport struct {
-	// The name of the entity that was imported.
-	Entity string `json:"entity"`
+// RollbackReferralEffectProps The properties specific to the \"rollbackReferral\" effect. This gets triggered whenever previously closed session is now cancelled and a referral redemption was cancelled on our internal usage limit counters.
+type RollbackReferralEffectProps struct {
+	// The referral code whose usage has been rolled back
+	Value string `json:"value"`
 }
 
-// GetEntity returns the Entity field value
-func (o *NewImport) GetEntity() string {
+// GetValue returns the Value field value
+func (o *RollbackReferralEffectProps) GetValue() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Entity
+	return o.Value
 }
 
-// SetEntity sets field value
-func (o *NewImport) SetEntity(v string) {
-	o.Entity = v
+// SetValue sets field value
+func (o *RollbackReferralEffectProps) SetValue(v string) {
+	o.Value = v
 }
 
-type NullableNewImport struct {
-	Value        NewImport
+type NullableRollbackReferralEffectProps struct {
+	Value        RollbackReferralEffectProps
 	ExplicitNull bool
 }
 
-func (v NullableNewImport) MarshalJSON() ([]byte, error) {
+func (v NullableRollbackReferralEffectProps) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -49,7 +49,7 @@ func (v NullableNewImport) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableNewImport) UnmarshalJSON(src []byte) error {
+func (v *NullableRollbackReferralEffectProps) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

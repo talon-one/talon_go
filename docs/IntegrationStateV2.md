@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Coupons** | Pointer to [**[]Coupon**](Coupon.md) |  | [optional] 
 **TriggeredCampaigns** | Pointer to [**[]Campaign**](Campaign.md) |  | [optional] 
 **Effects** | Pointer to [**[]Effect**](Effect.md) |  | 
+**RuleFailureReasons** | Pointer to [**[]RuleFailureReason**](RuleFailureReason.md) |  | [optional] 
 **CreatedCoupons** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 **CreatedReferrals** | Pointer to [**[]Referral**](Referral.md) |  | 
 
@@ -216,6 +217,31 @@ HasEffects returns a boolean if a field has been set.
 `func (o *IntegrationStateV2) SetEffects(v []Effect)`
 
 SetEffects gets a reference to the given []Effect and assigns it to the Effects field.
+
+### GetRuleFailureReasons
+
+`func (o *IntegrationStateV2) GetRuleFailureReasons() []RuleFailureReason`
+
+GetRuleFailureReasons returns the RuleFailureReasons field if non-nil, zero value otherwise.
+
+### GetRuleFailureReasonsOk
+
+`func (o *IntegrationStateV2) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool)`
+
+GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRuleFailureReasons
+
+`func (o *IntegrationStateV2) HasRuleFailureReasons() bool`
+
+HasRuleFailureReasons returns a boolean if a field has been set.
+
+### SetRuleFailureReasons
+
+`func (o *IntegrationStateV2) SetRuleFailureReasons(v []RuleFailureReason)`
+
+SetRuleFailureReasons gets a reference to the given []RuleFailureReason and assigns it to the RuleFailureReasons field.
 
 ### GetCreatedCoupons
 
