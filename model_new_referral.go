@@ -15,81 +15,22 @@ import (
 	"time"
 )
 
-// NewReferral struct for NewReferral
+// NewReferral
 type NewReferral struct {
-	// ID of the campaign from which the referral received the referral code.
-	CampaignId int32 `json:"campaignId"`
-	// The Integration Id of the Advocate's Profile
-	AdvocateProfileIntegrationId string `json:"advocateProfileIntegrationId"`
-	// An optional Integration ID of the Friend's Profile
-	FriendProfileIntegrationId *string `json:"friendProfileIntegrationId,omitempty"`
 	// Timestamp at which point the referral code becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiry date of the referral code. Referral never expires if this is omitted, zero, or negative.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
-}
-
-// GetCampaignId returns the CampaignId field value
-func (o *NewReferral) GetCampaignId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.CampaignId
-}
-
-// SetCampaignId sets field value
-func (o *NewReferral) SetCampaignId(v int32) {
-	o.CampaignId = v
-}
-
-// GetAdvocateProfileIntegrationId returns the AdvocateProfileIntegrationId field value
-func (o *NewReferral) GetAdvocateProfileIntegrationId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.AdvocateProfileIntegrationId
-}
-
-// SetAdvocateProfileIntegrationId sets field value
-func (o *NewReferral) SetAdvocateProfileIntegrationId(v string) {
-	o.AdvocateProfileIntegrationId = v
-}
-
-// GetFriendProfileIntegrationId returns the FriendProfileIntegrationId field value if set, zero value otherwise.
-func (o *NewReferral) GetFriendProfileIntegrationId() string {
-	if o == nil || o.FriendProfileIntegrationId == nil {
-		var ret string
-		return ret
-	}
-	return *o.FriendProfileIntegrationId
-}
-
-// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewReferral) GetFriendProfileIntegrationIdOk() (string, bool) {
-	if o == nil || o.FriendProfileIntegrationId == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.FriendProfileIntegrationId, true
-}
-
-// HasFriendProfileIntegrationId returns a boolean if a field has been set.
-func (o *NewReferral) HasFriendProfileIntegrationId() bool {
-	if o != nil && o.FriendProfileIntegrationId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetFriendProfileIntegrationId gets a reference to the given string and assigns it to the FriendProfileIntegrationId field.
-func (o *NewReferral) SetFriendProfileIntegrationId(v string) {
-	o.FriendProfileIntegrationId = &v
+	// The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
+	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	// ID of the campaign from which the referral received the referral code.
+	CampaignId int32 `json:"campaignId"`
+	// The Integration ID of the Advocate's Profile.
+	AdvocateProfileIntegrationId string `json:"advocateProfileIntegrationId"`
+	// An optional Integration ID of the Friend's Profile
+	FriendProfileIntegrationId *string `json:"friendProfileIntegrationId,omitempty"`
+	// Arbitrary properties associated with this item.
+	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
@@ -156,6 +97,135 @@ func (o *NewReferral) HasExpiryDate() bool {
 // SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
 func (o *NewReferral) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
+}
+
+// GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
+func (o *NewReferral) GetUsageLimit() int32 {
+	if o == nil || o.UsageLimit == nil {
+		var ret int32
+		return ret
+	}
+	return *o.UsageLimit
+}
+
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewReferral) GetUsageLimitOk() (int32, bool) {
+	if o == nil || o.UsageLimit == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.UsageLimit, true
+}
+
+// HasUsageLimit returns a boolean if a field has been set.
+func (o *NewReferral) HasUsageLimit() bool {
+	if o != nil && o.UsageLimit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
+func (o *NewReferral) SetUsageLimit(v int32) {
+	o.UsageLimit = &v
+}
+
+// GetCampaignId returns the CampaignId field value
+func (o *NewReferral) GetCampaignId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.CampaignId
+}
+
+// SetCampaignId sets field value
+func (o *NewReferral) SetCampaignId(v int32) {
+	o.CampaignId = v
+}
+
+// GetAdvocateProfileIntegrationId returns the AdvocateProfileIntegrationId field value
+func (o *NewReferral) GetAdvocateProfileIntegrationId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.AdvocateProfileIntegrationId
+}
+
+// SetAdvocateProfileIntegrationId sets field value
+func (o *NewReferral) SetAdvocateProfileIntegrationId(v string) {
+	o.AdvocateProfileIntegrationId = v
+}
+
+// GetFriendProfileIntegrationId returns the FriendProfileIntegrationId field value if set, zero value otherwise.
+func (o *NewReferral) GetFriendProfileIntegrationId() string {
+	if o == nil || o.FriendProfileIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.FriendProfileIntegrationId
+}
+
+// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewReferral) GetFriendProfileIntegrationIdOk() (string, bool) {
+	if o == nil || o.FriendProfileIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.FriendProfileIntegrationId, true
+}
+
+// HasFriendProfileIntegrationId returns a boolean if a field has been set.
+func (o *NewReferral) HasFriendProfileIntegrationId() bool {
+	if o != nil && o.FriendProfileIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFriendProfileIntegrationId gets a reference to the given string and assigns it to the FriendProfileIntegrationId field.
+func (o *NewReferral) SetFriendProfileIntegrationId(v string) {
+	o.FriendProfileIntegrationId = &v
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *NewReferral) GetAttributes() map[string]interface{} {
+	if o == nil || o.Attributes == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewReferral) GetAttributesOk() (map[string]interface{}, bool) {
+	if o == nil || o.Attributes == nil {
+		var ret map[string]interface{}
+		return ret, false
+	}
+	return *o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *NewReferral) HasAttributes() bool {
+	if o != nil && o.Attributes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+func (o *NewReferral) SetAttributes(v map[string]interface{}) {
+	o.Attributes = &v
 }
 
 type NullableNewReferral struct {

@@ -16,47 +16,29 @@ import (
 
 // InlineResponse20016 struct for InlineResponse20016
 type InlineResponse20016 struct {
-	HasMore *bool                `json:"hasMore,omitempty"`
-	Data    []ApplicationSession `json:"data"`
+	TotalResultSize int32              `json:"totalResultSize"`
+	Data            []ApplicationEvent `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
-func (o *InlineResponse20016) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
-		var ret bool
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20016) GetTotalResultSize() int32 {
+	if o == nil {
+		var ret int32
 		return ret
 	}
-	return *o.HasMore
+
+	return o.TotalResultSize
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20016) GetHasMoreOk() (bool, bool) {
-	if o == nil || o.HasMore == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.HasMore, true
-}
-
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20016) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-func (o *InlineResponse20016) SetHasMore(v bool) {
-	o.HasMore = &v
+// SetTotalResultSize sets field value
+func (o *InlineResponse20016) SetTotalResultSize(v int32) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20016) GetData() []ApplicationSession {
+func (o *InlineResponse20016) GetData() []ApplicationEvent {
 	if o == nil {
-		var ret []ApplicationSession
+		var ret []ApplicationEvent
 		return ret
 	}
 
@@ -64,7 +46,7 @@ func (o *InlineResponse20016) GetData() []ApplicationSession {
 }
 
 // SetData sets field value
-func (o *InlineResponse20016) SetData(v []ApplicationSession) {
+func (o *InlineResponse20016) SetData(v []ApplicationEvent) {
 	o.Data = v
 }
 

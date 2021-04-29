@@ -4,36 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
-**HasMore** | Pointer to **bool** |  | [optional] 
+**HasMore** | Pointer to **bool** |  | 
 **Data** | Pointer to [**[]ApplicationCustomer**](ApplicationCustomer.md) |  | 
 
 ## Methods
-
-### GetTotalResultSize
-
-`func (o *InlineResponse20012) GetTotalResultSize() int32`
-
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
-
-### GetTotalResultSizeOk
-
-`func (o *InlineResponse20012) GetTotalResultSizeOk() (int32, bool)`
-
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalResultSize
-
-`func (o *InlineResponse20012) HasTotalResultSize() bool`
-
-HasTotalResultSize returns a boolean if a field has been set.
-
-### SetTotalResultSize
-
-`func (o *InlineResponse20012) SetTotalResultSize(v int32)`
-
-SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 ### GetHasMore
 

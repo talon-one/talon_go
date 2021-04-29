@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **RuleFailureReasons** | Pointer to [**[]RuleFailureReason**](RuleFailureReason.md) |  | [optional] 
 **CreatedCoupons** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 **CreatedReferrals** | Pointer to [**[]Referral**](Referral.md) |  | 
+**AwardedGiveaways** | Pointer to [**[]Giveaway**](Giveaway.md) |  | [optional] 
 
 ## Methods
 
@@ -292,6 +293,31 @@ HasCreatedReferrals returns a boolean if a field has been set.
 `func (o *IntegrationStateV2) SetCreatedReferrals(v []Referral)`
 
 SetCreatedReferrals gets a reference to the given []Referral and assigns it to the CreatedReferrals field.
+
+### GetAwardedGiveaways
+
+`func (o *IntegrationStateV2) GetAwardedGiveaways() []Giveaway`
+
+GetAwardedGiveaways returns the AwardedGiveaways field if non-nil, zero value otherwise.
+
+### GetAwardedGiveawaysOk
+
+`func (o *IntegrationStateV2) GetAwardedGiveawaysOk() ([]Giveaway, bool)`
+
+GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAwardedGiveaways
+
+`func (o *IntegrationStateV2) HasAwardedGiveaways() bool`
+
+HasAwardedGiveaways returns a boolean if a field has been set.
+
+### SetAwardedGiveaways
+
+`func (o *IntegrationStateV2) SetAwardedGiveaways(v []Giveaway)`
+
+SetAwardedGiveaways gets a reference to the given []Giveaway and assigns it to the AwardedGiveaways field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

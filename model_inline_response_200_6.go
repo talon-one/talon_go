@@ -16,23 +16,23 @@ import (
 
 // InlineResponse2006 struct for InlineResponse2006
 type InlineResponse2006 struct {
-	TotalResultSize int32      `json:"totalResultSize"`
-	Data            []Referral `json:"data"`
+	HasMore bool       `json:"hasMore"`
+	Data    []Referral `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2006) GetTotalResultSize() int32 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse2006) GetHasMore() bool {
 	if o == nil {
-		var ret int32
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2006) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse2006) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value

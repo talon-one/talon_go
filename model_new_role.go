@@ -22,7 +22,7 @@ type NewRole struct {
 	Description *string `json:"description,omitempty"`
 	// Role Policy this should be a stringified blob of json
 	Acl string `json:"acl"`
-	// An array of userIDs
+	// An array of user identifiers
 	Users []int32 `json:"users"`
 }
 

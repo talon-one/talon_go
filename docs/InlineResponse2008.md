@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) |  | 
+**Data** | Pointer to [**[]AccessLogEntry**](AccessLogEntry.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse2008) GetData() []LoyaltyProgram`
+`func (o *InlineResponse2008) GetData() []AccessLogEntry`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2008) GetDataOk() ([]LoyaltyProgram, bool)`
+`func (o *InlineResponse2008) GetDataOk() ([]AccessLogEntry, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse2008) SetData(v []LoyaltyProgram)`
+`func (o *InlineResponse2008) SetData(v []AccessLogEntry)`
 
-SetData gets a reference to the given []LoyaltyProgram and assigns it to the Data field.
+SetData gets a reference to the given []AccessLogEntry and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

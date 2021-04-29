@@ -80,6 +80,10 @@ Method | HTTP request | Description
 [**GetWebhookActivationLogs**](ManagementApi.md#GetWebhookActivationLogs) | **Get** /v1/webhook_activation_logs | List Webhook activation Log Entries
 [**GetWebhookLogs**](ManagementApi.md#GetWebhookLogs) | **Get** /v1/webhook_logs | List Webhook Log Entries
 [**GetWebhooks**](ManagementApi.md#GetWebhooks) | **Get** /v1/webhooks | List Webhooks
+[**ImportCoupons**](ManagementApi.md#ImportCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons via CSV file
+[**ImportLoyaltyPoints**](ManagementApi.md#ImportLoyaltyPoints) | **Post** /v1/loyalty_programs/{programID}/import_points | Import loyalty points via CSV file
+[**ImportPoolGiveaways**](ManagementApi.md#ImportPoolGiveaways) | **Post** /v1/giveaways/pools/{poolId}/import | Import giveaways codes into a giveaways pool
+[**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals via CSV file
 [**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/deduct_points | Deduct points in a certain loyalty program for the specified customer
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
 [**SearchCouponsAdvanced**](ManagementApi.md#SearchCouponsAdvanced) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced | Get a list of the coupons that match the given attributes (with total count)
@@ -91,6 +95,7 @@ Method | HTTP request | Description
 [**UpdateCampaign**](ManagementApi.md#UpdateCampaign) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId} | Update a Campaign
 [**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update a Coupon
 [**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update a Batch of Coupons
+[**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update one Referral
 [**UpdateRuleset**](ManagementApi.md#UpdateRuleset) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Update a Ruleset
 
 
@@ -332,7 +337,7 @@ Name | Type | Description  | Notes
 
 
  **body** | [**NewCoupons**](NewCoupons.md) |  | 
- **silent** | **string** | If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the coupons generated (to to 1000). | 
+ **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
 
@@ -379,7 +384,7 @@ Name | Type | Description  | Notes
 
 
  **body** | [**NewCouponsForMultipleRecipients**](NewCouponsForMultipleRecipients.md) |  | 
- **silent** | **string** | If set to &#39;yes&#39;, response will be an empty 204, otherwise a list of the coupons generated (to to 1000). | 
+ **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
 
@@ -1030,7 +1035,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogs
 
-> InlineResponse2009 GetAccessLogs(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2008 GetAccessLogs(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get access logs for application (with total count)
 
@@ -1061,7 +1066,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -1079,7 +1084,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20010 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2009 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get access logs for application
 
@@ -1110,7 +1115,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -1257,7 +1262,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20022 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20021 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List additional costs
 
@@ -1280,7 +1285,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20021**](inline_response_200_21.md)
 
 ### Authorization
 
@@ -1298,7 +1303,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAccessLogs
 
-> InlineResponse2009 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2008 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get all access logs
 
@@ -1326,7 +1331,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -1344,7 +1349,7 @@ Name | Type | Description  | Notes
 
 ## GetAllRoles
 
-> InlineResponse20030 GetAllRoles(ctx).Execute()
+> InlineResponse20029 GetAllRoles(ctx).Execute()
 
 Get all roles
 
@@ -1359,7 +1364,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Return type
 
-[**InlineResponse20030**](inline_response_200_30.md)
+[**InlineResponse20029**](inline_response_200_29.md)
 
 ### Authorization
 
@@ -1504,7 +1509,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20012 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20011 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List Application Customers
 
@@ -1527,11 +1532,11 @@ Name | Type | Description  | Notes
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, &#x60;hasMore&#x60; will be true whenever there is a next page. &#x60;totalResultSize&#x60; will always be zero. With this flag set to false, &#x60;hasMore&#x60; will always be set to false. &#x60;totalResultSize&#x60; will contain the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20011**](inline_response_200_11.md)
 
 ### Authorization
 
@@ -1549,7 +1554,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20013 GetApplicationCustomersByAttributes(ctx).Body(body).Execute()
+> InlineResponse20012 GetApplicationCustomersByAttributes(ctx).Body(body).Execute()
 
 Get a list of the customer profiles that match the given attributes (with total count)
 
@@ -1570,7 +1575,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -1588,7 +1593,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20019 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20018 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Applications Event Types
 
@@ -1616,7 +1621,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -1634,7 +1639,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEvents
 
-> InlineResponse20017 GetApplicationEvents(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
+> InlineResponse20016 GetApplicationEvents(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
 List Applications Events (with total count)
 
@@ -1673,7 +1678,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
@@ -1691,7 +1696,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20018 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
+> InlineResponse20017 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
 List Applications Events
 
@@ -1730,7 +1735,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -1791,7 +1796,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20016 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
+> InlineResponse20015 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
 
 List Application Sessions
 
@@ -1824,7 +1829,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
@@ -1926,7 +1931,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20021 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20020 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
 
 List custom attributes
 
@@ -1946,10 +1951,11 @@ Name | Type | Description  | Notes
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **entity** | **string** | Returned attributes will be filtered by supplied entity | 
 
 ### Return type
 
-[**InlineResponse20021**](inline_response_200_21.md)
+[**InlineResponse20020**](inline_response_200_20.md)
 
 ### Authorization
 
@@ -1967,7 +1973,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20020 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20019 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 Get all audiences
 
@@ -1987,11 +1993,11 @@ Name | Type | Description  | Notes
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, &#x60;hasMore&#x60; will be true whenever there is a next page. &#x60;totalResultSize&#x60; will always be zero. With this flag set to false, &#x60;hasMore&#x60; will always be set to false. &#x60;totalResultSize&#x60; will contain the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20020**](inline_response_200_20.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
@@ -2052,7 +2058,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20011 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
+> InlineResponse20010 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
 
 Get analytics of campaigns
 
@@ -2080,7 +2086,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -2196,7 +2202,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20028 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).IncludeOld(includeOld).Execute()
+> InlineResponse20027 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).IncludeOld(includeOld).Execute()
 
 Get audit log for an account
 
@@ -2221,12 +2227,12 @@ Name | Type | Description  | Notes
  **userId** | **int32** |  | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, &#x60;hasMore&#x60; will be true whenever there is a next page. &#x60;totalResultSize&#x60; will always be zero. With this flag set to false, &#x60;hasMore&#x60; will always be set to false. &#x60;totalResultSize&#x60; will contain the total number of results for this query.  | 
  **includeOld** | **bool** | When this flag is set to false, the state without the change will not be returned. The default value is true. | 
 
 ### Return type
 
-[**InlineResponse20028**](inline_response_200_28.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
@@ -2522,7 +2528,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReports
 
-> InlineResponse20014 GetCustomerActivityReports(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
+> InlineResponse20013 GetCustomerActivityReports(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
 Get Activity Reports for Application Customers (with total count)
 
@@ -2556,7 +2562,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -2574,7 +2580,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20015 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
+> InlineResponse20014 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
 Get Activity Reports for Application Customers
 
@@ -2608,7 +2614,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20014**](inline_response_200_14.md)
 
 ### Authorization
 
@@ -2715,7 +2721,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20013 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20012 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Execute()
 
 List Customer Profiles
 
@@ -2735,7 +2741,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -2753,7 +2759,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20013 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20012 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Execute()
 
 Get a list of the customer profiles that match the given attributes
 
@@ -2776,7 +2782,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -2794,7 +2800,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20026 GetEventTypes(ctx).ApplicationIds(applicationIds).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20025 GetEventTypes(ctx).ApplicationIds(applicationIds).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Event Types
 
@@ -2820,7 +2826,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20025**](inline_response_200_25.md)
 
 ### Authorization
 
@@ -2838,7 +2844,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20029 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
+> InlineResponse20028 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
 Get Exports
 
@@ -2863,7 +2869,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](inline_response_200_29.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
@@ -2936,7 +2942,7 @@ Get a loyalty program
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** |  | 
+**programID** | **int32** |  | 
 
 ### Other Parameters
 
@@ -2967,7 +2973,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse2008 GetLoyaltyPrograms(ctx).Execute()
+> InlineResponse2007 GetLoyaltyPrograms(ctx).Execute()
 
 List all loyalty Programs
 
@@ -2982,7 +2988,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
@@ -3041,7 +3047,7 @@ Name | Type | Description  | Notes
 
 ## GetReferrals
 
-> InlineResponse2006 GetReferrals(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
+> InlineResponse201 GetReferrals(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
 List Referrals (with total count)
 
@@ -3075,7 +3081,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse201**](inline_response_201.md)
 
 ### Authorization
 
@@ -3093,7 +3099,7 @@ Name | Type | Description  | Notes
 
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse2007 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
+> InlineResponse2006 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
 List Referrals
 
@@ -3127,7 +3133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -3320,7 +3326,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20027 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20026 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Users in your account
 
@@ -3343,7 +3349,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
@@ -3404,7 +3410,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20024 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20023 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List Webhook activation Log Entries
 
@@ -3433,7 +3439,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](inline_response_200_24.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
@@ -3451,7 +3457,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20025 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20024 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List Webhook Log Entries
 
@@ -3479,7 +3485,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
@@ -3497,7 +3503,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20023 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20022 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
 
 List Webhooks
 
@@ -3519,7 +3525,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20022**](inline_response_200_22.md)
 
 ### Authorization
 
@@ -3528,6 +3534,186 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportCoupons
+
+> Import ImportCoupons(ctx, applicationId, campaignId).UpFile(upFile).Execute()
+
+Import coupons via CSV file
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** |  | 
+**campaignId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportCouponsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **upFile** | **string** | The file with the information about the data that should be imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportLoyaltyPoints
+
+> Import ImportLoyaltyPoints(ctx, programID).UpFile(upFile).Execute()
+
+Import loyalty points via CSV file
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**programID** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportLoyaltyPointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **upFile** | **string** | The file with the information about the data that should be imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportPoolGiveaways
+
+> Import ImportPoolGiveaways(ctx, poolId).UpFile(upFile).Execute()
+
+Import giveaways codes into a giveaways pool
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**poolId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportPoolGiveawaysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **upFile** | **string** | The file with the information about the data that should be imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportReferrals
+
+> Import ImportReferrals(ctx, applicationId, campaignId).UpFile(upFile).Execute()
+
+Import referrals via CSV file
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** |  | 
+**campaignId** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportReferralsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **upFile** | **string** | The file with the information about the data that should be imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -4064,6 +4250,52 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: application/json
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateReferral
+
+> Referral UpdateReferral(ctx, applicationId, campaignId, referralId).Body(body).Execute()
+
+Update one Referral
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** |  | 
+**campaignId** | **int32** |  | 
+**referralId** | **string** | The ID of the referral code to delete | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateReferralRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **body** | [**UpdateReferral**](UpdateReferral.md) |  | 
+
+### Return type
+
+[**Referral**](Referral.md)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

@@ -27,6 +27,7 @@ type IntegrationStateV2 struct {
 	RuleFailureReasons *[]RuleFailureReason `json:"ruleFailureReasons,omitempty"`
 	CreatedCoupons     []Coupon             `json:"createdCoupons"`
 	CreatedReferrals   []Referral           `json:"createdReferrals"`
+	AwardedGiveaways   *[]Giveaway          `json:"awardedGiveaways,omitempty"`
 }
 
 // GetCustomerSession returns the CustomerSession field value if set, zero value otherwise.
@@ -336,6 +337,39 @@ func (o *IntegrationStateV2) GetCreatedReferrals() []Referral {
 // SetCreatedReferrals sets field value
 func (o *IntegrationStateV2) SetCreatedReferrals(v []Referral) {
 	o.CreatedReferrals = v
+}
+
+// GetAwardedGiveaways returns the AwardedGiveaways field value if set, zero value otherwise.
+func (o *IntegrationStateV2) GetAwardedGiveaways() []Giveaway {
+	if o == nil || o.AwardedGiveaways == nil {
+		var ret []Giveaway
+		return ret
+	}
+	return *o.AwardedGiveaways
+}
+
+// GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationStateV2) GetAwardedGiveawaysOk() ([]Giveaway, bool) {
+	if o == nil || o.AwardedGiveaways == nil {
+		var ret []Giveaway
+		return ret, false
+	}
+	return *o.AwardedGiveaways, true
+}
+
+// HasAwardedGiveaways returns a boolean if a field has been set.
+func (o *IntegrationStateV2) HasAwardedGiveaways() bool {
+	if o != nil && o.AwardedGiveaways != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAwardedGiveaways gets a reference to the given []Giveaway and assigns it to the AwardedGiveaways field.
+func (o *IntegrationStateV2) SetAwardedGiveaways(v []Giveaway) {
+	o.AwardedGiveaways = &v
 }
 
 type NullableIntegrationStateV2 struct {

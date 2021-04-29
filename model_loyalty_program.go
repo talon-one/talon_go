@@ -34,6 +34,8 @@ type LoyaltyProgram struct {
 	DefaultPending string `json:"defaultPending"`
 	// Indicates if this program supports subledgers inside the program
 	AllowSubledger bool `json:"allowSubledger"`
+	// The tiers in this loyalty program
+	Tiers *[]LoyaltyTier `json:"tiers,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -169,6 +171,39 @@ func (o *LoyaltyProgram) GetAllowSubledger() bool {
 // SetAllowSubledger sets field value
 func (o *LoyaltyProgram) SetAllowSubledger(v bool) {
 	o.AllowSubledger = v
+}
+
+// GetTiers returns the Tiers field value if set, zero value otherwise.
+func (o *LoyaltyProgram) GetTiers() []LoyaltyTier {
+	if o == nil || o.Tiers == nil {
+		var ret []LoyaltyTier
+		return ret
+	}
+	return *o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgram) GetTiersOk() ([]LoyaltyTier, bool) {
+	if o == nil || o.Tiers == nil {
+		var ret []LoyaltyTier
+		return ret, false
+	}
+	return *o.Tiers, true
+}
+
+// HasTiers returns a boolean if a field has been set.
+func (o *LoyaltyProgram) HasTiers() bool {
+	if o != nil && o.Tiers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTiers gets a reference to the given []LoyaltyTier and assigns it to the Tiers field.
+func (o *LoyaltyProgram) SetTiers(v []LoyaltyTier) {
+	o.Tiers = &v
 }
 
 type NullableLoyaltyProgram struct {

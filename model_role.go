@@ -12,24 +12,29 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // Role
 type Role struct {
-	// The ID of the role corresponding to the DB row
+	// Unique ID for this entity.
 	Id int32 `json:"id"`
-	// The ID of the Talon.One account that owns this role.
-	AccountID int32 `json:"accountID"`
+	// The exact moment this entity was created.
+	Created time.Time `json:"created"`
+	// The exact moment this entity was last modified.
+	Modified time.Time `json:"modified"`
+	// The ID of the account that owns this entity.
+	AccountId int32 `json:"accountId"`
 	// The ID of the Campaign Group this role was created for.
 	CampaignGroupID *int32 `json:"campaignGroupID,omitempty"`
 	// Name of the role
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// Description of the role
 	Description *string `json:"description,omitempty"`
 	// A list of user identifiers assigned to this role
 	Members *[]int32 `json:"members,omitempty"`
 	// Role ACL Policy
-	Acl *map[string]interface{} `json:"acl,omitempty"`
+	Acl map[string]interface{} `json:"acl"`
 }
 
 // GetId returns the Id field value
@@ -47,19 +52,49 @@ func (o *Role) SetId(v int32) {
 	o.Id = v
 }
 
-// GetAccountID returns the AccountID field value
-func (o *Role) GetAccountID() int32 {
+// GetCreated returns the Created field value
+func (o *Role) GetCreated() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Created
+}
+
+// SetCreated sets field value
+func (o *Role) SetCreated(v time.Time) {
+	o.Created = v
+}
+
+// GetModified returns the Modified field value
+func (o *Role) GetModified() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Modified
+}
+
+// SetModified sets field value
+func (o *Role) SetModified(v time.Time) {
+	o.Modified = v
+}
+
+// GetAccountId returns the AccountId field value
+func (o *Role) GetAccountId() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.AccountID
+	return o.AccountId
 }
 
-// SetAccountID sets field value
-func (o *Role) SetAccountID(v int32) {
-	o.AccountID = v
+// SetAccountId sets field value
+func (o *Role) SetAccountId(v int32) {
+	o.AccountId = v
 }
 
 // GetCampaignGroupID returns the CampaignGroupID field value if set, zero value otherwise.
@@ -95,37 +130,19 @@ func (o *Role) SetCampaignGroupID(v int32) {
 	o.CampaignGroupID = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *Role) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *Role) GetNameOk() (string, bool) {
-	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *Role) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *Role) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -194,37 +211,19 @@ func (o *Role) SetMembers(v []int32) {
 	o.Members = &v
 }
 
-// GetAcl returns the Acl field value if set, zero value otherwise.
+// GetAcl returns the Acl field value
 func (o *Role) GetAcl() map[string]interface{} {
-	if o == nil || o.Acl == nil {
+	if o == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Acl
+
+	return o.Acl
 }
 
-// GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *Role) GetAclOk() (map[string]interface{}, bool) {
-	if o == nil || o.Acl == nil {
-		var ret map[string]interface{}
-		return ret, false
-	}
-	return *o.Acl, true
-}
-
-// HasAcl returns a boolean if a field has been set.
-func (o *Role) HasAcl() bool {
-	if o != nil && o.Acl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAcl gets a reference to the given map[string]interface{} and assigns it to the Acl field.
+// SetAcl sets field value
 func (o *Role) SetAcl(v map[string]interface{}) {
-	o.Acl = &v
+	o.Acl = v
 }
 
 type NullableRole struct {
