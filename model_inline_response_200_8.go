@@ -17,7 +17,7 @@ import (
 // InlineResponse2008 struct for InlineResponse2008
 type InlineResponse2008 struct {
 	TotalResultSize int32            `json:"totalResultSize"`
-	Data            []LoyaltyProgram `json:"data"`
+	Data            []AccessLogEntry `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2008) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2008) GetData() []LoyaltyProgram {
+func (o *InlineResponse2008) GetData() []AccessLogEntry {
 	if o == nil {
-		var ret []LoyaltyProgram
+		var ret []AccessLogEntry
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2008) GetData() []LoyaltyProgram {
 }
 
 // SetData sets field value
-func (o *InlineResponse2008) SetData(v []LoyaltyProgram) {
+func (o *InlineResponse2008) SetData(v []AccessLogEntry) {
 	o.Data = v
 }
 

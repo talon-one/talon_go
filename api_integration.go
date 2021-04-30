@@ -321,6 +321,162 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiCreateReferralsForMultipleAdvocatesRequest struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	body       *NewReferralsForMultipleAdvocates
+	silent     *string
+}
+
+func (r apiCreateReferralsForMultipleAdvocatesRequest) Body(body NewReferralsForMultipleAdvocates) apiCreateReferralsForMultipleAdvocatesRequest {
+	r.body = &body
+	return r
+}
+
+func (r apiCreateReferralsForMultipleAdvocatesRequest) Silent(silent string) apiCreateReferralsForMultipleAdvocatesRequest {
+	r.silent = &silent
+	return r
+}
+
+/*
+CreateReferralsForMultipleAdvocates Create referral codes for multiple advocates
+Creates unique referral codes for multiple advocates. The code will be valid for the referral campaign for which it is created, indicated in the `campaignId` parameter, and one referral code will be associated with one advocate using the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return apiCreateReferralsForMultipleAdvocatesRequest
+*/
+func (a *IntegrationApiService) CreateReferralsForMultipleAdvocates(ctx _context.Context) apiCreateReferralsForMultipleAdvocatesRequest {
+	return apiCreateReferralsForMultipleAdvocatesRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return InlineResponse201
+*/
+func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse201, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse201
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.CreateReferralsForMultipleAdvocates")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/referrals_for_multiple_advocates"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	if r.silent != nil {
+		localVarQueryParams.Add("silent", parameterToString(*r.silent, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Content-Signature"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Content-Signature"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 201 {
+			var v InlineResponse201
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiDeleteCouponReservationRequest struct {
 	ctx         _context.Context
 	apiService  *IntegrationApiService
@@ -579,6 +735,7 @@ type apiGetCustomerInventoryRequest struct {
 	referrals     *bool
 	coupons       *bool
 	loyalty       *bool
+	giveaways     *bool
 }
 
 func (r apiGetCustomerInventoryRequest) Profile(profile bool) apiGetCustomerInventoryRequest {
@@ -598,6 +755,11 @@ func (r apiGetCustomerInventoryRequest) Coupons(coupons bool) apiGetCustomerInve
 
 func (r apiGetCustomerInventoryRequest) Loyalty(loyalty bool) apiGetCustomerInventoryRequest {
 	r.loyalty = &loyalty
+	return r
+}
+
+func (r apiGetCustomerInventoryRequest) Giveaways(giveaways bool) apiGetCustomerInventoryRequest {
+	r.giveaways = &giveaways
 	return r
 }
 
@@ -653,6 +815,9 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 	}
 	if r.loyalty != nil {
 		localVarQueryParams.Add("loyalty", parameterToString(*r.loyalty, ""))
+	}
+	if r.giveaways != nil {
+		localVarQueryParams.Add("giveaways", parameterToString(*r.giveaways, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -14,48 +14,50 @@ import (
 	"encoding/json"
 )
 
-// InlineResponse20030 struct for InlineResponse20030
-type InlineResponse20030 struct {
-	TotalResultSize int32  `json:"totalResultSize"`
-	Data            []Role `json:"data"`
+// NewLoyaltyTier A new loyalty tier
+type NewLoyaltyTier struct {
+	// The name of the tier
+	Name string `json:"name"`
+	// The minimum amount of points required to be eligible for the tier
+	MinPoints float32 `json:"minPoints"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20030) GetTotalResultSize() int32 {
+// GetName returns the Name field value
+func (o *NewLoyaltyTier) GetName() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.Name
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20030) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetName sets field value
+func (o *NewLoyaltyTier) SetName(v string) {
+	o.Name = v
 }
 
-// GetData returns the Data field value
-func (o *InlineResponse20030) GetData() []Role {
+// GetMinPoints returns the MinPoints field value
+func (o *NewLoyaltyTier) GetMinPoints() float32 {
 	if o == nil {
-		var ret []Role
+		var ret float32
 		return ret
 	}
 
-	return o.Data
+	return o.MinPoints
 }
 
-// SetData sets field value
-func (o *InlineResponse20030) SetData(v []Role) {
-	o.Data = v
+// SetMinPoints sets field value
+func (o *NewLoyaltyTier) SetMinPoints(v float32) {
+	o.MinPoints = v
 }
 
-type NullableInlineResponse20030 struct {
-	Value        InlineResponse20030
+type NullableNewLoyaltyTier struct {
+	Value        NewLoyaltyTier
 	ExplicitNull bool
 }
 
-func (v NullableInlineResponse20030) MarshalJSON() ([]byte, error) {
+func (v NullableNewLoyaltyTier) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -64,7 +66,7 @@ func (v NullableInlineResponse20030) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableInlineResponse20030) UnmarshalJSON(src []byte) error {
+func (v *NullableNewLoyaltyTier) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

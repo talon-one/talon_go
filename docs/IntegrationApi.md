@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCouponReservation**](IntegrationApi.md#CreateCouponReservation) | **Post** /v1/coupon_reservations/{couponValue} | Create a new coupon reservation
 [**CreateReferral**](IntegrationApi.md#CreateReferral) | **Post** /v1/referrals | Create a referral code for an advocate
+[**CreateReferralsForMultipleAdvocates**](IntegrationApi.md#CreateReferralsForMultipleAdvocates) | **Post** /v1/referrals_for_multiple_advocates | Create referral codes for multiple advocates
 [**DeleteCouponReservation**](IntegrationApi.md#DeleteCouponReservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 [**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer
 [**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile
@@ -88,6 +89,46 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Referral**](Referral.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateReferralsForMultipleAdvocates
+
+> InlineResponse201 CreateReferralsForMultipleAdvocates(ctx).Body(body).Silent(silent).Execute()
+
+Create referral codes for multiple advocates
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateReferralsForMultipleAdvocatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**NewReferralsForMultipleAdvocates**](NewReferralsForMultipleAdvocates.md) |  | 
+ **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
+
+### Return type
+
+[**InlineResponse201**](inline_response_201.md)
 
 ### Authorization
 
@@ -192,7 +233,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerInventory
 
-> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Execute()
+> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Giveaways(giveaways).Execute()
 
 Get an inventory of all data associated with a specific customer profile
 
@@ -218,6 +259,7 @@ Name | Type | Description  | Notes
  **referrals** | **bool** | optional flag to decide if you would like referral information in the response | 
  **coupons** | **bool** | optional flag to decide if you would like coupon information in the response | 
  **loyalty** | **bool** | optional flag to decide if you would like loyalty information in the response | 
+ **giveaways** | **bool** | optional flag to decide if you would like giveaways information in the response | 
 
 ### Return type
 
@@ -300,7 +342,7 @@ Other parameters are passed through a pointer to a apiTrackEventRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**NewEvent**](NewEvent.md) |  | 
- **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
 
@@ -345,7 +387,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
- **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
 
@@ -430,7 +472,7 @@ Name | Type | Description  | Notes
 
  **body** | [**CustomerProfileIntegrationRequestV2**](CustomerProfileIntegrationRequestV2.md) |  | 
  **runRuleEngine** | **bool** | Indicates whether to run the rule engine. | [default to false]
- **dry** | **bool** | Indicates whether to persist the changes. Changes are persisted with &#x60;true&#x60;. Only used when &#x60;runRuleEngine&#x60; is set to &#x60;true&#x60;.  | 
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. Only used when &#x60;runRuleEngine&#x60; is set to &#x60;true&#x60;.  | 
 
 ### Return type
 
@@ -515,7 +557,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**NewCustomerSession**](NewCustomerSession.md) |  | 
- **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
 
@@ -560,7 +602,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**IntegrationRequest**](IntegrationRequest.md) |  | 
- **dry** | **bool** | Indicates whether to skip persisting the changes or not (Will not persist if set to &#39;true&#39;). | 
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
 

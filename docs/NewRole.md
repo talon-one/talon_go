@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the role | 
 **Description** | Pointer to **string** | Description of the role | [optional] 
 **Acl** | Pointer to **string** | Role Policy this should be a stringified blob of json | 
-**Users** | Pointer to **[]int32** | An array of userIDs | 
+**Users** | Pointer to **[]int32** | An array of user identifiers | 
 
 ## Methods
 

@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **DiscountEffectCount** | Pointer to **int32** | Total number of times discounts were redeemed in this campaign. | [optional] 
 **CouponCreationCount** | Pointer to **int32** | Total number of coupons created by rules in this campaign. | [optional] 
 **ReferralCreationCount** | Pointer to **int32** | Total number of referrals created by rules in this campaign. | [optional] 
+**AwardedGiveawaysCount** | Pointer to **int32** | Total number of giveaways awarded by rules in this campaign. | [optional] 
 **CreatedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points created by rules in this campaign. | [optional] 
 **CreatedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point creation effects triggered by rules in this campaign. | [optional] 
 **RedeemedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points redeemed by rules in this campaign. | [optional] 
@@ -612,6 +613,31 @@ HasReferralCreationCount returns a boolean if a field has been set.
 `func (o *Campaign) SetReferralCreationCount(v int32)`
 
 SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
+
+### GetAwardedGiveawaysCount
+
+`func (o *Campaign) GetAwardedGiveawaysCount() int32`
+
+GetAwardedGiveawaysCount returns the AwardedGiveawaysCount field if non-nil, zero value otherwise.
+
+### GetAwardedGiveawaysCountOk
+
+`func (o *Campaign) GetAwardedGiveawaysCountOk() (int32, bool)`
+
+GetAwardedGiveawaysCountOk returns a tuple with the AwardedGiveawaysCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAwardedGiveawaysCount
+
+`func (o *Campaign) HasAwardedGiveawaysCount() bool`
+
+HasAwardedGiveawaysCount returns a boolean if a field has been set.
+
+### SetAwardedGiveawaysCount
+
+`func (o *Campaign) SetAwardedGiveawaysCount(v int32)`
+
+SetAwardedGiveawaysCount gets a reference to the given int32 and assigns it to the AwardedGiveawaysCount field.
 
 ### GetCreatedLoyaltyPointsCount
 

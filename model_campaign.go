@@ -61,6 +61,8 @@ type Campaign struct {
 	CouponCreationCount *int32 `json:"couponCreationCount,omitempty"`
 	// Total number of referrals created by rules in this campaign.
 	ReferralCreationCount *int32 `json:"referralCreationCount,omitempty"`
+	// Total number of giveaways awarded by rules in this campaign.
+	AwardedGiveawaysCount *int32 `json:"awardedGiveawaysCount,omitempty"`
 	// Total number of loyalty points created by rules in this campaign.
 	CreatedLoyaltyPointsCount *float32 `json:"createdLoyaltyPointsCount,omitempty"`
 	// Total number of loyalty point creation effects triggered by rules in this campaign.
@@ -656,6 +658,39 @@ func (o *Campaign) HasReferralCreationCount() bool {
 // SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
 func (o *Campaign) SetReferralCreationCount(v int32) {
 	o.ReferralCreationCount = &v
+}
+
+// GetAwardedGiveawaysCount returns the AwardedGiveawaysCount field value if set, zero value otherwise.
+func (o *Campaign) GetAwardedGiveawaysCount() int32 {
+	if o == nil || o.AwardedGiveawaysCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.AwardedGiveawaysCount
+}
+
+// GetAwardedGiveawaysCountOk returns a tuple with the AwardedGiveawaysCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetAwardedGiveawaysCountOk() (int32, bool) {
+	if o == nil || o.AwardedGiveawaysCount == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.AwardedGiveawaysCount, true
+}
+
+// HasAwardedGiveawaysCount returns a boolean if a field has been set.
+func (o *Campaign) HasAwardedGiveawaysCount() bool {
+	if o != nil && o.AwardedGiveawaysCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAwardedGiveawaysCount gets a reference to the given int32 and assigns it to the AwardedGiveawaysCount field.
+func (o *Campaign) SetAwardedGiveawaysCount(v int32) {
+	o.AwardedGiveawaysCount = &v
 }
 
 // GetCreatedLoyaltyPointsCount returns the CreatedLoyaltyPointsCount field value if set, zero value otherwise.

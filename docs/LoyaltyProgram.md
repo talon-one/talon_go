@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **DefaultValidity** | Pointer to **string** | Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like &#39;1h&#39; or &#39;40m&#39;. | 
 **DefaultPending** | Pointer to **string** | Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like &#39;1h&#39; or &#39;40m&#39;. | 
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program | 
+**Tiers** | Pointer to [**[]LoyaltyTier**](LoyaltyTier.md) | The tiers in this loyalty program | [optional] 
 
 ## Methods
 
@@ -240,6 +241,31 @@ HasAllowSubledger returns a boolean if a field has been set.
 `func (o *LoyaltyProgram) SetAllowSubledger(v bool)`
 
 SetAllowSubledger gets a reference to the given bool and assigns it to the AllowSubledger field.
+
+### GetTiers
+
+`func (o *LoyaltyProgram) GetTiers() []LoyaltyTier`
+
+GetTiers returns the Tiers field if non-nil, zero value otherwise.
+
+### GetTiersOk
+
+`func (o *LoyaltyProgram) GetTiersOk() ([]LoyaltyTier, bool)`
+
+GetTiersOk returns a tuple with the Tiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTiers
+
+`func (o *LoyaltyProgram) HasTiers() bool`
+
+HasTiers returns a boolean if a field has been set.
+
+### SetTiers
+
+`func (o *LoyaltyProgram) SetTiers(v []LoyaltyTier)`
+
+SetTiers gets a reference to the given []LoyaltyTier and assigns it to the Tiers field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,6 +10,11 @@ Name | Type | Description | Notes
 **Slots** | Pointer to [**[]SlotDef**](SlotDef.md) | The slots defined for this application. | 
 **Functions** | Pointer to [**[]FunctionDef**](FunctionDef.md) | The functions defined for this application. | 
 **Templates** | Pointer to [**[]TemplateDef**](TemplateDef.md) | The templates defined for this application. | 
+**GiveawaysPools** | Pointer to [**[]GiveawaysPool**](GiveawaysPool.md) | The giveaways pools that the application is subscribed to. | [optional] 
+**LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | The loyalty programs that the application is subscribed to. | [optional] 
+**Attributes** | Pointer to [**[]Attribute**](Attribute.md) | The attributes that the application is subscribed to. | [optional] 
+**AdditionalCosts** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) | The additional costs that the application is subscribed to. | [optional] 
+**Audiences** | Pointer to [**[]Audience**](Audience.md) | The audiences contained in the account which the application belongs to. | [optional] 
 **Variables** | Pointer to **string** |  | 
 
 ## Methods
@@ -163,6 +168,131 @@ HasTemplates returns a boolean if a field has been set.
 `func (o *Environment) SetTemplates(v []TemplateDef)`
 
 SetTemplates gets a reference to the given []TemplateDef and assigns it to the Templates field.
+
+### GetGiveawaysPools
+
+`func (o *Environment) GetGiveawaysPools() []GiveawaysPool`
+
+GetGiveawaysPools returns the GiveawaysPools field if non-nil, zero value otherwise.
+
+### GetGiveawaysPoolsOk
+
+`func (o *Environment) GetGiveawaysPoolsOk() ([]GiveawaysPool, bool)`
+
+GetGiveawaysPoolsOk returns a tuple with the GiveawaysPools field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasGiveawaysPools
+
+`func (o *Environment) HasGiveawaysPools() bool`
+
+HasGiveawaysPools returns a boolean if a field has been set.
+
+### SetGiveawaysPools
+
+`func (o *Environment) SetGiveawaysPools(v []GiveawaysPool)`
+
+SetGiveawaysPools gets a reference to the given []GiveawaysPool and assigns it to the GiveawaysPools field.
+
+### GetLoyaltyPrograms
+
+`func (o *Environment) GetLoyaltyPrograms() []LoyaltyProgram`
+
+GetLoyaltyPrograms returns the LoyaltyPrograms field if non-nil, zero value otherwise.
+
+### GetLoyaltyProgramsOk
+
+`func (o *Environment) GetLoyaltyProgramsOk() ([]LoyaltyProgram, bool)`
+
+GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLoyaltyPrograms
+
+`func (o *Environment) HasLoyaltyPrograms() bool`
+
+HasLoyaltyPrograms returns a boolean if a field has been set.
+
+### SetLoyaltyPrograms
+
+`func (o *Environment) SetLoyaltyPrograms(v []LoyaltyProgram)`
+
+SetLoyaltyPrograms gets a reference to the given []LoyaltyProgram and assigns it to the LoyaltyPrograms field.
+
+### GetAttributes
+
+`func (o *Environment) GetAttributes() []Attribute`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *Environment) GetAttributesOk() ([]Attribute, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAttributes
+
+`func (o *Environment) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributes
+
+`func (o *Environment) SetAttributes(v []Attribute)`
+
+SetAttributes gets a reference to the given []Attribute and assigns it to the Attributes field.
+
+### GetAdditionalCosts
+
+`func (o *Environment) GetAdditionalCosts() []AccountAdditionalCost`
+
+GetAdditionalCosts returns the AdditionalCosts field if non-nil, zero value otherwise.
+
+### GetAdditionalCostsOk
+
+`func (o *Environment) GetAdditionalCostsOk() ([]AccountAdditionalCost, bool)`
+
+GetAdditionalCostsOk returns a tuple with the AdditionalCosts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdditionalCosts
+
+`func (o *Environment) HasAdditionalCosts() bool`
+
+HasAdditionalCosts returns a boolean if a field has been set.
+
+### SetAdditionalCosts
+
+`func (o *Environment) SetAdditionalCosts(v []AccountAdditionalCost)`
+
+SetAdditionalCosts gets a reference to the given []AccountAdditionalCost and assigns it to the AdditionalCosts field.
+
+### GetAudiences
+
+`func (o *Environment) GetAudiences() []Audience`
+
+GetAudiences returns the Audiences field if non-nil, zero value otherwise.
+
+### GetAudiencesOk
+
+`func (o *Environment) GetAudiencesOk() ([]Audience, bool)`
+
+GetAudiencesOk returns a tuple with the Audiences field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAudiences
+
+`func (o *Environment) HasAudiences() bool`
+
+HasAudiences returns a boolean if a field has been set.
+
+### SetAudiences
+
+`func (o *Environment) SetAudiences(v []Audience)`
+
+SetAudiences gets a reference to the given []Audience and assigns it to the Audiences field.
 
 ### GetVariables
 

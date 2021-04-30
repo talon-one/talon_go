@@ -6,14 +6,17 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**CampaignId** | Pointer to **int32** | ID of the campaign from which the referral received the referral code. | 
-**AdvocateProfileIntegrationId** | Pointer to **string** | The Integration Id of the Advocate&#39;s Profile | 
-**FriendProfileIntegrationId** | Pointer to **string** | An optional Integration ID of the Friend&#39;s Profile | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the referral code becomes valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the referral code. Referral never expires if this is omitted, zero, or negative. | [optional] 
+**UsageLimit** | Pointer to **int32** | The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | 
+**CampaignId** | Pointer to **int32** | ID of the campaign from which the referral received the referral code. | 
+**AdvocateProfileIntegrationId** | Pointer to **string** | The Integration ID of the Advocate&#39;s Profile. | 
+**FriendProfileIntegrationId** | Pointer to **string** | An optional Integration ID of the Friend&#39;s Profile | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**ImportId** | Pointer to **int32** | The ID of the Import which created this referral. | [optional] 
 **Code** | Pointer to **string** | The actual referral code. | 
 **UsageCounter** | Pointer to **int32** | The number of times this referral code has been successfully used. | 
-**UsageLimit** | Pointer to **int32** | The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | 
+**BatchId** | Pointer to **string** | The ID of the batch the referrals belong to. | [optional] 
 
 ## Methods
 
@@ -66,6 +69,81 @@ HasCreated returns a boolean if a field has been set.
 `func (o *Referral) SetCreated(v time.Time)`
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetStartDate
+
+`func (o *Referral) GetStartDate() time.Time`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *Referral) GetStartDateOk() (time.Time, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStartDate
+
+`func (o *Referral) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
+
+### SetStartDate
+
+`func (o *Referral) SetStartDate(v time.Time)`
+
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+
+### GetExpiryDate
+
+`func (o *Referral) GetExpiryDate() time.Time`
+
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+
+### GetExpiryDateOk
+
+`func (o *Referral) GetExpiryDateOk() (time.Time, bool)`
+
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiryDate
+
+`func (o *Referral) HasExpiryDate() bool`
+
+HasExpiryDate returns a boolean if a field has been set.
+
+### SetExpiryDate
+
+`func (o *Referral) SetExpiryDate(v time.Time)`
+
+SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+
+### GetUsageLimit
+
+`func (o *Referral) GetUsageLimit() int32`
+
+GetUsageLimit returns the UsageLimit field if non-nil, zero value otherwise.
+
+### GetUsageLimitOk
+
+`func (o *Referral) GetUsageLimitOk() (int32, bool)`
+
+GetUsageLimitOk returns a tuple with the UsageLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUsageLimit
+
+`func (o *Referral) HasUsageLimit() bool`
+
+HasUsageLimit returns a boolean if a field has been set.
+
+### SetUsageLimit
+
+`func (o *Referral) SetUsageLimit(v int32)`
+
+SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
 
 ### GetCampaignId
 
@@ -142,55 +220,55 @@ HasFriendProfileIntegrationId returns a boolean if a field has been set.
 
 SetFriendProfileIntegrationId gets a reference to the given string and assigns it to the FriendProfileIntegrationId field.
 
-### GetStartDate
+### GetAttributes
 
-`func (o *Referral) GetStartDate() time.Time`
+`func (o *Referral) GetAttributes() map[string]interface{}`
 
-GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
-### GetStartDateOk
+### GetAttributesOk
 
-`func (o *Referral) GetStartDateOk() (time.Time, bool)`
+`func (o *Referral) GetAttributesOk() (map[string]interface{}, bool)`
 
-GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasStartDate
+### HasAttributes
 
-`func (o *Referral) HasStartDate() bool`
+`func (o *Referral) HasAttributes() bool`
 
-HasStartDate returns a boolean if a field has been set.
+HasAttributes returns a boolean if a field has been set.
 
-### SetStartDate
+### SetAttributes
 
-`func (o *Referral) SetStartDate(v time.Time)`
+`func (o *Referral) SetAttributes(v map[string]interface{})`
 
-SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
-### GetExpiryDate
+### GetImportId
 
-`func (o *Referral) GetExpiryDate() time.Time`
+`func (o *Referral) GetImportId() int32`
 
-GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+GetImportId returns the ImportId field if non-nil, zero value otherwise.
 
-### GetExpiryDateOk
+### GetImportIdOk
 
-`func (o *Referral) GetExpiryDateOk() (time.Time, bool)`
+`func (o *Referral) GetImportIdOk() (int32, bool)`
 
-GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+GetImportIdOk returns a tuple with the ImportId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpiryDate
+### HasImportId
 
-`func (o *Referral) HasExpiryDate() bool`
+`func (o *Referral) HasImportId() bool`
 
-HasExpiryDate returns a boolean if a field has been set.
+HasImportId returns a boolean if a field has been set.
 
-### SetExpiryDate
+### SetImportId
 
-`func (o *Referral) SetExpiryDate(v time.Time)`
+`func (o *Referral) SetImportId(v int32)`
 
-SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+SetImportId gets a reference to the given int32 and assigns it to the ImportId field.
 
 ### GetCode
 
@@ -242,30 +320,30 @@ HasUsageCounter returns a boolean if a field has been set.
 
 SetUsageCounter gets a reference to the given int32 and assigns it to the UsageCounter field.
 
-### GetUsageLimit
+### GetBatchId
 
-`func (o *Referral) GetUsageLimit() int32`
+`func (o *Referral) GetBatchId() string`
 
-GetUsageLimit returns the UsageLimit field if non-nil, zero value otherwise.
+GetBatchId returns the BatchId field if non-nil, zero value otherwise.
 
-### GetUsageLimitOk
+### GetBatchIdOk
 
-`func (o *Referral) GetUsageLimitOk() (int32, bool)`
+`func (o *Referral) GetBatchIdOk() (string, bool)`
 
-GetUsageLimitOk returns a tuple with the UsageLimit field if it's non-nil, zero value otherwise
+GetBatchIdOk returns a tuple with the BatchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasUsageLimit
+### HasBatchId
 
-`func (o *Referral) HasUsageLimit() bool`
+`func (o *Referral) HasBatchId() bool`
 
-HasUsageLimit returns a boolean if a field has been set.
+HasBatchId returns a boolean if a field has been set.
 
-### SetUsageLimit
+### SetBatchId
 
-`func (o *Referral) SetUsageLimit(v int32)`
+`func (o *Referral) SetBatchId(v string)`
 
-SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
+SetBatchId gets a reference to the given string and assigns it to the BatchId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

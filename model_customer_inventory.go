@@ -16,10 +16,11 @@ import (
 
 // CustomerInventory struct for CustomerInventory
 type CustomerInventory struct {
-	Profile   *CustomerProfile `json:"profile,omitempty"`
-	Loyalty   *Loyalty         `json:"loyalty,omitempty"`
-	Referrals *[]Referral      `json:"referrals,omitempty"`
-	Coupons   *[]Coupon        `json:"coupons,omitempty"`
+	Profile   *CustomerProfile   `json:"profile,omitempty"`
+	Loyalty   *Loyalty           `json:"loyalty,omitempty"`
+	Referrals *[]Referral        `json:"referrals,omitempty"`
+	Coupons   *[]InventoryCoupon `json:"coupons,omitempty"`
+	Giveaways *[]Giveaway        `json:"giveaways,omitempty"`
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -122,9 +123,9 @@ func (o *CustomerInventory) SetReferrals(v []Referral) {
 }
 
 // GetCoupons returns the Coupons field value if set, zero value otherwise.
-func (o *CustomerInventory) GetCoupons() []Coupon {
+func (o *CustomerInventory) GetCoupons() []InventoryCoupon {
 	if o == nil || o.Coupons == nil {
-		var ret []Coupon
+		var ret []InventoryCoupon
 		return ret
 	}
 	return *o.Coupons
@@ -132,9 +133,9 @@ func (o *CustomerInventory) GetCoupons() []Coupon {
 
 // GetCouponsOk returns a tuple with the Coupons field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetCouponsOk() ([]Coupon, bool) {
+func (o *CustomerInventory) GetCouponsOk() ([]InventoryCoupon, bool) {
 	if o == nil || o.Coupons == nil {
-		var ret []Coupon
+		var ret []InventoryCoupon
 		return ret, false
 	}
 	return *o.Coupons, true
@@ -149,9 +150,42 @@ func (o *CustomerInventory) HasCoupons() bool {
 	return false
 }
 
-// SetCoupons gets a reference to the given []Coupon and assigns it to the Coupons field.
-func (o *CustomerInventory) SetCoupons(v []Coupon) {
+// SetCoupons gets a reference to the given []InventoryCoupon and assigns it to the Coupons field.
+func (o *CustomerInventory) SetCoupons(v []InventoryCoupon) {
 	o.Coupons = &v
+}
+
+// GetGiveaways returns the Giveaways field value if set, zero value otherwise.
+func (o *CustomerInventory) GetGiveaways() []Giveaway {
+	if o == nil || o.Giveaways == nil {
+		var ret []Giveaway
+		return ret
+	}
+	return *o.Giveaways
+}
+
+// GetGiveawaysOk returns a tuple with the Giveaways field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerInventory) GetGiveawaysOk() ([]Giveaway, bool) {
+	if o == nil || o.Giveaways == nil {
+		var ret []Giveaway
+		return ret, false
+	}
+	return *o.Giveaways, true
+}
+
+// HasGiveaways returns a boolean if a field has been set.
+func (o *CustomerInventory) HasGiveaways() bool {
+	if o != nil && o.Giveaways != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGiveaways gets a reference to the given []Giveaway and assigns it to the Giveaways field.
+func (o *CustomerInventory) SetGiveaways(v []Giveaway) {
+	o.Giveaways = &v
 }
 
 type NullableCustomerInventory struct {

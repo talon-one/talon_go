@@ -4,13 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The ID of the role corresponding to the DB row | 
-**AccountID** | Pointer to **int32** | The ID of the Talon.One account that owns this role. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
+**AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **CampaignGroupID** | Pointer to **int32** | The ID of the Campaign Group this role was created for. | [optional] 
-**Name** | Pointer to **string** | Name of the role | [optional] 
+**Name** | Pointer to **string** | Name of the role | 
 **Description** | Pointer to **string** | Description of the role | [optional] 
 **Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role | [optional] 
-**Acl** | Pointer to [**map[string]interface{}**](.md) | Role ACL Policy | [optional] 
+**Acl** | Pointer to [**map[string]interface{}**](.md) | Role ACL Policy | 
 
 ## Methods
 
@@ -39,30 +41,80 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
 
-### GetAccountID
+### GetCreated
 
-`func (o *Role) GetAccountID() int32`
+`func (o *Role) GetCreated() time.Time`
 
-GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetAccountIDOk
+### GetCreatedOk
 
-`func (o *Role) GetAccountIDOk() (int32, bool)`
+`func (o *Role) GetCreatedOk() (time.Time, bool)`
 
-GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAccountID
+### HasCreated
 
-`func (o *Role) HasAccountID() bool`
+`func (o *Role) HasCreated() bool`
 
-HasAccountID returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetAccountID
+### SetCreated
 
-`func (o *Role) SetAccountID(v int32)`
+`func (o *Role) SetCreated(v time.Time)`
 
-SetAccountID gets a reference to the given int32 and assigns it to the AccountID field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetModified
+
+`func (o *Role) GetModified() time.Time`
+
+GetModified returns the Modified field if non-nil, zero value otherwise.
+
+### GetModifiedOk
+
+`func (o *Role) GetModifiedOk() (time.Time, bool)`
+
+GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasModified
+
+`func (o *Role) HasModified() bool`
+
+HasModified returns a boolean if a field has been set.
+
+### SetModified
+
+`func (o *Role) SetModified(v time.Time)`
+
+SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+
+### GetAccountId
+
+`func (o *Role) GetAccountId() int32`
+
+GetAccountId returns the AccountId field if non-nil, zero value otherwise.
+
+### GetAccountIdOk
+
+`func (o *Role) GetAccountIdOk() (int32, bool)`
+
+GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAccountId
+
+`func (o *Role) HasAccountId() bool`
+
+HasAccountId returns a boolean if a field has been set.
+
+### SetAccountId
+
+`func (o *Role) SetAccountId(v int32)`
+
+SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
 ### GetCampaignGroupID
 

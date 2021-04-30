@@ -29,7 +29,17 @@ type Environment struct {
 	Functions []FunctionDef `json:"functions"`
 	// The templates defined for this application.
 	Templates []TemplateDef `json:"templates"`
-	Variables string        `json:"variables"`
+	// The giveaways pools that the application is subscribed to.
+	GiveawaysPools *[]GiveawaysPool `json:"giveawaysPools,omitempty"`
+	// The loyalty programs that the application is subscribed to.
+	LoyaltyPrograms *[]LoyaltyProgram `json:"loyaltyPrograms,omitempty"`
+	// The attributes that the application is subscribed to.
+	Attributes *[]Attribute `json:"attributes,omitempty"`
+	// The additional costs that the application is subscribed to.
+	AdditionalCosts *[]AccountAdditionalCost `json:"additionalCosts,omitempty"`
+	// The audiences contained in the account which the application belongs to.
+	Audiences *[]Audience `json:"audiences,omitempty"`
+	Variables string      `json:"variables"`
 }
 
 // GetId returns the Id field value
@@ -120,6 +130,171 @@ func (o *Environment) GetTemplates() []TemplateDef {
 // SetTemplates sets field value
 func (o *Environment) SetTemplates(v []TemplateDef) {
 	o.Templates = v
+}
+
+// GetGiveawaysPools returns the GiveawaysPools field value if set, zero value otherwise.
+func (o *Environment) GetGiveawaysPools() []GiveawaysPool {
+	if o == nil || o.GiveawaysPools == nil {
+		var ret []GiveawaysPool
+		return ret
+	}
+	return *o.GiveawaysPools
+}
+
+// GetGiveawaysPoolsOk returns a tuple with the GiveawaysPools field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetGiveawaysPoolsOk() ([]GiveawaysPool, bool) {
+	if o == nil || o.GiveawaysPools == nil {
+		var ret []GiveawaysPool
+		return ret, false
+	}
+	return *o.GiveawaysPools, true
+}
+
+// HasGiveawaysPools returns a boolean if a field has been set.
+func (o *Environment) HasGiveawaysPools() bool {
+	if o != nil && o.GiveawaysPools != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGiveawaysPools gets a reference to the given []GiveawaysPool and assigns it to the GiveawaysPools field.
+func (o *Environment) SetGiveawaysPools(v []GiveawaysPool) {
+	o.GiveawaysPools = &v
+}
+
+// GetLoyaltyPrograms returns the LoyaltyPrograms field value if set, zero value otherwise.
+func (o *Environment) GetLoyaltyPrograms() []LoyaltyProgram {
+	if o == nil || o.LoyaltyPrograms == nil {
+		var ret []LoyaltyProgram
+		return ret
+	}
+	return *o.LoyaltyPrograms
+}
+
+// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetLoyaltyProgramsOk() ([]LoyaltyProgram, bool) {
+	if o == nil || o.LoyaltyPrograms == nil {
+		var ret []LoyaltyProgram
+		return ret, false
+	}
+	return *o.LoyaltyPrograms, true
+}
+
+// HasLoyaltyPrograms returns a boolean if a field has been set.
+func (o *Environment) HasLoyaltyPrograms() bool {
+	if o != nil && o.LoyaltyPrograms != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoyaltyPrograms gets a reference to the given []LoyaltyProgram and assigns it to the LoyaltyPrograms field.
+func (o *Environment) SetLoyaltyPrograms(v []LoyaltyProgram) {
+	o.LoyaltyPrograms = &v
+}
+
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *Environment) GetAttributes() []Attribute {
+	if o == nil || o.Attributes == nil {
+		var ret []Attribute
+		return ret
+	}
+	return *o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetAttributesOk() ([]Attribute, bool) {
+	if o == nil || o.Attributes == nil {
+		var ret []Attribute
+		return ret, false
+	}
+	return *o.Attributes, true
+}
+
+// HasAttributes returns a boolean if a field has been set.
+func (o *Environment) HasAttributes() bool {
+	if o != nil && o.Attributes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAttributes gets a reference to the given []Attribute and assigns it to the Attributes field.
+func (o *Environment) SetAttributes(v []Attribute) {
+	o.Attributes = &v
+}
+
+// GetAdditionalCosts returns the AdditionalCosts field value if set, zero value otherwise.
+func (o *Environment) GetAdditionalCosts() []AccountAdditionalCost {
+	if o == nil || o.AdditionalCosts == nil {
+		var ret []AccountAdditionalCost
+		return ret
+	}
+	return *o.AdditionalCosts
+}
+
+// GetAdditionalCostsOk returns a tuple with the AdditionalCosts field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetAdditionalCostsOk() ([]AccountAdditionalCost, bool) {
+	if o == nil || o.AdditionalCosts == nil {
+		var ret []AccountAdditionalCost
+		return ret, false
+	}
+	return *o.AdditionalCosts, true
+}
+
+// HasAdditionalCosts returns a boolean if a field has been set.
+func (o *Environment) HasAdditionalCosts() bool {
+	if o != nil && o.AdditionalCosts != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalCosts gets a reference to the given []AccountAdditionalCost and assigns it to the AdditionalCosts field.
+func (o *Environment) SetAdditionalCosts(v []AccountAdditionalCost) {
+	o.AdditionalCosts = &v
+}
+
+// GetAudiences returns the Audiences field value if set, zero value otherwise.
+func (o *Environment) GetAudiences() []Audience {
+	if o == nil || o.Audiences == nil {
+		var ret []Audience
+		return ret
+	}
+	return *o.Audiences
+}
+
+// GetAudiencesOk returns a tuple with the Audiences field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetAudiencesOk() ([]Audience, bool) {
+	if o == nil || o.Audiences == nil {
+		var ret []Audience
+		return ret, false
+	}
+	return *o.Audiences, true
+}
+
+// HasAudiences returns a boolean if a field has been set.
+func (o *Environment) HasAudiences() bool {
+	if o != nil && o.Audiences != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudiences gets a reference to the given []Audience and assigns it to the Audiences field.
+func (o *Environment) SetAudiences(v []Audience) {
+	o.Audiences = &v
 }
 
 // GetVariables returns the Variables field value
