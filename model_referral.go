@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Referral
+// Referral struct for Referral
 type Referral struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

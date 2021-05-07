@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// FeatureFlags
+// FeatureFlags struct for FeatureFlags
 type FeatureFlags struct {
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`

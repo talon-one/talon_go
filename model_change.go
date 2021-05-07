@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Change
+// Change struct for Change
 type Change struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// ApplicationReferee
+// ApplicationReferee struct for ApplicationReferee
 type ApplicationReferee struct {
 	// The ID of the application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`

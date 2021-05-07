@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewSamlConnection
+// NewSamlConnection struct for NewSamlConnection
 type NewSamlConnection struct {
 	// X.509 Certificate.
 	X509certificate string `json:"x509certificate"`

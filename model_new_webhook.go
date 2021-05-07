@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewWebhook
+// NewWebhook struct for NewWebhook
 type NewWebhook struct {
 	// The IDs of the applications that are related to this entity.
 	ApplicationIds []int32 `json:"applicationIds"`

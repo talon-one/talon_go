@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewApplication
+// NewApplication struct for NewApplication
 type NewApplication struct {
 	// The name of this application.
 	Name string `json:"name"`

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// ApplicationEvent
+// ApplicationEvent struct for ApplicationEvent
 type ApplicationEvent struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
@@ -32,7 +32,7 @@ type ApplicationEvent struct {
 	// Additional JSON serialized data associated with the event.
 	Attributes map[string]interface{} `json:"attributes"`
 	// An array containing the effects that were applied as a result of this event.
-	Effects [][]interface{} `json:"effects"`
+	Effects []map[string]interface{} `json:"effects"`
 	// An array containing the rule failure reasons which happened during this event.
 	RuleFailureReasons *[]RuleFailureReason `json:"ruleFailureReasons,omitempty"`
 }
@@ -179,9 +179,9 @@ func (o *ApplicationEvent) SetAttributes(v map[string]interface{}) {
 }
 
 // GetEffects returns the Effects field value
-func (o *ApplicationEvent) GetEffects() [][]interface{} {
+func (o *ApplicationEvent) GetEffects() []map[string]interface{} {
 	if o == nil {
-		var ret [][]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -189,7 +189,7 @@ func (o *ApplicationEvent) GetEffects() [][]interface{} {
 }
 
 // SetEffects sets field value
-func (o *ApplicationEvent) SetEffects(v [][]interface{}) {
+func (o *ApplicationEvent) SetEffects(v []map[string]interface{}) {
 	o.Effects = v
 }
 

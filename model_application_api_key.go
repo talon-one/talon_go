@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// ApplicationApiKey
+// ApplicationApiKey struct for ApplicationApiKey
 type ApplicationApiKey struct {
 	// Title for API Key
 	Title string `json:"title"`

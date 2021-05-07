@@ -18,7 +18,7 @@ import (
 type LoyaltyLedger struct {
 	Ledger LoyaltySubLedger `json:"ledger"`
 	// A map containing a list of all loyalty subledger balances
-	SubLedgers *map[string]LoyaltySubLedger `json:"subLedgers,omitempty"`
+	SubLedgers map[string]LoyaltySubLedger `json:"subLedgers"`
 }
 
 // GetLedger returns the Ledger field value
@@ -36,37 +36,19 @@ func (o *LoyaltyLedger) SetLedger(v LoyaltySubLedger) {
 	o.Ledger = v
 }
 
-// GetSubLedgers returns the SubLedgers field value if set, zero value otherwise.
+// GetSubLedgers returns the SubLedgers field value
 func (o *LoyaltyLedger) GetSubLedgers() map[string]LoyaltySubLedger {
-	if o == nil || o.SubLedgers == nil {
+	if o == nil {
 		var ret map[string]LoyaltySubLedger
 		return ret
 	}
-	return *o.SubLedgers
+
+	return o.SubLedgers
 }
 
-// GetSubLedgersOk returns a tuple with the SubLedgers field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *LoyaltyLedger) GetSubLedgersOk() (map[string]LoyaltySubLedger, bool) {
-	if o == nil || o.SubLedgers == nil {
-		var ret map[string]LoyaltySubLedger
-		return ret, false
-	}
-	return *o.SubLedgers, true
-}
-
-// HasSubLedgers returns a boolean if a field has been set.
-func (o *LoyaltyLedger) HasSubLedgers() bool {
-	if o != nil && o.SubLedgers != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubLedgers gets a reference to the given map[string]LoyaltySubLedger and assigns it to the SubLedgers field.
+// SetSubLedgers sets field value
 func (o *LoyaltyLedger) SetSubLedgers(v map[string]LoyaltySubLedger) {
-	o.SubLedgers = &v
+	o.SubLedgers = v
 }
 
 type NullableLoyaltyLedger struct {

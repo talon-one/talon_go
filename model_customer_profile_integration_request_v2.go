@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// CustomerProfileIntegrationRequestV2
+// CustomerProfileIntegrationRequestV2 struct for CustomerProfileIntegrationRequestV2
 type CustomerProfileIntegrationRequestV2 struct {
 	// Arbitrary properties associated with this item
 	Attributes       *map[string]interface{}  `json:"attributes,omitempty"`

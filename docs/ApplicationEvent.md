@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **SessionId** | Pointer to **int32** | The globally unique Talon.One ID of the session that contains this event. | [optional] 
 **Type** | Pointer to **string** | A string representing the event. Must not be a reserved event name. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Additional JSON serialized data associated with the event. | 
-**Effects** | Pointer to [**[][]interface{}**]([][]interface{}.md) | An array containing the effects that were applied as a result of this event. | 
+**Effects** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | An array containing the effects that were applied as a result of this event. | 
 **RuleFailureReasons** | Pointer to [**[]RuleFailureReason**](RuleFailureReason.md) | An array containing the rule failure reasons which happened during this event. | [optional] 
 
 ## Methods
@@ -193,13 +193,13 @@ SetAttributes gets a reference to the given map[string]interface{} and assigns i
 
 ### GetEffects
 
-`func (o *ApplicationEvent) GetEffects() [][]interface{}`
+`func (o *ApplicationEvent) GetEffects() []map[string]interface{}`
 
 GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *ApplicationEvent) GetEffectsOk() ([][]interface{}, bool)`
+`func (o *ApplicationEvent) GetEffectsOk() ([]map[string]interface{}, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -212,9 +212,9 @@ HasEffects returns a boolean if a field has been set.
 
 ### SetEffects
 
-`func (o *ApplicationEvent) SetEffects(v [][]interface{})`
+`func (o *ApplicationEvent) SetEffects(v []map[string]interface{})`
 
-SetEffects gets a reference to the given [][]interface{} and assigns it to the Effects field.
+SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
 
 ### GetRuleFailureReasons
 

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Ruleset
+// Ruleset struct for Ruleset
 type Ruleset struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

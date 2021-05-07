@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// TemplateArgDef
+// TemplateArgDef struct for TemplateArgDef
 type TemplateArgDef struct {
 	// The type of value this argument expects.
 	Type string `json:"type"`

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewEventType
+// NewEventType struct for NewEventType
 type NewEventType struct {
 	// The IDs of the applications that are related to this entity.
 	ApplicationIds []int32 `json:"applicationIds"`

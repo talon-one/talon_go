@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Application
+// Application struct for Application
 type Application struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

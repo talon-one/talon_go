@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Export
+// Export struct for Export
 type Export struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// ApplicationSession
+// ApplicationSession struct for ApplicationSession
 type ApplicationSession struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

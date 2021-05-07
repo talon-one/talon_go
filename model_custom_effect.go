@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CustomEffect
+// CustomEffect struct for CustomEffect
 type CustomEffect struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

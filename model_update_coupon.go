@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// UpdateCoupon
+// UpdateCoupon struct for UpdateCoupon
 type UpdateCoupon struct {
 	// The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.
 	UsageLimit *int32 `json:"usageLimit,omitempty"`

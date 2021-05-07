@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CustomerActivityReport
+// CustomerActivityReport struct for CustomerActivityReport
 type CustomerActivityReport struct {
 	// The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`

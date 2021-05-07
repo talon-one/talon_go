@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// CustomerAnalytics
+// CustomerAnalytics struct for CustomerAnalytics
 type CustomerAnalytics struct {
 	// Total accepted coupons for this customer
 	AcceptedCoupons int32 `json:"acceptedCoupons"`

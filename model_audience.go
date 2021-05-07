@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Audience
+// Audience struct for Audience
 type Audience struct {
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`

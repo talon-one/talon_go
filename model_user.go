@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// User
+// User struct for User
 type User struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

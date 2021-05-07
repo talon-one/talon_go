@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Webhook
+// Webhook struct for Webhook
 type Webhook struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

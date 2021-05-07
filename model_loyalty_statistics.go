@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// LoyaltyStatistics
+// LoyaltyStatistics struct for LoyaltyStatistics
 type LoyaltyStatistics struct {
 	// Total of active points for this loyalty program
 	TotalActivePoints float32 `json:"totalActivePoints"`

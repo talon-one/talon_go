@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CustomerSession
+// CustomerSession struct for CustomerSession
 type CustomerSession struct {
 	// The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewAttribute
+// NewAttribute struct for NewAttribute
 type NewAttribute struct {
 	// The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
 	Entity    string  `json:"entity"`
