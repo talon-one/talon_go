@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// UpdateCampaignGroup
+// UpdateCampaignGroup struct for UpdateCampaignGroup
 type UpdateCampaignGroup struct {
 	// The name of this campaign group.
 	Name string `json:"name"`

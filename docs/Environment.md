@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **Functions** | Pointer to [**[]FunctionDef**](FunctionDef.md) | The functions defined for this application. | 
 **Templates** | Pointer to [**[]TemplateDef**](TemplateDef.md) | The templates defined for this application. | 
 **GiveawaysPools** | Pointer to [**[]GiveawaysPool**](GiveawaysPool.md) | The giveaways pools that the application is subscribed to. | [optional] 
+**Variables** | Pointer to **string** |  | 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | The loyalty programs that the application is subscribed to. | [optional] 
 **Attributes** | Pointer to [**[]Attribute**](Attribute.md) | The attributes that the application is subscribed to. | [optional] 
 **AdditionalCosts** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) | The additional costs that the application is subscribed to. | [optional] 
 **Audiences** | Pointer to [**[]Audience**](Audience.md) | The audiences contained in the account which the application belongs to. | [optional] 
-**Variables** | Pointer to **string** |  | 
 
 ## Methods
 
@@ -194,6 +194,31 @@ HasGiveawaysPools returns a boolean if a field has been set.
 
 SetGiveawaysPools gets a reference to the given []GiveawaysPool and assigns it to the GiveawaysPools field.
 
+### GetVariables
+
+`func (o *Environment) GetVariables() string`
+
+GetVariables returns the Variables field if non-nil, zero value otherwise.
+
+### GetVariablesOk
+
+`func (o *Environment) GetVariablesOk() (string, bool)`
+
+GetVariablesOk returns a tuple with the Variables field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasVariables
+
+`func (o *Environment) HasVariables() bool`
+
+HasVariables returns a boolean if a field has been set.
+
+### SetVariables
+
+`func (o *Environment) SetVariables(v string)`
+
+SetVariables gets a reference to the given string and assigns it to the Variables field.
+
 ### GetLoyaltyPrograms
 
 `func (o *Environment) GetLoyaltyPrograms() []LoyaltyProgram`
@@ -293,31 +318,6 @@ HasAudiences returns a boolean if a field has been set.
 `func (o *Environment) SetAudiences(v []Audience)`
 
 SetAudiences gets a reference to the given []Audience and assigns it to the Audiences field.
-
-### GetVariables
-
-`func (o *Environment) GetVariables() string`
-
-GetVariables returns the Variables field if non-nil, zero value otherwise.
-
-### GetVariablesOk
-
-`func (o *Environment) GetVariablesOk() (string, bool)`
-
-GetVariablesOk returns a tuple with the Variables field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasVariables
-
-`func (o *Environment) HasVariables() bool`
-
-HasVariables returns a boolean if a field has been set.
-
-### SetVariables
-
-`func (o *Environment) SetVariables(v string)`
-
-SetVariables gets a reference to the given string and assigns it to the Variables field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

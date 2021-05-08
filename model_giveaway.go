@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Giveaway
+// Giveaway struct for Giveaway
 type Giveaway struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

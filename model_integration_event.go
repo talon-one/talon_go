@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// IntegrationEvent
+// IntegrationEvent struct for IntegrationEvent
 type IntegrationEvent struct {
 	// ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID.
 	ProfileId *string `json:"profileId,omitempty"`

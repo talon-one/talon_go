@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CampaignAnalytics
+// CampaignAnalytics struct for CampaignAnalytics
 type CampaignAnalytics struct {
 	Date time.Time `json:"date"`
 	// Amount of revenue in this campaign (for coupon or discount sessions).

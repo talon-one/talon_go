@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **ReferralId** | Pointer to **int32** | The integration ID of the referring customer (if any) for whom this coupon was created as an effect. | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The Integration ID of the customer that is allowed to redeem this coupon. | [optional] 
 **ImportId** | Pointer to **int32** | The ID of the Import which created this coupon. | [optional] 
-**Reservation** | Pointer to **bool** | This value controls what reservations mean to a coupon. If set to true the coupon reservation is used to mark it as a favorite, if set to false the coupon reservation is used as a requirement of usage. This value defaults to true if not specified. | [optional] 
+**Reservation** | Pointer to **bool** | This value controls what reservations mean to a coupon. If set to true the coupon reservation is used to mark it as a favourite, if set to false the coupon reservation is used as a requirement of usage. This value defaults to true if not specified. | [optional] 
 **BatchId** | Pointer to **string** | The id of the batch the coupon belongs to. | [optional] 
 
 ## Methods

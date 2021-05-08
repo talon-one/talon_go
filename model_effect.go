@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// Effect
+// Effect struct for Effect
 type Effect struct {
 	// The ID of the campaign that triggered this effect
 	CampaignId int32 `json:"campaignId"`

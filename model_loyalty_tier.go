@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// LoyaltyTier
+// LoyaltyTier struct for LoyaltyTier
 type LoyaltyTier struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

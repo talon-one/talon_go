@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CampaignSet
+// CampaignSet struct for CampaignSet
 type CampaignSet struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

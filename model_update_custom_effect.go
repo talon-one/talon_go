@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// UpdateCustomEffect
+// UpdateCustomEffect struct for UpdateCustomEffect
 type UpdateCustomEffect struct {
 	// The name of this effect.
 	Name string `json:"name"`

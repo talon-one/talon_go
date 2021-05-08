@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// FeaturesFeed
+// FeaturesFeed struct for FeaturesFeed
 type FeaturesFeed struct {
 	Title   *string `json:"title,omitempty"`
 	PubDate *string `json:"pubDate,omitempty"`

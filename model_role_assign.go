@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// RoleAssign
+// RoleAssign struct for RoleAssign
 type RoleAssign struct {
 	// An array of userIDs
 	Users []int32 `json:"users"`

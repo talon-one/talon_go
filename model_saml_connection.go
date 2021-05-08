@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// SamlConnection
+// SamlConnection struct for SamlConnection
 type SamlConnection struct {
 	// The location where the SAML assertion is sent with a HTTP POST.
 	AssertionConsumerServiceURL string `json:"assertionConsumerServiceURL"`

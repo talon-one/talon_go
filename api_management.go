@@ -29,24 +29,24 @@ type ManagementApiService service
 type apiAddLoyaltyPointsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	programID     string
+	programID     int32
 	integrationID string
-	body          *LoyaltyPoints
+	loyaltyPoints *LoyaltyPoints
 }
 
-func (r apiAddLoyaltyPointsRequest) Body(body LoyaltyPoints) apiAddLoyaltyPointsRequest {
-	r.body = &body
+func (r apiAddLoyaltyPointsRequest) LoyaltyPoints(loyaltyPoints LoyaltyPoints) apiAddLoyaltyPointsRequest {
+	r.loyaltyPoints = &loyaltyPoints
 	return r
 }
 
 /*
-AddLoyaltyPoints Add points in a certain loyalty program for the specified customer
+AddLoyaltyPoints Add points in a loyalty program for the specified customer
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
  * @param integrationID
 @return apiAddLoyaltyPointsRequest
 */
-func (a *ManagementApiService) AddLoyaltyPoints(ctx _context.Context, programID string, integrationID string) apiAddLoyaltyPointsRequest {
+func (a *ManagementApiService) AddLoyaltyPoints(ctx _context.Context, programID int32, integrationID string) apiAddLoyaltyPointsRequest {
 	return apiAddLoyaltyPointsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -81,8 +81,8 @@ func (r apiAddLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.loyaltyPoints == nil {
+		return nil, reportError("loyaltyPoints is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -103,21 +103,7 @@ func (r apiAddLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.loyaltyPoints
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -150,11 +136,11 @@ type apiCopyCampaignToApplicationsRequest struct {
 	apiService    *ManagementApiService
 	applicationId int32
 	campaignId    int32
-	body          *CampaignCopy
+	campaignCopy  *CampaignCopy
 }
 
-func (r apiCopyCampaignToApplicationsRequest) Body(body CampaignCopy) apiCopyCampaignToApplicationsRequest {
-	r.body = &body
+func (r apiCopyCampaignToApplicationsRequest) CampaignCopy(campaignCopy CampaignCopy) apiCopyCampaignToApplicationsRequest {
+	r.campaignCopy = &campaignCopy
 	return r
 }
 
@@ -202,8 +188,8 @@ func (r apiCopyCampaignToApplicationsRequest) Execute() (InlineResponse2002, *_n
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.campaignCopy == nil {
+		return localVarReturnValue, nil, reportError("campaignCopy is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -224,21 +210,7 @@ func (r apiCopyCampaignToApplicationsRequest) Execute() (InlineResponse2002, *_n
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.campaignCopy
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -285,13 +257,13 @@ func (r apiCopyCampaignToApplicationsRequest) Execute() (InlineResponse2002, *_n
 }
 
 type apiCreateAdditionalCostRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *NewAdditionalCost
+	ctx               _context.Context
+	apiService        *ManagementApiService
+	newAdditionalCost *NewAdditionalCost
 }
 
-func (r apiCreateAdditionalCostRequest) Body(body NewAdditionalCost) apiCreateAdditionalCostRequest {
-	r.body = &body
+func (r apiCreateAdditionalCostRequest) NewAdditionalCost(newAdditionalCost NewAdditionalCost) apiCreateAdditionalCostRequest {
+	r.newAdditionalCost = &newAdditionalCost
 	return r
 }
 
@@ -336,8 +308,8 @@ func (r apiCreateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newAdditionalCost == nil {
+		return localVarReturnValue, nil, reportError("newAdditionalCost is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -358,21 +330,7 @@ func (r apiCreateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newAdditionalCost
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -419,13 +377,13 @@ func (r apiCreateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 }
 
 type apiCreateAttributeRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *NewAttribute
+	ctx          _context.Context
+	apiService   *ManagementApiService
+	newAttribute *NewAttribute
 }
 
-func (r apiCreateAttributeRequest) Body(body NewAttribute) apiCreateAttributeRequest {
-	r.body = &body
+func (r apiCreateAttributeRequest) NewAttribute(newAttribute NewAttribute) apiCreateAttributeRequest {
+	r.newAttribute = &newAttribute
 	return r
 }
 
@@ -470,8 +428,8 @@ func (r apiCreateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newAttribute == nil {
+		return localVarReturnValue, nil, reportError("newAttribute is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -492,21 +450,7 @@ func (r apiCreateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newAttribute
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -556,16 +500,16 @@ type apiCreateCampaignRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
 	applicationId int32
-	body          *NewCampaign
+	newCampaign   *NewCampaign
 }
 
-func (r apiCreateCampaignRequest) Body(body NewCampaign) apiCreateCampaignRequest {
-	r.body = &body
+func (r apiCreateCampaignRequest) NewCampaign(newCampaign NewCampaign) apiCreateCampaignRequest {
+	r.newCampaign = &newCampaign
 	return r
 }
 
 /*
-CreateCampaign Create a Campaign
+CreateCampaign Create campaign
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
 @return apiCreateCampaignRequest
@@ -604,8 +548,8 @@ func (r apiCreateCampaignRequest) Execute() (Campaign, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newCampaign == nil {
+		return localVarReturnValue, nil, reportError("newCampaign is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -626,21 +570,7 @@ func (r apiCreateCampaignRequest) Execute() (Campaign, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newCampaign
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -691,12 +621,12 @@ type apiCreateCouponsRequest struct {
 	apiService    *ManagementApiService
 	applicationId int32
 	campaignId    int32
-	body          *NewCoupons
+	newCoupons    *NewCoupons
 	silent        *string
 }
 
-func (r apiCreateCouponsRequest) Body(body NewCoupons) apiCreateCouponsRequest {
-	r.body = &body
+func (r apiCreateCouponsRequest) NewCoupons(newCoupons NewCoupons) apiCreateCouponsRequest {
+	r.newCoupons = &newCoupons
 	return r
 }
 
@@ -706,7 +636,7 @@ func (r apiCreateCouponsRequest) Silent(silent string) apiCreateCouponsRequest {
 }
 
 /*
-CreateCoupons Create Coupons
+CreateCoupons Create coupons
 Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -749,8 +679,8 @@ func (r apiCreateCouponsRequest) Execute() (InlineResponse2004, *_nethttp.Respon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newCoupons == nil {
+		return localVarReturnValue, nil, reportError("newCoupons is required and must be specified")
 	}
 
 	if r.silent != nil {
@@ -774,21 +704,7 @@ func (r apiCreateCouponsRequest) Execute() (InlineResponse2004, *_nethttp.Respon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newCoupons
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -836,16 +752,16 @@ func (r apiCreateCouponsRequest) Execute() (InlineResponse2004, *_nethttp.Respon
 }
 
 type apiCreateCouponsForMultipleRecipientsRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	body          *NewCouponsForMultipleRecipients
-	silent        *string
+	ctx                             _context.Context
+	apiService                      *ManagementApiService
+	applicationId                   int32
+	campaignId                      int32
+	newCouponsForMultipleRecipients *NewCouponsForMultipleRecipients
+	silent                          *string
 }
 
-func (r apiCreateCouponsForMultipleRecipientsRequest) Body(body NewCouponsForMultipleRecipients) apiCreateCouponsForMultipleRecipientsRequest {
-	r.body = &body
+func (r apiCreateCouponsForMultipleRecipientsRequest) NewCouponsForMultipleRecipients(newCouponsForMultipleRecipients NewCouponsForMultipleRecipients) apiCreateCouponsForMultipleRecipientsRequest {
+	r.newCouponsForMultipleRecipients = &newCouponsForMultipleRecipients
 	return r
 }
 
@@ -855,8 +771,8 @@ func (r apiCreateCouponsForMultipleRecipientsRequest) Silent(silent string) apiC
 }
 
 /*
-CreateCouponsForMultipleRecipients Create Coupons for Multiple Recipients
-Create coupons according to some pattern for up to 1000 recipients.
+CreateCouponsForMultipleRecipients Create coupons for multiple recipients
+Create coupons according to the specified pattern for up to 1000 recipients.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -898,8 +814,8 @@ func (r apiCreateCouponsForMultipleRecipientsRequest) Execute() (InlineResponse2
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newCouponsForMultipleRecipients == nil {
+		return localVarReturnValue, nil, reportError("newCouponsForMultipleRecipients is required and must be specified")
 	}
 
 	if r.silent != nil {
@@ -923,21 +839,7 @@ func (r apiCreateCouponsForMultipleRecipientsRequest) Execute() (InlineResponse2
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newCouponsForMultipleRecipients
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -985,13 +887,13 @@ func (r apiCreateCouponsForMultipleRecipientsRequest) Execute() (InlineResponse2
 }
 
 type apiCreatePasswordRecoveryEmailRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *NewPasswordEmail
+	ctx              _context.Context
+	apiService       *ManagementApiService
+	newPasswordEmail *NewPasswordEmail
 }
 
-func (r apiCreatePasswordRecoveryEmailRequest) Body(body NewPasswordEmail) apiCreatePasswordRecoveryEmailRequest {
-	r.body = &body
+func (r apiCreatePasswordRecoveryEmailRequest) NewPasswordEmail(newPasswordEmail NewPasswordEmail) apiCreatePasswordRecoveryEmailRequest {
+	r.newPasswordEmail = &newPasswordEmail
 	return r
 }
 
@@ -1034,8 +936,8 @@ func (r apiCreatePasswordRecoveryEmailRequest) Execute() (NewPasswordEmail, *_ne
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newPasswordEmail == nil {
+		return localVarReturnValue, nil, reportError("newPasswordEmail is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1056,21 +958,7 @@ func (r apiCreatePasswordRecoveryEmailRequest) Execute() (NewPasswordEmail, *_ne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newPasswordEmail
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1121,16 +1009,16 @@ type apiCreateRulesetRequest struct {
 	apiService    *ManagementApiService
 	applicationId int32
 	campaignId    int32
-	body          *NewRuleset
+	newRuleset    *NewRuleset
 }
 
-func (r apiCreateRulesetRequest) Body(body NewRuleset) apiCreateRulesetRequest {
-	r.body = &body
+func (r apiCreateRulesetRequest) NewRuleset(newRuleset NewRuleset) apiCreateRulesetRequest {
+	r.newRuleset = &newRuleset
 	return r
 }
 
 /*
-CreateRuleset Create a Ruleset
+CreateRuleset Create ruleset
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -1172,8 +1060,8 @@ func (r apiCreateRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newRuleset == nil {
+		return localVarReturnValue, nil, reportError("newRuleset is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1194,21 +1082,7 @@ func (r apiCreateRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newRuleset
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1255,18 +1129,19 @@ func (r apiCreateRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) 
 }
 
 type apiCreateSessionRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *LoginParams
+	ctx         _context.Context
+	apiService  *ManagementApiService
+	loginParams *LoginParams
 }
 
-func (r apiCreateSessionRequest) Body(body LoginParams) apiCreateSessionRequest {
-	r.body = &body
+func (r apiCreateSessionRequest) LoginParams(loginParams LoginParams) apiCreateSessionRequest {
+	r.loginParams = &loginParams
 	return r
 }
 
 /*
-CreateSession Create a Session
+CreateSession Create session
+Create a session to use the other Management API endpoints. Use the `token` property of the response as bearer token.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiCreateSessionRequest
 */
@@ -1302,8 +1177,8 @@ func (r apiCreateSessionRequest) Execute() (Session, *_nethttp.Response, error) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.loginParams == nil {
+		return localVarReturnValue, nil, reportError("loginParams is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1324,21 +1199,7 @@ func (r apiCreateSessionRequest) Execute() (Session, *_nethttp.Response, error) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.loginParams
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1392,7 +1253,7 @@ type apiDeleteCampaignRequest struct {
 }
 
 /*
-DeleteCampaign Delete a Campaign
+DeleteCampaign Delete campaign
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -1450,20 +1311,6 @@ func (r apiDeleteCampaignRequest) Execute() (*_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -1500,7 +1347,7 @@ type apiDeleteCouponRequest struct {
 }
 
 /*
-DeleteCoupon Delete one Coupon
+DeleteCoupon Delete coupon
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -1560,20 +1407,6 @@ func (r apiDeleteCouponRequest) Execute() (*_nethttp.Response, error) {
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -1688,7 +1521,7 @@ func (r apiDeleteCouponsRequest) ExactMatch(exactMatch bool) apiDeleteCouponsReq
 }
 
 /*
-DeleteCoupons Delete Coupons
+DeleteCoupons Delete coupons
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -1785,20 +1618,6 @@ func (r apiDeleteCouponsRequest) Execute() (*_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -1835,7 +1654,7 @@ type apiDeleteReferralRequest struct {
 }
 
 /*
-DeleteReferral Delete one Referral
+DeleteReferral Delete referral
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -1896,20 +1715,6 @@ func (r apiDeleteReferralRequest) Execute() (*_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -1946,7 +1751,7 @@ type apiDeleteRulesetRequest struct {
 }
 
 /*
-DeleteRuleset Delete a Ruleset
+DeleteRuleset Delete ruleset
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -2006,119 +1811,6 @@ func (r apiDeleteRulesetRequest) Execute() (*_nethttp.Response, error) {
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		return localVarHTTPResponse, newErr
-	}
-
-	return localVarHTTPResponse, nil
-}
-
-type apiDestroySessionRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-}
-
-/*
-DestroySession Destroy a Session
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return apiDestroySessionRequest
-*/
-func (a *ManagementApiService) DestroySession(ctx _context.Context) apiDestroySessionRequest {
-	return apiDestroySessionRequest{
-		apiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
-Execute executes the request
-
-*/
-func (r apiDestroySessionRequest) Execute() (*_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.DestroySession")
-	if err != nil {
-		return nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/sessions"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2232,7 +1924,7 @@ func (r apiExportCouponsRequest) CampaignState(campaignState string) apiExportCo
 }
 
 /*
-ExportCoupons Export Coupons to a CSV file
+ExportCoupons Export coupons to a CSV file
 Download a file with the coupons that match the given attributes.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -2321,26 +2013,12 @@ func (r apiExportCouponsRequest) Execute() (string, *_nethttp.Response, error) {
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/csv"}
+	localVarHTTPHeaderAccepts := []string{"text/csv"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2489,26 +2167,12 @@ func (r apiExportCustomerSessionsRequest) Execute() (string, *_nethttp.Response,
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/csv"}
+	localVarHTTPHeaderAccepts := []string{"text/csv"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2648,26 +2312,12 @@ func (r apiExportEffectsRequest) Execute() (string, *_nethttp.Response, error) {
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/csv"}
+	localVarHTTPHeaderAccepts := []string{"text/csv"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2717,17 +2367,17 @@ func (r apiExportEffectsRequest) Execute() (string, *_nethttp.Response, error) {
 type apiExportLoyaltyBalanceRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	programID  string
+	programID  int32
 }
 
 /*
 ExportLoyaltyBalance Export customer loyalty balance to a CSV file
 Download a file with the balance of each customer in the loyalty program
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
 @return apiExportLoyaltyBalanceRequest
 */
-func (a *ManagementApiService) ExportLoyaltyBalance(ctx _context.Context, programID string) apiExportLoyaltyBalanceRequest {
+func (a *ManagementApiService) ExportLoyaltyBalance(ctx _context.Context, programID int32) apiExportLoyaltyBalanceRequest {
 	return apiExportLoyaltyBalanceRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -2771,26 +2421,12 @@ func (r apiExportLoyaltyBalanceRequest) Execute() (string, *_nethttp.Response, e
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/csv"}
+	localVarHTTPHeaderAccepts := []string{"text/csv"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -2840,10 +2476,10 @@ func (r apiExportLoyaltyBalanceRequest) Execute() (string, *_nethttp.Response, e
 type apiExportLoyaltyLedgerRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
+	programID     int32
+	integrationID string
 	rangeStart    *time.Time
 	rangeEnd      *time.Time
-	programID     string
-	integrationID string
 	dateFormat    *string
 }
 
@@ -2866,11 +2502,11 @@ func (r apiExportLoyaltyLedgerRequest) DateFormat(dateFormat string) apiExportLo
 ExportLoyaltyLedger Export a customer's loyalty ledger log to a CSV file
 Download a file with a customer's ledger log in the loyalty program
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
  * @param integrationID
 @return apiExportLoyaltyLedgerRequest
 */
-func (a *ManagementApiService) ExportLoyaltyLedger(ctx _context.Context, programID string, integrationID string) apiExportLoyaltyLedgerRequest {
+func (a *ManagementApiService) ExportLoyaltyLedger(ctx _context.Context, programID int32, integrationID string) apiExportLoyaltyLedgerRequest {
 	return apiExportLoyaltyLedgerRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -2929,26 +2565,12 @@ func (r apiExportLoyaltyLedgerRequest) Execute() (string, *_nethttp.Response, er
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/csv"}
+	localVarHTTPHeaderAccepts := []string{"text/csv"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3134,20 +2756,6 @@ func (r apiGetAccessLogsRequest) Execute() (InlineResponse2008, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3332,20 +2940,6 @@ func (r apiGetAccessLogsWithoutTotalCountRequest) Execute() (InlineResponse2009,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3455,20 +3049,6 @@ func (r apiGetAccountRequest) Execute() (Account, *_nethttp.Response, error) {
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3580,20 +3160,6 @@ func (r apiGetAccountAnalyticsRequest) Execute() (AccountAnalytics, *_nethttp.Re
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3703,20 +3269,6 @@ func (r apiGetAdditionalCostRequest) Execute() (AccountAdditionalCost, *_nethttp
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -3851,20 +3403,6 @@ func (r apiGetAdditionalCostsRequest) Execute() (InlineResponse20021, *_nethttp.
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3964,7 +3502,7 @@ func (r apiGetAllAccessLogsRequest) Sort(sort string) apiGetAllAccessLogsRequest
 }
 
 /*
-GetAllAccessLogs Get all access logs
+GetAllAccessLogs List access logs
 Fetches the access logs for the entire account. Sensitive requests (logins) are _always_ filtered from the logs.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -4047,20 +3585,6 @@ func (r apiGetAllAccessLogsRequest) Execute() (InlineResponse2008, *_nethttp.Res
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4112,7 +3636,7 @@ type apiGetAllRolesRequest struct {
 }
 
 /*
-GetAllRoles Get all roles
+GetAllRoles List roles
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetAllRolesRequest
 */
@@ -4164,20 +3688,6 @@ func (r apiGetAllRolesRequest) Execute() (InlineResponse20029, *_nethttp.Respons
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4288,20 +3798,6 @@ func (r apiGetApplicationRequest) Execute() (Application, *_nethttp.Response, er
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4409,20 +3905,6 @@ func (r apiGetApplicationApiHealthRequest) Execute() (ApplicationApiHealth, *_ne
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4535,20 +4017,6 @@ func (r apiGetApplicationCustomerRequest) Execute() (ApplicationCustomer, *_neth
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -4694,20 +4162,6 @@ func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20011, *_net
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4754,13 +4208,13 @@ func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20011, *_net
 }
 
 type apiGetApplicationCustomersByAttributesRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *ApplicationCustomerSearch
+	ctx                       _context.Context
+	apiService                *ManagementApiService
+	applicationCustomerSearch *ApplicationCustomerSearch
 }
 
-func (r apiGetApplicationCustomersByAttributesRequest) Body(body ApplicationCustomerSearch) apiGetApplicationCustomersByAttributesRequest {
-	r.body = &body
+func (r apiGetApplicationCustomersByAttributesRequest) ApplicationCustomerSearch(applicationCustomerSearch ApplicationCustomerSearch) apiGetApplicationCustomersByAttributesRequest {
+	r.applicationCustomerSearch = &applicationCustomerSearch
 	return r
 }
 
@@ -4770,7 +4224,7 @@ Gets a list of all the customer profiles for the account that exactly match a se
 
 The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.
 
-[Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile
+[Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#/customerProfile
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetApplicationCustomersByAttributesRequest
@@ -4807,8 +4261,8 @@ func (r apiGetApplicationCustomersByAttributesRequest) Execute() (InlineResponse
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.applicationCustomerSearch == nil {
+		return localVarReturnValue, nil, reportError("applicationCustomerSearch is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -4829,21 +4283,7 @@ func (r apiGetApplicationCustomersByAttributesRequest) Execute() (InlineResponse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
+	localVarPostBody = r.applicationCustomerSearch
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4982,20 +4422,6 @@ func (r apiGetApplicationEventTypesRequest) Execute() (InlineResponse20018, *_ne
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5233,20 +4659,6 @@ func (r apiGetApplicationEventsRequest) Execute() (InlineResponse20016, *_nethtt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5483,20 +4895,6 @@ func (r apiGetApplicationEventsWithoutTotalCountRequest) Execute() (InlineRespon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5608,20 +5006,6 @@ func (r apiGetApplicationSessionRequest) Execute() (ApplicationSession, *_nethtt
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -5821,20 +5205,6 @@ func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20015, *_neth
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5967,20 +5337,6 @@ func (r apiGetApplicationsRequest) Execute() (InlineResponse2001, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6090,20 +5446,6 @@ func (r apiGetAttributeRequest) Execute() (Attribute, *_nethttp.Response, error)
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6247,20 +5589,6 @@ func (r apiGetAttributesRequest) Execute() (InlineResponse20020, *_nethttp.Respo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6336,7 +5664,7 @@ func (r apiGetAudiencesRequest) WithTotalResultSize(withTotalResultSize bool) ap
 }
 
 /*
-GetAudiences Get all audiences
+GetAudiences List audiences
 Get All audiences created in the account.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6403,20 +5731,6 @@ func (r apiGetAudiencesRequest) Execute() (InlineResponse20019, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6470,7 +5784,7 @@ type apiGetCampaignRequest struct {
 }
 
 /*
-GetCampaign Get a Campaign
+GetCampaign Get campaign
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -6528,20 +5842,6 @@ func (r apiGetCampaignRequest) Execute() (Campaign, *_nethttp.Response, error) {
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -6686,20 +5986,6 @@ func (r apiGetCampaignAnalyticsRequest) Execute() (InlineResponse20010, *_nethtt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6746,18 +6032,18 @@ func (r apiGetCampaignAnalyticsRequest) Execute() (InlineResponse20010, *_nethtt
 }
 
 type apiGetCampaignByAttributesRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	body          *CampaignSearch
-	pageSize      *int32
-	skip          *int32
-	sort          *string
-	campaignState *string
+	ctx            _context.Context
+	apiService     *ManagementApiService
+	applicationId  int32
+	campaignSearch *CampaignSearch
+	pageSize       *int32
+	skip           *int32
+	sort           *string
+	campaignState  *string
 }
 
-func (r apiGetCampaignByAttributesRequest) Body(body CampaignSearch) apiGetCampaignByAttributesRequest {
-	r.body = &body
+func (r apiGetCampaignByAttributesRequest) CampaignSearch(campaignSearch CampaignSearch) apiGetCampaignByAttributesRequest {
+	r.campaignSearch = &campaignSearch
 	return r
 }
 
@@ -6782,7 +6068,7 @@ func (r apiGetCampaignByAttributesRequest) CampaignState(campaignState string) a
 }
 
 /*
-GetCampaignByAttributes Get a list of all campaigns that match the given attributes
+GetCampaignByAttributes List campaigns that match the given attributes
 Gets a list of all the campaigns that exactly match a set of attributes.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6823,8 +6109,8 @@ func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2002, *_neth
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.campaignSearch == nil {
+		return localVarReturnValue, nil, reportError("campaignSearch is required and must be specified")
 	}
 
 	if r.pageSize != nil {
@@ -6857,21 +6143,7 @@ func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2002, *_neth
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.campaignSearch
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -6978,7 +6250,7 @@ func (r apiGetCampaignsRequest) CampaignGroupId(campaignGroupId int32) apiGetCam
 }
 
 /*
-GetCampaigns List your Campaigns
+GetCampaigns List campaigns
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
 @return apiGetCampaignsRequest
@@ -7060,20 +6332,6 @@ func (r apiGetCampaignsRequest) Execute() (InlineResponse2002, *_nethttp.Respons
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -7270,20 +6528,6 @@ func (r apiGetChangesRequest) Execute() (InlineResponse20027, *_nethttp.Response
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -7433,7 +6677,7 @@ func (r apiGetCouponsRequest) ExactMatch(exactMatch bool) apiGetCouponsRequest {
 }
 
 /*
-GetCoupons List Coupons (with total count)
+GetCoupons List coupons (with total count)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -7540,20 +6784,6 @@ func (r apiGetCouponsRequest) Execute() (InlineResponse2004, *_nethttp.Response,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -7604,7 +6834,7 @@ type apiGetCouponsByAttributesRequest struct {
 	apiService             *ManagementApiService
 	applicationId          int32
 	campaignId             int32
-	body                   *CouponSearch
+	couponSearch           *CouponSearch
 	pageSize               *int32
 	skip                   *int32
 	sort                   *string
@@ -7619,8 +6849,8 @@ type apiGetCouponsByAttributesRequest struct {
 	batchId                *string
 }
 
-func (r apiGetCouponsByAttributesRequest) Body(body CouponSearch) apiGetCouponsByAttributesRequest {
-	r.body = &body
+func (r apiGetCouponsByAttributesRequest) CouponSearch(couponSearch CouponSearch) apiGetCouponsByAttributesRequest {
+	r.couponSearch = &couponSearch
 	return r
 }
 
@@ -7685,7 +6915,7 @@ func (r apiGetCouponsByAttributesRequest) BatchId(batchId string) apiGetCouponsB
 }
 
 /*
-GetCouponsByAttributes Get a list of the coupons that match the given attributes
+GetCouponsByAttributes List coupons that match the given attributes
 Gets a list of all the coupons that exactly match a set of attributes.
 
 The match is successful if all the attributes of the request are found in a coupon, even if the coupon has more attributes that are not present on the request.
@@ -7731,8 +6961,8 @@ func (r apiGetCouponsByAttributesRequest) Execute() (InlineResponse2004, *_netht
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.couponSearch == nil {
+		return localVarReturnValue, nil, reportError("couponSearch is required and must be specified")
 	}
 
 	if r.pageSize != nil {
@@ -7789,21 +7019,7 @@ func (r apiGetCouponsByAttributesRequest) Execute() (InlineResponse2004, *_netht
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.couponSearch
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -7853,7 +7069,7 @@ type apiGetCouponsByAttributesApplicationWideRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
 	applicationId          int32
-	body                   *CouponSearch
+	couponSearch           *CouponSearch
 	pageSize               *int32
 	skip                   *int32
 	sort                   *string
@@ -7869,8 +7085,8 @@ type apiGetCouponsByAttributesApplicationWideRequest struct {
 	campaignState          *string
 }
 
-func (r apiGetCouponsByAttributesApplicationWideRequest) Body(body CouponSearch) apiGetCouponsByAttributesApplicationWideRequest {
-	r.body = &body
+func (r apiGetCouponsByAttributesApplicationWideRequest) CouponSearch(couponSearch CouponSearch) apiGetCouponsByAttributesApplicationWideRequest {
+	r.couponSearch = &couponSearch
 	return r
 }
 
@@ -7940,7 +7156,7 @@ func (r apiGetCouponsByAttributesApplicationWideRequest) CampaignState(campaignS
 }
 
 /*
-GetCouponsByAttributesApplicationWide Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
+GetCouponsByAttributesApplicationWide List coupons that match the given attributes in all active campaigns of an application (with total count)
 Gets a list of all the coupons with attributes matching the query criteria Application wide
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -7981,8 +7197,8 @@ func (r apiGetCouponsByAttributesApplicationWideRequest) Execute() (InlineRespon
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.couponSearch == nil {
+		return localVarReturnValue, nil, reportError("couponSearch is required and must be specified")
 	}
 
 	if r.pageSize != nil {
@@ -8042,21 +7258,7 @@ func (r apiGetCouponsByAttributesApplicationWideRequest) Execute() (InlineRespon
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.couponSearch
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -8182,7 +7384,7 @@ func (r apiGetCouponsWithoutTotalCountRequest) ExactMatch(exactMatch bool) apiGe
 }
 
 /*
-GetCouponsWithoutTotalCount List Coupons
+GetCouponsWithoutTotalCount List coupons
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -8276,20 +7478,6 @@ func (r apiGetCouponsWithoutTotalCountRequest) Execute() (InlineResponse2005, *_
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8443,20 +7631,6 @@ func (r apiGetCustomerActivityReportRequest) Execute() (CustomerActivityReport, 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -8652,20 +7826,6 @@ func (r apiGetCustomerActivityReportsRequest) Execute() (InlineResponse20013, *_
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -8860,20 +8020,6 @@ func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Execute() (Inline
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9014,20 +8160,6 @@ func (r apiGetCustomerAnalyticsRequest) Execute() (CustomerAnalytics, *_nethttp.
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9135,20 +8267,6 @@ func (r apiGetCustomerProfileRequest) Execute() (ApplicationCustomer, *_nethttp.
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -9272,20 +8390,6 @@ func (r apiGetCustomerProfilesRequest) Execute() (InlineResponse20012, *_nethttp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9332,15 +8436,15 @@ func (r apiGetCustomerProfilesRequest) Execute() (InlineResponse20012, *_nethttp
 }
 
 type apiGetCustomersByAttributesRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *ApplicationCustomerSearch
-	pageSize   *int32
-	skip       *int32
+	ctx                       _context.Context
+	apiService                *ManagementApiService
+	applicationCustomerSearch *ApplicationCustomerSearch
+	pageSize                  *int32
+	skip                      *int32
 }
 
-func (r apiGetCustomersByAttributesRequest) Body(body ApplicationCustomerSearch) apiGetCustomersByAttributesRequest {
-	r.body = &body
+func (r apiGetCustomersByAttributesRequest) ApplicationCustomerSearch(applicationCustomerSearch ApplicationCustomerSearch) apiGetCustomersByAttributesRequest {
+	r.applicationCustomerSearch = &applicationCustomerSearch
 	return r
 }
 
@@ -9355,12 +8459,12 @@ func (r apiGetCustomersByAttributesRequest) Skip(skip int32) apiGetCustomersByAt
 }
 
 /*
-GetCustomersByAttributes Get a list of the customer profiles that match the given attributes
-Gets a list of all the customer profiles for the account that exactly match a set of attributes.
+GetCustomersByAttributes List customer profiles that match the given attributes
+Get a list of all the customer profiles for the account that exactly match a set of attributes.
 
 The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.
 
-[Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#CustomerProfile
+[Customer Profile]: https://help.talon.one/hc/en-us/articles/360005130739-Data-Model#/customerProfile
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetCustomersByAttributesRequest
@@ -9397,8 +8501,8 @@ func (r apiGetCustomersByAttributesRequest) Execute() (InlineResponse20012, *_ne
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.applicationCustomerSearch == nil {
+		return localVarReturnValue, nil, reportError("applicationCustomerSearch is required and must be specified")
 	}
 
 	if r.pageSize != nil {
@@ -9425,21 +8529,7 @@ func (r apiGetCustomersByAttributesRequest) Execute() (InlineResponse20012, *_ne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.applicationCustomerSearch
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9527,8 +8617,8 @@ func (r apiGetEventTypesRequest) Sort(sort string) apiGetEventTypesRequest {
 }
 
 /*
-GetEventTypes List Event Types
-Fetch all event type definitions for your account. Each event type can be
+GetEventTypes List event types
+Fetch all event type definitions for your account.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetEventTypesRequest
@@ -9599,20 +8689,6 @@ func (r apiGetEventTypesRequest) Execute() (InlineResponse20025, *_nethttp.Respo
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -9695,7 +8771,7 @@ func (r apiGetExportsRequest) Entity(entity string) apiGetExportsRequest {
 }
 
 /*
-GetExports Get Exports
+GetExports Get exports
 Get a list of all past exports
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -9765,20 +8841,6 @@ func (r apiGetExportsRequest) Execute() (InlineResponse20028, *_nethttp.Response
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -9827,19 +8889,19 @@ func (r apiGetExportsRequest) Execute() (InlineResponse20028, *_nethttp.Response
 type apiGetLoyaltyPointsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	programID     string
+	programID     int32
 	integrationID string
 }
 
 /*
-GetLoyaltyPoints get the Loyalty Ledger for this integrationID
+GetLoyaltyPoints Get integration's Loyalty Ledger
 Get the Loyalty Ledger for this profile integration ID.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID The identifier for the application, must be unique within the account.
+ * @param programID The identifier for the loyalty program, must be unique within the account.
  * @param integrationID The identifier for the application, must be unique within the account.
 @return apiGetLoyaltyPointsRequest
 */
-func (a *ManagementApiService) GetLoyaltyPoints(ctx _context.Context, programID string, integrationID string) apiGetLoyaltyPointsRequest {
+func (a *ManagementApiService) GetLoyaltyPoints(ctx _context.Context, programID int32, integrationID string) apiGetLoyaltyPointsRequest {
 	return apiGetLoyaltyPointsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -9891,20 +8953,6 @@ func (r apiGetLoyaltyPointsRequest) Execute() (LoyaltyLedger, *_nethttp.Response
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -9959,8 +9007,9 @@ type apiGetLoyaltyProgramRequest struct {
 
 /*
 GetLoyaltyProgram Get a loyalty program
+Get a loyalty program.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
 @return apiGetLoyaltyProgramRequest
 */
 func (a *ManagementApiService) GetLoyaltyProgram(ctx _context.Context, programID int32) apiGetLoyaltyProgramRequest {
@@ -10014,20 +9063,6 @@ func (r apiGetLoyaltyProgramRequest) Execute() (LoyaltyProgram, *_nethttp.Respon
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -10079,7 +9114,8 @@ type apiGetLoyaltyProgramsRequest struct {
 }
 
 /*
-GetLoyaltyPrograms List all loyalty Programs
+GetLoyaltyPrograms List loyalty programs
+List all the loyalty programs.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiGetLoyaltyProgramsRequest
 */
@@ -10132,20 +9168,6 @@ func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse2007, *_nethttp.R
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -10194,16 +9216,16 @@ func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse2007, *_nethttp.R
 type apiGetLoyaltyStatisticsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	programID  string
+	programID  int32
 }
 
 /*
 GetLoyaltyStatistics Get loyalty program statistics by loyalty program ID
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
 @return apiGetLoyaltyStatisticsRequest
 */
-func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, programID string) apiGetLoyaltyStatisticsRequest {
+func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, programID int32) apiGetLoyaltyStatisticsRequest {
 	return apiGetLoyaltyStatisticsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -10253,20 +9275,6 @@ func (r apiGetLoyaltyStatisticsRequest) Execute() (LoyaltyStatistics, *_nethttp.
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10375,7 +9383,7 @@ func (r apiGetReferralsRequest) Advocate(advocate string) apiGetReferralsRequest
 }
 
 /*
-GetReferrals List Referrals (with total count)
+GetReferrals List referrals (with total count)
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -10460,20 +9468,6 @@ func (r apiGetReferralsRequest) Execute() (InlineResponse201, *_nethttp.Response
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10582,7 +9576,7 @@ func (r apiGetReferralsWithoutTotalCountRequest) Advocate(advocate string) apiGe
 }
 
 /*
-GetReferralsWithoutTotalCount List Referrals
+GetReferralsWithoutTotalCount List referrals
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -10667,20 +9661,6 @@ func (r apiGetReferralsWithoutTotalCountRequest) Execute() (InlineResponse2006, 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -10790,20 +9770,6 @@ func (r apiGetRoleRequest) Execute() (Role, *_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -10858,7 +9824,8 @@ type apiGetRulesetRequest struct {
 }
 
 /*
-GetRuleset Get a Ruleset
+GetRuleset Get ruleset
+Retrieve the details of a ruleset.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -10919,20 +9886,6 @@ func (r apiGetRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) {
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11005,7 +9958,8 @@ func (r apiGetRulesetsRequest) Sort(sort string) apiGetRulesetsRequest {
 }
 
 /*
-GetRulesets List Campaign Rulesets
+GetRulesets List rulesets
+List all rulesets in the given campaign.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -11072,20 +10026,6 @@ func (r apiGetRulesetsRequest) Execute() (InlineResponse2003, *_nethttp.Response
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11197,20 +10137,6 @@ func (r apiGetUserRequest) Execute() (User, *_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -11280,7 +10206,7 @@ func (r apiGetUsersRequest) Sort(sort string) apiGetUsersRequest {
 }
 
 /*
-GetUsers List Users in your account
+GetUsers List users
 Retrieve all users in your account.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -11343,20 +10269,6 @@ func (r apiGetUsersRequest) Execute() (InlineResponse20026, *_nethttp.Response, 
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11466,20 +10378,6 @@ func (r apiGetWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11666,20 +10564,6 @@ func (r apiGetWebhookActivationLogsRequest) Execute() (InlineResponse20023, *_ne
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -11875,20 +10759,6 @@ func (r apiGetWebhookLogsRequest) Execute() (InlineResponse20024, *_nethttp.Resp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12029,20 +10899,6 @@ func (r apiGetWebhooksRequest) Execute() (InlineResponse20022, *_nethttp.Respons
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12093,11 +10949,11 @@ type apiImportCouponsRequest struct {
 	apiService    *ManagementApiService
 	applicationId int32
 	campaignId    int32
-	upFile        *string
+	upfile        *string
 }
 
-func (r apiImportCouponsRequest) UpFile(upFile string) apiImportCouponsRequest {
-	r.upFile = &upFile
+func (r apiImportCouponsRequest) Upfile(upfile string) apiImportCouponsRequest {
+	r.upfile = &upfile
 	return r
 }
 
@@ -12162,22 +11018,8 @@ func (r apiImportCouponsRequest) Execute() (Import, *_nethttp.Response, error) {
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.upFile != nil {
-		localVarFormParams.Add("upFile", parameterToString(*r.upFile, ""))
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
+	if r.upfile != nil {
+		localVarFormParams.Add("upfile", parameterToString(*r.upfile, ""))
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12240,7 +11082,7 @@ func (r apiImportLoyaltyPointsRequest) UpFile(upFile string) apiImportLoyaltyPoi
 ImportLoyaltyPoints Import loyalty points via CSV file
 Upload a CSV file containing the loyalty points that should be created. The file should be sent as multipart data.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
 @return apiImportLoyaltyPointsRequest
 */
 func (a *ManagementApiService) ImportLoyaltyPoints(ctx _context.Context, programID int32) apiImportLoyaltyPointsRequest {
@@ -12297,20 +11139,6 @@ func (r apiImportLoyaltyPointsRequest) Execute() (Import, *_nethttp.Response, er
 	if r.upFile != nil {
 		localVarFormParams.Add("upFile", parameterToString(*r.upFile, ""))
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12360,11 +11188,11 @@ type apiImportPoolGiveawaysRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
 	poolId     int32
-	upFile     *string
+	upfile     *string
 }
 
-func (r apiImportPoolGiveawaysRequest) UpFile(upFile string) apiImportPoolGiveawaysRequest {
-	r.upFile = &upFile
+func (r apiImportPoolGiveawaysRequest) Upfile(upfile string) apiImportPoolGiveawaysRequest {
+	r.upfile = &upfile
 	return r
 }
 
@@ -12437,22 +11265,8 @@ func (r apiImportPoolGiveawaysRequest) Execute() (Import, *_nethttp.Response, er
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.upFile != nil {
-		localVarFormParams.Add("upFile", parameterToString(*r.upFile, ""))
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
+	if r.upfile != nil {
+		localVarFormParams.Add("upfile", parameterToString(*r.upfile, ""))
 	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -12590,20 +11404,6 @@ func (r apiImportReferralsRequest) Execute() (Import, *_nethttp.Response, error)
 	if r.upFile != nil {
 		localVarFormParams.Add("upFile", parameterToString(*r.upFile, ""))
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12652,24 +11452,24 @@ func (r apiImportReferralsRequest) Execute() (Import, *_nethttp.Response, error)
 type apiRemoveLoyaltyPointsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	programID     string
+	programID     int32
 	integrationID string
-	body          *LoyaltyPoints
+	loyaltyPoints *LoyaltyPoints
 }
 
-func (r apiRemoveLoyaltyPointsRequest) Body(body LoyaltyPoints) apiRemoveLoyaltyPointsRequest {
-	r.body = &body
+func (r apiRemoveLoyaltyPointsRequest) LoyaltyPoints(loyaltyPoints LoyaltyPoints) apiRemoveLoyaltyPointsRequest {
+	r.loyaltyPoints = &loyaltyPoints
 	return r
 }
 
 /*
-RemoveLoyaltyPoints Deduct points in a certain loyalty program for the specified customer
+RemoveLoyaltyPoints Deduct points in a loyalty program for the specified customer
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param programID
+ * @param programID The identifier for the loyalty program, must be unique within the account.
  * @param integrationID
 @return apiRemoveLoyaltyPointsRequest
 */
-func (a *ManagementApiService) RemoveLoyaltyPoints(ctx _context.Context, programID string, integrationID string) apiRemoveLoyaltyPointsRequest {
+func (a *ManagementApiService) RemoveLoyaltyPoints(ctx _context.Context, programID int32, integrationID string) apiRemoveLoyaltyPointsRequest {
 	return apiRemoveLoyaltyPointsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -12704,8 +11504,8 @@ func (r apiRemoveLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.loyaltyPoints == nil {
+		return nil, reportError("loyaltyPoints is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -12726,21 +11526,7 @@ func (r apiRemoveLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.loyaltyPoints
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -12769,13 +11555,13 @@ func (r apiRemoveLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 }
 
 type apiResetPasswordRequest struct {
-	ctx        _context.Context
-	apiService *ManagementApiService
-	body       *NewPassword
+	ctx         _context.Context
+	apiService  *ManagementApiService
+	newPassword *NewPassword
 }
 
-func (r apiResetPasswordRequest) Body(body NewPassword) apiResetPasswordRequest {
-	r.body = &body
+func (r apiResetPasswordRequest) NewPassword(newPassword NewPassword) apiResetPasswordRequest {
+	r.newPassword = &newPassword
 	return r
 }
 
@@ -12819,8 +11605,8 @@ func (r apiResetPasswordRequest) Execute() (NewPassword, *_nethttp.Response, err
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newPassword == nil {
+		return localVarReturnValue, nil, reportError("newPassword is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -12841,21 +11627,7 @@ func (r apiResetPasswordRequest) Execute() (NewPassword, *_nethttp.Response, err
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newPassword
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -12987,7 +11759,7 @@ func (r apiSearchCouponsAdvancedRequest) BatchId(batchId string) apiSearchCoupon
 }
 
 /*
-SearchCouponsAdvanced Get a list of the coupons that match the given attributes (with total count)
+SearchCouponsAdvanced List coupons that match the given attributes (with total count)
 Gets a list of all the coupons with attributes matching the query criteria
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -13090,20 +11862,6 @@ func (r apiSearchCouponsAdvancedRequest) Execute() (InlineResponse2004, *_nethtt
 	}
 	// body params
 	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13240,8 +11998,8 @@ func (r apiSearchCouponsAdvancedApplicationWideRequest) CampaignState(campaignSt
 }
 
 /*
-SearchCouponsAdvancedApplicationWide Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
-Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application
+SearchCouponsAdvancedApplicationWide List coupons that match the given attributes in all active campaigns of an application (with total count)
+Get a list of all the coupons with attributes matching the query criteria in all active campaigns of an application
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -13343,20 +12101,6 @@ func (r apiSearchCouponsAdvancedApplicationWideRequest) Execute() (InlineRespons
 	}
 	// body params
 	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13493,8 +12237,8 @@ func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Campaig
 }
 
 /*
-SearchCouponsAdvancedApplicationWideWithoutTotalCount Get a list of the coupons that match the given attributes in all active campaigns of an application
-Gets a list of all the coupons with attributes matching the query criteria in all active campaigns of an application
+SearchCouponsAdvancedApplicationWideWithoutTotalCount List coupons that match the given attributes in all active campaigns of an application
+List of all the coupons with attributes matching the query criteria in all active campaigns of an application.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -13596,20 +12340,6 @@ func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Execute
 	}
 	// body params
 	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13741,8 +12471,8 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) BatchId(batchId string
 }
 
 /*
-SearchCouponsAdvancedWithoutTotalCount Get a list of the coupons that match the given attributes
-Gets a list of all the coupons with attributes matching the query criteria
+SearchCouponsAdvancedWithoutTotalCount List coupons that match the given attributes
+List of all the coupons with attributes matching the query criteria.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
@@ -13844,20 +12574,6 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Execute() (InlineRespo
 	}
 	// body params
 	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -13904,14 +12620,14 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Execute() (InlineRespo
 }
 
 type apiUpdateAdditionalCostRequest struct {
-	ctx              _context.Context
-	apiService       *ManagementApiService
-	additionalCostId int32
-	body             *NewAdditionalCost
+	ctx               _context.Context
+	apiService        *ManagementApiService
+	additionalCostId  int32
+	newAdditionalCost *NewAdditionalCost
 }
 
-func (r apiUpdateAdditionalCostRequest) Body(body NewAdditionalCost) apiUpdateAdditionalCostRequest {
-	r.body = &body
+func (r apiUpdateAdditionalCostRequest) NewAdditionalCost(newAdditionalCost NewAdditionalCost) apiUpdateAdditionalCostRequest {
+	r.newAdditionalCost = &newAdditionalCost
 	return r
 }
 
@@ -13957,8 +12673,8 @@ func (r apiUpdateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newAdditionalCost == nil {
+		return localVarReturnValue, nil, reportError("newAdditionalCost is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -13979,21 +12695,7 @@ func (r apiUpdateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newAdditionalCost
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14040,14 +12742,14 @@ func (r apiUpdateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 }
 
 type apiUpdateAttributeRequest struct {
-	ctx         _context.Context
-	apiService  *ManagementApiService
-	attributeId int32
-	body        *NewAttribute
+	ctx          _context.Context
+	apiService   *ManagementApiService
+	attributeId  int32
+	newAttribute *NewAttribute
 }
 
-func (r apiUpdateAttributeRequest) Body(body NewAttribute) apiUpdateAttributeRequest {
-	r.body = &body
+func (r apiUpdateAttributeRequest) NewAttribute(newAttribute NewAttribute) apiUpdateAttributeRequest {
+	r.newAttribute = &newAttribute
 	return r
 }
 
@@ -14095,8 +12797,8 @@ func (r apiUpdateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newAttribute == nil {
+		return localVarReturnValue, nil, reportError("newAttribute is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14117,21 +12819,7 @@ func (r apiUpdateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newAttribute
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14178,20 +12866,20 @@ func (r apiUpdateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 }
 
 type apiUpdateCampaignRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	body          *UpdateCampaign
+	ctx            _context.Context
+	apiService     *ManagementApiService
+	applicationId  int32
+	campaignId     int32
+	updateCampaign *UpdateCampaign
 }
 
-func (r apiUpdateCampaignRequest) Body(body UpdateCampaign) apiUpdateCampaignRequest {
-	r.body = &body
+func (r apiUpdateCampaignRequest) UpdateCampaign(updateCampaign UpdateCampaign) apiUpdateCampaignRequest {
+	r.updateCampaign = &updateCampaign
 	return r
 }
 
 /*
-UpdateCampaign Update a Campaign
+UpdateCampaign Update campaign
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -14233,8 +12921,8 @@ func (r apiUpdateCampaignRequest) Execute() (Campaign, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.updateCampaign == nil {
+		return localVarReturnValue, nil, reportError("updateCampaign is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14255,21 +12943,7 @@ func (r apiUpdateCampaignRequest) Execute() (Campaign, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateCampaign
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14321,16 +12995,16 @@ type apiUpdateCouponRequest struct {
 	applicationId int32
 	campaignId    int32
 	couponId      string
-	body          *UpdateCoupon
+	updateCoupon  *UpdateCoupon
 }
 
-func (r apiUpdateCouponRequest) Body(body UpdateCoupon) apiUpdateCouponRequest {
-	r.body = &body
+func (r apiUpdateCouponRequest) UpdateCoupon(updateCoupon UpdateCoupon) apiUpdateCouponRequest {
+	r.updateCoupon = &updateCoupon
 	return r
 }
 
 /*
-UpdateCoupon Update a Coupon
+UpdateCoupon Update coupon
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -14375,8 +13049,8 @@ func (r apiUpdateCouponRequest) Execute() (Coupon, *_nethttp.Response, error) {
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.updateCoupon == nil {
+		return localVarReturnValue, nil, reportError("updateCoupon is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14397,21 +13071,7 @@ func (r apiUpdateCouponRequest) Execute() (Coupon, *_nethttp.Response, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateCoupon
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14458,20 +13118,20 @@ func (r apiUpdateCouponRequest) Execute() (Coupon, *_nethttp.Response, error) {
 }
 
 type apiUpdateCouponBatchRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	body          *UpdateCouponBatch
+	ctx               _context.Context
+	apiService        *ManagementApiService
+	applicationId     int32
+	campaignId        int32
+	updateCouponBatch *UpdateCouponBatch
 }
 
-func (r apiUpdateCouponBatchRequest) Body(body UpdateCouponBatch) apiUpdateCouponBatchRequest {
-	r.body = &body
+func (r apiUpdateCouponBatchRequest) UpdateCouponBatch(updateCouponBatch UpdateCouponBatch) apiUpdateCouponBatchRequest {
+	r.updateCouponBatch = &updateCouponBatch
 	return r
 }
 
 /*
-UpdateCouponBatch Update a Batch of Coupons
+UpdateCouponBatch Update a batch of coupons
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -14512,8 +13172,8 @@ func (r apiUpdateCouponBatchRequest) Execute() (*_nethttp.Response, error) {
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.updateCouponBatch == nil {
+		return nil, reportError("updateCouponBatch is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14534,21 +13194,7 @@ func (r apiUpdateCouponBatchRequest) Execute() (*_nethttp.Response, error) {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateCouponBatch
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -14577,21 +13223,21 @@ func (r apiUpdateCouponBatchRequest) Execute() (*_nethttp.Response, error) {
 }
 
 type apiUpdateReferralRequest struct {
-	ctx           _context.Context
-	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	referralId    string
-	body          *UpdateReferral
+	ctx            _context.Context
+	apiService     *ManagementApiService
+	applicationId  int32
+	campaignId     int32
+	referralId     string
+	updateReferral *UpdateReferral
 }
 
-func (r apiUpdateReferralRequest) Body(body UpdateReferral) apiUpdateReferralRequest {
-	r.body = &body
+func (r apiUpdateReferralRequest) UpdateReferral(updateReferral UpdateReferral) apiUpdateReferralRequest {
+	r.updateReferral = &updateReferral
 	return r
 }
 
 /*
-UpdateReferral Update one Referral
+UpdateReferral Update referral
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -14636,8 +13282,8 @@ func (r apiUpdateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.updateReferral == nil {
+		return localVarReturnValue, nil, reportError("updateReferral is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14658,21 +13304,7 @@ func (r apiUpdateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.updateReferral
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -14724,16 +13356,17 @@ type apiUpdateRulesetRequest struct {
 	applicationId int32
 	campaignId    int32
 	rulesetId     int32
-	body          *NewRuleset
+	newRuleset    *NewRuleset
 }
 
-func (r apiUpdateRulesetRequest) Body(body NewRuleset) apiUpdateRulesetRequest {
-	r.body = &body
+func (r apiUpdateRulesetRequest) NewRuleset(newRuleset NewRuleset) apiUpdateRulesetRequest {
+	r.newRuleset = &newRuleset
 	return r
 }
 
 /*
-UpdateRuleset Update a Ruleset
+UpdateRuleset Update ruleset
+Update the specified ruleset.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param applicationId
  * @param campaignId
@@ -14778,8 +13411,8 @@ func (r apiUpdateRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newRuleset == nil {
+		return localVarReturnValue, nil, reportError("newRuleset is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -14800,21 +13433,7 @@ func (r apiUpdateRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.newRuleset
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err

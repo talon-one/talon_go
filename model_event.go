@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Event
+// Event struct for Event
 type Event struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
@@ -32,7 +32,7 @@ type Event struct {
 	// The ID of the session that this event occurred in.
 	SessionId *string `json:"sessionId,omitempty"`
 	// An array of \"effects\" that must be applied in response to this event. Example effects include `addItemToCart` or `setDiscount`.
-	Effects [][]interface{} `json:"effects"`
+	Effects []map[string]interface{} `json:"effects"`
 	// Ledger entries for the event.
 	LedgerEntries []LedgerEntry `json:"ledgerEntries"`
 	Meta          *Meta         `json:"meta,omitempty"`
@@ -180,9 +180,9 @@ func (o *Event) SetSessionId(v string) {
 }
 
 // GetEffects returns the Effects field value
-func (o *Event) GetEffects() [][]interface{} {
+func (o *Event) GetEffects() []map[string]interface{} {
 	if o == nil {
-		var ret [][]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -190,7 +190,7 @@ func (o *Event) GetEffects() [][]interface{} {
 }
 
 // SetEffects sets field value
-func (o *Event) SetEffects(v [][]interface{}) {
+func (o *Event) SetEffects(v []map[string]interface{}) {
 	o.Effects = v
 }
 

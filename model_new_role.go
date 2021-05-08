@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewRole
+// NewRole struct for NewRole
 type NewRole struct {
 	// Name of the role
 	Name string `json:"name"`

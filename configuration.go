@@ -97,11 +97,11 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/2.4.0/go",
+		UserAgent:     "OpenAPI-Generator/10.0.0/go",
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{
-				URL:         "/",
+				URL:         "your_domain.your_region.talon.one",
 				Description: "No description provided",
 			},
 		},

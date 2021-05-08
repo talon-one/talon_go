@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewAccountSignUp
+// NewAccountSignUp struct for NewAccountSignUp
 type NewAccountSignUp struct {
 	// The email address associated with your account.
 	Email string `json:"email"`

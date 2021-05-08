@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewAdditionalCost
+// NewAdditionalCost struct for NewAdditionalCost
 type NewAdditionalCost struct {
 	// The additional cost name that will be used in API requests and Talang. E.g. if `name == \"shipping\"` then you would set the shipping additional cost by including an `additionalCosts.shipping` property in your request payload.
 	Name string `json:"name"`

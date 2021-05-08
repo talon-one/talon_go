@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// LoginParams
+// LoginParams struct for LoginParams
 type LoginParams struct {
 	// The email address associated with your account.
 	Email string `json:"email"`

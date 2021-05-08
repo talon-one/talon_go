@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Attribute
+// Attribute struct for Attribute
 type Attribute struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

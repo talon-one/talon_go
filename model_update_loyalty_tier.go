@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// UpdateLoyaltyTier
+// UpdateLoyaltyTier struct for UpdateLoyaltyTier
 type UpdateLoyaltyTier struct {
 	// The name of the tier
 	Name string `json:"name"`

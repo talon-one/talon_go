@@ -26,14 +26,14 @@ var (
 type IntegrationApiService service
 
 type apiCreateCouponReservationRequest struct {
-	ctx         _context.Context
-	apiService  *IntegrationApiService
-	couponValue string
-	body        *CouponReservations
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	couponValue        string
+	couponReservations *CouponReservations
 }
 
-func (r apiCreateCouponReservationRequest) Body(body CouponReservations) apiCreateCouponReservationRequest {
-	r.body = &body
+func (r apiCreateCouponReservationRequest) CouponReservations(couponReservations CouponReservations) apiCreateCouponReservationRequest {
+	r.couponReservations = &couponReservations
 	return r
 }
 
@@ -79,8 +79,8 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.couponReservations == nil {
+		return localVarReturnValue, nil, reportError("couponReservations is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -101,7 +101,7 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.couponReservations
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -113,20 +113,6 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -176,13 +162,13 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 }
 
 type apiCreateReferralRequest struct {
-	ctx        _context.Context
-	apiService *IntegrationApiService
-	body       *NewReferral
+	ctx         _context.Context
+	apiService  *IntegrationApiService
+	newReferral *NewReferral
 }
 
-func (r apiCreateReferralRequest) Body(body NewReferral) apiCreateReferralRequest {
-	r.body = &body
+func (r apiCreateReferralRequest) NewReferral(newReferral NewReferral) apiCreateReferralRequest {
+	r.newReferral = &newReferral
 	return r
 }
 
@@ -225,8 +211,8 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newReferral == nil {
+		return localVarReturnValue, nil, reportError("newReferral is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -247,7 +233,7 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.newReferral
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -259,20 +245,6 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -322,14 +294,14 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 }
 
 type apiCreateReferralsForMultipleAdvocatesRequest struct {
-	ctx        _context.Context
-	apiService *IntegrationApiService
-	body       *NewReferralsForMultipleAdvocates
-	silent     *string
+	ctx                              _context.Context
+	apiService                       *IntegrationApiService
+	newReferralsForMultipleAdvocates *NewReferralsForMultipleAdvocates
+	silent                           *string
 }
 
-func (r apiCreateReferralsForMultipleAdvocatesRequest) Body(body NewReferralsForMultipleAdvocates) apiCreateReferralsForMultipleAdvocatesRequest {
-	r.body = &body
+func (r apiCreateReferralsForMultipleAdvocatesRequest) NewReferralsForMultipleAdvocates(newReferralsForMultipleAdvocates NewReferralsForMultipleAdvocates) apiCreateReferralsForMultipleAdvocatesRequest {
+	r.newReferralsForMultipleAdvocates = &newReferralsForMultipleAdvocates
 	return r
 }
 
@@ -377,8 +349,8 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newReferralsForMultipleAdvocates == nil {
+		return localVarReturnValue, nil, reportError("newReferralsForMultipleAdvocates is required and must be specified")
 	}
 
 	if r.silent != nil {
@@ -402,7 +374,7 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.newReferralsForMultipleAdvocates
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -414,20 +386,6 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -478,14 +436,14 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 }
 
 type apiDeleteCouponReservationRequest struct {
-	ctx         _context.Context
-	apiService  *IntegrationApiService
-	couponValue string
-	body        *CouponReservations
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	couponValue        string
+	couponReservations *CouponReservations
 }
 
-func (r apiDeleteCouponReservationRequest) Body(body CouponReservations) apiDeleteCouponReservationRequest {
-	r.body = &body
+func (r apiDeleteCouponReservationRequest) CouponReservations(couponReservations CouponReservations) apiDeleteCouponReservationRequest {
+	r.couponReservations = &couponReservations
 	return r
 }
 
@@ -530,8 +488,8 @@ func (r apiDeleteCouponReservationRequest) Execute() (*_nethttp.Response, error)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.couponReservations == nil {
+		return nil, reportError("couponReservations is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -552,7 +510,7 @@ func (r apiDeleteCouponReservationRequest) Execute() (*_nethttp.Response, error)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.couponReservations
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -564,20 +522,6 @@ func (r apiDeleteCouponReservationRequest) Execute() (*_nethttp.Response, error)
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -683,20 +627,6 @@ func (r apiDeleteCustomerDataRequest) Execute() (*_nethttp.Response, error) {
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -850,20 +780,6 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -988,20 +904,6 @@ func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1050,12 +952,12 @@ func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.
 type apiTrackEventRequest struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
-	body       *NewEvent
+	newEvent   *NewEvent
 	dry        *bool
 }
 
-func (r apiTrackEventRequest) Body(body NewEvent) apiTrackEventRequest {
-	r.body = &body
+func (r apiTrackEventRequest) NewEvent(newEvent NewEvent) apiTrackEventRequest {
+	r.newEvent = &newEvent
 	return r
 }
 
@@ -1109,8 +1011,8 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newEvent == nil {
+		return localVarReturnValue, nil, reportError("newEvent is required and must be specified")
 	}
 
 	if r.dry != nil {
@@ -1134,7 +1036,7 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.newEvent
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1146,20 +1048,6 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -1209,15 +1097,15 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 }
 
 type apiUpdateCustomerProfileRequest struct {
-	ctx           _context.Context
-	apiService    *IntegrationApiService
-	integrationId string
-	body          *NewCustomerProfile
-	dry           *bool
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	integrationId      string
+	newCustomerProfile *NewCustomerProfile
+	dry                *bool
 }
 
-func (r apiUpdateCustomerProfileRequest) Body(body NewCustomerProfile) apiUpdateCustomerProfileRequest {
-	r.body = &body
+func (r apiUpdateCustomerProfileRequest) NewCustomerProfile(newCustomerProfile NewCustomerProfile) apiUpdateCustomerProfileRequest {
+	r.newCustomerProfile = &newCustomerProfile
 	return r
 }
 
@@ -1230,14 +1118,14 @@ func (r apiUpdateCustomerProfileRequest) Dry(dry bool) apiUpdateCustomerProfileR
 UpdateCustomerProfile Update a Customer Profile V1
 ⚠️ Deprecation Notice: Support for requests to this endpoint will end on 15.07.2021. We will not remove the endpoint, and it will still be accessible for you to use. For new features support, migrate to [API V2.0](/Getting-Started/APIV2).
 
-Update (or create) a [Customer Profile](https://developers.talon.one/Getting-Started/entities#customer-profile). This profile information can then be matched and/or updated by campaign [Rules][].
+Update (or create) a [Customer Profile](https://developers.talon.one/Getting-Started/entities#/customer-profile). This profile information can then be matched and/or updated by campaign [Rules][].
 
 The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.
 
 Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.
 
-[Customer Profile]: /Getting-Started/entities#customer-profile
-[Rules]: /Getting-Started/entities#campaigns-rulesets-and-coupons
+[Customer Profile]: /Getting-Started/entities#/customer-profile
+[Rules]: /Getting-Started/entities#/campaigns-rulesets-and-coupons
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param integrationId The custom identifier for this profile, must be unique within the account.
@@ -1277,8 +1165,8 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newCustomerProfile == nil {
+		return localVarReturnValue, nil, reportError("newCustomerProfile is required and must be specified")
 	}
 
 	if r.dry != nil {
@@ -1302,7 +1190,7 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.newCustomerProfile
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1314,20 +1202,6 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -1377,13 +1251,13 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 }
 
 type apiUpdateCustomerProfileAudiencesRequest struct {
-	ctx        _context.Context
-	apiService *IntegrationApiService
-	body       *CustomerProfileAudienceRequest
+	ctx                            _context.Context
+	apiService                     *IntegrationApiService
+	customerProfileAudienceRequest *CustomerProfileAudienceRequest
 }
 
-func (r apiUpdateCustomerProfileAudiencesRequest) Body(body CustomerProfileAudienceRequest) apiUpdateCustomerProfileAudiencesRequest {
-	r.body = &body
+func (r apiUpdateCustomerProfileAudiencesRequest) CustomerProfileAudienceRequest(customerProfileAudienceRequest CustomerProfileAudienceRequest) apiUpdateCustomerProfileAudiencesRequest {
+	r.customerProfileAudienceRequest = &customerProfileAudienceRequest
 	return r
 }
 
@@ -1425,8 +1299,8 @@ func (r apiUpdateCustomerProfileAudiencesRequest) Execute() (*_nethttp.Response,
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return nil, reportError("body is required and must be specified")
+	if r.customerProfileAudienceRequest == nil {
+		return nil, reportError("customerProfileAudienceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1447,21 +1321,7 @@ func (r apiUpdateCustomerProfileAudiencesRequest) Execute() (*_nethttp.Response,
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
+	localVarPostBody = r.customerProfileAudienceRequest
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -1490,16 +1350,16 @@ func (r apiUpdateCustomerProfileAudiencesRequest) Execute() (*_nethttp.Response,
 }
 
 type apiUpdateCustomerProfileV2Request struct {
-	ctx           _context.Context
-	apiService    *IntegrationApiService
-	integrationId string
-	body          *CustomerProfileIntegrationRequestV2
-	runRuleEngine *bool
-	dry           *bool
+	ctx                                 _context.Context
+	apiService                          *IntegrationApiService
+	integrationId                       string
+	customerProfileIntegrationRequestV2 *CustomerProfileIntegrationRequestV2
+	runRuleEngine                       *bool
+	dry                                 *bool
 }
 
-func (r apiUpdateCustomerProfileV2Request) Body(body CustomerProfileIntegrationRequestV2) apiUpdateCustomerProfileV2Request {
-	r.body = &body
+func (r apiUpdateCustomerProfileV2Request) CustomerProfileIntegrationRequestV2(customerProfileIntegrationRequestV2 CustomerProfileIntegrationRequestV2) apiUpdateCustomerProfileV2Request {
+	r.customerProfileIntegrationRequestV2 = &customerProfileIntegrationRequestV2
 	return r
 }
 
@@ -1515,7 +1375,7 @@ func (r apiUpdateCustomerProfileV2Request) Dry(dry bool) apiUpdateCustomerProfil
 
 /*
 UpdateCustomerProfileV2 Update a Customer Profile
-Update (or create) a [Customer Profile](https://developers.talon.one/Getting-Started/entities#customer-profile).
+Update (or create) a [Customer Profile](https://developers.talon.one/Getting-Started/entities#/customer-profile).
 
 The `integrationId` must be any identifier that remains stable for
 the customer. Do not use an ID that the customer can update
@@ -1565,8 +1425,8 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_neth
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.customerProfileIntegrationRequestV2 == nil {
+		return localVarReturnValue, nil, reportError("customerProfileIntegrationRequestV2 is required and must be specified")
 	}
 
 	if r.runRuleEngine != nil {
@@ -1593,7 +1453,7 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_neth
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.customerProfileIntegrationRequestV2
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1654,14 +1514,14 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_neth
 }
 
 type apiUpdateCustomerProfilesV2Request struct {
-	ctx        _context.Context
-	apiService *IntegrationApiService
-	body       *MultipleCustomerProfileIntegrationRequest
-	silent     *string
+	ctx                                       _context.Context
+	apiService                                *IntegrationApiService
+	multipleCustomerProfileIntegrationRequest *MultipleCustomerProfileIntegrationRequest
+	silent                                    *string
 }
 
-func (r apiUpdateCustomerProfilesV2Request) Body(body MultipleCustomerProfileIntegrationRequest) apiUpdateCustomerProfilesV2Request {
-	r.body = &body
+func (r apiUpdateCustomerProfilesV2Request) MultipleCustomerProfileIntegrationRequest(multipleCustomerProfileIntegrationRequest MultipleCustomerProfileIntegrationRequest) apiUpdateCustomerProfilesV2Request {
+	r.multipleCustomerProfileIntegrationRequest = &multipleCustomerProfileIntegrationRequest
 	return r
 }
 
@@ -1672,7 +1532,7 @@ func (r apiUpdateCustomerProfilesV2Request) Silent(silent string) apiUpdateCusto
 
 /*
 UpdateCustomerProfilesV2 Update multiple Customer Profiles
-Update (or create) up to 1000 [Customer Profiles](https://developers.talon.one/Getting-Started/entities#customer-profile) in 1 request.
+Update (or create) up to 1000 [Customer Profiles](https://developers.talon.one/Getting-Started/entities#/customer-profile) in 1 request.
 
 The `integrationId` must be any identifier that remains stable for
 the customer. Do not use an ID that the customer can update
@@ -1715,8 +1575,8 @@ func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIn
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.multipleCustomerProfileIntegrationRequest == nil {
+		return localVarReturnValue, nil, reportError("multipleCustomerProfileIntegrationRequest is required and must be specified")
 	}
 
 	if r.silent != nil {
@@ -1740,7 +1600,7 @@ func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIn
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.multipleCustomerProfileIntegrationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1801,15 +1661,15 @@ func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIn
 }
 
 type apiUpdateCustomerSessionRequest struct {
-	ctx               _context.Context
-	apiService        *IntegrationApiService
-	customerSessionId string
-	body              *NewCustomerSession
-	dry               *bool
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	customerSessionId  string
+	newCustomerSession *NewCustomerSession
+	dry                *bool
 }
 
-func (r apiUpdateCustomerSessionRequest) Body(body NewCustomerSession) apiUpdateCustomerSessionRequest {
-	r.body = &body
+func (r apiUpdateCustomerSessionRequest) NewCustomerSession(newCustomerSession NewCustomerSession) apiUpdateCustomerSessionRequest {
+	r.newCustomerSession = &newCustomerSession
 	return r
 }
 
@@ -1822,7 +1682,7 @@ func (r apiUpdateCustomerSessionRequest) Dry(dry bool) apiUpdateCustomerSessionR
 UpdateCustomerSession Update a Customer Session V1
 ⚠️ Deprecation Notice: Support for requests to this endpoint will end on 15.07.2021. We will not remove the endpoint, and it will still be accessible for you to use. For new features support, migrate to [API V2.0](https://developers.talon.one/Getting-Started/APIV2).
 
-Update (or create) a [Customer Session](https://developers.talon.one/Getting-Started/entities#customer-session).
+Update (or create) a [Customer Session](https://developers.talon.one/Getting-Started/entities#/customer-session).
 For example, use this endpoint to represent which items are in the customer's cart.
 
 The Talon.One platform supports multiple simultaneous sessions for the same profile. If you have multiple ways of accessing the same application you can either:
@@ -1880,8 +1740,8 @@ func (r apiUpdateCustomerSessionRequest) Execute() (IntegrationState, *_nethttp.
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.newCustomerSession == nil {
+		return localVarReturnValue, nil, reportError("newCustomerSession is required and must be specified")
 	}
 
 	if r.dry != nil {
@@ -1905,7 +1765,7 @@ func (r apiUpdateCustomerSessionRequest) Execute() (IntegrationState, *_nethttp.
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.newCustomerSession
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1917,20 +1777,6 @@ func (r apiUpdateCustomerSessionRequest) Execute() (IntegrationState, *_nethttp.
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -1980,15 +1826,15 @@ func (r apiUpdateCustomerSessionRequest) Execute() (IntegrationState, *_nethttp.
 }
 
 type apiUpdateCustomerSessionV2Request struct {
-	ctx               _context.Context
-	apiService        *IntegrationApiService
-	customerSessionId string
-	body              *IntegrationRequest
-	dry               *bool
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	customerSessionId  string
+	integrationRequest *IntegrationRequest
+	dry                *bool
 }
 
-func (r apiUpdateCustomerSessionV2Request) Body(body IntegrationRequest) apiUpdateCustomerSessionV2Request {
-	r.body = &body
+func (r apiUpdateCustomerSessionV2Request) IntegrationRequest(integrationRequest IntegrationRequest) apiUpdateCustomerSessionV2Request {
+	r.integrationRequest = &integrationRequest
 	return r
 }
 
@@ -1999,7 +1845,7 @@ func (r apiUpdateCustomerSessionV2Request) Dry(dry bool) apiUpdateCustomerSessio
 
 /*
 UpdateCustomerSessionV2 Update a Customer Session
-Update (or create) a [Customer Session](https://developers.talon.one/Getting-Started/entities#customer-session).
+Update (or create) a [Customer Session](https://developers.talon.one/Getting-Started/entities#/customer-session).
 For example, use this endpoint to represent which items are in the customer's cart.
 
 The Talon.One platform supports multiple simultaneous sessions for the same profile. If you have multiple ways of accessing the same application you can either:
@@ -2061,8 +1907,8 @@ func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_neth
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	if r.integrationRequest == nil {
+		return localVarReturnValue, nil, reportError("integrationRequest is required and must be specified")
 	}
 
 	if r.dry != nil {
@@ -2086,7 +1932,7 @@ func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_neth
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.body
+	localVarPostBody = r.integrationRequest
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

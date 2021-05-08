@@ -1,26 +1,25 @@
 # \ManagementApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://your_domain.your_region.talon.one*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/add_points | Add points in a certain loyalty program for the specified customer
+[**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/add_points | Add points in a loyalty program for the specified customer
 [**CopyCampaignToApplications**](ManagementApi.md#CopyCampaignToApplications) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into every specified application
 [**CreateAdditionalCost**](ManagementApi.md#CreateAdditionalCost) | **Post** /v1/additional_costs | Define a new additional cost
 [**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Define a new custom attribute
-[**CreateCampaign**](ManagementApi.md#CreateCampaign) | **Post** /v1/applications/{applicationId}/campaigns | Create a Campaign
-[**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create Coupons
-[**CreateCouponsForMultipleRecipients**](ManagementApi.md#CreateCouponsForMultipleRecipients) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create Coupons for Multiple Recipients
+[**CreateCampaign**](ManagementApi.md#CreateCampaign) | **Post** /v1/applications/{applicationId}/campaigns | Create campaign
+[**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons
+[**CreateCouponsForMultipleRecipients**](ManagementApi.md#CreateCouponsForMultipleRecipients) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create coupons for multiple recipients
 [**CreatePasswordRecoveryEmail**](ManagementApi.md#CreatePasswordRecoveryEmail) | **Post** /v1/password_recovery_emails | Request a password reset
-[**CreateRuleset**](ManagementApi.md#CreateRuleset) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | Create a Ruleset
-[**CreateSession**](ManagementApi.md#CreateSession) | **Post** /v1/sessions | Create a Session
-[**DeleteCampaign**](ManagementApi.md#DeleteCampaign) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete a Campaign
-[**DeleteCoupon**](ManagementApi.md#DeleteCoupon) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Delete one Coupon
-[**DeleteCoupons**](ManagementApi.md#DeleteCoupons) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Delete Coupons
-[**DeleteReferral**](ManagementApi.md#DeleteReferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete one Referral
-[**DeleteRuleset**](ManagementApi.md#DeleteRuleset) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Delete a Ruleset
-[**DestroySession**](ManagementApi.md#DestroySession) | **Delete** /v1/sessions | Destroy a Session
-[**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export Coupons to a CSV file
+[**CreateRuleset**](ManagementApi.md#CreateRuleset) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | Create ruleset
+[**CreateSession**](ManagementApi.md#CreateSession) | **Post** /v1/sessions | Create session
+[**DeleteCampaign**](ManagementApi.md#DeleteCampaign) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
+[**DeleteCoupon**](ManagementApi.md#DeleteCoupon) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Delete coupon
+[**DeleteCoupons**](ManagementApi.md#DeleteCoupons) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Delete coupons
+[**DeleteReferral**](ManagementApi.md#DeleteReferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete referral
+[**DeleteRuleset**](ManagementApi.md#DeleteRuleset) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Delete ruleset
+[**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export coupons to a CSV file
 [**ExportCustomerSessions**](ManagementApi.md#ExportCustomerSessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export Customer Sessions to a CSV file
 [**ExportEffects**](ManagementApi.md#ExportEffects) | **Get** /v1/applications/{applicationId}/export_effects | Export triggered Effects to a CSV file
 [**ExportLoyaltyBalance**](ManagementApi.md#ExportLoyaltyBalance) | **Get** /v1/loyalty_programs/{programID}/export_customer_balance | Export customer loyalty balance to a CSV file
@@ -31,8 +30,8 @@ Method | HTTP request | Description
 [**GetAccountAnalytics**](ManagementApi.md#GetAccountAnalytics) | **Get** /v1/accounts/{accountId}/analytics | Get Account Analytics
 [**GetAdditionalCost**](ManagementApi.md#GetAdditionalCost) | **Get** /v1/additional_costs/{additionalCostId} | Get an additional cost
 [**GetAdditionalCosts**](ManagementApi.md#GetAdditionalCosts) | **Get** /v1/additional_costs | List additional costs
-[**GetAllAccessLogs**](ManagementApi.md#GetAllAccessLogs) | **Get** /v1/access_logs | Get all access logs
-[**GetAllRoles**](ManagementApi.md#GetAllRoles) | **Get** /v1/roles | Get all roles
+[**GetAllAccessLogs**](ManagementApi.md#GetAllAccessLogs) | **Get** /v1/access_logs | List access logs
+[**GetAllRoles**](ManagementApi.md#GetAllRoles) | **Get** /v1/roles | List roles
 [**GetApplication**](ManagementApi.md#GetApplication) | **Get** /v1/applications/{applicationId} | Get Application
 [**GetApplicationApiHealth**](ManagementApi.md#GetApplicationApiHealth) | **Get** /v1/applications/{applicationId}/health_report | Get report of health of application API
 [**GetApplicationCustomer**](ManagementApi.md#GetApplicationCustomer) | **Get** /v1/applications/{applicationId}/customers/{customerId} | Get Application Customer
@@ -46,36 +45,36 @@ Method | HTTP request | Description
 [**GetApplications**](ManagementApi.md#GetApplications) | **Get** /v1/applications | List Applications
 [**GetAttribute**](ManagementApi.md#GetAttribute) | **Get** /v1/attributes/{attributeId} | Get a custom attribute
 [**GetAttributes**](ManagementApi.md#GetAttributes) | **Get** /v1/attributes | List custom attributes
-[**GetAudiences**](ManagementApi.md#GetAudiences) | **Get** /v1/audiences | Get all audiences
-[**GetCampaign**](ManagementApi.md#GetCampaign) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId} | Get a Campaign
+[**GetAudiences**](ManagementApi.md#GetAudiences) | **Get** /v1/audiences | List audiences
+[**GetCampaign**](ManagementApi.md#GetCampaign) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId} | Get campaign
 [**GetCampaignAnalytics**](ManagementApi.md#GetCampaignAnalytics) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/analytics | Get analytics of campaigns
-[**GetCampaignByAttributes**](ManagementApi.md#GetCampaignByAttributes) | **Post** /v1/applications/{applicationId}/campaigns_search | Get a list of all campaigns that match the given attributes
-[**GetCampaigns**](ManagementApi.md#GetCampaigns) | **Get** /v1/applications/{applicationId}/campaigns | List your Campaigns
+[**GetCampaignByAttributes**](ManagementApi.md#GetCampaignByAttributes) | **Post** /v1/applications/{applicationId}/campaigns_search | List campaigns that match the given attributes
+[**GetCampaigns**](ManagementApi.md#GetCampaigns) | **Get** /v1/applications/{applicationId}/campaigns | List campaigns
 [**GetChanges**](ManagementApi.md#GetChanges) | **Get** /v1/changes | Get audit log for an account
-[**GetCoupons**](ManagementApi.md#GetCoupons) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | List Coupons (with total count)
-[**GetCouponsByAttributes**](ManagementApi.md#GetCouponsByAttributes) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search | Get a list of the coupons that match the given attributes
-[**GetCouponsByAttributesApplicationWide**](ManagementApi.md#GetCouponsByAttributesApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search | Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
-[**GetCouponsWithoutTotalCount**](ManagementApi.md#GetCouponsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List Coupons
+[**GetCoupons**](ManagementApi.md#GetCoupons) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | List coupons (with total count)
+[**GetCouponsByAttributes**](ManagementApi.md#GetCouponsByAttributes) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search | List coupons that match the given attributes
+[**GetCouponsByAttributesApplicationWide**](ManagementApi.md#GetCouponsByAttributesApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search | List coupons that match the given attributes in all active campaigns of an application (with total count)
+[**GetCouponsWithoutTotalCount**](ManagementApi.md#GetCouponsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List coupons
 [**GetCustomerActivityReport**](ManagementApi.md#GetCustomerActivityReport) | **Get** /v1/applications/{applicationId}/customer_activity_reports/{customerId} | Get Activity Report for Single Customer
 [**GetCustomerActivityReports**](ManagementApi.md#GetCustomerActivityReports) | **Get** /v1/applications/{applicationId}/customer_activity_reports | Get Activity Reports for Application Customers (with total count)
 [**GetCustomerActivityReportsWithoutTotalCount**](ManagementApi.md#GetCustomerActivityReportsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/customer_activity_reports/no_total | Get Activity Reports for Application Customers
 [**GetCustomerAnalytics**](ManagementApi.md#GetCustomerAnalytics) | **Get** /v1/applications/{applicationId}/customers/{customerId}/analytics | Get Analytics Report for a Customer
 [**GetCustomerProfile**](ManagementApi.md#GetCustomerProfile) | **Get** /v1/customers/{customerId} | Get Customer Profile
 [**GetCustomerProfiles**](ManagementApi.md#GetCustomerProfiles) | **Get** /v1/customers/no_total | List Customer Profiles
-[**GetCustomersByAttributes**](ManagementApi.md#GetCustomersByAttributes) | **Post** /v1/customer_search/no_total | Get a list of the customer profiles that match the given attributes
-[**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List Event Types
-[**GetExports**](ManagementApi.md#GetExports) | **Get** /v1/exports | Get Exports
-[**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{programID}/profile/{integrationID} | get the Loyalty Ledger for this integrationID
+[**GetCustomersByAttributes**](ManagementApi.md#GetCustomersByAttributes) | **Post** /v1/customer_search/no_total | List customer profiles that match the given attributes
+[**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List event types
+[**GetExports**](ManagementApi.md#GetExports) | **Get** /v1/exports | Get exports
+[**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{programID}/profile/{integrationID} | Get integration&#39;s Loyalty Ledger
 [**GetLoyaltyProgram**](ManagementApi.md#GetLoyaltyProgram) | **Get** /v1/loyalty_programs/{programID} | Get a loyalty program
-[**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List all loyalty Programs
+[**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List loyalty programs
 [**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{programID}/statistics | Get loyalty program statistics by loyalty program ID
-[**GetReferrals**](ManagementApi.md#GetReferrals) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals | List Referrals (with total count)
-[**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List Referrals
+[**GetReferrals**](ManagementApi.md#GetReferrals) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals | List referrals (with total count)
+[**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
 [**GetRole**](ManagementApi.md#GetRole) | **Get** /v1/roles/{roleId} | Get information for the specified role
-[**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get a Ruleset
-[**GetRulesets**](ManagementApi.md#GetRulesets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List Campaign Rulesets
+[**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
+[**GetRulesets**](ManagementApi.md#GetRulesets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List rulesets
 [**GetUser**](ManagementApi.md#GetUser) | **Get** /v1/users/{userId} | Get a single User
-[**GetUsers**](ManagementApi.md#GetUsers) | **Get** /v1/users | List Users in your account
+[**GetUsers**](ManagementApi.md#GetUsers) | **Get** /v1/users | List users
 [**GetWebhook**](ManagementApi.md#GetWebhook) | **Get** /v1/webhooks/{webhookId} | Get Webhook
 [**GetWebhookActivationLogs**](ManagementApi.md#GetWebhookActivationLogs) | **Get** /v1/webhook_activation_logs | List Webhook activation Log Entries
 [**GetWebhookLogs**](ManagementApi.md#GetWebhookLogs) | **Get** /v1/webhook_logs | List Webhook Log Entries
@@ -84,27 +83,27 @@ Method | HTTP request | Description
 [**ImportLoyaltyPoints**](ManagementApi.md#ImportLoyaltyPoints) | **Post** /v1/loyalty_programs/{programID}/import_points | Import loyalty points via CSV file
 [**ImportPoolGiveaways**](ManagementApi.md#ImportPoolGiveaways) | **Post** /v1/giveaways/pools/{poolId}/import | Import giveaways codes into a giveaways pool
 [**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals via CSV file
-[**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/deduct_points | Deduct points in a certain loyalty program for the specified customer
+[**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{programID}/profile/{integrationID}/deduct_points | Deduct points in a loyalty program for the specified customer
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
-[**SearchCouponsAdvanced**](ManagementApi.md#SearchCouponsAdvanced) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced | Get a list of the coupons that match the given attributes (with total count)
-[**SearchCouponsAdvancedApplicationWide**](ManagementApi.md#SearchCouponsAdvancedApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search_advanced | Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
-[**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | Get a list of the coupons that match the given attributes in all active campaigns of an application
-[**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | Get a list of the coupons that match the given attributes
+[**SearchCouponsAdvanced**](ManagementApi.md#SearchCouponsAdvanced) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced | List coupons that match the given attributes (with total count)
+[**SearchCouponsAdvancedApplicationWide**](ManagementApi.md#SearchCouponsAdvancedApplicationWide) | **Post** /v1/applications/{applicationId}/coupons_search_advanced | List coupons that match the given attributes in all active campaigns of an application (with total count)
+[**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | List coupons that match the given attributes in all active campaigns of an application
+[**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | List coupons that match the given attributes
 [**UpdateAdditionalCost**](ManagementApi.md#UpdateAdditionalCost) | **Put** /v1/additional_costs/{additionalCostId} | Update an additional cost
 [**UpdateAttribute**](ManagementApi.md#UpdateAttribute) | **Put** /v1/attributes/{attributeId} | Update a custom attribute
-[**UpdateCampaign**](ManagementApi.md#UpdateCampaign) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId} | Update a Campaign
-[**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update a Coupon
-[**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update a Batch of Coupons
-[**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update one Referral
-[**UpdateRuleset**](ManagementApi.md#UpdateRuleset) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Update a Ruleset
+[**UpdateCampaign**](ManagementApi.md#UpdateCampaign) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId} | Update campaign
+[**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon
+[**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update a batch of coupons
+[**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
+[**UpdateRuleset**](ManagementApi.md#UpdateRuleset) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Update ruleset
 
 
 
 ## AddLoyaltyPoints
 
-> AddLoyaltyPoints(ctx, programID, integrationID).Body(body).Execute()
+> AddLoyaltyPoints(ctx, programID, integrationID).LoyaltyPoints(loyaltyPoints).Execute()
 
-Add points in a certain loyalty program for the specified customer
+Add points in a loyalty program for the specified customer
 
 ### Path Parameters
 
@@ -112,7 +111,7 @@ Add points in a certain loyalty program for the specified customer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 **integrationID** | **string** |  | 
 
 ### Other Parameters
@@ -124,7 +123,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**LoyaltyPoints**](LoyaltyPoints.md) |  | 
+ **loyaltyPoints** | [**LoyaltyPoints**](LoyaltyPoints.md) |  | 
 
 ### Return type
 
@@ -146,7 +145,7 @@ Name | Type | Description  | Notes
 
 ## CopyCampaignToApplications
 
-> InlineResponse2002 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
+> InlineResponse2002 CopyCampaignToApplications(ctx, applicationId, campaignId).CampaignCopy(campaignCopy).Execute()
 
 Copy the campaign into every specified application
 
@@ -170,7 +169,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**CampaignCopy**](CampaignCopy.md) |  | 
+ **campaignCopy** | [**CampaignCopy**](CampaignCopy.md) |  | 
 
 ### Return type
 
@@ -192,7 +191,7 @@ Name | Type | Description  | Notes
 
 ## CreateAdditionalCost
 
-> AccountAdditionalCost CreateAdditionalCost(ctx).Body(body).Execute()
+> AccountAdditionalCost CreateAdditionalCost(ctx).NewAdditionalCost(newAdditionalCost).Execute()
 
 Define a new additional cost
 
@@ -209,7 +208,7 @@ Other parameters are passed through a pointer to a apiCreateAdditionalCostReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewAdditionalCost**](NewAdditionalCost.md) |  | 
+ **newAdditionalCost** | [**NewAdditionalCost**](NewAdditionalCost.md) |  | 
 
 ### Return type
 
@@ -231,7 +230,7 @@ Name | Type | Description  | Notes
 
 ## CreateAttribute
 
-> Attribute CreateAttribute(ctx).Body(body).Execute()
+> Attribute CreateAttribute(ctx).NewAttribute(newAttribute).Execute()
 
 Define a new custom attribute
 
@@ -248,7 +247,7 @@ Other parameters are passed through a pointer to a apiCreateAttributeRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewAttribute**](NewAttribute.md) |  | 
+ **newAttribute** | [**NewAttribute**](NewAttribute.md) |  | 
 
 ### Return type
 
@@ -270,9 +269,9 @@ Name | Type | Description  | Notes
 
 ## CreateCampaign
 
-> Campaign CreateCampaign(ctx, applicationId).Body(body).Execute()
+> Campaign CreateCampaign(ctx, applicationId).NewCampaign(newCampaign).Execute()
 
-Create a Campaign
+Create campaign
 
 ### Path Parameters
 
@@ -290,7 +289,7 @@ Other parameters are passed through a pointer to a apiCreateCampaignRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewCampaign**](NewCampaign.md) |  | 
+ **newCampaign** | [**NewCampaign**](NewCampaign.md) |  | 
 
 ### Return type
 
@@ -312,9 +311,9 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse2004 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2004 CreateCoupons(ctx, applicationId, campaignId).NewCoupons(newCoupons).Silent(silent).Execute()
 
-Create Coupons
+Create coupons
 
 
 
@@ -336,7 +335,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewCoupons**](NewCoupons.md) |  | 
+ **newCoupons** | [**NewCoupons**](NewCoupons.md) |  | 
  **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
@@ -359,9 +358,9 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse2004 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2004 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).NewCouponsForMultipleRecipients(newCouponsForMultipleRecipients).Silent(silent).Execute()
 
-Create Coupons for Multiple Recipients
+Create coupons for multiple recipients
 
 
 
@@ -383,7 +382,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewCouponsForMultipleRecipients**](NewCouponsForMultipleRecipients.md) |  | 
+ **newCouponsForMultipleRecipients** | [**NewCouponsForMultipleRecipients**](NewCouponsForMultipleRecipients.md) |  | 
  **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
@@ -406,7 +405,7 @@ Name | Type | Description  | Notes
 
 ## CreatePasswordRecoveryEmail
 
-> NewPasswordEmail CreatePasswordRecoveryEmail(ctx).Body(body).Execute()
+> NewPasswordEmail CreatePasswordRecoveryEmail(ctx).NewPasswordEmail(newPasswordEmail).Execute()
 
 Request a password reset
 
@@ -423,7 +422,7 @@ Other parameters are passed through a pointer to a apiCreatePasswordRecoveryEmai
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewPasswordEmail**](NewPasswordEmail.md) |  | 
+ **newPasswordEmail** | [**NewPasswordEmail**](NewPasswordEmail.md) |  | 
 
 ### Return type
 
@@ -445,9 +444,9 @@ Name | Type | Description  | Notes
 
 ## CreateRuleset
 
-> Ruleset CreateRuleset(ctx, applicationId, campaignId).Body(body).Execute()
+> Ruleset CreateRuleset(ctx, applicationId, campaignId).NewRuleset(newRuleset).Execute()
 
-Create a Ruleset
+Create ruleset
 
 ### Path Parameters
 
@@ -467,7 +466,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewRuleset**](NewRuleset.md) |  | 
+ **newRuleset** | [**NewRuleset**](NewRuleset.md) |  | 
 
 ### Return type
 
@@ -489,9 +488,11 @@ Name | Type | Description  | Notes
 
 ## CreateSession
 
-> Session CreateSession(ctx).Body(body).Execute()
+> Session CreateSession(ctx).LoginParams(loginParams).Execute()
 
-Create a Session
+Create session
+
+
 
 ### Path Parameters
 
@@ -504,7 +505,7 @@ Other parameters are passed through a pointer to a apiCreateSessionRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LoginParams**](LoginParams.md) |  | 
+ **loginParams** | [**LoginParams**](LoginParams.md) |  | 
 
 ### Return type
 
@@ -512,7 +513,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -528,7 +529,7 @@ Name | Type | Description  | Notes
 
 > DeleteCampaign(ctx, applicationId, campaignId).Execute()
 
-Delete a Campaign
+Delete campaign
 
 ### Path Parameters
 
@@ -571,7 +572,7 @@ Name | Type | Description  | Notes
 
 > DeleteCoupon(ctx, applicationId, campaignId, couponId).Execute()
 
-Delete one Coupon
+Delete coupon
 
 ### Path Parameters
 
@@ -600,7 +601,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -616,7 +617,7 @@ Name | Type | Description  | Notes
 
 > DeleteCoupons(ctx, applicationId, campaignId).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).StartsAfter(startsAfter).StartsBefore(startsBefore).ExpiresAfter(expiresAfter).ExpiresBefore(expiresBefore).Valid(valid).BatchId(batchId).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).Execute()
 
-Delete Coupons
+Delete coupons
 
 ### Path Parameters
 
@@ -672,7 +673,7 @@ Name | Type | Description  | Notes
 
 > DeleteReferral(ctx, applicationId, campaignId, referralId).Execute()
 
-Delete one Referral
+Delete referral
 
 ### Path Parameters
 
@@ -717,7 +718,7 @@ Name | Type | Description  | Notes
 
 > DeleteRuleset(ctx, applicationId, campaignId, rulesetId).Execute()
 
-Delete a Ruleset
+Delete ruleset
 
 ### Path Parameters
 
@@ -758,44 +759,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DestroySession
-
-> DestroySession(ctx).Execute()
-
-Destroy a Session
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDestroySessionRequest struct via the builder pattern
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## ExportCoupons
 
 > string ExportCoupons(ctx, applicationId).CampaignId(campaignId).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).DateFormat(dateFormat).CampaignState(campaignState).Execute()
 
-Export Coupons to a CSV file
+Export coupons to a CSV file
 
 
 
@@ -816,7 +784,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **campaignId** | **float32** | Filter results by campaign. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -840,7 +808,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/csv
+- **Accept**: text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -888,7 +856,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/csv
+- **Accept**: text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -935,7 +903,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/csv
+- **Accept**: text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -956,7 +924,7 @@ Export customer loyalty balance to a CSV file
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 
 ### Other Parameters
 
@@ -978,7 +946,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/csv
+- **Accept**: text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -999,7 +967,7 @@ Export a customer's loyalty ledger log to a CSV file
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 **integrationID** | **string** |  | 
 
 ### Other Parameters
@@ -1009,10 +977,10 @@ Other parameters are passed through a pointer to a apiExportLoyaltyLedgerRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
+
  **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string | 
  **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string | 
-
-
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
 
 ### Return type
@@ -1026,7 +994,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/csv
+- **Accept**: text/csv
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1062,7 +1030,7 @@ Name | Type | Description  | Notes
  **status** | **string** | Filter results by HTTP status codes. | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -1111,7 +1079,7 @@ Name | Type | Description  | Notes
  **status** | **string** | Filter results by HTTP status codes. | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -1281,7 +1249,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -1305,7 +1273,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2008 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
-Get all access logs
+List access logs
 
 
 
@@ -1327,7 +1295,7 @@ Name | Type | Description  | Notes
  **status** | **string** | Filter results by HTTP status codes. | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -1351,7 +1319,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20029 GetAllRoles(ctx).Execute()
 
-Get all roles
+List roles
 
 ### Path Parameters
 
@@ -1368,7 +1336,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1532,7 +1500,7 @@ Name | Type | Description  | Notes
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, &#x60;hasMore&#x60; will be true whenever there is a next page. &#x60;totalResultSize&#x60; will always be zero. With this flag set to false, &#x60;hasMore&#x60; will always be set to false. &#x60;totalResultSize&#x60; will contain the total number of results for this query.  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
 
 ### Return type
 
@@ -1554,7 +1522,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20012 GetApplicationCustomersByAttributes(ctx).Body(body).Execute()
+> InlineResponse20012 GetApplicationCustomersByAttributes(ctx).ApplicationCustomerSearch(applicationCustomerSearch).Execute()
 
 Get a list of the customer profiles that match the given attributes (with total count)
 
@@ -1571,7 +1539,7 @@ Other parameters are passed through a pointer to a apiGetApplicationCustomersByA
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md) |  | 
+ **applicationCustomerSearch** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md) |  | 
 
 ### Return type
 
@@ -1579,7 +1547,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[integration_auth](../README.md#integration_auth)
+[manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1617,7 +1585,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -1663,7 +1631,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **type_** | **string** | Comma-separated list of types by which to filter events. Must be exact match(es). | 
  **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Only return events created after this date. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -1720,7 +1688,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **type_** | **string** | Comma-separated list of types by which to filter events. Must be exact match(es). | 
  **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Only return events created after this date. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -1818,7 +1786,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **profile** | **string** | Profile integration ID filter for sessions. Must be exact match. | 
  **state** | **string** | Filter by sessions with this state. Must be exact match. | 
  **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -1866,7 +1834,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -1950,8 +1918,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **entity** | **string** | Returned attributes will be filtered by supplied entity | 
+ **sort** | **string** |  | 
+ **entity** | **string** |  | 
 
 ### Return type
 
@@ -1975,7 +1943,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20019 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
-Get all audiences
+List audiences
 
 
 
@@ -1992,8 +1960,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, &#x60;hasMore&#x60; will be true whenever there is a next page. &#x60;totalResultSize&#x60; will always be zero. With this flag set to false, &#x60;hasMore&#x60; will always be set to false. &#x60;totalResultSize&#x60; will contain the total number of results for this query.  | 
+ **sort** | **string** |  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
 
 ### Return type
 
@@ -2017,7 +1985,7 @@ Name | Type | Description  | Notes
 
 > Campaign GetCampaign(ctx, applicationId, campaignId).Execute()
 
-Get a Campaign
+Get campaign
 
 ### Path Parameters
 
@@ -2104,9 +2072,9 @@ Name | Type | Description  | Notes
 
 ## GetCampaignByAttributes
 
-> InlineResponse2002 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
+> InlineResponse2002 GetCampaignByAttributes(ctx, applicationId).CampaignSearch(campaignSearch).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
 
-Get a list of all campaigns that match the given attributes
+List campaigns that match the given attributes
 
 
 
@@ -2126,10 +2094,10 @@ Other parameters are passed through a pointer to a apiGetCampaignByAttributesReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CampaignSearch**](CampaignSearch.md) |  | 
+ **campaignSearch** | [**CampaignSearch**](CampaignSearch.md) |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **campaignState** | **string** | Filter results by the state of the campaign. | 
 
 ### Return type
@@ -2154,7 +2122,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2002 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).Execute()
 
-List your Campaigns
+List campaigns
 
 ### Path Parameters
 
@@ -2174,7 +2142,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **campaignState** | **string** | Filter results by the state of the campaign. | 
  **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign. | 
  **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
@@ -2221,13 +2189,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **applicationId** | **int32** |  | 
  **entityPath** | **string** | Filter results on a case insensitive matching of the url path of the entity | 
  **userId** | **int32** |  | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, &#x60;hasMore&#x60; will be true whenever there is a next page. &#x60;totalResultSize&#x60; will always be zero. With this flag set to false, &#x60;hasMore&#x60; will always be set to false. &#x60;totalResultSize&#x60; will contain the total number of results for this query.  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result will include the total size of the result, across all pages. This might decrease performance on large data sets. With this flag set to true, hasMore will be be true whenever there is a next page. totalResultSize will always be zero. With this flag set to false, hasMore will always be set to false. totalResultSize will contain the total number of results for this query.  | 
  **includeOld** | **bool** | When this flag is set to false, the state without the change will not be returned. The default value is true. | 
 
 ### Return type
@@ -2252,7 +2220,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 GetCoupons(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).StartsAfter(startsAfter).StartsBefore(startsBefore).ExpiresAfter(expiresAfter).ExpiresBefore(expiresBefore).Valid(valid).BatchId(batchId).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).Execute()
 
-List Coupons (with total count)
+List coupons (with total count)
 
 ### Path Parameters
 
@@ -2274,7 +2242,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2309,9 +2277,9 @@ Name | Type | Description  | Notes
 
 ## GetCouponsByAttributes
 
-> InlineResponse2004 GetCouponsByAttributes(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
+> InlineResponse2004 GetCouponsByAttributes(ctx, applicationId, campaignId).CouponSearch(couponSearch).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
-Get a list of the coupons that match the given attributes
+List coupons that match the given attributes
 
 
 
@@ -2333,10 +2301,10 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**CouponSearch**](CouponSearch.md) |  | 
+ **couponSearch** | [**CouponSearch**](CouponSearch.md) |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2367,9 +2335,9 @@ Name | Type | Description  | Notes
 
 ## GetCouponsByAttributesApplicationWide
 
-> InlineResponse2004 GetCouponsByAttributesApplicationWide(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
+> InlineResponse2004 GetCouponsByAttributesApplicationWide(ctx, applicationId).CouponSearch(couponSearch).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
-Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
+List coupons that match the given attributes in all active campaigns of an application (with total count)
 
 
 
@@ -2389,10 +2357,10 @@ Other parameters are passed through a pointer to a apiGetCouponsByAttributesAppl
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CouponSearch**](CouponSearch.md) |  | 
+ **couponSearch** | [**CouponSearch**](CouponSearch.md) |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2426,7 +2394,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2005 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
 
-List Coupons
+List coupons
 
 ### Path Parameters
 
@@ -2448,7 +2416,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2554,7 +2522,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **name** | **string** | Only return reports matching the customer name | 
  **integrationId** | **string** | Only return reports matching the integrationId | 
  **campaignName** | **string** | Only return reports matching the campaignName | 
@@ -2606,7 +2574,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **name** | **string** | Only return reports matching the customer name | 
  **integrationId** | **string** | Only return reports matching the integrationId | 
  **campaignName** | **string** | Only return reports matching the campaignName | 
@@ -2658,7 +2626,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -2759,9 +2727,9 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20012 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20012 GetCustomersByAttributes(ctx).ApplicationCustomerSearch(applicationCustomerSearch).PageSize(pageSize).Skip(skip).Execute()
 
-Get a list of the customer profiles that match the given attributes
+List customer profiles that match the given attributes
 
 
 
@@ -2776,7 +2744,7 @@ Other parameters are passed through a pointer to a apiGetCustomersByAttributesRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md) |  | 
+ **applicationCustomerSearch** | [**ApplicationCustomerSearch**](ApplicationCustomerSearch.md) |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
 
@@ -2802,7 +2770,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20025 GetEventTypes(ctx).ApplicationIds(applicationIds).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
-List Event Types
+List event types
 
 
 
@@ -2822,7 +2790,7 @@ Name | Type | Description  | Notes
  **includeOldVersions** | **bool** | Include all versions of every event type. | [default to false]
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -2846,7 +2814,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20028 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
-Get Exports
+Get exports
 
 
 
@@ -2889,7 +2857,7 @@ Name | Type | Description  | Notes
 
 > LoyaltyLedger GetLoyaltyPoints(ctx, programID, integrationID).Execute()
 
-get the Loyalty Ledger for this integrationID
+Get integration's Loyalty Ledger
 
 
 
@@ -2899,7 +2867,7 @@ get the Loyalty Ledger for this integrationID
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** | The identifier for the application, must be unique within the account. | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 **integrationID** | **string** | The identifier for the application, must be unique within the account. | 
 
 ### Other Parameters
@@ -2936,13 +2904,15 @@ Name | Type | Description  | Notes
 
 Get a loyalty program
 
+
+
 ### Path Parameters
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **int32** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 
 ### Other Parameters
 
@@ -2975,7 +2945,9 @@ Name | Type | Description  | Notes
 
 > InlineResponse2007 GetLoyaltyPrograms(ctx).Execute()
 
-List all loyalty Programs
+List loyalty programs
+
+
 
 ### Path Parameters
 
@@ -3016,7 +2988,7 @@ Get loyalty program statistics by loyalty program ID
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 
 ### Other Parameters
 
@@ -3049,7 +3021,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse201 GetReferrals(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
-List Referrals (with total count)
+List referrals (with total count)
 
 ### Path Parameters
 
@@ -3071,7 +3043,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **code** | **string** | Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3101,7 +3073,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2006 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
-List Referrals
+List referrals
 
 ### Path Parameters
 
@@ -3123,7 +3095,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **code** | **string** | Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3178,7 +3150,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -3194,7 +3166,9 @@ Name | Type | Description  | Notes
 
 > Ruleset GetRuleset(ctx, applicationId, campaignId, rulesetId).Execute()
 
-Get a Ruleset
+Get ruleset
+
+
 
 ### Path Parameters
 
@@ -3239,7 +3213,9 @@ Name | Type | Description  | Notes
 
 > InlineResponse2003 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
-List Campaign Rulesets
+List rulesets
+
+
 
 ### Path Parameters
 
@@ -3261,7 +3237,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -3328,7 +3304,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse20026 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
-List Users in your account
+List users
 
 
 
@@ -3345,7 +3321,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
 
 ### Return type
 
@@ -3429,7 +3405,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **integrationRequestUuid** | **string** | Filter results by integration request UUID. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
  **applicationId** | **float32** |  | 
@@ -3474,7 +3450,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **status** | **string** | Filter results by HTTP status codes. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
  **applicationId** | **float32** |  | 
@@ -3519,7 +3495,7 @@ Other parameters are passed through a pointer to a apiGetWebhooksRequest struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **applicationIds** | **string** | Filter by one or more application ids separated by comma | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
 
@@ -3543,7 +3519,7 @@ Name | Type | Description  | Notes
 
 ## ImportCoupons
 
-> Import ImportCoupons(ctx, applicationId, campaignId).UpFile(upFile).Execute()
+> Import ImportCoupons(ctx, applicationId, campaignId).Upfile(upfile).Execute()
 
 Import coupons via CSV file
 
@@ -3567,7 +3543,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upfile** | **string** | The file with the information about the loyalty points that should be imported. | 
 
 ### Return type
 
@@ -3575,7 +3551,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -3601,7 +3577,7 @@ Import loyalty points via CSV file
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **int32** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 
 ### Other Parameters
 
@@ -3611,7 +3587,7 @@ Other parameters are passed through a pointer to a apiImportLoyaltyPointsRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file with the information about the loyalty points that should be imported. | 
 
 ### Return type
 
@@ -3619,7 +3595,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -3633,7 +3609,7 @@ Name | Type | Description  | Notes
 
 ## ImportPoolGiveaways
 
-> Import ImportPoolGiveaways(ctx, poolId).UpFile(upFile).Execute()
+> Import ImportPoolGiveaways(ctx, poolId).Upfile(upfile).Execute()
 
 Import giveaways codes into a giveaways pool
 
@@ -3655,7 +3631,7 @@ Other parameters are passed through a pointer to a apiImportPoolGiveawaysRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upfile** | **string** | The file with the information about the loyalty points that should be imported. | 
 
 ### Return type
 
@@ -3663,7 +3639,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -3701,7 +3677,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file with the information about the loyalty points that should be imported. | 
 
 ### Return type
 
@@ -3709,7 +3685,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -3723,9 +3699,9 @@ Name | Type | Description  | Notes
 
 ## RemoveLoyaltyPoints
 
-> RemoveLoyaltyPoints(ctx, programID, integrationID).Body(body).Execute()
+> RemoveLoyaltyPoints(ctx, programID, integrationID).LoyaltyPoints(loyaltyPoints).Execute()
 
-Deduct points in a certain loyalty program for the specified customer
+Deduct points in a loyalty program for the specified customer
 
 ### Path Parameters
 
@@ -3733,7 +3709,7 @@ Deduct points in a certain loyalty program for the specified customer
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**programID** | **string** |  | 
+**programID** | **int32** | The identifier for the loyalty program, must be unique within the account. | 
 **integrationID** | **string** |  | 
 
 ### Other Parameters
@@ -3745,7 +3721,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**LoyaltyPoints**](LoyaltyPoints.md) |  | 
+ **loyaltyPoints** | [**LoyaltyPoints**](LoyaltyPoints.md) |  | 
 
 ### Return type
 
@@ -3767,7 +3743,7 @@ Name | Type | Description  | Notes
 
 ## ResetPassword
 
-> NewPassword ResetPassword(ctx).Body(body).Execute()
+> NewPassword ResetPassword(ctx).NewPassword(newPassword).Execute()
 
 Reset password
 
@@ -3784,7 +3760,7 @@ Other parameters are passed through a pointer to a apiResetPasswordRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewPassword**](NewPassword.md) |  | 
+ **newPassword** | [**NewPassword**](NewPassword.md) |  | 
 
 ### Return type
 
@@ -3808,7 +3784,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 SearchCouponsAdvanced(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
-Get a list of the coupons that match the given attributes (with total count)
+List coupons that match the given attributes (with total count)
 
 
 
@@ -3833,7 +3809,7 @@ Name | Type | Description  | Notes
  **body** | **map[string]interface{}** |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3866,7 +3842,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2004 SearchCouponsAdvancedApplicationWide(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
-Get a list of the coupons that match the given attributes in all active campaigns of an application (with total count)
+List coupons that match the given attributes in all active campaigns of an application (with total count)
 
 
 
@@ -3889,7 +3865,7 @@ Name | Type | Description  | Notes
  **body** | **map[string]interface{}** |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3923,7 +3899,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2005 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
-Get a list of the coupons that match the given attributes in all active campaigns of an application
+List coupons that match the given attributes in all active campaigns of an application
 
 
 
@@ -3946,7 +3922,7 @@ Name | Type | Description  | Notes
  **body** | **map[string]interface{}** |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3980,7 +3956,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse2005 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
-Get a list of the coupons that match the given attributes
+List coupons that match the given attributes
 
 
 
@@ -4005,7 +3981,7 @@ Name | Type | Description  | Notes
  **body** | **map[string]interface{}** |  | 
  **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** |  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -4036,7 +4012,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAdditionalCost
 
-> AccountAdditionalCost UpdateAdditionalCost(ctx, additionalCostId).Body(body).Execute()
+> AccountAdditionalCost UpdateAdditionalCost(ctx, additionalCostId).NewAdditionalCost(newAdditionalCost).Execute()
 
 Update an additional cost
 
@@ -4058,7 +4034,7 @@ Other parameters are passed through a pointer to a apiUpdateAdditionalCostReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewAdditionalCost**](NewAdditionalCost.md) |  | 
+ **newAdditionalCost** | [**NewAdditionalCost**](NewAdditionalCost.md) |  | 
 
 ### Return type
 
@@ -4080,7 +4056,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAttribute
 
-> Attribute UpdateAttribute(ctx, attributeId).Body(body).Execute()
+> Attribute UpdateAttribute(ctx, attributeId).NewAttribute(newAttribute).Execute()
 
 Update a custom attribute
 
@@ -4102,7 +4078,7 @@ Other parameters are passed through a pointer to a apiUpdateAttributeRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewAttribute**](NewAttribute.md) |  | 
+ **newAttribute** | [**NewAttribute**](NewAttribute.md) |  | 
 
 ### Return type
 
@@ -4124,9 +4100,9 @@ Name | Type | Description  | Notes
 
 ## UpdateCampaign
 
-> Campaign UpdateCampaign(ctx, applicationId, campaignId).Body(body).Execute()
+> Campaign UpdateCampaign(ctx, applicationId, campaignId).UpdateCampaign(updateCampaign).Execute()
 
-Update a Campaign
+Update campaign
 
 ### Path Parameters
 
@@ -4146,7 +4122,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**UpdateCampaign**](UpdateCampaign.md) |  | 
+ **updateCampaign** | [**UpdateCampaign**](UpdateCampaign.md) |  | 
 
 ### Return type
 
@@ -4168,9 +4144,9 @@ Name | Type | Description  | Notes
 
 ## UpdateCoupon
 
-> Coupon UpdateCoupon(ctx, applicationId, campaignId, couponId).Body(body).Execute()
+> Coupon UpdateCoupon(ctx, applicationId, campaignId, couponId).UpdateCoupon(updateCoupon).Execute()
 
-Update a Coupon
+Update coupon
 
 ### Path Parameters
 
@@ -4192,7 +4168,7 @@ Name | Type | Description  | Notes
 
 
 
- **body** | [**UpdateCoupon**](UpdateCoupon.md) |  | 
+ **updateCoupon** | [**UpdateCoupon**](UpdateCoupon.md) |  | 
 
 ### Return type
 
@@ -4214,9 +4190,9 @@ Name | Type | Description  | Notes
 
 ## UpdateCouponBatch
 
-> UpdateCouponBatch(ctx, applicationId, campaignId).Body(body).Execute()
+> UpdateCouponBatch(ctx, applicationId, campaignId).UpdateCouponBatch(updateCouponBatch).Execute()
 
-Update a Batch of Coupons
+Update a batch of coupons
 
 ### Path Parameters
 
@@ -4236,7 +4212,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md) |  | 
+ **updateCouponBatch** | [**UpdateCouponBatch**](UpdateCouponBatch.md) |  | 
 
 ### Return type
 
@@ -4258,9 +4234,9 @@ Name | Type | Description  | Notes
 
 ## UpdateReferral
 
-> Referral UpdateReferral(ctx, applicationId, campaignId, referralId).Body(body).Execute()
+> Referral UpdateReferral(ctx, applicationId, campaignId, referralId).UpdateReferral(updateReferral).Execute()
 
-Update one Referral
+Update referral
 
 ### Path Parameters
 
@@ -4282,7 +4258,7 @@ Name | Type | Description  | Notes
 
 
 
- **body** | [**UpdateReferral**](UpdateReferral.md) |  | 
+ **updateReferral** | [**UpdateReferral**](UpdateReferral.md) |  | 
 
 ### Return type
 
@@ -4290,7 +4266,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+No authorization required
 
 ### HTTP request headers
 
@@ -4304,9 +4280,11 @@ Name | Type | Description  | Notes
 
 ## UpdateRuleset
 
-> Ruleset UpdateRuleset(ctx, applicationId, campaignId, rulesetId).Body(body).Execute()
+> Ruleset UpdateRuleset(ctx, applicationId, campaignId, rulesetId).NewRuleset(newRuleset).Execute()
 
-Update a Ruleset
+Update ruleset
+
+
 
 ### Path Parameters
 
@@ -4328,7 +4306,7 @@ Name | Type | Description  | Notes
 
 
 
- **body** | [**NewRuleset**](NewRuleset.md) |  | 
+ **newRuleset** | [**NewRuleset**](NewRuleset.md) |  | 
 
 ### Return type
 

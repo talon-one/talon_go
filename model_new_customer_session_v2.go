@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewCustomerSessionV2
+// NewCustomerSessionV2 struct for NewCustomerSessionV2
 type NewCustomerSessionV2 struct {
 	// ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID.
 	ProfileId *string `json:"profileId,omitempty"`

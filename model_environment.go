@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Environment
+// Environment struct for Environment
 type Environment struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
@@ -31,6 +31,7 @@ type Environment struct {
 	Templates []TemplateDef `json:"templates"`
 	// The giveaways pools that the application is subscribed to.
 	GiveawaysPools *[]GiveawaysPool `json:"giveawaysPools,omitempty"`
+	Variables      string           `json:"variables"`
 	// The loyalty programs that the application is subscribed to.
 	LoyaltyPrograms *[]LoyaltyProgram `json:"loyaltyPrograms,omitempty"`
 	// The attributes that the application is subscribed to.
@@ -39,7 +40,6 @@ type Environment struct {
 	AdditionalCosts *[]AccountAdditionalCost `json:"additionalCosts,omitempty"`
 	// The audiences contained in the account which the application belongs to.
 	Audiences *[]Audience `json:"audiences,omitempty"`
-	Variables string      `json:"variables"`
 }
 
 // GetId returns the Id field value
@@ -163,6 +163,21 @@ func (o *Environment) HasGiveawaysPools() bool {
 // SetGiveawaysPools gets a reference to the given []GiveawaysPool and assigns it to the GiveawaysPools field.
 func (o *Environment) SetGiveawaysPools(v []GiveawaysPool) {
 	o.GiveawaysPools = &v
+}
+
+// GetVariables returns the Variables field value
+func (o *Environment) GetVariables() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Variables
+}
+
+// SetVariables sets field value
+func (o *Environment) SetVariables(v string) {
+	o.Variables = v
 }
 
 // GetLoyaltyPrograms returns the LoyaltyPrograms field value if set, zero value otherwise.
@@ -295,21 +310,6 @@ func (o *Environment) HasAudiences() bool {
 // SetAudiences gets a reference to the given []Audience and assigns it to the Audiences field.
 func (o *Environment) SetAudiences(v []Audience) {
 	o.Audiences = &v
-}
-
-// GetVariables returns the Variables field value
-func (o *Environment) GetVariables() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Variables
-}
-
-// SetVariables sets field value
-func (o *Environment) SetVariables(v string) {
-	o.Variables = v
 }
 
 type NullableEnvironment struct {

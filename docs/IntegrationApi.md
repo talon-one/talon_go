@@ -1,6 +1,6 @@
 # \IntegrationApi
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *http://your_domain.your_region.talon.one*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -23,7 +23,7 @@ Method | HTTP request | Description
 
 ## CreateCouponReservation
 
-> Coupon CreateCouponReservation(ctx, couponValue).Body(body).Execute()
+> Coupon CreateCouponReservation(ctx, couponValue).CouponReservations(couponReservations).Execute()
 
 Create a new coupon reservation
 
@@ -45,7 +45,7 @@ Other parameters are passed through a pointer to a apiCreateCouponReservationReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CouponReservations**](CouponReservations.md) |  | 
+ **couponReservations** | [**CouponReservations**](CouponReservations.md) |  | 
 
 ### Return type
 
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ## CreateReferral
 
-> Referral CreateReferral(ctx).Body(body).Execute()
+> Referral CreateReferral(ctx).NewReferral(newReferral).Execute()
 
 Create a referral code for an advocate
 
@@ -84,7 +84,7 @@ Other parameters are passed through a pointer to a apiCreateReferralRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewReferral**](NewReferral.md) |  | 
+ **newReferral** | [**NewReferral**](NewReferral.md) |  | 
 
 ### Return type
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Notes
 
 ## CreateReferralsForMultipleAdvocates
 
-> InlineResponse201 CreateReferralsForMultipleAdvocates(ctx).Body(body).Silent(silent).Execute()
+> InlineResponse201 CreateReferralsForMultipleAdvocates(ctx).NewReferralsForMultipleAdvocates(newReferralsForMultipleAdvocates).Silent(silent).Execute()
 
 Create referral codes for multiple advocates
 
@@ -123,7 +123,7 @@ Other parameters are passed through a pointer to a apiCreateReferralsForMultiple
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewReferralsForMultipleAdvocates**](NewReferralsForMultipleAdvocates.md) |  | 
+ **newReferralsForMultipleAdvocates** | [**NewReferralsForMultipleAdvocates**](NewReferralsForMultipleAdvocates.md) |  | 
  **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
@@ -132,7 +132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCouponReservation
 
-> DeleteCouponReservation(ctx, couponValue).Body(body).Execute()
+> DeleteCouponReservation(ctx, couponValue).CouponReservations(couponReservations).Execute()
 
 Delete coupon reservations
 
@@ -168,7 +168,7 @@ Other parameters are passed through a pointer to a apiDeleteCouponReservationReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CouponReservations**](CouponReservations.md) |  | 
+ **couponReservations** | [**CouponReservations**](CouponReservations.md) |  | 
 
 ### Return type
 
@@ -176,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 
 ## TrackEvent
 
-> IntegrationState TrackEvent(ctx).Body(body).Dry(dry).Execute()
+> IntegrationState TrackEvent(ctx).NewEvent(newEvent).Dry(dry).Execute()
 
 Track an Event
 
@@ -341,7 +341,7 @@ Other parameters are passed through a pointer to a apiTrackEventRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewEvent**](NewEvent.md) |  | 
+ **newEvent** | [**NewEvent**](NewEvent.md) |  | 
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerProfile
 
-> IntegrationState UpdateCustomerProfile(ctx, integrationId).Body(body).Dry(dry).Execute()
+> IntegrationState UpdateCustomerProfile(ctx, integrationId).NewCustomerProfile(newCustomerProfile).Dry(dry).Execute()
 
 Update a Customer Profile V1
 
@@ -386,7 +386,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfileReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
+ **newCustomerProfile** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
@@ -395,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -409,7 +409,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerProfileAudiences
 
-> UpdateCustomerProfileAudiences(ctx).Body(body).Execute()
+> UpdateCustomerProfileAudiences(ctx).CustomerProfileAudienceRequest(customerProfileAudienceRequest).Execute()
 
 Update a Customer Profile Audiences
 
@@ -426,7 +426,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfileAudie
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CustomerProfileAudienceRequest**](CustomerProfileAudienceRequest.md) |  | 
+ **customerProfileAudienceRequest** | [**CustomerProfileAudienceRequest**](CustomerProfileAudienceRequest.md) |  | 
 
 ### Return type
 
@@ -434,7 +434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1)
+[manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -448,7 +448,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerProfileV2
 
-> IntegrationStateV2 UpdateCustomerProfileV2(ctx, integrationId).Body(body).RunRuleEngine(runRuleEngine).Dry(dry).Execute()
+> IntegrationStateV2 UpdateCustomerProfileV2(ctx, integrationId).CustomerProfileIntegrationRequestV2(customerProfileIntegrationRequestV2).RunRuleEngine(runRuleEngine).Dry(dry).Execute()
 
 Update a Customer Profile
 
@@ -470,7 +470,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfileV2Req
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CustomerProfileIntegrationRequestV2**](CustomerProfileIntegrationRequestV2.md) |  | 
+ **customerProfileIntegrationRequestV2** | [**CustomerProfileIntegrationRequestV2**](CustomerProfileIntegrationRequestV2.md) |  | 
  **runRuleEngine** | **bool** | Indicates whether to run the rule engine. | [default to false]
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. Only used when &#x60;runRuleEngine&#x60; is set to &#x60;true&#x60;.  | 
 
@@ -494,7 +494,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerProfilesV2
 
-> MultipleCustomerProfileIntegrationResponseV2 UpdateCustomerProfilesV2(ctx).Body(body).Silent(silent).Execute()
+> MultipleCustomerProfileIntegrationResponseV2 UpdateCustomerProfilesV2(ctx).MultipleCustomerProfileIntegrationRequest(multipleCustomerProfileIntegrationRequest).Silent(silent).Execute()
 
 Update multiple Customer Profiles
 
@@ -511,7 +511,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfilesV2Re
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**MultipleCustomerProfileIntegrationRequest**](MultipleCustomerProfileIntegrationRequest.md) |  | 
+ **multipleCustomerProfileIntegrationRequest** | [**MultipleCustomerProfileIntegrationRequest**](MultipleCustomerProfileIntegrationRequest.md) |  | 
  **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
 
 ### Return type
@@ -534,7 +534,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerSession
 
-> IntegrationState UpdateCustomerSession(ctx, customerSessionId).Body(body).Dry(dry).Execute()
+> IntegrationState UpdateCustomerSession(ctx, customerSessionId).NewCustomerSession(newCustomerSession).Dry(dry).Execute()
 
 Update a Customer Session V1
 
@@ -556,7 +556,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerSessionReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewCustomerSession**](NewCustomerSession.md) |  | 
+ **newCustomerSession** | [**NewCustomerSession**](NewCustomerSession.md) |  | 
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type
@@ -565,7 +565,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -579,7 +579,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerSessionV2
 
-> IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).Body(body).Dry(dry).Execute()
+> IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).IntegrationRequest(integrationRequest).Dry(dry).Execute()
 
 Update a Customer Session
 
@@ -601,7 +601,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerSessionV2Req
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**IntegrationRequest**](IntegrationRequest.md) |  | 
+ **integrationRequest** | [**IntegrationRequest**](IntegrationRequest.md) |  | 
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
 
 ### Return type

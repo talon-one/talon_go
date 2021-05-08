@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// LedgerEntry
+// LedgerEntry struct for LedgerEntry
 type LedgerEntry struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
