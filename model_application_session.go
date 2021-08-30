@@ -33,7 +33,7 @@ type ApplicationSession struct {
 	Coupon string `json:"coupon"`
 	// Any referral code entered.
 	Referral string `json:"referral"`
-	// Indicating if the customer session is in progress (\"open\"), \"closed\", or \"cancelled\".
+	// Indicating if the customer session is in progress (`open`), `closed`, or `cancelled`. For more information about customer sessions, see [Customer sessions](/docs/dev/concepts/entities#customer-session-states) in the docs.
 	State string `json:"state"`
 	// Serialized JSON representation.
 	CartItems []CartItem `json:"cartItems"`

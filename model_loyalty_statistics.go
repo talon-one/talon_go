@@ -12,18 +12,42 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // LoyaltyStatistics
 type LoyaltyStatistics struct {
-	// Total of active points for this loyalty program
+	// Date at which data point was collected.
+	Date time.Time `json:"date"`
+	// Total of active points for this loyalty program.
 	TotalActivePoints float32 `json:"totalActivePoints"`
-	// Total of pending points for this loyalty program
+	// Total of pending points for this loyalty program.
 	TotalPendingPoints float32 `json:"totalPendingPoints"`
-	// Total of spent points for this loyalty program
+	// Total of spent points for this loyalty program.
 	TotalSpentPoints float32 `json:"totalSpentPoints"`
-	// Total of expired points for this loyalty program
+	// Total of expired points for this loyalty program.
 	TotalExpiredPoints float32 `json:"totalExpiredPoints"`
+	// Number of loyalty program members.
+	TotalMembers float32 `json:"totalMembers"`
+	// Number of members who joined on this day.
+	NewMembers   float32                         `json:"newMembers"`
+	SpentPoints  LoyaltyDashboardPointsBreakdown `json:"spentPoints"`
+	EarnedPoints LoyaltyDashboardPointsBreakdown `json:"earnedPoints"`
+}
+
+// GetDate returns the Date field value
+func (o *LoyaltyStatistics) GetDate() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Date
+}
+
+// SetDate sets field value
+func (o *LoyaltyStatistics) SetDate(v time.Time) {
+	o.Date = v
 }
 
 // GetTotalActivePoints returns the TotalActivePoints field value
@@ -84,6 +108,66 @@ func (o *LoyaltyStatistics) GetTotalExpiredPoints() float32 {
 // SetTotalExpiredPoints sets field value
 func (o *LoyaltyStatistics) SetTotalExpiredPoints(v float32) {
 	o.TotalExpiredPoints = v
+}
+
+// GetTotalMembers returns the TotalMembers field value
+func (o *LoyaltyStatistics) GetTotalMembers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalMembers
+}
+
+// SetTotalMembers sets field value
+func (o *LoyaltyStatistics) SetTotalMembers(v float32) {
+	o.TotalMembers = v
+}
+
+// GetNewMembers returns the NewMembers field value
+func (o *LoyaltyStatistics) GetNewMembers() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NewMembers
+}
+
+// SetNewMembers sets field value
+func (o *LoyaltyStatistics) SetNewMembers(v float32) {
+	o.NewMembers = v
+}
+
+// GetSpentPoints returns the SpentPoints field value
+func (o *LoyaltyStatistics) GetSpentPoints() LoyaltyDashboardPointsBreakdown {
+	if o == nil {
+		var ret LoyaltyDashboardPointsBreakdown
+		return ret
+	}
+
+	return o.SpentPoints
+}
+
+// SetSpentPoints sets field value
+func (o *LoyaltyStatistics) SetSpentPoints(v LoyaltyDashboardPointsBreakdown) {
+	o.SpentPoints = v
+}
+
+// GetEarnedPoints returns the EarnedPoints field value
+func (o *LoyaltyStatistics) GetEarnedPoints() LoyaltyDashboardPointsBreakdown {
+	if o == nil {
+		var ret LoyaltyDashboardPointsBreakdown
+		return ret
+	}
+
+	return o.EarnedPoints
+}
+
+// SetEarnedPoints sets field value
+func (o *LoyaltyStatistics) SetEarnedPoints(v LoyaltyDashboardPointsBreakdown) {
+	o.EarnedPoints = v
 }
 
 type NullableLoyaltyStatistics struct {

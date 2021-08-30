@@ -19,7 +19,7 @@ import (
 type Session struct {
 	// The ID of the user of this session
 	UserId int32 `json:"userId"`
-	// An opaque session identifier
+	// The token to use as a bearer token to query Management API endpoints.
 	Token string `json:"token"`
 	// Unix timestamp indicating when the session was first created.
 	Created time.Time `json:"created"`

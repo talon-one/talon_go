@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | A friendly name for this campaign. | 
+**Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | 
-**StartTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become active. | [optional] 
-**EndTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become in-active. | [optional] 
+**StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
+**EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp the campaign will become inactive. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to STATE_ENABLED]
 **ActiveRulesetId** | Pointer to **int32** | ID of Ruleset this campaign applies on customer session evaluation. | [optional] 
@@ -36,6 +36,7 @@ Name | Type | Description | Notes
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign or any of its elements. | [optional] 
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
+**TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
 
 ## Methods
 
@@ -838,6 +839,31 @@ HasUpdatedBy returns a boolean if a field has been set.
 `func (o *Campaign) SetUpdatedBy(v string)`
 
 SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
+
+### GetTemplateId
+
+`func (o *Campaign) GetTemplateId() int32`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *Campaign) GetTemplateIdOk() (int32, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTemplateId
+
+`func (o *Campaign) HasTemplateId() bool`
+
+HasTemplateId returns a boolean if a field has been set.
+
+### SetTemplateId
+
+`func (o *Campaign) SetTemplateId(v int32)`
+
+SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

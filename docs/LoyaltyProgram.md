@@ -4,15 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The ID of loyalty program. | 
-**AccountID** | Pointer to **int32** | The ID of the Talon.One account that owns this program. | 
-**Name** | Pointer to **string** | The internal name for the Loyalty Program. | 
+**Id** | Pointer to **int32** | The ID of loyalty program. Unique ID for this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Title** | Pointer to **string** | The display title for the Loyalty Program. | 
 **Description** | Pointer to **string** | Description of our Loyalty Program. | 
 **SubscribedApplications** | Pointer to **[]int32** | A list containing the IDs of all applications that are subscribed to this Loyalty Program. | 
 **DefaultValidity** | Pointer to **string** | Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like &#39;1h&#39; or &#39;40m&#39;. | 
 **DefaultPending** | Pointer to **string** | Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like &#39;1h&#39; or &#39;40m&#39;. | 
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program | 
+**Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | [optional] 
+**AccountID** | Pointer to **int32** | The ID of the Talon.One account that owns this program. | 
+**Name** | Pointer to **string** | The internal name for the Loyalty Program. This is an immutable value. | 
 **Tiers** | Pointer to [**[]LoyaltyTier**](LoyaltyTier.md) | The tiers in this loyalty program | [optional] 
 
 ## Methods
@@ -42,55 +44,30 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
 
-### GetAccountID
+### GetCreated
 
-`func (o *LoyaltyProgram) GetAccountID() int32`
+`func (o *LoyaltyProgram) GetCreated() time.Time`
 
-GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetAccountIDOk
+### GetCreatedOk
 
-`func (o *LoyaltyProgram) GetAccountIDOk() (int32, bool)`
+`func (o *LoyaltyProgram) GetCreatedOk() (time.Time, bool)`
 
-GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAccountID
+### HasCreated
 
-`func (o *LoyaltyProgram) HasAccountID() bool`
+`func (o *LoyaltyProgram) HasCreated() bool`
 
-HasAccountID returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetAccountID
+### SetCreated
 
-`func (o *LoyaltyProgram) SetAccountID(v int32)`
+`func (o *LoyaltyProgram) SetCreated(v time.Time)`
 
-SetAccountID gets a reference to the given int32 and assigns it to the AccountID field.
-
-### GetName
-
-`func (o *LoyaltyProgram) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LoyaltyProgram) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *LoyaltyProgram) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LoyaltyProgram) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetTitle
 
@@ -241,6 +218,81 @@ HasAllowSubledger returns a boolean if a field has been set.
 `func (o *LoyaltyProgram) SetAllowSubledger(v bool)`
 
 SetAllowSubledger gets a reference to the given bool and assigns it to the AllowSubledger field.
+
+### GetTimezone
+
+`func (o *LoyaltyProgram) GetTimezone() string`
+
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+
+### GetTimezoneOk
+
+`func (o *LoyaltyProgram) GetTimezoneOk() (string, bool)`
+
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTimezone
+
+`func (o *LoyaltyProgram) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
+
+### SetTimezone
+
+`func (o *LoyaltyProgram) SetTimezone(v string)`
+
+SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+
+### GetAccountID
+
+`func (o *LoyaltyProgram) GetAccountID() int32`
+
+GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+
+### GetAccountIDOk
+
+`func (o *LoyaltyProgram) GetAccountIDOk() (int32, bool)`
+
+GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAccountID
+
+`func (o *LoyaltyProgram) HasAccountID() bool`
+
+HasAccountID returns a boolean if a field has been set.
+
+### SetAccountID
+
+`func (o *LoyaltyProgram) SetAccountID(v int32)`
+
+SetAccountID gets a reference to the given int32 and assigns it to the AccountID field.
+
+### GetName
+
+`func (o *LoyaltyProgram) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LoyaltyProgram) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *LoyaltyProgram) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *LoyaltyProgram) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetTiers
 

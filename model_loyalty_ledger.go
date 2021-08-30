@@ -14,10 +14,10 @@ import (
 	"encoding/json"
 )
 
-// LoyaltyLedger Ledger of Balance in Loyalty Program for a Customer
+// LoyaltyLedger Ledger of Balance in Loyalty Program for a Customer.
 type LoyaltyLedger struct {
 	Ledger LoyaltySubLedger `json:"ledger"`
-	// A map containing a list of all loyalty subledger balances
+	// A map containing a list of all loyalty subledger balances.
 	SubLedgers *map[string]LoyaltySubLedger `json:"subLedgers,omitempty"`
 }
 

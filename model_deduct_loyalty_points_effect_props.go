@@ -26,6 +26,8 @@ type DeductLoyaltyPointsEffectProps struct {
 	Value float32 `json:"value"`
 	// The identifier of this deduction in the loyalty ledger
 	TransactionUUID string `json:"transactionUUID"`
+	// The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule.
+	Name string `json:"name"`
 }
 
 // GetRuleTitle returns the RuleTitle field value
@@ -101,6 +103,21 @@ func (o *DeductLoyaltyPointsEffectProps) GetTransactionUUID() string {
 // SetTransactionUUID sets field value
 func (o *DeductLoyaltyPointsEffectProps) SetTransactionUUID(v string) {
 	o.TransactionUUID = v
+}
+
+// GetName returns the Name field value
+func (o *DeductLoyaltyPointsEffectProps) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// SetName sets field value
+func (o *DeductLoyaltyPointsEffectProps) SetName(v string) {
+	o.Name = v
 }
 
 type NullableDeductLoyaltyPointsEffectProps struct {

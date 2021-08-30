@@ -23,7 +23,7 @@ type UpdateRole struct {
 	// Role Policy this should be a stringified blob of json
 	Acl *string `json:"acl,omitempty"`
 	// An array of user identifiers
-	Users *[]int32 `json:"users,omitempty"`
+	Members *[]int32 `json:"members,omitempty"`
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -125,37 +125,37 @@ func (o *UpdateRole) SetAcl(v string) {
 	o.Acl = &v
 }
 
-// GetUsers returns the Users field value if set, zero value otherwise.
-func (o *UpdateRole) GetUsers() []int32 {
-	if o == nil || o.Users == nil {
+// GetMembers returns the Members field value if set, zero value otherwise.
+func (o *UpdateRole) GetMembers() []int32 {
+	if o == nil || o.Members == nil {
 		var ret []int32
 		return ret
 	}
-	return *o.Users
+	return *o.Members
 }
 
-// GetUsersOk returns a tuple with the Users field value if set, zero value otherwise
+// GetMembersOk returns a tuple with the Members field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateRole) GetUsersOk() ([]int32, bool) {
-	if o == nil || o.Users == nil {
+func (o *UpdateRole) GetMembersOk() ([]int32, bool) {
+	if o == nil || o.Members == nil {
 		var ret []int32
 		return ret, false
 	}
-	return *o.Users, true
+	return *o.Members, true
 }
 
-// HasUsers returns a boolean if a field has been set.
-func (o *UpdateRole) HasUsers() bool {
-	if o != nil && o.Users != nil {
+// HasMembers returns a boolean if a field has been set.
+func (o *UpdateRole) HasMembers() bool {
+	if o != nil && o.Members != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetUsers gets a reference to the given []int32 and assigns it to the Users field.
-func (o *UpdateRole) SetUsers(v []int32) {
-	o.Users = &v
+// SetMembers gets a reference to the given []int32 and assigns it to the Members field.
+func (o *UpdateRole) SetMembers(v []int32) {
+	o.Members = &v
 }
 
 type NullableUpdateRole struct {

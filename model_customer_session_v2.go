@@ -29,13 +29,13 @@ type CustomerSessionV2 struct {
 	CouponCodes *[]string `json:"couponCodes,omitempty"`
 	// Any referral code entered.
 	ReferralCode *string `json:"referralCode,omitempty"`
-	// Indicates the current state of the session. All sessions must start in the \"open\" state, after which valid transitions are...  1. open -> closed 2. open -> cancelled 3. closed -> cancelled
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`, after which valid transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled`  For more information, see [Entites](/docs/dev/concepts/entities#customer-session).
 	State string `json:"state"`
 	// All items the customer will be purchasing in this session
 	CartItems []CartItem `json:"cartItems"`
 	// Any costs associated with the session that can not be explicitly attributed to cart items. Examples include shipping costs and service fees.
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
-	// Identifiers for the customer, this can be used for limits on values such as device ID.
+	// Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts.
 	Identifiers *[]string `json:"identifiers,omitempty"`
 	// A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.
 	Attributes map[string]interface{} `json:"attributes"`
@@ -47,6 +47,8 @@ type CustomerSessionV2 struct {
 	CartItemTotal float32 `json:"cartItemTotal"`
 	// The total sum of additional costs before any discounts applied
 	AdditionalCostTotal float32 `json:"additionalCostTotal"`
+	// Timestamp of the most recent event received on this session
+	Updated time.Time `json:"updated"`
 }
 
 // GetIntegrationId returns the IntegrationId field value
@@ -344,6 +346,21 @@ func (o *CustomerSessionV2) GetAdditionalCostTotal() float32 {
 // SetAdditionalCostTotal sets field value
 func (o *CustomerSessionV2) SetAdditionalCostTotal(v float32) {
 	o.AdditionalCostTotal = v
+}
+
+// GetUpdated returns the Updated field value
+func (o *CustomerSessionV2) GetUpdated() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Updated
+}
+
+// SetUpdated sets field value
+func (o *CustomerSessionV2) SetUpdated(v time.Time) {
+	o.Updated = v
 }
 
 type NullableCustomerSessionV2 struct {

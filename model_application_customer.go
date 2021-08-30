@@ -17,9 +17,9 @@ import (
 
 // ApplicationCustomer
 type ApplicationCustomer struct {
-	// Unique ID for this entity.
+	// Unique ID for this entity. Unique ID for this entity.
 	Id int32 `json:"id"`
-	// The exact moment this entity was created. The exact moment this entity was created. The exact moment this entity was created.
+	// The exact moment this entity was created. The exact moment this entity was created. The exact moment this entity was created. The exact moment this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID for this entity sent to and used in the Talon.One system. The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`
@@ -37,6 +37,8 @@ type ApplicationCustomer struct {
 	AudienceMemberships *[]AudienceMembership `json:"audienceMemberships,omitempty"`
 	// Timestamp of the most recent event received from this customer
 	LastActivity time.Time `json:"lastActivity"`
+	// The Integration ID of the Customer Profile that referred this Customer in the Application.
+	AdvocateIntegrationId *string `json:"advocateIntegrationId,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -223,6 +225,39 @@ func (o *ApplicationCustomer) GetLastActivity() time.Time {
 // SetLastActivity sets field value
 func (o *ApplicationCustomer) SetLastActivity(v time.Time) {
 	o.LastActivity = v
+}
+
+// GetAdvocateIntegrationId returns the AdvocateIntegrationId field value if set, zero value otherwise.
+func (o *ApplicationCustomer) GetAdvocateIntegrationId() string {
+	if o == nil || o.AdvocateIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdvocateIntegrationId
+}
+
+// GetAdvocateIntegrationIdOk returns a tuple with the AdvocateIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetAdvocateIntegrationIdOk() (string, bool) {
+	if o == nil || o.AdvocateIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.AdvocateIntegrationId, true
+}
+
+// HasAdvocateIntegrationId returns a boolean if a field has been set.
+func (o *ApplicationCustomer) HasAdvocateIntegrationId() bool {
+	if o != nil && o.AdvocateIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdvocateIntegrationId gets a reference to the given string and assigns it to the AdvocateIntegrationId field.
+func (o *ApplicationCustomer) SetAdvocateIntegrationId(v string) {
+	o.AdvocateIntegrationId = &v
 }
 
 type NullableApplicationCustomer struct {

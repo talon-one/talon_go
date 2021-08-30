@@ -19,7 +19,7 @@ type CustomerProfileIntegrationRequestV2 struct {
 	// Arbitrary properties associated with this item
 	Attributes       *map[string]interface{}  `json:"attributes,omitempty"`
 	AudiencesChanges *ProfileAudiencesChanges `json:"audiencesChanges,omitempty"`
-	// Optional list of requested information to be present on the response related to the customer profile update. Currently supported: \"customerProfile\", \"triggeredCampaigns\", \"loyalty\", \"event\", \"awardedGiveaways\", \"ruleFailureReasons\".
+	// Optional list of requested information to be present on the response related to the customer profile update.  Currently supported: \"customerProfile\", \"triggeredCampaigns\", \"loyalty\", \"event\", \"awardedGiveaways\", \"ruleFailureReasons\".  **Note:** `ruleFailureReasons` is always part of the response when the Application type is `sandbox`.
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 }
 

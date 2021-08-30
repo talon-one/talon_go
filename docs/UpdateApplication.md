@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **CampaignPriority** | Pointer to **string** | Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive). If no value is provided, this is set to \&quot;universal\&quot; | [optional] 
 **ExclusiveCampaignsStrategy** | Pointer to **string** | The strategy used when choosing exclusive campaigns for evaluation, can be one of (listOrder, lowestDiscount, highestDiscount). If no value is provided, this is set to \&quot;listOrder\&quot; | [optional] 
 **DefaultDiscountScope** | Pointer to **string** | The default scope to apply \&quot;setDiscount\&quot; effects on if no scope was provided with the effect. | [optional] 
-**EnableCascadingDiscounts** | Pointer to **bool** | Flag indicating if discounts should cascade for this application | [optional] 
-**EnableFlattenedCartItems** | Pointer to **bool** | Flag indicating if cart items of quantity larger than one should be separated into different items of quantity one | [optional] 
+**EnableCascadingDiscounts** | Pointer to **bool** | Indicates if discounts should cascade for this application | [optional] 
+**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one | [optional] 
 **AttributesSettings** | Pointer to [**AttributesSettings**](AttributesSettings.md) |  | [optional] 
-**Sandbox** | Pointer to **bool** | Flag indicating if this is a live or sandbox application | [optional] 
+**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox application | [optional] 
 
 ## Methods
 

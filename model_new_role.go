@@ -23,7 +23,7 @@ type NewRole struct {
 	// Role Policy this should be a stringified blob of json
 	Acl string `json:"acl"`
 	// An array of user identifiers
-	Users []int32 `json:"users"`
+	Members []int32 `json:"members"`
 }
 
 // GetName returns the Name field value
@@ -89,19 +89,19 @@ func (o *NewRole) SetAcl(v string) {
 	o.Acl = v
 }
 
-// GetUsers returns the Users field value
-func (o *NewRole) GetUsers() []int32 {
+// GetMembers returns the Members field value
+func (o *NewRole) GetMembers() []int32 {
 	if o == nil {
 		var ret []int32
 		return ret
 	}
 
-	return o.Users
+	return o.Members
 }
 
-// SetUsers sets field value
-func (o *NewRole) SetUsers(v []int32) {
-	o.Users = v
+// SetMembers sets field value
+func (o *NewRole) SetMembers(v []int32) {
+	o.Members = v
 }
 
 type NullableNewRole struct {

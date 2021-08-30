@@ -14,28 +14,29 @@ import (
 	"encoding/json"
 )
 
-// LoyaltySubLedger Ledger of Balance in Loyalty Program for a Customer
+// LoyaltySubLedger Ledger of Balance in Loyalty Program for a Customer.
 type LoyaltySubLedger struct {
-	// ⚠️ Deprecated: Use 'totalActivePoints' property instead. Total amount of currently active and available points in the customer's balance
+	// ⚠️ Deprecated: Use 'totalActivePoints' property instead. Total amount of currently active and available points in the customer's balance.
 	Total float32 `json:"total"`
-	// Total amount of currently active and available points in the customer's balance
+	// Total amount of currently active and available points in the customer's balance.
 	TotalActivePoints float32 `json:"totalActivePoints"`
-	// Total amount of pending points, which are not active yet but will become active in the future
+	// Total amount of pending points, which are not active yet but will become active in the future.
 	TotalPendingPoints float32 `json:"totalPendingPoints"`
-	// Total amount of points already spent by this customer
+	// Total amount of points already spent by this customer.
 	TotalSpentPoints float32 `json:"totalSpentPoints"`
-	// Total amount of points, that expired without ever being spent
+	// Total amount of points, that expired without ever being spent.
 	TotalExpiredPoints float32 `json:"totalExpiredPoints"`
-	// List of all events that have happened such as additions, subtractions and expiries
+	// List of all events that have happened such as additions, subtractions and expiries.
 	Transactions *[]LoyaltyLedgerEntry `json:"transactions,omitempty"`
-	// List of all points that will expire
+	// List of all points that will expire.
 	ExpiringPoints *[]LoyaltyLedgerEntry `json:"expiringPoints,omitempty"`
-	// List of all currently active points
+	// List of all currently active points.
 	ActivePoints *[]LoyaltyLedgerEntry `json:"activePoints,omitempty"`
-	// List of all points pending activation
+	// List of all points pending activation.
 	PendingPoints *[]LoyaltyLedgerEntry `json:"pendingPoints,omitempty"`
-	// List of expired points
+	// List of expired points.
 	ExpiredPoints *[]LoyaltyLedgerEntry `json:"expiredPoints,omitempty"`
+	CurrentTier   *Tier                 `json:"currentTier,omitempty"`
 }
 
 // GetTotal returns the Total field value
@@ -276,6 +277,39 @@ func (o *LoyaltySubLedger) HasExpiredPoints() bool {
 // SetExpiredPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ExpiredPoints field.
 func (o *LoyaltySubLedger) SetExpiredPoints(v []LoyaltyLedgerEntry) {
 	o.ExpiredPoints = &v
+}
+
+// GetCurrentTier returns the CurrentTier field value if set, zero value otherwise.
+func (o *LoyaltySubLedger) GetCurrentTier() Tier {
+	if o == nil || o.CurrentTier == nil {
+		var ret Tier
+		return ret
+	}
+	return *o.CurrentTier
+}
+
+// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetCurrentTierOk() (Tier, bool) {
+	if o == nil || o.CurrentTier == nil {
+		var ret Tier
+		return ret, false
+	}
+	return *o.CurrentTier, true
+}
+
+// HasCurrentTier returns a boolean if a field has been set.
+func (o *LoyaltySubLedger) HasCurrentTier() bool {
+	if o != nil && o.CurrentTier != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCurrentTier gets a reference to the given Tier and assigns it to the CurrentTier field.
+func (o *LoyaltySubLedger) SetCurrentTier(v Tier) {
+	o.CurrentTier = &v
 }
 
 type NullableLoyaltySubLedger struct {

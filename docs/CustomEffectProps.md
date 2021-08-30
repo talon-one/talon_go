@@ -4,35 +4,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | The type of the custom effect. | 
+**EffectId** | Pointer to **int32** | The ID of the custom effect that was triggered | 
+**Name** | Pointer to **string** | The type of the custom effect. | 
 **Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 
 
 ## Methods
 
-### GetType
+### GetEffectId
 
-`func (o *CustomEffectProps) GetType() string`
+`func (o *CustomEffectProps) GetEffectId() int32`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetEffectId returns the EffectId field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetEffectIdOk
 
-`func (o *CustomEffectProps) GetTypeOk() (string, bool)`
+`func (o *CustomEffectProps) GetEffectIdOk() (int32, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetEffectIdOk returns a tuple with the EffectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasType
+### HasEffectId
 
-`func (o *CustomEffectProps) HasType() bool`
+`func (o *CustomEffectProps) HasEffectId() bool`
 
-HasType returns a boolean if a field has been set.
+HasEffectId returns a boolean if a field has been set.
 
-### SetType
+### SetEffectId
 
-`func (o *CustomEffectProps) SetType(v string)`
+`func (o *CustomEffectProps) SetEffectId(v int32)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetEffectId gets a reference to the given int32 and assigns it to the EffectId field.
+
+### GetName
+
+`func (o *CustomEffectProps) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CustomEffectProps) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *CustomEffectProps) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *CustomEffectProps) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPayload
 

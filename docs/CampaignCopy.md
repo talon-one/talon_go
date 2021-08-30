@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the copied campaign (Defaults to \&quot;Copy of original campaign name\&quot;) | [optional] 
 **ApplicationIds** | Pointer to **[]int32** | Application IDs of the applications to which a campaign should be copied to | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
-**StartTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become active. | [optional] 
-**EndTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become in-active. | [optional] 
+**StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
+**EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | [optional] 
 
 ## Methods

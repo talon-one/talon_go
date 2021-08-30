@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Action** | Pointer to **string** |  | 
-**ProfileIntegrationId** | Pointer to **string** |  | 
-**AudienceId** | Pointer to **int32** |  | 
+**ProfileIntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration. | 
+**AudienceId** | Pointer to **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
 
 ## Methods
 

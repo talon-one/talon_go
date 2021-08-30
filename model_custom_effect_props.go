@@ -16,25 +16,42 @@ import (
 
 // CustomEffectProps Effect containing custom payload.
 type CustomEffectProps struct {
+	// The ID of the custom effect that was triggered
+	EffectId int32 `json:"effectId"`
 	// The type of the custom effect.
-	Type string `json:"type"`
+	Name string `json:"name"`
 	// The JSON payload of the custom effect.
 	Payload map[string]interface{} `json:"payload"`
 }
 
-// GetType returns the Type field value
-func (o *CustomEffectProps) GetType() string {
+// GetEffectId returns the EffectId field value
+func (o *CustomEffectProps) GetEffectId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.EffectId
+}
+
+// SetEffectId sets field value
+func (o *CustomEffectProps) SetEffectId(v int32) {
+	o.EffectId = v
+}
+
+// GetName returns the Name field value
+func (o *CustomEffectProps) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Type
+	return o.Name
 }
 
-// SetType sets field value
-func (o *CustomEffectProps) SetType(v string) {
-	o.Type = v
+// SetName sets field value
+func (o *CustomEffectProps) SetName(v string) {
+	o.Name = v
 }
 
 // GetPayload returns the Payload field value

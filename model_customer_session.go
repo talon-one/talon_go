@@ -29,11 +29,11 @@ type CustomerSession struct {
 	Coupon string `json:"coupon"`
 	// Any referral code entered.
 	Referral string `json:"referral"`
-	// Indicates the current state of the session. All sessions must start in the \"open\" state, after which valid transitions are...  1. open -> closed 2. open -> cancelled 3. closed -> cancelled
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`, after which valid transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled`  For more information, see [Entities](/docs/dev/concepts/entities#customer-session).
 	State string `json:"state"`
 	// Serialized JSON representation.
 	CartItems []CartItem `json:"cartItems"`
-	// Identifiers for the customer, this can be used for limits on values such as device ID.
+	// Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts.
 	Identifiers *[]string `json:"identifiers,omitempty"`
 	// The total sum of the cart in one session.
 	Total float32 `json:"total"`
@@ -43,6 +43,8 @@ type CustomerSession struct {
 	FirstSession bool `json:"firstSession"`
 	// A map of labelled discount values, values will be in the same currency as the application associated with the session.
 	Discounts map[string]float32 `json:"discounts"`
+	// Timestamp of the most recent event received on this session
+	Updated time.Time `json:"updated"`
 }
 
 // GetIntegrationId returns the IntegrationId field value
@@ -256,6 +258,21 @@ func (o *CustomerSession) GetDiscounts() map[string]float32 {
 // SetDiscounts sets field value
 func (o *CustomerSession) SetDiscounts(v map[string]float32) {
 	o.Discounts = v
+}
+
+// GetUpdated returns the Updated field value
+func (o *CustomerSession) GetUpdated() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Updated
+}
+
+// SetUpdated sets field value
+func (o *CustomerSession) SetUpdated(v time.Time) {
+	o.Updated = v
 }
 
 type NullableCustomerSession struct {

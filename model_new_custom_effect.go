@@ -14,8 +14,10 @@ import (
 	"encoding/json"
 )
 
-// NewCustomEffect struct for NewCustomEffect
+// NewCustomEffect
 type NewCustomEffect struct {
+	// The IDs of the applications that are related to this entity.
+	ApplicationIds []int32 `json:"applicationIds"`
 	// The name of this effect.
 	Name string `json:"name"`
 	// The title of this effect.
@@ -26,10 +28,23 @@ type NewCustomEffect struct {
 	Description *string `json:"description,omitempty"`
 	// Determines if this effect is active.
 	Enabled bool `json:"enabled"`
-	// A list of the IDs of the applications that this effect is enabled for
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
 	// Array of template argument definitions
 	Params *[]TemplateArgDef `json:"params,omitempty"`
+}
+
+// GetApplicationIds returns the ApplicationIds field value
+func (o *NewCustomEffect) GetApplicationIds() []int32 {
+	if o == nil {
+		var ret []int32
+		return ret
+	}
+
+	return o.ApplicationIds
+}
+
+// SetApplicationIds sets field value
+func (o *NewCustomEffect) SetApplicationIds(v []int32) {
+	o.ApplicationIds = v
 }
 
 // GetName returns the Name field value
@@ -123,39 +138,6 @@ func (o *NewCustomEffect) GetEnabled() bool {
 // SetEnabled sets field value
 func (o *NewCustomEffect) SetEnabled(v bool) {
 	o.Enabled = v
-}
-
-// GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *NewCustomEffect) GetSubscribedApplicationsIds() []int32 {
-	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret
-	}
-	return *o.SubscribedApplicationsIds
-}
-
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewCustomEffect) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
-	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
-	}
-	return *o.SubscribedApplicationsIds, true
-}
-
-// HasSubscribedApplicationsIds returns a boolean if a field has been set.
-func (o *NewCustomEffect) HasSubscribedApplicationsIds() bool {
-	if o != nil && o.SubscribedApplicationsIds != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *NewCustomEffect) SetSubscribedApplicationsIds(v []int32) {
-	o.SubscribedApplicationsIds = &v
 }
 
 // GetParams returns the Params field value if set, zero value otherwise.

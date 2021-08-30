@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | A friendly name for this campaign. | 
+**Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
-**StartTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become active. | [optional] 
-**EndTime** | Pointer to [**time.Time**](time.Time.md) | Datetime when the campaign will become in-active. | [optional] 
+**StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
+**EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp the campaign will become inactive. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to STATE_ENABLED]
 **ActiveRulesetId** | Pointer to **int32** | ID of Ruleset this campaign applies on customer session evaluation. | [optional] 

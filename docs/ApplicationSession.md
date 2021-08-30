@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 
-**State** | Pointer to **string** | Indicating if the customer session is in progress (\&quot;open\&quot;), \&quot;closed\&quot;, or \&quot;cancelled\&quot;. | 
+**State** | Pointer to **string** | Indicating if the customer session is in progress (&#x60;open&#x60;), &#x60;closed&#x60;, or &#x60;cancelled&#x60;. For more information about customer sessions, see [Customer sessions](/docs/dev/concepts/entities#customer-session-states) in the docs.  | 
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
 **Discounts** | Pointer to **map[string]float32** | A map of labelled discount values, in the same currency as the session. | 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 

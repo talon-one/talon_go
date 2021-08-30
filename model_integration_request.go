@@ -17,7 +17,7 @@ import (
 // IntegrationRequest The body of a V2 integration API request (customer session update). Next to the customer session details, this contains an optional listing of extra properties that should be returned in the response.
 type IntegrationRequest struct {
 	CustomerSession NewCustomerSessionV2 `json:"customerSession"`
-	// Optional list of requested information to be present on the response related to the customer session update. Currently supported: \"customerSession\", \"customerProfile\", \"coupons\", \"triggeredCampaigns\", \"referral\", \"loyalty\", \"event\", \"awardedGiveaways\" and \"ruleFailureReasons\".
+	// Optional list of requested information to be present on the response related to the customer session update.  **Note:** `ruleFailureReasons` is always part of the response when the Application type is `sandbox`.
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 }
 

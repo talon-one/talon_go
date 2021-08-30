@@ -29,6 +29,8 @@ type Environment struct {
 	Functions []FunctionDef `json:"functions"`
 	// The templates defined for this application.
 	Templates []TemplateDef `json:"templates"`
+	// A stringified version of the environment's Talang variables scope
+	Variables string `json:"variables"`
 	// The giveaways pools that the application is subscribed to.
 	GiveawaysPools *[]GiveawaysPool `json:"giveawaysPools,omitempty"`
 	// The loyalty programs that the application is subscribed to.
@@ -39,7 +41,6 @@ type Environment struct {
 	AdditionalCosts *[]AccountAdditionalCost `json:"additionalCosts,omitempty"`
 	// The audiences contained in the account which the application belongs to.
 	Audiences *[]Audience `json:"audiences,omitempty"`
-	Variables string      `json:"variables"`
 }
 
 // GetId returns the Id field value
@@ -130,6 +131,21 @@ func (o *Environment) GetTemplates() []TemplateDef {
 // SetTemplates sets field value
 func (o *Environment) SetTemplates(v []TemplateDef) {
 	o.Templates = v
+}
+
+// GetVariables returns the Variables field value
+func (o *Environment) GetVariables() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Variables
+}
+
+// SetVariables sets field value
+func (o *Environment) SetVariables(v string) {
+	o.Variables = v
 }
 
 // GetGiveawaysPools returns the GiveawaysPools field value if set, zero value otherwise.
@@ -295,21 +311,6 @@ func (o *Environment) HasAudiences() bool {
 // SetAudiences gets a reference to the given []Audience and assigns it to the Audiences field.
 func (o *Environment) SetAudiences(v []Audience) {
 	o.Audiences = &v
-}
-
-// GetVariables returns the Variables field value
-func (o *Environment) GetVariables() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Variables
-}
-
-// SetVariables sets field value
-func (o *Environment) SetVariables(v string) {
-	o.Variables = v
 }
 
 type NullableEnvironment struct {

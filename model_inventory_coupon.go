@@ -53,7 +53,7 @@ type InventoryCoupon struct {
 	BatchId *string `json:"batchId,omitempty"`
 	// The number of times the coupon was redeemed by the profile.
 	ProfileRedemptionCount int32 `json:"profileRedemptionCount"`
-	// Can be either active, used, expired, or pending. active: reserved coupons that are neither pending nor used nor expired, and have a non-exhausted limit counter. used: coupons that are not pending, and have reached their redemption limit or were redeemed by the profile before expiration. expired: all non-pending, non-active, non-used coupons that were not redeemed by the profile. pending: coupons that have a start date in the future.
+	// Can be either active, used, expired, pending or disabled. active: reserved coupons that are neither pending nor used nor expired, and have a non-exhausted limit counter. used: coupons that are not pending, and have reached their redemption limit or were redeemed by the profile before expiration. expired: all non-pending, non-active, non-used coupons that were not redeemed by the profile. pending: coupons that have a start date in the future. disabled: coupons of non-active campaigns.
 	State string `json:"state"`
 }
 

@@ -20,6 +20,8 @@ type LimitConfig struct {
 	Action string `json:"action"`
 	// The value to set for the limit
 	Limit float32 `json:"limit"`
+	// The period on which the budget limit recurs
+	Period *string `json:"period,omitempty"`
 	// The entities that make the address of this limit
 	Entities []string `json:"entities"`
 }
@@ -52,6 +54,39 @@ func (o *LimitConfig) GetLimit() float32 {
 // SetLimit sets field value
 func (o *LimitConfig) SetLimit(v float32) {
 	o.Limit = v
+}
+
+// GetPeriod returns the Period field value if set, zero value otherwise.
+func (o *LimitConfig) GetPeriod() string {
+	if o == nil || o.Period == nil {
+		var ret string
+		return ret
+	}
+	return *o.Period
+}
+
+// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LimitConfig) GetPeriodOk() (string, bool) {
+	if o == nil || o.Period == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Period, true
+}
+
+// HasPeriod returns a boolean if a field has been set.
+func (o *LimitConfig) HasPeriod() bool {
+	if o != nil && o.Period != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriod gets a reference to the given string and assigns it to the Period field.
+func (o *LimitConfig) SetPeriod(v string) {
+	o.Period = &v
 }
 
 // GetEntities returns the Entities field value

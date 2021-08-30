@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// RuleFailureReason Details about why a rule failed
+// RuleFailureReason Details about why a rule failed.
 type RuleFailureReason struct {
 	// The ID of the campaign that contains the rule that failed
 	CampaignID int32 `json:"campaignID"`

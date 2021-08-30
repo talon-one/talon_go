@@ -21,10 +21,10 @@ type LoyaltyProgramLedgers struct {
 	// Visible name of loyalty program
 	Title string `json:"title"`
 	// Internal name of loyalty program
-	Name   string                `json:"name"`
-	Ledger LoyaltyProgramBalance `json:"ledger"`
-	// A map containing a list of all loyalty subledger balances
-	SubLedgers *map[string]LoyaltyProgramBalance `json:"subLedgers,omitempty"`
+	Name   string     `json:"name"`
+	Ledger LedgerInfo `json:"ledger"`
+	// A map containing information about each loyalty subledger
+	SubLedgers *map[string]LedgerInfo `json:"subLedgers,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -73,9 +73,9 @@ func (o *LoyaltyProgramLedgers) SetName(v string) {
 }
 
 // GetLedger returns the Ledger field value
-func (o *LoyaltyProgramLedgers) GetLedger() LoyaltyProgramBalance {
+func (o *LoyaltyProgramLedgers) GetLedger() LedgerInfo {
 	if o == nil {
-		var ret LoyaltyProgramBalance
+		var ret LedgerInfo
 		return ret
 	}
 
@@ -83,14 +83,14 @@ func (o *LoyaltyProgramLedgers) GetLedger() LoyaltyProgramBalance {
 }
 
 // SetLedger sets field value
-func (o *LoyaltyProgramLedgers) SetLedger(v LoyaltyProgramBalance) {
+func (o *LoyaltyProgramLedgers) SetLedger(v LedgerInfo) {
 	o.Ledger = v
 }
 
 // GetSubLedgers returns the SubLedgers field value if set, zero value otherwise.
-func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LoyaltyProgramBalance {
+func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LedgerInfo {
 	if o == nil || o.SubLedgers == nil {
-		var ret map[string]LoyaltyProgramBalance
+		var ret map[string]LedgerInfo
 		return ret
 	}
 	return *o.SubLedgers
@@ -98,9 +98,9 @@ func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LoyaltyProgramBalance
 
 // GetSubLedgersOk returns a tuple with the SubLedgers field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramLedgers) GetSubLedgersOk() (map[string]LoyaltyProgramBalance, bool) {
+func (o *LoyaltyProgramLedgers) GetSubLedgersOk() (map[string]LedgerInfo, bool) {
 	if o == nil || o.SubLedgers == nil {
-		var ret map[string]LoyaltyProgramBalance
+		var ret map[string]LedgerInfo
 		return ret, false
 	}
 	return *o.SubLedgers, true
@@ -115,8 +115,8 @@ func (o *LoyaltyProgramLedgers) HasSubLedgers() bool {
 	return false
 }
 
-// SetSubLedgers gets a reference to the given map[string]LoyaltyProgramBalance and assigns it to the SubLedgers field.
-func (o *LoyaltyProgramLedgers) SetSubLedgers(v map[string]LoyaltyProgramBalance) {
+// SetSubLedgers gets a reference to the given map[string]LedgerInfo and assigns it to the SubLedgers field.
+func (o *LoyaltyProgramLedgers) SetSubLedgers(v map[string]LedgerInfo) {
 	o.SubLedgers = &v
 }
 

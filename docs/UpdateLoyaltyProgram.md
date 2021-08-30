@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **DefaultValidity** | Pointer to **string** | Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like &#39;1h&#39; or &#39;40m&#39;. | [optional] 
 **DefaultPending** | Pointer to **string** | Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like &#39;1h&#39; or &#39;40m&#39;. | [optional] 
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program | [optional] 
+**Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | [optional] 
+**Tiers** | Pointer to [**[]NewLoyaltyTier**](NewLoyaltyTier.md) | The tiers in this loyalty program | [optional] 
 
 ## Methods
 
@@ -162,6 +164,56 @@ HasAllowSubledger returns a boolean if a field has been set.
 `func (o *UpdateLoyaltyProgram) SetAllowSubledger(v bool)`
 
 SetAllowSubledger gets a reference to the given bool and assigns it to the AllowSubledger field.
+
+### GetTimezone
+
+`func (o *UpdateLoyaltyProgram) GetTimezone() string`
+
+GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+
+### GetTimezoneOk
+
+`func (o *UpdateLoyaltyProgram) GetTimezoneOk() (string, bool)`
+
+GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTimezone
+
+`func (o *UpdateLoyaltyProgram) HasTimezone() bool`
+
+HasTimezone returns a boolean if a field has been set.
+
+### SetTimezone
+
+`func (o *UpdateLoyaltyProgram) SetTimezone(v string)`
+
+SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+
+### GetTiers
+
+`func (o *UpdateLoyaltyProgram) GetTiers() []NewLoyaltyTier`
+
+GetTiers returns the Tiers field if non-nil, zero value otherwise.
+
+### GetTiersOk
+
+`func (o *UpdateLoyaltyProgram) GetTiersOk() ([]NewLoyaltyTier, bool)`
+
+GetTiersOk returns a tuple with the Tiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTiers
+
+`func (o *UpdateLoyaltyProgram) HasTiers() bool`
+
+HasTiers returns a boolean if a field has been set.
+
+### SetTiers
+
+`func (o *UpdateLoyaltyProgram) SetTiers(v []NewLoyaltyTier)`
+
+SetTiers gets a reference to the given []NewLoyaltyTier and assigns it to the Tiers field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

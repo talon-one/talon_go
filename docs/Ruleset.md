@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
 **RbVersion** | Pointer to **string** | A string indicating which version of the rulebuilder was used to create this ruleset. | [optional] 
-**Activate** | Pointer to **bool** | A boolean indicating whether this newly created ruleset should also be activated for the campaign owns it | [optional] 
+**Activate** | Pointer to **bool** | A boolean indicating whether this newly created ruleset should also be activated for the campaign that owns it | [optional] 
+**CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | [optional] 
+**TemplateId** | Pointer to **int32** | The ID of the campaign template that owns this entity. | [optional] 
 **ActivatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp indicating when this Ruleset was activated. | [optional] 
 
 ## Methods
@@ -65,31 +66,6 @@ HasCreated returns a boolean if a field has been set.
 `func (o *Ruleset) SetCreated(v time.Time)`
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetCampaignId
-
-`func (o *Ruleset) GetCampaignId() int32`
-
-GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
-
-### GetCampaignIdOk
-
-`func (o *Ruleset) GetCampaignIdOk() (int32, bool)`
-
-GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCampaignId
-
-`func (o *Ruleset) HasCampaignId() bool`
-
-HasCampaignId returns a boolean if a field has been set.
-
-### SetCampaignId
-
-`func (o *Ruleset) SetCampaignId(v int32)`
-
-SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
 ### GetUserId
 
@@ -215,6 +191,56 @@ HasActivate returns a boolean if a field has been set.
 `func (o *Ruleset) SetActivate(v bool)`
 
 SetActivate gets a reference to the given bool and assigns it to the Activate field.
+
+### GetCampaignId
+
+`func (o *Ruleset) GetCampaignId() int32`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *Ruleset) GetCampaignIdOk() (int32, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignId
+
+`func (o *Ruleset) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### SetCampaignId
+
+`func (o *Ruleset) SetCampaignId(v int32)`
+
+SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
+
+### GetTemplateId
+
+`func (o *Ruleset) GetTemplateId() int32`
+
+GetTemplateId returns the TemplateId field if non-nil, zero value otherwise.
+
+### GetTemplateIdOk
+
+`func (o *Ruleset) GetTemplateIdOk() (int32, bool)`
+
+GetTemplateIdOk returns a tuple with the TemplateId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTemplateId
+
+`func (o *Ruleset) HasTemplateId() bool`
+
+HasTemplateId returns a boolean if a field has been set.
+
+### SetTemplateId
+
+`func (o *Ruleset) SetTemplateId(v int32)`
+
+SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
 
 ### GetActivatedAt
 
