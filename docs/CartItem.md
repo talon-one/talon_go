@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** |  | 
-**Sku** | Pointer to **string** |  | 
-**Quantity** | Pointer to **int32** |  | 
-**Price** | Pointer to **float32** |  | 
-**Category** | Pointer to **string** |  | [optional] 
-**Weight** | Pointer to **float32** | Weight of item in mm | [optional] 
+**Name** | Pointer to **string** | Name of item | 
+**Sku** | Pointer to **string** | Stock keeping unit of item | 
+**Quantity** | Pointer to **int32** | Quantity of item. **Important:** If you enabled [cart item flattening](https://help.talon.one/hc/en-us/articles/360016036899-Flattening-Cart-Items), the quantity is always one and the same cart item might receive multiple per-item discounts. Ensure you can process multiple discounts on one cart item correctly.  | 
+**Price** | Pointer to **float32** | Price of item | 
+**Category** | Pointer to **string** | Type, group or model of the item | [optional] 
+**Weight** | Pointer to **float32** | Weight of item in grams | [optional] 
 **Height** | Pointer to **float32** | Height of item in mm | [optional] 
 **Width** | Pointer to **float32** | Width of item in mm | [optional] 
 **Length** | Pointer to **float32** | Length of item in mm | [optional] 
 **Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally) | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. You can use built-in attributes or create your own. See [Attributes](https://docs.talon.one/docs/dev/concepts/attributes).  | [optional] 
 
 ## Methods
 

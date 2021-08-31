@@ -18,7 +18,7 @@ import (
 type MultipleCustomerProfileIntegrationRequestItem struct {
 	// Arbitrary properties associated with this item
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// The custom identifier for this profile, must be unique within the account.
+	// The custom identifier for this profile, must be unique within the account.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](/integration-api/#operation/updateCustomerSessionV2).
 	IntegrationId string `json:"integrationId"`
 }
 

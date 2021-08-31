@@ -45,12 +45,12 @@ type Application struct {
 	ExclusiveCampaignsStrategy *string `json:"exclusiveCampaignsStrategy,omitempty"`
 	// The default scope to apply \"setDiscount\" effects on if no scope was provided with the effect.
 	DefaultDiscountScope *string `json:"defaultDiscountScope,omitempty"`
-	// Flag indicating if discounts should cascade for this application
+	// Indicates if discounts should cascade for this application
 	EnableCascadingDiscounts *bool `json:"enableCascadingDiscounts,omitempty"`
-	// Flag indicating if cart items of quantity larger than one should be separated into different items of quantity one
+	// Indicates if cart items of quantity larger than one should be separated into different items of quantity one
 	EnableFlattenedCartItems *bool               `json:"enableFlattenedCartItems,omitempty"`
 	AttributesSettings       *AttributesSettings `json:"attributesSettings,omitempty"`
-	// Flag indicating if this is a live or sandbox application
+	// Indicates if this is a live or sandbox application
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// An array containing all the loyalty programs to which this application is subscribed
 	LoyaltyPrograms []LoyaltyProgram `json:"loyaltyPrograms"`

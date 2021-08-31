@@ -23,9 +23,9 @@ type CampaignCopy struct {
 	ApplicationIds []int32 `json:"applicationIds"`
 	// A detailed description of the campaign.
 	Description *string `json:"description,omitempty"`
-	// Datetime when the campaign will become active.
+	// Timestamp when the campaign will become active.
 	StartTime *time.Time `json:"startTime,omitempty"`
-	// Datetime when the campaign will become in-active.
+	// Timestamp when the campaign will become inactive.
 	EndTime *time.Time `json:"endTime,omitempty"`
 	// A list of tags for the campaign.
 	Tags *[]string `json:"tags,omitempty"`

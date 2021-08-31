@@ -17,13 +17,13 @@ import (
 
 // NewCampaign struct for NewCampaign
 type NewCampaign struct {
-	// A friendly name for this campaign.
+	// A user-facing name for this campaign.
 	Name string `json:"name"`
 	// A detailed description of the campaign.
 	Description *string `json:"description,omitempty"`
-	// Datetime when the campaign will become active.
+	// Timestamp when the campaign will become active.
 	StartTime *time.Time `json:"startTime,omitempty"`
-	// Datetime when the campaign will become in-active.
+	// Timestamp the campaign will become inactive.
 	EndTime *time.Time `json:"endTime,omitempty"`
 	// Arbitrary properties associated with this campaign
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`

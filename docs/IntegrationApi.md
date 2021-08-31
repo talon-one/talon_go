@@ -4,28 +4,70 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateCouponReservation**](IntegrationApi.md#CreateCouponReservation) | **Post** /v1/coupon_reservations/{couponValue} | Create a new coupon reservation
-[**CreateReferral**](IntegrationApi.md#CreateReferral) | **Post** /v1/referrals | Create a referral code for an advocate
+[**CreateAudienceV2**](IntegrationApi.md#CreateAudienceV2) | **Post** /v2/audiences | Create audience
+[**CreateCouponReservation**](IntegrationApi.md#CreateCouponReservation) | **Post** /v1/coupon_reservations/{couponValue} | Create coupon reservation
+[**CreateReferral**](IntegrationApi.md#CreateReferral) | **Post** /v1/referrals | Create referral code for an advocate
 [**CreateReferralsForMultipleAdvocates**](IntegrationApi.md#CreateReferralsForMultipleAdvocates) | **Post** /v1/referrals_for_multiple_advocates | Create referral codes for multiple advocates
+[**DeleteAudienceMembershipsV2**](IntegrationApi.md#DeleteAudienceMembershipsV2) | **Delete** /v2/audiences/{audienceId}/memberships | Delete audience memberships
+[**DeleteAudienceV2**](IntegrationApi.md#DeleteAudienceV2) | **Delete** /v2/audiences/{audienceId} | Delete audience
 [**DeleteCouponReservation**](IntegrationApi.md#DeleteCouponReservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 [**DeleteCustomerData**](IntegrationApi.md#DeleteCustomerData) | **Delete** /v1/customer_data/{integrationId} | Delete the personal data of a customer
-[**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | Get an inventory of all data associated with a specific customer profile
-[**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | Get the users that have this coupon reserved
+[**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | List data associated with a specific customer profile
+[**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | List users that have this coupon reserved
 [**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track an Event
-[**UpdateCustomerProfile**](IntegrationApi.md#UpdateCustomerProfile) | **Put** /v1/customer_profiles/{integrationId} | Update a Customer Profile V1
-[**UpdateCustomerProfileAudiences**](IntegrationApi.md#UpdateCustomerProfileAudiences) | **Post** /v2/customer_audiences | Update a Customer Profile Audiences
-[**UpdateCustomerProfileV2**](IntegrationApi.md#UpdateCustomerProfileV2) | **Put** /v2/customer_profiles/{integrationId} | Update a Customer Profile
-[**UpdateCustomerProfilesV2**](IntegrationApi.md#UpdateCustomerProfilesV2) | **Put** /v2/customer_profiles | Update multiple Customer Profiles
-[**UpdateCustomerSession**](IntegrationApi.md#UpdateCustomerSession) | **Put** /v1/customer_sessions/{customerSessionId} | Update a Customer Session V1
-[**UpdateCustomerSessionV2**](IntegrationApi.md#UpdateCustomerSessionV2) | **Put** /v2/customer_sessions/{customerSessionId} | Update a Customer Session
+[**UpdateAudienceCustomersAttributes**](IntegrationApi.md#UpdateAudienceCustomersAttributes) | **Put** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience
+[**UpdateAudienceV2**](IntegrationApi.md#UpdateAudienceV2) | **Put** /v2/audiences/{audienceId} | Update audience
+[**UpdateCustomerProfileAudiences**](IntegrationApi.md#UpdateCustomerProfileAudiences) | **Post** /v2/customer_audiences | Update multiple customer profiles&#39; audiences
+[**UpdateCustomerProfileV2**](IntegrationApi.md#UpdateCustomerProfileV2) | **Put** /v2/customer_profiles/{integrationId} | Update customer profile
+[**UpdateCustomerProfilesV2**](IntegrationApi.md#UpdateCustomerProfilesV2) | **Put** /v2/customer_profiles | Update multiple customer profiles
+[**UpdateCustomerSessionV2**](IntegrationApi.md#UpdateCustomerSessionV2) | **Put** /v2/customer_sessions/{customerSessionId} | Update customer session
 
+
+
+## CreateAudienceV2
+
+> Audience CreateAudienceV2(ctx).Body(body).Execute()
+
+Create audience
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAudienceV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**NewAudience**](NewAudience.md) |  | 
+
+### Return type
+
+[**Audience**](Audience.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateCouponReservation
 
 > Coupon CreateCouponReservation(ctx, couponValue).Body(body).Execute()
 
-Create a new coupon reservation
+Create coupon reservation
 
 
 
@@ -53,7 +95,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -69,7 +111,7 @@ Name | Type | Description  | Notes
 
 > Referral CreateReferral(ctx).Body(body).Execute()
 
-Create a referral code for an advocate
+Create referral code for an advocate
 
 
 
@@ -92,7 +134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -124,7 +166,7 @@ Other parameters are passed through a pointer to a apiCreateReferralsForMultiple
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**NewReferralsForMultipleAdvocates**](NewReferralsForMultipleAdvocates.md) |  | 
- **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
+ **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains essential data such as the updated customer profiles and session-related information.  | [default to yes]
 
 ### Return type
 
@@ -132,12 +174,98 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteAudienceMembershipsV2
+
+> DeleteAudienceMembershipsV2(ctx, audienceId).Execute()
+
+Delete audience memberships
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAudienceMembershipsV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteAudienceV2
+
+> DeleteAudienceV2(ctx, audienceId).Execute()
+
+Delete audience
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAudienceV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -176,7 +304,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -219,7 +347,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -235,7 +363,7 @@ Name | Type | Description  | Notes
 
 > CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Giveaways(giveaways).Execute()
 
-Get an inventory of all data associated with a specific customer profile
+List data associated with a specific customer profile
 
 
 
@@ -245,7 +373,7 @@ Get an inventory of all data associated with a specific customer profile
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | The custom identifier for this profile, must be unique within the account. | 
+**integrationId** | **string** | The custom identifier for this profile, must be unique within the account.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](/integration-api/#operation/updateCustomerSessionV2).  | 
 
 ### Other Parameters
 
@@ -255,11 +383,11 @@ Other parameters are passed through a pointer to a apiGetCustomerInventoryReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **profile** | **bool** | optional flag to decide if you would like customer profile information in the response | 
- **referrals** | **bool** | optional flag to decide if you would like referral information in the response | 
- **coupons** | **bool** | optional flag to decide if you would like coupon information in the response | 
- **loyalty** | **bool** | optional flag to decide if you would like loyalty information in the response | 
- **giveaways** | **bool** | optional flag to decide if you would like giveaways information in the response | 
+ **profile** | **bool** | Set to &#x60;true&#x60; to include customer profile information in the response. | 
+ **referrals** | **bool** | Set to &#x60;true&#x60; to include referral information in the response. | 
+ **coupons** | **bool** | Set to &#x60;true&#x60; to include coupon information in the response. | 
+ **loyalty** | **bool** | Set to &#x60;true&#x60; to include loyalty information in the response. | 
+ **giveaways** | **bool** | Set to &#x60;true&#x60; to include giveaways information in the response. | 
 
 ### Return type
 
@@ -267,7 +395,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -283,7 +411,7 @@ Name | Type | Description  | Notes
 
 > InlineResponse200 GetReservedCustomers(ctx, couponValue).Execute()
 
-Get the users that have this coupon reserved
+List users that have this coupon reserved
 
 
 
@@ -310,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -350,7 +478,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -362,11 +490,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateCustomerProfile
+## UpdateAudienceCustomersAttributes
 
-> IntegrationState UpdateCustomerProfile(ctx, integrationId).Body(body).Dry(dry).Execute()
+> UpdateAudienceCustomersAttributes(ctx, audienceId).Body(body).Execute()
 
-Update a Customer Profile V1
+Update profile attributes for all customers in audience
 
 
 
@@ -376,26 +504,69 @@ Update a Customer Profile V1
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | The custom identifier for this profile, must be unique within the account. | 
+**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateCustomerProfileRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateAudienceCustomersAttributesRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewCustomerProfile**](NewCustomerProfile.md) |  | 
- **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
+ **body** | **map[string]interface{}** |  | 
 
 ### Return type
 
-[**IntegrationState**](IntegrationState.md)
+ (empty response body)
 
 ### Authorization
 
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateAudienceV2
+
+> Audience UpdateAudienceV2(ctx, audienceId).Body(body).Execute()
+
+Update audience
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAudienceV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateAudience**](UpdateAudience.md) |  | 
+
+### Return type
+
+[**Audience**](Audience.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
 
 ### HTTP request headers
 
@@ -411,7 +582,7 @@ Name | Type | Description  | Notes
 
 > UpdateCustomerProfileAudiences(ctx).Body(body).Execute()
 
-Update a Customer Profile Audiences
+Update multiple customer profiles' audiences
 
 
 
@@ -450,7 +621,7 @@ Name | Type | Description  | Notes
 
 > IntegrationStateV2 UpdateCustomerProfileV2(ctx, integrationId).Body(body).RunRuleEngine(runRuleEngine).Dry(dry).Execute()
 
-Update a Customer Profile
+Update customer profile
 
 
 
@@ -471,7 +642,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**CustomerProfileIntegrationRequestV2**](CustomerProfileIntegrationRequestV2.md) |  | 
- **runRuleEngine** | **bool** | Indicates whether to run the rule engine. | [default to false]
+ **runRuleEngine** | **bool** | Indicates whether to run the rule engine. Setting this property to &#x60;false&#x60; improves response times. | [default to false]
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. Only used when &#x60;runRuleEngine&#x60; is set to &#x60;true&#x60;.  | 
 
 ### Return type
@@ -496,7 +667,7 @@ Name | Type | Description  | Notes
 
 > MultipleCustomerProfileIntegrationResponseV2 UpdateCustomerProfilesV2(ctx).Body(body).Silent(silent).Execute()
 
-Update multiple Customer Profiles
+Update multiple customer profiles
 
 
 
@@ -512,7 +683,7 @@ Other parameters are passed through a pointer to a apiUpdateCustomerProfilesV2Re
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**MultipleCustomerProfileIntegrationRequest**](MultipleCustomerProfileIntegrationRequest.md) |  | 
- **silent** | **string** | If set to &#x60;yes&#x60;, response will be an empty 204, otherwise a list of integration states will be generated (up to 1000). | 
+ **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains essential data such as the updated customer profiles and session-related information.  | [default to yes]
 
 ### Return type
 
@@ -532,56 +703,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateCustomerSession
-
-> IntegrationState UpdateCustomerSession(ctx, customerSessionId).Body(body).Dry(dry).Execute()
-
-Update a Customer Session V1
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customerSessionId** | **string** | The custom identifier for this session, must be unique within the account. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCustomerSessionRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**NewCustomerSession**](NewCustomerSession.md) |  | 
- **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;. | 
-
-### Return type
-
-[**IntegrationState**](IntegrationState.md)
-
-### Authorization
-
-[api_key_v1](../README.md#api_key_v1), [integration_auth](../README.md#integration_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## UpdateCustomerSessionV2
 
 > IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).Body(body).Dry(dry).Execute()
 
-Update a Customer Session
+Update customer session
 
 
 

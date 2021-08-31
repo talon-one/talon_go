@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the role | [optional] 
 **Description** | Pointer to **string** | Description of the role | [optional] 
 **Acl** | Pointer to **string** | Role Policy this should be a stringified blob of json | [optional] 
-**Users** | Pointer to **[]int32** | An array of user identifiers | [optional] 
+**Members** | Pointer to **[]int32** | An array of user identifiers | [optional] 
 
 ## Methods
 
@@ -86,30 +86,30 @@ HasAcl returns a boolean if a field has been set.
 
 SetAcl gets a reference to the given string and assigns it to the Acl field.
 
-### GetUsers
+### GetMembers
 
-`func (o *UpdateRole) GetUsers() []int32`
+`func (o *UpdateRole) GetMembers() []int32`
 
-GetUsers returns the Users field if non-nil, zero value otherwise.
+GetMembers returns the Members field if non-nil, zero value otherwise.
 
-### GetUsersOk
+### GetMembersOk
 
-`func (o *UpdateRole) GetUsersOk() ([]int32, bool)`
+`func (o *UpdateRole) GetMembersOk() ([]int32, bool)`
 
-GetUsersOk returns a tuple with the Users field if it's non-nil, zero value otherwise
+GetMembersOk returns a tuple with the Members field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasUsers
+### HasMembers
 
-`func (o *UpdateRole) HasUsers() bool`
+`func (o *UpdateRole) HasMembers() bool`
 
-HasUsers returns a boolean if a field has been set.
+HasMembers returns a boolean if a field has been set.
 
-### SetUsers
+### SetMembers
 
-`func (o *UpdateRole) SetUsers(v []int32)`
+`func (o *UpdateRole) SetMembers(v []int32)`
 
-SetUsers gets a reference to the given []int32 and assigns it to the Users field.
+SetMembers gets a reference to the given []int32 and assigns it to the Members field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -21,8 +21,6 @@ type Ruleset struct {
 	Id int32 `json:"id"`
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`
-	// The ID of the campaign that owns this entity.
-	CampaignId int32 `json:"campaignId"`
 	// The ID of the account that owns this entity.
 	UserId int32 `json:"userId"`
 	// Set of rules to apply.
@@ -31,8 +29,12 @@ type Ruleset struct {
 	Bindings []Binding `json:"bindings"`
 	// A string indicating which version of the rulebuilder was used to create this ruleset.
 	RbVersion *string `json:"rbVersion,omitempty"`
-	// A boolean indicating whether this newly created ruleset should also be activated for the campaign owns it
+	// A boolean indicating whether this newly created ruleset should also be activated for the campaign that owns it
 	Activate *bool `json:"activate,omitempty"`
+	// The ID of the campaign that owns this entity.
+	CampaignId *int32 `json:"campaignId,omitempty"`
+	// The ID of the campaign template that owns this entity.
+	TemplateId *int32 `json:"templateId,omitempty"`
 	// Timestamp indicating when this Ruleset was activated.
 	ActivatedAt *time.Time `json:"activatedAt,omitempty"`
 }
@@ -65,21 +67,6 @@ func (o *Ruleset) GetCreated() time.Time {
 // SetCreated sets field value
 func (o *Ruleset) SetCreated(v time.Time) {
 	o.Created = v
-}
-
-// GetCampaignId returns the CampaignId field value
-func (o *Ruleset) GetCampaignId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.CampaignId
-}
-
-// SetCampaignId sets field value
-func (o *Ruleset) SetCampaignId(v int32) {
-	o.CampaignId = v
 }
 
 // GetUserId returns the UserId field value
@@ -191,6 +178,72 @@ func (o *Ruleset) HasActivate() bool {
 // SetActivate gets a reference to the given bool and assigns it to the Activate field.
 func (o *Ruleset) SetActivate(v bool) {
 	o.Activate = &v
+}
+
+// GetCampaignId returns the CampaignId field value if set, zero value otherwise.
+func (o *Ruleset) GetCampaignId() int32 {
+	if o == nil || o.CampaignId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CampaignId
+}
+
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetCampaignIdOk() (int32, bool) {
+	if o == nil || o.CampaignId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CampaignId, true
+}
+
+// HasCampaignId returns a boolean if a field has been set.
+func (o *Ruleset) HasCampaignId() bool {
+	if o != nil && o.CampaignId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
+func (o *Ruleset) SetCampaignId(v int32) {
+	o.CampaignId = &v
+}
+
+// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
+func (o *Ruleset) GetTemplateId() int32 {
+	if o == nil || o.TemplateId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.TemplateId
+}
+
+// GetTemplateIdOk returns a tuple with the TemplateId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetTemplateIdOk() (int32, bool) {
+	if o == nil || o.TemplateId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.TemplateId, true
+}
+
+// HasTemplateId returns a boolean if a field has been set.
+func (o *Ruleset) HasTemplateId() bool {
+	if o != nil && o.TemplateId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
+func (o *Ruleset) SetTemplateId(v int32) {
+	o.TemplateId = &v
 }
 
 // GetActivatedAt returns the ActivatedAt field value if set, zero value otherwise.

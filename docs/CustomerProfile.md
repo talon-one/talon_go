@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. The exact moment this entity was created. | 
 **IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | 
 **AccountId** | Pointer to **int32** | The ID of the Talon.One account that owns this profile. | 
 **ClosedSessions** | Pointer to **int32** | The total amount of closed sessions by a customer. A closed session is a successful purchase. | 
@@ -16,30 +17,30 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### GetIntegrationId
+### GetId
 
-`func (o *CustomerProfile) GetIntegrationId() string`
+`func (o *CustomerProfile) GetId() int32`
 
-GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetIntegrationIdOk
+### GetIdOk
 
-`func (o *CustomerProfile) GetIntegrationIdOk() (string, bool)`
+`func (o *CustomerProfile) GetIdOk() (int32, bool)`
 
-GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasIntegrationId
+### HasId
 
-`func (o *CustomerProfile) HasIntegrationId() bool`
+`func (o *CustomerProfile) HasId() bool`
 
-HasIntegrationId returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetIntegrationId
+### SetId
 
-`func (o *CustomerProfile) SetIntegrationId(v string)`
+`func (o *CustomerProfile) SetId(v int32)`
 
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetCreated
 
@@ -65,6 +66,31 @@ HasCreated returns a boolean if a field has been set.
 `func (o *CustomerProfile) SetCreated(v time.Time)`
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetIntegrationId
+
+`func (o *CustomerProfile) GetIntegrationId() string`
+
+GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
+
+### GetIntegrationIdOk
+
+`func (o *CustomerProfile) GetIntegrationIdOk() (string, bool)`
+
+GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIntegrationId
+
+`func (o *CustomerProfile) HasIntegrationId() bool`
+
+HasIntegrationId returns a boolean if a field has been set.
+
+### SetIntegrationId
+
+`func (o *CustomerProfile) SetIntegrationId(v string)`
+
+SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
 
 ### GetAttributes
 

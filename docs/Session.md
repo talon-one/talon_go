@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **int32** | The ID of the user of this session | 
-**Token** | Pointer to **string** | An opaque session identifier | 
+**Token** | Pointer to **string** | The token to use as a bearer token to query Management API endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Unix timestamp indicating when the session was first created. | 
 
 ## Methods

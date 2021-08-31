@@ -12,16 +12,15 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
-// LoyaltyProgram A Loyalty Program
+// LoyaltyProgram
 type LoyaltyProgram struct {
-	// The ID of loyalty program.
+	// The ID of loyalty program. Unique ID for this entity.
 	Id int32 `json:"id"`
-	// The ID of the Talon.One account that owns this program.
-	AccountID int32 `json:"accountID"`
-	// The internal name for the Loyalty Program.
-	Name string `json:"name"`
+	// The exact moment this entity was created.
+	Created time.Time `json:"created"`
 	// The display title for the Loyalty Program.
 	Title string `json:"title"`
 	// Description of our Loyalty Program.
@@ -34,6 +33,12 @@ type LoyaltyProgram struct {
 	DefaultPending string `json:"defaultPending"`
 	// Indicates if this program supports subledgers inside the program
 	AllowSubledger bool `json:"allowSubledger"`
+	// A string containing an IANA timezone descriptor.
+	Timezone *string `json:"timezone,omitempty"`
+	// The ID of the Talon.One account that owns this program.
+	AccountID int32 `json:"accountID"`
+	// The internal name for the Loyalty Program. This is an immutable value.
+	Name string `json:"name"`
 	// The tiers in this loyalty program
 	Tiers *[]LoyaltyTier `json:"tiers,omitempty"`
 }
@@ -53,34 +58,19 @@ func (o *LoyaltyProgram) SetId(v int32) {
 	o.Id = v
 }
 
-// GetAccountID returns the AccountID field value
-func (o *LoyaltyProgram) GetAccountID() int32 {
+// GetCreated returns the Created field value
+func (o *LoyaltyProgram) GetCreated() time.Time {
 	if o == nil {
-		var ret int32
+		var ret time.Time
 		return ret
 	}
 
-	return o.AccountID
+	return o.Created
 }
 
-// SetAccountID sets field value
-func (o *LoyaltyProgram) SetAccountID(v int32) {
-	o.AccountID = v
-}
-
-// GetName returns the Name field value
-func (o *LoyaltyProgram) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// SetName sets field value
-func (o *LoyaltyProgram) SetName(v string) {
-	o.Name = v
+// SetCreated sets field value
+func (o *LoyaltyProgram) SetCreated(v time.Time) {
+	o.Created = v
 }
 
 // GetTitle returns the Title field value
@@ -171,6 +161,69 @@ func (o *LoyaltyProgram) GetAllowSubledger() bool {
 // SetAllowSubledger sets field value
 func (o *LoyaltyProgram) SetAllowSubledger(v bool) {
 	o.AllowSubledger = v
+}
+
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
+func (o *LoyaltyProgram) GetTimezone() string {
+	if o == nil || o.Timezone == nil {
+		var ret string
+		return ret
+	}
+	return *o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgram) GetTimezoneOk() (string, bool) {
+	if o == nil || o.Timezone == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Timezone, true
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (o *LoyaltyProgram) HasTimezone() bool {
+	if o != nil && o.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+func (o *LoyaltyProgram) SetTimezone(v string) {
+	o.Timezone = &v
+}
+
+// GetAccountID returns the AccountID field value
+func (o *LoyaltyProgram) GetAccountID() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.AccountID
+}
+
+// SetAccountID sets field value
+func (o *LoyaltyProgram) SetAccountID(v int32) {
+	o.AccountID = v
+}
+
+// GetName returns the Name field value
+func (o *LoyaltyProgram) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// SetName sets field value
+func (o *LoyaltyProgram) SetName(v string) {
+	o.Name = v
 }
 
 // GetTiers returns the Tiers field value if set, zero value otherwise.

@@ -31,7 +31,7 @@ type Giveaway struct {
 	EndDate *time.Time `json:"endDate,omitempty"`
 	// Arbitrary properties associated with this giveaway.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// Flag indicating whether this giveaway code was given before.
+	// Indicates whether this giveaway code was given before.
 	Used *bool `json:"used,omitempty"`
 	// The ID of the Import which created this giveaway.
 	ImportId *int32 `json:"importId,omitempty"`

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Ledger** | Pointer to [**LoyaltySubLedger**](LoyaltySubLedger.md) |  | 
-**SubLedgers** | Pointer to [**map[string]LoyaltySubLedger**](LoyaltySubLedger.md) | A map containing a list of all loyalty subledger balances | [optional] 
+**SubLedgers** | Pointer to [**map[string]LoyaltySubLedger**](LoyaltySubLedger.md) | A map containing a list of all loyalty subledger balances. | [optional] 
 
 ## Methods
 

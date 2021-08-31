@@ -4,15 +4,40 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. | 
 **Name** | Pointer to **string** | The name of this effect. | 
 **Title** | Pointer to **string** | The title of this effect. | 
 **Payload** | Pointer to **string** | The JSON payload of this effect. | 
 **Description** | Pointer to **string** | The description of this effect. | [optional] 
 **Enabled** | Pointer to **bool** | Determines if this effect is active. | 
-**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this effect is enabled for | [optional] 
 **Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions | [optional] 
 
 ## Methods
+
+### GetApplicationIds
+
+`func (o *NewCustomEffect) GetApplicationIds() []int32`
+
+GetApplicationIds returns the ApplicationIds field if non-nil, zero value otherwise.
+
+### GetApplicationIdsOk
+
+`func (o *NewCustomEffect) GetApplicationIdsOk() ([]int32, bool)`
+
+GetApplicationIdsOk returns a tuple with the ApplicationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasApplicationIds
+
+`func (o *NewCustomEffect) HasApplicationIds() bool`
+
+HasApplicationIds returns a boolean if a field has been set.
+
+### SetApplicationIds
+
+`func (o *NewCustomEffect) SetApplicationIds(v []int32)`
+
+SetApplicationIds gets a reference to the given []int32 and assigns it to the ApplicationIds field.
 
 ### GetName
 
@@ -138,31 +163,6 @@ HasEnabled returns a boolean if a field has been set.
 `func (o *NewCustomEffect) SetEnabled(v bool)`
 
 SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-
-### GetSubscribedApplicationsIds
-
-`func (o *NewCustomEffect) GetSubscribedApplicationsIds() []int32`
-
-GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field if non-nil, zero value otherwise.
-
-### GetSubscribedApplicationsIdsOk
-
-`func (o *NewCustomEffect) GetSubscribedApplicationsIdsOk() ([]int32, bool)`
-
-GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasSubscribedApplicationsIds
-
-`func (o *NewCustomEffect) HasSubscribedApplicationsIds() bool`
-
-HasSubscribedApplicationsIds returns a boolean if a field has been set.
-
-### SetSubscribedApplicationsIds
-
-`func (o *NewCustomEffect) SetSubscribedApplicationsIds(v []int32)`
-
-SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
 
 ### GetParams
 

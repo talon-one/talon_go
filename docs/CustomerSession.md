@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **ProfileId** | Pointer to **string** | ID of the customers profile as used within this Talon.One account. May be omitted or set to the empty string if the customer does not yet have a known profile ID. | 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 
-**State** | Pointer to **string** | Indicates the current state of the session. All sessions must start in the \&quot;open\&quot; state, after which valid transitions are...  1. open -&gt; closed 2. open -&gt; cancelled 3. closed -&gt; cancelled  | [default to STATE_OPEN]
+**State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;, after which valid transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60;  For more information, see [Entities](/docs/dev/concepts/entities#customer-session).  | [default to STATE_OPEN]
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
-**Identifiers** | Pointer to **[]string** | Identifiers for the customer, this can be used for limits on values such as device ID. | [optional] 
+**Identifiers** | Pointer to **[]string** | Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts.  | [optional] 
 **Total** | Pointer to **float32** | The total sum of the cart in one session. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | 
 **FirstSession** | Pointer to **bool** | Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions. | 
 **Discounts** | Pointer to **map[string]float32** | A map of labelled discount values, values will be in the same currency as the application associated with the session. | 
+**Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received on this session | 
 
 ## Methods
 
@@ -344,6 +345,31 @@ HasDiscounts returns a boolean if a field has been set.
 `func (o *CustomerSession) SetDiscounts(v map[string]float32)`
 
 SetDiscounts gets a reference to the given map[string]float32 and assigns it to the Discounts field.
+
+### GetUpdated
+
+`func (o *CustomerSession) GetUpdated() time.Time`
+
+GetUpdated returns the Updated field if non-nil, zero value otherwise.
+
+### GetUpdatedOk
+
+`func (o *CustomerSession) GetUpdatedOk() (time.Time, bool)`
+
+GetUpdatedOk returns a tuple with the Updated field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUpdated
+
+`func (o *CustomerSession) HasUpdated() bool`
+
+HasUpdated returns a boolean if a field has been set.
+
+### SetUpdated
+
+`func (o *CustomerSession) SetUpdated(v time.Time)`
+
+SetUpdated gets a reference to the given time.Time and assigns it to the Updated field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

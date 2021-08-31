@@ -25,13 +25,13 @@ type Campaign struct {
 	ApplicationId int32 `json:"applicationId"`
 	// The ID of the account that owns this entity.
 	UserId int32 `json:"userId"`
-	// A friendly name for this campaign.
+	// A user-facing name for this campaign.
 	Name string `json:"name"`
 	// A detailed description of the campaign.
 	Description string `json:"description"`
-	// Datetime when the campaign will become active.
+	// Timestamp when the campaign will become active.
 	StartTime *time.Time `json:"startTime,omitempty"`
-	// Datetime when the campaign will become in-active.
+	// Timestamp the campaign will become inactive.
 	EndTime *time.Time `json:"endTime,omitempty"`
 	// Arbitrary properties associated with this campaign
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
@@ -79,6 +79,8 @@ type Campaign struct {
 	CreatedBy *string `json:"createdBy,omitempty"`
 	// Name of the user who last updated this campaign if available.
 	UpdatedBy *string `json:"updatedBy,omitempty"`
+	// The ID of the Campaign Template this Campaign was created from.
+	TemplateId *int32 `json:"templateId,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -955,6 +957,39 @@ func (o *Campaign) HasUpdatedBy() bool {
 // SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
 func (o *Campaign) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
+}
+
+// GetTemplateId returns the TemplateId field value if set, zero value otherwise.
+func (o *Campaign) GetTemplateId() int32 {
+	if o == nil || o.TemplateId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.TemplateId
+}
+
+// GetTemplateIdOk returns a tuple with the TemplateId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetTemplateIdOk() (int32, bool) {
+	if o == nil || o.TemplateId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.TemplateId, true
+}
+
+// HasTemplateId returns a boolean if a field has been set.
+func (o *Campaign) HasTemplateId() bool {
+	if o != nil && o.TemplateId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
+func (o *Campaign) SetTemplateId(v int32) {
+	o.TemplateId = &v
 }
 
 type NullableCampaign struct {

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. The exact moment this entity was created. The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Unique ID for this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. The exact moment this entity was created. The exact moment this entity was created. The exact moment this entity was created. | 
 **IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. The integration ID for this entity sent to and used in the Talon.One system. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | 
 **AccountId** | Pointer to **int32** | The ID of the Talon.One account that owns this profile. The ID of the Talon.One account that owns this profile. | 
@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **LoyaltyMemberships** | Pointer to [**[]LoyaltyMembership**](LoyaltyMembership.md) | A list of loyalty programs joined by the customer | [optional] 
 **AudienceMemberships** | Pointer to [**[]AudienceMembership**](AudienceMembership.md) | A list of audiences the customer belongs to | [optional] 
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received from this customer | 
+**AdvocateIntegrationId** | Pointer to **string** | The Integration ID of the Customer Profile that referred this Customer in the Application. | [optional] 
 
 ## Methods
 
@@ -266,6 +267,31 @@ HasLastActivity returns a boolean if a field has been set.
 `func (o *ApplicationCustomer) SetLastActivity(v time.Time)`
 
 SetLastActivity gets a reference to the given time.Time and assigns it to the LastActivity field.
+
+### GetAdvocateIntegrationId
+
+`func (o *ApplicationCustomer) GetAdvocateIntegrationId() string`
+
+GetAdvocateIntegrationId returns the AdvocateIntegrationId field if non-nil, zero value otherwise.
+
+### GetAdvocateIntegrationIdOk
+
+`func (o *ApplicationCustomer) GetAdvocateIntegrationIdOk() (string, bool)`
+
+GetAdvocateIntegrationIdOk returns a tuple with the AdvocateIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdvocateIntegrationId
+
+`func (o *ApplicationCustomer) HasAdvocateIntegrationId() bool`
+
+HasAdvocateIntegrationId returns a boolean if a field has been set.
+
+### SetAdvocateIntegrationId
+
+`func (o *ApplicationCustomer) SetAdvocateIntegrationId(v string)`
+
+SetAdvocateIntegrationId gets a reference to the given string and assigns it to the AdvocateIntegrationId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

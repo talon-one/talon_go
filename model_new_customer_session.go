@@ -22,11 +22,11 @@ type NewCustomerSession struct {
 	Coupon *string `json:"coupon,omitempty"`
 	// Any referral code entered.
 	Referral *string `json:"referral,omitempty"`
-	// Indicates the current state of the session. All sessions must start in the \"open\" state, after which valid transitions are...  1. open -> closed 2. open -> cancelled 3. closed -> cancelled
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`, after which valid transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled`  For more information, see [Entities](/docs/dev/concepts/entities#customer-session).
 	State *string `json:"state,omitempty"`
 	// Serialized JSON representation.
 	CartItems *[]CartItem `json:"cartItems,omitempty"`
-	// Identifiers for the customer, this can be used for limits on values such as device ID.
+	// Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts.
 	Identifiers *[]string `json:"identifiers,omitempty"`
 	// The total sum of the cart in one session.
 	Total *float32 `json:"total,omitempty"`

@@ -16,12 +16,17 @@ import (
 
 // CartItem struct for CartItem
 type CartItem struct {
-	Name     string  `json:"name"`
-	Sku      string  `json:"sku"`
-	Quantity int32   `json:"quantity"`
-	Price    float32 `json:"price"`
+	// Name of item
+	Name string `json:"name"`
+	// Stock keeping unit of item
+	Sku string `json:"sku"`
+	// Quantity of item. **Important:** If you enabled [cart item flattening](https://help.talon.one/hc/en-us/articles/360016036899-Flattening-Cart-Items), the quantity is always one and the same cart item might receive multiple per-item discounts. Ensure you can process multiple discounts on one cart item correctly.
+	Quantity int32 `json:"quantity"`
+	// Price of item
+	Price float32 `json:"price"`
+	// Type, group or model of the item
 	Category *string `json:"category,omitempty"`
-	// Weight of item in mm
+	// Weight of item in grams
 	Weight *float32 `json:"weight,omitempty"`
 	// Height of item in mm
 	Height *float32 `json:"height,omitempty"`
@@ -31,7 +36,7 @@ type CartItem struct {
 	Length *float32 `json:"length,omitempty"`
 	// Position of the Cart Item in the Cart (calculated internally)
 	Position *float32 `json:"position,omitempty"`
-	// Arbitrary properties associated with this item
+	// Arbitrary properties associated with this item. You can use built-in attributes or create your own. See [Attributes](https://docs.talon.one/docs/dev/concepts/attributes).
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 

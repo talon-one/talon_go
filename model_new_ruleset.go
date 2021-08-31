@@ -22,7 +22,7 @@ type NewRuleset struct {
 	Bindings []Binding `json:"bindings"`
 	// A string indicating which version of the rulebuilder was used to create this ruleset.
 	RbVersion *string `json:"rbVersion,omitempty"`
-	// A boolean indicating whether this newly created ruleset should also be activated for the campaign owns it
+	// A boolean indicating whether this newly created ruleset should also be activated for the campaign that owns it
 	Activate *bool `json:"activate,omitempty"`
 }
 

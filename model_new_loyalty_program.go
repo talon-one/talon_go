@@ -14,10 +14,8 @@ import (
 	"encoding/json"
 )
 
-// NewLoyaltyProgram A new loyalty program
+// NewLoyaltyProgram
 type NewLoyaltyProgram struct {
-	// The internal name for the Loyalty Program. This is an immutable value.
-	Name string `json:"name"`
 	// The display title for the Loyalty Program.
 	Title string `json:"title"`
 	// Description of our Loyalty Program.
@@ -30,21 +28,12 @@ type NewLoyaltyProgram struct {
 	DefaultPending string `json:"defaultPending"`
 	// Indicates if this program supports subledgers inside the program
 	AllowSubledger bool `json:"allowSubledger"`
-}
-
-// GetName returns the Name field value
-func (o *NewLoyaltyProgram) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// SetName sets field value
-func (o *NewLoyaltyProgram) SetName(v string) {
-	o.Name = v
+	// A string containing an IANA timezone descriptor.
+	Timezone *string `json:"timezone,omitempty"`
+	// The internal name for the Loyalty Program. This is an immutable value.
+	Name string `json:"name"`
+	// The tiers in this loyalty program
+	Tiers *[]NewLoyaltyTier `json:"tiers,omitempty"`
 }
 
 // GetTitle returns the Title field value
@@ -171,6 +160,87 @@ func (o *NewLoyaltyProgram) GetAllowSubledger() bool {
 // SetAllowSubledger sets field value
 func (o *NewLoyaltyProgram) SetAllowSubledger(v bool) {
 	o.AllowSubledger = v
+}
+
+// GetTimezone returns the Timezone field value if set, zero value otherwise.
+func (o *NewLoyaltyProgram) GetTimezone() string {
+	if o == nil || o.Timezone == nil {
+		var ret string
+		return ret
+	}
+	return *o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewLoyaltyProgram) GetTimezoneOk() (string, bool) {
+	if o == nil || o.Timezone == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Timezone, true
+}
+
+// HasTimezone returns a boolean if a field has been set.
+func (o *NewLoyaltyProgram) HasTimezone() bool {
+	if o != nil && o.Timezone != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+func (o *NewLoyaltyProgram) SetTimezone(v string) {
+	o.Timezone = &v
+}
+
+// GetName returns the Name field value
+func (o *NewLoyaltyProgram) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// SetName sets field value
+func (o *NewLoyaltyProgram) SetName(v string) {
+	o.Name = v
+}
+
+// GetTiers returns the Tiers field value if set, zero value otherwise.
+func (o *NewLoyaltyProgram) GetTiers() []NewLoyaltyTier {
+	if o == nil || o.Tiers == nil {
+		var ret []NewLoyaltyTier
+		return ret
+	}
+	return *o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewLoyaltyProgram) GetTiersOk() ([]NewLoyaltyTier, bool) {
+	if o == nil || o.Tiers == nil {
+		var ret []NewLoyaltyTier
+		return ret, false
+	}
+	return *o.Tiers, true
+}
+
+// HasTiers returns a boolean if a field has been set.
+func (o *NewLoyaltyProgram) HasTiers() bool {
+	if o != nil && o.Tiers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTiers gets a reference to the given []NewLoyaltyTier and assigns it to the Tiers field.
+func (o *NewLoyaltyProgram) SetTiers(v []NewLoyaltyTier) {
+	o.Tiers = &v
 }
 
 type NullableNewLoyaltyProgram struct {

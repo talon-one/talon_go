@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **float32** | ⚠️ Deprecated: Use &#39;totalActivePoints&#39; property instead. Total amount of currently active and available points in the customer&#39;s balance  | 
-**TotalActivePoints** | Pointer to **float32** | Total amount of currently active and available points in the customer&#39;s balance | 
-**TotalPendingPoints** | Pointer to **float32** | Total amount of pending points, which are not active yet but will become active in the future | 
-**TotalSpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer | 
-**TotalExpiredPoints** | Pointer to **float32** | Total amount of points, that expired without ever being spent | 
-**Transactions** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all events that have happened such as additions, subtractions and expiries | [optional] 
-**ExpiringPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points that will expire | [optional] 
-**ActivePoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all currently active points | [optional] 
-**PendingPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points pending activation | [optional] 
-**ExpiredPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of expired points | [optional] 
+**Total** | Pointer to **float32** | ⚠️ Deprecated: Use &#39;totalActivePoints&#39; property instead. Total amount of currently active and available points in the customer&#39;s balance.  | 
+**TotalActivePoints** | Pointer to **float32** | Total amount of currently active and available points in the customer&#39;s balance. | 
+**TotalPendingPoints** | Pointer to **float32** | Total amount of pending points, which are not active yet but will become active in the future. | 
+**TotalSpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer. | 
+**TotalExpiredPoints** | Pointer to **float32** | Total amount of points, that expired without ever being spent. | 
+**Transactions** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all events that have happened such as additions, subtractions and expiries. | [optional] 
+**ExpiringPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points that will expire. | [optional] 
+**ActivePoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all currently active points. | [optional] 
+**PendingPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points pending activation. | [optional] 
+**ExpiredPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of expired points. | [optional] 
+**CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 
 ## Methods
 
@@ -266,6 +267,31 @@ HasExpiredPoints returns a boolean if a field has been set.
 `func (o *LoyaltySubLedger) SetExpiredPoints(v []LoyaltyLedgerEntry)`
 
 SetExpiredPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ExpiredPoints field.
+
+### GetCurrentTier
+
+`func (o *LoyaltySubLedger) GetCurrentTier() Tier`
+
+GetCurrentTier returns the CurrentTier field if non-nil, zero value otherwise.
+
+### GetCurrentTierOk
+
+`func (o *LoyaltySubLedger) GetCurrentTierOk() (Tier, bool)`
+
+GetCurrentTierOk returns a tuple with the CurrentTier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCurrentTier
+
+`func (o *LoyaltySubLedger) HasCurrentTier() bool`
+
+HasCurrentTier returns a boolean if a field has been set.
+
+### SetCurrentTier
+
+`func (o *LoyaltySubLedger) SetCurrentTier(v Tier)`
+
+SetCurrentTier gets a reference to the given Tier and assigns it to the CurrentTier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -17,10 +17,12 @@ import (
 
 // CustomerProfile
 type CustomerProfile struct {
+	// Unique ID for this entity.
+	Id int32 `json:"id"`
+	// The exact moment this entity was created. The exact moment this entity was created.
+	Created time.Time `json:"created"`
 	// The integration ID for this entity sent to and used in the Talon.One system.
 	IntegrationId string `json:"integrationId"`
-	// The exact moment this entity was created.
-	Created time.Time `json:"created"`
 	// Arbitrary properties associated with this item
 	Attributes map[string]interface{} `json:"attributes"`
 	// The ID of the Talon.One account that owns this profile.
@@ -37,19 +39,19 @@ type CustomerProfile struct {
 	LastActivity time.Time `json:"lastActivity"`
 }
 
-// GetIntegrationId returns the IntegrationId field value
-func (o *CustomerProfile) GetIntegrationId() string {
+// GetId returns the Id field value
+func (o *CustomerProfile) GetId() int32 {
 	if o == nil {
-		var ret string
+		var ret int32
 		return ret
 	}
 
-	return o.IntegrationId
+	return o.Id
 }
 
-// SetIntegrationId sets field value
-func (o *CustomerProfile) SetIntegrationId(v string) {
-	o.IntegrationId = v
+// SetId sets field value
+func (o *CustomerProfile) SetId(v int32) {
+	o.Id = v
 }
 
 // GetCreated returns the Created field value
@@ -65,6 +67,21 @@ func (o *CustomerProfile) GetCreated() time.Time {
 // SetCreated sets field value
 func (o *CustomerProfile) SetCreated(v time.Time) {
 	o.Created = v
+}
+
+// GetIntegrationId returns the IntegrationId field value
+func (o *CustomerProfile) GetIntegrationId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.IntegrationId
+}
+
+// SetIntegrationId sets field value
+func (o *CustomerProfile) SetIntegrationId(v string) {
+	o.IntegrationId = v
 }
 
 // GetAttributes returns the Attributes field value

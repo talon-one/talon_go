@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the giveaway becomes valid. | [optional] 
 **EndDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the giveaway becomes invalid. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this giveaway. | [optional] 
-**Used** | Pointer to **bool** | Flag indicating whether this giveaway code was given before. | [optional] 
+**Used** | Pointer to **bool** | Indicates whether this giveaway code was given before. | [optional] 
 **ImportId** | Pointer to **int32** | The ID of the Import which created this giveaway. | [optional] 
 
 ## Methods

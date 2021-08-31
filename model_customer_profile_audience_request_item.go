@@ -16,9 +16,11 @@ import (
 
 // CustomerProfileAudienceRequestItem struct for CustomerProfileAudienceRequestItem
 type CustomerProfileAudienceRequestItem struct {
-	Action               string `json:"action"`
+	Action string `json:"action"`
+	// The ID of this audience in the third-party integration.
 	ProfileIntegrationId string `json:"profileIntegrationId"`
-	AudienceId           int32  `json:"audienceId"`
+	// The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+	AudienceId int32 `json:"audienceId"`
 }
 
 // GetAction returns the Action field value

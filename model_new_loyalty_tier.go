@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewLoyaltyTier A new loyalty tier
+// NewLoyaltyTier A tier in a loyalty program
 type NewLoyaltyTier struct {
 	// The name of the tier
 	Name string `json:"name"`

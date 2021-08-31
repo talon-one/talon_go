@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | The internal ID of loyalty program | 
 **Title** | Pointer to **string** | Visible name of loyalty program | 
 **Name** | Pointer to **string** | Internal name of loyalty program | 
-**Ledger** | Pointer to [**LoyaltyProgramBalance**](LoyaltyProgramBalance.md) |  | 
-**SubLedgers** | Pointer to [**map[string]LoyaltyProgramBalance**](LoyaltyProgramBalance.md) | A map containing a list of all loyalty subledger balances | [optional] 
+**Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | 
+**SubLedgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | A map containing information about each loyalty subledger | [optional] 
 
 ## Methods
 
@@ -89,13 +89,13 @@ SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetLedger
 
-`func (o *LoyaltyProgramLedgers) GetLedger() LoyaltyProgramBalance`
+`func (o *LoyaltyProgramLedgers) GetLedger() LedgerInfo`
 
 GetLedger returns the Ledger field if non-nil, zero value otherwise.
 
 ### GetLedgerOk
 
-`func (o *LoyaltyProgramLedgers) GetLedgerOk() (LoyaltyProgramBalance, bool)`
+`func (o *LoyaltyProgramLedgers) GetLedgerOk() (LedgerInfo, bool)`
 
 GetLedgerOk returns a tuple with the Ledger field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -108,19 +108,19 @@ HasLedger returns a boolean if a field has been set.
 
 ### SetLedger
 
-`func (o *LoyaltyProgramLedgers) SetLedger(v LoyaltyProgramBalance)`
+`func (o *LoyaltyProgramLedgers) SetLedger(v LedgerInfo)`
 
-SetLedger gets a reference to the given LoyaltyProgramBalance and assigns it to the Ledger field.
+SetLedger gets a reference to the given LedgerInfo and assigns it to the Ledger field.
 
 ### GetSubLedgers
 
-`func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LoyaltyProgramBalance`
+`func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LedgerInfo`
 
 GetSubLedgers returns the SubLedgers field if non-nil, zero value otherwise.
 
 ### GetSubLedgersOk
 
-`func (o *LoyaltyProgramLedgers) GetSubLedgersOk() (map[string]LoyaltyProgramBalance, bool)`
+`func (o *LoyaltyProgramLedgers) GetSubLedgersOk() (map[string]LedgerInfo, bool)`
 
 GetSubLedgersOk returns a tuple with the SubLedgers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -133,9 +133,9 @@ HasSubLedgers returns a boolean if a field has been set.
 
 ### SetSubLedgers
 
-`func (o *LoyaltyProgramLedgers) SetSubLedgers(v map[string]LoyaltyProgramBalance)`
+`func (o *LoyaltyProgramLedgers) SetSubLedgers(v map[string]LedgerInfo)`
 
-SetSubLedgers gets a reference to the given map[string]LoyaltyProgramBalance and assigns it to the SubLedgers field.
+SetSubLedgers gets a reference to the given map[string]LedgerInfo and assigns it to the SubLedgers field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

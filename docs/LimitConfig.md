@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Action** | Pointer to **string** | The limitable action to which this limit will be applied | 
 **Limit** | Pointer to **float32** | The value to set for the limit | 
+**Period** | Pointer to **string** | The period on which the budget limit recurs | [optional] 
 **Entities** | Pointer to **[]string** | The entities that make the address of this limit | 
 
 ## Methods
@@ -59,6 +60,31 @@ HasLimit returns a boolean if a field has been set.
 `func (o *LimitConfig) SetLimit(v float32)`
 
 SetLimit gets a reference to the given float32 and assigns it to the Limit field.
+
+### GetPeriod
+
+`func (o *LimitConfig) GetPeriod() string`
+
+GetPeriod returns the Period field if non-nil, zero value otherwise.
+
+### GetPeriodOk
+
+`func (o *LimitConfig) GetPeriodOk() (string, bool)`
+
+GetPeriodOk returns a tuple with the Period field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPeriod
+
+`func (o *LimitConfig) HasPeriod() bool`
+
+HasPeriod returns a boolean if a field has been set.
+
+### SetPeriod
+
+`func (o *LimitConfig) SetPeriod(v string)`
+
+SetPeriod gets a reference to the given string and assigns it to the Period field.
 
 ### GetEntities
 

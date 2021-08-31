@@ -25,6 +25,143 @@ var (
 // IntegrationApiService IntegrationApi service
 type IntegrationApiService service
 
+type apiCreateAudienceV2Request struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	body       *NewAudience
+}
+
+func (r apiCreateAudienceV2Request) Body(body NewAudience) apiCreateAudienceV2Request {
+	r.body = &body
+	return r
+}
+
+/*
+CreateAudienceV2 Create audience
+Create an Audience.
+Only use this endpoint to sync existing audiences from other platforms through a 3rd party integration.
+
+Once you create your first audience, new audience-specific rule conditions are enabled in the Rule Builder.
+
+**Important:** The authentication requires an mParticle API key instead of a Talon.One API key.
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+@return apiCreateAudienceV2Request
+*/
+func (a *IntegrationApiService) CreateAudienceV2(ctx _context.Context) apiCreateAudienceV2Request {
+	return apiCreateAudienceV2Request{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+ @return Audience
+*/
+func (r apiCreateAudienceV2Request) Execute() (Audience, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Audience
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.CreateAudienceV2")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/audiences"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 201 {
+			var v Audience
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiCreateCouponReservationRequest struct {
 	ctx         _context.Context
 	apiService  *IntegrationApiService
@@ -38,8 +175,24 @@ func (r apiCreateCouponReservationRequest) Body(body CouponReservations) apiCrea
 }
 
 /*
-CreateCouponReservation Create a new coupon reservation
-Creates a coupon reservation for all passed customer profiles on this couponID
+CreateCouponReservation Create coupon reservation
+Create a coupon reservation for specified customer profiles on the specified coupon.
+
+Reserving a coupon allows you to associate a coupon code to a given customer(s).
+You can then list the reserved coupons of a given customer
+with the [List customer data endpoint](/integration-api/#operation/getCustomerInventory).
+
+If a coupon gets created for a specific user, it will automatically show up in their coupons.
+
+When a user redeems a coupon, a reservation is automatically created after the redemption and
+the used coupon will be returned in the [List customer data endpoint](/integration-api/#operation/getCustomerInventory).
+
+**Important:** This endpoint doesn't create a **strict** reservation. _Any_ customer
+can use a reserved coupon code and proceed to checkout.
+
+For example, you can use this endpoint and `List customer data` to create a "coupon wallet" by
+reserving coupon codes for a customer, and then displaying their "coupon wallet"
+when they visit your store.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param couponValue The value of a coupon
@@ -116,20 +269,6 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -187,7 +326,7 @@ func (r apiCreateReferralRequest) Body(body NewReferral) apiCreateReferralReques
 }
 
 /*
-CreateReferral Create a referral code for an advocate
+CreateReferral Create referral code for an advocate
 Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -259,20 +398,6 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -417,20 +542,6 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -477,6 +588,222 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiDeleteAudienceMembershipsV2Request struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	audienceId int32
+}
+
+/*
+DeleteAudienceMembershipsV2 Delete audience memberships
+Remove all members from this audience.
+
+**Important:** The authentication requires an mParticle API key instead of a Talon.One API key.
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+@return apiDeleteAudienceMembershipsV2Request
+*/
+func (a *IntegrationApiService) DeleteAudienceMembershipsV2(ctx _context.Context, audienceId int32) apiDeleteAudienceMembershipsV2Request {
+	return apiDeleteAudienceMembershipsV2Request{
+		apiService: a,
+		ctx:        ctx,
+		audienceId: audienceId,
+	}
+}
+
+/*
+Execute executes the request
+
+*/
+func (r apiDeleteAudienceMembershipsV2Request) Execute() (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.DeleteAudienceMembershipsV2")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/audiences/{audienceId}/memberships"
+	localVarPath = strings.Replace(localVarPath, "{"+"audienceId"+"}", _neturl.QueryEscape(parameterToString(r.audienceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type apiDeleteAudienceV2Request struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	audienceId int32
+}
+
+/*
+DeleteAudienceV2 Delete audience
+Delete an audience created by a third-party integration.
+
+**Warning:** This endpoint also removes any associations recorded between a customer profile and this audience.
+
+**Important:** The authentication requires an mParticle API key instead of a Talon.One API key.
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+@return apiDeleteAudienceV2Request
+*/
+func (a *IntegrationApiService) DeleteAudienceV2(ctx _context.Context, audienceId int32) apiDeleteAudienceV2Request {
+	return apiDeleteAudienceV2Request{
+		apiService: a,
+		ctx:        ctx,
+		audienceId: audienceId,
+	}
+}
+
+/*
+Execute executes the request
+
+*/
+func (r apiDeleteAudienceV2Request) Execute() (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.DeleteAudienceV2")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/audiences/{audienceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"audienceId"+"}", _neturl.QueryEscape(parameterToString(r.audienceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type apiDeleteCouponReservationRequest struct {
 	ctx         _context.Context
 	apiService  *IntegrationApiService
@@ -491,7 +818,7 @@ func (r apiDeleteCouponReservationRequest) Body(body CouponReservations) apiDele
 
 /*
 DeleteCouponReservation Delete coupon reservations
-Removes all passed customer profiles reservation from this coupon
+Remove all passed customer profiles reservation from this coupon.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param couponValue The value of a coupon
@@ -564,20 +891,6 @@ func (r apiDeleteCouponReservationRequest) Execute() (*_nethttp.Response, error)
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -686,20 +999,6 @@ func (r apiDeleteCustomerDataRequest) Execute() (*_nethttp.Response, error) {
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -764,10 +1063,14 @@ func (r apiGetCustomerInventoryRequest) Giveaways(giveaways bool) apiGetCustomer
 }
 
 /*
-GetCustomerInventory Get an inventory of all data associated with a specific customer profile
-Get information regarding entities referencing this customer profile's integrationId. Currently we support customer profile information, referral codes and reserved coupons. In the future, this will be expanded with loyalty points.
+GetCustomerInventory List data associated with a specific customer profile
+Return the customer inventory regarding entities referencing this customer profile's `integrationId`.
+
+Typical entities returned are: customer profile information, referral codes, loyalty points and reserved coupons.
+Reserved coupons also include redeemed coupons.
+
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param integrationId The custom identifier for this profile, must be unique within the account.
+ * @param integrationId The custom identifier for this profile, must be unique within the account.  To get the `integrationId` of the profile from a `sessionId`, use the [Update customer session](/integration-api/#operation/updateCustomerSessionV2).
 @return apiGetCustomerInventoryRequest
 */
 func (a *IntegrationApiService) GetCustomerInventory(ctx _context.Context, integrationId string) apiGetCustomerInventoryRequest {
@@ -850,20 +1153,6 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -916,8 +1205,8 @@ type apiGetReservedCustomersRequest struct {
 }
 
 /*
-GetReservedCustomers Get the users that have this coupon reserved
-Returns all users that have this coupon marked as reserved
+GetReservedCustomers List users that have this coupon reserved
+Return all users that have this coupon marked as reserved.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param couponValue The value of a coupon
@@ -985,20 +1274,6 @@ func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.
 					key = auth.Key
 				}
 				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
 			}
 		}
 	}
@@ -1149,20 +1424,6 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1208,70 +1469,176 @@ func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, e
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateCustomerProfileRequest struct {
-	ctx           _context.Context
-	apiService    *IntegrationApiService
-	integrationId string
-	body          *NewCustomerProfile
-	dry           *bool
+type apiUpdateAudienceCustomersAttributesRequest struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	audienceId int32
+	body       *map[string]interface{}
 }
 
-func (r apiUpdateCustomerProfileRequest) Body(body NewCustomerProfile) apiUpdateCustomerProfileRequest {
+func (r apiUpdateAudienceCustomersAttributesRequest) Body(body map[string]interface{}) apiUpdateAudienceCustomersAttributesRequest {
 	r.body = &body
 	return r
 }
 
-func (r apiUpdateCustomerProfileRequest) Dry(dry bool) apiUpdateCustomerProfileRequest {
-	r.dry = &dry
-	return r
-}
-
 /*
-UpdateCustomerProfile Update a Customer Profile V1
-⚠️ Deprecation Notice: Support for requests to this endpoint will end on 15.07.2021. We will not remove the endpoint, and it will still be accessible for you to use. For new features support, migrate to [API V2.0](/Getting-Started/APIV2).
+UpdateAudienceCustomersAttributes Update profile attributes for all customers in audience
+Update the specified profile attributes to the provided value for all customers in the specified audience.
 
-Update (or create) a [Customer Profile](https://developers.talon.one/Getting-Started/entities#customer-profile). This profile information can then be matched and/or updated by campaign [Rules][].
-
-The `integrationId` may be any identifier that will remain stable for the customer. For example, you might use a database ID, an email, or a phone number as the `integrationId`. It is vital that this ID **not** change over time, so **don't** use any identifier that the customer can update themselves. E.g. if your application allows a customer to update their e-mail address, you should instead use a database ID.
-
-Updating a customer profile will return a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.
-
-[Customer Profile]: /Getting-Started/entities#customer-profile
-[Rules]: /Getting-Started/entities#campaigns-rulesets-and-coupons
+**Important:** The authentication requires an mParticle API key instead of a Talon.One API key.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param integrationId The custom identifier for this profile, must be unique within the account.
-@return apiUpdateCustomerProfileRequest
+ * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+@return apiUpdateAudienceCustomersAttributesRequest
 */
-func (a *IntegrationApiService) UpdateCustomerProfile(ctx _context.Context, integrationId string) apiUpdateCustomerProfileRequest {
-	return apiUpdateCustomerProfileRequest{
-		apiService:    a,
-		ctx:           ctx,
-		integrationId: integrationId,
+func (a *IntegrationApiService) UpdateAudienceCustomersAttributes(ctx _context.Context, audienceId int32) apiUpdateAudienceCustomersAttributesRequest {
+	return apiUpdateAudienceCustomersAttributesRequest{
+		apiService: a,
+		ctx:        ctx,
+		audienceId: audienceId,
 	}
 }
 
 /*
 Execute executes the request
- @return IntegrationState
+
 */
-func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.Response, error) {
+func (r apiUpdateAudienceCustomersAttributesRequest) Execute() (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  IntegrationState
 	)
 
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerProfile")
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateAudienceCustomersAttributes")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/audience_customers/{audienceId}/attributes"
+	localVarPath = strings.Replace(localVarPath, "{"+"audienceId"+"}", _neturl.QueryEscape(parameterToString(r.audienceId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type apiUpdateAudienceV2Request struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	audienceId int32
+	body       *UpdateAudience
+}
+
+func (r apiUpdateAudienceV2Request) Body(body UpdateAudience) apiUpdateAudienceV2Request {
+	r.body = &body
+	return r
+}
+
+/*
+UpdateAudienceV2 Update audience
+Update an Audience created by a third-party integration.
+
+**Important:** The authentication requires an mParticle API key instead of a Talon.One API key.
+
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+@return apiUpdateAudienceV2Request
+*/
+func (a *IntegrationApiService) UpdateAudienceV2(ctx _context.Context, audienceId int32) apiUpdateAudienceV2Request {
+	return apiUpdateAudienceV2Request{
+		apiService: a,
+		ctx:        ctx,
+		audienceId: audienceId,
+	}
+}
+
+/*
+Execute executes the request
+ @return Audience
+*/
+func (r apiUpdateAudienceV2Request) Execute() (Audience, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Audience
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateAudienceV2")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v1/customer_profiles/{integrationId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
+	localVarPath := localBasePath + "/v2/audiences/{audienceId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"audienceId"+"}", _neturl.QueryEscape(parameterToString(r.audienceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1281,9 +1648,6 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
-	if r.dry != nil {
-		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -1317,20 +1681,6 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 			}
 		}
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
 	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -1353,7 +1703,7 @@ func (r apiUpdateCustomerProfileRequest) Execute() (IntegrationState, *_nethttp.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationState
+			var v Audience
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1388,8 +1738,10 @@ func (r apiUpdateCustomerProfileAudiencesRequest) Body(body CustomerProfileAudie
 }
 
 /*
-UpdateCustomerProfileAudiences Update a Customer Profile Audiences
-Update one ore multiple Customer Profiles with the specified Audiences
+UpdateCustomerProfileAudiences Update multiple customer profiles' audiences
+Update one or multiple customer profiles with the specified audiences.
+
+**Important:** The authentication requires an mParticle API key instead of a Talon.One API key.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateCustomerProfileAudiencesRequest
@@ -1514,18 +1866,27 @@ func (r apiUpdateCustomerProfileV2Request) Dry(dry bool) apiUpdateCustomerProfil
 }
 
 /*
-UpdateCustomerProfileV2 Update a Customer Profile
-Update (or create) a [Customer Profile](https://developers.talon.one/Getting-Started/entities#customer-profile).
+UpdateCustomerProfileV2 Update customer profile
+Update (or create) a [Customer Profile](/docs/dev/concepts/entities#customer-profile).
 
 The `integrationId` must be any identifier that remains stable for
 the customer. Do not use an ID that the customer can update
 themselves. For example, you can use a database ID.
 
-Updating a customer profile returns a response with the requested integration state. If `runRuleEngine` is set to `true`, the response includes:
+**Performance tips**
+
+Updating a customer profile returns a response with the requested integration state.
+
+You can use the `responseContent` property to save yourself extra API calls. For example, you can get
+the customer profile details directly without extra requests.
+
+You can also set `runRuleEngine` to `false` to prevent unwanted rule executions. This allows you to
+improve response times.
+
+If `runRuleEngine` is set to `true`, the response includes:
 
 - The effects generated by the triggered campaigns.
 - The created coupons and referral objects.
-- Any entity that was requested in the `responseContent` request parameter.
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param integrationId The custom identifier for this profile. Must be unique within the account.
@@ -1671,14 +2032,14 @@ func (r apiUpdateCustomerProfilesV2Request) Silent(silent string) apiUpdateCusto
 }
 
 /*
-UpdateCustomerProfilesV2 Update multiple Customer Profiles
-Update (or create) up to 1000 [Customer Profiles](https://developers.talon.one/Getting-Started/entities#customer-profile) in 1 request.
+UpdateCustomerProfilesV2 Update multiple customer profiles
+Update (or create) up to 1000 [customer profiles](/docs/dev/concepts/entities#customer-profile) in 1 request.
 
 The `integrationId` must be any identifier that remains stable for
 the customer. Do not use an ID that the customer can update
 themselves. For example, you can use a database ID.
 
-A customer profile [can be linked to one or more sessions](https://developers.talon.one/Integration-API/API-Reference#updateCustomerSessionV2).
+A customer profile [can be linked to one or more sessions](/integration-api/#tag/Customer-sessions).
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 @return apiUpdateCustomerProfilesV2Request
@@ -1800,185 +2161,6 @@ func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiUpdateCustomerSessionRequest struct {
-	ctx               _context.Context
-	apiService        *IntegrationApiService
-	customerSessionId string
-	body              *NewCustomerSession
-	dry               *bool
-}
-
-func (r apiUpdateCustomerSessionRequest) Body(body NewCustomerSession) apiUpdateCustomerSessionRequest {
-	r.body = &body
-	return r
-}
-
-func (r apiUpdateCustomerSessionRequest) Dry(dry bool) apiUpdateCustomerSessionRequest {
-	r.dry = &dry
-	return r
-}
-
-/*
-UpdateCustomerSession Update a Customer Session V1
-⚠️ Deprecation Notice: Support for requests to this endpoint will end on 15.07.2021. We will not remove the endpoint, and it will still be accessible for you to use. For new features support, migrate to [API V2.0](https://developers.talon.one/Getting-Started/APIV2).
-
-Update (or create) a [Customer Session](https://developers.talon.one/Getting-Started/entities#customer-session).
-For example, use this endpoint to represent which items are in the customer's cart.
-
-The Talon.One platform supports multiple simultaneous sessions for the same profile. If you have multiple ways of accessing the same application you can either:
-
-- Track multiple independent sessions or,
-- Use the same session across all of them.
-
-You should share sessions when application access points share other state, such as the user's cart.
-If two points of access to the application have independent states, for example a user can have different
-items in their cart across the two) they should use independent customer session ID's.
-
-To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile's `integrationId`.
-To track an anonymous session use the empty string (`""`) as the `profileId`.
-**Note:** You do **not** have to create a customer profile first. If the specified profile does not exist, an empty profile is created automatically.
-
-Updating a customer profile returns a response with the full integration state. This includes the current state of the customer profile, the customer session, the event that was recorded, and an array of effects that took place.
-
-The currency for the session and the cart items in the session is the same as that of the application with which the session is associated.
-
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param customerSessionId The custom identifier for this session, must be unique within the account.
-@return apiUpdateCustomerSessionRequest
-*/
-func (a *IntegrationApiService) UpdateCustomerSession(ctx _context.Context, customerSessionId string) apiUpdateCustomerSessionRequest {
-	return apiUpdateCustomerSessionRequest{
-		apiService:        a,
-		ctx:               ctx,
-		customerSessionId: customerSessionId,
-	}
-}
-
-/*
-Execute executes the request
- @return IntegrationState
-*/
-func (r apiUpdateCustomerSessionRequest) Execute() (IntegrationState, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IntegrationState
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerSession")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/customer_sessions/{customerSessionId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"customerSessionId"+"}", _neturl.QueryEscape(parameterToString(r.customerSessionId, "")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	if r.dry != nil {
-		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Content-Signature"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Content-Signature"] = key
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationState
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type apiUpdateCustomerSessionV2Request struct {
 	ctx               _context.Context
 	apiService        *IntegrationApiService
@@ -1998,11 +2180,17 @@ func (r apiUpdateCustomerSessionV2Request) Dry(dry bool) apiUpdateCustomerSessio
 }
 
 /*
-UpdateCustomerSessionV2 Update a Customer Session
-Update (or create) a [Customer Session](https://developers.talon.one/Getting-Started/entities#customer-session).
-For example, use this endpoint to represent which items are in the customer's cart.
+UpdateCustomerSessionV2 Update customer session
+Update or create a [customer session](/docs/dev/concepts/entities#customer-session).
+For example, use this endpoint to share the content of a customer's cart with Talon.One and to check which
+promotion rules apply.
 
-The Talon.One platform supports multiple simultaneous sessions for the same profile. If you have multiple ways of accessing the same application you can either:
+**Note:** The currency for the session and the cart items in the session is the same as the
+Application that owns this session.
+
+**Session management**
+
+The Talon.One platform supports multiple simultaneous sessions for the same profile. If you have multiple ways of accessing the same Application you can either:
 
 - Track multiple independent sessions or,
 - Use the same session across all of them.
@@ -2011,17 +2199,30 @@ You should share sessions when application access points share other state, such
 If two points of access to the application have independent states, for example a user can have different
 items in their cart across the two) they should use independent customer session ID's.
 
+See more information and tips about session management in [Entities](/docs/dev/concepts/entities#customer-session).
+
+**Sessions and customer profiles**
+
 To link a session to a customer profile, set the `profileId` parameter in the request body to a customer profile's `integrationId`.
 To track an anonymous session use the empty string (`""`) as the `profileId`.
 **Note:** You do **not** have to create a customer profile first. If the specified profile does not exist, an empty profile is created automatically.
 
-Updating a customer session returns a response with the requested integration state. If `runRuleEngine` is set to `true`, the response includes:
+**Performance tips**
+
+Updating a customer session returns a response with the requested integration state.
+
+You can use the `responseContent` property to save yourself extra API calls. For example, you can get
+the customer profile details directly without extra requests.
+
+You can also set `runRuleEngine` to `false` to prevent unwanted rule executions. This allows you to
+improve response times.
+
+If `runRuleEngine` is set to `true`, the response also includes:
 
 - The effects generated by the triggered campaigns.
 - The created coupons and referral objects.
-- Any entity that was requested in the `responseContent` request parameter.
 
-The currency for the session and the cart items in the session is the same as that of the application with which the session is associated.
+For more information, see the [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).
 
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param customerSessionId The custom identifier for this session, must be unique within the account.

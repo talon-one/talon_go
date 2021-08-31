@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **Reservation** | Pointer to **bool** | This value controls what reservations mean to a coupon. If set to true the coupon reservation is used to mark it as a favorite, if set to false the coupon reservation is used as a requirement of usage. This value defaults to true if not specified. | [optional] 
 **BatchId** | Pointer to **string** | The id of the batch the coupon belongs to. | [optional] 
 **ProfileRedemptionCount** | Pointer to **int32** | The number of times the coupon was redeemed by the profile. | 
-**State** | Pointer to **string** | Can be either active, used, expired, or pending. active: reserved coupons that are neither pending nor used nor expired, and have a non-exhausted limit counter. used: coupons that are not pending, and have reached their redemption limit or were redeemed by the profile before expiration. expired: all non-pending, non-active, non-used coupons that were not redeemed by the profile. pending: coupons that have a start date in the future.  | 
+**State** | Pointer to **string** | Can be either active, used, expired, pending or disabled. active: reserved coupons that are neither pending nor used nor expired, and have a non-exhausted limit counter. used: coupons that are not pending, and have reached their redemption limit or were redeemed by the profile before expiration. expired: all non-pending, non-active, non-used coupons that were not redeemed by the profile. pending: coupons that have a start date in the future. disabled: coupons of non-active campaigns.  | 
 
 ## Methods
 
