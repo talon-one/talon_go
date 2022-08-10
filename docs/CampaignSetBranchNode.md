@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | Indicates the node type | 
+**Type** | Pointer to **string** | Indicates the node type. | 
 **Name** | Pointer to **string** | Name of the set | 
-**Operator** | Pointer to **string** | How does the set operates on its elements | 
-**Elements** | Pointer to [**[]CampaignSetNode**](CampaignSetNode.md) | Child elements of this set | 
+**Operator** | Pointer to **string** | How does the set operates on its elements. | 
+**Elements** | Pointer to [**[]CampaignSetNode**](CampaignSetNode.md) | Child elements of this set. | 
 
 ## Methods
 

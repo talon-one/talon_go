@@ -4,19 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
-**IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. | 
+**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 
-**State** | Pointer to **string** | Indicating if the customer session is in progress (&#x60;open&#x60;), &#x60;closed&#x60;, or &#x60;cancelled&#x60;. For more information about customer sessions, see [Customer sessions](/docs/dev/concepts/entities#customer-session-states) in the docs.  | 
+**State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](/docs/dev/concepts/entities#customer-session).  | 
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
-**Discounts** | Pointer to **map[string]float32** | A map of labelled discount values, in the same currency as the session. | 
+**Discounts** | Pointer to **map[string]float32** | **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the &#x60;totalDiscounts&#x60; property instead.  | 
+**TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 
 ## Methods
 
@@ -294,6 +295,31 @@ HasDiscounts returns a boolean if a field has been set.
 `func (o *ApplicationSession) SetDiscounts(v map[string]float32)`
 
 SetDiscounts gets a reference to the given map[string]float32 and assigns it to the Discounts field.
+
+### GetTotalDiscounts
+
+`func (o *ApplicationSession) GetTotalDiscounts() float32`
+
+GetTotalDiscounts returns the TotalDiscounts field if non-nil, zero value otherwise.
+
+### GetTotalDiscountsOk
+
+`func (o *ApplicationSession) GetTotalDiscountsOk() (float32, bool)`
+
+GetTotalDiscountsOk returns a tuple with the TotalDiscounts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalDiscounts
+
+`func (o *ApplicationSession) HasTotalDiscounts() bool`
+
+HasTotalDiscounts returns a boolean if a field has been set.
+
+### SetTotalDiscounts
+
+`func (o *ApplicationSession) SetTotalDiscounts(v float32)`
+
+SetTotalDiscounts gets a reference to the given float32 and assigns it to the TotalDiscounts field.
 
 ### GetTotal
 

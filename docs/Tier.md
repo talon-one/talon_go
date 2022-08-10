@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal ID of the tier | 
-**Name** | Pointer to **string** | The name of the tier | 
+**Id** | Pointer to **int32** | The internal ID of the tier. | 
+**Name** | Pointer to **string** | The name of the tier. | 
 
 ## Methods
 

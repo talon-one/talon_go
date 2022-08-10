@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AcceptedCoupons** | Pointer to **int32** | Total accepted coupons for this customer | 
-**CreatedCoupons** | Pointer to **int32** | Total created coupons for this customer | 
-**FreeItems** | Pointer to **int32** | Total free items given to this customer | 
-**TotalOrders** | Pointer to **int32** | Total orders made by this customer | 
-**TotalDiscountedOrders** | Pointer to **int32** | Total orders made by this customer that had a discount | 
-**TotalRevenue** | Pointer to **float32** | Total Revenue across all closed sessions | 
-**TotalDiscounts** | Pointer to **float32** | The sum of discounts that were given across all closed sessions | 
+**AcceptedCoupons** | Pointer to **int32** | Total accepted coupons for this customer. | 
+**CreatedCoupons** | Pointer to **int32** | Total created coupons for this customer. | 
+**FreeItems** | Pointer to **int32** | Total free items given to this customer. | 
+**TotalOrders** | Pointer to **int32** | Total orders made by this customer. | 
+**TotalDiscountedOrders** | Pointer to **int32** | Total orders made by this customer that had a discount. | 
+**TotalRevenue** | Pointer to **float32** | Total Revenue across all closed sessions. | 
+**TotalDiscounts** | Pointer to **float32** | The sum of discounts that were given across all closed sessions. | 
 
 ## Methods
 

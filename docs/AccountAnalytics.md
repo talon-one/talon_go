@@ -4,24 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Applications** | Pointer to **int32** | Total number of applications in the account | 
-**LiveApplications** | Pointer to **int32** | Total number of live applications in the account | 
-**SandboxApplications** | Pointer to **int32** | Total number of sandbox applications in the account | 
-**Campaigns** | Pointer to **int32** | Total number of campaigns in the account | 
-**ActiveCampaigns** | Pointer to **int32** | Total number of active campaigns in the account | 
-**LiveActiveCampaigns** | Pointer to **int32** | Total number of active campaigns in live applications in the account | 
-**Coupons** | Pointer to **int32** | Total number of coupons in the account | 
-**ActiveCoupons** | Pointer to **int32** | Total number of active coupons in the account | 
-**ExpiredCoupons** | Pointer to **int32** | Total number of expired coupons in the account | 
-**ReferralCodes** | Pointer to **int32** | Total number of referral codes in the account | 
-**ActiveReferralCodes** | Pointer to **int32** | Total number of active referral codes in the account | 
-**ExpiredReferralCodes** | Pointer to **int32** | Total number of expired referral codes in the account | 
-**ActiveRules** | Pointer to **int32** | Total number of active rules in the account | 
-**Users** | Pointer to **int32** | Total number of users in the account | 
-**Roles** | Pointer to **int32** | Total number of roles in the account | 
-**CustomAttributes** | Pointer to **int32** | Total number of custom attributes in the account | 
-**Webhooks** | Pointer to **int32** | Total number of webhooks in the account | 
-**LoyaltyPrograms** | Pointer to **int32** | Total number of loyalty programs in the account | 
+**Applications** | Pointer to **int32** | Total number of applications in the account. | 
+**LiveApplications** | Pointer to **int32** | Total number of live applications in the account. | 
+**SandboxApplications** | Pointer to **int32** | Total number of sandbox applications in the account. | 
+**Campaigns** | Pointer to **int32** | Total number of campaigns in the account. | 
+**ActiveCampaigns** | Pointer to **int32** | Total number of active campaigns in the account. | 
+**LiveActiveCampaigns** | Pointer to **int32** | Total number of active campaigns in live applications in the account. | 
+**Coupons** | Pointer to **int32** | Total number of coupons in the account. | 
+**ActiveCoupons** | Pointer to **int32** | Total number of active coupons in the account. | 
+**ExpiredCoupons** | Pointer to **int32** | Total number of expired coupons in the account. | 
+**ReferralCodes** | Pointer to **int32** | Total number of referral codes in the account. | 
+**ActiveReferralCodes** | Pointer to **int32** | Total number of active referral codes in the account. | 
+**ExpiredReferralCodes** | Pointer to **int32** | Total number of expired referral codes in the account. | 
+**ActiveRules** | Pointer to **int32** | Total number of active rules in the account. | 
+**Users** | Pointer to **int32** | Total number of users in the account. | 
+**Roles** | Pointer to **int32** | Total number of roles in the account. | 
+**CustomAttributes** | Pointer to **int32** | Total number of custom attributes in the account. | 
+**Webhooks** | Pointer to **int32** | Total number of webhooks in the account. | 
+**LoyaltyPrograms** | Pointer to **int32** | Total number of all loyalty programs in the account. | 
+**LiveLoyaltyPrograms** | Pointer to **int32** | Total number of live loyalty programs in the account. | 
 
 ## Methods
 
@@ -474,6 +475,31 @@ HasLoyaltyPrograms returns a boolean if a field has been set.
 `func (o *AccountAnalytics) SetLoyaltyPrograms(v int32)`
 
 SetLoyaltyPrograms gets a reference to the given int32 and assigns it to the LoyaltyPrograms field.
+
+### GetLiveLoyaltyPrograms
+
+`func (o *AccountAnalytics) GetLiveLoyaltyPrograms() int32`
+
+GetLiveLoyaltyPrograms returns the LiveLoyaltyPrograms field if non-nil, zero value otherwise.
+
+### GetLiveLoyaltyProgramsOk
+
+`func (o *AccountAnalytics) GetLiveLoyaltyProgramsOk() (int32, bool)`
+
+GetLiveLoyaltyProgramsOk returns a tuple with the LiveLoyaltyPrograms field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLiveLoyaltyPrograms
+
+`func (o *AccountAnalytics) HasLiveLoyaltyPrograms() bool`
+
+HasLiveLoyaltyPrograms returns a boolean if a field has been set.
+
+### SetLiveLoyaltyPrograms
+
+`func (o *AccountAnalytics) SetLiveLoyaltyPrograms(v int32)`
+
+SetLiveLoyaltyPrograms gets a reference to the given int32 and assigns it to the LiveLoyaltyPrograms field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

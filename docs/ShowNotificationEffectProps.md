@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NotificationType** | Pointer to **string** | The type of notification that should be shown (e.g. error/warning/info) | 
-**Title** | Pointer to **string** | Title of the notification | 
-**Body** | Pointer to **string** | Body of the notification | 
+**NotificationType** | Pointer to **string** | The type of notification that should be shown (e.g. error/warning/info). | 
+**Title** | Pointer to **string** | Title of the notification. | 
+**Body** | Pointer to **string** | Body of the notification. | 
 
 ## Methods
 

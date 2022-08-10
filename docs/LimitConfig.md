@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | Pointer to **string** | The limitable action to which this limit will be applied | 
-**Limit** | Pointer to **float32** | The value to set for the limit | 
-**Period** | Pointer to **string** | The period on which the budget limit recurs | [optional] 
-**Entities** | Pointer to **[]string** | The entities that make the address of this limit | 
+**Action** | Pointer to **string** | The limitable action to which this limit applies. For example: - &#x60;setDiscount&#x60; - &#x60;setDiscountEffect&#x60; - &#x60;redeemCoupon&#x60; - &#x60;createCoupon&#x60;  | 
+**Limit** | Pointer to **float32** | The value to set for the limit. | 
+**Period** | Pointer to **string** | The period on which the budget limit recurs. | [optional] 
+**Entities** | Pointer to **[]string** | The entity that this limit applies to. | 
 
 ## Methods
 

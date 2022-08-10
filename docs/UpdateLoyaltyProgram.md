@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **SubscribedApplications** | Pointer to **[]int32** | A list containing the IDs of all applications that are subscribed to this Loyalty Program. | [optional] 
 **DefaultValidity** | Pointer to **string** | Indicates the default duration after which new loyalty points should expire. The format is a number, followed by one letter indicating the unit; like &#39;1h&#39; or &#39;40m&#39;. | [optional] 
 **DefaultPending** | Pointer to **string** | Indicates the default duration for the pending time, after which points will be valid. The format is a number followed by a duration unit, like &#39;1h&#39; or &#39;40m&#39;. | [optional] 
-**AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program | [optional] 
-**Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | [optional] 
-**Tiers** | Pointer to [**[]NewLoyaltyTier**](NewLoyaltyTier.md) | The tiers in this loyalty program | [optional] 
+**AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program. | [optional] 
+**UsersPerCardLimit** | Pointer to **int32** | The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when &#x60;cardBased&#x60; is &#x60;true&#x60;.  | [optional] 
+**Tiers** | Pointer to [**[]NewLoyaltyTier**](NewLoyaltyTier.md) | The tiers in this loyalty program. | [optional] 
 
 ## Methods
 
@@ -165,30 +165,30 @@ HasAllowSubledger returns a boolean if a field has been set.
 
 SetAllowSubledger gets a reference to the given bool and assigns it to the AllowSubledger field.
 
-### GetTimezone
+### GetUsersPerCardLimit
 
-`func (o *UpdateLoyaltyProgram) GetTimezone() string`
+`func (o *UpdateLoyaltyProgram) GetUsersPerCardLimit() int32`
 
-GetTimezone returns the Timezone field if non-nil, zero value otherwise.
+GetUsersPerCardLimit returns the UsersPerCardLimit field if non-nil, zero value otherwise.
 
-### GetTimezoneOk
+### GetUsersPerCardLimitOk
 
-`func (o *UpdateLoyaltyProgram) GetTimezoneOk() (string, bool)`
+`func (o *UpdateLoyaltyProgram) GetUsersPerCardLimitOk() (int32, bool)`
 
-GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
+GetUsersPerCardLimitOk returns a tuple with the UsersPerCardLimit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTimezone
+### HasUsersPerCardLimit
 
-`func (o *UpdateLoyaltyProgram) HasTimezone() bool`
+`func (o *UpdateLoyaltyProgram) HasUsersPerCardLimit() bool`
 
-HasTimezone returns a boolean if a field has been set.
+HasUsersPerCardLimit returns a boolean if a field has been set.
 
-### SetTimezone
+### SetUsersPerCardLimit
 
-`func (o *UpdateLoyaltyProgram) SetTimezone(v string)`
+`func (o *UpdateLoyaltyProgram) SetUsersPerCardLimit(v int32)`
 
-SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+SetUsersPerCardLimit gets a reference to the given int32 and assigns it to the UsersPerCardLimit field.
 
 ### GetTiers
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the tier | 
-**MinPoints** | Pointer to **float32** | The minimum amount of points required to be eligible for the tier | 
+**MinPoints** | Pointer to **float32** | The minimum amount of points required to be eligible for the tier. | 
 
 ## Methods
 

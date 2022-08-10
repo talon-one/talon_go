@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes. | [optional] 
 **IntegrationIDs** | Pointer to **[]string** |  | [optional] 
 **ProfileIDs** | Pointer to **[]int32** |  | [optional] 
 

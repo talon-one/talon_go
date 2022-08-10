@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The actual coupon code. | [optional] 
+**Value** | Pointer to **string** | The coupon code. | [optional] 
 
 ## Methods
 

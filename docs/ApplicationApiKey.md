@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** | Title for API Key | 
-**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired | 
-**Platform** | Pointer to **string** | Platform the API key is valid for. | [optional] 
-**Id** | Pointer to **int32** | ID of the API Key | 
-**CreatedBy** | Pointer to **int32** | ID of user who created | 
-**AccountID** | Pointer to **int32** | ID of account the key is used for | 
-**ApplicationID** | Pointer to **int32** | ID of application the key is used for | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The date the API key was created | 
+**Title** | Pointer to **string** | Title for API Key. | 
+**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired. | 
+**Platform** | Pointer to **string** | The third-party platform the API key is valid for. Use &#x60;none&#x60; for a generic API key to be used from your own integration layer.  | [optional] 
+**Id** | Pointer to **int32** | ID of the API Key. | 
+**CreatedBy** | Pointer to **int32** | ID of user who created. | 
+**AccountID** | Pointer to **int32** | ID of account the key is used for. | 
+**ApplicationID** | Pointer to **int32** | ID of application the key is used for. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The date the API key was created. | 
 
 ## Methods
 

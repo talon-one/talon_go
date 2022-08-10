@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal ID of loyalty program | 
-**Title** | Pointer to **string** | Visible name of loyalty program | 
-**Name** | Pointer to **string** | Internal name of loyalty program | 
+**Id** | Pointer to **int32** | The internal ID of loyalty program. | 
+**Title** | Pointer to **string** | Visible name of loyalty program. | 
+**Name** | Pointer to **string** | Internal name of loyalty program. | 
 **Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | 
-**SubLedgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | A map containing information about each loyalty subledger | [optional] 
+**SubLedgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | A map containing information about each loyalty subledger. | [optional] 
 
 ## Methods
 

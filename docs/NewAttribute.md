@@ -11,8 +11,12 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | The data type of the attribute, a &#x60;time&#x60; attribute must be sent as a string that conforms to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) timestamp format. | 
 **Description** | Pointer to **string** | A description of this attribute. | 
 **Suggestions** | Pointer to **[]string** | A list of suggestions for the attribute. | 
+**HasAllowedList** | Pointer to **bool** | Whether or not this attribute has an allowed list of values associated with it. | [optional] [default to false]
+**RestrictedBySuggestions** | Pointer to **bool** | Whether or not this attribute&#39;s value is restricted by suggestions (&#x60;suggestions&#x60; property) or by an allowed list of value (&#x60;hasAllowedList&#x60; property).  | [optional] [default to false]
 **Editable** | Pointer to **bool** | Whether or not this attribute can be edited. | 
-**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this attribute | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications where this attribute is available. | [optional] 
+**SubscribedCatalogsIds** | Pointer to **[]int32** | A list of the IDs of the catalogs where this attribute is available. | [optional] 
+**AllowedSubscriptions** | Pointer to **[]string** | A list of allowed subscription types for this attribute.  **Note:** This only applies to attributes associated with the &#x60;CartItem&#x60; entity.  | [optional] 
 
 ## Methods
 
@@ -191,6 +195,56 @@ HasSuggestions returns a boolean if a field has been set.
 
 SetSuggestions gets a reference to the given []string and assigns it to the Suggestions field.
 
+### GetHasAllowedList
+
+`func (o *NewAttribute) GetHasAllowedList() bool`
+
+GetHasAllowedList returns the HasAllowedList field if non-nil, zero value otherwise.
+
+### GetHasAllowedListOk
+
+`func (o *NewAttribute) GetHasAllowedListOk() (bool, bool)`
+
+GetHasAllowedListOk returns a tuple with the HasAllowedList field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasHasAllowedList
+
+`func (o *NewAttribute) HasHasAllowedList() bool`
+
+HasHasAllowedList returns a boolean if a field has been set.
+
+### SetHasAllowedList
+
+`func (o *NewAttribute) SetHasAllowedList(v bool)`
+
+SetHasAllowedList gets a reference to the given bool and assigns it to the HasAllowedList field.
+
+### GetRestrictedBySuggestions
+
+`func (o *NewAttribute) GetRestrictedBySuggestions() bool`
+
+GetRestrictedBySuggestions returns the RestrictedBySuggestions field if non-nil, zero value otherwise.
+
+### GetRestrictedBySuggestionsOk
+
+`func (o *NewAttribute) GetRestrictedBySuggestionsOk() (bool, bool)`
+
+GetRestrictedBySuggestionsOk returns a tuple with the RestrictedBySuggestions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRestrictedBySuggestions
+
+`func (o *NewAttribute) HasRestrictedBySuggestions() bool`
+
+HasRestrictedBySuggestions returns a boolean if a field has been set.
+
+### SetRestrictedBySuggestions
+
+`func (o *NewAttribute) SetRestrictedBySuggestions(v bool)`
+
+SetRestrictedBySuggestions gets a reference to the given bool and assigns it to the RestrictedBySuggestions field.
+
 ### GetEditable
 
 `func (o *NewAttribute) GetEditable() bool`
@@ -240,6 +294,56 @@ HasSubscribedApplicationsIds returns a boolean if a field has been set.
 `func (o *NewAttribute) SetSubscribedApplicationsIds(v []int32)`
 
 SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
+
+### GetSubscribedCatalogsIds
+
+`func (o *NewAttribute) GetSubscribedCatalogsIds() []int32`
+
+GetSubscribedCatalogsIds returns the SubscribedCatalogsIds field if non-nil, zero value otherwise.
+
+### GetSubscribedCatalogsIdsOk
+
+`func (o *NewAttribute) GetSubscribedCatalogsIdsOk() ([]int32, bool)`
+
+GetSubscribedCatalogsIdsOk returns a tuple with the SubscribedCatalogsIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSubscribedCatalogsIds
+
+`func (o *NewAttribute) HasSubscribedCatalogsIds() bool`
+
+HasSubscribedCatalogsIds returns a boolean if a field has been set.
+
+### SetSubscribedCatalogsIds
+
+`func (o *NewAttribute) SetSubscribedCatalogsIds(v []int32)`
+
+SetSubscribedCatalogsIds gets a reference to the given []int32 and assigns it to the SubscribedCatalogsIds field.
+
+### GetAllowedSubscriptions
+
+`func (o *NewAttribute) GetAllowedSubscriptions() []string`
+
+GetAllowedSubscriptions returns the AllowedSubscriptions field if non-nil, zero value otherwise.
+
+### GetAllowedSubscriptionsOk
+
+`func (o *NewAttribute) GetAllowedSubscriptionsOk() ([]string, bool)`
+
+GetAllowedSubscriptionsOk returns a tuple with the AllowedSubscriptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAllowedSubscriptions
+
+`func (o *NewAttribute) HasAllowedSubscriptions() bool`
+
+HasAllowedSubscriptions returns a boolean if a field has been set.
+
+### SetAllowedSubscriptions
+
+`func (o *NewAttribute) SetAllowedSubscriptions(v []string)`
+
+SetAllowedSubscriptions gets a reference to the given []string and assigns it to the AllowedSubscriptions field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

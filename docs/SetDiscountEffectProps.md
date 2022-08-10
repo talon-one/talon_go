@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name/description of this discount | 
-**Value** | Pointer to **float32** | The total monetary value of the discount | 
-**Scope** | Pointer to **string** | The scope which the discount was applied on, can be one of (cartItems,additionalCosts,sessionTotal) | [optional] 
+**Name** | Pointer to **string** | The name/description of this discount. | 
+**Value** | Pointer to **float32** | The total monetary value of the discount. | 
+**Scope** | Pointer to **string** | The scope which the discount was applied on, can be one of (cartItems,additionalCosts,sessionTotal). | [optional] 
+**DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 
 
 ## Methods
 
@@ -84,6 +85,31 @@ HasScope returns a boolean if a field has been set.
 `func (o *SetDiscountEffectProps) SetScope(v string)`
 
 SetScope gets a reference to the given string and assigns it to the Scope field.
+
+### GetDesiredValue
+
+`func (o *SetDiscountEffectProps) GetDesiredValue() float32`
+
+GetDesiredValue returns the DesiredValue field if non-nil, zero value otherwise.
+
+### GetDesiredValueOk
+
+`func (o *SetDiscountEffectProps) GetDesiredValueOk() (float32, bool)`
+
+GetDesiredValueOk returns a tuple with the DesiredValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDesiredValue
+
+`func (o *SetDiscountEffectProps) HasDesiredValue() bool`
+
+HasDesiredValue returns a boolean if a field has been set.
+
+### SetDesiredValue
+
+`func (o *SetDiscountEffectProps) SetDesiredValue(v float32)`
+
+SetDesiredValue gets a reference to the given float32 and assigns it to the DesiredValue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

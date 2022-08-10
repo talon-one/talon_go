@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Created** | Pointer to [**time.Time**](time.Time.md) |  | 
 **ProgramID** | Pointer to **int32** |  | 
-**CustomerProfileID** | Pointer to **string** |  | 
+**CustomerProfileID** | Pointer to **string** |  | [optional] 
+**CardID** | Pointer to **int32** |  | [optional] 
 **CustomerSessionID** | Pointer to **string** |  | [optional] 
 **EventID** | Pointer to **int32** |  | [optional] 
 **Type** | Pointer to **string** | The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)  | 
@@ -14,7 +15,7 @@ Name | Type | Description | Notes
 **StartDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Name** | Pointer to **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | 
-**SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger | 
+**SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger. | 
 **UserID** | Pointer to **int32** | This is the ID of the user who created this entry, if the addition or subtraction was done manually. | [optional] 
 
 ## Methods
@@ -93,6 +94,31 @@ HasCustomerProfileID returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetCustomerProfileID(v string)`
 
 SetCustomerProfileID gets a reference to the given string and assigns it to the CustomerProfileID field.
+
+### GetCardID
+
+`func (o *LoyaltyLedgerEntry) GetCardID() int32`
+
+GetCardID returns the CardID field if non-nil, zero value otherwise.
+
+### GetCardIDOk
+
+`func (o *LoyaltyLedgerEntry) GetCardIDOk() (int32, bool)`
+
+GetCardIDOk returns a tuple with the CardID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardID
+
+`func (o *LoyaltyLedgerEntry) HasCardID() bool`
+
+HasCardID returns a boolean if a field has been set.
+
+### SetCardID
+
+`func (o *LoyaltyLedgerEntry) SetCardID(v int32)`
+
+SetCardID gets a reference to the given int32 and assigns it to the CardID field.
 
 ### GetCustomerSessionID
 

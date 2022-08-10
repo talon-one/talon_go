@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | Pointer to **string** | UUID reference of request | 
-**Status** | Pointer to **int32** | HTTP status code of response | 
-**Method** | Pointer to **string** | HTTP method of request | 
+**Uuid** | Pointer to **string** | UUID reference of request. | 
+**Status** | Pointer to **int32** | HTTP status code of response. | 
+**Method** | Pointer to **string** | HTTP method of request. | 
 **RequestUri** | Pointer to **string** | target URI of request | 
 **Time** | Pointer to [**time.Time**](time.Time.md) | timestamp of request | 
 **RequestPayload** | Pointer to **string** | payload of request | 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **CustomerProfile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | [optional] 
 **Event** | Pointer to [**Event**](Event.md) |  | [optional] 
 **Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
-**Referral** | Pointer to [**Referral**](Referral.md) |  | [optional] 
+**Referral** | Pointer to [**InventoryReferral**](InventoryReferral.md) |  | [optional] 
 **Coupons** | Pointer to [**[]Coupon**](Coupon.md) |  | [optional] 
 **TriggeredCampaigns** | Pointer to [**[]Campaign**](Campaign.md) |  | [optional] 
 **Effects** | Pointer to [**[]Effect**](Effect.md) |  | 
@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **CreatedCoupons** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 **CreatedReferrals** | Pointer to [**[]Referral**](Referral.md) |  | 
 **AwardedGiveaways** | Pointer to [**[]Giveaway**](Giveaway.md) |  | [optional] 
+**Return** | Pointer to [**Return**](Return.md) |  | [optional] 
+**PreviousReturns** | Pointer to [**[]Return**](Return.md) |  | [optional] 
 
 ## Methods
 
@@ -121,13 +123,13 @@ SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty f
 
 ### GetReferral
 
-`func (o *IntegrationStateV2) GetReferral() Referral`
+`func (o *IntegrationStateV2) GetReferral() InventoryReferral`
 
 GetReferral returns the Referral field if non-nil, zero value otherwise.
 
 ### GetReferralOk
 
-`func (o *IntegrationStateV2) GetReferralOk() (Referral, bool)`
+`func (o *IntegrationStateV2) GetReferralOk() (InventoryReferral, bool)`
 
 GetReferralOk returns a tuple with the Referral field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -140,9 +142,9 @@ HasReferral returns a boolean if a field has been set.
 
 ### SetReferral
 
-`func (o *IntegrationStateV2) SetReferral(v Referral)`
+`func (o *IntegrationStateV2) SetReferral(v InventoryReferral)`
 
-SetReferral gets a reference to the given Referral and assigns it to the Referral field.
+SetReferral gets a reference to the given InventoryReferral and assigns it to the Referral field.
 
 ### GetCoupons
 
@@ -318,6 +320,56 @@ HasAwardedGiveaways returns a boolean if a field has been set.
 `func (o *IntegrationStateV2) SetAwardedGiveaways(v []Giveaway)`
 
 SetAwardedGiveaways gets a reference to the given []Giveaway and assigns it to the AwardedGiveaways field.
+
+### GetReturn
+
+`func (o *IntegrationStateV2) GetReturn() Return`
+
+GetReturn returns the Return field if non-nil, zero value otherwise.
+
+### GetReturnOk
+
+`func (o *IntegrationStateV2) GetReturnOk() (Return, bool)`
+
+GetReturnOk returns a tuple with the Return field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReturn
+
+`func (o *IntegrationStateV2) HasReturn() bool`
+
+HasReturn returns a boolean if a field has been set.
+
+### SetReturn
+
+`func (o *IntegrationStateV2) SetReturn(v Return)`
+
+SetReturn gets a reference to the given Return and assigns it to the Return field.
+
+### GetPreviousReturns
+
+`func (o *IntegrationStateV2) GetPreviousReturns() []Return`
+
+GetPreviousReturns returns the PreviousReturns field if non-nil, zero value otherwise.
+
+### GetPreviousReturnsOk
+
+`func (o *IntegrationStateV2) GetPreviousReturnsOk() ([]Return, bool)`
+
+GetPreviousReturnsOk returns a tuple with the PreviousReturns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPreviousReturns
+
+`func (o *IntegrationStateV2) HasPreviousReturns() bool`
+
+HasPreviousReturns returns a boolean if a field has been set.
+
+### SetPreviousReturns
+
+`func (o *IntegrationStateV2) SetPreviousReturns(v []Return)`
+
+SetPreviousReturns gets a reference to the given []Return and assigns it to the PreviousReturns field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

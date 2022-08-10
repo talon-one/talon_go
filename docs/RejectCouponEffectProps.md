@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The coupon code that was rejected | 
-**RejectionReason** | Pointer to **string** | The reason why this coupon was rejected | 
-**ConditionIndex** | Pointer to **int32** | The index of the condition that caused the rejection of the coupon | [optional] 
-**EffectIndex** | Pointer to **int32** | The index of the effect that caused the rejection of the coupon | [optional] 
-**Details** | Pointer to **string** | More details about the failure | [optional] 
+**Value** | Pointer to **string** | The coupon code that was rejected. | 
+**RejectionReason** | Pointer to **string** | The reason why this coupon was rejected. | 
+**ConditionIndex** | Pointer to **int32** | The index of the condition that caused the rejection of the coupon. | [optional] 
+**EffectIndex** | Pointer to **int32** | The index of the effect that caused the rejection of the coupon. | [optional] 
+**Details** | Pointer to **string** | More details about the failure. | [optional] 
 
 ## Methods
 

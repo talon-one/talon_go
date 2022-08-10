@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Draft** | Pointer to **int32** | Number of draft campaigns | 
-**Disabled** | Pointer to **int32** | Number of disabled campaigns | 
-**Scheduled** | Pointer to **int32** | Number of scheduled campaigns | 
-**Running** | Pointer to **int32** | Number of running campaigns | 
-**Expired** | Pointer to **int32** | Number of expired campaigns | 
-**Archived** | Pointer to **int32** | Number of archived campaigns | 
+**Draft** | Pointer to **int32** | Number of draft campaigns. | 
+**Disabled** | Pointer to **int32** | Number of disabled campaigns. | 
+**Scheduled** | Pointer to **int32** | Number of scheduled campaigns. | 
+**Running** | Pointer to **int32** | Number of running campaigns. | 
+**Expired** | Pointer to **int32** | Number of expired campaigns. | 
+**Archived** | Pointer to **int32** | Number of archived campaigns. | 
 
 ## Methods
 

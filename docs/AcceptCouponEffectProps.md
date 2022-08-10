@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The coupon code that was accepted | 
+**Value** | Pointer to **string** | The coupon code that was accepted. | 
 
 ## Methods
 

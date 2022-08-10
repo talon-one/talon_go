@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Payload** | Pointer to **string** | The JSON payload of this effect. | 
 **Description** | Pointer to **string** | The description of this effect. | [optional] 
 **Enabled** | Pointer to **bool** | Determines if this effect is active. | 
-**Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions | [optional] 
+**Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions. | [optional] 
 
 ## Methods
 

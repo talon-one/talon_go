@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | id of the notification | 
-**Name** | Pointer to **string** | name of the notification | 
-**Description** | Pointer to **string** | description of the notification | 
+**Id** | Pointer to **int32** | id of the notification. | 
+**Name** | Pointer to **string** | name of the notification. | 
+**Description** | Pointer to **string** | description of the notification. | 
 
 ## Methods
 

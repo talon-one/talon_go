@@ -4,18 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **Slots** | Pointer to [**[]SlotDef**](SlotDef.md) | The slots defined for this application. | 
 **Functions** | Pointer to [**[]FunctionDef**](FunctionDef.md) | The functions defined for this application. | 
 **Templates** | Pointer to [**[]TemplateDef**](TemplateDef.md) | The templates defined for this application. | 
-**Variables** | Pointer to **string** | A stringified version of the environment&#39;s Talang variables scope | 
+**Variables** | Pointer to **string** | A stringified version of the environment&#39;s Talang variables scope. | 
 **GiveawaysPools** | Pointer to [**[]GiveawaysPool**](GiveawaysPool.md) | The giveaways pools that the application is subscribed to. | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | The loyalty programs that the application is subscribed to. | [optional] 
 **Attributes** | Pointer to [**[]Attribute**](Attribute.md) | The attributes that the application is subscribed to. | [optional] 
 **AdditionalCosts** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) | The additional costs that the application is subscribed to. | [optional] 
 **Audiences** | Pointer to [**[]Audience**](Audience.md) | The audiences contained in the account which the application belongs to. | [optional] 
+**Collections** | Pointer to [**[]Collection**](Collection.md) | The account-level collections that the application is subscribed to. | [optional] 
 
 ## Methods
 
@@ -318,6 +319,31 @@ HasAudiences returns a boolean if a field has been set.
 `func (o *Environment) SetAudiences(v []Audience)`
 
 SetAudiences gets a reference to the given []Audience and assigns it to the Audiences field.
+
+### GetCollections
+
+`func (o *Environment) GetCollections() []Collection`
+
+GetCollections returns the Collections field if non-nil, zero value otherwise.
+
+### GetCollectionsOk
+
+`func (o *Environment) GetCollectionsOk() ([]Collection, bool)`
+
+GetCollectionsOk returns a tuple with the Collections field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCollections
+
+`func (o *Environment) HasCollections() bool`
+
+HasCollections returns a boolean if a field has been set.
+
+### SetCollections
+
+`func (o *Environment) SetCollections(v []Collection)`
+
+SetCollections gets a reference to the given []Collection and assigns it to the Collections field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

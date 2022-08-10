@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of this campaign group. | 
 **Description** | Pointer to **string** | A longer description of the campaign group. | [optional] 
-**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this campaign group is enabled for | [optional] 
-**CampaignIds** | Pointer to **[]int32** | A list of the IDs of the campaigns that this campaign group owns | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this campaign group is enabled for. | [optional] 
+**CampaignIds** | Pointer to **[]int32** | A list of the IDs of the campaigns that this campaign group owns. | [optional] 
 
 ## Methods
 

@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**ApplicationId** | Pointer to **int32** | ID of application associated with change | [optional] 
+**ApplicationId** | Pointer to **int32** | ID of application associated with change. | [optional] 
 **Entity** | Pointer to **string** | API endpoint on which the change was initiated. | 
 **Old** | Pointer to [**map[string]interface{}**](.md) | Resource before the change occurred. | [optional] 
 **New** | Pointer to [**map[string]interface{}**](.md) | Resource after the change occurred. | [optional] 

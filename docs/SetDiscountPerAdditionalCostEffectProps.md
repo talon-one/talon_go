@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name/description of this discount | 
-**AdditionalCostId** | Pointer to **int32** | The ID of the additional cost | 
-**AdditionalCost** | Pointer to **string** | The name of the additional cost | 
-**Value** | Pointer to **float32** | The total monetary value of the discount | 
+**Name** | Pointer to **string** | The name/description of this discount. | 
+**AdditionalCostId** | Pointer to **int32** | The ID of the additional cost. | 
+**AdditionalCost** | Pointer to **string** | The name of the additional cost. | 
+**Value** | Pointer to **float32** | The total monetary value of the discount. | 
+**DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 
 
 ## Methods
 
@@ -110,6 +111,31 @@ HasValue returns a boolean if a field has been set.
 `func (o *SetDiscountPerAdditionalCostEffectProps) SetValue(v float32)`
 
 SetValue gets a reference to the given float32 and assigns it to the Value field.
+
+### GetDesiredValue
+
+`func (o *SetDiscountPerAdditionalCostEffectProps) GetDesiredValue() float32`
+
+GetDesiredValue returns the DesiredValue field if non-nil, zero value otherwise.
+
+### GetDesiredValueOk
+
+`func (o *SetDiscountPerAdditionalCostEffectProps) GetDesiredValueOk() (float32, bool)`
+
+GetDesiredValueOk returns a tuple with the DesiredValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDesiredValue
+
+`func (o *SetDiscountPerAdditionalCostEffectProps) HasDesiredValue() bool`
+
+HasDesiredValue returns a boolean if a field has been set.
+
+### SetDesiredValue
+
+`func (o *SetDiscountPerAdditionalCostEffectProps) SetDesiredValue(v float32)`
+
+SetDesiredValue gets a reference to the given float32 and assigns it to the DesiredValue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

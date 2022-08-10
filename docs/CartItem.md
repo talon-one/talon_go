@@ -4,17 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of item | 
-**Sku** | Pointer to **string** | Stock keeping unit of item | 
-**Quantity** | Pointer to **int32** | Quantity of item. **Important:** If you enabled [cart item flattening](https://help.talon.one/hc/en-us/articles/360016036899-Flattening-Cart-Items), the quantity is always one and the same cart item might receive multiple per-item discounts. Ensure you can process multiple discounts on one cart item correctly.  | 
-**Price** | Pointer to **float32** | Price of item | 
-**Category** | Pointer to **string** | Type, group or model of the item | [optional] 
-**Weight** | Pointer to **float32** | Weight of item in grams | [optional] 
-**Height** | Pointer to **float32** | Height of item in mm | [optional] 
-**Width** | Pointer to **float32** | Width of item in mm | [optional] 
-**Length** | Pointer to **float32** | Length of item in mm | [optional] 
-**Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally) | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. You can use built-in attributes or create your own. See [Attributes](https://docs.talon.one/docs/dev/concepts/attributes).  | [optional] 
+**Name** | Pointer to **string** | Name of item. | 
+**Sku** | Pointer to **string** | Stock keeping unit of item. | 
+**Quantity** | Pointer to **int32** | Quantity of item. **Important:** If you enabled [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items), the quantity is always one and the same cart item might receive multiple per-item discounts. Ensure you can process multiple discounts on one cart item correctly.  | 
+**ReturnedQuantity** | Pointer to **int32** | Number of returned items, calculated internally based on returns of this item. | [optional] 
+**RemainingQuantity** | Pointer to **int32** | Remaining quantity of the item, calculated internally based on returns of this item. | [optional] 
+**Price** | Pointer to **float32** | Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/). If it is part of a catalog, setting a price here overrides the price from the catalog.  | 
+**Category** | Pointer to **string** | Type, group or model of the item. | [optional] 
+**Weight** | Pointer to **float32** | Weight of item in grams. | [optional] 
+**Height** | Pointer to **float32** | Height of item in mm. | [optional] 
+**Width** | Pointer to **float32** | Width of item in mm. | [optional] 
+**Length** | Pointer to **float32** | Length of item in mm. | [optional] 
+**Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally). | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.  Custom _cart item_ attributes must be created in the Campaign Manager before you set them with this property.  | [optional] 
+**AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs/).  | [optional] 
+**CatalogItemID** | Pointer to **int32** | The [catalog item ID](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/#synchronizing-cart-item-catalogs). | [optional] 
 
 ## Methods
 
@@ -92,6 +96,56 @@ HasQuantity returns a boolean if a field has been set.
 `func (o *CartItem) SetQuantity(v int32)`
 
 SetQuantity gets a reference to the given int32 and assigns it to the Quantity field.
+
+### GetReturnedQuantity
+
+`func (o *CartItem) GetReturnedQuantity() int32`
+
+GetReturnedQuantity returns the ReturnedQuantity field if non-nil, zero value otherwise.
+
+### GetReturnedQuantityOk
+
+`func (o *CartItem) GetReturnedQuantityOk() (int32, bool)`
+
+GetReturnedQuantityOk returns a tuple with the ReturnedQuantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReturnedQuantity
+
+`func (o *CartItem) HasReturnedQuantity() bool`
+
+HasReturnedQuantity returns a boolean if a field has been set.
+
+### SetReturnedQuantity
+
+`func (o *CartItem) SetReturnedQuantity(v int32)`
+
+SetReturnedQuantity gets a reference to the given int32 and assigns it to the ReturnedQuantity field.
+
+### GetRemainingQuantity
+
+`func (o *CartItem) GetRemainingQuantity() int32`
+
+GetRemainingQuantity returns the RemainingQuantity field if non-nil, zero value otherwise.
+
+### GetRemainingQuantityOk
+
+`func (o *CartItem) GetRemainingQuantityOk() (int32, bool)`
+
+GetRemainingQuantityOk returns a tuple with the RemainingQuantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRemainingQuantity
+
+`func (o *CartItem) HasRemainingQuantity() bool`
+
+HasRemainingQuantity returns a boolean if a field has been set.
+
+### SetRemainingQuantity
+
+`func (o *CartItem) SetRemainingQuantity(v int32)`
+
+SetRemainingQuantity gets a reference to the given int32 and assigns it to the RemainingQuantity field.
 
 ### GetPrice
 
@@ -292,6 +346,56 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *CartItem) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
+### GetAdditionalCosts
+
+`func (o *CartItem) GetAdditionalCosts() map[string]AdditionalCost`
+
+GetAdditionalCosts returns the AdditionalCosts field if non-nil, zero value otherwise.
+
+### GetAdditionalCostsOk
+
+`func (o *CartItem) GetAdditionalCostsOk() (map[string]AdditionalCost, bool)`
+
+GetAdditionalCostsOk returns a tuple with the AdditionalCosts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdditionalCosts
+
+`func (o *CartItem) HasAdditionalCosts() bool`
+
+HasAdditionalCosts returns a boolean if a field has been set.
+
+### SetAdditionalCosts
+
+`func (o *CartItem) SetAdditionalCosts(v map[string]AdditionalCost)`
+
+SetAdditionalCosts gets a reference to the given map[string]AdditionalCost and assigns it to the AdditionalCosts field.
+
+### GetCatalogItemID
+
+`func (o *CartItem) GetCatalogItemID() int32`
+
+GetCatalogItemID returns the CatalogItemID field if non-nil, zero value otherwise.
+
+### GetCatalogItemIDOk
+
+`func (o *CartItem) GetCatalogItemIDOk() (int32, bool)`
+
+GetCatalogItemIDOk returns a tuple with the CatalogItemID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCatalogItemID
+
+`func (o *CartItem) HasCatalogItemID() bool`
+
+HasCatalogItemID returns a boolean if a field has been set.
+
+### SetCatalogItemID
+
+`func (o *CartItem) SetCatalogItemID(v int32)`
+
+SetCatalogItemID gets a reference to the given int32 and assigns it to the CatalogItemID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

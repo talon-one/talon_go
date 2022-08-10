@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
 **ApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. The IDs of the applications that are related to this entity. | 
-**Title** | Pointer to **string** | Friendly title for this webhook | 
-**Verb** | Pointer to **string** | API method for this webhook | 
-**Url** | Pointer to **string** | API url (supports templating using parameters) for this webhook | 
-**Headers** | Pointer to **[]string** | List of API HTTP headers for this webhook | 
-**Payload** | Pointer to **string** | API payload (supports templating using parameters) for this webhook | [optional] 
-**Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions | 
-**Enabled** | Pointer to **bool** | Enables or disables webhook from showing in rule builder | 
+**Title** | Pointer to **string** | Friendly title for this webhook. | 
+**Verb** | Pointer to **string** | API method for this webhook. | 
+**Url** | Pointer to **string** | API url (supports templating using parameters) for this webhook. | 
+**Headers** | Pointer to **[]string** | List of API HTTP headers for this webhook. | 
+**Payload** | Pointer to **string** | API payload (supports templating using parameters) for this webhook. | [optional] 
+**Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions. | 
+**Enabled** | Pointer to **bool** | Enables or disables webhook from showing in rule builder. | 
 
 ## Methods
 

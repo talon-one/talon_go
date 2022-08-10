@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**CampaignGroupID** | Pointer to **int32** | The ID of the Campaign Group this role was created for. | [optional] 
-**Name** | Pointer to **string** | Name of the role | 
-**Description** | Pointer to **string** | Description of the role | [optional] 
-**Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role | [optional] 
-**Acl** | Pointer to [**map[string]interface{}**](.md) | Role ACL Policy | 
+**CampaignGroupID** | Pointer to **int32** | The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/managing-campaign-groups/) this role was created for.  | [optional] 
+**Name** | Pointer to **string** | Name of the role. | 
+**Description** | Pointer to **string** | Description of the role. | [optional] 
+**Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role. | [optional] 
+**Acl** | Pointer to [**map[string]interface{}**](.md) | Role ACL Policy. | 
 
 ## Methods
 

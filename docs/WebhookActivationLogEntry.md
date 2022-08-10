@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationRequestUuid** | Pointer to **string** | UUID reference of the integration request that triggered the effect with the webhook | 
-**WebhookId** | Pointer to **int32** | ID of the webhook that triggered the request | 
-**ApplicationId** | Pointer to **int32** | ID of the application that triggered the webhook | 
-**CampaignId** | Pointer to **int32** | ID of the campaign that triggered the webhook | 
+**IntegrationRequestUuid** | Pointer to **string** | UUID reference of the integration request that triggered the effect with the webhook. | 
+**WebhookId** | Pointer to **int32** | ID of the webhook that triggered the request. | 
+**ApplicationId** | Pointer to **int32** | ID of the application that triggered the webhook. | 
+**CampaignId** | Pointer to **int32** | ID of the campaign that triggered the webhook. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of request | 
 
 ## Methods

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **Payload** | Pointer to **string** | The JSON payload of this effect. | 
 **Description** | Pointer to **string** | The description of this effect. | [optional] 
 **Enabled** | Pointer to **bool** | Determines if this effect is active. | 
-**Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions | [optional] 
+**Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions. | [optional] 
 **ModifiedBy** | Pointer to **int32** | ID of the user who last updated this effect if available. | [optional] 
 **CreatedBy** | Pointer to **int32** | ID of the user who created this effect. | 
 

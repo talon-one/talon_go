@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CampaignId** | Pointer to **int32** | The ID of the campaign that triggered this effect | 
-**RulesetId** | Pointer to **int32** | The ID of the ruleset that was active in the campaign when this effect was triggered | 
-**RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset | 
-**RuleName** | Pointer to **string** | The name of the rule that triggered this effect | 
-**EffectType** | Pointer to **string** | The type of effect that was triggered | 
-**TriggeredByCoupon** | Pointer to **int32** | The ID of the coupon that was being evaluated when this effect was triggered | [optional] 
+**CampaignId** | Pointer to **int32** | The ID of the campaign that triggered this effect. | 
+**RulesetId** | Pointer to **int32** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
+**RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset. | 
+**RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | 
+**EffectType** | Pointer to **string** | The type of effect that was triggered. | 
+**TriggeredByCoupon** | Pointer to **int32** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
+**TriggeredForCatalogItem** | Pointer to **int32** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 
 
 ## Methods
 
@@ -162,6 +163,31 @@ HasTriggeredByCoupon returns a boolean if a field has been set.
 `func (o *EffectEntity) SetTriggeredByCoupon(v int32)`
 
 SetTriggeredByCoupon gets a reference to the given int32 and assigns it to the TriggeredByCoupon field.
+
+### GetTriggeredForCatalogItem
+
+`func (o *EffectEntity) GetTriggeredForCatalogItem() int32`
+
+GetTriggeredForCatalogItem returns the TriggeredForCatalogItem field if non-nil, zero value otherwise.
+
+### GetTriggeredForCatalogItemOk
+
+`func (o *EffectEntity) GetTriggeredForCatalogItemOk() (int32, bool)`
+
+GetTriggeredForCatalogItemOk returns a tuple with the TriggeredForCatalogItem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTriggeredForCatalogItem
+
+`func (o *EffectEntity) HasTriggeredForCatalogItem() bool`
+
+HasTriggeredForCatalogItem returns a boolean if a field has been set.
+
+### SetTriggeredForCatalogItem
+
+`func (o *EffectEntity) SetTriggeredForCatalogItem(v int32)`
+
+SetTriggeredForCatalogItem gets a reference to the given int32 and assigns it to the TriggeredForCatalogItem field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

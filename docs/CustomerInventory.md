@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | [optional] 
 **Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
-**Referrals** | Pointer to [**[]Referral**](Referral.md) |  | [optional] 
-**Coupons** | Pointer to [**[]InventoryCoupon**](InventoryCoupon.md) |  | [optional] 
+**Referrals** | Pointer to [**[]InventoryReferral**](InventoryReferral.md) |  | [optional] 
+**Coupons** | Pointer to [**[]InventoryCoupon**](InventoryCoupon.md) | The coupons reserved by this profile. This array includes hard and soft reservations. See each coupon&#39;s &#x60;reservation&#x60; property.  | [optional] 
 **Giveaways** | Pointer to [**[]Giveaway**](Giveaway.md) |  | [optional] 
 
 ## Methods
@@ -64,13 +64,13 @@ SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty f
 
 ### GetReferrals
 
-`func (o *CustomerInventory) GetReferrals() []Referral`
+`func (o *CustomerInventory) GetReferrals() []InventoryReferral`
 
 GetReferrals returns the Referrals field if non-nil, zero value otherwise.
 
 ### GetReferralsOk
 
-`func (o *CustomerInventory) GetReferralsOk() ([]Referral, bool)`
+`func (o *CustomerInventory) GetReferralsOk() ([]InventoryReferral, bool)`
 
 GetReferralsOk returns a tuple with the Referrals field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -83,9 +83,9 @@ HasReferrals returns a boolean if a field has been set.
 
 ### SetReferrals
 
-`func (o *CustomerInventory) SetReferrals(v []Referral)`
+`func (o *CustomerInventory) SetReferrals(v []InventoryReferral)`
 
-SetReferrals gets a reference to the given []Referral and assigns it to the Referrals field.
+SetReferrals gets a reference to the given []InventoryReferral and assigns it to the Referrals field.
 
 ### GetCoupons
 

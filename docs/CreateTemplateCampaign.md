@@ -7,9 +7,11 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template which will be used in order to create the Campaign. | 
-**CampaignAttributesOverrides** | Pointer to [**map[string]interface{}**](.md) | Custom Campaign Attributes. If the the Campaign Template defines the same values, they will be overridden. | [optional] 
+**CampaignAttributesOverrides** | Pointer to [**map[string]interface{}**](.md) | Custom Campaign Attributes. If the Campaign Template defines the same values, they will be overridden. | [optional] 
 **TemplateParamValues** | Pointer to [**[]Binding**](Binding.md) | Actual values to replace the template placeholder values in the Ruleset bindings. Values for all Template Parameters must be provided. | [optional] 
 **LimitOverrides** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits for this Campaign. If the Campaign Template or Application define default values for the same limits, they will be overridden. | [optional] 
+**CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups/) this campaign belongs to.  | [optional] 
+**Tags** | Pointer to **[]string** | A list of tags for the campaign. If the campaign template has tags, they will be overridden by this list. | [optional] 
 
 ## Methods
 
@@ -162,6 +164,56 @@ HasLimitOverrides returns a boolean if a field has been set.
 `func (o *CreateTemplateCampaign) SetLimitOverrides(v []LimitConfig)`
 
 SetLimitOverrides gets a reference to the given []LimitConfig and assigns it to the LimitOverrides field.
+
+### GetCampaignGroups
+
+`func (o *CreateTemplateCampaign) GetCampaignGroups() []int32`
+
+GetCampaignGroups returns the CampaignGroups field if non-nil, zero value otherwise.
+
+### GetCampaignGroupsOk
+
+`func (o *CreateTemplateCampaign) GetCampaignGroupsOk() ([]int32, bool)`
+
+GetCampaignGroupsOk returns a tuple with the CampaignGroups field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignGroups
+
+`func (o *CreateTemplateCampaign) HasCampaignGroups() bool`
+
+HasCampaignGroups returns a boolean if a field has been set.
+
+### SetCampaignGroups
+
+`func (o *CreateTemplateCampaign) SetCampaignGroups(v []int32)`
+
+SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
+
+### GetTags
+
+`func (o *CreateTemplateCampaign) GetTags() []string`
+
+GetTags returns the Tags field if non-nil, zero value otherwise.
+
+### GetTagsOk
+
+`func (o *CreateTemplateCampaign) GetTagsOk() ([]string, bool)`
+
+GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTags
+
+`func (o *CreateTemplateCampaign) HasTags() bool`
+
+HasTags returns a boolean if a field has been set.
+
+### SetTags
+
+`func (o *CreateTemplateCampaign) SetTags(v []string)`
+
+SetTags gets a reference to the given []string and assigns it to the Tags field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

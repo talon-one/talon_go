@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationId** | Pointer to **string** | The integration ID for this entity sent to and used in the Talon.One system. | 
+**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 
 ## Methods

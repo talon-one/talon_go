@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of this giveaways pool. | 
 **Description** | Pointer to **string** | The description of this giveaways pool. | [optional] 
-**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this giveaways pool is enabled for | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this giveaways pool is enabled for. | [optional] 
 
 ## Methods
 

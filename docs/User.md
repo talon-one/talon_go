@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
 **Email** | Pointer to **string** | The email address associated with your account. | 
@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Full name | 
 **Policy** | Pointer to [**map[string]interface{}**](.md) | User ACL Policy | 
 **LatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | Latest timestamp the user has been notified for feed. | [optional] 
-**Roles** | Pointer to **[]int32** | Contains a list of all roles the user is a member of | [optional] 
+**Roles** | Pointer to **[]int32** | Contains a list of all roles the user is a member of. | [optional] 
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
-**AuthMethod** | Pointer to **string** | The Authentication method for this user | [optional] 
+**AuthMethod** | Pointer to **string** | The Authentication method for this user. | [optional] 
 
 ## Methods
 

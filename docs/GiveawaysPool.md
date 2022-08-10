@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **Name** | Pointer to **string** | The name of this giveaways pool. | 
 **Description** | Pointer to **string** | The description of this giveaways pool. | [optional] 
-**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this giveaways pool is enabled for | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this giveaways pool is enabled for. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the giveaways pool. | [optional] 
 **CreatedBy** | Pointer to **int32** | ID of the user who created this giveaways pool. | 
 **ModifiedBy** | Pointer to **int32** | ID of the user who last updated this giveaways pool if available. | [optional] 

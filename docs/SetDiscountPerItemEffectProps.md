@@ -4,10 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name/description of this discount | 
-**Value** | Pointer to **float32** | The total monetary value of the discount | 
-**Position** | Pointer to **float32** | The index of the item in the cart items list on which this discount should be applied | 
-**SubPosition** | Pointer to **float32** | The sub-index of the item in an item stack on which this discount should be applied | [optional] 
+**Name** | Pointer to **string** | The name of the discount. Contains a hashtag character indicating the index of the position of the item the discount applies to. It is identical to the value of the &#x60;position&#x60; property.  | 
+**Value** | Pointer to **float32** | The total monetary value of the discount. | 
+**Position** | Pointer to **float32** | The index of the item in the cart items list on which this discount should be applied. | 
+**SubPosition** | Pointer to **float32** | Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items) is enabled. Indicates which item the discount applies to for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
+**DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 
+**Scope** | Pointer to **string** | The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item.  | [optional] 
+**TotalDiscount** | Pointer to **float32** | The total discount given if this effect is a result of a prorated discount. | [optional] 
+**DesiredTotalDiscount** | Pointer to **float32** | The original total discount to give if this effect is a result of a prorated discount. | [optional] 
+**BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
+**BundleName** | Pointer to **string** | The name of the bundle binding. | [optional] 
 
 ## Methods
 
@@ -110,6 +116,156 @@ HasSubPosition returns a boolean if a field has been set.
 `func (o *SetDiscountPerItemEffectProps) SetSubPosition(v float32)`
 
 SetSubPosition gets a reference to the given float32 and assigns it to the SubPosition field.
+
+### GetDesiredValue
+
+`func (o *SetDiscountPerItemEffectProps) GetDesiredValue() float32`
+
+GetDesiredValue returns the DesiredValue field if non-nil, zero value otherwise.
+
+### GetDesiredValueOk
+
+`func (o *SetDiscountPerItemEffectProps) GetDesiredValueOk() (float32, bool)`
+
+GetDesiredValueOk returns a tuple with the DesiredValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDesiredValue
+
+`func (o *SetDiscountPerItemEffectProps) HasDesiredValue() bool`
+
+HasDesiredValue returns a boolean if a field has been set.
+
+### SetDesiredValue
+
+`func (o *SetDiscountPerItemEffectProps) SetDesiredValue(v float32)`
+
+SetDesiredValue gets a reference to the given float32 and assigns it to the DesiredValue field.
+
+### GetScope
+
+`func (o *SetDiscountPerItemEffectProps) GetScope() string`
+
+GetScope returns the Scope field if non-nil, zero value otherwise.
+
+### GetScopeOk
+
+`func (o *SetDiscountPerItemEffectProps) GetScopeOk() (string, bool)`
+
+GetScopeOk returns a tuple with the Scope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasScope
+
+`func (o *SetDiscountPerItemEffectProps) HasScope() bool`
+
+HasScope returns a boolean if a field has been set.
+
+### SetScope
+
+`func (o *SetDiscountPerItemEffectProps) SetScope(v string)`
+
+SetScope gets a reference to the given string and assigns it to the Scope field.
+
+### GetTotalDiscount
+
+`func (o *SetDiscountPerItemEffectProps) GetTotalDiscount() float32`
+
+GetTotalDiscount returns the TotalDiscount field if non-nil, zero value otherwise.
+
+### GetTotalDiscountOk
+
+`func (o *SetDiscountPerItemEffectProps) GetTotalDiscountOk() (float32, bool)`
+
+GetTotalDiscountOk returns a tuple with the TotalDiscount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalDiscount
+
+`func (o *SetDiscountPerItemEffectProps) HasTotalDiscount() bool`
+
+HasTotalDiscount returns a boolean if a field has been set.
+
+### SetTotalDiscount
+
+`func (o *SetDiscountPerItemEffectProps) SetTotalDiscount(v float32)`
+
+SetTotalDiscount gets a reference to the given float32 and assigns it to the TotalDiscount field.
+
+### GetDesiredTotalDiscount
+
+`func (o *SetDiscountPerItemEffectProps) GetDesiredTotalDiscount() float32`
+
+GetDesiredTotalDiscount returns the DesiredTotalDiscount field if non-nil, zero value otherwise.
+
+### GetDesiredTotalDiscountOk
+
+`func (o *SetDiscountPerItemEffectProps) GetDesiredTotalDiscountOk() (float32, bool)`
+
+GetDesiredTotalDiscountOk returns a tuple with the DesiredTotalDiscount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDesiredTotalDiscount
+
+`func (o *SetDiscountPerItemEffectProps) HasDesiredTotalDiscount() bool`
+
+HasDesiredTotalDiscount returns a boolean if a field has been set.
+
+### SetDesiredTotalDiscount
+
+`func (o *SetDiscountPerItemEffectProps) SetDesiredTotalDiscount(v float32)`
+
+SetDesiredTotalDiscount gets a reference to the given float32 and assigns it to the DesiredTotalDiscount field.
+
+### GetBundleIndex
+
+`func (o *SetDiscountPerItemEffectProps) GetBundleIndex() int32`
+
+GetBundleIndex returns the BundleIndex field if non-nil, zero value otherwise.
+
+### GetBundleIndexOk
+
+`func (o *SetDiscountPerItemEffectProps) GetBundleIndexOk() (int32, bool)`
+
+GetBundleIndexOk returns a tuple with the BundleIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBundleIndex
+
+`func (o *SetDiscountPerItemEffectProps) HasBundleIndex() bool`
+
+HasBundleIndex returns a boolean if a field has been set.
+
+### SetBundleIndex
+
+`func (o *SetDiscountPerItemEffectProps) SetBundleIndex(v int32)`
+
+SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
+
+### GetBundleName
+
+`func (o *SetDiscountPerItemEffectProps) GetBundleName() string`
+
+GetBundleName returns the BundleName field if non-nil, zero value otherwise.
+
+### GetBundleNameOk
+
+`func (o *SetDiscountPerItemEffectProps) GetBundleNameOk() (string, bool)`
+
+GetBundleNameOk returns a tuple with the BundleName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBundleName
+
+`func (o *SetDiscountPerItemEffectProps) HasBundleName() bool`
+
+HasBundleName returns a boolean if a field has been set.
+
+### SetBundleName
+
+`func (o *SetDiscountPerItemEffectProps) SetBundleName(v string)`
+
+SetBundleName gets a reference to the given string and assigns it to the BundleName field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
