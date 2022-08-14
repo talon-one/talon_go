@@ -120,22 +120,22 @@ func main() {
 	})
 
 	// Instantiating a NewCustomerSessionV2 struct
-	customerSession := talon.NewCustomerSession{
-		// You can use both struct literals
+	newCustomerSession := talon.NewCustomerSessionV2{
+		// You can use either struct literals
 		ProfileId:   talon.PtrString("DEADBEEF"),
 		CouponCodes: &[]string{"Cool-Stuff!"},
 	}
 
 	// Or alternatively, using the relevant setter in a later stage in the code
 	newCustomerSession.SetCartItems([]talon.CartItem{
-		talon.CartItem{
+		{
 			Name:     "Pad Thai - Veggie",
 			Sku:      "pad-332",
 			Quantity: 1,
 			Price:    5.5,
 			Category: talon.PtrString("Noodles"),
 		},
-		talon.CartItem{
+		{
 			Name:     "Chang",
 			Sku:      "chang-br-42",
 			Quantity: 1,
