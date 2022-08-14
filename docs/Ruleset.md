@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
-**RbVersion** | Pointer to **string** | A string indicating which version of the rulebuilder was used to create this ruleset. | [optional] 
-**Activate** | Pointer to **bool** | A boolean indicating whether this newly created ruleset should also be activated for the campaign that owns it | [optional] 
+**RbVersion** | Pointer to **string** | The version of the rulebuilder used to create this ruleset. | [optional] 
+**Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the campaign template that owns this entity. | [optional] 
 **ActivatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp indicating when this Ruleset was activated. | [optional] 

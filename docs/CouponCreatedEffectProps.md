@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The coupon code that was created | 
-**ProfileId** | Pointer to **string** | The integration identifier of the customer for whom this coupon was created | 
+**Value** | Pointer to **string** | The coupon code that was created. | 
+**ProfileId** | Pointer to **string** | The integration identifier of the customer for whom this coupon was created. | 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | Indicates the node type | 
+**Type** | Pointer to **string** | Indicates the node type. | 
 **CampaignId** | Pointer to **int32** | ID of the campaign | 
 
 ## Methods

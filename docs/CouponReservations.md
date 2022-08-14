@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationIDs** | Pointer to **[]string** | List of Integration IDs | 
+**IntegrationIDs** | Pointer to **[]string** | List of customer integration IDs. | 
 
 ## Methods
 

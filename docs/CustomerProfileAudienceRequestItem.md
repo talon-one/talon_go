@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | Pointer to **string** |  | 
-**ProfileIntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration. | 
+**Action** | Pointer to **string** | Defines the action to perform: - &#x60;add&#x60;: Adds the customer profile to the audience. - &#x60;delete&#x60;: Removes the customer profile from the audience.  | 
+**ProfileIntegrationId** | Pointer to **string** | The ID of this customer profile in the third-party integration. | 
 **AudienceId** | Pointer to **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
 
 ## Methods

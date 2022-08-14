@@ -4,26 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**UsageLimit** | Pointer to **int32** | The number of times a coupon code can be redeemed. This can be set to 0 for no limit, but any campaign usage limits will still apply.  | 
+**UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 
 **DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **NumberOfCoupons** | Pointer to **int32** | The number of new coupon codes to generate for the campaign. Must be between 20,001 and 5,000,000. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons | 
-**BatchId** | Pointer to **string** | The batch ID coupons created by this job will bear | 
-**Status** | Pointer to **string** | The current status of this request. The value should be either &#39;pending&#39;, &#39;completed&#39; or &#39;failed&#39; | 
-**CreatedAmount** | Pointer to **int32** | The number of coupon codes that were already created for this request | 
-**FailCount** | Pointer to **int32** | The number of times this job failed | 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons. | 
+**BatchId** | Pointer to **string** | The batch ID coupons created by this job will bear. | 
+**Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
+**CreatedAmount** | Pointer to **int32** | The number of coupon codes that were already created for this request. | 
+**FailCount** | Pointer to **int32** | The number of times this job failed. | 
 **Errors** | Pointer to **[]string** | An array of individual problems encountered during the request. | 
 **CreatedBy** | Pointer to **int32** | ID of the user who created this effect. | 
-**Communicated** | Pointer to **bool** | Whether or not the user that created this job was notified of its final state | 
-**BatchExecutionCount** | Pointer to **int32** | The number of times an attempt to create a batch of coupons was made during the processing of the job | 
+**Communicated** | Pointer to **bool** | Whether or not the user that created this job was notified of its final state. | 
+**ChunkExecutionCount** | Pointer to **int32** | The number of times an attempt to create a chunk of coupons was made during the processing of the job. | 
+**ChunkSize** | Pointer to **int32** | The number of coupons that will be created in a single transactions. Coupons will be created in chunks until arriving at the requested amount. | [optional] 
 
 ## Methods
 
@@ -502,30 +503,55 @@ HasCommunicated returns a boolean if a field has been set.
 
 SetCommunicated gets a reference to the given bool and assigns it to the Communicated field.
 
-### GetBatchExecutionCount
+### GetChunkExecutionCount
 
-`func (o *CouponCreationJob) GetBatchExecutionCount() int32`
+`func (o *CouponCreationJob) GetChunkExecutionCount() int32`
 
-GetBatchExecutionCount returns the BatchExecutionCount field if non-nil, zero value otherwise.
+GetChunkExecutionCount returns the ChunkExecutionCount field if non-nil, zero value otherwise.
 
-### GetBatchExecutionCountOk
+### GetChunkExecutionCountOk
 
-`func (o *CouponCreationJob) GetBatchExecutionCountOk() (int32, bool)`
+`func (o *CouponCreationJob) GetChunkExecutionCountOk() (int32, bool)`
 
-GetBatchExecutionCountOk returns a tuple with the BatchExecutionCount field if it's non-nil, zero value otherwise
+GetChunkExecutionCountOk returns a tuple with the ChunkExecutionCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasBatchExecutionCount
+### HasChunkExecutionCount
 
-`func (o *CouponCreationJob) HasBatchExecutionCount() bool`
+`func (o *CouponCreationJob) HasChunkExecutionCount() bool`
 
-HasBatchExecutionCount returns a boolean if a field has been set.
+HasChunkExecutionCount returns a boolean if a field has been set.
 
-### SetBatchExecutionCount
+### SetChunkExecutionCount
 
-`func (o *CouponCreationJob) SetBatchExecutionCount(v int32)`
+`func (o *CouponCreationJob) SetChunkExecutionCount(v int32)`
 
-SetBatchExecutionCount gets a reference to the given int32 and assigns it to the BatchExecutionCount field.
+SetChunkExecutionCount gets a reference to the given int32 and assigns it to the ChunkExecutionCount field.
+
+### GetChunkSize
+
+`func (o *CouponCreationJob) GetChunkSize() int32`
+
+GetChunkSize returns the ChunkSize field if non-nil, zero value otherwise.
+
+### GetChunkSizeOk
+
+`func (o *CouponCreationJob) GetChunkSizeOk() (int32, bool)`
+
+GetChunkSizeOk returns a tuple with the ChunkSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasChunkSize
+
+`func (o *CouponCreationJob) HasChunkSize() bool`
+
+HasChunkSize returns a boolean if a field has been set.
+
+### SetChunkSize
+
+`func (o *CouponCreationJob) SetChunkSize(v int32)`
+
+SetChunkSize gets a reference to the given int32 and assigns it to the ChunkSize field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

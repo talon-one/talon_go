@@ -7,17 +7,19 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name of this application. | 
 **Description** | Pointer to **string** | A longer description of the application. | [optional] 
 **Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | 
-**Currency** | Pointer to **string** | A string describing a default currency for new customer sessions. | 
-**CaseSensitivity** | Pointer to **string** | A string indicating how should campaigns in this application deal with case sensitivity on coupon codes. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
-**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Default limits for campaigns created in this application | [optional] 
-**CampaignPriority** | Pointer to **string** | Default priority for campaigns created in this application, can be one of (universal, stackable, exclusive). If no value is provided, this is set to \&quot;universal\&quot; | [optional] 
-**ExclusiveCampaignsStrategy** | Pointer to **string** | The strategy used when choosing exclusive campaigns for evaluation, can be one of (listOrder, lowestDiscount, highestDiscount). If no value is provided, this is set to \&quot;listOrder\&quot; | [optional] 
-**DefaultDiscountScope** | Pointer to **string** | The default scope to apply \&quot;setDiscount\&quot; effects on if no scope was provided with the effect. | [optional] 
-**EnableCascadingDiscounts** | Pointer to **bool** | Indicates if discounts should cascade for this application | [optional] 
-**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one | [optional] 
+**Currency** | Pointer to **string** | The default currency for new customer sessions. | 
+**CaseSensitivity** | Pointer to **string** | The case sensitivity behavior to check coupon codes in the campaigns of this Application. | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
+**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Default limits for campaigns created in this application. | [optional] 
+**CampaignPriority** | Pointer to **string** | Default [priority](https://docs.talon.one/docs/product/applications/setting-up-campaign-priorities) for campaigns created in this Application.  | [optional] [default to CAMPAIGN_PRIORITY_UNIVERSAL]
+**ExclusiveCampaignsStrategy** | Pointer to **string** | The strategy used when choosing exclusive campaigns for evaluation. | [optional] [default to EXCLUSIVE_CAMPAIGNS_STRATEGY_LIST_ORDER]
+**DefaultDiscountScope** | Pointer to **string** | The default scope to apply &#x60;setDiscount&#x60; effects on if no scope was provided with the effect.  | [optional] 
+**EnableCascadingDiscounts** | Pointer to **bool** | Indicates if discounts should cascade for this Application. | [optional] 
+**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one. See [the docs](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items).  | [optional] 
 **AttributesSettings** | Pointer to [**AttributesSettings**](AttributesSettings.md) |  | [optional] 
-**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox application | [optional] 
+**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
+**EnablePartialDiscounts** | Pointer to **bool** | Indicates if this Application supports partial discounts. | [optional] 
+**DefaultDiscountAdditionalCostPerItemScope** | Pointer to **string** | The default scope to apply &#x60;setDiscountPerItem&#x60; effects on if no scope was provided with the effect.  | [optional] 
 
 ## Methods
 
@@ -370,6 +372,56 @@ HasSandbox returns a boolean if a field has been set.
 `func (o *UpdateApplication) SetSandbox(v bool)`
 
 SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+
+### GetEnablePartialDiscounts
+
+`func (o *UpdateApplication) GetEnablePartialDiscounts() bool`
+
+GetEnablePartialDiscounts returns the EnablePartialDiscounts field if non-nil, zero value otherwise.
+
+### GetEnablePartialDiscountsOk
+
+`func (o *UpdateApplication) GetEnablePartialDiscountsOk() (bool, bool)`
+
+GetEnablePartialDiscountsOk returns a tuple with the EnablePartialDiscounts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEnablePartialDiscounts
+
+`func (o *UpdateApplication) HasEnablePartialDiscounts() bool`
+
+HasEnablePartialDiscounts returns a boolean if a field has been set.
+
+### SetEnablePartialDiscounts
+
+`func (o *UpdateApplication) SetEnablePartialDiscounts(v bool)`
+
+SetEnablePartialDiscounts gets a reference to the given bool and assigns it to the EnablePartialDiscounts field.
+
+### GetDefaultDiscountAdditionalCostPerItemScope
+
+`func (o *UpdateApplication) GetDefaultDiscountAdditionalCostPerItemScope() string`
+
+GetDefaultDiscountAdditionalCostPerItemScope returns the DefaultDiscountAdditionalCostPerItemScope field if non-nil, zero value otherwise.
+
+### GetDefaultDiscountAdditionalCostPerItemScopeOk
+
+`func (o *UpdateApplication) GetDefaultDiscountAdditionalCostPerItemScopeOk() (string, bool)`
+
+GetDefaultDiscountAdditionalCostPerItemScopeOk returns a tuple with the DefaultDiscountAdditionalCostPerItemScope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDefaultDiscountAdditionalCostPerItemScope
+
+`func (o *UpdateApplication) HasDefaultDiscountAdditionalCostPerItemScope() bool`
+
+HasDefaultDiscountAdditionalCostPerItemScope returns a boolean if a field has been set.
+
+### SetDefaultDiscountAdditionalCostPerItemScope
+
+`func (o *UpdateApplication) SetDefaultDiscountAdditionalCostPerItemScope(v string)`
+
+SetDefaultDiscountAdditionalCostPerItemScope gets a reference to the given string and assigns it to the DefaultDiscountAdditionalCostPerItemScope field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

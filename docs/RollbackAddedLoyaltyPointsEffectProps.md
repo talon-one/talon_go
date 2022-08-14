@@ -4,11 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProgramId** | Pointer to **int32** | The ID of the loyalty program where the points were originally added | 
-**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were originally added | 
-**Value** | Pointer to **float32** | The amount of points that were rolled back | 
-**RecipientIntegrationId** | Pointer to **string** | The user for whom these points were originally added | 
+**ProgramId** | Pointer to **int32** | The ID of the loyalty program where the points were originally added. | 
+**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were originally added. | 
+**Value** | Pointer to **float32** | The amount of points that were rolled back. | 
+**RecipientIntegrationId** | Pointer to **string** | The user for whom these points were originally added. | 
 **TransactionUUID** | Pointer to **string** | The identifier of &#39;deduction&#39; entry added to the ledger as the &#x60;addLoyaltyPoints&#x60; effect is rolled back. | 
+**CartItemPosition** | Pointer to **float32** | The index of the item in the cart items for which the loyalty points were rolled back. | [optional] 
+**CartItemSubPosition** | Pointer to **float32** | The sub-position is returned when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items) is enabled. It indicates to which item the loyalty points were rolled back, for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
+**CardIdentifier** | Pointer to **string** | The card on which these points were originally added. | [optional] 
 
 ## Methods
 
@@ -136,6 +139,81 @@ HasTransactionUUID returns a boolean if a field has been set.
 `func (o *RollbackAddedLoyaltyPointsEffectProps) SetTransactionUUID(v string)`
 
 SetTransactionUUID gets a reference to the given string and assigns it to the TransactionUUID field.
+
+### GetCartItemPosition
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetCartItemPosition() float32`
+
+GetCartItemPosition returns the CartItemPosition field if non-nil, zero value otherwise.
+
+### GetCartItemPositionOk
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetCartItemPositionOk() (float32, bool)`
+
+GetCartItemPositionOk returns a tuple with the CartItemPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCartItemPosition
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) HasCartItemPosition() bool`
+
+HasCartItemPosition returns a boolean if a field has been set.
+
+### SetCartItemPosition
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) SetCartItemPosition(v float32)`
+
+SetCartItemPosition gets a reference to the given float32 and assigns it to the CartItemPosition field.
+
+### GetCartItemSubPosition
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetCartItemSubPosition() float32`
+
+GetCartItemSubPosition returns the CartItemSubPosition field if non-nil, zero value otherwise.
+
+### GetCartItemSubPositionOk
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetCartItemSubPositionOk() (float32, bool)`
+
+GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCartItemSubPosition
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) HasCartItemSubPosition() bool`
+
+HasCartItemSubPosition returns a boolean if a field has been set.
+
+### SetCartItemSubPosition
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) SetCartItemSubPosition(v float32)`
+
+SetCartItemSubPosition gets a reference to the given float32 and assigns it to the CartItemSubPosition field.
+
+### GetCardIdentifier
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetCardIdentifier() string`
+
+GetCardIdentifier returns the CardIdentifier field if non-nil, zero value otherwise.
+
+### GetCardIdentifierOk
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool)`
+
+GetCardIdentifierOk returns a tuple with the CardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardIdentifier
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) HasCardIdentifier() bool`
+
+HasCardIdentifier returns a boolean if a field has been set.
+
+### SetCardIdentifier
+
+`func (o *RollbackAddedLoyaltyPointsEffectProps) SetCardIdentifier(v string)`
+
+SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

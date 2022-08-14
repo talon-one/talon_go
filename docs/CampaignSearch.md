@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a campaign. All provided attributes will be exactly matched against campaign attributes | 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a campaign. All provided attributes will be exactly matched against campaign attributes. | 
 
 ## Methods
 

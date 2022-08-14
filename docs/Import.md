@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Entity** | Pointer to **string** | The name of the entity that was imported. Possible values are Coupons and LoyaltyPoints. | 
-**Amount** | Pointer to **int32** | The number of members that imported. | 
+**Entity** | Pointer to **string** | The name of the entity that was imported.  | 
+**Amount** | Pointer to **int32** | The number of values that were imported. | 
 
 ## Methods
 

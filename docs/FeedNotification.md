@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** | Title of the feed notification | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the moment this feed notification was created | 
-**Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the moment this feed notification was last updated | 
-**ArticleUrl** | Pointer to **string** | URL to the feed notification in the help center | 
-**Type** | Pointer to **string** | The type of the feed notification | 
-**Body** | Pointer to **string** | Body of the feed notification | 
+**Title** | Pointer to **string** | Title of the feed notification. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the moment this feed notification was created. | 
+**Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the moment this feed notification was last updated. | 
+**ArticleUrl** | Pointer to **string** | URL to the feed notification in the help center. | 
+**Type** | Pointer to **string** | The type of the feed notification. | 
+**Body** | Pointer to **string** | Body of the feed notification. | 
 
 ## Methods
 

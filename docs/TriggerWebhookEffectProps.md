@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WebhookId** | Pointer to **float32** | The ID of the webhook that was triggered | 
-**WebhookName** | Pointer to **string** | The name of the webhook that was triggered | 
+**WebhookId** | Pointer to **float32** | The ID of the webhook that was triggered. | 
+**WebhookName** | Pointer to **string** | The name of the webhook that was triggered. | 
 
 ## Methods
 

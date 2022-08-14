@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The id of the referral code that was redeemed | 
-**Value** | Pointer to **string** | The referral code that was redeemed | 
+**Id** | Pointer to **int32** | The id of the referral code that was redeemed. | 
+**Value** | Pointer to **string** | The referral code that was redeemed. | 
 
 ## Methods
 

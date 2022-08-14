@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RoleID** | Pointer to **int32** | ID of role | 
-**UserID** | Pointer to **int32** | ID of User | 
+**RoleID** | Pointer to **int32** | ID of role. | 
+**UserID** | Pointer to **int32** | ID of User. | 
 
 ## Methods
 

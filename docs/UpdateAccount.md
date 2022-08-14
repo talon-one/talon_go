@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **CompanyName** | Pointer to **string** | Name of your company. | 
 **BillingEmail** | Pointer to **string** | The billing email address associated with your company account. | 
-**State** | Pointer to **string** | State of the account (active, deactivated) | [optional] 
+**State** | Pointer to **string** | State of the account (active, deactivated). | [optional] 
 **PlanExpires** | Pointer to [**time.Time**](time.Time.md) | The point in time at which your current plan expires. | [optional] 
 
 ## Methods

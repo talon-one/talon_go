@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LastUpdate** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the last request for this list | 
-**Notifications** | Pointer to [**[]FeedNotification**](FeedNotification.md) | List of all notifications to notify the user about | 
+**LastUpdate** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the last request for this list. | 
+**Notifications** | Pointer to [**[]FeedNotification**](FeedNotification.md) | List of all notifications to notify the user about. | 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a coupon. All provided attributes will be exactly matched against attributes | 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a coupon. All provided attributes will be exactly matched against attributes. | 
 
 ## Methods
 

@@ -5,8 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the campaign template parameter. | 
-**Type** | Pointer to **string** | Can be one of the following three [&#39;string&#39;,&#39;number&#39;,&#39;boolean&#39;] | 
+**Type** | Pointer to **string** | Defines the type of parameter value. | 
 **Description** | Pointer to **string** | Explains the meaning of this template parameter and the placeholder value that will define it. It is used on campaign creation from this template. | 
+**AttributeId** | Pointer to **int32** | ID of the corresponding attribute. | [optional] 
 
 ## Methods
 
@@ -84,6 +85,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *CampaignTemplateParams) SetDescription(v string)`
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetAttributeId
+
+`func (o *CampaignTemplateParams) GetAttributeId() int32`
+
+GetAttributeId returns the AttributeId field if non-nil, zero value otherwise.
+
+### GetAttributeIdOk
+
+`func (o *CampaignTemplateParams) GetAttributeIdOk() (int32, bool)`
+
+GetAttributeIdOk returns a tuple with the AttributeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAttributeId
+
+`func (o *CampaignTemplateParams) HasAttributeId() bool`
+
+HasAttributeId returns a boolean if a field has been set.
+
+### SetAttributeId
+
+`func (o *CampaignTemplateParams) SetAttributeId(v int32)`
+
+SetAttributeId gets a reference to the given int32 and assigns it to the AttributeId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

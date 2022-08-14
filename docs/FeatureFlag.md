@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name for the featureflag | 
-**Value** | Pointer to **string** | The value for the featureflag | 
+**Name** | Pointer to **string** | The name for the featureflag. | 
+**Value** | Pointer to **string** | The value for the featureflag. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last created. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | [optional] 
 

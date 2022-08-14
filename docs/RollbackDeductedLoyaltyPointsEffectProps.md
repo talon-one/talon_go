@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were reimbursed | 
-**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were reimbursed | 
-**Value** | Pointer to **float32** | The amount of reimbursed points that were added | 
-**RecipientIntegrationId** | Pointer to **string** | The user for whom these points were reimbursed | 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will be valid | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire | [optional] 
-**TransactionUUID** | Pointer to **string** | The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back | 
+**ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were reimbursed. | 
+**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were reimbursed. | 
+**Value** | Pointer to **float32** | The amount of reimbursed points that were added. | 
+**RecipientIntegrationId** | Pointer to **string** | The user for whom these points were reimbursed. | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will be valid. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire. | [optional] 
+**TransactionUUID** | Pointer to **string** | The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back. | 
+**CardIdentifier** | Pointer to **string** | The card on which these points were added. | [optional] 
 
 ## Methods
 
@@ -188,6 +189,31 @@ HasTransactionUUID returns a boolean if a field has been set.
 `func (o *RollbackDeductedLoyaltyPointsEffectProps) SetTransactionUUID(v string)`
 
 SetTransactionUUID gets a reference to the given string and assigns it to the TransactionUUID field.
+
+### GetCardIdentifier
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifier() string`
+
+GetCardIdentifier returns the CardIdentifier field if non-nil, zero value otherwise.
+
+### GetCardIdentifierOk
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool)`
+
+GetCardIdentifierOk returns a tuple with the CardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardIdentifier
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasCardIdentifier() bool`
+
+HasCardIdentifier returns a boolean if a field has been set.
+
+### SetCardIdentifier
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetCardIdentifier(v string)`
+
+SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

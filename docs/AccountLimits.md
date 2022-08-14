@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**LiveApplications** | Pointer to **int32** | Total number of allowed live applications in the account | 
-**SandboxApplications** | Pointer to **int32** | Total number of allowed sandbox applications in the account | 
-**ActiveCampaigns** | Pointer to **int32** | Total number of allowed active campaigns in live applications in the account | 
-**Coupons** | Pointer to **int32** | Total number of allowed coupons in the account | 
-**ReferralCodes** | Pointer to **int32** | Total number of allowed referral codes in the account | 
-**ActiveRules** | Pointer to **int32** | Total number of allowed active rulesets in the account | 
-**LiveLoyaltyPrograms** | Pointer to **int32** | Total number of allowed live loyalty programs in the account | 
-**SandboxLoyaltyPrograms** | Pointer to **int32** | Total number of allowed sandbox loyalty programs in the account | 
-**Webhooks** | Pointer to **int32** | Total number of allowed webhooks in the account | 
-**Users** | Pointer to **int32** | Total number of allowed users in the account | 
-**ApiVolume** | Pointer to **int32** | Allowed volume of API requests to the account | 
-**PromotionTypes** | Pointer to **[]string** | Array of promotion types that are employed in the account | 
+**LiveApplications** | Pointer to **int32** | Total number of allowed live applications in the account. | 
+**SandboxApplications** | Pointer to **int32** | Total number of allowed sandbox applications in the account. | 
+**ActiveCampaigns** | Pointer to **int32** | Total number of allowed active campaigns in live applications in the account. | 
+**Coupons** | Pointer to **int32** | Total number of allowed coupons in the account. | 
+**ReferralCodes** | Pointer to **int32** | Total number of allowed referral codes in the account. | 
+**ActiveRules** | Pointer to **int32** | Total number of allowed active rulesets in the account. | 
+**LiveLoyaltyPrograms** | Pointer to **int32** | Total number of allowed live loyalty programs in the account. | 
+**SandboxLoyaltyPrograms** | Pointer to **int32** | Total number of allowed sandbox loyalty programs in the account. | 
+**Webhooks** | Pointer to **int32** | Total number of allowed webhooks in the account. | 
+**Users** | Pointer to **int32** | Total number of allowed users in the account. | 
+**ApiVolume** | Pointer to **int32** | Allowed volume of API requests to the account. | 
+**PromotionTypes** | Pointer to **[]string** | Array of promotion types that are employed in the account. | 
 
 ## Methods
 

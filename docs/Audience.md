@@ -5,11 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**Name** | Pointer to **string** | The human-friendly display name for this Audience. | 
-**Integration** | Pointer to **string** | Integration that this audience was created in. | 
-**IntegrationId** | Pointer to **string** | The ID of this Audience in the third-party integration | 
+**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
+**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
+**Description** | Pointer to **string** | A description of the audience. | [optional] 
+**Integration** | Pointer to **string** | The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Selligent&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property.  | [optional] 
+**IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property.  | [optional] 
+**CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
 
 ## Methods
 
@@ -113,6 +116,56 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
+### GetSandbox
+
+`func (o *Audience) GetSandbox() bool`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *Audience) GetSandboxOk() (bool, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandbox
+
+`func (o *Audience) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
+
+### SetSandbox
+
+`func (o *Audience) SetSandbox(v bool)`
+
+SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+
+### GetDescription
+
+`func (o *Audience) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *Audience) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *Audience) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *Audience) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
+
 ### GetIntegration
 
 `func (o *Audience) GetIntegration() string`
@@ -162,6 +215,31 @@ HasIntegrationId returns a boolean if a field has been set.
 `func (o *Audience) SetIntegrationId(v string)`
 
 SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+
+### GetCreatedIn3rdParty
+
+`func (o *Audience) GetCreatedIn3rdParty() bool`
+
+GetCreatedIn3rdParty returns the CreatedIn3rdParty field if non-nil, zero value otherwise.
+
+### GetCreatedIn3rdPartyOk
+
+`func (o *Audience) GetCreatedIn3rdPartyOk() (bool, bool)`
+
+GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreatedIn3rdParty
+
+`func (o *Audience) HasCreatedIn3rdParty() bool`
+
+HasCreatedIn3rdParty returns a boolean if a field has been set.
+
+### SetCreatedIn3rdParty
+
+`func (o *Audience) SetCreatedIn3rdParty(v bool)`
+
+SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

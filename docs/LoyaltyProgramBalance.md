@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CurrentBalance** | Pointer to **float32** | Sum of current active points amounts | 
-**PendingBalance** | Pointer to **float32** | Sum of pending points amounts | 
-**ExpiredBalance** | Pointer to **float32** | Sum of expired points amounts | 
-**SpentBalance** | Pointer to **float32** | Sum of spent points amounts | 
-**TentativeCurrentBalance** | Pointer to **float32** | Sum of current active points amounts, including additions and deductions on open sessions | 
+**CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
+**PendingBalance** | Pointer to **float32** | Sum of pending points. | 
+**ExpiredBalance** | Pointer to **float32** | Sum of expired points. | 
+**SpentBalance** | Pointer to **float32** | Sum of spent points. | 
+**TentativeCurrentBalance** | Pointer to **float32** | Sum of currently active points, including points added and deducted in open sessions. | 
 
 ## Methods
 

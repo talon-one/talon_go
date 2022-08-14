@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The coupon code whose usage has been rolled back | 
+**Value** | Pointer to **string** | The coupon code whose usage has been rolled back. | 
 
 ## Methods
 

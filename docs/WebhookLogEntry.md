@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | UUID reference of the webhook request | 
-**IntegrationRequestUuid** | Pointer to **string** | UUID reference of the integration request linked to this webhook request | 
-**WebhookId** | Pointer to **int32** | ID of the webhook that triggered the request | 
-**ApplicationId** | Pointer to **int32** | ID of the application that triggered the webhook | [optional] 
+**Id** | Pointer to **string** | UUID reference of the webhook request. | 
+**IntegrationRequestUuid** | Pointer to **string** | UUID reference of the integration request linked to this webhook request. | 
+**WebhookId** | Pointer to **int32** | ID of the webhook that triggered the request. | 
+**ApplicationId** | Pointer to **int32** | ID of the application that triggered the webhook. | [optional] 
 **Url** | Pointer to **string** | Target url of request | 
 **Request** | Pointer to **string** | Request message | 
 **Response** | Pointer to **string** | Response message | [optional] 
-**Status** | Pointer to **int32** | HTTP status code of response | [optional] 
+**Status** | Pointer to **int32** | HTTP status code of response. | [optional] 
 **RequestTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp of request | 
 **ResponseTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp of response | [optional] 
 

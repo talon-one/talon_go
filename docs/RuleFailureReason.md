@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CampaignID** | Pointer to **int32** | The ID of the campaign that contains the rule that failed | 
-**CampaignName** | Pointer to **string** | The name of the campaign that contains the rule that failed | 
-**RulesetID** | Pointer to **int32** | The ID of the ruleset that contains the rule that failed | 
-**CouponID** | Pointer to **int32** | The ID of the coupon that was being evaluated at the time of the rule failure | [optional] 
-**CouponValue** | Pointer to **string** | The value of the coupon that was being evaluated at the time of the rule failure | [optional] 
-**ReferralID** | Pointer to **int32** | The ID of the referral that was being evaluated at the time of the rule failure | [optional] 
-**ReferralValue** | Pointer to **string** | The value of the referral that was being evaluated at the time of the rule failure | [optional] 
-**RuleIndex** | Pointer to **int32** | The index of the rule that failed within the ruleset | 
-**RuleName** | Pointer to **string** | The name of the rule that failed within the ruleset | 
-**ConditionIndex** | Pointer to **int32** | The index of the condition that failed | [optional] 
-**EffectIndex** | Pointer to **int32** | The index of the effect that failed | [optional] 
-**Details** | Pointer to **string** | More details about the failure | [optional] 
+**CampaignID** | Pointer to **int32** | The ID of the campaign that contains the rule that failed. | 
+**CampaignName** | Pointer to **string** | The name of the campaign that contains the rule that failed. | 
+**RulesetID** | Pointer to **int32** | The ID of the ruleset that contains the rule that failed. | 
+**CouponID** | Pointer to **int32** | The ID of the coupon that was being evaluated at the time of the rule failure. | [optional] 
+**CouponValue** | Pointer to **string** | The code of the coupon that was being evaluated at the time of the rule failure. | [optional] 
+**ReferralID** | Pointer to **int32** | The ID of the referral that was being evaluated at the time of the rule failure. | [optional] 
+**ReferralValue** | Pointer to **string** | The code of the referral that was being evaluated at the time of the rule failure. | [optional] 
+**RuleIndex** | Pointer to **int32** | The index of the rule that failed within the ruleset. | 
+**RuleName** | Pointer to **string** | The name of the rule that failed within the ruleset. | 
+**ConditionIndex** | Pointer to **int32** | The index of the condition that failed. | [optional] 
+**EffectIndex** | Pointer to **int32** | The index of the effect that failed. | [optional] 
+**Details** | Pointer to **string** | More details about the failure. | [optional] 
 
 ## Methods
 

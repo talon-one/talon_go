@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
@@ -19,9 +19,11 @@ Name | Type | Description | Notes
 **Features** | Pointer to **[]string** | A list of features for the campaign template. | [optional] 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
-**Limits** | Pointer to [**[]TemplateLimitConfig**](TemplateLimitConfig.md) | The set of limits that will operate for this campaign template | [optional] 
+**Limits** | Pointer to [**[]TemplateLimitConfig**](TemplateLimitConfig.md) | The set of limits that will operate for this campaign template. | [optional] 
 **TemplateParams** | Pointer to [**[]CampaignTemplateParams**](CampaignTemplateParams.md) | Template parameters are fields which can be used to replace values in a rule. | [optional] 
-**ApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this campaign template A list of the IDs of the applications that are subscribed to this campaign template | 
+**ApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this campaign template. A list of the IDs of the applications that are subscribed to this campaign template. | 
+**CampaignCollections** | Pointer to [**[]CampaignTemplateCollection**](CampaignTemplateCollection.md) | The campaign collections from the blueprint campaign for the template. | [optional] 
+**DefaultCampaignGroupId** | Pointer to **int32** | The default campaignGroupId. | [optional] 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign template or any of its elements. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign template if available. | [optional] 
 **ValidApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. | 
@@ -477,6 +479,56 @@ HasApplicationsIds returns a boolean if a field has been set.
 `func (o *CampaignTemplate) SetApplicationsIds(v []int32)`
 
 SetApplicationsIds gets a reference to the given []int32 and assigns it to the ApplicationsIds field.
+
+### GetCampaignCollections
+
+`func (o *CampaignTemplate) GetCampaignCollections() []CampaignTemplateCollection`
+
+GetCampaignCollections returns the CampaignCollections field if non-nil, zero value otherwise.
+
+### GetCampaignCollectionsOk
+
+`func (o *CampaignTemplate) GetCampaignCollectionsOk() ([]CampaignTemplateCollection, bool)`
+
+GetCampaignCollectionsOk returns a tuple with the CampaignCollections field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignCollections
+
+`func (o *CampaignTemplate) HasCampaignCollections() bool`
+
+HasCampaignCollections returns a boolean if a field has been set.
+
+### SetCampaignCollections
+
+`func (o *CampaignTemplate) SetCampaignCollections(v []CampaignTemplateCollection)`
+
+SetCampaignCollections gets a reference to the given []CampaignTemplateCollection and assigns it to the CampaignCollections field.
+
+### GetDefaultCampaignGroupId
+
+`func (o *CampaignTemplate) GetDefaultCampaignGroupId() int32`
+
+GetDefaultCampaignGroupId returns the DefaultCampaignGroupId field if non-nil, zero value otherwise.
+
+### GetDefaultCampaignGroupIdOk
+
+`func (o *CampaignTemplate) GetDefaultCampaignGroupIdOk() (int32, bool)`
+
+GetDefaultCampaignGroupIdOk returns a tuple with the DefaultCampaignGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDefaultCampaignGroupId
+
+`func (o *CampaignTemplate) HasDefaultCampaignGroupId() bool`
+
+HasDefaultCampaignGroupId returns a boolean if a field has been set.
+
+### SetDefaultCampaignGroupId
+
+`func (o *CampaignTemplate) SetDefaultCampaignGroupId(v int32)`
+
+SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
 
 ### GetUpdated
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Pointer** | Pointer to **string** | Pointer to the path in the payload that caused this error. | [optional] 
 **Parameter** | Pointer to **string** | Query parameter that caused this error. | [optional] 
 **Line** | Pointer to **string** | Line number in uploaded multipart file that caused this error. &#39;N/A&#39; if unknown. | [optional] 
-**Resource** | Pointer to **string** | Pointer to the resource that caused this error | [optional] 
+**Resource** | Pointer to **string** | Pointer to the resource that caused this error. | [optional] 
 
 ## Methods
 

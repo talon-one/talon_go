@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
 **CompanyName** | Pointer to **string** |  | 
-**DomainName** | Pointer to **string** | Subdomain Name for yourcompany.talon.one | 
-**State** | Pointer to **string** | State of the account (active, deactivated) | 
+**DomainName** | Pointer to **string** | Subdomain Name for yourcompany.talon.one. | 
+**State** | Pointer to **string** | State of the account (active, deactivated). | 
 **BillingEmail** | Pointer to **string** | The billing email address associated with your company account. | 
 **PlanName** | Pointer to **string** | The name of your booked plan. | [optional] 
 **PlanExpires** | Pointer to [**time.Time**](time.Time.md) | The point in time at which your current plan expires. | [optional] 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **UserCount** | Pointer to **int32** | The current number of Campaign Manager Users in your account. | 
 **CampaignsActiveCount** | Pointer to **int32** | The current number of active Campaigns in your account. | 
 **CampaignsInactiveCount** | Pointer to **int32** | The current number of inactive Campaigns in your account. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 
 ## Methods
 

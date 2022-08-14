@@ -12,28 +12,31 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | A detailed description of the campaign. | 
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp the campaign will become inactive. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to STATE_ENABLED]
-**ActiveRulesetId** | Pointer to **int32** | ID of Ruleset this campaign applies on customer session evaluation. | [optional] 
+**ActiveRulesetId** | Pointer to **int32** | [ID of Ruleset](https://docs.talon.one/management-api/#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | 
-**Features** | Pointer to **[]string** | A list of features for the campaign. | 
+**Features** | Pointer to **[]string** | The features enabled in this campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
-**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of limits that will operate for this campaign | 
-**CampaignGroups** | Pointer to **[]int32** | The IDs of the campaign groups that own this entity. | [optional] 
+**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/) for this campaign.  | 
+**CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups/) this campaign belongs to.  | [optional] 
 **CouponRedemptionCount** | Pointer to **int32** | Number of coupons redeemed in the campaign. | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | Number of referral codes redeemed in the campaign. | [optional] 
 **DiscountCount** | Pointer to **float32** | Total amount of discounts redeemed in the campaign. | [optional] 
 **DiscountEffectCount** | Pointer to **int32** | Total number of times discounts were redeemed in this campaign. | [optional] 
 **CouponCreationCount** | Pointer to **int32** | Total number of coupons created by rules in this campaign. | [optional] 
+**CustomEffectCount** | Pointer to **int32** | Total number of custom effects triggered by rules in this campaign. | [optional] 
 **ReferralCreationCount** | Pointer to **int32** | Total number of referrals created by rules in this campaign. | [optional] 
+**AddFreeItemEffectCount** | Pointer to **int32** | Total number of times triggering add free item effext is allowed in this campaign. | [optional] 
 **AwardedGiveawaysCount** | Pointer to **int32** | Total number of giveaways awarded by rules in this campaign. | [optional] 
 **CreatedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points created by rules in this campaign. | [optional] 
 **CreatedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point creation effects triggered by rules in this campaign. | [optional] 
 **RedeemedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points redeemed by rules in this campaign. | [optional] 
 **RedeemedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point redemption effects triggered by rules in this campaign. | [optional] 
+**CallApiEffectCount** | Pointer to **int32** | Total number of webhook triggered by rules in this campaign. | [optional] 
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received by this campaign. | [optional] 
-**Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign or any of its elements. | [optional] 
+**Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign&#39;s property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates.  | [optional] 
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
@@ -590,6 +593,31 @@ HasCouponCreationCount returns a boolean if a field has been set.
 
 SetCouponCreationCount gets a reference to the given int32 and assigns it to the CouponCreationCount field.
 
+### GetCustomEffectCount
+
+`func (o *Campaign) GetCustomEffectCount() int32`
+
+GetCustomEffectCount returns the CustomEffectCount field if non-nil, zero value otherwise.
+
+### GetCustomEffectCountOk
+
+`func (o *Campaign) GetCustomEffectCountOk() (int32, bool)`
+
+GetCustomEffectCountOk returns a tuple with the CustomEffectCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCustomEffectCount
+
+`func (o *Campaign) HasCustomEffectCount() bool`
+
+HasCustomEffectCount returns a boolean if a field has been set.
+
+### SetCustomEffectCount
+
+`func (o *Campaign) SetCustomEffectCount(v int32)`
+
+SetCustomEffectCount gets a reference to the given int32 and assigns it to the CustomEffectCount field.
+
 ### GetReferralCreationCount
 
 `func (o *Campaign) GetReferralCreationCount() int32`
@@ -614,6 +642,31 @@ HasReferralCreationCount returns a boolean if a field has been set.
 `func (o *Campaign) SetReferralCreationCount(v int32)`
 
 SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
+
+### GetAddFreeItemEffectCount
+
+`func (o *Campaign) GetAddFreeItemEffectCount() int32`
+
+GetAddFreeItemEffectCount returns the AddFreeItemEffectCount field if non-nil, zero value otherwise.
+
+### GetAddFreeItemEffectCountOk
+
+`func (o *Campaign) GetAddFreeItemEffectCountOk() (int32, bool)`
+
+GetAddFreeItemEffectCountOk returns a tuple with the AddFreeItemEffectCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAddFreeItemEffectCount
+
+`func (o *Campaign) HasAddFreeItemEffectCount() bool`
+
+HasAddFreeItemEffectCount returns a boolean if a field has been set.
+
+### SetAddFreeItemEffectCount
+
+`func (o *Campaign) SetAddFreeItemEffectCount(v int32)`
+
+SetAddFreeItemEffectCount gets a reference to the given int32 and assigns it to the AddFreeItemEffectCount field.
 
 ### GetAwardedGiveawaysCount
 
@@ -739,6 +792,31 @@ HasRedeemedLoyaltyPointsEffectCount returns a boolean if a field has been set.
 `func (o *Campaign) SetRedeemedLoyaltyPointsEffectCount(v int32)`
 
 SetRedeemedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the RedeemedLoyaltyPointsEffectCount field.
+
+### GetCallApiEffectCount
+
+`func (o *Campaign) GetCallApiEffectCount() int32`
+
+GetCallApiEffectCount returns the CallApiEffectCount field if non-nil, zero value otherwise.
+
+### GetCallApiEffectCountOk
+
+`func (o *Campaign) GetCallApiEffectCountOk() (int32, bool)`
+
+GetCallApiEffectCountOk returns a tuple with the CallApiEffectCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCallApiEffectCount
+
+`func (o *Campaign) HasCallApiEffectCount() bool`
+
+HasCallApiEffectCount returns a boolean if a field has been set.
+
+### SetCallApiEffectCount
+
+`func (o *Campaign) SetCallApiEffectCount(v int32)`
+
+SetCallApiEffectCount gets a reference to the given int32 and assigns it to the CallApiEffectCount field.
 
 ### GetLastActivity
 

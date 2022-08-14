@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The human-friendly display name for this Audience. | 
+**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
 
 ## Methods
 

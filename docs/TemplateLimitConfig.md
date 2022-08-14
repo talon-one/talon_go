@@ -4,11 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | Pointer to **string** | The limitable action to which this limit will be applied | 
-**Limit** | Pointer to **float32** | The value to set for the limit | 
-**Period** | Pointer to **string** | The period on which the budget limit recurs | [optional] 
-**Entities** | Pointer to **[]string** | The entities that make the address of this limit | 
-**Description** | Pointer to **string** | The description of this budget configuration | 
+**Action** | Pointer to **string** | The limitable action to which this limit applies. For example: - &#x60;setDiscount&#x60; - &#x60;setDiscountEffect&#x60; - &#x60;redeemCoupon&#x60; - &#x60;createCoupon&#x60;  | 
+**Limit** | Pointer to **float32** | The value to set for the limit. | 
+**Period** | Pointer to **string** | The period on which the budget limit recurs. | [optional] 
+**Entities** | Pointer to **[]string** | The entity that this limit applies to. | 
 
 ## Methods
 
@@ -111,31 +110,6 @@ HasEntities returns a boolean if a field has been set.
 `func (o *TemplateLimitConfig) SetEntities(v []string)`
 
 SetEntities gets a reference to the given []string and assigns it to the Entities field.
-
-### GetDescription
-
-`func (o *TemplateLimitConfig) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *TemplateLimitConfig) GetDescriptionOk() (string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *TemplateLimitConfig) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *TemplateLimitConfig) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

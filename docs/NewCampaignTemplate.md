@@ -14,8 +14,10 @@ Name | Type | Description | Notes
 **Features** | Pointer to **[]string** | A list of features for the campaign template. | [optional] 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
-**Limits** | Pointer to [**[]TemplateLimitConfig**](TemplateLimitConfig.md) | The set of limits that will operate for this campaign template | [optional] 
+**Limits** | Pointer to [**[]TemplateLimitConfig**](TemplateLimitConfig.md) | The set of limits that will operate for this campaign template. | [optional] 
 **TemplateParams** | Pointer to [**[]CampaignTemplateParams**](CampaignTemplateParams.md) | Template parameters are fields which can be used to replace values in a rule. | [optional] 
+**CampaignCollections** | Pointer to [**[]CampaignTemplateCollection**](CampaignTemplateCollection.md) | The campaign collections from the blueprint campaign for the template. | [optional] 
+**DefaultCampaignGroupId** | Pointer to **int32** | The default campaignGroupId. | [optional] 
 
 ## Methods
 
@@ -318,6 +320,56 @@ HasTemplateParams returns a boolean if a field has been set.
 `func (o *NewCampaignTemplate) SetTemplateParams(v []CampaignTemplateParams)`
 
 SetTemplateParams gets a reference to the given []CampaignTemplateParams and assigns it to the TemplateParams field.
+
+### GetCampaignCollections
+
+`func (o *NewCampaignTemplate) GetCampaignCollections() []CampaignTemplateCollection`
+
+GetCampaignCollections returns the CampaignCollections field if non-nil, zero value otherwise.
+
+### GetCampaignCollectionsOk
+
+`func (o *NewCampaignTemplate) GetCampaignCollectionsOk() ([]CampaignTemplateCollection, bool)`
+
+GetCampaignCollectionsOk returns a tuple with the CampaignCollections field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignCollections
+
+`func (o *NewCampaignTemplate) HasCampaignCollections() bool`
+
+HasCampaignCollections returns a boolean if a field has been set.
+
+### SetCampaignCollections
+
+`func (o *NewCampaignTemplate) SetCampaignCollections(v []CampaignTemplateCollection)`
+
+SetCampaignCollections gets a reference to the given []CampaignTemplateCollection and assigns it to the CampaignCollections field.
+
+### GetDefaultCampaignGroupId
+
+`func (o *NewCampaignTemplate) GetDefaultCampaignGroupId() int32`
+
+GetDefaultCampaignGroupId returns the DefaultCampaignGroupId field if non-nil, zero value otherwise.
+
+### GetDefaultCampaignGroupIdOk
+
+`func (o *NewCampaignTemplate) GetDefaultCampaignGroupIdOk() (int32, bool)`
+
+GetDefaultCampaignGroupIdOk returns a tuple with the DefaultCampaignGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDefaultCampaignGroupId
+
+`func (o *NewCampaignTemplate) HasDefaultCampaignGroupId() bool`
+
+HasDefaultCampaignGroupId returns a boolean if a field has been set.
+
+### SetDefaultCampaignGroupId
+
+`func (o *NewCampaignTemplate) SetDefaultCampaignGroupId(v int32)`
+
+SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The referral code whose usage has been rolled back | 
+**Value** | Pointer to **string** | The referral code whose usage has been rolled back. | 
 
 ## Methods
 

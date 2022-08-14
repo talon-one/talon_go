@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
 **Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | 
+**Collections** | Pointer to [**[]Collection**](Collection.md) |  | [optional] 
 
 ## Methods
 
@@ -58,6 +59,31 @@ HasRuleset returns a boolean if a field has been set.
 `func (o *CreateTemplateCampaignResponse) SetRuleset(v Ruleset)`
 
 SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
+
+### GetCollections
+
+`func (o *CreateTemplateCampaignResponse) GetCollections() []Collection`
+
+GetCollections returns the Collections field if non-nil, zero value otherwise.
+
+### GetCollectionsOk
+
+`func (o *CreateTemplateCampaignResponse) GetCollectionsOk() ([]Collection, bool)`
+
+GetCollectionsOk returns a tuple with the Collections field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCollections
+
+`func (o *CreateTemplateCampaignResponse) HasCollections() bool`
+
+HasCollections returns a boolean if a field has been set.
+
+### SetCollections
+
+`func (o *CreateTemplateCampaignResponse) SetCollections(v []Collection)`
+
+SetCollections gets a reference to the given []Collection and assigns it to the Collections field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

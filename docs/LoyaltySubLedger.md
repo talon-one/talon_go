@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **float32** | ⚠️ Deprecated: Use &#39;totalActivePoints&#39; property instead. Total amount of currently active and available points in the customer&#39;s balance.  | 
+**Total** | Pointer to **float32** | **DEPRECATED** Use &#x60;totalActivePoints&#x60; property instead. Total amount of currently active and available points in the customer&#39;s balance.  | 
 **TotalActivePoints** | Pointer to **float32** | Total amount of currently active and available points in the customer&#39;s balance. | 
 **TotalPendingPoints** | Pointer to **float32** | Total amount of pending points, which are not active yet but will become active in the future. | 
 **TotalSpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer. | 

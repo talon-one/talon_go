@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EffectId** | Pointer to **int32** | The ID of the custom effect that was triggered | 
+**EffectId** | Pointer to **int32** | The ID of the custom effect that was triggered. | 
 **Name** | Pointer to **string** | The type of the custom effect. | 
 **Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 
 

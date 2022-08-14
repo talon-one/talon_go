@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the product bundle | 
-**BundleAttributes** | Pointer to **[]string** | The cart item attributes that determined which items are being bundled together | 
-**ItemsIndices** | Pointer to **[]float32** | The indices in the cart items array of the bundled items | 
+**Description** | Pointer to **string** | Description of the product bundle. | 
+**BundleAttributes** | Pointer to **[]string** | The cart item attributes that determined which items are being bundled together. | 
+**ItemsIndices** | Pointer to **[]float32** | The indices in the cart items array of the bundled items. | 
 
 ## Methods
 

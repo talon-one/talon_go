@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CurrentBalance** | Pointer to **float32** | Sum of current active points amounts | 
-**PendingBalance** | Pointer to **float32** | Sum of pending points amounts | 
-**ExpiredBalance** | Pointer to **float32** | Sum of expired points amounts | 
-**SpentBalance** | Pointer to **float32** | Sum of spent points amounts | 
-**TentativeCurrentBalance** | Pointer to **float32** | Sum of current active points amounts, including additions and deductions on open sessions | 
+**CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
+**PendingBalance** | Pointer to **float32** | Sum of pending points. | 
+**ExpiredBalance** | Pointer to **float32** | Sum of expired points. | 
+**SpentBalance** | Pointer to **float32** | Sum of spent points. | 
+**TentativeCurrentBalance** | Pointer to **float32** | Sum of currently active points, including points added and deducted in open sessions. | 
 **CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **PointsToNextTier** | Pointer to **float32** | Points required to move up a tier. | [optional] 
+**Projection** | Pointer to [**LoyaltyProjection**](LoyaltyProjection.md) |  | [optional] 
 
 ## Methods
 
@@ -188,6 +189,31 @@ HasPointsToNextTier returns a boolean if a field has been set.
 `func (o *LedgerInfo) SetPointsToNextTier(v float32)`
 
 SetPointsToNextTier gets a reference to the given float32 and assigns it to the PointsToNextTier field.
+
+### GetProjection
+
+`func (o *LedgerInfo) GetProjection() LoyaltyProjection`
+
+GetProjection returns the Projection field if non-nil, zero value otherwise.
+
+### GetProjectionOk
+
+`func (o *LedgerInfo) GetProjectionOk() (LoyaltyProjection, bool)`
+
+GetProjectionOk returns a tuple with the Projection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProjection
+
+`func (o *LedgerInfo) HasProjection() bool`
+
+HasProjection returns a boolean if a field has been set.
+
+### SetProjection
+
+`func (o *LedgerInfo) SetProjection(v LoyaltyProjection)`
+
+SetProjection gets a reference to the given LoyaltyProjection and assigns it to the Projection field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

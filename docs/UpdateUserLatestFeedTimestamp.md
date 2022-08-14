@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NewLatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | New timestamp to update for the current user | 
+**NewLatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | New timestamp to update for the current user. | 
 
 ## Methods
 

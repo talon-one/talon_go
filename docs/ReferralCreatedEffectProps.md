@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The referral code that was created | 
+**Value** | Pointer to **string** | The referral code that was created. | 
 
 ## Methods
 

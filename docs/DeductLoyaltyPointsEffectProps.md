@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RuleTitle** | Pointer to **string** | The title of the rule that contained triggered this points deduction | 
-**ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were added | 
-**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added | 
-**Value** | Pointer to **float32** | The amount of points that were deducted | 
-**TransactionUUID** | Pointer to **string** | The identifier of this deduction in the loyalty ledger | 
+**RuleTitle** | Pointer to **string** | The title of the rule that contained triggered this points deduction. | 
+**ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were added. | 
+**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
+**Value** | Pointer to **float32** | The amount of points that were deducted. | 
+**TransactionUUID** | Pointer to **string** | The identifier of this deduction in the loyalty ledger. | 
 **Name** | Pointer to **string** | The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule.  | 
+**CardIdentifier** | Pointer to **string** | The card on which these points were added. | [optional] 
 
 ## Methods
 
@@ -162,6 +163,31 @@ HasName returns a boolean if a field has been set.
 `func (o *DeductLoyaltyPointsEffectProps) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetCardIdentifier
+
+`func (o *DeductLoyaltyPointsEffectProps) GetCardIdentifier() string`
+
+GetCardIdentifier returns the CardIdentifier field if non-nil, zero value otherwise.
+
+### GetCardIdentifierOk
+
+`func (o *DeductLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool)`
+
+GetCardIdentifierOk returns a tuple with the CardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardIdentifier
+
+`func (o *DeductLoyaltyPointsEffectProps) HasCardIdentifier() bool`
+
+HasCardIdentifier returns a boolean if a field has been set.
+
+### SetCardIdentifier
+
+`func (o *DeductLoyaltyPointsEffectProps) SetCardIdentifier(v string)`
+
+SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

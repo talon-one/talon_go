@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]Export**](Export.md) |  | 
+**Data** | Pointer to [**[]WebhookLogEntry**](WebhookLogEntry.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20028) GetData() []Export`
+`func (o *InlineResponse20028) GetData() []WebhookLogEntry`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20028) GetDataOk() ([]Export, bool)`
+`func (o *InlineResponse20028) GetDataOk() ([]WebhookLogEntry, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20028) SetData(v []Export)`
+`func (o *InlineResponse20028) SetData(v []WebhookLogEntry)`
 
-SetData gets a reference to the given []Export and assigns it to the Data field.
+SetData gets a reference to the given []WebhookLogEntry and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

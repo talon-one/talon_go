@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** | Title for API Key | 
-**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired | 
-**Platform** | Pointer to **string** | Platform the API key is valid for. | [optional] 
+**Title** | Pointer to **string** | Title for API Key. | 
+**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired. | 
+**Platform** | Pointer to **string** | The third-party platform the API key is valid for. Use &#x60;none&#x60; for a generic API key to be used from your own integration layer.  | [optional] 
 
 ## Methods
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Summary** | Pointer to **string** | One-word summary of the health of the API connection of an application | 
-**LastUsed** | Pointer to [**time.Time**](time.Time.md) | time of last request relevant to the API health test | 
+**Summary** | Pointer to **string** | One-word summary of the health of the API connection of an application. | 
+**LastUsed** | Pointer to [**time.Time**](time.Time.md) | time of last request relevant to the API health test. | 
 
 ## Methods
 

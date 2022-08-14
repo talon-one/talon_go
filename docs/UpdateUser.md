@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Your name. | [optional] 
-**Policy** | Pointer to **string** | a blob of acl json | [optional] 
+**Name** | Pointer to **string** | The user name. | [optional] 
+**Policy** | Pointer to **string** | ACL Json. | [optional] 
 **State** | Pointer to **string** | New state (\&quot;deactivated\&quot; or \&quot;active\&quot;) for the user. Only usable by admins for the user. | [optional] 
-**Roles** | Pointer to **[]int32** | Update | [optional] 
+**Roles** | Pointer to **[]int32** | List of roles to assign to the user. | [optional] 
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
 
 ## Methods
