@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## CopyCampaignToApplications
 
-> InlineResponse2002 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
+> InlineResponse2003 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
 
 Copy the campaign into the specified application
 
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -414,7 +414,7 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse2005 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2006 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons
 
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](inline_response_200_5.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -507,7 +507,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse2005 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2006 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons for multiple recipients
 
@@ -536,7 +536,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](inline_response_200_5.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -1425,7 +1425,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20012 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20013 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get access logs for Application
 
@@ -1458,7 +1458,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -1648,7 +1648,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20025 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20026 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List additional costs
 
@@ -1671,7 +1671,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
@@ -1689,7 +1689,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAccessLogs
 
-> InlineResponse20013 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20014 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List access logs
 
@@ -1717,7 +1717,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20014**](inline_response_200_14.md)
 
 ### Authorization
 
@@ -1735,7 +1735,7 @@ Name | Type | Description  | Notes
 
 ## GetAllRoles
 
-> InlineResponse20033 GetAllRoles(ctx).Execute()
+> InlineResponse20034 GetAllRoles(ctx).Execute()
 
 List roles
 
@@ -1752,7 +1752,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Return type
 
-[**InlineResponse20033**](inline_response_200_33.md)
+[**InlineResponse20034**](inline_response_200_34.md)
 
 ### Authorization
 
@@ -1901,7 +1901,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20023 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20024 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List friends referred by customer profile
 
@@ -1932,7 +1932,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
@@ -1950,7 +1950,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20015 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20016 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application's customers
 
@@ -1979,7 +1979,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
@@ -1997,7 +1997,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20016 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20017 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application customers matching the given attributes
 
@@ -2026,7 +2026,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -2044,7 +2044,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20021 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20022 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Applications event types
 
@@ -2072,7 +2072,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](inline_response_200_21.md)
+[**InlineResponse20022**](inline_response_200_22.md)
 
 ### Authorization
 
@@ -2090,7 +2090,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20020 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
+> InlineResponse20021 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
 List Applications events
 
@@ -2129,7 +2129,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](inline_response_200_20.md)
+[**InlineResponse20021**](inline_response_200_21.md)
 
 ### Authorization
 
@@ -2192,7 +2192,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20019 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
+> InlineResponse20020 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
 
 List Application sessions
 
@@ -2227,7 +2227,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20020**](inline_response_200_20.md)
 
 ### Authorization
 
@@ -2245,7 +2245,7 @@ Name | Type | Description  | Notes
 
 ## GetApplications
 
-> InlineResponse2001 GetApplications(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2002 GetApplications(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List applications
 
@@ -2268,7 +2268,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse2002**](inline_response_200_2.md)
 
 ### Authorization
 
@@ -2329,7 +2329,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20024 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
+> InlineResponse20025 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
 
 List custom attributes
 
@@ -2353,7 +2353,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](inline_response_200_24.md)
+[**InlineResponse20025**](inline_response_200_25.md)
 
 ### Authorization
 
@@ -2371,7 +2371,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20022 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20023 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List audiences
 
@@ -2395,7 +2395,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
@@ -2458,7 +2458,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20014 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
+> InlineResponse20015 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
 
 Get analytics of campaigns
 
@@ -2488,7 +2488,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
@@ -2506,7 +2506,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignByAttributes
 
-> InlineResponse2002 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
+> InlineResponse2003 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
 
 List campaigns that match the given attributes
 
@@ -2536,7 +2536,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -2554,7 +2554,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaigns
 
-> InlineResponse2002 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).TemplateId(templateId).Execute()
+> InlineResponse2003 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).TemplateId(templateId).Execute()
 
 List campaigns
 
@@ -2589,7 +2589,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -2607,7 +2607,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20031 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).IncludeOld(includeOld).Execute()
+> InlineResponse20032 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).IncludeOld(includeOld).Execute()
 
 Get audit logs for an account
 
@@ -2637,7 +2637,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20031**](inline_response_200_31.md)
+[**InlineResponse20032**](inline_response_200_32.md)
 
 ### Authorization
 
@@ -2702,7 +2702,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20010 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20011 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
 
 Get collection items
 
@@ -2729,7 +2729,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse20011**](inline_response_200_11.md)
 
 ### Authorization
 
@@ -2747,7 +2747,7 @@ Name | Type | Description  | Notes
 
 ## GetCouponsWithoutTotalCount
 
-> InlineResponse2006 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
+> InlineResponse2007 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
 
 List coupons
 
@@ -2786,7 +2786,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
@@ -2853,7 +2853,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20018 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
+> InlineResponse20019 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
 Get Activity Reports for Application Customers
 
@@ -2887,7 +2887,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
@@ -2996,7 +2996,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20017 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20018 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Execute()
 
 List customer profiles
 
@@ -3018,7 +3018,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -3036,7 +3036,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20017 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20018 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Execute()
 
 List customer profiles matching the given attributes
 
@@ -3059,7 +3059,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -3077,7 +3077,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20029 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20030 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List event types
 
@@ -3102,7 +3102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](inline_response_200_29.md)
+[**InlineResponse20030**](inline_response_200_30.md)
 
 ### Authorization
 
@@ -3120,7 +3120,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20032 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
+> InlineResponse20033 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
 Get exports
 
@@ -3145,7 +3145,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](inline_response_200_32.md)
+[**InlineResponse20033**](inline_response_200_33.md)
 
 ### Authorization
 
@@ -3251,7 +3251,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse2008 GetLoyaltyPrograms(ctx).Execute()
+> InlineResponse2009 GetLoyaltyPrograms(ctx).Execute()
 
 List loyalty programs
 
@@ -3268,7 +3268,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -3374,7 +3374,7 @@ Name | Type | Description  | Notes
 
 ## GetNotificationWebhooks
 
-> InlineResponse2003 GetNotificationWebhooks(ctx, applicationId).Execute()
+> InlineResponse2004 GetNotificationWebhooks(ctx, applicationId).Execute()
 
 List notification webhooks
 
@@ -3399,7 +3399,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
@@ -3417,7 +3417,7 @@ Name | Type | Description  | Notes
 
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse2007 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
+> InlineResponse2008 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
 List referrals
 
@@ -3453,7 +3453,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -3561,7 +3561,7 @@ Name | Type | Description  | Notes
 
 ## GetRulesets
 
-> InlineResponse2004 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2005 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List campaign rulesets
 
@@ -3591,7 +3591,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -3652,7 +3652,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20030 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20031 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List users in account
 
@@ -3675,7 +3675,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20030**](inline_response_200_30.md)
+[**InlineResponse20031**](inline_response_200_31.md)
 
 ### Authorization
 
@@ -3736,7 +3736,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20027 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20028 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook activation log entries
 
@@ -3765,7 +3765,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
@@ -3783,7 +3783,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20028 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20029 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook log entries
 
@@ -3813,7 +3813,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](inline_response_200_28.md)
+[**InlineResponse20029**](inline_response_200_29.md)
 
 ### Authorization
 
@@ -3831,7 +3831,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20026 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20027 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
 
 List webhooks
 
@@ -3855,7 +3855,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
@@ -4189,7 +4189,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse2009 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20010 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in account
 
@@ -4214,7 +4214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -4232,7 +4232,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20011 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20012 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections
 
@@ -4264,7 +4264,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -4282,7 +4282,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20011 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20012 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in application
 
@@ -4312,7 +4312,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -4415,7 +4415,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedApplicationWideWithoutTotalCount
 
-> InlineResponse2006 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
+> InlineResponse2007 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
 List coupons that match the given attributes (without total count)
 
@@ -4454,7 +4454,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
@@ -4472,7 +4472,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedWithoutTotalCount
 
-> InlineResponse2006 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
+> InlineResponse2007 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
 List coupons that match the given attributes in campaign (without total count)
 
@@ -4512,7 +4512,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 

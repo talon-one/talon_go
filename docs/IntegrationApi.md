@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyTransactions
 
-> LedgerTransactionLogEntryIntegrationApi GetLoyaltyTransactions(ctx, loyaltyProgramId, integrationId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse2001 GetLoyaltyTransactions(ctx, loyaltyProgramId, integrationId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 Get loyalty ledger transaction logs
 
@@ -489,7 +489,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LedgerTransactionLogEntryIntegrationApi**](LedgerTransactionLogEntryIntegrationAPI.md)
+[**InlineResponse2001**](inline_response_200_1.md)
 
 ### Authorization
 

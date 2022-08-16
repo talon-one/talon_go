@@ -4,36 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
-**Data** | Pointer to [**[]CollectionWithoutPayload**](CollectionWithoutPayload.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
+**Data** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) |  | 
 
 ## Methods
-
-### GetHasMore
-
-`func (o *InlineResponse2009) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse2009) GetHasMoreOk() (bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasHasMore
-
-`func (o *InlineResponse2009) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse2009) SetHasMore(v bool)`
-
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
 ### GetTotalResultSize
 
@@ -62,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse2009) GetData() []CollectionWithoutPayload`
+`func (o *InlineResponse2009) GetData() []LoyaltyProgram`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2009) GetDataOk() ([]CollectionWithoutPayload, bool)`
+`func (o *InlineResponse2009) GetDataOk() ([]LoyaltyProgram, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse2009) SetData(v []CollectionWithoutPayload)`
+`func (o *InlineResponse2009) SetData(v []LoyaltyProgram)`
 
-SetData gets a reference to the given []CollectionWithoutPayload and assigns it to the Data field.
+SetData gets a reference to the given []LoyaltyProgram and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

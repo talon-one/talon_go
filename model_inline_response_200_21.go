@@ -16,29 +16,29 @@ import (
 
 // InlineResponse20021 struct for InlineResponse20021
 type InlineResponse20021 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
-	Data            []string `json:"data"`
+	HasMore bool               `json:"hasMore"`
+	Data    []ApplicationEvent `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20021) GetTotalResultSize() int32 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse20021) GetHasMore() bool {
 	if o == nil {
-		var ret int32
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20021) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse20021) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20021) GetData() []string {
+func (o *InlineResponse20021) GetData() []ApplicationEvent {
 	if o == nil {
-		var ret []string
+		var ret []ApplicationEvent
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20021) GetData() []string {
 }
 
 // SetData sets field value
-func (o *InlineResponse20021) SetData(v []string) {
+func (o *InlineResponse20021) SetData(v []ApplicationEvent) {
 	o.Data = v
 }
 

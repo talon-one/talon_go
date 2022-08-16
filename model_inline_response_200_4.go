@@ -16,8 +16,8 @@ import (
 
 // InlineResponse2004 struct for InlineResponse2004
 type InlineResponse2004 struct {
-	TotalResultSize int32     `json:"totalResultSize"`
-	Data            []Ruleset `json:"data"`
+	TotalResultSize int32                 `json:"totalResultSize"`
+	Data            []NotificationWebhook `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2004) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2004) GetData() []Ruleset {
+func (o *InlineResponse2004) GetData() []NotificationWebhook {
 	if o == nil {
-		var ret []Ruleset
+		var ret []NotificationWebhook
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2004) GetData() []Ruleset {
 }
 
 // SetData sets field value
-func (o *InlineResponse2004) SetData(v []Ruleset) {
+func (o *InlineResponse2004) SetData(v []NotificationWebhook) {
 	o.Data = v
 }
 

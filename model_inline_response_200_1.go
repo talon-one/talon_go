@@ -16,29 +16,29 @@ import (
 
 // InlineResponse2001 struct for InlineResponse2001
 type InlineResponse2001 struct {
-	TotalResultSize int32         `json:"totalResultSize"`
-	Data            []Application `json:"data"`
+	HasMore bool                                      `json:"hasMore"`
+	Data    []LedgerTransactionLogEntryIntegrationApi `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2001) GetTotalResultSize() int32 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse2001) GetHasMore() bool {
 	if o == nil {
-		var ret int32
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2001) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse2001) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2001) GetData() []Application {
+func (o *InlineResponse2001) GetData() []LedgerTransactionLogEntryIntegrationApi {
 	if o == nil {
-		var ret []Application
+		var ret []LedgerTransactionLogEntryIntegrationApi
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2001) GetData() []Application {
 }
 
 // SetData sets field value
-func (o *InlineResponse2001) SetData(v []Application) {
+func (o *InlineResponse2001) SetData(v []LedgerTransactionLogEntryIntegrationApi) {
 	o.Data = v
 }
 

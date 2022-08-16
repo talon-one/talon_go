@@ -54,7 +54,8 @@ To create an audience from scratch:
 
 Once you create your first audience, audience-specific rule conditions are enabled in the Rule Builder.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateAudienceV2Request
 */
 func (a *IntegrationApiService) CreateAudienceV2(ctx _context.Context) apiCreateAudienceV2Request {
@@ -66,7 +67,8 @@ func (a *IntegrationApiService) CreateAudienceV2(ctx _context.Context) apiCreate
 
 /*
 Execute executes the request
- @return Audience
+
+	@return Audience
 */
 func (r apiCreateAudienceV2Request) Execute() (Audience, *_nethttp.Response, error) {
 	var (
@@ -227,19 +229,20 @@ When a user redeems a coupon, a reservation is automatically created after the r
 the used coupon will be returned in the [List customer data endpoint](/integration-api/#operation/getCustomerInventory).
 
 **Important:**
-- This endpoint creates a **soft** reservation. _Any_ customer
-  can use a reserved coupon code and proceed to checkout.
-- To create a hard reservation, use the
-  [Create coupons](/management-api/#operation/createCoupons) or
-  [Create coupons for multiple recipients](/management-api/#operation/createCouponsForMultipleRecipients) endpoints
-  setting the `recipientsIntegrationId` property.
+  - This endpoint creates a **soft** reservation. _Any_ customer
+    can use a reserved coupon code and proceed to checkout.
+  - To create a hard reservation, use the
+    [Create coupons](/management-api/#operation/createCoupons) or
+    [Create coupons for multiple recipients](/management-api/#operation/createCouponsForMultipleRecipients) endpoints
+    setting the `recipientsIntegrationId` property.
 
 For example, you can use this endpoint and `List customer data` to create a _coupon wallet_ by
 reserving coupon codes for a customer, and then displaying their coupon wallet
 when they visit your store.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param couponValue The code of the coupon.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param couponValue The code of the coupon.
+
 @return apiCreateCouponReservationRequest
 */
 func (a *IntegrationApiService) CreateCouponReservation(ctx _context.Context, couponValue string) apiCreateCouponReservationRequest {
@@ -252,7 +255,8 @@ func (a *IntegrationApiService) CreateCouponReservation(ctx _context.Context, co
 
 /*
 Execute executes the request
- @return Coupon
+
+	@return Coupon
 */
 func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response, error) {
 	var (
@@ -403,7 +407,8 @@ func (r apiCreateReferralRequest) Body(body NewReferral) apiCreateReferralReques
 CreateReferral Create referral code for an advocate
 Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateReferralRequest
 */
 func (a *IntegrationApiService) CreateReferral(ctx _context.Context) apiCreateReferralRequest {
@@ -415,7 +420,8 @@ func (a *IntegrationApiService) CreateReferral(ctx _context.Context) apiCreateRe
 
 /*
 Execute executes the request
- @return Referral
+
+	@return Referral
 */
 func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error) {
 	var (
@@ -561,7 +567,8 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Silent(silent string) api
 CreateReferralsForMultipleAdvocates Create referral codes for multiple advocates
 Creates unique referral codes for multiple advocates. The code will be valid for the referral campaign for which it is created, indicated in the `campaignId` parameter, and one referral code will be associated with one advocate using the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateReferralsForMultipleAdvocatesRequest
 */
 func (a *IntegrationApiService) CreateReferralsForMultipleAdvocates(ctx _context.Context) apiCreateReferralsForMultipleAdvocatesRequest {
@@ -573,7 +580,8 @@ func (a *IntegrationApiService) CreateReferralsForMultipleAdvocates(ctx _context
 
 /*
 Execute executes the request
- @return InlineResponse201
+
+	@return InlineResponse201
 */
 func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse201, *_nethttp.Response, error) {
 	var (
@@ -711,8 +719,9 @@ type apiDeleteAudienceMembershipsV2Request struct {
 DeleteAudienceMembershipsV2 Delete audience memberships
 Remove all members from this audience.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+
 @return apiDeleteAudienceMembershipsV2Request
 */
 func (a *IntegrationApiService) DeleteAudienceMembershipsV2(ctx _context.Context, audienceId int32) apiDeleteAudienceMembershipsV2Request {
@@ -725,7 +734,6 @@ func (a *IntegrationApiService) DeleteAudienceMembershipsV2(ctx _context.Context
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteAudienceMembershipsV2Request) Execute() (*_nethttp.Response, error) {
 	var (
@@ -837,8 +845,9 @@ Delete an audience created by a third-party integration.
 
 **Warning:** This endpoint also removes any associations recorded between a customer profile and this audience.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+
 @return apiDeleteAudienceV2Request
 */
 func (a *IntegrationApiService) DeleteAudienceV2(ctx _context.Context, audienceId int32) apiDeleteAudienceV2Request {
@@ -851,7 +860,6 @@ func (a *IntegrationApiService) DeleteAudienceV2(ctx _context.Context, audienceI
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteAudienceV2Request) Execute() (*_nethttp.Response, error) {
 	var (
@@ -978,8 +986,9 @@ DeleteCouponReservation Delete coupon reservations
 Remove all the coupon reservations from the provided customer profile integration IDs and the provided
 coupon code.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param couponValue The code of the coupon.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param couponValue The code of the coupon.
+
 @return apiDeleteCouponReservationRequest
 */
 func (a *IntegrationApiService) DeleteCouponReservation(ctx _context.Context, couponValue string) apiDeleteCouponReservationRequest {
@@ -992,7 +1001,6 @@ func (a *IntegrationApiService) DeleteCouponReservation(ctx _context.Context, co
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteCouponReservationRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -1120,8 +1128,9 @@ Delete all attributes on the customer profile and on entities that reference thi
 
 **Important:** To preserve performance, we recommend avoiding deleting customer data during peak-traffic hours.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration Id with the [Update customer session endpoint](https://docs.talon.one/integration-api/#operation/updateCustomerSessionV2). - The Management API with the [List application's customers endpoint](https://docs.talon.one/management-api/#operation/getApplicationCustomers).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration Id with the [Update customer session endpoint](https://docs.talon.one/integration-api/#operation/updateCustomerSessionV2). - The Management API with the [List application's customers endpoint](https://docs.talon.one/management-api/#operation/getApplicationCustomers).
+
 @return apiDeleteCustomerDataRequest
 */
 func (a *IntegrationApiService) DeleteCustomerData(ctx _context.Context, integrationId string) apiDeleteCustomerDataRequest {
@@ -1134,7 +1143,6 @@ func (a *IntegrationApiService) DeleteCustomerData(ctx _context.Context, integra
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteCustomerDataRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -1286,8 +1294,9 @@ Reserved coupons also include redeemed coupons.
 You can also use this endpoint to get the projected loyalty balances in order to notify
 your customers about points that are about to expire, or to remind them how many points they have.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration Id with the [Update customer session endpoint](https://docs.talon.one/integration-api/#operation/updateCustomerSessionV2). - The Management API with the [List application's customers endpoint](https://docs.talon.one/management-api/#operation/getApplicationCustomers).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration Id with the [Update customer session endpoint](https://docs.talon.one/integration-api/#operation/updateCustomerSessionV2). - The Management API with the [List application's customers endpoint](https://docs.talon.one/management-api/#operation/getApplicationCustomers).
+
 @return apiGetCustomerInventoryRequest
 */
 func (a *IntegrationApiService) GetCustomerInventory(ctx _context.Context, integrationId string) apiGetCustomerInventoryRequest {
@@ -1300,7 +1309,8 @@ func (a *IntegrationApiService) GetCustomerInventory(ctx _context.Context, integ
 
 /*
 Execute executes the request
- @return CustomerInventory
+
+	@return CustomerInventory
 */
 func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.Response, error) {
 	var (
@@ -1453,8 +1463,9 @@ You can get the same data via other endpoints that also apply changes, which can
 - [Update customer session](#tag/Customer-sessions/operation/updateCustomerSessionV2)
 - [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2)
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param customerSessionId The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session endpoint](https://docs.talon.one/management-api/#operation/getApplicationSessions).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param customerSessionId The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session endpoint](https://docs.talon.one/management-api/#operation/getApplicationSessions).
+
 @return apiGetCustomerSessionRequest
 */
 func (a *IntegrationApiService) GetCustomerSession(ctx _context.Context, customerSessionId string) apiGetCustomerSessionRequest {
@@ -1467,7 +1478,8 @@ func (a *IntegrationApiService) GetCustomerSession(ctx _context.Context, custome
 
 /*
 Execute executes the request
- @return IntegrationCustomerSessionResponse
+
+	@return IntegrationCustomerSessionResponse
 */
 func (r apiGetCustomerSessionRequest) Execute() (IntegrationCustomerSessionResponse, *_nethttp.Response, error) {
 	var (
@@ -1623,9 +1635,10 @@ GetLoyaltyTransactions Get loyalty ledger transaction logs
 Retrieve paginated loyalty transaction logs for the given Integration ID in the specified loyalty program.
 You can filter transactions by date. If no filters are applied, the last 30 loyalty transactions for the given integration ID are returned.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
- * @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+  - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+
 @return apiGetLoyaltyTransactionsRequest
 */
 func (a *IntegrationApiService) GetLoyaltyTransactions(ctx _context.Context, loyaltyProgramId int32, integrationId string) apiGetLoyaltyTransactionsRequest {
@@ -1639,16 +1652,17 @@ func (a *IntegrationApiService) GetLoyaltyTransactions(ctx _context.Context, loy
 
 /*
 Execute executes the request
- @return LedgerTransactionLogEntryIntegrationApi
+
+	@return InlineResponse2001
 */
-func (r apiGetLoyaltyTransactionsRequest) Execute() (LedgerTransactionLogEntryIntegrationApi, *_nethttp.Response, error) {
+func (r apiGetLoyaltyTransactionsRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LedgerTransactionLogEntryIntegrationApi
+		localVarReturnValue  InlineResponse2001
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyTransactions")
@@ -1729,7 +1743,7 @@ func (r apiGetLoyaltyTransactionsRequest) Execute() (LedgerTransactionLogEntryIn
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v LedgerTransactionLogEntryIntegrationApi
+			var v InlineResponse2001
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1796,8 +1810,9 @@ Coupons are reserved in the following ways:
 - To create a soft reservation (any customer can use the coupon), use the [Create coupon reservation](#operation/createCouponReservation) endpoint.
 - To create a hard reservation (only the given customer can use the coupon), create a coupon in the Campaign Manager for a given `recipientIntegrationId` or use the [Create coupons](/management-api/#operation/createCoupons) or [Create coupons for multiple recipients](/management-api/#operation/createCouponsForMultipleRecipients) endpoints.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param couponValue The code of the coupon.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param couponValue The code of the coupon.
+
 @return apiGetReservedCustomersRequest
 */
 func (a *IntegrationApiService) GetReservedCustomers(ctx _context.Context, couponValue string) apiGetReservedCustomersRequest {
@@ -1810,7 +1825,8 @@ func (a *IntegrationApiService) GetReservedCustomers(ctx _context.Context, coupo
 
 /*
 Execute executes the request
- @return InlineResponse200
+
+	@return InlineResponse200
 */
 func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.Response, error) {
 	var (
@@ -1971,8 +1987,9 @@ is enabled for the Application.
 [our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities#customer-session-states)
 and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param customerSessionId The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session endpoint](https://docs.talon.one/management-api/#operation/getApplicationSessions).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param customerSessionId The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session endpoint](https://docs.talon.one/management-api/#operation/getApplicationSessions).
+
 @return apiReturnCartItemsRequest
 */
 func (a *IntegrationApiService) ReturnCartItems(ctx _context.Context, customerSessionId string) apiReturnCartItemsRequest {
@@ -1985,7 +2002,8 @@ func (a *IntegrationApiService) ReturnCartItems(ctx _context.Context, customerSe
 
 /*
 Execute executes the request
- @return IntegrationStateV2
+
+	@return IntegrationStateV2
 */
 func (r apiReturnCartItemsRequest) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
 	var (
@@ -2146,22 +2164,28 @@ at a time.
 
 The `filters` object contains the following properties:
 
-- `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)
-  connected to the catalog. It is applied to all items in the catalog.
-- `op`: The filtering operator indicating the relationship between the value of each
-  cart item in the catalog and the value of the `value` property for the attribute selected
-  in `attr`.
+  - `attr`: A [cart item attribute](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)
+    connected to the catalog. It is applied to all items in the catalog.
 
-  The value of `op` can be one of the following:
+  - `op`: The filtering operator indicating the relationship between the value of each
+    cart item in the catalog and the value of the `value` property for the attribute selected
+    in `attr`.
+
+    The value of `op` can be one of the following:
 
   - `EQ`: Equal to `value`
+
   - `LT`: Less than `value`
+
   - `LE`: Less than or equal to `value`
+
   - `GT`: Greater than `value`
+
   - `GE`: Greater than or equal to `value`
+
   - `IN`: One of the comma-separated values that `value` is set to.
 
-  **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only.
+    **Note:** `GE`, `LE`, `GT`, `LT` are for numeric values only.
 
 - `value`: The value of the attribute selected in `attr`.
 
@@ -2170,158 +2194,171 @@ The `filters` object contains the following properties:
 Synchronization actions are sent as `PUT` requests. See the structure for each action:
 
 <details>
-  <summary><strong>Adding an item to the catalog</strong></summary>
-  <div>
 
-  ```json
-  {
-    "actions": [
-      {
-        "payload": {
-          "attributes": {
-            "color": "Navy blue",
-            "type": "shoe"
-          },
-          "replaceIfExists": true,
-          "sku": "SKU1241028"
-        },
-        "type": "ADD"
-      }
-    ]
-  }
-  ```
-  </div>
+	<summary><strong>Adding an item to the catalog</strong></summary>
+	<div>
+
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "attributes": {
+	          "color": "Navy blue",
+	          "type": "shoe"
+	        },
+	        "replaceIfExists": true,
+	        "sku": "SKU1241028"
+	      },
+	      "type": "ADD"
+	    }
+	  ]
+	}
+	```
+	</div>
+
 </details>
 
 <details>
-  <summary><strong>Editing the attributes of an item in the catalog</strong></summary>
-  <div>
 
-  ```json
-  {
-    "actions": [
-      {
-        "payload": {
-          "attributes": {
-            "age": 11,
-            "origin": "germany"
-          },
-          "createIfNotExists": false,
-          "sku": "SKU1241028"
-        },
-        "type": "PATCH"
-      }
-    ]
-  }
-  ```
-  </div>
+	<summary><strong>Editing the attributes of an item in the catalog</strong></summary>
+	<div>
+
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "attributes": {
+	          "age": 11,
+	          "origin": "germany"
+	        },
+	        "createIfNotExists": false,
+	        "sku": "SKU1241028"
+	      },
+	      "type": "PATCH"
+	    }
+	  ]
+	}
+	```
+	</div>
+
 </details>
 
 <details>
-  <summary><strong>Editing the attributes of several items at once</strong></summary>
-  <div>
 
-  ```json
-  {
-    "actions": [
-      {
-        "payload": {
-          "attributes": {
-            "color": "red"
-          },
-          "filters": [
-            {
-              "attr": "color",
-              "op": "EQ",
-              "value": "blue"
-            }
-          ]
-        },
-        "type": "PATCH_MANY"
-      }
-    ]
-  }
-  ```
+	<summary><strong>Editing the attributes of several items at once</strong></summary>
+	<div>
 
-  </div>
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "attributes": {
+	          "color": "red"
+	        },
+	        "filters": [
+	          {
+	            "attr": "color",
+	            "op": "EQ",
+	            "value": "blue"
+	          }
+	        ]
+	      },
+	      "type": "PATCH_MANY"
+	    }
+	  ]
+	}
+	```
+
+	</div>
+
 </details>
 
 <details>
-  <summary><strong>Removing an item from the catalog</strong></summary>
-  <div>
 
-  ```json
-  {
-    "actions": [
-      {
-        "payload": {
-          "sku": "SKU1241028"
-        },
-        "type": "REMOVE"
-      }
-    ]
-  }
-  ```
+	<summary><strong>Removing an item from the catalog</strong></summary>
+	<div>
 
-  </div>
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "sku": "SKU1241028"
+	      },
+	      "type": "REMOVE"
+	    }
+	  ]
+	}
+	```
+
+	</div>
+
 </details>
 
 <details>
-  <summary><strong>Removing several items from the catalog at once</strong></summary>
-  <div>
 
-  ```json
-  {
-    "actions": [
-      {
-        "payload": {
-          "filters": [
-            {
-              "attr": "color",
-              "op": "EQ",
-              "value": "blue"
-            }
-          ]
-        },
-        "type": "REMOVE_MANY"
-      }
-    ]
-  }
-  ```
-  </div>
+	<summary><strong>Removing several items from the catalog at once</strong></summary>
+	<div>
+
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "filters": [
+	          {
+	            "attr": "color",
+	            "op": "EQ",
+	            "value": "blue"
+	          }
+	        ]
+	      },
+	      "type": "REMOVE_MANY"
+	    }
+	  ]
+	}
+	```
+	</div>
+
 </details>
 
 <details>
-  <summary><strong>Removing shoes of sizes above 45 from the catalog</strong></summary>
-  <div>
-  <p>
-  Let's imagine that we have a shoe store and we have decided to stop selling
-  shoes larger than size 45. We can remove from the catalog all the shoes of sizes above 45
-  with a single action:</p>
 
-  ```json
-  {
-    "actions": [
-      {
-        "payload": {
-          "filters": [
-            {
-              "attr": "size",
-              "op": "GT",
-              "value": "45"
-            }
-          ]
-        },
-        "type": "REMOVE_MANY"
-      }
-    ]
-  }
-  ```
-  </div>
+	<summary><strong>Removing shoes of sizes above 45 from the catalog</strong></summary>
+	<div>
+	<p>
+	Let's imagine that we have a shoe store and we have decided to stop selling
+	shoes larger than size 45. We can remove from the catalog all the shoes of sizes above 45
+	with a single action:</p>
+
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "filters": [
+	          {
+	            "attr": "size",
+	            "op": "GT",
+	            "value": "45"
+	          }
+	        ]
+	      },
+	      "type": "REMOVE_MANY"
+	    }
+	  ]
+	}
+	```
+	</div>
+
 </details>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param catalogId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param catalogId
+
 @return apiSyncCatalogRequest
 */
 func (a *IntegrationApiService) SyncCatalog(ctx _context.Context, catalogId int32) apiSyncCatalogRequest {
@@ -2334,7 +2371,8 @@ func (a *IntegrationApiService) SyncCatalog(ctx _context.Context, catalogId int3
 
 /*
 Execute executes the request
- @return Catalog
+
+	@return Catalog
 */
 func (r apiSyncCatalogRequest) Execute() (Catalog, *_nethttp.Response, error) {
 	var (
@@ -2492,16 +2530,19 @@ TrackEvent Track event
 **Important:** This endpoint is **DEPRECATED**. Use [Track Event V2](https://docs.talon.one/integration-api/#tag/Events/operation/trackEventV2) instead.
 
 <blockquote>
- Triggers a custom event in a customer session. You can then check this event in your rules. **Important:** Talon.One offers a set of [built-in events](/docs/dev/concepts/events), ensure you do not create a custom event when you can use a built-in event.
- For example, use this endpoint to trigger an event when a user updates their payment information.
 
- Before using this endpoint, create your event as a custom attribute of type `event`.  See the [Developer docs](/docs/dev/concepts/events/#creating-a-custom-event).
+	Triggers a custom event in a customer session. You can then check this event in your rules. **Important:** Talon.One offers a set of [built-in events](/docs/dev/concepts/events), ensure you do not create a custom event when you can use a built-in event.
+	For example, use this endpoint to trigger an event when a user updates their payment information.
 
- An event is always part of a session. If either the profile or the session does not exist,
- a new empty profile/session is created. If the specified session already exists, it must belong to the same `profileId` or an error will be returned.
+	Before using this endpoint, create your event as a custom attribute of type `event`.  See the [Developer docs](/docs/dev/concepts/events/#creating-a-custom-event).
+
+	An event is always part of a session. If either the profile or the session does not exist,
+	a new empty profile/session is created. If the specified session already exists, it must belong to the same `profileId` or an error will be returned.
+
 </blockquote>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiTrackEventRequest
 */
 func (a *IntegrationApiService) TrackEvent(ctx _context.Context) apiTrackEventRequest {
@@ -2513,7 +2554,8 @@ func (a *IntegrationApiService) TrackEvent(ctx _context.Context) apiTrackEventRe
 
 /*
 Execute executes the request
- @return IntegrationState
+
+	@return IntegrationState
 */
 func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, error) {
 	var (
@@ -2689,7 +2731,8 @@ See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incen
 - Before using this endpoint, create your event as a custom attribute of type `event`.
 See the [Developer docs](/docs/dev/concepts/events/#creating-a-custom-event).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiTrackEventV2Request
 */
 func (a *IntegrationApiService) TrackEventV2(ctx _context.Context) apiTrackEventV2Request {
@@ -2701,7 +2744,8 @@ func (a *IntegrationApiService) TrackEventV2(ctx _context.Context) apiTrackEvent
 
 /*
 Execute executes the request
- @return IntegrationStateV2
+
+	@return IntegrationStateV2
 */
 func (r apiTrackEventV2Request) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
 	var (
@@ -2848,8 +2892,9 @@ func (r apiUpdateAudienceCustomersAttributesRequest) Body(body map[string]interf
 UpdateAudienceCustomersAttributes Update profile attributes for all customers in audience
 Update the specified profile attributes to the provided values for all customers in the specified audience.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+
 @return apiUpdateAudienceCustomersAttributesRequest
 */
 func (a *IntegrationApiService) UpdateAudienceCustomersAttributes(ctx _context.Context, audienceId int32) apiUpdateAudienceCustomersAttributesRequest {
@@ -2862,7 +2907,6 @@ func (a *IntegrationApiService) UpdateAudienceCustomersAttributes(ctx _context.C
 
 /*
 Execute executes the request
-
 */
 func (r apiUpdateAudienceCustomersAttributesRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2986,8 +3030,9 @@ Update the name of the given audience created by a third-party integration. Send
 
 To update the audience's members, use the [Update customer profile endpoint](#tag/Customer-profiles/operation/updateCustomerProfileV2).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+
 @return apiUpdateAudienceV2Request
 */
 func (a *IntegrationApiService) UpdateAudienceV2(ctx _context.Context, audienceId int32) apiUpdateAudienceV2Request {
@@ -3000,7 +3045,8 @@ func (a *IntegrationApiService) UpdateAudienceV2(ctx _context.Context, audienceI
 
 /*
 Execute executes the request
- @return Audience
+
+	@return Audience
 */
 func (r apiUpdateAudienceV2Request) Execute() (Audience, *_nethttp.Response, error) {
 	var (
@@ -3144,7 +3190,8 @@ when customers join or leave audiences.
 
 The limit of customer profiles per request is 1000.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiUpdateCustomerProfileAudiencesRequest
 */
 func (a *IntegrationApiService) UpdateCustomerProfileAudiences(ctx _context.Context) apiUpdateCustomerProfileAudiencesRequest {
@@ -3156,7 +3203,6 @@ func (a *IntegrationApiService) UpdateCustomerProfileAudiences(ctx _context.Cont
 
 /*
 Execute executes the request
-
 */
 func (r apiUpdateCustomerProfileAudiencesRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -3304,16 +3350,19 @@ You can use this endpoint to:
 - Modify the audience the customer profile is a member of.
 
 <div class="redoc-section">
-  <p class="title">Performance tips</p>
 
-  Updating a customer profile returns a response with the requested integration state.
+	<p class="title">Performance tips</p>
 
-  You can use the `responseContent` property to save yourself extra API calls. For example, you can get
-  the customer profile details directly without extra requests.
+	Updating a customer profile returns a response with the requested integration state.
+
+	You can use the `responseContent` property to save yourself extra API calls. For example, you can get
+	the customer profile details directly without extra requests.
+
 </div>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+
 @return apiUpdateCustomerProfileV2Request
 */
 func (a *IntegrationApiService) UpdateCustomerProfileV2(ctx _context.Context, integrationId string) apiUpdateCustomerProfileV2Request {
@@ -3326,7 +3375,8 @@ func (a *IntegrationApiService) UpdateCustomerProfileV2(ctx _context.Context, in
 
 /*
 Execute executes the request
- @return IntegrationStateV2
+
+	@return IntegrationStateV2
 */
 func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
 	var (
@@ -3495,7 +3545,8 @@ themselves. For example, you can use a database ID.
 
 A customer profile [can be linked to one or more sessions](/integration-api/#tag/Customer-sessions).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiUpdateCustomerProfilesV2Request
 */
 func (a *IntegrationApiService) UpdateCustomerProfilesV2(ctx _context.Context) apiUpdateCustomerProfilesV2Request {
@@ -3507,7 +3558,8 @@ func (a *IntegrationApiService) UpdateCustomerProfilesV2(ctx _context.Context) a
 
 /*
 Execute executes the request
- @return MultipleCustomerProfileIntegrationResponseV2
+
+	@return MultipleCustomerProfileIntegrationResponseV2
 */
 func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIntegrationResponseV2, *_nethttp.Response, error) {
 	var (
@@ -3683,16 +3735,19 @@ See more information and tips about session management in the [documentation](/d
 **Note:** You do **not** have to create a customer profile first. If the specified profile does not exist, an empty profile is created automatically.
 
 <div class="redoc-section">
-  <p class="title">Performance tips</p>
 
-  Updating a customer session returns a response with the requested integration state. Use the `responseContent` property to save yourself extra API calls. For example, you can get
-  the customer profile details directly without extra requests.
+	<p class="title">Performance tips</p>
 
-  For more information, see the [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).
+	Updating a customer session returns a response with the requested integration state. Use the `responseContent` property to save yourself extra API calls. For example, you can get
+	the customer profile details directly without extra requests.
+
+	For more information, see the [integration tutorial](https://docs.talon.one/docs/dev/tutorials/integrating-talon-one).
+
 </div>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param customerSessionId The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session endpoint](https://docs.talon.one/management-api/#operation/getApplicationSessions).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param customerSessionId The `integration ID` of the customer session. You set this ID when you create a customer session.  You can see existing customer session integration IDs in the Campaign Manager's **Sessions** menu, or via the [List Application session endpoint](https://docs.talon.one/management-api/#operation/getApplicationSessions).
+
 @return apiUpdateCustomerSessionV2Request
 */
 func (a *IntegrationApiService) UpdateCustomerSessionV2(ctx _context.Context, customerSessionId string) apiUpdateCustomerSessionV2Request {
@@ -3705,7 +3760,8 @@ func (a *IntegrationApiService) UpdateCustomerSessionV2(ctx _context.Context, cu
 
 /*
 Execute executes the request
- @return IntegrationStateV2
+
+	@return IntegrationStateV2
 */
 func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
 	var (
