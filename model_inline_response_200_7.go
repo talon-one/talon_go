@@ -16,8 +16,8 @@ import (
 
 // InlineResponse2007 struct for InlineResponse2007
 type InlineResponse2007 struct {
-	HasMore bool       `json:"hasMore"`
-	Data    []Referral `json:"data"`
+	HasMore bool     `json:"hasMore"`
+	Data    []Coupon `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2007) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2007) GetData() []Referral {
+func (o *InlineResponse2007) GetData() []Coupon {
 	if o == nil {
-		var ret []Referral
+		var ret []Coupon
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2007) GetData() []Referral {
 }
 
 // SetData sets field value
-func (o *InlineResponse2007) SetData(v []Referral) {
+func (o *InlineResponse2007) SetData(v []Coupon) {
 	o.Data = v
 }
 

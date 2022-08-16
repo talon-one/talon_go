@@ -16,8 +16,8 @@ import (
 
 // InlineResponse2003 struct for InlineResponse2003
 type InlineResponse2003 struct {
-	TotalResultSize int32                 `json:"totalResultSize"`
-	Data            []NotificationWebhook `json:"data"`
+	TotalResultSize int32      `json:"totalResultSize"`
+	Data            []Campaign `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2003) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2003) GetData() []NotificationWebhook {
+func (o *InlineResponse2003) GetData() []Campaign {
 	if o == nil {
-		var ret []NotificationWebhook
+		var ret []Campaign
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2003) GetData() []NotificationWebhook {
 }
 
 // SetData sets field value
-func (o *InlineResponse2003) SetData(v []NotificationWebhook) {
+func (o *InlineResponse2003) SetData(v []Campaign) {
 	o.Data = v
 }
 

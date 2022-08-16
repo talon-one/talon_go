@@ -14,14 +14,14 @@ import (
 	"encoding/json"
 )
 
-// InlineResponse20025 struct for InlineResponse20025
-type InlineResponse20025 struct {
-	TotalResultSize int32       `json:"totalResultSize"`
-	Data            []Attribute `json:"data"`
+// InlineResponse20034 struct for InlineResponse20034
+type InlineResponse20034 struct {
+	TotalResultSize int32  `json:"totalResultSize"`
+	Data            []Role `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20025) GetTotalResultSize() int32 {
+func (o *InlineResponse20034) GetTotalResultSize() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -31,14 +31,14 @@ func (o *InlineResponse20025) GetTotalResultSize() int32 {
 }
 
 // SetTotalResultSize sets field value
-func (o *InlineResponse20025) SetTotalResultSize(v int32) {
+func (o *InlineResponse20034) SetTotalResultSize(v int32) {
 	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20025) GetData() []Attribute {
+func (o *InlineResponse20034) GetData() []Role {
 	if o == nil {
-		var ret []Attribute
+		var ret []Role
 		return ret
 	}
 
@@ -46,16 +46,16 @@ func (o *InlineResponse20025) GetData() []Attribute {
 }
 
 // SetData sets field value
-func (o *InlineResponse20025) SetData(v []Attribute) {
+func (o *InlineResponse20034) SetData(v []Role) {
 	o.Data = v
 }
 
-type NullableInlineResponse20025 struct {
-	Value        InlineResponse20025
+type NullableInlineResponse20034 struct {
+	Value        InlineResponse20034
 	ExplicitNull bool
 }
 
-func (v NullableInlineResponse20025) MarshalJSON() ([]byte, error) {
+func (v NullableInlineResponse20034) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -64,7 +64,7 @@ func (v NullableInlineResponse20025) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableInlineResponse20025) UnmarshalJSON(src []byte) error {
+func (v *NullableInlineResponse20034) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

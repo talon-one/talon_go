@@ -1333,7 +1333,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LedgerTransactionLogEntryIntegrationAPI'
+                $ref: '#/components/schemas/inline_response_200_1'
           description: OK
         "400":
           content:
@@ -1389,7 +1389,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_1'
+                $ref: '#/components/schemas/inline_response_200_2'
           description: OK
       summary: List applications
       tags:
@@ -1515,7 +1515,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+                $ref: '#/components/schemas/inline_response_200_3'
           description: OK
         "400":
           content:
@@ -1543,7 +1543,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_3'
+                $ref: '#/components/schemas/inline_response_200_4'
           description: OK
       summary: List notification webhooks
       tags:
@@ -1780,7 +1780,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+                $ref: '#/components/schemas/inline_response_200_3'
           description: OK
       summary: Copy the campaign into the specified application
       tags:
@@ -1852,7 +1852,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_2'
+                $ref: '#/components/schemas/inline_response_200_3'
           description: OK
       summary: List campaigns that match the given attributes
       tags:
@@ -1906,7 +1906,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_4'
+                $ref: '#/components/schemas/inline_response_200_5'
           description: OK
       summary: List campaign rulesets
       tags:
@@ -1984,7 +1984,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_5'
+                $ref: '#/components/schemas/inline_response_200_6'
           description: OK
         "204":
           content: {}
@@ -2197,7 +2197,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_5'
+                $ref: '#/components/schemas/inline_response_200_6'
           description: OK
         "204":
           content: {}
@@ -2360,7 +2360,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_7'
           description: OK
       summary: List coupons
       tags:
@@ -2563,7 +2563,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_7'
           description: OK
       summary: List coupons that match the given attributes in campaign (without total
         count)
@@ -2708,7 +2708,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_6'
+                $ref: '#/components/schemas/inline_response_200_7'
           description: OK
       summary: List coupons that match the given attributes (without total count)
       tags:
@@ -2880,7 +2880,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_7'
+                $ref: '#/components/schemas/inline_response_200_8'
           description: OK
       summary: List referrals
       tags:
@@ -2928,7 +2928,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_8'
+                $ref: '#/components/schemas/inline_response_200_9'
           description: OK
       summary: List loyalty programs
       tags:
@@ -3367,7 +3367,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_9'
+                $ref: '#/components/schemas/inline_response_200_10'
           description: OK
         "400":
           content:
@@ -3558,7 +3558,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_10'
+                $ref: '#/components/schemas/inline_response_200_11'
           description: OK
         "404":
           content:
@@ -3621,7 +3621,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_11'
+                $ref: '#/components/schemas/inline_response_200_12'
           description: OK
         "404":
           content:
@@ -3691,7 +3691,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_11'
+                $ref: '#/components/schemas/inline_response_200_12'
           description: OK
         "404":
           content:
@@ -4202,7 +4202,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_12'
+                $ref: '#/components/schemas/inline_response_200_13'
           description: OK
       summary: Get access logs for Application
       tags:
@@ -4281,7 +4281,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_13'
+                $ref: '#/components/schemas/inline_response_200_14'
           description: OK
       summary: List access logs
       tags:
@@ -4337,7 +4337,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_14'
+                $ref: '#/components/schemas/inline_response_200_15'
           description: OK
       summary: Get analytics of campaigns
       tags:
@@ -4388,7 +4388,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_15'
+                $ref: '#/components/schemas/inline_response_200_16'
           description: OK
       summary: List application's customers
       tags:
@@ -4442,7 +4442,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_16'
+                $ref: '#/components/schemas/inline_response_200_17'
           description: OK
       summary: List application customers matching the given attributes
       tags:
@@ -4481,7 +4481,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_17'
+                $ref: '#/components/schemas/inline_response_200_18'
           description: OK
       summary: List customer profiles matching the given attributes
       tags:
@@ -4545,7 +4545,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_17'
+                $ref: '#/components/schemas/inline_response_200_18'
           description: OK
       summary: List customer profiles
       tags:
@@ -4658,7 +4658,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_18'
+                $ref: '#/components/schemas/inline_response_200_19'
           description: OK
       summary: Get Activity Reports for Application Customers
       tags:
@@ -4858,7 +4858,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_19'
+                $ref: '#/components/schemas/inline_response_200_20'
           description: OK
       summary: List Application sessions
       tags:
@@ -4996,7 +4996,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_20'
+                $ref: '#/components/schemas/inline_response_200_21'
           description: OK
       summary: List Applications events
       tags:
@@ -5042,7 +5042,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_21'
+                $ref: '#/components/schemas/inline_response_200_22'
           description: OK
       summary: List Applications event types
       tags:
@@ -5088,7 +5088,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_22'
+                $ref: '#/components/schemas/inline_response_200_23'
           description: OK
       summary: List audiences
       tags:
@@ -5147,7 +5147,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_23'
+                $ref: '#/components/schemas/inline_response_200_24'
           description: OK
       summary: List friends referred by customer profile
       tags:
@@ -5189,7 +5189,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_24'
+                $ref: '#/components/schemas/inline_response_200_25'
           description: OK
       summary: List custom attributes
       tags:
@@ -5609,7 +5609,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_25'
+                $ref: '#/components/schemas/inline_response_200_26'
           description: OK
       summary: List additional costs
       tags:
@@ -5721,7 +5721,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_26'
+                $ref: '#/components/schemas/inline_response_200_27'
           description: OK
       summary: List webhooks
       tags:
@@ -5812,7 +5812,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_27'
+                $ref: '#/components/schemas/inline_response_200_28'
           description: OK
       summary: List webhook activation log entries
       tags:
@@ -5892,7 +5892,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_28'
+                $ref: '#/components/schemas/inline_response_200_29'
           description: OK
       summary: List webhook log entries
       tags:
@@ -5941,7 +5941,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_29'
+                $ref: '#/components/schemas/inline_response_200_30'
           description: OK
       summary: List event types
       tags:
@@ -6448,7 +6448,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_30'
+                $ref: '#/components/schemas/inline_response_200_31'
           description: OK
       summary: List users in account
       tags:
@@ -6554,7 +6554,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_31'
+                $ref: '#/components/schemas/inline_response_200_32'
           description: OK
       summary: Get audit logs for an account
       tags:
@@ -6743,7 +6743,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_32'
+                $ref: '#/components/schemas/inline_response_200_33'
           description: OK
       summary: Get exports
       tags:
@@ -6757,7 +6757,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_33'
+                $ref: '#/components/schemas/inline_response_200_34'
           description: OK
       summary: List roles
       tags:
@@ -23543,6 +23543,44 @@ components:
     inline_response_200_1:
       example:
         data:
+        - expiryDate: 2022-01-02T15:04:05Z07:00
+          rulesetId: 11
+          amount: 10.25
+          created: 2000-01-23T04:56:07.000+00:00
+          subledgerId: sub-123
+          name: Reward 10% points of a purchase's current total
+          ruleName: Add 2 points
+          customerSessionId: 05c2da0d-48fa-4aa1-b629-898f58f1584d
+          id: 123
+          type: addition
+          programId: 324
+          startDate: 2022-01-02T15:04:05Z07:00
+        - expiryDate: 2022-01-02T15:04:05Z07:00
+          rulesetId: 11
+          amount: 10.25
+          created: 2000-01-23T04:56:07.000+00:00
+          subledgerId: sub-123
+          name: Reward 10% points of a purchase's current total
+          ruleName: Add 2 points
+          customerSessionId: 05c2da0d-48fa-4aa1-b629-898f58f1584d
+          id: 123
+          type: addition
+          programId: 324
+          startDate: 2022-01-02T15:04:05Z07:00
+        hasMore: true
+      properties:
+        hasMore:
+          type: boolean
+        data:
+          items:
+            $ref: '#/components/schemas/LedgerTransactionLogEntryIntegrationAPI'
+          type: array
+      required:
+      - data
+      - hasMore
+    inline_response_200_2:
+      example:
+        data:
         - enableFlattenedCartItems: true
           created: 2020-06-10T09:05:27.993483Z
           timezone: Europe/Berlin
@@ -23754,7 +23792,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_2:
+    inline_response_200_3:
       example:
         data:
         - callApiEffectCount: 0
@@ -23906,7 +23944,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_3:
+    inline_response_200_4:
       example:
         data:
         - headers:
@@ -23936,7 +23974,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_4:
+    inline_response_200_5:
       example:
         data:
         - rbVersion: v2
@@ -24090,7 +24128,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_5:
+    inline_response_200_6:
       example:
         data:
         - recipientIntegrationId: URNGV8294NV
@@ -24160,7 +24198,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_6:
+    inline_response_200_7:
       example:
         data:
         - recipientIntegrationId: URNGV8294NV
@@ -24230,7 +24268,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_7:
+    inline_response_200_8:
       example:
         data:
         - code: 27G47Y54VH9L
@@ -24270,7 +24308,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_8:
+    inline_response_200_9:
       example:
         data:
         - cardBased: true
@@ -24346,7 +24384,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_9:
+    inline_response_200_10:
       example:
         data:
         - accountId: 3886
@@ -24390,7 +24428,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_10:
+    inline_response_200_11:
       example:
         data:
         - item: item
@@ -24406,7 +24444,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_11:
+    inline_response_200_12:
       example:
         data:
         - accountId: 3886
@@ -24456,7 +24494,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_12:
+    inline_response_200_13:
       example:
         data:
         - method: method
@@ -24484,7 +24522,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_13:
+    inline_response_200_14:
       example:
         data:
         - method: method
@@ -24512,7 +24550,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_14:
+    inline_response_200_15:
       example:
         data:
         - date: 2000-01-23T04:56:07.000+00:00
@@ -24576,7 +24614,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_15:
+    inline_response_200_16:
       example:
         data:
         - accountId: 1
@@ -24634,7 +24672,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_16:
+    inline_response_200_17:
       example:
         data:
         - accountId: 1
@@ -24690,7 +24728,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_17:
+    inline_response_200_18:
       example:
         data:
         - accountId: 31
@@ -24744,7 +24782,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_18:
+    inline_response_200_19:
       example:
         data:
         - couponUseAttempts: 1
@@ -24784,7 +24822,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_19:
+    inline_response_200_20:
       example:
         data:
         - coupon: BKDB946
@@ -24903,7 +24941,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_20:
+    inline_response_200_21:
       example:
         data:
         - effects:
@@ -24987,7 +25025,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_21:
+    inline_response_200_22:
       example:
         data:
         - data
@@ -25003,7 +25041,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_22:
+    inline_response_200_23:
       example:
         data:
         - accountId: 3886
@@ -25037,7 +25075,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_23:
+    inline_response_200_24:
       example:
         data:
         - friendIntegrationId: friendIntegrationId
@@ -25067,7 +25105,7 @@ components:
       - data
       - hasMore
       - totalResultSize
-    inline_response_200_24:
+    inline_response_200_25:
       example:
         data:
         - created: 2020-06-10T09:05:27.993483Z
@@ -25137,7 +25175,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_25:
+    inline_response_200_26:
       example:
         data:
         - accountId: 3886
@@ -25171,7 +25209,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_26:
+    inline_response_200_27:
       example:
         data:
         - headers:
@@ -25231,7 +25269,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_27:
+    inline_response_200_28:
       example:
         data:
         - webhookId: 6
@@ -25255,7 +25293,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_28:
+    inline_response_200_29:
       example:
         data:
         - requestTime: 2000-01-23T04:56:07.000+00:00
@@ -25289,7 +25327,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_29:
+    inline_response_200_30:
       example:
         data:
         - created: 2020-06-10T09:05:27.993483Z
@@ -25313,7 +25351,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_30:
+    inline_response_200_31:
       example:
         data:
         - created: 2020-06-10T09:05:27.993483Z
@@ -25357,7 +25395,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_31:
+    inline_response_200_32:
       example:
         data:
         - new:
@@ -25405,7 +25443,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_32:
+    inline_response_200_33:
       example:
         data:
         - filter: '{}'
@@ -25431,7 +25469,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_33:
+    inline_response_200_34:
       example:
         data:
         - accountId: 3886

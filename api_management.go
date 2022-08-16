@@ -46,9 +46,10 @@ Add points in the specified loyalty program for the given customer.
 To get the `integrationId` of the profile from a `sessionId`, use the
 [Update customer session](/integration-api/#operation/updateCustomerSessionV2).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId The identifier for the loyalty program.
- * @param integrationId The identifier of the profile.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId The identifier for the loyalty program.
+  - @param integrationId The identifier of the profile.
+
 @return apiAddLoyaltyPointsRequest
 */
 func (a *ManagementApiService) AddLoyaltyPoints(ctx _context.Context, loyaltyProgramId string, integrationId string) apiAddLoyaltyPointsRequest {
@@ -62,7 +63,6 @@ func (a *ManagementApiService) AddLoyaltyPoints(ctx _context.Context, loyaltyPro
 
 /*
 Execute executes the request
-
 */
 func (r apiAddLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -195,9 +195,10 @@ func (r apiCopyCampaignToApplicationsRequest) Body(body CampaignCopy) apiCopyCam
 /*
 CopyCampaignToApplications Copy the campaign into the specified application
 Copy the campaign into all specified application.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiCopyCampaignToApplicationsRequest
 */
 func (a *ManagementApiService) CopyCampaignToApplications(ctx _context.Context, applicationId int32, campaignId int32) apiCopyCampaignToApplicationsRequest {
@@ -211,16 +212,17 @@ func (a *ManagementApiService) CopyCampaignToApplications(ctx _context.Context, 
 
 /*
 Execute executes the request
- @return InlineResponse2002
+
+	@return InlineResponse2003
 */
-func (r apiCopyCampaignToApplicationsRequest) Execute() (InlineResponse2002, *_nethttp.Response, error) {
+func (r apiCopyCampaignToApplicationsRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2002
+		localVarReturnValue  InlineResponse2003
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.CopyCampaignToApplications")
@@ -295,7 +297,7 @@ func (r apiCopyCampaignToApplicationsRequest) Execute() (InlineResponse2002, *_n
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2002
+			var v InlineResponse2003
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -332,7 +334,8 @@ func (r apiCreateAccountCollectionRequest) Body(body NewCollection) apiCreateAcc
 /*
 CreateAccountCollection Create account-level collection
 Create account-level collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateAccountCollectionRequest
 */
 func (a *ManagementApiService) CreateAccountCollection(ctx _context.Context) apiCreateAccountCollectionRequest {
@@ -344,7 +347,8 @@ func (a *ManagementApiService) CreateAccountCollection(ctx _context.Context) api
 
 /*
 Execute executes the request
- @return Collection
+
+	@return Collection
 */
 func (r apiCreateAccountCollectionRequest) Execute() (Collection, *_nethttp.Response, error) {
 	var (
@@ -496,7 +500,8 @@ Create an [additional cost](/docs/product/account/dev-tools/managing-additional-
 
 These additional costs are shared across all applications in your account, and are never required.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateAdditionalCostRequest
 */
 func (a *ManagementApiService) CreateAdditionalCost(ctx _context.Context) apiCreateAdditionalCostRequest {
@@ -508,7 +513,8 @@ func (a *ManagementApiService) CreateAdditionalCost(ctx _context.Context) apiCre
 
 /*
 Execute executes the request
- @return AccountAdditionalCost
+
+	@return AccountAdditionalCost
 */
 func (r apiCreateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_nethttp.Response, error) {
 	var (
@@ -636,7 +642,8 @@ and add a rule to your campaign that only allows certain ZIP codes.
 
 These attributes are shared across all applications in your account, and are never required.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateAttributeRequest
 */
 func (a *ManagementApiService) CreateAttribute(ctx _context.Context) apiCreateAttributeRequest {
@@ -648,7 +655,8 @@ func (a *ManagementApiService) CreateAttribute(ctx _context.Context) apiCreateAt
 
 /*
 Execute executes the request
- @return Attribute
+
+	@return Attribute
 */
 func (r apiCreateAttributeRequest) Execute() (Attribute, *_nethttp.Response, error) {
 	var (
@@ -773,8 +781,9 @@ a new campaign in one of the connected Applications.
 If the template was created from a campaign with rules referencing [campaign collections](https://docs.talon.one/docs/product/campaigns/managing-collections),
 the corresponding collections for the new campaign are created automatically.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiCreateCampaignFromTemplateRequest
 */
 func (a *ManagementApiService) CreateCampaignFromTemplate(ctx _context.Context, applicationId int32) apiCreateCampaignFromTemplateRequest {
@@ -787,7 +796,8 @@ func (a *ManagementApiService) CreateCampaignFromTemplate(ctx _context.Context, 
 
 /*
 Execute executes the request
- @return CreateTemplateCampaignResponse
+
+	@return CreateTemplateCampaignResponse
 */
 func (r apiCreateCampaignFromTemplateRequest) Execute() (CreateTemplateCampaignResponse, *_nethttp.Response, error) {
 	var (
@@ -909,9 +919,10 @@ func (r apiCreateCollectionRequest) Body(body NewCampaignCollection) apiCreateCo
 /*
 CreateCollection Create collection
 Create a collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiCreateCollectionRequest
 */
 func (a *ManagementApiService) CreateCollection(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCollectionRequest {
@@ -925,7 +936,8 @@ func (a *ManagementApiService) CreateCollection(ctx _context.Context, applicatio
 
 /*
 Execute executes the request
- @return Collection
+
+	@return Collection
 */
 func (r apiCreateCollectionRequest) Execute() (Collection, *_nethttp.Response, error) {
 	var (
@@ -1054,9 +1066,10 @@ func (r apiCreateCouponsRequest) Silent(silent string) apiCreateCouponsRequest {
 /*
 CreateCoupons Create coupons
 Create coupons according to some pattern. Up to 20.000 coupons can be created without a unique prefix. When a unique prefix is provided, up to 200.000 coupons can be created.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiCreateCouponsRequest
 */
 func (a *ManagementApiService) CreateCoupons(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsRequest {
@@ -1070,16 +1083,17 @@ func (a *ManagementApiService) CreateCoupons(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return InlineResponse2005
+
+	@return InlineResponse2006
 */
-func (r apiCreateCouponsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
+func (r apiCreateCouponsRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2005
+		localVarReturnValue  InlineResponse2006
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.CreateCoupons")
@@ -1157,7 +1171,7 @@ func (r apiCreateCouponsRequest) Execute() (InlineResponse2005, *_nethttp.Respon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2005
+			var v InlineResponse2006
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1197,9 +1211,10 @@ func (r apiCreateCouponsAsyncRequest) Body(body NewCouponCreationJob) apiCreateC
 /*
 CreateCouponsAsync Create coupons asynchronously
 Create any number of coupons from 20,001 to 5,000,000.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiCreateCouponsAsyncRequest
 */
 func (a *ManagementApiService) CreateCouponsAsync(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsAsyncRequest {
@@ -1213,7 +1228,8 @@ func (a *ManagementApiService) CreateCouponsAsync(ctx _context.Context, applicat
 
 /*
 Execute executes the request
- @return AsyncCouponCreationResponse
+
+	@return AsyncCouponCreationResponse
 */
 func (r apiCreateCouponsAsyncRequest) Execute() (AsyncCouponCreationResponse, *_nethttp.Response, error) {
 	var (
@@ -1342,9 +1358,10 @@ func (r apiCreateCouponsForMultipleRecipientsRequest) Silent(silent string) apiC
 /*
 CreateCouponsForMultipleRecipients Create coupons for multiple recipients
 Create coupons according to some pattern for up to 1000 recipients.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiCreateCouponsForMultipleRecipientsRequest
 */
 func (a *ManagementApiService) CreateCouponsForMultipleRecipients(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsForMultipleRecipientsRequest {
@@ -1358,16 +1375,17 @@ func (a *ManagementApiService) CreateCouponsForMultipleRecipients(ctx _context.C
 
 /*
 Execute executes the request
- @return InlineResponse2005
+
+	@return InlineResponse2006
 */
-func (r apiCreateCouponsForMultipleRecipientsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
+func (r apiCreateCouponsForMultipleRecipientsRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2005
+		localVarReturnValue  InlineResponse2006
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.CreateCouponsForMultipleRecipients")
@@ -1445,7 +1463,7 @@ func (r apiCreateCouponsForMultipleRecipientsRequest) Execute() (InlineResponse2
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2005
+			var v InlineResponse2006
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1486,8 +1504,9 @@ CreateNotificationWebhook Create notification webhook
 Create an outbound notification webhook. An outbound notification webhook is different from regular webhooks
 in that it is application-scoped and has a predefined payload (regular webhooks have user-definable payloads).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiCreateNotificationWebhookRequest
 */
 func (a *ManagementApiService) CreateNotificationWebhook(ctx _context.Context, applicationId int32) apiCreateNotificationWebhookRequest {
@@ -1500,7 +1519,8 @@ func (a *ManagementApiService) CreateNotificationWebhook(ctx _context.Context, a
 
 /*
 Execute executes the request
- @return NotificationWebhook
+
+	@return NotificationWebhook
 */
 func (r apiCreateNotificationWebhookRequest) Execute() (NotificationWebhook, *_nethttp.Response, error) {
 	var (
@@ -1621,7 +1641,8 @@ func (r apiCreatePasswordRecoveryEmailRequest) Body(body NewPasswordEmail) apiCr
 CreatePasswordRecoveryEmail Request a password reset
 Send an email with a password recovery link to the email address of an existing account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreatePasswordRecoveryEmailRequest
 */
 func (a *ManagementApiService) CreatePasswordRecoveryEmail(ctx _context.Context) apiCreatePasswordRecoveryEmailRequest {
@@ -1633,7 +1654,8 @@ func (a *ManagementApiService) CreatePasswordRecoveryEmail(ctx _context.Context)
 
 /*
 Execute executes the request
- @return NewPasswordEmail
+
+	@return NewPasswordEmail
 */
 func (r apiCreatePasswordRecoveryEmailRequest) Execute() (NewPasswordEmail, *_nethttp.Response, error) {
 	var (
@@ -1762,7 +1784,8 @@ This endpoint has a rate limit of 3 to 6 requests per second per account, depend
 **Note:** You can also use your browser's developer's console when you log into the Campaign Manager.
 Keep in mind that logging out destroys the token displayed in the console.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiCreateSessionRequest
 */
 func (a *ManagementApiService) CreateSession(ctx _context.Context) apiCreateSessionRequest {
@@ -1774,7 +1797,8 @@ func (a *ManagementApiService) CreateSession(ctx _context.Context) apiCreateSess
 
 /*
 Execute executes the request
- @return Session
+
+	@return Session
 */
 func (r apiCreateSessionRequest) Execute() (Session, *_nethttp.Response, error) {
 	var (
@@ -1888,8 +1912,9 @@ type apiDeleteAccountCollectionRequest struct {
 /*
 DeleteAccountCollection Delete account-level collection
 Delete the given account-level collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiDeleteAccountCollectionRequest
 */
 func (a *ManagementApiService) DeleteAccountCollection(ctx _context.Context, collectionId int32) apiDeleteAccountCollectionRequest {
@@ -1902,7 +1927,6 @@ func (a *ManagementApiService) DeleteAccountCollection(ctx _context.Context, col
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteAccountCollectionRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2002,9 +2026,10 @@ type apiDeleteCampaignRequest struct {
 /*
 DeleteCampaign Delete campaign
 Delete the given campaign.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiDeleteCampaignRequest
 */
 func (a *ManagementApiService) DeleteCampaign(ctx _context.Context, applicationId int32, campaignId int32) apiDeleteCampaignRequest {
@@ -2018,7 +2043,6 @@ func (a *ManagementApiService) DeleteCampaign(ctx _context.Context, applicationI
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteCampaignRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2111,10 +2135,11 @@ type apiDeleteCollectionRequest struct {
 /*
 DeleteCollection Delete collection
 Delete the given collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiDeleteCollectionRequest
 */
 func (a *ManagementApiService) DeleteCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiDeleteCollectionRequest {
@@ -2129,7 +2154,6 @@ func (a *ManagementApiService) DeleteCollection(ctx _context.Context, applicatio
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteCollectionRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2232,10 +2256,11 @@ type apiDeleteCouponRequest struct {
 /*
 DeleteCoupon Delete coupon
 Delete the specified coupon.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param couponId The ID of the coupon code to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param couponId The ID of the coupon code to update
+
 @return apiDeleteCouponRequest
 */
 func (a *ManagementApiService) DeleteCoupon(ctx _context.Context, applicationId int32, campaignId int32, couponId string) apiDeleteCouponRequest {
@@ -2250,7 +2275,6 @@ func (a *ManagementApiService) DeleteCoupon(ctx _context.Context, applicationId 
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteCouponRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2421,9 +2445,10 @@ func (r apiDeleteCouponsRequest) ExactMatch(exactMatch bool) apiDeleteCouponsReq
 /*
 DeleteCoupons Delete coupons
 Deletes all the coupons matching the specified criteria.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiDeleteCouponsRequest
 */
 func (a *ManagementApiService) DeleteCoupons(ctx _context.Context, applicationId int32, campaignId int32) apiDeleteCouponsRequest {
@@ -2437,7 +2462,6 @@ func (a *ManagementApiService) DeleteCoupons(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteCouponsRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2568,9 +2592,10 @@ type apiDeleteNotificationWebhookRequest struct {
 /*
 DeleteNotificationWebhook Delete notification webhook
 Remove the given existing outbound notification webhook.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param notificationWebhookId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param notificationWebhookId
+
 @return apiDeleteNotificationWebhookRequest
 */
 func (a *ManagementApiService) DeleteNotificationWebhook(ctx _context.Context, applicationId int32, notificationWebhookId int32) apiDeleteNotificationWebhookRequest {
@@ -2584,7 +2609,6 @@ func (a *ManagementApiService) DeleteNotificationWebhook(ctx _context.Context, a
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteNotificationWebhookRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2677,10 +2701,11 @@ type apiDeleteReferralRequest struct {
 /*
 DeleteReferral Delete referral
 Delete the specified referral.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param referralId The ID of the referral code to delete
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param referralId The ID of the referral code to delete
+
 @return apiDeleteReferralRequest
 */
 func (a *ManagementApiService) DeleteReferral(ctx _context.Context, applicationId int32, campaignId int32, referralId string) apiDeleteReferralRequest {
@@ -2695,7 +2720,6 @@ func (a *ManagementApiService) DeleteReferral(ctx _context.Context, applicationI
 
 /*
 Execute executes the request
-
 */
 func (r apiDeleteReferralRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2786,7 +2810,8 @@ type apiDestroySessionRequest struct {
 /*
 DestroySession Destroy session
 Destroys the session.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiDestroySessionRequest
 */
 func (a *ManagementApiService) DestroySession(ctx _context.Context) apiDestroySessionRequest {
@@ -2798,7 +2823,6 @@ func (a *ManagementApiService) DestroySession(ctx _context.Context) apiDestroySe
 
 /*
 Execute executes the request
-
 */
 func (r apiDestroySessionRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -2887,8 +2911,9 @@ type apiExportAccountCollectionItemsRequest struct {
 /*
 ExportAccountCollectionItems Export account-level collection's items
 Download a CSV file containing items from an account-level collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiExportAccountCollectionItemsRequest
 */
 func (a *ManagementApiService) ExportAccountCollectionItems(ctx _context.Context, collectionId int32) apiExportAccountCollectionItemsRequest {
@@ -2901,7 +2926,8 @@ func (a *ManagementApiService) ExportAccountCollectionItems(ctx _context.Context
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportAccountCollectionItemsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -3032,10 +3058,11 @@ type apiExportCollectionItemsRequest struct {
 /*
 ExportCollectionItems Export a collection's items
 Download a CSV file containing a collection's items.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiExportCollectionItemsRequest
 */
 func (a *ManagementApiService) ExportCollectionItems(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiExportCollectionItemsRequest {
@@ -3050,7 +3077,8 @@ func (a *ManagementApiService) ExportCollectionItems(ctx _context.Context, appli
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportCollectionItemsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -3259,8 +3287,9 @@ func (r apiExportCouponsRequest) CampaignState(campaignState string) apiExportCo
 /*
 ExportCoupons Export coupons
 Download a CSV file containing the coupons that match the given properties.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiExportCouponsRequest
 */
 func (a *ManagementApiService) ExportCoupons(ctx _context.Context, applicationId int32) apiExportCouponsRequest {
@@ -3273,7 +3302,8 @@ func (a *ManagementApiService) ExportCoupons(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportCouponsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -3454,8 +3484,9 @@ Download a CSV file containing the customer sessions that match the request.
 
 **Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/product/server-infrastructure-and-data-retention#data-retention-policy).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiExportCustomerSessionsRequest
 */
 func (a *ManagementApiService) ExportCustomerSessions(ctx _context.Context, applicationId int32) apiExportCustomerSessionsRequest {
@@ -3468,7 +3499,8 @@ func (a *ManagementApiService) ExportCustomerSessions(ctx _context.Context, appl
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportCustomerSessionsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -3617,8 +3649,9 @@ func (r apiExportEffectsRequest) DateFormat(dateFormat string) apiExportEffectsR
 ExportEffects Export triggered effects
 Download a CSV file containing the triggered effects that match the given attributes.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiExportEffectsRequest
 */
 func (a *ManagementApiService) ExportEffects(ctx _context.Context, applicationId int32) apiExportEffectsRequest {
@@ -3631,7 +3664,8 @@ func (a *ManagementApiService) ExportEffects(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportEffectsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -3752,8 +3786,9 @@ type apiExportLoyaltyBalanceRequest struct {
 /*
 ExportLoyaltyBalance Export customer loyalty balance to a CSV file
 Download a CSV file containing the balance of each customer in the loyalty program.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId The identifier for the loyalty program.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId The identifier for the loyalty program.
+
 @return apiExportLoyaltyBalanceRequest
 */
 func (a *ManagementApiService) ExportLoyaltyBalance(ctx _context.Context, loyaltyProgramId string) apiExportLoyaltyBalanceRequest {
@@ -3766,7 +3801,8 @@ func (a *ManagementApiService) ExportLoyaltyBalance(ctx _context.Context, loyalt
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportLoyaltyBalanceRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -3914,9 +3950,10 @@ func (r apiExportLoyaltyLedgerRequest) DateFormat(dateFormat string) apiExportLo
 /*
 ExportLoyaltyLedger Export a customer's loyalty ledger log
 Download a CSV file containing a customer's ledger log in the loyalty program
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId The identifier for the loyalty program.
- * @param integrationId The identifier of the profile.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId The identifier for the loyalty program.
+  - @param integrationId The identifier of the profile.
+
 @return apiExportLoyaltyLedgerRequest
 */
 func (a *ManagementApiService) ExportLoyaltyLedger(ctx _context.Context, loyaltyProgramId string, integrationId string) apiExportLoyaltyLedgerRequest {
@@ -3930,7 +3967,8 @@ func (a *ManagementApiService) ExportLoyaltyLedger(ctx _context.Context, loyalty
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportLoyaltyLedgerRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -4095,8 +4133,9 @@ func (r apiExportReferralsRequest) DateFormat(dateFormat string) apiExportReferr
 /*
 ExportReferrals Export referrals
 Download a CSV file containing the referrals that match the given parameters.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiExportReferralsRequest
 */
 func (a *ManagementApiService) ExportReferrals(ctx _context.Context, applicationId int32) apiExportReferralsRequest {
@@ -4109,7 +4148,8 @@ func (a *ManagementApiService) ExportReferrals(ctx _context.Context, application
 
 /*
 Execute executes the request
- @return string
+
+	@return string
 */
 func (r apiExportReferralsRequest) Execute() (string, *_nethttp.Response, error) {
 	var (
@@ -4288,8 +4328,9 @@ func (r apiGetAccessLogsWithoutTotalCountRequest) Sort(sort string) apiGetAccess
 GetAccessLogsWithoutTotalCount Get access logs for Application
 Retrieve the list of API calls to this Application matching the specified criteria.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetAccessLogsWithoutTotalCountRequest
 */
 func (a *ManagementApiService) GetAccessLogsWithoutTotalCount(ctx _context.Context, applicationId int32) apiGetAccessLogsWithoutTotalCountRequest {
@@ -4302,16 +4343,17 @@ func (a *ManagementApiService) GetAccessLogsWithoutTotalCount(ctx _context.Conte
 
 /*
 Execute executes the request
- @return InlineResponse20012
+
+	@return InlineResponse20013
 */
-func (r apiGetAccessLogsWithoutTotalCountRequest) Execute() (InlineResponse20012, *_nethttp.Response, error) {
+func (r apiGetAccessLogsWithoutTotalCountRequest) Execute() (InlineResponse20013, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20012
+		localVarReturnValue  InlineResponse20013
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetAccessLogsWithoutTotalCount")
@@ -4407,7 +4449,7 @@ func (r apiGetAccessLogsWithoutTotalCountRequest) Execute() (InlineResponse20012
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20012
+			var v InlineResponse20013
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4440,8 +4482,9 @@ type apiGetAccountRequest struct {
 GetAccount Get account details
 Return the details of your companies Talon.One account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountId The identifier of the account. Retrieve it via the [List users in account endpoint](https://docs.talon.one/management-api#operation/getUsers), in the `accountId` property.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountId The identifier of the account. Retrieve it via the [List users in account endpoint](https://docs.talon.one/management-api#operation/getUsers), in the `accountId` property.
+
 @return apiGetAccountRequest
 */
 func (a *ManagementApiService) GetAccount(ctx _context.Context, accountId int32) apiGetAccountRequest {
@@ -4454,7 +4497,8 @@ func (a *ManagementApiService) GetAccount(ctx _context.Context, accountId int32)
 
 /*
 Execute executes the request
- @return Account
+
+	@return Account
 */
 func (r apiGetAccountRequest) Execute() (Account, *_nethttp.Response, error) {
 	var (
@@ -4564,8 +4608,9 @@ type apiGetAccountAnalyticsRequest struct {
 GetAccountAnalytics Get account analytics
 Return the analytics of your Talon.One account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param accountId The identifier of the account. Retrieve it via the [List users in account endpoint](https://docs.talon.one/management-api#operation/getUsers), in the `accountId` property.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param accountId The identifier of the account. Retrieve it via the [List users in account endpoint](https://docs.talon.one/management-api#operation/getUsers), in the `accountId` property.
+
 @return apiGetAccountAnalyticsRequest
 */
 func (a *ManagementApiService) GetAccountAnalytics(ctx _context.Context, accountId int32) apiGetAccountAnalyticsRequest {
@@ -4578,7 +4623,8 @@ func (a *ManagementApiService) GetAccountAnalytics(ctx _context.Context, account
 
 /*
 Execute executes the request
- @return AccountAnalytics
+
+	@return AccountAnalytics
 */
 func (r apiGetAccountAnalyticsRequest) Execute() (AccountAnalytics, *_nethttp.Response, error) {
 	var (
@@ -4687,8 +4733,9 @@ type apiGetAccountCollectionRequest struct {
 /*
 GetAccountCollection Get account-level collection
 Retrieve a given account-level collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiGetAccountCollectionRequest
 */
 func (a *ManagementApiService) GetAccountCollection(ctx _context.Context, collectionId int32) apiGetAccountCollectionRequest {
@@ -4701,7 +4748,8 @@ func (a *ManagementApiService) GetAccountCollection(ctx _context.Context, collec
 
 /*
 Execute executes the request
- @return Collection
+
+	@return Collection
 */
 func (r apiGetAccountCollectionRequest) Execute() (Collection, *_nethttp.Response, error) {
 	var (
@@ -4821,8 +4869,9 @@ type apiGetAdditionalCostRequest struct {
 GetAdditionalCost Get additional cost
 Returns the additional cost.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param additionalCostId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param additionalCostId
+
 @return apiGetAdditionalCostRequest
 */
 func (a *ManagementApiService) GetAdditionalCost(ctx _context.Context, additionalCostId int32) apiGetAdditionalCostRequest {
@@ -4835,7 +4884,8 @@ func (a *ManagementApiService) GetAdditionalCost(ctx _context.Context, additiona
 
 /*
 Execute executes the request
- @return AccountAdditionalCost
+
+	@return AccountAdditionalCost
 */
 func (r apiGetAdditionalCostRequest) Execute() (AccountAdditionalCost, *_nethttp.Response, error) {
 	var (
@@ -4962,7 +5012,8 @@ func (r apiGetAdditionalCostsRequest) Sort(sort string) apiGetAdditionalCostsReq
 GetAdditionalCosts List additional costs
 Returns all the defined additional costs for the account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAdditionalCostsRequest
 */
 func (a *ManagementApiService) GetAdditionalCosts(ctx _context.Context) apiGetAdditionalCostsRequest {
@@ -4974,16 +5025,17 @@ func (a *ManagementApiService) GetAdditionalCosts(ctx _context.Context) apiGetAd
 
 /*
 Execute executes the request
- @return InlineResponse20025
+
+	@return InlineResponse20026
 */
-func (r apiGetAdditionalCostsRequest) Execute() (InlineResponse20025, *_nethttp.Response, error) {
+func (r apiGetAdditionalCostsRequest) Execute() (InlineResponse20026, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20025
+		localVarReturnValue  InlineResponse20026
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetAdditionalCosts")
@@ -5059,7 +5111,7 @@ func (r apiGetAdditionalCostsRequest) Execute() (InlineResponse20025, *_nethttp.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20025
+			var v InlineResponse20026
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5139,7 +5191,8 @@ func (r apiGetAllAccessLogsRequest) Sort(sort string) apiGetAllAccessLogsRequest
 GetAllAccessLogs List access logs
 Fetches the access logs for the entire account. Sensitive requests (logins) are _always_ filtered from the logs.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAllAccessLogsRequest
 */
 func (a *ManagementApiService) GetAllAccessLogs(ctx _context.Context) apiGetAllAccessLogsRequest {
@@ -5151,16 +5204,17 @@ func (a *ManagementApiService) GetAllAccessLogs(ctx _context.Context) apiGetAllA
 
 /*
 Execute executes the request
- @return InlineResponse20013
+
+	@return InlineResponse20014
 */
-func (r apiGetAllAccessLogsRequest) Execute() (InlineResponse20013, *_nethttp.Response, error) {
+func (r apiGetAllAccessLogsRequest) Execute() (InlineResponse20014, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20013
+		localVarReturnValue  InlineResponse20014
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetAllAccessLogs")
@@ -5255,7 +5309,7 @@ func (r apiGetAllAccessLogsRequest) Execute() (InlineResponse20013, *_nethttp.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20013
+			var v InlineResponse20014
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5286,7 +5340,8 @@ type apiGetAllRolesRequest struct {
 /*
 GetAllRoles List roles
 List all roles.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAllRolesRequest
 */
 func (a *ManagementApiService) GetAllRoles(ctx _context.Context) apiGetAllRolesRequest {
@@ -5298,16 +5353,17 @@ func (a *ManagementApiService) GetAllRoles(ctx _context.Context) apiGetAllRolesR
 
 /*
 Execute executes the request
- @return InlineResponse20033
+
+	@return InlineResponse20034
 */
-func (r apiGetAllRolesRequest) Execute() (InlineResponse20033, *_nethttp.Response, error) {
+func (r apiGetAllRolesRequest) Execute() (InlineResponse20034, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20033
+		localVarReturnValue  InlineResponse20034
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetAllRoles")
@@ -5374,7 +5430,7 @@ func (r apiGetAllRolesRequest) Execute() (InlineResponse20033, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20033
+			var v InlineResponse20034
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5406,8 +5462,9 @@ type apiGetApplicationRequest struct {
 /*
 GetApplication Get application
 Get the application specified by the ID.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationRequest
 */
 func (a *ManagementApiService) GetApplication(ctx _context.Context, applicationId int32) apiGetApplicationRequest {
@@ -5420,7 +5477,8 @@ func (a *ManagementApiService) GetApplication(ctx _context.Context, applicationI
 
 /*
 Execute executes the request
- @return Application
+
+	@return Application
 */
 func (r apiGetApplicationRequest) Execute() (Application, *_nethttp.Response, error) {
 	var (
@@ -5531,8 +5589,9 @@ GetApplicationApiHealth Get report of health of application API
 Display the health of the application and show the last time the Application
 was used.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationApiHealthRequest
 */
 func (a *ManagementApiService) GetApplicationApiHealth(ctx _context.Context, applicationId int32) apiGetApplicationApiHealthRequest {
@@ -5545,7 +5604,8 @@ func (a *ManagementApiService) GetApplicationApiHealth(ctx _context.Context, app
 
 /*
 Execute executes the request
- @return ApplicationApiHealth
+
+	@return ApplicationApiHealth
 */
 func (r apiGetApplicationApiHealthRequest) Execute() (ApplicationApiHealth, *_nethttp.Response, error) {
 	var (
@@ -5656,9 +5716,10 @@ type apiGetApplicationCustomerRequest struct {
 GetApplicationCustomer Get application's customer
 Retrieve the customers of the specified application.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+
 @return apiGetApplicationCustomerRequest
 */
 func (a *ManagementApiService) GetApplicationCustomer(ctx _context.Context, applicationId int32, customerId int32) apiGetApplicationCustomerRequest {
@@ -5672,7 +5733,8 @@ func (a *ManagementApiService) GetApplicationCustomer(ctx _context.Context, appl
 
 /*
 Execute executes the request
- @return ApplicationCustomer
+
+	@return ApplicationCustomer
 */
 func (r apiGetApplicationCustomerRequest) Execute() (ApplicationCustomer, *_nethttp.Response, error) {
 	var (
@@ -5808,9 +5870,10 @@ func (r apiGetApplicationCustomerFriendsRequest) WithTotalResultSize(withTotalRe
 GetApplicationCustomerFriends List friends referred by customer profile
 List the friends referred by the specified customer profile in this Application.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param integrationId The Integration ID of the Advocate's Profile.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param integrationId The Integration ID of the Advocate's Profile.
+
 @return apiGetApplicationCustomerFriendsRequest
 */
 func (a *ManagementApiService) GetApplicationCustomerFriends(ctx _context.Context, applicationId int32, integrationId string) apiGetApplicationCustomerFriendsRequest {
@@ -5824,16 +5887,17 @@ func (a *ManagementApiService) GetApplicationCustomerFriends(ctx _context.Contex
 
 /*
 Execute executes the request
- @return InlineResponse20023
+
+	@return InlineResponse20024
 */
-func (r apiGetApplicationCustomerFriendsRequest) Execute() (InlineResponse20023, *_nethttp.Response, error) {
+func (r apiGetApplicationCustomerFriendsRequest) Execute() (InlineResponse20024, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20023
+		localVarReturnValue  InlineResponse20024
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplicationCustomerFriends")
@@ -5914,7 +5978,7 @@ func (r apiGetApplicationCustomerFriendsRequest) Execute() (InlineResponse20023,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20023
+			var v InlineResponse20024
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -5970,8 +6034,9 @@ func (r apiGetApplicationCustomersRequest) WithTotalResultSize(withTotalResultSi
 /*
 GetApplicationCustomers List application's customers
 List all the customers of the specified application.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationCustomersRequest
 */
 func (a *ManagementApiService) GetApplicationCustomers(ctx _context.Context, applicationId int32) apiGetApplicationCustomersRequest {
@@ -5984,16 +6049,17 @@ func (a *ManagementApiService) GetApplicationCustomers(ctx _context.Context, app
 
 /*
 Execute executes the request
- @return InlineResponse20015
+
+	@return InlineResponse20016
 */
-func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20015, *_nethttp.Response, error) {
+func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20016, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20015
+		localVarReturnValue  InlineResponse20016
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplicationCustomers")
@@ -6073,7 +6139,7 @@ func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20015, *_net
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20015
+			var v InlineResponse20016
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6132,8 +6198,9 @@ Get a list of the application customers matching the provided criteria.
 
 The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationCustomersByAttributesRequest
 */
 func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx _context.Context, applicationId int32) apiGetApplicationCustomersByAttributesRequest {
@@ -6146,16 +6213,17 @@ func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx _context.
 
 /*
 Execute executes the request
- @return InlineResponse20016
+
+	@return InlineResponse20017
 */
-func (r apiGetApplicationCustomersByAttributesRequest) Execute() (InlineResponse20016, *_nethttp.Response, error) {
+func (r apiGetApplicationCustomersByAttributesRequest) Execute() (InlineResponse20017, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20016
+		localVarReturnValue  InlineResponse20017
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplicationCustomersByAttributes")
@@ -6238,7 +6306,7 @@ func (r apiGetApplicationCustomersByAttributesRequest) Execute() (InlineResponse
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20016
+			var v InlineResponse20017
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6291,8 +6359,9 @@ Get all of the distinct values of the Event `type` property for events recorded 
 
 See also: [Track an event](/integration-api/#operation/trackEvent)
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationEventTypesRequest
 */
 func (a *ManagementApiService) GetApplicationEventTypes(ctx _context.Context, applicationId int32) apiGetApplicationEventTypesRequest {
@@ -6305,16 +6374,17 @@ func (a *ManagementApiService) GetApplicationEventTypes(ctx _context.Context, ap
 
 /*
 Execute executes the request
- @return InlineResponse20021
+
+	@return InlineResponse20022
 */
-func (r apiGetApplicationEventTypesRequest) Execute() (InlineResponse20021, *_nethttp.Response, error) {
+func (r apiGetApplicationEventTypesRequest) Execute() (InlineResponse20022, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20021
+		localVarReturnValue  InlineResponse20022
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplicationEventTypes")
@@ -6391,7 +6461,7 @@ func (r apiGetApplicationEventTypesRequest) Execute() (InlineResponse20021, *_ne
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20021
+			var v InlineResponse20022
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6508,8 +6578,9 @@ func (r apiGetApplicationEventsWithoutTotalCountRequest) CampaignQuery(campaignQ
 GetApplicationEventsWithoutTotalCount List Applications events
 Lists all events recorded for an application. Instead of having the total number of results in the response, this endpoint only mentions whether there are more results.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationEventsWithoutTotalCountRequest
 */
 func (a *ManagementApiService) GetApplicationEventsWithoutTotalCount(ctx _context.Context, applicationId int32) apiGetApplicationEventsWithoutTotalCountRequest {
@@ -6522,16 +6593,17 @@ func (a *ManagementApiService) GetApplicationEventsWithoutTotalCount(ctx _contex
 
 /*
 Execute executes the request
- @return InlineResponse20020
+
+	@return InlineResponse20021
 */
-func (r apiGetApplicationEventsWithoutTotalCountRequest) Execute() (InlineResponse20020, *_nethttp.Response, error) {
+func (r apiGetApplicationEventsWithoutTotalCountRequest) Execute() (InlineResponse20021, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20020
+		localVarReturnValue  InlineResponse20021
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplicationEventsWithoutTotalCount")
@@ -6641,7 +6713,7 @@ func (r apiGetApplicationEventsWithoutTotalCountRequest) Execute() (InlineRespon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20020
+			var v InlineResponse20021
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -6676,9 +6748,10 @@ GetApplicationSession Get Application session
 Get the details of the given session.
 You can list the sessions with the [List Application sessions](/#tag/Customer-data/operation/getApplicationSession) endpoint.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param sessionId The **internal** ID of the session. You can get the ID with the [List Application sessions endpoint](/#tag/Customer-data/operation/getApplicationSession).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param sessionId The **internal** ID of the session. You can get the ID with the [List Application sessions endpoint](/#tag/Customer-data/operation/getApplicationSession).
+
 @return apiGetApplicationSessionRequest
 */
 func (a *ManagementApiService) GetApplicationSession(ctx _context.Context, applicationId int32, sessionId int32) apiGetApplicationSessionRequest {
@@ -6692,7 +6765,8 @@ func (a *ManagementApiService) GetApplicationSession(ctx _context.Context, appli
 
 /*
 Execute executes the request
- @return ApplicationSession
+
+	@return ApplicationSession
 */
 func (r apiGetApplicationSessionRequest) Execute() (ApplicationSession, *_nethttp.Response, error) {
 	var (
@@ -6863,8 +6937,9 @@ func (r apiGetApplicationSessionsRequest) IntegrationId(integrationId string) ap
 GetApplicationSessions List Application sessions
 List all the sessions of the specified Application.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetApplicationSessionsRequest
 */
 func (a *ManagementApiService) GetApplicationSessions(ctx _context.Context, applicationId int32) apiGetApplicationSessionsRequest {
@@ -6877,16 +6952,17 @@ func (a *ManagementApiService) GetApplicationSessions(ctx _context.Context, appl
 
 /*
 Execute executes the request
- @return InlineResponse20019
+
+	@return InlineResponse20020
 */
-func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20019, *_nethttp.Response, error) {
+func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20020, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20019
+		localVarReturnValue  InlineResponse20020
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplicationSessions")
@@ -6984,7 +7060,7 @@ func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20019, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20019
+			var v InlineResponse20020
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -7033,7 +7109,8 @@ func (r apiGetApplicationsRequest) Sort(sort string) apiGetApplicationsRequest {
 /*
 GetApplications List applications
 List all applications in the current account.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetApplicationsRequest
 */
 func (a *ManagementApiService) GetApplications(ctx _context.Context) apiGetApplicationsRequest {
@@ -7045,16 +7122,17 @@ func (a *ManagementApiService) GetApplications(ctx _context.Context) apiGetAppli
 
 /*
 Execute executes the request
- @return InlineResponse2001
+
+	@return InlineResponse2002
 */
-func (r apiGetApplicationsRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+func (r apiGetApplicationsRequest) Execute() (InlineResponse2002, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2001
+		localVarReturnValue  InlineResponse2002
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetApplications")
@@ -7130,7 +7208,7 @@ func (r apiGetApplicationsRequest) Execute() (InlineResponse2001, *_nethttp.Resp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2001
+			var v InlineResponse2002
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -7163,8 +7241,9 @@ type apiGetAttributeRequest struct {
 GetAttribute Get custom attribute
 Returns custom attribute for the account by its id.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param attributeId
+
 @return apiGetAttributeRequest
 */
 func (a *ManagementApiService) GetAttribute(ctx _context.Context, attributeId int32) apiGetAttributeRequest {
@@ -7177,7 +7256,8 @@ func (a *ManagementApiService) GetAttribute(ctx _context.Context, attributeId in
 
 /*
 Execute executes the request
- @return Attribute
+
+	@return Attribute
 */
 func (r apiGetAttributeRequest) Execute() (Attribute, *_nethttp.Response, error) {
 	var (
@@ -7310,7 +7390,8 @@ func (r apiGetAttributesRequest) Entity(entity string) apiGetAttributesRequest {
 GetAttributes List custom attributes
 Returns all the defined custom attributes for the account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAttributesRequest
 */
 func (a *ManagementApiService) GetAttributes(ctx _context.Context) apiGetAttributesRequest {
@@ -7322,16 +7403,17 @@ func (a *ManagementApiService) GetAttributes(ctx _context.Context) apiGetAttribu
 
 /*
 Execute executes the request
- @return InlineResponse20024
+
+	@return InlineResponse20025
 */
-func (r apiGetAttributesRequest) Execute() (InlineResponse20024, *_nethttp.Response, error) {
+func (r apiGetAttributesRequest) Execute() (InlineResponse20025, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20024
+		localVarReturnValue  InlineResponse20025
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetAttributes")
@@ -7410,7 +7492,7 @@ func (r apiGetAttributesRequest) Execute() (InlineResponse20024, *_nethttp.Respo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20024
+			var v InlineResponse20025
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -7466,7 +7548,8 @@ func (r apiGetAudiencesRequest) WithTotalResultSize(withTotalResultSize bool) ap
 GetAudiences List audiences
 Get all audiences created in the account. To create an audience, use [Create audience](https://docs.talon.one/integration-api#tag/Audiences/operation/createAudienceV2).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetAudiencesRequest
 */
 func (a *ManagementApiService) GetAudiences(ctx _context.Context) apiGetAudiencesRequest {
@@ -7478,16 +7561,17 @@ func (a *ManagementApiService) GetAudiences(ctx _context.Context) apiGetAudience
 
 /*
 Execute executes the request
- @return InlineResponse20022
+
+	@return InlineResponse20023
 */
-func (r apiGetAudiencesRequest) Execute() (InlineResponse20022, *_nethttp.Response, error) {
+func (r apiGetAudiencesRequest) Execute() (InlineResponse20023, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20022
+		localVarReturnValue  InlineResponse20023
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetAudiences")
@@ -7566,7 +7650,7 @@ func (r apiGetAudiencesRequest) Execute() (InlineResponse20022, *_nethttp.Respon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20022
+			var v InlineResponse20023
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -7599,9 +7683,10 @@ type apiGetCampaignRequest struct {
 /*
 GetCampaign Get campaign
 Retrieve the given campaign.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiGetCampaignRequest
 */
 func (a *ManagementApiService) GetCampaign(ctx _context.Context, applicationId int32, campaignId int32) apiGetCampaignRequest {
@@ -7615,7 +7700,8 @@ func (a *ManagementApiService) GetCampaign(ctx _context.Context, applicationId i
 
 /*
 Execute executes the request
- @return Campaign
+
+	@return Campaign
 */
 func (r apiGetCampaignRequest) Execute() (Campaign, *_nethttp.Response, error) {
 	var (
@@ -7744,9 +7830,10 @@ func (r apiGetCampaignAnalyticsRequest) Granularity(granularity string) apiGetCa
 /*
 GetCampaignAnalytics Get analytics of campaigns
 Retrieve statistical data about the performance of the given campaign.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiGetCampaignAnalyticsRequest
 */
 func (a *ManagementApiService) GetCampaignAnalytics(ctx _context.Context, applicationId int32, campaignId int32) apiGetCampaignAnalyticsRequest {
@@ -7760,16 +7847,17 @@ func (a *ManagementApiService) GetCampaignAnalytics(ctx _context.Context, applic
 
 /*
 Execute executes the request
- @return InlineResponse20014
+
+	@return InlineResponse20015
 */
-func (r apiGetCampaignAnalyticsRequest) Execute() (InlineResponse20014, *_nethttp.Response, error) {
+func (r apiGetCampaignAnalyticsRequest) Execute() (InlineResponse20015, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20014
+		localVarReturnValue  InlineResponse20015
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCampaignAnalytics")
@@ -7851,7 +7939,7 @@ func (r apiGetCampaignAnalyticsRequest) Execute() (InlineResponse20014, *_nethtt
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20014
+			var v InlineResponse20015
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -7914,8 +8002,9 @@ func (r apiGetCampaignByAttributesRequest) CampaignState(campaignState string) a
 GetCampaignByAttributes List campaigns that match the given attributes
 Get a list of all the campaigns that match a set of attributes.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetCampaignByAttributesRequest
 */
 func (a *ManagementApiService) GetCampaignByAttributes(ctx _context.Context, applicationId int32) apiGetCampaignByAttributesRequest {
@@ -7928,16 +8017,17 @@ func (a *ManagementApiService) GetCampaignByAttributes(ctx _context.Context, app
 
 /*
 Execute executes the request
- @return InlineResponse2002
+
+	@return InlineResponse2003
 */
-func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2002, *_nethttp.Response, error) {
+func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2002
+		localVarReturnValue  InlineResponse2003
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCampaignByAttributes")
@@ -8023,7 +8113,7 @@ func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2002, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2002
+			var v InlineResponse2003
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -8116,8 +8206,9 @@ func (r apiGetCampaignsRequest) TemplateId(templateId int32) apiGetCampaignsRequ
 GetCampaigns List campaigns
 List the campaigns of the specified application that match your filter criteria.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetCampaignsRequest
 */
 func (a *ManagementApiService) GetCampaigns(ctx _context.Context, applicationId int32) apiGetCampaignsRequest {
@@ -8130,16 +8221,17 @@ func (a *ManagementApiService) GetCampaigns(ctx _context.Context, applicationId 
 
 /*
 Execute executes the request
- @return InlineResponse2002
+
+	@return InlineResponse2003
 */
-func (r apiGetCampaignsRequest) Execute() (InlineResponse2002, *_nethttp.Response, error) {
+func (r apiGetCampaignsRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2002
+		localVarReturnValue  InlineResponse2003
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCampaigns")
@@ -8237,7 +8329,7 @@ func (r apiGetCampaignsRequest) Execute() (InlineResponse2002, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2002
+			var v InlineResponse2003
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -8339,7 +8431,8 @@ func (r apiGetChangesRequest) IncludeOld(includeOld bool) apiGetChangesRequest {
 GetChanges Get audit logs for an account
 Export the audit logs displayed in **Accounts > Audit logs**.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetChangesRequest
 */
 func (a *ManagementApiService) GetChanges(ctx _context.Context) apiGetChangesRequest {
@@ -8351,16 +8444,17 @@ func (a *ManagementApiService) GetChanges(ctx _context.Context) apiGetChangesReq
 
 /*
 Execute executes the request
- @return InlineResponse20031
+
+	@return InlineResponse20032
 */
-func (r apiGetChangesRequest) Execute() (InlineResponse20031, *_nethttp.Response, error) {
+func (r apiGetChangesRequest) Execute() (InlineResponse20032, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20031
+		localVarReturnValue  InlineResponse20032
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetChanges")
@@ -8457,7 +8551,7 @@ func (r apiGetChangesRequest) Execute() (InlineResponse20031, *_nethttp.Response
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20031
+			var v InlineResponse20032
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -8491,10 +8585,11 @@ type apiGetCollectionRequest struct {
 /*
 GetCollection Get collection
 Retrieve a given collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiGetCollectionRequest
 */
 func (a *ManagementApiService) GetCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiGetCollectionRequest {
@@ -8509,7 +8604,8 @@ func (a *ManagementApiService) GetCollection(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return Collection
+
+	@return Collection
 */
 func (r apiGetCollectionRequest) Execute() (Collection, *_nethttp.Response, error) {
 	var (
@@ -8642,8 +8738,9 @@ func (r apiGetCollectionItemsRequest) Skip(skip int32) apiGetCollectionItemsRequ
 /*
 GetCollectionItems Get collection items
 Retrieve the items from the given collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiGetCollectionItemsRequest
 */
 func (a *ManagementApiService) GetCollectionItems(ctx _context.Context, collectionId int32) apiGetCollectionItemsRequest {
@@ -8656,16 +8753,17 @@ func (a *ManagementApiService) GetCollectionItems(ctx _context.Context, collecti
 
 /*
 Execute executes the request
- @return InlineResponse20010
+
+	@return InlineResponse20011
 */
-func (r apiGetCollectionItemsRequest) Execute() (InlineResponse20010, *_nethttp.Response, error) {
+func (r apiGetCollectionItemsRequest) Execute() (InlineResponse20011, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20010
+		localVarReturnValue  InlineResponse20011
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCollectionItems")
@@ -8739,7 +8837,7 @@ func (r apiGetCollectionItemsRequest) Execute() (InlineResponse20010, *_nethttp.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20010
+			var v InlineResponse20011
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -8855,9 +8953,10 @@ func (r apiGetCouponsWithoutTotalCountRequest) ExactMatch(exactMatch bool) apiGe
 GetCouponsWithoutTotalCount List coupons
 List all the coupons matching the specified criteria.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiGetCouponsWithoutTotalCountRequest
 */
 func (a *ManagementApiService) GetCouponsWithoutTotalCount(ctx _context.Context, applicationId int32, campaignId int32) apiGetCouponsWithoutTotalCountRequest {
@@ -8871,16 +8970,17 @@ func (a *ManagementApiService) GetCouponsWithoutTotalCount(ctx _context.Context,
 
 /*
 Execute executes the request
- @return InlineResponse2006
+
+	@return InlineResponse2007
 */
-func (r apiGetCouponsWithoutTotalCountRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
+func (r apiGetCouponsWithoutTotalCountRequest) Execute() (InlineResponse2007, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2006
+		localVarReturnValue  InlineResponse2007
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCouponsWithoutTotalCount")
@@ -8985,7 +9085,7 @@ func (r apiGetCouponsWithoutTotalCountRequest) Execute() (InlineResponse2006, *_
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2006
+			var v InlineResponse2007
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -9042,9 +9142,10 @@ func (r apiGetCustomerActivityReportRequest) Skip(skip int32) apiGetCustomerActi
 /*
 GetCustomerActivityReport Get customer's activity report
 Fetch the summary report of a given customer in the given application, in a time range.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+
 @return apiGetCustomerActivityReportRequest
 */
 func (a *ManagementApiService) GetCustomerActivityReport(ctx _context.Context, applicationId int32, customerId int32) apiGetCustomerActivityReportRequest {
@@ -9058,7 +9159,8 @@ func (a *ManagementApiService) GetCustomerActivityReport(ctx _context.Context, a
 
 /*
 Execute executes the request
- @return CustomerActivityReport
+
+	@return CustomerActivityReport
 */
 func (r apiGetCustomerActivityReportRequest) Execute() (CustomerActivityReport, *_nethttp.Response, error) {
 	var (
@@ -9240,8 +9342,9 @@ GetCustomerActivityReportsWithoutTotalCount Get Activity Reports for Application
 Fetch summary reports for all application customers based on a time range. Instead of having the total number of results
 in the response, this endpoint only mentions whether there are more results.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetCustomerActivityReportsWithoutTotalCountRequest
 */
 func (a *ManagementApiService) GetCustomerActivityReportsWithoutTotalCount(ctx _context.Context, applicationId int32) apiGetCustomerActivityReportsWithoutTotalCountRequest {
@@ -9254,16 +9357,17 @@ func (a *ManagementApiService) GetCustomerActivityReportsWithoutTotalCount(ctx _
 
 /*
 Execute executes the request
- @return InlineResponse20018
+
+	@return InlineResponse20019
 */
-func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Execute() (InlineResponse20018, *_nethttp.Response, error) {
+func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Execute() (InlineResponse20019, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20018
+		localVarReturnValue  InlineResponse20019
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCustomerActivityReportsWithoutTotalCount")
@@ -9362,7 +9466,7 @@ func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Execute() (Inline
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20018
+			var v InlineResponse20019
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -9413,9 +9517,10 @@ func (r apiGetCustomerAnalyticsRequest) Sort(sort string) apiGetCustomerAnalytic
 /*
 GetCustomerAnalytics Get customer's analytics report
 Fetch analytics for a given customer in the given application.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+
 @return apiGetCustomerAnalyticsRequest
 */
 func (a *ManagementApiService) GetCustomerAnalytics(ctx _context.Context, applicationId int32, customerId int32) apiGetCustomerAnalyticsRequest {
@@ -9429,7 +9534,8 @@ func (a *ManagementApiService) GetCustomerAnalytics(ctx _context.Context, applic
 
 /*
 Execute executes the request
- @return CustomerAnalytics
+
+	@return CustomerAnalytics
 */
 func (r apiGetCustomerAnalyticsRequest) Execute() (CustomerAnalytics, *_nethttp.Response, error) {
 	var (
@@ -9550,17 +9656,20 @@ GetCustomerProfile Get customer profile
 Return the details of the specified customer profile.
 
 <div class="redoc-section">
-  <p class="title">Performance tips</p>
 
-  You can retrieve the same information via the Integration API, which can save you extra API requests. consider these options:
+	<p class="title">Performance tips</p>
 
-  - Request the customer profile to be part of the response content using
-    [Update Customer Session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2).
-  - Send an empty update with the [Update Customer Profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint with `runRuleEngine=false`.
+	You can retrieve the same information via the Integration API, which can save you extra API requests. consider these options:
+
+	- Request the customer profile to be part of the response content using
+	  [Update Customer Session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2).
+	- Send an empty update with the [Update Customer Profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint with `runRuleEngine=false`.
+
 </div>
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param customerId The value of the `id` property of a customer profile. Get it with the [List Application's customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.
+
 @return apiGetCustomerProfileRequest
 */
 func (a *ManagementApiService) GetCustomerProfile(ctx _context.Context, customerId int32) apiGetCustomerProfileRequest {
@@ -9573,7 +9682,8 @@ func (a *ManagementApiService) GetCustomerProfile(ctx _context.Context, customer
 
 /*
 Execute executes the request
- @return CustomerProfile
+
+	@return CustomerProfile
 */
 func (r apiGetCustomerProfileRequest) Execute() (CustomerProfile, *_nethttp.Response, error) {
 	var (
@@ -9693,7 +9803,8 @@ func (r apiGetCustomerProfilesRequest) Skip(skip int32) apiGetCustomerProfilesRe
 /*
 GetCustomerProfiles List customer profiles
 List all customer profiles.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetCustomerProfilesRequest
 */
 func (a *ManagementApiService) GetCustomerProfiles(ctx _context.Context) apiGetCustomerProfilesRequest {
@@ -9705,16 +9816,17 @@ func (a *ManagementApiService) GetCustomerProfiles(ctx _context.Context) apiGetC
 
 /*
 Execute executes the request
- @return InlineResponse20017
+
+	@return InlineResponse20018
 */
-func (r apiGetCustomerProfilesRequest) Execute() (InlineResponse20017, *_nethttp.Response, error) {
+func (r apiGetCustomerProfilesRequest) Execute() (InlineResponse20018, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20017
+		localVarReturnValue  InlineResponse20018
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCustomerProfiles")
@@ -9787,7 +9899,7 @@ func (r apiGetCustomerProfilesRequest) Execute() (InlineResponse20017, *_nethttp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20017
+			var v InlineResponse20018
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -9839,7 +9951,8 @@ Get a list of the customer profiles matching the provided criteria.
 
 The match is successful if all the attributes of the request are found in a profile, even if the profile has more attributes that are not present on the request.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetCustomersByAttributesRequest
 */
 func (a *ManagementApiService) GetCustomersByAttributes(ctx _context.Context) apiGetCustomersByAttributesRequest {
@@ -9851,16 +9964,17 @@ func (a *ManagementApiService) GetCustomersByAttributes(ctx _context.Context) ap
 
 /*
 Execute executes the request
- @return InlineResponse20017
+
+	@return InlineResponse20018
 */
-func (r apiGetCustomersByAttributesRequest) Execute() (InlineResponse20017, *_nethttp.Response, error) {
+func (r apiGetCustomersByAttributesRequest) Execute() (InlineResponse20018, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20017
+		localVarReturnValue  InlineResponse20018
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCustomersByAttributes")
@@ -9939,7 +10053,7 @@ func (r apiGetCustomersByAttributesRequest) Execute() (InlineResponse20017, *_ne
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20017
+			var v InlineResponse20018
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -10001,7 +10115,8 @@ func (r apiGetEventTypesRequest) Sort(sort string) apiGetEventTypesRequest {
 GetEventTypes List event types
 Fetch all event type definitions for your account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetEventTypesRequest
 */
 func (a *ManagementApiService) GetEventTypes(ctx _context.Context) apiGetEventTypesRequest {
@@ -10013,16 +10128,17 @@ func (a *ManagementApiService) GetEventTypes(ctx _context.Context) apiGetEventTy
 
 /*
 Execute executes the request
- @return InlineResponse20029
+
+	@return InlineResponse20030
 */
-func (r apiGetEventTypesRequest) Execute() (InlineResponse20029, *_nethttp.Response, error) {
+func (r apiGetEventTypesRequest) Execute() (InlineResponse20030, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20029
+		localVarReturnValue  InlineResponse20030
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetEventTypes")
@@ -10104,7 +10220,7 @@ func (r apiGetEventTypesRequest) Execute() (InlineResponse20029, *_nethttp.Respo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20029
+			var v InlineResponse20030
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -10166,7 +10282,8 @@ func (r apiGetExportsRequest) Entity(entity string) apiGetExportsRequest {
 GetExports Get exports
 List all past exports
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetExportsRequest
 */
 func (a *ManagementApiService) GetExports(ctx _context.Context) apiGetExportsRequest {
@@ -10178,16 +10295,17 @@ func (a *ManagementApiService) GetExports(ctx _context.Context) apiGetExportsReq
 
 /*
 Execute executes the request
- @return InlineResponse20032
+
+	@return InlineResponse20033
 */
-func (r apiGetExportsRequest) Execute() (InlineResponse20032, *_nethttp.Response, error) {
+func (r apiGetExportsRequest) Execute() (InlineResponse20033, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20032
+		localVarReturnValue  InlineResponse20033
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetExports")
@@ -10269,7 +10387,7 @@ func (r apiGetExportsRequest) Execute() (InlineResponse20032, *_nethttp.Response
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20032
+			var v InlineResponse20033
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -10306,9 +10424,10 @@ Get the loyalty ledger for this profile integration ID.
 To get the `integrationId` of the profile from a `sessionId`, use the
 [Update customer session](/integration-api/#operation/updateCustomerSessionV2).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId The identifier for the loyalty program.
- * @param integrationId The identifier of the profile.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId The identifier for the loyalty program.
+  - @param integrationId The identifier of the profile.
+
 @return apiGetLoyaltyPointsRequest
 */
 func (a *ManagementApiService) GetLoyaltyPoints(ctx _context.Context, loyaltyProgramId string, integrationId string) apiGetLoyaltyPointsRequest {
@@ -10322,7 +10441,8 @@ func (a *ManagementApiService) GetLoyaltyPoints(ctx _context.Context, loyaltyPro
 
 /*
 Execute executes the request
- @return LoyaltyLedger
+
+	@return LoyaltyLedger
 */
 func (r apiGetLoyaltyPointsRequest) Execute() (LoyaltyLedger, *_nethttp.Response, error) {
 	var (
@@ -10437,8 +10557,9 @@ To list all loyalty programs in your Application, use [List loyalty programs](#o
 To list the loyalty programs that a customer profile is part of, use the
 [List customer data](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/getCustomerInventory)
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+
 @return apiGetLoyaltyProgramRequest
 */
 func (a *ManagementApiService) GetLoyaltyProgram(ctx _context.Context, loyaltyProgramId int32) apiGetLoyaltyProgramRequest {
@@ -10451,7 +10572,8 @@ func (a *ManagementApiService) GetLoyaltyProgram(ctx _context.Context, loyaltyPr
 
 /*
 Execute executes the request
- @return LoyaltyProgram
+
+	@return LoyaltyProgram
 */
 func (r apiGetLoyaltyProgramRequest) Execute() (LoyaltyProgram, *_nethttp.Response, error) {
 	var (
@@ -10559,7 +10681,8 @@ type apiGetLoyaltyProgramsRequest struct {
 /*
 GetLoyaltyPrograms List loyalty programs
 List the loyalty programs of the account.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetLoyaltyProgramsRequest
 */
 func (a *ManagementApiService) GetLoyaltyPrograms(ctx _context.Context) apiGetLoyaltyProgramsRequest {
@@ -10571,16 +10694,17 @@ func (a *ManagementApiService) GetLoyaltyPrograms(ctx _context.Context) apiGetLo
 
 /*
 Execute executes the request
- @return InlineResponse2008
+
+	@return InlineResponse2009
 */
-func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse2008, *_nethttp.Response, error) {
+func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse2009, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2008
+		localVarReturnValue  InlineResponse2009
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetLoyaltyPrograms")
@@ -10647,7 +10771,7 @@ func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse2008, *_nethttp.R
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2008
+			var v InlineResponse2009
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -10681,8 +10805,9 @@ GetLoyaltyStatistics Get loyalty program statistics by loyalty program ID
 Retrieve the statistics of the specified loyalty program such as the
 total active points, pending points, spent points and expired points.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+
 @return apiGetLoyaltyStatisticsRequest
 */
 func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, loyaltyProgramId int32) apiGetLoyaltyStatisticsRequest {
@@ -10695,7 +10820,8 @@ func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, loyalt
 
 /*
 Execute executes the request
- @return LoyaltyStatistics
+
+	@return LoyaltyStatistics
 */
 func (r apiGetLoyaltyStatisticsRequest) Execute() (LoyaltyStatistics, *_nethttp.Response, error) {
 	var (
@@ -10805,9 +10931,10 @@ type apiGetNotificationWebhookRequest struct {
 /*
 GetNotificationWebhook Get notification webhook
 Return the given outbound notification webhook.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param notificationWebhookId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param notificationWebhookId
+
 @return apiGetNotificationWebhookRequest
 */
 func (a *ManagementApiService) GetNotificationWebhook(ctx _context.Context, applicationId int32, notificationWebhookId int32) apiGetNotificationWebhookRequest {
@@ -10821,7 +10948,8 @@ func (a *ManagementApiService) GetNotificationWebhook(ctx _context.Context, appl
 
 /*
 Execute executes the request
- @return NotificationWebhook
+
+	@return NotificationWebhook
 */
 func (r apiGetNotificationWebhookRequest) Execute() (NotificationWebhook, *_nethttp.Response, error) {
 	var (
@@ -10931,8 +11059,9 @@ type apiGetNotificationWebhooksRequest struct {
 /*
 GetNotificationWebhooks List notification webhooks
 List all outbound notification webhooks for this application.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiGetNotificationWebhooksRequest
 */
 func (a *ManagementApiService) GetNotificationWebhooks(ctx _context.Context, applicationId int32) apiGetNotificationWebhooksRequest {
@@ -10945,16 +11074,17 @@ func (a *ManagementApiService) GetNotificationWebhooks(ctx _context.Context, app
 
 /*
 Execute executes the request
- @return InlineResponse2003
+
+	@return InlineResponse2004
 */
-func (r apiGetNotificationWebhooksRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
+func (r apiGetNotificationWebhooksRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2003
+		localVarReturnValue  InlineResponse2004
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetNotificationWebhooks")
@@ -11022,7 +11152,7 @@ func (r apiGetNotificationWebhooksRequest) Execute() (InlineResponse2003, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2003
+			var v InlineResponse2004
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -11109,9 +11239,10 @@ func (r apiGetReferralsWithoutTotalCountRequest) Advocate(advocate string) apiGe
 /*
 GetReferralsWithoutTotalCount List referrals
 List all referrals of the specified campaign.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiGetReferralsWithoutTotalCountRequest
 */
 func (a *ManagementApiService) GetReferralsWithoutTotalCount(ctx _context.Context, applicationId int32, campaignId int32) apiGetReferralsWithoutTotalCountRequest {
@@ -11125,16 +11256,17 @@ func (a *ManagementApiService) GetReferralsWithoutTotalCount(ctx _context.Contex
 
 /*
 Execute executes the request
- @return InlineResponse2007
+
+	@return InlineResponse2008
 */
-func (r apiGetReferralsWithoutTotalCountRequest) Execute() (InlineResponse2007, *_nethttp.Response, error) {
+func (r apiGetReferralsWithoutTotalCountRequest) Execute() (InlineResponse2008, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2007
+		localVarReturnValue  InlineResponse2008
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetReferralsWithoutTotalCount")
@@ -11230,7 +11362,7 @@ func (r apiGetReferralsWithoutTotalCountRequest) Execute() (InlineResponse2007, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2007
+			var v InlineResponse2008
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -11263,8 +11395,9 @@ type apiGetRoleRequest struct {
 GetRole Get role
 Get the details of the specified role. To see all the roles, use [List roles](#operation/getAllRoles).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param roleId The Id of role.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param roleId The Id of role.
+
 @return apiGetRoleRequest
 */
 func (a *ManagementApiService) GetRole(ctx _context.Context, roleId int32) apiGetRoleRequest {
@@ -11277,7 +11410,8 @@ func (a *ManagementApiService) GetRole(ctx _context.Context, roleId int32) apiGe
 
 /*
 Execute executes the request
- @return Role
+
+	@return Role
 */
 func (r apiGetRoleRequest) Execute() (Role, *_nethttp.Response, error) {
 	var (
@@ -11388,10 +11522,11 @@ type apiGetRulesetRequest struct {
 /*
 GetRuleset Get ruleset
 Retrieve the specified ruleset.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param rulesetId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param rulesetId
+
 @return apiGetRulesetRequest
 */
 func (a *ManagementApiService) GetRuleset(ctx _context.Context, applicationId int32, campaignId int32, rulesetId int32) apiGetRulesetRequest {
@@ -11406,7 +11541,8 @@ func (a *ManagementApiService) GetRuleset(ctx _context.Context, applicationId in
 
 /*
 Execute executes the request
- @return Ruleset
+
+	@return Ruleset
 */
 func (r apiGetRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) {
 	var (
@@ -11539,9 +11675,10 @@ List all rulesets of this campaign. A ruleset is a revision of the rules of a ca
 **Important:** The response also includes deleted rules.
 You should only consider the latest revision of the returned rulesets.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiGetRulesetsRequest
 */
 func (a *ManagementApiService) GetRulesets(ctx _context.Context, applicationId int32, campaignId int32) apiGetRulesetsRequest {
@@ -11555,16 +11692,17 @@ func (a *ManagementApiService) GetRulesets(ctx _context.Context, applicationId i
 
 /*
 Execute executes the request
- @return InlineResponse2004
+
+	@return InlineResponse2005
 */
-func (r apiGetRulesetsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
+func (r apiGetRulesetsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2004
+		localVarReturnValue  InlineResponse2005
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetRulesets")
@@ -11642,7 +11780,7 @@ func (r apiGetRulesetsRequest) Execute() (InlineResponse2004, *_nethttp.Response
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2004
+			var v InlineResponse2005
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -11675,8 +11813,9 @@ type apiGetUserRequest struct {
 GetUser Get user
 Retrieve the data (including an invitation code) for a user. Non-admin users can only get their own profile.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param userId The ID of the user.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param userId The ID of the user.
+
 @return apiGetUserRequest
 */
 func (a *ManagementApiService) GetUser(ctx _context.Context, userId int32) apiGetUserRequest {
@@ -11689,7 +11828,8 @@ func (a *ManagementApiService) GetUser(ctx _context.Context, userId int32) apiGe
 
 /*
 Execute executes the request
- @return User
+
+	@return User
 */
 func (r apiGetUserRequest) Execute() (User, *_nethttp.Response, error) {
 	var (
@@ -11816,7 +11956,8 @@ func (r apiGetUsersRequest) Sort(sort string) apiGetUsersRequest {
 GetUsers List users in account
 Retrieve all users in your account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetUsersRequest
 */
 func (a *ManagementApiService) GetUsers(ctx _context.Context) apiGetUsersRequest {
@@ -11828,16 +11969,17 @@ func (a *ManagementApiService) GetUsers(ctx _context.Context) apiGetUsersRequest
 
 /*
 Execute executes the request
- @return InlineResponse20030
+
+	@return InlineResponse20031
 */
-func (r apiGetUsersRequest) Execute() (InlineResponse20030, *_nethttp.Response, error) {
+func (r apiGetUsersRequest) Execute() (InlineResponse20031, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20030
+		localVarReturnValue  InlineResponse20031
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetUsers")
@@ -11913,7 +12055,7 @@ func (r apiGetUsersRequest) Execute() (InlineResponse20030, *_nethttp.Response, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20030
+			var v InlineResponse20031
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -11945,8 +12087,9 @@ type apiGetWebhookRequest struct {
 /*
 GetWebhook Get webhook
 Returns a webhook by its id.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param webhookId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param webhookId
+
 @return apiGetWebhookRequest
 */
 func (a *ManagementApiService) GetWebhook(ctx _context.Context, webhookId int32) apiGetWebhookRequest {
@@ -11959,7 +12102,8 @@ func (a *ManagementApiService) GetWebhook(ctx _context.Context, webhookId int32)
 
 /*
 Execute executes the request
- @return Webhook
+
+	@return Webhook
 */
 func (r apiGetWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) {
 	var (
@@ -12121,7 +12265,8 @@ func (r apiGetWebhookActivationLogsRequest) CreatedAfter(createdAfter time.Time)
 /*
 GetWebhookActivationLogs List webhook activation log entries
 Webhook activation log entries would be created as soon as an integration request triggered an effect with a webhook.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetWebhookActivationLogsRequest
 */
 func (a *ManagementApiService) GetWebhookActivationLogs(ctx _context.Context) apiGetWebhookActivationLogsRequest {
@@ -12133,16 +12278,17 @@ func (a *ManagementApiService) GetWebhookActivationLogs(ctx _context.Context) ap
 
 /*
 Execute executes the request
- @return InlineResponse20027
+
+	@return InlineResponse20028
 */
-func (r apiGetWebhookActivationLogsRequest) Execute() (InlineResponse20027, *_nethttp.Response, error) {
+func (r apiGetWebhookActivationLogsRequest) Execute() (InlineResponse20028, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20027
+		localVarReturnValue  InlineResponse20028
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetWebhookActivationLogs")
@@ -12236,7 +12382,7 @@ func (r apiGetWebhookActivationLogsRequest) Execute() (InlineResponse20027, *_ne
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20027
+			var v InlineResponse20028
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -12327,7 +12473,8 @@ func (r apiGetWebhookLogsRequest) CreatedAfter(createdAfter time.Time) apiGetWeb
 /*
 GetWebhookLogs List webhook log entries
 Retrieve all webhook log entries.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetWebhookLogsRequest
 */
 func (a *ManagementApiService) GetWebhookLogs(ctx _context.Context) apiGetWebhookLogsRequest {
@@ -12339,16 +12486,17 @@ func (a *ManagementApiService) GetWebhookLogs(ctx _context.Context) apiGetWebhoo
 
 /*
 Execute executes the request
- @return InlineResponse20028
+
+	@return InlineResponse20029
 */
-func (r apiGetWebhookLogsRequest) Execute() (InlineResponse20028, *_nethttp.Response, error) {
+func (r apiGetWebhookLogsRequest) Execute() (InlineResponse20029, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20028
+		localVarReturnValue  InlineResponse20029
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetWebhookLogs")
@@ -12445,7 +12593,7 @@ func (r apiGetWebhookLogsRequest) Execute() (InlineResponse20028, *_nethttp.Resp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20028
+			var v InlineResponse20029
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -12500,7 +12648,8 @@ func (r apiGetWebhooksRequest) Skip(skip int32) apiGetWebhooksRequest {
 /*
 GetWebhooks List webhooks
 List all webhooks.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiGetWebhooksRequest
 */
 func (a *ManagementApiService) GetWebhooks(ctx _context.Context) apiGetWebhooksRequest {
@@ -12512,16 +12661,17 @@ func (a *ManagementApiService) GetWebhooks(ctx _context.Context) apiGetWebhooksR
 
 /*
 Execute executes the request
- @return InlineResponse20026
+
+	@return InlineResponse20027
 */
-func (r apiGetWebhooksRequest) Execute() (InlineResponse20026, *_nethttp.Response, error) {
+func (r apiGetWebhooksRequest) Execute() (InlineResponse20027, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20026
+		localVarReturnValue  InlineResponse20027
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetWebhooks")
@@ -12600,7 +12750,7 @@ func (r apiGetWebhooksRequest) Execute() (InlineResponse20026, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20026
+			var v InlineResponse20027
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -12659,8 +12809,9 @@ Asics
 
 **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiImportAccountCollectionRequest
 */
 func (a *ManagementApiService) ImportAccountCollection(ctx _context.Context, collectionId int32) apiImportAccountCollectionRequest {
@@ -12673,7 +12824,8 @@ func (a *ManagementApiService) ImportAccountCollection(ctx _context.Context, col
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportAccountCollectionRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -12831,8 +12983,9 @@ CS-DV-04042021-UP-49D-12
 CS-DG-02082021-UP-50G-07
 ```
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param attributeId
+
 @return apiImportAllowedListRequest
 */
 func (a *ManagementApiService) ImportAllowedList(ctx _context.Context, attributeId int32) apiImportAllowedListRequest {
@@ -12845,7 +12998,8 @@ func (a *ManagementApiService) ImportAllowedList(ctx _context.Context, attribute
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportAllowedListRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -13016,10 +13170,11 @@ Asics
 
 **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiImportCollectionRequest
 */
 func (a *ManagementApiService) ImportCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiImportCollectionRequest {
@@ -13034,7 +13189,8 @@ func (a *ManagementApiService) ImportCollection(ctx _context.Context, applicatio
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportCollectionRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -13168,14 +13324,14 @@ Upload a CSV file containing the coupons that should be created. The file should
 
 The CSV file can contain the following columns:
 
-- `value` (required): The coupon code.
-- `expirydate`: The end date in RFC3339 of the code redemption period.
-- `startdate`: The start date in RFC3339 of the code redemption period.
-- `limitval`: The maximum amount of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided.
-- `attributes`: A json object describing _custom_ referral attribute names and their values. Double the double-quotes in the object.
-- `discountlimit`: The amount of discounts that can be given with this coupon code.
-  For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
-  called `category` associated to the coupon entity, set it with `"{""category"": ""10_off""}"`.
+  - `value` (required): The coupon code.
+  - `expirydate`: The end date in RFC3339 of the code redemption period.
+  - `startdate`: The start date in RFC3339 of the code redemption period.
+  - `limitval`: The maximum amount of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided.
+  - `attributes`: A json object describing _custom_ referral attribute names and their values. Double the double-quotes in the object.
+  - `discountlimit`: The amount of discounts that can be given with this coupon code.
+    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
+    called `category` associated to the coupon entity, set it with `"{""category"": ""10_off""}"`.
 
 **Important:** Do not leave empty columns in the file.
 
@@ -13191,9 +13347,10 @@ COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,"{""Category"": ""10_o
 Once imported, you can find the `batchId` in the Campaign Manager or by
 using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiImportCouponsRequest
 */
 func (a *ManagementApiService) ImportCoupons(ctx _context.Context, applicationId int32, campaignId int32) apiImportCouponsRequest {
@@ -13207,7 +13364,8 @@ func (a *ManagementApiService) ImportCoupons(ctx _context.Context, applicationId
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportCouponsRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -13351,8 +13509,9 @@ customerprofileid,amount,startdate,expirydate,subledgerid,reason
 URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement
 ```
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).
+
 @return apiImportLoyaltyPointsRequest
 */
 func (a *ManagementApiService) ImportLoyaltyPoints(ctx _context.Context, loyaltyProgramId int32) apiImportLoyaltyPointsRequest {
@@ -13365,7 +13524,8 @@ func (a *ManagementApiService) ImportLoyaltyPoints(ctx _context.Context, loyalty
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportLoyaltyPointsRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -13485,12 +13645,12 @@ ImportPoolGiveaways Import giveaway codes into a giveaway pool
 Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.
 
 The CSV file can contain the following columns:
-- `code` (required): the code of your giveaway, for instance, a gift card redemption code.
-- `startdate`:  the start date in RFC3339 of the code redemption period.
-- `enddate`: the last date in RFC3339 of the code redemption period.
-- `attributes`: A json object describing _custom_ giveaway attribute names and their values. Double the double-quotes in the object.
-  For example, if you [created a custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
-  called `provider` associated to the giveaway entity, set it with `"{""provider"": ""myPartnerCompany""}"`.
+  - `code` (required): the code of your giveaway, for instance, a gift card redemption code.
+  - `startdate`:  the start date in RFC3339 of the code redemption period.
+  - `enddate`: the last date in RFC3339 of the code redemption period.
+  - `attributes`: A json object describing _custom_ giveaway attribute names and their values. Double the double-quotes in the object.
+    For example, if you [created a custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
+    called `provider` associated to the giveaway entity, set it with `"{""provider"": ""myPartnerCompany""}"`.
 
 **Important:** Do not leave empty columns in the file.
 
@@ -13506,8 +13666,9 @@ GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,"{""provider"": ""Amazon""}"
 GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,"{""provider"": ""Aliexpress""}"
 ```
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param poolId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param poolId
+
 @return apiImportPoolGiveawaysRequest
 */
 func (a *ManagementApiService) ImportPoolGiveaways(ctx _context.Context, poolId int32) apiImportPoolGiveawaysRequest {
@@ -13520,7 +13681,8 @@ func (a *ManagementApiService) ImportPoolGiveaways(ctx _context.Context, poolId 
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportPoolGiveawaysRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -13650,8 +13812,8 @@ The CSV file can contain the following columns:
 - `limitval`: The maximum amount of redemptions of this code. Defaults to `1` when left blank.
 - `attributes`: A json object describing _custom_ referral attribute names and their values. Double the double-quotes in the object.
 
-  For example, if you [created a custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
-  called `category` associated to the referral entity, set it with `"{""category"": ""10_off""}"`.
+	For example, if you [created a custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
+	called `category` associated to the referral entity, set it with `"{""category"": ""10_off""}"`.
 
 You can use the timezone of your choice. It is converted to UTC internally by Talon.One.
 
@@ -13663,9 +13825,10 @@ REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,"{""my_attr
 REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,"{""my_attribute"": ""20_off""}"
 ```
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiImportReferralsRequest
 */
 func (a *ManagementApiService) ImportReferrals(ctx _context.Context, applicationId int32, campaignId int32) apiImportReferralsRequest {
@@ -13679,7 +13842,8 @@ func (a *ManagementApiService) ImportReferrals(ctx _context.Context, application
 
 /*
 Execute executes the request
- @return Import
+
+	@return Import
 */
 func (r apiImportReferralsRequest) Execute() (Import, *_nethttp.Response, error) {
 	var (
@@ -13821,7 +13985,8 @@ func (r apiListAccountCollectionsRequest) Name(name string) apiListAccountCollec
 /*
 ListAccountCollections List collections in account
 List collections in account.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiListAccountCollectionsRequest
 */
 func (a *ManagementApiService) ListAccountCollections(ctx _context.Context) apiListAccountCollectionsRequest {
@@ -13833,16 +13998,17 @@ func (a *ManagementApiService) ListAccountCollections(ctx _context.Context) apiL
 
 /*
 Execute executes the request
- @return InlineResponse2009
+
+	@return InlineResponse20010
 */
-func (r apiListAccountCollectionsRequest) Execute() (InlineResponse2009, *_nethttp.Response, error) {
+func (r apiListAccountCollectionsRequest) Execute() (InlineResponse20010, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2009
+		localVarReturnValue  InlineResponse20010
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ListAccountCollections")
@@ -13924,7 +14090,7 @@ func (r apiListAccountCollectionsRequest) Execute() (InlineResponse2009, *_netht
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2009
+			var v InlineResponse20010
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -14017,9 +14183,10 @@ func (r apiListCollectionsRequest) Name(name string) apiListCollectionsRequest {
 /*
 ListCollections List collections
 List collections in the campaign.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiListCollectionsRequest
 */
 func (a *ManagementApiService) ListCollections(ctx _context.Context, applicationId int32, campaignId int32) apiListCollectionsRequest {
@@ -14033,16 +14200,17 @@ func (a *ManagementApiService) ListCollections(ctx _context.Context, application
 
 /*
 Execute executes the request
- @return InlineResponse20011
+
+	@return InlineResponse20012
 */
-func (r apiListCollectionsRequest) Execute() (InlineResponse20011, *_nethttp.Response, error) {
+func (r apiListCollectionsRequest) Execute() (InlineResponse20012, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20011
+		localVarReturnValue  InlineResponse20012
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ListCollections")
@@ -14126,7 +14294,7 @@ func (r apiListCollectionsRequest) Execute() (InlineResponse20011, *_nethttp.Res
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20011
+			var v InlineResponse20012
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -14198,8 +14366,9 @@ func (r apiListCollectionsInApplicationRequest) Name(name string) apiListCollect
 /*
 ListCollectionsInApplication List collections in application
 List collections from all campaigns in the Application.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiListCollectionsInApplicationRequest
 */
 func (a *ManagementApiService) ListCollectionsInApplication(ctx _context.Context, applicationId int32) apiListCollectionsInApplicationRequest {
@@ -14212,16 +14381,17 @@ func (a *ManagementApiService) ListCollectionsInApplication(ctx _context.Context
 
 /*
 Execute executes the request
- @return InlineResponse20011
+
+	@return InlineResponse20012
 */
-func (r apiListCollectionsInApplicationRequest) Execute() (InlineResponse20011, *_nethttp.Response, error) {
+func (r apiListCollectionsInApplicationRequest) Execute() (InlineResponse20012, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20011
+		localVarReturnValue  InlineResponse20012
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ListCollectionsInApplication")
@@ -14304,7 +14474,7 @@ func (r apiListCollectionsInApplicationRequest) Execute() (InlineResponse20011, 
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20011
+			var v InlineResponse20012
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -14357,9 +14527,10 @@ Remove points from the specified loyalty program and specified customer profile.
 To get the `integrationId` of the profile from a `sessionId`, use the
 [Update customer session](/integration-api/#operation/updateCustomerSessionV2).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param loyaltyProgramId The identifier for the loyalty program.
- * @param integrationId The identifier of the profile.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId The identifier for the loyalty program.
+  - @param integrationId The identifier of the profile.
+
 @return apiRemoveLoyaltyPointsRequest
 */
 func (a *ManagementApiService) RemoveLoyaltyPoints(ctx _context.Context, loyaltyProgramId string, integrationId string) apiRemoveLoyaltyPointsRequest {
@@ -14373,7 +14544,6 @@ func (a *ManagementApiService) RemoveLoyaltyPoints(ctx _context.Context, loyalty
 
 /*
 Execute executes the request
-
 */
 func (r apiRemoveLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -14506,7 +14676,8 @@ ResetPassword Reset password
 Consumes the supplied password reset token and updates the password for
 the associated account.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
 @return apiResetPasswordRequest
 */
 func (a *ManagementApiService) ResetPassword(ctx _context.Context) apiResetPasswordRequest {
@@ -14518,7 +14689,8 @@ func (a *ManagementApiService) ResetPassword(ctx _context.Context) apiResetPassw
 
 /*
 Execute executes the request
- @return NewPassword
+
+	@return NewPassword
 */
 func (r apiResetPasswordRequest) Execute() (NewPassword, *_nethttp.Response, error) {
 	var (
@@ -14722,8 +14894,9 @@ even if the coupon has more attributes that are not present on the request.
 
 **Note:** The total count is not included in the response.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+
 @return apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest
 */
 func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx _context.Context, applicationId int32) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
@@ -14736,16 +14909,17 @@ func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalC
 
 /*
 Execute executes the request
- @return InlineResponse2006
+
+	@return InlineResponse2007
 */
-func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
+func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Execute() (InlineResponse2007, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2006
+		localVarReturnValue  InlineResponse2007
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.SearchCouponsAdvancedApplicationWideWithoutTotalCount")
@@ -14858,7 +15032,7 @@ func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Execute
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2006
+			var v InlineResponse2007
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -14976,9 +15150,10 @@ even if the coupon has more attributes that are not present on the request.
 
 **Note:** The total count is not included in the response.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiSearchCouponsAdvancedWithoutTotalCountRequest
 */
 func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx _context.Context, applicationId int32, campaignId int32) apiSearchCouponsAdvancedWithoutTotalCountRequest {
@@ -14992,16 +15167,17 @@ func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx _conte
 
 /*
 Execute executes the request
- @return InlineResponse2006
+
+	@return InlineResponse2007
 */
-func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
+func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Execute() (InlineResponse2007, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2006
+		localVarReturnValue  InlineResponse2007
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.SearchCouponsAdvancedWithoutTotalCount")
@@ -15112,7 +15288,7 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Execute() (InlineRespo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2006
+			var v InlineResponse2007
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -15150,8 +15326,9 @@ func (r apiUpdateAccountCollectionRequest) Body(body UpdateCollection) apiUpdate
 /*
 UpdateAccountCollection Update account-level collection
 Edit the description of the account-level collection and enable or disable the collection in the specified Applications.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiUpdateAccountCollectionRequest
 */
 func (a *ManagementApiService) UpdateAccountCollection(ctx _context.Context, collectionId int32) apiUpdateAccountCollectionRequest {
@@ -15164,7 +15341,8 @@ func (a *ManagementApiService) UpdateAccountCollection(ctx _context.Context, col
 
 /*
 Execute executes the request
- @return Collection
+
+	@return Collection
 */
 func (r apiUpdateAccountCollectionRequest) Execute() (Collection, *_nethttp.Response, error) {
 	var (
@@ -15316,8 +15494,9 @@ func (r apiUpdateAdditionalCostRequest) Body(body NewAdditionalCost) apiUpdateAd
 UpdateAdditionalCost Update additional cost
 Updates an existing additional cost. Once created, the only property of an additional cost that can be changed is the title (human readable description). This restriction is in place to prevent accidentally breaking live integrations.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param additionalCostId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param additionalCostId
+
 @return apiUpdateAdditionalCostRequest
 */
 func (a *ManagementApiService) UpdateAdditionalCost(ctx _context.Context, additionalCostId int32) apiUpdateAdditionalCostRequest {
@@ -15330,7 +15509,8 @@ func (a *ManagementApiService) UpdateAdditionalCost(ctx _context.Context, additi
 
 /*
 Execute executes the request
- @return AccountAdditionalCost
+
+	@return AccountAdditionalCost
 */
 func (r apiUpdateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_nethttp.Response, error) {
 	var (
@@ -15454,8 +15634,9 @@ Updates an existing custom attribute. Once created, the only property of a custo
 
 If you **really** need to change the `type` or `name` property of a custom attribute, create a new attribute and update any relevant integrations and rules to use the new attribute. Then delete the old attribute when you are confident you have migrated any needed data from the old attribute to the new one.
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param attributeId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param attributeId
+
 @return apiUpdateAttributeRequest
 */
 func (a *ManagementApiService) UpdateAttribute(ctx _context.Context, attributeId int32) apiUpdateAttributeRequest {
@@ -15468,7 +15649,8 @@ func (a *ManagementApiService) UpdateAttribute(ctx _context.Context, attributeId
 
 /*
 Execute executes the request
- @return Attribute
+
+	@return Attribute
 */
 func (r apiUpdateAttributeRequest) Execute() (Attribute, *_nethttp.Response, error) {
 	var (
@@ -15590,9 +15772,10 @@ func (r apiUpdateCampaignRequest) Body(body UpdateCampaign) apiUpdateCampaignReq
 /*
 UpdateCampaign Update campaign
 Update the given campaign.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiUpdateCampaignRequest
 */
 func (a *ManagementApiService) UpdateCampaign(ctx _context.Context, applicationId int32, campaignId int32) apiUpdateCampaignRequest {
@@ -15606,7 +15789,8 @@ func (a *ManagementApiService) UpdateCampaign(ctx _context.Context, applicationI
 
 /*
 Execute executes the request
- @return Campaign
+
+	@return Campaign
 */
 func (r apiUpdateCampaignRequest) Execute() (Campaign, *_nethttp.Response, error) {
 	var (
@@ -15730,10 +15914,11 @@ func (r apiUpdateCollectionRequest) Body(body UpdateCampaignCollection) apiUpdat
 /*
 UpdateCollection Update collection description
 Edit the description of the collection.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param collectionId The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication).
+
 @return apiUpdateCollectionRequest
 */
 func (a *ManagementApiService) UpdateCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiUpdateCollectionRequest {
@@ -15748,7 +15933,8 @@ func (a *ManagementApiService) UpdateCollection(ctx _context.Context, applicatio
 
 /*
 Execute executes the request
- @return Collection
+
+	@return Collection
 */
 func (r apiUpdateCollectionRequest) Execute() (Collection, *_nethttp.Response, error) {
 	var (
@@ -15883,10 +16069,11 @@ func (r apiUpdateCouponRequest) Body(body UpdateCoupon) apiUpdateCouponRequest {
 /*
 UpdateCoupon Update coupon
 Update the specified coupon.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param couponId The ID of the coupon code to update
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param couponId The ID of the coupon code to update
+
 @return apiUpdateCouponRequest
 */
 func (a *ManagementApiService) UpdateCoupon(ctx _context.Context, applicationId int32, campaignId int32, couponId string) apiUpdateCouponRequest {
@@ -15901,7 +16088,8 @@ func (a *ManagementApiService) UpdateCoupon(ctx _context.Context, applicationId 
 
 /*
 Execute executes the request
- @return Coupon
+
+	@return Coupon
 */
 func (r apiUpdateCouponRequest) Execute() (Coupon, *_nethttp.Response, error) {
 	var (
@@ -16034,9 +16222,10 @@ in the Campaign Manager or by using [List coupons](#operation/getCouponsWithoutT
 
 To update a specific coupon, use [Update coupon](#operation/updateCoupon).
 
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
 @return apiUpdateCouponBatchRequest
 */
 func (a *ManagementApiService) UpdateCouponBatch(ctx _context.Context, applicationId int32, campaignId int32) apiUpdateCouponBatchRequest {
@@ -16050,7 +16239,6 @@ func (a *ManagementApiService) UpdateCouponBatch(ctx _context.Context, applicati
 
 /*
 Execute executes the request
-
 */
 func (r apiUpdateCouponBatchRequest) Execute() (*_nethttp.Response, error) {
 	var (
@@ -16154,9 +16342,10 @@ func (r apiUpdateNotificationWebhookRequest) Body(body NewNotificationWebhook) a
 /*
 UpdateNotificationWebhook Update notification webhook
 Update the given outbound notification webhook.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param notificationWebhookId
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param notificationWebhookId
+
 @return apiUpdateNotificationWebhookRequest
 */
 func (a *ManagementApiService) UpdateNotificationWebhook(ctx _context.Context, applicationId int32, notificationWebhookId int32) apiUpdateNotificationWebhookRequest {
@@ -16170,7 +16359,8 @@ func (a *ManagementApiService) UpdateNotificationWebhook(ctx _context.Context, a
 
 /*
 Execute executes the request
- @return NotificationWebhook
+
+	@return NotificationWebhook
 */
 func (r apiUpdateNotificationWebhookRequest) Execute() (NotificationWebhook, *_nethttp.Response, error) {
 	var (
@@ -16294,10 +16484,11 @@ func (r apiUpdateReferralRequest) Body(body UpdateReferral) apiUpdateReferralReq
 /*
 UpdateReferral Update referral
 Update the specified referral.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
- * @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
- * @param referralId The ID of the referral code to delete
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+  - @param referralId The ID of the referral code to delete
+
 @return apiUpdateReferralRequest
 */
 func (a *ManagementApiService) UpdateReferral(ctx _context.Context, applicationId int32, campaignId int32, referralId string) apiUpdateReferralRequest {
@@ -16312,7 +16503,8 @@ func (a *ManagementApiService) UpdateReferral(ctx _context.Context, applicationI
 
 /*
 Execute executes the request
- @return Referral
+
+	@return Referral
 */
 func (r apiUpdateReferralRequest) Execute() (Referral, *_nethttp.Response, error) {
 	var (

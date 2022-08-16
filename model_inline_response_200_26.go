@@ -16,8 +16,8 @@ import (
 
 // InlineResponse20026 struct for InlineResponse20026
 type InlineResponse20026 struct {
-	TotalResultSize int32     `json:"totalResultSize"`
-	Data            []Webhook `json:"data"`
+	TotalResultSize int32                   `json:"totalResultSize"`
+	Data            []AccountAdditionalCost `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20026) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20026) GetData() []Webhook {
+func (o *InlineResponse20026) GetData() []AccountAdditionalCost {
 	if o == nil {
-		var ret []Webhook
+		var ret []AccountAdditionalCost
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20026) GetData() []Webhook {
 }
 
 // SetData sets field value
-func (o *InlineResponse20026) SetData(v []Webhook) {
+func (o *InlineResponse20026) SetData(v []AccountAdditionalCost) {
 	o.Data = v
 }
 
