@@ -38,6 +38,8 @@ type NewLoyaltyProgram struct {
 	Timezone string `json:"timezone"`
 	// Defines the type of loyalty program: - `true`: the program is a card-based. - `false`: the program is profile-based.
 	CardBased bool `json:"cardBased"`
+	// Indicates type of loyalty program, live or sandbox
+	Sandbox bool `json:"sandbox"`
 }
 
 // GetTitle returns the Title field value
@@ -240,6 +242,11 @@ func (o *NewLoyaltyProgram) HasTiers() bool {
 	}
 
 	return false
+}
+
+// SetType set the sandbox field for the NewLoyaltyProgram
+func (o *NewLoyaltyProgram) SetType(sandbox bool) {
+	o.Sandbox = sandbox
 }
 
 // SetTiers gets a reference to the given []NewLoyaltyTier and assigns it to the Tiers field.
