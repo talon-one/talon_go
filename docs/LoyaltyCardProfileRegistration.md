@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationId** | Pointer to **string** | Integration ID of the customer associated with the card. | 
+**IntegrationId** | Pointer to **string** | Integration ID of the customer profile linked to the card. | 
 **Timestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the registration to the card. | 
 
 ## Methods

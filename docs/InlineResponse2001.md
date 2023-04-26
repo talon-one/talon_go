@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LedgerTransactionLogEntryIntegrationApi**](LedgerTransactionLogEntryIntegrationAPI.md) |  | 
+**Data** | Pointer to [**[]CardLedgerTransactionLogEntryIntegrationApi**](CardLedgerTransactionLogEntryIntegrationAPI.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetHasMore gets a reference to the given bool and assigns it to the HasMore fiel
 
 ### GetData
 
-`func (o *InlineResponse2001) GetData() []LedgerTransactionLogEntryIntegrationApi`
+`func (o *InlineResponse2001) GetData() []CardLedgerTransactionLogEntryIntegrationApi`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2001) GetDataOk() ([]LedgerTransactionLogEntryIntegrationApi, bool)`
+`func (o *InlineResponse2001) GetDataOk() ([]CardLedgerTransactionLogEntryIntegrationApi, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse2001) SetData(v []LedgerTransactionLogEntryIntegrationApi)`
+`func (o *InlineResponse2001) SetData(v []CardLedgerTransactionLogEntryIntegrationApi)`
 
-SetData gets a reference to the given []LedgerTransactionLogEntryIntegrationApi and assigns it to the Data field.
+SetData gets a reference to the given []CardLedgerTransactionLogEntryIntegrationApi and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Name** | Pointer to **string** | The human-friendly display name for this audience. | 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration. | 
 **Status** | Pointer to **string** | Indicates whether the audience is new, updated or unmodified by the request.  | 

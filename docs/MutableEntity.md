@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 
 ## Methods
 

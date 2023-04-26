@@ -6,6 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EffectId** | Pointer to **int32** | The ID of the custom effect that was triggered. | 
 **Name** | Pointer to **string** | The type of the custom effect. | 
+**CartItemPosition** | Pointer to **float32** | The index of the item in the cart item list to which the custom effect is applied. | [optional] 
+**CartItemSubPosition** | Pointer to **float32** | When cart item flattening is enabled, the sub position indicates to which item unit the custom effect is applied, for cart items with quantity &gt; 1.  | [optional] 
+**BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
+**BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
 **Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 
 
 ## Methods
@@ -59,6 +63,106 @@ HasName returns a boolean if a field has been set.
 `func (o *CustomEffectProps) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetCartItemPosition
+
+`func (o *CustomEffectProps) GetCartItemPosition() float32`
+
+GetCartItemPosition returns the CartItemPosition field if non-nil, zero value otherwise.
+
+### GetCartItemPositionOk
+
+`func (o *CustomEffectProps) GetCartItemPositionOk() (float32, bool)`
+
+GetCartItemPositionOk returns a tuple with the CartItemPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCartItemPosition
+
+`func (o *CustomEffectProps) HasCartItemPosition() bool`
+
+HasCartItemPosition returns a boolean if a field has been set.
+
+### SetCartItemPosition
+
+`func (o *CustomEffectProps) SetCartItemPosition(v float32)`
+
+SetCartItemPosition gets a reference to the given float32 and assigns it to the CartItemPosition field.
+
+### GetCartItemSubPosition
+
+`func (o *CustomEffectProps) GetCartItemSubPosition() float32`
+
+GetCartItemSubPosition returns the CartItemSubPosition field if non-nil, zero value otherwise.
+
+### GetCartItemSubPositionOk
+
+`func (o *CustomEffectProps) GetCartItemSubPositionOk() (float32, bool)`
+
+GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCartItemSubPosition
+
+`func (o *CustomEffectProps) HasCartItemSubPosition() bool`
+
+HasCartItemSubPosition returns a boolean if a field has been set.
+
+### SetCartItemSubPosition
+
+`func (o *CustomEffectProps) SetCartItemSubPosition(v float32)`
+
+SetCartItemSubPosition gets a reference to the given float32 and assigns it to the CartItemSubPosition field.
+
+### GetBundleIndex
+
+`func (o *CustomEffectProps) GetBundleIndex() int32`
+
+GetBundleIndex returns the BundleIndex field if non-nil, zero value otherwise.
+
+### GetBundleIndexOk
+
+`func (o *CustomEffectProps) GetBundleIndexOk() (int32, bool)`
+
+GetBundleIndexOk returns a tuple with the BundleIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBundleIndex
+
+`func (o *CustomEffectProps) HasBundleIndex() bool`
+
+HasBundleIndex returns a boolean if a field has been set.
+
+### SetBundleIndex
+
+`func (o *CustomEffectProps) SetBundleIndex(v int32)`
+
+SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
+
+### GetBundleName
+
+`func (o *CustomEffectProps) GetBundleName() string`
+
+GetBundleName returns the BundleName field if non-nil, zero value otherwise.
+
+### GetBundleNameOk
+
+`func (o *CustomEffectProps) GetBundleNameOk() (string, bool)`
+
+GetBundleNameOk returns a tuple with the BundleName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBundleName
+
+`func (o *CustomEffectProps) HasBundleName() bool`
+
+HasBundleName returns a boolean if a field has been set.
+
+### SetBundleName
+
+`func (o *CustomEffectProps) SetBundleName(v string)`
+
+SetBundleName gets a reference to the given string and assigns it to the BundleName field.
 
 ### GetPayload
 

@@ -5,12 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | [optional] 
-**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
+**DiscountLimit** | Pointer to **float32** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
+**ReservationLimit** | Pointer to **int32** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.  | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The integration ID for this coupon&#39;s beneficiary&#39;s profile. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
 
 ## Methods
 
@@ -63,6 +65,31 @@ HasDiscountLimit returns a boolean if a field has been set.
 `func (o *UpdateCoupon) SetDiscountLimit(v float32)`
 
 SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+
+### GetReservationLimit
+
+`func (o *UpdateCoupon) GetReservationLimit() int32`
+
+GetReservationLimit returns the ReservationLimit field if non-nil, zero value otherwise.
+
+### GetReservationLimitOk
+
+`func (o *UpdateCoupon) GetReservationLimitOk() (int32, bool)`
+
+GetReservationLimitOk returns a tuple with the ReservationLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservationLimit
+
+`func (o *UpdateCoupon) HasReservationLimit() bool`
+
+HasReservationLimit returns a boolean if a field has been set.
+
+### SetReservationLimit
+
+`func (o *UpdateCoupon) SetReservationLimit(v int32)`
+
+SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
 
 ### GetStartDate
 
@@ -188,6 +215,31 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *UpdateCoupon) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
+### GetIsReservationMandatory
+
+`func (o *UpdateCoupon) GetIsReservationMandatory() bool`
+
+GetIsReservationMandatory returns the IsReservationMandatory field if non-nil, zero value otherwise.
+
+### GetIsReservationMandatoryOk
+
+`func (o *UpdateCoupon) GetIsReservationMandatoryOk() (bool, bool)`
+
+GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsReservationMandatory
+
+`func (o *UpdateCoupon) HasIsReservationMandatory() bool`
+
+HasIsReservationMandatory returns a boolean if a field has been set.
+
+### SetIsReservationMandatory
+
+`func (o *UpdateCoupon) SetIsReservationMandatory(v bool)`
+
+SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

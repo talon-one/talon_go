@@ -8,10 +8,10 @@ Name | Type | Description | Notes
 **RulesetId** | Pointer to **int32** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
 **RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | 
-**EffectType** | Pointer to **string** | The type of effect that was triggered. | 
+**EffectType** | Pointer to **string** | The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 **TriggeredByCoupon** | Pointer to **int32** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
 **TriggeredForCatalogItem** | Pointer to **int32** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 
-**Props** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Props** | Pointer to [**map[string]interface{}**](.md) | The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 
 ## Methods
 

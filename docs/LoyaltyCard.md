@@ -4,16 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
-**Status** | Pointer to **string** | Status of the loyalty card. Can be one of: [&#39;active&#39;, &#39;disabled&#39;]  | 
-**Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card. | 
-**UsersPerCardLimit** | Pointer to **int32** | The max amount of user profiles a card can be shared with. 0 means unlimited.  | 
-**Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers associated with the card. | [optional] 
+**Status** | Pointer to **string** | Status of the loyalty card. Can be one of: [&#39;active&#39;, &#39;inactive&#39;]  | 
+**Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
+**UsersPerCardLimit** | Pointer to **int32** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
+**Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
 **Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | [optional] 
 **Subledgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | Displays point balances of the card in the subledgers of the loyalty program. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update of the loyalty card. | [optional] 
+**OldCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 
 ## Methods
 
@@ -266,6 +268,56 @@ HasModified returns a boolean if a field has been set.
 `func (o *LoyaltyCard) SetModified(v time.Time)`
 
 SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+
+### GetOldCardIdentifier
+
+`func (o *LoyaltyCard) GetOldCardIdentifier() string`
+
+GetOldCardIdentifier returns the OldCardIdentifier field if non-nil, zero value otherwise.
+
+### GetOldCardIdentifierOk
+
+`func (o *LoyaltyCard) GetOldCardIdentifierOk() (string, bool)`
+
+GetOldCardIdentifierOk returns a tuple with the OldCardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasOldCardIdentifier
+
+`func (o *LoyaltyCard) HasOldCardIdentifier() bool`
+
+HasOldCardIdentifier returns a boolean if a field has been set.
+
+### SetOldCardIdentifier
+
+`func (o *LoyaltyCard) SetOldCardIdentifier(v string)`
+
+SetOldCardIdentifier gets a reference to the given string and assigns it to the OldCardIdentifier field.
+
+### GetNewCardIdentifier
+
+`func (o *LoyaltyCard) GetNewCardIdentifier() string`
+
+GetNewCardIdentifier returns the NewCardIdentifier field if non-nil, zero value otherwise.
+
+### GetNewCardIdentifierOk
+
+`func (o *LoyaltyCard) GetNewCardIdentifierOk() (string, bool)`
+
+GetNewCardIdentifierOk returns a tuple with the NewCardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasNewCardIdentifier
+
+`func (o *LoyaltyCard) HasNewCardIdentifier() bool`
+
+HasNewCardIdentifier returns a boolean if a field has been set.
+
+### SetNewCardIdentifier
+
+`func (o *LoyaltyCard) SetNewCardIdentifier(v string)`
+
+SetNewCardIdentifier gets a reference to the given string and assigns it to the NewCardIdentifier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
 **OldState** | Pointer to **string** | The campaign&#39;s old state. Can be one of the following: [&#39;running&#39;, &#39;disabled&#39;, &#39;scheduled&#39;, &#39;expired&#39;, &#39;draft&#39;, &#39;archived&#39;]  | 
 **NewState** | Pointer to **string** | The campaign&#39;s new state. Can be one of the following: [&#39;running&#39;, &#39;disabled&#39;, &#39;scheduled&#39;, &#39;expired&#39;, &#39;draft&#39;, &#39;archived&#39;]  | 
+**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
 
 ## Methods
 
@@ -84,6 +85,31 @@ HasNewState returns a boolean if a field has been set.
 `func (o *CampaignStateChangedNotification) SetNewState(v string)`
 
 SetNewState gets a reference to the given string and assigns it to the NewState field.
+
+### GetRuleset
+
+`func (o *CampaignStateChangedNotification) GetRuleset() Ruleset`
+
+GetRuleset returns the Ruleset field if non-nil, zero value otherwise.
+
+### GetRulesetOk
+
+`func (o *CampaignStateChangedNotification) GetRulesetOk() (Ruleset, bool)`
+
+GetRulesetOk returns a tuple with the Ruleset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRuleset
+
+`func (o *CampaignStateChangedNotification) HasRuleset() bool`
+
+HasRuleset returns a boolean if a field has been set.
+
+### SetRuleset
+
+`func (o *CampaignStateChangedNotification) SetRuleset(v Ruleset)`
+
+SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

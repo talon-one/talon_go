@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **Description** | Pointer to **string** | A short description of the purpose of this collection. | [optional] 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the Applications where this collection is enabled. | [optional] 
 **Name** | Pointer to **string** | The name of this collection. | 

@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **Version** | Pointer to **int32** | Version of the campaign set. | 
 **Set** | Pointer to [**CampaignSetBranchNode**](CampaignSetBranchNode.md) |  | 
+**UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign set, if available. | [optional] 
 
 ## Methods
 
@@ -136,6 +137,31 @@ HasSet returns a boolean if a field has been set.
 `func (o *CampaignSet) SetSet(v CampaignSetBranchNode)`
 
 SetSet gets a reference to the given CampaignSetBranchNode and assigns it to the Set field.
+
+### GetUpdatedBy
+
+`func (o *CampaignSet) GetUpdatedBy() string`
+
+GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
+
+### GetUpdatedByOk
+
+`func (o *CampaignSet) GetUpdatedByOk() (string, bool)`
+
+GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUpdatedBy
+
+`func (o *CampaignSet) HasUpdatedBy() bool`
+
+HasUpdatedBy returns a boolean if a field has been set.
+
+### SetUpdatedBy
+
+`func (o *CampaignSet) SetUpdatedBy(v string)`
+
+SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

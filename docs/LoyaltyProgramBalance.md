@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
 **PendingBalance** | Pointer to **float32** | Sum of pending points. | 
-**ExpiredBalance** | Pointer to **float32** | Sum of expired points. | 
-**SpentBalance** | Pointer to **float32** | Sum of spent points. | 
-**TentativeCurrentBalance** | Pointer to **float32** | Sum of currently active points, including points added and deducted in open sessions. | 
+**ExpiredBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
+**SpentBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
+**TentativeCurrentBalance** | Pointer to **float32** | Sum of the tentative active points (including additions and deductions) inside the currently open session. The &#x60;currentBalance&#x60; is updated to this value when you close the session, and the effects are applied. | 
+**TentativePendingBalance** | Pointer to **float32** | Sum of pending points (including additions and deductions) inside the currently open session. The &#x60;pendingBalance&#x60; is updated to this value when you close the session, and the effects are applied. | [optional] 
 
 ## Methods
 
@@ -136,6 +137,31 @@ HasTentativeCurrentBalance returns a boolean if a field has been set.
 `func (o *LoyaltyProgramBalance) SetTentativeCurrentBalance(v float32)`
 
 SetTentativeCurrentBalance gets a reference to the given float32 and assigns it to the TentativeCurrentBalance field.
+
+### GetTentativePendingBalance
+
+`func (o *LoyaltyProgramBalance) GetTentativePendingBalance() float32`
+
+GetTentativePendingBalance returns the TentativePendingBalance field if non-nil, zero value otherwise.
+
+### GetTentativePendingBalanceOk
+
+`func (o *LoyaltyProgramBalance) GetTentativePendingBalanceOk() (float32, bool)`
+
+GetTentativePendingBalanceOk returns a tuple with the TentativePendingBalance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTentativePendingBalance
+
+`func (o *LoyaltyProgramBalance) HasTentativePendingBalance() bool`
+
+HasTentativePendingBalance returns a boolean if a field has been set.
+
+### SetTentativePendingBalance
+
+`func (o *LoyaltyProgramBalance) SetTentativePendingBalance(v float32)`
+
+SetTentativePendingBalance gets a reference to the given float32 and assigns it to the TentativePendingBalance field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

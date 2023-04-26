@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name/description of this discount. | 
+**Name** | Pointer to **string** | The name / description of this discount | 
 **Value** | Pointer to **float32** | The total monetary value of the discount. | 
 **Scope** | Pointer to **string** | The scope which the discount was applied on, can be one of (cartItems,additionalCosts,sessionTotal). | [optional] 
 **DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 

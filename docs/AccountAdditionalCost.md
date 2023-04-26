@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | The additional cost name that will be used in API requests and Talang. E.g. if &#x60;name &#x3D;&#x3D; \&quot;shipping\&quot;&#x60; then you would set the shipping additional cost by including an &#x60;additionalCosts.shipping&#x60; property in your request payload. | 
+**Name** | Pointer to **string** | The internal name used in API requests. | 
 **Title** | Pointer to **string** | The human-readable name for the additional cost that will be shown in the Campaign Manager. Like &#x60;name&#x60;, the combination of entity and title must also be unique. | 
 **Description** | Pointer to **string** | A description of this additional cost. | 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this additional cost. | [optional] 
-**Type** | Pointer to **string** | The type of additional cost. The following options can be chosen: - &#x60;session&#x60;: Additional cost will be added per session, - &#x60;item&#x60;: Additional cost will be added per item, - &#x60;both&#x60;: Additional cost will be added per item and session.  | [optional] [default to TYPE_SESSION]
+**Type** | Pointer to **string** | The type of additional cost. Possible value: - &#x60;session&#x60;: Additional cost will be added per session. - &#x60;item&#x60;: Additional cost will be added per item. - &#x60;both&#x60;: Additional cost will be added per item and session.  | [optional] [default to TYPE_SESSION]
 
 ## Methods
 

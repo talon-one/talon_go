@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **Name** | Pointer to **string** | The name of this giveaways pool. | 
 **Description** | Pointer to **string** | The description of this giveaways pool. | [optional] 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that this giveaways pool is enabled for. | [optional] 
+**Sandbox** | Pointer to **bool** | Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the giveaways pool. | [optional] 
 **CreatedBy** | Pointer to **int32** | ID of the user who created this giveaways pool. | 
 **ModifiedBy** | Pointer to **int32** | ID of the user who last updated this giveaways pool if available. | [optional] 
@@ -165,6 +166,31 @@ HasSubscribedApplicationsIds returns a boolean if a field has been set.
 `func (o *GiveawaysPool) SetSubscribedApplicationsIds(v []int32)`
 
 SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
+
+### GetSandbox
+
+`func (o *GiveawaysPool) GetSandbox() bool`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *GiveawaysPool) GetSandboxOk() (bool, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandbox
+
+`func (o *GiveawaysPool) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
+
+### SetSandbox
+
+`func (o *GiveawaysPool) SetSandbox(v bool)`
+
+SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
 ### GetModified
 

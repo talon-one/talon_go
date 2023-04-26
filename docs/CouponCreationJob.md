@@ -4,16 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 
-**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
+**DiscountLimit** | Pointer to **float32** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
+**ReservationLimit** | Pointer to **int32** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
-**NumberOfCoupons** | Pointer to **int32** | The number of new coupon codes to generate for the campaign. Must be between 20,001 and 5,000,000. | 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
+**NumberOfCoupons** | Pointer to **int32** | The number of new coupon codes to generate for the campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons. | 
 **BatchId** | Pointer to **string** | The batch ID coupons created by this job will bear. | 
@@ -202,6 +203,31 @@ HasDiscountLimit returns a boolean if a field has been set.
 `func (o *CouponCreationJob) SetDiscountLimit(v float32)`
 
 SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+
+### GetReservationLimit
+
+`func (o *CouponCreationJob) GetReservationLimit() int32`
+
+GetReservationLimit returns the ReservationLimit field if non-nil, zero value otherwise.
+
+### GetReservationLimitOk
+
+`func (o *CouponCreationJob) GetReservationLimitOk() (int32, bool)`
+
+GetReservationLimitOk returns a tuple with the ReservationLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservationLimit
+
+`func (o *CouponCreationJob) HasReservationLimit() bool`
+
+HasReservationLimit returns a boolean if a field has been set.
+
+### SetReservationLimit
+
+`func (o *CouponCreationJob) SetReservationLimit(v int32)`
+
+SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
 
 ### GetStartDate
 

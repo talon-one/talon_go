@@ -7,17 +7,17 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The campaign template name. | 
 **Description** | Pointer to **string** | Customer-facing text that explains the objective of the template. | 
 **Instructions** | Pointer to **string** | Customer-facing text that explains how to use the template. For example, you can use this property to explain the available attributes of this template, and how they can be modified when a user uses this template to create a new campaign. | 
-**CampaignAttributes** | Pointer to [**map[string]interface{}**](.md) | The Campaign Attributes that Campaigns created from this template will have by default. | [optional] 
-**CouponAttributes** | Pointer to [**map[string]interface{}**](.md) | The Campaign Attributes that Coupons created from this template will have by default. | [optional] 
+**CampaignAttributes** | Pointer to [**map[string]interface{}**](.md) | The campaign attributes that campaigns created from this template will have by default. | [optional] 
+**CouponAttributes** | Pointer to [**map[string]interface{}**](.md) | The campaign attributes that coupons created from this template will have by default. | [optional] 
 **State** | Pointer to **string** | Only Campaign Templates in &#39;available&#39; state may be used to create Campaigns. | 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign template. | [optional] 
 **Features** | Pointer to **[]string** | A list of features for the campaign template. | [optional] 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]TemplateLimitConfig**](TemplateLimitConfig.md) | The set of limits that will operate for this campaign template. | [optional] 
-**TemplateParams** | Pointer to [**[]CampaignTemplateParams**](CampaignTemplateParams.md) | Template parameters are fields which can be used to replace values in a rule. | [optional] 
+**TemplateParams** | Pointer to [**[]CampaignTemplateParams**](CampaignTemplateParams.md) | Fields which can be used to replace values in a rule. | [optional] 
 **CampaignCollections** | Pointer to [**[]CampaignTemplateCollection**](CampaignTemplateCollection.md) | The campaign collections from the blueprint campaign for the template. | [optional] 
-**DefaultCampaignGroupId** | Pointer to **int32** | The default campaignGroupId. | [optional] 
+**DefaultCampaignGroupId** | Pointer to **int32** | The default campaign group ID. | [optional] 
 
 ## Methods
 

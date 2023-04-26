@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name for management key. | 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The date the management key expires. | 
 **Endpoints** | Pointer to [**[]Endpoint**](Endpoint.md) | The list of endpoints that can be accessed with the key | 
+**AllowedApplicationIds** | Pointer to **[]int32** | A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account.  | [optional] 
 **Id** | Pointer to **int32** | ID of the management key. | 
 **CreatedBy** | Pointer to **int32** | ID of the user who created it. | 
 **AccountID** | Pointer to **int32** | ID of account the key is used for. | 
@@ -88,6 +89,31 @@ HasEndpoints returns a boolean if a field has been set.
 `func (o *ManagementKey) SetEndpoints(v []Endpoint)`
 
 SetEndpoints gets a reference to the given []Endpoint and assigns it to the Endpoints field.
+
+### GetAllowedApplicationIds
+
+`func (o *ManagementKey) GetAllowedApplicationIds() []int32`
+
+GetAllowedApplicationIds returns the AllowedApplicationIds field if non-nil, zero value otherwise.
+
+### GetAllowedApplicationIdsOk
+
+`func (o *ManagementKey) GetAllowedApplicationIdsOk() ([]int32, bool)`
+
+GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAllowedApplicationIds
+
+`func (o *ManagementKey) HasAllowedApplicationIds() bool`
+
+HasAllowedApplicationIds returns a boolean if a field has been set.
+
+### SetAllowedApplicationIds
+
+`func (o *ManagementKey) SetAllowedApplicationIds(v []int32)`
+
+SetAllowedApplicationIds gets a reference to the given []int32 and assigns it to the AllowedApplicationIds field.
 
 ### GetId
 

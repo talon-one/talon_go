@@ -5,9 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | [optional] 
-**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
+**DiscountLimit** | Pointer to **float32** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
+**ReservationLimit** | Pointer to **int32** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 **BatchID** | Pointer to **string** | The id of the batch the coupon belongs to. | [optional] 
 
@@ -62,6 +63,31 @@ HasDiscountLimit returns a boolean if a field has been set.
 `func (o *UpdateCouponBatch) SetDiscountLimit(v float32)`
 
 SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+
+### GetReservationLimit
+
+`func (o *UpdateCouponBatch) GetReservationLimit() int32`
+
+GetReservationLimit returns the ReservationLimit field if non-nil, zero value otherwise.
+
+### GetReservationLimitOk
+
+`func (o *UpdateCouponBatch) GetReservationLimitOk() (int32, bool)`
+
+GetReservationLimitOk returns a tuple with the ReservationLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservationLimit
+
+`func (o *UpdateCouponBatch) HasReservationLimit() bool`
+
+HasReservationLimit returns a boolean if a field has been set.
+
+### SetReservationLimit
+
+`func (o *UpdateCouponBatch) SetReservationLimit(v int32)`
+
+SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
 
 ### GetStartDate
 

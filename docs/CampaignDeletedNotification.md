@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
+**DeletedAt** | Pointer to [**time.Time**](time.Time.md) | Time when the campaign was deleted. | 
 
 ## Methods
 
@@ -32,6 +33,31 @@ HasCampaign returns a boolean if a field has been set.
 `func (o *CampaignDeletedNotification) SetCampaign(v Campaign)`
 
 SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
+
+### GetDeletedAt
+
+`func (o *CampaignDeletedNotification) GetDeletedAt() time.Time`
+
+GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+
+### GetDeletedAtOk
+
+`func (o *CampaignDeletedNotification) GetDeletedAtOk() (time.Time, bool)`
+
+GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDeletedAt
+
+`func (o *CampaignDeletedNotification) HasDeletedAt() bool`
+
+HasDeletedAt returns a boolean if a field has been set.
+
+### SetDeletedAt
+
+`func (o *CampaignDeletedNotification) SetDeletedAt(v time.Time)`
+
+SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **CompanyName** | Pointer to **string** |  | 
 **DomainName** | Pointer to **string** | Subdomain Name for yourcompany.talon.one. | 
 **State** | Pointer to **string** | State of the account (active, deactivated). | 

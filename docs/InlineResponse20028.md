@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]WebhookActivationLogEntry**](WebhookActivationLogEntry.md) |  | 
+**Data** | Pointer to **[]string** |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20028) GetData() []WebhookActivationLogEntry`
+`func (o *InlineResponse20028) GetData() []string`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20028) GetDataOk() ([]WebhookActivationLogEntry, bool)`
+`func (o *InlineResponse20028) GetDataOk() ([]string, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20028) SetData(v []WebhookActivationLogEntry)`
+`func (o *InlineResponse20028) SetData(v []string)`
 
-SetData gets a reference to the given []WebhookActivationLogEntry and assigns it to the Data field.
+SetData gets a reference to the given []string and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

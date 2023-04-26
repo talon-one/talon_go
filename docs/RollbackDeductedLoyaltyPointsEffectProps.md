@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will be valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire. | [optional] 
 **TransactionUUID** | Pointer to **string** | The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back. | 
-**CardIdentifier** | Pointer to **string** | The card on which these points were added. | [optional] 
+**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 
 ## Methods
 

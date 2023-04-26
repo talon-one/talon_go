@@ -4,24 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **Value** | Pointer to **string** | The coupon code. | 
 **UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 
-**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
+**DiscountLimit** | Pointer to **float32** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
+**ReservationLimit** | Pointer to **int32** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.  | [optional] 
-**UsageCounter** | Pointer to **int32** | The number of times this coupon has been successfully used. | 
+**UsageCounter** | Pointer to **int32** | The number of times the coupon has been successfully redeemed. | 
 **DiscountCounter** | Pointer to **float32** | The amount of discounts given on rules redeeming this coupon. Only usable if a coupon discount budget was set for this coupon. | [optional] 
 **DiscountRemainder** | Pointer to **float32** | The remaining discount this coupon can give. | [optional] 
+**ReservationCounter** | Pointer to **float32** | The number of times this coupon has been reserved. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Custom attributes associated with this coupon. | [optional] 
 **ReferralId** | Pointer to **int32** | The integration ID of the referring customer (if any) for whom this coupon was created as an effect. | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The Integration ID of the customer that is allowed to redeem this coupon. | [optional] 
 **ImportId** | Pointer to **int32** | The ID of the Import which created this coupon. | [optional] 
-**Reservation** | Pointer to **bool** | Defines the type of reservation: - &#x60;true&#x60;: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation endpoint](/integration-api/#operation/createCouponReservation). - &#x60;false&#x60;: The reservation is a hard reservation. Only the associated customer (&#x60;recipientIntegrationId&#x60;) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given &#x60;recipientIntegrationId&#x60;, the [Create coupons endpoint](/management-api/#operation/createCoupons) or [Create coupons for multiple recipients endpoint](/management-api/#operation/createCouponsForMultipleRecipients).  | [optional] [default to true]
+**Reservation** | Pointer to **bool** | Defines the type of reservation: - &#x60;true&#x60;: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation](https://docs.talon.one/integration-api#operation/createCouponReservation) endpoint. - &#x60;false&#x60;: The reservation is a hard reservation. Only the associated customer (&#x60;recipientIntegrationId&#x60;) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given &#x60;recipientIntegrationId&#x60;, the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoint.  | [optional] [default to true]
 **BatchId** | Pointer to **string** | The id of the batch the coupon belongs to. | [optional] 
+**IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
 **ProfileRedemptionCount** | Pointer to **int32** | The number of times the coupon was redeemed by the profile. | 
 **State** | Pointer to **string** | Can be:  - &#x60;active&#x60;: The coupon can be used. It is a reserved coupon that is neither pending, used nor expired, and has a non-exhausted limit counter. - &#x60;used&#x60;: The coupon has been redeemed and cannot be used again. It is not pending and has reached its redemption limit or was redeemed by the profile before expiration. - &#x60;expired&#x60;: The coupon was never redeemed and it is now expired. It is non-pending, non-active and non-used by the profile. - &#x60;pending&#x60;: The coupon will be usable in the future. - &#x60;disabled&#x60;: The coupon is part of a non-active campaign.  | 
 
@@ -177,6 +180,31 @@ HasDiscountLimit returns a boolean if a field has been set.
 
 SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
 
+### GetReservationLimit
+
+`func (o *InventoryCoupon) GetReservationLimit() int32`
+
+GetReservationLimit returns the ReservationLimit field if non-nil, zero value otherwise.
+
+### GetReservationLimitOk
+
+`func (o *InventoryCoupon) GetReservationLimitOk() (int32, bool)`
+
+GetReservationLimitOk returns a tuple with the ReservationLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservationLimit
+
+`func (o *InventoryCoupon) HasReservationLimit() bool`
+
+HasReservationLimit returns a boolean if a field has been set.
+
+### SetReservationLimit
+
+`func (o *InventoryCoupon) SetReservationLimit(v int32)`
+
+SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
+
 ### GetStartDate
 
 `func (o *InventoryCoupon) GetStartDate() time.Time`
@@ -327,6 +355,31 @@ HasDiscountRemainder returns a boolean if a field has been set.
 
 SetDiscountRemainder gets a reference to the given float32 and assigns it to the DiscountRemainder field.
 
+### GetReservationCounter
+
+`func (o *InventoryCoupon) GetReservationCounter() float32`
+
+GetReservationCounter returns the ReservationCounter field if non-nil, zero value otherwise.
+
+### GetReservationCounterOk
+
+`func (o *InventoryCoupon) GetReservationCounterOk() (float32, bool)`
+
+GetReservationCounterOk returns a tuple with the ReservationCounter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservationCounter
+
+`func (o *InventoryCoupon) HasReservationCounter() bool`
+
+HasReservationCounter returns a boolean if a field has been set.
+
+### SetReservationCounter
+
+`func (o *InventoryCoupon) SetReservationCounter(v float32)`
+
+SetReservationCounter gets a reference to the given float32 and assigns it to the ReservationCounter field.
+
 ### GetAttributes
 
 `func (o *InventoryCoupon) GetAttributes() map[string]interface{}`
@@ -476,6 +529,31 @@ HasBatchId returns a boolean if a field has been set.
 `func (o *InventoryCoupon) SetBatchId(v string)`
 
 SetBatchId gets a reference to the given string and assigns it to the BatchId field.
+
+### GetIsReservationMandatory
+
+`func (o *InventoryCoupon) GetIsReservationMandatory() bool`
+
+GetIsReservationMandatory returns the IsReservationMandatory field if non-nil, zero value otherwise.
+
+### GetIsReservationMandatoryOk
+
+`func (o *InventoryCoupon) GetIsReservationMandatoryOk() (bool, bool)`
+
+GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsReservationMandatory
+
+`func (o *InventoryCoupon) HasIsReservationMandatory() bool`
+
+HasIsReservationMandatory returns a boolean if a field has been set.
+
+### SetIsReservationMandatory
+
+`func (o *InventoryCoupon) SetIsReservationMandatory(v bool)`
+
+SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
 
 ### GetProfileRedemptionCount
 

@@ -11,11 +11,11 @@ Name | Type | Description | Notes
 **Action** | Pointer to **string** | The limitable action of the limit counter. | 
 **ProfileId** | Pointer to **int32** | The profile ID for which this limit counter is used. | [optional] 
 **ProfileIntegrationId** | Pointer to **string** | The profile integration ID for which this limit counter is used. | [optional] 
-**CouponId** | Pointer to **int32** | The coupon ID for which this limit counter is used. | [optional] 
+**CouponId** | Pointer to **int32** | The internal coupon ID for which this limit counter is used. | [optional] 
 **CouponValue** | Pointer to **string** | The coupon value for which this limit counter is used. | [optional] 
 **ReferralId** | Pointer to **int32** | The referral ID for which this limit counter is used. | [optional] 
 **ReferralValue** | Pointer to **string** | The referral value for which this limit counter is used. | [optional] 
-**Identifier** | Pointer to **int32** | The arbitrary identifier for which this limit counter is used. | [optional] 
+**Identifier** | Pointer to **string** | The arbitrary identifier for which this limit counter is used. | [optional] 
 **Period** | Pointer to **string** | The time period for which this limit counter is used. | [optional] 
 **Limit** | Pointer to **float32** | The highest possible value for this limit counter. | 
 **Counter** | Pointer to **float32** | The current value for this limit counter. | 
@@ -299,13 +299,13 @@ SetReferralValue gets a reference to the given string and assigns it to the Refe
 
 ### GetIdentifier
 
-`func (o *LimitCounter) GetIdentifier() int32`
+`func (o *LimitCounter) GetIdentifier() string`
 
 GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
 
 ### GetIdentifierOk
 
-`func (o *LimitCounter) GetIdentifierOk() (int32, bool)`
+`func (o *LimitCounter) GetIdentifierOk() (string, bool)`
 
 GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -318,9 +318,9 @@ HasIdentifier returns a boolean if a field has been set.
 
 ### SetIdentifier
 
-`func (o *LimitCounter) SetIdentifier(v int32)`
+`func (o *LimitCounter) SetIdentifier(v string)`
 
-SetIdentifier gets a reference to the given int32 and assigns it to the Identifier field.
+SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
 
 ### GetPeriod
 
