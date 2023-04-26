@@ -21,7 +21,7 @@ type Binding struct {
 	// The kind of binding. Possible values are: - `bundle` - `cartItemFilter` - `subledgerBalance` - `templateParameter`
 	Type *string `json:"type,omitempty"`
 	// A Talang expression that will be evaluated and its result attached to the name of the binding.
-	Expression []map[string]interface{} `json:"expression"`
+	Expression []interface{} `json:"expression"`
 	// Can be one of the following: - `string` - `number` - `boolean`
 	ValueType *string `json:"valueType,omitempty"`
 }
@@ -75,9 +75,9 @@ func (o *Binding) SetType(v string) {
 }
 
 // GetExpression returns the Expression field value
-func (o *Binding) GetExpression() []map[string]interface{} {
+func (o *Binding) GetExpression() []interface{} {
 	if o == nil {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
 
@@ -85,7 +85,7 @@ func (o *Binding) GetExpression() []map[string]interface{} {
 }
 
 // SetExpression sets field value
-func (o *Binding) SetExpression(v []map[string]interface{}) {
+func (o *Binding) SetExpression(v []interface{}) {
 	o.Expression = v
 }
 
