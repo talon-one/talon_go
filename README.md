@@ -103,7 +103,7 @@ func main() {
 	configuration.Servers = talon.ServerConfigurations{
 		{
 			// Notice that there is no trailing '/'
-			URL:         "https://mycompany.talon.one",
+			URL:         "https://yourbaseurl.talon.one",
 			Description: "Talon.One's API base URL",
 		},
 	}
@@ -114,7 +114,7 @@ func main() {
 
 	// Create integration authentication context using api key
 	integrationAuthContext := context.WithValue(context.Background(), talon.ContextAPIKeys, map[string]talon.APIKey{
-		"Authorization": talon.APIKey{
+		"Authorization": {
 			Prefix: "ApiKey-v1",
 			Key:    "fd1fd219b1e953a6b2700e8034de5bfc877462ae106127311ddd710978654312",
 		},
@@ -229,7 +229,7 @@ func main() {
 	configuration.Servers = talon.ServerConfigurations{
 		{
 			// Notice that there is no trailing '/'
-			URL:         "https://mycompany.talon.one",
+			URL:         "https://yourbaseurl.talon.one",
 			Description: "Talon.One's API base URL",
 		},
 	}
@@ -238,24 +238,11 @@ func main() {
 
 	managementClient := talon.NewAPIClient(configuration)
 
-	session, _, err := managementClient.ManagementApi.
-		CreateSession(context.Background()).
-		Body(talon.LoginParams{
-			Email:    "admin@talon.one",
-			Password: "50meSecureVeryPa$$w0rd!",
-		}).
-		Execute()
-
-	if err != nil {
-		fmt.Printf("ERROR while creating a new session using CreateSession: %s\n", err)
-		return
-	}
-
 	// Create integration authentication context using the logged-in session
 	managerAuthContext := context.WithValue(context.Background(), talon.ContextAPIKeys, map[string]talon.APIKey{
 		"Authorization": talon.APIKey{
-			Prefix: "Bearer",
-			Key:    session.GetToken(),
+			Prefix: "ManagementKey-v1",
+			Key:    "2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07",
 		},
 	})
 
