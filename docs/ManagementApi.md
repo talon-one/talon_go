@@ -4,8 +4,9 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/add_points | Add points in loyalty program for given customer
-[**CopyCampaignToApplications**](ManagementApi.md#CopyCampaignToApplications) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified application
+[**AddLoyaltyCardPoints**](ManagementApi.md#AddLoyaltyCardPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/add_points | Add points to card
+[**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/add_points | Add points to customer profile
+[**CopyCampaignToApplications**](ManagementApi.md#CopyCampaignToApplications) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified Application
 [**CreateAccountCollection**](ManagementApi.md#CreateAccountCollection) | **Post** /v1/collections | Create account-level collection
 [**CreateAdditionalCost**](ManagementApi.md#CreateAdditionalCost) | **Post** /v1/additional_costs | Create additional cost
 [**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Create custom attribute
@@ -14,15 +15,17 @@ Method | HTTP request | Description
 [**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons
 [**CreateCouponsAsync**](ManagementApi.md#CreateCouponsAsync) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously
 [**CreateCouponsForMultipleRecipients**](ManagementApi.md#CreateCouponsForMultipleRecipients) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create coupons for multiple recipients
-[**CreateNotificationWebhook**](ManagementApi.md#CreateNotificationWebhook) | **Post** /v1/applications/{applicationId}/notification_webhooks | Create notification webhook
+[**CreateNotificationWebhook**](ManagementApi.md#CreateNotificationWebhook) | **Post** /v1/applications/{applicationId}/notification_webhooks | Create notification about campaign-related changes
 [**CreatePasswordRecoveryEmail**](ManagementApi.md#CreatePasswordRecoveryEmail) | **Post** /v1/password_recovery_emails | Request a password reset
 [**CreateSession**](ManagementApi.md#CreateSession) | **Post** /v1/sessions | Create session
+[**DeductLoyaltyCardPoints**](ManagementApi.md#DeductLoyaltyCardPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points | Deduct points from card
 [**DeleteAccountCollection**](ManagementApi.md#DeleteAccountCollection) | **Delete** /v1/collections/{collectionId} | Delete account-level collection
 [**DeleteCampaign**](ManagementApi.md#DeleteCampaign) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
 [**DeleteCollection**](ManagementApi.md#DeleteCollection) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete collection
 [**DeleteCoupon**](ManagementApi.md#DeleteCoupon) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Delete coupon
 [**DeleteCoupons**](ManagementApi.md#DeleteCoupons) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Delete coupons
-[**DeleteNotificationWebhook**](ManagementApi.md#DeleteNotificationWebhook) | **Delete** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Delete notification webhook
+[**DeleteLoyaltyCard**](ManagementApi.md#DeleteLoyaltyCard) | **Delete** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Delete loyalty card
+[**DeleteNotificationWebhook**](ManagementApi.md#DeleteNotificationWebhook) | **Delete** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Delete notification about campaign-related changes
 [**DeleteReferral**](ManagementApi.md#DeleteReferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete referral
 [**DestroySession**](ManagementApi.md#DestroySession) | **Delete** /v1/sessions | Destroy session
 [**ExportAccountCollectionItems**](ManagementApi.md#ExportAccountCollectionItems) | **Get** /v1/collections/{collectionId}/export | Export account-level collection&#39;s items
@@ -30,8 +33,11 @@ Method | HTTP request | Description
 [**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export coupons
 [**ExportCustomerSessions**](ManagementApi.md#ExportCustomerSessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export customer sessions
 [**ExportEffects**](ManagementApi.md#ExportEffects) | **Get** /v1/applications/{applicationId}/export_effects | Export triggered effects
-[**ExportLoyaltyBalance**](ManagementApi.md#ExportLoyaltyBalance) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance | Export customer loyalty balance to a CSV file
-[**ExportLoyaltyLedger**](ManagementApi.md#ExportLoyaltyLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export a customer&#39;s loyalty ledger log
+[**ExportLoyaltyBalance**](ManagementApi.md#ExportLoyaltyBalance) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance | Export customer loyalty balance to CSV
+[**ExportLoyaltyBalances**](ManagementApi.md#ExportLoyaltyBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances | Export customer loyalty balances
+[**ExportLoyaltyCardBalances**](ManagementApi.md#ExportLoyaltyCardBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_card_balances | Export all card transaction logs
+[**ExportLoyaltyCardLedger**](ManagementApi.md#ExportLoyaltyCardLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log | Export card&#39;s ledger log
+[**ExportLoyaltyLedger**](ManagementApi.md#ExportLoyaltyLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer&#39;s transaction logs
 [**ExportReferrals**](ManagementApi.md#ExportReferrals) | **Get** /v1/applications/{applicationId}/export_referrals | Export referrals
 [**GetAccessLogsWithoutTotalCount**](ManagementApi.md#GetAccessLogsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for Application
 [**GetAccount**](ManagementApi.md#GetAccount) | **Get** /v1/accounts/{accountId} | Get account details
@@ -41,8 +47,8 @@ Method | HTTP request | Description
 [**GetAdditionalCosts**](ManagementApi.md#GetAdditionalCosts) | **Get** /v1/additional_costs | List additional costs
 [**GetAllAccessLogs**](ManagementApi.md#GetAllAccessLogs) | **Get** /v1/access_logs | List access logs
 [**GetAllRoles**](ManagementApi.md#GetAllRoles) | **Get** /v1/roles | List roles
-[**GetApplication**](ManagementApi.md#GetApplication) | **Get** /v1/applications/{applicationId} | Get application
-[**GetApplicationApiHealth**](ManagementApi.md#GetApplicationApiHealth) | **Get** /v1/applications/{applicationId}/health_report | Get report of health of application API
+[**GetApplication**](ManagementApi.md#GetApplication) | **Get** /v1/applications/{applicationId} | Get Application
+[**GetApplicationApiHealth**](ManagementApi.md#GetApplicationApiHealth) | **Get** /v1/applications/{applicationId}/health_report | Get Application health
 [**GetApplicationCustomer**](ManagementApi.md#GetApplicationCustomer) | **Get** /v1/applications/{applicationId}/customers/{customerId} | Get application&#39;s customer
 [**GetApplicationCustomerFriends**](ManagementApi.md#GetApplicationCustomerFriends) | **Get** /v1/applications/{applicationId}/profile/{integrationId}/friends | List friends referred by customer profile
 [**GetApplicationCustomers**](ManagementApi.md#GetApplicationCustomers) | **Get** /v1/applications/{applicationId}/customers | List application&#39;s customers
@@ -51,13 +57,14 @@ Method | HTTP request | Description
 [**GetApplicationEventsWithoutTotalCount**](ManagementApi.md#GetApplicationEventsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/events/no_total | List Applications events
 [**GetApplicationSession**](ManagementApi.md#GetApplicationSession) | **Get** /v1/applications/{applicationId}/sessions/{sessionId} | Get Application session
 [**GetApplicationSessions**](ManagementApi.md#GetApplicationSessions) | **Get** /v1/applications/{applicationId}/sessions | List Application sessions
-[**GetApplications**](ManagementApi.md#GetApplications) | **Get** /v1/applications | List applications
+[**GetApplications**](ManagementApi.md#GetApplications) | **Get** /v1/applications | List Applications
 [**GetAttribute**](ManagementApi.md#GetAttribute) | **Get** /v1/attributes/{attributeId} | Get custom attribute
 [**GetAttributes**](ManagementApi.md#GetAttributes) | **Get** /v1/attributes | List custom attributes
 [**GetAudiences**](ManagementApi.md#GetAudiences) | **Get** /v1/audiences | List audiences
 [**GetCampaign**](ManagementApi.md#GetCampaign) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId} | Get campaign
 [**GetCampaignAnalytics**](ManagementApi.md#GetCampaignAnalytics) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/analytics | Get analytics of campaigns
 [**GetCampaignByAttributes**](ManagementApi.md#GetCampaignByAttributes) | **Post** /v1/applications/{applicationId}/campaigns_search | List campaigns that match the given attributes
+[**GetCampaignTemplates**](ManagementApi.md#GetCampaignTemplates) | **Get** /v1/campaign_templates | List campaign templates
 [**GetCampaigns**](ManagementApi.md#GetCampaigns) | **Get** /v1/applications/{applicationId}/campaigns | List campaigns
 [**GetChanges**](ManagementApi.md#GetChanges) | **Get** /v1/changes | Get audit logs for an account
 [**GetCollection**](ManagementApi.md#GetCollection) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Get collection
@@ -71,12 +78,16 @@ Method | HTTP request | Description
 [**GetCustomersByAttributes**](ManagementApi.md#GetCustomersByAttributes) | **Post** /v1/customer_search/no_total | List customer profiles matching the given attributes
 [**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List event types
 [**GetExports**](ManagementApi.md#GetExports) | **Get** /v1/exports | Get exports
-[**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get the Loyalty Ledger for this integrationID
+[**GetLoyaltyCard**](ManagementApi.md#GetLoyaltyCard) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
+[**GetLoyaltyCardTransactionLogs**](ManagementApi.md#GetLoyaltyCardTransactionLogs) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card&#39;s transactions
+[**GetLoyaltyCards**](ManagementApi.md#GetLoyaltyCards) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
+[**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer&#39;s full loyalty ledger
 [**GetLoyaltyProgram**](ManagementApi.md#GetLoyaltyProgram) | **Get** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program
+[**GetLoyaltyProgramTransactions**](ManagementApi.md#GetLoyaltyProgramTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List loyalty programs
-[**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics by loyalty program ID
-[**GetNotificationWebhook**](ManagementApi.md#GetNotificationWebhook) | **Get** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Get notification webhook
-[**GetNotificationWebhooks**](ManagementApi.md#GetNotificationWebhooks) | **Get** /v1/applications/{applicationId}/notification_webhooks | List notification webhooks
+[**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
+[**GetNotificationWebhook**](ManagementApi.md#GetNotificationWebhook) | **Get** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Get notification about campaign-related changes
+[**GetNotificationWebhooks**](ManagementApi.md#GetNotificationWebhooks) | **Get** /v1/applications/{applicationId}/notification_webhooks | List notifications about campaign-related changes
 [**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
 [**GetRole**](ManagementApi.md#GetRole) | **Get** /v1/roles/{roleId} | Get role
 [**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
@@ -91,16 +102,20 @@ Method | HTTP request | Description
 [**ImportAllowedList**](ManagementApi.md#ImportAllowedList) | **Post** /v1/attributes/{attributeId}/allowed_list/import | Import allowed values for attribute
 [**ImportCollection**](ManagementApi.md#ImportCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import | Import data in existing collection
 [**ImportCoupons**](ManagementApi.md#ImportCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons
+[**ImportLoyaltyCards**](ManagementApi.md#ImportLoyaltyCards) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards
 [**ImportLoyaltyPoints**](ManagementApi.md#ImportLoyaltyPoints) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_points | Import loyalty points
 [**ImportPoolGiveaways**](ManagementApi.md#ImportPoolGiveaways) | **Post** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool
 [**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals
 [**ListAccountCollections**](ManagementApi.md#ListAccountCollections) | **Get** /v1/collections | List collections in account
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in application
-[**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points in loyalty program for given customer
+[**PostAddedDeductedPointsNotification**](ManagementApi.md#PostAddedDeductedPointsNotification) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/notifications/added_deducted_points | Create notification about added or deducted loyalty points
+[**PostCatalogsStrikethroughNotification**](ManagementApi.md#PostCatalogsStrikethroughNotification) | **Post** /v1/catalogs/{applicationId}/notifications/strikethrough | Create strikethrough notification
+[**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
 [**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | List coupons that match the given attributes (without total count)
 [**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | List coupons that match the given attributes in campaign (without total count)
+[**TransferLoyaltyCard**](ManagementApi.md#TransferLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer | Transfer card data
 [**UpdateAccountCollection**](ManagementApi.md#UpdateAccountCollection) | **Put** /v1/collections/{collectionId} | Update account-level collection
 [**UpdateAdditionalCost**](ManagementApi.md#UpdateAdditionalCost) | **Put** /v1/additional_costs/{additionalCostId} | Update additional cost
 [**UpdateAttribute**](ManagementApi.md#UpdateAttribute) | **Put** /v1/attributes/{attributeId} | Update custom attribute
@@ -108,16 +123,63 @@ Method | HTTP request | Description
 [**UpdateCollection**](ManagementApi.md#UpdateCollection) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update collection description
 [**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon
 [**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons
-[**UpdateNotificationWebhook**](ManagementApi.md#UpdateNotificationWebhook) | **Put** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Update notification webhook
+[**UpdateLoyaltyCard**](ManagementApi.md#UpdateLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status
+[**UpdateNotificationWebhook**](ManagementApi.md#UpdateNotificationWebhook) | **Put** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Update notification about campaign-related changes
 [**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
 
+
+
+## AddLoyaltyCardPoints
+
+> AddLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Body(body).Execute()
+
+Add points to card
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddLoyaltyCardPointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**AddLoyaltyPoints**](AddLoyaltyPoints.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## AddLoyaltyPoints
 
 > AddLoyaltyPoints(ctx, loyaltyProgramId, integrationId).Body(body).Execute()
 
-Add points in loyalty program for given customer
+Add points to customer profile
 
 
 
@@ -139,7 +201,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**LoyaltyPoints**](LoyaltyPoints.md) |  | 
+ **body** | [**AddLoyaltyPoints**](AddLoyaltyPoints.md) | body | 
 
 ### Return type
 
@@ -147,7 +209,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -161,9 +223,9 @@ Name | Type | Description  | Notes
 
 ## CopyCampaignToApplications
 
-> InlineResponse2003 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
+> InlineResponse2004 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
 
-Copy the campaign into the specified application
+Copy the campaign into the specified Application
 
 
 
@@ -185,15 +247,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**CampaignCopy**](CampaignCopy.md) |  | 
+ **body** | [**CampaignCopy**](CampaignCopy.md) | body | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -224,7 +286,7 @@ Other parameters are passed through a pointer to a apiCreateAccountCollectionReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewCollection**](NewCollection.md) |  | 
+ **body** | [**NewCollection**](NewCollection.md) | body | 
 
 ### Return type
 
@@ -232,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -263,7 +325,7 @@ Other parameters are passed through a pointer to a apiCreateAdditionalCostReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewAdditionalCost**](NewAdditionalCost.md) |  | 
+ **body** | [**NewAdditionalCost**](NewAdditionalCost.md) | body | 
 
 ### Return type
 
@@ -271,7 +333,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -302,7 +364,7 @@ Other parameters are passed through a pointer to a apiCreateAttributeRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewAttribute**](NewAttribute.md) |  | 
+ **body** | [**NewAttribute**](NewAttribute.md) | body | 
 
 ### Return type
 
@@ -310,7 +372,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -346,7 +408,7 @@ Other parameters are passed through a pointer to a apiCreateCampaignFromTemplate
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateTemplateCampaign**](CreateTemplateCampaign.md) |  | 
+ **body** | [**CreateTemplateCampaign**](CreateTemplateCampaign.md) | body | 
 
 ### Return type
 
@@ -354,7 +416,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -392,7 +454,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewCampaignCollection**](NewCampaignCollection.md) |  | 
+ **body** | [**NewCampaignCollection**](NewCampaignCollection.md) | body | 
 
 ### Return type
 
@@ -400,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -414,7 +476,7 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse2006 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2007 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons
 
@@ -438,16 +500,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewCoupons**](NewCoupons.md) |  | 
- **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains essential data such as the updated customer profiles and session-related information.  | [default to yes]
+ **body** | [**NewCoupons**](NewCoupons.md) | body | 
+ **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -485,7 +547,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewCouponCreationJob**](NewCouponCreationJob.md) |  | 
+ **body** | [**NewCouponCreationJob**](NewCouponCreationJob.md) | body | 
 
 ### Return type
 
@@ -493,7 +555,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -507,7 +569,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse2006 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2007 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons for multiple recipients
 
@@ -531,16 +593,16 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewCouponsForMultipleRecipients**](NewCouponsForMultipleRecipients.md) |  | 
- **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains essential data such as the updated customer profiles and session-related information.  | [default to yes]
+ **body** | [**NewCouponsForMultipleRecipients**](NewCouponsForMultipleRecipients.md) | body | 
+ **silent** | **string** | Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -556,7 +618,7 @@ Name | Type | Description  | Notes
 
 > NotificationWebhook CreateNotificationWebhook(ctx, applicationId).Body(body).Execute()
 
-Create notification webhook
+Create notification about campaign-related changes
 
 
 
@@ -576,7 +638,7 @@ Other parameters are passed through a pointer to a apiCreateNotificationWebhookR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewNotificationWebhook**](NewNotificationWebhook.md) |  | 
+ **body** | [**NewNotificationWebhook**](NewNotificationWebhook.md) | body | 
 
 ### Return type
 
@@ -584,7 +646,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -615,7 +677,7 @@ Other parameters are passed through a pointer to a apiCreatePasswordRecoveryEmai
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewPasswordEmail**](NewPasswordEmail.md) |  | 
+ **body** | [**NewPasswordEmail**](NewPasswordEmail.md) | body | 
 
 ### Return type
 
@@ -623,7 +685,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -654,7 +716,7 @@ Other parameters are passed through a pointer to a apiCreateSessionRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**LoginParams**](LoginParams.md) |  | 
+ **body** | [**LoginParams**](LoginParams.md) | body | 
 
 ### Return type
 
@@ -662,7 +724,53 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeductLoyaltyCardPoints
+
+> DeductLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Body(body).Execute()
+
+Deduct points from card
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeductLoyaltyCardPointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**DeductLoyaltyPoints**](DeductLoyaltyPoints.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -688,7 +796,7 @@ Delete account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -705,7 +813,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -750,7 +858,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -778,7 +886,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -797,7 +905,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -825,7 +933,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**couponId** | **string** | The ID of the coupon code to update | 
+**couponId** | **string** | The internal ID of the coupon code. You can find this value in the &#x60;id&#x60; property from the [List coupons](https://docs.talon.one/management-api#tag/Coupons/operation/getCouponsWithoutTotalCount) endpoint response.  | 
 
 ### Other Parameters
 
@@ -844,7 +952,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -889,10 +997,10 @@ Name | Type | Description  | Notes
  **startsBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **expiresAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **expiresBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | - &#x60;expired&#x60;: Matches coupons in which the expiry date is set and in the past. - &#x60;validNow&#x60;: Matches coupons in which start date is null or in the past and expiry date is null or in the future. - &#x60;validFuture&#x60;: Matches coupons in which start date is set and in the future.  | 
+ **valid** | **string** | - &#x60;expired&#x60;: Matches coupons in which the expiration date is set and in the past. - &#x60;validNow&#x60;: Matches coupons in which start date is null or in the past and expiration date is null or in the future. - &#x60;validFuture&#x60;: Matches coupons in which start date is set and in the future.  | 
  **batchId** | **string** | Filter results by batches of coupons | 
  **usable** | **string** | - &#x60;true&#x60;: only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned. - &#x60;false&#x60;: only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60; will be returned.  | 
- **referralId** | **int32** | Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
  **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s &#x60;RecipientIntegrationId&#x60; field.  | 
  **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code | [default to false]
 
@@ -902,7 +1010,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -914,11 +1022,56 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteLoyaltyCard
+
+> DeleteLoyaltyCard(ctx, loyaltyProgramId, loyaltyCardId).Execute()
+
+Delete loyalty card
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteLoyaltyCardRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteNotificationWebhook
 
 > DeleteNotificationWebhook(ctx, applicationId, notificationWebhookId).Execute()
 
-Delete notification webhook
+Delete notification about campaign-related changes
 
 
 
@@ -929,7 +1082,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**notificationWebhookId** | **int32** |  | 
+**notificationWebhookId** | **int32** | The ID of the webhook. Get it with the appropriate _List notifications_ endpoint. | 
 
 ### Other Parameters
 
@@ -947,7 +1100,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -975,7 +1128,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**referralId** | **string** | The ID of the referral code to delete | 
+**referralId** | **string** | The ID of the referral code. | 
 
 ### Other Parameters
 
@@ -994,7 +1147,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1029,7 +1182,7 @@ Other parameters are passed through a pointer to a apiDestroySessionRequest stru
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1055,7 +1208,7 @@ Export account-level collection's items
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -1072,7 +1225,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1100,7 +1253,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -1119,7 +1272,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1156,13 +1309,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **campaignId** | **float32** | Filter results by campaign. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32** | Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
  **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **batchId** | **string** | Filter results by batches of coupons | 
  **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code | [default to false]
@@ -1175,7 +1328,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1223,7 +1376,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1270,7 +1423,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1284,9 +1437,9 @@ Name | Type | Description  | Notes
 
 ## ExportLoyaltyBalance
 
-> string ExportLoyaltyBalance(ctx, loyaltyProgramId).Execute()
+> string ExportLoyaltyBalance(ctx, loyaltyProgramId).EndDate(endDate).Execute()
 
-Export customer loyalty balance to a CSV file
+Export customer loyalty balance to CSV
 
 
 
@@ -1306,6 +1459,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyBalanceReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
 
 ### Return type
 
@@ -1313,7 +1467,143 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportLoyaltyBalances
+
+> string ExportLoyaltyBalances(ctx, loyaltyProgramId).EndDate(endDate).Execute()
+
+Export customer loyalty balances
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **string** | The identifier for the loyalty program. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportLoyaltyBalancesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportLoyaltyCardBalances
+
+> string ExportLoyaltyCardBalances(ctx, loyaltyProgramId).EndDate(endDate).Execute()
+
+Export all card transaction logs
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportLoyaltyCardBalancesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportLoyaltyCardLedger
+
+> string ExportLoyaltyCardLedger(ctx, loyaltyProgramId, loyaltyCardId).RangeStart(rangeStart).RangeEnd(rangeEnd).DateFormat(dateFormat).Execute()
+
+Export card's ledger log
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportLoyaltyCardLedgerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **dateFormat** | **string** | Determines the format of dates in the export document. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1329,7 +1619,7 @@ Name | Type | Description  | Notes
 
 > string ExportLoyaltyLedger(ctx, loyaltyProgramId, integrationId).RangeStart(rangeStart).RangeEnd(rangeEnd).DateFormat(dateFormat).Execute()
 
-Export a customer's loyalty ledger log
+Export customer's transaction logs
 
 
 
@@ -1349,8 +1639,8 @@ Other parameters are passed through a pointer to a apiExportLoyaltyLedgerRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
 
 
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
@@ -1361,7 +1651,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1400,7 +1690,7 @@ Name | Type | Description  | Notes
  **campaignId** | **float32** | Filter results by campaign. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | - &#x60;expired&#x60;: Matches referrals in which the expiry date is set and in the past. - &#x60;validNow&#x60;: Matches referrals in which start date is null or in the past and expiry date is null or in the future. - &#x60;validFuture&#x60;: Matches referrals in which start date is set and in the future.  | 
+ **valid** | **string** | - &#x60;expired&#x60;: Matches referrals in which the expiration date is set and in the past. - &#x60;validNow&#x60;: Matches referrals in which start date is null or in the past and expiration date is null or in the future. - &#x60;validFuture&#x60;: Matches referrals in which start date is set and in the future.  | 
  **usable** | **string** | - &#x60;true&#x60;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned. - &#x60;false&#x60;, only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60; will be returned.  | 
  **batchId** | **string** | Filter results by batches of referrals | 
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
@@ -1411,7 +1701,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1425,7 +1715,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20013 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20018 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get access logs for Application
 
@@ -1447,22 +1737,22 @@ Other parameters are passed through a pointer to a apiGetAccessLogsWithoutTotalC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
  **path** | **string** | Only return results where the request path matches the given regular expression. | 
  **method** | **string** | Only return results where the request method matches the given regular expression. | 
  **status** | **string** | Filter results by HTTP status codes. | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1488,7 +1778,7 @@ Get account details
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **int32** | The identifier of the account. Retrieve it via the [List users in account endpoint](https://docs.talon.one/management-api#operation/getUsers), in the &#x60;accountId&#x60; property.  | 
+**accountId** | **int32** | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | 
 
 ### Other Parameters
 
@@ -1505,7 +1795,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1531,7 +1821,7 @@ Get account analytics
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **int32** | The identifier of the account. Retrieve it via the [List users in account endpoint](https://docs.talon.one/management-api#operation/getUsers), in the &#x60;accountId&#x60; property.  | 
+**accountId** | **int32** | The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | 
 
 ### Other Parameters
 
@@ -1548,7 +1838,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1574,7 +1864,7 @@ Get account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -1591,7 +1881,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1617,7 +1907,7 @@ Get additional cost
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**additionalCostId** | **int32** |  | 
+**additionalCostId** | **int32** | The ID of the additional cost. You can find the ID the the Campaign Manager&#39;s URL when you display the details of the cost in **Account** &gt; **Tools** &gt; **Additional costs**.  | 
 
 ### Other Parameters
 
@@ -1634,7 +1924,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1648,7 +1938,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20026 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20032 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List additional costs
 
@@ -1665,17 +1955,17 @@ Other parameters are passed through a pointer to a apiGetAdditionalCostsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20032**](inline_response_200_32.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1689,7 +1979,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAccessLogs
 
-> InlineResponse20014 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20019 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List access logs
 
@@ -1706,22 +1996,22 @@ Other parameters are passed through a pointer to a apiGetAllAccessLogsRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
  **path** | **string** | Only return results where the request path matches the given regular expression. | 
  **method** | **string** | Only return results where the request method matches the given regular expression. | 
  **status** | **string** | Filter results by HTTP status codes. | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1735,7 +2025,7 @@ Name | Type | Description  | Notes
 
 ## GetAllRoles
 
-> InlineResponse20034 GetAllRoles(ctx).Execute()
+> InlineResponse20040 GetAllRoles(ctx).Execute()
 
 List roles
 
@@ -1752,11 +2042,11 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Return type
 
-[**InlineResponse20034**](inline_response_200_34.md)
+[**InlineResponse20040**](inline_response_200_40.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1772,7 +2062,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 > Application GetApplication(ctx, applicationId).Execute()
 
-Get application
+Get Application
 
 
 
@@ -1799,7 +2089,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1815,7 +2105,7 @@ Name | Type | Description  | Notes
 
 > ApplicationApiHealth GetApplicationApiHealth(ctx, applicationId).Execute()
 
-Get report of health of application API
+Get Application health
 
 
 
@@ -1842,7 +2132,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1869,7 +2159,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | 
+**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Other Parameters
 
@@ -1887,7 +2177,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1901,7 +2191,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20024 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20030 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List friends referred by customer profile
 
@@ -1925,18 +2215,18 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20024**](inline_response_200_24.md)
+[**InlineResponse20030**](inline_response_200_30.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1950,7 +2240,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20016 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20021 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application's customers
 
@@ -1973,17 +2263,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20021**](inline_response_200_21.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1997,7 +2287,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20017 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20022 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application customers matching the given attributes
 
@@ -2019,18 +2309,18 @@ Other parameters are passed through a pointer to a apiGetApplicationCustomersByA
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) |  | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20022**](inline_response_200_22.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2044,7 +2334,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20022 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20028 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Applications event types
 
@@ -2066,17 +2356,17 @@ Other parameters are passed through a pointer to a apiGetApplicationEventTypesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2090,7 +2380,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20021 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
+> InlineResponse20027 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
 List Applications events
 
@@ -2112,9 +2402,9 @@ Other parameters are passed through a pointer to a apiGetApplicationEventsWithou
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **type_** | **string** | Comma-separated list of types by which to filter events. Must be exact match(es). | 
  **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Only return events created after this date. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2129,11 +2419,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](inline_response_200_21.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2160,7 +2450,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**sessionId** | **int32** | The **internal** ID of the session. You can get the ID with the [List Application sessions endpoint](/#tag/Customer-data/operation/getApplicationSession).  | 
+**sessionId** | **int32** | The **internal** ID of the session. You can get the ID with the [List Application sessions](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.  | 
 
 ### Other Parameters
 
@@ -2178,7 +2468,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2192,7 +2482,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20020 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
+> InlineResponse20026 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
 
 List Application sessions
 
@@ -2214,9 +2504,9 @@ Other parameters are passed through a pointer to a apiGetApplicationSessionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **profile** | **string** | Profile integration ID filter for sessions. Must be exact match. | 
  **state** | **string** | Filter by sessions with this state. Must be exact match. | 
  **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2227,11 +2517,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](inline_response_200_20.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2245,9 +2535,9 @@ Name | Type | Description  | Notes
 
 ## GetApplications
 
-> InlineResponse2002 GetApplications(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2003 GetApplications(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
-List applications
+List Applications
 
 
 
@@ -2262,17 +2552,17 @@ Other parameters are passed through a pointer to a apiGetApplicationsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2298,7 +2588,7 @@ Get custom attribute
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attributeId** | **int32** |  | 
+**attributeId** | **int32** | The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
 
 ### Other Parameters
 
@@ -2315,7 +2605,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2329,7 +2619,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20025 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
+> InlineResponse20031 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
 
 List custom attributes
 
@@ -2346,18 +2636,18 @@ Other parameters are passed through a pointer to a apiGetAttributesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **entity** | **string** | Returned attributes will be filtered by supplied entity. | 
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20031**](inline_response_200_31.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2371,7 +2661,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20023 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20029 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List audiences
 
@@ -2388,18 +2678,18 @@ Other parameters are passed through a pointer to a apiGetAudiencesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20029**](inline_response_200_29.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2444,7 +2734,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2458,7 +2748,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20015 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
+> InlineResponse20020 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
 
 Get analytics of campaigns
 
@@ -2482,17 +2772,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
  **granularity** | **string** | The time interval between the results in the returned time-series. | 
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20020**](inline_response_200_20.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2506,7 +2796,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignByAttributes
 
-> InlineResponse2003 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
+> InlineResponse2004 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
 
 List campaigns that match the given attributes
 
@@ -2528,19 +2818,19 @@ Other parameters are passed through a pointer to a apiGetCampaignByAttributesReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CampaignSearch**](CampaignSearch.md) |  | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **body** | [**CampaignSearch**](CampaignSearch.md) | body | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2552,9 +2842,54 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCampaignTemplates
+
+> InlineResponse20010 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
+
+List campaign templates
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCampaignTemplatesRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **state** | **string** | Filter results by the state of the campaign template. | 
+ **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign template. | 
+ **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign template. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values.  | 
+ **userId** | **int32** | Filter results by user ID. | 
+
+### Return type
+
+[**InlineResponse20010**](inline_response_200_10.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCampaigns
 
-> InlineResponse2003 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).TemplateId(templateId).Execute()
+> InlineResponse2004 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).TemplateId(templateId).Execute()
 
 List campaigns
 
@@ -2576,9 +2911,9 @@ Other parameters are passed through a pointer to a apiGetCampaignsRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
  **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign. | 
  **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
@@ -2589,11 +2924,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2607,7 +2942,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20032 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).IncludeOld(includeOld).Execute()
+> InlineResponse20038 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
 
 Get audit logs for an account
 
@@ -2624,24 +2959,25 @@ Other parameters are passed through a pointer to a apiGetChangesRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **entityPath** | **string** | Filter results on a case insensitive matching of the url path of the entity | 
- **userId** | **int32** | Filter results that match the given user ID. | 
+ **userId** | **int32** | Filter results by user ID. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
+ **managementKeyId** | **int32** | Filter results that match the given management key ID. | 
  **includeOld** | **bool** | When this flag is set to false, the state without the change will not be returned. The default value is true. | 
 
 ### Return type
 
-[**InlineResponse20032**](inline_response_200_32.md)
+[**InlineResponse20038**](inline_response_200_38.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2669,7 +3005,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -2688,7 +3024,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2702,7 +3038,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20011 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20016 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
 
 Get collection items
 
@@ -2714,7 +3050,7 @@ Get collection items
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -2724,16 +3060,16 @@ Other parameters are passed through a pointer to a apiGetCollectionItemsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2747,7 +3083,7 @@ Name | Type | Description  | Notes
 
 ## GetCouponsWithoutTotalCount
 
-> InlineResponse2007 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
+> InlineResponse2008 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
 
 List coupons
 
@@ -2771,26 +3107,26 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32** | Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
  **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **batchId** | **string** | Filter results by batches of coupons | 
  **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code | [default to false]
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2817,7 +3153,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | 
+**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Other Parameters
 
@@ -2826,11 +3162,11 @@ Other parameters are passed through a pointer to a apiGetCustomerActivityReportR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
 
 ### Return type
@@ -2839,7 +3175,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2853,7 +3189,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20019 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
+> InlineResponse20025 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
 Get Activity Reports for Application Customers
 
@@ -2874,12 +3210,12 @@ Other parameters are passed through a pointer to a apiGetCustomerActivityReports
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp, must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp, must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **name** | **string** | Only return reports matching the customer name | 
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
  **campaignName** | **string** | Only return reports matching the campaignName | 
@@ -2887,11 +3223,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20025**](inline_response_200_25.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2918,7 +3254,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | 
+**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Other Parameters
 
@@ -2929,9 +3265,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
@@ -2939,7 +3275,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2965,7 +3301,7 @@ Get customer profile
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](/#tag/Customer-data/operation/getApplicationCustomers) endpoint.  | 
+**customerId** | **int32** | The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Other Parameters
 
@@ -2982,7 +3318,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2996,7 +3332,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20018 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20024 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
 
 List customer profiles
 
@@ -3013,16 +3349,17 @@ Other parameters are passed through a pointer to a apiGetCustomerProfilesRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **sandbox** | **bool** | Indicates whether you are pointing to a sandbox or Live customer. | [default to false]
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3036,7 +3373,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20018 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20023 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
 
 List customer profiles matching the given attributes
 
@@ -3053,17 +3390,18 @@ Other parameters are passed through a pointer to a apiGetCustomersByAttributesRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) |  | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **sandbox** | **bool** | Indicates whether you are pointing to a sandbox or Live customer. | [default to false]
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3077,7 +3415,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20030 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20036 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List event types
 
@@ -3096,17 +3434,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | Filter results to event types with the given name. This parameter implies &#x60;includeOldVersions&#x60;. | 
  **includeOldVersions** | **bool** | Include all versions of every event type. | [default to false]
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20030**](inline_response_200_30.md)
+[**InlineResponse20036**](inline_response_200_36.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3120,7 +3458,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20033 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
+> InlineResponse20039 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
 Get exports
 
@@ -3137,7 +3475,7 @@ Other parameters are passed through a pointer to a apiGetExportsRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **campaignId** | **int32** | Filter by the campaign ID on which the limit counters are used. | 
@@ -3145,11 +3483,154 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20033**](inline_response_200_33.md)
+[**InlineResponse20039**](inline_response_200_39.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLoyaltyCard
+
+> LoyaltyCard GetLoyaltyCard(ctx, loyaltyProgramId, loyaltyCardId).Execute()
+
+Get loyalty card
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyCardRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**LoyaltyCard**](LoyaltyCard.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLoyaltyCardTransactionLogs
+
+> InlineResponse20014 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
+
+List card's transactions
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyCardTransactionLogsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+
+### Return type
+
+[**InlineResponse20014**](inline_response_200_14.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLoyaltyCards
+
+> InlineResponse20013 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
+
+List loyalty cards
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyCardsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **identifier** | **string** | Optional query parameter to search cards by identifier. | 
+ **profileId** | **int32** | Filter by the profile ID. | 
+
+### Return type
+
+[**InlineResponse20013**](inline_response_200_13.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3165,7 +3646,7 @@ Name | Type | Description  | Notes
 
 > LoyaltyLedger GetLoyaltyPoints(ctx, loyaltyProgramId, integrationId).Execute()
 
-Get the Loyalty Ledger for this integrationID
+Get customer's full loyalty ledger
 
 
 
@@ -3194,7 +3675,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3220,7 +3701,7 @@ Get loyalty program
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).  | 
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -3237,7 +3718,56 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLoyaltyProgramTransactions
+
+> InlineResponse20012 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+
+List loyalty program transactions
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyProgramTransactionsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
+ **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+
+### Return type
+
+[**InlineResponse20012**](inline_response_200_12.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3251,7 +3781,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse2009 GetLoyaltyPrograms(ctx).Execute()
+> InlineResponse20011 GetLoyaltyPrograms(ctx).Execute()
 
 List loyalty programs
 
@@ -3268,11 +3798,11 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse20011**](inline_response_200_11.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3288,7 +3818,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 > LoyaltyStatistics GetLoyaltyStatistics(ctx, loyaltyProgramId).Execute()
 
-Get loyalty program statistics by loyalty program ID
+Get loyalty program statistics
 
 
 
@@ -3298,7 +3828,7 @@ Get loyalty program statistics by loyalty program ID
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).  | 
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -3315,7 +3845,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3331,7 +3861,7 @@ Name | Type | Description  | Notes
 
 > NotificationWebhook GetNotificationWebhook(ctx, applicationId, notificationWebhookId).Execute()
 
-Get notification webhook
+Get notification about campaign-related changes
 
 
 
@@ -3342,7 +3872,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**notificationWebhookId** | **int32** |  | 
+**notificationWebhookId** | **int32** | The ID of the webhook. Get it with the appropriate _List notifications_ endpoint. | 
 
 ### Other Parameters
 
@@ -3360,7 +3890,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3374,9 +3904,9 @@ Name | Type | Description  | Notes
 
 ## GetNotificationWebhooks
 
-> InlineResponse2004 GetNotificationWebhooks(ctx, applicationId).Execute()
+> InlineResponse2005 GetNotificationWebhooks(ctx, applicationId).Execute()
 
-List notification webhooks
+List notifications about campaign-related changes
 
 
 
@@ -3399,11 +3929,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3417,7 +3947,7 @@ Name | Type | Description  | Notes
 
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse2008 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
+> InlineResponse2009 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
 List referrals
 
@@ -3441,23 +3971,23 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **code** | **string** | Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiry date is set and in the past. The second matches referrals in which start date is null or in the past and expiry date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
+ **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiration date is set and in the past. The second matches referrals in which start date is null or in the past and expiration date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **advocate** | **string** | Filter results by match with a profile id specified in the referral&#39;s AdvocateProfileIntegrationId field | 
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3500,7 +4030,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3528,7 +4058,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**rulesetId** | **int32** |  | 
+**rulesetId** | **int32** | The ID of the ruleset. | 
 
 ### Other Parameters
 
@@ -3547,7 +4077,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3561,7 +4091,7 @@ Name | Type | Description  | Notes
 
 ## GetRulesets
 
-> InlineResponse2005 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2006 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List campaign rulesets
 
@@ -3585,17 +4115,17 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse2005**](inline_response_200_5.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3638,7 +4168,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3652,7 +4182,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20031 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20037 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List users in account
 
@@ -3669,17 +4199,17 @@ Other parameters are passed through a pointer to a apiGetUsersRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20031**](inline_response_200_31.md)
+[**InlineResponse20037**](inline_response_200_37.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3705,7 +4235,7 @@ Get webhook
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32** |  | 
+**webhookId** | **int32** | The ID of the webhook. You can find the ID in the Campaign Manager&#39;s URL when you display the details of the webhook in **Account** &gt; **Webhooks**.  | 
 
 ### Other Parameters
 
@@ -3722,7 +4252,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3736,7 +4266,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20028 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20034 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook activation log entries
 
@@ -3753,9 +4283,9 @@ Other parameters are passed through a pointer to a apiGetWebhookActivationLogsRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **integrationRequestUuid** | **string** | Filter results by integration request UUID. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
  **applicationId** | **float32** | Filter results by Application ID. | 
@@ -3765,11 +4295,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](inline_response_200_28.md)
+[**InlineResponse20034**](inline_response_200_34.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3783,7 +4313,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20029 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20035 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook log entries
 
@@ -3800,9 +4330,9 @@ Other parameters are passed through a pointer to a apiGetWebhookLogsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **status** | **string** | Filter results by HTTP status codes. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
  **applicationId** | **float32** | Filter results by Application ID. | 
@@ -3813,11 +4343,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](inline_response_200_29.md)
+[**InlineResponse20035**](inline_response_200_35.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3831,7 +4361,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20027 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20033 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
 
 List webhooks
 
@@ -3848,18 +4378,18 @@ Other parameters are passed through a pointer to a apiGetWebhooksRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationIds** | **string** | Filter by one or more application ids separated by comma. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **applicationIds** | **string** | Filter by one or more application IDs separated by a comma. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20033**](inline_response_200_33.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3885,7 +4415,7 @@ Import data in existing account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -3903,7 +4433,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3929,7 +4459,7 @@ Import allowed values for attribute
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attributeId** | **int32** |  | 
+**attributeId** | **int32** | The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
 
 ### Other Parameters
 
@@ -3947,7 +4477,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3975,7 +4505,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -3995,7 +4525,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4041,7 +4571,51 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportLoyaltyCards
+
+> Import ImportLoyaltyCards(ctx, loyaltyProgramId).UpFile(upFile).Execute()
+
+Import loyalty cards
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportLoyaltyCardsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **upFile** | **string** | The file with the information about the data that should be imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4067,7 +4641,7 @@ Import loyalty points
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs endpoint](https://docs.talon.one/management-api/#operation/getLoyaltyPrograms).  | 
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -4085,7 +4659,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4111,7 +4685,7 @@ Import giveaway codes into a giveaway pool
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**poolId** | **int32** |  | 
+**poolId** | **int32** | The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | 
 
 ### Other Parameters
 
@@ -4129,7 +4703,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4175,7 +4749,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4189,7 +4763,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20010 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20015 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in account
 
@@ -4206,19 +4780,19 @@ Other parameters are passed through a pointer to a apiListAccountCollectionsRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **string** | Filter by the name of the Collection. | 
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4232,7 +4806,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20012 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20017 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections
 
@@ -4256,19 +4830,19 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **string** | Filter by the name of the Collection. | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4282,7 +4856,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20012 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20017 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in application
 
@@ -4304,19 +4878,19 @@ Other parameters are passed through a pointer to a apiListCollectionsInApplicati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **string** | Filter by the name of the Collection. | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4328,11 +4902,99 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PostAddedDeductedPointsNotification
+
+> BaseNotification PostAddedDeductedPointsNotification(ctx, loyaltyProgramId).Body(body).Execute()
+
+Create notification about added or deducted loyalty points
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostAddedDeductedPointsNotificationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**NewBaseNotification**](NewBaseNotification.md) | body | 
+
+### Return type
+
+[**BaseNotification**](BaseNotification.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostCatalogsStrikethroughNotification
+
+> BaseNotification PostCatalogsStrikethroughNotification(ctx, applicationId).Body(body).Execute()
+
+Create strikethrough notification
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostCatalogsStrikethroughNotificationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**NewBaseNotification**](NewBaseNotification.md) | body | 
+
+### Return type
+
+[**BaseNotification**](BaseNotification.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RemoveLoyaltyPoints
 
 > RemoveLoyaltyPoints(ctx, loyaltyProgramId, integrationId).Body(body).Execute()
 
-Deduct points in loyalty program for given customer
+Deduct points from customer profile
 
 
 
@@ -4354,7 +5016,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**LoyaltyPoints**](LoyaltyPoints.md) |  | 
+ **body** | [**DeductLoyaltyPoints**](DeductLoyaltyPoints.md) | body | 
 
 ### Return type
 
@@ -4362,7 +5024,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4393,7 +5055,7 @@ Other parameters are passed through a pointer to a apiResetPasswordRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**NewPassword**](NewPassword.md) |  | 
+ **body** | [**NewPassword**](NewPassword.md) | body | 
 
 ### Return type
 
@@ -4401,7 +5063,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4415,7 +5077,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedApplicationWideWithoutTotalCount
 
-> InlineResponse2007 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
+> InlineResponse2008 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
 List coupons that match the given attributes (without total count)
 
@@ -4437,16 +5099,16 @@ Other parameters are passed through a pointer to a apiSearchCouponsAdvancedAppli
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** |  | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **body** | **map[string]interface{}** | body | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32** | Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
  **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **batchId** | **string** | Filter results by batches of coupons | 
  **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code | [default to false]
@@ -4454,11 +5116,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4472,7 +5134,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedWithoutTotalCount
 
-> InlineResponse2007 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
+> InlineResponse2008 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
 List coupons that match the given attributes in campaign (without total count)
 
@@ -4496,27 +5158,73 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | **map[string]interface{}** |  | 
- **pageSize** | **int32** | The number of items to include in this response. When omitted, the maximum value of 1000 will be used. | 
+ **body** | **map[string]interface{}** | body | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
  **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
- **sort** | **string** | The field by which results should be sorted. Sorting defaults to ascending order, prefix the field name with &#x60;-&#x60; to sort in descending order. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiry date is set and in the past. The second matches coupons in which start date is null or in the past and expiry date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
+ **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
- **referralId** | **int32** | Filter the results by matching them with the Id of a referral, that meaning the coupons that had been created as an effect of the usage of a referral code. | 
+ **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
  **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
  **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code | [default to false]
  **batchId** | **string** | Filter results by batches of coupons | 
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TransferLoyaltyCard
+
+> TransferLoyaltyCard(ctx, loyaltyProgramId, loyaltyCardId).Body(body).Execute()
+
+Transfer card data
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTransferLoyaltyCardRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**TransferLoyaltyCard**](TransferLoyaltyCard.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4542,7 +5250,7 @@ Update account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -4552,7 +5260,7 @@ Other parameters are passed through a pointer to a apiUpdateAccountCollectionReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateCollection**](UpdateCollection.md) |  | 
+ **body** | [**UpdateCollection**](UpdateCollection.md) | body | 
 
 ### Return type
 
@@ -4560,7 +5268,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4586,7 +5294,7 @@ Update additional cost
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**additionalCostId** | **int32** |  | 
+**additionalCostId** | **int32** | The ID of the additional cost. You can find the ID the the Campaign Manager&#39;s URL when you display the details of the cost in **Account** &gt; **Tools** &gt; **Additional costs**.  | 
 
 ### Other Parameters
 
@@ -4596,7 +5304,7 @@ Other parameters are passed through a pointer to a apiUpdateAdditionalCostReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewAdditionalCost**](NewAdditionalCost.md) |  | 
+ **body** | [**NewAdditionalCost**](NewAdditionalCost.md) | body | 
 
 ### Return type
 
@@ -4604,7 +5312,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4630,7 +5338,7 @@ Update custom attribute
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attributeId** | **int32** |  | 
+**attributeId** | **int32** | The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
 
 ### Other Parameters
 
@@ -4640,7 +5348,7 @@ Other parameters are passed through a pointer to a apiUpdateAttributeRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**NewAttribute**](NewAttribute.md) |  | 
+ **body** | [**NewAttribute**](NewAttribute.md) | body | 
 
 ### Return type
 
@@ -4648,7 +5356,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4686,7 +5394,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**UpdateCampaign**](UpdateCampaign.md) |  | 
+ **body** | [**UpdateCampaign**](UpdateCampaign.md) | body | 
 
 ### Return type
 
@@ -4694,7 +5402,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4722,7 +5430,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account endpoint](#operation/listCollectionsInApplication). | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -4734,7 +5442,7 @@ Name | Type | Description  | Notes
 
 
 
- **body** | [**UpdateCampaignCollection**](UpdateCampaignCollection.md) |  | 
+ **body** | [**UpdateCampaignCollection**](UpdateCampaignCollection.md) | body | 
 
 ### Return type
 
@@ -4742,7 +5450,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4770,7 +5478,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**couponId** | **string** | The ID of the coupon code to update | 
+**couponId** | **string** | The internal ID of the coupon code. You can find this value in the &#x60;id&#x60; property from the [List coupons](https://docs.talon.one/management-api#tag/Coupons/operation/getCouponsWithoutTotalCount) endpoint response.  | 
 
 ### Other Parameters
 
@@ -4782,7 +5490,7 @@ Name | Type | Description  | Notes
 
 
 
- **body** | [**UpdateCoupon**](UpdateCoupon.md) |  | 
+ **body** | [**UpdateCoupon**](UpdateCoupon.md) | body | 
 
 ### Return type
 
@@ -4790,7 +5498,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4828,7 +5536,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md) |  | 
+ **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md) | body | 
 
 ### Return type
 
@@ -4836,7 +5544,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4848,11 +5556,57 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateLoyaltyCard
+
+> LoyaltyCard UpdateLoyaltyCard(ctx, loyaltyProgramId, loyaltyCardId).Body(body).Execute()
+
+Update loyalty card status
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateLoyaltyCardRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**UpdateLoyaltyCard**](UpdateLoyaltyCard.md) | body | 
+
+### Return type
+
+[**LoyaltyCard**](LoyaltyCard.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateNotificationWebhook
 
 > NotificationWebhook UpdateNotificationWebhook(ctx, applicationId, notificationWebhookId).Body(body).Execute()
 
-Update notification webhook
+Update notification about campaign-related changes
 
 
 
@@ -4863,7 +5617,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**notificationWebhookId** | **int32** |  | 
+**notificationWebhookId** | **int32** | The ID of the webhook. Get it with the appropriate _List notifications_ endpoint. | 
 
 ### Other Parameters
 
@@ -4874,7 +5628,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**NewNotificationWebhook**](NewNotificationWebhook.md) |  | 
+ **body** | [**NewNotificationWebhook**](NewNotificationWebhook.md) | body | 
 
 ### Return type
 
@@ -4882,7 +5636,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4910,7 +5664,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**referralId** | **string** | The ID of the referral code to delete | 
+**referralId** | **string** | The ID of the referral code. | 
 
 ### Other Parameters
 
@@ -4922,7 +5676,7 @@ Name | Type | Description  | Notes
 
 
 
- **body** | [**UpdateReferral**](UpdateReferral.md) |  | 
+ **body** | [**UpdateReferral**](UpdateReferral.md) | body | 
 
 ### Return type
 
@@ -4930,7 +5684,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[manager_auth](../README.md#manager_auth)
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 

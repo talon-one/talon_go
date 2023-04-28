@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 
 ## Methods
 

@@ -5,16 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 
-**DiscountLimit** | Pointer to **float32** | The amount of discounts that can be given with this coupon code.  | [optional] 
+**DiscountLimit** | Pointer to **float32** | The total discount value that the code can give. Typically used to represent a gift card value.  | [optional] 
+**ReservationLimit** | Pointer to **int32** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.  | [optional] 
 **NumberOfCoupons** | Pointer to **int32** | The number of new coupon codes to generate for the campaign. Must be at least 1. | 
-**UniquePrefix** | Pointer to **string** | **DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously endpoint](https://docs.talon.one/management-api/#operation/createCouponsAsync).  | [optional] 
+**UniquePrefix** | Pointer to **string** | **DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#operation/createCouponsAsync) endpoint.  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The integration ID for this coupon&#39;s beneficiary&#39;s profile. | [optional] 
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
 **CouponPattern** | Pointer to **string** | The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
+**IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
 
 ## Methods
 
@@ -67,6 +69,31 @@ HasDiscountLimit returns a boolean if a field has been set.
 `func (o *NewCoupons) SetDiscountLimit(v float32)`
 
 SetDiscountLimit gets a reference to the given float32 and assigns it to the DiscountLimit field.
+
+### GetReservationLimit
+
+`func (o *NewCoupons) GetReservationLimit() int32`
+
+GetReservationLimit returns the ReservationLimit field if non-nil, zero value otherwise.
+
+### GetReservationLimitOk
+
+`func (o *NewCoupons) GetReservationLimitOk() (int32, bool)`
+
+GetReservationLimitOk returns a tuple with the ReservationLimit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservationLimit
+
+`func (o *NewCoupons) HasReservationLimit() bool`
+
+HasReservationLimit returns a boolean if a field has been set.
+
+### SetReservationLimit
+
+`func (o *NewCoupons) SetReservationLimit(v int32)`
+
+SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
 
 ### GetStartDate
 
@@ -292,6 +319,31 @@ HasCouponPattern returns a boolean if a field has been set.
 `func (o *NewCoupons) SetCouponPattern(v string)`
 
 SetCouponPattern gets a reference to the given string and assigns it to the CouponPattern field.
+
+### GetIsReservationMandatory
+
+`func (o *NewCoupons) GetIsReservationMandatory() bool`
+
+GetIsReservationMandatory returns the IsReservationMandatory field if non-nil, zero value otherwise.
+
+### GetIsReservationMandatoryOk
+
+`func (o *NewCoupons) GetIsReservationMandatoryOk() (bool, bool)`
+
+GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsReservationMandatory
+
+`func (o *NewCoupons) HasIsReservationMandatory() bool`
+
+HasIsReservationMandatory returns a boolean if a field has been set.
+
+### SetIsReservationMandatory
+
+`func (o *NewCoupons) SetIsReservationMandatory(v bool)`
+
+SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

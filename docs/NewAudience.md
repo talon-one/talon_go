@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Integration** | Pointer to **string** | The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Selligent&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property.  | [optional] 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property.  | [optional] 
 **CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
+**LastUpdate** | Pointer to [**time.Time**](time.Time.md) | The last time that the audience memberships changed. | [optional] 
 
 ## Methods
 
@@ -162,6 +163,31 @@ HasCreatedIn3rdParty returns a boolean if a field has been set.
 `func (o *NewAudience) SetCreatedIn3rdParty(v bool)`
 
 SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
+
+### GetLastUpdate
+
+`func (o *NewAudience) GetLastUpdate() time.Time`
+
+GetLastUpdate returns the LastUpdate field if non-nil, zero value otherwise.
+
+### GetLastUpdateOk
+
+`func (o *NewAudience) GetLastUpdateOk() (time.Time, bool)`
+
+GetLastUpdateOk returns a tuple with the LastUpdate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastUpdate
+
+`func (o *NewAudience) HasLastUpdate() bool`
+
+HasLastUpdate returns a boolean if a field has been set.
+
+### SetLastUpdate
+
+`func (o *NewAudience) SetLastUpdate(v time.Time)`
+
+SetLastUpdate gets a reference to the given time.Time and assigns it to the LastUpdate field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

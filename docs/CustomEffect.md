@@ -4,11 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
-**ApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. | 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
+**IsPerItem** | Pointer to **bool** | Indicates if this effect is per item or not. | [optional] 
 **Name** | Pointer to **string** | The name of this effect. | 
 **Title** | Pointer to **string** | The title of this effect. | 
 **Payload** | Pointer to **string** | The JSON payload of this effect. | 
@@ -144,6 +145,31 @@ HasApplicationIds returns a boolean if a field has been set.
 `func (o *CustomEffect) SetApplicationIds(v []int32)`
 
 SetApplicationIds gets a reference to the given []int32 and assigns it to the ApplicationIds field.
+
+### GetIsPerItem
+
+`func (o *CustomEffect) GetIsPerItem() bool`
+
+GetIsPerItem returns the IsPerItem field if non-nil, zero value otherwise.
+
+### GetIsPerItemOk
+
+`func (o *CustomEffect) GetIsPerItemOk() (bool, bool)`
+
+GetIsPerItemOk returns a tuple with the IsPerItem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsPerItem
+
+`func (o *CustomEffect) HasIsPerItem() bool`
+
+HasIsPerItem returns a boolean if a field has been set.
+
+### SetIsPerItem
+
+`func (o *CustomEffect) SetIsPerItem(v bool)`
+
+SetIsPerItem gets a reference to the given bool and assigns it to the IsPerItem field.
 
 ### GetName
 

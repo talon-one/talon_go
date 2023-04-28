@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **CardID** | Pointer to **int32** |  | [optional] 
 **CustomerSessionID** | Pointer to **string** |  | [optional] 
 **EventID** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** | The type of the ledger transaction. Possible values are addition, subtraction, expire or expiring (for expiring points ledgers)  | 
+**Type** | Pointer to **string** | The type of the ledger transaction. Possible values are: - &#x60;addition&#x60; - &#x60;subtraction&#x60; - &#x60;expire&#x60; - &#x60;expiring&#x60; (for expiring points ledgers)  | 
 **Amount** | Pointer to **float32** |  | 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Name** | Pointer to **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | 
 **SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger. | 
 **UserID** | Pointer to **int32** | This is the ID of the user who created this entry, if the addition or subtraction was done manually. | [optional] 
+**Archived** | Pointer to **bool** | Indicates if the entry belongs to the archived session. | [optional] 
 
 ## Methods
 
@@ -344,6 +345,31 @@ HasUserID returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetUserID(v int32)`
 
 SetUserID gets a reference to the given int32 and assigns it to the UserID field.
+
+### GetArchived
+
+`func (o *LoyaltyLedgerEntry) GetArchived() bool`
+
+GetArchived returns the Archived field if non-nil, zero value otherwise.
+
+### GetArchivedOk
+
+`func (o *LoyaltyLedgerEntry) GetArchivedOk() (bool, bool)`
+
+GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasArchived
+
+`func (o *LoyaltyLedgerEntry) HasArchived() bool`
+
+HasArchived returns a boolean if a field has been set.
+
+### SetArchived
+
+`func (o *LoyaltyLedgerEntry) SetArchived(v bool)`
+
+SetArchived gets a reference to the given bool and assigns it to the Archived field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

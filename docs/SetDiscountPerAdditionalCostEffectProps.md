@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name/description of this discount. | 
+**Name** | Pointer to **string** | The name / description of this discount | 
 **AdditionalCostId** | Pointer to **int32** | The ID of the additional cost. | 
 **AdditionalCost** | Pointer to **string** | The name of the additional cost. | 
 **Value** | Pointer to **float32** | The total monetary value of the discount. | 

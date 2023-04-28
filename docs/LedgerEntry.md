@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | 
 **AccountId** | Pointer to **int32** | The ID of the Talon.One account that owns this profile. | 
 **LoyaltyProgramId** | Pointer to **int32** | ID of the ledger. | 
 **EventId** | Pointer to **int32** | ID of the related event. | 
 **Amount** | Pointer to **int32** | Amount of loyalty points. | 
 **Reason** | Pointer to **string** | reason for awarding/deducting points. | 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiry date of the points. | 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the points. | 
 **ReferenceId** | Pointer to **int32** | The ID of the balancing ledgerEntry. | [optional] 
 
 ## Methods

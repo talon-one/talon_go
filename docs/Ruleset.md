@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
+**StrikethroughRules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply for strikethrough. | [optional] 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
 **RbVersion** | Pointer to **string** | The version of the rulebuilder used to create this ruleset. | [optional] 
 **Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
@@ -116,6 +117,31 @@ HasRules returns a boolean if a field has been set.
 `func (o *Ruleset) SetRules(v []Rule)`
 
 SetRules gets a reference to the given []Rule and assigns it to the Rules field.
+
+### GetStrikethroughRules
+
+`func (o *Ruleset) GetStrikethroughRules() []Rule`
+
+GetStrikethroughRules returns the StrikethroughRules field if non-nil, zero value otherwise.
+
+### GetStrikethroughRulesOk
+
+`func (o *Ruleset) GetStrikethroughRulesOk() ([]Rule, bool)`
+
+GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStrikethroughRules
+
+`func (o *Ruleset) HasStrikethroughRules() bool`
+
+HasStrikethroughRules returns a boolean if a field has been set.
+
+### SetStrikethroughRules
+
+`func (o *Ruleset) SetStrikethroughRules(v []Rule)`
+
+SetStrikethroughRules gets a reference to the given []Rule and assigns it to the StrikethroughRules field.
 
 ### GetBindings
 

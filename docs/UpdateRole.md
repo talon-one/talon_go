@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the role. | [optional] 
 **Description** | Pointer to **string** | Description of the role. | [optional] 
-**Acl** | Pointer to **string** | Role Policy this should be a stringified blob of json. | [optional] 
+**Acl** | Pointer to **string** | The &#x60;Access Control List&#x60; json defining the role of the user. This represents the access control on the user level. | [optional] 
 **Members** | Pointer to **[]int32** | An array of user identifiers. | [optional] 
 
 ## Methods

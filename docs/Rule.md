@@ -4,13 +4,66 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **string** | A unique identifier for the rule. | [optional] 
+**ParentId** | Pointer to **string** | The ID of the rule that was copied to create this rule. | [optional] 
 **Title** | Pointer to **string** | A short description of the rule. | 
 **Description** | Pointer to **string** | A longer, more detailed description of the rule. | [optional] 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | [optional] 
 **Condition** | Pointer to [**[]interface{}**]([]interface{}.md) | A Talang expression that will be evaluated in the context of the given event. | 
+
 **Effects** | Pointer to [**[][]interface{}**]([][]interface{}].md) | An array of effectful Talang expressions in arrays that will be evaluated when a rule matches. | 
 
 ## Methods
+
+### GetId
+
+`func (o *Rule) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Rule) GetIdOk() (string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *Rule) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *Rule) SetId(v string)`
+
+SetId gets a reference to the given string and assigns it to the Id field.
+
+### GetParentId
+
+`func (o *Rule) GetParentId() string`
+
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
+
+### GetParentIdOk
+
+`func (o *Rule) GetParentIdOk() (string, bool)`
+
+GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasParentId
+
+`func (o *Rule) HasParentId() bool`
+
+HasParentId returns a boolean if a field has been set.
+
+### SetParentId
+
+`func (o *Rule) SetParentId(v string)`
+
+SetParentId gets a reference to the given string and assigns it to the ParentId field.
 
 ### GetTitle
 

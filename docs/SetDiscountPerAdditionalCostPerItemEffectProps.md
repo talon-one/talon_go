@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name/description of this discount. | 
+**Name** | Pointer to **string** | The name / description of this discount | 
 **AdditionalCostId** | Pointer to **int32** | The ID of the additional cost. | 
 **Value** | Pointer to **float32** | The total monetary value of the discount. | 
 **Position** | Pointer to **float32** | The index of the item in the cart item list containing the additional cost to be discounted. | 
-**SubPosition** | Pointer to **float32** | Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items) is enabled. Indicates which item the discount applies to for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
+**SubPosition** | Pointer to **float32** | Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. Indicates which item the discount applies to for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
 **AdditionalCost** | Pointer to **string** | The name of the additional cost. | 
 **DesiredValue** | Pointer to **float32** | Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations.  | [optional] 
 

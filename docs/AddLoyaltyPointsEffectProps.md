@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The reason of the point addition. | 
+**Name** | Pointer to **string** | The name / description of this loyalty point addition. | 
 **ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were added. | 
 **SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
 **Value** | Pointer to **float32** | The amount of points that were added. | 
@@ -15,7 +15,9 @@ Name | Type | Description | Notes
 **TransactionUUID** | Pointer to **string** | The identifier of this addition in the loyalty ledger. | 
 **CartItemPosition** | Pointer to **float32** | The index of the item in the cart items list on which the loyal points addition should be applied. | [optional] 
 **CartItemSubPosition** | Pointer to **float32** | The sub position is triggered when application flattening is enabled. It indicates to which item the loyalty points addition applies, for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
-**CardIdentifier** | Pointer to **string** | The card on which these points were added. | [optional] 
+**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
+**BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
 
 ## Methods
 
@@ -318,6 +320,56 @@ HasCardIdentifier returns a boolean if a field has been set.
 `func (o *AddLoyaltyPointsEffectProps) SetCardIdentifier(v string)`
 
 SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
+
+### GetBundleIndex
+
+`func (o *AddLoyaltyPointsEffectProps) GetBundleIndex() int32`
+
+GetBundleIndex returns the BundleIndex field if non-nil, zero value otherwise.
+
+### GetBundleIndexOk
+
+`func (o *AddLoyaltyPointsEffectProps) GetBundleIndexOk() (int32, bool)`
+
+GetBundleIndexOk returns a tuple with the BundleIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBundleIndex
+
+`func (o *AddLoyaltyPointsEffectProps) HasBundleIndex() bool`
+
+HasBundleIndex returns a boolean if a field has been set.
+
+### SetBundleIndex
+
+`func (o *AddLoyaltyPointsEffectProps) SetBundleIndex(v int32)`
+
+SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
+
+### GetBundleName
+
+`func (o *AddLoyaltyPointsEffectProps) GetBundleName() string`
+
+GetBundleName returns the BundleName field if non-nil, zero value otherwise.
+
+### GetBundleNameOk
+
+`func (o *AddLoyaltyPointsEffectProps) GetBundleNameOk() (string, bool)`
+
+GetBundleNameOk returns a tuple with the BundleName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBundleName
+
+`func (o *AddLoyaltyPointsEffectProps) HasBundleName() bool`
+
+HasBundleName returns a boolean if a field has been set.
+
+### SetBundleName
+
+`func (o *AddLoyaltyPointsEffectProps) SetBundleName(v string)`
+
+SetBundleName gets a reference to the given string and assigns it to the BundleName field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

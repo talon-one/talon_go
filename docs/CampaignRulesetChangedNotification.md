@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
 **OldRuleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
-**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | 
+**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
 
 ## Methods
 

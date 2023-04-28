@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. | 
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
+**IsPerItem** | Pointer to **bool** | Indicates if this effect is per item or not. | [optional] 
 **Name** | Pointer to **string** | The name of this effect. | 
 **Title** | Pointer to **string** | The title of this effect. | 
 **Payload** | Pointer to **string** | The JSON payload of this effect. | 
@@ -38,6 +39,31 @@ HasApplicationIds returns a boolean if a field has been set.
 `func (o *NewCustomEffect) SetApplicationIds(v []int32)`
 
 SetApplicationIds gets a reference to the given []int32 and assigns it to the ApplicationIds field.
+
+### GetIsPerItem
+
+`func (o *NewCustomEffect) GetIsPerItem() bool`
+
+GetIsPerItem returns the IsPerItem field if non-nil, zero value otherwise.
+
+### GetIsPerItemOk
+
+`func (o *NewCustomEffect) GetIsPerItemOk() (bool, bool)`
+
+GetIsPerItemOk returns a tuple with the IsPerItem field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsPerItem
+
+`func (o *NewCustomEffect) HasIsPerItem() bool`
+
+HasIsPerItem returns a boolean if a field has been set.
+
+### SetIsPerItem
+
+`func (o *NewCustomEffect) SetIsPerItem(v bool)`
+
+SetIsPerItem gets a reference to the given bool and assigns it to the IsPerItem field.
 
 ### GetName
 

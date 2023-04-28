@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
+**StrikethroughRules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply for strikethrough. | [optional] 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
 **RbVersion** | Pointer to **string** | The version of the rulebuilder used to create this ruleset. | [optional] 
 **Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
@@ -35,6 +36,31 @@ HasRules returns a boolean if a field has been set.
 `func (o *NewRuleset) SetRules(v []Rule)`
 
 SetRules gets a reference to the given []Rule and assigns it to the Rules field.
+
+### GetStrikethroughRules
+
+`func (o *NewRuleset) GetStrikethroughRules() []Rule`
+
+GetStrikethroughRules returns the StrikethroughRules field if non-nil, zero value otherwise.
+
+### GetStrikethroughRulesOk
+
+`func (o *NewRuleset) GetStrikethroughRulesOk() ([]Rule, bool)`
+
+GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStrikethroughRules
+
+`func (o *NewRuleset) HasStrikethroughRules() bool`
+
+HasStrikethroughRules returns a boolean if a field has been set.
+
+### SetStrikethroughRules
+
+`func (o *NewRuleset) SetStrikethroughRules(v []Rule)`
+
+SetStrikethroughRules gets a reference to the given []Rule and assigns it to the StrikethroughRules field.
 
 ### GetBindings
 

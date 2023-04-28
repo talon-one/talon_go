@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **string** | API url for this notification webhook. | 
-**Headers** | Pointer to **[]string** | List of API HTTP headers for this notification webhook. | 
+**Url** | Pointer to **string** | API URL for the given webhook-based notification. | 
+**Headers** | Pointer to **[]string** | List of API HTTP headers for the given webhook-based notification. | 
 
 ## Methods
 

@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **SignOutURL** | Pointer to **string** | Single Sign-Out URL. | [optional] 
 **MetadataURL** | Pointer to **string** | Metadata URL. | [optional] 
 **AudienceURI** | Pointer to **string** | The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.  | 
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 
 ## Methods
 

@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were originally added. | 
 **TransactionUUID** | Pointer to **string** | The identifier of &#39;deduction&#39; entry added to the ledger as the &#x60;addLoyaltyPoints&#x60; effect is rolled back. | 
 **CartItemPosition** | Pointer to **float32** | The index of the item in the cart items for which the loyalty points were rolled back. | [optional] 
-**CartItemSubPosition** | Pointer to **float32** | The sub-position is returned when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items) is enabled. It indicates to which item the loyalty points were rolled back, for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
-**CardIdentifier** | Pointer to **string** | The card on which these points were originally added. | [optional] 
+**CartItemSubPosition** | Pointer to **float32** | The sub-position is returned when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. It indicates to which item the loyalty points were rolled back, for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
+**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 
 ## Methods
 

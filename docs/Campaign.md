@@ -7,20 +7,20 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
-**UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | 
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp the campaign will become inactive. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to STATE_ENABLED]
-**ActiveRulesetId** | Pointer to **int32** | [ID of Ruleset](https://docs.talon.one/management-api/#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
+**ActiveRulesetId** | Pointer to **int32** | [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | 
 **Features** | Pointer to **[]string** | The features enabled in this campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
-**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/) for this campaign.  | 
-**CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups/) this campaign belongs to.  | [optional] 
+**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.  | 
+**CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.  | [optional] 
 **CouponRedemptionCount** | Pointer to **int32** | Number of coupons redeemed in the campaign. | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | Number of referral codes redeemed in the campaign. | [optional] 
 **DiscountCount** | Pointer to **float32** | Total amount of discounts redeemed in the campaign. | [optional] 
@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **RedeemedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points redeemed by rules in this campaign. | [optional] 
 **RedeemedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point redemption effects triggered by rules in this campaign. | [optional] 
 **CallApiEffectCount** | Pointer to **int32** | Total number of webhook triggered by rules in this campaign. | [optional] 
+**ReservecouponEffectCount** | Pointer to **int32** | Total number of reserve coupon effects triggered by rules in this campaign. | [optional] 
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received by this campaign. | [optional] 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign&#39;s property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates.  | [optional] 
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
@@ -817,6 +818,31 @@ HasCallApiEffectCount returns a boolean if a field has been set.
 `func (o *Campaign) SetCallApiEffectCount(v int32)`
 
 SetCallApiEffectCount gets a reference to the given int32 and assigns it to the CallApiEffectCount field.
+
+### GetReservecouponEffectCount
+
+`func (o *Campaign) GetReservecouponEffectCount() int32`
+
+GetReservecouponEffectCount returns the ReservecouponEffectCount field if non-nil, zero value otherwise.
+
+### GetReservecouponEffectCountOk
+
+`func (o *Campaign) GetReservecouponEffectCountOk() (int32, bool)`
+
+GetReservecouponEffectCountOk returns a tuple with the ReservecouponEffectCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReservecouponEffectCount
+
+`func (o *Campaign) HasReservecouponEffectCount() bool`
+
+HasReservecouponEffectCount returns a boolean if a field has been set.
+
+### SetReservecouponEffectCount
+
+`func (o *Campaign) SetReservecouponEffectCount(v int32)`
+
+SetReservecouponEffectCount gets a reference to the given int32 and assigns it to the ReservecouponEffectCount field.
 
 ### GetLastActivity
 

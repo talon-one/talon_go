@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**UserId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **ApplicationId** | Pointer to **int32** | ID of application associated with change. | [optional] 
 **Entity** | Pointer to **string** | API endpoint on which the change was initiated. | 
 **Old** | Pointer to [**map[string]interface{}**](.md) | Resource before the change occurred. | [optional] 
 **New** | Pointer to [**map[string]interface{}**](.md) | Resource after the change occurred. | [optional] 
+**ManagementKeyId** | Pointer to **int32** | ID of management key used to perform changes. | [optional] 
 
 ## Methods
 
@@ -188,6 +189,31 @@ HasNew returns a boolean if a field has been set.
 `func (o *Change) SetNew(v map[string]interface{})`
 
 SetNew gets a reference to the given map[string]interface{} and assigns it to the New field.
+
+### GetManagementKeyId
+
+`func (o *Change) GetManagementKeyId() int32`
+
+GetManagementKeyId returns the ManagementKeyId field if non-nil, zero value otherwise.
+
+### GetManagementKeyIdOk
+
+`func (o *Change) GetManagementKeyIdOk() (int32, bool)`
+
+GetManagementKeyIdOk returns a tuple with the ManagementKeyId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasManagementKeyId
+
+`func (o *Change) HasManagementKeyId() bool`
+
+HasManagementKeyId returns a boolean if a field has been set.
+
+### SetManagementKeyId
+
+`func (o *Change) SetManagementKeyId(v int32)`
+
+SetManagementKeyId gets a reference to the given int32 and assigns it to the ManagementKeyId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

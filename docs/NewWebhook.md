@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. | 
-**Title** | Pointer to **string** | Friendly title for this webhook. | 
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
+**Title** | Pointer to **string** | Name or title for this webhook. | 
 **Verb** | Pointer to **string** | API method for this webhook. | 
-**Url** | Pointer to **string** | API url (supports templating using parameters) for this webhook. | 
+**Url** | Pointer to **string** | API URL (supports templating using parameters) for this webhook. | 
 **Headers** | Pointer to **[]string** | List of API HTTP headers for this webhook. | 
 **Payload** | Pointer to **string** | API payload (supports templating using parameters) for this webhook. | [optional] 
 **Params** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | Array of template argument definitions. | 
-**Enabled** | Pointer to **bool** | Enables or disables webhook from showing in rule builder. | 
+**Enabled** | Pointer to **bool** | Enables or disables webhook from showing in the Rule Builder. | 
 
 ## Methods
 

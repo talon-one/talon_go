@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
 **OldCampaign** | Pointer to [**Campaign**](Campaign.md) |  | 
+**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
 
 ## Methods
 
@@ -58,6 +59,31 @@ HasOldCampaign returns a boolean if a field has been set.
 `func (o *CampaignEditedNotification) SetOldCampaign(v Campaign)`
 
 SetOldCampaign gets a reference to the given Campaign and assigns it to the OldCampaign field.
+
+### GetRuleset
+
+`func (o *CampaignEditedNotification) GetRuleset() Ruleset`
+
+GetRuleset returns the Ruleset field if non-nil, zero value otherwise.
+
+### GetRulesetOk
+
+`func (o *CampaignEditedNotification) GetRulesetOk() (Ruleset, bool)`
+
+GetRulesetOk returns a tuple with the Ruleset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRuleset
+
+`func (o *CampaignEditedNotification) HasRuleset() bool`
+
+HasRuleset returns a boolean if a field has been set.
+
+### SetRuleset
+
+`func (o *CampaignEditedNotification) SetRuleset(v Ruleset)`
+
+SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

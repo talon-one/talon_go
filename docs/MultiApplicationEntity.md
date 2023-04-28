@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationIds** | Pointer to **[]int32** | The IDs of the applications that are related to this entity. | 
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
 
 ## Methods
 

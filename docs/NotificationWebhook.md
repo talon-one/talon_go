@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was last modified. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
-**Url** | Pointer to **string** | API url for this notification webhook. | 
-**Headers** | Pointer to **[]string** | List of API HTTP headers for this notification webhook. | 
+**Url** | Pointer to **string** | API URL for the given webhook-based notification. | 
+**Headers** | Pointer to **[]string** | List of API HTTP headers for the given webhook-based notification. | 
 
 ## Methods
 

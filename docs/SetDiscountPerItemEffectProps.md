@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name of the discount. Contains a hashtag character indicating the index of the position of the item the discount applies to. It is identical to the value of the &#x60;position&#x60; property.  | 
 **Value** | Pointer to **float32** | The total monetary value of the discount. | 
 **Position** | Pointer to **float32** | The index of the item in the cart items list on which this discount should be applied. | 
-**SubPosition** | Pointer to **float32** | Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#flattened-cart-items) is enabled. Indicates which item the discount applies to for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
+**SubPosition** | Pointer to **float32** | Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. Indicates which item the discount applies to for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
 **DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 
 **Scope** | Pointer to **string** | The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item.  | [optional] 
 **TotalDiscount** | Pointer to **float32** | The total discount given if this effect is a result of a prorated discount. | [optional] 
 **DesiredTotalDiscount** | Pointer to **float32** | The original total discount to give if this effect is a result of a prorated discount. | [optional] 
 **BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
-**BundleName** | Pointer to **string** | The name of the bundle binding. | [optional] 
+**BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
 
 ## Methods
 
