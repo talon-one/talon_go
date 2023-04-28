@@ -130,17 +130,17 @@ func main() {
 	// Or alternatively, using the relevant setter in a later stage in the code
 	newCustomerSession.SetCartItems([]talon.CartItem{
 		{
-			Name:     "Pad Thai - Veggie",
+			Name:     talon.PtrString("Pad Thai - Veggie"),
 			Sku:      "pad-332",
 			Quantity: 1,
-			Price:    5.5,
+			Price:    talon.PtrFloat32(5.5),
 			Category: talon.PtrString("Noodles"),
 		},
 		{
-			Name:     "Chang",
+			Name:     talon.PtrString("Chang"),
 			Sku:      "chang-br-42",
 			Quantity: 1,
-			Price:    2.3,
+			Price:    talon.PtrFloat32(2.3),
 			Category: talon.PtrString("Beverages"),
 		},
 	})
