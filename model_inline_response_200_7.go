@@ -16,8 +16,8 @@ import (
 
 // InlineResponse2007 struct for InlineResponse2007
 type InlineResponse2007 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
-	Data            []Coupon `json:"data"`
+	TotalResultSize int32                 `json:"totalResultSize"`
+	Data            []NotificationWebhook `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2007) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2007) GetData() []Coupon {
+func (o *InlineResponse2007) GetData() []NotificationWebhook {
 	if o == nil {
-		var ret []Coupon
+		var ret []NotificationWebhook
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2007) GetData() []Coupon {
 }
 
 // SetData sets field value
-func (o *InlineResponse2007) SetData(v []Coupon) {
+func (o *InlineResponse2007) SetData(v []NotificationWebhook) {
 	o.Data = v
 }
 

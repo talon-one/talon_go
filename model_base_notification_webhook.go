@@ -27,6 +27,8 @@ type BaseNotificationWebhook struct {
 	Url string `json:"url"`
 	// List of API HTTP headers for the given webhook-based notification.
 	Headers []string `json:"headers"`
+	// Indicates whether the notification is activated.
+	Enabled *bool `json:"enabled,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -102,6 +104,39 @@ func (o *BaseNotificationWebhook) GetHeaders() []string {
 // SetHeaders sets field value
 func (o *BaseNotificationWebhook) SetHeaders(v []string) {
 	o.Headers = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *BaseNotificationWebhook) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationWebhook) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *BaseNotificationWebhook) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *BaseNotificationWebhook) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 type NullableBaseNotificationWebhook struct {

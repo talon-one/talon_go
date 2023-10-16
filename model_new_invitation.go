@@ -20,8 +20,10 @@ type NewInvitation struct {
 	Name  *string `json:"name,omitempty"`
 	Email string  `json:"email"`
 	// The `Access Control List` json defining the role of the user.  This represents the access control on the user level. Use one of the following: - normal user: `{\"Role\": 0}` - admin: `{\"Role\": 127}`
-	Acl string `json:"acl"`
-	// An array of roleIDs to assign the new user to.
+	Acl *string `json:"acl,omitempty"`
+	// An indication of whether the user has admin permissions. We recommend using this flag over using the `acl` with value `{\"Role\": 127}`.
+	IsAdmin *bool `json:"isAdmin,omitempty"`
+	// An array of role IDs to assign to the new user.
 	Roles *[]int32 `json:"roles,omitempty"`
 }
 
@@ -73,19 +75,70 @@ func (o *NewInvitation) SetEmail(v string) {
 	o.Email = v
 }
 
-// GetAcl returns the Acl field value
+// GetAcl returns the Acl field value if set, zero value otherwise.
 func (o *NewInvitation) GetAcl() string {
-	if o == nil {
+	if o == nil || o.Acl == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Acl
+	return *o.Acl
 }
 
-// SetAcl sets field value
+// GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewInvitation) GetAclOk() (string, bool) {
+	if o == nil || o.Acl == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Acl, true
+}
+
+// HasAcl returns a boolean if a field has been set.
+func (o *NewInvitation) HasAcl() bool {
+	if o != nil && o.Acl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAcl gets a reference to the given string and assigns it to the Acl field.
 func (o *NewInvitation) SetAcl(v string) {
-	o.Acl = v
+	o.Acl = &v
+}
+
+// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
+func (o *NewInvitation) GetIsAdmin() bool {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsAdmin
+}
+
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewInvitation) GetIsAdminOk() (bool, bool) {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (o *NewInvitation) HasIsAdmin() bool {
+	if o != nil && o.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+func (o *NewInvitation) SetIsAdmin(v bool) {
+	o.IsAdmin = &v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.

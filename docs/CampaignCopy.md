@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | [optional] 
+**EvaluationGroupId** | Pointer to **int32** | The ID of the campaign evaluation group the campaign belongs to. | [optional] 
 
 ## Methods
 
@@ -162,6 +163,31 @@ HasTags returns a boolean if a field has been set.
 `func (o *CampaignCopy) SetTags(v []string)`
 
 SetTags gets a reference to the given []string and assigns it to the Tags field.
+
+### GetEvaluationGroupId
+
+`func (o *CampaignCopy) GetEvaluationGroupId() int32`
+
+GetEvaluationGroupId returns the EvaluationGroupId field if non-nil, zero value otherwise.
+
+### GetEvaluationGroupIdOk
+
+`func (o *CampaignCopy) GetEvaluationGroupIdOk() (int32, bool)`
+
+GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluationGroupId
+
+`func (o *CampaignCopy) HasEvaluationGroupId() bool`
+
+HasEvaluationGroupId returns a boolean if a field has been set.
+
+### SetEvaluationGroupId
+
+`func (o *CampaignCopy) SetEvaluationGroupId(v int32)`
+
+SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

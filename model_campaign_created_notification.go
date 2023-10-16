@@ -16,15 +16,15 @@ import (
 
 // CampaignCreatedNotification A notification regarding a campaign that was created.
 type CampaignCreatedNotification struct {
-	Campaign Campaign         `json:"campaign"`
-	Ruleset  *Ruleset         `json:"ruleset,omitempty"`
-	Priority PriorityPosition `json:"priority"`
+	Campaign           CampaignStateNotification  `json:"campaign"`
+	Ruleset            *Ruleset                   `json:"ruleset,omitempty"`
+	EvaluationPosition CampaignEvaluationPosition `json:"evaluationPosition"`
 }
 
 // GetCampaign returns the Campaign field value
-func (o *CampaignCreatedNotification) GetCampaign() Campaign {
+func (o *CampaignCreatedNotification) GetCampaign() CampaignStateNotification {
 	if o == nil {
-		var ret Campaign
+		var ret CampaignStateNotification
 		return ret
 	}
 
@@ -32,7 +32,7 @@ func (o *CampaignCreatedNotification) GetCampaign() Campaign {
 }
 
 // SetCampaign sets field value
-func (o *CampaignCreatedNotification) SetCampaign(v Campaign) {
+func (o *CampaignCreatedNotification) SetCampaign(v CampaignStateNotification) {
 	o.Campaign = v
 }
 
@@ -69,19 +69,19 @@ func (o *CampaignCreatedNotification) SetRuleset(v Ruleset) {
 	o.Ruleset = &v
 }
 
-// GetPriority returns the Priority field value
-func (o *CampaignCreatedNotification) GetPriority() PriorityPosition {
+// GetEvaluationPosition returns the EvaluationPosition field value
+func (o *CampaignCreatedNotification) GetEvaluationPosition() CampaignEvaluationPosition {
 	if o == nil {
-		var ret PriorityPosition
+		var ret CampaignEvaluationPosition
 		return ret
 	}
 
-	return o.Priority
+	return o.EvaluationPosition
 }
 
-// SetPriority sets field value
-func (o *CampaignCreatedNotification) SetPriority(v PriorityPosition) {
-	o.Priority = v
+// SetEvaluationPosition sets field value
+func (o *CampaignCreatedNotification) SetEvaluationPosition(v CampaignEvaluationPosition) {
+	o.EvaluationPosition = v
 }
 
 type NullableCampaignCreatedNotification struct {

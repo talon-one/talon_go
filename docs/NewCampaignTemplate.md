@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **TemplateParams** | Pointer to [**[]CampaignTemplateParams**](CampaignTemplateParams.md) | Fields which can be used to replace values in a rule. | [optional] 
 **CampaignCollections** | Pointer to [**[]CampaignTemplateCollection**](CampaignTemplateCollection.md) | The campaign collections from the blueprint campaign for the template. | [optional] 
 **DefaultCampaignGroupId** | Pointer to **int32** | The default campaign group ID. | [optional] 
+**CampaignType** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [default to CAMPAIGN_TYPE_ADVANCED]
 
 ## Methods
 
@@ -370,6 +371,31 @@ HasDefaultCampaignGroupId returns a boolean if a field has been set.
 `func (o *NewCampaignTemplate) SetDefaultCampaignGroupId(v int32)`
 
 SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
+
+### GetCampaignType
+
+`func (o *NewCampaignTemplate) GetCampaignType() string`
+
+GetCampaignType returns the CampaignType field if non-nil, zero value otherwise.
+
+### GetCampaignTypeOk
+
+`func (o *NewCampaignTemplate) GetCampaignTypeOk() (string, bool)`
+
+GetCampaignTypeOk returns a tuple with the CampaignType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignType
+
+`func (o *NewCampaignTemplate) HasCampaignType() bool`
+
+HasCampaignType returns a boolean if a field has been set.
+
+### SetCampaignType
+
+`func (o *NewCampaignTemplate) SetCampaignType(v string)`
+
+SetCampaignType gets a reference to the given string and assigns it to the CampaignType field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

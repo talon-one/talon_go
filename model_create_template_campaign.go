@@ -28,10 +28,14 @@ type CreateTemplateCampaign struct {
 	TemplateParamValues *[]Binding `json:"templateParamValues,omitempty"`
 	// Limits for this Campaign. If the Campaign Template or Application define default values for the same limits, they will be overridden.
 	LimitOverrides *[]LimitConfig `json:"limitOverrides,omitempty"`
-	// The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.
+	// The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to.
 	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
 	// A list of tags for the campaign. If the campaign template has tags, they will be overridden by this list.
 	Tags *[]string `json:"tags,omitempty"`
+	// The ID of the campaign evaluation group the campaign belongs to.
+	EvaluationGroupId *int32 `json:"evaluationGroupId,omitempty"`
+	// A list of store IDs that are linked to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.
+	LinkedStoreIds *[]int32 `json:"linkedStoreIds,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -260,6 +264,72 @@ func (o *CreateTemplateCampaign) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *CreateTemplateCampaign) SetTags(v []string) {
 	o.Tags = &v
+}
+
+// GetEvaluationGroupId returns the EvaluationGroupId field value if set, zero value otherwise.
+func (o *CreateTemplateCampaign) GetEvaluationGroupId() int32 {
+	if o == nil || o.EvaluationGroupId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.EvaluationGroupId
+}
+
+// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateTemplateCampaign) GetEvaluationGroupIdOk() (int32, bool) {
+	if o == nil || o.EvaluationGroupId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.EvaluationGroupId, true
+}
+
+// HasEvaluationGroupId returns a boolean if a field has been set.
+func (o *CreateTemplateCampaign) HasEvaluationGroupId() bool {
+	if o != nil && o.EvaluationGroupId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
+func (o *CreateTemplateCampaign) SetEvaluationGroupId(v int32) {
+	o.EvaluationGroupId = &v
+}
+
+// GetLinkedStoreIds returns the LinkedStoreIds field value if set, zero value otherwise.
+func (o *CreateTemplateCampaign) GetLinkedStoreIds() []int32 {
+	if o == nil || o.LinkedStoreIds == nil {
+		var ret []int32
+		return ret
+	}
+	return *o.LinkedStoreIds
+}
+
+// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateTemplateCampaign) GetLinkedStoreIdsOk() ([]int32, bool) {
+	if o == nil || o.LinkedStoreIds == nil {
+		var ret []int32
+		return ret, false
+	}
+	return *o.LinkedStoreIds, true
+}
+
+// HasLinkedStoreIds returns a boolean if a field has been set.
+func (o *CreateTemplateCampaign) HasLinkedStoreIds() bool {
+	if o != nil && o.LinkedStoreIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
+func (o *CreateTemplateCampaign) SetLinkedStoreIds(v []int32) {
+	o.LinkedStoreIds = &v
 }
 
 type NullableCreateTemplateCampaign struct {

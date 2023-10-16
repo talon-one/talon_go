@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
 **TotalResultSize** | Pointer to **int32** |  | [optional] 
-**Data** | Pointer to [**[]Collection**](Collection.md) |  | 
+**Data** | Pointer to [**[]CollectionWithoutPayload**](CollectionWithoutPayload.md) |  | 
 
 ## Methods
 
@@ -62,13 +62,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20017) GetData() []Collection`
+`func (o *InlineResponse20017) GetData() []CollectionWithoutPayload`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20017) GetDataOk() ([]Collection, bool)`
+`func (o *InlineResponse20017) GetDataOk() ([]CollectionWithoutPayload, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +81,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20017) SetData(v []Collection)`
+`func (o *InlineResponse20017) SetData(v []CollectionWithoutPayload)`
 
-SetData gets a reference to the given []Collection and assigns it to the Data field.
+SetData gets a reference to the given []CollectionWithoutPayload and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

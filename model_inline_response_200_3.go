@@ -16,29 +16,29 @@ import (
 
 // InlineResponse2003 struct for InlineResponse2003
 type InlineResponse2003 struct {
-	TotalResultSize int32         `json:"totalResultSize"`
-	Data            []Application `json:"data"`
+	HasMore bool                                  `json:"hasMore"`
+	Data    []CardLedgerPointsEntryIntegrationApi `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2003) GetTotalResultSize() int32 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse2003) GetHasMore() bool {
 	if o == nil {
-		var ret int32
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2003) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse2003) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2003) GetData() []Application {
+func (o *InlineResponse2003) GetData() []CardLedgerPointsEntryIntegrationApi {
 	if o == nil {
-		var ret []Application
+		var ret []CardLedgerPointsEntryIntegrationApi
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2003) GetData() []Application {
 }
 
 // SetData sets field value
-func (o *InlineResponse2003) SetData(v []Application) {
+func (o *InlineResponse2003) SetData(v []CardLedgerPointsEntryIntegrationApi) {
 	o.Data = v
 }
 

@@ -16,15 +16,15 @@ import (
 
 // CampaignEditedNotification A notification regarding a campaign which was edited.
 type CampaignEditedNotification struct {
-	Campaign    Campaign `json:"campaign"`
-	OldCampaign Campaign `json:"oldCampaign"`
-	Ruleset     *Ruleset `json:"ruleset,omitempty"`
+	Campaign    CampaignStateNotification `json:"campaign"`
+	OldCampaign CampaignStateNotification `json:"oldCampaign"`
+	Ruleset     *Ruleset                  `json:"ruleset,omitempty"`
 }
 
 // GetCampaign returns the Campaign field value
-func (o *CampaignEditedNotification) GetCampaign() Campaign {
+func (o *CampaignEditedNotification) GetCampaign() CampaignStateNotification {
 	if o == nil {
-		var ret Campaign
+		var ret CampaignStateNotification
 		return ret
 	}
 
@@ -32,14 +32,14 @@ func (o *CampaignEditedNotification) GetCampaign() Campaign {
 }
 
 // SetCampaign sets field value
-func (o *CampaignEditedNotification) SetCampaign(v Campaign) {
+func (o *CampaignEditedNotification) SetCampaign(v CampaignStateNotification) {
 	o.Campaign = v
 }
 
 // GetOldCampaign returns the OldCampaign field value
-func (o *CampaignEditedNotification) GetOldCampaign() Campaign {
+func (o *CampaignEditedNotification) GetOldCampaign() CampaignStateNotification {
 	if o == nil {
-		var ret Campaign
+		var ret CampaignStateNotification
 		return ret
 	}
 
@@ -47,7 +47,7 @@ func (o *CampaignEditedNotification) GetOldCampaign() Campaign {
 }
 
 // SetOldCampaign sets field value
-func (o *CampaignEditedNotification) SetOldCampaign(v Campaign) {
+func (o *CampaignEditedNotification) SetOldCampaign(v CampaignStateNotification) {
 	o.OldCampaign = v
 }
 

@@ -16,7 +16,7 @@ import (
 
 // CampaignStateChangedNotification A notification regarding a campaign whose state changed.
 type CampaignStateChangedNotification struct {
-	Campaign Campaign `json:"campaign"`
+	Campaign CampaignForNotification `json:"campaign"`
 	// The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'draft', 'archived']
 	OldState string `json:"oldState"`
 	// The campaign's new state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'draft', 'archived']
@@ -25,9 +25,9 @@ type CampaignStateChangedNotification struct {
 }
 
 // GetCampaign returns the Campaign field value
-func (o *CampaignStateChangedNotification) GetCampaign() Campaign {
+func (o *CampaignStateChangedNotification) GetCampaign() CampaignForNotification {
 	if o == nil {
-		var ret Campaign
+		var ret CampaignForNotification
 		return ret
 	}
 
@@ -35,7 +35,7 @@ func (o *CampaignStateChangedNotification) GetCampaign() Campaign {
 }
 
 // SetCampaign sets field value
-func (o *CampaignStateChangedNotification) SetCampaign(v Campaign) {
+func (o *CampaignStateChangedNotification) SetCampaign(v CampaignForNotification) {
 	o.Campaign = v
 }
 

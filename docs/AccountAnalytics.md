@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **Webhooks** | Pointer to **int32** | Total number of webhooks in the account. | 
 **LoyaltyPrograms** | Pointer to **int32** | Total number of all loyalty programs in the account. | 
 **LiveLoyaltyPrograms** | Pointer to **int32** | Total number of live loyalty programs in the account. | 
+**LastUpdatedAt** | Pointer to [**time.Time**](time.Time.md) | The point in time when the analytics numbers were updated last. | 
 
 ## Methods
 
@@ -500,6 +501,31 @@ HasLiveLoyaltyPrograms returns a boolean if a field has been set.
 `func (o *AccountAnalytics) SetLiveLoyaltyPrograms(v int32)`
 
 SetLiveLoyaltyPrograms gets a reference to the given int32 and assigns it to the LiveLoyaltyPrograms field.
+
+### GetLastUpdatedAt
+
+`func (o *AccountAnalytics) GetLastUpdatedAt() time.Time`
+
+GetLastUpdatedAt returns the LastUpdatedAt field if non-nil, zero value otherwise.
+
+### GetLastUpdatedAtOk
+
+`func (o *AccountAnalytics) GetLastUpdatedAtOk() (time.Time, bool)`
+
+GetLastUpdatedAtOk returns a tuple with the LastUpdatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastUpdatedAt
+
+`func (o *AccountAnalytics) HasLastUpdatedAt() bool`
+
+HasLastUpdatedAt returns a boolean if a field has been set.
+
+### SetLastUpdatedAt
+
+`func (o *AccountAnalytics) SetLastUpdatedAt(v time.Time)`
+
+SetLastUpdatedAt gets a reference to the given time.Time and assigns it to the LastUpdatedAt field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

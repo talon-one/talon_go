@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **RecipientIntegrationId** | Pointer to **string** | The integration ID for this coupon&#39;s beneficiary&#39;s profile. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 **IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
+**ImplicitlyReserved** | Pointer to **bool** | An indication of whether the coupon is implicitly reserved for all customers. | [optional] 
 
 ## Methods
 
@@ -240,6 +241,31 @@ HasIsReservationMandatory returns a boolean if a field has been set.
 `func (o *UpdateCoupon) SetIsReservationMandatory(v bool)`
 
 SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
+
+### GetImplicitlyReserved
+
+`func (o *UpdateCoupon) GetImplicitlyReserved() bool`
+
+GetImplicitlyReserved returns the ImplicitlyReserved field if non-nil, zero value otherwise.
+
+### GetImplicitlyReservedOk
+
+`func (o *UpdateCoupon) GetImplicitlyReservedOk() (bool, bool)`
+
+GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasImplicitlyReserved
+
+`func (o *UpdateCoupon) HasImplicitlyReserved() bool`
+
+HasImplicitlyReserved returns a boolean if a field has been set.
+
+### SetImplicitlyReserved
+
+`func (o *UpdateCoupon) SetImplicitlyReserved(v bool)`
+
+SetImplicitlyReserved gets a reference to the given bool and assigns it to the ImplicitlyReserved field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 
-**State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities#customer-session).  | 
+**State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  | 
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
 **Discounts** | Pointer to **map[string]float32** | **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the &#x60;totalDiscounts&#x60; property instead.  | 
 **TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store for this session. | [optional] 
 
 ## Methods
 
@@ -370,6 +371,31 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *ApplicationSession) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
+### GetStoreIntegrationId
+
+`func (o *ApplicationSession) GetStoreIntegrationId() string`
+
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
+
+### GetStoreIntegrationIdOk
+
+`func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool)`
+
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreIntegrationId
+
+`func (o *ApplicationSession) HasStoreIntegrationId() bool`
+
+HasStoreIntegrationId returns a boolean if a field has been set.
+
+### SetStoreIntegrationId
+
+`func (o *ApplicationSession) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

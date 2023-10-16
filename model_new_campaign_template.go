@@ -42,6 +42,8 @@ type NewCampaignTemplate struct {
 	CampaignCollections *[]CampaignTemplateCollection `json:"campaignCollections,omitempty"`
 	// The default campaign group ID.
 	DefaultCampaignGroupId *int32 `json:"defaultCampaignGroupId,omitempty"`
+	// The campaign type. Possible type values:   - `cartItem`: Type of campaign that can apply effects only to cart items.   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
+	CampaignType string `json:"campaignType"`
 }
 
 // GetName returns the Name field value
@@ -432,6 +434,21 @@ func (o *NewCampaignTemplate) HasDefaultCampaignGroupId() bool {
 // SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
 func (o *NewCampaignTemplate) SetDefaultCampaignGroupId(v int32) {
 	o.DefaultCampaignGroupId = &v
+}
+
+// GetCampaignType returns the CampaignType field value
+func (o *NewCampaignTemplate) GetCampaignType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CampaignType
+}
+
+// SetCampaignType sets field value
+func (o *NewCampaignTemplate) SetCampaignType(v string) {
+	o.CampaignType = v
 }
 
 type NullableNewCampaignTemplate struct {

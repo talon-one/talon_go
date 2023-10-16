@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**CampaignGroupID** | Pointer to **int32** | The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/managing-campaign-groups) this role was created for.  | [optional] 
+**CampaignGroupID** | Pointer to **int32** | The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this role was created for.  | [optional] 
 **Name** | Pointer to **string** | Name of the role. | 
 **Description** | Pointer to **string** | Description of the role. | [optional] 
 **Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role. | [optional] 

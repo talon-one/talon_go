@@ -17,6 +17,8 @@ import (
 // BaseNotificationEntity struct for BaseNotificationEntity
 type BaseNotificationEntity struct {
 	Policy map[string]interface{} `json:"policy"`
+	// Indicates whether the notification is activated.
+	Enabled *bool `json:"enabled,omitempty"`
 }
 
 // GetPolicy returns the Policy field value
@@ -32,6 +34,39 @@ func (o *BaseNotificationEntity) GetPolicy() map[string]interface{} {
 // SetPolicy sets field value
 func (o *BaseNotificationEntity) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *BaseNotificationEntity) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationEntity) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *BaseNotificationEntity) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *BaseNotificationEntity) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 type NullableBaseNotificationEntity struct {

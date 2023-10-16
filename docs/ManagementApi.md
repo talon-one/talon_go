@@ -32,12 +32,14 @@ Method | HTTP request | Description
 [**ExportCollectionItems**](ManagementApi.md#ExportCollectionItems) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export a collection&#39;s items
 [**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export coupons
 [**ExportCustomerSessions**](ManagementApi.md#ExportCustomerSessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export customer sessions
+[**ExportCustomersTiers**](ManagementApi.md#ExportCustomersTiers) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customers_tiers | Export customers&#39; tier data
 [**ExportEffects**](ManagementApi.md#ExportEffects) | **Get** /v1/applications/{applicationId}/export_effects | Export triggered effects
 [**ExportLoyaltyBalance**](ManagementApi.md#ExportLoyaltyBalance) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customer_balance | Export customer loyalty balance to CSV
 [**ExportLoyaltyBalances**](ManagementApi.md#ExportLoyaltyBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customer_balances | Export customer loyalty balances
 [**ExportLoyaltyCardBalances**](ManagementApi.md#ExportLoyaltyCardBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_card_balances | Export all card transaction logs
 [**ExportLoyaltyCardLedger**](ManagementApi.md#ExportLoyaltyCardLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log | Export card&#39;s ledger log
 [**ExportLoyaltyLedger**](ManagementApi.md#ExportLoyaltyLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer&#39;s transaction logs
+[**ExportPoolGiveaways**](ManagementApi.md#ExportPoolGiveaways) | **Get** /v1/giveaways/pools/{poolId}/export | Export giveaway codes of a giveaway pool
 [**ExportReferrals**](ManagementApi.md#ExportReferrals) | **Get** /v1/applications/{applicationId}/export_referrals | Export referrals
 [**GetAccessLogsWithoutTotalCount**](ManagementApi.md#GetAccessLogsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for Application
 [**GetAccount**](ManagementApi.md#GetAccount) | **Get** /v1/accounts/{accountId} | Get account details
@@ -103,14 +105,18 @@ Method | HTTP request | Description
 [**ImportCollection**](ManagementApi.md#ImportCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import | Import data in existing collection
 [**ImportCoupons**](ManagementApi.md#ImportCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons
 [**ImportLoyaltyCards**](ManagementApi.md#ImportLoyaltyCards) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards
+[**ImportLoyaltyCustomersTiers**](ManagementApi.md#ImportLoyaltyCustomersTiers) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers | Import customers into loyalty tiers
 [**ImportLoyaltyPoints**](ManagementApi.md#ImportLoyaltyPoints) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_points | Import loyalty points
 [**ImportPoolGiveaways**](ManagementApi.md#ImportPoolGiveaways) | **Post** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool
 [**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals
 [**ListAccountCollections**](ManagementApi.md#ListAccountCollections) | **Get** /v1/collections | List collections in account
+[**ListCatalogItems**](ManagementApi.md#ListCatalogItems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in application
+[**NotificationActivation**](ManagementApi.md#NotificationActivation) | **Put** /v1/notifications/{notificationId}/activation | Activate or deactivate notification
 [**PostAddedDeductedPointsNotification**](ManagementApi.md#PostAddedDeductedPointsNotification) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/notifications/added_deducted_points | Create notification about added or deducted loyalty points
-[**PostCatalogsStrikethroughNotification**](ManagementApi.md#PostCatalogsStrikethroughNotification) | **Post** /v1/catalogs/{applicationId}/notifications/strikethrough | Create strikethrough notification
+[**PostCatalogsStrikethroughNotification**](ManagementApi.md#PostCatalogsStrikethroughNotification) | **Post** /v1/applications/{applicationId}/catalogs/notifications/strikethrough | Create strikethrough notification
+[**PostPendingPointsNotification**](ManagementApi.md#PostPendingPointsNotification) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/notifications/pending_points | Create notification about pending loyalty points
 [**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
 [**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | List coupons that match the given attributes (without total count)
@@ -223,7 +229,7 @@ Name | Type | Description  | Notes
 
 ## CopyCampaignToApplications
 
-> InlineResponse2004 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
+> InlineResponse2006 CopyCampaignToApplications(ctx, applicationId, campaignId).Body(body).Execute()
 
 Copy the campaign into the specified Application
 
@@ -251,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -476,7 +482,7 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse2007 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2009 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons
 
@@ -505,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -569,7 +575,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse2007 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2009 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons for multiple recipients
 
@@ -598,7 +604,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](inline_response_200_7.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -1286,7 +1292,7 @@ Name | Type | Description  | Notes
 
 ## ExportCoupons
 
-> string ExportCoupons(ctx, applicationId).CampaignId(campaignId).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).DateFormat(dateFormat).CampaignState(campaignState).Execute()
+> string ExportCoupons(ctx, applicationId).CampaignId(campaignId).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).DateFormat(dateFormat).CampaignState(campaignState).ValuesOnly(valuesOnly).Execute()
 
 Export coupons
 
@@ -1316,11 +1322,12 @@ Name | Type | Description  | Notes
  **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
- **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field | 
+ **recipientIntegrationId** | **string** | Filter results by match with a profile id specified in the coupon&#39;s RecipientIntegrationId field. | 
  **batchId** | **string** | Filter results by batches of coupons | 
- **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code | [default to false]
+ **exactMatch** | **bool** | Filter results to an exact case-insensitive matching against the coupon code. | [default to false]
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
+ **valuesOnly** | **bool** | Filter results to only return the coupon codes (&#x60;value&#x60; column) without the associated coupon data. | [default to false]
 
 ### Return type
 
@@ -1369,6 +1376,51 @@ Name | Type | Description  | Notes
  **profileIntegrationId** | **string** | Only return sessions for the customer that matches this customer integration ID. | 
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
  **customerSessionState** | **string** | Filter results by state. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportCustomersTiers
+
+> string ExportCustomersTiers(ctx, loyaltyProgramId).SubledgerIds(subledgerIds).TierNames(tierNames).Execute()
+
+Export customers' tier data
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **string** | The identifier for the loyalty program. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportCustomersTiersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **subledgerIds** | [**[]string**](string.md) | An array of subledgers IDs to filter the export by. | 
+ **tierNames** | [**[]string**](string.md) | An array of tier names to filter the export by. | 
 
 ### Return type
 
@@ -1459,7 +1511,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyBalanceReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
 
 ### Return type
 
@@ -1503,7 +1555,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyBalancesReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
 
 ### Return type
 
@@ -1547,7 +1599,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyCardBalancesR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
 
 ### Return type
 
@@ -1663,6 +1715,51 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ExportPoolGiveaways
+
+> string ExportPoolGiveaways(ctx, poolId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+
+Export giveaway codes of a giveaway pool
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**poolId** | **int32** | The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportPoolGiveawaysRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createdBefore** | **time.Time** | Timestamp that filters the results to only contain giveaways created before this date. Must be an RFC3339 timestamp string. | 
+ **createdAfter** | **time.Time** | Timestamp that filters the results to only contain giveaways created after this date. Must be an RFC3339 timestamp string. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ExportReferrals
 
 > string ExportReferrals(ctx, applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).BatchId(batchId).DateFormat(dateFormat).Execute()
@@ -1715,7 +1812,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20018 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20020 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get access logs for Application
 
@@ -1743,12 +1840,12 @@ Name | Type | Description  | Notes
  **method** | **string** | Only return results where the request method matches the given regular expression. | 
  **status** | **string** | Filter results by HTTP status codes. | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20020**](inline_response_200_20.md)
 
 ### Authorization
 
@@ -1938,7 +2035,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20032 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20035 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List additional costs
 
@@ -1956,12 +2053,12 @@ Other parameters are passed through a pointer to a apiGetAdditionalCostsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20032**](inline_response_200_32.md)
+[**InlineResponse20035**](inline_response_200_35.md)
 
 ### Authorization
 
@@ -1979,7 +2076,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAccessLogs
 
-> InlineResponse20019 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20021 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List access logs
 
@@ -2002,12 +2099,12 @@ Name | Type | Description  | Notes
  **method** | **string** | Only return results where the request method matches the given regular expression. | 
  **status** | **string** | Filter results by HTTP status codes. | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20021**](inline_response_200_21.md)
 
 ### Authorization
 
@@ -2025,7 +2122,7 @@ Name | Type | Description  | Notes
 
 ## GetAllRoles
 
-> InlineResponse20040 GetAllRoles(ctx).Execute()
+> InlineResponse20043 GetAllRoles(ctx).Execute()
 
 List roles
 
@@ -2042,7 +2139,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Return type
 
-[**InlineResponse20040**](inline_response_200_40.md)
+[**InlineResponse20043**](inline_response_200_43.md)
 
 ### Authorization
 
@@ -2191,7 +2288,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20030 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20032 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List friends referred by customer profile
 
@@ -2216,13 +2313,13 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20030**](inline_response_200_30.md)
+[**InlineResponse20032**](inline_response_200_32.md)
 
 ### Authorization
 
@@ -2240,7 +2337,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20021 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20023 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application's customers
 
@@ -2264,12 +2361,12 @@ Name | Type | Description  | Notes
 
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20021**](inline_response_200_21.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
@@ -2287,7 +2384,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20022 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20024 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application customers matching the given attributes
 
@@ -2311,12 +2408,12 @@ Name | Type | Description  | Notes
 
  **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
@@ -2334,7 +2431,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20028 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20030 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Applications event types
 
@@ -2357,12 +2454,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20028**](inline_response_200_28.md)
+[**InlineResponse20030**](inline_response_200_30.md)
 
 ### Authorization
 
@@ -2380,7 +2477,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20027 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
+> InlineResponse20029 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
 List Applications events
 
@@ -2403,7 +2500,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **type_** | **string** | Comma-separated list of types by which to filter events. Must be exact match(es). | 
  **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -2419,7 +2516,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20029**](inline_response_200_29.md)
 
 ### Authorization
 
@@ -2482,7 +2579,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20026 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
+> InlineResponse20028 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
 
 List Application sessions
 
@@ -2505,7 +2602,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **profile** | **string** | Profile integration ID filter for sessions. Must be exact match. | 
  **state** | **string** | Filter by sessions with this state. Must be exact match. | 
@@ -2517,7 +2614,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
@@ -2535,7 +2632,7 @@ Name | Type | Description  | Notes
 
 ## GetApplications
 
-> InlineResponse2003 GetApplications(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2005 GetApplications(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Applications
 
@@ -2553,12 +2650,12 @@ Other parameters are passed through a pointer to a apiGetApplicationsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -2619,7 +2716,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20031 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
+> InlineResponse20033 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
 
 List custom attributes
 
@@ -2637,13 +2734,13 @@ Other parameters are passed through a pointer to a apiGetAttributesRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **entity** | **string** | Returned attributes will be filtered by supplied entity. | 
 
 ### Return type
 
-[**InlineResponse20031**](inline_response_200_31.md)
+[**InlineResponse20033**](inline_response_200_33.md)
 
 ### Authorization
 
@@ -2661,7 +2758,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20029 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20031 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List audiences
 
@@ -2679,13 +2776,13 @@ Other parameters are passed through a pointer to a apiGetAudiencesRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20029**](inline_response_200_29.md)
+[**InlineResponse20031**](inline_response_200_31.md)
 
 ### Authorization
 
@@ -2748,7 +2845,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20020 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
+> InlineResponse20022 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
 
 Get analytics of campaigns
 
@@ -2778,7 +2875,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](inline_response_200_20.md)
+[**InlineResponse20022**](inline_response_200_22.md)
 
 ### Authorization
 
@@ -2796,7 +2893,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignByAttributes
 
-> InlineResponse2004 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
+> InlineResponse2006 GetCampaignByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Execute()
 
 List campaigns that match the given attributes
 
@@ -2820,13 +2917,13 @@ Name | Type | Description  | Notes
 
  **body** | [**CampaignSearch**](CampaignSearch.md) | body | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -2844,7 +2941,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignTemplates
 
-> InlineResponse20010 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
+> InlineResponse20012 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
 
 List campaign templates
 
@@ -2862,7 +2959,7 @@ Other parameters are passed through a pointer to a apiGetCampaignTemplatesReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **state** | **string** | Filter results by the state of the campaign template. | 
  **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign template. | 
@@ -2871,7 +2968,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -2889,7 +2986,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaigns
 
-> InlineResponse2004 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).TemplateId(templateId).Execute()
+> InlineResponse2006 GetCampaigns(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).CampaignState(campaignState).Name(name).Tags(tags).CreatedBefore(createdBefore).CreatedAfter(createdAfter).CampaignGroupId(campaignGroupId).TemplateId(templateId).StoreId(storeId).Execute()
 
 List campaigns
 
@@ -2912,19 +3009,20 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
  **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign. | 
  **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
  **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **campaignGroupId** | **int32** | Filter results to campaigns owned by the specified campaign group ID. | 
+ **campaignGroupId** | **int32** | Filter results to campaigns owned by the specified campaign access group ID. | 
  **templateId** | **int32** | The ID of the Campaign Template this Campaign was created from. | 
+ **storeId** | **int32** | Filter results to campaigns linked to the specified store ID. | 
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 
@@ -2942,7 +3040,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20038 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
+> InlineResponse20041 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
 
 Get audit logs for an account
 
@@ -2960,7 +3058,7 @@ Other parameters are passed through a pointer to a apiGetChangesRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **entityPath** | **string** | Filter results on a case insensitive matching of the url path of the entity | 
@@ -2973,7 +3071,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20038**](inline_response_200_38.md)
+[**InlineResponse20041**](inline_response_200_41.md)
 
 ### Authorization
 
@@ -3038,7 +3136,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20016 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20018 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
 
 Get collection items
 
@@ -3061,11 +3159,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -3083,7 +3181,7 @@ Name | Type | Description  | Notes
 
 ## GetCouponsWithoutTotalCount
 
-> InlineResponse2008 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
+> InlineResponse20010 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
 
 List coupons
 
@@ -3108,7 +3206,7 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3122,7 +3220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -3167,7 +3265,7 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
@@ -3189,7 +3287,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20025 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
+> InlineResponse20027 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
 Get Activity Reports for Application Customers
 
@@ -3214,7 +3312,7 @@ Name | Type | Description  | Notes
  **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **name** | **string** | Only return reports matching the customer name | 
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
@@ -3223,7 +3321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
@@ -3266,7 +3364,7 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
@@ -3332,7 +3430,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20024 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
+> InlineResponse20026 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
 
 List customer profiles
 
@@ -3350,12 +3448,12 @@ Other parameters are passed through a pointer to a apiGetCustomerProfilesRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sandbox** | **bool** | Indicates whether you are pointing to a sandbox or Live customer. | [default to false]
 
 ### Return type
 
-[**InlineResponse20024**](inline_response_200_24.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
@@ -3373,7 +3471,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20023 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
+> InlineResponse20025 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
 
 List customer profiles matching the given attributes
 
@@ -3392,12 +3490,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sandbox** | **bool** | Indicates whether you are pointing to a sandbox or Live customer. | [default to false]
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20025**](inline_response_200_25.md)
 
 ### Authorization
 
@@ -3415,7 +3513,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20036 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20039 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List event types
 
@@ -3435,12 +3533,12 @@ Name | Type | Description  | Notes
  **name** | **string** | Filter results to event types with the given name. This parameter implies &#x60;includeOldVersions&#x60;. | 
  **includeOldVersions** | **bool** | Include all versions of every event type. | [default to false]
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20036**](inline_response_200_36.md)
+[**InlineResponse20039**](inline_response_200_39.md)
 
 ### Authorization
 
@@ -3458,7 +3556,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20039 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
+> InlineResponse20042 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
 Get exports
 
@@ -3476,14 +3574,14 @@ Other parameters are passed through a pointer to a apiGetExportsRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **campaignId** | **int32** | Filter by the campaign ID on which the limit counters are used. | 
  **entity** | **string** | The name of the entity type that was exported. | 
 
 ### Return type
 
-[**InlineResponse20039**](inline_response_200_39.md)
+[**InlineResponse20042**](inline_response_200_42.md)
 
 ### Authorization
 
@@ -3546,7 +3644,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactionLogs
 
-> InlineResponse20014 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
+> InlineResponse20016 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
 
 List card's transactions
 
@@ -3573,12 +3671,12 @@ Name | Type | Description  | Notes
  **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
@@ -3596,7 +3694,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCards
 
-> InlineResponse20013 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
+> InlineResponse20015 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
 
 List loyalty cards
 
@@ -3619,14 +3717,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **identifier** | **string** | Optional query parameter to search cards by identifier. | 
  **profileId** | **int32** | Filter by the profile ID. | 
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
@@ -3732,7 +3830,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramTransactions
 
-> InlineResponse20012 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20014 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List loyalty program transactions
 
@@ -3759,11 +3857,11 @@ Name | Type | Description  | Notes
  **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **pageSize** | **int32** | The number of items in this response. | [default to 50]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20014**](inline_response_200_14.md)
 
 ### Authorization
 
@@ -3781,7 +3879,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse20011 GetLoyaltyPrograms(ctx).Execute()
+> InlineResponse20013 GetLoyaltyPrograms(ctx).Execute()
 
 List loyalty programs
 
@@ -3798,7 +3896,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -3904,7 +4002,7 @@ Name | Type | Description  | Notes
 
 ## GetNotificationWebhooks
 
-> InlineResponse2005 GetNotificationWebhooks(ctx, applicationId).Execute()
+> InlineResponse2007 GetNotificationWebhooks(ctx, applicationId).Execute()
 
 List notifications about campaign-related changes
 
@@ -3929,7 +4027,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](inline_response_200_5.md)
+[**InlineResponse2007**](inline_response_200_7.md)
 
 ### Authorization
 
@@ -3947,7 +4045,7 @@ Name | Type | Description  | Notes
 
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse2009 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
+> InlineResponse20011 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
 List referrals
 
@@ -3972,7 +4070,7 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **code** | **string** | Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -3983,7 +4081,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse20011**](inline_response_200_11.md)
 
 ### Authorization
 
@@ -4013,7 +4111,7 @@ Get role
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **int32** | The Id of role.  | 
+**roleId** | **int32** | The ID of role.  | 
 
 ### Other Parameters
 
@@ -4091,7 +4189,7 @@ Name | Type | Description  | Notes
 
 ## GetRulesets
 
-> InlineResponse2006 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2008 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List campaign rulesets
 
@@ -4116,12 +4214,12 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse2006**](inline_response_200_6.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -4182,7 +4280,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20037 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20040 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List users in account
 
@@ -4200,12 +4298,12 @@ Other parameters are passed through a pointer to a apiGetUsersRequest struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20037**](inline_response_200_37.md)
+[**InlineResponse20040**](inline_response_200_40.md)
 
 ### Authorization
 
@@ -4266,7 +4364,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20034 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20037 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook activation log entries
 
@@ -4284,7 +4382,7 @@ Other parameters are passed through a pointer to a apiGetWebhookActivationLogsRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **integrationRequestUuid** | **string** | Filter results by integration request UUID. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
@@ -4295,7 +4393,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20034**](inline_response_200_34.md)
+[**InlineResponse20037**](inline_response_200_37.md)
 
 ### Authorization
 
@@ -4313,7 +4411,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20035 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20038 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook log entries
 
@@ -4331,7 +4429,7 @@ Other parameters are passed through a pointer to a apiGetWebhookLogsRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **status** | **string** | Filter results by HTTP status codes. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
@@ -4343,7 +4441,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20035**](inline_response_200_35.md)
+[**InlineResponse20038**](inline_response_200_38.md)
 
 ### Authorization
 
@@ -4361,7 +4459,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20033 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20036 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).CreationType(creationType).Visibility(visibility).OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId).Title(title).Execute()
 
 List webhooks
 
@@ -4378,14 +4476,18 @@ Other parameters are passed through a pointer to a apiGetWebhooksRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **applicationIds** | **string** | Filter by one or more application IDs separated by a comma. | 
+ **applicationIds** | **string** | Filter by one or more Application IDs, separated by a comma. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **creationType** | **string** | Filter results by creation type. | 
+ **visibility** | **string** | Filter results by visibility. | 
+ **outgoingIntegrationsTypeId** | **int32** | Filter results by outgoing integration type ID. | 
+ **title** | **string** | Filter results performing case-insensitive matching against the webhook title. | 
 
 ### Return type
 
-[**InlineResponse20033**](inline_response_200_33.md)
+[**InlineResponse20036**](inline_response_200_36.md)
 
 ### Authorization
 
@@ -4627,6 +4729,50 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ImportLoyaltyCustomersTiers
+
+> Import ImportLoyaltyCustomersTiers(ctx, loyaltyProgramId).UpFile(upFile).Execute()
+
+Import customers into loyalty tiers
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportLoyaltyCustomersTiersRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **upFile** | **string** | The file with the information about the data that should be imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ImportLoyaltyPoints
 
 > Import ImportLoyaltyPoints(ctx, loyaltyProgramId).UpFile(upFile).Execute()
@@ -4763,7 +4909,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20015 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20017 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in account
 
@@ -4781,14 +4927,61 @@ Other parameters are passed through a pointer to a apiListAccountCollectionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **string** | Filter by the name of the Collection. | 
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20017**](inline_response_200_17.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListCatalogItems
+
+> InlineResponse20034 ListCatalogItems(ctx, catalogId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Sku(sku).Execute()
+
+List items in a catalog
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**catalogId** | **int32** | The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListCatalogItemsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
+ **sku** | **string** | The SKU of the item. | 
+
+### Return type
+
+[**InlineResponse20034**](inline_response_200_34.md)
 
 ### Authorization
 
@@ -4806,7 +4999,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20017 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20019 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections
 
@@ -4831,14 +5024,14 @@ Name | Type | Description  | Notes
 
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **string** | Filter by the name of the Collection. | 
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
@@ -4856,7 +5049,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20017 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20019 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in application
 
@@ -4879,14 +5072,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **string** | Filter by the name of the Collection. | 
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
@@ -4896,6 +5089,50 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## NotificationActivation
+
+> NotificationActivation(ctx, notificationId).Body(body).Execute()
+
+Activate or deactivate notification
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**notificationId** | **int32** | The ID of the notification. Get it with the appropriate _List notifications_ endpoint. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiNotificationActivationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**NotificationActivation**](NotificationActivation.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -4916,7 +5153,7 @@ Create notification about added or deducted loyalty points
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -4965,6 +5202,50 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiPostCatalogsStrikethroughNotificationRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**NewBaseNotification**](NewBaseNotification.md) | body | 
+
+### Return type
+
+[**BaseNotification**](BaseNotification.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PostPendingPointsNotification
+
+> BaseNotification PostPendingPointsNotification(ctx, loyaltyProgramId).Body(body).Execute()
+
+Create notification about pending loyalty points
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPostPendingPointsNotificationRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -5077,7 +5358,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedApplicationWideWithoutTotalCount
 
-> InlineResponse2008 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
+> InlineResponse20010 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
 List coupons that match the given attributes (without total count)
 
@@ -5101,7 +5382,7 @@ Name | Type | Description  | Notes
 
  **body** | **map[string]interface{}** | body | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -5116,7 +5397,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -5134,7 +5415,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedWithoutTotalCount
 
-> InlineResponse2008 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
+> InlineResponse20010 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
 List coupons that match the given attributes in campaign (without total count)
 
@@ -5160,7 +5441,7 @@ Name | Type | Description  | Notes
 
  **body** | **map[string]interface{}** | body | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
@@ -5174,7 +5455,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 

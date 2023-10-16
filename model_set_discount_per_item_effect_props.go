@@ -22,7 +22,7 @@ type SetDiscountPerItemEffectProps struct {
 	Value float32 `json:"value"`
 	// The index of the item in the cart items list on which this discount should be applied.
 	Position float32 `json:"position"`
-	// Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. Indicates which item the discount applies to for cart items with `quantity` > 1.
+	// For cart items with `quantity` > 1, the sub position indicates which item the discount applies to.
 	SubPosition *float32 `json:"subPosition,omitempty"`
 	// The original value of the discount.
 	DesiredValue *float32 `json:"desiredValue,omitempty"`
@@ -36,6 +36,10 @@ type SetDiscountPerItemEffectProps struct {
 	BundleIndex *int32 `json:"bundleIndex,omitempty"`
 	// The name of the bundle definition.
 	BundleName *string `json:"bundleName,omitempty"`
+	// The index of the targeted bundle item on which the applied discount is based.
+	TargetedItemPosition *float32 `json:"targetedItemPosition,omitempty"`
+	// The sub-position of the targeted bundle item on which the applied discount is based.
+	TargetedItemSubPosition *float32 `json:"targetedItemSubPosition,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -312,6 +316,72 @@ func (o *SetDiscountPerItemEffectProps) HasBundleName() bool {
 // SetBundleName gets a reference to the given string and assigns it to the BundleName field.
 func (o *SetDiscountPerItemEffectProps) SetBundleName(v string) {
 	o.BundleName = &v
+}
+
+// GetTargetedItemPosition returns the TargetedItemPosition field value if set, zero value otherwise.
+func (o *SetDiscountPerItemEffectProps) GetTargetedItemPosition() float32 {
+	if o == nil || o.TargetedItemPosition == nil {
+		var ret float32
+		return ret
+	}
+	return *o.TargetedItemPosition
+}
+
+// GetTargetedItemPositionOk returns a tuple with the TargetedItemPosition field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerItemEffectProps) GetTargetedItemPositionOk() (float32, bool) {
+	if o == nil || o.TargetedItemPosition == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.TargetedItemPosition, true
+}
+
+// HasTargetedItemPosition returns a boolean if a field has been set.
+func (o *SetDiscountPerItemEffectProps) HasTargetedItemPosition() bool {
+	if o != nil && o.TargetedItemPosition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetedItemPosition gets a reference to the given float32 and assigns it to the TargetedItemPosition field.
+func (o *SetDiscountPerItemEffectProps) SetTargetedItemPosition(v float32) {
+	o.TargetedItemPosition = &v
+}
+
+// GetTargetedItemSubPosition returns the TargetedItemSubPosition field value if set, zero value otherwise.
+func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPosition() float32 {
+	if o == nil || o.TargetedItemSubPosition == nil {
+		var ret float32
+		return ret
+	}
+	return *o.TargetedItemSubPosition
+}
+
+// GetTargetedItemSubPositionOk returns a tuple with the TargetedItemSubPosition field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPositionOk() (float32, bool) {
+	if o == nil || o.TargetedItemSubPosition == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.TargetedItemSubPosition, true
+}
+
+// HasTargetedItemSubPosition returns a boolean if a field has been set.
+func (o *SetDiscountPerItemEffectProps) HasTargetedItemSubPosition() bool {
+	if o != nil && o.TargetedItemSubPosition != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetedItemSubPosition gets a reference to the given float32 and assigns it to the TargetedItemSubPosition field.
+func (o *SetDiscountPerItemEffectProps) SetTargetedItemSubPosition(v float32) {
+	o.TargetedItemSubPosition = &v
 }
 
 type NullableSetDiscountPerItemEffectProps struct {

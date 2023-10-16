@@ -43,9 +43,9 @@ type LoyaltyProgramTransaction struct {
 	CustomerSessionId *string `json:"customerSessionId,omitempty"`
 	// ID of the import where the transaction occurred.
 	ImportId *int32 `json:"importId,omitempty"`
-	// ID of the user who manually added or deducted points. Applies only for manual transactions.
+	// ID of the user who manually added or deducted points. Applies only to manual transactions.
 	UserId *int32 `json:"userId,omitempty"`
-	// The email of the user who manually added or deducted points. Applies only for manual transactions.
+	// The email of the Campaign Manager account that manually added or deducted points. Applies only to manual transactions.
 	UserEmail *string `json:"userEmail,omitempty"`
 	// ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
 	RulesetId *int32 `json:"rulesetId,omitempty"`

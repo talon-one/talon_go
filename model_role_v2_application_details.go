@@ -16,12 +16,14 @@ import (
 
 // RoleV2ApplicationDetails struct for RoleV2ApplicationDetails
 type RoleV2ApplicationDetails struct {
-	// Name of the Application-level permission set.
+	// Name of the Application-related permission set for the given Application.
 	Application *string `json:"application,omitempty"`
-	// Name of the campaign-level permission set.
+	// Name of the campaign-related permission set for the given Application.
 	Campaign *string `json:"campaign,omitempty"`
-	// Name of the draft campaign-level permission set.
+	// Name of the draft campaign-related permission set for the given Application.
 	DraftCampaign *string `json:"draftCampaign,omitempty"`
+	// Name of the tools-related permission set.
+	Tools *string `json:"tools,omitempty"`
 }
 
 // GetApplication returns the Application field value if set, zero value otherwise.
@@ -121,6 +123,39 @@ func (o *RoleV2ApplicationDetails) HasDraftCampaign() bool {
 // SetDraftCampaign gets a reference to the given string and assigns it to the DraftCampaign field.
 func (o *RoleV2ApplicationDetails) SetDraftCampaign(v string) {
 	o.DraftCampaign = &v
+}
+
+// GetTools returns the Tools field value if set, zero value otherwise.
+func (o *RoleV2ApplicationDetails) GetTools() string {
+	if o == nil || o.Tools == nil {
+		var ret string
+		return ret
+	}
+	return *o.Tools
+}
+
+// GetToolsOk returns a tuple with the Tools field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleV2ApplicationDetails) GetToolsOk() (string, bool) {
+	if o == nil || o.Tools == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Tools, true
+}
+
+// HasTools returns a boolean if a field has been set.
+func (o *RoleV2ApplicationDetails) HasTools() bool {
+	if o != nil && o.Tools != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTools gets a reference to the given string and assigns it to the Tools field.
+func (o *RoleV2ApplicationDetails) SetTools(v string) {
+	o.Tools = &v
 }
 
 type NullableRoleV2ApplicationDetails struct {

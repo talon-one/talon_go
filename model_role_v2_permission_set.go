@@ -17,8 +17,9 @@ import (
 // RoleV2PermissionSet struct for RoleV2PermissionSet
 type RoleV2PermissionSet struct {
 	// Name of the permission set.
-	Name         string   `json:"name"`
-	OperationIds []string `json:"operationIds"`
+	Name string `json:"name"`
+	// List of logical operations in the permission set. Each logical operation must be shown under the `x-permission` tag on an endpoint level.
+	LogicalOperations []string `json:"logicalOperations"`
 }
 
 // GetName returns the Name field value
@@ -36,19 +37,19 @@ func (o *RoleV2PermissionSet) SetName(v string) {
 	o.Name = v
 }
 
-// GetOperationIds returns the OperationIds field value
-func (o *RoleV2PermissionSet) GetOperationIds() []string {
+// GetLogicalOperations returns the LogicalOperations field value
+func (o *RoleV2PermissionSet) GetLogicalOperations() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
 
-	return o.OperationIds
+	return o.LogicalOperations
 }
 
-// SetOperationIds sets field value
-func (o *RoleV2PermissionSet) SetOperationIds(v []string) {
-	o.OperationIds = v
+// SetLogicalOperations sets field value
+func (o *RoleV2PermissionSet) SetLogicalOperations(v []string) {
+	o.LogicalOperations = v
 }
 
 type NullableRoleV2PermissionSet struct {

@@ -29,6 +29,8 @@ type CampaignCopy struct {
 	EndTime *time.Time `json:"endTime,omitempty"`
 	// A list of tags for the campaign.
 	Tags *[]string `json:"tags,omitempty"`
+	// The ID of the campaign evaluation group the campaign belongs to.
+	EvaluationGroupId *int32 `json:"evaluationGroupId,omitempty"`
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -209,6 +211,39 @@ func (o *CampaignCopy) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *CampaignCopy) SetTags(v []string) {
 	o.Tags = &v
+}
+
+// GetEvaluationGroupId returns the EvaluationGroupId field value if set, zero value otherwise.
+func (o *CampaignCopy) GetEvaluationGroupId() int32 {
+	if o == nil || o.EvaluationGroupId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.EvaluationGroupId
+}
+
+// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignCopy) GetEvaluationGroupIdOk() (int32, bool) {
+	if o == nil || o.EvaluationGroupId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.EvaluationGroupId, true
+}
+
+// HasEvaluationGroupId returns a boolean if a field has been set.
+func (o *CampaignCopy) HasEvaluationGroupId() bool {
+	if o != nil && o.EvaluationGroupId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
+func (o *CampaignCopy) SetEvaluationGroupId(v int32) {
+	o.EvaluationGroupId = &v
 }
 
 type NullableCampaignCopy struct {

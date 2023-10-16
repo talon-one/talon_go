@@ -22,7 +22,7 @@ type NewCustomerSession struct {
 	Coupon *string `json:"coupon,omitempty"`
 	// Any referral code entered.
 	Referral *string `json:"referral,omitempty"`
-	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled` or `partially_returned` 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities#customer-session).
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled` or `partially_returned` 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 	State *string `json:"state,omitempty"`
 	// Serialized JSON representation.
 	CartItems *[]CartItem `json:"cartItems,omitempty"`

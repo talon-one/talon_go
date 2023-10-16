@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **Reservation** | Pointer to **bool** | Defines the type of reservation: - &#x60;true&#x60;: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation](https://docs.talon.one/integration-api#operation/createCouponReservation) endpoint. - &#x60;false&#x60;: The reservation is a hard reservation. Only the associated customer (&#x60;recipientIntegrationId&#x60;) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given &#x60;recipientIntegrationId&#x60;, the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoint.  | [optional] [default to true]
 **BatchId** | Pointer to **string** | The id of the batch the coupon belongs to. | [optional] 
 **IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
+**ImplicitlyReserved** | Pointer to **bool** | An indication of whether the coupon is implicitly reserved for all customers. | [optional] 
 
 ## Methods
 
@@ -552,6 +553,31 @@ HasIsReservationMandatory returns a boolean if a field has been set.
 `func (o *Coupon) SetIsReservationMandatory(v bool)`
 
 SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
+
+### GetImplicitlyReserved
+
+`func (o *Coupon) GetImplicitlyReserved() bool`
+
+GetImplicitlyReserved returns the ImplicitlyReserved field if non-nil, zero value otherwise.
+
+### GetImplicitlyReservedOk
+
+`func (o *Coupon) GetImplicitlyReservedOk() (bool, bool)`
+
+GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasImplicitlyReserved
+
+`func (o *Coupon) HasImplicitlyReserved() bool`
+
+HasImplicitlyReserved returns a boolean if a field has been set.
+
+### SetImplicitlyReserved
+
+`func (o *Coupon) SetImplicitlyReserved(v bool)`
+
+SetImplicitlyReserved gets a reference to the given bool and assigns it to the ImplicitlyReserved field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

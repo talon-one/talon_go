@@ -11,11 +11,9 @@ Name | Type | Description | Notes
 **CaseSensitivity** | Pointer to **string** | The case sensitivity behavior to check coupon codes in the campaigns of this Application. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Default limits for campaigns created in this application. | [optional] 
-**CampaignPriority** | Pointer to **string** | Default [priority](https://docs.talon.one/docs/product/applications/setting-up-campaign-priorities) for campaigns created in this Application.  | [optional] [default to CAMPAIGN_PRIORITY_UNIVERSAL]
-**ExclusiveCampaignsStrategy** | Pointer to **string** | The strategy used when choosing exclusive campaigns for evaluation. | [optional] [default to EXCLUSIVE_CAMPAIGNS_STRATEGY_LIST_ORDER]
 **DefaultDiscountScope** | Pointer to **string** | The default scope to apply &#x60;setDiscount&#x60; effects on if no scope was provided with the effect.  | [optional] 
 **EnableCascadingDiscounts** | Pointer to **bool** | Indicates if discounts should cascade for this Application. | [optional] 
-**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one. See the [docs](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening).  | [optional] 
+**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one.  | [optional] 
 **AttributesSettings** | Pointer to [**AttributesSettings**](AttributesSettings.md) |  | [optional] 
 **Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
 **EnablePartialDiscounts** | Pointer to **bool** | Indicates if this Application supports partial discounts. | [optional] 
@@ -198,56 +196,6 @@ HasLimits returns a boolean if a field has been set.
 `func (o *NewApplication) SetLimits(v []LimitConfig)`
 
 SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
-
-### GetCampaignPriority
-
-`func (o *NewApplication) GetCampaignPriority() string`
-
-GetCampaignPriority returns the CampaignPriority field if non-nil, zero value otherwise.
-
-### GetCampaignPriorityOk
-
-`func (o *NewApplication) GetCampaignPriorityOk() (string, bool)`
-
-GetCampaignPriorityOk returns a tuple with the CampaignPriority field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCampaignPriority
-
-`func (o *NewApplication) HasCampaignPriority() bool`
-
-HasCampaignPriority returns a boolean if a field has been set.
-
-### SetCampaignPriority
-
-`func (o *NewApplication) SetCampaignPriority(v string)`
-
-SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
-
-### GetExclusiveCampaignsStrategy
-
-`func (o *NewApplication) GetExclusiveCampaignsStrategy() string`
-
-GetExclusiveCampaignsStrategy returns the ExclusiveCampaignsStrategy field if non-nil, zero value otherwise.
-
-### GetExclusiveCampaignsStrategyOk
-
-`func (o *NewApplication) GetExclusiveCampaignsStrategyOk() (string, bool)`
-
-GetExclusiveCampaignsStrategyOk returns a tuple with the ExclusiveCampaignsStrategy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExclusiveCampaignsStrategy
-
-`func (o *NewApplication) HasExclusiveCampaignsStrategy() bool`
-
-HasExclusiveCampaignsStrategy returns a boolean if a field has been set.
-
-### SetExclusiveCampaignsStrategy
-
-`func (o *NewApplication) SetExclusiveCampaignsStrategy(v string)`
-
-SetExclusiveCampaignsStrategy gets a reference to the given string and assigns it to the ExclusiveCampaignsStrategy field.
 
 ### GetDefaultDiscountScope
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **AccountId** | Pointer to **int32** | The ID of the account to which this configuration belongs. | 
 **TypeId** | Pointer to **int32** | The outgoing integration type ID. | 
-**Policy** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Policy** | Pointer to [**map[string]interface{}**](.md) | The outgoing integration policy specific to each integration type. | 
 
 ## Methods
 

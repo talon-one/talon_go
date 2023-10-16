@@ -4,36 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
-**Data** | Pointer to [**[]ApplicationCustomer**](ApplicationCustomer.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
+**Data** | Pointer to [**[]CampaignAnalytics**](CampaignAnalytics.md) |  | 
 
 ## Methods
-
-### GetHasMore
-
-`func (o *InlineResponse20022) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse20022) GetHasMoreOk() (bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasHasMore
-
-`func (o *InlineResponse20022) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse20022) SetHasMore(v bool)`
-
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
 ### GetTotalResultSize
 
@@ -62,13 +36,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20022) GetData() []ApplicationCustomer`
+`func (o *InlineResponse20022) GetData() []CampaignAnalytics`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20022) GetDataOk() ([]ApplicationCustomer, bool)`
+`func (o *InlineResponse20022) GetDataOk() ([]CampaignAnalytics, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20022) SetData(v []ApplicationCustomer)`
+`func (o *InlineResponse20022) SetData(v []CampaignAnalytics)`
 
-SetData gets a reference to the given []ApplicationCustomer and assigns it to the Data field.
+SetData gets a reference to the given []CampaignAnalytics and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

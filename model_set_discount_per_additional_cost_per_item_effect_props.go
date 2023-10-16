@@ -24,7 +24,7 @@ type SetDiscountPerAdditionalCostPerItemEffectProps struct {
 	Value float32 `json:"value"`
 	// The index of the item in the cart item list containing the additional cost to be discounted.
 	Position float32 `json:"position"`
-	// Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. Indicates which item the discount applies to for cart items with `quantity` > 1.
+	// For cart items with `quantity` > 1, the sub position indicates which item the discount applies to.
 	SubPosition *float32 `json:"subPosition,omitempty"`
 	// The name of the additional cost.
 	AdditionalCost string `json:"additionalCost"`

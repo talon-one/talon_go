@@ -17,15 +17,15 @@ import (
 
 // CampaignDeletedNotification A notification regarding a campaign that was deleted.
 type CampaignDeletedNotification struct {
-	Campaign Campaign `json:"campaign"`
+	Campaign CampaignStateNotification `json:"campaign"`
 	// Time when the campaign was deleted.
 	DeletedAt time.Time `json:"deletedAt"`
 }
 
 // GetCampaign returns the Campaign field value
-func (o *CampaignDeletedNotification) GetCampaign() Campaign {
+func (o *CampaignDeletedNotification) GetCampaign() CampaignStateNotification {
 	if o == nil {
-		var ret Campaign
+		var ret CampaignStateNotification
 		return ret
 	}
 
@@ -33,7 +33,7 @@ func (o *CampaignDeletedNotification) GetCampaign() Campaign {
 }
 
 // SetCampaign sets field value
-func (o *CampaignDeletedNotification) SetCampaign(v Campaign) {
+func (o *CampaignDeletedNotification) SetCampaign(v CampaignStateNotification) {
 	o.Campaign = v
 }
 

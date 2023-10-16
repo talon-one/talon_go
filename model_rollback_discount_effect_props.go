@@ -22,7 +22,7 @@ type RollbackDiscountEffectProps struct {
 	Value float32 `json:"value"`
 	// The index of the item in the cart items for which the discount was rolled back.
 	CartItemPosition *float32 `json:"cartItemPosition,omitempty"`
-	// The index of the item unit in its line item. It is only used for cart items with `quantity` > 1 and is only returned when cart item flattening is enabled.
+	// For cart items with `quantity` > 1, the subposition returns the index of the item unit in its line item.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
 	// The ID of the additional cost that was rolled back.
 	AdditionalCostId *int32 `json:"additionalCostId,omitempty"`

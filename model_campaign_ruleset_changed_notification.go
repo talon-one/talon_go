@@ -16,15 +16,15 @@ import (
 
 // CampaignRulesetChangedNotification A notification regarding a campaign whose ruleset was changed.
 type CampaignRulesetChangedNotification struct {
-	Campaign   Campaign `json:"campaign"`
-	OldRuleset *Ruleset `json:"oldRuleset,omitempty"`
-	Ruleset    *Ruleset `json:"ruleset,omitempty"`
+	Campaign   CampaignStateNotification `json:"campaign"`
+	OldRuleset *Ruleset                  `json:"oldRuleset,omitempty"`
+	Ruleset    *Ruleset                  `json:"ruleset,omitempty"`
 }
 
 // GetCampaign returns the Campaign field value
-func (o *CampaignRulesetChangedNotification) GetCampaign() Campaign {
+func (o *CampaignRulesetChangedNotification) GetCampaign() CampaignStateNotification {
 	if o == nil {
-		var ret Campaign
+		var ret CampaignStateNotification
 		return ret
 	}
 
@@ -32,7 +32,7 @@ func (o *CampaignRulesetChangedNotification) GetCampaign() Campaign {
 }
 
 // SetCampaign sets field value
-func (o *CampaignRulesetChangedNotification) SetCampaign(v Campaign) {
+func (o *CampaignRulesetChangedNotification) SetCampaign(v CampaignStateNotification) {
 	o.Campaign = v
 }
 

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LoyaltyProgramTransaction**](LoyaltyProgramTransaction.md) |  | 
+**Data** | Pointer to [**[]CampaignTemplate**](CampaignTemplate.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetHasMore gets a reference to the given bool and assigns it to the HasMore fiel
 
 ### GetData
 
-`func (o *InlineResponse20012) GetData() []LoyaltyProgramTransaction`
+`func (o *InlineResponse20012) GetData() []CampaignTemplate`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20012) GetDataOk() ([]LoyaltyProgramTransaction, bool)`
+`func (o *InlineResponse20012) GetDataOk() ([]CampaignTemplate, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20012) SetData(v []LoyaltyProgramTransaction)`
+`func (o *InlineResponse20012) SetData(v []CampaignTemplate)`
 
-SetData gets a reference to the given []LoyaltyProgramTransaction and assigns it to the Data field.
+SetData gets a reference to the given []CampaignTemplate and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

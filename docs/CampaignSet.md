@@ -4,64 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Version** | Pointer to **int32** | Version of the campaign set. | 
 **Set** | Pointer to [**CampaignSetBranchNode**](CampaignSetBranchNode.md) |  | 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign set, if available. | [optional] 
 
 ## Methods
-
-### GetId
-
-`func (o *CampaignSet) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *CampaignSet) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *CampaignSet) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *CampaignSet) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *CampaignSet) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *CampaignSet) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *CampaignSet) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *CampaignSet) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetApplicationId
 
@@ -87,6 +36,31 @@ HasApplicationId returns a boolean if a field has been set.
 `func (o *CampaignSet) SetApplicationId(v int32)`
 
 SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+
+### GetId
+
+`func (o *CampaignSet) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *CampaignSet) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *CampaignSet) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *CampaignSet) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetVersion
 

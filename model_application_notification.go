@@ -16,7 +16,7 @@ import (
 
 // ApplicationNotification struct for ApplicationNotification
 type ApplicationNotification struct {
-	// Event type. It can be one of the following: ['campaign_priorities_changed']
+	// Event type. It can be one of the following: ['campaign_evaluation_tree_changed']
 	Event string `json:"event"`
 }
 

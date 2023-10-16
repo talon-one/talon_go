@@ -16,29 +16,29 @@ import (
 
 // InlineResponse2004 struct for InlineResponse2004
 type InlineResponse2004 struct {
-	TotalResultSize int32      `json:"totalResultSize"`
-	Data            []Campaign `json:"data"`
+	HasMore bool                              `json:"hasMore"`
+	Data    []LedgerPointsEntryIntegrationApi `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2004) GetTotalResultSize() int32 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse2004) GetHasMore() bool {
 	if o == nil {
-		var ret int32
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2004) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse2004) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2004) GetData() []Campaign {
+func (o *InlineResponse2004) GetData() []LedgerPointsEntryIntegrationApi {
 	if o == nil {
-		var ret []Campaign
+		var ret []LedgerPointsEntryIntegrationApi
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2004) GetData() []Campaign {
 }
 
 // SetData sets field value
-func (o *InlineResponse2004) SetData(v []Campaign) {
+func (o *InlineResponse2004) SetData(v []LedgerPointsEntryIntegrationApi) {
 	o.Data = v
 }
 

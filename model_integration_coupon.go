@@ -59,6 +59,8 @@ type IntegrationCoupon struct {
 	BatchId *string `json:"batchId,omitempty"`
 	// Whether the reservation effect actually created a new reservation.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
+	// An indication of whether the coupon is implicitly reserved for all customers.
+	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`
 	// The number of times the coupon was redeemed by the profile.
 	ProfileRedemptionCount int32 `json:"profileRedemptionCount"`
 }
@@ -646,6 +648,39 @@ func (o *IntegrationCoupon) HasIsReservationMandatory() bool {
 // SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
 func (o *IntegrationCoupon) SetIsReservationMandatory(v bool) {
 	o.IsReservationMandatory = &v
+}
+
+// GetImplicitlyReserved returns the ImplicitlyReserved field value if set, zero value otherwise.
+func (o *IntegrationCoupon) GetImplicitlyReserved() bool {
+	if o == nil || o.ImplicitlyReserved == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ImplicitlyReserved
+}
+
+// GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetImplicitlyReservedOk() (bool, bool) {
+	if o == nil || o.ImplicitlyReserved == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.ImplicitlyReserved, true
+}
+
+// HasImplicitlyReserved returns a boolean if a field has been set.
+func (o *IntegrationCoupon) HasImplicitlyReserved() bool {
+	if o != nil && o.ImplicitlyReserved != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetImplicitlyReserved gets a reference to the given bool and assigns it to the ImplicitlyReserved field.
+func (o *IntegrationCoupon) SetImplicitlyReserved(v bool) {
+	o.ImplicitlyReserved = &v
 }
 
 // GetProfileRedemptionCount returns the ProfileRedemptionCount field value

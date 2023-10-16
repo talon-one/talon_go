@@ -59,6 +59,8 @@ type InventoryCoupon struct {
 	BatchId *string `json:"batchId,omitempty"`
 	// Whether the reservation effect actually created a new reservation.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
+	// An indication of whether the coupon is implicitly reserved for all customers.
+	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`
 	// The number of times the coupon was redeemed by the profile.
 	ProfileRedemptionCount int32 `json:"profileRedemptionCount"`
 	// Can be:  - `active`: The coupon can be used. It is a reserved coupon that is neither pending, used nor expired, and has a non-exhausted limit counter. - `used`: The coupon has been redeemed and cannot be used again. It is not pending and has reached its redemption limit or was redeemed by the profile before expiration. - `expired`: The coupon was never redeemed and it is now expired. It is non-pending, non-active and non-used by the profile. - `pending`: The coupon will be usable in the future. - `disabled`: The coupon is part of a non-active campaign.
@@ -648,6 +650,39 @@ func (o *InventoryCoupon) HasIsReservationMandatory() bool {
 // SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
 func (o *InventoryCoupon) SetIsReservationMandatory(v bool) {
 	o.IsReservationMandatory = &v
+}
+
+// GetImplicitlyReserved returns the ImplicitlyReserved field value if set, zero value otherwise.
+func (o *InventoryCoupon) GetImplicitlyReserved() bool {
+	if o == nil || o.ImplicitlyReserved == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ImplicitlyReserved
+}
+
+// GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *InventoryCoupon) GetImplicitlyReservedOk() (bool, bool) {
+	if o == nil || o.ImplicitlyReserved == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.ImplicitlyReserved, true
+}
+
+// HasImplicitlyReserved returns a boolean if a field has been set.
+func (o *InventoryCoupon) HasImplicitlyReserved() bool {
+	if o != nil && o.ImplicitlyReserved != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetImplicitlyReserved gets a reference to the given bool and assigns it to the ImplicitlyReserved field.
+func (o *InventoryCoupon) SetImplicitlyReserved(v bool) {
+	o.ImplicitlyReserved = &v
 }
 
 // GetProfileRedemptionCount returns the ProfileRedemptionCount field value

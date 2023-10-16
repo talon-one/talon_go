@@ -31,7 +31,7 @@ type Campaign struct {
 	Description string `json:"description"`
 	// Timestamp when the campaign will become active.
 	StartTime *time.Time `json:"startTime,omitempty"`
-	// Timestamp the campaign will become inactive.
+	// Timestamp when the campaign will become inactive.
 	EndTime *time.Time `json:"endTime,omitempty"`
 	// Arbitrary properties associated with this campaign.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
@@ -49,6 +49,12 @@ type Campaign struct {
 	Limits []LimitConfig `json:"limits"`
 	// The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.
 	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
+	// The ID of the campaign evaluation group the campaign belongs to.
+	EvaluationGroupId *int32 `json:"evaluationGroupId,omitempty"`
+	// The campaign type. Possible type values:   - `cartItem`: Type of campaign that can apply effects only to cart items.   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
+	Type string `json:"type"`
+	// A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.
+	LinkedStoreIds *[]int32 `json:"linkedStoreIds,omitempty"`
 	// Number of coupons redeemed in the campaign.
 	CouponRedemptionCount *int32 `json:"couponRedemptionCount,omitempty"`
 	// Number of referral codes redeemed in the campaign.
@@ -63,7 +69,7 @@ type Campaign struct {
 	CustomEffectCount *int32 `json:"customEffectCount,omitempty"`
 	// Total number of referrals created by rules in this campaign.
 	ReferralCreationCount *int32 `json:"referralCreationCount,omitempty"`
-	// Total number of times triggering add free item effext is allowed in this campaign.
+	// Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
 	AddFreeItemEffectCount *int32 `json:"addFreeItemEffectCount,omitempty"`
 	// Total number of giveaways awarded by rules in this campaign.
 	AwardedGiveawaysCount *int32 `json:"awardedGiveawaysCount,omitempty"`
@@ -75,12 +81,14 @@ type Campaign struct {
 	RedeemedLoyaltyPointsCount *float32 `json:"redeemedLoyaltyPointsCount,omitempty"`
 	// Total number of loyalty point redemption effects triggered by rules in this campaign.
 	RedeemedLoyaltyPointsEffectCount *int32 `json:"redeemedLoyaltyPointsEffectCount,omitempty"`
-	// Total number of webhook triggered by rules in this campaign.
+	// Total number of webhooks triggered by rules in this campaign.
 	CallApiEffectCount *int32 `json:"callApiEffectCount,omitempty"`
 	// Total number of reserve coupon effects triggered by rules in this campaign.
 	ReservecouponEffectCount *int32 `json:"reservecouponEffectCount,omitempty"`
 	// Timestamp of the most recent event received by this campaign.
 	LastActivity *time.Time `json:"lastActivity,omitempty"`
+	// The total number of effects created in this campaign in the past 7 days.
+	WeeklyUsageCount *int32 `json:"weeklyUsageCount,omitempty"`
 	// Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates.
 	Updated *time.Time `json:"updated,omitempty"`
 	// Name of the user who created this campaign if available.
@@ -470,6 +478,87 @@ func (o *Campaign) HasCampaignGroups() bool {
 // SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
 func (o *Campaign) SetCampaignGroups(v []int32) {
 	o.CampaignGroups = &v
+}
+
+// GetEvaluationGroupId returns the EvaluationGroupId field value if set, zero value otherwise.
+func (o *Campaign) GetEvaluationGroupId() int32 {
+	if o == nil || o.EvaluationGroupId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.EvaluationGroupId
+}
+
+// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetEvaluationGroupIdOk() (int32, bool) {
+	if o == nil || o.EvaluationGroupId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.EvaluationGroupId, true
+}
+
+// HasEvaluationGroupId returns a boolean if a field has been set.
+func (o *Campaign) HasEvaluationGroupId() bool {
+	if o != nil && o.EvaluationGroupId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
+func (o *Campaign) SetEvaluationGroupId(v int32) {
+	o.EvaluationGroupId = &v
+}
+
+// GetType returns the Type field value
+func (o *Campaign) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// SetType sets field value
+func (o *Campaign) SetType(v string) {
+	o.Type = v
+}
+
+// GetLinkedStoreIds returns the LinkedStoreIds field value if set, zero value otherwise.
+func (o *Campaign) GetLinkedStoreIds() []int32 {
+	if o == nil || o.LinkedStoreIds == nil {
+		var ret []int32
+		return ret
+	}
+	return *o.LinkedStoreIds
+}
+
+// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetLinkedStoreIdsOk() ([]int32, bool) {
+	if o == nil || o.LinkedStoreIds == nil {
+		var ret []int32
+		return ret, false
+	}
+	return *o.LinkedStoreIds, true
+}
+
+// HasLinkedStoreIds returns a boolean if a field has been set.
+func (o *Campaign) HasLinkedStoreIds() bool {
+	if o != nil && o.LinkedStoreIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
+func (o *Campaign) SetLinkedStoreIds(v []int32) {
+	o.LinkedStoreIds = &v
 }
 
 // GetCouponRedemptionCount returns the CouponRedemptionCount field value if set, zero value otherwise.
@@ -998,6 +1087,39 @@ func (o *Campaign) HasLastActivity() bool {
 // SetLastActivity gets a reference to the given time.Time and assigns it to the LastActivity field.
 func (o *Campaign) SetLastActivity(v time.Time) {
 	o.LastActivity = &v
+}
+
+// GetWeeklyUsageCount returns the WeeklyUsageCount field value if set, zero value otherwise.
+func (o *Campaign) GetWeeklyUsageCount() int32 {
+	if o == nil || o.WeeklyUsageCount == nil {
+		var ret int32
+		return ret
+	}
+	return *o.WeeklyUsageCount
+}
+
+// GetWeeklyUsageCountOk returns a tuple with the WeeklyUsageCount field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetWeeklyUsageCountOk() (int32, bool) {
+	if o == nil || o.WeeklyUsageCount == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.WeeklyUsageCount, true
+}
+
+// HasWeeklyUsageCount returns a boolean if a field has been set.
+func (o *Campaign) HasWeeklyUsageCount() bool {
+	if o != nil && o.WeeklyUsageCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWeeklyUsageCount gets a reference to the given int32 and assigns it to the WeeklyUsageCount field.
+func (o *Campaign) SetWeeklyUsageCount(v int32) {
+	o.WeeklyUsageCount = &v
 }
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.

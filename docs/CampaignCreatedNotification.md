@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
+**Campaign** | Pointer to [**CampaignStateNotification**](CampaignStateNotification.md) |  | 
 **Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
-**Priority** | Pointer to [**PriorityPosition**](PriorityPosition.md) |  | 
+**EvaluationPosition** | Pointer to [**CampaignEvaluationPosition**](CampaignEvaluationPosition.md) |  | 
 
 ## Methods
 
 ### GetCampaign
 
-`func (o *CampaignCreatedNotification) GetCampaign() Campaign`
+`func (o *CampaignCreatedNotification) GetCampaign() CampaignStateNotification`
 
 GetCampaign returns the Campaign field if non-nil, zero value otherwise.
 
 ### GetCampaignOk
 
-`func (o *CampaignCreatedNotification) GetCampaignOk() (Campaign, bool)`
+`func (o *CampaignCreatedNotification) GetCampaignOk() (CampaignStateNotification, bool)`
 
 GetCampaignOk returns a tuple with the Campaign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -31,9 +31,9 @@ HasCampaign returns a boolean if a field has been set.
 
 ### SetCampaign
 
-`func (o *CampaignCreatedNotification) SetCampaign(v Campaign)`
+`func (o *CampaignCreatedNotification) SetCampaign(v CampaignStateNotification)`
 
-SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
+SetCampaign gets a reference to the given CampaignStateNotification and assigns it to the Campaign field.
 
 ### GetRuleset
 
@@ -60,30 +60,30 @@ HasRuleset returns a boolean if a field has been set.
 
 SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
 
-### GetPriority
+### GetEvaluationPosition
 
-`func (o *CampaignCreatedNotification) GetPriority() PriorityPosition`
+`func (o *CampaignCreatedNotification) GetEvaluationPosition() CampaignEvaluationPosition`
 
-GetPriority returns the Priority field if non-nil, zero value otherwise.
+GetEvaluationPosition returns the EvaluationPosition field if non-nil, zero value otherwise.
 
-### GetPriorityOk
+### GetEvaluationPositionOk
 
-`func (o *CampaignCreatedNotification) GetPriorityOk() (PriorityPosition, bool)`
+`func (o *CampaignCreatedNotification) GetEvaluationPositionOk() (CampaignEvaluationPosition, bool)`
 
-GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+GetEvaluationPositionOk returns a tuple with the EvaluationPosition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPriority
+### HasEvaluationPosition
 
-`func (o *CampaignCreatedNotification) HasPriority() bool`
+`func (o *CampaignCreatedNotification) HasEvaluationPosition() bool`
 
-HasPriority returns a boolean if a field has been set.
+HasEvaluationPosition returns a boolean if a field has been set.
 
-### SetPriority
+### SetEvaluationPosition
 
-`func (o *CampaignCreatedNotification) SetPriority(v PriorityPosition)`
+`func (o *CampaignCreatedNotification) SetEvaluationPosition(v CampaignEvaluationPosition)`
 
-SetPriority gets a reference to the given PriorityPosition and assigns it to the Priority field.
+SetEvaluationPosition gets a reference to the given CampaignEvaluationPosition and assigns it to the EvaluationPosition field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

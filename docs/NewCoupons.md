@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
 **CouponPattern** | Pointer to **string** | The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
 **IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
+**ImplicitlyReserved** | Pointer to **bool** | An indication of whether the coupon is implicitly reserved for all customers. | [optional] 
 
 ## Methods
 
@@ -344,6 +345,31 @@ HasIsReservationMandatory returns a boolean if a field has been set.
 `func (o *NewCoupons) SetIsReservationMandatory(v bool)`
 
 SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
+
+### GetImplicitlyReserved
+
+`func (o *NewCoupons) GetImplicitlyReserved() bool`
+
+GetImplicitlyReserved returns the ImplicitlyReserved field if non-nil, zero value otherwise.
+
+### GetImplicitlyReservedOk
+
+`func (o *NewCoupons) GetImplicitlyReservedOk() (bool, bool)`
+
+GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasImplicitlyReserved
+
+`func (o *NewCoupons) HasImplicitlyReserved() bool`
+
+HasImplicitlyReserved returns a boolean if a field has been set.
+
+### SetImplicitlyReserved
+
+`func (o *NewCoupons) SetImplicitlyReserved(v bool)`
+
+SetImplicitlyReserved gets a reference to the given bool and assigns it to the ImplicitlyReserved field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

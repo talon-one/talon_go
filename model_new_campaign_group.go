@@ -16,13 +16,13 @@ import (
 
 // NewCampaignGroup struct for NewCampaignGroup
 type NewCampaignGroup struct {
-	// The name of this campaign group.
+	// The name of this campaign access group.
 	Name string `json:"name"`
-	// A longer description of the campaign group.
+	// A longer description of the campaign access group.
 	Description *string `json:"description,omitempty"`
-	// A list of the IDs of the applications that this campaign group is enabled for.
+	// A list of IDs of the Applications that this campaign access group is enabled for.
 	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
-	// A list of the IDs of the campaigns that this campaign group owns.
+	// A list of IDs of the campaigns that are part of the campaign access group.
 	CampaignIds *[]int32 `json:"campaignIds,omitempty"`
 }
 

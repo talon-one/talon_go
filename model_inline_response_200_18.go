@@ -17,7 +17,7 @@ import (
 // InlineResponse20018 struct for InlineResponse20018
 type InlineResponse20018 struct {
 	HasMore bool             `json:"hasMore"`
-	Data    []AccessLogEntry `json:"data"`
+	Data    []CollectionItem `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20018) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20018) GetData() []AccessLogEntry {
+func (o *InlineResponse20018) GetData() []CollectionItem {
 	if o == nil {
-		var ret []AccessLogEntry
+		var ret []CollectionItem
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20018) GetData() []AccessLogEntry {
 }
 
 // SetData sets field value
-func (o *InlineResponse20018) SetData(v []AccessLogEntry) {
+func (o *InlineResponse20018) SetData(v []CollectionItem) {
 	o.Data = v
 }
 
