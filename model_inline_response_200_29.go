@@ -16,81 +16,29 @@ import (
 
 // InlineResponse20029 struct for InlineResponse20029
 type InlineResponse20029 struct {
-	HasMore         *bool      `json:"hasMore,omitempty"`
-	TotalResultSize *int32     `json:"totalResultSize,omitempty"`
-	Data            []Audience `json:"data"`
+	HasMore bool               `json:"hasMore"`
+	Data    []ApplicationEvent `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
+// GetHasMore returns the HasMore field value
 func (o *InlineResponse20029) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.HasMore
+
+	return o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20029) GetHasMoreOk() (bool, bool) {
-	if o == nil || o.HasMore == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.HasMore, true
-}
-
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20029) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+// SetHasMore sets field value
 func (o *InlineResponse20029) SetHasMore(v bool) {
-	o.HasMore = &v
-}
-
-// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
-func (o *InlineResponse20029) GetTotalResultSize() int32 {
-	if o == nil || o.TotalResultSize == nil {
-		var ret int32
-		return ret
-	}
-	return *o.TotalResultSize
-}
-
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20029) GetTotalResultSizeOk() (int32, bool) {
-	if o == nil || o.TotalResultSize == nil {
-		var ret int32
-		return ret, false
-	}
-	return *o.TotalResultSize, true
-}
-
-// HasTotalResultSize returns a boolean if a field has been set.
-func (o *InlineResponse20029) HasTotalResultSize() bool {
-	if o != nil && o.TotalResultSize != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
-func (o *InlineResponse20029) SetTotalResultSize(v int32) {
-	o.TotalResultSize = &v
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20029) GetData() []Audience {
+func (o *InlineResponse20029) GetData() []ApplicationEvent {
 	if o == nil {
-		var ret []Audience
+		var ret []ApplicationEvent
 		return ret
 	}
 
@@ -98,7 +46,7 @@ func (o *InlineResponse20029) GetData() []Audience {
 }
 
 // SetData sets field value
-func (o *InlineResponse20029) SetData(v []Audience) {
+func (o *InlineResponse20029) SetData(v []ApplicationEvent) {
 	o.Data = v
 }
 

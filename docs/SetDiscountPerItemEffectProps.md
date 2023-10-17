@@ -7,13 +7,15 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name of the discount. Contains a hashtag character indicating the index of the position of the item the discount applies to. It is identical to the value of the &#x60;position&#x60; property.  | 
 **Value** | Pointer to **float32** | The total monetary value of the discount. | 
 **Position** | Pointer to **float32** | The index of the item in the cart items list on which this discount should be applied. | 
-**SubPosition** | Pointer to **float32** | Only used when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. Indicates which item the discount applies to for cart items with &#x60;quantity&#x60; &gt; 1.  | [optional] 
+**SubPosition** | Pointer to **float32** | For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to.  | [optional] 
 **DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 
 **Scope** | Pointer to **string** | The scope of the discount: - &#x60;additionalCosts&#x60;: The discount applies to all the additional costs of the item. - &#x60;itemTotal&#x60;: The discount applies to the price of the item + the additional costs of the item. - &#x60;price&#x60;: The discount applies to the price of the item.  | [optional] 
 **TotalDiscount** | Pointer to **float32** | The total discount given if this effect is a result of a prorated discount. | [optional] 
 **DesiredTotalDiscount** | Pointer to **float32** | The original total discount to give if this effect is a result of a prorated discount. | [optional] 
 **BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
 **BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
+**TargetedItemPosition** | Pointer to **float32** | The index of the targeted bundle item on which the applied discount is based. | [optional] 
+**TargetedItemSubPosition** | Pointer to **float32** | The sub-position of the targeted bundle item on which the applied discount is based.  | [optional] 
 
 ## Methods
 
@@ -266,6 +268,56 @@ HasBundleName returns a boolean if a field has been set.
 `func (o *SetDiscountPerItemEffectProps) SetBundleName(v string)`
 
 SetBundleName gets a reference to the given string and assigns it to the BundleName field.
+
+### GetTargetedItemPosition
+
+`func (o *SetDiscountPerItemEffectProps) GetTargetedItemPosition() float32`
+
+GetTargetedItemPosition returns the TargetedItemPosition field if non-nil, zero value otherwise.
+
+### GetTargetedItemPositionOk
+
+`func (o *SetDiscountPerItemEffectProps) GetTargetedItemPositionOk() (float32, bool)`
+
+GetTargetedItemPositionOk returns a tuple with the TargetedItemPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTargetedItemPosition
+
+`func (o *SetDiscountPerItemEffectProps) HasTargetedItemPosition() bool`
+
+HasTargetedItemPosition returns a boolean if a field has been set.
+
+### SetTargetedItemPosition
+
+`func (o *SetDiscountPerItemEffectProps) SetTargetedItemPosition(v float32)`
+
+SetTargetedItemPosition gets a reference to the given float32 and assigns it to the TargetedItemPosition field.
+
+### GetTargetedItemSubPosition
+
+`func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPosition() float32`
+
+GetTargetedItemSubPosition returns the TargetedItemSubPosition field if non-nil, zero value otherwise.
+
+### GetTargetedItemSubPositionOk
+
+`func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPositionOk() (float32, bool)`
+
+GetTargetedItemSubPositionOk returns a tuple with the TargetedItemSubPosition field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTargetedItemSubPosition
+
+`func (o *SetDiscountPerItemEffectProps) HasTargetedItemSubPosition() bool`
+
+HasTargetedItemSubPosition returns a boolean if a field has been set.
+
+### SetTargetedItemSubPosition
+
+`func (o *SetDiscountPerItemEffectProps) SetTargetedItemSubPosition(v float32)`
+
+SetTargetedItemSubPosition gets a reference to the given float32 and assigns it to the TargetedItemSubPosition field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

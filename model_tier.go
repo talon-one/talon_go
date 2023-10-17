@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // Tier struct for Tier
@@ -20,6 +21,10 @@ type Tier struct {
 	Id int32 `json:"id"`
 	// The name of the tier.
 	Name string `json:"name"`
+	// Date when tier level expires in the RFC3339 format (in the Loyalty Program's timezone).
+	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
+	// Customers's tier downgrade policy. - `one_down`: Once the tier expires and if the user doesn't have enough points to stay in the tier, the user is downgraded one tier down. - `balance_based`: Once the tier expires, the user's tier is evaluated based on the amount of active points the user has at this instant.
+	DowngradePolicy *string `json:"downgradePolicy,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -50,6 +55,72 @@ func (o *Tier) GetName() string {
 // SetName sets field value
 func (o *Tier) SetName(v string) {
 	o.Name = v
+}
+
+// GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.
+func (o *Tier) GetExpiryDate() time.Time {
+	if o == nil || o.ExpiryDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExpiryDate
+}
+
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Tier) GetExpiryDateOk() (time.Time, bool) {
+	if o == nil || o.ExpiryDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.ExpiryDate, true
+}
+
+// HasExpiryDate returns a boolean if a field has been set.
+func (o *Tier) HasExpiryDate() bool {
+	if o != nil && o.ExpiryDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+func (o *Tier) SetExpiryDate(v time.Time) {
+	o.ExpiryDate = &v
+}
+
+// GetDowngradePolicy returns the DowngradePolicy field value if set, zero value otherwise.
+func (o *Tier) GetDowngradePolicy() string {
+	if o == nil || o.DowngradePolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.DowngradePolicy
+}
+
+// GetDowngradePolicyOk returns a tuple with the DowngradePolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Tier) GetDowngradePolicyOk() (string, bool) {
+	if o == nil || o.DowngradePolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.DowngradePolicy, true
+}
+
+// HasDowngradePolicy returns a boolean if a field has been set.
+func (o *Tier) HasDowngradePolicy() bool {
+	if o != nil && o.DowngradePolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDowngradePolicy gets a reference to the given string and assigns it to the DowngradePolicy field.
+func (o *Tier) SetDowngradePolicy(v string) {
+	o.DowngradePolicy = &v
 }
 
 type NullableTier struct {

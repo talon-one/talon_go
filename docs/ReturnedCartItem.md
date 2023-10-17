@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Position** | Pointer to **int32** | The index of the cart item in the provided customer session&#39;s &#x60;cartItems&#x60; property. | 
-**Quantity** | Pointer to **int32** | Number of cart items to return. It is only available when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. If cart item flattening is disabled, the cart item can only be returned in its entirety.  | [optional] 
+**Quantity** | Pointer to **int32** | Number of cart items to return.  | [optional] 
 
 ## Methods
 

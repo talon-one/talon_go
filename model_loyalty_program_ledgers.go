@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// LoyaltyProgramLedgers Customer specific information about loyalty points.
+// LoyaltyProgramLedgers Customer-specific information about loyalty points.
 type LoyaltyProgramLedgers struct {
 	// The internal ID of loyalty program.
 	Id int32 `json:"id"`

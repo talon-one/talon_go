@@ -16,9 +16,9 @@ import (
 
 // RoleV2Permissions struct for RoleV2Permissions
 type RoleV2Permissions struct {
-	// List of grouped operation IDs to use as a reference in the roles section. Each group of operation IDs has a name.
-	PermissionSets *[]RoleV2PermissionSet  `json:"permissionSets,omitempty"`
-	Roles          *RoleV2PermissionsRoles `json:"roles,omitempty"`
+	// List of grouped logical operations to use as a reference in the roles section. Each group of logical operations has a name.
+	PermissionSets *[]RoleV2PermissionSet `json:"permissionSets,omitempty"`
+	Roles          *RoleV2RolesGroup      `json:"roles,omitempty"`
 }
 
 // GetPermissionSets returns the PermissionSets field value if set, zero value otherwise.
@@ -55,9 +55,9 @@ func (o *RoleV2Permissions) SetPermissionSets(v []RoleV2PermissionSet) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *RoleV2Permissions) GetRoles() RoleV2PermissionsRoles {
+func (o *RoleV2Permissions) GetRoles() RoleV2RolesGroup {
 	if o == nil || o.Roles == nil {
-		var ret RoleV2PermissionsRoles
+		var ret RoleV2RolesGroup
 		return ret
 	}
 	return *o.Roles
@@ -65,9 +65,9 @@ func (o *RoleV2Permissions) GetRoles() RoleV2PermissionsRoles {
 
 // GetRolesOk returns a tuple with the Roles field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Permissions) GetRolesOk() (RoleV2PermissionsRoles, bool) {
+func (o *RoleV2Permissions) GetRolesOk() (RoleV2RolesGroup, bool) {
 	if o == nil || o.Roles == nil {
-		var ret RoleV2PermissionsRoles
+		var ret RoleV2RolesGroup
 		return ret, false
 	}
 	return *o.Roles, true
@@ -82,8 +82,8 @@ func (o *RoleV2Permissions) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given RoleV2PermissionsRoles and assigns it to the Roles field.
-func (o *RoleV2Permissions) SetRoles(v RoleV2PermissionsRoles) {
+// SetRoles gets a reference to the given RoleV2RolesGroup and assigns it to the Roles field.
+func (o *RoleV2Permissions) SetRoles(v RoleV2RolesGroup) {
 	o.Roles = &v
 }
 

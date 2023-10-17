@@ -43,6 +43,8 @@ type NewCoupons struct {
 	CouponPattern *string `json:"couponPattern,omitempty"`
 	// Whether the reservation effect actually created a new reservation.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
+	// An indication of whether the coupon is implicitly reserved for all customers.
+	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`
 }
 
 // GetUsageLimit returns the UsageLimit field value
@@ -436,6 +438,39 @@ func (o *NewCoupons) HasIsReservationMandatory() bool {
 // SetIsReservationMandatory gets a reference to the given bool and assigns it to the IsReservationMandatory field.
 func (o *NewCoupons) SetIsReservationMandatory(v bool) {
 	o.IsReservationMandatory = &v
+}
+
+// GetImplicitlyReserved returns the ImplicitlyReserved field value if set, zero value otherwise.
+func (o *NewCoupons) GetImplicitlyReserved() bool {
+	if o == nil || o.ImplicitlyReserved == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ImplicitlyReserved
+}
+
+// GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCoupons) GetImplicitlyReservedOk() (bool, bool) {
+	if o == nil || o.ImplicitlyReserved == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.ImplicitlyReserved, true
+}
+
+// HasImplicitlyReserved returns a boolean if a field has been set.
+func (o *NewCoupons) HasImplicitlyReserved() bool {
+	if o != nil && o.ImplicitlyReserved != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetImplicitlyReserved gets a reference to the given bool and assigns it to the ImplicitlyReserved field.
+func (o *NewCoupons) SetImplicitlyReserved(v bool) {
+	o.ImplicitlyReserved = &v
 }
 
 type NullableNewCoupons struct {

@@ -17,7 +17,7 @@ import (
 // IntegrationRequest The body of a V2 integration API request (customer session update). Next to the customer session details, this contains an optional listing of extra properties that should be returned in the response.
 type IntegrationRequest struct {
 	CustomerSession NewCustomerSessionV2 `json:"customerSession"`
-	// Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer session_ request instead of sending extra requests to other endpoints.
+	// Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer session_ request instead of sending extra requests to other endpoints.  **Note:** To retrieve loyalty card details, your request must include a loyalty card ID.
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 }
 

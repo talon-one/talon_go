@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// Loyalty Customer specific information about loyalty points.
+// Loyalty Customer-specific information about loyalty points.
 type Loyalty struct {
 	// Displays information about the balances of the loyalty cards.
 	Cards *[]LoyaltyCard `json:"cards,omitempty"`

@@ -17,7 +17,7 @@ import (
 // InlineResponse20040 struct for InlineResponse20040
 type InlineResponse20040 struct {
 	TotalResultSize int32  `json:"totalResultSize"`
-	Data            []Role `json:"data"`
+	Data            []User `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20040) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20040) GetData() []Role {
+func (o *InlineResponse20040) GetData() []User {
 	if o == nil {
-		var ret []Role
+		var ret []User
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20040) GetData() []Role {
 }
 
 // SetData sets field value
-func (o *InlineResponse20040) SetData(v []Role) {
+func (o *InlineResponse20040) SetData(v []User) {
 	o.Data = v
 }
 

@@ -12,52 +12,19 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
-	"time"
 )
 
 // CampaignSet
 type CampaignSet struct {
-	// Internal ID of this entity.
-	Id int32 `json:"id"`
-	// The time this entity was created.
-	Created time.Time `json:"created"`
 	// The ID of the application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
+	// Internal ID of this entity.
+	Id int32 `json:"id"`
 	// Version of the campaign set.
 	Version int32                 `json:"version"`
 	Set     CampaignSetBranchNode `json:"set"`
 	// Name of the user who last updated this campaign set, if available.
 	UpdatedBy *string `json:"updatedBy,omitempty"`
-}
-
-// GetId returns the Id field value
-func (o *CampaignSet) GetId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Id
-}
-
-// SetId sets field value
-func (o *CampaignSet) SetId(v int32) {
-	o.Id = v
-}
-
-// GetCreated returns the Created field value
-func (o *CampaignSet) GetCreated() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.Created
-}
-
-// SetCreated sets field value
-func (o *CampaignSet) SetCreated(v time.Time) {
-	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
@@ -73,6 +40,21 @@ func (o *CampaignSet) GetApplicationId() int32 {
 // SetApplicationId sets field value
 func (o *CampaignSet) SetApplicationId(v int32) {
 	o.ApplicationId = v
+}
+
+// GetId returns the Id field value
+func (o *CampaignSet) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// SetId sets field value
+func (o *CampaignSet) SetId(v int32) {
+	o.Id = v
 }
 
 // GetVersion returns the Version field value

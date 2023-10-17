@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Event** | Pointer to **string** | Event type. It can be one of the following: [&#39;campaign_priorities_changed&#39;]  | 
+**Event** | Pointer to **string** | Event type. It can be one of the following: [&#39;campaign_evaluation_tree_changed&#39;]  | 
 
 ## Methods
 

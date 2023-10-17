@@ -15,15 +15,14 @@ Name | Type | Description | Notes
 **CaseSensitivity** | Pointer to **string** | The case sensitivity behavior to check coupon codes in the campaigns of this Application. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Default limits for campaigns created in this application. | [optional] 
-**CampaignPriority** | Pointer to **string** | Default [priority](https://docs.talon.one/docs/product/applications/setting-up-campaign-priorities) for campaigns created in this Application.  | [optional] [default to CAMPAIGN_PRIORITY_UNIVERSAL]
-**ExclusiveCampaignsStrategy** | Pointer to **string** | The strategy used when choosing exclusive campaigns for evaluation. | [optional] [default to EXCLUSIVE_CAMPAIGNS_STRATEGY_LIST_ORDER]
 **DefaultDiscountScope** | Pointer to **string** | The default scope to apply &#x60;setDiscount&#x60; effects on if no scope was provided with the effect.  | [optional] 
 **EnableCascadingDiscounts** | Pointer to **bool** | Indicates if discounts should cascade for this Application. | [optional] 
-**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one. See the [docs](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening).  | [optional] 
+**EnableFlattenedCartItems** | Pointer to **bool** | Indicates if cart items of quantity larger than one should be separated into different items of quantity one.  | [optional] 
 **AttributesSettings** | Pointer to [**AttributesSettings**](AttributesSettings.md) |  | [optional] 
 **Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
 **EnablePartialDiscounts** | Pointer to **bool** | Indicates if this Application supports partial discounts. | [optional] 
 **DefaultDiscountAdditionalCostPerItemScope** | Pointer to **string** | The default scope to apply &#x60;setDiscountPerItem&#x60; effects on if no scope was provided with the effect.  | [optional] 
+**DefaultEvaluationGroupId** | Pointer to **int32** | The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign. | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | An array containing all the loyalty programs to which this application is subscribed. | 
 
 ## Methods
@@ -303,56 +302,6 @@ HasLimits returns a boolean if a field has been set.
 
 SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
 
-### GetCampaignPriority
-
-`func (o *Application) GetCampaignPriority() string`
-
-GetCampaignPriority returns the CampaignPriority field if non-nil, zero value otherwise.
-
-### GetCampaignPriorityOk
-
-`func (o *Application) GetCampaignPriorityOk() (string, bool)`
-
-GetCampaignPriorityOk returns a tuple with the CampaignPriority field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCampaignPriority
-
-`func (o *Application) HasCampaignPriority() bool`
-
-HasCampaignPriority returns a boolean if a field has been set.
-
-### SetCampaignPriority
-
-`func (o *Application) SetCampaignPriority(v string)`
-
-SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
-
-### GetExclusiveCampaignsStrategy
-
-`func (o *Application) GetExclusiveCampaignsStrategy() string`
-
-GetExclusiveCampaignsStrategy returns the ExclusiveCampaignsStrategy field if non-nil, zero value otherwise.
-
-### GetExclusiveCampaignsStrategyOk
-
-`func (o *Application) GetExclusiveCampaignsStrategyOk() (string, bool)`
-
-GetExclusiveCampaignsStrategyOk returns a tuple with the ExclusiveCampaignsStrategy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExclusiveCampaignsStrategy
-
-`func (o *Application) HasExclusiveCampaignsStrategy() bool`
-
-HasExclusiveCampaignsStrategy returns a boolean if a field has been set.
-
-### SetExclusiveCampaignsStrategy
-
-`func (o *Application) SetExclusiveCampaignsStrategy(v string)`
-
-SetExclusiveCampaignsStrategy gets a reference to the given string and assigns it to the ExclusiveCampaignsStrategy field.
-
 ### GetDefaultDiscountScope
 
 `func (o *Application) GetDefaultDiscountScope() string`
@@ -527,6 +476,31 @@ HasDefaultDiscountAdditionalCostPerItemScope returns a boolean if a field has be
 `func (o *Application) SetDefaultDiscountAdditionalCostPerItemScope(v string)`
 
 SetDefaultDiscountAdditionalCostPerItemScope gets a reference to the given string and assigns it to the DefaultDiscountAdditionalCostPerItemScope field.
+
+### GetDefaultEvaluationGroupId
+
+`func (o *Application) GetDefaultEvaluationGroupId() int32`
+
+GetDefaultEvaluationGroupId returns the DefaultEvaluationGroupId field if non-nil, zero value otherwise.
+
+### GetDefaultEvaluationGroupIdOk
+
+`func (o *Application) GetDefaultEvaluationGroupIdOk() (int32, bool)`
+
+GetDefaultEvaluationGroupIdOk returns a tuple with the DefaultEvaluationGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDefaultEvaluationGroupId
+
+`func (o *Application) HasDefaultEvaluationGroupId() bool`
+
+HasDefaultEvaluationGroupId returns a boolean if a field has been set.
+
+### SetDefaultEvaluationGroupId
+
+`func (o *Application) SetDefaultEvaluationGroupId(v int32)`
+
+SetDefaultEvaluationGroupId gets a reference to the given int32 and assigns it to the DefaultEvaluationGroupId field.
 
 ### GetLoyaltyPrograms
 

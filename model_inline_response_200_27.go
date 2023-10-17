@@ -16,8 +16,8 @@ import (
 
 // InlineResponse20027 struct for InlineResponse20027
 type InlineResponse20027 struct {
-	HasMore bool               `json:"hasMore"`
-	Data    []ApplicationEvent `json:"data"`
+	HasMore bool                     `json:"hasMore"`
+	Data    []CustomerActivityReport `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20027) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20027) GetData() []ApplicationEvent {
+func (o *InlineResponse20027) GetData() []CustomerActivityReport {
 	if o == nil {
-		var ret []ApplicationEvent
+		var ret []CustomerActivityReport
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20027) GetData() []ApplicationEvent {
 }
 
 // SetData sets field value
-func (o *InlineResponse20027) SetData(v []ApplicationEvent) {
+func (o *InlineResponse20027) SetData(v []CustomerActivityReport) {
 	o.Data = v
 }
 

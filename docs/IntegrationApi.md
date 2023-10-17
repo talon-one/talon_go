@@ -16,15 +16,16 @@ Method | HTTP request | Description
 [**GetCustomerSession**](IntegrationApi.md#GetCustomerSession) | **Get** /v2/customer_sessions/{customerSessionId} | Get customer session
 [**GetLoyaltyBalances**](IntegrationApi.md#GetLoyaltyBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances | Get customer&#39;s loyalty points
 [**GetLoyaltyCardBalances**](IntegrationApi.md#GetLoyaltyCardBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/balances | Get card&#39;s point balances
+[**GetLoyaltyCardPoints**](IntegrationApi.md#GetLoyaltyCardPoints) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points | List card&#39;s unused loyalty points
 [**GetLoyaltyCardTransactions**](IntegrationApi.md#GetLoyaltyCardTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transactions | List card&#39;s transactions
+[**GetLoyaltyProgramProfilePoints**](IntegrationApi.md#GetLoyaltyProgramProfilePoints) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points | List customer&#39;s unused loyalty points
 [**GetLoyaltyProgramProfileTransactions**](IntegrationApi.md#GetLoyaltyProgramProfileTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer&#39;s loyalty transactions
 [**GetReservedCustomers**](IntegrationApi.md#GetReservedCustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 [**LinkLoyaltyCardToProfile**](IntegrationApi.md#LinkLoyaltyCardToProfile) | **Post** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
 [**ReopenCustomerSession**](IntegrationApi.md#ReopenCustomerSession) | **Put** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
 [**ReturnCartItems**](IntegrationApi.md#ReturnCartItems) | **Post** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
 [**SyncCatalog**](IntegrationApi.md#SyncCatalog) | **Put** /v1/catalogs/{catalogId}/sync | Sync cart item catalog
-[**TrackEvent**](IntegrationApi.md#TrackEvent) | **Post** /v1/events | Track event
-[**TrackEventV2**](IntegrationApi.md#TrackEventV2) | **Post** /v2/events | Track event V2
+[**TrackEventV2**](IntegrationApi.md#TrackEventV2) | **Post** /v2/events | Track event
 [**UpdateAudienceCustomersAttributes**](IntegrationApi.md#UpdateAudienceCustomersAttributes) | **Put** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience
 [**UpdateAudienceV2**](IntegrationApi.md#UpdateAudienceV2) | **Put** /v2/audiences/{audienceId} | Update audience name
 [**UpdateCustomerProfileAudiences**](IntegrationApi.md#UpdateCustomerProfileAudiences) | **Post** /v2/customer_audiences | Update multiple customer profiles&#39; audiences
@@ -340,7 +341,7 @@ Delete customer's personal data
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration Id with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
+**integrationId** | **string** | The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Other Parameters
 
@@ -383,7 +384,7 @@ List customer data
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**integrationId** | **string** | The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration Id with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
+**integrationId** | **string** | The integration ID of the customer profile. You can get the &#x60;integrationId&#x60; of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Other Parameters
 
@@ -474,7 +475,7 @@ Get customer's loyalty points
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **integrationId** | **string** | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
 
 ### Other Parameters
@@ -486,7 +487,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
 
 ### Return type
 
@@ -532,7 +533,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **endDate** | **time.Time** | Used to return balances only for entries older than this timestamp. The expired, active, and pending points are relative to this timestamp.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
 
 ### Return type
 
@@ -552,9 +553,58 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetLoyaltyCardPoints
+
+> InlineResponse2003 GetLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Status(status).SubledgerId(subledgerId).PageSize(pageSize).Skip(skip).Execute()
+
+List card's unused loyalty points
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyCardId** | **string** | Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyCardPointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **status** | **string** | Filter points based on their status. | [default to active]
+ **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+
+### Return type
+
+[**InlineResponse2003**](inline_response_200_3.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetLoyaltyCardTransactions
 
-> InlineResponse2001 GetLoyaltyCardTransactions(ctx, loyaltyProgramId, loyaltyCardId).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse2001 GetLoyaltyCardTransactions(ctx, loyaltyProgramId, loyaltyCardId).SubledgerId(subledgerId).LoyaltyTransactionType(loyaltyTransactionType).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List card's transactions
 
@@ -579,10 +629,11 @@ Name | Type | Description  | Notes
 
 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
  **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **pageSize** | **int32** | The number of items in this response. | [default to 1000]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
@@ -602,9 +653,58 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetLoyaltyProgramProfilePoints
+
+> InlineResponse2004 GetLoyaltyProgramProfilePoints(ctx, loyaltyProgramId, integrationId).Status(status).SubledgerId(subledgerId).PageSize(pageSize).Skip(skip).Execute()
+
+List customer's unused loyalty points
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**integrationId** | **string** | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLoyaltyProgramProfilePointsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **status** | **string** | Filter points based on their status. | [default to active]
+ **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+
+### Return type
+
+[**InlineResponse2004**](inline_response_200_4.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetLoyaltyProgramProfileTransactions
 
-> InlineResponse2002 GetLoyaltyProgramProfileTransactions(ctx, loyaltyProgramId, integrationId).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse2002 GetLoyaltyProgramProfileTransactions(ctx, loyaltyProgramId, integrationId).SubledgerId(subledgerId).LoyaltyTransactionType(loyaltyTransactionType).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List customer's loyalty transactions
 
@@ -616,7 +716,7 @@ List customer's loyalty transactions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **integrationId** | **string** | The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
 
 ### Other Parameters
@@ -629,10 +729,11 @@ Name | Type | Description  | Notes
 
 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
  **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
  **pageSize** | **int32** | The number of items in this response. | [default to 50]
- **skip** | **int32** | Skips the given number of items when paging through large result sets. | 
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
@@ -873,51 +974,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## TrackEvent
-
-> IntegrationState TrackEvent(ctx).Body(body).Dry(dry).Execute()
-
-Track event
-
-
-
-### Path Parameters
-
-
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiTrackEventRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | [**NewEvent**](NewEvent.md) | body | 
- **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  | 
-
-### Return type
-
-[**IntegrationState**](IntegrationState.md)
-
-### Authorization
-
-[api_key_v1](../README.md#api_key_v1)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## TrackEventV2
 
-> IntegrationStateV2 TrackEventV2(ctx).Body(body).Silent(silent).Dry(dry).Execute()
+> TrackEventV2Response TrackEventV2(ctx).Body(body).Silent(silent).Dry(dry).Execute()
 
-Track event V2
+Track event
 
 
 
@@ -938,7 +999,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntegrationStateV2**](IntegrationStateV2.md)
+[**TrackEventV2Response**](TrackEventV2Response.md)
 
 ### Authorization
 
@@ -1083,7 +1144,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerProfileV2
 
-> IntegrationStateV2 UpdateCustomerProfileV2(ctx, integrationId).Body(body).RunRuleEngine(runRuleEngine).Dry(dry).Execute()
+> CustomerProfileIntegrationResponseV2 UpdateCustomerProfileV2(ctx, integrationId).Body(body).RunRuleEngine(runRuleEngine).Dry(dry).Execute()
 
 Update customer profile
 
@@ -1111,7 +1172,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntegrationStateV2**](IntegrationStateV2.md)
+[**CustomerProfileIntegrationResponseV2**](CustomerProfileIntegrationResponseV2.md)
 
 ### Authorization
 
@@ -1192,7 +1253,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**IntegrationRequest**](IntegrationRequest.md) | body | 
- **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;, you can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  | 
+ **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint will **only** consider the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  | 
 
 ### Return type
 

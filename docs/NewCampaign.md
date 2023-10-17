@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
-**EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp the campaign will become inactive. | [optional] 
+**EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to STATE_ENABLED]
 **ActiveRulesetId** | Pointer to **int32** | [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
@@ -17,6 +17,9 @@ Name | Type | Description | Notes
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.  | 
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.  | [optional] 
+**EvaluationGroupId** | Pointer to **int32** | The ID of the campaign evaluation group the campaign belongs to. | [optional] 
+**Type** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [optional] [default to TYPE_ADVANCED]
+**LinkedStoreIds** | Pointer to **[]int32** | A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.  | [optional] 
 
 ## Methods
 
@@ -344,6 +347,81 @@ HasCampaignGroups returns a boolean if a field has been set.
 `func (o *NewCampaign) SetCampaignGroups(v []int32)`
 
 SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
+
+### GetEvaluationGroupId
+
+`func (o *NewCampaign) GetEvaluationGroupId() int32`
+
+GetEvaluationGroupId returns the EvaluationGroupId field if non-nil, zero value otherwise.
+
+### GetEvaluationGroupIdOk
+
+`func (o *NewCampaign) GetEvaluationGroupIdOk() (int32, bool)`
+
+GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluationGroupId
+
+`func (o *NewCampaign) HasEvaluationGroupId() bool`
+
+HasEvaluationGroupId returns a boolean if a field has been set.
+
+### SetEvaluationGroupId
+
+`func (o *NewCampaign) SetEvaluationGroupId(v int32)`
+
+SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
+
+### GetType
+
+`func (o *NewCampaign) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *NewCampaign) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *NewCampaign) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *NewCampaign) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
+
+### GetLinkedStoreIds
+
+`func (o *NewCampaign) GetLinkedStoreIds() []int32`
+
+GetLinkedStoreIds returns the LinkedStoreIds field if non-nil, zero value otherwise.
+
+### GetLinkedStoreIdsOk
+
+`func (o *NewCampaign) GetLinkedStoreIdsOk() ([]int32, bool)`
+
+GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLinkedStoreIds
+
+`func (o *NewCampaign) HasLinkedStoreIds() bool`
+
+HasLinkedStoreIds returns a boolean if a field has been set.
+
+### SetLinkedStoreIds
+
+`func (o *NewCampaign) SetLinkedStoreIds(v []int32)`
+
+SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

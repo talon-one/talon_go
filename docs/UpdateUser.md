@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | New state (\&quot;deactivated\&quot; or \&quot;active\&quot;) for the user. Only usable by admins for the user. | [optional] 
 **Roles** | Pointer to **[]int32** | List of roles to assign to the user. | [optional] 
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
+**IsAdmin** | Pointer to **bool** | An indication of whether the user has admin permissions. | [optional] 
 
 ## Methods
 
@@ -136,6 +137,31 @@ HasApplicationNotificationSubscriptions returns a boolean if a field has been se
 `func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interface{})`
 
 SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
+
+### GetIsAdmin
+
+`func (o *UpdateUser) GetIsAdmin() bool`
+
+GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+
+### GetIsAdminOk
+
+`func (o *UpdateUser) GetIsAdminOk() (bool, bool)`
+
+GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsAdmin
+
+`func (o *UpdateUser) HasIsAdmin() bool`
+
+HasIsAdmin returns a boolean if a field has been set.
+
+### SetIsAdmin
+
+`func (o *UpdateUser) SetIsAdmin(v bool)`
+
+SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

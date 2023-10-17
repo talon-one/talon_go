@@ -33,7 +33,7 @@ type ApplicationSession struct {
 	Coupon string `json:"coupon"`
 	// Any referral code entered.
 	Referral string `json:"referral"`
-	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled` or `partially_returned` 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities#customer-session).
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. `closed` → `cancelled` or `partially_returned` 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 	State string `json:"state"`
 	// Serialized JSON representation.
 	CartItems []CartItem `json:"cartItems"`
@@ -45,6 +45,8 @@ type ApplicationSession struct {
 	Total float32 `json:"total"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	// The integration ID of the store for this session.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -309,6 +311,39 @@ func (o *ApplicationSession) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *ApplicationSession) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *ApplicationSession) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *ApplicationSession) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *ApplicationSession) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 type NullableApplicationSession struct {

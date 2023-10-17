@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Roles** | Pointer to **[]int32** | Contains a list of all roles the user is a member of. | [optional] 
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
 **AuthMethod** | Pointer to **string** | The Authentication method for this user. | [optional] 
+**IsAdmin** | Pointer to **bool** | An indication of whether the user has admin permissions. | [optional] 
 
 ## Methods
 
@@ -344,6 +345,31 @@ HasAuthMethod returns a boolean if a field has been set.
 `func (o *User) SetAuthMethod(v string)`
 
 SetAuthMethod gets a reference to the given string and assigns it to the AuthMethod field.
+
+### GetIsAdmin
+
+`func (o *User) GetIsAdmin() bool`
+
+GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+
+### GetIsAdminOk
+
+`func (o *User) GetIsAdminOk() (bool, bool)`
+
+GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsAdmin
+
+`func (o *User) HasIsAdmin() bool`
+
+HasIsAdmin returns a boolean if a field has been set.
+
+### SetIsAdmin
+
+`func (o *User) SetIsAdmin(v bool)`
+
+SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

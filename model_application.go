@@ -39,15 +39,11 @@ type Application struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Default limits for campaigns created in this application.
 	Limits *[]LimitConfig `json:"limits,omitempty"`
-	// Default [priority](https://docs.talon.one/docs/product/applications/setting-up-campaign-priorities) for campaigns created in this Application.
-	CampaignPriority *string `json:"campaignPriority,omitempty"`
-	// The strategy used when choosing exclusive campaigns for evaluation.
-	ExclusiveCampaignsStrategy *string `json:"exclusiveCampaignsStrategy,omitempty"`
 	// The default scope to apply `setDiscount` effects on if no scope was provided with the effect.
 	DefaultDiscountScope *string `json:"defaultDiscountScope,omitempty"`
 	// Indicates if discounts should cascade for this Application.
 	EnableCascadingDiscounts *bool `json:"enableCascadingDiscounts,omitempty"`
-	// Indicates if cart items of quantity larger than one should be separated into different items of quantity one. See the [docs](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening).
+	// Indicates if cart items of quantity larger than one should be separated into different items of quantity one.
 	EnableFlattenedCartItems *bool               `json:"enableFlattenedCartItems,omitempty"`
 	AttributesSettings       *AttributesSettings `json:"attributesSettings,omitempty"`
 	// Indicates if this is a live or sandbox Application.
@@ -56,6 +52,8 @@ type Application struct {
 	EnablePartialDiscounts *bool `json:"enablePartialDiscounts,omitempty"`
 	// The default scope to apply `setDiscountPerItem` effects on if no scope was provided with the effect.
 	DefaultDiscountAdditionalCostPerItemScope *string `json:"defaultDiscountAdditionalCostPerItemScope,omitempty"`
+	// The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign.
+	DefaultEvaluationGroupId *int32 `json:"defaultEvaluationGroupId,omitempty"`
 	// An array containing all the loyalty programs to which this application is subscribed.
 	LoyaltyPrograms []LoyaltyProgram `json:"loyaltyPrograms"`
 }
@@ -297,72 +295,6 @@ func (o *Application) SetLimits(v []LimitConfig) {
 	o.Limits = &v
 }
 
-// GetCampaignPriority returns the CampaignPriority field value if set, zero value otherwise.
-func (o *Application) GetCampaignPriority() string {
-	if o == nil || o.CampaignPriority == nil {
-		var ret string
-		return ret
-	}
-	return *o.CampaignPriority
-}
-
-// GetCampaignPriorityOk returns a tuple with the CampaignPriority field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetCampaignPriorityOk() (string, bool) {
-	if o == nil || o.CampaignPriority == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.CampaignPriority, true
-}
-
-// HasCampaignPriority returns a boolean if a field has been set.
-func (o *Application) HasCampaignPriority() bool {
-	if o != nil && o.CampaignPriority != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCampaignPriority gets a reference to the given string and assigns it to the CampaignPriority field.
-func (o *Application) SetCampaignPriority(v string) {
-	o.CampaignPriority = &v
-}
-
-// GetExclusiveCampaignsStrategy returns the ExclusiveCampaignsStrategy field value if set, zero value otherwise.
-func (o *Application) GetExclusiveCampaignsStrategy() string {
-	if o == nil || o.ExclusiveCampaignsStrategy == nil {
-		var ret string
-		return ret
-	}
-	return *o.ExclusiveCampaignsStrategy
-}
-
-// GetExclusiveCampaignsStrategyOk returns a tuple with the ExclusiveCampaignsStrategy field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *Application) GetExclusiveCampaignsStrategyOk() (string, bool) {
-	if o == nil || o.ExclusiveCampaignsStrategy == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.ExclusiveCampaignsStrategy, true
-}
-
-// HasExclusiveCampaignsStrategy returns a boolean if a field has been set.
-func (o *Application) HasExclusiveCampaignsStrategy() bool {
-	if o != nil && o.ExclusiveCampaignsStrategy != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetExclusiveCampaignsStrategy gets a reference to the given string and assigns it to the ExclusiveCampaignsStrategy field.
-func (o *Application) SetExclusiveCampaignsStrategy(v string) {
-	o.ExclusiveCampaignsStrategy = &v
-}
-
 // GetDefaultDiscountScope returns the DefaultDiscountScope field value if set, zero value otherwise.
 func (o *Application) GetDefaultDiscountScope() string {
 	if o == nil || o.DefaultDiscountScope == nil {
@@ -592,6 +524,39 @@ func (o *Application) HasDefaultDiscountAdditionalCostPerItemScope() bool {
 // SetDefaultDiscountAdditionalCostPerItemScope gets a reference to the given string and assigns it to the DefaultDiscountAdditionalCostPerItemScope field.
 func (o *Application) SetDefaultDiscountAdditionalCostPerItemScope(v string) {
 	o.DefaultDiscountAdditionalCostPerItemScope = &v
+}
+
+// GetDefaultEvaluationGroupId returns the DefaultEvaluationGroupId field value if set, zero value otherwise.
+func (o *Application) GetDefaultEvaluationGroupId() int32 {
+	if o == nil || o.DefaultEvaluationGroupId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DefaultEvaluationGroupId
+}
+
+// GetDefaultEvaluationGroupIdOk returns a tuple with the DefaultEvaluationGroupId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Application) GetDefaultEvaluationGroupIdOk() (int32, bool) {
+	if o == nil || o.DefaultEvaluationGroupId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.DefaultEvaluationGroupId, true
+}
+
+// HasDefaultEvaluationGroupId returns a boolean if a field has been set.
+func (o *Application) HasDefaultEvaluationGroupId() bool {
+	if o != nil && o.DefaultEvaluationGroupId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultEvaluationGroupId gets a reference to the given int32 and assigns it to the DefaultEvaluationGroupId field.
+func (o *Application) SetDefaultEvaluationGroupId(v int32) {
+	o.DefaultEvaluationGroupId = &v
 }
 
 // GetLoyaltyPrograms returns the LoyaltyPrograms field value

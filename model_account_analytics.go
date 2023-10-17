@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // AccountAnalytics struct for AccountAnalytics
@@ -54,6 +55,8 @@ type AccountAnalytics struct {
 	LoyaltyPrograms int32 `json:"loyaltyPrograms"`
 	// Total number of live loyalty programs in the account.
 	LiveLoyaltyPrograms int32 `json:"liveLoyaltyPrograms"`
+	// The point in time when the analytics numbers were updated last.
+	LastUpdatedAt time.Time `json:"lastUpdatedAt"`
 }
 
 // GetApplications returns the Applications field value
@@ -339,6 +342,21 @@ func (o *AccountAnalytics) GetLiveLoyaltyPrograms() int32 {
 // SetLiveLoyaltyPrograms sets field value
 func (o *AccountAnalytics) SetLiveLoyaltyPrograms(v int32) {
 	o.LiveLoyaltyPrograms = v
+}
+
+// GetLastUpdatedAt returns the LastUpdatedAt field value
+func (o *AccountAnalytics) GetLastUpdatedAt() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.LastUpdatedAt
+}
+
+// SetLastUpdatedAt sets field value
+func (o *AccountAnalytics) SetLastUpdatedAt(v time.Time) {
+	o.LastUpdatedAt = v
 }
 
 type NullableAccountAnalytics struct {

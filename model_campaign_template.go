@@ -55,6 +55,8 @@ type CampaignTemplate struct {
 	CampaignCollections *[]CampaignTemplateCollection `json:"campaignCollections,omitempty"`
 	// The default campaign group ID.
 	DefaultCampaignGroupId *int32 `json:"defaultCampaignGroupId,omitempty"`
+	// The campaign type. Possible type values:   - `cartItem`: Type of campaign that can apply effects only to cart items.   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
+	CampaignType string `json:"campaignType"`
 	// Timestamp of the most recent update to the campaign template or any of its elements.
 	Updated *time.Time `json:"updated,omitempty"`
 	// Name of the user who last updated this campaign template, if available.
@@ -559,6 +561,21 @@ func (o *CampaignTemplate) HasDefaultCampaignGroupId() bool {
 // SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
 func (o *CampaignTemplate) SetDefaultCampaignGroupId(v int32) {
 	o.DefaultCampaignGroupId = &v
+}
+
+// GetCampaignType returns the CampaignType field value
+func (o *CampaignTemplate) GetCampaignType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CampaignType
+}
+
+// SetCampaignType sets field value
+func (o *CampaignTemplate) SetCampaignType(v string) {
+	o.CampaignType = v
 }
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.

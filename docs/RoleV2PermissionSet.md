@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the permission set. | 
-**OperationIds** | Pointer to **[]string** |  | 
+**LogicalOperations** | Pointer to **[]string** | List of logical operations in the permission set. Each logical operation must be shown under the &#x60;x-permission&#x60; tag on an endpoint level.  | 
 
 ## Methods
 
@@ -34,30 +34,30 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetOperationIds
+### GetLogicalOperations
 
-`func (o *RoleV2PermissionSet) GetOperationIds() []string`
+`func (o *RoleV2PermissionSet) GetLogicalOperations() []string`
 
-GetOperationIds returns the OperationIds field if non-nil, zero value otherwise.
+GetLogicalOperations returns the LogicalOperations field if non-nil, zero value otherwise.
 
-### GetOperationIdsOk
+### GetLogicalOperationsOk
 
-`func (o *RoleV2PermissionSet) GetOperationIdsOk() ([]string, bool)`
+`func (o *RoleV2PermissionSet) GetLogicalOperationsOk() ([]string, bool)`
 
-GetOperationIdsOk returns a tuple with the OperationIds field if it's non-nil, zero value otherwise
+GetLogicalOperationsOk returns a tuple with the LogicalOperations field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasOperationIds
+### HasLogicalOperations
 
-`func (o *RoleV2PermissionSet) HasOperationIds() bool`
+`func (o *RoleV2PermissionSet) HasLogicalOperations() bool`
 
-HasOperationIds returns a boolean if a field has been set.
+HasLogicalOperations returns a boolean if a field has been set.
 
-### SetOperationIds
+### SetLogicalOperations
 
-`func (o *RoleV2PermissionSet) SetOperationIds(v []string)`
+`func (o *RoleV2PermissionSet) SetLogicalOperations(v []string)`
 
-SetOperationIds gets a reference to the given []string and assigns it to the OperationIds field.
+SetLogicalOperations gets a reference to the given []string and assigns it to the LogicalOperations field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

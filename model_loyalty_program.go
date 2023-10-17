@@ -37,6 +37,10 @@ type LoyaltyProgram struct {
 	UsersPerCardLimit *int32 `json:"usersPerCardLimit,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox bool `json:"sandbox"`
+	// The duration is an **integer** followed by one letter indicating the time unit.  Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
+	TiersExpireIn *string `json:"tiersExpireIn,omitempty"`
+	// Customers's tier downgrade policy.  - `one_down`: Once the tier expires and if the user doesn't have enough points to stay in the tier, the user is downgraded one tier down.  - `balance_based`: Once the tier expires, the user's tier is evaluated based on the amount of active points the user has at this instant.
+	TiersDowngradePolicy *string `json:"tiersDowngradePolicy,omitempty"`
 	// The ID of the Talon.One account that owns this program.
 	AccountID int32 `json:"accountID"`
 	// The internal name for the Loyalty Program. This is an immutable value.
@@ -47,6 +51,10 @@ type LoyaltyProgram struct {
 	Timezone string `json:"timezone"`
 	// Defines the type of loyalty program: - `true`: the program is a card-based. - `false`: the program is profile-based.
 	CardBased bool `json:"cardBased"`
+	// `True` if the tier definitions can be updated.
+	CanUpdateTiers *bool `json:"canUpdateTiers,omitempty"`
+	// `True` if the program can be upgraded to use the `tiersExpireIn` and `tiersDowngradePolicy` properties.
+	CanUpgradeToAdvancedTiers *bool `json:"canUpgradeToAdvancedTiers,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -217,6 +225,72 @@ func (o *LoyaltyProgram) SetSandbox(v bool) {
 	o.Sandbox = v
 }
 
+// GetTiersExpireIn returns the TiersExpireIn field value if set, zero value otherwise.
+func (o *LoyaltyProgram) GetTiersExpireIn() string {
+	if o == nil || o.TiersExpireIn == nil {
+		var ret string
+		return ret
+	}
+	return *o.TiersExpireIn
+}
+
+// GetTiersExpireInOk returns a tuple with the TiersExpireIn field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgram) GetTiersExpireInOk() (string, bool) {
+	if o == nil || o.TiersExpireIn == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.TiersExpireIn, true
+}
+
+// HasTiersExpireIn returns a boolean if a field has been set.
+func (o *LoyaltyProgram) HasTiersExpireIn() bool {
+	if o != nil && o.TiersExpireIn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTiersExpireIn gets a reference to the given string and assigns it to the TiersExpireIn field.
+func (o *LoyaltyProgram) SetTiersExpireIn(v string) {
+	o.TiersExpireIn = &v
+}
+
+// GetTiersDowngradePolicy returns the TiersDowngradePolicy field value if set, zero value otherwise.
+func (o *LoyaltyProgram) GetTiersDowngradePolicy() string {
+	if o == nil || o.TiersDowngradePolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.TiersDowngradePolicy
+}
+
+// GetTiersDowngradePolicyOk returns a tuple with the TiersDowngradePolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgram) GetTiersDowngradePolicyOk() (string, bool) {
+	if o == nil || o.TiersDowngradePolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.TiersDowngradePolicy, true
+}
+
+// HasTiersDowngradePolicy returns a boolean if a field has been set.
+func (o *LoyaltyProgram) HasTiersDowngradePolicy() bool {
+	if o != nil && o.TiersDowngradePolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTiersDowngradePolicy gets a reference to the given string and assigns it to the TiersDowngradePolicy field.
+func (o *LoyaltyProgram) SetTiersDowngradePolicy(v string) {
+	o.TiersDowngradePolicy = &v
+}
+
 // GetAccountID returns the AccountID field value
 func (o *LoyaltyProgram) GetAccountID() int32 {
 	if o == nil {
@@ -308,6 +382,72 @@ func (o *LoyaltyProgram) GetCardBased() bool {
 // SetCardBased sets field value
 func (o *LoyaltyProgram) SetCardBased(v bool) {
 	o.CardBased = v
+}
+
+// GetCanUpdateTiers returns the CanUpdateTiers field value if set, zero value otherwise.
+func (o *LoyaltyProgram) GetCanUpdateTiers() bool {
+	if o == nil || o.CanUpdateTiers == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CanUpdateTiers
+}
+
+// GetCanUpdateTiersOk returns a tuple with the CanUpdateTiers field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgram) GetCanUpdateTiersOk() (bool, bool) {
+	if o == nil || o.CanUpdateTiers == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.CanUpdateTiers, true
+}
+
+// HasCanUpdateTiers returns a boolean if a field has been set.
+func (o *LoyaltyProgram) HasCanUpdateTiers() bool {
+	if o != nil && o.CanUpdateTiers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCanUpdateTiers gets a reference to the given bool and assigns it to the CanUpdateTiers field.
+func (o *LoyaltyProgram) SetCanUpdateTiers(v bool) {
+	o.CanUpdateTiers = &v
+}
+
+// GetCanUpgradeToAdvancedTiers returns the CanUpgradeToAdvancedTiers field value if set, zero value otherwise.
+func (o *LoyaltyProgram) GetCanUpgradeToAdvancedTiers() bool {
+	if o == nil || o.CanUpgradeToAdvancedTiers == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CanUpgradeToAdvancedTiers
+}
+
+// GetCanUpgradeToAdvancedTiersOk returns a tuple with the CanUpgradeToAdvancedTiers field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgram) GetCanUpgradeToAdvancedTiersOk() (bool, bool) {
+	if o == nil || o.CanUpgradeToAdvancedTiers == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.CanUpgradeToAdvancedTiers, true
+}
+
+// HasCanUpgradeToAdvancedTiers returns a boolean if a field has been set.
+func (o *LoyaltyProgram) HasCanUpgradeToAdvancedTiers() bool {
+	if o != nil && o.CanUpgradeToAdvancedTiers != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCanUpgradeToAdvancedTiers gets a reference to the given bool and assigns it to the CanUpgradeToAdvancedTiers field.
+func (o *LoyaltyProgram) SetCanUpgradeToAdvancedTiers(v bool) {
+	o.CanUpgradeToAdvancedTiers = &v
 }
 
 type NullableLoyaltyProgram struct {

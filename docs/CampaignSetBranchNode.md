@@ -5,9 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** | Indicates the node type. | 
-**Name** | Pointer to **string** | Name of the set | 
-**Operator** | Pointer to **string** | How does the set operates on its elements. | 
+**Name** | Pointer to **string** | Name of the set. | 
+**Operator** | Pointer to **string** | An indicator of how the set operates on its elements. | 
 **Elements** | Pointer to [**[]CampaignSetNode**](CampaignSetNode.md) | Child elements of this set. | 
+**GroupId** | Pointer to **int32** | The ID of the campaign set. | 
+**Locked** | Pointer to **bool** | An indicator of whether the campaign set is locked for modification. | 
+**Description** | Pointer to **string** | A description of the campaign set. | [optional] 
+**EvaluationMode** | Pointer to **string** | The mode by which campaigns in the campaign evaluation group are evaluated. | 
+**EvaluationScope** | Pointer to **string** | The evaluation scope of the campaign evaluation group. | 
 
 ## Methods
 
@@ -110,6 +115,131 @@ HasElements returns a boolean if a field has been set.
 `func (o *CampaignSetBranchNode) SetElements(v []CampaignSetNode)`
 
 SetElements gets a reference to the given []CampaignSetNode and assigns it to the Elements field.
+
+### GetGroupId
+
+`func (o *CampaignSetBranchNode) GetGroupId() int32`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *CampaignSetBranchNode) GetGroupIdOk() (int32, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasGroupId
+
+`func (o *CampaignSetBranchNode) HasGroupId() bool`
+
+HasGroupId returns a boolean if a field has been set.
+
+### SetGroupId
+
+`func (o *CampaignSetBranchNode) SetGroupId(v int32)`
+
+SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
+
+### GetLocked
+
+`func (o *CampaignSetBranchNode) GetLocked() bool`
+
+GetLocked returns the Locked field if non-nil, zero value otherwise.
+
+### GetLockedOk
+
+`func (o *CampaignSetBranchNode) GetLockedOk() (bool, bool)`
+
+GetLockedOk returns a tuple with the Locked field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLocked
+
+`func (o *CampaignSetBranchNode) HasLocked() bool`
+
+HasLocked returns a boolean if a field has been set.
+
+### SetLocked
+
+`func (o *CampaignSetBranchNode) SetLocked(v bool)`
+
+SetLocked gets a reference to the given bool and assigns it to the Locked field.
+
+### GetDescription
+
+`func (o *CampaignSetBranchNode) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *CampaignSetBranchNode) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *CampaignSetBranchNode) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *CampaignSetBranchNode) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetEvaluationMode
+
+`func (o *CampaignSetBranchNode) GetEvaluationMode() string`
+
+GetEvaluationMode returns the EvaluationMode field if non-nil, zero value otherwise.
+
+### GetEvaluationModeOk
+
+`func (o *CampaignSetBranchNode) GetEvaluationModeOk() (string, bool)`
+
+GetEvaluationModeOk returns a tuple with the EvaluationMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluationMode
+
+`func (o *CampaignSetBranchNode) HasEvaluationMode() bool`
+
+HasEvaluationMode returns a boolean if a field has been set.
+
+### SetEvaluationMode
+
+`func (o *CampaignSetBranchNode) SetEvaluationMode(v string)`
+
+SetEvaluationMode gets a reference to the given string and assigns it to the EvaluationMode field.
+
+### GetEvaluationScope
+
+`func (o *CampaignSetBranchNode) GetEvaluationScope() string`
+
+GetEvaluationScope returns the EvaluationScope field if non-nil, zero value otherwise.
+
+### GetEvaluationScopeOk
+
+`func (o *CampaignSetBranchNode) GetEvaluationScopeOk() (string, bool)`
+
+GetEvaluationScopeOk returns a tuple with the EvaluationScope field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluationScope
+
+`func (o *CampaignSetBranchNode) HasEvaluationScope() bool`
+
+HasEvaluationScope returns a boolean if a field has been set.
+
+### SetEvaluationScope
+
+`func (o *CampaignSetBranchNode) SetEvaluationScope(v string)`
+
+SetEvaluationScope gets a reference to the given string and assigns it to the EvaluationScope field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

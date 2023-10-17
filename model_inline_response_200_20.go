@@ -16,29 +16,29 @@ import (
 
 // InlineResponse20020 struct for InlineResponse20020
 type InlineResponse20020 struct {
-	TotalResultSize int32               `json:"totalResultSize"`
-	Data            []CampaignAnalytics `json:"data"`
+	HasMore bool             `json:"hasMore"`
+	Data    []AccessLogEntry `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20020) GetTotalResultSize() int32 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse20020) GetHasMore() bool {
 	if o == nil {
-		var ret int32
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20020) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse20020) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20020) GetData() []CampaignAnalytics {
+func (o *InlineResponse20020) GetData() []AccessLogEntry {
 	if o == nil {
-		var ret []CampaignAnalytics
+		var ret []AccessLogEntry
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20020) GetData() []CampaignAnalytics {
 }
 
 // SetData sets field value
-func (o *InlineResponse20020) SetData(v []CampaignAnalytics) {
+func (o *InlineResponse20020) SetData(v []AccessLogEntry) {
 	o.Data = v
 }
 

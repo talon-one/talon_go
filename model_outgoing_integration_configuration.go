@@ -21,7 +21,8 @@ type OutgoingIntegrationConfiguration struct {
 	// The ID of the account to which this configuration belongs.
 	AccountId int32 `json:"accountId"`
 	// The outgoing integration type ID.
-	TypeId int32                  `json:"typeId"`
+	TypeId int32 `json:"typeId"`
+	// The outgoing integration policy specific to each integration type.
 	Policy map[string]interface{} `json:"policy"`
 }
 

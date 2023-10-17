@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]CampaignTemplate**](CampaignTemplate.md) |  | 
+**Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetHasMore gets a reference to the given bool and assigns it to the HasMore fiel
 
 ### GetData
 
-`func (o *InlineResponse20010) GetData() []CampaignTemplate`
+`func (o *InlineResponse20010) GetData() []Coupon`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20010) GetDataOk() ([]CampaignTemplate, bool)`
+`func (o *InlineResponse20010) GetDataOk() ([]Coupon, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20010) SetData(v []CampaignTemplate)`
+`func (o *InlineResponse20010) SetData(v []Coupon)`
 
-SetData gets a reference to the given []CampaignTemplate and assigns it to the Data field.
+SetData gets a reference to the given []Coupon and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

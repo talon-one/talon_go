@@ -25,6 +25,8 @@ type UpdateUser struct {
 	// List of roles to assign to the user.
 	Roles                                *[]int32                `json:"roles,omitempty"`
 	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
+	// An indication of whether the user has admin permissions.
+	IsAdmin *bool `json:"isAdmin,omitempty"`
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -190,6 +192,39 @@ func (o *UpdateUser) HasApplicationNotificationSubscriptions() bool {
 // SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
 func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interface{}) {
 	o.ApplicationNotificationSubscriptions = &v
+}
+
+// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
+func (o *UpdateUser) GetIsAdmin() bool {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsAdmin
+}
+
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetIsAdminOk() (bool, bool) {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (o *UpdateUser) HasIsAdmin() bool {
+	if o != nil && o.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+func (o *UpdateUser) SetIsAdmin(v bool) {
+	o.IsAdmin = &v
 }
 
 type NullableUpdateUser struct {

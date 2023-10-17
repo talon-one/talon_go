@@ -28,7 +28,7 @@ type RollbackAddedLoyaltyPointsEffectProps struct {
 	TransactionUUID string `json:"transactionUUID"`
 	// The index of the item in the cart items for which the loyalty points were rolled back.
 	CartItemPosition *float32 `json:"cartItemPosition,omitempty"`
-	// The sub-position is returned when [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening) is enabled. It indicates to which item the loyalty points were rolled back, for cart items with `quantity` > 1.
+	// For cart items with `quantity` > 1, the sub-position indicates to which item the loyalty points were rolled back.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
 	// The alphanumeric identifier of the loyalty card.
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`

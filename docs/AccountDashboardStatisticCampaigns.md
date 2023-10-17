@@ -5,7 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Live** | Pointer to **int32** | Number of campaigns that are active and live (across all Applications). | 
-**EndingSoon** | Pointer to **int32** | Campaigns with a schedule ending in 7 days or with only 10% of budget left. | 
+**EndingSoon** | Pointer to **int32** | Campaigns scheduled to expire sometime in the next 7 days. | 
+**LowOnBudget** | Pointer to **int32** | Campaigns with less than 10% of budget left. | 
 
 ## Methods
 
@@ -58,6 +59,31 @@ HasEndingSoon returns a boolean if a field has been set.
 `func (o *AccountDashboardStatisticCampaigns) SetEndingSoon(v int32)`
 
 SetEndingSoon gets a reference to the given int32 and assigns it to the EndingSoon field.
+
+### GetLowOnBudget
+
+`func (o *AccountDashboardStatisticCampaigns) GetLowOnBudget() int32`
+
+GetLowOnBudget returns the LowOnBudget field if non-nil, zero value otherwise.
+
+### GetLowOnBudgetOk
+
+`func (o *AccountDashboardStatisticCampaigns) GetLowOnBudgetOk() (int32, bool)`
+
+GetLowOnBudgetOk returns a tuple with the LowOnBudget field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLowOnBudget
+
+`func (o *AccountDashboardStatisticCampaigns) HasLowOnBudget() bool`
+
+HasLowOnBudget returns a boolean if a field has been set.
+
+### SetLowOnBudget
+
+`func (o *AccountDashboardStatisticCampaigns) SetLowOnBudget(v int32)`
+
+SetLowOnBudget gets a reference to the given int32 and assigns it to the LowOnBudget field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

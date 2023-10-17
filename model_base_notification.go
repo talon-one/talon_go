@@ -16,10 +16,14 @@ import (
 
 // BaseNotification
 type BaseNotification struct {
-	Policy  map[string]interface{}  `json:"policy"`
+	Policy map[string]interface{} `json:"policy"`
+	// Indicates whether the notification is activated.
+	Enabled *bool                   `json:"enabled,omitempty"`
 	Webhook BaseNotificationWebhook `json:"webhook"`
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
+	// The notification type.
+	Type string `json:"type"`
 }
 
 // GetPolicy returns the Policy field value
@@ -35,6 +39,39 @@ func (o *BaseNotification) GetPolicy() map[string]interface{} {
 // SetPolicy sets field value
 func (o *BaseNotification) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *BaseNotification) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *BaseNotification) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *BaseNotification) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *BaseNotification) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetWebhook returns the Webhook field value
@@ -65,6 +102,21 @@ func (o *BaseNotification) GetId() int32 {
 // SetId sets field value
 func (o *BaseNotification) SetId(v int32) {
 	o.Id = v
+}
+
+// GetType returns the Type field value
+func (o *BaseNotification) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// SetType sets field value
+func (o *BaseNotification) SetType(v string) {
+	o.Type = v
 }
 
 type NullableBaseNotification struct {

@@ -35,9 +35,9 @@ type CustomerSessionV2 struct {
 	ReferralCode *string `json:"referralCode,omitempty"`
 	// Any loyalty cards used.
 	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
-	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. Either:    - `closed` → `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - `closed` → `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - `closed` → `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities#customer-session).
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. Either:    - `closed` → `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - `closed` → `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - `closed` → `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 	State string `json:"state"`
-	// The items to add to this sessions. - If cart item flattening is disabled: **Do not exceed 1000 items** (regardless of their `quantity`) per request. - If cart item flattening is enabled: **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
+	// The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
 	CartItems []CartItem `json:"cartItems"`
 	// Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
@@ -45,13 +45,15 @@ type CustomerSessionV2 struct {
 	Identifiers *[]string `json:"identifiers,omitempty"`
 	// Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property.
 	Attributes map[string]interface{} `json:"attributes"`
+	// The integration ID of the store. You choose this ID when you create a store.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// Indicates whether this is the first session for the customer's profile. Will always be true for anonymous sessions.
 	FirstSession bool `json:"firstSession"`
-	// The total sum of cart-items, as well as additional costs, before any discounts applied.
+	// The total value of cart items and additional costs in the session, before any discounts are applied.
 	Total float32 `json:"total"`
-	// The total sum of cart-items before any discounts applied.
+	// The total value of cart items, before any discounts are applied.
 	CartItemTotal float32 `json:"cartItemTotal"`
-	// The total sum of additional costs before any discounts applied.
+	// The total value of additional costs, before any discounts are applied.
 	AdditionalCostTotal float32 `json:"additionalCostTotal"`
 	// Timestamp of the most recent event received on this session.
 	Updated time.Time `json:"updated"`
@@ -373,6 +375,39 @@ func (o *CustomerSessionV2) GetAttributes() map[string]interface{} {
 // SetAttributes sets field value
 func (o *CustomerSessionV2) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *CustomerSessionV2) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerSessionV2) GetStoreIntegrationIdOk() (string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *CustomerSessionV2) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *CustomerSessionV2) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 // GetFirstSession returns the FirstSession field value

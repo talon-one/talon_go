@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **ApplicationsIds** | Pointer to **[]int32** | A list of IDs of the Applications that are subscribed to this campaign template. | 
 **CampaignCollections** | Pointer to [**[]CampaignTemplateCollection**](CampaignTemplateCollection.md) | The campaign collections from the blueprint campaign for the template. | [optional] 
 **DefaultCampaignGroupId** | Pointer to **int32** | The default campaign group ID. | [optional] 
+**CampaignType** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [default to CAMPAIGN_TYPE_ADVANCED]
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign template or any of its elements. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign template, if available. | [optional] 
 **ValidApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
@@ -529,6 +530,31 @@ HasDefaultCampaignGroupId returns a boolean if a field has been set.
 `func (o *CampaignTemplate) SetDefaultCampaignGroupId(v int32)`
 
 SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
+
+### GetCampaignType
+
+`func (o *CampaignTemplate) GetCampaignType() string`
+
+GetCampaignType returns the CampaignType field if non-nil, zero value otherwise.
+
+### GetCampaignTypeOk
+
+`func (o *CampaignTemplate) GetCampaignTypeOk() (string, bool)`
+
+GetCampaignTypeOk returns a tuple with the CampaignType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignType
+
+`func (o *CampaignTemplate) HasCampaignType() bool`
+
+HasCampaignType returns a boolean if a field has been set.
+
+### SetCampaignType
+
+`func (o *CampaignTemplate) SetCampaignType(v string)`
+
+SetCampaignType gets a reference to the given string and assigns it to the CampaignType field.
 
 ### GetUpdated
 

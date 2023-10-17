@@ -42,6 +42,8 @@ type User struct {
 	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
 	// The Authentication method for this user.
 	AuthMethod *string `json:"authMethod,omitempty"`
+	// An indication of whether the user has admin permissions.
+	IsAdmin *bool `json:"isAdmin,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -309,6 +311,39 @@ func (o *User) HasAuthMethod() bool {
 // SetAuthMethod gets a reference to the given string and assigns it to the AuthMethod field.
 func (o *User) SetAuthMethod(v string) {
 	o.AuthMethod = &v
+}
+
+// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
+func (o *User) GetIsAdmin() bool {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsAdmin
+}
+
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetIsAdminOk() (bool, bool) {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (o *User) HasIsAdmin() bool {
+	if o != nil && o.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+func (o *User) SetIsAdmin(v bool) {
+	o.IsAdmin = &v
 }
 
 type NullableUser struct {

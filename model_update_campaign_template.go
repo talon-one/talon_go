@@ -46,6 +46,8 @@ type UpdateCampaignTemplate struct {
 	CampaignCollections *[]CampaignTemplateCollection `json:"campaignCollections,omitempty"`
 	// The default campaign group ID.
 	DefaultCampaignGroupId *int32 `json:"defaultCampaignGroupId,omitempty"`
+	// The campaign type. Possible type values:   - `cartItem`: Type of campaign that can apply effects only to cart items.   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
+	CampaignType *string `json:"campaignType,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -484,6 +486,39 @@ func (o *UpdateCampaignTemplate) HasDefaultCampaignGroupId() bool {
 // SetDefaultCampaignGroupId gets a reference to the given int32 and assigns it to the DefaultCampaignGroupId field.
 func (o *UpdateCampaignTemplate) SetDefaultCampaignGroupId(v int32) {
 	o.DefaultCampaignGroupId = &v
+}
+
+// GetCampaignType returns the CampaignType field value if set, zero value otherwise.
+func (o *UpdateCampaignTemplate) GetCampaignType() string {
+	if o == nil || o.CampaignType == nil {
+		var ret string
+		return ret
+	}
+	return *o.CampaignType
+}
+
+// GetCampaignTypeOk returns a tuple with the CampaignType field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateCampaignTemplate) GetCampaignTypeOk() (string, bool) {
+	if o == nil || o.CampaignType == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CampaignType, true
+}
+
+// HasCampaignType returns a boolean if a field has been set.
+func (o *UpdateCampaignTemplate) HasCampaignType() bool {
+	if o != nil && o.CampaignType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignType gets a reference to the given string and assigns it to the CampaignType field.
+func (o *UpdateCampaignTemplate) SetCampaignType(v string) {
+	o.CampaignType = &v
 }
 
 type NullableUpdateCampaignTemplate struct {

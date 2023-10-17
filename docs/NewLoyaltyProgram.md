@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program. | 
 **UsersPerCardLimit** | Pointer to **int32** | The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when &#x60;cardBased&#x60; is &#x60;true&#x60;.  | [optional] 
 **Sandbox** | Pointer to **bool** | Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type. | 
+**TiersExpireIn** | Pointer to **string** | The duration is an **integer** followed by one letter indicating the time unit.  Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  | [optional] 
+**TiersDowngradePolicy** | Pointer to **string** | Customers&#39;s tier downgrade policy.  - &#x60;one_down&#x60;: Once the tier expires and if the user doesn&#39;t have enough points to stay in the tier, the user is downgraded one tier down.  - &#x60;balance_based&#x60;: Once the tier expires, the user&#39;s tier is evaluated based on the amount of active points the user has at this instant.  | [optional] 
 **Name** | Pointer to **string** | The internal name for the Loyalty Program. This is an immutable value. | 
 **Tiers** | Pointer to [**[]NewLoyaltyTier**](NewLoyaltyTier.md) | The tiers in this loyalty program. | [optional] 
 **Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | 
@@ -218,6 +220,56 @@ HasSandbox returns a boolean if a field has been set.
 `func (o *NewLoyaltyProgram) SetSandbox(v bool)`
 
 SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+
+### GetTiersExpireIn
+
+`func (o *NewLoyaltyProgram) GetTiersExpireIn() string`
+
+GetTiersExpireIn returns the TiersExpireIn field if non-nil, zero value otherwise.
+
+### GetTiersExpireInOk
+
+`func (o *NewLoyaltyProgram) GetTiersExpireInOk() (string, bool)`
+
+GetTiersExpireInOk returns a tuple with the TiersExpireIn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTiersExpireIn
+
+`func (o *NewLoyaltyProgram) HasTiersExpireIn() bool`
+
+HasTiersExpireIn returns a boolean if a field has been set.
+
+### SetTiersExpireIn
+
+`func (o *NewLoyaltyProgram) SetTiersExpireIn(v string)`
+
+SetTiersExpireIn gets a reference to the given string and assigns it to the TiersExpireIn field.
+
+### GetTiersDowngradePolicy
+
+`func (o *NewLoyaltyProgram) GetTiersDowngradePolicy() string`
+
+GetTiersDowngradePolicy returns the TiersDowngradePolicy field if non-nil, zero value otherwise.
+
+### GetTiersDowngradePolicyOk
+
+`func (o *NewLoyaltyProgram) GetTiersDowngradePolicyOk() (string, bool)`
+
+GetTiersDowngradePolicyOk returns a tuple with the TiersDowngradePolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTiersDowngradePolicy
+
+`func (o *NewLoyaltyProgram) HasTiersDowngradePolicy() bool`
+
+HasTiersDowngradePolicy returns a boolean if a field has been set.
+
+### SetTiersDowngradePolicy
+
+`func (o *NewLoyaltyProgram) SetTiersDowngradePolicy(v string)`
+
+SetTiersDowngradePolicy gets a reference to the given string and assigns it to the TiersDowngradePolicy field.
 
 ### GetName
 

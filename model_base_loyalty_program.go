@@ -32,6 +32,10 @@ type BaseLoyaltyProgram struct {
 	UsersPerCardLimit *int32 `json:"usersPerCardLimit,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox *bool `json:"sandbox,omitempty"`
+	// The duration is an **integer** followed by one letter indicating the time unit.  Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
+	TiersExpireIn *string `json:"tiersExpireIn,omitempty"`
+	// Customers's tier downgrade policy.  - `one_down`: Once the tier expires and if the user doesn't have enough points to stay in the tier, the user is downgraded one tier down.  - `balance_based`: Once the tier expires, the user's tier is evaluated based on the amount of active points the user has at this instant.
+	TiersDowngradePolicy *string `json:"tiersDowngradePolicy,omitempty"`
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -296,6 +300,72 @@ func (o *BaseLoyaltyProgram) HasSandbox() bool {
 // SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 func (o *BaseLoyaltyProgram) SetSandbox(v bool) {
 	o.Sandbox = &v
+}
+
+// GetTiersExpireIn returns the TiersExpireIn field value if set, zero value otherwise.
+func (o *BaseLoyaltyProgram) GetTiersExpireIn() string {
+	if o == nil || o.TiersExpireIn == nil {
+		var ret string
+		return ret
+	}
+	return *o.TiersExpireIn
+}
+
+// GetTiersExpireInOk returns a tuple with the TiersExpireIn field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *BaseLoyaltyProgram) GetTiersExpireInOk() (string, bool) {
+	if o == nil || o.TiersExpireIn == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.TiersExpireIn, true
+}
+
+// HasTiersExpireIn returns a boolean if a field has been set.
+func (o *BaseLoyaltyProgram) HasTiersExpireIn() bool {
+	if o != nil && o.TiersExpireIn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTiersExpireIn gets a reference to the given string and assigns it to the TiersExpireIn field.
+func (o *BaseLoyaltyProgram) SetTiersExpireIn(v string) {
+	o.TiersExpireIn = &v
+}
+
+// GetTiersDowngradePolicy returns the TiersDowngradePolicy field value if set, zero value otherwise.
+func (o *BaseLoyaltyProgram) GetTiersDowngradePolicy() string {
+	if o == nil || o.TiersDowngradePolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.TiersDowngradePolicy
+}
+
+// GetTiersDowngradePolicyOk returns a tuple with the TiersDowngradePolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *BaseLoyaltyProgram) GetTiersDowngradePolicyOk() (string, bool) {
+	if o == nil || o.TiersDowngradePolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.TiersDowngradePolicy, true
+}
+
+// HasTiersDowngradePolicy returns a boolean if a field has been set.
+func (o *BaseLoyaltyProgram) HasTiersDowngradePolicy() bool {
+	if o != nil && o.TiersDowngradePolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTiersDowngradePolicy gets a reference to the given string and assigns it to the TiersDowngradePolicy field.
+func (o *BaseLoyaltyProgram) SetTiersDowngradePolicy(v string) {
+	o.TiersDowngradePolicy = &v
 }
 
 type NullableBaseLoyaltyProgram struct {

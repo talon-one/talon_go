@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the user being invited. | [optional] 
 **Email** | Pointer to **string** |  | 
-**Acl** | Pointer to **string** | The &#x60;Access Control List&#x60; json defining the role of the user.  This represents the access control on the user level. Use one of the following: - normal user: &#x60;{\&quot;Role\&quot;: 0}&#x60; - admin: &#x60;{\&quot;Role\&quot;: 127}&#x60;  | 
-**Roles** | Pointer to **[]int32** | An array of roleIDs to assign the new user to. | [optional] 
+**Acl** | Pointer to **string** | The &#x60;Access Control List&#x60; json defining the role of the user.  This represents the access control on the user level. Use one of the following: - normal user: &#x60;{\&quot;Role\&quot;: 0}&#x60; - admin: &#x60;{\&quot;Role\&quot;: 127}&#x60;  | [optional] 
+**IsAdmin** | Pointer to **bool** | An indication of whether the user has admin permissions. We recommend using this flag over using the &#x60;acl&#x60; with value &#x60;{\&quot;Role\&quot;: 127}&#x60;.  | [optional] 
+**Roles** | Pointer to **[]int32** | An array of role IDs to assign to the new user. | [optional] 
 
 ## Methods
 
@@ -85,6 +86,31 @@ HasAcl returns a boolean if a field has been set.
 `func (o *NewInvitation) SetAcl(v string)`
 
 SetAcl gets a reference to the given string and assigns it to the Acl field.
+
+### GetIsAdmin
+
+`func (o *NewInvitation) GetIsAdmin() bool`
+
+GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+
+### GetIsAdminOk
+
+`func (o *NewInvitation) GetIsAdminOk() (bool, bool)`
+
+GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsAdmin
+
+`func (o *NewInvitation) HasIsAdmin() bool`
+
+HasIsAdmin returns a boolean if a field has been set.
+
+### SetIsAdmin
+
+`func (o *NewInvitation) SetIsAdmin(v bool)`
+
+SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 
 ### GetRoles
 

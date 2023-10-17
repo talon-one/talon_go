@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Users** | Pointer to **[]int32** | An array of userIDs. | 
-**Roles** | Pointer to **[]int32** | An array of roleIDs. | 
+**Users** | Pointer to **[]int32** | An array of user IDs. | 
+**Roles** | Pointer to **[]int32** | An array of role IDs. | 
 
 ## Methods
 

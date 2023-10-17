@@ -12,19 +12,86 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
-// RoleV2 struct for RoleV2
+// RoleV2
 type RoleV2 struct {
+	// Internal ID of this entity.
+	Id int32 `json:"id"`
+	// The time this entity was created.
+	Created time.Time `json:"created"`
+	// The time this entity was last modified.
+	Modified time.Time `json:"modified"`
+	// The ID of the account that owns this entity.
+	AccountId int32 `json:"accountId"`
 	// Name of the role.
 	Name *string `json:"name,omitempty"`
 	// Description of the role.
-	Description *string `json:"description,omitempty"`
-	// Indicates whether the role grants admin permissions.
-	IsAdmin     *bool              `json:"isAdmin,omitempty"`
+	Description *string            `json:"description,omitempty"`
 	Permissions *RoleV2Permissions `json:"permissions,omitempty"`
-	// An array of user identifiers.
+	// A list of user identifiers the role is assigned to.
 	Members *[]int32 `json:"members,omitempty"`
+}
+
+// GetId returns the Id field value
+func (o *RoleV2) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// SetId sets field value
+func (o *RoleV2) SetId(v int32) {
+	o.Id = v
+}
+
+// GetCreated returns the Created field value
+func (o *RoleV2) GetCreated() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Created
+}
+
+// SetCreated sets field value
+func (o *RoleV2) SetCreated(v time.Time) {
+	o.Created = v
+}
+
+// GetModified returns the Modified field value
+func (o *RoleV2) GetModified() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.Modified
+}
+
+// SetModified sets field value
+func (o *RoleV2) SetModified(v time.Time) {
+	o.Modified = v
+}
+
+// GetAccountId returns the AccountId field value
+func (o *RoleV2) GetAccountId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.AccountId
+}
+
+// SetAccountId sets field value
+func (o *RoleV2) SetAccountId(v int32) {
+	o.AccountId = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -91,39 +158,6 @@ func (o *RoleV2) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *RoleV2) SetDescription(v string) {
 	o.Description = &v
-}
-
-// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
-func (o *RoleV2) GetIsAdmin() bool {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsAdmin
-}
-
-// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *RoleV2) GetIsAdminOk() (bool, bool) {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.IsAdmin, true
-}
-
-// HasIsAdmin returns a boolean if a field has been set.
-func (o *RoleV2) HasIsAdmin() bool {
-	if o != nil && o.IsAdmin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
-func (o *RoleV2) SetIsAdmin(v bool) {
-	o.IsAdmin = &v
 }
 
 // GetPermissions returns the Permissions field value if set, zero value otherwise.

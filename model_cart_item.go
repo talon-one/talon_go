@@ -20,7 +20,7 @@ type CartItem struct {
 	Name *string `json:"name,omitempty"`
 	// Stock keeping unit of item.
 	Sku string `json:"sku"`
-	// Quantity of item. **Important:** If you enabled [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening), the quantity is always one and the same cart item might receive multiple per-item discounts. Ensure you can process multiple discounts on one cart item correctly.
+	// Number of units of this item. Due to [cart item flattening](https://docs.talon.one/docs/product/rules/understanding-cart-item-flattening), if you provide a quantity greater than 1, the item will be split in as many items as the provided quantity. This will impact the number of **per-item** effects triggered from your campaigns.
 	Quantity int32 `json:"quantity"`
 	// Number of returned items, calculated internally based on returns of this item.
 	ReturnedQuantity *int32 `json:"returnedQuantity,omitempty"`
@@ -44,7 +44,7 @@ type CartItem struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
-	// The [catalog item ID](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/#synchronizing-cart-item-catalogs).
+	// The [catalog item ID](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/#synchronizing-a-cart-item-catalog).
 	CatalogItemID *int32 `json:"catalogItemID,omitempty"`
 }
 

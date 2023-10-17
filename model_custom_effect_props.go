@@ -22,7 +22,7 @@ type CustomEffectProps struct {
 	Name string `json:"name"`
 	// The index of the item in the cart item list to which the custom effect is applied.
 	CartItemPosition *float32 `json:"cartItemPosition,omitempty"`
-	// When cart item flattening is enabled, the sub position indicates to which item unit the custom effect is applied, for cart items with quantity > 1.
+	// For cart items with quantity > 1, the sub position indicates to which item unit the custom effect is applied.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
 	// The position of the bundle in a list of item bundles created from the same bundle definition.
 	BundleIndex *int32 `json:"bundleIndex,omitempty"`

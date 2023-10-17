@@ -236,6 +236,9 @@ For example, you can use this endpoint and `List customer data` to create a _cou
 reserving coupon codes for a customer, and then displaying their coupon wallet
 when they visit your store.
 
+If the **Coupon visibility** checkbox was selected when [creating a universal code](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons#generating-a-universal-code),
+the coupon code is implicitly reserved for all customers, and the code will be returned for all customer profiles in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
+
 <div class="redoc-section">
 
 	<p class="title">Important</p>
@@ -248,6 +251,8 @@ when they visit your store.
 	- use the [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients)
 	  endpoint setting the `recipientsIntegrationId` property or,
 	- create a coupon code with the **Reservation mandatory** option then use the [Create coupon code reservation effect](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
+
+	This endpoint overrides the reservation limit set for the coupon code during coupon creation.
 
 </div>
 
@@ -1144,7 +1149,7 @@ Delete all attributes on the customer profile and on entities that reference thi
 **Important:** To preserve performance, we recommend avoiding deleting customer data during peak-traffic hours.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration Id with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application's customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.
+  - @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application's customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.
 
 @return apiDeleteCustomerDataRequest
 */
@@ -1301,7 +1306,7 @@ Typical entities returned are: customer profile information, referral codes, loy
 Reserved coupons also include redeemed coupons.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration Id with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application's customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.
+  - @param integrationId The integration ID of the customer profile. You can get the `integrationId` of a profile using: - A customer session integration ID with the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2) endpoint. - The Management API with the [List application's customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.
 
 @return apiGetCustomerInventoryRequest
 */
@@ -1622,10 +1627,12 @@ You can filter balances by date. If no filtering options are applied, you retrie
 
 Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.
 
-**Note:** For more information, see [our documentation on managing loyalty data](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-data#obtaining-the-loyalty-balances-of-a-customer).
+**Note:** For more information, see:
+- [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)
+- [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data)
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param loyaltyProgramId Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+  - @param loyaltyProgramId Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
   - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
 
 @return apiGetLoyaltyBalancesRequest
@@ -1950,20 +1957,231 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetLoyaltyCardTransactionsRequest struct {
+type apiGetLoyaltyCardPointsRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
 	loyaltyProgramId int32
 	loyaltyCardId    string
+	status           *string
 	subledgerId      *string
-	startDate        *time.Time
-	endDate          *time.Time
 	pageSize         *int32
 	skip             *int32
 }
 
+func (r apiGetLoyaltyCardPointsRequest) Status(status string) apiGetLoyaltyCardPointsRequest {
+	r.status = &status
+	return r
+}
+
+func (r apiGetLoyaltyCardPointsRequest) SubledgerId(subledgerId string) apiGetLoyaltyCardPointsRequest {
+	r.subledgerId = &subledgerId
+	return r
+}
+
+func (r apiGetLoyaltyCardPointsRequest) PageSize(pageSize int32) apiGetLoyaltyCardPointsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiGetLoyaltyCardPointsRequest) Skip(skip int32) apiGetLoyaltyCardPointsRequest {
+	r.skip = &skip
+	return r
+}
+
+/*
+GetLoyaltyCardPoints List card's unused loyalty points
+Get paginated results of loyalty points for a given loyalty card identifier in a card-based loyalty program. This endpoint returns only the balances of unused points on a loyalty card.
+
+You can filter points by status:
+- `active`: Points ready to be redeemed.
+- `pending`: Points with a start date in the future.
+- `expired`: Points with an expiration date in the past.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+  - @param loyaltyCardId Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.
+
+@return apiGetLoyaltyCardPointsRequest
+*/
+func (a *IntegrationApiService) GetLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiGetLoyaltyCardPointsRequest {
+	return apiGetLoyaltyCardPointsRequest{
+		apiService:       a,
+		ctx:              ctx,
+		loyaltyProgramId: loyaltyProgramId,
+		loyaltyCardId:    loyaltyCardId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse2003
+*/
+func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse2003
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyCardPoints")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/points"
+	localVarPath = strings.Replace(localVarPath, "{"+"loyaltyProgramId"+"}", _neturl.QueryEscape(parameterToString(r.loyaltyProgramId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"loyaltyCardId"+"}", _neturl.QueryEscape(parameterToString(r.loyaltyCardId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if strlen(r.loyaltyCardId) > 108 {
+		return localVarReturnValue, nil, reportError("loyaltyCardId must have less than 108 elements")
+	}
+
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.subledgerId != nil {
+		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v InlineResponse2003
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetLoyaltyCardTransactionsRequest struct {
+	ctx                    _context.Context
+	apiService             *IntegrationApiService
+	loyaltyProgramId       int32
+	loyaltyCardId          string
+	subledgerId            *string
+	loyaltyTransactionType *string
+	startDate              *time.Time
+	endDate                *time.Time
+	pageSize               *int32
+	skip                   *int32
+}
+
 func (r apiGetLoyaltyCardTransactionsRequest) SubledgerId(subledgerId string) apiGetLoyaltyCardTransactionsRequest {
 	r.subledgerId = &subledgerId
+	return r
+}
+
+func (r apiGetLoyaltyCardTransactionsRequest) LoyaltyTransactionType(loyaltyTransactionType string) apiGetLoyaltyCardTransactionsRequest {
+	r.loyaltyTransactionType = &loyaltyTransactionType
 	return r
 }
 
@@ -2041,6 +2259,9 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2001, *_n
 
 	if r.subledgerId != nil {
 		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+	}
+	if r.loyaltyTransactionType != nil {
+		localVarQueryParams.Add("loyaltyTransactionType", parameterToString(*r.loyaltyTransactionType, ""))
 	}
 	if r.startDate != nil {
 		localVarQueryParams.Add("startDate", parameterToString(*r.startDate, ""))
@@ -2160,20 +2381,227 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2001, *_n
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiGetLoyaltyProgramProfileTransactionsRequest struct {
+type apiGetLoyaltyProgramProfilePointsRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
 	loyaltyProgramId int32
 	integrationId    string
+	status           *string
 	subledgerId      *string
-	startDate        *time.Time
-	endDate          *time.Time
 	pageSize         *int32
 	skip             *int32
 }
 
+func (r apiGetLoyaltyProgramProfilePointsRequest) Status(status string) apiGetLoyaltyProgramProfilePointsRequest {
+	r.status = &status
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfilePointsRequest) SubledgerId(subledgerId string) apiGetLoyaltyProgramProfilePointsRequest {
+	r.subledgerId = &subledgerId
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfilePointsRequest) PageSize(pageSize int32) apiGetLoyaltyProgramProfilePointsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfilePointsRequest) Skip(skip int32) apiGetLoyaltyProgramProfilePointsRequest {
+	r.skip = &skip
+	return r
+}
+
+/*
+GetLoyaltyProgramProfilePoints List customer's unused loyalty points
+Get paginated results of loyalty points for a given Integration ID in the specified profile-based loyalty program. This endpoint returns only the balances of unused points linked to a customer profile.
+
+You can filter points by status:
+- `active`: Points ready to be redeemed.
+- `pending`: Points with a start date in the future.
+- `expired`: Points with an expiration date in the past.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+  - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+
+@return apiGetLoyaltyProgramProfilePointsRequest
+*/
+func (a *IntegrationApiService) GetLoyaltyProgramProfilePoints(ctx _context.Context, loyaltyProgramId int32, integrationId string) apiGetLoyaltyProgramProfilePointsRequest {
+	return apiGetLoyaltyProgramProfilePointsRequest{
+		apiService:       a,
+		ctx:              ctx,
+		loyaltyProgramId: loyaltyProgramId,
+		integrationId:    integrationId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse2004
+*/
+func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse2004
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyProgramProfilePoints")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/points"
+	localVarPath = strings.Replace(localVarPath, "{"+"loyaltyProgramId"+"}", _neturl.QueryEscape(parameterToString(r.loyaltyProgramId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.subledgerId != nil {
+		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v InlineResponse2004
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetLoyaltyProgramProfileTransactionsRequest struct {
+	ctx                    _context.Context
+	apiService             *IntegrationApiService
+	loyaltyProgramId       int32
+	integrationId          string
+	subledgerId            *string
+	loyaltyTransactionType *string
+	startDate              *time.Time
+	endDate                *time.Time
+	pageSize               *int32
+	skip                   *int32
+}
+
 func (r apiGetLoyaltyProgramProfileTransactionsRequest) SubledgerId(subledgerId string) apiGetLoyaltyProgramProfileTransactionsRequest {
 	r.subledgerId = &subledgerId
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) LoyaltyTransactionType(loyaltyTransactionType string) apiGetLoyaltyProgramProfileTransactionsRequest {
+	r.loyaltyTransactionType = &loyaltyTransactionType
 	return r
 }
 
@@ -2207,7 +2635,7 @@ You can filter transactions by date. If no filters are applied, the last 50 loya
 use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param loyaltyProgramId Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+  - @param loyaltyProgramId Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
   - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
 
 @return apiGetLoyaltyProgramProfileTransactionsRequest
@@ -2251,6 +2679,9 @@ func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineRespons
 
 	if r.subledgerId != nil {
 		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+	}
+	if r.loyaltyTransactionType != nil {
+		localVarQueryParams.Add("loyaltyTransactionType", parameterToString(*r.loyaltyTransactionType, ""))
 	}
 	if r.startDate != nil {
 		localVarQueryParams.Add("startDate", parameterToString(*r.startDate, ""))
@@ -2545,14 +2976,14 @@ func (r apiLinkLoyaltyCardToProfileRequest) Body(body LoyaltyCardRegistration) a
 
 /*
 LinkLoyaltyCardToProfile Link customer profile to card
-[Loyalty cards](https://docs.talon.one/docs/product/loyalty-programs/loyalty-cards/loyalty-card-overview) allow customers to collect
+[Loyalty cards](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview) allow customers to collect
 and spend loyalty points within a [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/overview#loyalty-program-types).
 They are useful to gamify loyalty programs and can be used with or without customer profiles linked to them.
 
 Link a customer profile to a given loyalty card for the card to be set as **Registered**.
-This affects how it can be used. See the [docs](https://docs.talon.one/docs/product/loyalty-programs/loyalty-cards/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card).
+This affects how it can be used. See the [docs](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards#linking-customer-profiles-to-a-loyalty-card).
 
-**Note:** You can link as many customer profiles to a given loyalty card as the [**card user limit**](https://docs.talon.one/docs/product/loyalty-programs/creating-loyalty-programs#creating-card-based-loyalty-programs) allows.
+**Note:** You can link as many customer profiles to a given loyalty card as the [**card user limit**](https://docs.talon.one/docs/product/loyalty-programs/card-based/creating-cb-programs) allows.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param loyaltyProgramId Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
@@ -2721,7 +3152,7 @@ type apiReopenCustomerSessionRequest struct {
 
 /*
 ReopenCustomerSession Reopen customer session
-Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities#customer-session).
+Reopen a closed [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 For example, if a session has been completed but still needs to be edited, you can reopen it with this endpoint.
 A reopen session is treated like a standard open session.
 
@@ -2737,7 +3168,7 @@ When reopening a session:
 	  <p>The following effects and budgets are left the way they were once the session was originally closed:</p>
 	  <ul>
 	    <li>Add free item effect</li>
-	    <li>Any <strong>not pending</strong> pending loyalty points.</li>
+	    <li>Any <strong>non-pending</strong> loyalty points</li>
 	    <li>Award giveaway</li>
 	    <li>Coupon and referral creation</li>
 	    <li>Coupon reservation</li>
@@ -2914,11 +3345,8 @@ Create a new return request for the specified cart items.
 
 This endpoint automatically changes the session state from `closed` to `partially_returned`.
 
-Its behavior depends on whether [cart item flattening](https://docs.talon.one/docs/product/campaigns/campaign-evaluation#flattening)
-is enabled for the Application.
-
 **Note:** This will roll back any effects associated with these cart items. For more information, see
-[our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities#customer-session-states)
+[our documentation on session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states)
 and [this tutorial](https://docs.talon.one/docs/dev/tutorials/partially-returning-a-session).
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3443,193 +3871,6 @@ func (r apiSyncCatalogRequest) Execute() (Catalog, *_nethttp.Response, error) {
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type apiTrackEventRequest struct {
-	ctx        _context.Context
-	apiService *IntegrationApiService
-	body       *NewEvent
-	dry        *bool
-}
-
-func (r apiTrackEventRequest) Body(body NewEvent) apiTrackEventRequest {
-	r.body = &body
-	return r
-}
-
-func (r apiTrackEventRequest) Dry(dry bool) apiTrackEventRequest {
-	r.dry = &dry
-	return r
-}
-
-/*
-TrackEvent Track event
-<div class="redoc-section">
-
-	<p class="title">Deprecation warning</p>
-	<p>This endpoint is DEPRECATED and will be sunset on March 31st 2023.
-	Use <a href="https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2">Track Event V2</a> instead.</p>
-	<p>See <a href="https://docs.talon.one/docs/dev/tutorials/migrating-to-v2">Migrating to V2</a>.</p>
-
-</div>
-
-Triggers a custom event in a customer session. You can then check this event in your rules.
-
-Before using this endpoint, create your event as a custom attribute of type `event`.
-
-An event is always part of a session. If either the profile or the session does not exist,
-a new empty profile/session is created. If the specified session already exists, it must belong to the same `profileId` or an error will be returned.
-
-  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-
-@return apiTrackEventRequest
-*/
-func (a *IntegrationApiService) TrackEvent(ctx _context.Context) apiTrackEventRequest {
-	return apiTrackEventRequest{
-		apiService: a,
-		ctx:        ctx,
-	}
-}
-
-/*
-Execute executes the request
-
-	@return IntegrationState
-*/
-func (r apiTrackEventRequest) Execute() (IntegrationState, *_nethttp.Response, error) {
-	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IntegrationState
-	)
-
-	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.TrackEvent")
-	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/v1/events"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
-
-	if r.body == nil {
-		return localVarReturnValue, nil, reportError("body is required and must be specified")
-	}
-
-	if r.dry != nil {
-		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.body
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
-				var key string
-				if auth.Prefix != "" {
-					key = auth.Prefix + " " + auth.Key
-				} else {
-					key = auth.Key
-				}
-				localVarHeaderParams["Authorization"] = key
-			}
-		}
-	}
-	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v IntegrationState
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ErrorResponseWithStatus
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v map[string]interface{}
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type apiTrackEventV2Request struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
@@ -3654,22 +3895,29 @@ func (r apiTrackEventV2Request) Dry(dry bool) apiTrackEventV2Request {
 }
 
 /*
-TrackEventV2 Track event V2
-Triggers a custom event. You can build a condition around this event in your rules.
+TrackEventV2 Track event
+Triggers a custom event.
 
-Talon.One offers a set of [built-in events](https://docs.talon.one/docs/dev/concepts/events). Ensure you do not create
+To use this endpoint:
+1. Define a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) in the Campaign Manager.
+1. Update or create a rule to check for this event.
+1. Trigger the event with this endpoint. After you have successfully sent an event to Talon.One, you can list the received events in the **Events** view in the Campaign Manager.
+
+Talon.One also offers a set of [built-in events](https://docs.talon.one/docs/dev/concepts/entities/events). Ensure you do not create
 a custom event when you can use a built-in event.
 
 For example, use this endpoint to trigger an event when a customer shares a link to a product.
 See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incentivizing-product-link-sharing).
 
-**Important:**
-- `profileId` is required. An event V2 is associated with a customer profile.
-- Before using this endpoint, create your event as a custom attribute of type `event`.
-See the [Developer docs](https://docs.talon.one/docs/dev/concepts/events#creating-a-custom-event).
+<div class="redoc-section">
 
-When you successfully sent an event to Talon.One, you can list received events in the
-**Events** view in the Campaign Manager.
+	<p class="title">Important</p>
+
+	1. `profileId` is required even though the schema does not say it.
+	1. If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered.
+	1. We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).
+
+</div>
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -3685,16 +3933,16 @@ func (a *IntegrationApiService) TrackEventV2(ctx _context.Context) apiTrackEvent
 /*
 Execute executes the request
 
-	@return IntegrationStateV2
+	@return TrackEventV2Response
 */
-func (r apiTrackEventV2Request) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
+func (r apiTrackEventV2Request) Execute() (TrackEventV2Response, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  IntegrationStateV2
+		localVarReturnValue  TrackEventV2Response
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.TrackEventV2")
@@ -3773,7 +4021,7 @@ func (r apiTrackEventV2Request) Execute() (IntegrationStateV2, *_nethttp.Respons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationStateV2
+			var v TrackEventV2Response
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3794,6 +4042,16 @@ func (r apiTrackEventV2Request) Execute() (IntegrationStateV2, *_nethttp.Respons
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v map[string]interface{}
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3966,7 +4224,7 @@ func (r apiUpdateAudienceV2Request) Body(body UpdateAudience) apiUpdateAudienceV
 
 /*
 UpdateAudienceV2 Update audience name
-Update the name of the given audience created by a third-party integration. Sending a request to this endpoint does **not** trigger the rule engine.
+Update the name of the given audience created by a third-party integration. Sending a request to this endpoint does **not** trigger the Rule Engine.
 
 To update the audience's members, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.
 
@@ -4130,6 +4388,8 @@ when customers join or leave audiences.
 
 The limit of customer profiles per request is 1000.
 
+**Note:** You can also add customer profiles to or remove them from an audience using the [Update audience](https://docs.talon.one/docs/product/rules/effects/using-effects#updating-an-audience) effect.
+
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return apiUpdateCustomerProfileAudiencesRequest
@@ -4283,7 +4543,7 @@ func (r apiUpdateCustomerProfileV2Request) Dry(dry bool) apiUpdateCustomerProfil
 
 /*
 UpdateCustomerProfileV2 Update customer profile
-Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities#customer-profile). This endpoint triggers the Rule Builder.
+Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles). This endpoint triggers the Rule Builder.
 
 You can use this endpoint to:
 - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first.
@@ -4293,10 +4553,11 @@ You can use this endpoint to:
 
 	<p class="title">Performance tips</p>
 
-	Updating a customer profile returns a response with the requested integration state.
-
-	You can use the `responseContent` property to save yourself extra API calls. For example, you can get
-	the customer profile details directly without extra requests.
+	- Updating a customer profile returns a response with the requested integration state.
+	- You can use the `responseContent` property to save yourself extra API calls. For example, you can get
+	  the customer profile details directly without extra requests.
+	- We recommend sending requests sequentially.
+	  See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).
 
 </div>
 
@@ -4316,16 +4577,16 @@ func (a *IntegrationApiService) UpdateCustomerProfileV2(ctx _context.Context, in
 /*
 Execute executes the request
 
-	@return IntegrationStateV2
+	@return CustomerProfileIntegrationResponseV2
 */
-func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
+func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileIntegrationResponseV2, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  IntegrationStateV2
+		localVarReturnValue  CustomerProfileIntegrationResponseV2
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UpdateCustomerProfileV2")
@@ -4405,7 +4666,7 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (IntegrationStateV2, *_neth
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationStateV2
+			var v CustomerProfileIntegrationResponseV2
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4477,13 +4738,16 @@ func (r apiUpdateCustomerProfilesV2Request) Silent(silent string) apiUpdateCusto
 
 /*
 UpdateCustomerProfilesV2 Update multiple customer profiles
-Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities#customer-profile) in 1 request.
+Update (or create) up to 1000 [customer profiles](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles) in 1 request.
 
 The `integrationId` must be any identifier that remains stable for
 the customer. Do not use an ID that the customer can update
 themselves. For example, you can use a database ID.
 
 A customer profile [can be linked to one or more sessions](https://docs.talon.one/integration-api#tag/Customer-sessions).
+
+**Note:** This endpoint does not trigger the Rule Engine. To trigger the Rule Engine for customer profile updates,
+use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -4647,7 +4911,7 @@ func (r apiUpdateCustomerSessionV2Request) Dry(dry bool) apiUpdateCustomerSessio
 
 /*
 UpdateCustomerSessionV2 Update customer session
-Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities#customer-session).
+Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.
 For example, use this endpoint to share the contents of a customer's cart with Talon.One.
 
@@ -4656,7 +4920,7 @@ Application that owns this session.
 
 ### Session management
 
-To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities#customer-session)
+To use this endpoint, start by learning about [customer sessions](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions)
 and their states and refer to the `state` parameter documentation the request body schema docs below.
 
 ### Sessions and customer profiles
@@ -4668,14 +4932,16 @@ and their states and refer to the `state` parameter documentation the request bo
   - Use the same session integration ID across all of the Applications.
 
 **Note:** If the specified profile does not exist, an empty profile is **created automatically**.
-You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2).
+
+	You can update it with [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2).
 
 <div class="redoc-section">
 
 	<p class="title">Performance tips</p>
 
-	Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls.
-	For example, you can get the customer profile details directly without extra requests.
+	- Updating a customer session returns a response with the new integration state. Use the `responseContent` property to save yourself extra API calls.
+	  For example, you can get the customer profile details directly without extra requests.
+	- We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).
 
 </div>
 

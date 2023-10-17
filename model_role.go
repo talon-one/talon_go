@@ -25,7 +25,7 @@ type Role struct {
 	Modified time.Time `json:"modified"`
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`
-	// The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/managing-campaign-groups) this role was created for.
+	// The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this role was created for.
 	CampaignGroupID *int32 `json:"campaignGroupID,omitempty"`
 	// Name of the role.
 	Name string `json:"name"`

@@ -18,8 +18,10 @@ import (
 type AccountDashboardStatisticCampaigns struct {
 	// Number of campaigns that are active and live (across all Applications).
 	Live int32 `json:"live"`
-	// Campaigns with a schedule ending in 7 days or with only 10% of budget left.
+	// Campaigns scheduled to expire sometime in the next 7 days.
 	EndingSoon int32 `json:"endingSoon"`
+	// Campaigns with less than 10% of budget left.
+	LowOnBudget int32 `json:"lowOnBudget"`
 }
 
 // GetLive returns the Live field value
@@ -50,6 +52,21 @@ func (o *AccountDashboardStatisticCampaigns) GetEndingSoon() int32 {
 // SetEndingSoon sets field value
 func (o *AccountDashboardStatisticCampaigns) SetEndingSoon(v int32) {
 	o.EndingSoon = v
+}
+
+// GetLowOnBudget returns the LowOnBudget field value
+func (o *AccountDashboardStatisticCampaigns) GetLowOnBudget() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.LowOnBudget
+}
+
+// SetLowOnBudget sets field value
+func (o *AccountDashboardStatisticCampaigns) SetLowOnBudget(v int32) {
+	o.LowOnBudget = v
 }
 
 type NullableAccountDashboardStatisticCampaigns struct {

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **EffectId** | Pointer to **int32** | The ID of the custom effect that was triggered. | 
 **Name** | Pointer to **string** | The type of the custom effect. | 
 **CartItemPosition** | Pointer to **float32** | The index of the item in the cart item list to which the custom effect is applied. | [optional] 
-**CartItemSubPosition** | Pointer to **float32** | When cart item flattening is enabled, the sub position indicates to which item unit the custom effect is applied, for cart items with quantity &gt; 1.  | [optional] 
+**CartItemSubPosition** | Pointer to **float32** | For cart items with quantity &gt; 1, the sub position indicates to which item unit the custom effect is applied.  | [optional] 
 **BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
 **BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
 **Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 

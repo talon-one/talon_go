@@ -35,7 +35,7 @@ type ApplicationCustomer struct {
 	LoyaltyMemberships *[]LoyaltyMembership `json:"loyaltyMemberships,omitempty"`
 	// The audiences the customer belongs to.
 	AudienceMemberships *[]AudienceMembership `json:"audienceMemberships,omitempty"`
-	// Timestamp of the most recent event received from this customer. This field is updated on calls that trigger the rule-engine and that are not [dry requests](https://docs.talon.one/docs/dev/integration-api/dry-requests/#overlay).  For example, [reserving a coupon](https://docs.talon.one/integration-api#operation/createCouponReservation) for a customer doesn't impact this field.
+	// Timestamp of the most recent event received from this customer. This field is updated on calls that trigger the Rule Engine and that are not [dry requests](https://docs.talon.one/docs/dev/integration-api/dry-requests/#overlay).  For example, [reserving a coupon](https://docs.talon.one/integration-api#operation/createCouponReservation) for a customer doesn't impact this field.
 	LastActivity time.Time `json:"lastActivity"`
 	// Shows whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments).
 	Sandbox *bool `json:"sandbox,omitempty"`

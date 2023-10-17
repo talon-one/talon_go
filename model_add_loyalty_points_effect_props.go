@@ -37,7 +37,7 @@ type AddLoyaltyPointsEffectProps struct {
 	TransactionUUID string `json:"transactionUUID"`
 	// The index of the item in the cart items list on which the loyal points addition should be applied.
 	CartItemPosition *float32 `json:"cartItemPosition,omitempty"`
-	// The sub position is triggered when application flattening is enabled. It indicates to which item the loyalty points addition applies, for cart items with `quantity` > 1.
+	// For cart items with `quantity` > 1, the sub position indicates to which item the loyalty points addition is applied.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
 	// The alphanumeric identifier of the loyalty card.
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`

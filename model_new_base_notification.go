@@ -16,7 +16,9 @@ import (
 
 // NewBaseNotification
 type NewBaseNotification struct {
-	Policy  map[string]interface{} `json:"policy"`
+	Policy map[string]interface{} `json:"policy"`
+	// Indicates whether the notification is activated.
+	Enabled *bool                  `json:"enabled,omitempty"`
 	Webhook NewNotificationWebhook `json:"webhook"`
 }
 
@@ -33,6 +35,39 @@ func (o *NewBaseNotification) GetPolicy() map[string]interface{} {
 // SetPolicy sets field value
 func (o *NewBaseNotification) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *NewBaseNotification) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewBaseNotification) GetEnabledOk() (bool, bool) {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *NewBaseNotification) HasEnabled() bool {
+	if o != nil && o.Enabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *NewBaseNotification) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetWebhook returns the Webhook field value
