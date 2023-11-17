@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **Type** | Pointer to **string** | A string representing the event. Must not be a reserved event name. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON data associated with the event. | 
 
@@ -34,6 +35,31 @@ HasProfileId returns a boolean if a field has been set.
 `func (o *IntegrationEvent) SetProfileId(v string)`
 
 SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
+
+### GetStoreIntegrationId
+
+`func (o *IntegrationEvent) GetStoreIntegrationId() string`
+
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
+
+### GetStoreIntegrationIdOk
+
+`func (o *IntegrationEvent) GetStoreIntegrationIdOk() (string, bool)`
+
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreIntegrationId
+
+`func (o *IntegrationEvent) HasStoreIntegrationId() bool`
+
+HasStoreIntegrationId returns a boolean if a field has been set.
+
+### SetStoreIntegrationId
+
+`func (o *IntegrationEvent) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 ### GetType
 

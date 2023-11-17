@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
 **AuthMethod** | Pointer to **string** | The Authentication method for this user. | [optional] 
 **IsAdmin** | Pointer to **bool** | An indication of whether the user has admin permissions. | [optional] 
+**LastSignedIn** | Pointer to [**time.Time**](time.Time.md) | Date and time when the user last signed in to Talon.One. | [optional] 
+**LastAccessed** | Pointer to [**time.Time**](time.Time.md) | Date and time of the user&#39;s last activity after signing in to Talon.One. | [optional] 
 
 ## Methods
 
@@ -370,6 +372,56 @@ HasIsAdmin returns a boolean if a field has been set.
 `func (o *User) SetIsAdmin(v bool)`
 
 SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+
+### GetLastSignedIn
+
+`func (o *User) GetLastSignedIn() time.Time`
+
+GetLastSignedIn returns the LastSignedIn field if non-nil, zero value otherwise.
+
+### GetLastSignedInOk
+
+`func (o *User) GetLastSignedInOk() (time.Time, bool)`
+
+GetLastSignedInOk returns a tuple with the LastSignedIn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastSignedIn
+
+`func (o *User) HasLastSignedIn() bool`
+
+HasLastSignedIn returns a boolean if a field has been set.
+
+### SetLastSignedIn
+
+`func (o *User) SetLastSignedIn(v time.Time)`
+
+SetLastSignedIn gets a reference to the given time.Time and assigns it to the LastSignedIn field.
+
+### GetLastAccessed
+
+`func (o *User) GetLastAccessed() time.Time`
+
+GetLastAccessed returns the LastAccessed field if non-nil, zero value otherwise.
+
+### GetLastAccessedOk
+
+`func (o *User) GetLastAccessedOk() (time.Time, bool)`
+
+GetLastAccessedOk returns a tuple with the LastAccessed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastAccessed
+
+`func (o *User) HasLastAccessed() bool`
+
+HasLastAccessed returns a boolean if a field has been set.
+
+### SetLastAccessed
+
+`func (o *User) SetLastAccessed(v time.Time)`
+
+SetLastAccessed gets a reference to the given time.Time and assigns it to the LastAccessed field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

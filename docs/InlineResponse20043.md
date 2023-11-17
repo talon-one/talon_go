@@ -4,10 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]Role**](Role.md) |  | 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**TotalResultSize** | Pointer to **int32** |  | [optional] 
+**Data** | Pointer to [**[]Store**](Store.md) |  | 
 
 ## Methods
+
+### GetHasMore
+
+`func (o *InlineResponse20043) GetHasMore() bool`
+
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+
+### GetHasMoreOk
+
+`func (o *InlineResponse20043) GetHasMoreOk() (bool, bool)`
+
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasHasMore
+
+`func (o *InlineResponse20043) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
+
+### SetHasMore
+
+`func (o *InlineResponse20043) SetHasMore(v bool)`
+
+SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
 ### GetTotalResultSize
 
@@ -36,13 +62,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20043) GetData() []Role`
+`func (o *InlineResponse20043) GetData() []Store`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20043) GetDataOk() ([]Role, bool)`
+`func (o *InlineResponse20043) GetDataOk() ([]Store, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +81,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20043) SetData(v []Role)`
+`func (o *InlineResponse20043) SetData(v []Store)`
 
-SetData gets a reference to the given []Role and assigns it to the Data field.
+SetData gets a reference to the given []Store and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -30,6 +30,8 @@ type Effect struct {
 	TriggeredByCoupon *int32 `json:"triggeredByCoupon,omitempty"`
 	// The ID of the catalog item that was being evaluated when this effect was triggered.
 	TriggeredForCatalogItem *int32 `json:"triggeredForCatalogItem,omitempty"`
+	// The index of the condition that was triggered.
+	ConditionIndex *int32 `json:"conditionIndex,omitempty"`
 	// The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
 	Props map[string]interface{} `json:"props"`
 }
@@ -173,6 +175,39 @@ func (o *Effect) HasTriggeredForCatalogItem() bool {
 // SetTriggeredForCatalogItem gets a reference to the given int32 and assigns it to the TriggeredForCatalogItem field.
 func (o *Effect) SetTriggeredForCatalogItem(v int32) {
 	o.TriggeredForCatalogItem = &v
+}
+
+// GetConditionIndex returns the ConditionIndex field value if set, zero value otherwise.
+func (o *Effect) GetConditionIndex() int32 {
+	if o == nil || o.ConditionIndex == nil {
+		var ret int32
+		return ret
+	}
+	return *o.ConditionIndex
+}
+
+// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Effect) GetConditionIndexOk() (int32, bool) {
+	if o == nil || o.ConditionIndex == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.ConditionIndex, true
+}
+
+// HasConditionIndex returns a boolean if a field has been set.
+func (o *Effect) HasConditionIndex() bool {
+	if o != nil && o.ConditionIndex != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
+func (o *Effect) SetConditionIndex(v int32) {
+	o.ConditionIndex = &v
 }
 
 // GetProps returns the Props field value

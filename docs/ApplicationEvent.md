@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
+**StoreId** | Pointer to **int32** | The ID of the store. | [optional] 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **SessionId** | Pointer to **int32** | The globally unique Talon.One ID of the session that contains this event. | [optional] 
 **Type** | Pointer to **string** | A string representing the event. Must not be a reserved event name. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Additional JSON serialized data associated with the event. | 
@@ -115,6 +117,56 @@ HasProfileId returns a boolean if a field has been set.
 `func (o *ApplicationEvent) SetProfileId(v int32)`
 
 SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
+
+### GetStoreId
+
+`func (o *ApplicationEvent) GetStoreId() int32`
+
+GetStoreId returns the StoreId field if non-nil, zero value otherwise.
+
+### GetStoreIdOk
+
+`func (o *ApplicationEvent) GetStoreIdOk() (int32, bool)`
+
+GetStoreIdOk returns a tuple with the StoreId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreId
+
+`func (o *ApplicationEvent) HasStoreId() bool`
+
+HasStoreId returns a boolean if a field has been set.
+
+### SetStoreId
+
+`func (o *ApplicationEvent) SetStoreId(v int32)`
+
+SetStoreId gets a reference to the given int32 and assigns it to the StoreId field.
+
+### GetStoreIntegrationId
+
+`func (o *ApplicationEvent) GetStoreIntegrationId() string`
+
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
+
+### GetStoreIntegrationIdOk
+
+`func (o *ApplicationEvent) GetStoreIntegrationIdOk() (string, bool)`
+
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreIntegrationId
+
+`func (o *ApplicationEvent) HasStoreIntegrationId() bool`
+
+HasStoreIntegrationId returns a boolean if a field has been set.
+
+### SetStoreIntegrationId
+
+`func (o *ApplicationEvent) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 ### GetSessionId
 

@@ -4,9 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
-**HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]Change**](Change.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
+**Data** | Pointer to [**[]Export**](Export.md) |  | 
 
 ## Methods
 
@@ -35,40 +34,15 @@ HasTotalResultSize returns a boolean if a field has been set.
 
 SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
-### GetHasMore
-
-`func (o *InlineResponse20041) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse20041) GetHasMoreOk() (bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasHasMore
-
-`func (o *InlineResponse20041) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse20041) SetHasMore(v bool)`
-
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-
 ### GetData
 
-`func (o *InlineResponse20041) GetData() []Change`
+`func (o *InlineResponse20041) GetData() []Export`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20041) GetDataOk() ([]Change, bool)`
+`func (o *InlineResponse20041) GetDataOk() ([]Export, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20041) SetData(v []Change)`
+`func (o *InlineResponse20041) SetData(v []Export)`
 
-SetData gets a reference to the given []Change and assigns it to the Data field.
+SetData gets a reference to the given []Export and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

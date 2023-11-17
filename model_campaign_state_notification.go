@@ -55,40 +55,40 @@ type CampaignStateNotification struct {
 	Type string `json:"type"`
 	// A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.
 	LinkedStoreIds *[]int32 `json:"linkedStoreIds,omitempty"`
-	// Number of coupons redeemed in the campaign.
+	// A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.
+	Budgets []CampaignBudget `json:"budgets"`
+	// This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.
 	CouponRedemptionCount *int32 `json:"couponRedemptionCount,omitempty"`
-	// Number of referral codes redeemed in the campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.
 	ReferralRedemptionCount *int32 `json:"referralRedemptionCount,omitempty"`
-	// Total amount of discounts redeemed in the campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign.
 	DiscountCount *float32 `json:"discountCount,omitempty"`
-	// Total number of times discounts were redeemed in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of times discounts were redeemed in this campaign.
 	DiscountEffectCount *int32 `json:"discountEffectCount,omitempty"`
-	// Total number of coupons created by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of coupons created by rules in this campaign.
 	CouponCreationCount *int32 `json:"couponCreationCount,omitempty"`
-	// Total number of custom effects triggered by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of custom effects triggered by rules in this campaign.
 	CustomEffectCount *int32 `json:"customEffectCount,omitempty"`
-	// Total number of referrals created by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of referrals created by rules in this campaign.
 	ReferralCreationCount *int32 `json:"referralCreationCount,omitempty"`
-	// Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
 	AddFreeItemEffectCount *int32 `json:"addFreeItemEffectCount,omitempty"`
-	// Total number of giveaways awarded by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of giveaways awarded by rules in this campaign.
 	AwardedGiveawaysCount *int32 `json:"awardedGiveawaysCount,omitempty"`
-	// Total number of loyalty points created by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points created by rules in this campaign.
 	CreatedLoyaltyPointsCount *float32 `json:"createdLoyaltyPointsCount,omitempty"`
-	// Total number of loyalty point creation effects triggered by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point creation effects triggered by rules in this campaign.
 	CreatedLoyaltyPointsEffectCount *int32 `json:"createdLoyaltyPointsEffectCount,omitempty"`
-	// Total number of loyalty points redeemed by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points redeemed by rules in this campaign.
 	RedeemedLoyaltyPointsCount *float32 `json:"redeemedLoyaltyPointsCount,omitempty"`
-	// Total number of loyalty point redemption effects triggered by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point redemption effects triggered by rules in this campaign.
 	RedeemedLoyaltyPointsEffectCount *int32 `json:"redeemedLoyaltyPointsEffectCount,omitempty"`
-	// Total number of webhooks triggered by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of webhooks triggered by rules in this campaign.
 	CallApiEffectCount *int32 `json:"callApiEffectCount,omitempty"`
-	// Total number of reserve coupon effects triggered by rules in this campaign.
+	// This property is **deprecated**. The count should be available under *budgets* property. Total number of reserve coupon effects triggered by rules in this campaign.
 	ReservecouponEffectCount *int32 `json:"reservecouponEffectCount,omitempty"`
 	// Timestamp of the most recent event received by this campaign.
 	LastActivity *time.Time `json:"lastActivity,omitempty"`
-	// The total number of effects created in this campaign in the past 7 days.
-	WeeklyUsageCount *int32 `json:"weeklyUsageCount,omitempty"`
 	// Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates.
 	Updated *time.Time `json:"updated,omitempty"`
 	// Name of the user who created this campaign if available.
@@ -561,6 +561,21 @@ func (o *CampaignStateNotification) HasLinkedStoreIds() bool {
 // SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
 func (o *CampaignStateNotification) SetLinkedStoreIds(v []int32) {
 	o.LinkedStoreIds = &v
+}
+
+// GetBudgets returns the Budgets field value
+func (o *CampaignStateNotification) GetBudgets() []CampaignBudget {
+	if o == nil {
+		var ret []CampaignBudget
+		return ret
+	}
+
+	return o.Budgets
+}
+
+// SetBudgets sets field value
+func (o *CampaignStateNotification) SetBudgets(v []CampaignBudget) {
+	o.Budgets = v
 }
 
 // GetCouponRedemptionCount returns the CouponRedemptionCount field value if set, zero value otherwise.
@@ -1089,39 +1104,6 @@ func (o *CampaignStateNotification) HasLastActivity() bool {
 // SetLastActivity gets a reference to the given time.Time and assigns it to the LastActivity field.
 func (o *CampaignStateNotification) SetLastActivity(v time.Time) {
 	o.LastActivity = &v
-}
-
-// GetWeeklyUsageCount returns the WeeklyUsageCount field value if set, zero value otherwise.
-func (o *CampaignStateNotification) GetWeeklyUsageCount() int32 {
-	if o == nil || o.WeeklyUsageCount == nil {
-		var ret int32
-		return ret
-	}
-	return *o.WeeklyUsageCount
-}
-
-// GetWeeklyUsageCountOk returns a tuple with the WeeklyUsageCount field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *CampaignStateNotification) GetWeeklyUsageCountOk() (int32, bool) {
-	if o == nil || o.WeeklyUsageCount == nil {
-		var ret int32
-		return ret, false
-	}
-	return *o.WeeklyUsageCount, true
-}
-
-// HasWeeklyUsageCount returns a boolean if a field has been set.
-func (o *CampaignStateNotification) HasWeeklyUsageCount() bool {
-	if o != nil && o.WeeklyUsageCount != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetWeeklyUsageCount gets a reference to the given int32 and assigns it to the WeeklyUsageCount field.
-func (o *CampaignStateNotification) SetWeeklyUsageCount(v int32) {
-	o.WeeklyUsageCount = &v
 }
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.

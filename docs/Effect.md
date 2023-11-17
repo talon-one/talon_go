@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **EffectType** | Pointer to **string** | The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 **TriggeredByCoupon** | Pointer to **int32** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
 **TriggeredForCatalogItem** | Pointer to **int32** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 
+**ConditionIndex** | Pointer to **int32** | The index of the condition that was triggered. | [optional] 
 **Props** | Pointer to [**map[string]interface{}**](.md) | The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 
 ## Methods
@@ -189,6 +190,31 @@ HasTriggeredForCatalogItem returns a boolean if a field has been set.
 `func (o *Effect) SetTriggeredForCatalogItem(v int32)`
 
 SetTriggeredForCatalogItem gets a reference to the given int32 and assigns it to the TriggeredForCatalogItem field.
+
+### GetConditionIndex
+
+`func (o *Effect) GetConditionIndex() int32`
+
+GetConditionIndex returns the ConditionIndex field if non-nil, zero value otherwise.
+
+### GetConditionIndexOk
+
+`func (o *Effect) GetConditionIndexOk() (int32, bool)`
+
+GetConditionIndexOk returns a tuple with the ConditionIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasConditionIndex
+
+`func (o *Effect) HasConditionIndex() bool`
+
+HasConditionIndex returns a boolean if a field has been set.
+
+### SetConditionIndex
+
+`func (o *Effect) SetConditionIndex(v int32)`
+
+SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
 
 ### GetProps
 

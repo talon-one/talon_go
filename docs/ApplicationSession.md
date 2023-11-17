@@ -6,9 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. The time this entity was created. | 
+**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
-**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 
@@ -18,7 +19,6 @@ Name | Type | Description | Notes
 **TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
-**StoreIntegrationId** | Pointer to **string** | The integration ID of the store for this session. | [optional] 
 
 ## Methods
 
@@ -72,6 +72,56 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
+### GetIntegrationId
+
+`func (o *ApplicationSession) GetIntegrationId() string`
+
+GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
+
+### GetIntegrationIdOk
+
+`func (o *ApplicationSession) GetIntegrationIdOk() (string, bool)`
+
+GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIntegrationId
+
+`func (o *ApplicationSession) HasIntegrationId() bool`
+
+HasIntegrationId returns a boolean if a field has been set.
+
+### SetIntegrationId
+
+`func (o *ApplicationSession) SetIntegrationId(v string)`
+
+SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+
+### GetStoreIntegrationId
+
+`func (o *ApplicationSession) GetStoreIntegrationId() string`
+
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
+
+### GetStoreIntegrationIdOk
+
+`func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool)`
+
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreIntegrationId
+
+`func (o *ApplicationSession) HasStoreIntegrationId() bool`
+
+HasStoreIntegrationId returns a boolean if a field has been set.
+
+### SetStoreIntegrationId
+
+`func (o *ApplicationSession) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+
 ### GetApplicationId
 
 `func (o *ApplicationSession) GetApplicationId() int32`
@@ -121,31 +171,6 @@ HasProfileId returns a boolean if a field has been set.
 `func (o *ApplicationSession) SetProfileId(v int32)`
 
 SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-
-### GetIntegrationId
-
-`func (o *ApplicationSession) GetIntegrationId() string`
-
-GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
-
-### GetIntegrationIdOk
-
-`func (o *ApplicationSession) GetIntegrationIdOk() (string, bool)`
-
-GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasIntegrationId
-
-`func (o *ApplicationSession) HasIntegrationId() bool`
-
-HasIntegrationId returns a boolean if a field has been set.
-
-### SetIntegrationId
-
-`func (o *ApplicationSession) SetIntegrationId(v string)`
-
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
 
 ### GetProfileintegrationid
 
@@ -371,31 +396,6 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *ApplicationSession) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-
-### GetStoreIntegrationId
-
-`func (o *ApplicationSession) GetStoreIntegrationId() string`
-
-GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
-
-### GetStoreIntegrationIdOk
-
-`func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool)`
-
-GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasStoreIntegrationId
-
-`func (o *ApplicationSession) HasStoreIntegrationId() bool`
-
-HasStoreIntegrationId returns a boolean if a field has been set.
-
-### SetStoreIntegrationId
-
-`func (o *ApplicationSession) SetStoreIntegrationId(v string)`
-
-SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
