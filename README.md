@@ -94,7 +94,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	talon "github.com/talon-one/talon_go/v4"
+	talon "github.com/talon-one/talon_go/v5"
 )
 
 func main() {
@@ -220,7 +220,7 @@ import (
 	"context"
 	"fmt"
 
-	talon "github.com/talon-one/talon_go/v4"
+	talon "github.com/talon-one/talon_go/v5"
 )
 
 func main() {
