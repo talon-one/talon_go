@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **EvaluableCampaignIds** | Pointer to **[]int32** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **CouponCodes** | Pointer to **[]string** | Any coupon codes entered.  **Important**: If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it.  | [optional] 
 **ReferralCode** | Pointer to **string** | Any referral code entered.  **Important**: If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it.  | [optional] 
@@ -14,7 +15,6 @@ Name | Type | Description | Notes
 **AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  | [optional] 
 **Identifiers** | Pointer to **[]string** | Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview).  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property.  | [optional] 
-**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 
 ## Methods
 
@@ -42,6 +42,31 @@ HasProfileId returns a boolean if a field has been set.
 `func (o *NewCustomerSessionV2) SetProfileId(v string)`
 
 SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
+
+### GetStoreIntegrationId
+
+`func (o *NewCustomerSessionV2) GetStoreIntegrationId() string`
+
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
+
+### GetStoreIntegrationIdOk
+
+`func (o *NewCustomerSessionV2) GetStoreIntegrationIdOk() (string, bool)`
+
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreIntegrationId
+
+`func (o *NewCustomerSessionV2) HasStoreIntegrationId() bool`
+
+HasStoreIntegrationId returns a boolean if a field has been set.
+
+### SetStoreIntegrationId
+
+`func (o *NewCustomerSessionV2) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 ### GetEvaluableCampaignIds
 
@@ -267,31 +292,6 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *NewCustomerSessionV2) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-
-### GetStoreIntegrationId
-
-`func (o *NewCustomerSessionV2) GetStoreIntegrationId() string`
-
-GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
-
-### GetStoreIntegrationIdOk
-
-`func (o *NewCustomerSessionV2) GetStoreIntegrationIdOk() (string, bool)`
-
-GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasStoreIntegrationId
-
-`func (o *NewCustomerSessionV2) HasStoreIntegrationId() bool`
-
-HasStoreIntegrationId returns a boolean if a field has been set.
-
-### SetStoreIntegrationId
-
-`func (o *NewCustomerSessionV2) SetStoreIntegrationId(v string)`
-
-SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

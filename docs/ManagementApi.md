@@ -11,25 +11,25 @@ Method | HTTP request | Description
 [**CreateAdditionalCost**](ManagementApi.md#CreateAdditionalCost) | **Post** /v1/additional_costs | Create additional cost
 [**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Create custom attribute
 [**CreateCampaignFromTemplate**](ManagementApi.md#CreateCampaignFromTemplate) | **Post** /v1/applications/{applicationId}/create_campaign_from_template | Create campaign from campaign template
-[**CreateCollection**](ManagementApi.md#CreateCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create collection
+[**CreateCollection**](ManagementApi.md#CreateCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create campaign-level collection
 [**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons
 [**CreateCouponsAsync**](ManagementApi.md#CreateCouponsAsync) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously
 [**CreateCouponsForMultipleRecipients**](ManagementApi.md#CreateCouponsForMultipleRecipients) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create coupons for multiple recipients
-[**CreateNotificationWebhook**](ManagementApi.md#CreateNotificationWebhook) | **Post** /v1/applications/{applicationId}/notification_webhooks | Create notification about campaign-related changes
 [**CreatePasswordRecoveryEmail**](ManagementApi.md#CreatePasswordRecoveryEmail) | **Post** /v1/password_recovery_emails | Request a password reset
 [**CreateSession**](ManagementApi.md#CreateSession) | **Post** /v1/sessions | Create session
+[**CreateStore**](ManagementApi.md#CreateStore) | **Post** /v1/applications/{applicationId}/stores | Create store
 [**DeductLoyaltyCardPoints**](ManagementApi.md#DeductLoyaltyCardPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points | Deduct points from card
 [**DeleteAccountCollection**](ManagementApi.md#DeleteAccountCollection) | **Delete** /v1/collections/{collectionId} | Delete account-level collection
 [**DeleteCampaign**](ManagementApi.md#DeleteCampaign) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
-[**DeleteCollection**](ManagementApi.md#DeleteCollection) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete collection
+[**DeleteCollection**](ManagementApi.md#DeleteCollection) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete campaign-level collection
 [**DeleteCoupon**](ManagementApi.md#DeleteCoupon) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Delete coupon
 [**DeleteCoupons**](ManagementApi.md#DeleteCoupons) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Delete coupons
 [**DeleteLoyaltyCard**](ManagementApi.md#DeleteLoyaltyCard) | **Delete** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Delete loyalty card
-[**DeleteNotificationWebhook**](ManagementApi.md#DeleteNotificationWebhook) | **Delete** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Delete notification about campaign-related changes
 [**DeleteReferral**](ManagementApi.md#DeleteReferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete referral
+[**DeleteStore**](ManagementApi.md#DeleteStore) | **Delete** /v1/applications/{applicationId}/stores/{storeId} | Delete store
 [**DestroySession**](ManagementApi.md#DestroySession) | **Delete** /v1/sessions | Destroy session
 [**ExportAccountCollectionItems**](ManagementApi.md#ExportAccountCollectionItems) | **Get** /v1/collections/{collectionId}/export | Export account-level collection&#39;s items
-[**ExportCollectionItems**](ManagementApi.md#ExportCollectionItems) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export a collection&#39;s items
+[**ExportCollectionItems**](ManagementApi.md#ExportCollectionItems) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export campaign-level collection&#39;s items
 [**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export coupons
 [**ExportCustomerSessions**](ManagementApi.md#ExportCustomerSessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export customer sessions
 [**ExportCustomersTiers**](ManagementApi.md#ExportCustomersTiers) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_customers_tiers | Export customers&#39; tier data
@@ -69,7 +69,7 @@ Method | HTTP request | Description
 [**GetCampaignTemplates**](ManagementApi.md#GetCampaignTemplates) | **Get** /v1/campaign_templates | List campaign templates
 [**GetCampaigns**](ManagementApi.md#GetCampaigns) | **Get** /v1/applications/{applicationId}/campaigns | List campaigns
 [**GetChanges**](ManagementApi.md#GetChanges) | **Get** /v1/changes | Get audit logs for an account
-[**GetCollection**](ManagementApi.md#GetCollection) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Get collection
+[**GetCollection**](ManagementApi.md#GetCollection) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Get campaign-level collection
 [**GetCollectionItems**](ManagementApi.md#GetCollectionItems) | **Get** /v1/collections/{collectionId}/items | Get collection items
 [**GetCouponsWithoutTotalCount**](ManagementApi.md#GetCouponsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List coupons
 [**GetCustomerActivityReport**](ManagementApi.md#GetCustomerActivityReport) | **Get** /v1/applications/{applicationId}/customer_activity_reports/{customerId} | Get customer&#39;s activity report
@@ -88,21 +88,20 @@ Method | HTTP request | Description
 [**GetLoyaltyProgramTransactions**](ManagementApi.md#GetLoyaltyProgramTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List loyalty programs
 [**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
-[**GetNotificationWebhook**](ManagementApi.md#GetNotificationWebhook) | **Get** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Get notification about campaign-related changes
-[**GetNotificationWebhooks**](ManagementApi.md#GetNotificationWebhooks) | **Get** /v1/applications/{applicationId}/notification_webhooks | List notifications about campaign-related changes
 [**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
 [**GetRole**](ManagementApi.md#GetRole) | **Get** /v1/roles/{roleId} | Get role
 [**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
 [**GetRulesets**](ManagementApi.md#GetRulesets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List campaign rulesets
+[**GetStore**](ManagementApi.md#GetStore) | **Get** /v1/applications/{applicationId}/stores/{storeId} | Get store
 [**GetUser**](ManagementApi.md#GetUser) | **Get** /v1/users/{userId} | Get user
 [**GetUsers**](ManagementApi.md#GetUsers) | **Get** /v1/users | List users in account
 [**GetWebhook**](ManagementApi.md#GetWebhook) | **Get** /v1/webhooks/{webhookId} | Get webhook
 [**GetWebhookActivationLogs**](ManagementApi.md#GetWebhookActivationLogs) | **Get** /v1/webhook_activation_logs | List webhook activation log entries
 [**GetWebhookLogs**](ManagementApi.md#GetWebhookLogs) | **Get** /v1/webhook_logs | List webhook log entries
 [**GetWebhooks**](ManagementApi.md#GetWebhooks) | **Get** /v1/webhooks | List webhooks
-[**ImportAccountCollection**](ManagementApi.md#ImportAccountCollection) | **Post** /v1/collections/{collectionId}/import | Import data in existing account-level collection
+[**ImportAccountCollection**](ManagementApi.md#ImportAccountCollection) | **Post** /v1/collections/{collectionId}/import | Import data into existing account-level collection
 [**ImportAllowedList**](ManagementApi.md#ImportAllowedList) | **Post** /v1/attributes/{attributeId}/allowed_list/import | Import allowed values for attribute
-[**ImportCollection**](ManagementApi.md#ImportCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import | Import data in existing collection
+[**ImportCollection**](ManagementApi.md#ImportCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import | Import data into existing campaign-level collection
 [**ImportCoupons**](ManagementApi.md#ImportCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons
 [**ImportLoyaltyCards**](ManagementApi.md#ImportLoyaltyCards) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards
 [**ImportLoyaltyCustomersTiers**](ManagementApi.md#ImportLoyaltyCustomersTiers) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_customers_tiers | Import customers into loyalty tiers
@@ -111,8 +110,9 @@ Method | HTTP request | Description
 [**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals
 [**ListAccountCollections**](ManagementApi.md#ListAccountCollections) | **Get** /v1/collections | List collections in account
 [**ListCatalogItems**](ManagementApi.md#ListCatalogItems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
-[**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections
-[**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in application
+[**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
+[**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
+[**ListStores**](ManagementApi.md#ListStores) | **Get** /v1/applications/{applicationId}/stores | List stores
 [**NotificationActivation**](ManagementApi.md#NotificationActivation) | **Put** /v1/notifications/{notificationId}/activation | Activate or deactivate notification
 [**PostAddedDeductedPointsNotification**](ManagementApi.md#PostAddedDeductedPointsNotification) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/notifications/added_deducted_points | Create notification about added or deducted loyalty points
 [**PostCatalogsStrikethroughNotification**](ManagementApi.md#PostCatalogsStrikethroughNotification) | **Post** /v1/applications/{applicationId}/catalogs/notifications/strikethrough | Create strikethrough notification
@@ -126,12 +126,12 @@ Method | HTTP request | Description
 [**UpdateAdditionalCost**](ManagementApi.md#UpdateAdditionalCost) | **Put** /v1/additional_costs/{additionalCostId} | Update additional cost
 [**UpdateAttribute**](ManagementApi.md#UpdateAttribute) | **Put** /v1/attributes/{attributeId} | Update custom attribute
 [**UpdateCampaign**](ManagementApi.md#UpdateCampaign) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId} | Update campaign
-[**UpdateCollection**](ManagementApi.md#UpdateCollection) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update collection description
+[**UpdateCollection**](ManagementApi.md#UpdateCollection) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update campaign-level collection&#39;s description
 [**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon
 [**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons
 [**UpdateLoyaltyCard**](ManagementApi.md#UpdateLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status
-[**UpdateNotificationWebhook**](ManagementApi.md#UpdateNotificationWebhook) | **Put** /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId} | Update notification about campaign-related changes
 [**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
+[**UpdateStore**](ManagementApi.md#UpdateStore) | **Put** /v1/applications/{applicationId}/stores/{storeId} | Update store
 
 
 
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 
 > Collection CreateCollection(ctx, applicationId, campaignId).Body(body).Execute()
 
-Create collection
+Create campaign-level collection
 
 
 
@@ -482,7 +482,7 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse2009 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2008 CreateCoupons(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons
 
@@ -511,7 +511,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -575,7 +575,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse2009 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
+> InlineResponse2008 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId).Body(body).Silent(silent).Execute()
 
 Create coupons for multiple recipients
 
@@ -604,51 +604,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](inline_response_200_9.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CreateNotificationWebhook
-
-> NotificationWebhook CreateNotificationWebhook(ctx, applicationId).Body(body).Execute()
-
-Create notification about campaign-related changes
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateNotificationWebhookRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **body** | [**NewNotificationWebhook**](NewNotificationWebhook.md) | body | 
-
-### Return type
-
-[**NotificationWebhook**](NotificationWebhook.md)
+[**InlineResponse2008**](inline_response_200_8.md)
 
 ### Authorization
 
@@ -742,6 +698,50 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateStore
+
+> Store CreateStore(ctx, applicationId).Body(body).Execute()
+
+Create store
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**NewStore**](NewStore.md) | body | 
+
+### Return type
+
+[**Store**](Store.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeductLoyaltyCardPoints
 
 > DeductLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Body(body).Execute()
@@ -802,7 +802,7 @@ Delete account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Other Parameters
 
@@ -880,7 +880,7 @@ Name | Type | Description  | Notes
 
 > DeleteCollection(ctx, applicationId, campaignId, collectionId).Execute()
 
-Delete collection
+Delete campaign-level collection
 
 
 
@@ -892,7 +892,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -1073,51 +1073,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteNotificationWebhook
-
-> DeleteNotificationWebhook(ctx, applicationId, notificationWebhookId).Execute()
-
-Delete notification about campaign-related changes
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**notificationWebhookId** | **int32** | The ID of the webhook. Get it with the appropriate _List notifications_ endpoint. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteNotificationWebhookRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## DeleteReferral
 
 > DeleteReferral(ctx, applicationId, campaignId, referralId).Execute()
@@ -1159,6 +1114,51 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteStore
+
+> DeleteStore(ctx, applicationId, storeId).Execute()
+
+Delete store
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**storeId** | **string** | The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1214,7 +1214,7 @@ Export account-level collection's items
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Other Parameters
 
@@ -1247,7 +1247,7 @@ Name | Type | Description  | Notes
 
 > string ExportCollectionItems(ctx, applicationId, campaignId, collectionId).Execute()
 
-Export a collection's items
+Export campaign-level collection's items
 
 
 
@@ -1259,7 +1259,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -1812,7 +1812,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20020 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20019 GetAccessLogsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 Get access logs for Application
 
@@ -1845,7 +1845,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](inline_response_200_20.md)
+[**InlineResponse20019**](inline_response_200_19.md)
 
 ### Authorization
 
@@ -1961,7 +1961,7 @@ Get account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Other Parameters
 
@@ -2035,7 +2035,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20035 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20034 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List additional costs
 
@@ -2058,7 +2058,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20035**](inline_response_200_35.md)
+[**InlineResponse20034**](inline_response_200_34.md)
 
 ### Authorization
 
@@ -2076,7 +2076,7 @@ Name | Type | Description  | Notes
 
 ## GetAllAccessLogs
 
-> InlineResponse20021 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20020 GetAllAccessLogs(ctx).RangeStart(rangeStart).RangeEnd(rangeEnd).Path(path).Method(method).Status(status).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List access logs
 
@@ -2104,7 +2104,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](inline_response_200_21.md)
+[**InlineResponse20020**](inline_response_200_20.md)
 
 ### Authorization
 
@@ -2122,7 +2122,7 @@ Name | Type | Description  | Notes
 
 ## GetAllRoles
 
-> InlineResponse20043 GetAllRoles(ctx).Execute()
+> InlineResponse20042 GetAllRoles(ctx).Execute()
 
 List roles
 
@@ -2139,7 +2139,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Return type
 
-[**InlineResponse20043**](inline_response_200_43.md)
+[**InlineResponse20042**](inline_response_200_42.md)
 
 ### Authorization
 
@@ -2288,7 +2288,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20032 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20031 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List friends referred by customer profile
 
@@ -2319,7 +2319,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](inline_response_200_32.md)
+[**InlineResponse20031**](inline_response_200_31.md)
 
 ### Authorization
 
@@ -2337,7 +2337,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20023 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20022 GetApplicationCustomers(ctx, applicationId).IntegrationId(integrationId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application's customers
 
@@ -2366,7 +2366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](inline_response_200_23.md)
+[**InlineResponse20022**](inline_response_200_22.md)
 
 ### Authorization
 
@@ -2384,7 +2384,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20024 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20023 GetApplicationCustomersByAttributes(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Execute()
 
 List application customers matching the given attributes
 
@@ -2413,7 +2413,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](inline_response_200_24.md)
+[**InlineResponse20023**](inline_response_200_23.md)
 
 ### Authorization
 
@@ -2431,7 +2431,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20030 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20029 GetApplicationEventTypes(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List Applications event types
 
@@ -2459,7 +2459,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20030**](inline_response_200_30.md)
+[**InlineResponse20029**](inline_response_200_29.md)
 
 ### Authorization
 
@@ -2477,7 +2477,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20029 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
+> InlineResponse20028 GetApplicationEventsWithoutTotalCount(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Type_(type_).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Session(session).Profile(profile).CustomerName(customerName).CustomerEmail(customerEmail).CouponCode(couponCode).ReferralCode(referralCode).RuleQuery(ruleQuery).CampaignQuery(campaignQuery).Execute()
 
 List Applications events
 
@@ -2516,7 +2516,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](inline_response_200_29.md)
+[**InlineResponse20028**](inline_response_200_28.md)
 
 ### Authorization
 
@@ -2579,7 +2579,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20028 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
+> InlineResponse20027 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
 
 List Application sessions
 
@@ -2614,7 +2614,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](inline_response_200_28.md)
+[**InlineResponse20027**](inline_response_200_27.md)
 
 ### Authorization
 
@@ -2716,7 +2716,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20033 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
+> InlineResponse20032 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
 
 List custom attributes
 
@@ -2740,7 +2740,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20033**](inline_response_200_33.md)
+[**InlineResponse20032**](inline_response_200_32.md)
 
 ### Authorization
 
@@ -2758,7 +2758,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20031 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20030 GetAudiences(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List audiences
 
@@ -2782,7 +2782,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20031**](inline_response_200_31.md)
+[**InlineResponse20030**](inline_response_200_30.md)
 
 ### Authorization
 
@@ -2845,7 +2845,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20022 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
+> InlineResponse20021 GetCampaignAnalytics(ctx, applicationId, campaignId).RangeStart(rangeStart).RangeEnd(rangeEnd).Granularity(granularity).Execute()
 
 Get analytics of campaigns
 
@@ -2875,7 +2875,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](inline_response_200_22.md)
+[**InlineResponse20021**](inline_response_200_21.md)
 
 ### Authorization
 
@@ -2941,7 +2941,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignTemplates
 
-> InlineResponse20012 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
+> InlineResponse20011 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
 
 List campaign templates
 
@@ -2968,7 +2968,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20011**](inline_response_200_11.md)
 
 ### Authorization
 
@@ -3040,7 +3040,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20041 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
+> InlineResponse20040 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
 
 Get audit logs for an account
 
@@ -3071,7 +3071,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](inline_response_200_41.md)
+[**InlineResponse20040**](inline_response_200_40.md)
 
 ### Authorization
 
@@ -3091,7 +3091,7 @@ Name | Type | Description  | Notes
 
 > Collection GetCollection(ctx, applicationId, campaignId, collectionId).Execute()
 
-Get collection
+Get campaign-level collection
 
 
 
@@ -3103,7 +3103,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -3136,7 +3136,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20018 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20017 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
 
 Get collection items
 
@@ -3148,7 +3148,7 @@ Get collection items
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Other Parameters
 
@@ -3163,7 +3163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -3181,7 +3181,7 @@ Name | Type | Description  | Notes
 
 ## GetCouponsWithoutTotalCount
 
-> InlineResponse20010 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
+> InlineResponse2009 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).Execute()
 
 List coupons
 
@@ -3220,7 +3220,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -3287,7 +3287,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20027 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
+> InlineResponse20026 GetCustomerActivityReportsWithoutTotalCount(ctx, applicationId).RangeStart(rangeStart).RangeEnd(rangeEnd).PageSize(pageSize).Skip(skip).Sort(sort).Name(name).IntegrationId(integrationId).CampaignName(campaignName).AdvocateName(advocateName).Execute()
 
 Get Activity Reports for Application Customers
 
@@ -3321,7 +3321,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](inline_response_200_27.md)
+[**InlineResponse20026**](inline_response_200_26.md)
 
 ### Authorization
 
@@ -3430,7 +3430,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20026 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
+> InlineResponse20025 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
 
 List customer profiles
 
@@ -3453,7 +3453,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](inline_response_200_26.md)
+[**InlineResponse20025**](inline_response_200_25.md)
 
 ### Authorization
 
@@ -3471,7 +3471,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20025 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
+> InlineResponse20024 GetCustomersByAttributes(ctx).Body(body).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
 
 List customer profiles matching the given attributes
 
@@ -3495,7 +3495,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](inline_response_200_25.md)
+[**InlineResponse20024**](inline_response_200_24.md)
 
 ### Authorization
 
@@ -3513,7 +3513,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20039 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20038 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List event types
 
@@ -3538,7 +3538,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20039**](inline_response_200_39.md)
+[**InlineResponse20038**](inline_response_200_38.md)
 
 ### Authorization
 
@@ -3556,7 +3556,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20042 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
+> InlineResponse20041 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
 Get exports
 
@@ -3581,7 +3581,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](inline_response_200_42.md)
+[**InlineResponse20041**](inline_response_200_41.md)
 
 ### Authorization
 
@@ -3644,7 +3644,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactionLogs
 
-> InlineResponse20016 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
+> InlineResponse20015 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
 
 List card's transactions
 
@@ -3676,7 +3676,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
@@ -3694,7 +3694,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCards
 
-> InlineResponse20015 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
+> InlineResponse20014 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
 
 List loyalty cards
 
@@ -3724,7 +3724,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20014**](inline_response_200_14.md)
 
 ### Authorization
 
@@ -3830,7 +3830,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramTransactions
 
-> InlineResponse20014 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20013 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List loyalty program transactions
 
@@ -3861,7 +3861,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -3879,7 +3879,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse20013 GetLoyaltyPrograms(ctx).Execute()
+> InlineResponse20012 GetLoyaltyPrograms(ctx).Execute()
 
 List loyalty programs
 
@@ -3896,7 +3896,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -3914,7 +3914,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ## GetLoyaltyStatistics
 
-> LoyaltyStatistics GetLoyaltyStatistics(ctx, loyaltyProgramId).Execute()
+> LoyaltyDashboardData GetLoyaltyStatistics(ctx, loyaltyProgramId).Execute()
 
 Get loyalty program statistics
 
@@ -3939,95 +3939,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LoyaltyStatistics**](LoyaltyStatistics.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetNotificationWebhook
-
-> NotificationWebhook GetNotificationWebhook(ctx, applicationId, notificationWebhookId).Execute()
-
-Get notification about campaign-related changes
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**notificationWebhookId** | **int32** | The ID of the webhook. Get it with the appropriate _List notifications_ endpoint. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetNotificationWebhookRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-
-### Return type
-
-[**NotificationWebhook**](NotificationWebhook.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetNotificationWebhooks
-
-> InlineResponse2007 GetNotificationWebhooks(ctx, applicationId).Execute()
-
-List notifications about campaign-related changes
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetNotificationWebhooksRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**InlineResponse2007**](inline_response_200_7.md)
+[**LoyaltyDashboardData**](LoyaltyDashboardData.md)
 
 ### Authorization
 
@@ -4045,7 +3957,7 @@ Name | Type | Description  | Notes
 
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse20011 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
+> InlineResponse20010 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Code(code).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).Advocate(advocate).Execute()
 
 List referrals
 
@@ -4081,7 +3993,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20010**](inline_response_200_10.md)
 
 ### Authorization
 
@@ -4189,7 +4101,7 @@ Name | Type | Description  | Notes
 
 ## GetRulesets
 
-> InlineResponse2008 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse2007 GetRulesets(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List campaign rulesets
 
@@ -4219,7 +4131,52 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](inline_response_200_8.md)
+[**InlineResponse2007**](inline_response_200_7.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetStore
+
+> Store GetStore(ctx, applicationId, storeId).Execute()
+
+Get store
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**storeId** | **string** | The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**Store**](Store.md)
 
 ### Authorization
 
@@ -4280,7 +4237,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20040 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20039 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List users in account
 
@@ -4303,7 +4260,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20040**](inline_response_200_40.md)
+[**InlineResponse20039**](inline_response_200_39.md)
 
 ### Authorization
 
@@ -4364,7 +4321,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20037 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20036 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook activation log entries
 
@@ -4393,7 +4350,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20037**](inline_response_200_37.md)
+[**InlineResponse20036**](inline_response_200_36.md)
 
 ### Authorization
 
@@ -4411,7 +4368,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20038 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20037 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook log entries
 
@@ -4441,7 +4398,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20038**](inline_response_200_38.md)
+[**InlineResponse20037**](inline_response_200_37.md)
 
 ### Authorization
 
@@ -4459,7 +4416,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20036 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).CreationType(creationType).Visibility(visibility).OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId).Title(title).Execute()
+> InlineResponse20035 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).CreationType(creationType).Visibility(visibility).OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId).Title(title).Execute()
 
 List webhooks
 
@@ -4487,7 +4444,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20036**](inline_response_200_36.md)
+[**InlineResponse20035**](inline_response_200_35.md)
 
 ### Authorization
 
@@ -4507,7 +4464,7 @@ Name | Type | Description  | Notes
 
 > Import ImportAccountCollection(ctx, collectionId).UpFile(upFile).Execute()
 
-Import data in existing account-level collection
+Import data into existing account-level collection
 
 
 
@@ -4517,7 +4474,7 @@ Import data in existing account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Other Parameters
 
@@ -4595,7 +4552,7 @@ Name | Type | Description  | Notes
 
 > Import ImportCollection(ctx, applicationId, campaignId, collectionId).UpFile(upFile).Execute()
 
-Import data in existing collection
+Import data into existing campaign-level collection
 
 
 
@@ -4607,7 +4564,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -4909,7 +4866,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20017 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20016 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in account
 
@@ -4930,11 +4887,11 @@ Name | Type | Description  | Notes
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
- **name** | **string** | Filter by the name of the Collection. | 
+ **name** | **string** | Filter by collection name. | 
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
@@ -4952,7 +4909,7 @@ Name | Type | Description  | Notes
 
 ## ListCatalogItems
 
-> InlineResponse20034 ListCatalogItems(ctx, catalogId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Sku(sku).Execute()
+> InlineResponse20033 ListCatalogItems(ctx, catalogId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Sku(sku).Execute()
 
 List items in a catalog
 
@@ -4981,7 +4938,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20034**](inline_response_200_34.md)
+[**InlineResponse20033**](inline_response_200_33.md)
 
 ### Authorization
 
@@ -4999,9 +4956,9 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20019 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20018 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
-List collections
+List collections in campaign
 
 
 
@@ -5027,11 +4984,11 @@ Name | Type | Description  | Notes
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
- **name** | **string** | Filter by the name of the Collection. | 
+ **name** | **string** | Filter by collection name. | 
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -5049,9 +5006,9 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20019 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20018 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
-List collections in application
+List collections in Application
 
 
 
@@ -5075,11 +5032,61 @@ Name | Type | Description  | Notes
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
- **name** | **string** | Filter by the name of the Collection. | 
+ **name** | **string** | Filter by collection name. | 
 
 ### Return type
 
-[**InlineResponse20019**](inline_response_200_19.md)
+[**InlineResponse20018**](inline_response_200_18.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListStores
+
+> InlineResponse20043 ListStores(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).CampaignId(campaignId).Name(name).IntegrationId(integrationId).Execute()
+
+List stores
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListStoresRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
+ **campaignId** | **float32** | Filter results by campaign. | 
+ **name** | **string** | The name of the store. | 
+ **integrationId** | **string** | The integration ID of the store. | 
+
+### Return type
+
+[**InlineResponse20043**](inline_response_200_43.md)
 
 ### Authorization
 
@@ -5358,7 +5365,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedApplicationWideWithoutTotalCount
 
-> InlineResponse20010 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
+> InlineResponse2009 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).BatchId(batchId).ExactMatch(exactMatch).CampaignState(campaignState).Execute()
 
 List coupons that match the given attributes (without total count)
 
@@ -5397,7 +5404,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -5415,7 +5422,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedWithoutTotalCount
 
-> InlineResponse20010 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
+> InlineResponse2009 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId).Body(body).PageSize(pageSize).Skip(skip).Sort(sort).Value(value).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Valid(valid).Usable(usable).ReferralId(referralId).RecipientIntegrationId(recipientIntegrationId).ExactMatch(exactMatch).BatchId(batchId).Execute()
 
 List coupons that match the given attributes in campaign (without total count)
 
@@ -5455,7 +5462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](inline_response_200_10.md)
+[**InlineResponse2009**](inline_response_200_9.md)
 
 ### Authorization
 
@@ -5531,7 +5538,7 @@ Update account-level collection
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Other Parameters
 
@@ -5699,7 +5706,7 @@ Name | Type | Description  | Notes
 
 > Collection UpdateCollection(ctx, applicationId, campaignId, collectionId).Body(body).Execute()
 
-Update collection description
+Update campaign-level collection's description
 
 
 
@@ -5711,7 +5718,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32** | The ID of the collection. You can get it with the [List collection in account](#operation/listCollectionsInApplication) endpoint. | 
+**collectionId** | **int32** | The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Other Parameters
 
@@ -5883,52 +5890,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateNotificationWebhook
-
-> NotificationWebhook UpdateNotificationWebhook(ctx, applicationId, notificationWebhookId).Body(body).Execute()
-
-Update notification about campaign-related changes
-
-
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**notificationWebhookId** | **int32** | The ID of the webhook. Get it with the appropriate _List notifications_ endpoint. | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateNotificationWebhookRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
- **body** | [**NewNotificationWebhook**](NewNotificationWebhook.md) | body | 
-
-### Return type
-
-[**NotificationWebhook**](NotificationWebhook.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## UpdateReferral
 
 > Referral UpdateReferral(ctx, applicationId, campaignId, referralId).Body(body).Execute()
@@ -5962,6 +5923,52 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Referral**](Referral.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateStore
+
+> Store UpdateStore(ctx, applicationId, storeId).Body(body).Execute()
+
+Update store
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**storeId** | **string** | The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**NewStore**](NewStore.md) | body | 
+
+### Return type
+
+[**Store**](Store.md)
 
 ### Authorization
 

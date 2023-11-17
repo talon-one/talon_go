@@ -18,6 +18,8 @@ import (
 type IntegrationEventV2Request struct {
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId *string `json:"profileId,omitempty"`
+	// The integration ID of the store. You choose this ID when you create a store.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
 	EvaluableCampaignIds *[]int32 `json:"evaluableCampaignIds,omitempty"`
 	// A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type `event` in the Campaign Manager.
@@ -59,6 +61,39 @@ func (o *IntegrationEventV2Request) HasProfileId() bool {
 // SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
 func (o *IntegrationEventV2Request) SetProfileId(v string) {
 	o.ProfileId = &v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *IntegrationEventV2Request) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationEventV2Request) GetStoreIntegrationIdOk() (string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *IntegrationEventV2Request) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *IntegrationEventV2Request) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 // GetEvaluableCampaignIds returns the EvaluableCampaignIds field value if set, zero value otherwise.

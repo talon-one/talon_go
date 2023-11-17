@@ -16,8 +16,10 @@ import (
 
 // InlineResponse20015 struct for InlineResponse20015
 type InlineResponse20015 struct {
-	HasMore bool          `json:"hasMore"`
-	Data    []LoyaltyCard `json:"data"`
+	// true means there is more data in the source collection to request..
+	HasMore bool `json:"hasMore"`
+	// List of loyalty card transaction logs.
+	Data []CardLedgerTransactionLogEntry `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value
@@ -36,9 +38,9 @@ func (o *InlineResponse20015) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20015) GetData() []LoyaltyCard {
+func (o *InlineResponse20015) GetData() []CardLedgerTransactionLogEntry {
 	if o == nil {
-		var ret []LoyaltyCard
+		var ret []CardLedgerTransactionLogEntry
 		return ret
 	}
 
@@ -46,7 +48,7 @@ func (o *InlineResponse20015) GetData() []LoyaltyCard {
 }
 
 // SetData sets field value
-func (o *InlineResponse20015) SetData(v []LoyaltyCard) {
+func (o *InlineResponse20015) SetData(v []CardLedgerTransactionLogEntry) {
 	o.Data = v
 }
 

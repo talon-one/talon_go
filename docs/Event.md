@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **Type** | Pointer to **string** | A string representing the event. Must not be a reserved event name. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON data associated with the event. | 
 **SessionId** | Pointer to **string** | The ID of the session that this event occurred in. | [optional] 
@@ -116,6 +117,31 @@ HasProfileId returns a boolean if a field has been set.
 `func (o *Event) SetProfileId(v string)`
 
 SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
+
+### GetStoreIntegrationId
+
+`func (o *Event) GetStoreIntegrationId() string`
+
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
+
+### GetStoreIntegrationIdOk
+
+`func (o *Event) GetStoreIntegrationIdOk() (string, bool)`
+
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoreIntegrationId
+
+`func (o *Event) HasStoreIntegrationId() bool`
+
+HasStoreIntegrationId returns a boolean if a field has been set.
+
+### SetStoreIntegrationId
+
+`func (o *Event) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 ### GetType
 

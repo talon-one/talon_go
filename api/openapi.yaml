@@ -193,6 +193,11 @@ tags:
     Create one with the [Create session](#operation/createSession) endpoint.
   name: Sessions
 - description: |
+    Represents single sign-on (SSO) configuration-related endpoints.
+
+    Single sign-on is a way to allow users to access many service providers using a single username and password by relying on a single identity provider.
+  name: Single sign-on
+- description: |
     Represents physical or digital stores, branches, and franchises.
   name: Stores
 - description: |
@@ -2120,170 +2125,6 @@ paths:
       summary: List campaigns
       tags:
       - management
-  /v1/applications/{applicationId}/notification_webhooks:
-    get:
-      description: |
-        List all
-        [notifications about campaign-related changes](https://docs.talon.one/docs/product/applications/outbound-notifications)
-        for the given Application.
-      operationId: getNotificationWebhooks
-      parameters:
-      - description: The ID of the Application. It is displayed in your Talon.One
-          deployment URL.
-        in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/inline_response_200_7'
-          description: OK
-      summary: List notifications about campaign-related changes
-      tags:
-      - management
-    post:
-      description: |
-        Create a
-        [notification about campaign-related changes](https://docs.talon.one/docs/product/applications/outbound-notifications).
-
-        A notification about campaign-related changes is different from regular webhooks
-        in that it is Application-scoped and has a predefined payload.
-        [Regular webhooks](https://docs.talon.one/docs/dev/getting-started/webhooks) have user-definable payloads.
-
-        **Tip:**
-
-        - You can create these notifications using the Campaign Manager.
-        See [Managing notifications](https://docs.talon.one/docs/product/applications/outbound-notifications).
-        - You can review the payload you will receive in the [specs](https://docs.talon.one/outbound-notifications).
-      operationId: createNotificationWebhook
-      parameters:
-      - description: The ID of the Application. It is displayed in your Talon.One
-          deployment URL.
-        in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewNotificationWebhook'
-        description: body
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationWebhook'
-          description: Created
-      summary: Create notification about campaign-related changes
-      tags:
-      - management
-      x-codegen-request-body-name: body
-  /v1/applications/{applicationId}/notification_webhooks/{notificationWebhookId}:
-    delete:
-      description: |
-        Remove the given existing
-        [notification about campaign-related changes](https://docs.talon.one/docs/product/applications/outbound-notifications).
-      operationId: deleteNotificationWebhook
-      parameters:
-      - description: The ID of the Application. It is displayed in your Talon.One
-          deployment URL.
-        in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      - description: The ID of the webhook. Get it with the appropriate _List notifications_
-          endpoint.
-        in: path
-        name: notificationWebhookId
-        required: true
-        schema:
-          type: integer
-      responses:
-        "204":
-          content: {}
-          description: No Content
-      summary: Delete notification about campaign-related changes
-      tags:
-      - management
-    get:
-      description: |
-        Return the given
-        [notification about campaign-related changes](https://docs.talon.one/docs/product/applications/outbound-notifications).
-      operationId: getNotificationWebhook
-      parameters:
-      - description: The ID of the Application. It is displayed in your Talon.One
-          deployment URL.
-        in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      - description: The ID of the webhook. Get it with the appropriate _List notifications_
-          endpoint.
-        in: path
-        name: notificationWebhookId
-        required: true
-        schema:
-          type: integer
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationWebhook'
-          description: OK
-      summary: Get notification about campaign-related changes
-      tags:
-      - management
-    put:
-      description: |
-        Update the given
-        [notification about campaign-related changes](https://docs.talon.one/docs/product/applications/outbound-notifications).
-
-        **Tip:** You can review the payload you will receive in the [specs](https://docs.talon.one/outbound-notifications).
-      operationId: updateNotificationWebhook
-      parameters:
-      - description: The ID of the Application. It is displayed in your Talon.One
-          deployment URL.
-        in: path
-        name: applicationId
-        required: true
-        schema:
-          type: integer
-      - description: The ID of the webhook. Get it with the appropriate _List notifications_
-          endpoint.
-        in: path
-        name: notificationWebhookId
-        required: true
-        schema:
-          type: integer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewNotificationWebhook'
-        description: body
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/NotificationWebhook'
-          description: OK
-      summary: Update notification about campaign-related changes
-      tags:
-      - management
-      x-codegen-request-body-name: body
   /v1/applications/{applicationId}/campaigns/{campaignId}:
     delete:
       description: Delete the given campaign.
@@ -2719,7 +2560,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_8'
+                $ref: '#/components/schemas/inline_response_200_7'
           description: OK
       summary: List campaign rulesets
       tags:
@@ -2927,7 +2768,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_9'
+                $ref: '#/components/schemas/inline_response_200_8'
           description: OK
         "204":
           content: {}
@@ -3024,7 +2865,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_9'
+                $ref: '#/components/schemas/inline_response_200_8'
           description: OK
         "204":
           content: {}
@@ -3186,7 +3027,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_10'
+                $ref: '#/components/schemas/inline_response_200_9'
           description: OK
       summary: List coupons
       tags:
@@ -3404,7 +3245,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_10'
+                $ref: '#/components/schemas/inline_response_200_9'
           description: OK
       summary: List coupons that match the given attributes in campaign (without total
         count)
@@ -3550,7 +3391,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_10'
+                $ref: '#/components/schemas/inline_response_200_9'
           description: OK
       summary: List coupons that match the given attributes (without total count)
       tags:
@@ -3724,7 +3565,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_11'
+                $ref: '#/components/schemas/inline_response_200_10'
           description: OK
       summary: List referrals
       tags:
@@ -3787,7 +3628,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_12'
+                $ref: '#/components/schemas/inline_response_200_11'
           description: OK
       summary: List campaign templates
       tags:
@@ -3836,7 +3677,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_13'
+                $ref: '#/components/schemas/inline_response_200_12'
           description: OK
       summary: List loyalty programs
       tags:
@@ -4324,7 +4165,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoyaltyStatistics'
+                $ref: '#/components/schemas/LoyaltyDashboardData'
           description: OK
       summary: Get loyalty program statistics
       tags:
@@ -4513,7 +4354,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_14'
+                $ref: '#/components/schemas/inline_response_200_13'
           description: OK
         "400":
           content:
@@ -4712,7 +4553,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_15'
+                $ref: '#/components/schemas/inline_response_200_14'
           description: OK
         "400":
           content:
@@ -5128,7 +4969,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_16'
+                $ref: '#/components/schemas/inline_response_200_15'
           description: OK
         "401":
           content:
@@ -5208,25 +5049,34 @@ paths:
       x-codegen-request-body-name: body
   /v1/giveaways/pools/{poolId}/import:
     post:
-      description: "Upload a CSV file containing the giveaway codes that should be\
-        \ created. Send the file as multipart data.\n\nThe CSV file contains the following\
-        \ columns:\n- `code` (required): the code of your giveaway, for instance,\
-        \ a gift card redemption code.\n- `startdate`:  the start date in RFC3339\
-        \ of the code redemption period.\n- `enddate`: the last date in RFC3339 of\
-        \ the code redemption period.\n- `attributes`: A JSON object describing _custom_\
-        \ giveaway attribute names and their values, enclosed with double quotation\
-        \ marks.\n  \n  For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)\n\
-        \  called `provider` associated with the giveaway entity, the object in the\
-        \ CSV file, when opened in a text editor, must be: `\"{\"provider\": \"myPartnerCompany\"\
-        }\"`.\n\nThe `startdate` and `enddate` have nothing to do with the _validity_\
-        \ of the codes. They are only used by the Rule Engine to award the codes or\
-        \ not.\nYou can use the time zone of your choice. The values are converted\
-        \ to UTC internally by Talon.One.\n\n**Note:** We recommend limiting your\
-        \ file size to 500MB.\n\n**Example:**\n\n```text\ncode,startdate,enddate,attributes\n\
-        GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\"provider\"\": \"\
-        \"Amazon\"\"}\"\nGIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,\"{\"\
-        \"provider\"\": \"\"Amazon\"\"}\"\nGIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,\"\
-        {\"\"provider\"\": \"\"Aliexpress\"\"}\"\n```\n"
+      description: |
+        Upload a CSV file containing the giveaway codes that should be created. Send the file as multipart data.
+
+        The CSV file contains the following columns:
+        - `code` (required): the code of your giveaway, for instance, a gift card redemption code.
+        - `startdate`:  the start date in RFC3339 of the code redemption period.
+        - `enddate`: the last date in RFC3339 of the code redemption period.
+        - `attributes`: A JSON object describing _custom_ giveaway attribute names and their values, enclosed with double quotation marks.
+
+          For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
+          called `provider` associated with the giveaway entity, the object in the CSV file, when opened in a text editor, must be: `"{"provider": "myPartnerCompany"}"`.
+
+        The `startdate` and `enddate` have nothing to do with the _validity_ of the codes. They are only used by the Rule Engine to award the codes or not.
+        You can use the time zone of your choice. The values are converted to UTC internally by Talon.One.
+
+        **Note:**
+
+        - We recommend limiting your file size to 500MB.
+        - You can import the same code multiple times. Duplicate codes are treated and distributed to customers as unique codes.
+
+        **Example:**
+
+        ```text
+        code,startdate,enddate,attributes
+        GIVEAWAY1,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,"{""provider"": ""Amazon""}"
+        GIVEAWAY2,2020-11-10T23:00:00Z,2022-11-11T23:00:00Z,"{""provider"": ""Amazon""}"
+        GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,"{""provider"": ""Aliexpress""}"
+        ```
       operationId: importPoolGiveaways
       parameters:
       - description: The ID of the pool. You can find it in the Campaign Manager,
@@ -5321,7 +5171,7 @@ paths:
       - management
   /v1/collections:
     get:
-      description: List collections in account.
+      description: List account-level collections in the account.
       operationId: listAccountCollections
       parameters:
       - description: The number of items in this response.
@@ -5355,7 +5205,7 @@ paths:
         name: withTotalResultSize
         schema:
           type: boolean
-      - description: Filter by the name of the Collection.
+      - description: Filter by collection name.
         in: query
         name: name
         schema:
@@ -5365,7 +5215,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_17'
+                $ref: '#/components/schemas/inline_response_200_16'
           description: OK
         "400":
           content:
@@ -5389,7 +5239,7 @@ paths:
       tags:
       - management
     post:
-      description: Create account-level collection.
+      description: Create an account-level collection.
       operationId: createAccountCollection
       requestBody:
         content:
@@ -5422,18 +5272,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
-          description: Conflict. A Collection with this name already exists.
+          description: Conflict. A collection with this name already exists.
       summary: Create account-level collection
       tags:
       - management
       x-codegen-request-body-name: body
   /v1/collections/{collectionId}:
     delete:
-      description: Delete the given account-level collection.
+      description: Delete a given account-level collection.
       operationId: deleteAccountCollection
       parameters:
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in account](#operation/listAccountCollections) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5456,8 +5306,8 @@ paths:
       description: Retrieve a given account-level collection.
       operationId: getAccountCollection
       parameters:
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in account](#operation/listAccountCollections) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5480,12 +5330,12 @@ paths:
       tags:
       - management
     put:
-      description: Edit the description of the account-level collection and enable
+      description: Edit the description of a given account-level collection and enable
         or disable the collection in the specified Applications.
       operationId: updateAccountCollection
       parameters:
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in account](#operation/listAccountCollections) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5522,14 +5372,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
-          description: Conflict. A Collection with this name already exists.
+          description: Conflict. A collection with this name already exists.
       summary: Update account-level collection
       tags:
       - management
       x-codegen-request-body-name: body
   /v1/collections/{collectionId}/items:
     get:
-      description: Retrieve the items from the given collection.
+      description: |
+        Retrieve items from a given collection.
+
+        You can retrieve items from both account-level collections and campaign-level collections using this endpoint.
       operationId: getCollectionItems
       parameters:
       - description: The number of items in this response.
@@ -5546,8 +5399,8 @@ paths:
         name: skip
         schema:
           type: integer
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in account](#operation/listAccountCollections) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5558,7 +5411,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_18'
+                $ref: '#/components/schemas/inline_response_200_17'
           description: OK
         "404":
           content:
@@ -5571,7 +5424,7 @@ paths:
       - management
   /v1/applications/{applicationId}/collections:
     get:
-      description: List collections from all campaigns in the Application.
+      description: List campaign-level collections from all campaigns in a given Application.
       operationId: listCollectionsInApplication
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -5612,7 +5465,7 @@ paths:
         name: withTotalResultSize
         schema:
           type: boolean
-      - description: Filter by the name of the Collection.
+      - description: Filter by collection name.
         in: query
         name: name
         schema:
@@ -5622,7 +5475,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_19'
+                $ref: '#/components/schemas/inline_response_200_18'
           description: OK
         "404":
           content:
@@ -5630,12 +5483,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Not found
-      summary: List collections in application
+      summary: List collections in Application
       tags:
       - management
   /v1/applications/{applicationId}/campaigns/{campaignId}/collections:
     get:
-      description: List collections in the campaign.
+      description: List collections in a given campaign.
       operationId: listCollections
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -5683,7 +5536,7 @@ paths:
         name: withTotalResultSize
         schema:
           type: boolean
-      - description: Filter by the name of the Collection.
+      - description: Filter by collection name.
         in: query
         name: name
         schema:
@@ -5693,7 +5546,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_19'
+                $ref: '#/components/schemas/inline_response_200_18'
           description: OK
         "404":
           content:
@@ -5701,11 +5554,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Not found
-      summary: List collections
+      summary: List collections in campaign
       tags:
       - management
     post:
-      description: Create a collection.
+      description: Create a campaign-level collection in a given campaign.
       operationId: createCollection
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -5736,13 +5589,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Collection'
           description: Created
-      summary: Create collection
+      summary: Create campaign-level collection
       tags:
       - management
       x-codegen-request-body-name: body
   /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}:
     delete:
-      description: Delete the given collection.
+      description: Delete a given campaign-level collection.
       operationId: deleteCollection
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -5759,8 +5612,8 @@ paths:
         required: true
         schema:
           type: integer
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in Application](#operation/listCollectionsInApplication) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5776,11 +5629,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Unauthorized
-      summary: Delete collection
+      summary: Delete campaign-level collection
       tags:
       - management
     get:
-      description: Retrieve a given collection.
+      description: Retrieve a given campaign-level collection.
       operationId: getCollection
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -5797,8 +5650,8 @@ paths:
         required: true
         schema:
           type: integer
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in Application](#operation/listCollectionsInApplication) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5817,11 +5670,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Not found
-      summary: Get collection
+      summary: Get campaign-level collection
       tags:
       - management
     put:
-      description: Edit the description of the collection.
+      description: Edit the description of a given campaign-level collection.
       operationId: updateCollection
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -5838,8 +5691,8 @@ paths:
         required: true
         schema:
           type: integer
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in Application](#operation/listCollectionsInApplication) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5865,10 +5718,75 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Unauthorized
-      summary: Update collection description
+      summary: Update campaign-level collection's description
       tags:
       - management
       x-codegen-request-body-name: body
+  /v1/collections/{collectionId}/import:
+    post:
+      description: |
+        Upload a CSV file containing the collection of string values that should be attached as payload for collection.
+        The file should be sent as multipart data.
+
+        The import **replaces** the initial content of the collection.
+
+        The CSV file **must** only contain the following column:
+
+        - `item`: the values in your collection.
+
+        A collection is limited to 500,000 items.
+
+        Example:
+
+        ```
+        item
+        Addidas
+        Nike
+        Asics
+        ```
+
+        **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection.
+      operationId: importAccountCollection
+      parameters:
+      - description: The ID of the collection. You can get it with the [List collections
+          in account](#operation/listAccountCollections) endpoint.
+        in: path
+        name: collectionId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                upFile:
+                  description: The file with the information about the data that should
+                    be imported.
+                  format: csv
+                  type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Unauthorized
+      summary: Import data into existing account-level collection
+      tags:
+      - management
   /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import:
     post:
       description: |
@@ -5909,8 +5827,8 @@ paths:
         required: true
         schema:
           type: integer
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in Application](#operation/listCollectionsInApplication) endpoint.
         in: path
         name: collectionId
         required: true
@@ -5939,84 +5857,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Unauthorized
-      summary: Import data in existing collection
-      tags:
-      - management
-  /v1/collections/{collectionId}/import:
-    post:
-      description: |
-        Upload a CSV file containing the collection of string values that should be attached as payload for collection.
-        The file should be sent as multipart data.
-
-        The import **replaces** the initial content of the collection.
-
-        The CSV file **must** only contain the following column:
-
-        - `item`: the values in your collection.
-
-        A collection is limited to 500,000 items.
-
-        Example:
-
-        ```
-        item
-        Addidas
-        Nike
-        Asics
-        ```
-
-        **Note:** Before sending a request to this endpoint, ensure the data in the CSV to import is different from the data currently stored in the collection.
-      operationId: importAccountCollection
-      parameters:
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
-        in: path
-        name: collectionId
-        required: true
-        schema:
-          type: integer
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              properties:
-                upFile:
-                  description: The file with the information about the data that should
-                    be imported.
-                  format: csv
-                  type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Import'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseWithStatus'
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponseWithStatus'
-          description: Unauthorized
-      summary: Import data in existing account-level collection
+      summary: Import data into existing campaign-level collection
       tags:
       - management
   /v1/collections/{collectionId}/export:
     get:
       description: |
-        Download a CSV file containing items from an account-level collection.
+        Download a CSV file containing items from a given account-level collection.
 
         **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).
       operationId: exportAccountCollectionItems
       parameters:
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in account](#operation/listAccountCollections) endpoint.
         in: path
         name: collectionId
         required: true
@@ -6053,7 +5906,7 @@ paths:
   /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export:
     get:
       description: |
-        Download a CSV file containing a collection's items.
+        Download a CSV file containing items from a given campaign-level collection.
 
         **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).
       operationId: exportCollectionItems
@@ -6072,8 +5925,8 @@ paths:
         required: true
         schema:
           type: integer
-      - description: The ID of the collection. You can get it with the [List collection
-          in account](#operation/listCollectionsInApplication) endpoint.
+      - description: The ID of the collection. You can get it with the [List collections
+          in Application](#operation/listCollectionsInApplication) endpoint.
         in: path
         name: collectionId
         required: true
@@ -6104,7 +5957,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponseWithStatus'
           description: Not found
-      summary: Export a collection's items
+      summary: Export campaign-level collection's items
       tags:
       - management
   /v1/applications/{applicationId}/health_report:
@@ -6216,7 +6069,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_20'
+                $ref: '#/components/schemas/inline_response_200_19'
           description: OK
       summary: Get access logs for Application
       tags:
@@ -6296,7 +6149,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_21'
+                $ref: '#/components/schemas/inline_response_200_20'
           description: OK
       summary: List access logs
       tags:
@@ -6352,7 +6205,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_22'
+                $ref: '#/components/schemas/inline_response_200_21'
           description: OK
       summary: Get analytics of campaigns
       tags:
@@ -6403,7 +6256,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_23'
+                $ref: '#/components/schemas/inline_response_200_22'
           description: OK
       summary: List application's customers
       tags:
@@ -6458,7 +6311,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_24'
+                $ref: '#/components/schemas/inline_response_200_23'
           description: OK
       summary: List application customers matching the given attributes
       tags:
@@ -6504,7 +6357,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_25'
+                $ref: '#/components/schemas/inline_response_200_24'
           description: OK
       summary: List customer profiles matching the given attributes
       tags:
@@ -6574,7 +6427,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_26'
+                $ref: '#/components/schemas/inline_response_200_25'
           description: OK
       summary: List customer profiles
       tags:
@@ -6688,7 +6541,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_27'
+                $ref: '#/components/schemas/inline_response_200_26'
           description: OK
       summary: Get Activity Reports for Application Customers
       tags:
@@ -6890,7 +6743,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_28'
+                $ref: '#/components/schemas/inline_response_200_27'
           description: OK
       summary: List Application sessions
       tags:
@@ -7029,7 +6882,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_29'
+                $ref: '#/components/schemas/inline_response_200_28'
           description: OK
       summary: List Applications events
       tags:
@@ -7076,7 +6929,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_30'
+                $ref: '#/components/schemas/inline_response_200_29'
           description: OK
       summary: List Applications event types
       tags:
@@ -7123,7 +6976,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_31'
+                $ref: '#/components/schemas/inline_response_200_30'
           description: OK
       summary: List audiences
       tags:
@@ -7183,7 +7036,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_32'
+                $ref: '#/components/schemas/inline_response_200_31'
           description: OK
       summary: List friends referred by customer profile
       tags:
@@ -7226,7 +7079,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_33'
+                $ref: '#/components/schemas/inline_response_200_32'
           description: OK
       summary: List custom attributes
       tags:
@@ -7439,7 +7292,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_34'
+                $ref: '#/components/schemas/inline_response_200_33'
           description: OK
       summary: List items in a catalog
       tags:
@@ -7719,7 +7572,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_35'
+                $ref: '#/components/schemas/inline_response_200_34'
           description: OK
       summary: List additional costs
       tags:
@@ -7865,7 +7718,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_36'
+                $ref: '#/components/schemas/inline_response_200_35'
           description: OK
       summary: List webhooks
       tags:
@@ -7960,7 +7813,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_37'
+                $ref: '#/components/schemas/inline_response_200_36'
           description: OK
       summary: List webhook activation log entries
       tags:
@@ -8041,7 +7894,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_38'
+                $ref: '#/components/schemas/inline_response_200_37'
           description: OK
       summary: List webhook log entries
       tags:
@@ -8091,7 +7944,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_39'
+                $ref: '#/components/schemas/inline_response_200_38'
           description: OK
       summary: List event types
       tags:
@@ -8602,29 +8455,38 @@ paths:
       - management
   /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals:
     post:
-      description: "Upload a CSV file containing the referrals that should be created.\n\
-        The file should be sent as multipart data.\n\nThe CSV file contains the following\
-        \ columns:\n\n- `code` (required): The referral code.\n- `advocateprofileintegrationid`\
-        \ (required): The profile ID of the advocate.\n- `startdate`: The start date\
-        \ in RFC3339 of the code redemption period.\n- `expirydate`: The end date\
-        \ in RFC3339 of the code redemption period.\n- `limitval`: The maximum number\
-        \ of redemptions of this code. Defaults to `1` when left blank.\n- `attributes`:\
-        \ A JSON object describing _custom_ referral attribute names and their values,\
-        \ enclosed with double quotation marks. \n  \n  For example, if you created\
-        \ a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)\n\
-        \  called `category` associated with the referral entity, the object in the\
-        \ CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"\
-        }\"`.\n\nYou can use the time zone of your choice. It is converted to UTC\
-        \ internally by Talon.One.\n\n**Important:** When you import a CSV file with\
-        \ referrals, a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles)\n\
-        is **not** automatically created for each `advocateprofileintegrationid` column\
-        \ value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2)\n\
-        endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2)\n\
-        endpoint to create the customer profiles.\n\n**Note:** We recommend limiting\
-        \ your file size to 500MB.\n\n**Example:**\n\n```text\ncode,startdate,expirydate,advocateprofileintegrationid,limitval,attributes\n\
-        REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,\"{\"\
-        \"my_attribute\"\": \"\"10_off\"\"}\"\nREFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,\"\
-        {\"\"my_attribute\"\": \"\"20_off\"\"}\"\n```\n"
+      description: |
+        Upload a CSV file containing the referrals that should be created.
+        The file should be sent as multipart data.
+
+        The CSV file contains the following columns:
+
+        - `code` (required): The referral code.
+        - `advocateprofileintegrationid` (required): The profile ID of the advocate.
+        - `startdate`: The start date in RFC3339 of the code redemption period.
+        - `expirydate`: The end date in RFC3339 of the code redemption period.
+        - `limitval`: The maximum number of redemptions of this code. Defaults to `1` when left blank.
+        - `attributes`: A JSON object describing _custom_ referral attribute names and their values, enclosed with double quotation marks.
+
+          For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)
+          called `category` associated with the referral entity, the object in the CSV file, when opened in a text editor, must be: `"{"category": "10_off"}"`.
+
+        You can use the time zone of your choice. It is converted to UTC internally by Talon.One.
+
+        **Important:** When you import a CSV file with referrals, a [customer profile](https://docs.talon.one/docs/dev/concepts/entities/customer-profiles)
+        is **not** automatically created for each `advocateprofileintegrationid` column value. Use the [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2)
+        endpoint or the [Update multiple customer profiles](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfilesV2)
+        endpoint to create the customer profiles.
+
+        **Note:** We recommend limiting your file size to 500MB.
+
+        **Example:**
+
+        ```text
+        code,startdate,expirydate,advocateprofileintegrationid,limitval,attributes
+        REFERRAL_CODE1,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid_4,1,"{""my_attribute"": ""10_off""}"
+        REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,"{""my_attribute"": ""20_off""}"
+        ```
       operationId: importReferrals
       parameters:
       - description: The ID of the Application. It is displayed in your Talon.One
@@ -8694,7 +8556,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_40'
+                $ref: '#/components/schemas/inline_response_200_39'
           description: OK
       summary: List users in account
       tags:
@@ -8806,7 +8668,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_41'
+                $ref: '#/components/schemas/inline_response_200_40'
           description: OK
       summary: Get audit logs for an account
       tags:
@@ -9004,7 +8866,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_42'
+                $ref: '#/components/schemas/inline_response_200_41'
           description: OK
       summary: Get exports
       tags:
@@ -9018,7 +8880,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/inline_response_200_43'
+                $ref: '#/components/schemas/inline_response_200_42'
           description: OK
       summary: List roles
       tags:
@@ -9045,6 +8907,233 @@ paths:
       summary: Get role
       tags:
       - management
+  /v1/applications/{applicationId}/stores:
+    get:
+      description: List all stores for a specific Application.
+      operationId: listStores
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: The number of items in this response.
+        in: query
+        name: pageSize
+        schema:
+          default: 1000
+          maximum: 1000
+          minimum: 1
+          type: integer
+      - description: The number of items to skip when paging through large result
+          sets.
+        in: query
+        name: skip
+        schema:
+          type: integer
+      - description: |
+          The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with `-`.
+
+          **Note:** This parameter works only with numeric fields.
+        in: query
+        name: sort
+        schema:
+          type: string
+      - description: |
+          When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.
+
+          - When `true`: `hasMore` is true when there is a next page. `totalResultSize` is always zero.
+          - When `false`: `hasMore` is always false. `totalResultSize` contains the total number of results for this query.
+        in: query
+        name: withTotalResultSize
+        schema:
+          type: boolean
+      - description: Filter results by campaign.
+        in: query
+        name: campaignId
+        schema:
+          type: number
+      - description: The name of the store.
+        in: query
+        name: name
+        schema:
+          type: string
+      - description: The integration ID of the store.
+        in: query
+        name: integrationId
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200_43'
+          description: OK
+      summary: List stores
+      tags:
+      - management
+    post:
+      description: Create a new store in a specific Application.
+      operationId: createStore
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStore'
+        description: body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store'
+          description: Created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad request
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Conflict. A store with this integration ID already exists for
+            this application.
+      summary: Create store
+      tags:
+      - management
+      x-codegen-request-body-name: body
+  /v1/applications/{applicationId}/stores/{storeId}:
+    delete:
+      description: Delete the specified store.
+      operationId: deleteStore
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: |
+          The ID of the store.
+          You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+        in: path
+        name: storeId
+        required: true
+        schema:
+          type: string
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Not found
+      summary: Delete store
+      tags:
+      - management
+    get:
+      description: Get store details for a specific store ID.
+      operationId: getStore
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: |
+          The ID of the store.
+          You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+        in: path
+        name: storeId
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store'
+          description: OK
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Not found
+      summary: Get store
+      tags:
+      - management
+    put:
+      description: Update store details for a specific store ID.
+      operationId: updateStore
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: |
+          The ID of the store.
+          You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+        in: path
+        name: storeId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStore'
+        description: body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Store'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Bad request
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Not found
+      summary: Update store
+      tags:
+      - management
+      x-codegen-request-body-name: body
 components:
   schemas:
     ErrorResponse:
@@ -9271,6 +9360,12 @@ components:
           example: 138
           type: integer
       type: object
+    ApplicationStoreEntity:
+      properties:
+        storeId:
+          description: The ID of the store.
+          type: integer
+      type: object
     IntegrationEntity:
       properties:
         integrationId:
@@ -9296,6 +9391,16 @@ components:
 
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
+          type: string
+      type: object
+    IntegrationStoreEntity:
+      properties:
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
           type: string
       type: object
     CouponValue:
@@ -9459,6 +9564,31 @@ components:
           type: string
       required:
       - created
+      - token
+      - userId
+      type: object
+    OneTimeCode:
+      properties:
+        userId:
+          description: The ID of the user.
+          example: 109
+          type: integer
+        accountId:
+          description: The ID of the account.
+          example: 31
+          type: integer
+        token:
+          description: The two-factor authentication token created during sign-in.
+            This token is used to ensure that the correct user is trying to sign in
+            with a given one-time security code.
+          example: dy_Fa_lQ4iDAnqldJFvV
+          type: string
+        code:
+          description: The one-time security code used for signing in.
+          example: "552917"
+          type: string
+      required:
+      - accountId
       - token
       - userId
       type: object
@@ -10731,13 +10861,19 @@ components:
         tags:
         - summer
         awardedGiveawaysCount: 9
-        weeklyUsageCount: 0
         redeemedLoyaltyPointsEffectCount: 9
         linkedStoreIds:
         - 1
         - 2
         - 3
         discountEffectCount: 343
+        budgets:
+        - limit: 1000.0
+          action: createCoupon
+          counter: 42.0
+        - limit: 1000.0
+          action: createCoupon
+          counter: 42.0
         createdBy: John Doe
         redeemedLoyaltyPointsCount: 8.0
         addFreeItemEffectCount: 0
@@ -10921,68 +11057,103 @@ components:
           items:
             type: integer
           type: array
+        budgets:
+          description: |
+            A list of all the budgets that are defined by this campaign and their usage.
+
+            **Note:** Budgets that are not defined do not appear in this list and their usage is
+            not counted until they are defined.
+          items:
+            $ref: '#/components/schemas/CampaignBudget'
+          type: array
         couponRedemptionCount:
-          description: Number of coupons redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of coupons redeemed in the campaign.
           example: 163
           type: integer
         referralRedemptionCount:
-          description: Number of referral codes redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of referral codes redeemed in the campaign.
           example: 3
           type: integer
         discountCount:
-          description: Total amount of discounts redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total amount of discounts redeemed in the campaign.
           example: 288.0
           type: number
         discountEffectCount:
-          description: Total number of times discounts were redeemed in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times discounts were redeemed in this campaign.
           example: 343
           type: integer
         couponCreationCount:
-          description: Total number of coupons created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of coupons created by rules in this campaign.
           example: 16
           type: integer
         customEffectCount:
-          description: Total number of custom effects triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of custom effects triggered by rules in this campaign.
           example: 0
           type: integer
         referralCreationCount:
-          description: Total number of referrals created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of referrals created by rules in this campaign.
           example: 8
           type: integer
         addFreeItemEffectCount:
-          description: Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem)
-            can be triggered in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
           example: 0
           type: integer
         awardedGiveawaysCount:
-          description: Total number of giveaways awarded by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of giveaways awarded by rules in this campaign.
           example: 9
           type: integer
         createdLoyaltyPointsCount:
-          description: Total number of loyalty points created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points created by rules in this campaign.
           example: 9.0
           type: number
         createdLoyaltyPointsEffectCount:
-          description: Total number of loyalty point creation effects triggered by
-            rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point creation effects triggered by rules in this campaign.
           example: 2
           type: integer
         redeemedLoyaltyPointsCount:
-          description: Total number of loyalty points redeemed by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points redeemed by rules in this campaign.
           example: 8.0
           type: number
         redeemedLoyaltyPointsEffectCount:
-          description: Total number of loyalty point redemption effects triggered
-            by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point redemption effects triggered by rules in this campaign.
           example: 9
           type: integer
         callApiEffectCount:
-          description: Total number of webhooks triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of webhooks triggered by rules in this campaign.
           example: 0
           type: integer
         reservecouponEffectCount:
-          description: Total number of reserve coupon effects triggered by rules in
-            this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of reserve coupon effects triggered by rules in this campaign.
           example: 9
           type: integer
         lastActivity:
@@ -10990,11 +11161,6 @@ components:
           example: 2022-11-10T23:00:00Z
           format: date-time
           type: string
-        weeklyUsageCount:
-          description: The total number of effects created in this campaign in the
-            past 7 days.
-          example: 0
-          type: integer
         updated:
           description: |
             Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign
@@ -11015,6 +11181,7 @@ components:
           type: integer
       required:
       - applicationId
+      - budgets
       - created
       - description
       - features
@@ -11164,68 +11331,103 @@ components:
           items:
             type: integer
           type: array
+        budgets:
+          description: |
+            A list of all the budgets that are defined by this campaign and their usage.
+
+            **Note:** Budgets that are not defined do not appear in this list and their usage is
+            not counted until they are defined.
+          items:
+            $ref: '#/components/schemas/CampaignBudget'
+          type: array
         couponRedemptionCount:
-          description: Number of coupons redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of coupons redeemed in the campaign.
           example: 163
           type: integer
         referralRedemptionCount:
-          description: Number of referral codes redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of referral codes redeemed in the campaign.
           example: 3
           type: integer
         discountCount:
-          description: Total amount of discounts redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total amount of discounts redeemed in the campaign.
           example: 288.0
           type: number
         discountEffectCount:
-          description: Total number of times discounts were redeemed in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times discounts were redeemed in this campaign.
           example: 343
           type: integer
         couponCreationCount:
-          description: Total number of coupons created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of coupons created by rules in this campaign.
           example: 16
           type: integer
         customEffectCount:
-          description: Total number of custom effects triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of custom effects triggered by rules in this campaign.
           example: 0
           type: integer
         referralCreationCount:
-          description: Total number of referrals created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of referrals created by rules in this campaign.
           example: 8
           type: integer
         addFreeItemEffectCount:
-          description: Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem)
-            can be triggered in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
           example: 0
           type: integer
         awardedGiveawaysCount:
-          description: Total number of giveaways awarded by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of giveaways awarded by rules in this campaign.
           example: 9
           type: integer
         createdLoyaltyPointsCount:
-          description: Total number of loyalty points created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points created by rules in this campaign.
           example: 9.0
           type: number
         createdLoyaltyPointsEffectCount:
-          description: Total number of loyalty point creation effects triggered by
-            rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point creation effects triggered by rules in this campaign.
           example: 2
           type: integer
         redeemedLoyaltyPointsCount:
-          description: Total number of loyalty points redeemed by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points redeemed by rules in this campaign.
           example: 8.0
           type: number
         redeemedLoyaltyPointsEffectCount:
-          description: Total number of loyalty point redemption effects triggered
-            by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point redemption effects triggered by rules in this campaign.
           example: 9
           type: integer
         callApiEffectCount:
-          description: Total number of webhooks triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of webhooks triggered by rules in this campaign.
           example: 0
           type: integer
         reservecouponEffectCount:
-          description: Total number of reserve coupon effects triggered by rules in
-            this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of reserve coupon effects triggered by rules in this campaign.
           example: 9
           type: integer
         lastActivity:
@@ -11233,11 +11435,6 @@ components:
           example: 2022-11-10T23:00:00Z
           format: date-time
           type: string
-        weeklyUsageCount:
-          description: The total number of effects created in this campaign in the
-            past 7 days.
-          example: 0
-          type: integer
         updated:
           description: |
             Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign
@@ -11258,6 +11455,7 @@ components:
           type: integer
       required:
       - applicationId
+      - budgets
       - created
       - description
       - features
@@ -11269,70 +11467,136 @@ components:
       - type
       - userId
       type: object
+    CampaignBudget:
+      example:
+        limit: 1000.0
+        action: createCoupon
+        counter: 42.0
+      properties:
+        action:
+          description: |
+            The limitable action to which this limit applies. For example:
+            - `setDiscount`
+            - `setDiscountEffect`
+            - `redeemCoupon`
+            - `createCoupon`
+          example: createCoupon
+          type: string
+        limit:
+          description: The value to set for the limit.
+          example: 1000.0
+          minimum: 0
+          type: number
+        counter:
+          description: The number of occurrences of the limited action in the context
+            of the campaign.
+          example: 42.0
+          minimum: 0
+          type: number
+      required:
+      - action
+      - counter
+      - limit
+      type: object
     AdditionalCampaignProperties:
       properties:
+        budgets:
+          description: |
+            A list of all the budgets that are defined by this campaign and their usage.
+
+            **Note:** Budgets that are not defined do not appear in this list and their usage is
+            not counted until they are defined.
+          items:
+            $ref: '#/components/schemas/CampaignBudget'
+          type: array
         couponRedemptionCount:
-          description: Number of coupons redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of coupons redeemed in the campaign.
           example: 163
           type: integer
         referralRedemptionCount:
-          description: Number of referral codes redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of referral codes redeemed in the campaign.
           example: 3
           type: integer
         discountCount:
-          description: Total amount of discounts redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total amount of discounts redeemed in the campaign.
           example: 288.0
           type: number
         discountEffectCount:
-          description: Total number of times discounts were redeemed in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times discounts were redeemed in this campaign.
           example: 343
           type: integer
         couponCreationCount:
-          description: Total number of coupons created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of coupons created by rules in this campaign.
           example: 16
           type: integer
         customEffectCount:
-          description: Total number of custom effects triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of custom effects triggered by rules in this campaign.
           example: 0
           type: integer
         referralCreationCount:
-          description: Total number of referrals created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of referrals created by rules in this campaign.
           example: 8
           type: integer
         addFreeItemEffectCount:
-          description: Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem)
-            can be triggered in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
           example: 0
           type: integer
         awardedGiveawaysCount:
-          description: Total number of giveaways awarded by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of giveaways awarded by rules in this campaign.
           example: 9
           type: integer
         createdLoyaltyPointsCount:
-          description: Total number of loyalty points created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points created by rules in this campaign.
           example: 9.0
           type: number
         createdLoyaltyPointsEffectCount:
-          description: Total number of loyalty point creation effects triggered by
-            rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point creation effects triggered by rules in this campaign.
           example: 2
           type: integer
         redeemedLoyaltyPointsCount:
-          description: Total number of loyalty points redeemed by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points redeemed by rules in this campaign.
           example: 8.0
           type: number
         redeemedLoyaltyPointsEffectCount:
-          description: Total number of loyalty point redemption effects triggered
-            by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point redemption effects triggered by rules in this campaign.
           example: 9
           type: integer
         callApiEffectCount:
-          description: Total number of webhooks triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of webhooks triggered by rules in this campaign.
           example: 0
           type: integer
         reservecouponEffectCount:
-          description: Total number of reserve coupon effects triggered by rules in
-            this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of reserve coupon effects triggered by rules in this campaign.
           example: 9
           type: integer
         lastActivity:
@@ -11340,11 +11604,6 @@ components:
           example: 2022-11-10T23:00:00Z
           format: date-time
           type: string
-        weeklyUsageCount:
-          description: The total number of effects created in this campaign in the
-            past 7 days.
-          example: 0
-          type: integer
         updated:
           description: |
             Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign
@@ -11363,6 +11622,8 @@ components:
           description: The ID of the Campaign Template this Campaign was created from.
           example: 3
           type: integer
+      required:
+      - budgets
       type: object
     NewRuleset:
       properties:
@@ -13834,8 +14095,8 @@ components:
       - totalReferralRedemptions
       - totalReferralsCreated
       type: object
-    LoyaltyStatistics:
-      description: ""
+    LoyaltyDashboardData:
+      description: Datapoint for the graphs and cards on a loyalty program dashboard.
       example:
         date: 2000-01-23T04:56:07.000+00:00
         totalMembers: 2582.0
@@ -13850,52 +14111,6 @@ components:
         earnedPoints:
           createdManually: 125.0
           createdViaRuleEngine: 9631.0
-      properties:
-        date:
-          description: Date at which data point was collected.
-          format: date-time
-          type: string
-        totalActivePoints:
-          description: Total of active points for this loyalty program.
-          example: 9756.0
-          type: number
-        totalPendingPoints:
-          description: Total of pending points for this loyalty program.
-          example: 548.0
-          type: number
-        totalSpentPoints:
-          description: Total of spent points for this loyalty program.
-          example: 25668.0
-          type: number
-        totalExpiredPoints:
-          description: Total of expired points for this loyalty program.
-          example: 1156.0
-          type: number
-        totalMembers:
-          description: Number of loyalty program members.
-          example: 2582.0
-          type: number
-        newMembers:
-          description: Number of members who joined on this day.
-          example: 3.0
-          type: number
-        spentPoints:
-          $ref: '#/components/schemas/LoyaltyDashboardPointsBreakdown'
-        earnedPoints:
-          $ref: '#/components/schemas/LoyaltyDashboardPointsBreakdown'
-      required:
-      - date
-      - earnedPoints
-      - newMembers
-      - spentPoints
-      - totalActivePoints
-      - totalExpiredPoints
-      - totalMembers
-      - totalPendingPoints
-      - totalSpentPoints
-      type: object
-    LoyaltyDashboardData:
-      description: Datapoint for the graphs and cards on a loyalty program dashboard.
       properties:
         date:
           description: Date at which data point was collected.
@@ -14167,10 +14382,12 @@ components:
         inviteToken: Gy9b8w1irmQtEPo5RmbMmSPheL5h4
         name: John Doe
         modified: 2021-09-12T10:12:42Z
+        lastAccessed: 2021-09-12T10:14:42Z
         id: 6
         state: invited
         latestFeedTimestamp: 2020-06-01T00:00:00Z
         authMethod: basic_auth
+        lastSignedIn: 2021-09-12T10:12:42Z
         email: john.doe@example.com
         policy:
           Role: 127
@@ -14243,6 +14460,17 @@ components:
           description: An indication of whether the user has admin permissions.
           example: false
           type: boolean
+        lastSignedIn:
+          description: Date and time when the user last signed in to Talon.One.
+          example: 2021-09-12T10:12:42Z
+          format: date-time
+          type: string
+        lastAccessed:
+          description: Date and time of the user's last activity after signing in
+            to Talon.One.
+          example: 2021-09-12T10:14:42Z
+          format: date-time
+          type: string
       required:
       - accountId
       - created
@@ -14588,8 +14816,9 @@ components:
           type: boolean
         tiersExpireIn:
           description: |
-            The duration is an **integer** followed by one letter indicating the time unit.
+            The amount of time until the expiration of every tier, starting from the date when the customer joined the considered tier for the first time.
 
+            The time format is an **integer** followed by one letter indicating the time unit.
             Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
 
             Available units:
@@ -14794,8 +15023,9 @@ components:
           type: boolean
         tiersExpireIn:
           description: |
-            The duration is an **integer** followed by one letter indicating the time unit.
+            The amount of time until the expiration of every tier, starting from the date when the customer joined the considered tier for the first time.
 
+            The time format is an **integer** followed by one letter indicating the time unit.
             Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
 
             Available units:
@@ -14878,8 +15108,9 @@ components:
           type: boolean
         tiersExpireIn:
           description: |
-            The duration is an **integer** followed by one letter indicating the time unit.
+            The amount of time until the expiration of every tier, starting from the date when the customer joined the considered tier for the first time.
 
+            The time format is an **integer** followed by one letter indicating the time unit.
             Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
 
             Available units:
@@ -14993,8 +15224,9 @@ components:
           type: boolean
         tiersExpireIn:
           description: |
-            The duration is an **integer** followed by one letter indicating the time unit.
+            The amount of time until the expiration of every tier, starting from the date when the customer joined the considered tier for the first time.
 
+            The time format is an **integer** followed by one letter indicating the time unit.
             Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
 
             Available units:
@@ -15893,27 +16125,6 @@ components:
       - id
       - name
       type: object
-    RoundableDuration:
-      description: |
-        The duration is an **integer** followed by one letter indicating the time unit.
-
-        Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.
-
-        Available units:
-
-        - `s`: seconds
-        - `m`: minutes
-        - `h`: hours
-        - `D`: days
-        - `W`: weeks
-        - `M`: months
-        - `Y`: years
-
-        You can round certain units up or down:
-        - `_D` for rounding down days only. Signifies the start of the day.
-        - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
-      example: 27W_U
-      type: string
     LoyaltyCard:
       description: ""
       example:
@@ -17280,6 +17491,13 @@ components:
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
           type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
+          type: string
         evaluableCampaignIds:
           description: |
             When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.
@@ -17393,13 +17611,6 @@ components:
             ShippingCity: Berlin
           properties: {}
           type: object
-        storeIntegrationId:
-          description: The integration ID of the store. You choose this ID when you
-            create a store.
-          example: STORE-001
-          maxLength: 1000
-          minLength: 1
-          type: string
       type: object
     CustomerAnalytics:
       description: A summary report of customer activity for a given time range.
@@ -17731,6 +17942,13 @@ components:
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
           type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
+          type: string
         evaluableCampaignIds:
           description: |
             When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.
@@ -17844,13 +18062,6 @@ components:
             ShippingCity: Berlin
           properties: {}
           type: object
-        storeIntegrationId:
-          description: The integration ID of the store. You choose this ID when you
-            create a store.
-          example: STORE-001
-          maxLength: 1000
-          minLength: 1
-          type: string
         firstSession:
           description: Indicates whether this is the first session for the customer's
             profile. Will always be true for anonymous sessions.
@@ -18030,6 +18241,13 @@ components:
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
           type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
+          type: string
         type:
           description: A string representing the event. Must not be a reserved event
             name.
@@ -18056,6 +18274,13 @@ components:
 
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
+          type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
           type: string
         type:
           description: A string representing the event. Must not be a reserved event
@@ -18086,6 +18311,7 @@ components:
         effects:
         - '{}'
         - '{}'
+        storeIntegrationId: STORE-001
         created: 2020-06-10T09:05:27.993483Z
         profileId: URNGV8294NV
         meta:
@@ -18147,6 +18373,13 @@ components:
 
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
+          type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
           type: string
         type:
           description: A string representing the event. Must not be a reserved event
@@ -18475,6 +18708,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -18483,6 +18717,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -18584,13 +18819,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -18719,13 +18960,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -18944,6 +19191,7 @@ components:
           effects:
           - '{}'
           - '{}'
+          storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: URNGV8294NV
           meta:
@@ -19088,6 +19336,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -19096,6 +19345,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -19179,13 +19429,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -19314,13 +19570,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -19535,6 +19797,7 @@ components:
           effects:
           - '{}'
           - '{}'
+          storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: URNGV8294NV
           meta:
@@ -19743,6 +20006,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -19751,6 +20015,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -19834,13 +20099,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -19969,13 +20240,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -20190,6 +20467,7 @@ components:
           effects:
           - '{}'
           - '{}'
+          storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: URNGV8294NV
           meta:
@@ -20398,6 +20676,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -20406,6 +20685,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -20459,6 +20739,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -20467,6 +20748,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -20875,6 +21157,19 @@ components:
             created.
           format: date-time
           type: string
+        integrationId:
+          description: The integration ID set by your integration layer.
+          example: URNGV8294NV
+          format: string
+          maxLength: 1000
+          type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
+          type: string
         applicationId:
           description: The ID of the application that owns this entity.
           example: 322
@@ -20884,12 +21179,6 @@ components:
             this entity.
           example: 138
           type: integer
-        integrationId:
-          description: The integration ID set by your integration layer.
-          example: URNGV8294NV
-          format: string
-          maxLength: 1000
-          type: string
         profileintegrationid:
           description: Integration ID of the customer for the session.
           example: 382370BKDB946
@@ -20945,12 +21234,6 @@ components:
           description: Arbitrary properties associated with this item.
           properties: {}
           type: object
-        storeIntegrationId:
-          description: The integration ID of the store for this session.
-          example: STORE-001
-          maxLength: 1000
-          minLength: 1
-          type: string
       required:
       - applicationId
       - cartItems
@@ -20973,6 +21256,7 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -20981,15 +21265,18 @@ components:
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
+          conditionIndex: 786
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
+        storeIntegrationId: STORE-001
         created: 2020-06-10T09:05:27.993483Z
         profileId: 138
         attributes: '{}'
         id: 6
-        sessionId: 0
+        sessionId: 6
         applicationId: 322
+        storeId: 0
         type: type
         ruleFailureReasons:
         - rulesetID: 2
@@ -21035,6 +21322,16 @@ components:
             this entity.
           example: 138
           type: integer
+        storeId:
+          description: The ID of the store.
+          type: integer
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
+          type: string
         sessionId:
           description: The globally unique Talon.One ID of the session that contains
             this event.
@@ -22630,13 +22927,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -22848,6 +23151,7 @@ components:
           - Event
           - Giveaway
           - Referral
+          - Store
           example: Event
           type: string
         eventType:
@@ -23015,6 +23319,7 @@ components:
           - Event
           - Giveaway
           - Referral
+          - Store
           example: Event
           type: string
         eventType:
@@ -24034,6 +24339,7 @@ components:
           - Giveaway
           - Referral
           - Session
+          - Store
           type: string
         name:
           description: |
@@ -25219,6 +25525,17 @@ components:
       required:
       - enabled
       type: object
+    SSOConfig:
+      properties:
+        enforced:
+          description: |
+            An indication of whether single sign-on is enforced for the account. When enforced, users cannot use their email and password to sign in to Talon.One.
+            It is not possible to change this to `false` after it is set to `true`.
+          example: true
+          type: boolean
+      required:
+      - enforced
+      type: object
     Effect:
       description: ""
       example:
@@ -25227,6 +25544,7 @@ components:
         triggeredForCatalogItem: 786
         campaignId: 244
         ruleName: Give 20% discount
+        conditionIndex: 786
         triggeredByCoupon: 4928
         effectType: rejectCoupon
         props: '{}'
@@ -25261,6 +25579,10 @@ components:
         triggeredForCatalogItem:
           description: The ID of the catalog item that was being evaluated when this
             effect was triggered.
+          example: 786
+          type: integer
+        conditionIndex:
+          description: The index of the condition that was triggered.
           example: 786
           type: integer
         props:
@@ -25308,6 +25630,10 @@ components:
         triggeredForCatalogItem:
           description: The ID of the catalog item that was being evaluated when this
             effect was triggered.
+          example: 786
+          type: integer
+        conditionIndex:
+          description: The index of the condition that was triggered.
           example: 786
           type: integer
       required:
@@ -27996,68 +28322,103 @@ components:
           items:
             type: integer
           type: array
+        budgets:
+          description: |
+            A list of all the budgets that are defined by this campaign and their usage.
+
+            **Note:** Budgets that are not defined do not appear in this list and their usage is
+            not counted until they are defined.
+          items:
+            $ref: '#/components/schemas/CampaignBudget'
+          type: array
         couponRedemptionCount:
-          description: Number of coupons redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of coupons redeemed in the campaign.
           example: 163
           type: integer
         referralRedemptionCount:
-          description: Number of referral codes redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Number of referral codes redeemed in the campaign.
           example: 3
           type: integer
         discountCount:
-          description: Total amount of discounts redeemed in the campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total amount of discounts redeemed in the campaign.
           example: 288.0
           type: number
         discountEffectCount:
-          description: Total number of times discounts were redeemed in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times discounts were redeemed in this campaign.
           example: 343
           type: integer
         couponCreationCount:
-          description: Total number of coupons created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of coupons created by rules in this campaign.
           example: 16
           type: integer
         customEffectCount:
-          description: Total number of custom effects triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of custom effects triggered by rules in this campaign.
           example: 0
           type: integer
         referralCreationCount:
-          description: Total number of referrals created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of referrals created by rules in this campaign.
           example: 8
           type: integer
         addFreeItemEffectCount:
-          description: Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem)
-            can be triggered in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
           example: 0
           type: integer
         awardedGiveawaysCount:
-          description: Total number of giveaways awarded by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of giveaways awarded by rules in this campaign.
           example: 9
           type: integer
         createdLoyaltyPointsCount:
-          description: Total number of loyalty points created by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points created by rules in this campaign.
           example: 9.0
           type: number
         createdLoyaltyPointsEffectCount:
-          description: Total number of loyalty point creation effects triggered by
-            rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point creation effects triggered by rules in this campaign.
           example: 2
           type: integer
         redeemedLoyaltyPointsCount:
-          description: Total number of loyalty points redeemed by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty points redeemed by rules in this campaign.
           example: 8.0
           type: number
         redeemedLoyaltyPointsEffectCount:
-          description: Total number of loyalty point redemption effects triggered
-            by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of loyalty point redemption effects triggered by rules in this campaign.
           example: 9
           type: integer
         callApiEffectCount:
-          description: Total number of webhooks triggered by rules in this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of webhooks triggered by rules in this campaign.
           example: 0
           type: integer
         reservecouponEffectCount:
-          description: Total number of reserve coupon effects triggered by rules in
-            this campaign.
+          description: |
+            This property is **deprecated**. The count should be available under *budgets* property.
+            Total number of reserve coupon effects triggered by rules in this campaign.
           example: 9
           type: integer
         lastActivity:
@@ -28065,11 +28426,6 @@ components:
           example: 2022-11-10T23:00:00Z
           format: date-time
           type: string
-        weeklyUsageCount:
-          description: The total number of effects created in this campaign in the
-            past 7 days.
-          example: 0
-          type: integer
         updated:
           description: |
             Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign
@@ -28100,6 +28456,7 @@ components:
           type: string
       required:
       - applicationId
+      - budgets
       - created
       - description
       - features
@@ -28634,59 +28991,6 @@ components:
       - headers
       - url
       type: object
-    NotificationWebhook:
-      description: ""
-      example:
-        headers: 'content-type: application/json'
-        created: 2020-06-10T09:05:27.993483Z
-        modified: 2021-09-12T10:12:42Z
-        id: 6
-        applicationId: 322
-        url: www.my-company.com/my-endpoint-name
-        enabled: true
-      properties:
-        id:
-          description: Internal ID of this entity.
-          example: 6
-          type: integer
-        created:
-          description: The time this entity was created.
-          example: 2020-06-10T09:05:27.993483Z
-          format: date-time
-          type: string
-        modified:
-          description: The time this entity was last modified.
-          example: 2021-09-12T10:12:42Z
-          format: date-time
-          type: string
-        applicationId:
-          description: The ID of the application that owns this entity.
-          example: 322
-          type: integer
-        url:
-          description: API URL for the given webhook-based notification.
-          example: www.my-company.com/my-endpoint-name
-          type: string
-        headers:
-          description: List of API HTTP headers for the given webhook-based notification.
-          example: 'content-type: application/json'
-          items:
-            pattern: ^[^:,]+:[^,]*$
-            type: string
-          type: array
-        enabled:
-          default: true
-          description: Indicates whether the notification is activated.
-          example: true
-          type: boolean
-      required:
-      - applicationId
-      - created
-      - headers
-      - id
-      - modified
-      - url
-      type: object
     NotificationActivation:
       example:
         enabled: true
@@ -29136,6 +29440,13 @@ components:
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
           type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
+          type: string
         evaluableCampaignIds:
           description: |
             When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.
@@ -29169,6 +29480,7 @@ components:
     IntegrationEventV2Request:
       description: ""
       example:
+        storeIntegrationId: STORE-001
         profileId: URNGV8294NV
         evaluableCampaignIds:
         - 10
@@ -29186,6 +29498,13 @@ components:
 
             **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
           example: URNGV8294NV
+          type: string
+        storeIntegrationId:
+          description: The integration ID of the store. You choose this ID when you
+            create a store.
+          example: STORE-001
+          maxLength: 1000
+          minLength: 1
           type: string
         evaluableCampaignIds:
           description: |
@@ -29772,6 +30091,13 @@ components:
       type: object
     NewStore:
       description: ""
+      example:
+        name: South US store
+        description: This is the description of the store in south US.
+        integrationId: STORE-001
+        attributes:
+          country: USA
+          code: 1234
       properties:
         name:
           description: The name of the store.
@@ -29805,6 +30131,21 @@ components:
       type: object
     Store:
       description: ""
+      example:
+        linkedCampaignIds:
+        - 4
+        - 6
+        - 8
+        created: 2000-01-23T04:56:07.000+00:00
+        name: South US store
+        description: This is the description of the store in south US.
+        integrationId: STORE-001
+        attributes:
+          country: USA
+          code: 1234
+        id: 6
+        applicationId: 322
+        updated: 2021-09-23T10:12:42Z
       properties:
         id:
           description: Internal ID of this entity.
@@ -30454,13 +30795,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -30589,13 +30936,19 @@ components:
           tags:
           - summer
           awardedGiveawaysCount: 9
-          weeklyUsageCount: 0
           redeemedLoyaltyPointsEffectCount: 9
           linkedStoreIds:
           - 1
           - 2
           - 3
           discountEffectCount: 343
+          budgets:
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
+          - limit: 1000.0
+            action: createCoupon
+            counter: 42.0
           createdBy: John Doe
           redeemedLoyaltyPointsCount: 8.0
           addFreeItemEffectCount: 0
@@ -30658,35 +31011,6 @@ components:
       - data
       - totalResultSize
     inline_response_200_7:
-      example:
-        data:
-        - headers: 'content-type: application/json'
-          created: 2020-06-10T09:05:27.993483Z
-          modified: 2021-09-12T10:12:42Z
-          id: 6
-          applicationId: 322
-          url: www.my-company.com/my-endpoint-name
-          enabled: true
-        - headers: 'content-type: application/json'
-          created: 2020-06-10T09:05:27.993483Z
-          modified: 2021-09-12T10:12:42Z
-          id: 6
-          applicationId: 322
-          url: www.my-company.com/my-endpoint-name
-          enabled: true
-        totalResultSize: 1
-      properties:
-        totalResultSize:
-          example: 1
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/NotificationWebhook'
-          type: array
-      required:
-      - data
-      - totalResultSize
-    inline_response_200_8:
       example:
         data:
         - rbVersion: v2
@@ -30979,7 +31303,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_9:
+    inline_response_200_8:
       example:
         data:
         - recipientIntegrationId: URNGV8294NV
@@ -31058,7 +31382,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_10:
+    inline_response_200_9:
       example:
         data:
         - recipientIntegrationId: URNGV8294NV
@@ -31137,7 +31461,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_11:
+    inline_response_200_10:
       example:
         data:
         - code: 27G47Y54VH9L
@@ -31180,7 +31504,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_12:
+    inline_response_200_11:
       example:
         data:
         - activeRulesetId: 5
@@ -31459,7 +31783,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_13:
+    inline_response_200_12:
       example:
         data:
         - cardBased: true
@@ -31546,7 +31870,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_14:
+    inline_response_200_13:
       example:
         data:
         - rulesetId: 11
@@ -31595,7 +31919,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_15:
+    inline_response_200_14:
       example:
         data:
         - ledger:
@@ -31692,7 +32016,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_16:
+    inline_response_200_15:
       example:
         data:
         - amount: 10.25
@@ -31735,7 +32059,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_17:
+    inline_response_200_16:
       example:
         data:
         - accountId: 3886
@@ -31780,7 +32104,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_18:
+    inline_response_200_17:
       example:
         data:
         - item: item
@@ -31796,7 +32120,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_19:
+    inline_response_200_18:
       example:
         data:
         - accountId: 3886
@@ -31847,7 +32171,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_20:
+    inline_response_200_19:
       example:
         data:
         - method: PUT
@@ -31887,7 +32211,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_21:
+    inline_response_200_20:
       example:
         data:
         - method: PUT
@@ -31928,7 +32252,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_22:
+    inline_response_200_21:
       example:
         data:
         - date: 2021-10-12T10:12:42Z
@@ -31993,7 +32317,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_23:
+    inline_response_200_22:
       example:
         data:
         - accountId: 6
@@ -32054,7 +32378,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_24:
+    inline_response_200_23:
       example:
         data:
         - accountId: 6
@@ -32114,7 +32438,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_25:
+    inline_response_200_24:
       example:
         data:
         - accountId: 31
@@ -32172,7 +32496,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_26:
+    inline_response_200_25:
       example:
         data:
         - accountId: 31
@@ -32228,7 +32552,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_27:
+    inline_response_200_26:
       example:
         data:
         - couponUseAttempts: 1
@@ -32268,7 +32592,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_28:
+    inline_response_200_27:
       example:
         data:
         - coupon: BKDB946
@@ -32389,7 +32713,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_29:
+    inline_response_200_28:
       example:
         data:
         - effects:
@@ -32398,6 +32722,7 @@ components:
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
+            conditionIndex: 786
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
@@ -32406,15 +32731,18 @@ components:
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
+            conditionIndex: 786
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
+          storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: 138
           attributes: '{}'
           id: 6
-          sessionId: 0
+          sessionId: 6
           applicationId: 322
+          storeId: 0
           type: type
           ruleFailureReasons:
           - rulesetID: 2
@@ -32447,6 +32775,7 @@ components:
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
+            conditionIndex: 786
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
@@ -32455,15 +32784,18 @@ components:
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
+            conditionIndex: 786
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
+          storeIntegrationId: STORE-001
           created: 2020-06-10T09:05:27.993483Z
           profileId: 138
           attributes: '{}'
           id: 6
-          sessionId: 0
+          sessionId: 6
           applicationId: 322
+          storeId: 0
           type: type
           ruleFailureReasons:
           - rulesetID: 2
@@ -32501,7 +32833,7 @@ components:
       required:
       - data
       - hasMore
-    inline_response_200_30:
+    inline_response_200_29:
       example:
         data:
         - data
@@ -32518,7 +32850,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_31:
+    inline_response_200_30:
       example:
         data:
         - accountId: 3886
@@ -32555,7 +32887,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_32:
+    inline_response_200_31:
       example:
         data:
         - friendIntegrationId: friendIntegrationId
@@ -32584,7 +32916,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_33:
+    inline_response_200_32:
       example:
         data:
         - created: 2020-06-10T09:05:27.993483Z
@@ -32657,7 +32989,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_34:
+    inline_response_200_33:
       example:
         data:
         - catalogid: 6
@@ -32700,7 +33032,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_35:
+    inline_response_200_34:
       example:
         data:
         - accountId: 3886
@@ -32735,7 +33067,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_36:
+    inline_response_200_35:
       example:
         data:
         - headers:
@@ -32786,7 +33118,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_37:
+    inline_response_200_36:
       example:
         data:
         - webhookId: 1
@@ -32811,7 +33143,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_38:
+    inline_response_200_37:
       example:
         data:
         - requestTime: 2021-07-20T22:00:00Z
@@ -32852,7 +33184,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_39:
+    inline_response_200_38:
       example:
         data:
         - created: 2020-06-10T09:05:27.993483Z
@@ -32877,7 +33209,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_40:
+    inline_response_200_39:
       example:
         data:
         - created: 2020-06-10T09:05:27.993483Z
@@ -32889,10 +33221,12 @@ components:
           inviteToken: Gy9b8w1irmQtEPo5RmbMmSPheL5h4
           name: John Doe
           modified: 2021-09-12T10:12:42Z
+          lastAccessed: 2021-09-12T10:14:42Z
           id: 6
           state: invited
           latestFeedTimestamp: 2020-06-01T00:00:00Z
           authMethod: basic_auth
+          lastSignedIn: 2021-09-12T10:12:42Z
           email: john.doe@example.com
           policy:
             Role: 127
@@ -32905,10 +33239,12 @@ components:
           inviteToken: Gy9b8w1irmQtEPo5RmbMmSPheL5h4
           name: John Doe
           modified: 2021-09-12T10:12:42Z
+          lastAccessed: 2021-09-12T10:14:42Z
           id: 6
           state: invited
           latestFeedTimestamp: 2020-06-01T00:00:00Z
           authMethod: basic_auth
+          lastSignedIn: 2021-09-12T10:12:42Z
           email: john.doe@example.com
           policy:
             Role: 127
@@ -32924,7 +33260,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_41:
+    inline_response_200_40:
       example:
         data:
         - new:
@@ -32975,7 +33311,7 @@ components:
           type: array
       required:
       - data
-    inline_response_200_42:
+    inline_response_200_41:
       example:
         data:
         - filter: '{}'
@@ -33002,7 +33338,7 @@ components:
       required:
       - data
       - totalResultSize
-    inline_response_200_43:
+    inline_response_200_42:
       example:
         data:
         - accountId: 3886
@@ -33045,6 +33381,51 @@ components:
       required:
       - data
       - totalResultSize
+    inline_response_200_43:
+      example:
+        data:
+        - linkedCampaignIds:
+          - 4
+          - 6
+          - 8
+          created: 2000-01-23T04:56:07.000+00:00
+          name: South US store
+          description: This is the description of the store in south US.
+          integrationId: STORE-001
+          attributes:
+            country: USA
+            code: 1234
+          id: 6
+          applicationId: 322
+          updated: 2021-09-23T10:12:42Z
+        - linkedCampaignIds:
+          - 4
+          - 6
+          - 8
+          created: 2000-01-23T04:56:07.000+00:00
+          name: South US store
+          description: This is the description of the store in south US.
+          integrationId: STORE-001
+          attributes:
+            country: USA
+            code: 1234
+          id: 6
+          applicationId: 322
+          updated: 2021-09-23T10:12:42Z
+        hasMore: true
+        totalResultSize: 1
+      properties:
+        hasMore:
+          type: boolean
+        totalResultSize:
+          example: 1
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Store'
+          type: array
+      required:
+      - data
   securitySchemes:
     api_key_v1:
       description: |

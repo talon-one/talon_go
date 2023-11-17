@@ -25,6 +25,10 @@ type ApplicationEvent struct {
 	ApplicationId int32 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
 	ProfileId *int32 `json:"profileId,omitempty"`
+	// The ID of the store.
+	StoreId *int32 `json:"storeId,omitempty"`
+	// The integration ID of the store. You choose this ID when you create a store.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// The globally unique Talon.One ID of the session that contains this event.
 	SessionId *int32 `json:"sessionId,omitempty"`
 	// A string representing the event. Must not be a reserved event name.
@@ -113,6 +117,72 @@ func (o *ApplicationEvent) HasProfileId() bool {
 // SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
 func (o *ApplicationEvent) SetProfileId(v int32) {
 	o.ProfileId = &v
+}
+
+// GetStoreId returns the StoreId field value if set, zero value otherwise.
+func (o *ApplicationEvent) GetStoreId() int32 {
+	if o == nil || o.StoreId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.StoreId
+}
+
+// GetStoreIdOk returns a tuple with the StoreId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetStoreIdOk() (int32, bool) {
+	if o == nil || o.StoreId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.StoreId, true
+}
+
+// HasStoreId returns a boolean if a field has been set.
+func (o *ApplicationEvent) HasStoreId() bool {
+	if o != nil && o.StoreId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreId gets a reference to the given int32 and assigns it to the StoreId field.
+func (o *ApplicationEvent) SetStoreId(v int32) {
+	o.StoreId = &v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *ApplicationEvent) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetStoreIntegrationIdOk() (string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *ApplicationEvent) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *ApplicationEvent) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 // GetSessionId returns the SessionId field value if set, zero value otherwise.

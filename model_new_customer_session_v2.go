@@ -18,6 +18,8 @@ import (
 type NewCustomerSessionV2 struct {
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId *string `json:"profileId,omitempty"`
+	// The integration ID of the store. You choose this ID when you create a store.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
 	EvaluableCampaignIds *[]int32 `json:"evaluableCampaignIds,omitempty"`
 	// Any coupon codes entered.  **Important**: If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it.
@@ -36,8 +38,6 @@ type NewCustomerSessionV2 struct {
 	Identifiers *[]string `json:"identifiers,omitempty"`
 	// Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// The integration ID of the store. You choose this ID when you create a store.
-	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
@@ -71,6 +71,39 @@ func (o *NewCustomerSessionV2) HasProfileId() bool {
 // SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
 func (o *NewCustomerSessionV2) SetProfileId(v string) {
 	o.ProfileId = &v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *NewCustomerSessionV2) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCustomerSessionV2) GetStoreIntegrationIdOk() (string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *NewCustomerSessionV2) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *NewCustomerSessionV2) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 // GetEvaluableCampaignIds returns the EvaluableCampaignIds field value if set, zero value otherwise.
@@ -368,39 +401,6 @@ func (o *NewCustomerSessionV2) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *NewCustomerSessionV2) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
-}
-
-// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
-func (o *NewCustomerSessionV2) GetStoreIntegrationId() string {
-	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret
-	}
-	return *o.StoreIntegrationId
-}
-
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewCustomerSessionV2) GetStoreIntegrationIdOk() (string, bool) {
-	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.StoreIntegrationId, true
-}
-
-// HasStoreIntegrationId returns a boolean if a field has been set.
-func (o *NewCustomerSessionV2) HasStoreIntegrationId() bool {
-	if o != nil && o.StoreIntegrationId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
-func (o *NewCustomerSessionV2) SetStoreIntegrationId(v string) {
-	o.StoreIntegrationId = &v
 }
 
 type NullableNewCustomerSessionV2 struct {

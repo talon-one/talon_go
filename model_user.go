@@ -44,6 +44,10 @@ type User struct {
 	AuthMethod *string `json:"authMethod,omitempty"`
 	// An indication of whether the user has admin permissions.
 	IsAdmin *bool `json:"isAdmin,omitempty"`
+	// Date and time when the user last signed in to Talon.One.
+	LastSignedIn *time.Time `json:"lastSignedIn,omitempty"`
+	// Date and time of the user's last activity after signing in to Talon.One.
+	LastAccessed *time.Time `json:"lastAccessed,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -344,6 +348,72 @@ func (o *User) HasIsAdmin() bool {
 // SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 func (o *User) SetIsAdmin(v bool) {
 	o.IsAdmin = &v
+}
+
+// GetLastSignedIn returns the LastSignedIn field value if set, zero value otherwise.
+func (o *User) GetLastSignedIn() time.Time {
+	if o == nil || o.LastSignedIn == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastSignedIn
+}
+
+// GetLastSignedInOk returns a tuple with the LastSignedIn field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLastSignedInOk() (time.Time, bool) {
+	if o == nil || o.LastSignedIn == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.LastSignedIn, true
+}
+
+// HasLastSignedIn returns a boolean if a field has been set.
+func (o *User) HasLastSignedIn() bool {
+	if o != nil && o.LastSignedIn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastSignedIn gets a reference to the given time.Time and assigns it to the LastSignedIn field.
+func (o *User) SetLastSignedIn(v time.Time) {
+	o.LastSignedIn = &v
+}
+
+// GetLastAccessed returns the LastAccessed field value if set, zero value otherwise.
+func (o *User) GetLastAccessed() time.Time {
+	if o == nil || o.LastAccessed == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastAccessed
+}
+
+// GetLastAccessedOk returns a tuple with the LastAccessed field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLastAccessedOk() (time.Time, bool) {
+	if o == nil || o.LastAccessed == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.LastAccessed, true
+}
+
+// HasLastAccessed returns a boolean if a field has been set.
+func (o *User) HasLastAccessed() bool {
+	if o != nil && o.LastAccessed != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLastAccessed gets a reference to the given time.Time and assigns it to the LastAccessed field.
+func (o *User) SetLastAccessed(v time.Time) {
+	o.LastAccessed = &v
 }
 
 type NullableUser struct {

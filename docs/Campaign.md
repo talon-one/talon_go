@@ -24,23 +24,23 @@ Name | Type | Description | Notes
 **EvaluationGroupId** | Pointer to **int32** | The ID of the campaign evaluation group the campaign belongs to. | [optional] 
 **Type** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [default to TYPE_ADVANCED]
 **LinkedStoreIds** | Pointer to **[]int32** | A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.  | [optional] 
-**CouponRedemptionCount** | Pointer to **int32** | Number of coupons redeemed in the campaign. | [optional] 
-**ReferralRedemptionCount** | Pointer to **int32** | Number of referral codes redeemed in the campaign. | [optional] 
-**DiscountCount** | Pointer to **float32** | Total amount of discounts redeemed in the campaign. | [optional] 
-**DiscountEffectCount** | Pointer to **int32** | Total number of times discounts were redeemed in this campaign. | [optional] 
-**CouponCreationCount** | Pointer to **int32** | Total number of coupons created by rules in this campaign. | [optional] 
-**CustomEffectCount** | Pointer to **int32** | Total number of custom effects triggered by rules in this campaign. | [optional] 
-**ReferralCreationCount** | Pointer to **int32** | Total number of referrals created by rules in this campaign. | [optional] 
-**AddFreeItemEffectCount** | Pointer to **int32** | Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign. | [optional] 
-**AwardedGiveawaysCount** | Pointer to **int32** | Total number of giveaways awarded by rules in this campaign. | [optional] 
-**CreatedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points created by rules in this campaign. | [optional] 
-**CreatedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point creation effects triggered by rules in this campaign. | [optional] 
-**RedeemedLoyaltyPointsCount** | Pointer to **float32** | Total number of loyalty points redeemed by rules in this campaign. | [optional] 
-**RedeemedLoyaltyPointsEffectCount** | Pointer to **int32** | Total number of loyalty point redemption effects triggered by rules in this campaign. | [optional] 
-**CallApiEffectCount** | Pointer to **int32** | Total number of webhooks triggered by rules in this campaign. | [optional] 
-**ReservecouponEffectCount** | Pointer to **int32** | Total number of reserve coupon effects triggered by rules in this campaign. | [optional] 
+**Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | 
+**CouponRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.  | [optional] 
+**ReferralRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.  | [optional] 
+**DiscountCount** | Pointer to **float32** | This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign.  | [optional] 
+**DiscountEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of times discounts were redeemed in this campaign.  | [optional] 
+**CouponCreationCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of coupons created by rules in this campaign.  | [optional] 
+**CustomEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of custom effects triggered by rules in this campaign.  | [optional] 
+**ReferralCreationCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of referrals created by rules in this campaign.  | [optional] 
+**AddFreeItemEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.  | [optional] 
+**AwardedGiveawaysCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of giveaways awarded by rules in this campaign.  | [optional] 
+**CreatedLoyaltyPointsCount** | Pointer to **float32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points created by rules in this campaign.  | [optional] 
+**CreatedLoyaltyPointsEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point creation effects triggered by rules in this campaign.  | [optional] 
+**RedeemedLoyaltyPointsCount** | Pointer to **float32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points redeemed by rules in this campaign.  | [optional] 
+**RedeemedLoyaltyPointsEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point redemption effects triggered by rules in this campaign.  | [optional] 
+**CallApiEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of webhooks triggered by rules in this campaign.  | [optional] 
+**ReservecouponEffectCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Total number of reserve coupon effects triggered by rules in this campaign.  | [optional] 
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received by this campaign. | [optional] 
-**WeeklyUsageCount** | Pointer to **int32** | The total number of effects created in this campaign in the past 7 days. | [optional] 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign&#39;s property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates.  | [optional] 
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
@@ -548,6 +548,31 @@ HasLinkedStoreIds returns a boolean if a field has been set.
 
 SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
 
+### GetBudgets
+
+`func (o *Campaign) GetBudgets() []CampaignBudget`
+
+GetBudgets returns the Budgets field if non-nil, zero value otherwise.
+
+### GetBudgetsOk
+
+`func (o *Campaign) GetBudgetsOk() ([]CampaignBudget, bool)`
+
+GetBudgetsOk returns a tuple with the Budgets field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBudgets
+
+`func (o *Campaign) HasBudgets() bool`
+
+HasBudgets returns a boolean if a field has been set.
+
+### SetBudgets
+
+`func (o *Campaign) SetBudgets(v []CampaignBudget)`
+
+SetBudgets gets a reference to the given []CampaignBudget and assigns it to the Budgets field.
+
 ### GetCouponRedemptionCount
 
 `func (o *Campaign) GetCouponRedemptionCount() int32`
@@ -947,31 +972,6 @@ HasLastActivity returns a boolean if a field has been set.
 `func (o *Campaign) SetLastActivity(v time.Time)`
 
 SetLastActivity gets a reference to the given time.Time and assigns it to the LastActivity field.
-
-### GetWeeklyUsageCount
-
-`func (o *Campaign) GetWeeklyUsageCount() int32`
-
-GetWeeklyUsageCount returns the WeeklyUsageCount field if non-nil, zero value otherwise.
-
-### GetWeeklyUsageCountOk
-
-`func (o *Campaign) GetWeeklyUsageCountOk() (int32, bool)`
-
-GetWeeklyUsageCountOk returns a tuple with the WeeklyUsageCount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasWeeklyUsageCount
-
-`func (o *Campaign) HasWeeklyUsageCount() bool`
-
-HasWeeklyUsageCount returns a boolean if a field has been set.
-
-### SetWeeklyUsageCount
-
-`func (o *Campaign) SetWeeklyUsageCount(v int32)`
-
-SetWeeklyUsageCount gets a reference to the given int32 and assigns it to the WeeklyUsageCount field.
 
 ### GetUpdated
 

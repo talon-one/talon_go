@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LoyaltyCard**](LoyaltyCard.md) |  | 
+**HasMore** | Pointer to **bool** | true means there is more data in the source collection to request.. | 
+**Data** | Pointer to [**[]CardLedgerTransactionLogEntry**](CardLedgerTransactionLogEntry.md) | List of loyalty card transaction logs. | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetHasMore gets a reference to the given bool and assigns it to the HasMore fiel
 
 ### GetData
 
-`func (o *InlineResponse20015) GetData() []LoyaltyCard`
+`func (o *InlineResponse20015) GetData() []CardLedgerTransactionLogEntry`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20015) GetDataOk() ([]LoyaltyCard, bool)`
+`func (o *InlineResponse20015) GetDataOk() ([]CardLedgerTransactionLogEntry, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20015) SetData(v []LoyaltyCard)`
+`func (o *InlineResponse20015) SetData(v []CardLedgerTransactionLogEntry)`
 
-SetData gets a reference to the given []LoyaltyCard and assigns it to the Data field.
+SetData gets a reference to the given []CardLedgerTransactionLogEntry and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

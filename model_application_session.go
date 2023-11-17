@@ -21,12 +21,14 @@ type ApplicationSession struct {
 	Id int32 `json:"id"`
 	// The time this entity was created. The time this entity was created.
 	Created time.Time `json:"created"`
+	// The integration ID set by your integration layer.
+	IntegrationId string `json:"integrationId"`
+	// The integration ID of the store. You choose this ID when you create a store.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// The ID of the application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
 	ProfileId *int32 `json:"profileId,omitempty"`
-	// The integration ID set by your integration layer.
-	IntegrationId string `json:"integrationId"`
 	// Integration ID of the customer for the session.
 	Profileintegrationid *string `json:"profileintegrationid,omitempty"`
 	// Any coupon code entered.
@@ -45,8 +47,6 @@ type ApplicationSession struct {
 	Total float32 `json:"total"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// The integration ID of the store for this session.
-	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -77,6 +77,54 @@ func (o *ApplicationSession) GetCreated() time.Time {
 // SetCreated sets field value
 func (o *ApplicationSession) SetCreated(v time.Time) {
 	o.Created = v
+}
+
+// GetIntegrationId returns the IntegrationId field value
+func (o *ApplicationSession) GetIntegrationId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.IntegrationId
+}
+
+// SetIntegrationId sets field value
+func (o *ApplicationSession) SetIntegrationId(v string) {
+	o.IntegrationId = v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *ApplicationSession) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *ApplicationSession) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *ApplicationSession) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 // GetApplicationId returns the ApplicationId field value
@@ -125,21 +173,6 @@ func (o *ApplicationSession) HasProfileId() bool {
 // SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
 func (o *ApplicationSession) SetProfileId(v int32) {
 	o.ProfileId = &v
-}
-
-// GetIntegrationId returns the IntegrationId field value
-func (o *ApplicationSession) GetIntegrationId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.IntegrationId
-}
-
-// SetIntegrationId sets field value
-func (o *ApplicationSession) SetIntegrationId(v string) {
-	o.IntegrationId = v
 }
 
 // GetProfileintegrationid returns the Profileintegrationid field value if set, zero value otherwise.
@@ -311,39 +344,6 @@ func (o *ApplicationSession) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *ApplicationSession) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
-}
-
-// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
-func (o *ApplicationSession) GetStoreIntegrationId() string {
-	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret
-	}
-	return *o.StoreIntegrationId
-}
-
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool) {
-	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.StoreIntegrationId, true
-}
-
-// HasStoreIntegrationId returns a boolean if a field has been set.
-func (o *ApplicationSession) HasStoreIntegrationId() bool {
-	if o != nil && o.StoreIntegrationId != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
-func (o *ApplicationSession) SetStoreIntegrationId(v string) {
-	o.StoreIntegrationId = &v
 }
 
 type NullableApplicationSession struct {

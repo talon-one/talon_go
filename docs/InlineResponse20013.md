@@ -4,45 +4,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]LoyaltyProgramTransaction**](LoyaltyProgramTransaction.md) |  | 
 
 ## Methods
 
-### GetTotalResultSize
+### GetHasMore
 
-`func (o *InlineResponse20013) GetTotalResultSize() int32`
+`func (o *InlineResponse20013) GetHasMore() bool`
 
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
 
-### GetTotalResultSizeOk
+### GetHasMoreOk
 
-`func (o *InlineResponse20013) GetTotalResultSizeOk() (int32, bool)`
+`func (o *InlineResponse20013) GetHasMoreOk() (bool, bool)`
 
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTotalResultSize
+### HasHasMore
 
-`func (o *InlineResponse20013) HasTotalResultSize() bool`
+`func (o *InlineResponse20013) HasHasMore() bool`
 
-HasTotalResultSize returns a boolean if a field has been set.
+HasHasMore returns a boolean if a field has been set.
 
-### SetTotalResultSize
+### SetHasMore
 
-`func (o *InlineResponse20013) SetTotalResultSize(v int32)`
+`func (o *InlineResponse20013) SetHasMore(v bool)`
 
-SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
+SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
 ### GetData
 
-`func (o *InlineResponse20013) GetData() []LoyaltyProgram`
+`func (o *InlineResponse20013) GetData() []LoyaltyProgramTransaction`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20013) GetDataOk() ([]LoyaltyProgram, bool)`
+`func (o *InlineResponse20013) GetDataOk() ([]LoyaltyProgramTransaction, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20013) SetData(v []LoyaltyProgram)`
+`func (o *InlineResponse20013) SetData(v []LoyaltyProgramTransaction)`
 
-SetData gets a reference to the given []LoyaltyProgram and assigns it to the Data field.
+SetData gets a reference to the given []LoyaltyProgramTransaction and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
