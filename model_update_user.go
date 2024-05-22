@@ -16,17 +16,18 @@ import (
 
 // UpdateUser struct for UpdateUser
 type UpdateUser struct {
-	// The user name.
+	// Name of the user.
 	Name *string `json:"name,omitempty"`
-	// The `Access Control List` json defining the role of the user. This represents the access control on the user level.
-	Policy *string `json:"policy,omitempty"`
-	// New state (\"deactivated\" or \"active\") for the user. Only usable by admins for the user.
+	// The state of the user.   - `deactivated`: The user has been deactivated.   - `active`: The user is active.  **Note**: Only `admin` users can update the state of another user.
 	State *string `json:"state,omitempty"`
-	// List of roles to assign to the user.
-	Roles                                *[]int32                `json:"roles,omitempty"`
-	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
-	// An indication of whether the user has admin permissions.
+	// Indicates whether the user is an `admin`.
 	IsAdmin *bool `json:"isAdmin,omitempty"`
+	// Indicates the access level of the user.
+	Policy *string `json:"policy,omitempty"`
+	// A list of the IDs of the roles assigned to the user.  **Note**: Use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint to find the ID of a role.
+	Roles *[]int32 `json:"roles,omitempty"`
+	// Application notifications that the user is subscribed to.
+	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -62,39 +63,6 @@ func (o *UpdateUser) SetName(v string) {
 	o.Name = &v
 }
 
-// GetPolicy returns the Policy field value if set, zero value otherwise.
-func (o *UpdateUser) GetPolicy() string {
-	if o == nil || o.Policy == nil {
-		var ret string
-		return ret
-	}
-	return *o.Policy
-}
-
-// GetPolicyOk returns a tuple with the Policy field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateUser) GetPolicyOk() (string, bool) {
-	if o == nil || o.Policy == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Policy, true
-}
-
-// HasPolicy returns a boolean if a field has been set.
-func (o *UpdateUser) HasPolicy() bool {
-	if o != nil && o.Policy != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPolicy gets a reference to the given string and assigns it to the Policy field.
-func (o *UpdateUser) SetPolicy(v string) {
-	o.Policy = &v
-}
-
 // GetState returns the State field value if set, zero value otherwise.
 func (o *UpdateUser) GetState() string {
 	if o == nil || o.State == nil {
@@ -126,6 +94,72 @@ func (o *UpdateUser) HasState() bool {
 // SetState gets a reference to the given string and assigns it to the State field.
 func (o *UpdateUser) SetState(v string) {
 	o.State = &v
+}
+
+// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
+func (o *UpdateUser) GetIsAdmin() bool {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsAdmin
+}
+
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetIsAdminOk() (bool, bool) {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (o *UpdateUser) HasIsAdmin() bool {
+	if o != nil && o.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+func (o *UpdateUser) SetIsAdmin(v bool) {
+	o.IsAdmin = &v
+}
+
+// GetPolicy returns the Policy field value if set, zero value otherwise.
+func (o *UpdateUser) GetPolicy() string {
+	if o == nil || o.Policy == nil {
+		var ret string
+		return ret
+	}
+	return *o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateUser) GetPolicyOk() (string, bool) {
+	if o == nil || o.Policy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Policy, true
+}
+
+// HasPolicy returns a boolean if a field has been set.
+func (o *UpdateUser) HasPolicy() bool {
+	if o != nil && o.Policy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPolicy gets a reference to the given string and assigns it to the Policy field.
+func (o *UpdateUser) SetPolicy(v string) {
+	o.Policy = &v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
@@ -192,39 +226,6 @@ func (o *UpdateUser) HasApplicationNotificationSubscriptions() bool {
 // SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
 func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interface{}) {
 	o.ApplicationNotificationSubscriptions = &v
-}
-
-// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
-func (o *UpdateUser) GetIsAdmin() bool {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsAdmin
-}
-
-// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateUser) GetIsAdminOk() (bool, bool) {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.IsAdmin, true
-}
-
-// HasIsAdmin returns a boolean if a field has been set.
-func (o *UpdateUser) HasIsAdmin() bool {
-	if o != nil && o.IsAdmin != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
-func (o *UpdateUser) SetIsAdmin(v bool) {
-	o.IsAdmin = &v
 }
 
 type NullableUpdateUser struct {

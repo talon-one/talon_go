@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **Discounts** | Pointer to [**[]AccountDashboardStatisticDiscount**](AccountDashboardStatisticDiscount.md) | Aggregated statistic for account discount. | [optional] 
 **LoyaltyPoints** | Pointer to [**[]AccountDashboardStatisticLoyaltyPoints**](AccountDashboardStatisticLoyaltyPoints.md) | Aggregated statistic for account loyalty points. | [optional] 
 **Referrals** | Pointer to [**[]AccountDashboardStatisticReferrals**](AccountDashboardStatisticReferrals.md) | Aggregated statistic for account referrals. | [optional] 
-**ApiCalls** | Pointer to [**[]AccountDashboardStatisticApiCalls**](AccountDashboardStatisticApiCalls.md) | Aggregated statistic for the number of account API calls. | [optional] 
 **Campaigns** | Pointer to [**AccountDashboardStatisticCampaigns**](AccountDashboardStatisticCampaigns.md) |  | 
 
 ## Methods
@@ -112,31 +111,6 @@ HasReferrals returns a boolean if a field has been set.
 `func (o *AccountDashboardStatistic) SetReferrals(v []AccountDashboardStatisticReferrals)`
 
 SetReferrals gets a reference to the given []AccountDashboardStatisticReferrals and assigns it to the Referrals field.
-
-### GetApiCalls
-
-`func (o *AccountDashboardStatistic) GetApiCalls() []AccountDashboardStatisticApiCalls`
-
-GetApiCalls returns the ApiCalls field if non-nil, zero value otherwise.
-
-### GetApiCallsOk
-
-`func (o *AccountDashboardStatistic) GetApiCallsOk() ([]AccountDashboardStatisticApiCalls, bool)`
-
-GetApiCallsOk returns a tuple with the ApiCalls field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasApiCalls
-
-`func (o *AccountDashboardStatistic) HasApiCalls() bool`
-
-HasApiCalls returns a boolean if a field has been set.
-
-### SetApiCalls
-
-`func (o *AccountDashboardStatistic) SetApiCalls(v []AccountDashboardStatisticApiCalls)`
-
-SetApiCalls gets a reference to the given []AccountDashboardStatisticApiCalls and assigns it to the ApiCalls field.
 
 ### GetCampaigns
 

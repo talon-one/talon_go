@@ -16,7 +16,7 @@ import (
 
 // NewCampaignGroup struct for NewCampaignGroup
 type NewCampaignGroup struct {
-	// The name of this campaign access group.
+	// The name of the campaign access group.
 	Name string `json:"name"`
 	// A longer description of the campaign access group.
 	Description *string `json:"description,omitempty"`

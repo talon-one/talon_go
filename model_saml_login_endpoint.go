@@ -16,10 +16,27 @@ import (
 
 // SamlLoginEndpoint struct for SamlLoginEndpoint
 type SamlLoginEndpoint struct {
+	// ID of the SAML login endpoint.
+	Id int32 `json:"id"`
 	// ID of the SAML service.
 	Name string `json:"name"`
-	// Single Sign-On URL.
+	// The single sign-on URL.
 	LoginURL string `json:"loginURL"`
+}
+
+// GetId returns the Id field value
+func (o *SamlLoginEndpoint) GetId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Id
+}
+
+// SetId sets field value
+func (o *SamlLoginEndpoint) SetId(v int32) {
+	o.Id = v
 }
 
 // GetName returns the Name field value

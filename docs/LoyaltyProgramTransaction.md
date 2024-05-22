@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | ID of the loyalty ledger transaction. | 
 **ProgramId** | Pointer to **int32** | ID of the loyalty program. | 
+**CampaignId** | Pointer to **int32** | ID of the campaign. | [optional] 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Date and time the loyalty transaction occurred. | 
 **Type** | Pointer to **string** | Type of transaction. Possible values:   - &#x60;addition&#x60;: Signifies added points.   - &#x60;subtraction&#x60;: Signifies deducted points.  | 
 **Amount** | Pointer to **float32** | Amount of loyalty points added or deducted in the transaction. | 
@@ -73,6 +74,31 @@ HasProgramId returns a boolean if a field has been set.
 `func (o *LoyaltyProgramTransaction) SetProgramId(v int32)`
 
 SetProgramId gets a reference to the given int32 and assigns it to the ProgramId field.
+
+### GetCampaignId
+
+`func (o *LoyaltyProgramTransaction) GetCampaignId() int32`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *LoyaltyProgramTransaction) GetCampaignIdOk() (int32, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignId
+
+`func (o *LoyaltyProgramTransaction) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### SetCampaignId
+
+`func (o *LoyaltyProgramTransaction) SetCampaignId(v int32)`
+
+SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
 ### GetCreated
 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | The name of this campaign access group. | 
+**Name** | Pointer to **string** | The name of the campaign access group. | 
 **Description** | Pointer to **string** | A longer description of the campaign access group. | [optional] 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of IDs of the Applications that this campaign access group is enabled for. | [optional] 
 **CampaignIds** | Pointer to **[]int32** | A list of IDs of the campaigns that are part of the campaign access group. | [optional] 

@@ -19,7 +19,7 @@ type FuncArgDef struct {
 	// The type of value this argument expects.
 	Type string `json:"type"`
 	// A campaigner-friendly description of the argument, this will also be shown in the rule editor.
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
 }
 
 // GetType returns the Type field value
@@ -37,19 +37,37 @@ func (o *FuncArgDef) SetType(v string) {
 	o.Type = v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *FuncArgDef) GetDescription() string {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// SetDescription sets field value
+// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *FuncArgDef) GetDescriptionOk() (string, bool) {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *FuncArgDef) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *FuncArgDef) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
 type NullableFuncArgDef struct {

@@ -738,7 +738,7 @@ DeleteAudienceMembershipsV2 Delete audience memberships
 Remove all members from this audience.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param audienceId The ID of the audience.
 
 @return apiDeleteAudienceMembershipsV2Request
 */
@@ -866,7 +866,7 @@ Delete an audience created by a third-party integration.
 **Note:** Audiences can also be deleted via the Campaign Manager. See the [docs](https://docs.talon.one/docs/product/audiences/managing-audiences#deleting-an-audience).
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param audienceId The ID of the audience.
 
 @return apiDeleteAudienceV2Request
 */
@@ -1271,6 +1271,7 @@ type apiGetCustomerInventoryRequest struct {
 	coupons       *bool
 	loyalty       *bool
 	giveaways     *bool
+	achievements  *bool
 }
 
 func (r apiGetCustomerInventoryRequest) Profile(profile bool) apiGetCustomerInventoryRequest {
@@ -1295,6 +1296,11 @@ func (r apiGetCustomerInventoryRequest) Loyalty(loyalty bool) apiGetCustomerInve
 
 func (r apiGetCustomerInventoryRequest) Giveaways(giveaways bool) apiGetCustomerInventoryRequest {
 	r.giveaways = &giveaways
+	return r
+}
+
+func (r apiGetCustomerInventoryRequest) Achievements(achievements bool) apiGetCustomerInventoryRequest {
+	r.achievements = &achievements
 	return r
 }
 
@@ -1359,6 +1365,9 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 	}
 	if r.giveaways != nil {
 		localVarQueryParams.Add("giveaways", parameterToString(*r.giveaways, ""))
+	}
+	if r.achievements != nil {
+		localVarQueryParams.Add("achievements", parameterToString(*r.achievements, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3508,19 +3517,24 @@ func (r apiSyncCatalogRequest) Body(body CatalogSyncRequest) apiSyncCatalogReque
 
 /*
 SyncCatalog Sync cart item catalog
-Perform one or more of the following sync actions on this cart item catalog, up to 1000 actions:
+Perform one or more of the following actions for a given cart item catalog:
 
-- Add an item to the catalog.
-- Edit the attributes of an item in the catalog.
-- Edit the attributes of more than one item in the catalog.
-- Remove an item from the catalog.
-- Remove more than one item from the catalog.
+- Adding an item to the catalog.
+- Adding several items to the catalog.
+- Editing the attributes of an item in the catalog.
+- Editing the attributes of several items in the catalog.
+- Removing an item from the catalog.
+- Removing several items from the catalog.
 
-**Note:** For more information, see [our documentation on managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).
+You can add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.
+
+**Important**: Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.
+
+For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).
 
 ### Filtering cart items
 
-Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs#displaying-the-details-and-content-of-a-catalog)
+Use [cart item attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes)
 to filter items and select the ones you want to edit or delete when editing or deleting more than one item
 at a time.
 
@@ -3567,11 +3581,59 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 	      "payload": {
 	        "attributes": {
 	          "color": "Navy blue",
-	          "type": "shoe"
+	          "type": "shoes"
 	        },
 	        "replaceIfExists": true,
 	        "sku": "SKU1241028",
-	        "price": 100
+	        "price": 100,
+	        "product": {
+	          "name": "sneakers"
+	        }
+	      },
+	      "type": "ADD"
+	    }
+	  ]
+	}
+	```
+	</div>
+
+</details>
+
+<details>
+
+	<summary><strong>Adding several items to the catalog</strong></summary>
+	<div>
+
+	```json
+	{
+	  "actions": [
+	    {
+	      "payload": {
+	        "attributes": {
+	          "color": "Navy blue",
+	          "type": "shoes"
+	        },
+	        "replaceIfExists": true,
+	        "sku": "SKU1241027",
+	        "price": 100,
+	        "product": {
+	          "name": "sneakers"
+	        }
+	      },
+	      "type": "ADD"
+	    },
+	    {
+	      "payload": {
+	        "attributes": {
+	          "color": "Navy blue",
+	          "type": "shoes"
+	        },
+	        "replaceIfExists": true,
+	        "sku": "SKU1241028",
+	        "price": 100,
+	        "product": {
+	          "name": "sneakers"
+	        }
 	      },
 	      "type": "ADD"
 	    }
@@ -3597,7 +3659,10 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 	          "origin": "germany"
 	        },
 	        "createIfNotExists": false,
-	        "sku": "SKU1241028"
+	        "sku": "SKU1241028",
+	        "product": {
+	          "name": "sneakers"
+	        }
 	      },
 	      "type": "PATCH"
 	    }
@@ -3610,7 +3675,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 <details>
 
-	<summary><strong>Editing the attributes of several items at once</strong></summary>
+	<summary><strong>Editing the attributes of several items in the catalog</strong></summary>
 	<div>
 
 	```json
@@ -3663,7 +3728,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 <details>
 
-	<summary><strong>Removing several items from the catalog at once</strong></summary>
+	<summary><strong>Removing several items from the catalog</strong></summary>
 	<div>
 
 	```json
@@ -4091,7 +4156,7 @@ UpdateAudienceCustomersAttributes Update profile attributes for all customers in
 Update the specified profile attributes to the provided values for all customers in the specified audience.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param audienceId The ID of the audience.
 
 @return apiUpdateAudienceCustomersAttributesRequest
 */
@@ -4229,7 +4294,7 @@ Update the name of the given audience created by a third-party integration. Send
 To update the audience's members, use the [Update customer profile](#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-  - @param audienceId The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
+  - @param audienceId The ID of the audience.
 
 @return apiUpdateAudienceV2Request
 */
@@ -4383,12 +4448,11 @@ func (r apiUpdateCustomerProfileAudiencesRequest) Body(body CustomerProfileAudie
 
 /*
 UpdateCustomerProfileAudiences Update multiple customer profiles' audiences
-Update the specified customer profiles with the specified audiences. Use this endpoint
-when customers join or leave audiences.
+Add customer profiles to or remove them from an audience.
 
-The limit of customer profiles per request is 1000.
+The endpoint supports 1000 audience actions (`add` or `remove`) per request.
 
-**Note:** You can also add customer profiles to or remove them from an audience using the [Update audience](https://docs.talon.one/docs/product/rules/effects/using-effects#updating-an-audience) effect.
+**Note:** You can also do this using the [Update audience](https://docs.talon.one/docs/product/rules/effects/using-effects#updating-an-audience) effect.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -4897,6 +4961,7 @@ type apiUpdateCustomerSessionV2Request struct {
 	customerSessionId string
 	body              *IntegrationRequest
 	dry               *bool
+	now               *time.Time
 }
 
 func (r apiUpdateCustomerSessionV2Request) Body(body IntegrationRequest) apiUpdateCustomerSessionV2Request {
@@ -4906,6 +4971,11 @@ func (r apiUpdateCustomerSessionV2Request) Body(body IntegrationRequest) apiUpda
 
 func (r apiUpdateCustomerSessionV2Request) Dry(dry bool) apiUpdateCustomerSessionV2Request {
 	r.dry = &dry
+	return r
+}
+
+func (r apiUpdateCustomerSessionV2Request) Now(now time.Time) apiUpdateCustomerSessionV2Request {
+	r.now = &now
 	return r
 }
 
@@ -4995,6 +5065,9 @@ func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_neth
 
 	if r.dry != nil {
 		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
+	if r.now != nil {
+		localVarQueryParams.Add("now", parameterToString(*r.now, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

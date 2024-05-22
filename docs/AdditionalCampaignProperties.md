@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
+**FrontendState** | Pointer to **string** | A campaign state described exactly as in the Campaign Manager. | 
 
 ## Methods
 
@@ -552,6 +553,31 @@ HasTemplateId returns a boolean if a field has been set.
 `func (o *AdditionalCampaignProperties) SetTemplateId(v int32)`
 
 SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
+
+### GetFrontendState
+
+`func (o *AdditionalCampaignProperties) GetFrontendState() string`
+
+GetFrontendState returns the FrontendState field if non-nil, zero value otherwise.
+
+### GetFrontendStateOk
+
+`func (o *AdditionalCampaignProperties) GetFrontendStateOk() (string, bool)`
+
+GetFrontendStateOk returns a tuple with the FrontendState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasFrontendState
+
+`func (o *AdditionalCampaignProperties) HasFrontendState() bool`
+
+HasFrontendState returns a boolean if a field has been set.
+
+### SetFrontendState
+
+`func (o *AdditionalCampaignProperties) SetFrontendState(v string)`
+
+SetFrontendState gets a reference to the given string and assigns it to the FrontendState field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -17,7 +17,6 @@ Name | Type | Description | Notes
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.  | 
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.  | [optional] 
-**EvaluationGroupId** | Pointer to **int32** | The ID of the campaign evaluation group the campaign belongs to. | [optional] 
 **Type** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [optional] [default to TYPE_ADVANCED]
 **LinkedStoreIds** | Pointer to **[]int32** | A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.  | [optional] 
 
@@ -347,31 +346,6 @@ HasCampaignGroups returns a boolean if a field has been set.
 `func (o *BaseCampaign) SetCampaignGroups(v []int32)`
 
 SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
-
-### GetEvaluationGroupId
-
-`func (o *BaseCampaign) GetEvaluationGroupId() int32`
-
-GetEvaluationGroupId returns the EvaluationGroupId field if non-nil, zero value otherwise.
-
-### GetEvaluationGroupIdOk
-
-`func (o *BaseCampaign) GetEvaluationGroupIdOk() (int32, bool)`
-
-GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEvaluationGroupId
-
-`func (o *BaseCampaign) HasEvaluationGroupId() bool`
-
-HasEvaluationGroupId returns a boolean if a field has been set.
-
-### SetEvaluationGroupId
-
-`func (o *BaseCampaign) SetEvaluationGroupId(v int32)`
-
-SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
 
 ### GetType
 

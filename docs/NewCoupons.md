@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **RecipientIntegrationId** | Pointer to **string** | The integration ID for this coupon&#39;s beneficiary&#39;s profile. | [optional] 
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
 **CouponPattern** | Pointer to **string** | The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
-**IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
+**IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to false]
 **ImplicitlyReserved** | Pointer to **bool** | An indication of whether the coupon is implicitly reserved for all customers. | [optional] 
 
 ## Methods

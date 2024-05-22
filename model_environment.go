@@ -35,6 +35,8 @@ type Environment struct {
 	GiveawaysPools *[]GiveawaysPool `json:"giveawaysPools,omitempty"`
 	// The loyalty programs that the application is subscribed to.
 	LoyaltyPrograms *[]LoyaltyProgram `json:"loyaltyPrograms,omitempty"`
+	// The achievements, linked to the campaigns, belonging to the application.
+	Achievements *[]Achievement `json:"achievements,omitempty"`
 	// The attributes that the application is subscribed to.
 	Attributes *[]Attribute `json:"attributes,omitempty"`
 	// The additional costs that the application is subscribed to.
@@ -214,6 +216,39 @@ func (o *Environment) HasLoyaltyPrograms() bool {
 // SetLoyaltyPrograms gets a reference to the given []LoyaltyProgram and assigns it to the LoyaltyPrograms field.
 func (o *Environment) SetLoyaltyPrograms(v []LoyaltyProgram) {
 	o.LoyaltyPrograms = &v
+}
+
+// GetAchievements returns the Achievements field value if set, zero value otherwise.
+func (o *Environment) GetAchievements() []Achievement {
+	if o == nil || o.Achievements == nil {
+		var ret []Achievement
+		return ret
+	}
+	return *o.Achievements
+}
+
+// GetAchievementsOk returns a tuple with the Achievements field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetAchievementsOk() ([]Achievement, bool) {
+	if o == nil || o.Achievements == nil {
+		var ret []Achievement
+		return ret, false
+	}
+	return *o.Achievements, true
+}
+
+// HasAchievements returns a boolean if a field has been set.
+func (o *Environment) HasAchievements() bool {
+	if o != nil && o.Achievements != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAchievements gets a reference to the given []Achievement and assigns it to the Achievements field.
+func (o *Environment) SetAchievements(v []Achievement) {
+	o.Achievements = &v
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.

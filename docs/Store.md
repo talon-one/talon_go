@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The name of the store. | 
 **Description** | Pointer to **string** | The description of the store. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the store. | [optional] 
-**IntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | 
+**IntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store.  **Note**: You cannot edit the &#x60;integrationId&#x60; after the store has been created.  | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update on this entity. | 
 **LinkedCampaignIds** | Pointer to **[]int32** | A list of IDs of the campaigns that are linked with current store. | [optional] 

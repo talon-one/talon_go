@@ -30,6 +30,7 @@ type CatalogItem struct {
 	// The version of the catalog item.
 	Version    int32            `json:"version"`
 	Attributes *[]ItemAttribute `json:"attributes,omitempty"`
+	Product    *Product         `json:"product,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -171,6 +172,39 @@ func (o *CatalogItem) HasAttributes() bool {
 // SetAttributes gets a reference to the given []ItemAttribute and assigns it to the Attributes field.
 func (o *CatalogItem) SetAttributes(v []ItemAttribute) {
 	o.Attributes = &v
+}
+
+// GetProduct returns the Product field value if set, zero value otherwise.
+func (o *CatalogItem) GetProduct() Product {
+	if o == nil || o.Product == nil {
+		var ret Product
+		return ret
+	}
+	return *o.Product
+}
+
+// GetProductOk returns a tuple with the Product field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogItem) GetProductOk() (Product, bool) {
+	if o == nil || o.Product == nil {
+		var ret Product
+		return ret, false
+	}
+	return *o.Product, true
+}
+
+// HasProduct returns a boolean if a field has been set.
+func (o *CatalogItem) HasProduct() bool {
+	if o != nil && o.Product != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProduct gets a reference to the given Product and assigns it to the Product field.
+func (o *CatalogItem) SetProduct(v Product) {
+	o.Product = &v
 }
 
 type NullableCatalogItem struct {

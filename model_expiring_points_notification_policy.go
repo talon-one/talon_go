@@ -19,6 +19,8 @@ type ExpiringPointsNotificationPolicy struct {
 	// Notification name.
 	Name     string                              `json:"name"`
 	Triggers []ExpiringPointsNotificationTrigger `json:"triggers"`
+	// Indicates whether batching is activated.
+	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -49,6 +51,39 @@ func (o *ExpiringPointsNotificationPolicy) GetTriggers() []ExpiringPointsNotific
 // SetTriggers sets field value
 func (o *ExpiringPointsNotificationPolicy) SetTriggers(v []ExpiringPointsNotificationTrigger) {
 	o.Triggers = v
+}
+
+// GetBatchingEnabled returns the BatchingEnabled field value if set, zero value otherwise.
+func (o *ExpiringPointsNotificationPolicy) GetBatchingEnabled() bool {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BatchingEnabled
+}
+
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ExpiringPointsNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.BatchingEnabled, true
+}
+
+// HasBatchingEnabled returns a boolean if a field has been set.
+func (o *ExpiringPointsNotificationPolicy) HasBatchingEnabled() bool {
+	if o != nil && o.BatchingEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
+func (o *ExpiringPointsNotificationPolicy) SetBatchingEnabled(v bool) {
+	o.BatchingEnabled = &v
 }
 
 type NullableExpiringPointsNotificationPolicy struct {

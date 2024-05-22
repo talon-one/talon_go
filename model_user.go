@@ -23,31 +23,32 @@ type User struct {
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
-	// The email address associated with your account.
+	// The email address associated with the user profile.
 	Email string `json:"email"`
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`
-	// Invite token, empty if the user as already accepted their invite.
-	InviteToken string `json:"inviteToken"`
-	// Current user state.
-	State string `json:"state"`
-	// Full name
+	// Name of the user.
 	Name string `json:"name"`
-	// User ACL Policy
-	Policy map[string]interface{} `json:"policy"`
-	// Latest timestamp the user has been notified for feed.
-	LatestFeedTimestamp *time.Time `json:"latestFeedTimestamp,omitempty"`
-	// Contains a list of all roles the user is a member of.
-	Roles                                *[]int32                `json:"roles,omitempty"`
-	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
-	// The Authentication method for this user.
-	AuthMethod *string `json:"authMethod,omitempty"`
-	// An indication of whether the user has admin permissions.
+	// State of the user.
+	State string `json:"state"`
+	// Invitation token of the user.  **Note**: If the user has already accepted their invitation, this is `null`.
+	InviteToken string `json:"inviteToken"`
+	// Indicates whether the user is an `admin`.
 	IsAdmin *bool `json:"isAdmin,omitempty"`
-	// Date and time when the user last signed in to Talon.One.
+	// Access level of the user.
+	Policy map[string]interface{} `json:"policy"`
+	// A list of the IDs of the roles assigned to the user.
+	Roles *[]int32 `json:"roles,omitempty"`
+	// Authentication method for this user.
+	AuthMethod *string `json:"authMethod,omitempty"`
+	// Application notifications that the user is subscribed to.
+	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
+	// Timestamp when the user last signed in to Talon.One.
 	LastSignedIn *time.Time `json:"lastSignedIn,omitempty"`
-	// Date and time of the user's last activity after signing in to Talon.One.
+	// Timestamp of the user's last activity after signing in to Talon.One.
 	LastAccessed *time.Time `json:"lastAccessed,omitempty"`
+	// Timestamp when the user was notified for feed.
+	LatestFeedTimestamp *time.Time `json:"latestFeedTimestamp,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -125,19 +126,19 @@ func (o *User) SetAccountId(v int32) {
 	o.AccountId = v
 }
 
-// GetInviteToken returns the InviteToken field value
-func (o *User) GetInviteToken() string {
+// GetName returns the Name field value
+func (o *User) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.InviteToken
+	return o.Name
 }
 
-// SetInviteToken sets field value
-func (o *User) SetInviteToken(v string) {
-	o.InviteToken = v
+// SetName sets field value
+func (o *User) SetName(v string) {
+	o.Name = v
 }
 
 // GetState returns the State field value
@@ -155,19 +156,52 @@ func (o *User) SetState(v string) {
 	o.State = v
 }
 
-// GetName returns the Name field value
-func (o *User) GetName() string {
+// GetInviteToken returns the InviteToken field value
+func (o *User) GetInviteToken() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Name
+	return o.InviteToken
 }
 
-// SetName sets field value
-func (o *User) SetName(v string) {
-	o.Name = v
+// SetInviteToken sets field value
+func (o *User) SetInviteToken(v string) {
+	o.InviteToken = v
+}
+
+// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
+func (o *User) GetIsAdmin() bool {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsAdmin
+}
+
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetIsAdminOk() (bool, bool) {
+	if o == nil || o.IsAdmin == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IsAdmin, true
+}
+
+// HasIsAdmin returns a boolean if a field has been set.
+func (o *User) HasIsAdmin() bool {
+	if o != nil && o.IsAdmin != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+func (o *User) SetIsAdmin(v bool) {
+	o.IsAdmin = &v
 }
 
 // GetPolicy returns the Policy field value
@@ -183,39 +217,6 @@ func (o *User) GetPolicy() map[string]interface{} {
 // SetPolicy sets field value
 func (o *User) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
-}
-
-// GetLatestFeedTimestamp returns the LatestFeedTimestamp field value if set, zero value otherwise.
-func (o *User) GetLatestFeedTimestamp() time.Time {
-	if o == nil || o.LatestFeedTimestamp == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.LatestFeedTimestamp
-}
-
-// GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetLatestFeedTimestampOk() (time.Time, bool) {
-	if o == nil || o.LatestFeedTimestamp == nil {
-		var ret time.Time
-		return ret, false
-	}
-	return *o.LatestFeedTimestamp, true
-}
-
-// HasLatestFeedTimestamp returns a boolean if a field has been set.
-func (o *User) HasLatestFeedTimestamp() bool {
-	if o != nil && o.LatestFeedTimestamp != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
-func (o *User) SetLatestFeedTimestamp(v time.Time) {
-	o.LatestFeedTimestamp = &v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
@@ -251,39 +252,6 @@ func (o *User) SetRoles(v []int32) {
 	o.Roles = &v
 }
 
-// GetApplicationNotificationSubscriptions returns the ApplicationNotificationSubscriptions field value if set, zero value otherwise.
-func (o *User) GetApplicationNotificationSubscriptions() map[string]interface{} {
-	if o == nil || o.ApplicationNotificationSubscriptions == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return *o.ApplicationNotificationSubscriptions
-}
-
-// GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *User) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool) {
-	if o == nil || o.ApplicationNotificationSubscriptions == nil {
-		var ret map[string]interface{}
-		return ret, false
-	}
-	return *o.ApplicationNotificationSubscriptions, true
-}
-
-// HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
-func (o *User) HasApplicationNotificationSubscriptions() bool {
-	if o != nil && o.ApplicationNotificationSubscriptions != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
-func (o *User) SetApplicationNotificationSubscriptions(v map[string]interface{}) {
-	o.ApplicationNotificationSubscriptions = &v
-}
-
 // GetAuthMethod returns the AuthMethod field value if set, zero value otherwise.
 func (o *User) GetAuthMethod() string {
 	if o == nil || o.AuthMethod == nil {
@@ -317,37 +285,37 @@ func (o *User) SetAuthMethod(v string) {
 	o.AuthMethod = &v
 }
 
-// GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
-func (o *User) GetIsAdmin() bool {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
+// GetApplicationNotificationSubscriptions returns the ApplicationNotificationSubscriptions field value if set, zero value otherwise.
+func (o *User) GetApplicationNotificationSubscriptions() map[string]interface{} {
+	if o == nil || o.ApplicationNotificationSubscriptions == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.IsAdmin
+	return *o.ApplicationNotificationSubscriptions
 }
 
-// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetIsAdminOk() (bool, bool) {
-	if o == nil || o.IsAdmin == nil {
-		var ret bool
+func (o *User) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool) {
+	if o == nil || o.ApplicationNotificationSubscriptions == nil {
+		var ret map[string]interface{}
 		return ret, false
 	}
-	return *o.IsAdmin, true
+	return *o.ApplicationNotificationSubscriptions, true
 }
 
-// HasIsAdmin returns a boolean if a field has been set.
-func (o *User) HasIsAdmin() bool {
-	if o != nil && o.IsAdmin != nil {
+// HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
+func (o *User) HasApplicationNotificationSubscriptions() bool {
+	if o != nil && o.ApplicationNotificationSubscriptions != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
-func (o *User) SetIsAdmin(v bool) {
-	o.IsAdmin = &v
+// SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
+func (o *User) SetApplicationNotificationSubscriptions(v map[string]interface{}) {
+	o.ApplicationNotificationSubscriptions = &v
 }
 
 // GetLastSignedIn returns the LastSignedIn field value if set, zero value otherwise.
@@ -414,6 +382,39 @@ func (o *User) HasLastAccessed() bool {
 // SetLastAccessed gets a reference to the given time.Time and assigns it to the LastAccessed field.
 func (o *User) SetLastAccessed(v time.Time) {
 	o.LastAccessed = &v
+}
+
+// GetLatestFeedTimestamp returns the LatestFeedTimestamp field value if set, zero value otherwise.
+func (o *User) GetLatestFeedTimestamp() time.Time {
+	if o == nil || o.LatestFeedTimestamp == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.LatestFeedTimestamp
+}
+
+// GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetLatestFeedTimestampOk() (time.Time, bool) {
+	if o == nil || o.LatestFeedTimestamp == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.LatestFeedTimestamp, true
+}
+
+// HasLatestFeedTimestamp returns a boolean if a field has been set.
+func (o *User) HasLatestFeedTimestamp() bool {
+	if o != nil && o.LatestFeedTimestamp != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
+func (o *User) SetLatestFeedTimestamp(v time.Time) {
+	o.LatestFeedTimestamp = &v
 }
 
 type NullableUser struct {

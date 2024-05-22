@@ -211,7 +211,7 @@ Delete audience memberships
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+**audienceId** | **int32** | The ID of the audience. | 
 
 ### Other Parameters
 
@@ -254,7 +254,7 @@ Delete audience
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+**audienceId** | **int32** | The ID of the audience. | 
 
 ### Other Parameters
 
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerInventory
 
-> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Giveaways(giveaways).Execute()
+> CustomerInventory GetCustomerInventory(ctx, integrationId).Profile(profile).Referrals(referrals).Coupons(coupons).Loyalty(loyalty).Giveaways(giveaways).Achievements(achievements).Execute()
 
 List customer data
 
@@ -399,6 +399,7 @@ Name | Type | Description  | Notes
  **coupons** | **bool** | Set to &#x60;true&#x60; to include coupon information in the response. | 
  **loyalty** | **bool** | Set to &#x60;true&#x60; to include loyalty information in the response. | 
  **giveaways** | **bool** | Set to &#x60;true&#x60; to include giveaways information in the response. | 
+ **achievements** | **bool** | Set to &#x60;true&#x60; to include achievement information in the response. | 
 
 ### Return type
 
@@ -487,7 +488,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 ### Return type
 
@@ -533,7 +534,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 ### Return type
 
@@ -581,7 +582,7 @@ Name | Type | Description  | Notes
 
  **status** | **string** | Filter points based on their status. | [default to active]
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
- **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **pageSize** | **int32** | The number of items in the response. | [default to 50]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
@@ -630,9 +631,9 @@ Name | Type | Description  | Notes
 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
  **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
- **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
@@ -681,7 +682,7 @@ Name | Type | Description  | Notes
 
  **status** | **string** | Filter points based on their status. | [default to active]
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
- **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **pageSize** | **int32** | The number of items in the response. | [default to 50]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
@@ -730,9 +731,9 @@ Name | Type | Description  | Notes
 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
  **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
- **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **pageSize** | **int32** | The number of items in the response. | [default to 50]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
@@ -1029,7 +1030,7 @@ Update profile attributes for all customers in audience
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+**audienceId** | **int32** | The ID of the audience. | 
 
 ### Other Parameters
 
@@ -1073,7 +1074,7 @@ Update audience name
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32** | The ID of the audience. You get it via the &#x60;id&#x60; property when [creating an audience](#operation/createAudienceV2). | 
+**audienceId** | **int32** | The ID of the audience. | 
 
 ### Other Parameters
 
@@ -1230,7 +1231,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCustomerSessionV2
 
-> IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).Body(body).Dry(dry).Execute()
+> IntegrationStateV2 UpdateCustomerSessionV2(ctx, customerSessionId).Body(body).Dry(dry).Now(now).Execute()
 
 Update customer session
 
@@ -1254,6 +1255,7 @@ Name | Type | Description  | Notes
 
  **body** | [**IntegrationRequest**](IntegrationRequest.md) | body | 
  **dry** | **bool** | Indicates whether to persist the changes. Changes are ignored when &#x60;dry&#x3D;true&#x60;.  When set to &#x60;true&#x60;: - The endpoint will **only** consider the payload that you pass when **closing** the session.   When you do not use the &#x60;dry&#x60; parameter, the endpoint behaves as a typical PUT endpoint. Each update builds upon the previous ones. - You can use the &#x60;evaluableCampaignIds&#x60; body property to select specific campaigns to run.  [See the docs](https://docs.talon.one/docs/dev/integration-api/dry-requests).  | 
+ **now** | **time.Time** | A timestamp value of a future date that acts as a current date when included in the query.  Use this parameter, for example, to test campaigns that would be evaluated for this customer session in the future (say, [scheduled campaigns](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-schedule)).  **Note:**  - It must be an RFC3339 timestamp string. - It can **only** be a date in the future. - It can **only** be used if the &#x60;dry&#x60; parameter in the query is set to &#x60;true&#x60;.  | 
 
 ### Return type
 

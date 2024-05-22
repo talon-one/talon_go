@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** |  | 
-**Token** | Pointer to **string** |  | 
+**Email** | Pointer to **string** | Email address of the user. | 
+**Token** | Pointer to **string** | Invitation token of the user. | 
 
 ## Methods
 

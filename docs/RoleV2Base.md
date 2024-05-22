@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the role. | [optional] 
 **Description** | Pointer to **string** | Description of the role. | [optional] 
 **Permissions** | Pointer to [**RoleV2Permissions**](RoleV2Permissions.md) |  | [optional] 
-**Members** | Pointer to **[]int32** | A list of user identifiers the role is assigned to. | [optional] 
+**Members** | Pointer to **[]int32** | A list of user IDs the role is assigned to. | [optional] 
 
 ## Methods
 

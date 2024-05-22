@@ -16,7 +16,7 @@ import (
 
 // LoyaltyLedgerTransactions List of loyalty ledger transactions.
 type LoyaltyLedgerTransactions struct {
-	// true means there is more data in the source collection to request.
+	// If `true`, it means that there is more data to request in the source collection.
 	HasMore *bool `json:"hasMore,omitempty"`
 	// List of transaction entries from a loyalty ledger.
 	Data *[]LoyaltyLedgerEntry `json:"data,omitempty"`

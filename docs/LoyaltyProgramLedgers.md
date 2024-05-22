@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | The internal ID of loyalty program. | 
 **Title** | Pointer to **string** | Visible name of loyalty program. | 
 **Name** | Pointer to **string** | Internal name of loyalty program. | 
+**JoinDate** | Pointer to [**time.Time**](time.Time.md) | The date on which the customer joined the loyalty program in RFC3339.  **Note**: This is in the loyalty program&#39;s time zone.  | [optional] 
 **Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | 
 **SubLedgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | A map containing information about each loyalty subledger. | [optional] 
 
@@ -86,6 +87,31 @@ HasName returns a boolean if a field has been set.
 `func (o *LoyaltyProgramLedgers) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetJoinDate
+
+`func (o *LoyaltyProgramLedgers) GetJoinDate() time.Time`
+
+GetJoinDate returns the JoinDate field if non-nil, zero value otherwise.
+
+### GetJoinDateOk
+
+`func (o *LoyaltyProgramLedgers) GetJoinDateOk() (time.Time, bool)`
+
+GetJoinDateOk returns a tuple with the JoinDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasJoinDate
+
+`func (o *LoyaltyProgramLedgers) HasJoinDate() bool`
+
+HasJoinDate returns a boolean if a field has been set.
+
+### SetJoinDate
+
+`func (o *LoyaltyProgramLedgers) SetJoinDate(v time.Time)`
+
+SetJoinDate gets a reference to the given time.Time and assigns it to the JoinDate field.
 
 ### GetLedger
 

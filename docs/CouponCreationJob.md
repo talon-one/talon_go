@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons. | 
 **BatchId** | Pointer to **string** | The batch ID coupons created by this job will bear. | 
-**Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
+**Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;pending verification&#x60; - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
 **CreatedAmount** | Pointer to **int32** | The number of coupon codes that were already created for this request. | 
 **FailCount** | Pointer to **int32** | The number of times this job failed. | 
 **Errors** | Pointer to **[]string** | An array of individual problems encountered during the request. | 

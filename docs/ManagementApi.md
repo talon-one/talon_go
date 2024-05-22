@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/add_points | Add points to customer profile
 [**CopyCampaignToApplications**](ManagementApi.md#CopyCampaignToApplications) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified Application
 [**CreateAccountCollection**](ManagementApi.md#CreateAccountCollection) | **Post** /v1/collections | Create account-level collection
+[**CreateAchievement**](ManagementApi.md#CreateAchievement) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | Create achievement
 [**CreateAdditionalCost**](ManagementApi.md#CreateAdditionalCost) | **Post** /v1/additional_costs | Create additional cost
 [**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Create custom attribute
 [**CreateCampaignFromTemplate**](ManagementApi.md#CreateCampaignFromTemplate) | **Post** /v1/applications/{applicationId}/create_campaign_from_template | Create campaign from campaign template
@@ -15,11 +16,15 @@ Method | HTTP request | Description
 [**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons
 [**CreateCouponsAsync**](ManagementApi.md#CreateCouponsAsync) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously
 [**CreateCouponsForMultipleRecipients**](ManagementApi.md#CreateCouponsForMultipleRecipients) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_with_recipients | Create coupons for multiple recipients
+[**CreateInviteEmail**](ManagementApi.md#CreateInviteEmail) | **Post** /v1/invite_emails | Resend invitation email
+[**CreateInviteV2**](ManagementApi.md#CreateInviteV2) | **Post** /v2/invites | Invite user
 [**CreatePasswordRecoveryEmail**](ManagementApi.md#CreatePasswordRecoveryEmail) | **Post** /v1/password_recovery_emails | Request a password reset
 [**CreateSession**](ManagementApi.md#CreateSession) | **Post** /v1/sessions | Create session
 [**CreateStore**](ManagementApi.md#CreateStore) | **Post** /v1/applications/{applicationId}/stores | Create store
+[**DeactivateUserByEmail**](ManagementApi.md#DeactivateUserByEmail) | **Post** /v1/users/deactivate | Deactivate user by email address
 [**DeductLoyaltyCardPoints**](ManagementApi.md#DeductLoyaltyCardPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/deduct_points | Deduct points from card
 [**DeleteAccountCollection**](ManagementApi.md#DeleteAccountCollection) | **Delete** /v1/collections/{collectionId} | Delete account-level collection
+[**DeleteAchievement**](ManagementApi.md#DeleteAchievement) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Delete achievement
 [**DeleteCampaign**](ManagementApi.md#DeleteCampaign) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
 [**DeleteCollection**](ManagementApi.md#DeleteCollection) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete campaign-level collection
 [**DeleteCoupon**](ManagementApi.md#DeleteCoupon) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Delete coupon
@@ -27,8 +32,12 @@ Method | HTTP request | Description
 [**DeleteLoyaltyCard**](ManagementApi.md#DeleteLoyaltyCard) | **Delete** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Delete loyalty card
 [**DeleteReferral**](ManagementApi.md#DeleteReferral) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Delete referral
 [**DeleteStore**](ManagementApi.md#DeleteStore) | **Delete** /v1/applications/{applicationId}/stores/{storeId} | Delete store
+[**DeleteUser**](ManagementApi.md#DeleteUser) | **Delete** /v1/users/{userId} | Delete user
+[**DeleteUserByEmail**](ManagementApi.md#DeleteUserByEmail) | **Post** /v1/users/delete | Delete user by email address
 [**DestroySession**](ManagementApi.md#DestroySession) | **Delete** /v1/sessions | Destroy session
 [**ExportAccountCollectionItems**](ManagementApi.md#ExportAccountCollectionItems) | **Get** /v1/collections/{collectionId}/export | Export account-level collection&#39;s items
+[**ExportAchievements**](ManagementApi.md#ExportAchievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
+[**ExportAudiencesMemberships**](ManagementApi.md#ExportAudiencesMemberships) | **Get** /v1/audiences/{audienceId}/memberships/export | Export audience members
 [**ExportCollectionItems**](ManagementApi.md#ExportCollectionItems) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export campaign-level collection&#39;s items
 [**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export coupons
 [**ExportCustomerSessions**](ManagementApi.md#ExportCustomerSessions) | **Get** /v1/applications/{applicationId}/export_customer_sessions | Export customer sessions
@@ -45,6 +54,7 @@ Method | HTTP request | Description
 [**GetAccount**](ManagementApi.md#GetAccount) | **Get** /v1/accounts/{accountId} | Get account details
 [**GetAccountAnalytics**](ManagementApi.md#GetAccountAnalytics) | **Get** /v1/accounts/{accountId}/analytics | Get account analytics
 [**GetAccountCollection**](ManagementApi.md#GetAccountCollection) | **Get** /v1/collections/{collectionId} | Get account-level collection
+[**GetAchievement**](ManagementApi.md#GetAchievement) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Get achievement
 [**GetAdditionalCost**](ManagementApi.md#GetAdditionalCost) | **Get** /v1/additional_costs/{additionalCostId} | Get additional cost
 [**GetAdditionalCosts**](ManagementApi.md#GetAdditionalCosts) | **Get** /v1/additional_costs | List additional costs
 [**GetAllAccessLogs**](ManagementApi.md#GetAllAccessLogs) | **Get** /v1/access_logs | List access logs
@@ -62,10 +72,14 @@ Method | HTTP request | Description
 [**GetApplications**](ManagementApi.md#GetApplications) | **Get** /v1/applications | List Applications
 [**GetAttribute**](ManagementApi.md#GetAttribute) | **Get** /v1/attributes/{attributeId} | Get custom attribute
 [**GetAttributes**](ManagementApi.md#GetAttributes) | **Get** /v1/attributes | List custom attributes
+[**GetAudienceMemberships**](ManagementApi.md#GetAudienceMemberships) | **Get** /v1/audiences/{audienceId}/memberships | List audience members
 [**GetAudiences**](ManagementApi.md#GetAudiences) | **Get** /v1/audiences | List audiences
+[**GetAudiencesAnalytics**](ManagementApi.md#GetAudiencesAnalytics) | **Get** /v1/audiences/analytics | List audience analytics
 [**GetCampaign**](ManagementApi.md#GetCampaign) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId} | Get campaign
 [**GetCampaignAnalytics**](ManagementApi.md#GetCampaignAnalytics) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/analytics | Get analytics of campaigns
 [**GetCampaignByAttributes**](ManagementApi.md#GetCampaignByAttributes) | **Post** /v1/applications/{applicationId}/campaigns_search | List campaigns that match the given attributes
+[**GetCampaignGroup**](ManagementApi.md#GetCampaignGroup) | **Get** /v1/campaign_groups/{campaignGroupId} | Get campaign access group
+[**GetCampaignGroups**](ManagementApi.md#GetCampaignGroups) | **Get** /v1/campaign_groups | List campaign access groups
 [**GetCampaignTemplates**](ManagementApi.md#GetCampaignTemplates) | **Get** /v1/campaign_templates | List campaign templates
 [**GetCampaigns**](ManagementApi.md#GetCampaigns) | **Get** /v1/applications/{applicationId}/campaigns | List campaigns
 [**GetChanges**](ManagementApi.md#GetChanges) | **Get** /v1/changes | Get audit logs for an account
@@ -76,6 +90,7 @@ Method | HTTP request | Description
 [**GetCustomerActivityReportsWithoutTotalCount**](ManagementApi.md#GetCustomerActivityReportsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/customer_activity_reports/no_total | Get Activity Reports for Application Customers
 [**GetCustomerAnalytics**](ManagementApi.md#GetCustomerAnalytics) | **Get** /v1/applications/{applicationId}/customers/{customerId}/analytics | Get customer&#39;s analytics report
 [**GetCustomerProfile**](ManagementApi.md#GetCustomerProfile) | **Get** /v1/customers/{customerId} | Get customer profile
+[**GetCustomerProfileAchievementProgress**](ManagementApi.md#GetCustomerProfileAchievementProgress) | **Get** /v1/applications/{applicationId}/achievement_progress/{integrationId} | List customer achievements
 [**GetCustomerProfiles**](ManagementApi.md#GetCustomerProfiles) | **Get** /v1/customers/no_total | List customer profiles
 [**GetCustomersByAttributes**](ManagementApi.md#GetCustomersByAttributes) | **Post** /v1/customer_search/no_total | List customer profiles matching the given attributes
 [**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List event types
@@ -101,6 +116,7 @@ Method | HTTP request | Description
 [**GetWebhooks**](ManagementApi.md#GetWebhooks) | **Get** /v1/webhooks | List webhooks
 [**ImportAccountCollection**](ManagementApi.md#ImportAccountCollection) | **Post** /v1/collections/{collectionId}/import | Import data into existing account-level collection
 [**ImportAllowedList**](ManagementApi.md#ImportAllowedList) | **Post** /v1/attributes/{attributeId}/allowed_list/import | Import allowed values for attribute
+[**ImportAudiencesMemberships**](ManagementApi.md#ImportAudiencesMemberships) | **Post** /v1/audiences/{audienceId}/memberships/import | Import audience members
 [**ImportCollection**](ManagementApi.md#ImportCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import | Import data into existing campaign-level collection
 [**ImportCoupons**](ManagementApi.md#ImportCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons
 [**ImportLoyaltyCards**](ManagementApi.md#ImportLoyaltyCards) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_cards | Import loyalty cards
@@ -109,6 +125,7 @@ Method | HTTP request | Description
 [**ImportPoolGiveaways**](ManagementApi.md#ImportPoolGiveaways) | **Post** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool
 [**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals
 [**ListAccountCollections**](ManagementApi.md#ListAccountCollections) | **Get** /v1/collections | List collections in account
+[**ListAchievements**](ManagementApi.md#ListAchievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements
 [**ListCatalogItems**](ManagementApi.md#ListCatalogItems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
@@ -123,6 +140,7 @@ Method | HTTP request | Description
 [**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | List coupons that match the given attributes in campaign (without total count)
 [**TransferLoyaltyCard**](ManagementApi.md#TransferLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer | Transfer card data
 [**UpdateAccountCollection**](ManagementApi.md#UpdateAccountCollection) | **Put** /v1/collections/{collectionId} | Update account-level collection
+[**UpdateAchievement**](ManagementApi.md#UpdateAchievement) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Update achievement
 [**UpdateAdditionalCost**](ManagementApi.md#UpdateAdditionalCost) | **Put** /v1/additional_costs/{additionalCostId} | Update additional cost
 [**UpdateAttribute**](ManagementApi.md#UpdateAttribute) | **Put** /v1/attributes/{attributeId} | Update custom attribute
 [**UpdateCampaign**](ManagementApi.md#UpdateCampaign) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId} | Update campaign
@@ -131,7 +149,9 @@ Method | HTTP request | Description
 [**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons
 [**UpdateLoyaltyCard**](ManagementApi.md#UpdateLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status
 [**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
+[**UpdateRoleV2**](ManagementApi.md#UpdateRoleV2) | **Put** /v2/roles/{roleId} | Update role
 [**UpdateStore**](ManagementApi.md#UpdateStore) | **Put** /v1/applications/{applicationId}/stores/{storeId} | Update store
+[**UpdateUser**](ManagementApi.md#UpdateUser) | **Put** /v1/users/{userId} | Update user
 
 
 
@@ -297,6 +317,52 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Collection**](Collection.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateAchievement
+
+> Achievement CreateAchievement(ctx, applicationId, campaignId).Body(body).Execute()
+
+Create achievement
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAchievementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **body** | [**CreateAchievement**](CreateAchievement.md) | body | 
+
+### Return type
+
+[**Achievement**](Achievement.md)
 
 ### Authorization
 
@@ -620,6 +686,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateInviteEmail
+
+> NewInviteEmail CreateInviteEmail(ctx).Body(body).Execute()
+
+Resend invitation email
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateInviteEmailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**NewInviteEmail**](NewInviteEmail.md) | body | 
+
+### Return type
+
+[**NewInviteEmail**](NewInviteEmail.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateInviteV2
+
+> User CreateInviteV2(ctx).Body(body).Execute()
+
+Invite user
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateInviteV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**NewInvitation**](NewInvitation.md) | body | 
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreatePasswordRecoveryEmail
 
 > NewPasswordEmail CreatePasswordRecoveryEmail(ctx).Body(body).Execute()
@@ -742,6 +886,45 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeactivateUserByEmail
+
+> DeactivateUserByEmail(ctx).Body(body).Execute()
+
+Deactivate user by email address
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeactivateUserByEmailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DeactivateUserRequest**](DeactivateUserRequest.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeductLoyaltyCardPoints
 
 > DeductLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Body(body).Execute()
@@ -811,6 +994,53 @@ Other parameters are passed through a pointer to a apiDeleteAccountCollectionReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteAchievement
+
+> DeleteAchievement(ctx, applicationId, campaignId, achievementId).Execute()
+
+Delete achievement
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int32** | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAchievementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
 
 
 ### Return type
@@ -997,12 +1227,12 @@ Name | Type | Description  | Notes
 
 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **startsAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **startsBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **expiresAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **expiresBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **startsAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **startsBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **expiresAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **expiresBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | - &#x60;expired&#x60;: Matches coupons in which the expiration date is set and in the past. - &#x60;validNow&#x60;: Matches coupons in which start date is null or in the past and expiration date is null or in the future. - &#x60;validFuture&#x60;: Matches coupons in which start date is set and in the future.  | 
  **batchId** | **string** | Filter results by batches of coupons | 
  **usable** | **string** | - &#x60;true&#x60;: only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned. - &#x60;false&#x60;: only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60; will be returned.  | 
@@ -1165,6 +1395,88 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteUser
+
+> DeleteUser(ctx, userId).Execute()
+
+Delete user
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **int32** | The ID of the user. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteUserByEmail
+
+> DeleteUserByEmail(ctx).Body(body).Execute()
+
+Delete user by email address
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUserByEmailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**DeleteUserRequest**](DeleteUserRequest.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DestroySession
 
 > DestroySession(ctx).Execute()
@@ -1219,6 +1531,96 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiExportAccountCollectionItemsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportAchievements
+
+> string ExportAchievements(ctx, applicationId, campaignId, achievementId).Execute()
+
+Export achievement customer data
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int32** | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportAchievementsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportAudiencesMemberships
+
+> string ExportAudiencesMemberships(ctx, audienceId).Execute()
+
+Export audience members
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**audienceId** | **int32** | The ID of the audience. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiExportAudiencesMembershipsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -1317,8 +1719,8 @@ Name | Type | Description  | Notes
  **campaignId** | **float32** | Filter results by campaign. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
@@ -1465,8 +1867,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **campaignId** | **float32** | Filter results by campaign. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
 
 ### Return type
@@ -1511,7 +1913,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyBalanceReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 ### Return type
 
@@ -1555,7 +1957,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyBalancesReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 ### Return type
 
@@ -1599,7 +2001,7 @@ Other parameters are passed through a pointer to a apiExportLoyaltyCardBalancesR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:** It must be an RFC3339 timestamp string.  | 
+ **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 ### Return type
 
@@ -1645,8 +2047,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
 
 ### Return type
@@ -1691,8 +2093,8 @@ Other parameters are passed through a pointer to a apiExportLoyaltyLedgerRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 
  **dateFormat** | **string** | Determines the format of dates in the export document. | 
@@ -1785,8 +2187,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **campaignId** | **float32** | Filter results by campaign. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | - &#x60;expired&#x60;: Matches referrals in which the expiration date is set and in the past. - &#x60;validNow&#x60;: Matches referrals in which start date is null or in the past and expiration date is null or in the future. - &#x60;validFuture&#x60;: Matches referrals in which start date is set and in the future.  | 
  **usable** | **string** | - &#x60;true&#x60;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned. - &#x60;false&#x60;, only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60; will be returned.  | 
  **batchId** | **string** | Filter results by batches of referrals | 
@@ -1834,12 +2236,12 @@ Other parameters are passed through a pointer to a apiGetAccessLogsWithoutTotalC
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **path** | **string** | Only return results where the request path matches the given regular expression. | 
  **method** | **string** | Only return results where the request method matches the given regular expression. | 
  **status** | **string** | Filter results by HTTP status codes. | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
@@ -1990,6 +2392,53 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAchievement
+
+> Achievement GetAchievement(ctx, applicationId, campaignId, achievementId).Execute()
+
+Get achievement
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int32** | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAchievementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+[**Achievement**](Achievement.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetAdditionalCost
 
 > AccountAdditionalCost GetAdditionalCost(ctx, additionalCostId).Execute()
@@ -2035,7 +2484,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20034 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20036 GetAdditionalCosts(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List additional costs
 
@@ -2052,13 +2501,13 @@ Other parameters are passed through a pointer to a apiGetAdditionalCostsRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20034**](inline_response_200_34.md)
+[**InlineResponse20036**](inline_response_200_36.md)
 
 ### Authorization
 
@@ -2093,12 +2542,12 @@ Other parameters are passed through a pointer to a apiGetAllAccessLogsRequest st
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **path** | **string** | Only return results where the request path matches the given regular expression. | 
  **method** | **string** | Only return results where the request method matches the given regular expression. | 
  **status** | **string** | Filter results by HTTP status codes. | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
@@ -2122,7 +2571,7 @@ Name | Type | Description  | Notes
 
 ## GetAllRoles
 
-> InlineResponse20042 GetAllRoles(ctx).Execute()
+> InlineResponse20044 GetAllRoles(ctx).Execute()
 
 List roles
 
@@ -2139,7 +2588,7 @@ Other parameters are passed through a pointer to a apiGetAllRolesRequest struct 
 
 ### Return type
 
-[**InlineResponse20042**](inline_response_200_42.md)
+[**InlineResponse20044**](inline_response_200_44.md)
 
 ### Authorization
 
@@ -2288,7 +2737,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20031 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
+> InlineResponse20033 GetApplicationCustomerFriends(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Execute()
 
 List friends referred by customer profile
 
@@ -2312,14 +2761,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20031**](inline_response_200_31.md)
+[**InlineResponse20033**](inline_response_200_33.md)
 
 ### Authorization
 
@@ -2360,7 +2809,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **integrationId** | **string** | Filter results performing an exact matching against the profile integration identifier. | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
@@ -2407,7 +2856,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
@@ -2453,7 +2902,7 @@ Other parameters are passed through a pointer to a apiGetApplicationEventTypesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
@@ -2499,12 +2948,12 @@ Other parameters are passed through a pointer to a apiGetApplicationEventsWithou
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **type_** | **string** | Comma-separated list of types by which to filter events. Must be exact match(es). | 
- **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Only return events created after this date. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **session** | **string** | Session integration ID filter for events. Must be exact match. | 
  **profile** | **string** | Profile integration ID filter for events. Must be exact match. | 
  **customerName** | **string** | Customer name filter for events. Will match substrings case-insensitively. | 
@@ -2579,7 +3028,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20027 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).Execute()
+> InlineResponse20027 GetApplicationSessions(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).Profile(profile).State(state).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Coupon(coupon).Referral(referral).IntegrationId(integrationId).StoreIntegrationId(storeIntegrationId).Execute()
 
 List Application sessions
 
@@ -2601,16 +3050,17 @@ Other parameters are passed through a pointer to a apiGetApplicationSessionsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **profile** | **string** | Profile integration ID filter for sessions. Must be exact match. | 
  **state** | **string** | Filter by sessions with this state. Must be exact match. | 
- **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Only return events created after this date. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **coupon** | **string** | Filter by sessions with this coupon. Must be exact match. | 
  **referral** | **string** | Filter by sessions with this referral. Must be exact match. | 
  **integrationId** | **string** | Filter by sessions with this integrationId. Must be exact match. | 
+ **storeIntegrationId** | **string** | The integration ID of the store. You choose this ID when you create a store. | 
 
 ### Return type
 
@@ -2649,7 +3099,7 @@ Other parameters are passed through a pointer to a apiGetApplicationsRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
@@ -2716,7 +3166,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20032 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
+> InlineResponse20034 GetAttributes(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Entity(entity).Execute()
 
 List custom attributes
 
@@ -2733,10 +3183,57 @@ Other parameters are passed through a pointer to a apiGetAttributesRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **entity** | **string** | Returned attributes will be filtered by supplied entity. | 
+
+### Return type
+
+[**InlineResponse20034**](inline_response_200_34.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAudienceMemberships
+
+> InlineResponse20032 GetAudienceMemberships(ctx, audienceId).PageSize(pageSize).Skip(skip).Sort(sort).ProfileQuery(profileQuery).Execute()
+
+List audience members
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**audienceId** | **int32** | The ID of the audience. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAudienceMembershipsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **profileQuery** | **string** | The filter to select a profile. | 
 
 ### Return type
 
@@ -2775,7 +3272,7 @@ Other parameters are passed through a pointer to a apiGetAudiencesRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
@@ -2783,6 +3280,46 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InlineResponse20030**](inline_response_200_30.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAudiencesAnalytics
+
+> InlineResponse20031 GetAudiencesAnalytics(ctx).AudienceIds(audienceIds).Sort(sort).Execute()
+
+List audience analytics
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAudiencesAnalyticsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **audienceIds** | **string** | The IDs of one or more audiences, separated by commas, by which to filter results. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+
+### Return type
+
+[**InlineResponse20031**](inline_response_200_31.md)
 
 ### Authorization
 
@@ -2869,8 +3406,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **granularity** | **string** | The time interval between the results in the returned time-series. | 
 
 ### Return type
@@ -2916,7 +3453,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | [**CampaignSearch**](CampaignSearch.md) | body | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
@@ -2939,9 +3476,93 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCampaignGroup
+
+> CampaignGroup GetCampaignGroup(ctx, campaignGroupId).Execute()
+
+Get campaign access group
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**campaignGroupId** | **int32** | The ID of the campaign access group. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCampaignGroupRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CampaignGroup**](CampaignGroup.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCampaignGroups
+
+> InlineResponse20011 GetCampaignGroups(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+
+List campaign access groups
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCampaignGroupsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+
+### Return type
+
+[**InlineResponse20011**](inline_response_200_11.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCampaignTemplates
 
-> InlineResponse20011 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
+> InlineResponse20012 GetCampaignTemplates(ctx).PageSize(pageSize).Skip(skip).Sort(sort).State(state).Name(name).Tags(tags).UserId(userId).Execute()
 
 List campaign templates
 
@@ -2958,7 +3579,7 @@ Other parameters are passed through a pointer to a apiGetCampaignTemplatesReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **state** | **string** | Filter results by the state of the campaign template. | 
@@ -2968,7 +3589,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](inline_response_200_11.md)
+[**InlineResponse20012**](inline_response_200_12.md)
 
 ### Authorization
 
@@ -3008,14 +3629,14 @@ Other parameters are passed through a pointer to a apiGetCampaignsRequest struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **campaignState** | **string** | Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived. - &#x60;draft&#x60;: Campaigns that are drafts.  | 
  **name** | **string** | Filter results performing case-insensitive matching against the name of the campaign. | 
  **tags** | **string** | Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **campaignGroupId** | **int32** | Filter results to campaigns owned by the specified campaign access group ID. | 
  **templateId** | **int32** | The ID of the Campaign Template this Campaign was created from. | 
  **storeId** | **int32** | Filter results to campaigns linked to the specified store ID. | 
@@ -3040,7 +3661,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20040 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
+> InlineResponse20042 GetChanges(ctx).PageSize(pageSize).Skip(skip).Sort(sort).ApplicationId(applicationId).EntityPath(entityPath).UserId(userId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).WithTotalResultSize(withTotalResultSize).ManagementKeyId(managementKeyId).IncludeOld(includeOld).Execute()
 
 Get audit logs for an account
 
@@ -3057,21 +3678,21 @@ Other parameters are passed through a pointer to a apiGetChangesRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **entityPath** | **string** | Filter results on a case insensitive matching of the url path of the entity | 
  **userId** | **int32** | Filter results by user ID. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the change creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **managementKeyId** | **int32** | Filter results that match the given management key ID. | 
  **includeOld** | **bool** | When this flag is set to false, the state without the change will not be returned. The default value is true. | 
 
 ### Return type
 
-[**InlineResponse20040**](inline_response_200_40.md)
+[**InlineResponse20042**](inline_response_200_42.md)
 
 ### Authorization
 
@@ -3136,7 +3757,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20017 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20018 GetCollectionItems(ctx, collectionId).PageSize(pageSize).Skip(skip).Execute()
 
 Get collection items
 
@@ -3158,12 +3779,12 @@ Other parameters are passed through a pointer to a apiGetCollectionItemsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20017**](inline_response_200_17.md)
+[**InlineResponse20018**](inline_response_200_18.md)
 
 ### Authorization
 
@@ -3205,12 +3826,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
@@ -3260,11 +3881,11 @@ Other parameters are passed through a pointer to a apiGetCustomerActivityReportR
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
@@ -3308,10 +3929,10 @@ Other parameters are passed through a pointer to a apiGetCustomerActivityReports
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **rangeStart** | **time.Time** | Only return results from after this timestamp. This must be an RFC3339 timestamp string. | 
- **rangeEnd** | **time.Time** | Only return results from before this timestamp. This must be an RFC3339 timestamp string. | 
+ **rangeStart** | **time.Time** | Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **rangeEnd** | **time.Time** | Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **name** | **string** | Only return reports matching the customer name | 
@@ -3363,7 +3984,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
@@ -3428,6 +4049,55 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCustomerProfileAchievementProgress
+
+> InlineResponse20047 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId).PageSize(pageSize).Skip(skip).AchievementId(achievementId).Title(title).Execute()
+
+List customer achievements
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**integrationId** | **string** | The identifier of the profile. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCustomerProfileAchievementProgressRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **pageSize** | **int32** | The number of items in the response. | [default to 50]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **achievementId** | **int32** | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+ **title** | **string** | Filter results by the &#x60;title&#x60; of an achievement. | 
+
+### Return type
+
+[**InlineResponse20047**](inline_response_200_47.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCustomerProfiles
 
 > InlineResponse20025 GetCustomerProfiles(ctx).PageSize(pageSize).Skip(skip).Sandbox(sandbox).Execute()
@@ -3447,7 +4117,7 @@ Other parameters are passed through a pointer to a apiGetCustomerProfilesRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sandbox** | **bool** | Indicates whether you are pointing to a sandbox or Live customer. | [default to false]
 
@@ -3489,7 +4159,7 @@ Other parameters are passed through a pointer to a apiGetCustomersByAttributesRe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md) | body | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sandbox** | **bool** | Indicates whether you are pointing to a sandbox or Live customer. | [default to false]
 
@@ -3513,7 +4183,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20038 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20040 GetEventTypes(ctx).Name(name).IncludeOldVersions(includeOldVersions).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List event types
 
@@ -3532,13 +4202,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **string** | Filter results to event types with the given name. This parameter implies &#x60;includeOldVersions&#x60;. | 
  **includeOldVersions** | **bool** | Include all versions of every event type. | [default to false]
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20038**](inline_response_200_38.md)
+[**InlineResponse20040**](inline_response_200_40.md)
 
 ### Authorization
 
@@ -3556,7 +4226,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20041 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
+> InlineResponse20043 GetExports(ctx).PageSize(pageSize).Skip(skip).ApplicationId(applicationId).CampaignId(campaignId).Entity(entity).Execute()
 
 Get exports
 
@@ -3573,7 +4243,7 @@ Other parameters are passed through a pointer to a apiGetExportsRequest struct v
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **campaignId** | **int32** | Filter by the campaign ID on which the limit counters are used. | 
@@ -3581,7 +4251,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](inline_response_200_41.md)
+[**InlineResponse20043**](inline_response_200_43.md)
 
 ### Authorization
 
@@ -3644,7 +4314,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactionLogs
 
-> InlineResponse20015 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
+> InlineResponse20016 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).SubledgerId(subledgerId).Execute()
 
 List card's transactions
 
@@ -3668,15 +4338,15 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
 
 ### Return type
 
-[**InlineResponse20015**](inline_response_200_15.md)
+[**InlineResponse20016**](inline_response_200_16.md)
 
 ### Authorization
 
@@ -3694,7 +4364,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCards
 
-> InlineResponse20014 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
+> InlineResponse20015 GetLoyaltyCards(ctx, loyaltyProgramId).PageSize(pageSize).Skip(skip).Sort(sort).Identifier(identifier).ProfileId(profileId).Execute()
 
 List loyalty cards
 
@@ -3716,7 +4386,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyCardsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **identifier** | **string** | Optional query parameter to search cards by identifier. | 
@@ -3724,7 +4394,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](inline_response_200_14.md)
+[**InlineResponse20015**](inline_response_200_15.md)
 
 ### Authorization
 
@@ -3799,7 +4469,7 @@ Get loyalty program
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -3830,7 +4500,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramTransactions
 
-> InlineResponse20013 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20014 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId).LoyaltyTransactionType(loyaltyTransactionType).SubledgerId(subledgerId).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List loyalty program transactions
 
@@ -3842,7 +4512,7 @@ List loyalty program transactions
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -3854,14 +4524,14 @@ Name | Type | Description  | Notes
 
  **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
- **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:** It must be an RFC3339 timestamp string.  | 
- **pageSize** | **int32** | The number of items in this response. | [default to 50]
+ **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **pageSize** | **int32** | The number of items in the response. | [default to 50]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
 ### Return type
 
-[**InlineResponse20013**](inline_response_200_13.md)
+[**InlineResponse20014**](inline_response_200_14.md)
 
 ### Authorization
 
@@ -3879,7 +4549,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse20012 GetLoyaltyPrograms(ctx).Execute()
+> InlineResponse20013 GetLoyaltyPrograms(ctx).Execute()
 
 List loyalty programs
 
@@ -3896,7 +4566,7 @@ Other parameters are passed through a pointer to a apiGetLoyaltyProgramsRequest 
 
 ### Return type
 
-[**InlineResponse20012**](inline_response_200_12.md)
+[**InlineResponse20013**](inline_response_200_13.md)
 
 ### Authorization
 
@@ -3926,7 +4596,7 @@ Get loyalty program statistics
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -3981,12 +4651,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **code** | **string** | Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches referrals in which the expiration date is set and in the past. The second matches referrals in which start date is null or in the past and expiration date is null or in the future, the third matches referrals in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only referrals where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only referrals where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **advocate** | **string** | Filter results by match with a profile id specified in the referral&#39;s AdvocateProfileIntegrationId field | 
@@ -4023,7 +4693,7 @@ Get role
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **int32** | The ID of role.  | 
+**roleId** | **int32** | ID of role.  **Note**: To find the ID of a role, use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint.  | 
 
 ### Other Parameters
 
@@ -4125,7 +4795,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
@@ -4237,7 +4907,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20039 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
+> InlineResponse20041 GetUsers(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Execute()
 
 List users in account
 
@@ -4254,13 +4924,13 @@ Other parameters are passed through a pointer to a apiGetUsersRequest struct via
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
 
 ### Return type
 
-[**InlineResponse20039**](inline_response_200_39.md)
+[**InlineResponse20041**](inline_response_200_41.md)
 
 ### Authorization
 
@@ -4321,7 +4991,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20036 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20038 GetWebhookActivationLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).IntegrationRequestUuid(integrationRequestUuid).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook activation log entries
 
@@ -4338,19 +5008,19 @@ Other parameters are passed through a pointer to a apiGetWebhookActivationLogsRe
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **integrationRequestUuid** | **string** | Filter results by integration request UUID. | 
  **webhookId** | **float32** | Filter results by Webhook. | 
  **applicationId** | **float32** | Filter results by Application ID. | 
  **campaignId** | **float32** | Filter results by campaign. | 
- **createdBefore** | **time.Time** | Only return events created before this date. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Only return events created after this date. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
 
 ### Return type
 
-[**InlineResponse20036**](inline_response_200_36.md)
+[**InlineResponse20038**](inline_response_200_38.md)
 
 ### Authorization
 
@@ -4368,7 +5038,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20037 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
+> InlineResponse20039 GetWebhookLogs(ctx).PageSize(pageSize).Skip(skip).Sort(sort).Status(status).WebhookId(webhookId).ApplicationId(applicationId).CampaignId(campaignId).RequestUuid(requestUuid).CreatedBefore(createdBefore).CreatedAfter(createdAfter).Execute()
 
 List webhook log entries
 
@@ -4385,7 +5055,7 @@ Other parameters are passed through a pointer to a apiGetWebhookLogsRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **status** | **string** | Filter results by HTTP status codes. | 
@@ -4393,12 +5063,12 @@ Name | Type | Description  | Notes
  **applicationId** | **float32** | Filter results by Application ID. | 
  **campaignId** | **float32** | Filter results by campaign. | 
  **requestUuid** | **string** | Filter results by request UUID. | 
- **createdBefore** | **time.Time** | Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
 
 ### Return type
 
-[**InlineResponse20037**](inline_response_200_37.md)
+[**InlineResponse20039**](inline_response_200_39.md)
 
 ### Authorization
 
@@ -4416,7 +5086,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20035 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).CreationType(creationType).Visibility(visibility).OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId).Title(title).Execute()
+> InlineResponse20037 GetWebhooks(ctx).ApplicationIds(applicationIds).Sort(sort).PageSize(pageSize).Skip(skip).CreationType(creationType).Visibility(visibility).OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId).Title(title).Execute()
 
 List webhooks
 
@@ -4435,7 +5105,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **applicationIds** | **string** | Filter by one or more Application IDs, separated by a comma. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **creationType** | **string** | Filter results by creation type. | 
  **visibility** | **string** | Filter results by visibility. | 
@@ -4444,7 +5114,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20035**](inline_response_200_35.md)
+[**InlineResponse20037**](inline_response_200_37.md)
 
 ### Authorization
 
@@ -4484,7 +5154,7 @@ Other parameters are passed through a pointer to a apiImportAccountCollectionReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4528,7 +5198,51 @@ Other parameters are passed through a pointer to a apiImportAllowedListRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportAudiencesMemberships
+
+> Import ImportAudiencesMemberships(ctx, audienceId).UpFile(upFile).Execute()
+
+Import audience members
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**audienceId** | **int32** | The ID of the audience. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiImportAudiencesMembershipsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4576,7 +5290,7 @@ Name | Type | Description  | Notes
 
 
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4598,7 +5312,7 @@ Name | Type | Description  | Notes
 
 ## ImportCoupons
 
-> Import ImportCoupons(ctx, applicationId, campaignId).UpFile(upFile).Execute()
+> Import ImportCoupons(ctx, applicationId, campaignId).SkipDuplicates(skipDuplicates).UpFile(upFile).Execute()
 
 Import coupons
 
@@ -4622,7 +5336,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **skipDuplicates** | **bool** | An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4666,7 +5381,7 @@ Other parameters are passed through a pointer to a apiImportLoyaltyCardsRequest 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4700,7 +5415,7 @@ Import customers into loyalty tiers
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -4710,7 +5425,7 @@ Other parameters are passed through a pointer to a apiImportLoyaltyCustomersTier
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4744,7 +5459,7 @@ Import loyalty points
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32** | Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int32** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Other Parameters
 
@@ -4754,7 +5469,7 @@ Other parameters are passed through a pointer to a apiImportLoyaltyPointsRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4798,7 +5513,7 @@ Other parameters are passed through a pointer to a apiImportPoolGiveawaysRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4844,7 +5559,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **upFile** | **string** | The file with the information about the data that should be imported. | 
+ **upFile** | **string** | The file containing the data that is being imported. | 
 
 ### Return type
 
@@ -4866,7 +5581,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20016 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20017 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in account
 
@@ -4883,7 +5598,7 @@ Other parameters are passed through a pointer to a apiListAccountCollectionsRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
@@ -4891,7 +5606,55 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](inline_response_200_16.md)
+[**InlineResponse20017**](inline_response_200_17.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListAchievements
+
+> InlineResponse20046 ListAchievements(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Title(title).Execute()
+
+List achievements
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAchievementsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **pageSize** | **int32** | The number of items in the response. | [default to 50]
+ **skip** | **int32** | The number of items to skip when paging through large result sets. | 
+ **title** | **string** | Filter by the display name for the achievement in the campaign manager.  **Note**: If no &#x60;title&#x60; is provided, all the achievements from the campaign are returned.  | 
+
+### Return type
+
+[**InlineResponse20046**](inline_response_200_46.md)
 
 ### Authorization
 
@@ -4909,7 +5672,7 @@ Name | Type | Description  | Notes
 
 ## ListCatalogItems
 
-> InlineResponse20033 ListCatalogItems(ctx, catalogId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Sku(sku).Execute()
+> InlineResponse20035 ListCatalogItems(ctx, catalogId).PageSize(pageSize).Skip(skip).WithTotalResultSize(withTotalResultSize).Sku(sku).ProductNames(productNames).Execute()
 
 List items in a catalog
 
@@ -4931,14 +5694,15 @@ Other parameters are passed through a pointer to a apiListCatalogItemsRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
- **sku** | **string** | The SKU of the item. | 
+ **sku** | [**[]string**](string.md) | Filter results by one or more SKUs. Must be exact match. | 
+ **productNames** | [**[]string**](string.md) | Filter results by one or more product names. Must be exact match. | 
 
 ### Return type
 
-[**InlineResponse20033**](inline_response_200_33.md)
+[**InlineResponse20035**](inline_response_200_35.md)
 
 ### Authorization
 
@@ -4956,7 +5720,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20018 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20017 ListCollections(ctx, applicationId, campaignId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in campaign
 
@@ -4980,7 +5744,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
@@ -4988,7 +5752,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -5006,7 +5770,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20018 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
+> InlineResponse20017 ListCollectionsInApplication(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
 
 List collections in Application
 
@@ -5028,7 +5792,7 @@ Other parameters are passed through a pointer to a apiListCollectionsInApplicati
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
@@ -5036,7 +5800,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](inline_response_200_18.md)
+[**InlineResponse20017**](inline_response_200_17.md)
 
 ### Authorization
 
@@ -5054,7 +5818,7 @@ Name | Type | Description  | Notes
 
 ## ListStores
 
-> InlineResponse20043 ListStores(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).CampaignId(campaignId).Name(name).IntegrationId(integrationId).Execute()
+> InlineResponse20045 ListStores(ctx, applicationId).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).CampaignId(campaignId).Name(name).IntegrationId(integrationId).Query(query).Execute()
 
 List stores
 
@@ -5076,17 +5840,18 @@ Other parameters are passed through a pointer to a apiListStoresRequest struct v
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **withTotalResultSize** | **bool** | When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **campaignId** | **float32** | Filter results by campaign. | 
  **name** | **string** | The name of the store. | 
  **integrationId** | **string** | The integration ID of the store. | 
+ **query** | **string** | Filter results by &#x60;name&#x60; or &#x60;integrationId&#x60;. | 
 
 ### Return type
 
-[**InlineResponse20043**](inline_response_200_43.md)
+[**InlineResponse20045**](inline_response_200_45.md)
 
 ### Authorization
 
@@ -5388,12 +6153,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **body** | **map[string]interface{}** | body | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
@@ -5447,12 +6212,12 @@ Name | Type | Description  | Notes
 
 
  **body** | **map[string]interface{}** | body | 
- **pageSize** | **int32** | The number of items in this response. | [default to 1000]
+ **pageSize** | **int32** | The number of items in the response. | [default to 1000]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
  **sort** | **string** | The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
  **value** | **string** | Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
- **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
- **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any timezone. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **time.Time** | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **valid** | **string** | Either \&quot;expired\&quot;, \&quot;validNow\&quot;, or \&quot;validFuture\&quot;. The first option matches coupons in which the expiration date is set and in the past. The second matches coupons in which start date is null or in the past and expiration date is null or in the future, the third matches coupons in which start date is set and in the future.  | 
  **usable** | **string** | Either \&quot;true\&quot; or \&quot;false\&quot;. If \&quot;true\&quot;, only coupons where &#x60;usageCounter &lt; usageLimit&#x60; will be returned, \&quot;false\&quot; will return only coupons where &#x60;usageCounter &gt;&#x3D; usageLimit&#x60;.  | 
  **referralId** | **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | 
@@ -5553,6 +6318,54 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Collection**](Collection.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateAchievement
+
+> Achievement UpdateAchievement(ctx, applicationId, campaignId, achievementId).Body(body).Execute()
+
+Update achievement
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int32** | The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int32** | The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int32** | The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAchievementRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **body** | [**UpdateAchievement**](UpdateAchievement.md) | body | 
+
+### Return type
+
+[**Achievement**](Achievement.md)
 
 ### Authorization
 
@@ -5938,6 +6751,50 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateRoleV2
+
+> RoleV2 UpdateRoleV2(ctx, roleId).Body(body).Execute()
+
+Update role
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**roleId** | **int32** | The ID of role.  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateRoleV2Request struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **RoleV2Base** | body | 
+
+### Return type
+
+[**RoleV2**](RoleV2.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateStore
 
 > Store UpdateStore(ctx, applicationId, storeId).Body(body).Execute()
@@ -5969,6 +6826,50 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Store**](Store.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateUser
+
+> User UpdateUser(ctx, userId).Body(body).Execute()
+
+Update user
+
+
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**userId** | **int32** | The ID of the user. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUserRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | [**UpdateUser**](UpdateUser.md) | body | 
+
+### Return type
+
+[**User**](User.md)
 
 ### Authorization
 

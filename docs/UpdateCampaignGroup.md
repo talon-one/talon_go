@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of this campaign access group. | 
+**Name** | Pointer to **string** | The name of the campaign access group. | 
 **Description** | Pointer to **string** | A longer description of the campaign access group. | [optional] 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of IDs of the Applications that this campaign access group is enabled for. | [optional] 
 **CampaignIds** | Pointer to **[]int32** | A list of IDs of the campaigns that are part of the campaign access group. | [optional] 

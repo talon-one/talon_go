@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Catalogid** | Pointer to **int32** | The ID of the catalog the item belongs to. | 
 **Version** | Pointer to **int32** | The version of the catalog item. | 
 **Attributes** | Pointer to [**[]ItemAttribute**](ItemAttribute.md) |  | [optional] 
+**Product** | Pointer to [**Product**](Product.md) |  | [optional] 
 
 ## Methods
 
@@ -188,6 +189,31 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *CatalogItem) SetAttributes(v []ItemAttribute)`
 
 SetAttributes gets a reference to the given []ItemAttribute and assigns it to the Attributes field.
+
+### GetProduct
+
+`func (o *CatalogItem) GetProduct() Product`
+
+GetProduct returns the Product field if non-nil, zero value otherwise.
+
+### GetProductOk
+
+`func (o *CatalogItem) GetProductOk() (Product, bool)`
+
+GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProduct
+
+`func (o *CatalogItem) HasProduct() bool`
+
+HasProduct returns a boolean if a field has been set.
+
+### SetProduct
+
+`func (o *CatalogItem) SetProduct(v Product)`
+
+SetProduct gets a reference to the given Product and assigns it to the Product field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

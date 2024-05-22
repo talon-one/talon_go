@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the notification. | 
+**BatchingEnabled** | Pointer to **bool** | Indicates whether batching is activated. | [optional] [default to true]
 **Triggers** | Pointer to [**[]TierWillDowngradeNotificationTrigger**](TierWillDowngradeNotificationTrigger.md) |  | 
 
 ## Methods
@@ -33,6 +34,31 @@ HasName returns a boolean if a field has been set.
 `func (o *TierWillDowngradeNotificationPolicy) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetBatchingEnabled
+
+`func (o *TierWillDowngradeNotificationPolicy) GetBatchingEnabled() bool`
+
+GetBatchingEnabled returns the BatchingEnabled field if non-nil, zero value otherwise.
+
+### GetBatchingEnabledOk
+
+`func (o *TierWillDowngradeNotificationPolicy) GetBatchingEnabledOk() (bool, bool)`
+
+GetBatchingEnabledOk returns a tuple with the BatchingEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBatchingEnabled
+
+`func (o *TierWillDowngradeNotificationPolicy) HasBatchingEnabled() bool`
+
+HasBatchingEnabled returns a boolean if a field has been set.
+
+### SetBatchingEnabled
+
+`func (o *TierWillDowngradeNotificationPolicy) SetBatchingEnabled(v bool)`
+
+SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
 
 ### GetTriggers
 

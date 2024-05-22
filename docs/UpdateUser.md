@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The user name. | [optional] 
-**Policy** | Pointer to **string** | The &#x60;Access Control List&#x60; json defining the role of the user. This represents the access control on the user level. | [optional] 
-**State** | Pointer to **string** | New state (\&quot;deactivated\&quot; or \&quot;active\&quot;) for the user. Only usable by admins for the user. | [optional] 
-**Roles** | Pointer to **[]int32** | List of roles to assign to the user. | [optional] 
-**ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
-**IsAdmin** | Pointer to **bool** | An indication of whether the user has admin permissions. | [optional] 
+**Name** | Pointer to **string** | Name of the user. | [optional] 
+**State** | Pointer to **string** | The state of the user.   - &#x60;deactivated&#x60;: The user has been deactivated.   - &#x60;active&#x60;: The user is active.  **Note**: Only &#x60;admin&#x60; users can update the state of another user.  | [optional] 
+**IsAdmin** | Pointer to **bool** | Indicates whether the user is an &#x60;admin&#x60;. | [optional] 
+**Policy** | Pointer to **string** | Indicates the access level of the user. | [optional] 
+**Roles** | Pointer to **[]int32** | A list of the IDs of the roles assigned to the user.  **Note**: Use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint to find the ID of a role.  | [optional] 
+**ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) | Application notifications that the user is subscribed to. | [optional] 
 
 ## Methods
 
@@ -38,31 +38,6 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetPolicy
-
-`func (o *UpdateUser) GetPolicy() string`
-
-GetPolicy returns the Policy field if non-nil, zero value otherwise.
-
-### GetPolicyOk
-
-`func (o *UpdateUser) GetPolicyOk() (string, bool)`
-
-GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasPolicy
-
-`func (o *UpdateUser) HasPolicy() bool`
-
-HasPolicy returns a boolean if a field has been set.
-
-### SetPolicy
-
-`func (o *UpdateUser) SetPolicy(v string)`
-
-SetPolicy gets a reference to the given string and assigns it to the Policy field.
-
 ### GetState
 
 `func (o *UpdateUser) GetState() string`
@@ -87,6 +62,56 @@ HasState returns a boolean if a field has been set.
 `func (o *UpdateUser) SetState(v string)`
 
 SetState gets a reference to the given string and assigns it to the State field.
+
+### GetIsAdmin
+
+`func (o *UpdateUser) GetIsAdmin() bool`
+
+GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
+
+### GetIsAdminOk
+
+`func (o *UpdateUser) GetIsAdminOk() (bool, bool)`
+
+GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsAdmin
+
+`func (o *UpdateUser) HasIsAdmin() bool`
+
+HasIsAdmin returns a boolean if a field has been set.
+
+### SetIsAdmin
+
+`func (o *UpdateUser) SetIsAdmin(v bool)`
+
+SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+
+### GetPolicy
+
+`func (o *UpdateUser) GetPolicy() string`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *UpdateUser) GetPolicyOk() (string, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPolicy
+
+`func (o *UpdateUser) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
+
+### SetPolicy
+
+`func (o *UpdateUser) SetPolicy(v string)`
+
+SetPolicy gets a reference to the given string and assigns it to the Policy field.
 
 ### GetRoles
 
@@ -137,31 +162,6 @@ HasApplicationNotificationSubscriptions returns a boolean if a field has been se
 `func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interface{})`
 
 SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
-
-### GetIsAdmin
-
-`func (o *UpdateUser) GetIsAdmin() bool`
-
-GetIsAdmin returns the IsAdmin field if non-nil, zero value otherwise.
-
-### GetIsAdminOk
-
-`func (o *UpdateUser) GetIsAdminOk() (bool, bool)`
-
-GetIsAdminOk returns a tuple with the IsAdmin field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasIsAdmin
-
-`func (o *UpdateUser) HasIsAdmin() bool`
-
-HasIsAdmin returns a boolean if a field has been set.
-
-### SetIsAdmin
-
-`func (o *UpdateUser) SetIsAdmin(v bool)`
-
-SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

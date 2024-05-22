@@ -14,11 +14,11 @@ import (
 	"encoding/json"
 )
 
-// AudienceAnalytics The audiences and their members count.
+// AudienceAnalytics The audiences and their member count.
 type AudienceAnalytics struct {
 	// The ID of the audience.
 	AudienceId *int32 `json:"audienceId,omitempty"`
-	// The count of members under a single audience.
+	// The member count of the audience.
 	MembersCount *int32 `json:"membersCount,omitempty"`
 }
 

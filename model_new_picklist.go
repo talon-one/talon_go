@@ -16,7 +16,7 @@ import (
 
 // NewPicklist struct for NewPicklist
 type NewPicklist struct {
-	// The type of allowed values in the picklist. If type time is chosen, it must be an RFC3339 timestamp string.
+	// The type of allowed values in the picklist. If the type `time` is chosen, it must be an RFC3339 timestamp string.
 	Type string `json:"type"`
 	// The list of allowed values provided by this picklist.
 	Values []string `json:"values"`

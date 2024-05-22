@@ -21,6 +21,8 @@ type LoyaltyProgramTransaction struct {
 	Id int32 `json:"id"`
 	// ID of the loyalty program.
 	ProgramId int32 `json:"programId"`
+	// ID of the campaign.
+	CampaignId *int32 `json:"campaignId,omitempty"`
 	// Date and time the loyalty transaction occurred.
 	Created time.Time `json:"created"`
 	// Type of transaction. Possible values:   - `addition`: Signifies added points.   - `subtraction`: Signifies deducted points.
@@ -81,6 +83,39 @@ func (o *LoyaltyProgramTransaction) GetProgramId() int32 {
 // SetProgramId sets field value
 func (o *LoyaltyProgramTransaction) SetProgramId(v int32) {
 	o.ProgramId = v
+}
+
+// GetCampaignId returns the CampaignId field value if set, zero value otherwise.
+func (o *LoyaltyProgramTransaction) GetCampaignId() int32 {
+	if o == nil || o.CampaignId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CampaignId
+}
+
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetCampaignIdOk() (int32, bool) {
+	if o == nil || o.CampaignId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CampaignId, true
+}
+
+// HasCampaignId returns a boolean if a field has been set.
+func (o *LoyaltyProgramTransaction) HasCampaignId() bool {
+	if o != nil && o.CampaignId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
+func (o *LoyaltyProgramTransaction) SetCampaignId(v int32) {
+	o.CampaignId = &v
 }
 
 // GetCreated returns the Created field value
