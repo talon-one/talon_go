@@ -20,8 +20,9 @@ type CustomerInventory struct {
 	Loyalty   *Loyalty             `json:"loyalty,omitempty"`
 	Referrals *[]InventoryReferral `json:"referrals,omitempty"`
 	// The coupons reserved by this profile. This array includes hard and soft reservations. See each coupon's `reservation` property.
-	Coupons   *[]InventoryCoupon `json:"coupons,omitempty"`
-	Giveaways *[]Giveaway        `json:"giveaways,omitempty"`
+	Coupons      *[]InventoryCoupon     `json:"coupons,omitempty"`
+	Giveaways    *[]Giveaway            `json:"giveaways,omitempty"`
+	Achievements *[]AchievementProgress `json:"achievements,omitempty"`
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -187,6 +188,39 @@ func (o *CustomerInventory) HasGiveaways() bool {
 // SetGiveaways gets a reference to the given []Giveaway and assigns it to the Giveaways field.
 func (o *CustomerInventory) SetGiveaways(v []Giveaway) {
 	o.Giveaways = &v
+}
+
+// GetAchievements returns the Achievements field value if set, zero value otherwise.
+func (o *CustomerInventory) GetAchievements() []AchievementProgress {
+	if o == nil || o.Achievements == nil {
+		var ret []AchievementProgress
+		return ret
+	}
+	return *o.Achievements
+}
+
+// GetAchievementsOk returns a tuple with the Achievements field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgress, bool) {
+	if o == nil || o.Achievements == nil {
+		var ret []AchievementProgress
+		return ret, false
+	}
+	return *o.Achievements, true
+}
+
+// HasAchievements returns a boolean if a field has been set.
+func (o *CustomerInventory) HasAchievements() bool {
+	if o != nil && o.Achievements != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAchievements gets a reference to the given []AchievementProgress and assigns it to the Achievements field.
+func (o *CustomerInventory) SetAchievements(v []AchievementProgress) {
+	o.Achievements = &v
 }
 
 type NullableCustomerInventory struct {

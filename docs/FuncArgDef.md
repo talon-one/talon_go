@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** | The type of value this argument expects. | 
-**Description** | Pointer to **string** | A campaigner-friendly description of the argument, this will also be shown in the rule editor. | 
+**Description** | Pointer to **string** | A campaigner-friendly description of the argument, this will also be shown in the rule editor. | [optional] 
 
 ## Methods
 

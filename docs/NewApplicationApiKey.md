@@ -4,9 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** | Title for API Key. | 
-**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expired. | 
+**Title** | Pointer to **string** | Title of the API key. | 
+**Expires** | Pointer to [**time.Time**](time.Time.md) | The date the API key expires. | 
 **Platform** | Pointer to **string** | The third-party platform the API key is valid for. Use &#x60;none&#x60; for a generic API key to be used from your own integration layer.  | [optional] 
+**Type** | Pointer to **string** | The API key type. Can be empty or &#x60;staging&#x60;.  Staging API keys can only be used for dry requests with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint, [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint, and [Track event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) endpoint.  When using the _Update customer profile_ endpoint with a staging API key, the query parameter &#x60;runRuleEngine&#x60; must be &#x60;true&#x60;.  | [optional] 
+**TimeOffset** | Pointer to **int32** | A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date.  | [optional] 
 **Id** | Pointer to **int32** | ID of the API Key. | 
 **CreatedBy** | Pointer to **int32** | ID of user who created. | 
 **AccountID** | Pointer to **int32** | ID of account the key is used for. | 
@@ -90,6 +92,56 @@ HasPlatform returns a boolean if a field has been set.
 `func (o *NewApplicationApiKey) SetPlatform(v string)`
 
 SetPlatform gets a reference to the given string and assigns it to the Platform field.
+
+### GetType
+
+`func (o *NewApplicationApiKey) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *NewApplicationApiKey) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *NewApplicationApiKey) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *NewApplicationApiKey) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
+
+### GetTimeOffset
+
+`func (o *NewApplicationApiKey) GetTimeOffset() int32`
+
+GetTimeOffset returns the TimeOffset field if non-nil, zero value otherwise.
+
+### GetTimeOffsetOk
+
+`func (o *NewApplicationApiKey) GetTimeOffsetOk() (int32, bool)`
+
+GetTimeOffsetOk returns a tuple with the TimeOffset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTimeOffset
+
+`func (o *NewApplicationApiKey) HasTimeOffset() bool`
+
+HasTimeOffset returns a boolean if a field has been set.
+
+### SetTimeOffset
+
+`func (o *NewApplicationApiKey) SetTimeOffset(v int32)`
+
+SetTimeOffset gets a reference to the given int32 and assigns it to the TimeOffset field.
 
 ### GetId
 

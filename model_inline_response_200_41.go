@@ -16,8 +16,8 @@ import (
 
 // InlineResponse20041 struct for InlineResponse20041
 type InlineResponse20041 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
-	Data            []Export `json:"data"`
+	TotalResultSize int32  `json:"totalResultSize"`
+	Data            []User `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20041) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20041) GetData() []Export {
+func (o *InlineResponse20041) GetData() []User {
 	if o == nil {
-		var ret []Export
+		var ret []User
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20041) GetData() []Export {
 }
 
 // SetData sets field value
-func (o *InlineResponse20041) SetData(v []Export) {
+func (o *InlineResponse20041) SetData(v []User) {
 	o.Data = v
 }
 

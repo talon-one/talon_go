@@ -16,15 +16,16 @@ import (
 
 // NewInvitation Parameters for inviting a new user.
 type NewInvitation struct {
-	// Name of the user being invited.
-	Name  *string `json:"name,omitempty"`
-	Email string  `json:"email"`
-	// The `Access Control List` json defining the role of the user.  This represents the access control on the user level. Use one of the following: - normal user: `{\"Role\": 0}` - admin: `{\"Role\": 127}`
-	Acl *string `json:"acl,omitempty"`
-	// An indication of whether the user has admin permissions. We recommend using this flag over using the `acl` with value `{\"Role\": 127}`.
+	// Name of the user.
+	Name *string `json:"name,omitempty"`
+	// Email address of the user.
+	Email string `json:"email"`
+	// Indicates whether the user is an `admin`.
 	IsAdmin *bool `json:"isAdmin,omitempty"`
-	// An array of role IDs to assign to the new user.
+	// A list of the IDs of the roles assigned to the user.
 	Roles *[]int32 `json:"roles,omitempty"`
+	// Indicates the access level of the user.
+	Acl *string `json:"acl,omitempty"`
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -73,39 +74,6 @@ func (o *NewInvitation) GetEmail() string {
 // SetEmail sets field value
 func (o *NewInvitation) SetEmail(v string) {
 	o.Email = v
-}
-
-// GetAcl returns the Acl field value if set, zero value otherwise.
-func (o *NewInvitation) GetAcl() string {
-	if o == nil || o.Acl == nil {
-		var ret string
-		return ret
-	}
-	return *o.Acl
-}
-
-// GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewInvitation) GetAclOk() (string, bool) {
-	if o == nil || o.Acl == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Acl, true
-}
-
-// HasAcl returns a boolean if a field has been set.
-func (o *NewInvitation) HasAcl() bool {
-	if o != nil && o.Acl != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAcl gets a reference to the given string and assigns it to the Acl field.
-func (o *NewInvitation) SetAcl(v string) {
-	o.Acl = &v
 }
 
 // GetIsAdmin returns the IsAdmin field value if set, zero value otherwise.
@@ -172,6 +140,39 @@ func (o *NewInvitation) HasRoles() bool {
 // SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
 func (o *NewInvitation) SetRoles(v []int32) {
 	o.Roles = &v
+}
+
+// GetAcl returns the Acl field value if set, zero value otherwise.
+func (o *NewInvitation) GetAcl() string {
+	if o == nil || o.Acl == nil {
+		var ret string
+		return ret
+	}
+	return *o.Acl
+}
+
+// GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewInvitation) GetAclOk() (string, bool) {
+	if o == nil || o.Acl == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Acl, true
+}
+
+// HasAcl returns a boolean if a field has been set.
+func (o *NewInvitation) HasAcl() bool {
+	if o != nil && o.Acl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAcl gets a reference to the given string and assigns it to the Acl field.
+func (o *NewInvitation) SetAcl(v string) {
+	o.Acl = &v
 }
 
 type NullableNewInvitation struct {

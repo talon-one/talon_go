@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **RemainingQuantity** | Pointer to **int32** | Remaining quantity of the item, calculated internally based on returns of this item. | [optional] 
 **Price** | Pointer to **float32** | Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.  | [optional] 
 **Category** | Pointer to **string** | Type, group or model of the item. | [optional] 
+**Product** | Pointer to [**Product**](Product.md) |  | [optional] 
 **Weight** | Pointer to **float32** | Weight of item in grams. | [optional] 
 **Height** | Pointer to **float32** | Height of item in mm. | [optional] 
 **Width** | Pointer to **float32** | Width of item in mm. | [optional] 
@@ -196,6 +197,31 @@ HasCategory returns a boolean if a field has been set.
 `func (o *CartItem) SetCategory(v string)`
 
 SetCategory gets a reference to the given string and assigns it to the Category field.
+
+### GetProduct
+
+`func (o *CartItem) GetProduct() Product`
+
+GetProduct returns the Product field if non-nil, zero value otherwise.
+
+### GetProductOk
+
+`func (o *CartItem) GetProductOk() (Product, bool)`
+
+GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProduct
+
+`func (o *CartItem) HasProduct() bool`
+
+HasProduct returns a boolean if a field has been set.
+
+### SetProduct
+
+`func (o *CartItem) SetProduct(v Product)`
+
+SetProduct gets a reference to the given Product and assigns it to the Product field.
 
 ### GetWeight
 

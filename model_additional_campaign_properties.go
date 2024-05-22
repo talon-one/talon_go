@@ -59,6 +59,8 @@ type AdditionalCampaignProperties struct {
 	UpdatedBy *string `json:"updatedBy,omitempty"`
 	// The ID of the Campaign Template this Campaign was created from.
 	TemplateId *int32 `json:"templateId,omitempty"`
+	// A campaign state described exactly as in the Campaign Manager.
+	FrontendState string `json:"frontendState"`
 }
 
 // GetBudgets returns the Budgets field value
@@ -734,6 +736,21 @@ func (o *AdditionalCampaignProperties) HasTemplateId() bool {
 // SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
 func (o *AdditionalCampaignProperties) SetTemplateId(v int32) {
 	o.TemplateId = &v
+}
+
+// GetFrontendState returns the FrontendState field value
+func (o *AdditionalCampaignProperties) GetFrontendState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.FrontendState
+}
+
+// SetFrontendState sets field value
+func (o *AdditionalCampaignProperties) SetFrontendState(v string) {
+	o.FrontendState = v
 }
 
 type NullableAdditionalCampaignProperties struct {

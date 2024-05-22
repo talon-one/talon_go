@@ -27,7 +27,7 @@ type Store struct {
 	Description string `json:"description"`
 	// The attributes of the store.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// The integration ID of the store. You choose this ID when you create a store.
+	// The integration ID of the store. You choose this ID when you create a store.  **Note**: You cannot edit the `integrationId` after the store has been created.
 	IntegrationId string `json:"integrationId"`
 	// The ID of the application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`

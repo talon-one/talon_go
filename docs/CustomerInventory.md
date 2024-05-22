@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Referrals** | Pointer to [**[]InventoryReferral**](InventoryReferral.md) |  | [optional] 
 **Coupons** | Pointer to [**[]InventoryCoupon**](InventoryCoupon.md) | The coupons reserved by this profile. This array includes hard and soft reservations. See each coupon&#39;s &#x60;reservation&#x60; property.  | [optional] 
 **Giveaways** | Pointer to [**[]Giveaway**](Giveaway.md) |  | [optional] 
+**Achievements** | Pointer to [**[]AchievementProgress**](AchievementProgress.md) |  | [optional] 
 
 ## Methods
 
@@ -136,6 +137,31 @@ HasGiveaways returns a boolean if a field has been set.
 `func (o *CustomerInventory) SetGiveaways(v []Giveaway)`
 
 SetGiveaways gets a reference to the given []Giveaway and assigns it to the Giveaways field.
+
+### GetAchievements
+
+`func (o *CustomerInventory) GetAchievements() []AchievementProgress`
+
+GetAchievements returns the Achievements field if non-nil, zero value otherwise.
+
+### GetAchievementsOk
+
+`func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgress, bool)`
+
+GetAchievementsOk returns a tuple with the Achievements field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAchievements
+
+`func (o *CustomerInventory) HasAchievements() bool`
+
+HasAchievements returns a boolean if a field has been set.
+
+### SetAchievements
+
+`func (o *CustomerInventory) SetAchievements(v []AchievementProgress)`
+
+SetAchievements gets a reference to the given []AchievementProgress and assigns it to the Achievements field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

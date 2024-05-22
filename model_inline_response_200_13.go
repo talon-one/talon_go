@@ -16,29 +16,29 @@ import (
 
 // InlineResponse20013 struct for InlineResponse20013
 type InlineResponse20013 struct {
-	HasMore bool                        `json:"hasMore"`
-	Data    []LoyaltyProgramTransaction `json:"data"`
+	TotalResultSize int32            `json:"totalResultSize"`
+	Data            []LoyaltyProgram `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20013) GetHasMore() bool {
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20013) GetTotalResultSize() int32 {
 	if o == nil {
-		var ret bool
+		var ret int32
 		return ret
 	}
 
-	return o.HasMore
+	return o.TotalResultSize
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20013) SetHasMore(v bool) {
-	o.HasMore = v
+// SetTotalResultSize sets field value
+func (o *InlineResponse20013) SetTotalResultSize(v int32) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20013) GetData() []LoyaltyProgramTransaction {
+func (o *InlineResponse20013) GetData() []LoyaltyProgram {
 	if o == nil {
-		var ret []LoyaltyProgramTransaction
+		var ret []LoyaltyProgram
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20013) GetData() []LoyaltyProgramTransaction {
 }
 
 // SetData sets field value
-func (o *InlineResponse20013) SetData(v []LoyaltyProgramTransaction) {
+func (o *InlineResponse20013) SetData(v []LoyaltyProgram) {
 	o.Data = v
 }
 

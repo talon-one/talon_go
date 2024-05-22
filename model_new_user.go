@@ -16,7 +16,7 @@ import (
 
 // NewUser
 type NewUser struct {
-	// The email address associated with your account.
+	// The email address associated with the user profile.
 	Email string `json:"email"`
 	// The password for your account.
 	Password string `json:"password"`

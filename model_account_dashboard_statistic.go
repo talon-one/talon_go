@@ -24,9 +24,7 @@ type AccountDashboardStatistic struct {
 	LoyaltyPoints *[]AccountDashboardStatisticLoyaltyPoints `json:"loyaltyPoints,omitempty"`
 	// Aggregated statistic for account referrals.
 	Referrals *[]AccountDashboardStatisticReferrals `json:"referrals,omitempty"`
-	// Aggregated statistic for the number of account API calls.
-	ApiCalls  *[]AccountDashboardStatisticApiCalls `json:"apiCalls,omitempty"`
-	Campaigns AccountDashboardStatisticCampaigns   `json:"campaigns"`
+	Campaigns AccountDashboardStatisticCampaigns    `json:"campaigns"`
 }
 
 // GetRevenue returns the Revenue field value if set, zero value otherwise.
@@ -159,39 +157,6 @@ func (o *AccountDashboardStatistic) HasReferrals() bool {
 // SetReferrals gets a reference to the given []AccountDashboardStatisticReferrals and assigns it to the Referrals field.
 func (o *AccountDashboardStatistic) SetReferrals(v []AccountDashboardStatisticReferrals) {
 	o.Referrals = &v
-}
-
-// GetApiCalls returns the ApiCalls field value if set, zero value otherwise.
-func (o *AccountDashboardStatistic) GetApiCalls() []AccountDashboardStatisticApiCalls {
-	if o == nil || o.ApiCalls == nil {
-		var ret []AccountDashboardStatisticApiCalls
-		return ret
-	}
-	return *o.ApiCalls
-}
-
-// GetApiCallsOk returns a tuple with the ApiCalls field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *AccountDashboardStatistic) GetApiCallsOk() ([]AccountDashboardStatisticApiCalls, bool) {
-	if o == nil || o.ApiCalls == nil {
-		var ret []AccountDashboardStatisticApiCalls
-		return ret, false
-	}
-	return *o.ApiCalls, true
-}
-
-// HasApiCalls returns a boolean if a field has been set.
-func (o *AccountDashboardStatistic) HasApiCalls() bool {
-	if o != nil && o.ApiCalls != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetApiCalls gets a reference to the given []AccountDashboardStatisticApiCalls and assigns it to the ApiCalls field.
-func (o *AccountDashboardStatistic) SetApiCalls(v []AccountDashboardStatisticApiCalls) {
-	o.ApiCalls = &v
 }
 
 // GetCampaigns returns the Campaigns field value

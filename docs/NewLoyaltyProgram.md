@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program. | 
 **UsersPerCardLimit** | Pointer to **int32** | The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when &#x60;cardBased&#x60; is &#x60;true&#x60;.  | [optional] 
 **Sandbox** | Pointer to **bool** | Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type. | 
-**TiersExpireIn** | Pointer to **string** | The amount of time until the expiration of every tier, starting from the date when the customer joined the considered tier for the first time.  The time format is an **integer** followed by one letter indicating the time unit. Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  | [optional] 
+**TiersExpirationPolicy** | Pointer to **string** | The policy that defines which date is used to calculate the expiration date of a customer&#39;s current tier.  - &#x60;tier_start_date&#x60;: The tier expiration date is calculated based on when the customer joined the current tier.  - &#x60;program_join_date&#x60;: The tier expiration date is calculated based on when the customer joined the loyalty program.  | [optional] 
+**TiersExpireIn** | Pointer to **string** | The amount of time after which the tier expires.  The time format is an **integer** followed by one letter indicating the time unit. Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  | [optional] 
 **TiersDowngradePolicy** | Pointer to **string** | Customers&#39;s tier downgrade policy.  - &#x60;one_down&#x60;: Once the tier expires and if the user doesn&#39;t have enough points to stay in the tier, the user is downgraded one tier down.  - &#x60;balance_based&#x60;: Once the tier expires, the user&#39;s tier is evaluated based on the amount of active points the user has at this instant.  | [optional] 
+**ProgramJoinPolicy** | Pointer to **string** | The policy that defines when the customer joins the loyalty program.   - &#x60;not_join&#x60;: The customer does not join the loyalty program but can still earn and spend loyalty points.       **Note**: The customer does not have a program join date.   - &#x60;points_activated&#x60;: The customer joins the loyalty program only when their earned loyalty points become active for the first time.   - &#x60;points_earned&#x60;: The customer joins the loyalty program when they earn loyalty points for the first time.  | [optional] 
 **Name** | Pointer to **string** | The internal name for the Loyalty Program. This is an immutable value. | 
 **Tiers** | Pointer to [**[]NewLoyaltyTier**](NewLoyaltyTier.md) | The tiers in this loyalty program. | [optional] 
 **Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | 
@@ -221,6 +223,31 @@ HasSandbox returns a boolean if a field has been set.
 
 SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
+### GetTiersExpirationPolicy
+
+`func (o *NewLoyaltyProgram) GetTiersExpirationPolicy() string`
+
+GetTiersExpirationPolicy returns the TiersExpirationPolicy field if non-nil, zero value otherwise.
+
+### GetTiersExpirationPolicyOk
+
+`func (o *NewLoyaltyProgram) GetTiersExpirationPolicyOk() (string, bool)`
+
+GetTiersExpirationPolicyOk returns a tuple with the TiersExpirationPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTiersExpirationPolicy
+
+`func (o *NewLoyaltyProgram) HasTiersExpirationPolicy() bool`
+
+HasTiersExpirationPolicy returns a boolean if a field has been set.
+
+### SetTiersExpirationPolicy
+
+`func (o *NewLoyaltyProgram) SetTiersExpirationPolicy(v string)`
+
+SetTiersExpirationPolicy gets a reference to the given string and assigns it to the TiersExpirationPolicy field.
+
 ### GetTiersExpireIn
 
 `func (o *NewLoyaltyProgram) GetTiersExpireIn() string`
@@ -270,6 +297,31 @@ HasTiersDowngradePolicy returns a boolean if a field has been set.
 `func (o *NewLoyaltyProgram) SetTiersDowngradePolicy(v string)`
 
 SetTiersDowngradePolicy gets a reference to the given string and assigns it to the TiersDowngradePolicy field.
+
+### GetProgramJoinPolicy
+
+`func (o *NewLoyaltyProgram) GetProgramJoinPolicy() string`
+
+GetProgramJoinPolicy returns the ProgramJoinPolicy field if non-nil, zero value otherwise.
+
+### GetProgramJoinPolicyOk
+
+`func (o *NewLoyaltyProgram) GetProgramJoinPolicyOk() (string, bool)`
+
+GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProgramJoinPolicy
+
+`func (o *NewLoyaltyProgram) HasProgramJoinPolicy() bool`
+
+HasProgramJoinPolicy returns a boolean if a field has been set.
+
+### SetProgramJoinPolicy
+
+`func (o *NewLoyaltyProgram) SetProgramJoinPolicy(v string)`
+
+SetProgramJoinPolicy gets a reference to the given string and assigns it to the ProgramJoinPolicy field.
 
 ### GetName
 

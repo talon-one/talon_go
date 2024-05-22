@@ -16,15 +16,15 @@ import (
 
 // CampaignCreatedNotification A notification regarding a campaign that was created.
 type CampaignCreatedNotification struct {
-	Campaign           CampaignStateNotification  `json:"campaign"`
+	Campaign           Campaign                   `json:"campaign"`
 	Ruleset            *Ruleset                   `json:"ruleset,omitempty"`
 	EvaluationPosition CampaignEvaluationPosition `json:"evaluationPosition"`
 }
 
 // GetCampaign returns the Campaign field value
-func (o *CampaignCreatedNotification) GetCampaign() CampaignStateNotification {
+func (o *CampaignCreatedNotification) GetCampaign() Campaign {
 	if o == nil {
-		var ret CampaignStateNotification
+		var ret Campaign
 		return ret
 	}
 
@@ -32,7 +32,7 @@ func (o *CampaignCreatedNotification) GetCampaign() CampaignStateNotification {
 }
 
 // SetCampaign sets field value
-func (o *CampaignCreatedNotification) SetCampaign(v CampaignStateNotification) {
+func (o *CampaignCreatedNotification) SetCampaign(v Campaign) {
 	o.Campaign = v
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PermissionSets** | Pointer to [**[]RoleV2PermissionSet**](RoleV2PermissionSet.md) | List of grouped logical operations to use as a reference in the roles section. Each group of logical operations has a name. | [optional] 
+**PermissionSets** | Pointer to [**[]RoleV2PermissionSet**](RoleV2PermissionSet.md) | List of grouped logical operations referenced by roles. | [optional] 
 **Roles** | Pointer to [**RoleV2RolesGroup**](RoleV2RolesGroup.md) |  | [optional] 
 
 ## Methods

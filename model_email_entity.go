@@ -16,7 +16,7 @@ import (
 
 // EmailEntity struct for EmailEntity
 type EmailEntity struct {
-	// The email address associated with your account.
+	// The email address associated with the user profile.
 	Email string `json:"email"`
 }
 

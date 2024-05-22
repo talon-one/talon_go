@@ -16,7 +16,9 @@ import (
 
 // NewInviteEmail struct for NewInviteEmail
 type NewInviteEmail struct {
+	// Email address of the user.
 	Email string `json:"email"`
+	// Invitation token of the user.
 	Token string `json:"token"`
 }
 

@@ -18,6 +18,8 @@ import (
 type TierDowngradeNotificationPolicy struct {
 	// The name of the notification.
 	Name string `json:"name"`
+	// Indicates whether batching is activated.
+	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -33,6 +35,39 @@ func (o *TierDowngradeNotificationPolicy) GetName() string {
 // SetName sets field value
 func (o *TierDowngradeNotificationPolicy) SetName(v string) {
 	o.Name = v
+}
+
+// GetBatchingEnabled returns the BatchingEnabled field value if set, zero value otherwise.
+func (o *TierDowngradeNotificationPolicy) GetBatchingEnabled() bool {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BatchingEnabled
+}
+
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *TierDowngradeNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.BatchingEnabled, true
+}
+
+// HasBatchingEnabled returns a boolean if a field has been set.
+func (o *TierDowngradeNotificationPolicy) HasBatchingEnabled() bool {
+	if o != nil && o.BatchingEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
+func (o *TierDowngradeNotificationPolicy) SetBatchingEnabled(v bool) {
+	o.BatchingEnabled = &v
 }
 
 type NullableTierDowngradeNotificationPolicy struct {

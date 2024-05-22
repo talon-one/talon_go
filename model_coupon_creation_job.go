@@ -44,7 +44,7 @@ type CouponCreationJob struct {
 	Attributes map[string]interface{} `json:"attributes"`
 	// The batch ID coupons created by this job will bear.
 	BatchId string `json:"batchId"`
-	// The current status of this request. Possible values: - `pending` - `completed` - `failed` - `coupon pattern full`
+	// The current status of this request. Possible values: - `pending verification` - `pending` - `completed` - `failed` - `coupon pattern full`
 	Status string `json:"status"`
 	// The number of coupon codes that were already created for this request.
 	CreatedAmount int32 `json:"createdAmount"`

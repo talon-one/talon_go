@@ -29,7 +29,8 @@ type CartItem struct {
 	// Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.
 	Price *float32 `json:"price,omitempty"`
 	// Type, group or model of the item.
-	Category *string `json:"category,omitempty"`
+	Category *string  `json:"category,omitempty"`
+	Product  *Product `json:"product,omitempty"`
 	// Weight of item in grams.
 	Weight *float32 `json:"weight,omitempty"`
 	// Height of item in mm.
@@ -241,6 +242,39 @@ func (o *CartItem) HasCategory() bool {
 // SetCategory gets a reference to the given string and assigns it to the Category field.
 func (o *CartItem) SetCategory(v string) {
 	o.Category = &v
+}
+
+// GetProduct returns the Product field value if set, zero value otherwise.
+func (o *CartItem) GetProduct() Product {
+	if o == nil || o.Product == nil {
+		var ret Product
+		return ret
+	}
+	return *o.Product
+}
+
+// GetProductOk returns a tuple with the Product field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetProductOk() (Product, bool) {
+	if o == nil || o.Product == nil {
+		var ret Product
+		return ret, false
+	}
+	return *o.Product, true
+}
+
+// HasProduct returns a boolean if a field has been set.
+func (o *CartItem) HasProduct() bool {
+	if o != nil && o.Product != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProduct gets a reference to the given Product and assigns it to the Product field.
+func (o *CartItem) SetProduct(v Product) {
+	o.Product = &v
 }
 
 // GetWeight returns the Weight field value if set, zero value otherwise.

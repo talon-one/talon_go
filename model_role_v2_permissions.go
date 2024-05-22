@@ -16,7 +16,7 @@ import (
 
 // RoleV2Permissions struct for RoleV2Permissions
 type RoleV2Permissions struct {
-	// List of grouped logical operations to use as a reference in the roles section. Each group of logical operations has a name.
+	// List of grouped logical operations referenced by roles.
 	PermissionSets *[]RoleV2PermissionSet `json:"permissionSets,omitempty"`
 	Roles          *RoleV2RolesGroup      `json:"roles,omitempty"`
 }

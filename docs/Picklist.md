@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Type** | Pointer to **string** | The type of allowed values in the picklist. If type time is chosen, it must be an RFC3339 timestamp string. | 
+**Type** | Pointer to **string** | The type of allowed values in the picklist. If the type &#x60;time&#x60; is chosen, it must be an RFC3339 timestamp string. | 
 **Values** | Pointer to **[]string** | The list of allowed values provided by this picklist. | 
 **ModifiedBy** | Pointer to **int32** | ID of the user who last updated this effect if available. | [optional] 
 **CreatedBy** | Pointer to **int32** | ID of the user who created this effect. | 

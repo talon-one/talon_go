@@ -4,10 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **int32** | ID of the SAML login endpoint. | 
 **Name** | Pointer to **string** | ID of the SAML service. | 
-**LoginURL** | Pointer to **string** | Single Sign-On URL. | 
+**LoginURL** | Pointer to **string** | The single sign-on URL. | 
 
 ## Methods
+
+### GetId
+
+`func (o *SamlLoginEndpoint) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *SamlLoginEndpoint) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *SamlLoginEndpoint) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *SamlLoginEndpoint) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetName
 

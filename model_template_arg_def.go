@@ -19,7 +19,7 @@ type TemplateArgDef struct {
 	// The type of value this argument expects.
 	Type string `json:"type"`
 	// A campaigner-friendly description of the argument, this will also be shown in the rule editor.
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
 	// A campaigner friendly name for the argument, this will be shown in the rule editor.
 	Title string `json:"title"`
 	// Arbitrary metadata that may be used to render an input for this argument.
@@ -45,19 +45,37 @@ func (o *TemplateArgDef) SetType(v string) {
 	o.Type = v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *TemplateArgDef) GetDescription() string {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// SetDescription sets field value
+// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *TemplateArgDef) GetDescriptionOk() (string, bool) {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *TemplateArgDef) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *TemplateArgDef) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
 // GetTitle returns the Title field value

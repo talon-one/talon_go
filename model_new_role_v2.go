@@ -21,7 +21,7 @@ type NewRoleV2 struct {
 	// Description of the role.
 	Description string             `json:"description"`
 	Permissions *RoleV2Permissions `json:"permissions,omitempty"`
-	// A list of user identifiers the role is assigned to.
+	// A list of user IDs the role is assigned to.
 	Members *[]int32 `json:"members,omitempty"`
 }
 

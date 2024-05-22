@@ -25,7 +25,7 @@ type CampaignGroup struct {
 	Modified time.Time `json:"modified"`
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`
-	// The name of this campaign access group.
+	// The name of the campaign access group.
 	Name string `json:"name"`
 	// A longer description of the campaign access group.
 	Description *string `json:"description,omitempty"`

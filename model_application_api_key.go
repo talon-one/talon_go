@@ -17,12 +17,16 @@ import (
 
 // ApplicationApiKey
 type ApplicationApiKey struct {
-	// Title for API Key.
+	// Title of the API key.
 	Title string `json:"title"`
-	// The date the API key expired.
+	// The date the API key expires.
 	Expires time.Time `json:"expires"`
 	// The third-party platform the API key is valid for. Use `none` for a generic API key to be used from your own integration layer.
 	Platform *string `json:"platform,omitempty"`
+	// The API key type. Can be empty or `staging`.  Staging API keys can only be used for dry requests with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint, [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint, and [Track event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) endpoint.  When using the _Update customer profile_ endpoint with a staging API key, the query parameter `runRuleEngine` must be `true`.
+	Type *string `json:"type,omitempty"`
+	// A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date.
+	TimeOffset *int32 `json:"timeOffset,omitempty"`
 	// ID of the API Key.
 	Id int32 `json:"id"`
 	// ID of user who created.
@@ -96,6 +100,72 @@ func (o *ApplicationApiKey) HasPlatform() bool {
 // SetPlatform gets a reference to the given string and assigns it to the Platform field.
 func (o *ApplicationApiKey) SetPlatform(v string) {
 	o.Platform = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ApplicationApiKey) GetType() string {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationApiKey) GetTypeOk() (string, bool) {
+	if o == nil || o.Type == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *ApplicationApiKey) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *ApplicationApiKey) SetType(v string) {
+	o.Type = &v
+}
+
+// GetTimeOffset returns the TimeOffset field value if set, zero value otherwise.
+func (o *ApplicationApiKey) GetTimeOffset() int32 {
+	if o == nil || o.TimeOffset == nil {
+		var ret int32
+		return ret
+	}
+	return *o.TimeOffset
+}
+
+// GetTimeOffsetOk returns a tuple with the TimeOffset field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationApiKey) GetTimeOffsetOk() (int32, bool) {
+	if o == nil || o.TimeOffset == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.TimeOffset, true
+}
+
+// HasTimeOffset returns a boolean if a field has been set.
+func (o *ApplicationApiKey) HasTimeOffset() bool {
+	if o != nil && o.TimeOffset != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeOffset gets a reference to the given int32 and assigns it to the TimeOffset field.
+func (o *ApplicationApiKey) SetTimeOffset(v int32) {
+	o.TimeOffset = &v
 }
 
 // GetId returns the Id field value

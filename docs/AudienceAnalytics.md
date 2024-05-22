@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AudienceId** | Pointer to **int32** | The ID of the audience. | [optional] 
-**MembersCount** | Pointer to **int32** | The count of members under a single audience. | [optional] 
+**MembersCount** | Pointer to **int32** | The member count of the audience. | [optional] 
 
 ## Methods
 

@@ -19,6 +19,8 @@ type CouponsNotificationPolicy struct {
 	// Notification name.
 	Name   string   `json:"name"`
 	Scopes []string `json:"scopes"`
+	// Indicates whether batching is activated.
+	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -49,6 +51,39 @@ func (o *CouponsNotificationPolicy) GetScopes() []string {
 // SetScopes sets field value
 func (o *CouponsNotificationPolicy) SetScopes(v []string) {
 	o.Scopes = v
+}
+
+// GetBatchingEnabled returns the BatchingEnabled field value if set, zero value otherwise.
+func (o *CouponsNotificationPolicy) GetBatchingEnabled() bool {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BatchingEnabled
+}
+
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CouponsNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.BatchingEnabled, true
+}
+
+// HasBatchingEnabled returns a boolean if a field has been set.
+func (o *CouponsNotificationPolicy) HasBatchingEnabled() bool {
+	if o != nil && o.BatchingEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
+func (o *CouponsNotificationPolicy) SetBatchingEnabled(v bool) {
+	o.BatchingEnabled = &v
 }
 
 type NullableCouponsNotificationPolicy struct {

@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // LoyaltyProgramLedgers Customer-specific information about loyalty points.
@@ -21,8 +22,10 @@ type LoyaltyProgramLedgers struct {
 	// Visible name of loyalty program.
 	Title string `json:"title"`
 	// Internal name of loyalty program.
-	Name   string     `json:"name"`
-	Ledger LedgerInfo `json:"ledger"`
+	Name string `json:"name"`
+	// The date on which the customer joined the loyalty program in RFC3339.  **Note**: This is in the loyalty program's time zone.
+	JoinDate *time.Time `json:"joinDate,omitempty"`
+	Ledger   LedgerInfo `json:"ledger"`
 	// A map containing information about each loyalty subledger.
 	SubLedgers *map[string]LedgerInfo `json:"subLedgers,omitempty"`
 }
@@ -70,6 +73,39 @@ func (o *LoyaltyProgramLedgers) GetName() string {
 // SetName sets field value
 func (o *LoyaltyProgramLedgers) SetName(v string) {
 	o.Name = v
+}
+
+// GetJoinDate returns the JoinDate field value if set, zero value otherwise.
+func (o *LoyaltyProgramLedgers) GetJoinDate() time.Time {
+	if o == nil || o.JoinDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.JoinDate
+}
+
+// GetJoinDateOk returns a tuple with the JoinDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramLedgers) GetJoinDateOk() (time.Time, bool) {
+	if o == nil || o.JoinDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.JoinDate, true
+}
+
+// HasJoinDate returns a boolean if a field has been set.
+func (o *LoyaltyProgramLedgers) HasJoinDate() bool {
+	if o != nil && o.JoinDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetJoinDate gets a reference to the given time.Time and assigns it to the JoinDate field.
+func (o *LoyaltyProgramLedgers) SetJoinDate(v time.Time) {
+	o.JoinDate = &v
 }
 
 // GetLedger returns the Ledger field value

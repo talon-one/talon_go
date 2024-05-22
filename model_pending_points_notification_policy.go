@@ -18,6 +18,8 @@ import (
 type PendingPointsNotificationPolicy struct {
 	// Notification name.
 	Name string `json:"name"`
+	// Indicates whether batching is activated.
+	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -33,6 +35,39 @@ func (o *PendingPointsNotificationPolicy) GetName() string {
 // SetName sets field value
 func (o *PendingPointsNotificationPolicy) SetName(v string) {
 	o.Name = v
+}
+
+// GetBatchingEnabled returns the BatchingEnabled field value if set, zero value otherwise.
+func (o *PendingPointsNotificationPolicy) GetBatchingEnabled() bool {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BatchingEnabled
+}
+
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *PendingPointsNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+	if o == nil || o.BatchingEnabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.BatchingEnabled, true
+}
+
+// HasBatchingEnabled returns a boolean if a field has been set.
+func (o *PendingPointsNotificationPolicy) HasBatchingEnabled() bool {
+	if o != nil && o.BatchingEnabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
+func (o *PendingPointsNotificationPolicy) SetBatchingEnabled(v bool) {
+	o.BatchingEnabled = &v
 }
 
 type NullablePendingPointsNotificationPolicy struct {

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// PatchItemCatalogAction The specific properties of the \"PATCH\" catalog sync action.
+// PatchItemCatalogAction The specific properties of the \"PATCH\" catalog sync action.  **Note:**   - If you do not provide a new `price` value, the existing `price` value is retained.   - If you do not provide a new `product` value, the `product` value is set to `null`.
 type PatchItemCatalogAction struct {
 	// The unique SKU of the item to patch.
 	Sku string `json:"sku"`
@@ -22,6 +22,7 @@ type PatchItemCatalogAction struct {
 	Price *float32 `json:"price,omitempty"`
 	// The attributes of the item to patch.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+	Product    *Product                `json:"product,omitempty"`
 	// Indicates whether to create an item if the SKU does not exist.
 	CreateIfNotExists *bool `json:"createIfNotExists,omitempty"`
 }
@@ -105,6 +106,39 @@ func (o *PatchItemCatalogAction) HasAttributes() bool {
 // SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 func (o *PatchItemCatalogAction) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
+}
+
+// GetProduct returns the Product field value if set, zero value otherwise.
+func (o *PatchItemCatalogAction) GetProduct() Product {
+	if o == nil || o.Product == nil {
+		var ret Product
+		return ret
+	}
+	return *o.Product
+}
+
+// GetProductOk returns a tuple with the Product field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchItemCatalogAction) GetProductOk() (Product, bool) {
+	if o == nil || o.Product == nil {
+		var ret Product
+		return ret, false
+	}
+	return *o.Product, true
+}
+
+// HasProduct returns a boolean if a field has been set.
+func (o *PatchItemCatalogAction) HasProduct() bool {
+	if o != nil && o.Product != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProduct gets a reference to the given Product and assigns it to the Product field.
+func (o *PatchItemCatalogAction) SetProduct(v Product) {
+	o.Product = &v
 }
 
 // GetCreateIfNotExists returns the CreateIfNotExists field value if set, zero value otherwise.

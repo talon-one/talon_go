@@ -16,7 +16,7 @@ import (
 
 // CustomerProfileAudienceRequestItem struct for CustomerProfileAudienceRequestItem
 type CustomerProfileAudienceRequestItem struct {
-	// Defines the action to perform: - `add`: Adds the customer profile to the audience. - `delete`: Removes the customer profile from the audience.
+	// Defines the action to perform: - `add`: Adds the customer profile to the audience. If the customer profile does not exist, it will be created. - `delete`: Removes the customer profile from the audience.
 	Action string `json:"action"`
 	// The ID of this customer profile in the third-party integration.
 	ProfileIntegrationId string `json:"profileIntegrationId"`
