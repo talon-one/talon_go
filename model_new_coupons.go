@@ -41,7 +41,7 @@ type NewCoupons struct {
 	ValidCharacters *[]string `json:"validCharacters,omitempty"`
 	// The pattern used to generate coupon codes. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
 	CouponPattern *string `json:"couponPattern,omitempty"`
-	// Whether the reservation effect actually created a new reservation.
+	// An indication of whether the code can be redeemed only if it has been reserved first.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
 	// An indication of whether the coupon is implicitly reserved for all customers.
 	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`

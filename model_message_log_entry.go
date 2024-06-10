@@ -31,10 +31,8 @@ type MessageLogEntry struct {
 	Response         *MessageLogResponse `json:"response,omitempty"`
 	// Timestamp when the log entry was created.
 	CreatedAt time.Time `json:"createdAt"`
-	// The entity type the log is related to.
+	// The entity type the notification is related to.
 	EntityType *string `json:"entityType,omitempty"`
-	// The target URL of the request.
-	Url *string `json:"url,omitempty"`
 	// Identifier of the Application.
 	ApplicationId *int32 `json:"applicationId,omitempty"`
 	// Identifier of the loyalty program.
@@ -282,39 +280,6 @@ func (o *MessageLogEntry) HasEntityType() bool {
 // SetEntityType gets a reference to the given string and assigns it to the EntityType field.
 func (o *MessageLogEntry) SetEntityType(v string) {
 	o.EntityType = &v
-}
-
-// GetUrl returns the Url field value if set, zero value otherwise.
-func (o *MessageLogEntry) GetUrl() string {
-	if o == nil || o.Url == nil {
-		var ret string
-		return ret
-	}
-	return *o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetUrlOk() (string, bool) {
-	if o == nil || o.Url == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.Url, true
-}
-
-// HasUrl returns a boolean if a field has been set.
-func (o *MessageLogEntry) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUrl gets a reference to the given string and assigns it to the Url field.
-func (o *MessageLogEntry) SetUrl(v string) {
-	o.Url = &v
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.

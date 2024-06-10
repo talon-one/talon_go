@@ -219,42 +219,17 @@ func (r apiCreateCouponReservationRequest) Body(body CouponReservations) apiCrea
 
 /*
 CreateCouponReservation Create coupon reservation
-Create a coupon reservation for specified customer profiles on the specified coupon.
+Create a coupon reservation for the specified customer profiles on the specified coupon.
 You can also create a reservation via the Campaign Manager using the
 [Create coupon code reservation effect](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
 
-Reserving a coupon allows you to associate a coupon code to a given customer(s).
-You can then list the reserved coupons of a given customer
-with the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
+- If the **Reservation mandatory** option was selected when creating the specified coupon,
+the endpoint creates a **hard** reservation, meaning only users who have this coupon code reserved can redeem it.
+Otherwise, the endpoint creates a **soft** reservation, meaning the coupon will be associated with the specified customer profiles (they show up when using the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint), but any user can redeem it.
+This can be useful, for example, to display a _coupon wallet_ for customers when they visit your store.
+  - If the **Coupon visibility** option was selected when creating the specified coupon,
 
-If a coupon gets created for a specific user, it will automatically appear in their coupons.
-
-When a user redeems a coupon, a reservation is automatically created after the redemption and
-the used coupon will be returned in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
-
-For example, you can use this endpoint and `List customer data` to create a _coupon wallet_ by
-reserving coupon codes for a customer, and then displaying their coupon wallet
-when they visit your store.
-
-If the **Coupon visibility** checkbox was selected when [creating a universal code](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons#generating-a-universal-code),
-the coupon code is implicitly reserved for all customers, and the code will be returned for all customer profiles in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
-
-<div class="redoc-section">
-
-	<p class="title">Important</p>
-
-	This endpoint creates a **soft** reservation. _Any_ customer
-	can use a reserved coupon code and proceed to checkout.
-
-	To create a hard reservation, you can:
-	- use the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or,
-	- use the [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients)
-	  endpoint setting the `recipientsIntegrationId` property or,
-	- create a coupon code with the **Reservation mandatory** option then use the [Create coupon code reservation effect](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
-
-	This endpoint overrides the reservation limit set for the coupon code during coupon creation.
-
-</div>
+the coupon code is implicitly soft-reserved for all customers, and the code will be returned for all customer profiles in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
 
 To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint.
 
@@ -1622,6 +1597,7 @@ type apiGetLoyaltyBalancesRequest struct {
 	loyaltyProgramId int32
 	integrationId    string
 	endDate          *time.Time
+	subledgerId      *string
 }
 
 func (r apiGetLoyaltyBalancesRequest) EndDate(endDate time.Time) apiGetLoyaltyBalancesRequest {
@@ -1629,14 +1605,21 @@ func (r apiGetLoyaltyBalancesRequest) EndDate(endDate time.Time) apiGetLoyaltyBa
 	return r
 }
 
+func (r apiGetLoyaltyBalancesRequest) SubledgerId(subledgerId string) apiGetLoyaltyBalancesRequest {
+	r.subledgerId = &subledgerId
+	return r
+}
+
 /*
 GetLoyaltyBalances Get customer's loyalty points
 Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.
-You can filter balances by date. If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.
+You can filter balances by date and subledger ID.
+
+**Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.
 
 Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.
 
-**Note:** For more information, see:
+For more information, see:
 - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)
 - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data)
 
@@ -1685,6 +1668,9 @@ func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.Resp
 
 	if r.endDate != nil {
 		localVarQueryParams.Add("endDate", parameterToString(*r.endDate, ""))
+	}
+	if r.subledgerId != nil {
+		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1798,10 +1784,16 @@ type apiGetLoyaltyCardBalancesRequest struct {
 	loyaltyProgramId int32
 	loyaltyCardId    string
 	endDate          *time.Time
+	subledgerId      *[]string
 }
 
 func (r apiGetLoyaltyCardBalancesRequest) EndDate(endDate time.Time) apiGetLoyaltyCardBalancesRequest {
 	r.endDate = &endDate
+	return r
+}
+
+func (r apiGetLoyaltyCardBalancesRequest) SubledgerId(subledgerId []string) apiGetLoyaltyCardBalancesRequest {
+	r.subledgerId = &subledgerId
 	return r
 }
 
@@ -1828,16 +1820,16 @@ func (a *IntegrationApiService) GetLoyaltyCardBalances(ctx _context.Context, loy
 /*
 Execute executes the request
 
-	@return LoyaltyBalances
+	@return LoyaltyCardBalances
 */
-func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.Response, error) {
+func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyCardBalances, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LoyaltyBalances
+		localVarReturnValue  LoyaltyCardBalances
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyCardBalances")
@@ -1859,6 +1851,9 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.
 
 	if r.endDate != nil {
 		localVarQueryParams.Add("endDate", parameterToString(*r.endDate, ""))
+	}
+	if r.subledgerId != nil {
+		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, "csv"))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1913,7 +1908,7 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v LoyaltyBalances
+			var v LoyaltyCardBalances
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -1972,7 +1967,7 @@ type apiGetLoyaltyCardPointsRequest struct {
 	loyaltyProgramId int32
 	loyaltyCardId    string
 	status           *string
-	subledgerId      *string
+	subledgerId      *[]string
 	pageSize         *int32
 	skip             *int32
 }
@@ -1982,7 +1977,7 @@ func (r apiGetLoyaltyCardPointsRequest) Status(status string) apiGetLoyaltyCardP
 	return r
 }
 
-func (r apiGetLoyaltyCardPointsRequest) SubledgerId(subledgerId string) apiGetLoyaltyCardPointsRequest {
+func (r apiGetLoyaltyCardPointsRequest) SubledgerId(subledgerId []string) apiGetLoyaltyCardPointsRequest {
 	r.subledgerId = &subledgerId
 	return r
 }
@@ -2057,7 +2052,7 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2003, *_nethttp
 		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	if r.subledgerId != nil {
-		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, "csv"))
 	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
@@ -2176,7 +2171,7 @@ type apiGetLoyaltyCardTransactionsRequest struct {
 	apiService             *IntegrationApiService
 	loyaltyProgramId       int32
 	loyaltyCardId          string
-	subledgerId            *string
+	subledgerId            *[]string
 	loyaltyTransactionType *string
 	startDate              *time.Time
 	endDate                *time.Time
@@ -2184,7 +2179,7 @@ type apiGetLoyaltyCardTransactionsRequest struct {
 	skip                   *int32
 }
 
-func (r apiGetLoyaltyCardTransactionsRequest) SubledgerId(subledgerId string) apiGetLoyaltyCardTransactionsRequest {
+func (r apiGetLoyaltyCardTransactionsRequest) SubledgerId(subledgerId []string) apiGetLoyaltyCardTransactionsRequest {
 	r.subledgerId = &subledgerId
 	return r
 }
@@ -2267,7 +2262,7 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2001, *_n
 	}
 
 	if r.subledgerId != nil {
-		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, "csv"))
 	}
 	if r.loyaltyTransactionType != nil {
 		localVarQueryParams.Add("loyaltyTransactionType", parameterToString(*r.loyaltyTransactionType, ""))
@@ -2818,11 +2813,7 @@ type apiGetReservedCustomersRequest struct {
 
 /*
 GetReservedCustomers List customers that have this coupon reserved
-Return all customers that have this coupon marked as reserved.
-
-Coupons are reserved in the following ways:
-- To create a soft reservation (any customer can use the coupon), use the [Create coupon reservation](#operation/createCouponReservation) endpoint.
-- To create a hard reservation (only the given customer can use the coupon), create a coupon in the Campaign Manager for a given `recipientIntegrationId` or use the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoints.
+Return all customers that have this coupon marked as reserved. This includes hard and soft reservations.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param couponValue The code of the coupon.

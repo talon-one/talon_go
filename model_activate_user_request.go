@@ -14,48 +14,33 @@ import (
 	"encoding/json"
 )
 
-// InlineResponse20044 struct for InlineResponse20044
-type InlineResponse20044 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
-	Data            []RoleV2 `json:"data"`
+// ActivateUserRequest
+type ActivateUserRequest struct {
+	// The email address associated with the user profile.
+	Email string `json:"email"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20044) GetTotalResultSize() int32 {
+// GetEmail returns the Email field value
+func (o *ActivateUserRequest) GetEmail() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.Email
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20044) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// SetEmail sets field value
+func (o *ActivateUserRequest) SetEmail(v string) {
+	o.Email = v
 }
 
-// GetData returns the Data field value
-func (o *InlineResponse20044) GetData() []RoleV2 {
-	if o == nil {
-		var ret []RoleV2
-		return ret
-	}
-
-	return o.Data
-}
-
-// SetData sets field value
-func (o *InlineResponse20044) SetData(v []RoleV2) {
-	o.Data = v
-}
-
-type NullableInlineResponse20044 struct {
-	Value        InlineResponse20044
+type NullableActivateUserRequest struct {
+	Value        ActivateUserRequest
 	ExplicitNull bool
 }
 
-func (v NullableInlineResponse20044) MarshalJSON() ([]byte, error) {
+func (v NullableActivateUserRequest) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -64,7 +49,7 @@ func (v NullableInlineResponse20044) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableInlineResponse20044) UnmarshalJSON(src []byte) error {
+func (v *NullableActivateUserRequest) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

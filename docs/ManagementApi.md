@@ -4,6 +4,7 @@ All URIs are relative to *https://yourbaseurl.talon.one*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**ActivateUserByEmail**](ManagementApi.md#ActivateUserByEmail) | **Post** /v1/users/activate | Activate user by email address
 [**AddLoyaltyCardPoints**](ManagementApi.md#AddLoyaltyCardPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/add_points | Add points to card
 [**AddLoyaltyPoints**](ManagementApi.md#AddLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/add_points | Add points to customer profile
 [**CopyCampaignToApplications**](ManagementApi.md#CopyCampaignToApplications) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/copy | Copy the campaign into the specified Application
@@ -58,7 +59,6 @@ Method | HTTP request | Description
 [**GetAdditionalCost**](ManagementApi.md#GetAdditionalCost) | **Get** /v1/additional_costs/{additionalCostId} | Get additional cost
 [**GetAdditionalCosts**](ManagementApi.md#GetAdditionalCosts) | **Get** /v1/additional_costs | List additional costs
 [**GetAllAccessLogs**](ManagementApi.md#GetAllAccessLogs) | **Get** /v1/access_logs | List access logs
-[**GetAllRoles**](ManagementApi.md#GetAllRoles) | **Get** /v1/roles | List roles
 [**GetApplication**](ManagementApi.md#GetApplication) | **Get** /v1/applications/{applicationId} | Get Application
 [**GetApplicationApiHealth**](ManagementApi.md#GetApplicationApiHealth) | **Get** /v1/applications/{applicationId}/health_report | Get Application health
 [**GetApplicationCustomer**](ManagementApi.md#GetApplicationCustomer) | **Get** /v1/applications/{applicationId}/customers/{customerId} | Get application&#39;s customer
@@ -104,7 +104,7 @@ Method | HTTP request | Description
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List loyalty programs
 [**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
 [**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
-[**GetRole**](ManagementApi.md#GetRole) | **Get** /v1/roles/{roleId} | Get role
+[**GetRoleV2**](ManagementApi.md#GetRoleV2) | **Get** /v2/roles/{roleId} | Get role
 [**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
 [**GetRulesets**](ManagementApi.md#GetRulesets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets | List campaign rulesets
 [**GetStore**](ManagementApi.md#GetStore) | **Get** /v1/applications/{applicationId}/stores/{storeId} | Get store
@@ -124,8 +124,10 @@ Method | HTTP request | Description
 [**ImportLoyaltyPoints**](ManagementApi.md#ImportLoyaltyPoints) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/import_points | Import loyalty points
 [**ImportPoolGiveaways**](ManagementApi.md#ImportPoolGiveaways) | **Post** /v1/giveaways/pools/{poolId}/import | Import giveaway codes into a giveaway pool
 [**ImportReferrals**](ManagementApi.md#ImportReferrals) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_referrals | Import referrals
+[**InviteUserExternal**](ManagementApi.md#InviteUserExternal) | **Post** /v1/users/invite | Invite user from identity provider
 [**ListAccountCollections**](ManagementApi.md#ListAccountCollections) | **Get** /v1/collections | List collections in account
 [**ListAchievements**](ManagementApi.md#ListAchievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements
+[**ListAllRolesV2**](ManagementApi.md#ListAllRolesV2) | **Get** /v2/roles | List roles
 [**ListCatalogItems**](ManagementApi.md#ListCatalogItems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
@@ -153,6 +155,45 @@ Method | HTTP request | Description
 [**UpdateStore**](ManagementApi.md#UpdateStore) | **Put** /v1/applications/{applicationId}/stores/{storeId} | Update store
 [**UpdateUser**](ManagementApi.md#UpdateUser) | **Put** /v1/users/{userId} | Update user
 
+
+
+## ActivateUserByEmail
+
+> ActivateUserByEmail(ctx).Body(body).Execute()
+
+Activate user by email address
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiActivateUserByEmailRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**ActivateUserRequest**](ActivateUserRequest.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## AddLoyaltyCardPoints
@@ -2569,41 +2610,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetAllRoles
-
-> InlineResponse20044 GetAllRoles(ctx).Execute()
-
-List roles
-
-
-
-### Path Parameters
-
-This endpoint does not need any parameter.
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllRolesRequest struct via the builder pattern
-
-
-### Return type
-
-[**InlineResponse20044**](inline_response_200_44.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## GetApplication
 
 > Application GetApplication(ctx, applicationId).Execute()
@@ -4679,9 +4685,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetRole
+## GetRoleV2
 
-> Role GetRole(ctx, roleId).Execute()
+> RoleV2 GetRoleV2(ctx, roleId).Execute()
 
 Get role
 
@@ -4693,11 +4699,11 @@ Get role
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **int32** | ID of role.  **Note**: To find the ID of a role, use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint.  | 
+**roleId** | **int32** | The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetRoleRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetRoleV2Request struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -4706,7 +4712,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Role**](Role.md)
+[**RoleV2**](RoleV2.md)
 
 ### Authorization
 
@@ -5579,6 +5585,45 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## InviteUserExternal
+
+> InviteUserExternal(ctx).Body(body).Execute()
+
+Invite user from identity provider
+
+
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiInviteUserExternalRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**NewExternalInvitation**](NewExternalInvitation.md) | body | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListAccountCollections
 
 > InlineResponse20017 ListAccountCollections(ctx).PageSize(pageSize).Skip(skip).Sort(sort).WithTotalResultSize(withTotalResultSize).Name(name).Execute()
@@ -5655,6 +5700,41 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**InlineResponse20046**](inline_response_200_46.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListAllRolesV2
+
+> InlineResponse20044 ListAllRolesV2(ctx).Execute()
+
+List roles
+
+
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAllRolesV2Request struct via the builder pattern
+
+
+### Return type
+
+[**InlineResponse20044**](inline_response_200_44.md)
 
 ### Authorization
 
@@ -6765,7 +6845,7 @@ Update role
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **int32** | The ID of role.  | 
+**roleId** | **int32** | The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
 
 ### Other Parameters
 

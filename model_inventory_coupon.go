@@ -53,11 +53,11 @@ type InventoryCoupon struct {
 	RecipientIntegrationId *string `json:"recipientIntegrationId,omitempty"`
 	// The ID of the Import which created this coupon.
 	ImportId *int32 `json:"importId,omitempty"`
-	// Defines the type of reservation: - `true`: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation](https://docs.talon.one/integration-api#operation/createCouponReservation) endpoint. - `false`: The reservation is a hard reservation. Only the associated customer (`recipientIntegrationId`) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given `recipientIntegrationId`, the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoint.
+	// Defines the reservation type: - `true`: The coupon can be reserved for multiple customers. - `false`: The coupon can be reserved only for one customer. It is a personal code.
 	Reservation *bool `json:"reservation,omitempty"`
 	// The id of the batch the coupon belongs to.
 	BatchId *string `json:"batchId,omitempty"`
-	// Whether the reservation effect actually created a new reservation.
+	// An indication of whether the code can be redeemed only if it has been reserved first.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
 	// An indication of whether the coupon is implicitly reserved for all customers.
 	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`
