@@ -12,8 +12,7 @@ Name | Type | Description | Notes
 **Request** | Pointer to [**MessageLogRequest**](MessageLogRequest.md) |  | [optional] 
 **Response** | Pointer to [**MessageLogResponse**](MessageLogResponse.md) |  | [optional] 
 **CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the log entry was created. | 
-**EntityType** | Pointer to **string** | The entity type the log is related to.  | [optional] 
-**Url** | Pointer to **string** | The target URL of the request. | [optional] 
+**EntityType** | Pointer to **string** | The entity type the notification is related to.  | [optional] 
 **ApplicationId** | Pointer to **int32** | Identifier of the Application. | [optional] 
 **LoyaltyProgramId** | Pointer to **int32** | Identifier of the loyalty program. | [optional] 
 
@@ -243,31 +242,6 @@ HasEntityType returns a boolean if a field has been set.
 `func (o *MessageLogEntry) SetEntityType(v string)`
 
 SetEntityType gets a reference to the given string and assigns it to the EntityType field.
-
-### GetUrl
-
-`func (o *MessageLogEntry) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *MessageLogEntry) GetUrlOk() (string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasUrl
-
-`func (o *MessageLogEntry) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
-
-### SetUrl
-
-`func (o *MessageLogEntry) SetUrl(v string)`
-
-SetUrl gets a reference to the given string and assigns it to the Url field.
 
 ### GetApplicationId
 

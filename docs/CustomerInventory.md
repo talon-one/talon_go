@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | [optional] 
 **Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
 **Referrals** | Pointer to [**[]InventoryReferral**](InventoryReferral.md) |  | [optional] 
-**Coupons** | Pointer to [**[]InventoryCoupon**](InventoryCoupon.md) | The coupons reserved by this profile. This array includes hard and soft reservations. See each coupon&#39;s &#x60;reservation&#x60; property.  | [optional] 
+**Coupons** | Pointer to [**[]InventoryCoupon**](InventoryCoupon.md) | The coupons reserved by this profile. This array includes hard and soft reservations.  | [optional] 
 **Giveaways** | Pointer to [**[]Giveaway**](Giveaway.md) |  | [optional] 
 **Achievements** | Pointer to [**[]AchievementProgress**](AchievementProgress.md) |  | [optional] 
 

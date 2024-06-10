@@ -19,7 +19,7 @@ import (
 type LoyaltyCardProfileRegistration struct {
 	// Integration ID of the customer profile linked to the card.
 	IntegrationId string `json:"integrationId"`
-	// Timestamp of the registration to the card.
+	// Timestamp the customer profile was linked to the card.
 	Timestamp time.Time `json:"timestamp"`
 }
 

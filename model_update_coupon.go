@@ -33,7 +33,7 @@ type UpdateCoupon struct {
 	RecipientIntegrationId *string `json:"recipientIntegrationId,omitempty"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// Whether the reservation effect actually created a new reservation.
+	// An indication of whether the code can be redeemed only if it has been reserved first.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
 	// An indication of whether the coupon is implicitly reserved for all customers.
 	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`

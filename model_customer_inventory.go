@@ -19,7 +19,7 @@ type CustomerInventory struct {
 	Profile   *CustomerProfile     `json:"profile,omitempty"`
 	Loyalty   *Loyalty             `json:"loyalty,omitempty"`
 	Referrals *[]InventoryReferral `json:"referrals,omitempty"`
-	// The coupons reserved by this profile. This array includes hard and soft reservations. See each coupon's `reservation` property.
+	// The coupons reserved by this profile. This array includes hard and soft reservations.
 	Coupons      *[]InventoryCoupon     `json:"coupons,omitempty"`
 	Giveaways    *[]Giveaway            `json:"giveaways,omitempty"`
 	Achievements *[]AchievementProgress `json:"achievements,omitempty"`

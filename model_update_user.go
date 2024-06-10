@@ -24,7 +24,7 @@ type UpdateUser struct {
 	IsAdmin *bool `json:"isAdmin,omitempty"`
 	// Indicates the access level of the user.
 	Policy *string `json:"policy,omitempty"`
-	// A list of the IDs of the roles assigned to the user.  **Note**: Use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint to find the ID of a role.
+	// A list of the IDs of the roles assigned to the user.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
 	Roles *[]int32 `json:"roles,omitempty"`
 	// Application notifications that the user is subscribed to.
 	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`

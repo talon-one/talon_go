@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyBalances
 
-> LoyaltyBalances GetLoyaltyBalances(ctx, loyaltyProgramId, integrationId).EndDate(endDate).Execute()
+> LoyaltyBalances GetLoyaltyBalances(ctx, loyaltyProgramId, integrationId).EndDate(endDate).SubledgerId(subledgerId).Execute()
 
 Get customer's loyalty points
 
@@ -489,6 +489,7 @@ Name | Type | Description  | Notes
 
 
  **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
 
 ### Return type
 
@@ -510,7 +511,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardBalances
 
-> LoyaltyBalances GetLoyaltyCardBalances(ctx, loyaltyProgramId, loyaltyCardId).EndDate(endDate).Execute()
+> LoyaltyCardBalances GetLoyaltyCardBalances(ctx, loyaltyProgramId, loyaltyCardId).EndDate(endDate).SubledgerId(subledgerId).Execute()
 
 Get card's point balances
 
@@ -535,10 +536,11 @@ Name | Type | Description  | Notes
 
 
  **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **subledgerId** | [**[]string**](string.md) | Filter results by one or more subledger IDs. Must be exact match. | 
 
 ### Return type
 
-[**LoyaltyBalances**](LoyaltyBalances.md)
+[**LoyaltyCardBalances**](LoyaltyCardBalances.md)
 
 ### Authorization
 
@@ -581,7 +583,7 @@ Name | Type | Description  | Notes
 
 
  **status** | **string** | Filter points based on their status. | [default to active]
- **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **subledgerId** | [**[]string**](string.md) | Filter results by one or more subledger IDs. Must be exact match. | 
  **pageSize** | **int32** | The number of items in the response. | [default to 50]
  **skip** | **int32** | The number of items to skip when paging through large result sets. | 
 
@@ -629,7 +631,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **subledgerId** | [**[]string**](string.md) | Filter results by one or more subledger IDs. Must be exact match. | 
  **loyaltyTransactionType** | **string** | Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
  **startDate** | **time.Time** | Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **endDate** | **time.Time** | Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 

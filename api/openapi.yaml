@@ -1247,40 +1247,16 @@ paths:
       x-codegen-request-body-name: body
     post:
       description: |
-        Create a coupon reservation for specified customer profiles on the specified coupon.
+        Create a coupon reservation for the specified customer profiles on the specified coupon.
         You can also create a reservation via the Campaign Manager using the
         [Create coupon code reservation effect](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
 
-        Reserving a coupon allows you to associate a coupon code to a given customer(s).
-        You can then list the reserved coupons of a given customer
-        with the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
-
-        If a coupon gets created for a specific user, it will automatically appear in their coupons.
-
-        When a user redeems a coupon, a reservation is automatically created after the redemption and
-        the used coupon will be returned in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
-
-        For example, you can use this endpoint and `List customer data` to create a _coupon wallet_ by
-        reserving coupon codes for a customer, and then displaying their coupon wallet
-        when they visit your store.
-
-        If the **Coupon visibility** checkbox was selected when [creating a universal code](https://docs.talon.one/docs/product/campaigns/coupons/creating-coupons#generating-a-universal-code),
-        the coupon code is implicitly reserved for all customers, and the code will be returned for all customer profiles in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
-
-        <div class="redoc-section">
-          <p class="title">Important</p>
-
-          This endpoint creates a **soft** reservation. _Any_ customer
-          can use a reserved coupon code and proceed to checkout.
-
-          To create a hard reservation, you can:
-          - use the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or,
-          - use the [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients)
-            endpoint setting the `recipientsIntegrationId` property or,
-          - create a coupon code with the **Reservation mandatory** option then use the [Create coupon code reservation effect](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
-
-          This endpoint overrides the reservation limit set for the coupon code during coupon creation.
-        </div>
+        - If the **Reservation mandatory** option was selected when creating the specified coupon,
+        the endpoint creates a **hard** reservation, meaning only users who have this coupon code reserved can redeem it.
+        Otherwise, the endpoint creates a **soft** reservation, meaning the coupon will be associated with the specified customer profiles (they show up when using the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint), but any user can redeem it.
+        This can be useful, for example, to display a _coupon wallet_ for customers when they visit your store.
+         - If the **Coupon visibility** option was selected when creating the specified coupon,
+        the coupon code is implicitly soft-reserved for all customers, and the code will be returned for all customer profiles in the [List customer data](https://docs.talon.one/integration-api#operation/getCustomerInventory) endpoint.
 
         To delete a reservation, use the [Delete reservation](https://docs.talon.one/integration-api#tag/Coupons/operation/deleteCouponReservation) endpoint.
       operationId: createCouponReservation
@@ -1332,11 +1308,7 @@ paths:
   /v1/coupon_reservations/customerprofiles/{couponValue}:
     get:
       description: |
-        Return all customers that have this coupon marked as reserved.
-
-        Coupons are reserved in the following ways:
-        - To create a soft reservation (any customer can use the coupon), use the [Create coupon reservation](#operation/createCouponReservation) endpoint.
-        - To create a hard reservation (only the given customer can use the coupon), create a coupon in the Campaign Manager for a given `recipientIntegrationId` or use the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoints.
+        Return all customers that have this coupon marked as reserved. This includes hard and soft reservations.
       operationId: getReservedCustomers
       parameters:
       - description: The code of the coupon.
@@ -1484,12 +1456,21 @@ paths:
         schema:
           format: date-time
           type: string
+      - description: Filter results by one or more subledger IDs. Must be exact match.
+        explode: false
+        in: query
+        name: subledgerId
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoyaltyBalances'
+                $ref: '#/components/schemas/LoyaltyCardBalances'
           description: OK
         "400":
           content:
@@ -1518,11 +1499,13 @@ paths:
     get:
       description: |
         Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program.
-        You can filter balances by date. If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.
+        You can filter balances by date and subledger ID.
+
+        **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.
 
         Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.
 
-        **Note:** For more information, see:
+        For more information, see:
         - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards)
         - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data)
       operationId: getLoyaltyBalances
@@ -1557,6 +1540,11 @@ paths:
         name: endDate
         schema:
           format: date-time
+          type: string
+      - description: The ID of the subledger by which we filter the data.
+        in: query
+        name: subledgerId
+        schema:
           type: string
       responses:
         "200":
@@ -1612,11 +1600,15 @@ paths:
         schema:
           maxLength: 108
           type: string
-      - description: The ID of the subledger by which we filter the data.
+      - description: Filter results by one or more subledger IDs. Must be exact match.
+        explode: false
         in: query
         name: subledgerId
         schema:
-          type: string
+          items:
+            type: string
+          type: array
+        style: form
       - description: |
           Filter results by loyalty transaction type:
           - `manual`: Loyalty transaction that was done manually.
@@ -1852,11 +1844,15 @@ paths:
           - pending
           - expired
           type: string
-      - description: The ID of the subledger by which we filter the data.
+      - description: Filter results by one or more subledger IDs. Must be exact match.
+        explode: false
         in: query
         name: subledgerId
         schema:
-          type: string
+          items:
+            type: string
+          type: array
+        style: form
       - description: The number of items in the response.
         in: query
         name: pageSize
@@ -8403,9 +8399,8 @@ paths:
         - `value` (required): The coupon code.
         - `expirydate`: The end date in RFC3339 of the code redemption period.
         - `startdate`: The start date in RFC3339 of the code redemption period.
-        - `recipientintegrationid`: The integration ID of the customer who receives the coupon.
-          Only the customer with this integration ID can redeem the corresponding coupon code.
-          Learn about [coupon reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
+        - `recipientintegrationid`: The integration ID of the recipient of the coupon.
+          Only the customer with this integration ID can redeem this code. Available only for personal codes.
         - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided.
         - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value.
         - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.
@@ -8494,11 +8489,10 @@ paths:
         - `is_reservation_mandatory`: Whether this coupon requires a reservation to be redeemed.
         - `limits`: The limits set on this coupon.
         - `limitval`: The maximum number of redemptions of this code.
-        - `recipientintegrationid`: The integration ID of the customer considered as recipient of the coupon.
-          Only the customer with this integration ID can redeem the corresponding coupon code.
-          Learn about [coupon reservation](https://docs.talon.one/docs/product/rules/effects/using-effects#reserving-a-coupon-code).
+        - `recipientintegrationid`: The integration ID of the recipient of the coupon.
+          Only the customer with this integration ID can redeem this code. Available only for personal codes.
         - `referralid`: The ID of the referral code that triggered the creation of this coupon (create coupon effect).
-        - `reservation`: Whether the coupon is reserved.
+        - `reservation`: Whether the coupon can be reserved for multiple customers.
         - `reservation_counter`: How many times this coupon has been reserved.
         - `reservation_limitval`: The maximum of number of reservations this coupon can have.
         - `startdate`: The start date in RFC3339 of the code redemption period.
@@ -9097,6 +9091,26 @@ paths:
       tags:
       - management
       x-codegen-request-body-name: body
+  /v1/users/activate:
+    post:
+      description: |
+        Activate a deactivated user by their email address.
+      operationId: activateUserByEmail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivateUserRequest'
+        description: body
+        required: true
+      responses:
+        "204":
+          content: {}
+          description: No Content
+      summary: Activate user by email address
+      tags:
+      - management
+      x-codegen-request-body-name: body
   /v1/users/deactivate:
     post:
       description: |
@@ -9114,6 +9128,26 @@ paths:
           content: {}
           description: No Content
       summary: Deactivate user by email address
+      tags:
+      - management
+      x-codegen-request-body-name: body
+  /v1/users/invite:
+    post:
+      description: |
+        Invite a user from an external identity provider to Talon.One by sending an invitation to their email address.
+      operationId: inviteUserExternal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewExternalInvitation'
+        description: body
+        required: true
+      responses:
+        "204":
+          content: {}
+          description: Invitation email sent
+      summary: Invite user from identity provider
       tags:
       - management
       x-codegen-request-body-name: body
@@ -9455,10 +9489,10 @@ paths:
       summary: Get exports
       tags:
       - management
-  /v1/roles:
+  /v2/roles:
     get:
       description: List all roles.
-      operationId: getAllRoles
+      operationId: listAllRolesV2
       responses:
         "200":
           content:
@@ -9469,16 +9503,16 @@ paths:
       summary: List roles
       tags:
       - management
-  /v1/roles/{roleId}:
+  /v2/roles/{roleId}:
     get:
       description: |
-        Get the details of a specific role. To see all the roles, use [List roles](#operation/getAllRoles).
-      operationId: getRole
+        Get the details of a specific role. To see all the roles, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
+      operationId: getRoleV2
       parameters:
       - description: |
-          ID of role.
+          The ID of role.
 
-          **Note**: To find the ID of a role, use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint.
+          **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
         in: path
         name: roleId
         required: true
@@ -9489,17 +9523,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Role'
+                $ref: '#/components/schemas/RoleV2'
           description: OK
       summary: Get role
       tags:
       - management
-  /v2/roles/{roleId}:
     put:
       description: Update a specific role.
       operationId: updateRoleV2
       parameters:
-      - description: 'The ID of role. '
+      - description: |
+          The ID of role.
+
+          **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
         in: path
         name: roleId
         required: true
@@ -12093,6 +12129,8 @@ components:
           - scheduled
           - running
           - draft
+          - disabled
+          - archived
           example: running
           type: string
       required:
@@ -12272,6 +12310,8 @@ components:
           - scheduled
           - running
           - draft
+          - disabled
+          - archived
           example: running
           type: string
       required:
@@ -13745,7 +13785,8 @@ components:
           type: string
         isReservationMandatory:
           default: false
-          description: Whether the reservation effect actually created a new reservation.
+          description: An indication of whether the code can be redeemed only if it
+            has been reserved first.
           example: false
           title: Is reservation mandatory
           type: boolean
@@ -13973,7 +14014,8 @@ components:
           type: object
         isReservationMandatory:
           default: false
-          description: Whether the reservation effect actually created a new reservation.
+          description: An indication of whether the code can be redeemed only if it
+            has been reserved first.
           example: false
           title: Is reservation mandatory
           type: boolean
@@ -14186,11 +14228,11 @@ components:
         reservation:
           default: true
           description: |
-            Defines the type of reservation:
-            - `true`: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation](https://docs.talon.one/integration-api#operation/createCouponReservation) endpoint.
-            - `false`: The reservation is a hard reservation. Only the associated customer (`recipientIntegrationId`) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given `recipientIntegrationId`, the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoint.
+            Defines the reservation type:
+            - `true`: The coupon can be reserved for multiple customers.
+            - `false`: The coupon can be reserved only for one customer. It is a personal code.
           example: false
-          title: Reservation Status
+          title: Reservation Type
           type: boolean
         batchId:
           description: The id of the batch the coupon belongs to.
@@ -14199,7 +14241,8 @@ components:
           type: string
         isReservationMandatory:
           default: false
-          description: Whether the reservation effect actually created a new reservation.
+          description: An indication of whether the code can be redeemed only if it
+            has been reserved first.
           example: false
           title: Is reservation mandatory
           type: boolean
@@ -14363,11 +14406,11 @@ components:
         reservation:
           default: true
           description: |
-            Defines the type of reservation:
-            - `true`: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation](https://docs.talon.one/integration-api#operation/createCouponReservation) endpoint.
-            - `false`: The reservation is a hard reservation. Only the associated customer (`recipientIntegrationId`) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given `recipientIntegrationId`, the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoint.
+            Defines the reservation type:
+            - `true`: The coupon can be reserved for multiple customers.
+            - `false`: The coupon can be reserved only for one customer. It is a personal code.
           example: false
-          title: Reservation Status
+          title: Reservation Type
           type: boolean
         batchId:
           description: The id of the batch the coupon belongs to.
@@ -14376,7 +14419,8 @@ components:
           type: string
         isReservationMandatory:
           default: false
-          description: Whether the reservation effect actually created a new reservation.
+          description: An indication of whether the code can be redeemed only if it
+            has been reserved first.
           example: false
           title: Is reservation mandatory
           type: boolean
@@ -14567,11 +14611,11 @@ components:
         reservation:
           default: true
           description: |
-            Defines the type of reservation:
-            - `true`: The reservation is a soft reservation. Any customer can use the coupon. This is done via the [Create coupon reservation](https://docs.talon.one/integration-api#operation/createCouponReservation) endpoint.
-            - `false`: The reservation is a hard reservation. Only the associated customer (`recipientIntegrationId`) can use the coupon. This is done via the Campaign Manager when you create a coupon for a given `recipientIntegrationId`, the [Create coupons](https://docs.talon.one/management-api#operation/createCoupons) endpoint or [Create coupons for multiple recipients](https://docs.talon.one/management-api#operation/createCouponsForMultipleRecipients) endpoint.
+            Defines the reservation type:
+            - `true`: The coupon can be reserved for multiple customers.
+            - `false`: The coupon can be reserved only for one customer. It is a personal code.
           example: false
-          title: Reservation Status
+          title: Reservation Type
           type: boolean
         batchId:
           description: The id of the batch the coupon belongs to.
@@ -14580,7 +14624,8 @@ components:
           type: string
         isReservationMandatory:
           default: false
-          description: Whether the reservation effect actually created a new reservation.
+          description: An indication of whether the code can be redeemed only if it
+            has been reserved first.
           example: false
           title: Is reservation mandatory
           type: boolean
@@ -15060,16 +15105,11 @@ components:
           type: string
         entityType:
           description: |
-            The entity type the log is related to.
+            The entity type the notification is related to.
           enum:
           - application
           - loyalty_program
-          - webhook
           example: loyalty_program
-          type: string
-        url:
-          description: The target URL of the request.
-          example: www.my-company.com/my-endpoint-name
           type: string
         applicationId:
           description: Identifier of the Application.
@@ -15293,6 +15333,19 @@ components:
       required:
       - email
       type: object
+    ActivateUserRequest:
+      description: ""
+      example:
+        email: john.doe@example.com
+      properties:
+        email:
+          description: The email address associated with the user profile.
+          example: john.doe@example.com
+          format: email
+          type: string
+      required:
+      - email
+      type: object
     DeleteUserRequest:
       description: ""
       example:
@@ -15337,6 +15390,39 @@ components:
           type: array
         acl:
           description: Indicates the access level of the user.
+          type: string
+      required:
+      - email
+      type: object
+    NewExternalInvitation:
+      description: Parameters for inviting a new user from an external identity provider.
+      example:
+        userGroups:
+        - Managers
+        - Customer support
+        name: John Doe
+        email: john.doe@example.com
+      properties:
+        name:
+          description: Name of the user.
+          example: John Doe
+          type: string
+        userGroups:
+          description: |
+            List of user groups in the external identity provider.
+
+            If there are roles in Talon.One whose names match these user groups,
+            those roles will be automatically assigned to the user upon invitation.
+          example:
+          - Managers
+          - Customer support
+          items:
+            type: string
+          type: array
+        email:
+          description: Email address of the user.
+          example: john.doe@example.com
+          format: email
           type: string
       required:
       - email
@@ -16279,6 +16365,45 @@ components:
       - programID
       - subLedgerID
       - type
+      type: object
+    LoyaltyCardBalances:
+      description: ""
+      example:
+        balance:
+          activePoints: 286.0
+          spentPoints: 150.0
+          expiredPoints: 286.0
+          pendingPoints: 50.0
+        subledgerBalances:
+          mysubledger:
+            activePoints: 286
+            pendingPoints: 50
+            spentPoints: 150
+            expiredPoints: 25
+        profiles:
+        - integrationId: R195412
+          timestamp: 2021-09-12T10:12:42Z
+        - integrationId: R195412
+          timestamp: 2021-09-12T10:12:42Z
+      properties:
+        balance:
+          $ref: '#/components/schemas/LoyaltyBalance'
+        subledgerBalances:
+          additionalProperties:
+            $ref: '#/components/schemas/LoyaltyBalance'
+          description: Map of the loyalty balances of the subledgers of a ledger.
+          example:
+            mysubledger:
+              activePoints: 286
+              pendingPoints: 50
+              spentPoints: 150
+              expiredPoints: 25
+          type: object
+        profiles:
+          description: Customer profiles linked to the loyalty card.
+          items:
+            $ref: '#/components/schemas/LoyaltyCardProfileRegistration'
+          type: array
       type: object
     LoyaltyBalances:
       description: List of loyalty balances for a ledger and its subledgers.
@@ -17834,7 +17959,7 @@ components:
           maxLength: 1000
           type: string
         timestamp:
-          description: Timestamp of the registration to the card.
+          description: Timestamp the customer profile was linked to the card.
           example: 2021-09-12T10:12:42Z
           format: date-time
           type: string
@@ -18359,7 +18484,7 @@ components:
           type: array
         coupons:
           description: |
-            The coupons reserved by this profile. This array includes hard and soft reservations. See each coupon's `reservation` property.
+            The coupons reserved by this profile. This array includes hard and soft reservations.
           items:
             $ref: '#/components/schemas/InventoryCoupon'
           type: array
@@ -22811,7 +22936,7 @@ components:
           description: |
             A list of the IDs of the roles assigned to the user.
 
-            **Note**: Use the [List roles](https://docs.talon.one/management-api#tag/Roles/operation/getAllRoles) endpoint to find the ID of a role.
+            **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
           example:
           - 1
           - 3
@@ -25473,21 +25598,6 @@ components:
       type: object
     Role:
       description: ""
-      example:
-        accountId: 3886
-        created: 2020-06-10T09:05:27.993483Z
-        campaignGroupID: 3
-        members:
-        - 48
-        - 562
-        - 475
-        - 18
-        name: Campaign Reviewer
-        modified: 2021-09-12T10:12:42Z
-        description: Reviews the campaigns
-        id: 6
-        acl:
-          Role: 127
       properties:
         id:
           description: Internal ID of this entity.
@@ -35208,32 +35318,96 @@ components:
         data:
         - accountId: 3886
           created: 2020-06-10T09:05:27.993483Z
-          campaignGroupID: 3
+          permissions:
+            permissionSets:
+            - name: Application permission set
+              logicalOperations:
+              - getApplicationOperations
+              - editApplicationOperations
+            - name: Campaign manager permission set
+              logicalOperations:
+              - getCampaignOperations
+              - createCampaignOperations
+              - updateCampaignOperations
+            - name: Campaign read-only permission set
+              logicalOperations:
+              - getCampaignOperations
+            - name: Loyalty program read-only permission set
+              logicalOperations:
+              - getLoyaltyProgramOperations
+            - name: Campaign access group manager permission set
+              logicalOperations:
+              - getCampaignAccessGroupOperations
+              - updateCampaignAccessGroupOperations
+              - deleteCampaignAccessGroupOperations
+            roles:
+              campaignAccessGroups:
+                "5": Campaign access group manager permission set
+              loyaltyPrograms:
+                "10": Loyalty program manager permission set
+              applications:
+                "1":
+                  application: Application permission set
+                "3":
+                  campaign: Campaign manager permission set
+                "4":
+                  draftCampaign: Campaign read-only permission set
+                "5":
+                  tools: Tools permission set
           members:
-          - 48
-          - 562
-          - 475
-          - 18
-          name: Campaign Reviewer
+          - 10
+          - 12
+          name: Campaign and campaign access group manager
           modified: 2021-09-12T10:12:42Z
-          description: Reviews the campaigns
+          description: Allows you to create and edit campaigns for specific Applications,
+            delete specific campaign access groups, and view loyalty programs.
           id: 6
-          acl:
-            Role: 127
         - accountId: 3886
           created: 2020-06-10T09:05:27.993483Z
-          campaignGroupID: 3
+          permissions:
+            permissionSets:
+            - name: Application permission set
+              logicalOperations:
+              - getApplicationOperations
+              - editApplicationOperations
+            - name: Campaign manager permission set
+              logicalOperations:
+              - getCampaignOperations
+              - createCampaignOperations
+              - updateCampaignOperations
+            - name: Campaign read-only permission set
+              logicalOperations:
+              - getCampaignOperations
+            - name: Loyalty program read-only permission set
+              logicalOperations:
+              - getLoyaltyProgramOperations
+            - name: Campaign access group manager permission set
+              logicalOperations:
+              - getCampaignAccessGroupOperations
+              - updateCampaignAccessGroupOperations
+              - deleteCampaignAccessGroupOperations
+            roles:
+              campaignAccessGroups:
+                "5": Campaign access group manager permission set
+              loyaltyPrograms:
+                "10": Loyalty program manager permission set
+              applications:
+                "1":
+                  application: Application permission set
+                "3":
+                  campaign: Campaign manager permission set
+                "4":
+                  draftCampaign: Campaign read-only permission set
+                "5":
+                  tools: Tools permission set
           members:
-          - 48
-          - 562
-          - 475
-          - 18
-          name: Campaign Reviewer
+          - 10
+          - 12
+          name: Campaign and campaign access group manager
           modified: 2021-09-12T10:12:42Z
-          description: Reviews the campaigns
+          description: Allows you to create and edit campaigns for specific Applications,
+            delete specific campaign access groups, and view loyalty programs.
           id: 6
-          acl:
-            Role: 127
         totalResultSize: 1
       properties:
         totalResultSize:
@@ -35241,7 +35415,7 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/Role'
+            $ref: '#/components/schemas/RoleV2'
           type: array
       required:
       - data
