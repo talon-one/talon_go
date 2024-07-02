@@ -18,6 +18,8 @@ import (
 type TransferLoyaltyCard struct {
 	// The alphanumeric identifier of the loyalty card.
 	NewCardIdentifier string `json:"newCardIdentifier"`
+	// Reason for transferring and blocking the loyalty card.
+	BlockReason string `json:"blockReason"`
 }
 
 // GetNewCardIdentifier returns the NewCardIdentifier field value
@@ -33,6 +35,21 @@ func (o *TransferLoyaltyCard) GetNewCardIdentifier() string {
 // SetNewCardIdentifier sets field value
 func (o *TransferLoyaltyCard) SetNewCardIdentifier(v string) {
 	o.NewCardIdentifier = v
+}
+
+// GetBlockReason returns the BlockReason field value
+func (o *TransferLoyaltyCard) GetBlockReason() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BlockReason
+}
+
+// SetBlockReason sets field value
+func (o *TransferLoyaltyCard) SetBlockReason(v string) {
+	o.BlockReason = v
 }
 
 type NullableTransferLoyaltyCard struct {

@@ -17933,8 +17933,14 @@ components:
           example: summer-loyalty-card-0543
           maxLength: 108
           type: string
+        blockReason:
+          description: |
+            Reason for transferring and blocking the loyalty card.
+          example: Card was lost
+          type: string
       required:
       - newCardIdentifier
+      - blockReason
       type: object
     UpdateLoyaltyCard:
       example:
