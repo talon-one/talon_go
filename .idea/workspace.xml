@@ -4,28 +4,495 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55e344c8-57b1-4969-9ac6-43d116df10ce" name="Changes" comment="" />
+    <list default="true" id="517155ad-a2eb-443d-8c9c-130886b060f4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/api/openapi.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_integration.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_integration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api_management.go" beforeDir="false" afterPath="$PROJECT_DIR$/api_management.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client.go" beforeDir="false" afterPath="$PROJECT_DIR$/client.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configuration.go" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/AdditionalCampaignProperties.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AdditionalCampaignProperties.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ApplicationCustomer.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ApplicationCustomer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/AudienceAnalytics.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AudienceAnalytics.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/AudienceCustomer.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/AudienceCustomer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Binding.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Binding.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Campaign.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Campaign.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CampaignCreatedNotification.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CampaignCreatedNotification.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CampaignDeletedNotification.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CampaignDeletedNotification.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CampaignEditedNotification.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CampaignEditedNotification.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CampaignRulesetChangedNotification.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CampaignRulesetChangedNotification.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CampaignStateChangedNotification.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CampaignStateChangedNotification.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CouponCreationJob.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CouponCreationJob.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CustomerProfile.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CustomerProfile.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Event.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Event.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ExpiringPointsNotificationPolicy.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ExpiringPointsNotificationPolicy.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20031.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20031.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20032.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20032.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20033.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20033.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20034.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20034.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20035.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20035.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20036.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20036.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20037.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20037.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20038.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20038.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20039.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20039.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20040.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20040.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20041.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20041.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20042.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20042.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InlineResponse20043.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InlineResponse20043.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/IntegrationApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/IntegrationApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/InventoryCoupon.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/InventoryCoupon.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/ManagementApi.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/ManagementApi.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/NewPicklist.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NewPicklist.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/NewStore.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NewStore.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/NewTemplateDef.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/NewTemplateDef.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Picklist.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Picklist.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Rule.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Rule.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/SamlLoginEndpoint.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/SamlLoginEndpoint.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Store.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Store.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/TemplateDef.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/TemplateDef.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/UpdatePicklist.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/UpdatePicklist.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_accept_coupon_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_accept_coupon_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_accept_referral_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_accept_referral_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_access_log_entry.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_access_log_entry.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_additional_cost.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_additional_cost.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_analytics.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_analytics.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic_api_calls.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic_api_calls.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic_campaigns.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic_campaigns.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic_discount.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic_discount.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic_loyalty_points.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic_loyalty_points.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic_referrals.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic_referrals.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_dashboard_statistic_revenue.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_dashboard_statistic_revenue.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_account_limits.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_account_limits.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_add_free_item_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_add_free_item_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_add_item_catalog_action.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_add_item_catalog_action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_add_loyalty_points.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_add_loyalty_points.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_add_loyalty_points_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_add_loyalty_points_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_add_to_audience_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_add_to_audience_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_added_deducted_points_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_added_deducted_points_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_additional_campaign_properties.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_additional_campaign_properties.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_additional_cost.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_additional_cost.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_api_error.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_api_error.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_api_health.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_api_health.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_api_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_api_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_campaign_stats.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_campaign_stats.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_customer.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_customer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_customer_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_customer_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_event.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_event.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_referee.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_referee.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_session.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_session_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_session_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_application_store_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_application_store_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_async_coupon_creation_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_async_coupon_creation_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_attributes_mandatory.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_attributes_mandatory.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_attributes_settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_attributes_settings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_audience.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_audience.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_audience_analytics.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_audience_analytics.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_audience_customer.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_audience_customer.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_audience_integration_id.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_audience_integration_id.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_audience_membership.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_audience_membership.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_award_giveaway_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_award_giveaway_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_campaign.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_campaign.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_loyalty_program.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_loyalty_program.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_notification_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_notification_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_notification_webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_notification_webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_notifications.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_notifications.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_base_saml_connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_base_saml_connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_bulk_application_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_bulk_application_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_bulk_campaign_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_bulk_campaign_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_bulk_operation_on_campaigns.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_bulk_operation_on_campaigns.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_activation_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_activation_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_analytics.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_analytics.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_budget.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_budget.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_collection_without_payload.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_collection_without_payload.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_copy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_copy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_created_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_created_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_deleted_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_deleted_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_edited_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_edited_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_evaluation_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_evaluation_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_evaluation_position.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_evaluation_position.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_evaluation_tree_changed_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_evaluation_tree_changed_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_group_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_group_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_ruleset_changed_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_ruleset_changed_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_search.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_set_branch_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_set_branch_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_set_leaf_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_set_leaf_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_set_node.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_set_node.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_state_changed_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_state_changed_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_template.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_template.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_template_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_template_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_campaign_template_params.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_campaign_template_params.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_card_ledger_points_entry_integration_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_card_ledger_points_entry_integration_api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_card_ledger_transaction_log_entry.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_card_ledger_transaction_log_entry.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_card_ledger_transaction_log_entry_integration_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_card_ledger_transaction_log_entry_integration_api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_cart_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_cart_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_catalog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_catalog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_catalog_action.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_catalog_action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_catalog_action_filter.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_catalog_action_filter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_catalog_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_catalog_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_catalog_sync_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_catalog_sync_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_catalogs_strikethrough_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_catalogs_strikethrough_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_change.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_change.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_change_profile_password.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_change_profile_password.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_code_generator_settings.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_code_generator_settings.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_collection_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_collection_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_collection_without_payload.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_collection_without_payload.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_constraints.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_constraints.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_created_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_created_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_creation_job.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_creation_job.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_limit_configs.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_limit_configs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_rejection_reason.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_rejection_reason.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_reservations.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_reservations.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_search.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_search.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupon_value.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupon_value.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_coupons_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_coupons_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_create_application_api_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_create_application_api_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_create_management_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_create_management_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_create_template_campaign.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_create_template_campaign.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_create_template_campaign_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_create_template_campaign_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_custom_effect.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_custom_effect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_custom_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_custom_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_activity_report.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_activity_report.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_analytics.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_analytics.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_inventory.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_inventory.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile_audience_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile_audience_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile_audience_request_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile_audience_request_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile_integration_request_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile_integration_request_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile_integration_response_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile_integration_response_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile_search_query.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile_search_query.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_profile_update_v2_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_profile_update_v2_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_session.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_customer_session_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_customer_session_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_deduct_loyalty_points.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_deduct_loyalty_points.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_deduct_loyalty_points_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_deduct_loyalty_points_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_effect.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_effect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_effect_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_effect_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_email_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_email_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_entity_with_talang_visible_id.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_entity_with_talang_visible_id.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_environment.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_environment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_error_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_error_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_error_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_error_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_error_response_with_status.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_error_response_with_status.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_error_source.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_error_source.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_evaluable_campaign_ids.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_evaluable_campaign_ids.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_event.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_event.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_event_type.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_event_type.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_event_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_event_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_expiring_points_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_expiring_points_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_expiring_points_notification_trigger.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_expiring_points_notification_trigger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_export.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_export.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_feature_flag.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_feature_flag.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_features_feed.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_features_feed.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_func_arg_def.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_func_arg_def.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_function_def.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_function_def.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_giveaway.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_giveaway.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_giveaways_pool.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_giveaways_pool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_identifiable_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_identifiable_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_import.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_import.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_import_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_import_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_1.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_1.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_10.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_10.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_11.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_11.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_12.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_12.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_13.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_13.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_14.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_14.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_15.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_15.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_16.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_16.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_17.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_17.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_18.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_18.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_19.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_19.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_20.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_20.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_21.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_21.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_22.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_22.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_23.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_23.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_24.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_24.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_25.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_25.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_26.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_26.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_27.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_27.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_28.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_28.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_29.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_29.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_3.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_3.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_30.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_30.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_31.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_31.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_32.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_32.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_33.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_33.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_34.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_34.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_35.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_35.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_36.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_36.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_37.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_37.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_38.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_38.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_39.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_39.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_4.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_4.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_40.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_40.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_41.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_41.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_42.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_42.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_43.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_43.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_5.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_5.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_6.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_6.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_7.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_7.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_8.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_8.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_200_9.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_200_9.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inline_response_201.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inline_response_201.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_coupon.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_customer_session_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_customer_session_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_event.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_event.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_event_v2_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_event_v2_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_profile_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_profile_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_state.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_state.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_state_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_state_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_integration_store_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_integration_store_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inventory_coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inventory_coupon.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_inventory_referral.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_inventory_referral.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_item_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_item_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_ledger_entry.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_ledger_entry.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_ledger_info.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_ledger_info.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_ledger_points_entry_integration_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_ledger_points_entry_integration_api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_ledger_transaction_log_entry_integration_api.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_ledger_transaction_log_entry_integration_api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_library_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_library_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_limit_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_limit_config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_limit_counter.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_limit_counter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_login_params.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_login_params.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_balance.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_balance.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_balances.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_balances.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_card.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_card.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_card_profile_registration.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_card_profile_registration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_card_registration.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_card_registration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_dashboard_data.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_dashboard_data.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_dashboard_points_breakdown.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_dashboard_points_breakdown.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_ledger.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_ledger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_ledger_entry.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_ledger_entry.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_ledger_transactions.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_ledger_transactions.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_membership.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_membership.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_program.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_program.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_program_balance.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_program_balance.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_program_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_program_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_program_ledgers.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_program_ledgers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_program_subledgers.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_program_subledgers.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_program_transaction.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_program_transaction.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_sub_ledger.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_sub_ledger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_loyalty_tier.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_loyalty_tier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_management_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_management_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_manager_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_manager_config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_meta.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_meta.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multi_application_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multi_application_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_audiences.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_audiences.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_audiences_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_audiences_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_customer_profile_integration_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_customer_profile_integration_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_customer_profile_integration_request_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_customer_profile_integration_request_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_customer_profile_integration_response_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_customer_profile_integration_response_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_new_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_new_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_multiple_new_audiences.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_multiple_new_audiences.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_mutable_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_mutable_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_account.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_account.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_account_sign_up.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_account_sign_up.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_additional_cost.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_additional_cost.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_application.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_application.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_application_api_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_application_api_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_audience.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_audience.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_base_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_base_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_campaign.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_campaign.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_campaign_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_campaign_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_campaign_evaluation_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_campaign_evaluation_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_campaign_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_campaign_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_campaign_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_campaign_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_campaign_template.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_campaign_template.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_catalog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_catalog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_coupon_creation_job.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_coupon_creation_job.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_coupons.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_coupons.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_coupons_for_multiple_recipients.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_coupons_for_multiple_recipients.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_custom_effect.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_custom_effect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_customer_profile.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_customer_profile.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_customer_session.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_customer_session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_customer_session_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_customer_session_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_event.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_event.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_event_type.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_event_type.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_giveaways_pool.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_giveaways_pool.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_internal_audience.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_internal_audience.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_invitation.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_invitation.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_invite_email.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_invite_email.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_loyalty_program.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_loyalty_program.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_loyalty_tier.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_loyalty_tier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_management_key.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_management_key.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_multiple_audiences_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_multiple_audiences_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_notification_webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_notification_webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_outgoing_integration_webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_outgoing_integration_webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_password.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_password.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_password_email.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_password_email.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_picklist.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_picklist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_referral.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_referral.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_referrals_for_multiple_advocates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_referrals_for_multiple_advocates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_return.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_return.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_role.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_role_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_role_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_ruleset.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_ruleset.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_saml_connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_saml_connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_template_def.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_template_def.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_new_webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_new_webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_notification_activation.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_notification_activation.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_one_time_code.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_one_time_code.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_braze_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_braze_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_clever_tap_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_clever_tap_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_configuration.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_configuration.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_iterable_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_iterable_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_mo_engage_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_mo_engage_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_template.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_template.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_template_with_configuration_details.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_template_with_configuration_details.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_templates.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_templates.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_type.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_type.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_outgoing_integration_types.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_outgoing_integration_types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_patch_item_catalog_action.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_patch_item_catalog_action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_patch_many_items_catalog_action.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_patch_many_items_catalog_action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_pending_points_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_pending_points_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_picklist.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_picklist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_profile_audiences_changes.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_profile_audiences_changes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_redeem_referral_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_redeem_referral_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_referral.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_referral.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_referral_constraints.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_referral_constraints.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_referral_created_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_referral_created_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_referral_rejection_reason.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_referral_rejection_reason.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_reject_coupon_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_reject_coupon_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_reject_referral_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_reject_referral_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_remove_from_audience_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_remove_from_audience_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_remove_item_catalog_action.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_remove_item_catalog_action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_remove_many_items_catalog_action.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_remove_many_items_catalog_action.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_reopen_session_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_reopen_session_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_reserve_coupon_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_reserve_coupon_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_return.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_return.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_return_integration_request.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_return_integration_request.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_returned_cart_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_returned_cart_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_assign.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_assign.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_membership.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_membership.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_v2_application_details.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_v2_application_details.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_v2_base.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_v2_base.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_v2_permission_set.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_v2_permission_set.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_v2_permissions.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_v2_permissions.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_role_v2_roles_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_role_v2_roles_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rollback_added_loyalty_points_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rollback_added_loyalty_points_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rollback_coupon_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rollback_coupon_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rollback_deducted_loyalty_points_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rollback_deducted_loyalty_points_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rollback_discount_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rollback_discount_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rollback_referral_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rollback_referral_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rule.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rule.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_rule_failure_reason.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_rule_failure_reason.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_ruleset.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_ruleset.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_saml_connection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_saml_connection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_saml_connection_metadata.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_saml_connection_metadata.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_saml_login_endpoint.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_saml_login_endpoint.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_session.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_session.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_set_discount_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_set_discount_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_set_discount_per_additional_cost_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_set_discount_per_additional_cost_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_set_discount_per_additional_cost_per_item_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_set_discount_per_additional_cost_per_item_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_set_discount_per_item_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_set_discount_per_item_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_show_bundle_metadata_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_show_bundle_metadata_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_show_notification_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_show_notification_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_slot_def.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_slot_def.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_sso_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_sso_config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_strikethrough_changed_item.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_strikethrough_changed_item.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_strikethrough_custom_effect_per_item_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_strikethrough_custom_effect_per_item_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_strikethrough_effect.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_strikethrough_effect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_strikethrough_labeling_notification.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_strikethrough_labeling_notification.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_strikethrough_set_discount_per_item_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_strikethrough_set_discount_per_item_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_strikethrough_trigger.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_strikethrough_trigger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_talang_attribute.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_talang_attribute.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_talang_attribute_visibility.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_talang_attribute_visibility.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_template_arg_def.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_template_arg_def.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_template_def.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_template_def.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_template_limit_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_template_limit_config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tier.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_tier.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tier_downgrade_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_tier_downgrade_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tier_upgrade_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_tier_upgrade_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tier_will_downgrade_notification_policy.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_tier_will_downgrade_notification_policy.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_tier_will_downgrade_notification_trigger.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_tier_will_downgrade_notification_trigger.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_track_event_v2_response.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_track_event_v2_response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_transfer_loyalty_card.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_transfer_loyalty_card.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_trigger_webhook_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_trigger_webhook_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_two_fa_config.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_two_fa_config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_account.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_account.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_application.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_application.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_attribute_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_attribute_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_audience.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_audience.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_campaign.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_campaign.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_campaign_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_campaign_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_campaign_evaluation_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_campaign_evaluation_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_campaign_group.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_campaign_group.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_campaign_template.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_campaign_template.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_catalog.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_catalog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_collection.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_collection.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_coupon.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_coupon.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_coupon_batch.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_coupon_batch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_custom_effect.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_custom_effect.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_loyalty_card.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_loyalty_card.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_loyalty_program.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_loyalty_program.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_picklist.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_picklist.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_referral.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_referral.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_referral_batch.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_referral_batch.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_role.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_role.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_role_v2.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_role_v2.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_store.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_store.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_update_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_update_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_user_entity.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_user_entity.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_webhook.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_webhook.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_webhook_activation_log_entry.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_webhook_activation_log_entry.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_webhook_log_entry.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_webhook_log_entry.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_webhook_with_outgoing_integration_details.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_webhook_with_outgoing_integration_details.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model_will_award_giveaway_effect_props.go" beforeDir="false" afterPath="$PROJECT_DIR$/model_will_award_giveaway_effect_props.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/response.go" beforeDir="false" afterPath="$PROJECT_DIR$/response.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="GOROOT" url="file:///usr/local/go" />
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../pkg/mod/golang.org/toolchain@v0.0.1-go1.22.3.darwin-arm64" />
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="master" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
   "associatedIndex": 7
 }]]></component>
-  <component name="ProjectId" id="2Wq0q3TRq6ds6Yd5D7mZwSZUZAO" />
+  <component name="ProjectId" id="2i2gQYgIv2IOplPISGK7LwqmX0X" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,8 +505,6 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
-    "RunOnceActivity.go.vendoring.notification.had.been.shown": "true",
-    "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
@@ -49,6 +514,13 @@
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-gosdk-e58f7cfedaf7-155fe4b6e3a0-org.jetbrains.plugins.go.sharedIndexes.bundled-GO-233.14015.113" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />

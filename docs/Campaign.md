@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | A detailed description of the campaign. | 
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this campaign. | [optional] 
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to STATE_ENABLED]
 **ActiveRulesetId** | Pointer to **int32** | [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | 
@@ -21,7 +21,6 @@ Name | Type | Description | Notes
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.  | 
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.  | [optional] 
-**EvaluationGroupId** | Pointer to **int32** | The ID of the campaign evaluation group the campaign belongs to. | [optional] 
 **Type** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [default to TYPE_ADVANCED]
 **LinkedStoreIds** | Pointer to **[]int32** | A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.  | [optional] 
 **Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | 
@@ -45,6 +44,7 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
+**FrontendState** | Pointer to **string** | A campaign state described exactly as in the Campaign Manager. | 
 
 ## Methods
 
@@ -250,13 +250,13 @@ SetEndTime gets a reference to the given time.Time and assigns it to the EndTime
 
 ### GetAttributes
 
-`func (o *Campaign) GetAttributes() map[string]interface{}`
+`func (o *Campaign) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *Campaign) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *Campaign) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -269,9 +269,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *Campaign) SetAttributes(v map[string]interface{})`
+`func (o *Campaign) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetState
 
@@ -472,31 +472,6 @@ HasCampaignGroups returns a boolean if a field has been set.
 `func (o *Campaign) SetCampaignGroups(v []int32)`
 
 SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
-
-### GetEvaluationGroupId
-
-`func (o *Campaign) GetEvaluationGroupId() int32`
-
-GetEvaluationGroupId returns the EvaluationGroupId field if non-nil, zero value otherwise.
-
-### GetEvaluationGroupIdOk
-
-`func (o *Campaign) GetEvaluationGroupIdOk() (int32, bool)`
-
-GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEvaluationGroupId
-
-`func (o *Campaign) HasEvaluationGroupId() bool`
-
-HasEvaluationGroupId returns a boolean if a field has been set.
-
-### SetEvaluationGroupId
-
-`func (o *Campaign) SetEvaluationGroupId(v int32)`
-
-SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
 
 ### GetType
 
@@ -1072,6 +1047,31 @@ HasTemplateId returns a boolean if a field has been set.
 `func (o *Campaign) SetTemplateId(v int32)`
 
 SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
+
+### GetFrontendState
+
+`func (o *Campaign) GetFrontendState() string`
+
+GetFrontendState returns the FrontendState field if non-nil, zero value otherwise.
+
+### GetFrontendStateOk
+
+`func (o *Campaign) GetFrontendStateOk() (string, bool)`
+
+GetFrontendStateOk returns a tuple with the FrontendState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasFrontendState
+
+`func (o *Campaign) HasFrontendState() bool`
+
+HasFrontendState returns a boolean if a field has been set.
+
+### SetFrontendState
+
+`func (o *Campaign) SetFrontendState(v string)`
+
+SetFrontendState gets a reference to the given string and assigns it to the FrontendState field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

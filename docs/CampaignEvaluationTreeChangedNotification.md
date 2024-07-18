@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicationId** | Pointer to **int32** | The ID of the Application whose campaign evaluation tree changed. | 
-**OldEvaluationTree** | Pointer to [**CampaignSet**](CampaignSet.md) |  | [optional] 
-**EvaluationTree** | Pointer to [**CampaignSet**](CampaignSet.md) |  | 
+**OldEvaluationTree** | Pointer to [**CampaignSet**](.md) |  | [optional] 
+**EvaluationTree** | Pointer to [**CampaignSet**](.md) |  | 
 
 ## Methods
 

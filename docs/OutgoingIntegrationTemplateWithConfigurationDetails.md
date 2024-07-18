@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Method** | Pointer to **string** | API method for this webhook. | 
 **RelativeUrl** | Pointer to **string** | The relative URL corresponding to each integration template. | 
 **Headers** | Pointer to **[]string** | The list of HTTP headers for this integration template. | 
-**Policy** | Pointer to [**map[string]interface{}**](.md) | The outgoing integration policy specific to each integration type. | 
+**Policy** | Pointer to [**OutgoingIntegrationConfigurationPolicy**](OutgoingIntegrationConfigurationPolicy.md) |  | 
 
 ## Methods
 
@@ -218,13 +218,13 @@ SetHeaders gets a reference to the given []string and assigns it to the Headers 
 
 ### GetPolicy
 
-`func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPolicy() map[string]interface{}`
+`func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPolicy() OutgoingIntegrationConfigurationPolicy`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPolicyOk() (map[string]interface{}, bool)`
+`func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPolicyOk() (OutgoingIntegrationConfigurationPolicy, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -237,9 +237,9 @@ HasPolicy returns a boolean if a field has been set.
 
 ### SetPolicy
 
-`func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetPolicy(v map[string]interface{})`
+`func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetPolicy(v OutgoingIntegrationConfigurationPolicy)`
 
-SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
+SetPolicy gets a reference to the given OutgoingIntegrationConfigurationPolicy and assigns it to the Policy field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

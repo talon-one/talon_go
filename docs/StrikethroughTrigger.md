@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | The type of event that triggered the strikethrough labeling. | 
 **TriggeredAt** | Pointer to [**time.Time**](time.Time.md) | The creation time of the event that triggered the strikethrough labeling. | 
 **TotalAffectedItems** | Pointer to **int32** | The total number of items affected by the event that triggered the strikethrough labeling. | 
-**Payload** | Pointer to [**map[string]interface{}**](.md) | The arbitrary properties associated with this trigger type. | 
+**Payload** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The arbitrary properties associated with this trigger type. | 
 
 ## Methods
 
@@ -114,13 +114,13 @@ SetTotalAffectedItems gets a reference to the given int32 and assigns it to the 
 
 ### GetPayload
 
-`func (o *StrikethroughTrigger) GetPayload() map[string]interface{}`
+`func (o *StrikethroughTrigger) GetPayload() map[string]map[string]interface{}`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *StrikethroughTrigger) GetPayloadOk() (map[string]interface{}, bool)`
+`func (o *StrikethroughTrigger) GetPayloadOk() (map[string]map[string]interface{}, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -133,9 +133,9 @@ HasPayload returns a boolean if a field has been set.
 
 ### SetPayload
 
-`func (o *StrikethroughTrigger) SetPayload(v map[string]interface{})`
+`func (o *StrikethroughTrigger) SetPayload(v map[string]map[string]interface{})`
 
-SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
+SetPayload gets a reference to the given map[string]map[string]interface{} and assigns it to the Payload field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

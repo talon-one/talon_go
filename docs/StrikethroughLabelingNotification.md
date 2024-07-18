@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ApplicationId** | Pointer to **int32** | The ID of the application that catalog items labels belongs to. | 
 **CurrentBatch** | Pointer to **int32** | The batch number of the notification. Notifications might be sent in different batches. | 
 **TotalBatches** | Pointer to **int32** | The total number of batches for the notification. | 
-**Trigger** | Pointer to [**StrikethroughTrigger**](StrikethroughTrigger.md) |  | 
+**Trigger** | Pointer to [**StrikethroughTrigger**](.md) |  | 
 **ChangedItems** | Pointer to [**[]StrikethroughChangedItem**](StrikethroughChangedItem.md) |  | 
 
 ## Methods

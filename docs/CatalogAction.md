@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** | The type of sync action. | 
-**Payload** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Payload** | Pointer to [**CatalogActionPayload**](CatalogActionPayload.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetPayload
 
-`func (o *CatalogAction) GetPayload() map[string]interface{}`
+`func (o *CatalogAction) GetPayload() CatalogActionPayload`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *CatalogAction) GetPayloadOk() (map[string]interface{}, bool)`
+`func (o *CatalogAction) GetPayloadOk() (CatalogActionPayload, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasPayload returns a boolean if a field has been set.
 
 ### SetPayload
 
-`func (o *CatalogAction) SetPayload(v map[string]interface{})`
+`func (o *CatalogAction) SetPayload(v CatalogActionPayload)`
 
-SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
+SetPayload gets a reference to the given CatalogActionPayload and assigns it to the Payload field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

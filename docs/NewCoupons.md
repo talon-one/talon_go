@@ -12,11 +12,11 @@ Name | Type | Description | Notes
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.  | [optional] 
 **NumberOfCoupons** | Pointer to **int32** | The number of new coupon codes to generate for the campaign. Must be at least 1. | 
 **UniquePrefix** | Pointer to **string** | **DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#operation/createCouponsAsync) endpoint.  | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this item. | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The integration ID for this coupon&#39;s beneficiary&#39;s profile. | [optional] 
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
 **CouponPattern** | Pointer to **string** | The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
-**IsReservationMandatory** | Pointer to **bool** | Whether the reservation effect actually created a new reservation. | [optional] [default to true]
+**IsReservationMandatory** | Pointer to **bool** | An indication of whether the code can be redeemed only if it has been reserved first. | [optional] [default to false]
 **ImplicitlyReserved** | Pointer to **bool** | An indication of whether the coupon is implicitly reserved for all customers. | [optional] 
 
 ## Methods
@@ -223,13 +223,13 @@ SetUniquePrefix gets a reference to the given string and assigns it to the Uniqu
 
 ### GetAttributes
 
-`func (o *NewCoupons) GetAttributes() map[string]interface{}`
+`func (o *NewCoupons) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewCoupons) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewCoupons) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -242,9 +242,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *NewCoupons) SetAttributes(v map[string]interface{})`
+`func (o *NewCoupons) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetRecipientIntegrationId
 

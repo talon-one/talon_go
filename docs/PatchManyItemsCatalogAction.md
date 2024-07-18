@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Price** | Pointer to **float32** | Price of the item. | [optional] 
 **Filters** | Pointer to [**[]CatalogActionFilter**](CatalogActionFilter.md) | The list of filters used to select the items to patch, joined by &#x60;AND&#x60;.  **Note:** Every item in the catalog will be modified if there are no filters.  | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the items to patch. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The attributes of the items to patch. | [optional] 
 
 ## Methods
 
@@ -62,13 +62,13 @@ SetFilters gets a reference to the given []CatalogActionFilter and assigns it to
 
 ### GetAttributes
 
-`func (o *PatchManyItemsCatalogAction) GetAttributes() map[string]interface{}`
+`func (o *PatchManyItemsCatalogAction) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PatchManyItemsCatalogAction) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *PatchManyItemsCatalogAction) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +81,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *PatchManyItemsCatalogAction) SetAttributes(v map[string]interface{})`
+`func (o *PatchManyItemsCatalogAction) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

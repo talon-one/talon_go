@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Policy** | Pointer to [**BaseNotificationPolicy**](BaseNotificationPolicy.md) |  | 
 **Enabled** | Pointer to **bool** | Indicates whether the notification is activated. | [optional] [default to true]
 **Webhook** | Pointer to [**BaseNotificationWebhook**](BaseNotificationWebhook.md) |  | 
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 
 ### GetPolicy
 
-`func (o *BaseNotification) GetPolicy() map[string]interface{}`
+`func (o *BaseNotification) GetPolicy() BaseNotificationPolicy`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *BaseNotification) GetPolicyOk() (map[string]interface{}, bool)`
+`func (o *BaseNotification) GetPolicyOk() (BaseNotificationPolicy, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -33,9 +33,9 @@ HasPolicy returns a boolean if a field has been set.
 
 ### SetPolicy
 
-`func (o *BaseNotification) SetPolicy(v map[string]interface{})`
+`func (o *BaseNotification) SetPolicy(v BaseNotificationPolicy)`
 
-SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
+SetPolicy gets a reference to the given BaseNotificationPolicy and assigns it to the Policy field.
 
 ### GetEnabled
 

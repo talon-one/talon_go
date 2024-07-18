@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ReservationLimit** | Pointer to **int32** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this item. | [optional] 
 **RecipientsIntegrationIds** | Pointer to **[]string** | The integration IDs for recipients. | 
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
 **CouponPattern** | Pointer to **string** | The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
@@ -143,13 +143,13 @@ SetExpiryDate gets a reference to the given time.Time and assigns it to the Expi
 
 ### GetAttributes
 
-`func (o *NewCouponsForMultipleRecipients) GetAttributes() map[string]interface{}`
+`func (o *NewCouponsForMultipleRecipients) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewCouponsForMultipleRecipients) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewCouponsForMultipleRecipients) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -162,9 +162,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *NewCouponsForMultipleRecipients) SetAttributes(v map[string]interface{})`
+`func (o *NewCouponsForMultipleRecipients) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetRecipientsIntegrationIds
 

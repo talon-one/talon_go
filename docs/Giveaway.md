@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **PoolId** | Pointer to **int32** | The ID of the pool to return giveaway codes from. | 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the giveaway becomes valid. | [optional] 
 **EndDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the giveaway becomes invalid. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this giveaway. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this giveaway. | [optional] 
 **Used** | Pointer to **bool** | Indicates whether this giveaway code was given before. | [optional] 
 **ImportId** | Pointer to **int32** | The ID of the Import which created this giveaway. | [optional] 
 **ProfileIntegrationId** | Pointer to **string** | The third-party integration ID of the customer profile that was awarded the giveaway, if the giveaway was awarded. | [optional] 
@@ -170,13 +170,13 @@ SetEndDate gets a reference to the given time.Time and assigns it to the EndDate
 
 ### GetAttributes
 
-`func (o *Giveaway) GetAttributes() map[string]interface{}`
+`func (o *Giveaway) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *Giveaway) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *Giveaway) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -189,9 +189,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *Giveaway) SetAttributes(v map[string]interface{})`
+`func (o *Giveaway) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetUsed
 

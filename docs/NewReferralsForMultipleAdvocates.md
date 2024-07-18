@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **UsageLimit** | Pointer to **int32** | The number of times a referral code can be used. &#x60;0&#x60; means no limit but any campaign usage limits will still apply.  | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign from which the referral received the referral code. | 
 **AdvocateProfileIntegrationIds** | Pointer to **[]string** | An array containing all the respective advocate profiles. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this referral code. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this referral code. | [optional] 
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
 **ReferralPattern** | Pointer to **string** | The pattern used to generate referrals. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
 
@@ -142,13 +142,13 @@ SetAdvocateProfileIntegrationIds gets a reference to the given []string and assi
 
 ### GetAttributes
 
-`func (o *NewReferralsForMultipleAdvocates) GetAttributes() map[string]interface{}`
+`func (o *NewReferralsForMultipleAdvocates) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewReferralsForMultipleAdvocates) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewReferralsForMultipleAdvocates) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -161,9 +161,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *NewReferralsForMultipleAdvocates) SetAttributes(v map[string]interface{})`
+`func (o *NewReferralsForMultipleAdvocates) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetValidCharacters
 

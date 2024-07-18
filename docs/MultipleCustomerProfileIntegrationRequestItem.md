@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this item. | [optional] 
 **IntegrationId** | Pointer to **string** | The identifier of this profile, set by your integration layer. It must be unique within the account.  To get the &#x60;integrationId&#x60; of the profile from a &#x60;sessionId&#x60;, use the [Update customer session](https://docs.talon.one/integration-api#operation/updateCustomerSessionV2).  | 
 
 ## Methods
 
 ### GetAttributes
 
-`func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributes() map[string]interface{}`
+`func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -30,9 +30,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *MultipleCustomerProfileIntegrationRequestItem) SetAttributes(v map[string]interface{})`
+`func (o *MultipleCustomerProfileIntegrationRequestItem) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetIntegrationId
 

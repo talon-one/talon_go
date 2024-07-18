@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The campaign template name. | 
 **Description** | Pointer to **string** | Customer-facing text that explains the objective of the template. | 
 **Instructions** | Pointer to **string** | Customer-facing text that explains how to use the template. For example, you can use this property to explain the available attributes of this template, and how they can be modified when a user uses this template to create a new campaign. | 
-**CampaignAttributes** | Pointer to [**map[string]interface{}**](.md) | The campaign attributes that campaigns created from this template will have by default. | [optional] 
-**CouponAttributes** | Pointer to [**map[string]interface{}**](.md) | The campaign attributes that coupons created from this template will have by default. | [optional] 
+**CampaignAttributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The campaign attributes that campaigns created from this template will have by default. | [optional] 
+**CouponAttributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The campaign attributes that coupons created from this template will have by default. | [optional] 
 **State** | Pointer to **string** | Only campaign templates in &#39;available&#39; state may be used to create campaigns. | 
 **ActiveRulesetId** | Pointer to **int32** | The ID of the ruleset this campaign template will use. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign template. | [optional] 
@@ -101,13 +101,13 @@ SetInstructions gets a reference to the given string and assigns it to the Instr
 
 ### GetCampaignAttributes
 
-`func (o *UpdateCampaignTemplate) GetCampaignAttributes() map[string]interface{}`
+`func (o *UpdateCampaignTemplate) GetCampaignAttributes() map[string]map[string]interface{}`
 
 GetCampaignAttributes returns the CampaignAttributes field if non-nil, zero value otherwise.
 
 ### GetCampaignAttributesOk
 
-`func (o *UpdateCampaignTemplate) GetCampaignAttributesOk() (map[string]interface{}, bool)`
+`func (o *UpdateCampaignTemplate) GetCampaignAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetCampaignAttributesOk returns a tuple with the CampaignAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -120,19 +120,19 @@ HasCampaignAttributes returns a boolean if a field has been set.
 
 ### SetCampaignAttributes
 
-`func (o *UpdateCampaignTemplate) SetCampaignAttributes(v map[string]interface{})`
+`func (o *UpdateCampaignTemplate) SetCampaignAttributes(v map[string]map[string]interface{})`
 
-SetCampaignAttributes gets a reference to the given map[string]interface{} and assigns it to the CampaignAttributes field.
+SetCampaignAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the CampaignAttributes field.
 
 ### GetCouponAttributes
 
-`func (o *UpdateCampaignTemplate) GetCouponAttributes() map[string]interface{}`
+`func (o *UpdateCampaignTemplate) GetCouponAttributes() map[string]map[string]interface{}`
 
 GetCouponAttributes returns the CouponAttributes field if non-nil, zero value otherwise.
 
 ### GetCouponAttributesOk
 
-`func (o *UpdateCampaignTemplate) GetCouponAttributesOk() (map[string]interface{}, bool)`
+`func (o *UpdateCampaignTemplate) GetCouponAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetCouponAttributesOk returns a tuple with the CouponAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -145,9 +145,9 @@ HasCouponAttributes returns a boolean if a field has been set.
 
 ### SetCouponAttributes
 
-`func (o *UpdateCampaignTemplate) SetCouponAttributes(v map[string]interface{})`
+`func (o *UpdateCampaignTemplate) SetCouponAttributes(v map[string]map[string]interface{})`
 
-SetCouponAttributes gets a reference to the given map[string]interface{} and assigns it to the CouponAttributes field.
+SetCouponAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the CouponAttributes field.
 
 ### GetState
 

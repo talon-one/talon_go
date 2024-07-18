@@ -9,8 +9,8 @@ Name | Type | Description | Notes
 **UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **ApplicationId** | Pointer to **int32** | ID of application associated with change. | [optional] 
 **Entity** | Pointer to **string** | API endpoint on which the change was initiated. | 
-**Old** | Pointer to [**map[string]interface{}**](.md) | Resource before the change occurred. | [optional] 
-**New** | Pointer to [**map[string]interface{}**](.md) | Resource after the change occurred. | [optional] 
+**Old** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Resource before the change occurred. | [optional] 
+**New** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Resource after the change occurred. | [optional] 
 **ManagementKeyId** | Pointer to **int32** | ID of management key used to perform changes. | [optional] 
 
 ## Methods
@@ -142,13 +142,13 @@ SetEntity gets a reference to the given string and assigns it to the Entity fiel
 
 ### GetOld
 
-`func (o *Change) GetOld() map[string]interface{}`
+`func (o *Change) GetOld() map[string]map[string]interface{}`
 
 GetOld returns the Old field if non-nil, zero value otherwise.
 
 ### GetOldOk
 
-`func (o *Change) GetOldOk() (map[string]interface{}, bool)`
+`func (o *Change) GetOldOk() (map[string]map[string]interface{}, bool)`
 
 GetOldOk returns a tuple with the Old field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -161,19 +161,19 @@ HasOld returns a boolean if a field has been set.
 
 ### SetOld
 
-`func (o *Change) SetOld(v map[string]interface{})`
+`func (o *Change) SetOld(v map[string]map[string]interface{})`
 
-SetOld gets a reference to the given map[string]interface{} and assigns it to the Old field.
+SetOld gets a reference to the given map[string]map[string]interface{} and assigns it to the Old field.
 
 ### GetNew
 
-`func (o *Change) GetNew() map[string]interface{}`
+`func (o *Change) GetNew() map[string]map[string]interface{}`
 
 GetNew returns the New field if non-nil, zero value otherwise.
 
 ### GetNewOk
 
-`func (o *Change) GetNewOk() (map[string]interface{}, bool)`
+`func (o *Change) GetNewOk() (map[string]map[string]interface{}, bool)`
 
 GetNewOk returns a tuple with the New field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -186,9 +186,9 @@ HasNew returns a boolean if a field has been set.
 
 ### SetNew
 
-`func (o *Change) SetNew(v map[string]interface{})`
+`func (o *Change) SetNew(v map[string]map[string]interface{})`
 
-SetNew gets a reference to the given map[string]interface{} and assigns it to the New field.
+SetNew gets a reference to the given map[string]map[string]interface{} and assigns it to the New field.
 
 ### GetManagementKeyId
 

@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type** | Pointer to **string** | The type of value this argument expects. | 
-**Description** | Pointer to **string** | A campaigner-friendly description of the argument, this will also be shown in the rule editor. | 
+**Description** | Pointer to **string** | A campaigner-friendly description of the argument, this will also be shown in the rule editor. | [optional] 
 **Title** | Pointer to **string** | A campaigner friendly name for the argument, this will be shown in the rule editor. | 
-**Ui** | Pointer to [**map[string]interface{}**](.md) | Arbitrary metadata that may be used to render an input for this argument. | 
+**Ui** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary metadata that may be used to render an input for this argument. | 
 **PicklistID** | Pointer to **int32** | ID of the picklist linked to a template. | [optional] 
 **RestrictedByPicklist** | Pointer to **bool** | Whether or not this attribute&#39;s value is restricted by picklist (&#x60;picklist&#x60; property) | [optional] 
 
@@ -90,13 +90,13 @@ SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetUi
 
-`func (o *TemplateArgDef) GetUi() map[string]interface{}`
+`func (o *TemplateArgDef) GetUi() map[string]map[string]interface{}`
 
 GetUi returns the Ui field if non-nil, zero value otherwise.
 
 ### GetUiOk
 
-`func (o *TemplateArgDef) GetUiOk() (map[string]interface{}, bool)`
+`func (o *TemplateArgDef) GetUiOk() (map[string]map[string]interface{}, bool)`
 
 GetUiOk returns a tuple with the Ui field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -109,9 +109,9 @@ HasUi returns a boolean if a field has been set.
 
 ### SetUi
 
-`func (o *TemplateArgDef) SetUi(v map[string]interface{})`
+`func (o *TemplateArgDef) SetUi(v map[string]map[string]interface{})`
 
-SetUi gets a reference to the given map[string]interface{} and assigns it to the Ui field.
+SetUi gets a reference to the given map[string]map[string]interface{} and assigns it to the Ui field.
 
 ### GetPicklistID
 

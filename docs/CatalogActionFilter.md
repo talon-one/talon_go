@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attr** | Pointer to **string** | The name of the attribute to filter on. | 
 **Op** | Pointer to **string** | The filtering operator. | 
-**Value** | Pointer to [**map[string]interface{}**](.md) | The value to filter for. | 
+**Value** | Pointer to [**map[string]interface{}**](map[string]interface{}.md) | The value to filter for. | 
 
 ## Methods
 

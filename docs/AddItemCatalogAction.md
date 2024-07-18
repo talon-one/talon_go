@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sku** | Pointer to **string** | The unique SKU of the item to add. | 
 **Price** | Pointer to **float32** | Price of the item. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the item to add. | [optional] 
-**ReplaceIfExists** | Pointer to **bool** | Indicates whether to replace the attributes of the item if the same SKU exists. | [optional] [default to false]
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The attributes of the item to add. | [optional] 
+**Product** | Pointer to [**Product**](Product.md) |  | [optional] 
+**ReplaceIfExists** | Pointer to **bool** | Indicates whether to replace the attributes of the item if the same SKU exists.  **Note**: When set to &#x60;true&#x60;:   - If you do not provide a new &#x60;price&#x60; value, the existing &#x60;price&#x60; value is retained.   - If you do not provide a new &#x60;product&#x60; value, the &#x60;product&#x60; value is set to &#x60;null&#x60;.  | [optional] [default to false]
 
 ## Methods
 
@@ -63,13 +64,13 @@ SetPrice gets a reference to the given float32 and assigns it to the Price field
 
 ### GetAttributes
 
-`func (o *AddItemCatalogAction) GetAttributes() map[string]interface{}`
+`func (o *AddItemCatalogAction) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *AddItemCatalogAction) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *AddItemCatalogAction) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -82,9 +83,34 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *AddItemCatalogAction) SetAttributes(v map[string]interface{})`
+`func (o *AddItemCatalogAction) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
+
+### GetProduct
+
+`func (o *AddItemCatalogAction) GetProduct() Product`
+
+GetProduct returns the Product field if non-nil, zero value otherwise.
+
+### GetProductOk
+
+`func (o *AddItemCatalogAction) GetProductOk() (Product, bool)`
+
+GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProduct
+
+`func (o *AddItemCatalogAction) HasProduct() bool`
+
+HasProduct returns a boolean if a field has been set.
+
+### SetProduct
+
+`func (o *AddItemCatalogAction) SetProduct(v Product)`
+
+SetProduct gets a reference to the given Product and assigns it to the Product field.
 
 ### GetReplaceIfExists
 

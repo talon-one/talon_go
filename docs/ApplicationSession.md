@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. The time this entity was created. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
 **StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **Discounts** | Pointer to **map[string]float32** | **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the &#x60;totalDiscounts&#x60; property instead.  | 
 **TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this item. | [optional] 
 
 ## Methods
 
@@ -374,13 +374,13 @@ SetTotal gets a reference to the given float32 and assigns it to the Total field
 
 ### GetAttributes
 
-`func (o *ApplicationSession) GetAttributes() map[string]interface{}`
+`func (o *ApplicationSession) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *ApplicationSession) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *ApplicationSession) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -393,9 +393,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *ApplicationSession) SetAttributes(v map[string]interface{})`
+`func (o *ApplicationSession) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

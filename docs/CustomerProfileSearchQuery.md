@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes. | [optional] 
 **IntegrationIDs** | Pointer to **[]string** |  | [optional] 
 **ProfileIDs** | Pointer to **[]int32** |  | [optional] 
 
@@ -12,13 +12,13 @@ Name | Type | Description | Notes
 
 ### GetAttributes
 
-`func (o *CustomerProfileSearchQuery) GetAttributes() map[string]interface{}`
+`func (o *CustomerProfileSearchQuery) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *CustomerProfileSearchQuery) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *CustomerProfileSearchQuery) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -31,9 +31,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *CustomerProfileSearchQuery) SetAttributes(v map[string]interface{})`
+`func (o *CustomerProfileSearchQuery) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetIntegrationIDs
 

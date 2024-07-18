@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaign** | Pointer to [**CampaignStateNotification**](CampaignStateNotification.md) |  | 
-**OldCampaign** | Pointer to [**CampaignStateNotification**](CampaignStateNotification.md) |  | 
-**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
+**Campaign** | Pointer to [**Campaign**](.md) |  | 
+**OldCampaign** | Pointer to [**Campaign**](.md) |  | 
+**Ruleset** | Pointer to [**Ruleset**](.md) |  | [optional] 
 
 ## Methods
 
 ### GetCampaign
 
-`func (o *CampaignEditedNotification) GetCampaign() CampaignStateNotification`
+`func (o *CampaignEditedNotification) GetCampaign() Campaign`
 
 GetCampaign returns the Campaign field if non-nil, zero value otherwise.
 
 ### GetCampaignOk
 
-`func (o *CampaignEditedNotification) GetCampaignOk() (CampaignStateNotification, bool)`
+`func (o *CampaignEditedNotification) GetCampaignOk() (Campaign, bool)`
 
 GetCampaignOk returns a tuple with the Campaign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -31,19 +31,19 @@ HasCampaign returns a boolean if a field has been set.
 
 ### SetCampaign
 
-`func (o *CampaignEditedNotification) SetCampaign(v CampaignStateNotification)`
+`func (o *CampaignEditedNotification) SetCampaign(v Campaign)`
 
-SetCampaign gets a reference to the given CampaignStateNotification and assigns it to the Campaign field.
+SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
 
 ### GetOldCampaign
 
-`func (o *CampaignEditedNotification) GetOldCampaign() CampaignStateNotification`
+`func (o *CampaignEditedNotification) GetOldCampaign() Campaign`
 
 GetOldCampaign returns the OldCampaign field if non-nil, zero value otherwise.
 
 ### GetOldCampaignOk
 
-`func (o *CampaignEditedNotification) GetOldCampaignOk() (CampaignStateNotification, bool)`
+`func (o *CampaignEditedNotification) GetOldCampaignOk() (Campaign, bool)`
 
 GetOldCampaignOk returns a tuple with the OldCampaign field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -56,9 +56,9 @@ HasOldCampaign returns a boolean if a field has been set.
 
 ### SetOldCampaign
 
-`func (o *CampaignEditedNotification) SetOldCampaign(v CampaignStateNotification)`
+`func (o *CampaignEditedNotification) SetOldCampaign(v Campaign)`
 
-SetOldCampaign gets a reference to the given CampaignStateNotification and assigns it to the OldCampaign field.
+SetOldCampaign gets a reference to the given Campaign and assigns it to the OldCampaign field.
 
 ### GetRuleset
 

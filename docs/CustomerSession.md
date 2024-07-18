@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
+**IntegrationId** | Pointer to **string** |  | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
 **Identifiers** | Pointer to **[]string** | Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  | [optional] 
 **Total** | Pointer to **float32** | The total sum of the cart in one session. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | 
 **FirstSession** | Pointer to **bool** | Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions. | 
 **Discounts** | Pointer to **map[string]float32** | A map of labelled discount values, values will be in the same currency as the application associated with the session. | 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received on this session. | 
@@ -273,13 +273,13 @@ SetTotal gets a reference to the given float32 and assigns it to the Total field
 
 ### GetAttributes
 
-`func (o *CustomerSession) GetAttributes() map[string]interface{}`
+`func (o *CustomerSession) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *CustomerSession) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *CustomerSession) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -292,9 +292,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *CustomerSession) SetAttributes(v map[string]interface{})`
+`func (o *CustomerSession) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetFirstSession
 

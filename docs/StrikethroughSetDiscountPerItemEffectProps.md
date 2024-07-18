@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | effect name. | 
-**Value** | Pointer to [**map[string]interface{}**](.md) | discount value. | 
+**Value** | Pointer to [**map[string]interface{}**](map[string]interface{}.md) | discount value. | 
 
 ## Methods
 

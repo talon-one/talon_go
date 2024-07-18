@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the store. | 
 **Description** | Pointer to **string** | The description of the store. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the store. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The attributes of the store. | [optional] 
 
 ## Methods
 
@@ -62,13 +62,13 @@ SetDescription gets a reference to the given string and assigns it to the Descri
 
 ### GetAttributes
 
-`func (o *UpdateStore) GetAttributes() map[string]interface{}`
+`func (o *UpdateStore) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *UpdateStore) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *UpdateStore) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +81,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *UpdateStore) SetAttributes(v map[string]interface{})`
+`func (o *UpdateStore) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

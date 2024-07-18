@@ -16,9 +16,9 @@ Name | Type | Description | Notes
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative. | [optional] 
 **NumberOfCoupons** | Pointer to **int32** | The number of new coupon codes to generate for the campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons. | 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with coupons. | 
 **BatchId** | Pointer to **string** | The batch ID coupons created by this job will bear. | 
-**Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
+**Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;pending verification&#x60; - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
 **CreatedAmount** | Pointer to **int32** | The number of coupon codes that were already created for this request. | 
 **FailCount** | Pointer to **int32** | The number of times this job failed. | 
 **Errors** | Pointer to **[]string** | An array of individual problems encountered during the request. | 
@@ -331,13 +331,13 @@ SetCouponSettings gets a reference to the given CodeGeneratorSettings and assign
 
 ### GetAttributes
 
-`func (o *CouponCreationJob) GetAttributes() map[string]interface{}`
+`func (o *CouponCreationJob) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *CouponCreationJob) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *CouponCreationJob) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -350,9 +350,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *CouponCreationJob) SetAttributes(v map[string]interface{})`
+`func (o *CouponCreationJob) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetBatchId
 

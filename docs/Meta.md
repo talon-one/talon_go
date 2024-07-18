@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaigns** | Pointer to [**map[string]interface{}**](.md) | Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted. | [optional] 
-**Coupons** | Pointer to [**map[string]interface{}**](.md) | Maps the coupon value to a key-value list of that coupons attributes. | [optional] 
+**Campaigns** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted. | [optional] 
+**Coupons** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Maps the coupon value to a key-value list of that coupons attributes. | [optional] 
 **CouponRejectionReason** | Pointer to [**CouponRejectionReason**](CouponRejectionReason.md) |  | [optional] 
 **ReferralRejectionReason** | Pointer to [**ReferralRejectionReason**](ReferralRejectionReason.md) |  | [optional] 
-**Warnings** | Pointer to [**map[string]interface{}**](.md) | Contains warnings about possible misuse. | [optional] 
+**Warnings** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Contains warnings about possible misuse. | [optional] 
 
 ## Methods
 
 ### GetCampaigns
 
-`func (o *Meta) GetCampaigns() map[string]interface{}`
+`func (o *Meta) GetCampaigns() map[string]map[string]interface{}`
 
 GetCampaigns returns the Campaigns field if non-nil, zero value otherwise.
 
 ### GetCampaignsOk
 
-`func (o *Meta) GetCampaignsOk() (map[string]interface{}, bool)`
+`func (o *Meta) GetCampaignsOk() (map[string]map[string]interface{}, bool)`
 
 GetCampaignsOk returns a tuple with the Campaigns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -33,19 +33,19 @@ HasCampaigns returns a boolean if a field has been set.
 
 ### SetCampaigns
 
-`func (o *Meta) SetCampaigns(v map[string]interface{})`
+`func (o *Meta) SetCampaigns(v map[string]map[string]interface{})`
 
-SetCampaigns gets a reference to the given map[string]interface{} and assigns it to the Campaigns field.
+SetCampaigns gets a reference to the given map[string]map[string]interface{} and assigns it to the Campaigns field.
 
 ### GetCoupons
 
-`func (o *Meta) GetCoupons() map[string]interface{}`
+`func (o *Meta) GetCoupons() map[string]map[string]interface{}`
 
 GetCoupons returns the Coupons field if non-nil, zero value otherwise.
 
 ### GetCouponsOk
 
-`func (o *Meta) GetCouponsOk() (map[string]interface{}, bool)`
+`func (o *Meta) GetCouponsOk() (map[string]map[string]interface{}, bool)`
 
 GetCouponsOk returns a tuple with the Coupons field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -58,9 +58,9 @@ HasCoupons returns a boolean if a field has been set.
 
 ### SetCoupons
 
-`func (o *Meta) SetCoupons(v map[string]interface{})`
+`func (o *Meta) SetCoupons(v map[string]map[string]interface{})`
 
-SetCoupons gets a reference to the given map[string]interface{} and assigns it to the Coupons field.
+SetCoupons gets a reference to the given map[string]map[string]interface{} and assigns it to the Coupons field.
 
 ### GetCouponRejectionReason
 
@@ -114,13 +114,13 @@ SetReferralRejectionReason gets a reference to the given ReferralRejectionReason
 
 ### GetWarnings
 
-`func (o *Meta) GetWarnings() map[string]interface{}`
+`func (o *Meta) GetWarnings() map[string]map[string]interface{}`
 
 GetWarnings returns the Warnings field if non-nil, zero value otherwise.
 
 ### GetWarningsOk
 
-`func (o *Meta) GetWarningsOk() (map[string]interface{}, bool)`
+`func (o *Meta) GetWarningsOk() (map[string]map[string]interface{}, bool)`
 
 GetWarningsOk returns a tuple with the Warnings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -133,9 +133,9 @@ HasWarnings returns a boolean if a field has been set.
 
 ### SetWarnings
 
-`func (o *Meta) SetWarnings(v map[string]interface{})`
+`func (o *Meta) SetWarnings(v map[string]map[string]interface{})`
 
-SetWarnings gets a reference to the given map[string]interface{} and assigns it to the Warnings field.
+SetWarnings gets a reference to the given map[string]map[string]interface{} and assigns it to the Warnings field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

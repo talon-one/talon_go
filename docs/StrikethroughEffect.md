@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | 
 **Type** | Pointer to **string** | The type of this effect. | 
-**Props** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Props** | Pointer to [**StrikethroughEffectProps**](StrikethroughEffectProps.md) |  | 
 
 ## Methods
 
@@ -140,13 +140,13 @@ SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetProps
 
-`func (o *StrikethroughEffect) GetProps() map[string]interface{}`
+`func (o *StrikethroughEffect) GetProps() StrikethroughEffectProps`
 
 GetProps returns the Props field if non-nil, zero value otherwise.
 
 ### GetPropsOk
 
-`func (o *StrikethroughEffect) GetPropsOk() (map[string]interface{}, bool)`
+`func (o *StrikethroughEffect) GetPropsOk() (StrikethroughEffectProps, bool)`
 
 GetPropsOk returns a tuple with the Props field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -159,9 +159,9 @@ HasProps returns a boolean if a field has been set.
 
 ### SetProps
 
-`func (o *StrikethroughEffect) SetProps(v map[string]interface{})`
+`func (o *StrikethroughEffect) SetProps(v StrikethroughEffectProps)`
 
-SetProps gets a reference to the given map[string]interface{} and assigns it to the Props field.
+SetProps gets a reference to the given StrikethroughEffectProps and assigns it to the Props field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributeid** | Pointer to **int32** | The ID of the attribute of the item. | 
 **Name** | Pointer to **string** | The name of the attribute. | 
-**Value** | Pointer to [**map[string]interface{}**](.md) | The value of the attribute. | 
+**Value** | Pointer to [**map[string]interface{}**](map[string]interface{}.md) | The value of the attribute. | 
 
 ## Methods
 

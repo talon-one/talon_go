@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **Entity** | Pointer to **string** | The name of the entity that was exported. | 
-**Filter** | Pointer to [**map[string]interface{}**](.md) | Map of keys and values that were used to filter the exported rows. | 
+**Filter** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Map of keys and values that were used to filter the exported rows. | 
 
 ## Methods
 
@@ -140,13 +140,13 @@ SetEntity gets a reference to the given string and assigns it to the Entity fiel
 
 ### GetFilter
 
-`func (o *Export) GetFilter() map[string]interface{}`
+`func (o *Export) GetFilter() map[string]map[string]interface{}`
 
 GetFilter returns the Filter field if non-nil, zero value otherwise.
 
 ### GetFilterOk
 
-`func (o *Export) GetFilterOk() (map[string]interface{}, bool)`
+`func (o *Export) GetFilterOk() (map[string]map[string]interface{}, bool)`
 
 GetFilterOk returns a tuple with the Filter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -159,9 +159,9 @@ HasFilter returns a boolean if a field has been set.
 
 ### SetFilter
 
-`func (o *Export) SetFilter(v map[string]interface{})`
+`func (o *Export) SetFilter(v map[string]map[string]interface{})`
 
-SetFilter gets a reference to the given map[string]interface{} and assigns it to the Filter field.
+SetFilter gets a reference to the given map[string]map[string]interface{} and assigns it to the Filter field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

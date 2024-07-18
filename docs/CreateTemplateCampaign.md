@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template which will be used in order to create the Campaign. | 
-**CampaignAttributesOverrides** | Pointer to [**map[string]interface{}**](.md) | Custom Campaign Attributes. If the Campaign Template defines the same values, they will be overridden. | [optional] 
+**CampaignAttributesOverrides** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Custom Campaign Attributes. If the Campaign Template defines the same values, they will be overridden. | [optional] 
 **TemplateParamValues** | Pointer to [**[]Binding**](Binding.md) | Actual values to replace the template placeholder values in the Ruleset bindings. Values for all Template Parameters must be provided. | [optional] 
 **LimitOverrides** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits for this Campaign. If the Campaign Template or Application define default values for the same limits, they will be overridden. | [optional] 
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to.  | [optional] 
@@ -94,13 +94,13 @@ SetTemplateId gets a reference to the given int32 and assigns it to the Template
 
 ### GetCampaignAttributesOverrides
 
-`func (o *CreateTemplateCampaign) GetCampaignAttributesOverrides() map[string]interface{}`
+`func (o *CreateTemplateCampaign) GetCampaignAttributesOverrides() map[string]map[string]interface{}`
 
 GetCampaignAttributesOverrides returns the CampaignAttributesOverrides field if non-nil, zero value otherwise.
 
 ### GetCampaignAttributesOverridesOk
 
-`func (o *CreateTemplateCampaign) GetCampaignAttributesOverridesOk() (map[string]interface{}, bool)`
+`func (o *CreateTemplateCampaign) GetCampaignAttributesOverridesOk() (map[string]map[string]interface{}, bool)`
 
 GetCampaignAttributesOverridesOk returns a tuple with the CampaignAttributesOverrides field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -113,9 +113,9 @@ HasCampaignAttributesOverrides returns a boolean if a field has been set.
 
 ### SetCampaignAttributesOverrides
 
-`func (o *CreateTemplateCampaign) SetCampaignAttributesOverrides(v map[string]interface{})`
+`func (o *CreateTemplateCampaign) SetCampaignAttributesOverrides(v map[string]map[string]interface{})`
 
-SetCampaignAttributesOverrides gets a reference to the given map[string]interface{} and assigns it to the CampaignAttributesOverrides field.
+SetCampaignAttributesOverrides gets a reference to the given map[string]map[string]interface{} and assigns it to the CampaignAttributesOverrides field.
 
 ### GetTemplateParamValues
 

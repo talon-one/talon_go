@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **Variables** | Pointer to **string** | A stringified version of the environment&#39;s Talang variables scope. | 
 **GiveawaysPools** | Pointer to [**[]GiveawaysPool**](GiveawaysPool.md) | The giveaways pools that the application is subscribed to. | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | The loyalty programs that the application is subscribed to. | [optional] 
+**Achievements** | Pointer to [**[]Achievement**](Achievement.md) | The achievements, linked to the campaigns, belonging to the application. | [optional] 
 **Attributes** | Pointer to [**[]Attribute**](Attribute.md) | The attributes that the application is subscribed to. | [optional] 
 **AdditionalCosts** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) | The additional costs that the application is subscribed to. | [optional] 
 **Audiences** | Pointer to [**[]Audience**](Audience.md) | The audiences contained in the account which the application belongs to. | [optional] 
@@ -244,6 +245,31 @@ HasLoyaltyPrograms returns a boolean if a field has been set.
 `func (o *Environment) SetLoyaltyPrograms(v []LoyaltyProgram)`
 
 SetLoyaltyPrograms gets a reference to the given []LoyaltyProgram and assigns it to the LoyaltyPrograms field.
+
+### GetAchievements
+
+`func (o *Environment) GetAchievements() []Achievement`
+
+GetAchievements returns the Achievements field if non-nil, zero value otherwise.
+
+### GetAchievementsOk
+
+`func (o *Environment) GetAchievementsOk() ([]Achievement, bool)`
+
+GetAchievementsOk returns a tuple with the Achievements field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAchievements
+
+`func (o *Environment) HasAchievements() bool`
+
+HasAchievements returns a boolean if a field has been set.
+
+### SetAchievements
+
+`func (o *Environment) SetAchievements(v []Achievement)`
+
+SetAchievements gets a reference to the given []Achievement and assigns it to the Achievements field.
 
 ### GetAttributes
 

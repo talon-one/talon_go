@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this campaign. | [optional] 
 **CompanyName** | Pointer to **string** | Name of your company. | 
 **BillingEmail** | Pointer to **string** | The billing email address associated with your company account. | 
 **State** | Pointer to **string** | State of the account (active, deactivated). | [optional] 
@@ -14,13 +14,13 @@ Name | Type | Description | Notes
 
 ### GetAttributes
 
-`func (o *UpdateAccount) GetAttributes() map[string]interface{}`
+`func (o *UpdateAccount) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *UpdateAccount) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *UpdateAccount) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -33,9 +33,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *UpdateAccount) SetAttributes(v map[string]interface{})`
+`func (o *UpdateAccount) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetCompanyName
 

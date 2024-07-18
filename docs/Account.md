@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **UserCount** | Pointer to **int32** | The current number of Campaign Manager Users in your account. | 
 **CampaignsActiveCount** | Pointer to **int32** | The current number of active Campaigns in your account. | 
 **CampaignsInactiveCount** | Pointer to **int32** | The current number of inactive Campaigns in your account. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this campaign. | [optional] 
 
 ## Methods
 
@@ -452,13 +452,13 @@ SetCampaignsInactiveCount gets a reference to the given int32 and assigns it to 
 
 ### GetAttributes
 
-`func (o *Account) GetAttributes() map[string]interface{}`
+`func (o *Account) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *Account) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *Account) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -471,9 +471,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *Account) SetAttributes(v map[string]interface{})`
+`func (o *Account) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

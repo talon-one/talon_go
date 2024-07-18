@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Email** | Pointer to **string** | The email address associated with your account. | 
+**Email** | Pointer to **string** | The email address associated with the user profile. | 
 **Password** | Pointer to **string** | The password for your account. | 
 
 ## Methods

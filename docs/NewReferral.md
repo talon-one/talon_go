@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CampaignId** | Pointer to **int32** | ID of the campaign from which the referral received the referral code. | 
 **AdvocateProfileIntegrationId** | Pointer to **string** | The Integration ID of the Advocate&#39;s Profile. | 
 **FriendProfileIntegrationId** | Pointer to **string** | An optional Integration ID of the Friend&#39;s Profile. | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Arbitrary properties associated with this item. | [optional] 
 
 ## Methods
 
@@ -166,13 +166,13 @@ SetFriendProfileIntegrationId gets a reference to the given string and assigns i
 
 ### GetAttributes
 
-`func (o *NewReferral) GetAttributes() map[string]interface{}`
+`func (o *NewReferral) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewReferral) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewReferral) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -185,9 +185,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *NewReferral) SetAttributes(v map[string]interface{})`
+`func (o *NewReferral) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

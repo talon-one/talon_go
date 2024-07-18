@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. The time this entity was created. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Name** | Pointer to **string** | The name of the store. | 
 **Description** | Pointer to **string** | The description of the store. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the store. | [optional] 
-**IntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The attributes of the store. | [optional] 
+**IntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store.  **Note**: You cannot edit the &#x60;integrationId&#x60; after the store has been created.  | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update on this entity. | 
 **LinkedCampaignIds** | Pointer to **[]int32** | A list of IDs of the campaigns that are linked with current store. | [optional] 
@@ -118,13 +118,13 @@ SetDescription gets a reference to the given string and assigns it to the Descri
 
 ### GetAttributes
 
-`func (o *Store) GetAttributes() map[string]interface{}`
+`func (o *Store) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *Store) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *Store) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -137,9 +137,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *Store) SetAttributes(v map[string]interface{})`
+`func (o *Store) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetIntegrationId
 

@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the store. | 
 **Description** | Pointer to **string** | The description of the store. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the store. | [optional] 
-**IntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The attributes of the store. | [optional] 
+**IntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store.  **Note**: You cannot edit the &#x60;integrationId&#x60; after the store has been created.  | 
 
 ## Methods
 
@@ -63,13 +63,13 @@ SetDescription gets a reference to the given string and assigns it to the Descri
 
 ### GetAttributes
 
-`func (o *NewStore) GetAttributes() map[string]interface{}`
+`func (o *NewStore) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewStore) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewStore) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -82,9 +82,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *NewStore) SetAttributes(v map[string]interface{})`
+`func (o *NewStore) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetIntegrationId
 

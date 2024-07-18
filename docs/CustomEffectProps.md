@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CartItemSubPosition** | Pointer to **float32** | For cart items with quantity &gt; 1, the sub position indicates to which item unit the custom effect is applied.  | [optional] 
 **BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
 **BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
-**Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 
+**Payload** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The JSON payload of the custom effect. | 
 
 ## Methods
 
@@ -166,13 +166,13 @@ SetBundleName gets a reference to the given string and assigns it to the BundleN
 
 ### GetPayload
 
-`func (o *CustomEffectProps) GetPayload() map[string]interface{}`
+`func (o *CustomEffectProps) GetPayload() map[string]map[string]interface{}`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *CustomEffectProps) GetPayloadOk() (map[string]interface{}, bool)`
+`func (o *CustomEffectProps) GetPayloadOk() (map[string]map[string]interface{}, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -185,9 +185,9 @@ HasPayload returns a boolean if a field has been set.
 
 ### SetPayload
 
-`func (o *CustomEffectProps) SetPayload(v map[string]interface{})`
+`func (o *CustomEffectProps) SetPayload(v map[string]map[string]interface{})`
 
-SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
+SetPayload gets a reference to the given map[string]map[string]interface{} and assigns it to the Payload field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

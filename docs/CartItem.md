@@ -11,12 +11,13 @@ Name | Type | Description | Notes
 **RemainingQuantity** | Pointer to **int32** | Remaining quantity of the item, calculated internally based on returns of this item. | [optional] 
 **Price** | Pointer to **float32** | Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.  | [optional] 
 **Category** | Pointer to **string** | Type, group or model of the item. | [optional] 
+**Product** | Pointer to [**Product**](Product.md) |  | [optional] 
 **Weight** | Pointer to **float32** | Weight of item in grams. | [optional] 
 **Height** | Pointer to **float32** | Height of item in mm. | [optional] 
 **Width** | Pointer to **float32** | Width of item in mm. | [optional] 
 **Length** | Pointer to **float32** | Length of item in mm. | [optional] 
 **Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally). | [optional] 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.  Custom _cart item_ attributes must be created in the Campaign Manager before you set them with this property.  | [optional] 
+**Attributes** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.  Custom _cart item_ attributes must be created in the Campaign Manager before you set them with this property.  | [optional] 
 **AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  | [optional] 
 **CatalogItemID** | Pointer to **int32** | The [catalog item ID](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/#synchronizing-a-cart-item-catalog). | [optional] 
 
@@ -197,6 +198,31 @@ HasCategory returns a boolean if a field has been set.
 
 SetCategory gets a reference to the given string and assigns it to the Category field.
 
+### GetProduct
+
+`func (o *CartItem) GetProduct() Product`
+
+GetProduct returns the Product field if non-nil, zero value otherwise.
+
+### GetProductOk
+
+`func (o *CartItem) GetProductOk() (Product, bool)`
+
+GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProduct
+
+`func (o *CartItem) HasProduct() bool`
+
+HasProduct returns a boolean if a field has been set.
+
+### SetProduct
+
+`func (o *CartItem) SetProduct(v Product)`
+
+SetProduct gets a reference to the given Product and assigns it to the Product field.
+
 ### GetWeight
 
 `func (o *CartItem) GetWeight() float32`
@@ -324,13 +350,13 @@ SetPosition gets a reference to the given float32 and assigns it to the Position
 
 ### GetAttributes
 
-`func (o *CartItem) GetAttributes() map[string]interface{}`
+`func (o *CartItem) GetAttributes() map[string]map[string]interface{}`
 
 GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *CartItem) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *CartItem) GetAttributesOk() (map[string]map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -343,9 +369,9 @@ HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
-`func (o *CartItem) SetAttributes(v map[string]interface{})`
+`func (o *CartItem) SetAttributes(v map[string]map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes gets a reference to the given map[string]map[string]interface{} and assigns it to the Attributes field.
 
 ### GetAdditionalCosts
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EffectId** | Pointer to **int32** | ID of the effect. | 
 **Name** | Pointer to **string** | The type of the custom effect. | 
-**Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 
+**Payload** | Pointer to [**map[string]map[string]interface{}**](map[string]interface{}.md) | The JSON payload of the custom effect. | 
 
 ## Methods
 
@@ -62,13 +62,13 @@ SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPayload
 
-`func (o *StrikethroughCustomEffectPerItemProps) GetPayload() map[string]interface{}`
+`func (o *StrikethroughCustomEffectPerItemProps) GetPayload() map[string]map[string]interface{}`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *StrikethroughCustomEffectPerItemProps) GetPayloadOk() (map[string]interface{}, bool)`
+`func (o *StrikethroughCustomEffectPerItemProps) GetPayloadOk() (map[string]map[string]interface{}, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +81,9 @@ HasPayload returns a boolean if a field has been set.
 
 ### SetPayload
 
-`func (o *StrikethroughCustomEffectPerItemProps) SetPayload(v map[string]interface{})`
+`func (o *StrikethroughCustomEffectPerItemProps) SetPayload(v map[string]map[string]interface{})`
 
-SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
+SetPayload gets a reference to the given map[string]map[string]interface{} and assigns it to the Payload field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **AccountId** | Pointer to **int32** | The ID of the account to which this configuration belongs. | 
 **TypeId** | Pointer to **int32** | The outgoing integration type ID. | 
-**Policy** | Pointer to [**map[string]interface{}**](.md) | The outgoing integration policy specific to each integration type. | 
+**Policy** | Pointer to [**OutgoingIntegrationConfigurationPolicy**](OutgoingIntegrationConfigurationPolicy.md) |  | 
 
 ## Methods
 
@@ -88,13 +88,13 @@ SetTypeId gets a reference to the given int32 and assigns it to the TypeId field
 
 ### GetPolicy
 
-`func (o *OutgoingIntegrationConfiguration) GetPolicy() map[string]interface{}`
+`func (o *OutgoingIntegrationConfiguration) GetPolicy() OutgoingIntegrationConfigurationPolicy`
 
 GetPolicy returns the Policy field if non-nil, zero value otherwise.
 
 ### GetPolicyOk
 
-`func (o *OutgoingIntegrationConfiguration) GetPolicyOk() (map[string]interface{}, bool)`
+`func (o *OutgoingIntegrationConfiguration) GetPolicyOk() (OutgoingIntegrationConfigurationPolicy, bool)`
 
 GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -107,9 +107,9 @@ HasPolicy returns a boolean if a field has been set.
 
 ### SetPolicy
 
-`func (o *OutgoingIntegrationConfiguration) SetPolicy(v map[string]interface{})`
+`func (o *OutgoingIntegrationConfiguration) SetPolicy(v OutgoingIntegrationConfigurationPolicy)`
 
-SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
+SetPolicy gets a reference to the given OutgoingIntegrationConfigurationPolicy and assigns it to the Policy field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

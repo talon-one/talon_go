@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the user being invited. | [optional] 
-**Email** | Pointer to **string** |  | 
-**Acl** | Pointer to **string** | The &#x60;Access Control List&#x60; json defining the role of the user.  This represents the access control on the user level. Use one of the following: - normal user: &#x60;{\&quot;Role\&quot;: 0}&#x60; - admin: &#x60;{\&quot;Role\&quot;: 127}&#x60;  | [optional] 
-**IsAdmin** | Pointer to **bool** | An indication of whether the user has admin permissions. We recommend using this flag over using the &#x60;acl&#x60; with value &#x60;{\&quot;Role\&quot;: 127}&#x60;.  | [optional] 
-**Roles** | Pointer to **[]int32** | An array of role IDs to assign to the new user. | [optional] 
+**Name** | Pointer to **string** | Name of the user. | [optional] 
+**Email** | Pointer to **string** | Email address of the user. | 
+**IsAdmin** | Pointer to **bool** | Indicates whether the user is an &#x60;admin&#x60;. | [optional] 
+**Roles** | Pointer to **[]int32** | A list of the IDs of the roles assigned to the user. | [optional] 
+**Acl** | Pointer to **string** | Indicates the access level of the user. | [optional] 
 
 ## Methods
 
@@ -62,31 +62,6 @@ HasEmail returns a boolean if a field has been set.
 
 SetEmail gets a reference to the given string and assigns it to the Email field.
 
-### GetAcl
-
-`func (o *NewInvitation) GetAcl() string`
-
-GetAcl returns the Acl field if non-nil, zero value otherwise.
-
-### GetAclOk
-
-`func (o *NewInvitation) GetAclOk() (string, bool)`
-
-GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAcl
-
-`func (o *NewInvitation) HasAcl() bool`
-
-HasAcl returns a boolean if a field has been set.
-
-### SetAcl
-
-`func (o *NewInvitation) SetAcl(v string)`
-
-SetAcl gets a reference to the given string and assigns it to the Acl field.
-
 ### GetIsAdmin
 
 `func (o *NewInvitation) GetIsAdmin() bool`
@@ -136,6 +111,31 @@ HasRoles returns a boolean if a field has been set.
 `func (o *NewInvitation) SetRoles(v []int32)`
 
 SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
+
+### GetAcl
+
+`func (o *NewInvitation) GetAcl() string`
+
+GetAcl returns the Acl field if non-nil, zero value otherwise.
+
+### GetAclOk
+
+`func (o *NewInvitation) GetAclOk() (string, bool)`
+
+GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAcl
+
+`func (o *NewInvitation) HasAcl() bool`
+
+HasAcl returns a boolean if a field has been set.
+
+### SetAcl
+
+`func (o *NewInvitation) SetAcl(v string)`
+
+SetAcl gets a reference to the given string and assigns it to the Acl field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
