@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
 **Status** | Pointer to **string** | Status of the loyalty card. Can be one of: [&#39;active&#39;, &#39;inactive&#39;]  | 
+**BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
 **Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
 **UsersPerCardLimit** | Pointer to **int32** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
 **Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
@@ -118,6 +119,31 @@ HasStatus returns a boolean if a field has been set.
 `func (o *LoyaltyCard) SetStatus(v string)`
 
 SetStatus gets a reference to the given string and assigns it to the Status field.
+
+### GetBlockReason
+
+`func (o *LoyaltyCard) GetBlockReason() string`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *LoyaltyCard) GetBlockReasonOk() (string, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBlockReason
+
+`func (o *LoyaltyCard) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
+
+### SetBlockReason
+
+`func (o *LoyaltyCard) SetBlockReason(v string)`
+
+SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
 
 ### GetIdentifier
 

@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.  | [optional] 
 **Type** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [default to TYPE_ADVANCED]
 **LinkedStoreIds** | Pointer to **[]int32** | A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.  | [optional] 
+**StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file.  | [optional] 
 **Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | 
 **CouponRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.  | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.  | [optional] 
@@ -522,6 +523,31 @@ HasLinkedStoreIds returns a boolean if a field has been set.
 `func (o *Campaign) SetLinkedStoreIds(v []int32)`
 
 SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
+
+### GetStoresImported
+
+`func (o *Campaign) GetStoresImported() bool`
+
+GetStoresImported returns the StoresImported field if non-nil, zero value otherwise.
+
+### GetStoresImportedOk
+
+`func (o *Campaign) GetStoresImportedOk() (bool, bool)`
+
+GetStoresImportedOk returns a tuple with the StoresImported field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoresImported
+
+`func (o *Campaign) HasStoresImported() bool`
+
+HasStoresImported returns a boolean if a field has been set.
+
+### SetStoresImported
+
+`func (o *Campaign) SetStoresImported(v bool)`
+
+SetStoresImported gets a reference to the given bool and assigns it to the StoresImported field.
 
 ### GetBudgets
 
