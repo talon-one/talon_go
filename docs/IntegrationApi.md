@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyBalances
 
-> LoyaltyBalances GetLoyaltyBalances(ctx, loyaltyProgramId, integrationId).EndDate(endDate).SubledgerId(subledgerId).Execute()
+> LoyaltyBalancesWithTiers GetLoyaltyBalances(ctx, loyaltyProgramId, integrationId).EndDate(endDate).SubledgerId(subledgerId).IncludeTiers(includeTiers).IncludeProjectedTier(includeProjectedTier).Execute()
 
 Get customer's loyalty points
 
@@ -490,10 +490,12 @@ Name | Type | Description  | Notes
 
  **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **includeTiers** | **bool** | Indicates whether tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the current tier and the number of points required to move to next tier.  | [default to false]
+ **includeProjectedTier** | **bool** | Indicates whether the customer&#39;s projected tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the customer’s active points and the name of the projected tier.  **Note** We recommend filtering by &#x60;subledgerId&#x60; for better performance.  | [default to false]
 
 ### Return type
 
-[**LoyaltyBalances**](LoyaltyBalances.md)
+[**LoyaltyBalancesWithTiers**](LoyaltyBalancesWithTiers.md)
 
 ### Authorization
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | The internal ID of the tier. | 
 **Name** | Pointer to **string** | The name of the tier. | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Date and time when the customer moved to this tier. This value uses the loyalty program&#39;s time zone setting. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date when tier level expires in the RFC3339 format (in the Loyalty Program&#39;s timezone). | [optional] 
 **DowngradePolicy** | Pointer to **string** | Customers&#39;s tier downgrade policy. - &#x60;one_down&#x60;: Once the tier expires and if the user doesn&#39;t have enough points to stay in the tier, the user is downgraded one tier down. - &#x60;balance_based&#x60;: Once the tier expires, the user&#39;s tier is evaluated based on the amount of active points the user has at this instant.  | [optional] 
 
@@ -60,6 +61,31 @@ HasName returns a boolean if a field has been set.
 `func (o *Tier) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetStartDate
+
+`func (o *Tier) GetStartDate() time.Time`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *Tier) GetStartDateOk() (time.Time, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStartDate
+
+`func (o *Tier) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
+
+### SetStartDate
+
+`func (o *Tier) SetStartDate(v time.Time)`
+
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
 ### GetExpiryDate
 

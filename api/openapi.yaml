@@ -24,6 +24,9 @@ security:
 - management_key: []
 tags:
 - description: |
+    Endpoints used for communication between Talon.One and the AI assistant.
+  name: AI assistant
+- description: |
     Represents the API used to send [Integration API](https://docs.talon.one/docs/dev/integration-api/overview) requests to a given Application.
   name: API keys
 - description: |
@@ -1546,12 +1549,32 @@ paths:
         name: subledgerId
         schema:
           type: string
+      - description: |
+          Indicates whether tier information is included in the response.
+
+          When set to `true`, the response includes information about the current tier and the number of points required to move to next tier.
+        in: query
+        name: includeTiers
+        schema:
+          default: false
+          type: boolean
+      - description: |
+          Indicates whether the customer's projected tier information is included in the response.
+
+          When set to `true`, the response includes information about the customer’s active points and the name of the projected tier.
+
+          **Note** We recommend filtering by `subledgerId` for better performance.
+        in: query
+        name: includeProjectedTier
+        schema:
+          default: false
+          type: boolean
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoyaltyBalances'
+                $ref: '#/components/schemas/LoyaltyBalancesWithTiers'
           description: OK
         "400":
           content:
@@ -2679,32 +2702,32 @@ paths:
           format: date-time
           type: string
       - description: Filter results comparing the parameter value, expected to be
-          an RFC3339 timestamp string, to the coupon creation timestamp. You can use
-          any time zone setting. Talon.One will convert to UTC internally.
+          an RFC3339 timestamp string, to the coupon start date timestamp. You can
+          use any time zone setting. Talon.One will convert to UTC internally.
         in: query
         name: startsAfter
         schema:
           format: date-time
           type: string
       - description: Filter results comparing the parameter value, expected to be
-          an RFC3339 timestamp string, to the coupon creation timestamp. You can use
-          any time zone setting. Talon.One will convert to UTC internally.
+          an RFC3339 timestamp string, to the coupon start date timestamp. You can
+          use any time zone setting. Talon.One will convert to UTC internally.
         in: query
         name: startsBefore
         schema:
           format: date-time
           type: string
       - description: Filter results comparing the parameter value, expected to be
-          an RFC3339 timestamp string, to the coupon creation timestamp. You can use
-          any time zone setting. Talon.One will convert to UTC internally.
+          an RFC3339 timestamp string, to the coupon expiration date timestamp. You
+          can use any time zone setting. Talon.One will convert to UTC internally.
         in: query
         name: expiresAfter
         schema:
           format: date-time
           type: string
       - description: Filter results comparing the parameter value, expected to be
-          an RFC3339 timestamp string, to the coupon creation timestamp. You can use
-          any time zone setting. Talon.One will convert to UTC internally.
+          an RFC3339 timestamp string, to the coupon expiration date timestamp. You
+          can use any time zone setting. Talon.One will convert to UTC internally.
         in: query
         name: expiresBefore
         schema:
@@ -3055,6 +3078,45 @@ paths:
           the coupon code
         in: query
         name: exactMatch
+        schema:
+          default: false
+          type: boolean
+      - description: Filter results comparing the parameter value, expected to be
+          an RFC3339 timestamp string, to the coupon expiration date timestamp. You
+          can use any time zone setting. Talon.One will convert to UTC internally.
+        in: query
+        name: expiresBefore
+        schema:
+          format: date-time
+          type: string
+      - description: Filter results comparing the parameter value, expected to be
+          an RFC3339 timestamp string, to the coupon expiration date timestamp. You
+          can use any time zone setting. Talon.One will convert to UTC internally.
+        in: query
+        name: expiresAfter
+        schema:
+          format: date-time
+          type: string
+      - description: Filter results comparing the parameter value, expected to be
+          an RFC3339 timestamp string, to the coupon start date timestamp. You can
+          use any time zone setting. Talon.One will convert to UTC internally.
+        in: query
+        name: startsBefore
+        schema:
+          format: date-time
+          type: string
+      - description: Filter results comparing the parameter value, expected to be
+          an RFC3339 timestamp string, to the coupon start date timestamp. You can
+          use any time zone setting. Talon.One will convert to UTC internally.
+        in: query
+        name: startsAfter
+        schema:
+          format: date-time
+          type: string
+      - description: Filter results to only return the coupon codes (`value` column)
+          without the associated coupon data.
+        in: query
+        name: valuesOnly
         schema:
           default: false
           type: boolean
@@ -4202,8 +4264,8 @@ paths:
 
         You can filter the results by providing the following optional input parameters:
 
-        - `subledgerId` (optional): Filter results by subledger ID. If no value is provided, all subledger data for the specified loyalty program will be exported.
-        - `tierName` (optional): Filter results by tier name. If no value is provided, all tier data for the specified loyalty program will be exported.
+        - `subledgerIds` (optional): Filter results by an array of subledger IDs. If no value is provided, all subledger data for the specified loyalty program will be exported.
+        - `tierNames` (optional): Filter results by an array of tier names. If no value is provided, all tier data for the specified loyalty program will be exported.
       operationId: exportCustomersTiers
       parameters:
       - description: The identifier for the loyalty program.
@@ -7686,18 +7748,18 @@ paths:
   /v1/catalogs/{catalogId}/sync:
     put:
       description: |
-        Perform one or more of the following actions for a given cart item catalog:
+        Perform the following actions for a given cart item catalog:
 
-        - Adding an item to the catalog.
-        - Adding several items to the catalog.
-        - Editing the attributes of an item in the catalog.
-        - Editing the attributes of several items in the catalog.
-        - Removing an item from the catalog.
-        - Removing several items from the catalog.
+        - Add an item to the catalog.
+        - Add multiple items to the catalog.
+        - Update the attributes of an item in the catalog.
+        - Update the attributes of multiple items in the catalog.
+        - Remove an item from the catalog.
+        - Remove multiple items from the catalog.
 
-        You can add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.
+        You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.
 
-        **Important**: Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.
+        **Important**: You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.
 
         For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).
 
@@ -7761,7 +7823,7 @@ paths:
         </details>
 
         <details>
-          <summary><strong>Adding several items to the catalog</strong></summary>
+          <summary><strong>Adding multiple items to the catalog</strong></summary>
           <div>
 
           ```json
@@ -7804,7 +7866,7 @@ paths:
         </details>
 
         <details>
-          <summary><strong>Editing the attributes of an item in the catalog</strong></summary>
+          <summary><strong>Updating the attributes of an item in the catalog</strong></summary>
           <div>
 
           ```json
@@ -7831,7 +7893,7 @@ paths:
         </details>
 
         <details>
-          <summary><strong>Editing the attributes of several items in the catalog</strong></summary>
+          <summary><strong>Updating the attributes of multiple items in the catalog</strong></summary>
           <div>
 
           ```json
@@ -7880,7 +7942,7 @@ paths:
         </details>
 
         <details>
-          <summary><strong>Removing several items from the catalog</strong></summary>
+          <summary><strong>Removing multiple items from the catalog</strong></summary>
           <div>
 
           ```json
@@ -8099,7 +8161,10 @@ paths:
       description: List all webhooks.
       operationId: getWebhooks
       parameters:
-      - description: Filter by one or more Application IDs, separated by a comma.
+      - description: |
+          Checks if the given catalog or its attributes are referenced in the specified Application ID.
+
+          **Note**: If no Application ID is provided, we check for all connected Applications.
         in: query
         name: applicationIds
         schema:
@@ -9071,10 +9136,200 @@ paths:
       tags:
       - management
       x-codegen-request-body-name: body
+  /v1/provisioning/okta:
+    get:
+      description: |
+        Validate the ownership of the API through a challenge-response mechanism.
+
+        This challenger endpoint is used by Okta to confirm that communication between Talon.One and Okta is correctly configured and accessible
+        for provisioning and deprovisioning of Talon.One users, and that only Talon.One can receive and respond to events from Okta.
+      operationId: oktaEventHandlerChallenge
+      responses:
+        "200":
+          content: {}
+          description: OK
+      summary: Validate Okta API ownership
+      tags:
+      - management
+  /v1/provisioning/scim/Users:
+    get:
+      description: Retrieve a paginated list of users that have been provisioned using
+        the SCIM protocol with an identity provider, for example, Microsoft Entra
+        ID.
+      operationId: scimGetUsers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUsersListResponse'
+          description: List of SCIM users
+      summary: List SCIM users
+      tags:
+      - management
+    post:
+      description: Create a new Talon.One user using the SCIM provisioning protocol
+        with an identity provider, for example, Microsoft Entra ID.
+      operationId: scimCreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: body
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: Created
+      summary: Create SCIM user
+      tags:
+      - management
+      x-codegen-request-body-name: body
+  /v1/provisioning/scim/Users/{userId}:
+    delete:
+      description: Delete a specific Talon.One user created using the SCIM provisioning
+        protocol with an identity provider, for example, Microsoft Entra ID.
+      operationId: scimDeleteUser
+      parameters:
+      - description: The ID of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content: {}
+          description: No Content
+      summary: Delete SCIM user
+      tags:
+      - management
+    get:
+      description: Retrieve data for a specific Talon.One user created using the SCIM
+        provisioning protocol with an identity provider, for example, Microsoft Entra
+        ID.
+      operationId: scimGetUser
+      parameters:
+      - description: The ID of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: User details
+      summary: Get SCIM user
+      tags:
+      - management
+    patch:
+      description: |
+        Update certain attributes of a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+
+        This endpoint allows for selective adding, removing, or replacing specific attributes while leaving other attributes unchanged.
+      operationId: scimPatchUser
+      parameters:
+      - description: The ID of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: User details
+      summary: Update SCIM user attributes
+      tags:
+      - management
+    put:
+      description: |
+        Update the details of a specific Talon.One user created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+
+        This endpoint replaces all attributes of the specific user with the attributes provided in the request payload.
+      operationId: scimReplaceUserAttributes
+      parameters:
+      - description: The ID of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: User details
+      summary: Update SCIM user
+      tags:
+      - management
+      x-codegen-request-body-name: body
+  /v1/provisioning/scim/ResourceTypes:
+    get:
+      description: |
+        Retrieve a list of resource types supported by the SCIM provisioning protocol.
+
+        Resource types define the various kinds of resources that can be managed via the SCIM API, such as users, groups, or custom-defined resources.
+      operationId: scimGetResourceTypes
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimResourceTypesListResponse'
+          description: List of resource types
+      summary: List supported SCIM resource types
+      tags:
+      - management
+  /v1/provisioning/scim/ServiceProviderConfig:
+    get:
+      description: Service config endpoint for SCIM provisioning protocol
+      operationId: scimGetServiceProviderConfig
+      responses:
+        "200":
+          content: {}
+          description: Service config
+      summary: Service config endpoint for SCIM provisioning protocol
+      tags:
+      - management
+  /v1/provisioning/scim/Schemas:
+    get:
+      description: |
+        Retrieve a list of schemas supported by the SCIM provisioning protocol.
+
+        Schemas define the structure and attributes of the different resources that can be managed via the SCIM API, such as users, groups, and any custom-defined resources.
+      operationId: scimGetSchemas
+      responses:
+        "200":
+          content: {}
+          description: Schemas
+      summary: List supported SCIM schemas
+      tags:
+      - management
   /v1/users/delete:
     post:
       description: |
-        Delete a specific user by their email address.
+        [Delete a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#deleting-a-user) by their email address.
       operationId: deleteUserByEmail
       requestBody:
         content:
@@ -9094,7 +9349,7 @@ paths:
   /v1/users/activate:
     post:
       description: |
-        Activate a deactivated user by their email address.
+        Enable a [disabled user](https://docs.talon.one/docs/product/account/account-settings/managing-users#disabling-a-user) by their email address.
       operationId: activateUserByEmail
       requestBody:
         content:
@@ -9107,14 +9362,14 @@ paths:
         "204":
           content: {}
           description: No Content
-      summary: Activate user by email address
+      summary: Enable user by email address
       tags:
       - management
       x-codegen-request-body-name: body
   /v1/users/deactivate:
     post:
       description: |
-        Deactivate a specific user by their email address.
+        [Disable a specific user](https://docs.talon.one/docs/product/account/account-settings/managing-users#disabling-a-user) by their email address.
       operationId: deactivateUserByEmail
       requestBody:
         content:
@@ -9127,14 +9382,14 @@ paths:
         "204":
           content: {}
           description: No Content
-      summary: Deactivate user by email address
+      summary: Disable user by email address
       tags:
       - management
       x-codegen-request-body-name: body
   /v1/users/invite:
     post:
       description: |
-        Invite a user from an external identity provider to Talon.One by sending an invitation to their email address.
+        [Invite a user](https://docs.talon.one/docs/product/account/account-settings/managing-users#inviting-a-user) from an external identity provider to Talon.One by sending an invitation to their email address.
       operationId: inviteUserExternal
       requestBody:
         content:
@@ -9791,6 +10046,174 @@ paths:
       tags:
       - management
       x-codegen-request-body-name: body
+  /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export:
+    get:
+      description: |
+        Download a CSV file containing the stores linked to a specific campaign.
+
+        **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).
+
+        The CSV file contains the following column:
+
+        - `store_integration_id`: The identifier of the store.
+      operationId: exportCampaignStores
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: The ID of the campaign. It is displayed in your Talon.One deployment
+          URL.
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          content:
+            application/csv:
+              example: |
+                store_integration_id
+                STORE-001
+                STORE-002
+                STORE-003
+              schema:
+                format: csv
+                type: string
+          description: OK
+        "400":
+          content:
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad request
+        "401":
+          content:
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Unauthorized - Invalid API key
+        "404":
+          content:
+            application/csv:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Not found
+      summary: Export stores
+      tags:
+      - management
+  /v1/applications/{applicationId}/campaigns/{campaignId}/stores:
+    delete:
+      description: Disconnect the stores linked to a specific campaign.
+      operationId: disconnectCampaignStores
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: The ID of the campaign. It is displayed in your Talon.One deployment
+          URL.
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          content: {}
+          description: No Content
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Unauthorized - Invalid API key
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Not found
+      summary: Disconnect stores
+      tags:
+      - management
+  /v1/applications/{applicationId}/campaigns/{campaignId}/stores/import:
+    post:
+      description: |
+        Upload a CSV file containing the stores you want to link to a specific campaign.
+
+        Send the file as multipart data.
+
+        The CSV file **must** only contain the following column:
+        - `store_integration_id`: The identifier of the store.
+
+        The import **replaces** the previous list of stores linked to the campaign.
+      operationId: importCampaignStores
+      parameters:
+      - description: The ID of the Application. It is displayed in your Talon.One
+          deployment URL.
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          type: integer
+      - description: The ID of the campaign. It is displayed in your Talon.One deployment
+          URL.
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                upFile:
+                  description: The file containing the data that is being imported.
+                  format: csv
+                  type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Import'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Unauthorized - Invalid API key
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponseWithStatus'
+          description: Not found
+      summary: Import stores
+      tags:
+      - management
   /v1/applications/{applicationId}/campaigns/{campaignId}/achievements:
     get:
       description: List all the achievements for a specific campaign.
@@ -10586,7 +11009,7 @@ components:
           type: array
         couponPattern:
           description: |
-            The pattern used to generate coupon codes. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
+            The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
           example: SUMMER-####-####
           maxLength: 100
           minLength: 3
@@ -10889,7 +11312,6 @@ components:
         enableCascadingDiscounts: true
         loyaltyPrograms:
         - cardBased: true
-          canUpgradeToAdvancedTiers: true
           tiers:
           - name: Gold
             minPoints: 300
@@ -10908,27 +11330,68 @@ components:
             programId: 139
           canUpdateTiers: true
           usersPerCardLimit: 111
-          created: 2020-06-10T09:05:27.993483Z
           timezone: Europe/Berlin
-          sandbox: true
           description: Customers collect 10 points per 1$ spent
           title: Point collection
           canUpdateJoinPolicy: true
+          programJoinPolicy: not_join
+          accountID: 1
+          defaultPending: immediate
+          tiersDowngradePolicy: one_down
+          cardCodeSettings:
+            couponPattern: SUMMER-####-####
+            validCharacters:
+            - A
+            - B
+            - C
+            - D
+            - E
+            - F
+            - G
+            - H
+            - I
+            - J
+            - K
+            - L
+            - M
+            - "N"
+            - O
+            - P
+            - Q
+            - R
+            - S
+            - T
+            - U
+            - V
+            - W
+            - X
+            - "Y"
+            - Z
+            - "0"
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+            - "6"
+            - "7"
+            - "8"
+            - "9"
+          id: 0
+          canUpgradeToAdvancedTiers: true
+          created: 2020-06-10T09:05:27.993483Z
+          sandbox: true
           subscribedApplications:
           - 132
           - 97
           tiersExpirationPolicy: tier_start_date
-          programJoinPolicy: not_join
-          accountID: 1
           defaultValidity: 2W_U
-          defaultPending: immediate
-          tiersDowngradePolicy: one_down
+          canUpdateTierExpirationPolicy: true
           allowSubledger: false
           tiersExpireIn: 27W_U
+          tiersStartDate: 2021-09-12T10:12:42Z
           name: my_program
-          id: 0
         - cardBased: true
-          canUpgradeToAdvancedTiers: true
           tiers:
           - name: Gold
             minPoints: 300
@@ -10947,25 +11410,67 @@ components:
             programId: 139
           canUpdateTiers: true
           usersPerCardLimit: 111
-          created: 2020-06-10T09:05:27.993483Z
           timezone: Europe/Berlin
-          sandbox: true
           description: Customers collect 10 points per 1$ spent
           title: Point collection
           canUpdateJoinPolicy: true
+          programJoinPolicy: not_join
+          accountID: 1
+          defaultPending: immediate
+          tiersDowngradePolicy: one_down
+          cardCodeSettings:
+            couponPattern: SUMMER-####-####
+            validCharacters:
+            - A
+            - B
+            - C
+            - D
+            - E
+            - F
+            - G
+            - H
+            - I
+            - J
+            - K
+            - L
+            - M
+            - "N"
+            - O
+            - P
+            - Q
+            - R
+            - S
+            - T
+            - U
+            - V
+            - W
+            - X
+            - "Y"
+            - Z
+            - "0"
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+            - "6"
+            - "7"
+            - "8"
+            - "9"
+          id: 0
+          canUpgradeToAdvancedTiers: true
+          created: 2020-06-10T09:05:27.993483Z
+          sandbox: true
           subscribedApplications:
           - 132
           - 97
           tiersExpirationPolicy: tier_start_date
-          programJoinPolicy: not_join
-          accountID: 1
           defaultValidity: 2W_U
-          defaultPending: immediate
-          tiersDowngradePolicy: one_down
+          canUpdateTierExpirationPolicy: true
           allowSubledger: false
           tiersExpireIn: 27W_U
+          tiersStartDate: 2021-09-12T10:12:42Z
           name: my_program
-          id: 0
         name: My Application
         modified: 2021-09-12T10:12:42Z
         defaultDiscountScope: sessionTotal
@@ -11741,6 +12246,7 @@ components:
         - coupons
         - referrals
         createdLoyaltyPointsCount: 9.0
+        storesImported: true
         couponSettings:
           couponPattern: SUMMER-####-####
           validCharacters:
@@ -12133,6 +12639,11 @@ components:
           - archived
           example: running
           type: string
+        storesImported:
+          description: Indicates whether the linked stores were imported via a CSV
+            file.
+          example: true
+          type: boolean
       required:
       - applicationId
       - budgets
@@ -12144,6 +12655,7 @@ components:
       - limits
       - name
       - state
+      - storesImported
       - tags
       - type
       - userId
@@ -12314,9 +12826,15 @@ components:
           - archived
           example: running
           type: string
+        storesImported:
+          description: Indicates whether the linked stores were imported via a CSV
+            file.
+          example: true
+          type: boolean
       required:
       - budgets
       - frontendState
+      - storesImported
       type: object
     NewRuleset:
       properties:
@@ -15162,10 +15680,6 @@ components:
           description: HTTP status code of the response.
           example: 200
           type: integer
-      required:
-      - createdAt
-      - response
-      - status
       type: object
     WebhookActivationLogEntry:
       description: Log of activated webhooks.
@@ -15226,6 +15740,7 @@ components:
         email: john.doe@example.com
         policy:
           Role: 127
+        additionalAttributes: '{}'
       properties:
         id:
           description: Internal ID of this entity.
@@ -15309,6 +15824,11 @@ components:
           example: 2020-06-01T00:00:00Z
           format: date-time
           type: string
+        additionalAttributes:
+          description: Additional user attributes, created and used by external identity
+            providers.
+          properties: {}
+          type: object
       required:
       - accountId
       - created
@@ -15358,6 +15878,171 @@ components:
           type: string
       required:
       - email
+      type: object
+    OktaEventTarget:
+      description: Target of the specific Okta event.
+      properties:
+        type:
+          description: Type of the event target.
+          example: AppUser
+          type: string
+        alternateId:
+          description: Identifier of the event target, depending on its type.
+          example: john.doe@example.com
+          type: string
+        displayName:
+          description: Display name of the event target.
+          example: John Doe
+          type: string
+      required:
+      - alternateId
+      - displayName
+      - type
+      type: object
+    OktaEvent:
+      description: Single event definition in the event data emitted by Okta.
+      properties:
+        eventType:
+          description: Event type defining an action.
+          example: application.user_membership.add
+          type: string
+        target:
+          items:
+            $ref: '#/components/schemas/OktaEventTarget'
+          type: array
+      required:
+      - eventType
+      - target
+      type: object
+    OktaEventPayloadData:
+      description: Data part of the event emitted by Okta.
+      properties:
+        events:
+          items:
+            $ref: '#/components/schemas/OktaEvent'
+          type: array
+      required:
+      - events
+      type: object
+    OktaEventPayload:
+      description: Payload containing provisioning event details from Okta.
+      properties:
+        data:
+          $ref: '#/components/schemas/OktaEventPayloadData'
+      required:
+      - data
+      type: object
+    ScimNewUser:
+      description: Payload for users that are created using the SCIM provisioning
+        protocol with an identity provider, for example, Microsoft Entra ID.
+      properties:
+        active:
+          description: Status of the user.
+          example: true
+          type: boolean
+        displayName:
+          description: Display name of the user.
+          example: John Doe
+          type: string
+        userName:
+          description: Unique identifier of the user. This is usually an email address.
+          example: john.doe@example.com
+          type: string
+      required:
+      - userName
+      type: object
+    ScimUser:
+      description: Schema definition for users that have been provisioned using the
+        SCIM protocol with an identity provider, for example, Microsoft Entra ID.
+      example:
+        displayName: John Doe
+        active: true
+        id: "359"
+        userName: john.doe@example.com
+      properties:
+        active:
+          description: Status of the user.
+          example: true
+          type: boolean
+        displayName:
+          description: Display name of the user.
+          example: John Doe
+          type: string
+        userName:
+          description: Unique identifier of the user. This is usually an email address.
+          example: john.doe@example.com
+          type: string
+        id:
+          description: ID of the user.
+          example: "359"
+          type: string
+      required:
+      - id
+      - userName
+      type: object
+    ScimResource:
+      description: Resource schema definition for the SCIM provisioning protocol.
+      example:
+        id: User
+        name: User
+      properties:
+        id:
+          description: ID of the resource.
+          type: string
+        name:
+          description: Name of the resource.
+          type: string
+      type: object
+    ScimUsersListResponse:
+      description: List of users that have been provisioned using the SCIM protocol
+        with an identity provider, for example, Microsoft Entra ID.
+      example:
+        Resources:
+        - active: true
+          displayName: John Doe
+          id: 283
+          meta:
+            resourceType: User
+            created: 2024-06-25T17:43:46+02:00
+          userName: john.doe@example.com
+          schemas:
+          - urn:ietf:params:scim:schemas:core:2.0:User
+          - urn:ietf:params:scim:schemas:extension:enterprise:2.0:User
+        schemas:
+        - urn:ietf:params:scim:api:messages:2.0:ListResponse
+        totalResults: 1
+      properties:
+        Resources:
+          items:
+            $ref: '#/components/schemas/ScimUser'
+          type: array
+        schemas:
+          items:
+            description: SCIM schema for the given resource.
+            example: urn:ietf:params:scim:api:messages:2.0:ListResponse
+            type: string
+          type: array
+        totalResults:
+          description: Number of total results in the response.
+          type: integer
+      required:
+      - Resources
+      type: object
+    ScimResourceTypesListResponse:
+      description: List of resource types supported by the SCIM provisioning protocol.
+      example:
+        Resources:
+        - id: User
+          name: User
+        - id: User
+          name: User
+      properties:
+        Resources:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+      required:
+      - Resources
       type: object
     NewInvitation:
       description: Parameters for inviting a new user.
@@ -15633,7 +16318,6 @@ components:
       description: ""
       example:
         cardBased: true
-        canUpgradeToAdvancedTiers: true
         tiers:
         - name: Gold
           minPoints: 300
@@ -15652,25 +16336,67 @@ components:
           programId: 139
         canUpdateTiers: true
         usersPerCardLimit: 111
-        created: 2020-06-10T09:05:27.993483Z
         timezone: Europe/Berlin
-        sandbox: true
         description: Customers collect 10 points per 1$ spent
         title: Point collection
         canUpdateJoinPolicy: true
+        programJoinPolicy: not_join
+        accountID: 1
+        defaultPending: immediate
+        tiersDowngradePolicy: one_down
+        cardCodeSettings:
+          couponPattern: SUMMER-####-####
+          validCharacters:
+          - A
+          - B
+          - C
+          - D
+          - E
+          - F
+          - G
+          - H
+          - I
+          - J
+          - K
+          - L
+          - M
+          - "N"
+          - O
+          - P
+          - Q
+          - R
+          - S
+          - T
+          - U
+          - V
+          - W
+          - X
+          - "Y"
+          - Z
+          - "0"
+          - "1"
+          - "2"
+          - "3"
+          - "4"
+          - "5"
+          - "6"
+          - "7"
+          - "8"
+          - "9"
+        id: 0
+        canUpgradeToAdvancedTiers: true
+        created: 2020-06-10T09:05:27.993483Z
+        sandbox: true
         subscribedApplications:
         - 132
         - 97
         tiersExpirationPolicy: tier_start_date
-        programJoinPolicy: not_join
-        accountID: 1
         defaultValidity: 2W_U
-        defaultPending: immediate
-        tiersDowngradePolicy: one_down
+        canUpdateTierExpirationPolicy: true
         allowSubledger: false
         tiersExpireIn: 27W_U
+        tiersStartDate: 2021-09-12T10:12:42Z
         name: my_program
-        id: 0
       properties:
         id:
           description: The ID of loyalty program. Internal ID of this entity.
@@ -15730,14 +16456,39 @@ components:
           example: true
           title: Sandbox
           type: boolean
+        programJoinPolicy:
+          description: |
+            The policy that defines when the customer joins the loyalty program.
+              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
+
+                 **Note**: The customer does not have a program join date.
+              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
+              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
+          enum:
+          - not_join
+          - points_activated
+          - points_earned
+          type: string
         tiersExpirationPolicy:
           description: |
             The policy that defines which date is used to calculate the expiration date of a customer's current tier.
              - `tier_start_date`: The tier expiration date is calculated based on when the customer joined the current tier.
              - `program_join_date`: The tier expiration date is calculated based on when the customer joined the loyalty program.
+             - `customer_attribute`: The tier expiration date is calculated based on a custom customer attribute.
+             - `absolute_expiration`: The tier expires on a specified date and time. **Note**: For absolute expiration, it is required to provide a `tiersStartDate.`
           enum:
           - tier_start_date
           - program_join_date
+          - customer_attribute
+          - absolute_expiration
+          type: string
+        tiersStartDate:
+          description: |
+            Timestamp at which the tier starts for all customers.
+
+            **Note**: This is only required when the tier expiration policy is set to `absolute_expiration`.
+          example: 2021-09-12T10:12:42Z
+          format: date-time
           type: string
         tiersExpireIn:
           description: |
@@ -15770,19 +16521,8 @@ components:
           - one_down
           - balance_based
           type: string
-        programJoinPolicy:
-          description: |
-            The policy that defines when the customer joins the loyalty program.
-              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
-
-                 **Note**: The customer does not have a program join date.
-              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
-              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
-          enum:
-          - not_join
-          - points_activated
-          - points_earned
-          type: string
+        cardCodeSettings:
+          $ref: '#/components/schemas/CodeGeneratorSettings'
         accountID:
           description: The ID of the Talon.One account that owns this program.
           example: 1
@@ -15834,7 +16574,12 @@ components:
           type: boolean
         canUpdateJoinPolicy:
           description: |
-            Indicates whether the program join policy can be updated. The join policy can be updated when this value is set to `true`.
+            `True` if the program join policy can be updated.
+          example: true
+          type: boolean
+        canUpdateTierExpirationPolicy:
+          description: |
+            `True` if the tier expiration policy can be updated.
           example: true
           type: boolean
         canUpgradeToAdvancedTiers:
@@ -15964,14 +16709,39 @@ components:
           example: true
           title: Sandbox
           type: boolean
+        programJoinPolicy:
+          description: |
+            The policy that defines when the customer joins the loyalty program.
+              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
+
+                 **Note**: The customer does not have a program join date.
+              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
+              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
+          enum:
+          - not_join
+          - points_activated
+          - points_earned
+          type: string
         tiersExpirationPolicy:
           description: |
             The policy that defines which date is used to calculate the expiration date of a customer's current tier.
              - `tier_start_date`: The tier expiration date is calculated based on when the customer joined the current tier.
              - `program_join_date`: The tier expiration date is calculated based on when the customer joined the loyalty program.
+             - `customer_attribute`: The tier expiration date is calculated based on a custom customer attribute.
+             - `absolute_expiration`: The tier expires on a specified date and time. **Note**: For absolute expiration, it is required to provide a `tiersStartDate.`
           enum:
           - tier_start_date
           - program_join_date
+          - customer_attribute
+          - absolute_expiration
+          type: string
+        tiersStartDate:
+          description: |
+            Timestamp at which the tier starts for all customers.
+
+            **Note**: This is only required when the tier expiration policy is set to `absolute_expiration`.
+          example: 2021-09-12T10:12:42Z
+          format: date-time
           type: string
         tiersExpireIn:
           description: |
@@ -16004,19 +16774,8 @@ components:
           - one_down
           - balance_based
           type: string
-        programJoinPolicy:
-          description: |
-            The policy that defines when the customer joins the loyalty program.
-              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
-
-                 **Note**: The customer does not have a program join date.
-              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
-              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
-          enum:
-          - not_join
-          - points_activated
-          - points_earned
-          type: string
+        cardCodeSettings:
+          $ref: '#/components/schemas/CodeGeneratorSettings'
       type: object
     NewLoyaltyProgram:
       description: ""
@@ -16071,14 +16830,39 @@ components:
           example: true
           title: Sandbox
           type: boolean
+        programJoinPolicy:
+          description: |
+            The policy that defines when the customer joins the loyalty program.
+              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
+
+                 **Note**: The customer does not have a program join date.
+              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
+              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
+          enum:
+          - not_join
+          - points_activated
+          - points_earned
+          type: string
         tiersExpirationPolicy:
           description: |
             The policy that defines which date is used to calculate the expiration date of a customer's current tier.
              - `tier_start_date`: The tier expiration date is calculated based on when the customer joined the current tier.
              - `program_join_date`: The tier expiration date is calculated based on when the customer joined the loyalty program.
+             - `customer_attribute`: The tier expiration date is calculated based on a custom customer attribute.
+             - `absolute_expiration`: The tier expires on a specified date and time. **Note**: For absolute expiration, it is required to provide a `tiersStartDate.`
           enum:
           - tier_start_date
           - program_join_date
+          - customer_attribute
+          - absolute_expiration
+          type: string
+        tiersStartDate:
+          description: |
+            Timestamp at which the tier starts for all customers.
+
+            **Note**: This is only required when the tier expiration policy is set to `absolute_expiration`.
+          example: 2021-09-12T10:12:42Z
+          format: date-time
           type: string
         tiersExpireIn:
           description: |
@@ -16111,19 +16895,8 @@ components:
           - one_down
           - balance_based
           type: string
-        programJoinPolicy:
-          description: |
-            The policy that defines when the customer joins the loyalty program.
-              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
-
-                 **Note**: The customer does not have a program join date.
-              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
-              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
-          enum:
-          - not_join
-          - points_activated
-          - points_earned
-          type: string
+        cardCodeSettings:
+          $ref: '#/components/schemas/CodeGeneratorSettings'
         name:
           description: The internal name for the Loyalty Program. This is an immutable
             value.
@@ -16209,14 +16982,39 @@ components:
           example: true
           title: Sandbox
           type: boolean
+        programJoinPolicy:
+          description: |
+            The policy that defines when the customer joins the loyalty program.
+              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
+
+                 **Note**: The customer does not have a program join date.
+              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
+              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
+          enum:
+          - not_join
+          - points_activated
+          - points_earned
+          type: string
         tiersExpirationPolicy:
           description: |
             The policy that defines which date is used to calculate the expiration date of a customer's current tier.
              - `tier_start_date`: The tier expiration date is calculated based on when the customer joined the current tier.
              - `program_join_date`: The tier expiration date is calculated based on when the customer joined the loyalty program.
+             - `customer_attribute`: The tier expiration date is calculated based on a custom customer attribute.
+             - `absolute_expiration`: The tier expires on a specified date and time. **Note**: For absolute expiration, it is required to provide a `tiersStartDate.`
           enum:
           - tier_start_date
           - program_join_date
+          - customer_attribute
+          - absolute_expiration
+          type: string
+        tiersStartDate:
+          description: |
+            Timestamp at which the tier starts for all customers.
+
+            **Note**: This is only required when the tier expiration policy is set to `absolute_expiration`.
+          example: 2021-09-12T10:12:42Z
+          format: date-time
           type: string
         tiersExpireIn:
           description: |
@@ -16249,19 +17047,8 @@ components:
           - one_down
           - balance_based
           type: string
-        programJoinPolicy:
-          description: |
-            The policy that defines when the customer joins the loyalty program.
-              - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.
-
-                 **Note**: The customer does not have a program join date.
-              - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.
-              - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
-          enum:
-          - not_join
-          - points_activated
-          - points_earned
-          type: string
+        cardCodeSettings:
+          $ref: '#/components/schemas/CodeGeneratorSettings'
         tiers:
           description: The tiers in this loyalty program.
           items:
@@ -16407,18 +17194,6 @@ components:
       type: object
     LoyaltyBalances:
       description: List of loyalty balances for a ledger and its subledgers.
-      example:
-        balance:
-          activePoints: 286.0
-          spentPoints: 150.0
-          expiredPoints: 286.0
-          pendingPoints: 50.0
-        subledgerBalances:
-          mysubledger:
-            activePoints: 286
-            pendingPoints: 50
-            spentPoints: 150
-            expiredPoints: 25
       properties:
         balance:
           $ref: '#/components/schemas/LoyaltyBalance'
@@ -16465,6 +17240,103 @@ components:
           example: 286.0
           title: Total expired points
           type: number
+      type: object
+    LoyaltyBalanceWithTier:
+      description: ""
+      example:
+        projectedTier:
+          projectedActivePoints: 198.0
+          stayInTierPoints: 2.0
+          projectedTierName: Tier 1
+        activePoints: 286.0
+        spentPoints: 150.0
+        nextTierName: silver
+        pointsToNextTier: 20.0
+        expiredPoints: 286.0
+        currentTier:
+          expiryDate: 2000-01-23T04:56:07.000+00:00
+          downgradePolicy: one_down
+          name: bronze
+          id: 11
+          startDate: 2000-01-23T04:56:07.000+00:00
+        pendingPoints: 50.0
+      properties:
+        activePoints:
+          description: Total amount of points awarded to this customer and available
+            to spend.
+          example: 286.0
+          title: Current Balance
+          type: number
+        pendingPoints:
+          description: Total amount of points awarded to this customer but not available
+            until their start date.
+          example: 50.0
+          title: Total pending points
+          type: number
+        spentPoints:
+          description: Total amount of points already spent by this customer.
+          example: 150.0
+          title: Total spent points
+          type: number
+        expiredPoints:
+          description: Total amount of points awarded but never redeemed. They cannot
+            be used anymore.
+          example: 286.0
+          title: Total expired points
+          type: number
+        currentTier:
+          $ref: '#/components/schemas/Tier'
+        projectedTier:
+          $ref: '#/components/schemas/ProjectedTier'
+        pointsToNextTier:
+          description: The number of points required to move up a tier.
+          example: 20.0
+          type: number
+        nextTierName:
+          description: The name of the tier consecutive to the current tier.
+          example: silver
+          type: string
+      type: object
+    LoyaltyBalancesWithTiers:
+      description: List of loyalty balances for a ledger and its subledgers.
+      example:
+        balance:
+          projectedTier:
+            projectedActivePoints: 198.0
+            stayInTierPoints: 2.0
+            projectedTierName: Tier 1
+          activePoints: 286.0
+          spentPoints: 150.0
+          nextTierName: silver
+          pointsToNextTier: 20.0
+          expiredPoints: 286.0
+          currentTier:
+            expiryDate: 2000-01-23T04:56:07.000+00:00
+            downgradePolicy: one_down
+            name: bronze
+            id: 11
+            startDate: 2000-01-23T04:56:07.000+00:00
+          pendingPoints: 50.0
+        subledgerBalances:
+          mysubledger:
+            activePoints: 286
+            pendingPoints: 50
+            spentPoints: 150
+            expiredPoints: 25
+      properties:
+        balance:
+          $ref: '#/components/schemas/LoyaltyBalanceWithTier'
+        subledgerBalances:
+          additionalProperties:
+            $ref: '#/components/schemas/LoyaltyBalanceWithTier'
+          description: Map of the loyalty balances of the subledgers of a ledger.
+          example:
+            mysubledger:
+              activePoints: 286
+              pendingPoints: 50
+              spentPoints: 150
+              expiredPoints: 25
+          type: object
       type: object
     LoyaltyLedger:
       description: Ledger of Balance in Loyalty Program for a Customer.
@@ -16596,6 +17468,7 @@ components:
             downgradePolicy: one_down
             name: bronze
             id: 11
+            startDate: 2000-01-23T04:56:07.000+00:00
           pendingPoints:
           - eventID: 5
             amount: 100.0
@@ -16777,6 +17650,7 @@ components:
           downgradePolicy: one_down
           name: bronze
           id: 11
+          startDate: 2000-01-23T04:56:07.000+00:00
         pendingPoints:
         - eventID: 5
           amount: 100.0
@@ -16882,6 +17756,7 @@ components:
               downgradePolicy: one_down
               name: bronze
               id: 11
+              startDate: 2000-01-23T04:56:07.000+00:00
           identifier: summer-loyalty-card-0543
           oldCardIdentifier: summer-loyalty-card-0543
           usersPerCardLimit: 111
@@ -16905,8 +17780,10 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
           modified: 2021-09-12T10:12:42Z
           id: 6
+          blockReason: Current card lost. Customer needs a new card.
           newCardIdentifier: summer-loyalty-card-0543
           programID: 125
           status: active
@@ -16923,6 +17800,7 @@ components:
               downgradePolicy: one_down
               name: bronze
               id: 11
+              startDate: 2000-01-23T04:56:07.000+00:00
           identifier: summer-loyalty-card-0543
           oldCardIdentifier: summer-loyalty-card-0543
           usersPerCardLimit: 111
@@ -16946,8 +17824,10 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
           modified: 2021-09-12T10:12:42Z
           id: 6
+          blockReason: Current card lost. Customer needs a new card.
           newCardIdentifier: summer-loyalty-card-0543
           programID: 125
           status: active
@@ -16966,6 +17846,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             joinDate: 2000-01-23T04:56:07.000+00:00
             subLedgers:
               key:
@@ -16981,6 +17862,7 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             name: program1
             id: 5
             title: My loyalty program
@@ -17017,6 +17899,7 @@ components:
             downgradePolicy: one_down
             name: bronze
             id: 11
+            startDate: 2000-01-23T04:56:07.000+00:00
         joinDate: 2000-01-23T04:56:07.000+00:00
         subLedgers:
           key:
@@ -17032,6 +17915,7 @@ components:
               downgradePolicy: one_down
               name: bronze
               id: 11
+              startDate: 2000-01-23T04:56:07.000+00:00
         name: program1
         id: 5
         title: My loyalty program
@@ -17083,6 +17967,7 @@ components:
           downgradePolicy: one_down
           name: bronze
           id: 11
+          startDate: 2000-01-23T04:56:07.000+00:00
       properties:
         currentBalance:
           description: Sum of currently active points.
@@ -17156,6 +18041,7 @@ components:
         downgradePolicy: one_down
         name: bronze
         id: 11
+        startDate: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
           description: The internal ID of the tier.
@@ -17164,6 +18050,11 @@ components:
         name:
           description: The name of the tier.
           example: bronze
+          type: string
+        startDate:
+          description: Date and time when the customer moved to this tier. This value
+            uses the loyalty program's time zone setting.
+          format: date-time
           type: string
         expiryDate:
           description: Date when tier level expires in the RFC3339 format (in the
@@ -17182,6 +18073,31 @@ components:
       required:
       - id
       - name
+      type: object
+    ProjectedTier:
+      example:
+        projectedActivePoints: 198.0
+        stayInTierPoints: 2.0
+        projectedTierName: Tier 1
+      properties:
+        projectedActivePoints:
+          description: The active points of the customer when their current tier expires.
+          example: 198.0
+          type: number
+        stayInTierPoints:
+          description: |
+            The number of points the customer needs to stay in the current tier.
+
+            **Note**: This is included in the response when the customer is projected to be downgraded.
+          example: 2.0
+          type: number
+        projectedTierName:
+          description: The name of the tier the user will enter once their current
+            tier expires.
+          example: Tier 1
+          type: string
+      required:
+      - projectedActivePoints
       type: object
     TimePoint:
       description: |
@@ -17254,6 +18170,7 @@ components:
             downgradePolicy: one_down
             name: bronze
             id: 11
+            startDate: 2000-01-23T04:56:07.000+00:00
         identifier: summer-loyalty-card-0543
         oldCardIdentifier: summer-loyalty-card-0543
         usersPerCardLimit: 111
@@ -17277,8 +18194,10 @@ components:
               downgradePolicy: one_down
               name: bronze
               id: 11
+              startDate: 2000-01-23T04:56:07.000+00:00
         modified: 2021-09-12T10:12:42Z
         id: 6
+        blockReason: Current card lost. Customer needs a new card.
         newCardIdentifier: summer-loyalty-card-0543
         programID: 125
         status: active
@@ -17300,6 +18219,11 @@ components:
           description: |
             Status of the loyalty card. Can be one of: ['active', 'inactive']
           example: active
+          type: string
+        blockReason:
+          description: |
+            Reason for transferring and blocking the loyalty card.
+          example: Current card lost. Customer needs a new card.
           type: string
         identifier:
           description: |
@@ -17926,6 +18850,7 @@ components:
     TransferLoyaltyCard:
       example:
         newCardIdentifier: summer-loyalty-card-0543
+        blockReason: Current card lost. Customer needs a new card.
       properties:
         newCardIdentifier:
           description: |
@@ -17933,17 +18858,28 @@ components:
           example: summer-loyalty-card-0543
           maxLength: 108
           type: string
+        blockReason:
+          description: |
+            Reason for transferring and blocking the loyalty card.
+          example: Current card lost. Customer needs a new card.
+          type: string
       required:
       - newCardIdentifier
       type: object
     UpdateLoyaltyCard:
       example:
+        blockReason: Current card lost. Customer needs a new card.
         status: active
       properties:
         status:
           description: |
             Status of the loyalty card. Can be one of: ['active', 'inactive']
           example: active
+          type: string
+        blockReason:
+          description: |
+            Reason for transferring and blocking the loyalty card.
+          example: Current card lost. Customer needs a new card.
           type: string
       required:
       - status
@@ -18348,6 +19284,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -18371,8 +19308,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -18389,6 +19328,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -18412,8 +19352,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -18432,6 +19374,7 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
               joinDate: 2000-01-23T04:56:07.000+00:00
               subLedgers:
                 key:
@@ -18447,6 +19390,7 @@ components:
                     downgradePolicy: one_down
                     name: bronze
                     id: 11
+                    startDate: 2000-01-23T04:56:07.000+00:00
               name: program1
               id: 5
               title: My loyalty program
@@ -19640,6 +20584,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -19663,8 +20608,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -19681,6 +20628,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -19704,8 +20652,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -19724,6 +20674,7 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
               joinDate: 2000-01-23T04:56:07.000+00:00
               subLedgers:
                 key:
@@ -19739,6 +20690,7 @@ components:
                     downgradePolicy: one_down
                     name: bronze
                     id: 11
+                    startDate: 2000-01-23T04:56:07.000+00:00
               name: program1
               id: 5
               title: My loyalty program
@@ -19862,19 +20814,23 @@ components:
         effects:
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -19908,6 +20864,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -20049,6 +21006,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -20494,19 +21452,23 @@ components:
         effects:
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -20522,6 +21484,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -20663,6 +21626,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -20830,6 +21794,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -20853,8 +21818,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -20871,6 +21838,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -20894,8 +21862,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -20914,6 +21884,7 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
               joinDate: 2000-01-23T04:56:07.000+00:00
               subLedgers:
                 key:
@@ -20929,6 +21900,7 @@ components:
                     downgradePolicy: one_down
                     name: bronze
                     id: 11
+                    startDate: 2000-01-23T04:56:07.000+00:00
               name: program1
               id: 5
               title: My loyalty program
@@ -21165,19 +22137,23 @@ components:
         effects:
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -21193,6 +22169,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -21334,6 +22311,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -21501,6 +22479,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -21524,8 +22503,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -21542,6 +22523,7 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
             identifier: summer-loyalty-card-0543
             oldCardIdentifier: summer-loyalty-card-0543
             usersPerCardLimit: 111
@@ -21565,8 +22547,10 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
             modified: 2021-09-12T10:12:42Z
             id: 6
+            blockReason: Current card lost. Customer needs a new card.
             newCardIdentifier: summer-loyalty-card-0543
             programID: 125
             status: active
@@ -21585,6 +22569,7 @@ components:
                   downgradePolicy: one_down
                   name: bronze
                   id: 11
+                  startDate: 2000-01-23T04:56:07.000+00:00
               joinDate: 2000-01-23T04:56:07.000+00:00
               subLedgers:
                 key:
@@ -21600,6 +22585,7 @@ components:
                     downgradePolicy: one_down
                     name: bronze
                     id: 11
+                    startDate: 2000-01-23T04:56:07.000+00:00
               name: program1
               id: 5
               title: My loyalty program
@@ -21836,19 +22822,23 @@ components:
         effects:
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -21899,19 +22889,23 @@ components:
         effects:
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -22424,19 +23418,23 @@ components:
         effects:
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
         - rulesetId: 73
           ruleIndex: 2
+          evaluationGroupID: 3
           triggeredForCatalogItem: 786
           campaignId: 244
           ruleName: Give 20% discount
           conditionIndex: 786
+          evaluationGroupMode: stackable
           triggeredByCoupon: 4928
           effectType: rejectCoupon
           props: '{}'
@@ -24058,6 +25056,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -24340,7 +25339,6 @@ components:
             object with keys corresponding to the `name` of the custom attributes
             for that type.
           enum:
-          - Account
           - Application
           - Campaign
           - CustomerProfile
@@ -24508,7 +25506,6 @@ components:
             object with keys corresponding to the `name` of the custom attributes
             for that type.
           enum:
-          - Account
           - Application
           - Campaign
           - CustomerProfile
@@ -24834,6 +25831,10 @@ components:
           example: Send message
           pattern: ^[A-Za-z][A-Za-z0-9_.!~*'() -]*$
           type: string
+        description:
+          description: A description of the webhook.
+          example: A webhook to send a coupon to the user.
+          type: string
         verb:
           description: API method for this webhook.
           enum:
@@ -24891,6 +25892,7 @@ components:
         created: 2020-06-10T09:05:27.993483Z
         verb: POST
         modified: 2021-09-12T10:12:42Z
+        description: A webhook to send a coupon to the user.
         id: 6
         title: Send message
         params: []
@@ -24926,6 +25928,10 @@ components:
           description: Name or title for this webhook.
           example: Send message
           pattern: ^[A-Za-z][A-Za-z0-9_.!~*'() -]*$
+          type: string
+        description:
+          description: A description of the webhook.
+          example: A webhook to send a coupon to the user.
           type: string
         verb:
           description: API method for this webhook.
@@ -24986,6 +25992,7 @@ components:
         created: 2020-06-10T09:05:27.993483Z
         outgoingIntegrationTemplateId: 1
         verb: POST
+        description: A webhook to send a coupon to the user.
         title: Send message
         params: []
         url: www.my-company.com/my-endpoint-name
@@ -25025,6 +26032,10 @@ components:
           description: Name or title for this webhook.
           example: Send message
           pattern: ^[A-Za-z][A-Za-z0-9_.!~*'() -]*$
+          type: string
+        description:
+          description: A description of the webhook.
+          example: A webhook to send a coupon to the user.
           type: string
         verb:
           description: API method for this webhook.
@@ -26970,6 +27981,11 @@ components:
             It is not possible to change this to `false` after it is set to `true`.
           example: true
           type: boolean
+        newAcsUrl:
+          description: |
+            Assertion Consumer Service (ACS) URL for setting up a new SAML connection with an identity provider like Okta or Microsoft Entra ID.
+          example: https://yourdeployment.talon.one/v1/saml_connections/5/saml_callback
+          type: string
       required:
       - enforced
       type: object
@@ -26978,10 +27994,12 @@ components:
       example:
         rulesetId: 73
         ruleIndex: 2
+        evaluationGroupID: 3
         triggeredForCatalogItem: 786
         campaignId: 244
         ruleName: Give 20% discount
         conditionIndex: 786
+        evaluationGroupMode: stackable
         triggeredByCoupon: 4928
         effectType: rejectCoupon
         props: '{}'
@@ -27022,6 +28040,16 @@ components:
           description: The index of the condition that was triggered.
           example: 786
           type: integer
+        evaluationGroupID:
+          description: The ID of the evaluation group. For more information, see [Managing
+            campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+          example: 3
+          type: integer
+        evaluationGroupMode:
+          description: The evaluation mode of the evaluation group. For more information,
+            see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+          example: stackable
+          type: string
         props:
           description: The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
           type: object
@@ -27073,6 +28101,16 @@ components:
           description: The index of the condition that was triggered.
           example: 786
           type: integer
+        evaluationGroupID:
+          description: The ID of the evaluation group. For more information, see [Managing
+            campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+          example: 3
+          type: integer
+        evaluationGroupMode:
+          description: The evaluation mode of the evaluation group. For more information,
+            see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+          example: stackable
+          type: string
       required:
       - campaignId
       - effectType
@@ -27141,6 +28179,10 @@ components:
         details:
           description: More details about the failure.
           type: string
+        campaignExclusionReason:
+          description: The reason why the campaign was not applied.
+          example: CampaignGaveLowerDiscount
+          type: string
       required:
       - rejectionReason
       - value
@@ -27165,6 +28207,10 @@ components:
           type: integer
         details:
           description: More details about the failure.
+          type: string
+        campaignExclusionReason:
+          description: The reason why the campaign was not applied.
+          example: CampaignGaveLowerDiscount
           type: string
       required:
       - rejectionReason
@@ -27872,8 +28918,7 @@ components:
           description: The current progress of the customer in the achievement.
           type: number
         target:
-          description: The required number of actions or the transactional milestone
-            to complete the achievement.
+          description: The target value to complete the achievement.
           type: number
         isJustCompleted:
           description: Indicates if the customer has completed the achievement in
@@ -27886,6 +28931,41 @@ components:
       - isJustCompleted
       - target
       - value
+      type: object
+    RollbackIncreasedAchievementProgressEffectProps:
+      description: The properties specific to the "rollbackIncreasedAchievementProgress"
+        effect. This gets triggered whenever a closed session where the `increaseAchievementProgress`
+        effect was triggered is cancelled. This is applicable only when the customer
+        has not completed the achievement.
+      properties:
+        achievementId:
+          description: The internal ID of the achievement.
+          example: 10
+          type: integer
+        achievementName:
+          description: The name of the achievement.
+          example: FreeCoffee10Orders
+          type: string
+        progressTrackerId:
+          description: The internal ID of the achievement progress tracker.
+          type: integer
+        decreaseProgressBy:
+          description: The value by which the customer's current progress in the achievement
+            is decreased.
+          type: number
+        currentProgress:
+          description: The current progress of the customer in the achievement.
+          type: number
+        target:
+          description: The target value to complete the achievement.
+          type: number
+      required:
+      - achievementId
+      - achievementName
+      - currentProgress
+      - decreaseProgressBy
+      - progressTrackerId
+      - target
       type: object
     ErrorEffectProps:
       description: Whenever an error occurred during evaluation, we return an error
@@ -29908,6 +30988,7 @@ components:
         policy: '{}'
       properties:
         policy:
+          description: Indicates which notification properties to apply.
           type: object
         enabled:
           default: true
@@ -29922,6 +31003,7 @@ components:
     BaseNotificationEntity:
       properties:
         policy:
+          description: Indicates which notification properties to apply.
           type: object
         enabled:
           default: true
@@ -29931,6 +31013,7 @@ components:
       - policy
       type: object
     BaseNotificationPolicy:
+      description: Indicates which notification properties to apply.
       type: object
     ExpiringCouponsNotificationPolicy:
       properties:
@@ -29999,6 +31082,28 @@ components:
       - triggers
       type: object
     AddedDeductedPointsNotificationPolicy:
+      properties:
+        name:
+          description: Notification name.
+          example: Christmas Sale
+          minLength: 1
+          type: string
+        scopes:
+          items:
+            enum:
+            - all
+            - campaign_manager
+            - management_api
+            - rule_engine
+            type: string
+          maxItems: 4
+          minItems: 1
+          type: array
+      required:
+      - name
+      - scopes
+      type: object
+    CardAddedDeductedPointsNotificationPolicy:
       properties:
         name:
           description: Notification name.
@@ -30109,6 +31214,11 @@ components:
           example: Christmas Sale
           minLength: 1
           type: string
+        batchingEnabled:
+          default: true
+          description: Indicates whether batching is activated.
+          example: false
+          type: boolean
       required:
       - name
       type: object
@@ -30227,6 +31337,7 @@ components:
         policy: '{}'
       properties:
         policy:
+          description: Indicates which notification properties to apply.
           type: object
         enabled:
           default: true
@@ -30244,6 +31355,7 @@ components:
           enum:
           - campaign
           - loyalty_added_deducted_points
+          - card_added_deducted_points
           - coupon
           - expiring_coupons
           - expiring_points
@@ -30355,6 +31467,7 @@ components:
           enum:
           - campaign
           - loyalty_added_deducted_points
+          - card_added_deducted_points
           - coupon
           - expiring_coupons
           - expiring_points
@@ -30710,6 +31823,10 @@ components:
         title:
           description: Webhook title.
           example: Send email to customer via Braze
+          type: string
+        description:
+          description: A description of the webhook.
+          example: A webhook to send a coupon to the user.
           type: string
         applicationIds:
           description: IDs of the Applications to which a webhook must be linked.
@@ -32021,13 +33138,13 @@ components:
           format: date-time
           type: string
         totalRevenue:
-          $ref: '#/components/schemas/ApplicationAnalyticsDataPoint_totalRevenue'
+          $ref: '#/components/schemas/AnalyticsDataPoint'
         sessionsCount:
-          $ref: '#/components/schemas/ApplicationAnalyticsDataPoint_sessionsCount'
+          $ref: '#/components/schemas/AnalyticsDataPoint'
         avgItemsPerSession:
-          $ref: '#/components/schemas/ApplicationAnalyticsDataPoint_avgItemsPerSession'
+          $ref: '#/components/schemas/AnalyticsDataPoint'
         avgSessionValue:
-          $ref: '#/components/schemas/ApplicationAnalyticsDataPoint_avgSessionValue'
+          $ref: '#/components/schemas/AnalyticsDataPoint'
         totalDiscounts:
           description: The total value of discounts given for cart items in influenced
             sessions.
@@ -32038,6 +33155,9 @@ components:
             sessions.
           example: 12.0
           type: number
+      required:
+      - endTime
+      - startTime
       type: object
     ApplicationCampaignAnalytics:
       properties:
@@ -32069,45 +33189,151 @@ components:
           maxItems: 50
           type: array
         campaignState:
-          default: enabled
           description: |
             The state of the campaign.
 
             **Note:** A disabled or archived campaign is not evaluated for rules or coupons.
           enum:
-          - enabled
+          - expired
+          - scheduled
+          - running
+          - draft
           - disabled
           - archived
-          example: enabled
-          type: string
-        campaignActiveRulesetId:
-          description: |
-            The [ID of the ruleset](https://docs.talon.one/management-api#operation/getRulesets) this
-            campaign applies on customer session evaluation.
-          example: 2
-          type: integer
-        campaignStartTime:
-          description: Date and time when the campaign becomes active.
-          example: 2021-07-20T22:00:00Z
-          format: date-time
-          type: string
-        campaignEndTime:
-          description: Date and time when the campaign becomes inactive.
-          example: 2021-10-01T02:00:00Z
-          format: date-time
+          example: running
           type: string
         totalRevenue:
-          $ref: '#/components/schemas/ApplicationCampaignAnalytics_totalRevenue'
+          $ref: '#/components/schemas/AnalyticsDataPointWithTrendAndInfluencedRate'
         sessionsCount:
-          $ref: '#/components/schemas/ApplicationCampaignAnalytics_sessionsCount'
+          $ref: '#/components/schemas/AnalyticsDataPointWithTrendAndInfluencedRate'
         avgItemsPerSession:
-          $ref: '#/components/schemas/ApplicationCampaignAnalytics_avgItemsPerSession'
+          $ref: '#/components/schemas/AnalyticsDataPointWithTrendAndUplift'
         avgSessionValue:
-          $ref: '#/components/schemas/ApplicationCampaignAnalytics_avgSessionValue'
+          $ref: '#/components/schemas/AnalyticsDataPointWithTrendAndUplift'
         totalDiscounts:
-          $ref: '#/components/schemas/ApplicationCampaignAnalytics_totalDiscounts'
+          $ref: '#/components/schemas/AnalyticsDataPointWithTrend'
         couponsCount:
-          $ref: '#/components/schemas/ApplicationCampaignAnalytics_couponsCount'
+          $ref: '#/components/schemas/AnalyticsDataPointWithTrend'
+      required:
+      - campaignId
+      - campaignName
+      - campaignState
+      - campaignTags
+      - endTime
+      - startTime
+      type: object
+    AnalyticsDataPoint:
+      properties:
+        total:
+          example: 12.0
+          type: number
+        influenced:
+          example: 12.0
+          type: number
+      required:
+      - influenced
+      - total
+      type: object
+    AnalyticsDataPointWithTrendAndInfluencedRate:
+      properties:
+        value:
+          example: 12.0
+          type: number
+        influencedRate:
+          example: 12.0
+          type: number
+        trend:
+          example: 3.25
+          type: number
+      required:
+      - influencedRate
+      - trend
+      - value
+      type: object
+    AnalyticsDataPointWithTrend:
+      properties:
+        value:
+          example: 12.0
+          type: number
+        trend:
+          example: 3.25
+          type: number
+      required:
+      - trend
+      - value
+      type: object
+    AnalyticsDataPointWithTrendAndUplift:
+      properties:
+        value:
+          example: 12.0
+          type: number
+        uplift:
+          example: 3.25
+          type: number
+        trend:
+          example: 3.25
+          type: number
+      required:
+      - trend
+      - uplift
+      - value
+      type: object
+    GenerateCampaignDescription:
+      properties:
+        campaignID:
+          description: ID of the campaign.
+          type: integer
+        currency:
+          description: Currency for the campaign.
+          type: string
+      required:
+      - campaignID
+      - currency
+      type: object
+    GenerateCampaignTags:
+      properties:
+        campaignID:
+          description: ID of the campaign.
+          type: integer
+      required:
+      - campaignID
+      type: object
+    GenerateRuleTitle:
+      properties:
+        rule:
+          $ref: '#/components/schemas/GenerateRuleTitle_rule'
+        currency:
+          description: Currency for the campaign.
+          type: string
+      required:
+      - currency
+      - rule
+      type: object
+    GenerateItemFilterDescription:
+      properties:
+        itemFilter:
+          description: An array of item filter Talang expressions.
+          example:
+          - filter
+          - - "."
+            - Session
+            - CartItems
+          - - - Item
+            - - catch
+              - false
+              - - and
+                - - '!='
+                  - - "."
+                    - Item
+                    - Attributes
+                    - c_productType
+                  - egiftcard
+          items:
+            properties: {}
+            type: object
+          type: array
+      required:
+      - itemFilter
       type: object
     inline_response_201:
       example:
@@ -32379,7 +33605,6 @@ components:
           enableCascadingDiscounts: true
           loyaltyPrograms:
           - cardBased: true
-            canUpgradeToAdvancedTiers: true
             tiers:
             - name: Gold
               minPoints: 300
@@ -32398,27 +33623,68 @@ components:
               programId: 139
             canUpdateTiers: true
             usersPerCardLimit: 111
-            created: 2020-06-10T09:05:27.993483Z
             timezone: Europe/Berlin
-            sandbox: true
             description: Customers collect 10 points per 1$ spent
             title: Point collection
             canUpdateJoinPolicy: true
+            programJoinPolicy: not_join
+            accountID: 1
+            defaultPending: immediate
+            tiersDowngradePolicy: one_down
+            cardCodeSettings:
+              couponPattern: SUMMER-####-####
+              validCharacters:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - "N"
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - "Y"
+              - Z
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+              - "5"
+              - "6"
+              - "7"
+              - "8"
+              - "9"
+            id: 0
+            canUpgradeToAdvancedTiers: true
+            created: 2020-06-10T09:05:27.993483Z
+            sandbox: true
             subscribedApplications:
             - 132
             - 97
             tiersExpirationPolicy: tier_start_date
-            programJoinPolicy: not_join
-            accountID: 1
             defaultValidity: 2W_U
-            defaultPending: immediate
-            tiersDowngradePolicy: one_down
+            canUpdateTierExpirationPolicy: true
             allowSubledger: false
             tiersExpireIn: 27W_U
+            tiersStartDate: 2021-09-12T10:12:42Z
             name: my_program
-            id: 0
           - cardBased: true
-            canUpgradeToAdvancedTiers: true
             tiers:
             - name: Gold
               minPoints: 300
@@ -32437,25 +33703,67 @@ components:
               programId: 139
             canUpdateTiers: true
             usersPerCardLimit: 111
-            created: 2020-06-10T09:05:27.993483Z
             timezone: Europe/Berlin
-            sandbox: true
             description: Customers collect 10 points per 1$ spent
             title: Point collection
             canUpdateJoinPolicy: true
+            programJoinPolicy: not_join
+            accountID: 1
+            defaultPending: immediate
+            tiersDowngradePolicy: one_down
+            cardCodeSettings:
+              couponPattern: SUMMER-####-####
+              validCharacters:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - "N"
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - "Y"
+              - Z
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+              - "5"
+              - "6"
+              - "7"
+              - "8"
+              - "9"
+            id: 0
+            canUpgradeToAdvancedTiers: true
+            created: 2020-06-10T09:05:27.993483Z
+            sandbox: true
             subscribedApplications:
             - 132
             - 97
             tiersExpirationPolicy: tier_start_date
-            programJoinPolicy: not_join
-            accountID: 1
             defaultValidity: 2W_U
-            defaultPending: immediate
-            tiersDowngradePolicy: one_down
+            canUpdateTierExpirationPolicy: true
             allowSubledger: false
             tiersExpireIn: 27W_U
+            tiersStartDate: 2021-09-12T10:12:42Z
             name: my_program
-            id: 0
           name: My Application
           modified: 2021-09-12T10:12:42Z
           defaultDiscountScope: sessionTotal
@@ -32494,7 +33802,6 @@ components:
           enableCascadingDiscounts: true
           loyaltyPrograms:
           - cardBased: true
-            canUpgradeToAdvancedTiers: true
             tiers:
             - name: Gold
               minPoints: 300
@@ -32513,27 +33820,68 @@ components:
               programId: 139
             canUpdateTiers: true
             usersPerCardLimit: 111
-            created: 2020-06-10T09:05:27.993483Z
             timezone: Europe/Berlin
-            sandbox: true
             description: Customers collect 10 points per 1$ spent
             title: Point collection
             canUpdateJoinPolicy: true
+            programJoinPolicy: not_join
+            accountID: 1
+            defaultPending: immediate
+            tiersDowngradePolicy: one_down
+            cardCodeSettings:
+              couponPattern: SUMMER-####-####
+              validCharacters:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - "N"
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - "Y"
+              - Z
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+              - "5"
+              - "6"
+              - "7"
+              - "8"
+              - "9"
+            id: 0
+            canUpgradeToAdvancedTiers: true
+            created: 2020-06-10T09:05:27.993483Z
+            sandbox: true
             subscribedApplications:
             - 132
             - 97
             tiersExpirationPolicy: tier_start_date
-            programJoinPolicy: not_join
-            accountID: 1
             defaultValidity: 2W_U
-            defaultPending: immediate
-            tiersDowngradePolicy: one_down
+            canUpdateTierExpirationPolicy: true
             allowSubledger: false
             tiersExpireIn: 27W_U
+            tiersStartDate: 2021-09-12T10:12:42Z
             name: my_program
-            id: 0
           - cardBased: true
-            canUpgradeToAdvancedTiers: true
             tiers:
             - name: Gold
               minPoints: 300
@@ -32552,25 +33900,67 @@ components:
               programId: 139
             canUpdateTiers: true
             usersPerCardLimit: 111
-            created: 2020-06-10T09:05:27.993483Z
             timezone: Europe/Berlin
-            sandbox: true
             description: Customers collect 10 points per 1$ spent
             title: Point collection
             canUpdateJoinPolicy: true
+            programJoinPolicy: not_join
+            accountID: 1
+            defaultPending: immediate
+            tiersDowngradePolicy: one_down
+            cardCodeSettings:
+              couponPattern: SUMMER-####-####
+              validCharacters:
+              - A
+              - B
+              - C
+              - D
+              - E
+              - F
+              - G
+              - H
+              - I
+              - J
+              - K
+              - L
+              - M
+              - "N"
+              - O
+              - P
+              - Q
+              - R
+              - S
+              - T
+              - U
+              - V
+              - W
+              - X
+              - "Y"
+              - Z
+              - "0"
+              - "1"
+              - "2"
+              - "3"
+              - "4"
+              - "5"
+              - "6"
+              - "7"
+              - "8"
+              - "9"
+            id: 0
+            canUpgradeToAdvancedTiers: true
+            created: 2020-06-10T09:05:27.993483Z
+            sandbox: true
             subscribedApplications:
             - 132
             - 97
             tiersExpirationPolicy: tier_start_date
-            programJoinPolicy: not_join
-            accountID: 1
             defaultValidity: 2W_U
-            defaultPending: immediate
-            tiersDowngradePolicy: one_down
+            canUpdateTierExpirationPolicy: true
             allowSubledger: false
             tiersExpireIn: 27W_U
+            tiersStartDate: 2021-09-12T10:12:42Z
             name: my_program
-            id: 0
           name: My Application
           modified: 2021-09-12T10:12:42Z
           defaultDiscountScope: sessionTotal
@@ -32616,6 +34006,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -32757,6 +34148,7 @@ components:
           - coupons
           - referrals
           createdLoyaltyPointsCount: 9.0
+          storesImported: true
           couponSettings:
             couponPattern: SUMMER-####-####
             validCharacters:
@@ -33721,7 +35113,6 @@ components:
       example:
         data:
         - cardBased: true
-          canUpgradeToAdvancedTiers: true
           tiers:
           - name: Gold
             minPoints: 300
@@ -33740,27 +35131,68 @@ components:
             programId: 139
           canUpdateTiers: true
           usersPerCardLimit: 111
-          created: 2020-06-10T09:05:27.993483Z
           timezone: Europe/Berlin
-          sandbox: true
           description: Customers collect 10 points per 1$ spent
           title: Point collection
           canUpdateJoinPolicy: true
+          programJoinPolicy: not_join
+          accountID: 1
+          defaultPending: immediate
+          tiersDowngradePolicy: one_down
+          cardCodeSettings:
+            couponPattern: SUMMER-####-####
+            validCharacters:
+            - A
+            - B
+            - C
+            - D
+            - E
+            - F
+            - G
+            - H
+            - I
+            - J
+            - K
+            - L
+            - M
+            - "N"
+            - O
+            - P
+            - Q
+            - R
+            - S
+            - T
+            - U
+            - V
+            - W
+            - X
+            - "Y"
+            - Z
+            - "0"
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+            - "6"
+            - "7"
+            - "8"
+            - "9"
+          id: 0
+          canUpgradeToAdvancedTiers: true
+          created: 2020-06-10T09:05:27.993483Z
+          sandbox: true
           subscribedApplications:
           - 132
           - 97
           tiersExpirationPolicy: tier_start_date
-          programJoinPolicy: not_join
-          accountID: 1
           defaultValidity: 2W_U
-          defaultPending: immediate
-          tiersDowngradePolicy: one_down
+          canUpdateTierExpirationPolicy: true
           allowSubledger: false
           tiersExpireIn: 27W_U
+          tiersStartDate: 2021-09-12T10:12:42Z
           name: my_program
-          id: 0
         - cardBased: true
-          canUpgradeToAdvancedTiers: true
           tiers:
           - name: Gold
             minPoints: 300
@@ -33779,25 +35211,67 @@ components:
             programId: 139
           canUpdateTiers: true
           usersPerCardLimit: 111
-          created: 2020-06-10T09:05:27.993483Z
           timezone: Europe/Berlin
-          sandbox: true
           description: Customers collect 10 points per 1$ spent
           title: Point collection
           canUpdateJoinPolicy: true
+          programJoinPolicy: not_join
+          accountID: 1
+          defaultPending: immediate
+          tiersDowngradePolicy: one_down
+          cardCodeSettings:
+            couponPattern: SUMMER-####-####
+            validCharacters:
+            - A
+            - B
+            - C
+            - D
+            - E
+            - F
+            - G
+            - H
+            - I
+            - J
+            - K
+            - L
+            - M
+            - "N"
+            - O
+            - P
+            - Q
+            - R
+            - S
+            - T
+            - U
+            - V
+            - W
+            - X
+            - "Y"
+            - Z
+            - "0"
+            - "1"
+            - "2"
+            - "3"
+            - "4"
+            - "5"
+            - "6"
+            - "7"
+            - "8"
+            - "9"
+          id: 0
+          canUpgradeToAdvancedTiers: true
+          created: 2020-06-10T09:05:27.993483Z
+          sandbox: true
           subscribedApplications:
           - 132
           - 97
           tiersExpirationPolicy: tier_start_date
-          programJoinPolicy: not_join
-          accountID: 1
           defaultValidity: 2W_U
-          defaultPending: immediate
-          tiersDowngradePolicy: one_down
+          canUpdateTierExpirationPolicy: true
           allowSubledger: false
           tiersExpireIn: 27W_U
+          tiersStartDate: 2021-09-12T10:12:42Z
           name: my_program
-          id: 0
         totalResultSize: 1
       properties:
         totalResultSize:
@@ -33877,6 +35351,7 @@ components:
               downgradePolicy: one_down
               name: bronze
               id: 11
+              startDate: 2000-01-23T04:56:07.000+00:00
           identifier: summer-loyalty-card-0543
           oldCardIdentifier: summer-loyalty-card-0543
           usersPerCardLimit: 111
@@ -33900,8 +35375,10 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
           modified: 2021-09-12T10:12:42Z
           id: 6
+          blockReason: Current card lost. Customer needs a new card.
           newCardIdentifier: summer-loyalty-card-0543
           programID: 125
           status: active
@@ -33918,6 +35395,7 @@ components:
               downgradePolicy: one_down
               name: bronze
               id: 11
+              startDate: 2000-01-23T04:56:07.000+00:00
           identifier: summer-loyalty-card-0543
           oldCardIdentifier: summer-loyalty-card-0543
           usersPerCardLimit: 111
@@ -33941,8 +35419,10 @@ components:
                 downgradePolicy: one_down
                 name: bronze
                 id: 11
+                startDate: 2000-01-23T04:56:07.000+00:00
           modified: 2021-09-12T10:12:42Z
           id: 6
+          blockReason: Current card lost. Customer needs a new card.
           newCardIdentifier: summer-loyalty-card-0543
           programID: 125
           status: active
@@ -34618,19 +36098,23 @@ components:
         - effects:
           - rulesetId: 73
             ruleIndex: 2
+            evaluationGroupID: 3
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
             conditionIndex: 786
+            evaluationGroupMode: stackable
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
           - rulesetId: 73
             ruleIndex: 2
+            evaluationGroupID: 3
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
             conditionIndex: 786
+            evaluationGroupMode: stackable
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
@@ -34671,19 +36155,23 @@ components:
         - effects:
           - rulesetId: 73
             ruleIndex: 2
+            evaluationGroupID: 3
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
             conditionIndex: 786
+            evaluationGroupMode: stackable
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
           - rulesetId: 73
             ruleIndex: 2
+            evaluationGroupID: 3
             triggeredForCatalogItem: 786
             campaignId: 244
             ruleName: Give 20% discount
             conditionIndex: 786
+            evaluationGroupMode: stackable
             triggeredByCoupon: 4928
             effectType: rejectCoupon
             props: '{}'
@@ -35051,6 +36539,7 @@ components:
           created: 2020-06-10T09:05:27.993483Z
           outgoingIntegrationTemplateId: 1
           verb: POST
+          description: A webhook to send a coupon to the user.
           title: Send message
           params: []
           url: www.my-company.com/my-endpoint-name
@@ -35069,6 +36558,7 @@ components:
           created: 2020-06-10T09:05:27.993483Z
           outgoingIntegrationTemplateId: 1
           verb: POST
+          description: A webhook to send a coupon to the user.
           title: Send message
           params: []
           url: www.my-company.com/my-endpoint-name
@@ -35205,6 +36695,7 @@ components:
           email: john.doe@example.com
           policy:
             Role: 127
+          additionalAttributes: '{}'
         - created: 2020-06-10T09:05:27.993483Z
           roles:
           - 71
@@ -35223,6 +36714,7 @@ components:
           email: john.doe@example.com
           policy:
             Role: 127
+          additionalAttributes: '{}'
         totalResultSize: 1
       properties:
         totalResultSize:
@@ -35547,120 +37039,38 @@ components:
       required:
       - data
       - hasMore
-    ApplicationAnalyticsDataPoint_totalRevenue:
-      description: The total, pre-discount value of all items purchased in a customer
-        session.
+    GenerateRuleTitle_rule:
       properties:
-        total:
-          example: 1.25
-          type: number
-        influenced:
-          example: 3.25
-          type: number
-    ApplicationAnalyticsDataPoint_sessionsCount:
-      description: The number of all closed sessions. The `influenced` value includes
-        only sessions with at least one applied effect.
-      properties:
-        total:
-          example: 15.0
-          type: number
-        influenced:
-          example: 5.0
-          type: number
-    ApplicationAnalyticsDataPoint_avgItemsPerSession:
-      description: The number of items from sessions divided by the number of sessions.
-        The `influenced` value includes only sessions with at least one applied effect.
-      properties:
-        total:
-          example: 1.25
-          type: number
-        influenced:
-          example: 3.25
-          type: number
-    ApplicationAnalyticsDataPoint_avgSessionValue:
-      description: The average customer session value, calculated by dividing the
-        revenue value by the number of sessions. The `influenced` value includes only
-        sessions with at least one applied effect.
-      properties:
-        total:
-          example: 1.25
-          type: number
-        influenced:
-          example: 3.25
-          type: number
-    ApplicationCampaignAnalytics_totalRevenue:
-      description: The total, pre-discount value of all items purchased in a customer
-        session.
-      properties:
-        value:
-          example: 1.25
-          type: number
-        influence_rate:
-          example: 3.25
-          type: number
-        trend:
-          example: 3.25
-          type: number
-    ApplicationCampaignAnalytics_sessionsCount:
-      description: The number of all closed sessions. The `influenced` value includes
-        only sessions with at least one applied effect.
-      properties:
-        value:
-          example: 12.0
-          type: number
-        influence_rate:
-          example: 3.25
-          type: number
-        trend:
-          example: 3.25
-          type: number
-    ApplicationCampaignAnalytics_avgItemsPerSession:
-      description: The number of items from sessions divided by the number of sessions.
-        The `influenced` value includes only sessions with at least one applied effect.
-      properties:
-        value:
-          example: 12.0
-          type: number
-        uplift:
-          example: 3.25
-          type: number
-        trend:
-          example: 3.25
-          type: number
-    ApplicationCampaignAnalytics_avgSessionValue:
-      description: The average customer session value, calculated by dividing the
-        revenue value by the number of sessions. The `influenced` value includes only
-        sessions with at least one applied effect.
-      properties:
-        value:
-          example: 12.0
-          type: number
-        uplift:
-          example: 3.25
-          type: number
-        trend:
-          example: 3.25
-          type: number
-    ApplicationCampaignAnalytics_totalDiscounts:
-      description: The total value of discounts given for cart items in influenced
-        sessions.
-      properties:
-        value:
-          example: 10.0
-          type: number
-        trend:
-          example: 3.25
-          type: number
-    ApplicationCampaignAnalytics_couponsCount:
-      description: The number of times a coupon was successfully redeemed in influenced
-        sessions.
-      properties:
-        value:
-          example: 10.0
-          type: number
-        trend:
-          example: 3.25
-          type: number
+        effects:
+          description: An array of effectful Talang expressions in arrays that will
+            be evaluated when a rule matches.
+          example:
+          - catch
+          - - noop
+          - - setDiscount
+            - 10% off
+            - - '*'
+              - - "."
+                - Session
+                - Total
+              - - /
+                - 10
+                - 100
+          items:
+            properties: {}
+            type: object
+          type: array
+        condition:
+          description: A Talang expression that will be evaluated in the context of
+            the given event.
+          example:
+          - and
+          - - couponValid
+          items:
+            properties: {}
+            type: object
+          minItems: 1
+          type: array
   securitySchemes:
     api_key_v1:
       description: |
