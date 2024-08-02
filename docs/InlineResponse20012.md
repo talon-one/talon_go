@@ -4,45 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]CampaignTemplate**](CampaignTemplate.md) |  | 
+**Data** | Pointer to [**[]Ruleset**](Ruleset.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
 
 ## Methods
 
-### GetHasMore
-
-`func (o *InlineResponse20012) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse20012) GetHasMoreOk() (bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasHasMore
-
-`func (o *InlineResponse20012) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse20012) SetHasMore(v bool)`
-
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-
 ### GetData
 
-`func (o *InlineResponse20012) GetData() []CampaignTemplate`
+`func (o *InlineResponse20012) GetData() []Ruleset`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20012) GetDataOk() ([]CampaignTemplate, bool)`
+`func (o *InlineResponse20012) GetDataOk() ([]Ruleset, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +30,34 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20012) SetData(v []CampaignTemplate)`
+`func (o *InlineResponse20012) SetData(v []Ruleset)`
 
-SetData gets a reference to the given []CampaignTemplate and assigns it to the Data field.
+SetData gets a reference to the given []Ruleset and assigns it to the Data field.
+
+### GetTotalResultSize
+
+`func (o *InlineResponse20012) GetTotalResultSize() int32`
+
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+
+### GetTotalResultSizeOk
+
+`func (o *InlineResponse20012) GetTotalResultSizeOk() (int32, bool)`
+
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalResultSize
+
+`func (o *InlineResponse20012) HasTotalResultSize() bool`
+
+HasTotalResultSize returns a boolean if a field has been set.
+
+### SetTotalResultSize
+
+`func (o *InlineResponse20012) SetTotalResultSize(v int32)`
+
+SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,48 +4,123 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. The time this entity was created. | 
-**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
-**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
+**Coupon** | Pointer to **string** | Any coupon code entered. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Discounts** | Pointer to **map[string]float32** | **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the &#x60;totalDiscounts&#x60; property instead.  | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
 **ProfileId** | Pointer to **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
-**Coupon** | Pointer to **string** | Any coupon code entered. | 
 **Referral** | Pointer to **string** | Any referral code entered. | 
 **State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  | 
-**CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
-**Discounts** | Pointer to **map[string]float32** | **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the &#x60;totalDiscounts&#x60; property instead.  | 
-**TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
+**StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
+**TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
 
 ## Methods
 
-### GetId
+### GetApplicationId
 
-`func (o *ApplicationSession) GetId() int32`
+`func (o *ApplicationSession) GetApplicationId() int32`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetApplicationIdOk
 
-`func (o *ApplicationSession) GetIdOk() (int32, bool)`
+`func (o *ApplicationSession) GetApplicationIdOk() (int32, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
+### HasApplicationId
 
-`func (o *ApplicationSession) HasId() bool`
+`func (o *ApplicationSession) HasApplicationId() bool`
 
-HasId returns a boolean if a field has been set.
+HasApplicationId returns a boolean if a field has been set.
 
-### SetId
+### SetApplicationId
 
-`func (o *ApplicationSession) SetId(v int32)`
+`func (o *ApplicationSession) SetApplicationId(v int32)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+
+### GetAttributes
+
+`func (o *ApplicationSession) GetAttributes() map[string]interface{}`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *ApplicationSession) GetAttributesOk() (map[string]interface{}, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAttributes
+
+`func (o *ApplicationSession) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributes
+
+`func (o *ApplicationSession) SetAttributes(v map[string]interface{})`
+
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
+### GetCartItems
+
+`func (o *ApplicationSession) GetCartItems() []CartItem`
+
+GetCartItems returns the CartItems field if non-nil, zero value otherwise.
+
+### GetCartItemsOk
+
+`func (o *ApplicationSession) GetCartItemsOk() ([]CartItem, bool)`
+
+GetCartItemsOk returns a tuple with the CartItems field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCartItems
+
+`func (o *ApplicationSession) HasCartItems() bool`
+
+HasCartItems returns a boolean if a field has been set.
+
+### SetCartItems
+
+`func (o *ApplicationSession) SetCartItems(v []CartItem)`
+
+SetCartItems gets a reference to the given []CartItem and assigns it to the CartItems field.
+
+### GetCoupon
+
+`func (o *ApplicationSession) GetCoupon() string`
+
+GetCoupon returns the Coupon field if non-nil, zero value otherwise.
+
+### GetCouponOk
+
+`func (o *ApplicationSession) GetCouponOk() (string, bool)`
+
+GetCouponOk returns a tuple with the Coupon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCoupon
+
+`func (o *ApplicationSession) HasCoupon() bool`
+
+HasCoupon returns a boolean if a field has been set.
+
+### SetCoupon
+
+`func (o *ApplicationSession) SetCoupon(v string)`
+
+SetCoupon gets a reference to the given string and assigns it to the Coupon field.
 
 ### GetCreated
 
@@ -72,6 +147,56 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
+### GetDiscounts
+
+`func (o *ApplicationSession) GetDiscounts() map[string]float32`
+
+GetDiscounts returns the Discounts field if non-nil, zero value otherwise.
+
+### GetDiscountsOk
+
+`func (o *ApplicationSession) GetDiscountsOk() (map[string]float32, bool)`
+
+GetDiscountsOk returns a tuple with the Discounts field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDiscounts
+
+`func (o *ApplicationSession) HasDiscounts() bool`
+
+HasDiscounts returns a boolean if a field has been set.
+
+### SetDiscounts
+
+`func (o *ApplicationSession) SetDiscounts(v map[string]float32)`
+
+SetDiscounts gets a reference to the given map[string]float32 and assigns it to the Discounts field.
+
+### GetId
+
+`func (o *ApplicationSession) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *ApplicationSession) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *ApplicationSession) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *ApplicationSession) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
 ### GetIntegrationId
 
 `func (o *ApplicationSession) GetIntegrationId() string`
@@ -96,56 +221,6 @@ HasIntegrationId returns a boolean if a field has been set.
 `func (o *ApplicationSession) SetIntegrationId(v string)`
 
 SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
-
-### GetStoreIntegrationId
-
-`func (o *ApplicationSession) GetStoreIntegrationId() string`
-
-GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
-
-### GetStoreIntegrationIdOk
-
-`func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool)`
-
-GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasStoreIntegrationId
-
-`func (o *ApplicationSession) HasStoreIntegrationId() bool`
-
-HasStoreIntegrationId returns a boolean if a field has been set.
-
-### SetStoreIntegrationId
-
-`func (o *ApplicationSession) SetStoreIntegrationId(v string)`
-
-SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
-
-### GetApplicationId
-
-`func (o *ApplicationSession) GetApplicationId() int32`
-
-GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
-
-### GetApplicationIdOk
-
-`func (o *ApplicationSession) GetApplicationIdOk() (int32, bool)`
-
-GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasApplicationId
-
-`func (o *ApplicationSession) HasApplicationId() bool`
-
-HasApplicationId returns a boolean if a field has been set.
-
-### SetApplicationId
-
-`func (o *ApplicationSession) SetApplicationId(v int32)`
-
-SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
 
 ### GetProfileId
 
@@ -197,31 +272,6 @@ HasProfileintegrationid returns a boolean if a field has been set.
 
 SetProfileintegrationid gets a reference to the given string and assigns it to the Profileintegrationid field.
 
-### GetCoupon
-
-`func (o *ApplicationSession) GetCoupon() string`
-
-GetCoupon returns the Coupon field if non-nil, zero value otherwise.
-
-### GetCouponOk
-
-`func (o *ApplicationSession) GetCouponOk() (string, bool)`
-
-GetCouponOk returns a tuple with the Coupon field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCoupon
-
-`func (o *ApplicationSession) HasCoupon() bool`
-
-HasCoupon returns a boolean if a field has been set.
-
-### SetCoupon
-
-`func (o *ApplicationSession) SetCoupon(v string)`
-
-SetCoupon gets a reference to the given string and assigns it to the Coupon field.
-
 ### GetReferral
 
 `func (o *ApplicationSession) GetReferral() string`
@@ -272,80 +322,30 @@ HasState returns a boolean if a field has been set.
 
 SetState gets a reference to the given string and assigns it to the State field.
 
-### GetCartItems
+### GetStoreIntegrationId
 
-`func (o *ApplicationSession) GetCartItems() []CartItem`
+`func (o *ApplicationSession) GetStoreIntegrationId() string`
 
-GetCartItems returns the CartItems field if non-nil, zero value otherwise.
+GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero value otherwise.
 
-### GetCartItemsOk
+### GetStoreIntegrationIdOk
 
-`func (o *ApplicationSession) GetCartItemsOk() ([]CartItem, bool)`
+`func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool)`
 
-GetCartItemsOk returns a tuple with the CartItems field if it's non-nil, zero value otherwise
+GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCartItems
+### HasStoreIntegrationId
 
-`func (o *ApplicationSession) HasCartItems() bool`
+`func (o *ApplicationSession) HasStoreIntegrationId() bool`
 
-HasCartItems returns a boolean if a field has been set.
+HasStoreIntegrationId returns a boolean if a field has been set.
 
-### SetCartItems
+### SetStoreIntegrationId
 
-`func (o *ApplicationSession) SetCartItems(v []CartItem)`
+`func (o *ApplicationSession) SetStoreIntegrationId(v string)`
 
-SetCartItems gets a reference to the given []CartItem and assigns it to the CartItems field.
-
-### GetDiscounts
-
-`func (o *ApplicationSession) GetDiscounts() map[string]float32`
-
-GetDiscounts returns the Discounts field if non-nil, zero value otherwise.
-
-### GetDiscountsOk
-
-`func (o *ApplicationSession) GetDiscountsOk() (map[string]float32, bool)`
-
-GetDiscountsOk returns a tuple with the Discounts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDiscounts
-
-`func (o *ApplicationSession) HasDiscounts() bool`
-
-HasDiscounts returns a boolean if a field has been set.
-
-### SetDiscounts
-
-`func (o *ApplicationSession) SetDiscounts(v map[string]float32)`
-
-SetDiscounts gets a reference to the given map[string]float32 and assigns it to the Discounts field.
-
-### GetTotalDiscounts
-
-`func (o *ApplicationSession) GetTotalDiscounts() float32`
-
-GetTotalDiscounts returns the TotalDiscounts field if non-nil, zero value otherwise.
-
-### GetTotalDiscountsOk
-
-`func (o *ApplicationSession) GetTotalDiscountsOk() (float32, bool)`
-
-GetTotalDiscountsOk returns a tuple with the TotalDiscounts field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalDiscounts
-
-`func (o *ApplicationSession) HasTotalDiscounts() bool`
-
-HasTotalDiscounts returns a boolean if a field has been set.
-
-### SetTotalDiscounts
-
-`func (o *ApplicationSession) SetTotalDiscounts(v float32)`
-
-SetTotalDiscounts gets a reference to the given float32 and assigns it to the TotalDiscounts field.
+SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 ### GetTotal
 
@@ -372,30 +372,30 @@ HasTotal returns a boolean if a field has been set.
 
 SetTotal gets a reference to the given float32 and assigns it to the Total field.
 
-### GetAttributes
+### GetTotalDiscounts
 
-`func (o *ApplicationSession) GetAttributes() map[string]interface{}`
+`func (o *ApplicationSession) GetTotalDiscounts() float32`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetTotalDiscounts returns the TotalDiscounts field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetTotalDiscountsOk
 
-`func (o *ApplicationSession) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *ApplicationSession) GetTotalDiscountsOk() (float32, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetTotalDiscountsOk returns a tuple with the TotalDiscounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAttributes
+### HasTotalDiscounts
 
-`func (o *ApplicationSession) HasAttributes() bool`
+`func (o *ApplicationSession) HasTotalDiscounts() bool`
 
-HasAttributes returns a boolean if a field has been set.
+HasTotalDiscounts returns a boolean if a field has been set.
 
-### SetAttributes
+### SetTotalDiscounts
 
-`func (o *ApplicationSession) SetAttributes(v map[string]interface{})`
+`func (o *ApplicationSession) SetTotalDiscounts(v float32)`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetTotalDiscounts gets a reference to the given float32 and assigns it to the TotalDiscounts field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

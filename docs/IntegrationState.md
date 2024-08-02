@@ -4,63 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Session** | Pointer to [**CustomerSession**](CustomerSession.md) |  | 
-**Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | 
+**Coupon** | Pointer to [**Coupon**](Coupon.md) |  | [optional] 
 **Event** | Pointer to [**Event**](Event.md) |  | 
 **Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
-**Coupon** | Pointer to [**Coupon**](Coupon.md) |  | [optional] 
+**Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | 
+**Session** | Pointer to [**CustomerSession**](CustomerSession.md) |  | 
 
 ## Methods
 
-### GetSession
+### GetCoupon
 
-`func (o *IntegrationState) GetSession() CustomerSession`
+`func (o *IntegrationState) GetCoupon() Coupon`
 
-GetSession returns the Session field if non-nil, zero value otherwise.
+GetCoupon returns the Coupon field if non-nil, zero value otherwise.
 
-### GetSessionOk
+### GetCouponOk
 
-`func (o *IntegrationState) GetSessionOk() (CustomerSession, bool)`
+`func (o *IntegrationState) GetCouponOk() (Coupon, bool)`
 
-GetSessionOk returns a tuple with the Session field if it's non-nil, zero value otherwise
+GetCouponOk returns a tuple with the Coupon field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasSession
+### HasCoupon
 
-`func (o *IntegrationState) HasSession() bool`
+`func (o *IntegrationState) HasCoupon() bool`
 
-HasSession returns a boolean if a field has been set.
+HasCoupon returns a boolean if a field has been set.
 
-### SetSession
+### SetCoupon
 
-`func (o *IntegrationState) SetSession(v CustomerSession)`
+`func (o *IntegrationState) SetCoupon(v Coupon)`
 
-SetSession gets a reference to the given CustomerSession and assigns it to the Session field.
-
-### GetProfile
-
-`func (o *IntegrationState) GetProfile() CustomerProfile`
-
-GetProfile returns the Profile field if non-nil, zero value otherwise.
-
-### GetProfileOk
-
-`func (o *IntegrationState) GetProfileOk() (CustomerProfile, bool)`
-
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProfile
-
-`func (o *IntegrationState) HasProfile() bool`
-
-HasProfile returns a boolean if a field has been set.
-
-### SetProfile
-
-`func (o *IntegrationState) SetProfile(v CustomerProfile)`
-
-SetProfile gets a reference to the given CustomerProfile and assigns it to the Profile field.
+SetCoupon gets a reference to the given Coupon and assigns it to the Coupon field.
 
 ### GetEvent
 
@@ -112,30 +87,55 @@ HasLoyalty returns a boolean if a field has been set.
 
 SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty field.
 
-### GetCoupon
+### GetProfile
 
-`func (o *IntegrationState) GetCoupon() Coupon`
+`func (o *IntegrationState) GetProfile() CustomerProfile`
 
-GetCoupon returns the Coupon field if non-nil, zero value otherwise.
+GetProfile returns the Profile field if non-nil, zero value otherwise.
 
-### GetCouponOk
+### GetProfileOk
 
-`func (o *IntegrationState) GetCouponOk() (Coupon, bool)`
+`func (o *IntegrationState) GetProfileOk() (CustomerProfile, bool)`
 
-GetCouponOk returns a tuple with the Coupon field if it's non-nil, zero value otherwise
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCoupon
+### HasProfile
 
-`func (o *IntegrationState) HasCoupon() bool`
+`func (o *IntegrationState) HasProfile() bool`
 
-HasCoupon returns a boolean if a field has been set.
+HasProfile returns a boolean if a field has been set.
 
-### SetCoupon
+### SetProfile
 
-`func (o *IntegrationState) SetCoupon(v Coupon)`
+`func (o *IntegrationState) SetProfile(v CustomerProfile)`
 
-SetCoupon gets a reference to the given Coupon and assigns it to the Coupon field.
+SetProfile gets a reference to the given CustomerProfile and assigns it to the Profile field.
+
+### GetSession
+
+`func (o *IntegrationState) GetSession() CustomerSession`
+
+GetSession returns the Session field if non-nil, zero value otherwise.
+
+### GetSessionOk
+
+`func (o *IntegrationState) GetSessionOk() (CustomerSession, bool)`
+
+GetSessionOk returns a tuple with the Session field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSession
+
+`func (o *IntegrationState) HasSession() bool`
+
+HasSession returns a boolean if a field has been set.
+
+### SetSession
+
+`func (o *IntegrationState) SetSession(v CustomerSession)`
+
+SetSession gets a reference to the given CustomerSession and assigns it to the Session field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Action** | Pointer to **string** | The limitable action to which this limit applies. For example: - &#x60;setDiscount&#x60; - &#x60;setDiscountEffect&#x60; - &#x60;redeemCoupon&#x60; - &#x60;createCoupon&#x60;  | 
+**Entities** | Pointer to **[]string** | The entity that this limit applies to. | 
 **Limit** | Pointer to **float32** | The value to set for the limit. | 
 **Period** | Pointer to **string** | The period on which the budget limit recurs. | [optional] 
-**Entities** | Pointer to **[]string** | The entity that this limit applies to. | 
 
 ## Methods
 
@@ -35,6 +35,31 @@ HasAction returns a boolean if a field has been set.
 `func (o *LimitConfig) SetAction(v string)`
 
 SetAction gets a reference to the given string and assigns it to the Action field.
+
+### GetEntities
+
+`func (o *LimitConfig) GetEntities() []string`
+
+GetEntities returns the Entities field if non-nil, zero value otherwise.
+
+### GetEntitiesOk
+
+`func (o *LimitConfig) GetEntitiesOk() ([]string, bool)`
+
+GetEntitiesOk returns a tuple with the Entities field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEntities
+
+`func (o *LimitConfig) HasEntities() bool`
+
+HasEntities returns a boolean if a field has been set.
+
+### SetEntities
+
+`func (o *LimitConfig) SetEntities(v []string)`
+
+SetEntities gets a reference to the given []string and assigns it to the Entities field.
 
 ### GetLimit
 
@@ -85,31 +110,6 @@ HasPeriod returns a boolean if a field has been set.
 `func (o *LimitConfig) SetPeriod(v string)`
 
 SetPeriod gets a reference to the given string and assigns it to the Period field.
-
-### GetEntities
-
-`func (o *LimitConfig) GetEntities() []string`
-
-GetEntities returns the Entities field if non-nil, zero value otherwise.
-
-### GetEntitiesOk
-
-`func (o *LimitConfig) GetEntitiesOk() ([]string, bool)`
-
-GetEntitiesOk returns a tuple with the Entities field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEntities
-
-`func (o *LimitConfig) HasEntities() bool`
-
-HasEntities returns a boolean if a field has been set.
-
-### SetEntities
-
-`func (o *LimitConfig) SetEntities(v []string)`
-
-SetEntities gets a reference to the given []string and assigns it to the Entities field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

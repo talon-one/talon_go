@@ -4,41 +4,91 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartTime** | Pointer to [**time.Time**](time.Time.md) | The start of the aggregation time frame in UTC. | [optional] 
-**EndTime** | Pointer to [**time.Time**](time.Time.md) | The end of the aggregation time frame in UTC. | [optional] 
-**TotalRevenue** | Pointer to [**ApplicationAnalyticsDataPointTotalRevenue**](ApplicationAnalyticsDataPoint_totalRevenue.md) |  | [optional] 
-**SessionsCount** | Pointer to [**ApplicationAnalyticsDataPointSessionsCount**](ApplicationAnalyticsDataPoint_sessionsCount.md) |  | [optional] 
-**AvgItemsPerSession** | Pointer to [**ApplicationAnalyticsDataPointAvgItemsPerSession**](ApplicationAnalyticsDataPoint_avgItemsPerSession.md) |  | [optional] 
-**AvgSessionValue** | Pointer to [**ApplicationAnalyticsDataPointAvgSessionValue**](ApplicationAnalyticsDataPoint_avgSessionValue.md) |  | [optional] 
-**TotalDiscounts** | Pointer to **float32** | The total value of discounts given for cart items in influenced sessions. | [optional] 
+**AvgItemsPerSession** | Pointer to [**AnalyticsDataPoint**](AnalyticsDataPoint.md) |  | [optional] 
+**AvgSessionValue** | Pointer to [**AnalyticsDataPoint**](AnalyticsDataPoint.md) |  | [optional] 
 **CouponsCount** | Pointer to **float32** | The number of times a coupon was successfully redeemed in influenced sessions. | [optional] 
+**EndTime** | Pointer to [**time.Time**](time.Time.md) | The end of the aggregation time frame in UTC. | 
+**SessionsCount** | Pointer to [**AnalyticsDataPoint**](AnalyticsDataPoint.md) |  | [optional] 
+**StartTime** | Pointer to [**time.Time**](time.Time.md) | The start of the aggregation time frame in UTC. | 
+**TotalDiscounts** | Pointer to **float32** | The total value of discounts given for cart items in influenced sessions. | [optional] 
+**TotalRevenue** | Pointer to [**AnalyticsDataPoint**](AnalyticsDataPoint.md) |  | [optional] 
 
 ## Methods
 
-### GetStartTime
+### GetAvgItemsPerSession
 
-`func (o *ApplicationAnalyticsDataPoint) GetStartTime() time.Time`
+`func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSession() AnalyticsDataPoint`
 
-GetStartTime returns the StartTime field if non-nil, zero value otherwise.
+GetAvgItemsPerSession returns the AvgItemsPerSession field if non-nil, zero value otherwise.
 
-### GetStartTimeOk
+### GetAvgItemsPerSessionOk
 
-`func (o *ApplicationAnalyticsDataPoint) GetStartTimeOk() (time.Time, bool)`
+`func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSessionOk() (AnalyticsDataPoint, bool)`
 
-GetStartTimeOk returns a tuple with the StartTime field if it's non-nil, zero value otherwise
+GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasStartTime
+### HasAvgItemsPerSession
 
-`func (o *ApplicationAnalyticsDataPoint) HasStartTime() bool`
+`func (o *ApplicationAnalyticsDataPoint) HasAvgItemsPerSession() bool`
 
-HasStartTime returns a boolean if a field has been set.
+HasAvgItemsPerSession returns a boolean if a field has been set.
 
-### SetStartTime
+### SetAvgItemsPerSession
 
-`func (o *ApplicationAnalyticsDataPoint) SetStartTime(v time.Time)`
+`func (o *ApplicationAnalyticsDataPoint) SetAvgItemsPerSession(v AnalyticsDataPoint)`
 
-SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
+SetAvgItemsPerSession gets a reference to the given AnalyticsDataPoint and assigns it to the AvgItemsPerSession field.
+
+### GetAvgSessionValue
+
+`func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValue() AnalyticsDataPoint`
+
+GetAvgSessionValue returns the AvgSessionValue field if non-nil, zero value otherwise.
+
+### GetAvgSessionValueOk
+
+`func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValueOk() (AnalyticsDataPoint, bool)`
+
+GetAvgSessionValueOk returns a tuple with the AvgSessionValue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAvgSessionValue
+
+`func (o *ApplicationAnalyticsDataPoint) HasAvgSessionValue() bool`
+
+HasAvgSessionValue returns a boolean if a field has been set.
+
+### SetAvgSessionValue
+
+`func (o *ApplicationAnalyticsDataPoint) SetAvgSessionValue(v AnalyticsDataPoint)`
+
+SetAvgSessionValue gets a reference to the given AnalyticsDataPoint and assigns it to the AvgSessionValue field.
+
+### GetCouponsCount
+
+`func (o *ApplicationAnalyticsDataPoint) GetCouponsCount() float32`
+
+GetCouponsCount returns the CouponsCount field if non-nil, zero value otherwise.
+
+### GetCouponsCountOk
+
+`func (o *ApplicationAnalyticsDataPoint) GetCouponsCountOk() (float32, bool)`
+
+GetCouponsCountOk returns a tuple with the CouponsCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCouponsCount
+
+`func (o *ApplicationAnalyticsDataPoint) HasCouponsCount() bool`
+
+HasCouponsCount returns a boolean if a field has been set.
+
+### SetCouponsCount
+
+`func (o *ApplicationAnalyticsDataPoint) SetCouponsCount(v float32)`
+
+SetCouponsCount gets a reference to the given float32 and assigns it to the CouponsCount field.
 
 ### GetEndTime
 
@@ -65,40 +115,15 @@ HasEndTime returns a boolean if a field has been set.
 
 SetEndTime gets a reference to the given time.Time and assigns it to the EndTime field.
 
-### GetTotalRevenue
-
-`func (o *ApplicationAnalyticsDataPoint) GetTotalRevenue() ApplicationAnalyticsDataPointTotalRevenue`
-
-GetTotalRevenue returns the TotalRevenue field if non-nil, zero value otherwise.
-
-### GetTotalRevenueOk
-
-`func (o *ApplicationAnalyticsDataPoint) GetTotalRevenueOk() (ApplicationAnalyticsDataPointTotalRevenue, bool)`
-
-GetTotalRevenueOk returns a tuple with the TotalRevenue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalRevenue
-
-`func (o *ApplicationAnalyticsDataPoint) HasTotalRevenue() bool`
-
-HasTotalRevenue returns a boolean if a field has been set.
-
-### SetTotalRevenue
-
-`func (o *ApplicationAnalyticsDataPoint) SetTotalRevenue(v ApplicationAnalyticsDataPointTotalRevenue)`
-
-SetTotalRevenue gets a reference to the given ApplicationAnalyticsDataPointTotalRevenue and assigns it to the TotalRevenue field.
-
 ### GetSessionsCount
 
-`func (o *ApplicationAnalyticsDataPoint) GetSessionsCount() ApplicationAnalyticsDataPointSessionsCount`
+`func (o *ApplicationAnalyticsDataPoint) GetSessionsCount() AnalyticsDataPoint`
 
 GetSessionsCount returns the SessionsCount field if non-nil, zero value otherwise.
 
 ### GetSessionsCountOk
 
-`func (o *ApplicationAnalyticsDataPoint) GetSessionsCountOk() (ApplicationAnalyticsDataPointSessionsCount, bool)`
+`func (o *ApplicationAnalyticsDataPoint) GetSessionsCountOk() (AnalyticsDataPoint, bool)`
 
 GetSessionsCountOk returns a tuple with the SessionsCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -111,59 +136,34 @@ HasSessionsCount returns a boolean if a field has been set.
 
 ### SetSessionsCount
 
-`func (o *ApplicationAnalyticsDataPoint) SetSessionsCount(v ApplicationAnalyticsDataPointSessionsCount)`
+`func (o *ApplicationAnalyticsDataPoint) SetSessionsCount(v AnalyticsDataPoint)`
 
-SetSessionsCount gets a reference to the given ApplicationAnalyticsDataPointSessionsCount and assigns it to the SessionsCount field.
+SetSessionsCount gets a reference to the given AnalyticsDataPoint and assigns it to the SessionsCount field.
 
-### GetAvgItemsPerSession
+### GetStartTime
 
-`func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSession() ApplicationAnalyticsDataPointAvgItemsPerSession`
+`func (o *ApplicationAnalyticsDataPoint) GetStartTime() time.Time`
 
-GetAvgItemsPerSession returns the AvgItemsPerSession field if non-nil, zero value otherwise.
+GetStartTime returns the StartTime field if non-nil, zero value otherwise.
 
-### GetAvgItemsPerSessionOk
+### GetStartTimeOk
 
-`func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSessionOk() (ApplicationAnalyticsDataPointAvgItemsPerSession, bool)`
+`func (o *ApplicationAnalyticsDataPoint) GetStartTimeOk() (time.Time, bool)`
 
-GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field if it's non-nil, zero value otherwise
+GetStartTimeOk returns a tuple with the StartTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAvgItemsPerSession
+### HasStartTime
 
-`func (o *ApplicationAnalyticsDataPoint) HasAvgItemsPerSession() bool`
+`func (o *ApplicationAnalyticsDataPoint) HasStartTime() bool`
 
-HasAvgItemsPerSession returns a boolean if a field has been set.
+HasStartTime returns a boolean if a field has been set.
 
-### SetAvgItemsPerSession
+### SetStartTime
 
-`func (o *ApplicationAnalyticsDataPoint) SetAvgItemsPerSession(v ApplicationAnalyticsDataPointAvgItemsPerSession)`
+`func (o *ApplicationAnalyticsDataPoint) SetStartTime(v time.Time)`
 
-SetAvgItemsPerSession gets a reference to the given ApplicationAnalyticsDataPointAvgItemsPerSession and assigns it to the AvgItemsPerSession field.
-
-### GetAvgSessionValue
-
-`func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValue() ApplicationAnalyticsDataPointAvgSessionValue`
-
-GetAvgSessionValue returns the AvgSessionValue field if non-nil, zero value otherwise.
-
-### GetAvgSessionValueOk
-
-`func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValueOk() (ApplicationAnalyticsDataPointAvgSessionValue, bool)`
-
-GetAvgSessionValueOk returns a tuple with the AvgSessionValue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAvgSessionValue
-
-`func (o *ApplicationAnalyticsDataPoint) HasAvgSessionValue() bool`
-
-HasAvgSessionValue returns a boolean if a field has been set.
-
-### SetAvgSessionValue
-
-`func (o *ApplicationAnalyticsDataPoint) SetAvgSessionValue(v ApplicationAnalyticsDataPointAvgSessionValue)`
-
-SetAvgSessionValue gets a reference to the given ApplicationAnalyticsDataPointAvgSessionValue and assigns it to the AvgSessionValue field.
+SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
 
 ### GetTotalDiscounts
 
@@ -190,30 +190,30 @@ HasTotalDiscounts returns a boolean if a field has been set.
 
 SetTotalDiscounts gets a reference to the given float32 and assigns it to the TotalDiscounts field.
 
-### GetCouponsCount
+### GetTotalRevenue
 
-`func (o *ApplicationAnalyticsDataPoint) GetCouponsCount() float32`
+`func (o *ApplicationAnalyticsDataPoint) GetTotalRevenue() AnalyticsDataPoint`
 
-GetCouponsCount returns the CouponsCount field if non-nil, zero value otherwise.
+GetTotalRevenue returns the TotalRevenue field if non-nil, zero value otherwise.
 
-### GetCouponsCountOk
+### GetTotalRevenueOk
 
-`func (o *ApplicationAnalyticsDataPoint) GetCouponsCountOk() (float32, bool)`
+`func (o *ApplicationAnalyticsDataPoint) GetTotalRevenueOk() (AnalyticsDataPoint, bool)`
 
-GetCouponsCountOk returns a tuple with the CouponsCount field if it's non-nil, zero value otherwise
+GetTotalRevenueOk returns a tuple with the TotalRevenue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCouponsCount
+### HasTotalRevenue
 
-`func (o *ApplicationAnalyticsDataPoint) HasCouponsCount() bool`
+`func (o *ApplicationAnalyticsDataPoint) HasTotalRevenue() bool`
 
-HasCouponsCount returns a boolean if a field has been set.
+HasTotalRevenue returns a boolean if a field has been set.
 
-### SetCouponsCount
+### SetTotalRevenue
 
-`func (o *ApplicationAnalyticsDataPoint) SetCouponsCount(v float32)`
+`func (o *ApplicationAnalyticsDataPoint) SetTotalRevenue(v AnalyticsDataPoint)`
 
-SetCouponsCount gets a reference to the given float32 and assigns it to the CouponsCount field.
+SetTotalRevenue gets a reference to the given AnalyticsDataPoint and assigns it to the TotalRevenue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

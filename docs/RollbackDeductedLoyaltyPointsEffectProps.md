@@ -4,16 +4,66 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire. | [optional] 
 **ProgramId** | Pointer to **int32** | The ID of the loyalty program where these points were reimbursed. | 
-**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were reimbursed. | 
-**Value** | Pointer to **float32** | The amount of reimbursed points that were added. | 
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were reimbursed. | 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will be valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire. | [optional] 
+**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were reimbursed. | 
 **TransactionUUID** | Pointer to **string** | The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back. | 
-**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**Value** | Pointer to **float32** | The amount of reimbursed points that were added. | 
 
 ## Methods
+
+### GetCardIdentifier
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifier() string`
+
+GetCardIdentifier returns the CardIdentifier field if non-nil, zero value otherwise.
+
+### GetCardIdentifierOk
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool)`
+
+GetCardIdentifierOk returns a tuple with the CardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardIdentifier
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasCardIdentifier() bool`
+
+HasCardIdentifier returns a boolean if a field has been set.
+
+### SetCardIdentifier
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetCardIdentifier(v string)`
+
+SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
+
+### GetExpiryDate
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDate() time.Time`
+
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+
+### GetExpiryDateOk
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDateOk() (time.Time, bool)`
+
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiryDate
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasExpiryDate() bool`
+
+HasExpiryDate returns a boolean if a field has been set.
+
+### SetExpiryDate
+
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetExpiryDate(v time.Time)`
+
+SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
 
 ### GetProgramId
 
@@ -39,56 +89,6 @@ HasProgramId returns a boolean if a field has been set.
 `func (o *RollbackDeductedLoyaltyPointsEffectProps) SetProgramId(v int32)`
 
 SetProgramId gets a reference to the given int32 and assigns it to the ProgramId field.
-
-### GetSubLedgerId
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetSubLedgerId() string`
-
-GetSubLedgerId returns the SubLedgerId field if non-nil, zero value otherwise.
-
-### GetSubLedgerIdOk
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetSubLedgerIdOk() (string, bool)`
-
-GetSubLedgerIdOk returns a tuple with the SubLedgerId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasSubLedgerId
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasSubLedgerId() bool`
-
-HasSubLedgerId returns a boolean if a field has been set.
-
-### SetSubLedgerId
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetSubLedgerId(v string)`
-
-SetSubLedgerId gets a reference to the given string and assigns it to the SubLedgerId field.
-
-### GetValue
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetValue() float32`
-
-GetValue returns the Value field if non-nil, zero value otherwise.
-
-### GetValueOk
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetValueOk() (float32, bool)`
-
-GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasValue
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasValue() bool`
-
-HasValue returns a boolean if a field has been set.
-
-### SetValue
-
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetValue(v float32)`
-
-SetValue gets a reference to the given float32 and assigns it to the Value field.
 
 ### GetRecipientIntegrationId
 
@@ -140,30 +140,30 @@ HasStartDate returns a boolean if a field has been set.
 
 SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
-### GetExpiryDate
+### GetSubLedgerId
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDate() time.Time`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetSubLedgerId() string`
 
-GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+GetSubLedgerId returns the SubLedgerId field if non-nil, zero value otherwise.
 
-### GetExpiryDateOk
+### GetSubLedgerIdOk
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDateOk() (time.Time, bool)`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetSubLedgerIdOk() (string, bool)`
 
-GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+GetSubLedgerIdOk returns a tuple with the SubLedgerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpiryDate
+### HasSubLedgerId
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasExpiryDate() bool`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasSubLedgerId() bool`
 
-HasExpiryDate returns a boolean if a field has been set.
+HasSubLedgerId returns a boolean if a field has been set.
 
-### SetExpiryDate
+### SetSubLedgerId
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetExpiryDate(v time.Time)`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetSubLedgerId(v string)`
 
-SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+SetSubLedgerId gets a reference to the given string and assigns it to the SubLedgerId field.
 
 ### GetTransactionUUID
 
@@ -190,30 +190,30 @@ HasTransactionUUID returns a boolean if a field has been set.
 
 SetTransactionUUID gets a reference to the given string and assigns it to the TransactionUUID field.
 
-### GetCardIdentifier
+### GetValue
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifier() string`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetValue() float32`
 
-GetCardIdentifier returns the CardIdentifier field if non-nil, zero value otherwise.
+GetValue returns the Value field if non-nil, zero value otherwise.
 
-### GetCardIdentifierOk
+### GetValueOk
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool)`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) GetValueOk() (float32, bool)`
 
-GetCardIdentifierOk returns a tuple with the CardIdentifier field if it's non-nil, zero value otherwise
+GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCardIdentifier
+### HasValue
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasCardIdentifier() bool`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) HasValue() bool`
 
-HasCardIdentifier returns a boolean if a field has been set.
+HasValue returns a boolean if a field has been set.
 
-### SetCardIdentifier
+### SetValue
 
-`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetCardIdentifier(v string)`
+`func (o *RollbackDeductedLoyaltyPointsEffectProps) SetValue(v float32)`
 
-SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
+SetValue gets a reference to the given float32 and assigns it to the Value field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

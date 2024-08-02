@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignID** | Pointer to **int32** | The ID of the campaign that contains the rule that failed. | 
 **CampaignName** | Pointer to **string** | The name of the campaign that contains the rule that failed. | 
-**RulesetID** | Pointer to **int32** | The ID of the ruleset that contains the rule that failed. | 
+**ConditionIndex** | Pointer to **int32** | The index of the condition that failed. | [optional] 
 **CouponID** | Pointer to **int32** | The ID of the coupon that was being evaluated at the time of the rule failure. | [optional] 
 **CouponValue** | Pointer to **string** | The code of the coupon that was being evaluated at the time of the rule failure. | [optional] 
+**Details** | Pointer to **string** | More details about the failure. | [optional] 
+**EffectIndex** | Pointer to **int32** | The index of the effect that failed. | [optional] 
 **ReferralID** | Pointer to **int32** | The ID of the referral that was being evaluated at the time of the rule failure. | [optional] 
 **ReferralValue** | Pointer to **string** | The code of the referral that was being evaluated at the time of the rule failure. | [optional] 
 **RuleIndex** | Pointer to **int32** | The index of the rule that failed within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that failed within the ruleset. | 
-**ConditionIndex** | Pointer to **int32** | The index of the condition that failed. | [optional] 
-**EffectIndex** | Pointer to **int32** | The index of the effect that failed. | [optional] 
-**Details** | Pointer to **string** | More details about the failure. | [optional] 
+**RulesetID** | Pointer to **int32** | The ID of the ruleset that contains the rule that failed. | 
 
 ## Methods
 
@@ -69,30 +69,30 @@ HasCampaignName returns a boolean if a field has been set.
 
 SetCampaignName gets a reference to the given string and assigns it to the CampaignName field.
 
-### GetRulesetID
+### GetConditionIndex
 
-`func (o *RuleFailureReason) GetRulesetID() int32`
+`func (o *RuleFailureReason) GetConditionIndex() int32`
 
-GetRulesetID returns the RulesetID field if non-nil, zero value otherwise.
+GetConditionIndex returns the ConditionIndex field if non-nil, zero value otherwise.
 
-### GetRulesetIDOk
+### GetConditionIndexOk
 
-`func (o *RuleFailureReason) GetRulesetIDOk() (int32, bool)`
+`func (o *RuleFailureReason) GetConditionIndexOk() (int32, bool)`
 
-GetRulesetIDOk returns a tuple with the RulesetID field if it's non-nil, zero value otherwise
+GetConditionIndexOk returns a tuple with the ConditionIndex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRulesetID
+### HasConditionIndex
 
-`func (o *RuleFailureReason) HasRulesetID() bool`
+`func (o *RuleFailureReason) HasConditionIndex() bool`
 
-HasRulesetID returns a boolean if a field has been set.
+HasConditionIndex returns a boolean if a field has been set.
 
-### SetRulesetID
+### SetConditionIndex
 
-`func (o *RuleFailureReason) SetRulesetID(v int32)`
+`func (o *RuleFailureReason) SetConditionIndex(v int32)`
 
-SetRulesetID gets a reference to the given int32 and assigns it to the RulesetID field.
+SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
 
 ### GetCouponID
 
@@ -143,6 +143,56 @@ HasCouponValue returns a boolean if a field has been set.
 `func (o *RuleFailureReason) SetCouponValue(v string)`
 
 SetCouponValue gets a reference to the given string and assigns it to the CouponValue field.
+
+### GetDetails
+
+`func (o *RuleFailureReason) GetDetails() string`
+
+GetDetails returns the Details field if non-nil, zero value otherwise.
+
+### GetDetailsOk
+
+`func (o *RuleFailureReason) GetDetailsOk() (string, bool)`
+
+GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDetails
+
+`func (o *RuleFailureReason) HasDetails() bool`
+
+HasDetails returns a boolean if a field has been set.
+
+### SetDetails
+
+`func (o *RuleFailureReason) SetDetails(v string)`
+
+SetDetails gets a reference to the given string and assigns it to the Details field.
+
+### GetEffectIndex
+
+`func (o *RuleFailureReason) GetEffectIndex() int32`
+
+GetEffectIndex returns the EffectIndex field if non-nil, zero value otherwise.
+
+### GetEffectIndexOk
+
+`func (o *RuleFailureReason) GetEffectIndexOk() (int32, bool)`
+
+GetEffectIndexOk returns a tuple with the EffectIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEffectIndex
+
+`func (o *RuleFailureReason) HasEffectIndex() bool`
+
+HasEffectIndex returns a boolean if a field has been set.
+
+### SetEffectIndex
+
+`func (o *RuleFailureReason) SetEffectIndex(v int32)`
+
+SetEffectIndex gets a reference to the given int32 and assigns it to the EffectIndex field.
 
 ### GetReferralID
 
@@ -244,80 +294,30 @@ HasRuleName returns a boolean if a field has been set.
 
 SetRuleName gets a reference to the given string and assigns it to the RuleName field.
 
-### GetConditionIndex
+### GetRulesetID
 
-`func (o *RuleFailureReason) GetConditionIndex() int32`
+`func (o *RuleFailureReason) GetRulesetID() int32`
 
-GetConditionIndex returns the ConditionIndex field if non-nil, zero value otherwise.
+GetRulesetID returns the RulesetID field if non-nil, zero value otherwise.
 
-### GetConditionIndexOk
+### GetRulesetIDOk
 
-`func (o *RuleFailureReason) GetConditionIndexOk() (int32, bool)`
+`func (o *RuleFailureReason) GetRulesetIDOk() (int32, bool)`
 
-GetConditionIndexOk returns a tuple with the ConditionIndex field if it's non-nil, zero value otherwise
+GetRulesetIDOk returns a tuple with the RulesetID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasConditionIndex
+### HasRulesetID
 
-`func (o *RuleFailureReason) HasConditionIndex() bool`
+`func (o *RuleFailureReason) HasRulesetID() bool`
 
-HasConditionIndex returns a boolean if a field has been set.
+HasRulesetID returns a boolean if a field has been set.
 
-### SetConditionIndex
+### SetRulesetID
 
-`func (o *RuleFailureReason) SetConditionIndex(v int32)`
+`func (o *RuleFailureReason) SetRulesetID(v int32)`
 
-SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
-
-### GetEffectIndex
-
-`func (o *RuleFailureReason) GetEffectIndex() int32`
-
-GetEffectIndex returns the EffectIndex field if non-nil, zero value otherwise.
-
-### GetEffectIndexOk
-
-`func (o *RuleFailureReason) GetEffectIndexOk() (int32, bool)`
-
-GetEffectIndexOk returns a tuple with the EffectIndex field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEffectIndex
-
-`func (o *RuleFailureReason) HasEffectIndex() bool`
-
-HasEffectIndex returns a boolean if a field has been set.
-
-### SetEffectIndex
-
-`func (o *RuleFailureReason) SetEffectIndex(v int32)`
-
-SetEffectIndex gets a reference to the given int32 and assigns it to the EffectIndex field.
-
-### GetDetails
-
-`func (o *RuleFailureReason) GetDetails() string`
-
-GetDetails returns the Details field if non-nil, zero value otherwise.
-
-### GetDetailsOk
-
-`func (o *RuleFailureReason) GetDetailsOk() (string, bool)`
-
-GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDetails
-
-`func (o *RuleFailureReason) HasDetails() bool`
-
-HasDetails returns a boolean if a field has been set.
-
-### SetDetails
-
-`func (o *RuleFailureReason) SetDetails(v string)`
-
-SetDetails gets a reference to the given string and assigns it to the Details field.
+SetRulesetID gets a reference to the given int32 and assigns it to the RulesetID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

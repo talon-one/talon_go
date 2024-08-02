@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
+**Data** | Pointer to [**[]Audience**](Audience.md) |  | 
 **HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]ApplicationCustomer**](ApplicationCustomer.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
-### GetTotalResultSize
+### GetData
 
-`func (o *InlineResponse20022) GetTotalResultSize() int32`
+`func (o *InlineResponse20022) GetData() []Audience`
 
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetTotalResultSizeOk
+### GetDataOk
 
-`func (o *InlineResponse20022) GetTotalResultSizeOk() (int32, bool)`
+`func (o *InlineResponse20022) GetDataOk() ([]Audience, bool)`
 
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTotalResultSize
+### HasData
 
-`func (o *InlineResponse20022) HasTotalResultSize() bool`
+`func (o *InlineResponse20022) HasData() bool`
 
-HasTotalResultSize returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
-### SetTotalResultSize
+### SetData
 
-`func (o *InlineResponse20022) SetTotalResultSize(v int32)`
+`func (o *InlineResponse20022) SetData(v []Audience)`
 
-SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
+SetData gets a reference to the given []Audience and assigns it to the Data field.
 
 ### GetHasMore
 
@@ -60,30 +60,30 @@ HasHasMore returns a boolean if a field has been set.
 
 SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
-### GetData
+### GetTotalResultSize
 
-`func (o *InlineResponse20022) GetData() []ApplicationCustomer`
+`func (o *InlineResponse20022) GetTotalResultSize() int32`
 
-GetData returns the Data field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetDataOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20022) GetDataOk() ([]ApplicationCustomer, bool)`
+`func (o *InlineResponse20022) GetTotalResultSizeOk() (int32, bool)`
 
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasData
+### HasTotalResultSize
 
-`func (o *InlineResponse20022) HasData() bool`
+`func (o *InlineResponse20022) HasTotalResultSize() bool`
 
-HasData returns a boolean if a field has been set.
+HasTotalResultSize returns a boolean if a field has been set.
 
-### SetData
+### SetTotalResultSize
 
-`func (o *InlineResponse20022) SetData(v []ApplicationCustomer)`
+`func (o *InlineResponse20022) SetTotalResultSize(v int32)`
 
-SetData gets a reference to the given []ApplicationCustomer and assigns it to the Data field.
+SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

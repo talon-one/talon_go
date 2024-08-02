@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignId** | Pointer to **int32** | ID of the campaign, to which the achievement belongs to | 
-**UserId** | Pointer to **int32** | ID of the user that created this achievement. | 
 **CreatedBy** | Pointer to **string** | Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.  | 
 **HasProgress** | Pointer to **bool** | Indicates if a customer has made progress in the achievement. | [optional] 
+**UserId** | Pointer to **int32** | ID of the user that created this achievement. | 
 
 ## Methods
 
@@ -35,31 +35,6 @@ HasCampaignId returns a boolean if a field has been set.
 `func (o *AchievementAdditionalProperties) SetCampaignId(v int32)`
 
 SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-
-### GetUserId
-
-`func (o *AchievementAdditionalProperties) GetUserId() int32`
-
-GetUserId returns the UserId field if non-nil, zero value otherwise.
-
-### GetUserIdOk
-
-`func (o *AchievementAdditionalProperties) GetUserIdOk() (int32, bool)`
-
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasUserId
-
-`func (o *AchievementAdditionalProperties) HasUserId() bool`
-
-HasUserId returns a boolean if a field has been set.
-
-### SetUserId
-
-`func (o *AchievementAdditionalProperties) SetUserId(v int32)`
-
-SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 
 ### GetCreatedBy
 
@@ -110,6 +85,31 @@ HasHasProgress returns a boolean if a field has been set.
 `func (o *AchievementAdditionalProperties) SetHasProgress(v bool)`
 
 SetHasProgress gets a reference to the given bool and assigns it to the HasProgress field.
+
+### GetUserId
+
+`func (o *AchievementAdditionalProperties) GetUserId() int32`
+
+GetUserId returns the UserId field if non-nil, zero value otherwise.
+
+### GetUserIdOk
+
+`func (o *AchievementAdditionalProperties) GetUserIdOk() (int32, bool)`
+
+GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUserId
+
+`func (o *AchievementAdditionalProperties) HasUserId() bool`
+
+HasUserId returns a boolean if a field has been set.
+
+### SetUserId
+
+`func (o *AchievementAdditionalProperties) SetUserId(v int32)`
+
+SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

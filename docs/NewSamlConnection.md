@@ -4,42 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**X509certificate** | Pointer to **string** | X.509 Certificate. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | ID of the SAML service. | 
+**AudienceURI** | Pointer to **string** | The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.  | [optional] 
 **Enabled** | Pointer to **bool** | Determines if this SAML connection active. | 
 **Issuer** | Pointer to **string** | Identity Provider Entity ID. | 
+**MetadataURL** | Pointer to **string** | Metadata URL. | [optional] 
+**Name** | Pointer to **string** | ID of the SAML service. | 
 **SignOnURL** | Pointer to **string** | Single Sign-On URL. | 
 **SignOutURL** | Pointer to **string** | Single Sign-Out URL. | [optional] 
-**MetadataURL** | Pointer to **string** | Metadata URL. | [optional] 
-**AudienceURI** | Pointer to **string** | The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.  | [optional] 
+**X509certificate** | Pointer to **string** | X.509 Certificate. | 
 
 ## Methods
-
-### GetX509certificate
-
-`func (o *NewSamlConnection) GetX509certificate() string`
-
-GetX509certificate returns the X509certificate field if non-nil, zero value otherwise.
-
-### GetX509certificateOk
-
-`func (o *NewSamlConnection) GetX509certificateOk() (string, bool)`
-
-GetX509certificateOk returns a tuple with the X509certificate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasX509certificate
-
-`func (o *NewSamlConnection) HasX509certificate() bool`
-
-HasX509certificate returns a boolean if a field has been set.
-
-### SetX509certificate
-
-`func (o *NewSamlConnection) SetX509certificate(v string)`
-
-SetX509certificate gets a reference to the given string and assigns it to the X509certificate field.
 
 ### GetAccountId
 
@@ -66,30 +41,30 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetName
+### GetAudienceURI
 
-`func (o *NewSamlConnection) GetName() string`
+`func (o *NewSamlConnection) GetAudienceURI() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAudienceURI returns the AudienceURI field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAudienceURIOk
 
-`func (o *NewSamlConnection) GetNameOk() (string, bool)`
+`func (o *NewSamlConnection) GetAudienceURIOk() (string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAudienceURIOk returns a tuple with the AudienceURI field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasAudienceURI
 
-`func (o *NewSamlConnection) HasName() bool`
+`func (o *NewSamlConnection) HasAudienceURI() bool`
 
-HasName returns a boolean if a field has been set.
+HasAudienceURI returns a boolean if a field has been set.
 
-### SetName
+### SetAudienceURI
 
-`func (o *NewSamlConnection) SetName(v string)`
+`func (o *NewSamlConnection) SetAudienceURI(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetAudienceURI gets a reference to the given string and assigns it to the AudienceURI field.
 
 ### GetEnabled
 
@@ -141,6 +116,56 @@ HasIssuer returns a boolean if a field has been set.
 
 SetIssuer gets a reference to the given string and assigns it to the Issuer field.
 
+### GetMetadataURL
+
+`func (o *NewSamlConnection) GetMetadataURL() string`
+
+GetMetadataURL returns the MetadataURL field if non-nil, zero value otherwise.
+
+### GetMetadataURLOk
+
+`func (o *NewSamlConnection) GetMetadataURLOk() (string, bool)`
+
+GetMetadataURLOk returns a tuple with the MetadataURL field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasMetadataURL
+
+`func (o *NewSamlConnection) HasMetadataURL() bool`
+
+HasMetadataURL returns a boolean if a field has been set.
+
+### SetMetadataURL
+
+`func (o *NewSamlConnection) SetMetadataURL(v string)`
+
+SetMetadataURL gets a reference to the given string and assigns it to the MetadataURL field.
+
+### GetName
+
+`func (o *NewSamlConnection) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewSamlConnection) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *NewSamlConnection) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *NewSamlConnection) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
 ### GetSignOnURL
 
 `func (o *NewSamlConnection) GetSignOnURL() string`
@@ -191,55 +216,30 @@ HasSignOutURL returns a boolean if a field has been set.
 
 SetSignOutURL gets a reference to the given string and assigns it to the SignOutURL field.
 
-### GetMetadataURL
+### GetX509certificate
 
-`func (o *NewSamlConnection) GetMetadataURL() string`
+`func (o *NewSamlConnection) GetX509certificate() string`
 
-GetMetadataURL returns the MetadataURL field if non-nil, zero value otherwise.
+GetX509certificate returns the X509certificate field if non-nil, zero value otherwise.
 
-### GetMetadataURLOk
+### GetX509certificateOk
 
-`func (o *NewSamlConnection) GetMetadataURLOk() (string, bool)`
+`func (o *NewSamlConnection) GetX509certificateOk() (string, bool)`
 
-GetMetadataURLOk returns a tuple with the MetadataURL field if it's non-nil, zero value otherwise
+GetX509certificateOk returns a tuple with the X509certificate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasMetadataURL
+### HasX509certificate
 
-`func (o *NewSamlConnection) HasMetadataURL() bool`
+`func (o *NewSamlConnection) HasX509certificate() bool`
 
-HasMetadataURL returns a boolean if a field has been set.
+HasX509certificate returns a boolean if a field has been set.
 
-### SetMetadataURL
+### SetX509certificate
 
-`func (o *NewSamlConnection) SetMetadataURL(v string)`
+`func (o *NewSamlConnection) SetX509certificate(v string)`
 
-SetMetadataURL gets a reference to the given string and assigns it to the MetadataURL field.
-
-### GetAudienceURI
-
-`func (o *NewSamlConnection) GetAudienceURI() string`
-
-GetAudienceURI returns the AudienceURI field if non-nil, zero value otherwise.
-
-### GetAudienceURIOk
-
-`func (o *NewSamlConnection) GetAudienceURIOk() (string, bool)`
-
-GetAudienceURIOk returns a tuple with the AudienceURI field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAudienceURI
-
-`func (o *NewSamlConnection) HasAudienceURI() bool`
-
-HasAudienceURI returns a boolean if a field has been set.
-
-### SetAudienceURI
-
-`func (o *NewSamlConnection) SetAudienceURI(v string)`
-
-SetAudienceURI gets a reference to the given string and assigns it to the AudienceURI field.
+SetX509certificate gets a reference to the given string and assigns it to the X509certificate field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

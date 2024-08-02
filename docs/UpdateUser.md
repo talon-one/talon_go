@@ -4,64 +4,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the user. | [optional] 
-**State** | Pointer to **string** | The state of the user.   - &#x60;deactivated&#x60;: The user has been deactivated.   - &#x60;active&#x60;: The user is active.  **Note**: Only &#x60;admin&#x60; users can update the state of another user.  | [optional] 
+**ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) | Application notifications that the user is subscribed to. | [optional] 
 **IsAdmin** | Pointer to **bool** | Indicates whether the user is an &#x60;admin&#x60;. | [optional] 
+**Name** | Pointer to **string** | Name of the user. | [optional] 
 **Policy** | Pointer to **string** | Indicates the access level of the user. | [optional] 
 **Roles** | Pointer to **[]int32** | A list of the IDs of the roles assigned to the user.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | [optional] 
-**ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) | Application notifications that the user is subscribed to. | [optional] 
+**State** | Pointer to **string** | The state of the user.   - &#x60;deactivated&#x60;: The user has been deactivated.   - &#x60;active&#x60;: The user is active.  **Note**: Only &#x60;admin&#x60; users can update the state of another user.  | [optional] 
 
 ## Methods
 
-### GetName
+### GetApplicationNotificationSubscriptions
 
-`func (o *UpdateUser) GetName() string`
+`func (o *UpdateUser) GetApplicationNotificationSubscriptions() map[string]interface{}`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetApplicationNotificationSubscriptions returns the ApplicationNotificationSubscriptions field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetApplicationNotificationSubscriptionsOk
 
-`func (o *UpdateUser) GetNameOk() (string, bool)`
+`func (o *UpdateUser) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasApplicationNotificationSubscriptions
 
-`func (o *UpdateUser) HasName() bool`
+`func (o *UpdateUser) HasApplicationNotificationSubscriptions() bool`
 
-HasName returns a boolean if a field has been set.
+HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
 
-### SetName
+### SetApplicationNotificationSubscriptions
 
-`func (o *UpdateUser) SetName(v string)`
+`func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interface{})`
 
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetState
-
-`func (o *UpdateUser) GetState() string`
-
-GetState returns the State field if non-nil, zero value otherwise.
-
-### GetStateOk
-
-`func (o *UpdateUser) GetStateOk() (string, bool)`
-
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasState
-
-`func (o *UpdateUser) HasState() bool`
-
-HasState returns a boolean if a field has been set.
-
-### SetState
-
-`func (o *UpdateUser) SetState(v string)`
-
-SetState gets a reference to the given string and assigns it to the State field.
+SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
 
 ### GetIsAdmin
 
@@ -87,6 +62,31 @@ HasIsAdmin returns a boolean if a field has been set.
 `func (o *UpdateUser) SetIsAdmin(v bool)`
 
 SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
+
+### GetName
+
+`func (o *UpdateUser) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *UpdateUser) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *UpdateUser) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *UpdateUser) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPolicy
 
@@ -138,30 +138,30 @@ HasRoles returns a boolean if a field has been set.
 
 SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
 
-### GetApplicationNotificationSubscriptions
+### GetState
 
-`func (o *UpdateUser) GetApplicationNotificationSubscriptions() map[string]interface{}`
+`func (o *UpdateUser) GetState() string`
 
-GetApplicationNotificationSubscriptions returns the ApplicationNotificationSubscriptions field if non-nil, zero value otherwise.
+GetState returns the State field if non-nil, zero value otherwise.
 
-### GetApplicationNotificationSubscriptionsOk
+### GetStateOk
 
-`func (o *UpdateUser) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool)`
+`func (o *UpdateUser) GetStateOk() (string, bool)`
 
-GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field if it's non-nil, zero value otherwise
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasApplicationNotificationSubscriptions
+### HasState
 
-`func (o *UpdateUser) HasApplicationNotificationSubscriptions() bool`
+`func (o *UpdateUser) HasState() bool`
 
-HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
+HasState returns a boolean if a field has been set.
 
-### SetApplicationNotificationSubscriptions
+### SetState
 
-`func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interface{})`
+`func (o *UpdateUser) SetState(v string)`
 
-SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
+SetState gets a reference to the given string and assigns it to the State field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

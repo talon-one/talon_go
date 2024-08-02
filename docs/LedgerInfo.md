@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
-**PendingBalance** | Pointer to **float32** | Sum of pending points. | 
+**CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **ExpiredBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
+**PendingBalance** | Pointer to **float32** | Sum of pending points. | 
+**PointsToNextTier** | Pointer to **float32** | Points required to move up a tier. | [optional] 
 **SpentBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **TentativeCurrentBalance** | Pointer to **float32** | Sum of the tentative active points (including additions and deductions) inside the currently open session. The &#x60;currentBalance&#x60; is updated to this value when you close the session, and the effects are applied. | 
 **TentativePendingBalance** | Pointer to **float32** | Sum of pending points (including additions and deductions) inside the currently open session. The &#x60;pendingBalance&#x60; is updated to this value when you close the session, and the effects are applied. | [optional] 
-**CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
-**PointsToNextTier** | Pointer to **float32** | Points required to move up a tier. | [optional] 
 
 ## Methods
 
@@ -40,30 +40,30 @@ HasCurrentBalance returns a boolean if a field has been set.
 
 SetCurrentBalance gets a reference to the given float32 and assigns it to the CurrentBalance field.
 
-### GetPendingBalance
+### GetCurrentTier
 
-`func (o *LedgerInfo) GetPendingBalance() float32`
+`func (o *LedgerInfo) GetCurrentTier() Tier`
 
-GetPendingBalance returns the PendingBalance field if non-nil, zero value otherwise.
+GetCurrentTier returns the CurrentTier field if non-nil, zero value otherwise.
 
-### GetPendingBalanceOk
+### GetCurrentTierOk
 
-`func (o *LedgerInfo) GetPendingBalanceOk() (float32, bool)`
+`func (o *LedgerInfo) GetCurrentTierOk() (Tier, bool)`
 
-GetPendingBalanceOk returns a tuple with the PendingBalance field if it's non-nil, zero value otherwise
+GetCurrentTierOk returns a tuple with the CurrentTier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPendingBalance
+### HasCurrentTier
 
-`func (o *LedgerInfo) HasPendingBalance() bool`
+`func (o *LedgerInfo) HasCurrentTier() bool`
 
-HasPendingBalance returns a boolean if a field has been set.
+HasCurrentTier returns a boolean if a field has been set.
 
-### SetPendingBalance
+### SetCurrentTier
 
-`func (o *LedgerInfo) SetPendingBalance(v float32)`
+`func (o *LedgerInfo) SetCurrentTier(v Tier)`
 
-SetPendingBalance gets a reference to the given float32 and assigns it to the PendingBalance field.
+SetCurrentTier gets a reference to the given Tier and assigns it to the CurrentTier field.
 
 ### GetExpiredBalance
 
@@ -89,6 +89,56 @@ HasExpiredBalance returns a boolean if a field has been set.
 `func (o *LedgerInfo) SetExpiredBalance(v float32)`
 
 SetExpiredBalance gets a reference to the given float32 and assigns it to the ExpiredBalance field.
+
+### GetPendingBalance
+
+`func (o *LedgerInfo) GetPendingBalance() float32`
+
+GetPendingBalance returns the PendingBalance field if non-nil, zero value otherwise.
+
+### GetPendingBalanceOk
+
+`func (o *LedgerInfo) GetPendingBalanceOk() (float32, bool)`
+
+GetPendingBalanceOk returns a tuple with the PendingBalance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPendingBalance
+
+`func (o *LedgerInfo) HasPendingBalance() bool`
+
+HasPendingBalance returns a boolean if a field has been set.
+
+### SetPendingBalance
+
+`func (o *LedgerInfo) SetPendingBalance(v float32)`
+
+SetPendingBalance gets a reference to the given float32 and assigns it to the PendingBalance field.
+
+### GetPointsToNextTier
+
+`func (o *LedgerInfo) GetPointsToNextTier() float32`
+
+GetPointsToNextTier returns the PointsToNextTier field if non-nil, zero value otherwise.
+
+### GetPointsToNextTierOk
+
+`func (o *LedgerInfo) GetPointsToNextTierOk() (float32, bool)`
+
+GetPointsToNextTierOk returns a tuple with the PointsToNextTier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPointsToNextTier
+
+`func (o *LedgerInfo) HasPointsToNextTier() bool`
+
+HasPointsToNextTier returns a boolean if a field has been set.
+
+### SetPointsToNextTier
+
+`func (o *LedgerInfo) SetPointsToNextTier(v float32)`
+
+SetPointsToNextTier gets a reference to the given float32 and assigns it to the PointsToNextTier field.
 
 ### GetSpentBalance
 
@@ -164,56 +214,6 @@ HasTentativePendingBalance returns a boolean if a field has been set.
 `func (o *LedgerInfo) SetTentativePendingBalance(v float32)`
 
 SetTentativePendingBalance gets a reference to the given float32 and assigns it to the TentativePendingBalance field.
-
-### GetCurrentTier
-
-`func (o *LedgerInfo) GetCurrentTier() Tier`
-
-GetCurrentTier returns the CurrentTier field if non-nil, zero value otherwise.
-
-### GetCurrentTierOk
-
-`func (o *LedgerInfo) GetCurrentTierOk() (Tier, bool)`
-
-GetCurrentTierOk returns a tuple with the CurrentTier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCurrentTier
-
-`func (o *LedgerInfo) HasCurrentTier() bool`
-
-HasCurrentTier returns a boolean if a field has been set.
-
-### SetCurrentTier
-
-`func (o *LedgerInfo) SetCurrentTier(v Tier)`
-
-SetCurrentTier gets a reference to the given Tier and assigns it to the CurrentTier field.
-
-### GetPointsToNextTier
-
-`func (o *LedgerInfo) GetPointsToNextTier() float32`
-
-GetPointsToNextTier returns the PointsToNextTier field if non-nil, zero value otherwise.
-
-### GetPointsToNextTierOk
-
-`func (o *LedgerInfo) GetPointsToNextTierOk() (float32, bool)`
-
-GetPointsToNextTierOk returns a tuple with the PointsToNextTier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasPointsToNextTier
-
-`func (o *LedgerInfo) HasPointsToNextTier() bool`
-
-HasPointsToNextTier returns a boolean if a field has been set.
-
-### SetPointsToNextTier
-
-`func (o *LedgerInfo) SetPointsToNextTier(v float32)`
-
-SetPointsToNextTier gets a reference to the given float32 and assigns it to the PointsToNextTier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

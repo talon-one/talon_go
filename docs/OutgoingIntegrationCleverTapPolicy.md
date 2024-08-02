@@ -4,36 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseUrl** | Pointer to **string** | The base URL that is based on the region key of your CleverTap account. | 
 **AccountId** | Pointer to **string** | The CleverTap Project ID. | 
+**BaseUrl** | Pointer to **string** | The base URL that is based on the region key of your CleverTap account. | 
 **Passcode** | Pointer to **string** | The CleverTap Project passcode. | 
 
 ## Methods
-
-### GetBaseUrl
-
-`func (o *OutgoingIntegrationCleverTapPolicy) GetBaseUrl() string`
-
-GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
-
-### GetBaseUrlOk
-
-`func (o *OutgoingIntegrationCleverTapPolicy) GetBaseUrlOk() (string, bool)`
-
-GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasBaseUrl
-
-`func (o *OutgoingIntegrationCleverTapPolicy) HasBaseUrl() bool`
-
-HasBaseUrl returns a boolean if a field has been set.
-
-### SetBaseUrl
-
-`func (o *OutgoingIntegrationCleverTapPolicy) SetBaseUrl(v string)`
-
-SetBaseUrl gets a reference to the given string and assigns it to the BaseUrl field.
 
 ### GetAccountId
 
@@ -59,6 +34,31 @@ HasAccountId returns a boolean if a field has been set.
 `func (o *OutgoingIntegrationCleverTapPolicy) SetAccountId(v string)`
 
 SetAccountId gets a reference to the given string and assigns it to the AccountId field.
+
+### GetBaseUrl
+
+`func (o *OutgoingIntegrationCleverTapPolicy) GetBaseUrl() string`
+
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
+
+### GetBaseUrlOk
+
+`func (o *OutgoingIntegrationCleverTapPolicy) GetBaseUrlOk() (string, bool)`
+
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBaseUrl
+
+`func (o *OutgoingIntegrationCleverTapPolicy) HasBaseUrl() bool`
+
+HasBaseUrl returns a boolean if a field has been set.
+
+### SetBaseUrl
+
+`func (o *OutgoingIntegrationCleverTapPolicy) SetBaseUrl(v string)`
+
+SetBaseUrl gets a reference to the given string and assigns it to the BaseUrl field.
 
 ### GetPasscode
 

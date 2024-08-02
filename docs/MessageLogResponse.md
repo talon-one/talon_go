@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the response was received. | 
-**Response** | Pointer to **string** | Raw response data. | 
-**Status** | Pointer to **int32** | HTTP status code of the response. | 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the response was received. | [optional] 
+**Response** | Pointer to **string** | Raw response data. | [optional] 
+**Status** | Pointer to **int32** | HTTP status code of the response. | [optional] 
 
 ## Methods
 

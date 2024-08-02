@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** | The human-friendly name for this event type. | 
-**Name** | Pointer to **string** | The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created. | 
 **Description** | Pointer to **string** | A description of what the event represents.  | [optional] 
+**Name** | Pointer to **string** | The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created. | 
+**Title** | Pointer to **string** | The human-friendly name for this event type. | 
 
 ## Methods
 
-### GetTitle
+### GetDescription
 
-`func (o *NewEventType) GetTitle() string`
+`func (o *NewEventType) GetDescription() string`
 
-GetTitle returns the Title field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetTitleOk
+### GetDescriptionOk
 
-`func (o *NewEventType) GetTitleOk() (string, bool)`
+`func (o *NewEventType) GetDescriptionOk() (string, bool)`
 
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTitle
+### HasDescription
 
-`func (o *NewEventType) HasTitle() bool`
+`func (o *NewEventType) HasDescription() bool`
 
-HasTitle returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetTitle
+### SetDescription
 
-`func (o *NewEventType) SetTitle(v string)`
+`func (o *NewEventType) SetDescription(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetName
 
@@ -60,30 +60,30 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetDescription
+### GetTitle
 
-`func (o *NewEventType) GetDescription() string`
+`func (o *NewEventType) GetTitle() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetTitle returns the Title field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetTitleOk
 
-`func (o *NewEventType) GetDescriptionOk() (string, bool)`
+`func (o *NewEventType) GetTitleOk() (string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasDescription
+### HasTitle
 
-`func (o *NewEventType) HasDescription() bool`
+`func (o *NewEventType) HasTitle() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasTitle returns a boolean if a field has been set.
 
-### SetDescription
+### SetTitle
 
-`func (o *NewEventType) SetDescription(v string)`
+`func (o *NewEventType) SetTitle(v string)`
 
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

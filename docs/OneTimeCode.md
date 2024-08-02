@@ -4,37 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **int32** | The ID of the user. | 
 **AccountId** | Pointer to **int32** | The ID of the account. | 
-**Token** | Pointer to **string** | The two-factor authentication token created during sign-in. This token is used to ensure that the correct user is trying to sign in with a given one-time security code. | 
 **Code** | Pointer to **string** | The one-time security code used for signing in. | [optional] 
+**Token** | Pointer to **string** | The two-factor authentication token created during sign-in. This token is used to ensure that the correct user is trying to sign in with a given one-time security code. | 
+**UserId** | Pointer to **int32** | The ID of the user. | 
 
 ## Methods
-
-### GetUserId
-
-`func (o *OneTimeCode) GetUserId() int32`
-
-GetUserId returns the UserId field if non-nil, zero value otherwise.
-
-### GetUserIdOk
-
-`func (o *OneTimeCode) GetUserIdOk() (int32, bool)`
-
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasUserId
-
-`func (o *OneTimeCode) HasUserId() bool`
-
-HasUserId returns a boolean if a field has been set.
-
-### SetUserId
-
-`func (o *OneTimeCode) SetUserId(v int32)`
-
-SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 
 ### GetAccountId
 
@@ -61,6 +36,31 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
+### GetCode
+
+`func (o *OneTimeCode) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *OneTimeCode) GetCodeOk() (string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCode
+
+`func (o *OneTimeCode) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCode
+
+`func (o *OneTimeCode) SetCode(v string)`
+
+SetCode gets a reference to the given string and assigns it to the Code field.
+
 ### GetToken
 
 `func (o *OneTimeCode) GetToken() string`
@@ -86,30 +86,30 @@ HasToken returns a boolean if a field has been set.
 
 SetToken gets a reference to the given string and assigns it to the Token field.
 
-### GetCode
+### GetUserId
 
-`func (o *OneTimeCode) GetCode() string`
+`func (o *OneTimeCode) GetUserId() int32`
 
-GetCode returns the Code field if non-nil, zero value otherwise.
+GetUserId returns the UserId field if non-nil, zero value otherwise.
 
-### GetCodeOk
+### GetUserIdOk
 
-`func (o *OneTimeCode) GetCodeOk() (string, bool)`
+`func (o *OneTimeCode) GetUserIdOk() (int32, bool)`
 
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCode
+### HasUserId
 
-`func (o *OneTimeCode) HasCode() bool`
+`func (o *OneTimeCode) HasUserId() bool`
 
-HasCode returns a boolean if a field has been set.
+HasUserId returns a boolean if a field has been set.
 
-### SetCode
+### SetUserId
 
-`func (o *OneTimeCode) SetCode(v string)`
+`func (o *OneTimeCode) SetUserId(v int32)`
 
-SetCode gets a reference to the given string and assigns it to the Code field.
+SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

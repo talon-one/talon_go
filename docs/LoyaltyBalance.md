@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActivePoints** | Pointer to **float32** | Total amount of points awarded to this customer and available to spend. | [optional] 
+**ExpiredPoints** | Pointer to **float32** | Total amount of points awarded but never redeemed. They cannot be used anymore. | [optional] 
 **PendingPoints** | Pointer to **float32** | Total amount of points awarded to this customer but not available until their start date. | [optional] 
 **SpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer. | [optional] 
-**ExpiredPoints** | Pointer to **float32** | Total amount of points awarded but never redeemed. They cannot be used anymore. | [optional] 
 
 ## Methods
 
@@ -35,6 +35,31 @@ HasActivePoints returns a boolean if a field has been set.
 `func (o *LoyaltyBalance) SetActivePoints(v float32)`
 
 SetActivePoints gets a reference to the given float32 and assigns it to the ActivePoints field.
+
+### GetExpiredPoints
+
+`func (o *LoyaltyBalance) GetExpiredPoints() float32`
+
+GetExpiredPoints returns the ExpiredPoints field if non-nil, zero value otherwise.
+
+### GetExpiredPointsOk
+
+`func (o *LoyaltyBalance) GetExpiredPointsOk() (float32, bool)`
+
+GetExpiredPointsOk returns a tuple with the ExpiredPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiredPoints
+
+`func (o *LoyaltyBalance) HasExpiredPoints() bool`
+
+HasExpiredPoints returns a boolean if a field has been set.
+
+### SetExpiredPoints
+
+`func (o *LoyaltyBalance) SetExpiredPoints(v float32)`
+
+SetExpiredPoints gets a reference to the given float32 and assigns it to the ExpiredPoints field.
 
 ### GetPendingPoints
 
@@ -85,31 +110,6 @@ HasSpentPoints returns a boolean if a field has been set.
 `func (o *LoyaltyBalance) SetSpentPoints(v float32)`
 
 SetSpentPoints gets a reference to the given float32 and assigns it to the SpentPoints field.
-
-### GetExpiredPoints
-
-`func (o *LoyaltyBalance) GetExpiredPoints() float32`
-
-GetExpiredPoints returns the ExpiredPoints field if non-nil, zero value otherwise.
-
-### GetExpiredPointsOk
-
-`func (o *LoyaltyBalance) GetExpiredPointsOk() (float32, bool)`
-
-GetExpiredPointsOk returns a tuple with the ExpiredPoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExpiredPoints
-
-`func (o *LoyaltyBalance) HasExpiredPoints() bool`
-
-HasExpiredPoints returns a boolean if a field has been set.
-
-### SetExpiredPoints
-
-`func (o *LoyaltyBalance) SetExpiredPoints(v float32)`
-
-SetExpiredPoints gets a reference to the given float32 and assigns it to the ExpiredPoints field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -464,7 +464,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyBalances
 
-> LoyaltyBalances GetLoyaltyBalances(ctx, loyaltyProgramId, integrationId).EndDate(endDate).SubledgerId(subledgerId).Execute()
+> LoyaltyBalancesWithTiers GetLoyaltyBalances(ctx, loyaltyProgramId, integrationId).EndDate(endDate).SubledgerId(subledgerId).IncludeTiers(includeTiers).IncludeProjectedTier(includeProjectedTier).Execute()
 
 Get customer's loyalty points
 
@@ -490,10 +490,12 @@ Name | Type | Description  | Notes
 
  **endDate** | **time.Time** | Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **subledgerId** | **string** | The ID of the subledger by which we filter the data. | 
+ **includeTiers** | **bool** | Indicates whether tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the current tier and the number of points required to move to next tier.  | [default to false]
+ **includeProjectedTier** | **bool** | Indicates whether the customer&#39;s projected tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the customer’s active points and the name of the projected tier.  **Note** We recommend filtering by &#x60;subledgerId&#x60; for better performance.  | [default to false]
 
 ### Return type
 
-[**LoyaltyBalances**](LoyaltyBalances.md)
+[**LoyaltyBalancesWithTiers**](LoyaltyBalancesWithTiers.md)
 
 ### Authorization
 
@@ -558,7 +560,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardPoints
 
-> InlineResponse2003 GetLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Status(status).SubledgerId(subledgerId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20038 GetLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId).Status(status).SubledgerId(subledgerId).PageSize(pageSize).Skip(skip).Execute()
 
 List card's unused loyalty points
 
@@ -589,7 +591,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2003**](inline_response_200_3.md)
+[**InlineResponse20038**](inline_response_200_38.md)
 
 ### Authorization
 
@@ -607,7 +609,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactions
 
-> InlineResponse2001 GetLoyaltyCardTransactions(ctx, loyaltyProgramId, loyaltyCardId).SubledgerId(subledgerId).LoyaltyTransactionType(loyaltyTransactionType).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20039 GetLoyaltyCardTransactions(ctx, loyaltyProgramId, loyaltyCardId).SubledgerId(subledgerId).LoyaltyTransactionType(loyaltyTransactionType).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List card's transactions
 
@@ -640,7 +642,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2001**](inline_response_200_1.md)
+[**InlineResponse20039**](inline_response_200_39.md)
 
 ### Authorization
 
@@ -658,7 +660,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramProfilePoints
 
-> InlineResponse2004 GetLoyaltyProgramProfilePoints(ctx, loyaltyProgramId, integrationId).Status(status).SubledgerId(subledgerId).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20040 GetLoyaltyProgramProfilePoints(ctx, loyaltyProgramId, integrationId).Status(status).SubledgerId(subledgerId).PageSize(pageSize).Skip(skip).Execute()
 
 List customer's unused loyalty points
 
@@ -689,7 +691,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](inline_response_200_4.md)
+[**InlineResponse20040**](inline_response_200_40.md)
 
 ### Authorization
 
@@ -707,7 +709,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramProfileTransactions
 
-> InlineResponse2002 GetLoyaltyProgramProfileTransactions(ctx, loyaltyProgramId, integrationId).SubledgerId(subledgerId).LoyaltyTransactionType(loyaltyTransactionType).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
+> InlineResponse20041 GetLoyaltyProgramProfileTransactions(ctx, loyaltyProgramId, integrationId).SubledgerId(subledgerId).LoyaltyTransactionType(loyaltyTransactionType).StartDate(startDate).EndDate(endDate).PageSize(pageSize).Skip(skip).Execute()
 
 List customer's loyalty transactions
 
@@ -740,7 +742,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2002**](inline_response_200_2.md)
+[**InlineResponse20041**](inline_response_200_41.md)
 
 ### Authorization
 
@@ -758,7 +760,7 @@ Name | Type | Description  | Notes
 
 ## GetReservedCustomers
 
-> InlineResponse200 GetReservedCustomers(ctx, couponValue).Execute()
+> InlineResponse20030 GetReservedCustomers(ctx, couponValue).Execute()
 
 List customers that have this coupon reserved
 
@@ -783,7 +785,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](inline_response_200.md)
+[**InlineResponse20030**](inline_response_200_30.md)
 
 ### Authorization
 

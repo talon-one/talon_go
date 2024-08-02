@@ -4,10 +4,61 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
+**Data** | Pointer to [**[]CollectionWithoutPayload**](CollectionWithoutPayload.md) |  | 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**TotalResultSize** | Pointer to **int32** |  | [optional] 
 
 ## Methods
+
+### GetData
+
+`func (o *InlineResponse2008) GetData() []CollectionWithoutPayload`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *InlineResponse2008) GetDataOk() ([]CollectionWithoutPayload, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasData
+
+`func (o *InlineResponse2008) HasData() bool`
+
+HasData returns a boolean if a field has been set.
+
+### SetData
+
+`func (o *InlineResponse2008) SetData(v []CollectionWithoutPayload)`
+
+SetData gets a reference to the given []CollectionWithoutPayload and assigns it to the Data field.
+
+### GetHasMore
+
+`func (o *InlineResponse2008) GetHasMore() bool`
+
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+
+### GetHasMoreOk
+
+`func (o *InlineResponse2008) GetHasMoreOk() (bool, bool)`
+
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasHasMore
+
+`func (o *InlineResponse2008) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
+
+### SetHasMore
+
+`func (o *InlineResponse2008) SetHasMore(v bool)`
+
+SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
 ### GetTotalResultSize
 
@@ -33,31 +84,6 @@ HasTotalResultSize returns a boolean if a field has been set.
 `func (o *InlineResponse2008) SetTotalResultSize(v int32)`
 
 SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
-
-### GetData
-
-`func (o *InlineResponse2008) GetData() []Coupon`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *InlineResponse2008) GetDataOk() ([]Coupon, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasData
-
-`func (o *InlineResponse2008) HasData() bool`
-
-HasData returns a boolean if a field has been set.
-
-### SetData
-
-`func (o *InlineResponse2008) SetData(v []Coupon)`
-
-SetData gets a reference to the given []Coupon and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

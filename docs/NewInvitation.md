@@ -4,38 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name of the user. | [optional] 
+**Acl** | Pointer to **string** | Indicates the access level of the user. | [optional] 
 **Email** | Pointer to **string** | Email address of the user. | 
 **IsAdmin** | Pointer to **bool** | Indicates whether the user is an &#x60;admin&#x60;. | [optional] 
+**Name** | Pointer to **string** | Name of the user. | [optional] 
 **Roles** | Pointer to **[]int32** | A list of the IDs of the roles assigned to the user. | [optional] 
-**Acl** | Pointer to **string** | Indicates the access level of the user. | [optional] 
 
 ## Methods
 
-### GetName
+### GetAcl
 
-`func (o *NewInvitation) GetName() string`
+`func (o *NewInvitation) GetAcl() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAcl returns the Acl field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAclOk
 
-`func (o *NewInvitation) GetNameOk() (string, bool)`
+`func (o *NewInvitation) GetAclOk() (string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasAcl
 
-`func (o *NewInvitation) HasName() bool`
+`func (o *NewInvitation) HasAcl() bool`
 
-HasName returns a boolean if a field has been set.
+HasAcl returns a boolean if a field has been set.
 
-### SetName
+### SetAcl
 
-`func (o *NewInvitation) SetName(v string)`
+`func (o *NewInvitation) SetAcl(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetAcl gets a reference to the given string and assigns it to the Acl field.
 
 ### GetEmail
 
@@ -87,6 +87,31 @@ HasIsAdmin returns a boolean if a field has been set.
 
 SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 
+### GetName
+
+`func (o *NewInvitation) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewInvitation) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *NewInvitation) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *NewInvitation) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
 ### GetRoles
 
 `func (o *NewInvitation) GetRoles() []int32`
@@ -111,31 +136,6 @@ HasRoles returns a boolean if a field has been set.
 `func (o *NewInvitation) SetRoles(v []int32)`
 
 SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
-
-### GetAcl
-
-`func (o *NewInvitation) GetAcl() string`
-
-GetAcl returns the Acl field if non-nil, zero value otherwise.
-
-### GetAclOk
-
-`func (o *NewInvitation) GetAclOk() (string, bool)`
-
-GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAcl
-
-`func (o *NewInvitation) HasAcl() bool`
-
-HasAcl returns a boolean if a field has been set.
-
-### SetAcl
-
-`func (o *NewInvitation) SetAcl(v string)`
-
-SetAcl gets a reference to the given string and assigns it to the Acl field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

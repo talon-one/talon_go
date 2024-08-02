@@ -4,44 +4,119 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
+**ActivatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp indicating when this Ruleset was activated. | [optional] 
+**Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
+**CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | [optional] 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**RbVersion** | Pointer to **string** | The version of the rulebuilder used to create this ruleset. | [optional] 
 **Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
 **StrikethroughRules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply for strikethrough. | [optional] 
-**Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
-**RbVersion** | Pointer to **string** | The version of the rulebuilder used to create this ruleset. | [optional] 
-**Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
-**CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the campaign template that owns this entity. | [optional] 
-**ActivatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp indicating when this Ruleset was activated. | [optional] 
+**UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 
 ## Methods
 
-### GetId
+### GetActivate
 
-`func (o *Ruleset) GetId() int32`
+`func (o *Ruleset) GetActivate() bool`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetActivate returns the Activate field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetActivateOk
 
-`func (o *Ruleset) GetIdOk() (int32, bool)`
+`func (o *Ruleset) GetActivateOk() (bool, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetActivateOk returns a tuple with the Activate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
+### HasActivate
 
-`func (o *Ruleset) HasId() bool`
+`func (o *Ruleset) HasActivate() bool`
 
-HasId returns a boolean if a field has been set.
+HasActivate returns a boolean if a field has been set.
 
-### SetId
+### SetActivate
 
-`func (o *Ruleset) SetId(v int32)`
+`func (o *Ruleset) SetActivate(v bool)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetActivate gets a reference to the given bool and assigns it to the Activate field.
+
+### GetActivatedAt
+
+`func (o *Ruleset) GetActivatedAt() time.Time`
+
+GetActivatedAt returns the ActivatedAt field if non-nil, zero value otherwise.
+
+### GetActivatedAtOk
+
+`func (o *Ruleset) GetActivatedAtOk() (time.Time, bool)`
+
+GetActivatedAtOk returns a tuple with the ActivatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasActivatedAt
+
+`func (o *Ruleset) HasActivatedAt() bool`
+
+HasActivatedAt returns a boolean if a field has been set.
+
+### SetActivatedAt
+
+`func (o *Ruleset) SetActivatedAt(v time.Time)`
+
+SetActivatedAt gets a reference to the given time.Time and assigns it to the ActivatedAt field.
+
+### GetBindings
+
+`func (o *Ruleset) GetBindings() []Binding`
+
+GetBindings returns the Bindings field if non-nil, zero value otherwise.
+
+### GetBindingsOk
+
+`func (o *Ruleset) GetBindingsOk() ([]Binding, bool)`
+
+GetBindingsOk returns a tuple with the Bindings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBindings
+
+`func (o *Ruleset) HasBindings() bool`
+
+HasBindings returns a boolean if a field has been set.
+
+### SetBindings
+
+`func (o *Ruleset) SetBindings(v []Binding)`
+
+SetBindings gets a reference to the given []Binding and assigns it to the Bindings field.
+
+### GetCampaignId
+
+`func (o *Ruleset) GetCampaignId() int32`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *Ruleset) GetCampaignIdOk() (int32, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignId
+
+`func (o *Ruleset) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### SetCampaignId
+
+`func (o *Ruleset) SetCampaignId(v int32)`
+
+SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
 ### GetCreated
 
@@ -68,30 +143,55 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetUserId
+### GetId
 
-`func (o *Ruleset) GetUserId() int32`
+`func (o *Ruleset) GetId() int32`
 
-GetUserId returns the UserId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetUserIdOk
+### GetIdOk
 
-`func (o *Ruleset) GetUserIdOk() (int32, bool)`
+`func (o *Ruleset) GetIdOk() (int32, bool)`
 
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasUserId
+### HasId
 
-`func (o *Ruleset) HasUserId() bool`
+`func (o *Ruleset) HasId() bool`
 
-HasUserId returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetUserId
+### SetId
 
-`func (o *Ruleset) SetUserId(v int32)`
+`func (o *Ruleset) SetId(v int32)`
 
-SetUserId gets a reference to the given int32 and assigns it to the UserId field.
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
+### GetRbVersion
+
+`func (o *Ruleset) GetRbVersion() string`
+
+GetRbVersion returns the RbVersion field if non-nil, zero value otherwise.
+
+### GetRbVersionOk
+
+`func (o *Ruleset) GetRbVersionOk() (string, bool)`
+
+GetRbVersionOk returns a tuple with the RbVersion field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRbVersion
+
+`func (o *Ruleset) HasRbVersion() bool`
+
+HasRbVersion returns a boolean if a field has been set.
+
+### SetRbVersion
+
+`func (o *Ruleset) SetRbVersion(v string)`
+
+SetRbVersion gets a reference to the given string and assigns it to the RbVersion field.
 
 ### GetRules
 
@@ -143,106 +243,6 @@ HasStrikethroughRules returns a boolean if a field has been set.
 
 SetStrikethroughRules gets a reference to the given []Rule and assigns it to the StrikethroughRules field.
 
-### GetBindings
-
-`func (o *Ruleset) GetBindings() []Binding`
-
-GetBindings returns the Bindings field if non-nil, zero value otherwise.
-
-### GetBindingsOk
-
-`func (o *Ruleset) GetBindingsOk() ([]Binding, bool)`
-
-GetBindingsOk returns a tuple with the Bindings field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasBindings
-
-`func (o *Ruleset) HasBindings() bool`
-
-HasBindings returns a boolean if a field has been set.
-
-### SetBindings
-
-`func (o *Ruleset) SetBindings(v []Binding)`
-
-SetBindings gets a reference to the given []Binding and assigns it to the Bindings field.
-
-### GetRbVersion
-
-`func (o *Ruleset) GetRbVersion() string`
-
-GetRbVersion returns the RbVersion field if non-nil, zero value otherwise.
-
-### GetRbVersionOk
-
-`func (o *Ruleset) GetRbVersionOk() (string, bool)`
-
-GetRbVersionOk returns a tuple with the RbVersion field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasRbVersion
-
-`func (o *Ruleset) HasRbVersion() bool`
-
-HasRbVersion returns a boolean if a field has been set.
-
-### SetRbVersion
-
-`func (o *Ruleset) SetRbVersion(v string)`
-
-SetRbVersion gets a reference to the given string and assigns it to the RbVersion field.
-
-### GetActivate
-
-`func (o *Ruleset) GetActivate() bool`
-
-GetActivate returns the Activate field if non-nil, zero value otherwise.
-
-### GetActivateOk
-
-`func (o *Ruleset) GetActivateOk() (bool, bool)`
-
-GetActivateOk returns a tuple with the Activate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasActivate
-
-`func (o *Ruleset) HasActivate() bool`
-
-HasActivate returns a boolean if a field has been set.
-
-### SetActivate
-
-`func (o *Ruleset) SetActivate(v bool)`
-
-SetActivate gets a reference to the given bool and assigns it to the Activate field.
-
-### GetCampaignId
-
-`func (o *Ruleset) GetCampaignId() int32`
-
-GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
-
-### GetCampaignIdOk
-
-`func (o *Ruleset) GetCampaignIdOk() (int32, bool)`
-
-GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCampaignId
-
-`func (o *Ruleset) HasCampaignId() bool`
-
-HasCampaignId returns a boolean if a field has been set.
-
-### SetCampaignId
-
-`func (o *Ruleset) SetCampaignId(v int32)`
-
-SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-
 ### GetTemplateId
 
 `func (o *Ruleset) GetTemplateId() int32`
@@ -268,30 +268,30 @@ HasTemplateId returns a boolean if a field has been set.
 
 SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
 
-### GetActivatedAt
+### GetUserId
 
-`func (o *Ruleset) GetActivatedAt() time.Time`
+`func (o *Ruleset) GetUserId() int32`
 
-GetActivatedAt returns the ActivatedAt field if non-nil, zero value otherwise.
+GetUserId returns the UserId field if non-nil, zero value otherwise.
 
-### GetActivatedAtOk
+### GetUserIdOk
 
-`func (o *Ruleset) GetActivatedAtOk() (time.Time, bool)`
+`func (o *Ruleset) GetUserIdOk() (int32, bool)`
 
-GetActivatedAtOk returns a tuple with the ActivatedAt field if it's non-nil, zero value otherwise
+GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasActivatedAt
+### HasUserId
 
-`func (o *Ruleset) HasActivatedAt() bool`
+`func (o *Ruleset) HasUserId() bool`
 
-HasActivatedAt returns a boolean if a field has been set.
+HasUserId returns a boolean if a field has been set.
 
-### SetActivatedAt
+### SetUserId
 
-`func (o *Ruleset) SetActivatedAt(v time.Time)`
+`func (o *Ruleset) SetUserId(v int32)`
 
-SetActivatedAt gets a reference to the given time.Time and assigns it to the ActivatedAt field.
+SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

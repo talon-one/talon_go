@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
-**OldState** | Pointer to **string** | The campaign&#39;s old state. Can be one of the following: [&#39;running&#39;, &#39;disabled&#39;, &#39;scheduled&#39;, &#39;expired&#39;, &#39;draft&#39;, &#39;archived&#39;]  | 
 **NewState** | Pointer to **string** | The campaign&#39;s new state. Can be one of the following: [&#39;running&#39;, &#39;disabled&#39;, &#39;scheduled&#39;, &#39;expired&#39;, &#39;draft&#39;, &#39;archived&#39;]  | 
+**OldState** | Pointer to **string** | The campaign&#39;s old state. Can be one of the following: [&#39;running&#39;, &#39;disabled&#39;, &#39;scheduled&#39;, &#39;expired&#39;, &#39;draft&#39;, &#39;archived&#39;]  | 
 **Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
 
 ## Methods
@@ -36,31 +36,6 @@ HasCampaign returns a boolean if a field has been set.
 
 SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
 
-### GetOldState
-
-`func (o *CampaignStateChangedNotification) GetOldState() string`
-
-GetOldState returns the OldState field if non-nil, zero value otherwise.
-
-### GetOldStateOk
-
-`func (o *CampaignStateChangedNotification) GetOldStateOk() (string, bool)`
-
-GetOldStateOk returns a tuple with the OldState field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasOldState
-
-`func (o *CampaignStateChangedNotification) HasOldState() bool`
-
-HasOldState returns a boolean if a field has been set.
-
-### SetOldState
-
-`func (o *CampaignStateChangedNotification) SetOldState(v string)`
-
-SetOldState gets a reference to the given string and assigns it to the OldState field.
-
 ### GetNewState
 
 `func (o *CampaignStateChangedNotification) GetNewState() string`
@@ -85,6 +60,31 @@ HasNewState returns a boolean if a field has been set.
 `func (o *CampaignStateChangedNotification) SetNewState(v string)`
 
 SetNewState gets a reference to the given string and assigns it to the NewState field.
+
+### GetOldState
+
+`func (o *CampaignStateChangedNotification) GetOldState() string`
+
+GetOldState returns the OldState field if non-nil, zero value otherwise.
+
+### GetOldStateOk
+
+`func (o *CampaignStateChangedNotification) GetOldStateOk() (string, bool)`
+
+GetOldStateOk returns a tuple with the OldState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasOldState
+
+`func (o *CampaignStateChangedNotification) HasOldState() bool`
+
+HasOldState returns a boolean if a field has been set.
+
+### SetOldState
+
+`func (o *CampaignStateChangedNotification) SetOldState(v string)`
+
+SetOldState gets a reference to the given string and assigns it to the OldState field.
 
 ### GetRuleset
 

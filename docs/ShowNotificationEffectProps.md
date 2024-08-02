@@ -4,11 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Body** | Pointer to **string** | Body of the notification. | 
 **NotificationType** | Pointer to **string** | The type of notification that should be shown (e.g. error/warning/info). | 
 **Title** | Pointer to **string** | Title of the notification. | 
-**Body** | Pointer to **string** | Body of the notification. | 
 
 ## Methods
+
+### GetBody
+
+`func (o *ShowNotificationEffectProps) GetBody() string`
+
+GetBody returns the Body field if non-nil, zero value otherwise.
+
+### GetBodyOk
+
+`func (o *ShowNotificationEffectProps) GetBodyOk() (string, bool)`
+
+GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBody
+
+`func (o *ShowNotificationEffectProps) HasBody() bool`
+
+HasBody returns a boolean if a field has been set.
+
+### SetBody
+
+`func (o *ShowNotificationEffectProps) SetBody(v string)`
+
+SetBody gets a reference to the given string and assigns it to the Body field.
 
 ### GetNotificationType
 
@@ -59,31 +84,6 @@ HasTitle returns a boolean if a field has been set.
 `func (o *ShowNotificationEffectProps) SetTitle(v string)`
 
 SetTitle gets a reference to the given string and assigns it to the Title field.
-
-### GetBody
-
-`func (o *ShowNotificationEffectProps) GetBody() string`
-
-GetBody returns the Body field if non-nil, zero value otherwise.
-
-### GetBodyOk
-
-`func (o *ShowNotificationEffectProps) GetBodyOk() (string, bool)`
-
-GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasBody
-
-`func (o *ShowNotificationEffectProps) HasBody() bool`
-
-HasBody returns a boolean if a field has been set.
-
-### SetBody
-
-`func (o *ShowNotificationEffectProps) SetBody(v string)`
-
-SetBody gets a reference to the given string and assigns it to the Body field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,66 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | The internal name used in API requests. | 
-**Title** | Pointer to **string** | The human-readable name for the additional cost that will be shown in the Campaign Manager. Like &#x60;name&#x60;, the combination of entity and title must also be unique. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Description** | Pointer to **string** | A description of this additional cost. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Name** | Pointer to **string** | The internal name used in API requests. | 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this additional cost. | [optional] 
+**Title** | Pointer to **string** | The human-readable name for the additional cost that will be shown in the Campaign Manager. Like &#x60;name&#x60;, the combination of entity and title must also be unique. | 
 **Type** | Pointer to **string** | The type of additional cost. Possible value: - &#x60;session&#x60;: Additional cost will be added per session. - &#x60;item&#x60;: Additional cost will be added per item. - &#x60;both&#x60;: Additional cost will be added per item and session.  | [optional] [default to TYPE_SESSION]
 
 ## Methods
-
-### GetId
-
-`func (o *AccountAdditionalCost) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *AccountAdditionalCost) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *AccountAdditionalCost) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *AccountAdditionalCost) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *AccountAdditionalCost) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *AccountAdditionalCost) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *AccountAdditionalCost) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *AccountAdditionalCost) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetAccountId
 
@@ -90,55 +40,30 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetName
+### GetCreated
 
-`func (o *AccountAdditionalCost) GetName() string`
+`func (o *AccountAdditionalCost) GetCreated() time.Time`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCreatedOk
 
-`func (o *AccountAdditionalCost) GetNameOk() (string, bool)`
+`func (o *AccountAdditionalCost) GetCreatedOk() (time.Time, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasCreated
 
-`func (o *AccountAdditionalCost) HasName() bool`
+`func (o *AccountAdditionalCost) HasCreated() bool`
 
-HasName returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetName
+### SetCreated
 
-`func (o *AccountAdditionalCost) SetName(v string)`
+`func (o *AccountAdditionalCost) SetCreated(v time.Time)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetTitle
-
-`func (o *AccountAdditionalCost) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *AccountAdditionalCost) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *AccountAdditionalCost) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *AccountAdditionalCost) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetDescription
 
@@ -165,6 +90,56 @@ HasDescription returns a boolean if a field has been set.
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
 
+### GetId
+
+`func (o *AccountAdditionalCost) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *AccountAdditionalCost) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *AccountAdditionalCost) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *AccountAdditionalCost) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
+### GetName
+
+`func (o *AccountAdditionalCost) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AccountAdditionalCost) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *AccountAdditionalCost) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *AccountAdditionalCost) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
 ### GetSubscribedApplicationsIds
 
 `func (o *AccountAdditionalCost) GetSubscribedApplicationsIds() []int32`
@@ -189,6 +164,31 @@ HasSubscribedApplicationsIds returns a boolean if a field has been set.
 `func (o *AccountAdditionalCost) SetSubscribedApplicationsIds(v []int32)`
 
 SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
+
+### GetTitle
+
+`func (o *AccountAdditionalCost) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *AccountAdditionalCost) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *AccountAdditionalCost) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *AccountAdditionalCost) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetType
 

@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Version** | Pointer to **int32** | Version of the campaign set. | 
 **Set** | Pointer to [**CampaignSetBranchNode**](CampaignSetBranchNode.md) |  | 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign set, if available. | [optional] 
+**Version** | Pointer to **int32** | Version of the campaign set. | 
 
 ## Methods
 
@@ -62,31 +62,6 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
 
-### GetVersion
-
-`func (o *CampaignSet) GetVersion() int32`
-
-GetVersion returns the Version field if non-nil, zero value otherwise.
-
-### GetVersionOk
-
-`func (o *CampaignSet) GetVersionOk() (int32, bool)`
-
-GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasVersion
-
-`func (o *CampaignSet) HasVersion() bool`
-
-HasVersion returns a boolean if a field has been set.
-
-### SetVersion
-
-`func (o *CampaignSet) SetVersion(v int32)`
-
-SetVersion gets a reference to the given int32 and assigns it to the Version field.
-
 ### GetSet
 
 `func (o *CampaignSet) GetSet() CampaignSetBranchNode`
@@ -136,6 +111,31 @@ HasUpdatedBy returns a boolean if a field has been set.
 `func (o *CampaignSet) SetUpdatedBy(v string)`
 
 SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
+
+### GetVersion
+
+`func (o *CampaignSet) GetVersion() int32`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *CampaignSet) GetVersionOk() (int32, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasVersion
+
+`func (o *CampaignSet) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersion
+
+`func (o *CampaignSet) SetVersion(v int32)`
+
+SetVersion gets a reference to the given int32 and assigns it to the Version field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

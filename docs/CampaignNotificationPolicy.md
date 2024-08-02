@@ -4,9 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BatchingEnabled** | Pointer to **bool** | Indicates whether batching is activated. | [optional] [default to true]
 **Name** | Pointer to **string** | Notification name. | 
 
 ## Methods
+
+### GetBatchingEnabled
+
+`func (o *CampaignNotificationPolicy) GetBatchingEnabled() bool`
+
+GetBatchingEnabled returns the BatchingEnabled field if non-nil, zero value otherwise.
+
+### GetBatchingEnabledOk
+
+`func (o *CampaignNotificationPolicy) GetBatchingEnabledOk() (bool, bool)`
+
+GetBatchingEnabledOk returns a tuple with the BatchingEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBatchingEnabled
+
+`func (o *CampaignNotificationPolicy) HasBatchingEnabled() bool`
+
+HasBatchingEnabled returns a boolean if a field has been set.
+
+### SetBatchingEnabled
+
+`func (o *CampaignNotificationPolicy) SetBatchingEnabled(v bool)`
+
+SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
 
 ### GetName
 

@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
-**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
+**CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
 **Description** | Pointer to **string** | A description of the audience. | [optional] 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Integration** | Pointer to **string** | The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Selligent&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property.  | [optional] 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property.  | [optional] 
-**CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
 **LastUpdate** | Pointer to [**time.Time**](time.Time.md) | The last time that the audience memberships changed. | [optional] 
+**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
+**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
 
 ## Methods
 
@@ -42,31 +42,6 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetId
-
-`func (o *Audience) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Audience) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *Audience) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *Audience) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
 ### GetCreated
 
 `func (o *Audience) GetCreated() time.Time`
@@ -92,55 +67,30 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetName
+### GetCreatedIn3rdParty
 
-`func (o *Audience) GetName() string`
+`func (o *Audience) GetCreatedIn3rdParty() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCreatedIn3rdParty returns the CreatedIn3rdParty field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCreatedIn3rdPartyOk
 
-`func (o *Audience) GetNameOk() (string, bool)`
+`func (o *Audience) GetCreatedIn3rdPartyOk() (bool, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasCreatedIn3rdParty
 
-`func (o *Audience) HasName() bool`
+`func (o *Audience) HasCreatedIn3rdParty() bool`
 
-HasName returns a boolean if a field has been set.
+HasCreatedIn3rdParty returns a boolean if a field has been set.
 
-### SetName
+### SetCreatedIn3rdParty
 
-`func (o *Audience) SetName(v string)`
+`func (o *Audience) SetCreatedIn3rdParty(v bool)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetSandbox
-
-`func (o *Audience) GetSandbox() bool`
-
-GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
-
-### GetSandboxOk
-
-`func (o *Audience) GetSandboxOk() (bool, bool)`
-
-GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasSandbox
-
-`func (o *Audience) HasSandbox() bool`
-
-HasSandbox returns a boolean if a field has been set.
-
-### SetSandbox
-
-`func (o *Audience) SetSandbox(v bool)`
-
-SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
 
 ### GetDescription
 
@@ -166,6 +116,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *Audience) SetDescription(v string)`
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetId
+
+`func (o *Audience) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Audience) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *Audience) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *Audience) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetIntegration
 
@@ -217,31 +192,6 @@ HasIntegrationId returns a boolean if a field has been set.
 
 SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
 
-### GetCreatedIn3rdParty
-
-`func (o *Audience) GetCreatedIn3rdParty() bool`
-
-GetCreatedIn3rdParty returns the CreatedIn3rdParty field if non-nil, zero value otherwise.
-
-### GetCreatedIn3rdPartyOk
-
-`func (o *Audience) GetCreatedIn3rdPartyOk() (bool, bool)`
-
-GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreatedIn3rdParty
-
-`func (o *Audience) HasCreatedIn3rdParty() bool`
-
-HasCreatedIn3rdParty returns a boolean if a field has been set.
-
-### SetCreatedIn3rdParty
-
-`func (o *Audience) SetCreatedIn3rdParty(v bool)`
-
-SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
-
 ### GetLastUpdate
 
 `func (o *Audience) GetLastUpdate() time.Time`
@@ -266,6 +216,56 @@ HasLastUpdate returns a boolean if a field has been set.
 `func (o *Audience) SetLastUpdate(v time.Time)`
 
 SetLastUpdate gets a reference to the given time.Time and assigns it to the LastUpdate field.
+
+### GetName
+
+`func (o *Audience) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Audience) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *Audience) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *Audience) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetSandbox
+
+`func (o *Audience) GetSandbox() bool`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *Audience) GetSandboxOk() (bool, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandbox
+
+`func (o *Audience) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
+
+### SetSandbox
+
+`func (o *Audience) SetSandbox(v bool)`
+
+SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

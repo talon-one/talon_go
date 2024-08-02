@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | The internal ID of loyalty program. | 
-**Title** | Pointer to **string** | Visible name of loyalty program. | 
-**Name** | Pointer to **string** | Internal name of loyalty program. | 
 **JoinDate** | Pointer to [**time.Time**](time.Time.md) | The date on which the customer joined the loyalty program in RFC3339.  **Note**: This is in the loyalty program&#39;s time zone.  | [optional] 
 **Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | 
+**Name** | Pointer to **string** | Internal name of loyalty program. | 
 **SubLedgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | A map containing information about each loyalty subledger. | [optional] 
+**Title** | Pointer to **string** | Visible name of loyalty program. | 
 
 ## Methods
 
@@ -37,56 +37,6 @@ HasId returns a boolean if a field has been set.
 `func (o *LoyaltyProgramLedgers) SetId(v int32)`
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetTitle
-
-`func (o *LoyaltyProgramLedgers) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *LoyaltyProgramLedgers) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *LoyaltyProgramLedgers) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *LoyaltyProgramLedgers) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
-
-### GetName
-
-`func (o *LoyaltyProgramLedgers) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *LoyaltyProgramLedgers) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *LoyaltyProgramLedgers) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *LoyaltyProgramLedgers) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetJoinDate
 
@@ -138,6 +88,31 @@ HasLedger returns a boolean if a field has been set.
 
 SetLedger gets a reference to the given LedgerInfo and assigns it to the Ledger field.
 
+### GetName
+
+`func (o *LoyaltyProgramLedgers) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *LoyaltyProgramLedgers) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *LoyaltyProgramLedgers) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *LoyaltyProgramLedgers) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
 ### GetSubLedgers
 
 `func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LedgerInfo`
@@ -162,6 +137,31 @@ HasSubLedgers returns a boolean if a field has been set.
 `func (o *LoyaltyProgramLedgers) SetSubLedgers(v map[string]LedgerInfo)`
 
 SetSubLedgers gets a reference to the given map[string]LedgerInfo and assigns it to the SubLedgers field.
+
+### GetTitle
+
+`func (o *LoyaltyProgramLedgers) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *LoyaltyProgramLedgers) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *LoyaltyProgramLedgers) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *LoyaltyProgramLedgers) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

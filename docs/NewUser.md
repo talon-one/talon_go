@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Email** | Pointer to **string** | The email address associated with the user profile. | 
-**Password** | Pointer to **string** | The password for your account. | 
-**Name** | Pointer to **string** | Your name. | [optional] 
 **InviteToken** | Pointer to **string** |  | 
+**Name** | Pointer to **string** | Your name. | [optional] 
+**Password** | Pointer to **string** | The password for your account. | 
 
 ## Methods
 
@@ -36,30 +36,30 @@ HasEmail returns a boolean if a field has been set.
 
 SetEmail gets a reference to the given string and assigns it to the Email field.
 
-### GetPassword
+### GetInviteToken
 
-`func (o *NewUser) GetPassword() string`
+`func (o *NewUser) GetInviteToken() string`
 
-GetPassword returns the Password field if non-nil, zero value otherwise.
+GetInviteToken returns the InviteToken field if non-nil, zero value otherwise.
 
-### GetPasswordOk
+### GetInviteTokenOk
 
-`func (o *NewUser) GetPasswordOk() (string, bool)`
+`func (o *NewUser) GetInviteTokenOk() (string, bool)`
 
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+GetInviteTokenOk returns a tuple with the InviteToken field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPassword
+### HasInviteToken
 
-`func (o *NewUser) HasPassword() bool`
+`func (o *NewUser) HasInviteToken() bool`
 
-HasPassword returns a boolean if a field has been set.
+HasInviteToken returns a boolean if a field has been set.
 
-### SetPassword
+### SetInviteToken
 
-`func (o *NewUser) SetPassword(v string)`
+`func (o *NewUser) SetInviteToken(v string)`
 
-SetPassword gets a reference to the given string and assigns it to the Password field.
+SetInviteToken gets a reference to the given string and assigns it to the InviteToken field.
 
 ### GetName
 
@@ -86,30 +86,30 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetInviteToken
+### GetPassword
 
-`func (o *NewUser) GetInviteToken() string`
+`func (o *NewUser) GetPassword() string`
 
-GetInviteToken returns the InviteToken field if non-nil, zero value otherwise.
+GetPassword returns the Password field if non-nil, zero value otherwise.
 
-### GetInviteTokenOk
+### GetPasswordOk
 
-`func (o *NewUser) GetInviteTokenOk() (string, bool)`
+`func (o *NewUser) GetPasswordOk() (string, bool)`
 
-GetInviteTokenOk returns a tuple with the InviteToken field if it's non-nil, zero value otherwise
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasInviteToken
+### HasPassword
 
-`func (o *NewUser) HasInviteToken() bool`
+`func (o *NewUser) HasPassword() bool`
 
-HasInviteToken returns a boolean if a field has been set.
+HasPassword returns a boolean if a field has been set.
 
-### SetInviteToken
+### SetPassword
 
-`func (o *NewUser) SetInviteToken(v string)`
+`func (o *NewUser) SetPassword(v string)`
 
-SetInviteToken gets a reference to the given string and assigns it to the InviteToken field.
+SetPassword gets a reference to the given string and assigns it to the Password field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

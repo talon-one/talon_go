@@ -4,92 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**CampaignGroupID** | Pointer to **int32** | The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this role was created for.  | [optional] 
-**Name** | Pointer to **string** | Name of the role. | 
-**Description** | Pointer to **string** | Description of the role. | [optional] 
-**Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role. | [optional] 
 **Acl** | Pointer to [**map[string]interface{}**](.md) | The &#x60;Access Control List&#x60; json defining the role of the user. This represents the access control on the user level. | 
+**CampaignGroupID** | Pointer to **int32** | The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this role was created for.  | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Description** | Pointer to **string** | Description of the role. | [optional] 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Members** | Pointer to **[]int32** | A list of user identifiers assigned to this role. | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
+**Name** | Pointer to **string** | Name of the role. | 
 
 ## Methods
-
-### GetId
-
-`func (o *Role) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *Role) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *Role) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *Role) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *Role) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *Role) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *Role) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *Role) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetModified
-
-`func (o *Role) GetModified() time.Time`
-
-GetModified returns the Modified field if non-nil, zero value otherwise.
-
-### GetModifiedOk
-
-`func (o *Role) GetModifiedOk() (time.Time, bool)`
-
-GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasModified
-
-`func (o *Role) HasModified() bool`
-
-HasModified returns a boolean if a field has been set.
-
-### SetModified
-
-`func (o *Role) SetModified(v time.Time)`
-
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
 
 ### GetAccountId
 
@@ -116,6 +41,31 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
+### GetAcl
+
+`func (o *Role) GetAcl() map[string]interface{}`
+
+GetAcl returns the Acl field if non-nil, zero value otherwise.
+
+### GetAclOk
+
+`func (o *Role) GetAclOk() (map[string]interface{}, bool)`
+
+GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAcl
+
+`func (o *Role) HasAcl() bool`
+
+HasAcl returns a boolean if a field has been set.
+
+### SetAcl
+
+`func (o *Role) SetAcl(v map[string]interface{})`
+
+SetAcl gets a reference to the given map[string]interface{} and assigns it to the Acl field.
+
 ### GetCampaignGroupID
 
 `func (o *Role) GetCampaignGroupID() int32`
@@ -141,30 +91,30 @@ HasCampaignGroupID returns a boolean if a field has been set.
 
 SetCampaignGroupID gets a reference to the given int32 and assigns it to the CampaignGroupID field.
 
-### GetName
+### GetCreated
 
-`func (o *Role) GetName() string`
+`func (o *Role) GetCreated() time.Time`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCreatedOk
 
-`func (o *Role) GetNameOk() (string, bool)`
+`func (o *Role) GetCreatedOk() (time.Time, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasCreated
 
-`func (o *Role) HasName() bool`
+`func (o *Role) HasCreated() bool`
 
-HasName returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetName
+### SetCreated
 
-`func (o *Role) SetName(v string)`
+`func (o *Role) SetCreated(v time.Time)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetDescription
 
@@ -191,6 +141,31 @@ HasDescription returns a boolean if a field has been set.
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
 
+### GetId
+
+`func (o *Role) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Role) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *Role) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *Role) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
 ### GetMembers
 
 `func (o *Role) GetMembers() []int32`
@@ -216,30 +191,55 @@ HasMembers returns a boolean if a field has been set.
 
 SetMembers gets a reference to the given []int32 and assigns it to the Members field.
 
-### GetAcl
+### GetModified
 
-`func (o *Role) GetAcl() map[string]interface{}`
+`func (o *Role) GetModified() time.Time`
 
-GetAcl returns the Acl field if non-nil, zero value otherwise.
+GetModified returns the Modified field if non-nil, zero value otherwise.
 
-### GetAclOk
+### GetModifiedOk
 
-`func (o *Role) GetAclOk() (map[string]interface{}, bool)`
+`func (o *Role) GetModifiedOk() (time.Time, bool)`
 
-GetAclOk returns a tuple with the Acl field if it's non-nil, zero value otherwise
+GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAcl
+### HasModified
 
-`func (o *Role) HasAcl() bool`
+`func (o *Role) HasModified() bool`
 
-HasAcl returns a boolean if a field has been set.
+HasModified returns a boolean if a field has been set.
 
-### SetAcl
+### SetModified
 
-`func (o *Role) SetAcl(v map[string]interface{})`
+`func (o *Role) SetModified(v time.Time)`
 
-SetAcl gets a reference to the given map[string]interface{} and assigns it to the Acl field.
+SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+
+### GetName
+
+`func (o *Role) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *Role) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *Role) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *Role) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

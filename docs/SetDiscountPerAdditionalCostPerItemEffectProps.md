@@ -4,40 +4,40 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name / description of this discount | 
+**AdditionalCost** | Pointer to **string** | The name of the additional cost. | 
 **AdditionalCostId** | Pointer to **int32** | The ID of the additional cost. | 
-**Value** | Pointer to **float32** | The total monetary value of the discount. | 
+**DesiredValue** | Pointer to **float32** | Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations.  | [optional] 
+**Name** | Pointer to **string** | The name / description of this discount | 
 **Position** | Pointer to **float32** | The index of the item in the cart item list containing the additional cost to be discounted. | 
 **SubPosition** | Pointer to **float32** | For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates which item the discount applies to.  | [optional] 
-**AdditionalCost** | Pointer to **string** | The name of the additional cost. | 
-**DesiredValue** | Pointer to **float32** | Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations.  | [optional] 
+**Value** | Pointer to **float32** | The total monetary value of the discount. | 
 
 ## Methods
 
-### GetName
+### GetAdditionalCost
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetName() string`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetAdditionalCost() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAdditionalCost returns the AdditionalCost field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAdditionalCostOk
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetNameOk() (string, bool)`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetAdditionalCostOk() (string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAdditionalCostOk returns a tuple with the AdditionalCost field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasAdditionalCost
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasName() bool`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasAdditionalCost() bool`
 
-HasName returns a boolean if a field has been set.
+HasAdditionalCost returns a boolean if a field has been set.
 
-### SetName
+### SetAdditionalCost
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetName(v string)`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetAdditionalCost(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetAdditionalCost gets a reference to the given string and assigns it to the AdditionalCost field.
 
 ### GetAdditionalCostId
 
@@ -64,30 +64,55 @@ HasAdditionalCostId returns a boolean if a field has been set.
 
 SetAdditionalCostId gets a reference to the given int32 and assigns it to the AdditionalCostId field.
 
-### GetValue
+### GetDesiredValue
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetValue() float32`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetDesiredValue() float32`
 
-GetValue returns the Value field if non-nil, zero value otherwise.
+GetDesiredValue returns the DesiredValue field if non-nil, zero value otherwise.
 
-### GetValueOk
+### GetDesiredValueOk
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetValueOk() (float32, bool)`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetDesiredValueOk() (float32, bool)`
 
-GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
+GetDesiredValueOk returns a tuple with the DesiredValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasValue
+### HasDesiredValue
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasValue() bool`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasDesiredValue() bool`
 
-HasValue returns a boolean if a field has been set.
+HasDesiredValue returns a boolean if a field has been set.
 
-### SetValue
+### SetDesiredValue
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetValue(v float32)`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetDesiredValue(v float32)`
 
-SetValue gets a reference to the given float32 and assigns it to the Value field.
+SetDesiredValue gets a reference to the given float32 and assigns it to the DesiredValue field.
+
+### GetName
+
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPosition
 
@@ -139,55 +164,30 @@ HasSubPosition returns a boolean if a field has been set.
 
 SetSubPosition gets a reference to the given float32 and assigns it to the SubPosition field.
 
-### GetAdditionalCost
+### GetValue
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetAdditionalCost() string`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetValue() float32`
 
-GetAdditionalCost returns the AdditionalCost field if non-nil, zero value otherwise.
+GetValue returns the Value field if non-nil, zero value otherwise.
 
-### GetAdditionalCostOk
+### GetValueOk
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetAdditionalCostOk() (string, bool)`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetValueOk() (float32, bool)`
 
-GetAdditionalCostOk returns a tuple with the AdditionalCost field if it's non-nil, zero value otherwise
+GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAdditionalCost
+### HasValue
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasAdditionalCost() bool`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasValue() bool`
 
-HasAdditionalCost returns a boolean if a field has been set.
+HasValue returns a boolean if a field has been set.
 
-### SetAdditionalCost
+### SetValue
 
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetAdditionalCost(v string)`
+`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetValue(v float32)`
 
-SetAdditionalCost gets a reference to the given string and assigns it to the AdditionalCost field.
-
-### GetDesiredValue
-
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetDesiredValue() float32`
-
-GetDesiredValue returns the DesiredValue field if non-nil, zero value otherwise.
-
-### GetDesiredValueOk
-
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) GetDesiredValueOk() (float32, bool)`
-
-GetDesiredValueOk returns a tuple with the DesiredValue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDesiredValue
-
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) HasDesiredValue() bool`
-
-HasDesiredValue returns a boolean if a field has been set.
-
-### SetDesiredValue
-
-`func (o *SetDiscountPerAdditionalCostPerItemEffectProps) SetDesiredValue(v float32)`
-
-SetDesiredValue gets a reference to the given float32 and assigns it to the DesiredValue field.
+SetValue gets a reference to the given float32 and assigns it to the Value field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

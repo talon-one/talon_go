@@ -4,38 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration. | 
+**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
 **Status** | Pointer to **string** | Indicates whether the audience is new, updated or unmodified by the request.  | 
 
 ## Methods
-
-### GetId
-
-`func (o *MultipleAudiencesItem) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *MultipleAudiencesItem) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *MultipleAudiencesItem) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *MultipleAudiencesItem) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetCreated
 
@@ -62,30 +37,30 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetName
+### GetId
 
-`func (o *MultipleAudiencesItem) GetName() string`
+`func (o *MultipleAudiencesItem) GetId() int32`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetIdOk
 
-`func (o *MultipleAudiencesItem) GetNameOk() (string, bool)`
+`func (o *MultipleAudiencesItem) GetIdOk() (int32, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasId
 
-`func (o *MultipleAudiencesItem) HasName() bool`
+`func (o *MultipleAudiencesItem) HasId() bool`
 
-HasName returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetName
+### SetId
 
-`func (o *MultipleAudiencesItem) SetName(v string)`
+`func (o *MultipleAudiencesItem) SetId(v int32)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetIntegrationId
 
@@ -111,6 +86,31 @@ HasIntegrationId returns a boolean if a field has been set.
 `func (o *MultipleAudiencesItem) SetIntegrationId(v string)`
 
 SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+
+### GetName
+
+`func (o *MultipleAudiencesItem) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *MultipleAudiencesItem) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *MultipleAudiencesItem) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *MultipleAudiencesItem) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetStatus
 

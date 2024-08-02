@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AchievementId** | Pointer to **int32** | The internal ID of the achievement. | 
-**Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | 
-**Title** | Pointer to **string** | The display name of the achievement in the Campaign Manager. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign the achievement belongs to. | 
-**Status** | Pointer to **string** | The status of the achievement. | 
-**Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
-**Progress** | Pointer to **float32** | The current progress of the customer in the achievement. | 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which the customer started the achievement. | 
 **CompletionDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the customer completed the achievement. | [optional] 
 **EndDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the achievement ends and resets for the customer. | 
+**Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | 
+**Progress** | Pointer to **float32** | The current progress of the customer in the achievement. | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which the customer started the achievement. | 
+**Status** | Pointer to **string** | The status of the achievement. | 
+**Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
+**Title** | Pointer to **string** | The display name of the achievement in the Campaign Manager. | 
 
 ## Methods
 
@@ -42,56 +42,6 @@ HasAchievementId returns a boolean if a field has been set.
 
 SetAchievementId gets a reference to the given int32 and assigns it to the AchievementId field.
 
-### GetName
-
-`func (o *AchievementProgress) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AchievementProgress) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *AchievementProgress) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *AchievementProgress) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetTitle
-
-`func (o *AchievementProgress) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *AchievementProgress) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *AchievementProgress) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *AchievementProgress) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
-
 ### GetCampaignId
 
 `func (o *AchievementProgress) GetCampaignId() int32`
@@ -117,55 +67,80 @@ HasCampaignId returns a boolean if a field has been set.
 
 SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
-### GetStatus
+### GetCompletionDate
 
-`func (o *AchievementProgress) GetStatus() string`
+`func (o *AchievementProgress) GetCompletionDate() time.Time`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetCompletionDate returns the CompletionDate field if non-nil, zero value otherwise.
 
-### GetStatusOk
+### GetCompletionDateOk
 
-`func (o *AchievementProgress) GetStatusOk() (string, bool)`
+`func (o *AchievementProgress) GetCompletionDateOk() (time.Time, bool)`
 
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+GetCompletionDateOk returns a tuple with the CompletionDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasStatus
+### HasCompletionDate
 
-`func (o *AchievementProgress) HasStatus() bool`
+`func (o *AchievementProgress) HasCompletionDate() bool`
 
-HasStatus returns a boolean if a field has been set.
+HasCompletionDate returns a boolean if a field has been set.
 
-### SetStatus
+### SetCompletionDate
 
-`func (o *AchievementProgress) SetStatus(v string)`
+`func (o *AchievementProgress) SetCompletionDate(v time.Time)`
 
-SetStatus gets a reference to the given string and assigns it to the Status field.
+SetCompletionDate gets a reference to the given time.Time and assigns it to the CompletionDate field.
 
-### GetTarget
+### GetEndDate
 
-`func (o *AchievementProgress) GetTarget() float32`
+`func (o *AchievementProgress) GetEndDate() time.Time`
 
-GetTarget returns the Target field if non-nil, zero value otherwise.
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
-### GetTargetOk
+### GetEndDateOk
 
-`func (o *AchievementProgress) GetTargetOk() (float32, bool)`
+`func (o *AchievementProgress) GetEndDateOk() (time.Time, bool)`
 
-GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTarget
+### HasEndDate
 
-`func (o *AchievementProgress) HasTarget() bool`
+`func (o *AchievementProgress) HasEndDate() bool`
 
-HasTarget returns a boolean if a field has been set.
+HasEndDate returns a boolean if a field has been set.
 
-### SetTarget
+### SetEndDate
 
-`func (o *AchievementProgress) SetTarget(v float32)`
+`func (o *AchievementProgress) SetEndDate(v time.Time)`
 
-SetTarget gets a reference to the given float32 and assigns it to the Target field.
+SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
+
+### GetName
+
+`func (o *AchievementProgress) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AchievementProgress) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *AchievementProgress) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *AchievementProgress) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetProgress
 
@@ -217,55 +192,80 @@ HasStartDate returns a boolean if a field has been set.
 
 SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
-### GetCompletionDate
+### GetStatus
 
-`func (o *AchievementProgress) GetCompletionDate() time.Time`
+`func (o *AchievementProgress) GetStatus() string`
 
-GetCompletionDate returns the CompletionDate field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### GetCompletionDateOk
+### GetStatusOk
 
-`func (o *AchievementProgress) GetCompletionDateOk() (time.Time, bool)`
+`func (o *AchievementProgress) GetStatusOk() (string, bool)`
 
-GetCompletionDateOk returns a tuple with the CompletionDate field if it's non-nil, zero value otherwise
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCompletionDate
+### HasStatus
 
-`func (o *AchievementProgress) HasCompletionDate() bool`
+`func (o *AchievementProgress) HasStatus() bool`
 
-HasCompletionDate returns a boolean if a field has been set.
+HasStatus returns a boolean if a field has been set.
 
-### SetCompletionDate
+### SetStatus
 
-`func (o *AchievementProgress) SetCompletionDate(v time.Time)`
+`func (o *AchievementProgress) SetStatus(v string)`
 
-SetCompletionDate gets a reference to the given time.Time and assigns it to the CompletionDate field.
+SetStatus gets a reference to the given string and assigns it to the Status field.
 
-### GetEndDate
+### GetTarget
 
-`func (o *AchievementProgress) GetEndDate() time.Time`
+`func (o *AchievementProgress) GetTarget() float32`
 
-GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+GetTarget returns the Target field if non-nil, zero value otherwise.
 
-### GetEndDateOk
+### GetTargetOk
 
-`func (o *AchievementProgress) GetEndDateOk() (time.Time, bool)`
+`func (o *AchievementProgress) GetTargetOk() (float32, bool)`
 
-GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEndDate
+### HasTarget
 
-`func (o *AchievementProgress) HasEndDate() bool`
+`func (o *AchievementProgress) HasTarget() bool`
 
-HasEndDate returns a boolean if a field has been set.
+HasTarget returns a boolean if a field has been set.
 
-### SetEndDate
+### SetTarget
 
-`func (o *AchievementProgress) SetEndDate(v time.Time)`
+`func (o *AchievementProgress) SetTarget(v float32)`
 
-SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
+SetTarget gets a reference to the given float32 and assigns it to the Target field.
+
+### GetTitle
+
+`func (o *AchievementProgress) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *AchievementProgress) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *AchievementProgress) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *AchievementProgress) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

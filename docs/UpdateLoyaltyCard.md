@@ -4,9 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
 **Status** | Pointer to **string** | Status of the loyalty card. Can be one of: [&#39;active&#39;, &#39;inactive&#39;]  | 
 
 ## Methods
+
+### GetBlockReason
+
+`func (o *UpdateLoyaltyCard) GetBlockReason() string`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *UpdateLoyaltyCard) GetBlockReasonOk() (string, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBlockReason
+
+`func (o *UpdateLoyaltyCard) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
+
+### SetBlockReason
+
+`func (o *UpdateLoyaltyCard) SetBlockReason(v string)`
+
+SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
 
 ### GetStatus
 

@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Total** | Pointer to **float32** | All revenue that went through the client&#39;s shop (including purchases that didn’t trigger an effect). | 
-**Influenced** | Pointer to **float32** | The revenue that was created by a purchase that triggered an effect (excluding web hooks, notifications). | 
 **Datetime** | Pointer to [**time.Time**](time.Time.md) | Values aggregated for the specified date. | 
+**Influenced** | Pointer to **float32** | The revenue that was created by a purchase that triggered an effect (excluding web hooks, notifications). | 
+**Total** | Pointer to **float32** | All revenue that went through the client&#39;s shop (including purchases that didn’t trigger an effect). | 
 
 ## Methods
 
-### GetTotal
+### GetDatetime
 
-`func (o *AccountDashboardStatisticRevenue) GetTotal() float32`
+`func (o *AccountDashboardStatisticRevenue) GetDatetime() time.Time`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetDatetime returns the Datetime field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetDatetimeOk
 
-`func (o *AccountDashboardStatisticRevenue) GetTotalOk() (float32, bool)`
+`func (o *AccountDashboardStatisticRevenue) GetDatetimeOk() (time.Time, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetDatetimeOk returns a tuple with the Datetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTotal
+### HasDatetime
 
-`func (o *AccountDashboardStatisticRevenue) HasTotal() bool`
+`func (o *AccountDashboardStatisticRevenue) HasDatetime() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasDatetime returns a boolean if a field has been set.
 
-### SetTotal
+### SetDatetime
 
-`func (o *AccountDashboardStatisticRevenue) SetTotal(v float32)`
+`func (o *AccountDashboardStatisticRevenue) SetDatetime(v time.Time)`
 
-SetTotal gets a reference to the given float32 and assigns it to the Total field.
+SetDatetime gets a reference to the given time.Time and assigns it to the Datetime field.
 
 ### GetInfluenced
 
@@ -60,30 +60,30 @@ HasInfluenced returns a boolean if a field has been set.
 
 SetInfluenced gets a reference to the given float32 and assigns it to the Influenced field.
 
-### GetDatetime
+### GetTotal
 
-`func (o *AccountDashboardStatisticRevenue) GetDatetime() time.Time`
+`func (o *AccountDashboardStatisticRevenue) GetTotal() float32`
 
-GetDatetime returns the Datetime field if non-nil, zero value otherwise.
+GetTotal returns the Total field if non-nil, zero value otherwise.
 
-### GetDatetimeOk
+### GetTotalOk
 
-`func (o *AccountDashboardStatisticRevenue) GetDatetimeOk() (time.Time, bool)`
+`func (o *AccountDashboardStatisticRevenue) GetTotalOk() (float32, bool)`
 
-GetDatetimeOk returns a tuple with the Datetime field if it's non-nil, zero value otherwise
+GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasDatetime
+### HasTotal
 
-`func (o *AccountDashboardStatisticRevenue) HasDatetime() bool`
+`func (o *AccountDashboardStatisticRevenue) HasTotal() bool`
 
-HasDatetime returns a boolean if a field has been set.
+HasTotal returns a boolean if a field has been set.
 
-### SetDatetime
+### SetTotal
 
-`func (o *AccountDashboardStatisticRevenue) SetDatetime(v time.Time)`
+`func (o *AccountDashboardStatisticRevenue) SetTotal(v float32)`
 
-SetDatetime gets a reference to the given time.Time and assigns it to the Datetime field.
+SetTotal gets a reference to the given float32 and assigns it to the Total field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

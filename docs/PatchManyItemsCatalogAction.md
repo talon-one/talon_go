@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Price** | Pointer to **float32** | Price of the item. | [optional] 
-**Filters** | Pointer to [**[]CatalogActionFilter**](CatalogActionFilter.md) | The list of filters used to select the items to patch, joined by &#x60;AND&#x60;.  **Note:** Every item in the catalog will be modified if there are no filters.  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the items to patch. | [optional] 
+**Filters** | Pointer to [**[]CatalogActionFilter**](CatalogActionFilter.md) | The list of filters used to select the items to patch, joined by &#x60;AND&#x60;.  **Note:** Every item in the catalog will be modified if there are no filters.  | [optional] 
+**Price** | Pointer to **float32** | Price of the item. | [optional] 
 
 ## Methods
 
-### GetPrice
+### GetAttributes
 
-`func (o *PatchManyItemsCatalogAction) GetPrice() float32`
+`func (o *PatchManyItemsCatalogAction) GetAttributes() map[string]interface{}`
 
-GetPrice returns the Price field if non-nil, zero value otherwise.
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
-### GetPriceOk
+### GetAttributesOk
 
-`func (o *PatchManyItemsCatalogAction) GetPriceOk() (float32, bool)`
+`func (o *PatchManyItemsCatalogAction) GetAttributesOk() (map[string]interface{}, bool)`
 
-GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPrice
+### HasAttributes
 
-`func (o *PatchManyItemsCatalogAction) HasPrice() bool`
+`func (o *PatchManyItemsCatalogAction) HasAttributes() bool`
 
-HasPrice returns a boolean if a field has been set.
+HasAttributes returns a boolean if a field has been set.
 
-### SetPrice
+### SetAttributes
 
-`func (o *PatchManyItemsCatalogAction) SetPrice(v float32)`
+`func (o *PatchManyItemsCatalogAction) SetAttributes(v map[string]interface{})`
 
-SetPrice gets a reference to the given float32 and assigns it to the Price field.
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetFilters
 
@@ -60,30 +60,30 @@ HasFilters returns a boolean if a field has been set.
 
 SetFilters gets a reference to the given []CatalogActionFilter and assigns it to the Filters field.
 
-### GetAttributes
+### GetPrice
 
-`func (o *PatchManyItemsCatalogAction) GetAttributes() map[string]interface{}`
+`func (o *PatchManyItemsCatalogAction) GetPrice() float32`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetPrice returns the Price field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetPriceOk
 
-`func (o *PatchManyItemsCatalogAction) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *PatchManyItemsCatalogAction) GetPriceOk() (float32, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAttributes
+### HasPrice
 
-`func (o *PatchManyItemsCatalogAction) HasAttributes() bool`
+`func (o *PatchManyItemsCatalogAction) HasPrice() bool`
 
-HasAttributes returns a boolean if a field has been set.
+HasPrice returns a boolean if a field has been set.
 
-### SetAttributes
+### SetPrice
 
-`func (o *PatchManyItemsCatalogAction) SetAttributes(v map[string]interface{})`
+`func (o *PatchManyItemsCatalogAction) SetPrice(v float32)`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetPrice gets a reference to the given float32 and assigns it to the Price field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

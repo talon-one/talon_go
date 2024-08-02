@@ -4,63 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
-**StrikethroughRules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply for strikethrough. | [optional] 
+**Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | 
 **RbVersion** | Pointer to **string** | The version of the rulebuilder used to create this ruleset. | [optional] 
-**Activate** | Pointer to **bool** | Indicates whether this created ruleset should be activated for the campaign that owns it. | [optional] 
+**Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 
+**StrikethroughRules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply for strikethrough. | [optional] 
 
 ## Methods
 
-### GetRules
+### GetActivate
 
-`func (o *NewRuleset) GetRules() []Rule`
+`func (o *NewRuleset) GetActivate() bool`
 
-GetRules returns the Rules field if non-nil, zero value otherwise.
+GetActivate returns the Activate field if non-nil, zero value otherwise.
 
-### GetRulesOk
+### GetActivateOk
 
-`func (o *NewRuleset) GetRulesOk() ([]Rule, bool)`
+`func (o *NewRuleset) GetActivateOk() (bool, bool)`
 
-GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+GetActivateOk returns a tuple with the Activate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRules
+### HasActivate
 
-`func (o *NewRuleset) HasRules() bool`
+`func (o *NewRuleset) HasActivate() bool`
 
-HasRules returns a boolean if a field has been set.
+HasActivate returns a boolean if a field has been set.
 
-### SetRules
+### SetActivate
 
-`func (o *NewRuleset) SetRules(v []Rule)`
+`func (o *NewRuleset) SetActivate(v bool)`
 
-SetRules gets a reference to the given []Rule and assigns it to the Rules field.
-
-### GetStrikethroughRules
-
-`func (o *NewRuleset) GetStrikethroughRules() []Rule`
-
-GetStrikethroughRules returns the StrikethroughRules field if non-nil, zero value otherwise.
-
-### GetStrikethroughRulesOk
-
-`func (o *NewRuleset) GetStrikethroughRulesOk() ([]Rule, bool)`
-
-GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasStrikethroughRules
-
-`func (o *NewRuleset) HasStrikethroughRules() bool`
-
-HasStrikethroughRules returns a boolean if a field has been set.
-
-### SetStrikethroughRules
-
-`func (o *NewRuleset) SetStrikethroughRules(v []Rule)`
-
-SetStrikethroughRules gets a reference to the given []Rule and assigns it to the StrikethroughRules field.
+SetActivate gets a reference to the given bool and assigns it to the Activate field.
 
 ### GetBindings
 
@@ -112,30 +87,55 @@ HasRbVersion returns a boolean if a field has been set.
 
 SetRbVersion gets a reference to the given string and assigns it to the RbVersion field.
 
-### GetActivate
+### GetRules
 
-`func (o *NewRuleset) GetActivate() bool`
+`func (o *NewRuleset) GetRules() []Rule`
 
-GetActivate returns the Activate field if non-nil, zero value otherwise.
+GetRules returns the Rules field if non-nil, zero value otherwise.
 
-### GetActivateOk
+### GetRulesOk
 
-`func (o *NewRuleset) GetActivateOk() (bool, bool)`
+`func (o *NewRuleset) GetRulesOk() ([]Rule, bool)`
 
-GetActivateOk returns a tuple with the Activate field if it's non-nil, zero value otherwise
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasActivate
+### HasRules
 
-`func (o *NewRuleset) HasActivate() bool`
+`func (o *NewRuleset) HasRules() bool`
 
-HasActivate returns a boolean if a field has been set.
+HasRules returns a boolean if a field has been set.
 
-### SetActivate
+### SetRules
 
-`func (o *NewRuleset) SetActivate(v bool)`
+`func (o *NewRuleset) SetRules(v []Rule)`
 
-SetActivate gets a reference to the given bool and assigns it to the Activate field.
+SetRules gets a reference to the given []Rule and assigns it to the Rules field.
+
+### GetStrikethroughRules
+
+`func (o *NewRuleset) GetStrikethroughRules() []Rule`
+
+GetStrikethroughRules returns the StrikethroughRules field if non-nil, zero value otherwise.
+
+### GetStrikethroughRulesOk
+
+`func (o *NewRuleset) GetStrikethroughRulesOk() ([]Rule, bool)`
+
+GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStrikethroughRules
+
+`func (o *NewRuleset) HasStrikethroughRules() bool`
+
+HasStrikethroughRules returns a boolean if a field has been set.
+
+### SetStrikethroughRules
+
+`func (o *NewRuleset) SetStrikethroughRules(v []Rule)`
+
+SetStrikethroughRules gets a reference to the given []Rule and assigns it to the StrikethroughRules field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

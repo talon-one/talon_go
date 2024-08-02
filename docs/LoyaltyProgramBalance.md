@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
-**PendingBalance** | Pointer to **float32** | Sum of pending points. | 
 **ExpiredBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
+**PendingBalance** | Pointer to **float32** | Sum of pending points. | 
 **SpentBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **TentativeCurrentBalance** | Pointer to **float32** | Sum of the tentative active points (including additions and deductions) inside the currently open session. The &#x60;currentBalance&#x60; is updated to this value when you close the session, and the effects are applied. | 
 **TentativePendingBalance** | Pointer to **float32** | Sum of pending points (including additions and deductions) inside the currently open session. The &#x60;pendingBalance&#x60; is updated to this value when you close the session, and the effects are applied. | [optional] 
@@ -38,31 +38,6 @@ HasCurrentBalance returns a boolean if a field has been set.
 
 SetCurrentBalance gets a reference to the given float32 and assigns it to the CurrentBalance field.
 
-### GetPendingBalance
-
-`func (o *LoyaltyProgramBalance) GetPendingBalance() float32`
-
-GetPendingBalance returns the PendingBalance field if non-nil, zero value otherwise.
-
-### GetPendingBalanceOk
-
-`func (o *LoyaltyProgramBalance) GetPendingBalanceOk() (float32, bool)`
-
-GetPendingBalanceOk returns a tuple with the PendingBalance field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasPendingBalance
-
-`func (o *LoyaltyProgramBalance) HasPendingBalance() bool`
-
-HasPendingBalance returns a boolean if a field has been set.
-
-### SetPendingBalance
-
-`func (o *LoyaltyProgramBalance) SetPendingBalance(v float32)`
-
-SetPendingBalance gets a reference to the given float32 and assigns it to the PendingBalance field.
-
 ### GetExpiredBalance
 
 `func (o *LoyaltyProgramBalance) GetExpiredBalance() float32`
@@ -87,6 +62,31 @@ HasExpiredBalance returns a boolean if a field has been set.
 `func (o *LoyaltyProgramBalance) SetExpiredBalance(v float32)`
 
 SetExpiredBalance gets a reference to the given float32 and assigns it to the ExpiredBalance field.
+
+### GetPendingBalance
+
+`func (o *LoyaltyProgramBalance) GetPendingBalance() float32`
+
+GetPendingBalance returns the PendingBalance field if non-nil, zero value otherwise.
+
+### GetPendingBalanceOk
+
+`func (o *LoyaltyProgramBalance) GetPendingBalanceOk() (float32, bool)`
+
+GetPendingBalanceOk returns a tuple with the PendingBalance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPendingBalance
+
+`func (o *LoyaltyProgramBalance) HasPendingBalance() bool`
+
+HasPendingBalance returns a boolean if a field has been set.
+
+### SetPendingBalance
+
+`func (o *LoyaltyProgramBalance) SetPendingBalance(v float32)`
+
+SetPendingBalance gets a reference to the given float32 and assigns it to the PendingBalance field.
 
 ### GetSpentBalance
 

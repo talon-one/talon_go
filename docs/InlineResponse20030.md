@@ -4,36 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
-**Data** | Pointer to [**[]Audience**](Audience.md) |  | 
+**Data** | Pointer to [**[]CustomerProfile**](CustomerProfile.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
 
 ## Methods
 
-### GetHasMore
+### GetData
 
-`func (o *InlineResponse20030) GetHasMore() bool`
+`func (o *InlineResponse20030) GetData() []CustomerProfile`
 
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetHasMoreOk
+### GetDataOk
 
-`func (o *InlineResponse20030) GetHasMoreOk() (bool, bool)`
+`func (o *InlineResponse20030) GetDataOk() ([]CustomerProfile, bool)`
 
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasHasMore
+### HasData
 
-`func (o *InlineResponse20030) HasHasMore() bool`
+`func (o *InlineResponse20030) HasData() bool`
 
-HasHasMore returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
-### SetHasMore
+### SetData
 
-`func (o *InlineResponse20030) SetHasMore(v bool)`
+`func (o *InlineResponse20030) SetData(v []CustomerProfile)`
 
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+SetData gets a reference to the given []CustomerProfile and assigns it to the Data field.
 
 ### GetTotalResultSize
 
@@ -59,31 +58,6 @@ HasTotalResultSize returns a boolean if a field has been set.
 `func (o *InlineResponse20030) SetTotalResultSize(v int32)`
 
 SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
-
-### GetData
-
-`func (o *InlineResponse20030) GetData() []Audience`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *InlineResponse20030) GetDataOk() ([]Audience, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasData
-
-`func (o *InlineResponse20030) HasData() bool`
-
-HasData returns a boolean if a field has been set.
-
-### SetData
-
-`func (o *InlineResponse20030) SetData(v []Audience)`
-
-SetData gets a reference to the given []Audience and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,44 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AssertionConsumerServiceURL** | Pointer to **string** | The location where the SAML assertion is sent with a HTTP POST. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | ID of the SAML service. | 
+**AssertionConsumerServiceURL** | Pointer to **string** | The location where the SAML assertion is sent with a HTTP POST. | 
+**AudienceURI** | Pointer to **string** | The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.  | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Enabled** | Pointer to **bool** | Determines if this SAML connection active. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Issuer** | Pointer to **string** | Identity Provider Entity ID. | 
+**MetadataURL** | Pointer to **string** | Metadata URL. | [optional] 
+**Name** | Pointer to **string** | ID of the SAML service. | 
 **SignOnURL** | Pointer to **string** | Single Sign-On URL. | 
 **SignOutURL** | Pointer to **string** | Single Sign-Out URL. | [optional] 
-**MetadataURL** | Pointer to **string** | Metadata URL. | [optional] 
-**AudienceURI** | Pointer to **string** | The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.  | 
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 
 ## Methods
-
-### GetAssertionConsumerServiceURL
-
-`func (o *SamlConnection) GetAssertionConsumerServiceURL() string`
-
-GetAssertionConsumerServiceURL returns the AssertionConsumerServiceURL field if non-nil, zero value otherwise.
-
-### GetAssertionConsumerServiceURLOk
-
-`func (o *SamlConnection) GetAssertionConsumerServiceURLOk() (string, bool)`
-
-GetAssertionConsumerServiceURLOk returns a tuple with the AssertionConsumerServiceURL field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAssertionConsumerServiceURL
-
-`func (o *SamlConnection) HasAssertionConsumerServiceURL() bool`
-
-HasAssertionConsumerServiceURL returns a boolean if a field has been set.
-
-### SetAssertionConsumerServiceURL
-
-`func (o *SamlConnection) SetAssertionConsumerServiceURL(v string)`
-
-SetAssertionConsumerServiceURL gets a reference to the given string and assigns it to the AssertionConsumerServiceURL field.
 
 ### GetAccountId
 
@@ -68,30 +43,80 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetName
+### GetAssertionConsumerServiceURL
 
-`func (o *SamlConnection) GetName() string`
+`func (o *SamlConnection) GetAssertionConsumerServiceURL() string`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAssertionConsumerServiceURL returns the AssertionConsumerServiceURL field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAssertionConsumerServiceURLOk
 
-`func (o *SamlConnection) GetNameOk() (string, bool)`
+`func (o *SamlConnection) GetAssertionConsumerServiceURLOk() (string, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAssertionConsumerServiceURLOk returns a tuple with the AssertionConsumerServiceURL field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasAssertionConsumerServiceURL
 
-`func (o *SamlConnection) HasName() bool`
+`func (o *SamlConnection) HasAssertionConsumerServiceURL() bool`
 
-HasName returns a boolean if a field has been set.
+HasAssertionConsumerServiceURL returns a boolean if a field has been set.
 
-### SetName
+### SetAssertionConsumerServiceURL
 
-`func (o *SamlConnection) SetName(v string)`
+`func (o *SamlConnection) SetAssertionConsumerServiceURL(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetAssertionConsumerServiceURL gets a reference to the given string and assigns it to the AssertionConsumerServiceURL field.
+
+### GetAudienceURI
+
+`func (o *SamlConnection) GetAudienceURI() string`
+
+GetAudienceURI returns the AudienceURI field if non-nil, zero value otherwise.
+
+### GetAudienceURIOk
+
+`func (o *SamlConnection) GetAudienceURIOk() (string, bool)`
+
+GetAudienceURIOk returns a tuple with the AudienceURI field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAudienceURI
+
+`func (o *SamlConnection) HasAudienceURI() bool`
+
+HasAudienceURI returns a boolean if a field has been set.
+
+### SetAudienceURI
+
+`func (o *SamlConnection) SetAudienceURI(v string)`
+
+SetAudienceURI gets a reference to the given string and assigns it to the AudienceURI field.
+
+### GetCreated
+
+`func (o *SamlConnection) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *SamlConnection) GetCreatedOk() (time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *SamlConnection) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *SamlConnection) SetCreated(v time.Time)`
+
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetEnabled
 
@@ -118,6 +143,31 @@ HasEnabled returns a boolean if a field has been set.
 
 SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 
+### GetId
+
+`func (o *SamlConnection) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *SamlConnection) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *SamlConnection) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *SamlConnection) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
 ### GetIssuer
 
 `func (o *SamlConnection) GetIssuer() string`
@@ -142,6 +192,56 @@ HasIssuer returns a boolean if a field has been set.
 `func (o *SamlConnection) SetIssuer(v string)`
 
 SetIssuer gets a reference to the given string and assigns it to the Issuer field.
+
+### GetMetadataURL
+
+`func (o *SamlConnection) GetMetadataURL() string`
+
+GetMetadataURL returns the MetadataURL field if non-nil, zero value otherwise.
+
+### GetMetadataURLOk
+
+`func (o *SamlConnection) GetMetadataURLOk() (string, bool)`
+
+GetMetadataURLOk returns a tuple with the MetadataURL field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasMetadataURL
+
+`func (o *SamlConnection) HasMetadataURL() bool`
+
+HasMetadataURL returns a boolean if a field has been set.
+
+### SetMetadataURL
+
+`func (o *SamlConnection) SetMetadataURL(v string)`
+
+SetMetadataURL gets a reference to the given string and assigns it to the MetadataURL field.
+
+### GetName
+
+`func (o *SamlConnection) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *SamlConnection) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *SamlConnection) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *SamlConnection) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetSignOnURL
 
@@ -192,106 +292,6 @@ HasSignOutURL returns a boolean if a field has been set.
 `func (o *SamlConnection) SetSignOutURL(v string)`
 
 SetSignOutURL gets a reference to the given string and assigns it to the SignOutURL field.
-
-### GetMetadataURL
-
-`func (o *SamlConnection) GetMetadataURL() string`
-
-GetMetadataURL returns the MetadataURL field if non-nil, zero value otherwise.
-
-### GetMetadataURLOk
-
-`func (o *SamlConnection) GetMetadataURLOk() (string, bool)`
-
-GetMetadataURLOk returns a tuple with the MetadataURL field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasMetadataURL
-
-`func (o *SamlConnection) HasMetadataURL() bool`
-
-HasMetadataURL returns a boolean if a field has been set.
-
-### SetMetadataURL
-
-`func (o *SamlConnection) SetMetadataURL(v string)`
-
-SetMetadataURL gets a reference to the given string and assigns it to the MetadataURL field.
-
-### GetAudienceURI
-
-`func (o *SamlConnection) GetAudienceURI() string`
-
-GetAudienceURI returns the AudienceURI field if non-nil, zero value otherwise.
-
-### GetAudienceURIOk
-
-`func (o *SamlConnection) GetAudienceURIOk() (string, bool)`
-
-GetAudienceURIOk returns a tuple with the AudienceURI field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAudienceURI
-
-`func (o *SamlConnection) HasAudienceURI() bool`
-
-HasAudienceURI returns a boolean if a field has been set.
-
-### SetAudienceURI
-
-`func (o *SamlConnection) SetAudienceURI(v string)`
-
-SetAudienceURI gets a reference to the given string and assigns it to the AudienceURI field.
-
-### GetId
-
-`func (o *SamlConnection) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *SamlConnection) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *SamlConnection) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *SamlConnection) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *SamlConnection) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *SamlConnection) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *SamlConnection) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *SamlConnection) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

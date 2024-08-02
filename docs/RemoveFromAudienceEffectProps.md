@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AudienceId** | Pointer to **int32** | The internal ID of the audience. | [optional] 
 **AudienceName** | Pointer to **string** | The name of the audience. | [optional] 
-**ProfileIntegrationId** | Pointer to **string** | The ID of the customer profile in the third-party integration platform. | [optional] 
 **ProfileId** | Pointer to **int32** | The internal ID of the customer profile. | [optional] 
+**ProfileIntegrationId** | Pointer to **string** | The ID of the customer profile in the third-party integration platform. | [optional] 
 
 ## Methods
 
@@ -61,31 +61,6 @@ HasAudienceName returns a boolean if a field has been set.
 
 SetAudienceName gets a reference to the given string and assigns it to the AudienceName field.
 
-### GetProfileIntegrationId
-
-`func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationId() string`
-
-GetProfileIntegrationId returns the ProfileIntegrationId field if non-nil, zero value otherwise.
-
-### GetProfileIntegrationIdOk
-
-`func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationIdOk() (string, bool)`
-
-GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProfileIntegrationId
-
-`func (o *RemoveFromAudienceEffectProps) HasProfileIntegrationId() bool`
-
-HasProfileIntegrationId returns a boolean if a field has been set.
-
-### SetProfileIntegrationId
-
-`func (o *RemoveFromAudienceEffectProps) SetProfileIntegrationId(v string)`
-
-SetProfileIntegrationId gets a reference to the given string and assigns it to the ProfileIntegrationId field.
-
 ### GetProfileId
 
 `func (o *RemoveFromAudienceEffectProps) GetProfileId() int32`
@@ -110,6 +85,31 @@ HasProfileId returns a boolean if a field has been set.
 `func (o *RemoveFromAudienceEffectProps) SetProfileId(v int32)`
 
 SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
+
+### GetProfileIntegrationId
+
+`func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationId() string`
+
+GetProfileIntegrationId returns the ProfileIntegrationId field if non-nil, zero value otherwise.
+
+### GetProfileIntegrationIdOk
+
+`func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationIdOk() (string, bool)`
+
+GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProfileIntegrationId
+
+`func (o *RemoveFromAudienceEffectProps) HasProfileIntegrationId() bool`
+
+HasProfileIntegrationId returns a boolean if a field has been set.
+
+### SetProfileIntegrationId
+
+`func (o *RemoveFromAudienceEffectProps) SetProfileIntegrationId(v string)`
+
+SetProfileIntegrationId gets a reference to the given string and assigns it to the ProfileIntegrationId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,20 +4,71 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
+**Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update of the loyalty card. | [optional] 
+**NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**OldCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
 **ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
 **Status** | Pointer to **string** | Status of the loyalty card. Can be one of: [&#39;active&#39;, &#39;inactive&#39;]  | 
-**Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
-**UsersPerCardLimit** | Pointer to **int32** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
-**Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
-**Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | [optional] 
 **Subledgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | Displays point balances of the card in the subledgers of the loyalty program. | [optional] 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update of the loyalty card. | [optional] 
-**OldCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
-**NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**UsersPerCardLimit** | Pointer to **int32** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
 
 ## Methods
+
+### GetBlockReason
+
+`func (o *LoyaltyCard) GetBlockReason() string`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *LoyaltyCard) GetBlockReasonOk() (string, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBlockReason
+
+`func (o *LoyaltyCard) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
+
+### SetBlockReason
+
+`func (o *LoyaltyCard) SetBlockReason(v string)`
+
+SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
+
+### GetCreated
+
+`func (o *LoyaltyCard) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *LoyaltyCard) GetCreatedOk() (time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *LoyaltyCard) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *LoyaltyCard) SetCreated(v time.Time)`
+
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetId
 
@@ -44,30 +95,155 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
 
-### GetCreated
+### GetIdentifier
 
-`func (o *LoyaltyCard) GetCreated() time.Time`
+`func (o *LoyaltyCard) GetIdentifier() string`
 
-GetCreated returns the Created field if non-nil, zero value otherwise.
+GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
 
-### GetCreatedOk
+### GetIdentifierOk
 
-`func (o *LoyaltyCard) GetCreatedOk() (time.Time, bool)`
+`func (o *LoyaltyCard) GetIdentifierOk() (string, bool)`
 
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCreated
+### HasIdentifier
 
-`func (o *LoyaltyCard) HasCreated() bool`
+`func (o *LoyaltyCard) HasIdentifier() bool`
 
-HasCreated returns a boolean if a field has been set.
+HasIdentifier returns a boolean if a field has been set.
 
-### SetCreated
+### SetIdentifier
 
-`func (o *LoyaltyCard) SetCreated(v time.Time)`
+`func (o *LoyaltyCard) SetIdentifier(v string)`
 
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
+
+### GetLedger
+
+`func (o *LoyaltyCard) GetLedger() LedgerInfo`
+
+GetLedger returns the Ledger field if non-nil, zero value otherwise.
+
+### GetLedgerOk
+
+`func (o *LoyaltyCard) GetLedgerOk() (LedgerInfo, bool)`
+
+GetLedgerOk returns a tuple with the Ledger field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLedger
+
+`func (o *LoyaltyCard) HasLedger() bool`
+
+HasLedger returns a boolean if a field has been set.
+
+### SetLedger
+
+`func (o *LoyaltyCard) SetLedger(v LedgerInfo)`
+
+SetLedger gets a reference to the given LedgerInfo and assigns it to the Ledger field.
+
+### GetModified
+
+`func (o *LoyaltyCard) GetModified() time.Time`
+
+GetModified returns the Modified field if non-nil, zero value otherwise.
+
+### GetModifiedOk
+
+`func (o *LoyaltyCard) GetModifiedOk() (time.Time, bool)`
+
+GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasModified
+
+`func (o *LoyaltyCard) HasModified() bool`
+
+HasModified returns a boolean if a field has been set.
+
+### SetModified
+
+`func (o *LoyaltyCard) SetModified(v time.Time)`
+
+SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+
+### GetNewCardIdentifier
+
+`func (o *LoyaltyCard) GetNewCardIdentifier() string`
+
+GetNewCardIdentifier returns the NewCardIdentifier field if non-nil, zero value otherwise.
+
+### GetNewCardIdentifierOk
+
+`func (o *LoyaltyCard) GetNewCardIdentifierOk() (string, bool)`
+
+GetNewCardIdentifierOk returns a tuple with the NewCardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasNewCardIdentifier
+
+`func (o *LoyaltyCard) HasNewCardIdentifier() bool`
+
+HasNewCardIdentifier returns a boolean if a field has been set.
+
+### SetNewCardIdentifier
+
+`func (o *LoyaltyCard) SetNewCardIdentifier(v string)`
+
+SetNewCardIdentifier gets a reference to the given string and assigns it to the NewCardIdentifier field.
+
+### GetOldCardIdentifier
+
+`func (o *LoyaltyCard) GetOldCardIdentifier() string`
+
+GetOldCardIdentifier returns the OldCardIdentifier field if non-nil, zero value otherwise.
+
+### GetOldCardIdentifierOk
+
+`func (o *LoyaltyCard) GetOldCardIdentifierOk() (string, bool)`
+
+GetOldCardIdentifierOk returns a tuple with the OldCardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasOldCardIdentifier
+
+`func (o *LoyaltyCard) HasOldCardIdentifier() bool`
+
+HasOldCardIdentifier returns a boolean if a field has been set.
+
+### SetOldCardIdentifier
+
+`func (o *LoyaltyCard) SetOldCardIdentifier(v string)`
+
+SetOldCardIdentifier gets a reference to the given string and assigns it to the OldCardIdentifier field.
+
+### GetProfiles
+
+`func (o *LoyaltyCard) GetProfiles() []LoyaltyCardProfileRegistration`
+
+GetProfiles returns the Profiles field if non-nil, zero value otherwise.
+
+### GetProfilesOk
+
+`func (o *LoyaltyCard) GetProfilesOk() ([]LoyaltyCardProfileRegistration, bool)`
+
+GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProfiles
+
+`func (o *LoyaltyCard) HasProfiles() bool`
+
+HasProfiles returns a boolean if a field has been set.
+
+### SetProfiles
+
+`func (o *LoyaltyCard) SetProfiles(v []LoyaltyCardProfileRegistration)`
+
+SetProfiles gets a reference to the given []LoyaltyCardProfileRegistration and assigns it to the Profiles field.
 
 ### GetProgramID
 
@@ -119,106 +295,6 @@ HasStatus returns a boolean if a field has been set.
 
 SetStatus gets a reference to the given string and assigns it to the Status field.
 
-### GetIdentifier
-
-`func (o *LoyaltyCard) GetIdentifier() string`
-
-GetIdentifier returns the Identifier field if non-nil, zero value otherwise.
-
-### GetIdentifierOk
-
-`func (o *LoyaltyCard) GetIdentifierOk() (string, bool)`
-
-GetIdentifierOk returns a tuple with the Identifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasIdentifier
-
-`func (o *LoyaltyCard) HasIdentifier() bool`
-
-HasIdentifier returns a boolean if a field has been set.
-
-### SetIdentifier
-
-`func (o *LoyaltyCard) SetIdentifier(v string)`
-
-SetIdentifier gets a reference to the given string and assigns it to the Identifier field.
-
-### GetUsersPerCardLimit
-
-`func (o *LoyaltyCard) GetUsersPerCardLimit() int32`
-
-GetUsersPerCardLimit returns the UsersPerCardLimit field if non-nil, zero value otherwise.
-
-### GetUsersPerCardLimitOk
-
-`func (o *LoyaltyCard) GetUsersPerCardLimitOk() (int32, bool)`
-
-GetUsersPerCardLimitOk returns a tuple with the UsersPerCardLimit field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasUsersPerCardLimit
-
-`func (o *LoyaltyCard) HasUsersPerCardLimit() bool`
-
-HasUsersPerCardLimit returns a boolean if a field has been set.
-
-### SetUsersPerCardLimit
-
-`func (o *LoyaltyCard) SetUsersPerCardLimit(v int32)`
-
-SetUsersPerCardLimit gets a reference to the given int32 and assigns it to the UsersPerCardLimit field.
-
-### GetProfiles
-
-`func (o *LoyaltyCard) GetProfiles() []LoyaltyCardProfileRegistration`
-
-GetProfiles returns the Profiles field if non-nil, zero value otherwise.
-
-### GetProfilesOk
-
-`func (o *LoyaltyCard) GetProfilesOk() ([]LoyaltyCardProfileRegistration, bool)`
-
-GetProfilesOk returns a tuple with the Profiles field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProfiles
-
-`func (o *LoyaltyCard) HasProfiles() bool`
-
-HasProfiles returns a boolean if a field has been set.
-
-### SetProfiles
-
-`func (o *LoyaltyCard) SetProfiles(v []LoyaltyCardProfileRegistration)`
-
-SetProfiles gets a reference to the given []LoyaltyCardProfileRegistration and assigns it to the Profiles field.
-
-### GetLedger
-
-`func (o *LoyaltyCard) GetLedger() LedgerInfo`
-
-GetLedger returns the Ledger field if non-nil, zero value otherwise.
-
-### GetLedgerOk
-
-`func (o *LoyaltyCard) GetLedgerOk() (LedgerInfo, bool)`
-
-GetLedgerOk returns a tuple with the Ledger field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLedger
-
-`func (o *LoyaltyCard) HasLedger() bool`
-
-HasLedger returns a boolean if a field has been set.
-
-### SetLedger
-
-`func (o *LoyaltyCard) SetLedger(v LedgerInfo)`
-
-SetLedger gets a reference to the given LedgerInfo and assigns it to the Ledger field.
-
 ### GetSubledgers
 
 `func (o *LoyaltyCard) GetSubledgers() map[string]LedgerInfo`
@@ -244,80 +320,30 @@ HasSubledgers returns a boolean if a field has been set.
 
 SetSubledgers gets a reference to the given map[string]LedgerInfo and assigns it to the Subledgers field.
 
-### GetModified
+### GetUsersPerCardLimit
 
-`func (o *LoyaltyCard) GetModified() time.Time`
+`func (o *LoyaltyCard) GetUsersPerCardLimit() int32`
 
-GetModified returns the Modified field if non-nil, zero value otherwise.
+GetUsersPerCardLimit returns the UsersPerCardLimit field if non-nil, zero value otherwise.
 
-### GetModifiedOk
+### GetUsersPerCardLimitOk
 
-`func (o *LoyaltyCard) GetModifiedOk() (time.Time, bool)`
+`func (o *LoyaltyCard) GetUsersPerCardLimitOk() (int32, bool)`
 
-GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+GetUsersPerCardLimitOk returns a tuple with the UsersPerCardLimit field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasModified
+### HasUsersPerCardLimit
 
-`func (o *LoyaltyCard) HasModified() bool`
+`func (o *LoyaltyCard) HasUsersPerCardLimit() bool`
 
-HasModified returns a boolean if a field has been set.
+HasUsersPerCardLimit returns a boolean if a field has been set.
 
-### SetModified
+### SetUsersPerCardLimit
 
-`func (o *LoyaltyCard) SetModified(v time.Time)`
+`func (o *LoyaltyCard) SetUsersPerCardLimit(v int32)`
 
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-
-### GetOldCardIdentifier
-
-`func (o *LoyaltyCard) GetOldCardIdentifier() string`
-
-GetOldCardIdentifier returns the OldCardIdentifier field if non-nil, zero value otherwise.
-
-### GetOldCardIdentifierOk
-
-`func (o *LoyaltyCard) GetOldCardIdentifierOk() (string, bool)`
-
-GetOldCardIdentifierOk returns a tuple with the OldCardIdentifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasOldCardIdentifier
-
-`func (o *LoyaltyCard) HasOldCardIdentifier() bool`
-
-HasOldCardIdentifier returns a boolean if a field has been set.
-
-### SetOldCardIdentifier
-
-`func (o *LoyaltyCard) SetOldCardIdentifier(v string)`
-
-SetOldCardIdentifier gets a reference to the given string and assigns it to the OldCardIdentifier field.
-
-### GetNewCardIdentifier
-
-`func (o *LoyaltyCard) GetNewCardIdentifier() string`
-
-GetNewCardIdentifier returns the NewCardIdentifier field if non-nil, zero value otherwise.
-
-### GetNewCardIdentifierOk
-
-`func (o *LoyaltyCard) GetNewCardIdentifierOk() (string, bool)`
-
-GetNewCardIdentifierOk returns a tuple with the NewCardIdentifier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasNewCardIdentifier
-
-`func (o *LoyaltyCard) HasNewCardIdentifier() bool`
-
-HasNewCardIdentifier returns a boolean if a field has been set.
-
-### SetNewCardIdentifier
-
-`func (o *LoyaltyCard) SetNewCardIdentifier(v string)`
-
-SetNewCardIdentifier gets a reference to the given string and assigns it to the NewCardIdentifier field.
+SetUsersPerCardLimit gets a reference to the given int32 and assigns it to the UsersPerCardLimit field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

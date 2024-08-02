@@ -4,36 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | Pointer to [**map[string]interface{}**](.md) |  | 
 **Enabled** | Pointer to **bool** | Indicates whether the notification is activated. | [optional] [default to true]
+**Policy** | Pointer to [**map[string]interface{}**](.md) | Indicates which notification properties to apply. | 
 **Webhook** | Pointer to [**NewNotificationWebhook**](NewNotificationWebhook.md) |  | 
 
 ## Methods
-
-### GetPolicy
-
-`func (o *NewBaseNotification) GetPolicy() map[string]interface{}`
-
-GetPolicy returns the Policy field if non-nil, zero value otherwise.
-
-### GetPolicyOk
-
-`func (o *NewBaseNotification) GetPolicyOk() (map[string]interface{}, bool)`
-
-GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasPolicy
-
-`func (o *NewBaseNotification) HasPolicy() bool`
-
-HasPolicy returns a boolean if a field has been set.
-
-### SetPolicy
-
-`func (o *NewBaseNotification) SetPolicy(v map[string]interface{})`
-
-SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
 
 ### GetEnabled
 
@@ -59,6 +34,31 @@ HasEnabled returns a boolean if a field has been set.
 `func (o *NewBaseNotification) SetEnabled(v bool)`
 
 SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+
+### GetPolicy
+
+`func (o *NewBaseNotification) GetPolicy() map[string]interface{}`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *NewBaseNotification) GetPolicyOk() (map[string]interface{}, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPolicy
+
+`func (o *NewBaseNotification) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
+
+### SetPolicy
+
+`func (o *NewBaseNotification) SetPolicy(v map[string]interface{})`
+
+SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
 
 ### GetWebhook
 

@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicationId** | Pointer to **int32** | The ID of the application that catalog items labels belongs to. | 
+**ChangedItems** | Pointer to [**[]StrikethroughChangedItem**](StrikethroughChangedItem.md) |  | 
 **CurrentBatch** | Pointer to **int32** | The batch number of the notification. Notifications might be sent in different batches. | 
 **TotalBatches** | Pointer to **int32** | The total number of batches for the notification. | 
 **Trigger** | Pointer to [**StrikethroughTrigger**](StrikethroughTrigger.md) |  | 
-**ChangedItems** | Pointer to [**[]StrikethroughChangedItem**](StrikethroughChangedItem.md) |  | 
 
 ## Methods
 
@@ -36,6 +36,31 @@ HasApplicationId returns a boolean if a field has been set.
 `func (o *StrikethroughLabelingNotification) SetApplicationId(v int32)`
 
 SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+
+### GetChangedItems
+
+`func (o *StrikethroughLabelingNotification) GetChangedItems() []StrikethroughChangedItem`
+
+GetChangedItems returns the ChangedItems field if non-nil, zero value otherwise.
+
+### GetChangedItemsOk
+
+`func (o *StrikethroughLabelingNotification) GetChangedItemsOk() ([]StrikethroughChangedItem, bool)`
+
+GetChangedItemsOk returns a tuple with the ChangedItems field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasChangedItems
+
+`func (o *StrikethroughLabelingNotification) HasChangedItems() bool`
+
+HasChangedItems returns a boolean if a field has been set.
+
+### SetChangedItems
+
+`func (o *StrikethroughLabelingNotification) SetChangedItems(v []StrikethroughChangedItem)`
+
+SetChangedItems gets a reference to the given []StrikethroughChangedItem and assigns it to the ChangedItems field.
 
 ### GetCurrentBatch
 
@@ -111,31 +136,6 @@ HasTrigger returns a boolean if a field has been set.
 `func (o *StrikethroughLabelingNotification) SetTrigger(v StrikethroughTrigger)`
 
 SetTrigger gets a reference to the given StrikethroughTrigger and assigns it to the Trigger field.
-
-### GetChangedItems
-
-`func (o *StrikethroughLabelingNotification) GetChangedItems() []StrikethroughChangedItem`
-
-GetChangedItems returns the ChangedItems field if non-nil, zero value otherwise.
-
-### GetChangedItemsOk
-
-`func (o *StrikethroughLabelingNotification) GetChangedItemsOk() ([]StrikethroughChangedItem, bool)`
-
-GetChangedItemsOk returns a tuple with the ChangedItems field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasChangedItems
-
-`func (o *StrikethroughLabelingNotification) HasChangedItems() bool`
-
-HasChangedItems returns a boolean if a field has been set.
-
-### SetChangedItems
-
-`func (o *StrikethroughLabelingNotification) SetChangedItems(v []StrikethroughChangedItem)`
-
-SetChangedItems gets a reference to the given []StrikethroughChangedItem and assigns it to the ChangedItems field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,37 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Points** | Pointer to **float32** | Amount of loyalty points. | 
-**Name** | Pointer to **string** | Name / reason for the point deduction. | [optional] 
-**SubledgerId** | Pointer to **string** | ID of the subledger the points are deducted from. | [optional] 
 **ApplicationId** | Pointer to **int32** | ID of the Application that is connected to the loyalty program. | [optional] 
+**Name** | Pointer to **string** | Name / reason for the point deduction. | [optional] 
+**Points** | Pointer to **float32** | Amount of loyalty points. | 
+**SubledgerId** | Pointer to **string** | ID of the subledger the points are deducted from. | [optional] 
 
 ## Methods
 
-### GetPoints
+### GetApplicationId
 
-`func (o *DeductLoyaltyPoints) GetPoints() float32`
+`func (o *DeductLoyaltyPoints) GetApplicationId() int32`
 
-GetPoints returns the Points field if non-nil, zero value otherwise.
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
 
-### GetPointsOk
+### GetApplicationIdOk
 
-`func (o *DeductLoyaltyPoints) GetPointsOk() (float32, bool)`
+`func (o *DeductLoyaltyPoints) GetApplicationIdOk() (int32, bool)`
 
-GetPointsOk returns a tuple with the Points field if it's non-nil, zero value otherwise
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPoints
+### HasApplicationId
 
-`func (o *DeductLoyaltyPoints) HasPoints() bool`
+`func (o *DeductLoyaltyPoints) HasApplicationId() bool`
 
-HasPoints returns a boolean if a field has been set.
+HasApplicationId returns a boolean if a field has been set.
 
-### SetPoints
+### SetApplicationId
 
-`func (o *DeductLoyaltyPoints) SetPoints(v float32)`
+`func (o *DeductLoyaltyPoints) SetApplicationId(v int32)`
 
-SetPoints gets a reference to the given float32 and assigns it to the Points field.
+SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
 
 ### GetName
 
@@ -61,6 +61,31 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
+### GetPoints
+
+`func (o *DeductLoyaltyPoints) GetPoints() float32`
+
+GetPoints returns the Points field if non-nil, zero value otherwise.
+
+### GetPointsOk
+
+`func (o *DeductLoyaltyPoints) GetPointsOk() (float32, bool)`
+
+GetPointsOk returns a tuple with the Points field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPoints
+
+`func (o *DeductLoyaltyPoints) HasPoints() bool`
+
+HasPoints returns a boolean if a field has been set.
+
+### SetPoints
+
+`func (o *DeductLoyaltyPoints) SetPoints(v float32)`
+
+SetPoints gets a reference to the given float32 and assigns it to the Points field.
+
 ### GetSubledgerId
 
 `func (o *DeductLoyaltyPoints) GetSubledgerId() string`
@@ -85,31 +110,6 @@ HasSubledgerId returns a boolean if a field has been set.
 `func (o *DeductLoyaltyPoints) SetSubledgerId(v string)`
 
 SetSubledgerId gets a reference to the given string and assigns it to the SubledgerId field.
-
-### GetApplicationId
-
-`func (o *DeductLoyaltyPoints) GetApplicationId() int32`
-
-GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
-
-### GetApplicationIdOk
-
-`func (o *DeductLoyaltyPoints) GetApplicationIdOk() (int32, bool)`
-
-GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasApplicationId
-
-`func (o *DeductLoyaltyPoints) HasApplicationId() bool`
-
-HasApplicationId returns a boolean if a field has been set.
-
-### SetApplicationId
-
-`func (o *DeductLoyaltyPoints) SetApplicationId(v int32)`
-
-SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

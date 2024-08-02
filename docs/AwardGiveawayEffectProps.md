@@ -4,13 +4,63 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Code** | Pointer to **string** | The giveaway code that was awarded. | 
+**GiveawayId** | Pointer to **int32** | The internal ID for the giveaway that was awarded. | 
 **PoolId** | Pointer to **int32** | The ID of the giveaways pool the code was taken from. | 
 **PoolName** | Pointer to **string** | The name of the giveaways pool the code was taken from. | 
 **RecipientIntegrationId** | Pointer to **string** | The integration ID of the profile that was awarded the giveaway. | 
-**GiveawayId** | Pointer to **int32** | The internal ID for the giveaway that was awarded. | 
-**Code** | Pointer to **string** | The giveaway code that was awarded. | 
 
 ## Methods
+
+### GetCode
+
+`func (o *AwardGiveawayEffectProps) GetCode() string`
+
+GetCode returns the Code field if non-nil, zero value otherwise.
+
+### GetCodeOk
+
+`func (o *AwardGiveawayEffectProps) GetCodeOk() (string, bool)`
+
+GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCode
+
+`func (o *AwardGiveawayEffectProps) HasCode() bool`
+
+HasCode returns a boolean if a field has been set.
+
+### SetCode
+
+`func (o *AwardGiveawayEffectProps) SetCode(v string)`
+
+SetCode gets a reference to the given string and assigns it to the Code field.
+
+### GetGiveawayId
+
+`func (o *AwardGiveawayEffectProps) GetGiveawayId() int32`
+
+GetGiveawayId returns the GiveawayId field if non-nil, zero value otherwise.
+
+### GetGiveawayIdOk
+
+`func (o *AwardGiveawayEffectProps) GetGiveawayIdOk() (int32, bool)`
+
+GetGiveawayIdOk returns a tuple with the GiveawayId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasGiveawayId
+
+`func (o *AwardGiveawayEffectProps) HasGiveawayId() bool`
+
+HasGiveawayId returns a boolean if a field has been set.
+
+### SetGiveawayId
+
+`func (o *AwardGiveawayEffectProps) SetGiveawayId(v int32)`
+
+SetGiveawayId gets a reference to the given int32 and assigns it to the GiveawayId field.
 
 ### GetPoolId
 
@@ -86,56 +136,6 @@ HasRecipientIntegrationId returns a boolean if a field has been set.
 `func (o *AwardGiveawayEffectProps) SetRecipientIntegrationId(v string)`
 
 SetRecipientIntegrationId gets a reference to the given string and assigns it to the RecipientIntegrationId field.
-
-### GetGiveawayId
-
-`func (o *AwardGiveawayEffectProps) GetGiveawayId() int32`
-
-GetGiveawayId returns the GiveawayId field if non-nil, zero value otherwise.
-
-### GetGiveawayIdOk
-
-`func (o *AwardGiveawayEffectProps) GetGiveawayIdOk() (int32, bool)`
-
-GetGiveawayIdOk returns a tuple with the GiveawayId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasGiveawayId
-
-`func (o *AwardGiveawayEffectProps) HasGiveawayId() bool`
-
-HasGiveawayId returns a boolean if a field has been set.
-
-### SetGiveawayId
-
-`func (o *AwardGiveawayEffectProps) SetGiveawayId(v int32)`
-
-SetGiveawayId gets a reference to the given int32 and assigns it to the GiveawayId field.
-
-### GetCode
-
-`func (o *AwardGiveawayEffectProps) GetCode() string`
-
-GetCode returns the Code field if non-nil, zero value otherwise.
-
-### GetCodeOk
-
-`func (o *AwardGiveawayEffectProps) GetCodeOk() (string, bool)`
-
-GetCodeOk returns a tuple with the Code field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCode
-
-`func (o *AwardGiveawayEffectProps) HasCode() bool`
-
-HasCode returns a boolean if a field has been set.
-
-### SetCode
-
-`func (o *AwardGiveawayEffectProps) SetCode(v string)`
-
-SetCode gets a reference to the given string and assigns it to the Code field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

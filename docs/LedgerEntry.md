@@ -4,93 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | 
 **AccountId** | Pointer to **int32** | The ID of the Talon.One account that owns this profile. | 
-**LoyaltyProgramId** | Pointer to **int32** | ID of the ledger. | 
-**EventId** | Pointer to **int32** | ID of the related event. | 
 **Amount** | Pointer to **int32** | Amount of loyalty points. | 
-**Reason** | Pointer to **string** | reason for awarding/deducting points. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**EventId** | Pointer to **int32** | ID of the related event. | 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the points. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**LoyaltyProgramId** | Pointer to **int32** | ID of the ledger. | 
+**ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | 
+**Reason** | Pointer to **string** | reason for awarding/deducting points. | 
 **ReferenceId** | Pointer to **int32** | The ID of the balancing ledgerEntry. | [optional] 
 
 ## Methods
-
-### GetId
-
-`func (o *LedgerEntry) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *LedgerEntry) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *LedgerEntry) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *LedgerEntry) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *LedgerEntry) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *LedgerEntry) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *LedgerEntry) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *LedgerEntry) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetProfileId
-
-`func (o *LedgerEntry) GetProfileId() string`
-
-GetProfileId returns the ProfileId field if non-nil, zero value otherwise.
-
-### GetProfileIdOk
-
-`func (o *LedgerEntry) GetProfileIdOk() (string, bool)`
-
-GetProfileIdOk returns a tuple with the ProfileId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProfileId
-
-`func (o *LedgerEntry) HasProfileId() bool`
-
-HasProfileId returns a boolean if a field has been set.
-
-### SetProfileId
-
-`func (o *LedgerEntry) SetProfileId(v string)`
-
-SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
 
 ### GetAccountId
 
@@ -117,30 +42,55 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetLoyaltyProgramId
+### GetAmount
 
-`func (o *LedgerEntry) GetLoyaltyProgramId() int32`
+`func (o *LedgerEntry) GetAmount() int32`
 
-GetLoyaltyProgramId returns the LoyaltyProgramId field if non-nil, zero value otherwise.
+GetAmount returns the Amount field if non-nil, zero value otherwise.
 
-### GetLoyaltyProgramIdOk
+### GetAmountOk
 
-`func (o *LedgerEntry) GetLoyaltyProgramIdOk() (int32, bool)`
+`func (o *LedgerEntry) GetAmountOk() (int32, bool)`
 
-GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field if it's non-nil, zero value otherwise
+GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasLoyaltyProgramId
+### HasAmount
 
-`func (o *LedgerEntry) HasLoyaltyProgramId() bool`
+`func (o *LedgerEntry) HasAmount() bool`
 
-HasLoyaltyProgramId returns a boolean if a field has been set.
+HasAmount returns a boolean if a field has been set.
 
-### SetLoyaltyProgramId
+### SetAmount
 
-`func (o *LedgerEntry) SetLoyaltyProgramId(v int32)`
+`func (o *LedgerEntry) SetAmount(v int32)`
 
-SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
+SetAmount gets a reference to the given int32 and assigns it to the Amount field.
+
+### GetCreated
+
+`func (o *LedgerEntry) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *LedgerEntry) GetCreatedOk() (time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *LedgerEntry) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *LedgerEntry) SetCreated(v time.Time)`
+
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetEventId
 
@@ -167,30 +117,105 @@ HasEventId returns a boolean if a field has been set.
 
 SetEventId gets a reference to the given int32 and assigns it to the EventId field.
 
-### GetAmount
+### GetExpiryDate
 
-`func (o *LedgerEntry) GetAmount() int32`
+`func (o *LedgerEntry) GetExpiryDate() time.Time`
 
-GetAmount returns the Amount field if non-nil, zero value otherwise.
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
 
-### GetAmountOk
+### GetExpiryDateOk
 
-`func (o *LedgerEntry) GetAmountOk() (int32, bool)`
+`func (o *LedgerEntry) GetExpiryDateOk() (time.Time, bool)`
 
-GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAmount
+### HasExpiryDate
 
-`func (o *LedgerEntry) HasAmount() bool`
+`func (o *LedgerEntry) HasExpiryDate() bool`
 
-HasAmount returns a boolean if a field has been set.
+HasExpiryDate returns a boolean if a field has been set.
 
-### SetAmount
+### SetExpiryDate
 
-`func (o *LedgerEntry) SetAmount(v int32)`
+`func (o *LedgerEntry) SetExpiryDate(v time.Time)`
 
-SetAmount gets a reference to the given int32 and assigns it to the Amount field.
+SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+
+### GetId
+
+`func (o *LedgerEntry) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *LedgerEntry) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *LedgerEntry) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *LedgerEntry) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
+### GetLoyaltyProgramId
+
+`func (o *LedgerEntry) GetLoyaltyProgramId() int32`
+
+GetLoyaltyProgramId returns the LoyaltyProgramId field if non-nil, zero value otherwise.
+
+### GetLoyaltyProgramIdOk
+
+`func (o *LedgerEntry) GetLoyaltyProgramIdOk() (int32, bool)`
+
+GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLoyaltyProgramId
+
+`func (o *LedgerEntry) HasLoyaltyProgramId() bool`
+
+HasLoyaltyProgramId returns a boolean if a field has been set.
+
+### SetLoyaltyProgramId
+
+`func (o *LedgerEntry) SetLoyaltyProgramId(v int32)`
+
+SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
+
+### GetProfileId
+
+`func (o *LedgerEntry) GetProfileId() string`
+
+GetProfileId returns the ProfileId field if non-nil, zero value otherwise.
+
+### GetProfileIdOk
+
+`func (o *LedgerEntry) GetProfileIdOk() (string, bool)`
+
+GetProfileIdOk returns a tuple with the ProfileId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProfileId
+
+`func (o *LedgerEntry) HasProfileId() bool`
+
+HasProfileId returns a boolean if a field has been set.
+
+### SetProfileId
+
+`func (o *LedgerEntry) SetProfileId(v string)`
+
+SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
 
 ### GetReason
 
@@ -216,31 +241,6 @@ HasReason returns a boolean if a field has been set.
 `func (o *LedgerEntry) SetReason(v string)`
 
 SetReason gets a reference to the given string and assigns it to the Reason field.
-
-### GetExpiryDate
-
-`func (o *LedgerEntry) GetExpiryDate() time.Time`
-
-GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
-
-### GetExpiryDateOk
-
-`func (o *LedgerEntry) GetExpiryDateOk() (time.Time, bool)`
-
-GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExpiryDate
-
-`func (o *LedgerEntry) HasExpiryDate() bool`
-
-HasExpiryDate returns a boolean if a field has been set.
-
-### SetExpiryDate
-
-`func (o *LedgerEntry) SetExpiryDate(v time.Time)`
-
-SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
 
 ### GetReferenceId
 

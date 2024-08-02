@@ -4,45 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LedgerTransactionLogEntryIntegrationApi**](LedgerTransactionLogEntryIntegrationAPI.md) |  | 
+**Data** | Pointer to [**[]Application**](Application.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
 
 ## Methods
 
-### GetHasMore
-
-`func (o *InlineResponse2002) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse2002) GetHasMoreOk() (bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasHasMore
-
-`func (o *InlineResponse2002) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse2002) SetHasMore(v bool)`
-
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-
 ### GetData
 
-`func (o *InlineResponse2002) GetData() []LedgerTransactionLogEntryIntegrationApi`
+`func (o *InlineResponse2002) GetData() []Application`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2002) GetDataOk() ([]LedgerTransactionLogEntryIntegrationApi, bool)`
+`func (o *InlineResponse2002) GetDataOk() ([]Application, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +30,34 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse2002) SetData(v []LedgerTransactionLogEntryIntegrationApi)`
+`func (o *InlineResponse2002) SetData(v []Application)`
 
-SetData gets a reference to the given []LedgerTransactionLogEntryIntegrationApi and assigns it to the Data field.
+SetData gets a reference to the given []Application and assigns it to the Data field.
+
+### GetTotalResultSize
+
+`func (o *InlineResponse2002) GetTotalResultSize() int32`
+
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+
+### GetTotalResultSizeOk
+
+`func (o *InlineResponse2002) GetTotalResultSizeOk() (int32, bool)`
+
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalResultSize
+
+`func (o *InlineResponse2002) HasTotalResultSize() bool`
+
+HasTotalResultSize returns a boolean if a field has been set.
+
+### SetTotalResultSize
+
+`func (o *InlineResponse2002) SetTotalResultSize(v int32)`
+
+SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

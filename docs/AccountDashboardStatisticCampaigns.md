@@ -4,36 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Live** | Pointer to **int32** | Number of campaigns that are active and live (across all Applications). | 
 **EndingSoon** | Pointer to **int32** | Campaigns scheduled to expire sometime in the next 7 days. | 
+**Live** | Pointer to **int32** | Number of campaigns that are active and live (across all Applications). | 
 **LowOnBudget** | Pointer to **int32** | Campaigns with less than 10% of budget left. | 
 
 ## Methods
-
-### GetLive
-
-`func (o *AccountDashboardStatisticCampaigns) GetLive() int32`
-
-GetLive returns the Live field if non-nil, zero value otherwise.
-
-### GetLiveOk
-
-`func (o *AccountDashboardStatisticCampaigns) GetLiveOk() (int32, bool)`
-
-GetLiveOk returns a tuple with the Live field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLive
-
-`func (o *AccountDashboardStatisticCampaigns) HasLive() bool`
-
-HasLive returns a boolean if a field has been set.
-
-### SetLive
-
-`func (o *AccountDashboardStatisticCampaigns) SetLive(v int32)`
-
-SetLive gets a reference to the given int32 and assigns it to the Live field.
 
 ### GetEndingSoon
 
@@ -59,6 +34,31 @@ HasEndingSoon returns a boolean if a field has been set.
 `func (o *AccountDashboardStatisticCampaigns) SetEndingSoon(v int32)`
 
 SetEndingSoon gets a reference to the given int32 and assigns it to the EndingSoon field.
+
+### GetLive
+
+`func (o *AccountDashboardStatisticCampaigns) GetLive() int32`
+
+GetLive returns the Live field if non-nil, zero value otherwise.
+
+### GetLiveOk
+
+`func (o *AccountDashboardStatisticCampaigns) GetLiveOk() (int32, bool)`
+
+GetLiveOk returns a tuple with the Live field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLive
+
+`func (o *AccountDashboardStatisticCampaigns) HasLive() bool`
+
+HasLive returns a boolean if a field has been set.
+
+### SetLive
+
+`func (o *AccountDashboardStatisticCampaigns) SetLive(v int32)`
+
+SetLive gets a reference to the given int32 and assigns it to the Live field.
 
 ### GetLowOnBudget
 

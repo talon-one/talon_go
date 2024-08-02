@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | The ID of the event that triggered the strikethrough labeling. | 
-**Type** | Pointer to **string** | The type of event that triggered the strikethrough labeling. | 
-**TriggeredAt** | Pointer to [**time.Time**](time.Time.md) | The creation time of the event that triggered the strikethrough labeling. | 
-**TotalAffectedItems** | Pointer to **int32** | The total number of items affected by the event that triggered the strikethrough labeling. | 
 **Payload** | Pointer to [**map[string]interface{}**](.md) | The arbitrary properties associated with this trigger type. | 
+**TotalAffectedItems** | Pointer to **int32** | The total number of items affected by the event that triggered the strikethrough labeling. | 
+**TriggeredAt** | Pointer to [**time.Time**](time.Time.md) | The creation time of the event that triggered the strikethrough labeling. | 
+**Type** | Pointer to **string** | The type of event that triggered the strikethrough labeling. | 
 
 ## Methods
 
@@ -37,55 +37,30 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
 
-### GetType
+### GetPayload
 
-`func (o *StrikethroughTrigger) GetType() string`
+`func (o *StrikethroughTrigger) GetPayload() map[string]interface{}`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetPayload returns the Payload field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetPayloadOk
 
-`func (o *StrikethroughTrigger) GetTypeOk() (string, bool)`
+`func (o *StrikethroughTrigger) GetPayloadOk() (map[string]interface{}, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasType
+### HasPayload
 
-`func (o *StrikethroughTrigger) HasType() bool`
+`func (o *StrikethroughTrigger) HasPayload() bool`
 
-HasType returns a boolean if a field has been set.
+HasPayload returns a boolean if a field has been set.
 
-### SetType
+### SetPayload
 
-`func (o *StrikethroughTrigger) SetType(v string)`
+`func (o *StrikethroughTrigger) SetPayload(v map[string]interface{})`
 
-SetType gets a reference to the given string and assigns it to the Type field.
-
-### GetTriggeredAt
-
-`func (o *StrikethroughTrigger) GetTriggeredAt() time.Time`
-
-GetTriggeredAt returns the TriggeredAt field if non-nil, zero value otherwise.
-
-### GetTriggeredAtOk
-
-`func (o *StrikethroughTrigger) GetTriggeredAtOk() (time.Time, bool)`
-
-GetTriggeredAtOk returns a tuple with the TriggeredAt field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTriggeredAt
-
-`func (o *StrikethroughTrigger) HasTriggeredAt() bool`
-
-HasTriggeredAt returns a boolean if a field has been set.
-
-### SetTriggeredAt
-
-`func (o *StrikethroughTrigger) SetTriggeredAt(v time.Time)`
-
-SetTriggeredAt gets a reference to the given time.Time and assigns it to the TriggeredAt field.
+SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
 
 ### GetTotalAffectedItems
 
@@ -112,30 +87,55 @@ HasTotalAffectedItems returns a boolean if a field has been set.
 
 SetTotalAffectedItems gets a reference to the given int32 and assigns it to the TotalAffectedItems field.
 
-### GetPayload
+### GetTriggeredAt
 
-`func (o *StrikethroughTrigger) GetPayload() map[string]interface{}`
+`func (o *StrikethroughTrigger) GetTriggeredAt() time.Time`
 
-GetPayload returns the Payload field if non-nil, zero value otherwise.
+GetTriggeredAt returns the TriggeredAt field if non-nil, zero value otherwise.
 
-### GetPayloadOk
+### GetTriggeredAtOk
 
-`func (o *StrikethroughTrigger) GetPayloadOk() (map[string]interface{}, bool)`
+`func (o *StrikethroughTrigger) GetTriggeredAtOk() (time.Time, bool)`
 
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
+GetTriggeredAtOk returns a tuple with the TriggeredAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPayload
+### HasTriggeredAt
 
-`func (o *StrikethroughTrigger) HasPayload() bool`
+`func (o *StrikethroughTrigger) HasTriggeredAt() bool`
 
-HasPayload returns a boolean if a field has been set.
+HasTriggeredAt returns a boolean if a field has been set.
 
-### SetPayload
+### SetTriggeredAt
 
-`func (o *StrikethroughTrigger) SetPayload(v map[string]interface{})`
+`func (o *StrikethroughTrigger) SetTriggeredAt(v time.Time)`
 
-SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
+SetTriggeredAt gets a reference to the given time.Time and assigns it to the TriggeredAt field.
+
+### GetType
+
+`func (o *StrikethroughTrigger) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *StrikethroughTrigger) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *StrikethroughTrigger) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *StrikethroughTrigger) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

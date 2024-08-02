@@ -4,42 +4,42 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**CreatedBy** | Pointer to **int32** | The ID of user who created this catalog. | 
+**Description** | Pointer to **string** | A description of this cart item catalog. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **Name** | Pointer to **string** | The cart item catalog name. | 
-**Description** | Pointer to **string** | A description of this cart item catalog. | 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this catalog. | [optional] 
 **Version** | Pointer to **int32** | The current version of this catalog. | 
-**CreatedBy** | Pointer to **int32** | The ID of user who created this catalog. | 
 
 ## Methods
 
-### GetId
+### GetAccountId
 
-`func (o *Catalog) GetId() int32`
+`func (o *Catalog) GetAccountId() int32`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetAccountIdOk
 
-`func (o *Catalog) GetIdOk() (int32, bool)`
+`func (o *Catalog) GetAccountIdOk() (int32, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
+### HasAccountId
 
-`func (o *Catalog) HasId() bool`
+`func (o *Catalog) HasAccountId() bool`
 
-HasId returns a boolean if a field has been set.
+HasAccountId returns a boolean if a field has been set.
 
-### SetId
+### SetAccountId
 
-`func (o *Catalog) SetId(v int32)`
+`func (o *Catalog) SetAccountId(v int32)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
 ### GetCreated
 
@@ -66,30 +66,80 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetAccountId
+### GetCreatedBy
 
-`func (o *Catalog) GetAccountId() int32`
+`func (o *Catalog) GetCreatedBy() int32`
 
-GetAccountId returns the AccountId field if non-nil, zero value otherwise.
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
-### GetAccountIdOk
+### GetCreatedByOk
 
-`func (o *Catalog) GetAccountIdOk() (int32, bool)`
+`func (o *Catalog) GetCreatedByOk() (int32, bool)`
 
-GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAccountId
+### HasCreatedBy
 
-`func (o *Catalog) HasAccountId() bool`
+`func (o *Catalog) HasCreatedBy() bool`
 
-HasAccountId returns a boolean if a field has been set.
+HasCreatedBy returns a boolean if a field has been set.
 
-### SetAccountId
+### SetCreatedBy
 
-`func (o *Catalog) SetAccountId(v int32)`
+`func (o *Catalog) SetCreatedBy(v int32)`
 
-SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
+SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
+
+### GetDescription
+
+`func (o *Catalog) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *Catalog) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *Catalog) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *Catalog) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetId
+
+`func (o *Catalog) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *Catalog) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *Catalog) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *Catalog) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetModified
 
@@ -141,31 +191,6 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetDescription
-
-`func (o *Catalog) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *Catalog) GetDescriptionOk() (string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *Catalog) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *Catalog) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
-
 ### GetSubscribedApplicationsIds
 
 `func (o *Catalog) GetSubscribedApplicationsIds() []int32`
@@ -215,31 +240,6 @@ HasVersion returns a boolean if a field has been set.
 `func (o *Catalog) SetVersion(v int32)`
 
 SetVersion gets a reference to the given int32 and assigns it to the Version field.
-
-### GetCreatedBy
-
-`func (o *Catalog) GetCreatedBy() int32`
-
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
-
-### GetCreatedByOk
-
-`func (o *Catalog) GetCreatedByOk() (int32, bool)`
-
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreatedBy
-
-`func (o *Catalog) HasCreatedBy() bool`
-
-HasCreatedBy returns a boolean if a field has been set.
-
-### SetCreatedBy
-
-`func (o *Catalog) SetCreatedBy(v int32)`
-
-SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,36 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** | Description of the product bundle. | 
 **BundleAttributes** | Pointer to **[]string** | The cart item attributes that determined which items are being bundled together. | 
+**Description** | Pointer to **string** | Description of the product bundle. | 
 **ItemsIndices** | Pointer to **[]float32** | The indices in the cart items array of the bundled items. | 
 
 ## Methods
-
-### GetDescription
-
-`func (o *ShowBundleMetadataEffectProps) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *ShowBundleMetadataEffectProps) GetDescriptionOk() (string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *ShowBundleMetadataEffectProps) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *ShowBundleMetadataEffectProps) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetBundleAttributes
 
@@ -59,6 +34,31 @@ HasBundleAttributes returns a boolean if a field has been set.
 `func (o *ShowBundleMetadataEffectProps) SetBundleAttributes(v []string)`
 
 SetBundleAttributes gets a reference to the given []string and assigns it to the BundleAttributes field.
+
+### GetDescription
+
+`func (o *ShowBundleMetadataEffectProps) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *ShowBundleMetadataEffectProps) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *ShowBundleMetadataEffectProps) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *ShowBundleMetadataEffectProps) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetItemsIndices
 

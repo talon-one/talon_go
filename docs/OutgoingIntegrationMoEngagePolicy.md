@@ -4,37 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseUrl** | Pointer to **string** | The base URL of your MoEngage deployment, containing the MoEngage data center number (represented by &#x60;0X&#x60;). | 
 **AppId** | Pointer to **string** | MoEngage APP ID. See [MoEngage Developer Guide](https://developers.moengage.com/hc/en-us/articles/4404674776724-Overview). | 
+**BaseUrl** | Pointer to **string** | The base URL of your MoEngage deployment, containing the MoEngage data center number (represented by &#x60;0X&#x60;). | 
 **DataApiId** | Pointer to **string** | MoEngage DATA API ID. See [MoEngage Developer Guide](https://developers.moengage.com/hc/en-us/articles/4404674776724-Overview). | 
 **DataApiKey** | Pointer to **string** | MoEngage DATA API Key. See [MoEngage Developer Guide](https://developers.moengage.com/hc/en-us/articles/4404674776724-Overview). | 
 
 ## Methods
-
-### GetBaseUrl
-
-`func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrl() string`
-
-GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
-
-### GetBaseUrlOk
-
-`func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrlOk() (string, bool)`
-
-GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasBaseUrl
-
-`func (o *OutgoingIntegrationMoEngagePolicy) HasBaseUrl() bool`
-
-HasBaseUrl returns a boolean if a field has been set.
-
-### SetBaseUrl
-
-`func (o *OutgoingIntegrationMoEngagePolicy) SetBaseUrl(v string)`
-
-SetBaseUrl gets a reference to the given string and assigns it to the BaseUrl field.
 
 ### GetAppId
 
@@ -60,6 +35,31 @@ HasAppId returns a boolean if a field has been set.
 `func (o *OutgoingIntegrationMoEngagePolicy) SetAppId(v string)`
 
 SetAppId gets a reference to the given string and assigns it to the AppId field.
+
+### GetBaseUrl
+
+`func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrl() string`
+
+GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
+
+### GetBaseUrlOk
+
+`func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrlOk() (string, bool)`
+
+GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBaseUrl
+
+`func (o *OutgoingIntegrationMoEngagePolicy) HasBaseUrl() bool`
+
+HasBaseUrl returns a boolean if a field has been set.
+
+### SetBaseUrl
+
+`func (o *OutgoingIntegrationMoEngagePolicy) SetBaseUrl(v string)`
+
+SetBaseUrl gets a reference to the given string and assigns it to the BaseUrl field.
 
 ### GetDataApiId
 

@@ -4,16 +4,66 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Description** | Pointer to **string** | The description of the specific outgoing integration template. | 
+**Headers** | Pointer to **[]string** | The list of HTTP headers for this integration template. | 
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **IntegrationType** | Pointer to **int32** | Unique ID of outgoing integration type. | 
-**Title** | Pointer to **string** | The title of the integration template. | 
-**Description** | Pointer to **string** | The description of the specific outgoing integration template. | 
-**Payload** | Pointer to **string** | The API payload (supports templating using parameters) for this integration template. | 
 **Method** | Pointer to **string** | API method for this webhook. | 
+**Payload** | Pointer to **string** | The API payload (supports templating using parameters) for this integration template. | 
 **RelativeUrl** | Pointer to **string** | The relative URL corresponding to each integration template. | 
-**Headers** | Pointer to **[]string** | The list of HTTP headers for this integration template. | 
+**Title** | Pointer to **string** | The title of the integration template. | 
 
 ## Methods
+
+### GetDescription
+
+`func (o *OutgoingIntegrationTemplate) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *OutgoingIntegrationTemplate) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *OutgoingIntegrationTemplate) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *OutgoingIntegrationTemplate) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetHeaders
+
+`func (o *OutgoingIntegrationTemplate) GetHeaders() []string`
+
+GetHeaders returns the Headers field if non-nil, zero value otherwise.
+
+### GetHeadersOk
+
+`func (o *OutgoingIntegrationTemplate) GetHeadersOk() ([]string, bool)`
+
+GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasHeaders
+
+`func (o *OutgoingIntegrationTemplate) HasHeaders() bool`
+
+HasHeaders returns a boolean if a field has been set.
+
+### SetHeaders
+
+`func (o *OutgoingIntegrationTemplate) SetHeaders(v []string)`
+
+SetHeaders gets a reference to the given []string and assigns it to the Headers field.
 
 ### GetId
 
@@ -65,55 +115,30 @@ HasIntegrationType returns a boolean if a field has been set.
 
 SetIntegrationType gets a reference to the given int32 and assigns it to the IntegrationType field.
 
-### GetTitle
+### GetMethod
 
-`func (o *OutgoingIntegrationTemplate) GetTitle() string`
+`func (o *OutgoingIntegrationTemplate) GetMethod() string`
 
-GetTitle returns the Title field if non-nil, zero value otherwise.
+GetMethod returns the Method field if non-nil, zero value otherwise.
 
-### GetTitleOk
+### GetMethodOk
 
-`func (o *OutgoingIntegrationTemplate) GetTitleOk() (string, bool)`
+`func (o *OutgoingIntegrationTemplate) GetMethodOk() (string, bool)`
 
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTitle
+### HasMethod
 
-`func (o *OutgoingIntegrationTemplate) HasTitle() bool`
+`func (o *OutgoingIntegrationTemplate) HasMethod() bool`
 
-HasTitle returns a boolean if a field has been set.
+HasMethod returns a boolean if a field has been set.
 
-### SetTitle
+### SetMethod
 
-`func (o *OutgoingIntegrationTemplate) SetTitle(v string)`
+`func (o *OutgoingIntegrationTemplate) SetMethod(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
-
-### GetDescription
-
-`func (o *OutgoingIntegrationTemplate) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *OutgoingIntegrationTemplate) GetDescriptionOk() (string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *OutgoingIntegrationTemplate) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *OutgoingIntegrationTemplate) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetMethod gets a reference to the given string and assigns it to the Method field.
 
 ### GetPayload
 
@@ -140,31 +165,6 @@ HasPayload returns a boolean if a field has been set.
 
 SetPayload gets a reference to the given string and assigns it to the Payload field.
 
-### GetMethod
-
-`func (o *OutgoingIntegrationTemplate) GetMethod() string`
-
-GetMethod returns the Method field if non-nil, zero value otherwise.
-
-### GetMethodOk
-
-`func (o *OutgoingIntegrationTemplate) GetMethodOk() (string, bool)`
-
-GetMethodOk returns a tuple with the Method field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasMethod
-
-`func (o *OutgoingIntegrationTemplate) HasMethod() bool`
-
-HasMethod returns a boolean if a field has been set.
-
-### SetMethod
-
-`func (o *OutgoingIntegrationTemplate) SetMethod(v string)`
-
-SetMethod gets a reference to the given string and assigns it to the Method field.
-
 ### GetRelativeUrl
 
 `func (o *OutgoingIntegrationTemplate) GetRelativeUrl() string`
@@ -190,30 +190,30 @@ HasRelativeUrl returns a boolean if a field has been set.
 
 SetRelativeUrl gets a reference to the given string and assigns it to the RelativeUrl field.
 
-### GetHeaders
+### GetTitle
 
-`func (o *OutgoingIntegrationTemplate) GetHeaders() []string`
+`func (o *OutgoingIntegrationTemplate) GetTitle() string`
 
-GetHeaders returns the Headers field if non-nil, zero value otherwise.
+GetTitle returns the Title field if non-nil, zero value otherwise.
 
-### GetHeadersOk
+### GetTitleOk
 
-`func (o *OutgoingIntegrationTemplate) GetHeadersOk() ([]string, bool)`
+`func (o *OutgoingIntegrationTemplate) GetTitleOk() (string, bool)`
 
-GetHeadersOk returns a tuple with the Headers field if it's non-nil, zero value otherwise
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasHeaders
+### HasTitle
 
-`func (o *OutgoingIntegrationTemplate) HasHeaders() bool`
+`func (o *OutgoingIntegrationTemplate) HasTitle() bool`
 
-HasHeaders returns a boolean if a field has been set.
+HasTitle returns a boolean if a field has been set.
 
-### SetHeaders
+### SetTitle
 
-`func (o *OutgoingIntegrationTemplate) SetHeaders(v []string)`
+`func (o *OutgoingIntegrationTemplate) SetTitle(v string)`
 
-SetHeaders gets a reference to the given []string and assigns it to the Headers field.
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,124 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
-**Email** | Pointer to **string** | The email address associated with the user profile. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | Name of the user. | 
-**State** | Pointer to **string** | State of the user. | 
+**AdditionalAttributes** | Pointer to [**map[string]interface{}**](.md) | Additional user attributes, created and used by external identity providers. | [optional] 
+**ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) | Application notifications that the user is subscribed to. | [optional] 
+**AuthMethod** | Pointer to **string** | Authentication method for this user. | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Email** | Pointer to **string** | The email address associated with the user profile. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **InviteToken** | Pointer to **string** | Invitation token of the user.  **Note**: If the user has already accepted their invitation, this is &#x60;null&#x60;.  | 
 **IsAdmin** | Pointer to **bool** | Indicates whether the user is an &#x60;admin&#x60;. | [optional] 
+**LastAccessed** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the user&#39;s last activity after signing in to Talon.One. | [optional] 
+**LastSignedIn** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the user last signed in to Talon.One. | [optional] 
+**LatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the user was notified for feed. | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
+**Name** | Pointer to **string** | Name of the user. | 
 **Policy** | Pointer to [**map[string]interface{}**](.md) | Access level of the user. | 
 **Roles** | Pointer to **[]int32** | A list of the IDs of the roles assigned to the user. | [optional] 
-**AuthMethod** | Pointer to **string** | Authentication method for this user. | [optional] 
-**ApplicationNotificationSubscriptions** | Pointer to [**map[string]interface{}**](.md) | Application notifications that the user is subscribed to. | [optional] 
-**LastSignedIn** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the user last signed in to Talon.One. | [optional] 
-**LastAccessed** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the user&#39;s last activity after signing in to Talon.One. | [optional] 
-**LatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the user was notified for feed. | [optional] 
+**State** | Pointer to **string** | State of the user. | 
 
 ## Methods
-
-### GetId
-
-`func (o *User) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *User) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *User) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *User) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *User) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *User) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *User) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *User) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetModified
-
-`func (o *User) GetModified() time.Time`
-
-GetModified returns the Modified field if non-nil, zero value otherwise.
-
-### GetModifiedOk
-
-`func (o *User) GetModifiedOk() (time.Time, bool)`
-
-GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasModified
-
-`func (o *User) HasModified() bool`
-
-HasModified returns a boolean if a field has been set.
-
-### SetModified
-
-`func (o *User) SetModified(v time.Time)`
-
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-
-### GetEmail
-
-`func (o *User) GetEmail() string`
-
-GetEmail returns the Email field if non-nil, zero value otherwise.
-
-### GetEmailOk
-
-`func (o *User) GetEmailOk() (string, bool)`
-
-GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEmail
-
-`func (o *User) HasEmail() bool`
-
-HasEmail returns a boolean if a field has been set.
-
-### SetEmail
-
-`func (o *User) SetEmail(v string)`
-
-SetEmail gets a reference to the given string and assigns it to the Email field.
 
 ### GetAccountId
 
@@ -148,55 +49,155 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetName
+### GetAdditionalAttributes
 
-`func (o *User) GetName() string`
+`func (o *User) GetAdditionalAttributes() map[string]interface{}`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAdditionalAttributes returns the AdditionalAttributes field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAdditionalAttributesOk
 
-`func (o *User) GetNameOk() (string, bool)`
+`func (o *User) GetAdditionalAttributesOk() (map[string]interface{}, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAdditionalAttributesOk returns a tuple with the AdditionalAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasAdditionalAttributes
 
-`func (o *User) HasName() bool`
+`func (o *User) HasAdditionalAttributes() bool`
 
-HasName returns a boolean if a field has been set.
+HasAdditionalAttributes returns a boolean if a field has been set.
 
-### SetName
+### SetAdditionalAttributes
 
-`func (o *User) SetName(v string)`
+`func (o *User) SetAdditionalAttributes(v map[string]interface{})`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetAdditionalAttributes gets a reference to the given map[string]interface{} and assigns it to the AdditionalAttributes field.
 
-### GetState
+### GetApplicationNotificationSubscriptions
 
-`func (o *User) GetState() string`
+`func (o *User) GetApplicationNotificationSubscriptions() map[string]interface{}`
 
-GetState returns the State field if non-nil, zero value otherwise.
+GetApplicationNotificationSubscriptions returns the ApplicationNotificationSubscriptions field if non-nil, zero value otherwise.
 
-### GetStateOk
+### GetApplicationNotificationSubscriptionsOk
 
-`func (o *User) GetStateOk() (string, bool)`
+`func (o *User) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool)`
 
-GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
+GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasState
+### HasApplicationNotificationSubscriptions
 
-`func (o *User) HasState() bool`
+`func (o *User) HasApplicationNotificationSubscriptions() bool`
 
-HasState returns a boolean if a field has been set.
+HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
 
-### SetState
+### SetApplicationNotificationSubscriptions
 
-`func (o *User) SetState(v string)`
+`func (o *User) SetApplicationNotificationSubscriptions(v map[string]interface{})`
 
-SetState gets a reference to the given string and assigns it to the State field.
+SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
+
+### GetAuthMethod
+
+`func (o *User) GetAuthMethod() string`
+
+GetAuthMethod returns the AuthMethod field if non-nil, zero value otherwise.
+
+### GetAuthMethodOk
+
+`func (o *User) GetAuthMethodOk() (string, bool)`
+
+GetAuthMethodOk returns a tuple with the AuthMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAuthMethod
+
+`func (o *User) HasAuthMethod() bool`
+
+HasAuthMethod returns a boolean if a field has been set.
+
+### SetAuthMethod
+
+`func (o *User) SetAuthMethod(v string)`
+
+SetAuthMethod gets a reference to the given string and assigns it to the AuthMethod field.
+
+### GetCreated
+
+`func (o *User) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *User) GetCreatedOk() (time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *User) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *User) SetCreated(v time.Time)`
+
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetEmail
+
+`func (o *User) GetEmail() string`
+
+GetEmail returns the Email field if non-nil, zero value otherwise.
+
+### GetEmailOk
+
+`func (o *User) GetEmailOk() (string, bool)`
+
+GetEmailOk returns a tuple with the Email field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEmail
+
+`func (o *User) HasEmail() bool`
+
+HasEmail returns a boolean if a field has been set.
+
+### SetEmail
+
+`func (o *User) SetEmail(v string)`
+
+SetEmail gets a reference to the given string and assigns it to the Email field.
+
+### GetId
+
+`func (o *User) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *User) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *User) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *User) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetInviteToken
 
@@ -248,6 +249,131 @@ HasIsAdmin returns a boolean if a field has been set.
 
 SetIsAdmin gets a reference to the given bool and assigns it to the IsAdmin field.
 
+### GetLastAccessed
+
+`func (o *User) GetLastAccessed() time.Time`
+
+GetLastAccessed returns the LastAccessed field if non-nil, zero value otherwise.
+
+### GetLastAccessedOk
+
+`func (o *User) GetLastAccessedOk() (time.Time, bool)`
+
+GetLastAccessedOk returns a tuple with the LastAccessed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastAccessed
+
+`func (o *User) HasLastAccessed() bool`
+
+HasLastAccessed returns a boolean if a field has been set.
+
+### SetLastAccessed
+
+`func (o *User) SetLastAccessed(v time.Time)`
+
+SetLastAccessed gets a reference to the given time.Time and assigns it to the LastAccessed field.
+
+### GetLastSignedIn
+
+`func (o *User) GetLastSignedIn() time.Time`
+
+GetLastSignedIn returns the LastSignedIn field if non-nil, zero value otherwise.
+
+### GetLastSignedInOk
+
+`func (o *User) GetLastSignedInOk() (time.Time, bool)`
+
+GetLastSignedInOk returns a tuple with the LastSignedIn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastSignedIn
+
+`func (o *User) HasLastSignedIn() bool`
+
+HasLastSignedIn returns a boolean if a field has been set.
+
+### SetLastSignedIn
+
+`func (o *User) SetLastSignedIn(v time.Time)`
+
+SetLastSignedIn gets a reference to the given time.Time and assigns it to the LastSignedIn field.
+
+### GetLatestFeedTimestamp
+
+`func (o *User) GetLatestFeedTimestamp() time.Time`
+
+GetLatestFeedTimestamp returns the LatestFeedTimestamp field if non-nil, zero value otherwise.
+
+### GetLatestFeedTimestampOk
+
+`func (o *User) GetLatestFeedTimestampOk() (time.Time, bool)`
+
+GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLatestFeedTimestamp
+
+`func (o *User) HasLatestFeedTimestamp() bool`
+
+HasLatestFeedTimestamp returns a boolean if a field has been set.
+
+### SetLatestFeedTimestamp
+
+`func (o *User) SetLatestFeedTimestamp(v time.Time)`
+
+SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
+
+### GetModified
+
+`func (o *User) GetModified() time.Time`
+
+GetModified returns the Modified field if non-nil, zero value otherwise.
+
+### GetModifiedOk
+
+`func (o *User) GetModifiedOk() (time.Time, bool)`
+
+GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasModified
+
+`func (o *User) HasModified() bool`
+
+HasModified returns a boolean if a field has been set.
+
+### SetModified
+
+`func (o *User) SetModified(v time.Time)`
+
+SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+
+### GetName
+
+`func (o *User) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *User) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *User) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *User) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
 ### GetPolicy
 
 `func (o *User) GetPolicy() map[string]interface{}`
@@ -298,130 +424,30 @@ HasRoles returns a boolean if a field has been set.
 
 SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
 
-### GetAuthMethod
+### GetState
 
-`func (o *User) GetAuthMethod() string`
+`func (o *User) GetState() string`
 
-GetAuthMethod returns the AuthMethod field if non-nil, zero value otherwise.
+GetState returns the State field if non-nil, zero value otherwise.
 
-### GetAuthMethodOk
+### GetStateOk
 
-`func (o *User) GetAuthMethodOk() (string, bool)`
+`func (o *User) GetStateOk() (string, bool)`
 
-GetAuthMethodOk returns a tuple with the AuthMethod field if it's non-nil, zero value otherwise
+GetStateOk returns a tuple with the State field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAuthMethod
+### HasState
 
-`func (o *User) HasAuthMethod() bool`
+`func (o *User) HasState() bool`
 
-HasAuthMethod returns a boolean if a field has been set.
+HasState returns a boolean if a field has been set.
 
-### SetAuthMethod
+### SetState
 
-`func (o *User) SetAuthMethod(v string)`
+`func (o *User) SetState(v string)`
 
-SetAuthMethod gets a reference to the given string and assigns it to the AuthMethod field.
-
-### GetApplicationNotificationSubscriptions
-
-`func (o *User) GetApplicationNotificationSubscriptions() map[string]interface{}`
-
-GetApplicationNotificationSubscriptions returns the ApplicationNotificationSubscriptions field if non-nil, zero value otherwise.
-
-### GetApplicationNotificationSubscriptionsOk
-
-`func (o *User) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool)`
-
-GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasApplicationNotificationSubscriptions
-
-`func (o *User) HasApplicationNotificationSubscriptions() bool`
-
-HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
-
-### SetApplicationNotificationSubscriptions
-
-`func (o *User) SetApplicationNotificationSubscriptions(v map[string]interface{})`
-
-SetApplicationNotificationSubscriptions gets a reference to the given map[string]interface{} and assigns it to the ApplicationNotificationSubscriptions field.
-
-### GetLastSignedIn
-
-`func (o *User) GetLastSignedIn() time.Time`
-
-GetLastSignedIn returns the LastSignedIn field if non-nil, zero value otherwise.
-
-### GetLastSignedInOk
-
-`func (o *User) GetLastSignedInOk() (time.Time, bool)`
-
-GetLastSignedInOk returns a tuple with the LastSignedIn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLastSignedIn
-
-`func (o *User) HasLastSignedIn() bool`
-
-HasLastSignedIn returns a boolean if a field has been set.
-
-### SetLastSignedIn
-
-`func (o *User) SetLastSignedIn(v time.Time)`
-
-SetLastSignedIn gets a reference to the given time.Time and assigns it to the LastSignedIn field.
-
-### GetLastAccessed
-
-`func (o *User) GetLastAccessed() time.Time`
-
-GetLastAccessed returns the LastAccessed field if non-nil, zero value otherwise.
-
-### GetLastAccessedOk
-
-`func (o *User) GetLastAccessedOk() (time.Time, bool)`
-
-GetLastAccessedOk returns a tuple with the LastAccessed field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLastAccessed
-
-`func (o *User) HasLastAccessed() bool`
-
-HasLastAccessed returns a boolean if a field has been set.
-
-### SetLastAccessed
-
-`func (o *User) SetLastAccessed(v time.Time)`
-
-SetLastAccessed gets a reference to the given time.Time and assigns it to the LastAccessed field.
-
-### GetLatestFeedTimestamp
-
-`func (o *User) GetLatestFeedTimestamp() time.Time`
-
-GetLatestFeedTimestamp returns the LatestFeedTimestamp field if non-nil, zero value otherwise.
-
-### GetLatestFeedTimestampOk
-
-`func (o *User) GetLatestFeedTimestampOk() (time.Time, bool)`
-
-GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLatestFeedTimestamp
-
-`func (o *User) HasLatestFeedTimestamp() bool`
-
-HasLatestFeedTimestamp returns a boolean if a field has been set.
-
-### SetLatestFeedTimestamp
-
-`func (o *User) SetLatestFeedTimestamp(v time.Time)`
-
-SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
+SetState gets a reference to the given string and assigns it to the State field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

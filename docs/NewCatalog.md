@@ -4,36 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The cart item catalog name. | 
 **Description** | Pointer to **string** | A description of this cart item catalog. | 
+**Name** | Pointer to **string** | The cart item catalog name. | 
 **SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications that are subscribed to this catalog. | [optional] 
 
 ## Methods
-
-### GetName
-
-`func (o *NewCatalog) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *NewCatalog) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *NewCatalog) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *NewCatalog) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetDescription
 
@@ -59,6 +34,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *NewCatalog) SetDescription(v string)`
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetName
+
+`func (o *NewCatalog) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewCatalog) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *NewCatalog) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *NewCatalog) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetSubscribedApplicationsIds
 

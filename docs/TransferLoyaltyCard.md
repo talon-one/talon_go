@@ -4,9 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
 **NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
 
 ## Methods
+
+### GetBlockReason
+
+`func (o *TransferLoyaltyCard) GetBlockReason() string`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *TransferLoyaltyCard) GetBlockReasonOk() (string, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBlockReason
+
+`func (o *TransferLoyaltyCard) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
+
+### SetBlockReason
+
+`func (o *TransferLoyaltyCard) SetBlockReason(v string)`
+
+SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
 
 ### GetNewCardIdentifier
 

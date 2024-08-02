@@ -4,64 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | The notification type. | 
-**QueryParams** | Pointer to **map[string]string** | Array of query parameters. | [optional] 
 **Headers** | Pointer to **map[string]string** | List of API HTTP headers for the given webhook-based notification. | [optional] 
-**Verb** | Pointer to **string** | API method for this notification. | 
-**Url** | Pointer to **string** | API URL for the given notification. | 
 **Payload** | Pointer to **string** | API payload of this notification. | 
+**QueryParams** | Pointer to **map[string]string** | Array of query parameters. | [optional] 
+**Type** | Pointer to **string** | The notification type. | 
+**Url** | Pointer to **string** | API URL for the given notification. | 
+**Verb** | Pointer to **string** | API method for this notification. | 
 
 ## Methods
-
-### GetType
-
-`func (o *NewNotificationTest) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *NewNotificationTest) GetTypeOk() (string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *NewNotificationTest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *NewNotificationTest) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
-
-### GetQueryParams
-
-`func (o *NewNotificationTest) GetQueryParams() map[string]string`
-
-GetQueryParams returns the QueryParams field if non-nil, zero value otherwise.
-
-### GetQueryParamsOk
-
-`func (o *NewNotificationTest) GetQueryParamsOk() (map[string]string, bool)`
-
-GetQueryParamsOk returns a tuple with the QueryParams field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasQueryParams
-
-`func (o *NewNotificationTest) HasQueryParams() bool`
-
-HasQueryParams returns a boolean if a field has been set.
-
-### SetQueryParams
-
-`func (o *NewNotificationTest) SetQueryParams(v map[string]string)`
-
-SetQueryParams gets a reference to the given map[string]string and assigns it to the QueryParams field.
 
 ### GetHeaders
 
@@ -88,30 +38,80 @@ HasHeaders returns a boolean if a field has been set.
 
 SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
 
-### GetVerb
+### GetPayload
 
-`func (o *NewNotificationTest) GetVerb() string`
+`func (o *NewNotificationTest) GetPayload() string`
 
-GetVerb returns the Verb field if non-nil, zero value otherwise.
+GetPayload returns the Payload field if non-nil, zero value otherwise.
 
-### GetVerbOk
+### GetPayloadOk
 
-`func (o *NewNotificationTest) GetVerbOk() (string, bool)`
+`func (o *NewNotificationTest) GetPayloadOk() (string, bool)`
 
-GetVerbOk returns a tuple with the Verb field if it's non-nil, zero value otherwise
+GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasVerb
+### HasPayload
 
-`func (o *NewNotificationTest) HasVerb() bool`
+`func (o *NewNotificationTest) HasPayload() bool`
 
-HasVerb returns a boolean if a field has been set.
+HasPayload returns a boolean if a field has been set.
 
-### SetVerb
+### SetPayload
 
-`func (o *NewNotificationTest) SetVerb(v string)`
+`func (o *NewNotificationTest) SetPayload(v string)`
 
-SetVerb gets a reference to the given string and assigns it to the Verb field.
+SetPayload gets a reference to the given string and assigns it to the Payload field.
+
+### GetQueryParams
+
+`func (o *NewNotificationTest) GetQueryParams() map[string]string`
+
+GetQueryParams returns the QueryParams field if non-nil, zero value otherwise.
+
+### GetQueryParamsOk
+
+`func (o *NewNotificationTest) GetQueryParamsOk() (map[string]string, bool)`
+
+GetQueryParamsOk returns a tuple with the QueryParams field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasQueryParams
+
+`func (o *NewNotificationTest) HasQueryParams() bool`
+
+HasQueryParams returns a boolean if a field has been set.
+
+### SetQueryParams
+
+`func (o *NewNotificationTest) SetQueryParams(v map[string]string)`
+
+SetQueryParams gets a reference to the given map[string]string and assigns it to the QueryParams field.
+
+### GetType
+
+`func (o *NewNotificationTest) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *NewNotificationTest) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *NewNotificationTest) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *NewNotificationTest) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
 
 ### GetUrl
 
@@ -138,30 +138,30 @@ HasUrl returns a boolean if a field has been set.
 
 SetUrl gets a reference to the given string and assigns it to the Url field.
 
-### GetPayload
+### GetVerb
 
-`func (o *NewNotificationTest) GetPayload() string`
+`func (o *NewNotificationTest) GetVerb() string`
 
-GetPayload returns the Payload field if non-nil, zero value otherwise.
+GetVerb returns the Verb field if non-nil, zero value otherwise.
 
-### GetPayloadOk
+### GetVerbOk
 
-`func (o *NewNotificationTest) GetPayloadOk() (string, bool)`
+`func (o *NewNotificationTest) GetVerbOk() (string, bool)`
 
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
+GetVerbOk returns a tuple with the Verb field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPayload
+### HasVerb
 
-`func (o *NewNotificationTest) HasPayload() bool`
+`func (o *NewNotificationTest) HasVerb() bool`
 
-HasPayload returns a boolean if a field has been set.
+HasVerb returns a boolean if a field has been set.
 
-### SetPayload
+### SetVerb
 
-`func (o *NewNotificationTest) SetPayload(v string)`
+`func (o *NewNotificationTest) SetVerb(v string)`
 
-SetPayload gets a reference to the given string and assigns it to the Payload field.
+SetVerb gets a reference to the given string and assigns it to the Verb field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

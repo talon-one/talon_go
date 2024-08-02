@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the store. | 
-**Description** | Pointer to **string** | The description of the store. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | The attributes of the store. | [optional] 
+**Description** | Pointer to **string** | The description of the store. | 
+**Name** | Pointer to **string** | The name of the store. | 
 
 ## Methods
 
-### GetName
+### GetAttributes
 
-`func (o *UpdateStore) GetName() string`
+`func (o *UpdateStore) GetAttributes() map[string]interface{}`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetAttributesOk
 
-`func (o *UpdateStore) GetNameOk() (string, bool)`
+`func (o *UpdateStore) GetAttributesOk() (map[string]interface{}, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasAttributes
 
-`func (o *UpdateStore) HasName() bool`
+`func (o *UpdateStore) HasAttributes() bool`
 
-HasName returns a boolean if a field has been set.
+HasAttributes returns a boolean if a field has been set.
 
-### SetName
+### SetAttributes
 
-`func (o *UpdateStore) SetName(v string)`
+`func (o *UpdateStore) SetAttributes(v map[string]interface{})`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetDescription
 
@@ -60,30 +60,30 @@ HasDescription returns a boolean if a field has been set.
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
 
-### GetAttributes
+### GetName
 
-`func (o *UpdateStore) GetAttributes() map[string]interface{}`
+`func (o *UpdateStore) GetName() string`
 
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetAttributesOk
+### GetNameOk
 
-`func (o *UpdateStore) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *UpdateStore) GetNameOk() (string, bool)`
 
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAttributes
+### HasName
 
-`func (o *UpdateStore) HasAttributes() bool`
+`func (o *UpdateStore) HasName() bool`
 
-HasAttributes returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### SetAttributes
+### SetName
 
-`func (o *UpdateStore) SetAttributes(v map[string]interface{})`
+`func (o *UpdateStore) SetName(v string)`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetName gets a reference to the given string and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

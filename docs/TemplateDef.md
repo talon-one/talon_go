@@ -4,69 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
-**Title** | Pointer to **string** | Campaigner-friendly name for the template that will be shown in the rule editor. | 
-**Description** | Pointer to **string** | A short description of the template that will be shown in the rule editor. | 
-**Help** | Pointer to **string** | Extended help text for the template. | 
-**Category** | Pointer to **string** | Used for grouping templates in the rule editor sidebar. | 
-**Expr** | Pointer to [**[]interface{}**]([]interface{}.md) | A Talang expression that contains variable bindings referring to args. | 
 **Args** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | An array of argument definitions. | 
+**Category** | Pointer to **string** | Used for grouping templates in the rule editor sidebar. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Description** | Pointer to **string** | A short description of the template that will be shown in the rule editor. | 
 **Expose** | Pointer to **bool** | A flag to control exposure in Rule Builder. | [optional] [default to false]
+**Expr** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | A Talang expression that contains variable bindings referring to args. | 
+**Help** | Pointer to **string** | Extended help text for the template. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Name** | Pointer to **string** | The template name used in Talang. | 
+**Title** | Pointer to **string** | Campaigner-friendly name for the template that will be shown in the rule editor. | 
 
 ## Methods
-
-### GetId
-
-`func (o *TemplateDef) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *TemplateDef) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *TemplateDef) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *TemplateDef) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *TemplateDef) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *TemplateDef) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *TemplateDef) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *TemplateDef) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetApplicationId
 
@@ -93,80 +43,30 @@ HasApplicationId returns a boolean if a field has been set.
 
 SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
 
-### GetTitle
+### GetArgs
 
-`func (o *TemplateDef) GetTitle() string`
+`func (o *TemplateDef) GetArgs() []TemplateArgDef`
 
-GetTitle returns the Title field if non-nil, zero value otherwise.
+GetArgs returns the Args field if non-nil, zero value otherwise.
 
-### GetTitleOk
+### GetArgsOk
 
-`func (o *TemplateDef) GetTitleOk() (string, bool)`
+`func (o *TemplateDef) GetArgsOk() ([]TemplateArgDef, bool)`
 
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTitle
+### HasArgs
 
-`func (o *TemplateDef) HasTitle() bool`
+`func (o *TemplateDef) HasArgs() bool`
 
-HasTitle returns a boolean if a field has been set.
+HasArgs returns a boolean if a field has been set.
 
-### SetTitle
+### SetArgs
 
-`func (o *TemplateDef) SetTitle(v string)`
+`func (o *TemplateDef) SetArgs(v []TemplateArgDef)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
-
-### GetDescription
-
-`func (o *TemplateDef) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *TemplateDef) GetDescriptionOk() (string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *TemplateDef) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *TemplateDef) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
-
-### GetHelp
-
-`func (o *TemplateDef) GetHelp() string`
-
-GetHelp returns the Help field if non-nil, zero value otherwise.
-
-### GetHelpOk
-
-`func (o *TemplateDef) GetHelpOk() (string, bool)`
-
-GetHelpOk returns a tuple with the Help field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasHelp
-
-`func (o *TemplateDef) HasHelp() bool`
-
-HasHelp returns a boolean if a field has been set.
-
-### SetHelp
-
-`func (o *TemplateDef) SetHelp(v string)`
-
-SetHelp gets a reference to the given string and assigns it to the Help field.
+SetArgs gets a reference to the given []TemplateArgDef and assigns it to the Args field.
 
 ### GetCategory
 
@@ -193,55 +93,55 @@ HasCategory returns a boolean if a field has been set.
 
 SetCategory gets a reference to the given string and assigns it to the Category field.
 
-### GetExpr
+### GetCreated
 
-`func (o *TemplateDef) GetExpr() []interface{}`
+`func (o *TemplateDef) GetCreated() time.Time`
 
-GetExpr returns the Expr field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetExprOk
+### GetCreatedOk
 
-`func (o *TemplateDef) GetExprOk() ([]interface{}, bool)`
+`func (o *TemplateDef) GetCreatedOk() (time.Time, bool)`
 
-GetExprOk returns a tuple with the Expr field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpr
+### HasCreated
 
-`func (o *TemplateDef) HasExpr() bool`
+`func (o *TemplateDef) HasCreated() bool`
 
-HasExpr returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetExpr
+### SetCreated
 
-`func (o *TemplateDef) SetExpr(v []interface{})`
+`func (o *TemplateDef) SetCreated(v time.Time)`
 
-SetExpr gets a reference to the given []interface{} and assigns it to the Expr field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetArgs
+### GetDescription
 
-`func (o *TemplateDef) GetArgs() []TemplateArgDef`
+`func (o *TemplateDef) GetDescription() string`
 
-GetArgs returns the Args field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetArgsOk
+### GetDescriptionOk
 
-`func (o *TemplateDef) GetArgsOk() ([]TemplateArgDef, bool)`
+`func (o *TemplateDef) GetDescriptionOk() (string, bool)`
 
-GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasArgs
+### HasDescription
 
-`func (o *TemplateDef) HasArgs() bool`
+`func (o *TemplateDef) HasDescription() bool`
 
-HasArgs returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetArgs
+### SetDescription
 
-`func (o *TemplateDef) SetArgs(v []TemplateArgDef)`
+`func (o *TemplateDef) SetDescription(v string)`
 
-SetArgs gets a reference to the given []TemplateArgDef and assigns it to the Args field.
+SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetExpose
 
@@ -268,6 +168,81 @@ HasExpose returns a boolean if a field has been set.
 
 SetExpose gets a reference to the given bool and assigns it to the Expose field.
 
+### GetExpr
+
+`func (o *TemplateDef) GetExpr() []map[string]interface{}`
+
+GetExpr returns the Expr field if non-nil, zero value otherwise.
+
+### GetExprOk
+
+`func (o *TemplateDef) GetExprOk() ([]map[string]interface{}, bool)`
+
+GetExprOk returns a tuple with the Expr field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpr
+
+`func (o *TemplateDef) HasExpr() bool`
+
+HasExpr returns a boolean if a field has been set.
+
+### SetExpr
+
+`func (o *TemplateDef) SetExpr(v []map[string]interface{})`
+
+SetExpr gets a reference to the given []map[string]interface{} and assigns it to the Expr field.
+
+### GetHelp
+
+`func (o *TemplateDef) GetHelp() string`
+
+GetHelp returns the Help field if non-nil, zero value otherwise.
+
+### GetHelpOk
+
+`func (o *TemplateDef) GetHelpOk() (string, bool)`
+
+GetHelpOk returns a tuple with the Help field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasHelp
+
+`func (o *TemplateDef) HasHelp() bool`
+
+HasHelp returns a boolean if a field has been set.
+
+### SetHelp
+
+`func (o *TemplateDef) SetHelp(v string)`
+
+SetHelp gets a reference to the given string and assigns it to the Help field.
+
+### GetId
+
+`func (o *TemplateDef) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *TemplateDef) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *TemplateDef) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *TemplateDef) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
 ### GetName
 
 `func (o *TemplateDef) GetName() string`
@@ -292,6 +267,31 @@ HasName returns a boolean if a field has been set.
 `func (o *TemplateDef) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetTitle
+
+`func (o *TemplateDef) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *TemplateDef) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *TemplateDef) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *TemplateDef) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

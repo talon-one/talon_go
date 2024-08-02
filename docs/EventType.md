@@ -4,38 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Title** | Pointer to **string** | The human-friendly name for this event type. | 
-**Name** | Pointer to **string** | The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created. | 
 **Description** | Pointer to **string** | A description of what the event represents.  | [optional] 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Name** | Pointer to **string** | The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created. | 
+**Title** | Pointer to **string** | The human-friendly name for this event type. | 
 
 ## Methods
-
-### GetId
-
-`func (o *EventType) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *EventType) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *EventType) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *EventType) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetCreated
 
@@ -62,30 +37,55 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetTitle
+### GetDescription
 
-`func (o *EventType) GetTitle() string`
+`func (o *EventType) GetDescription() string`
 
-GetTitle returns the Title field if non-nil, zero value otherwise.
+GetDescription returns the Description field if non-nil, zero value otherwise.
 
-### GetTitleOk
+### GetDescriptionOk
 
-`func (o *EventType) GetTitleOk() (string, bool)`
+`func (o *EventType) GetDescriptionOk() (string, bool)`
 
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTitle
+### HasDescription
 
-`func (o *EventType) HasTitle() bool`
+`func (o *EventType) HasDescription() bool`
 
-HasTitle returns a boolean if a field has been set.
+HasDescription returns a boolean if a field has been set.
 
-### SetTitle
+### SetDescription
 
-`func (o *EventType) SetTitle(v string)`
+`func (o *EventType) SetDescription(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetId
+
+`func (o *EventType) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *EventType) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *EventType) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *EventType) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetName
 
@@ -112,30 +112,30 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetDescription
+### GetTitle
 
-`func (o *EventType) GetDescription() string`
+`func (o *EventType) GetTitle() string`
 
-GetDescription returns the Description field if non-nil, zero value otherwise.
+GetTitle returns the Title field if non-nil, zero value otherwise.
 
-### GetDescriptionOk
+### GetTitleOk
 
-`func (o *EventType) GetDescriptionOk() (string, bool)`
+`func (o *EventType) GetTitleOk() (string, bool)`
 
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasDescription
+### HasTitle
 
-`func (o *EventType) HasDescription() bool`
+`func (o *EventType) HasTitle() bool`
 
-HasDescription returns a boolean if a field has been set.
+HasTitle returns a boolean if a field has been set.
 
-### SetDescription
+### SetTitle
 
-`func (o *EventType) SetDescription(v string)`
+`func (o *EventType) SetTitle(v string)`
 
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

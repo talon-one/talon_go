@@ -4,89 +4,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | [optional] 
-**Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
-**Referrals** | Pointer to [**[]InventoryReferral**](InventoryReferral.md) |  | [optional] 
+**Achievements** | Pointer to [**[]AchievementProgress**](AchievementProgress.md) |  | [optional] 
 **Coupons** | Pointer to [**[]InventoryCoupon**](InventoryCoupon.md) | The coupons reserved by this profile. This array includes hard and soft reservations.  | [optional] 
 **Giveaways** | Pointer to [**[]Giveaway**](Giveaway.md) |  | [optional] 
-**Achievements** | Pointer to [**[]AchievementProgress**](AchievementProgress.md) |  | [optional] 
+**Loyalty** | Pointer to [**Loyalty**](Loyalty.md) |  | [optional] 
+**Profile** | Pointer to [**CustomerProfile**](CustomerProfile.md) |  | [optional] 
+**Referrals** | Pointer to [**[]InventoryReferral**](InventoryReferral.md) |  | [optional] 
 
 ## Methods
 
-### GetProfile
+### GetAchievements
 
-`func (o *CustomerInventory) GetProfile() CustomerProfile`
+`func (o *CustomerInventory) GetAchievements() []AchievementProgress`
 
-GetProfile returns the Profile field if non-nil, zero value otherwise.
+GetAchievements returns the Achievements field if non-nil, zero value otherwise.
 
-### GetProfileOk
+### GetAchievementsOk
 
-`func (o *CustomerInventory) GetProfileOk() (CustomerProfile, bool)`
+`func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgress, bool)`
 
-GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+GetAchievementsOk returns a tuple with the Achievements field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasProfile
+### HasAchievements
 
-`func (o *CustomerInventory) HasProfile() bool`
+`func (o *CustomerInventory) HasAchievements() bool`
 
-HasProfile returns a boolean if a field has been set.
+HasAchievements returns a boolean if a field has been set.
 
-### SetProfile
+### SetAchievements
 
-`func (o *CustomerInventory) SetProfile(v CustomerProfile)`
+`func (o *CustomerInventory) SetAchievements(v []AchievementProgress)`
 
-SetProfile gets a reference to the given CustomerProfile and assigns it to the Profile field.
-
-### GetLoyalty
-
-`func (o *CustomerInventory) GetLoyalty() Loyalty`
-
-GetLoyalty returns the Loyalty field if non-nil, zero value otherwise.
-
-### GetLoyaltyOk
-
-`func (o *CustomerInventory) GetLoyaltyOk() (Loyalty, bool)`
-
-GetLoyaltyOk returns a tuple with the Loyalty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLoyalty
-
-`func (o *CustomerInventory) HasLoyalty() bool`
-
-HasLoyalty returns a boolean if a field has been set.
-
-### SetLoyalty
-
-`func (o *CustomerInventory) SetLoyalty(v Loyalty)`
-
-SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty field.
-
-### GetReferrals
-
-`func (o *CustomerInventory) GetReferrals() []InventoryReferral`
-
-GetReferrals returns the Referrals field if non-nil, zero value otherwise.
-
-### GetReferralsOk
-
-`func (o *CustomerInventory) GetReferralsOk() ([]InventoryReferral, bool)`
-
-GetReferralsOk returns a tuple with the Referrals field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasReferrals
-
-`func (o *CustomerInventory) HasReferrals() bool`
-
-HasReferrals returns a boolean if a field has been set.
-
-### SetReferrals
-
-`func (o *CustomerInventory) SetReferrals(v []InventoryReferral)`
-
-SetReferrals gets a reference to the given []InventoryReferral and assigns it to the Referrals field.
+SetAchievements gets a reference to the given []AchievementProgress and assigns it to the Achievements field.
 
 ### GetCoupons
 
@@ -138,30 +88,80 @@ HasGiveaways returns a boolean if a field has been set.
 
 SetGiveaways gets a reference to the given []Giveaway and assigns it to the Giveaways field.
 
-### GetAchievements
+### GetLoyalty
 
-`func (o *CustomerInventory) GetAchievements() []AchievementProgress`
+`func (o *CustomerInventory) GetLoyalty() Loyalty`
 
-GetAchievements returns the Achievements field if non-nil, zero value otherwise.
+GetLoyalty returns the Loyalty field if non-nil, zero value otherwise.
 
-### GetAchievementsOk
+### GetLoyaltyOk
 
-`func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgress, bool)`
+`func (o *CustomerInventory) GetLoyaltyOk() (Loyalty, bool)`
 
-GetAchievementsOk returns a tuple with the Achievements field if it's non-nil, zero value otherwise
+GetLoyaltyOk returns a tuple with the Loyalty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAchievements
+### HasLoyalty
 
-`func (o *CustomerInventory) HasAchievements() bool`
+`func (o *CustomerInventory) HasLoyalty() bool`
 
-HasAchievements returns a boolean if a field has been set.
+HasLoyalty returns a boolean if a field has been set.
 
-### SetAchievements
+### SetLoyalty
 
-`func (o *CustomerInventory) SetAchievements(v []AchievementProgress)`
+`func (o *CustomerInventory) SetLoyalty(v Loyalty)`
 
-SetAchievements gets a reference to the given []AchievementProgress and assigns it to the Achievements field.
+SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty field.
+
+### GetProfile
+
+`func (o *CustomerInventory) GetProfile() CustomerProfile`
+
+GetProfile returns the Profile field if non-nil, zero value otherwise.
+
+### GetProfileOk
+
+`func (o *CustomerInventory) GetProfileOk() (CustomerProfile, bool)`
+
+GetProfileOk returns a tuple with the Profile field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProfile
+
+`func (o *CustomerInventory) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
+
+### SetProfile
+
+`func (o *CustomerInventory) SetProfile(v CustomerProfile)`
+
+SetProfile gets a reference to the given CustomerProfile and assigns it to the Profile field.
+
+### GetReferrals
+
+`func (o *CustomerInventory) GetReferrals() []InventoryReferral`
+
+GetReferrals returns the Referrals field if non-nil, zero value otherwise.
+
+### GetReferralsOk
+
+`func (o *CustomerInventory) GetReferralsOk() ([]InventoryReferral, bool)`
+
+GetReferralsOk returns a tuple with the Referrals field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReferrals
+
+`func (o *CustomerInventory) HasReferrals() bool`
+
+HasReferrals returns a boolean if a field has been set.
+
+### SetReferrals
+
+`func (o *CustomerInventory) SetReferrals(v []InventoryReferral)`
+
+SetReferrals gets a reference to the given []InventoryReferral and assigns it to the Referrals field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

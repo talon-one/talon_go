@@ -4,19 +4,119 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | Unique identifier of the message. | 
-**Service** | Pointer to **string** | Name of the service that generated the log entry. | 
+**ApplicationId** | Pointer to **int32** | Identifier of the Application. | [optional] 
 **ChangeType** | Pointer to **string** | Type of change that triggered the notification. | [optional] 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the log entry was created. | 
+**EntityType** | Pointer to **string** | The entity type the notification is related to.  | [optional] 
+**Id** | Pointer to **string** | Unique identifier of the message. | 
+**LoyaltyProgramId** | Pointer to **int32** | Identifier of the loyalty program. | [optional] 
 **NotificationId** | Pointer to **int32** | ID of the notification. | [optional] 
 **NotificationName** | Pointer to **string** | The name of the notification. | [optional] 
 **Request** | Pointer to [**MessageLogRequest**](MessageLogRequest.md) |  | [optional] 
 **Response** | Pointer to [**MessageLogResponse**](MessageLogResponse.md) |  | [optional] 
-**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the log entry was created. | 
-**EntityType** | Pointer to **string** | The entity type the notification is related to.  | [optional] 
-**ApplicationId** | Pointer to **int32** | Identifier of the Application. | [optional] 
-**LoyaltyProgramId** | Pointer to **int32** | Identifier of the loyalty program. | [optional] 
+**Service** | Pointer to **string** | Name of the service that generated the log entry. | 
 
 ## Methods
+
+### GetApplicationId
+
+`func (o *MessageLogEntry) GetApplicationId() int32`
+
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
+
+### GetApplicationIdOk
+
+`func (o *MessageLogEntry) GetApplicationIdOk() (int32, bool)`
+
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasApplicationId
+
+`func (o *MessageLogEntry) HasApplicationId() bool`
+
+HasApplicationId returns a boolean if a field has been set.
+
+### SetApplicationId
+
+`func (o *MessageLogEntry) SetApplicationId(v int32)`
+
+SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+
+### GetChangeType
+
+`func (o *MessageLogEntry) GetChangeType() string`
+
+GetChangeType returns the ChangeType field if non-nil, zero value otherwise.
+
+### GetChangeTypeOk
+
+`func (o *MessageLogEntry) GetChangeTypeOk() (string, bool)`
+
+GetChangeTypeOk returns a tuple with the ChangeType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasChangeType
+
+`func (o *MessageLogEntry) HasChangeType() bool`
+
+HasChangeType returns a boolean if a field has been set.
+
+### SetChangeType
+
+`func (o *MessageLogEntry) SetChangeType(v string)`
+
+SetChangeType gets a reference to the given string and assigns it to the ChangeType field.
+
+### GetCreatedAt
+
+`func (o *MessageLogEntry) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *MessageLogEntry) GetCreatedAtOk() (time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreatedAt
+
+`func (o *MessageLogEntry) HasCreatedAt() bool`
+
+HasCreatedAt returns a boolean if a field has been set.
+
+### SetCreatedAt
+
+`func (o *MessageLogEntry) SetCreatedAt(v time.Time)`
+
+SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+
+### GetEntityType
+
+`func (o *MessageLogEntry) GetEntityType() string`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *MessageLogEntry) GetEntityTypeOk() (string, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEntityType
+
+`func (o *MessageLogEntry) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
+
+### SetEntityType
+
+`func (o *MessageLogEntry) SetEntityType(v string)`
+
+SetEntityType gets a reference to the given string and assigns it to the EntityType field.
 
 ### GetId
 
@@ -43,55 +143,30 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given string and assigns it to the Id field.
 
-### GetService
+### GetLoyaltyProgramId
 
-`func (o *MessageLogEntry) GetService() string`
+`func (o *MessageLogEntry) GetLoyaltyProgramId() int32`
 
-GetService returns the Service field if non-nil, zero value otherwise.
+GetLoyaltyProgramId returns the LoyaltyProgramId field if non-nil, zero value otherwise.
 
-### GetServiceOk
+### GetLoyaltyProgramIdOk
 
-`func (o *MessageLogEntry) GetServiceOk() (string, bool)`
+`func (o *MessageLogEntry) GetLoyaltyProgramIdOk() (int32, bool)`
 
-GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
+GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasService
+### HasLoyaltyProgramId
 
-`func (o *MessageLogEntry) HasService() bool`
+`func (o *MessageLogEntry) HasLoyaltyProgramId() bool`
 
-HasService returns a boolean if a field has been set.
+HasLoyaltyProgramId returns a boolean if a field has been set.
 
-### SetService
+### SetLoyaltyProgramId
 
-`func (o *MessageLogEntry) SetService(v string)`
+`func (o *MessageLogEntry) SetLoyaltyProgramId(v int32)`
 
-SetService gets a reference to the given string and assigns it to the Service field.
-
-### GetChangeType
-
-`func (o *MessageLogEntry) GetChangeType() string`
-
-GetChangeType returns the ChangeType field if non-nil, zero value otherwise.
-
-### GetChangeTypeOk
-
-`func (o *MessageLogEntry) GetChangeTypeOk() (string, bool)`
-
-GetChangeTypeOk returns a tuple with the ChangeType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasChangeType
-
-`func (o *MessageLogEntry) HasChangeType() bool`
-
-HasChangeType returns a boolean if a field has been set.
-
-### SetChangeType
-
-`func (o *MessageLogEntry) SetChangeType(v string)`
-
-SetChangeType gets a reference to the given string and assigns it to the ChangeType field.
+SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
 
 ### GetNotificationId
 
@@ -193,105 +268,30 @@ HasResponse returns a boolean if a field has been set.
 
 SetResponse gets a reference to the given MessageLogResponse and assigns it to the Response field.
 
-### GetCreatedAt
+### GetService
 
-`func (o *MessageLogEntry) GetCreatedAt() time.Time`
+`func (o *MessageLogEntry) GetService() string`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetService returns the Service field if non-nil, zero value otherwise.
 
-### GetCreatedAtOk
+### GetServiceOk
 
-`func (o *MessageLogEntry) GetCreatedAtOk() (time.Time, bool)`
+`func (o *MessageLogEntry) GetServiceOk() (string, bool)`
 
-GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+GetServiceOk returns a tuple with the Service field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCreatedAt
+### HasService
 
-`func (o *MessageLogEntry) HasCreatedAt() bool`
+`func (o *MessageLogEntry) HasService() bool`
 
-HasCreatedAt returns a boolean if a field has been set.
+HasService returns a boolean if a field has been set.
 
-### SetCreatedAt
+### SetService
 
-`func (o *MessageLogEntry) SetCreatedAt(v time.Time)`
+`func (o *MessageLogEntry) SetService(v string)`
 
-SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-
-### GetEntityType
-
-`func (o *MessageLogEntry) GetEntityType() string`
-
-GetEntityType returns the EntityType field if non-nil, zero value otherwise.
-
-### GetEntityTypeOk
-
-`func (o *MessageLogEntry) GetEntityTypeOk() (string, bool)`
-
-GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEntityType
-
-`func (o *MessageLogEntry) HasEntityType() bool`
-
-HasEntityType returns a boolean if a field has been set.
-
-### SetEntityType
-
-`func (o *MessageLogEntry) SetEntityType(v string)`
-
-SetEntityType gets a reference to the given string and assigns it to the EntityType field.
-
-### GetApplicationId
-
-`func (o *MessageLogEntry) GetApplicationId() int32`
-
-GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
-
-### GetApplicationIdOk
-
-`func (o *MessageLogEntry) GetApplicationIdOk() (int32, bool)`
-
-GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasApplicationId
-
-`func (o *MessageLogEntry) HasApplicationId() bool`
-
-HasApplicationId returns a boolean if a field has been set.
-
-### SetApplicationId
-
-`func (o *MessageLogEntry) SetApplicationId(v int32)`
-
-SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
-
-### GetLoyaltyProgramId
-
-`func (o *MessageLogEntry) GetLoyaltyProgramId() int32`
-
-GetLoyaltyProgramId returns the LoyaltyProgramId field if non-nil, zero value otherwise.
-
-### GetLoyaltyProgramIdOk
-
-`func (o *MessageLogEntry) GetLoyaltyProgramIdOk() (int32, bool)`
-
-GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLoyaltyProgramId
-
-`func (o *MessageLogEntry) HasLoyaltyProgramId() bool`
-
-HasLoyaltyProgramId returns a boolean if a field has been set.
-
-### SetLoyaltyProgramId
-
-`func (o *MessageLogEntry) SetLoyaltyProgramId(v int32)`
-
-SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
+SetService gets a reference to the given string and assigns it to the Service field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

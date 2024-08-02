@@ -4,65 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Uuid** | Pointer to **string** | UUID reference of request. | 
-**Status** | Pointer to **int32** | HTTP status code of response. | 
 **Method** | Pointer to **string** | HTTP method of request. | 
-**RequestUri** | Pointer to **string** | target URI of request | 
-**Time** | Pointer to [**time.Time**](time.Time.md) | timestamp of request | 
 **RequestPayload** | Pointer to **string** | payload of request | 
+**RequestUri** | Pointer to **string** | target URI of request | 
 **ResponsePayload** | Pointer to **string** | payload of response | 
+**Status** | Pointer to **int32** | HTTP status code of response. | 
+**Time** | Pointer to [**time.Time**](time.Time.md) | timestamp of request | 
+**Uuid** | Pointer to **string** | UUID reference of request. | 
 
 ## Methods
-
-### GetUuid
-
-`func (o *AccessLogEntry) GetUuid() string`
-
-GetUuid returns the Uuid field if non-nil, zero value otherwise.
-
-### GetUuidOk
-
-`func (o *AccessLogEntry) GetUuidOk() (string, bool)`
-
-GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasUuid
-
-`func (o *AccessLogEntry) HasUuid() bool`
-
-HasUuid returns a boolean if a field has been set.
-
-### SetUuid
-
-`func (o *AccessLogEntry) SetUuid(v string)`
-
-SetUuid gets a reference to the given string and assigns it to the Uuid field.
-
-### GetStatus
-
-`func (o *AccessLogEntry) GetStatus() int32`
-
-GetStatus returns the Status field if non-nil, zero value otherwise.
-
-### GetStatusOk
-
-`func (o *AccessLogEntry) GetStatusOk() (int32, bool)`
-
-GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasStatus
-
-`func (o *AccessLogEntry) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
-
-### SetStatus
-
-`func (o *AccessLogEntry) SetStatus(v int32)`
-
-SetStatus gets a reference to the given int32 and assigns it to the Status field.
 
 ### GetMethod
 
@@ -89,6 +39,31 @@ HasMethod returns a boolean if a field has been set.
 
 SetMethod gets a reference to the given string and assigns it to the Method field.
 
+### GetRequestPayload
+
+`func (o *AccessLogEntry) GetRequestPayload() string`
+
+GetRequestPayload returns the RequestPayload field if non-nil, zero value otherwise.
+
+### GetRequestPayloadOk
+
+`func (o *AccessLogEntry) GetRequestPayloadOk() (string, bool)`
+
+GetRequestPayloadOk returns a tuple with the RequestPayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRequestPayload
+
+`func (o *AccessLogEntry) HasRequestPayload() bool`
+
+HasRequestPayload returns a boolean if a field has been set.
+
+### SetRequestPayload
+
+`func (o *AccessLogEntry) SetRequestPayload(v string)`
+
+SetRequestPayload gets a reference to the given string and assigns it to the RequestPayload field.
+
 ### GetRequestUri
 
 `func (o *AccessLogEntry) GetRequestUri() string`
@@ -113,6 +88,56 @@ HasRequestUri returns a boolean if a field has been set.
 `func (o *AccessLogEntry) SetRequestUri(v string)`
 
 SetRequestUri gets a reference to the given string and assigns it to the RequestUri field.
+
+### GetResponsePayload
+
+`func (o *AccessLogEntry) GetResponsePayload() string`
+
+GetResponsePayload returns the ResponsePayload field if non-nil, zero value otherwise.
+
+### GetResponsePayloadOk
+
+`func (o *AccessLogEntry) GetResponsePayloadOk() (string, bool)`
+
+GetResponsePayloadOk returns a tuple with the ResponsePayload field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasResponsePayload
+
+`func (o *AccessLogEntry) HasResponsePayload() bool`
+
+HasResponsePayload returns a boolean if a field has been set.
+
+### SetResponsePayload
+
+`func (o *AccessLogEntry) SetResponsePayload(v string)`
+
+SetResponsePayload gets a reference to the given string and assigns it to the ResponsePayload field.
+
+### GetStatus
+
+`func (o *AccessLogEntry) GetStatus() int32`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *AccessLogEntry) GetStatusOk() (int32, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStatus
+
+`func (o *AccessLogEntry) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### SetStatus
+
+`func (o *AccessLogEntry) SetStatus(v int32)`
+
+SetStatus gets a reference to the given int32 and assigns it to the Status field.
 
 ### GetTime
 
@@ -139,55 +164,30 @@ HasTime returns a boolean if a field has been set.
 
 SetTime gets a reference to the given time.Time and assigns it to the Time field.
 
-### GetRequestPayload
+### GetUuid
 
-`func (o *AccessLogEntry) GetRequestPayload() string`
+`func (o *AccessLogEntry) GetUuid() string`
 
-GetRequestPayload returns the RequestPayload field if non-nil, zero value otherwise.
+GetUuid returns the Uuid field if non-nil, zero value otherwise.
 
-### GetRequestPayloadOk
+### GetUuidOk
 
-`func (o *AccessLogEntry) GetRequestPayloadOk() (string, bool)`
+`func (o *AccessLogEntry) GetUuidOk() (string, bool)`
 
-GetRequestPayloadOk returns a tuple with the RequestPayload field if it's non-nil, zero value otherwise
+GetUuidOk returns a tuple with the Uuid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRequestPayload
+### HasUuid
 
-`func (o *AccessLogEntry) HasRequestPayload() bool`
+`func (o *AccessLogEntry) HasUuid() bool`
 
-HasRequestPayload returns a boolean if a field has been set.
+HasUuid returns a boolean if a field has been set.
 
-### SetRequestPayload
+### SetUuid
 
-`func (o *AccessLogEntry) SetRequestPayload(v string)`
+`func (o *AccessLogEntry) SetUuid(v string)`
 
-SetRequestPayload gets a reference to the given string and assigns it to the RequestPayload field.
-
-### GetResponsePayload
-
-`func (o *AccessLogEntry) GetResponsePayload() string`
-
-GetResponsePayload returns the ResponsePayload field if non-nil, zero value otherwise.
-
-### GetResponsePayloadOk
-
-`func (o *AccessLogEntry) GetResponsePayloadOk() (string, bool)`
-
-GetResponsePayloadOk returns a tuple with the ResponsePayload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasResponsePayload
-
-`func (o *AccessLogEntry) HasResponsePayload() bool`
-
-HasResponsePayload returns a boolean if a field has been set.
-
-### SetResponsePayload
-
-`func (o *AccessLogEntry) SetResponsePayload(v string)`
-
-SetResponsePayload gets a reference to the given string and assigns it to the ResponsePayload field.
+SetUuid gets a reference to the given string and assigns it to the Uuid field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

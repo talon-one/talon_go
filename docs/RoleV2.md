@@ -4,91 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Name** | Pointer to **string** | Name of the role. | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Description** | Pointer to **string** | Description of the role. | [optional] 
-**Permissions** | Pointer to [**RoleV2Permissions**](RoleV2Permissions.md) |  | [optional] 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Members** | Pointer to **[]int32** | A list of user IDs the role is assigned to. | [optional] 
+**Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
+**Name** | Pointer to **string** | Name of the role. | [optional] 
+**Permissions** | Pointer to [**RoleV2Permissions**](RoleV2Permissions.md) |  | [optional] 
 
 ## Methods
-
-### GetId
-
-`func (o *RoleV2) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *RoleV2) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *RoleV2) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *RoleV2) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *RoleV2) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *RoleV2) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *RoleV2) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *RoleV2) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetModified
-
-`func (o *RoleV2) GetModified() time.Time`
-
-GetModified returns the Modified field if non-nil, zero value otherwise.
-
-### GetModifiedOk
-
-`func (o *RoleV2) GetModifiedOk() (time.Time, bool)`
-
-GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasModified
-
-`func (o *RoleV2) HasModified() bool`
-
-HasModified returns a boolean if a field has been set.
-
-### SetModified
-
-`func (o *RoleV2) SetModified(v time.Time)`
-
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
 
 ### GetAccountId
 
@@ -115,30 +40,30 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetName
+### GetCreated
 
-`func (o *RoleV2) GetName() string`
+`func (o *RoleV2) GetCreated() time.Time`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCreatedOk
 
-`func (o *RoleV2) GetNameOk() (string, bool)`
+`func (o *RoleV2) GetCreatedOk() (time.Time, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasCreated
 
-`func (o *RoleV2) HasName() bool`
+`func (o *RoleV2) HasCreated() bool`
 
-HasName returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetName
+### SetCreated
 
-`func (o *RoleV2) SetName(v string)`
+`func (o *RoleV2) SetCreated(v time.Time)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetDescription
 
@@ -165,30 +90,30 @@ HasDescription returns a boolean if a field has been set.
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
 
-### GetPermissions
+### GetId
 
-`func (o *RoleV2) GetPermissions() RoleV2Permissions`
+`func (o *RoleV2) GetId() int32`
 
-GetPermissions returns the Permissions field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetPermissionsOk
+### GetIdOk
 
-`func (o *RoleV2) GetPermissionsOk() (RoleV2Permissions, bool)`
+`func (o *RoleV2) GetIdOk() (int32, bool)`
 
-GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPermissions
+### HasId
 
-`func (o *RoleV2) HasPermissions() bool`
+`func (o *RoleV2) HasId() bool`
 
-HasPermissions returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetPermissions
+### SetId
 
-`func (o *RoleV2) SetPermissions(v RoleV2Permissions)`
+`func (o *RoleV2) SetId(v int32)`
 
-SetPermissions gets a reference to the given RoleV2Permissions and assigns it to the Permissions field.
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetMembers
 
@@ -214,6 +139,81 @@ HasMembers returns a boolean if a field has been set.
 `func (o *RoleV2) SetMembers(v []int32)`
 
 SetMembers gets a reference to the given []int32 and assigns it to the Members field.
+
+### GetModified
+
+`func (o *RoleV2) GetModified() time.Time`
+
+GetModified returns the Modified field if non-nil, zero value otherwise.
+
+### GetModifiedOk
+
+`func (o *RoleV2) GetModifiedOk() (time.Time, bool)`
+
+GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasModified
+
+`func (o *RoleV2) HasModified() bool`
+
+HasModified returns a boolean if a field has been set.
+
+### SetModified
+
+`func (o *RoleV2) SetModified(v time.Time)`
+
+SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+
+### GetName
+
+`func (o *RoleV2) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *RoleV2) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *RoleV2) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *RoleV2) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetPermissions
+
+`func (o *RoleV2) GetPermissions() RoleV2Permissions`
+
+GetPermissions returns the Permissions field if non-nil, zero value otherwise.
+
+### GetPermissionsOk
+
+`func (o *RoleV2) GetPermissionsOk() (RoleV2Permissions, bool)`
+
+GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPermissions
+
+`func (o *RoleV2) HasPermissions() bool`
+
+HasPermissions returns a boolean if a field has been set.
+
+### SetPermissions
+
+`func (o *RoleV2) SetPermissions(v RoleV2Permissions)`
+
+SetPermissions gets a reference to the given RoleV2Permissions and assigns it to the Permissions field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

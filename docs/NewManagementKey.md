@@ -4,167 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | Name for management key. | 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The date the management key expires. | 
-**Endpoints** | Pointer to [**[]Endpoint**](Endpoint.md) | The list of endpoints that can be accessed with the key | 
-**AllowedApplicationIds** | Pointer to **[]int32** | A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account.  | [optional] 
-**Id** | Pointer to **int32** | ID of the management key. | 
-**CreatedBy** | Pointer to **int32** | ID of the user who created it. | 
 **AccountID** | Pointer to **int32** | ID of account the key is used for. | 
+**AllowedApplicationIds** | Pointer to **[]int32** | A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account.  | [optional] 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The date the management key was created. | 
+**CreatedBy** | Pointer to **int32** | ID of the user who created it. | 
+**Endpoints** | Pointer to [**[]Endpoint**](Endpoint.md) | The list of endpoints that can be accessed with the key | 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The date the management key expires. | 
+**Id** | Pointer to **int32** | ID of the management key. | 
 **Key** | Pointer to **string** | The management key. | 
+**Name** | Pointer to **string** | Name for management key. | 
 
 ## Methods
-
-### GetName
-
-`func (o *NewManagementKey) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *NewManagementKey) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *NewManagementKey) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *NewManagementKey) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetExpiryDate
-
-`func (o *NewManagementKey) GetExpiryDate() time.Time`
-
-GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
-
-### GetExpiryDateOk
-
-`func (o *NewManagementKey) GetExpiryDateOk() (time.Time, bool)`
-
-GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExpiryDate
-
-`func (o *NewManagementKey) HasExpiryDate() bool`
-
-HasExpiryDate returns a boolean if a field has been set.
-
-### SetExpiryDate
-
-`func (o *NewManagementKey) SetExpiryDate(v time.Time)`
-
-SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
-
-### GetEndpoints
-
-`func (o *NewManagementKey) GetEndpoints() []Endpoint`
-
-GetEndpoints returns the Endpoints field if non-nil, zero value otherwise.
-
-### GetEndpointsOk
-
-`func (o *NewManagementKey) GetEndpointsOk() ([]Endpoint, bool)`
-
-GetEndpointsOk returns a tuple with the Endpoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEndpoints
-
-`func (o *NewManagementKey) HasEndpoints() bool`
-
-HasEndpoints returns a boolean if a field has been set.
-
-### SetEndpoints
-
-`func (o *NewManagementKey) SetEndpoints(v []Endpoint)`
-
-SetEndpoints gets a reference to the given []Endpoint and assigns it to the Endpoints field.
-
-### GetAllowedApplicationIds
-
-`func (o *NewManagementKey) GetAllowedApplicationIds() []int32`
-
-GetAllowedApplicationIds returns the AllowedApplicationIds field if non-nil, zero value otherwise.
-
-### GetAllowedApplicationIdsOk
-
-`func (o *NewManagementKey) GetAllowedApplicationIdsOk() ([]int32, bool)`
-
-GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAllowedApplicationIds
-
-`func (o *NewManagementKey) HasAllowedApplicationIds() bool`
-
-HasAllowedApplicationIds returns a boolean if a field has been set.
-
-### SetAllowedApplicationIds
-
-`func (o *NewManagementKey) SetAllowedApplicationIds(v []int32)`
-
-SetAllowedApplicationIds gets a reference to the given []int32 and assigns it to the AllowedApplicationIds field.
-
-### GetId
-
-`func (o *NewManagementKey) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *NewManagementKey) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *NewManagementKey) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *NewManagementKey) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreatedBy
-
-`func (o *NewManagementKey) GetCreatedBy() int32`
-
-GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
-
-### GetCreatedByOk
-
-`func (o *NewManagementKey) GetCreatedByOk() (int32, bool)`
-
-GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreatedBy
-
-`func (o *NewManagementKey) HasCreatedBy() bool`
-
-HasCreatedBy returns a boolean if a field has been set.
-
-### SetCreatedBy
-
-`func (o *NewManagementKey) SetCreatedBy(v int32)`
-
-SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
 
 ### GetAccountID
 
@@ -191,6 +41,31 @@ HasAccountID returns a boolean if a field has been set.
 
 SetAccountID gets a reference to the given int32 and assigns it to the AccountID field.
 
+### GetAllowedApplicationIds
+
+`func (o *NewManagementKey) GetAllowedApplicationIds() []int32`
+
+GetAllowedApplicationIds returns the AllowedApplicationIds field if non-nil, zero value otherwise.
+
+### GetAllowedApplicationIdsOk
+
+`func (o *NewManagementKey) GetAllowedApplicationIdsOk() ([]int32, bool)`
+
+GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAllowedApplicationIds
+
+`func (o *NewManagementKey) HasAllowedApplicationIds() bool`
+
+HasAllowedApplicationIds returns a boolean if a field has been set.
+
+### SetAllowedApplicationIds
+
+`func (o *NewManagementKey) SetAllowedApplicationIds(v []int32)`
+
+SetAllowedApplicationIds gets a reference to the given []int32 and assigns it to the AllowedApplicationIds field.
+
 ### GetCreated
 
 `func (o *NewManagementKey) GetCreated() time.Time`
@@ -216,6 +91,106 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
+### GetCreatedBy
+
+`func (o *NewManagementKey) GetCreatedBy() int32`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *NewManagementKey) GetCreatedByOk() (int32, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreatedBy
+
+`func (o *NewManagementKey) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
+
+### SetCreatedBy
+
+`func (o *NewManagementKey) SetCreatedBy(v int32)`
+
+SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
+
+### GetEndpoints
+
+`func (o *NewManagementKey) GetEndpoints() []Endpoint`
+
+GetEndpoints returns the Endpoints field if non-nil, zero value otherwise.
+
+### GetEndpointsOk
+
+`func (o *NewManagementKey) GetEndpointsOk() ([]Endpoint, bool)`
+
+GetEndpointsOk returns a tuple with the Endpoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEndpoints
+
+`func (o *NewManagementKey) HasEndpoints() bool`
+
+HasEndpoints returns a boolean if a field has been set.
+
+### SetEndpoints
+
+`func (o *NewManagementKey) SetEndpoints(v []Endpoint)`
+
+SetEndpoints gets a reference to the given []Endpoint and assigns it to the Endpoints field.
+
+### GetExpiryDate
+
+`func (o *NewManagementKey) GetExpiryDate() time.Time`
+
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+
+### GetExpiryDateOk
+
+`func (o *NewManagementKey) GetExpiryDateOk() (time.Time, bool)`
+
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiryDate
+
+`func (o *NewManagementKey) HasExpiryDate() bool`
+
+HasExpiryDate returns a boolean if a field has been set.
+
+### SetExpiryDate
+
+`func (o *NewManagementKey) SetExpiryDate(v time.Time)`
+
+SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
+
+### GetId
+
+`func (o *NewManagementKey) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *NewManagementKey) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *NewManagementKey) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *NewManagementKey) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
 ### GetKey
 
 `func (o *NewManagementKey) GetKey() string`
@@ -240,6 +215,31 @@ HasKey returns a boolean if a field has been set.
 `func (o *NewManagementKey) SetKey(v string)`
 
 SetKey gets a reference to the given string and assigns it to the Key field.
+
+### GetName
+
+`func (o *NewManagementKey) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewManagementKey) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *NewManagementKey) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *NewManagementKey) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

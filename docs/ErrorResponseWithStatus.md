@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Message** | Pointer to **string** |  | [optional] 
-**Errors** | Pointer to [**[]ApiError**](APIError.md) | An array of individual problems encountered during the request. | [optional] 
 **StatusCode** | Pointer to **int32** | The error code | [optional] 
+**Errors** | Pointer to [**[]ApiError**](APIError.md) | An array of individual problems encountered during the request. | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
-### GetMessage
+### GetStatusCode
 
-`func (o *ErrorResponseWithStatus) GetMessage() string`
+`func (o *ErrorResponseWithStatus) GetStatusCode() int32`
 
-GetMessage returns the Message field if non-nil, zero value otherwise.
+GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
 
-### GetMessageOk
+### GetStatusCodeOk
 
-`func (o *ErrorResponseWithStatus) GetMessageOk() (string, bool)`
+`func (o *ErrorResponseWithStatus) GetStatusCodeOk() (int32, bool)`
 
-GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
+GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasMessage
+### HasStatusCode
 
-`func (o *ErrorResponseWithStatus) HasMessage() bool`
+`func (o *ErrorResponseWithStatus) HasStatusCode() bool`
 
-HasMessage returns a boolean if a field has been set.
+HasStatusCode returns a boolean if a field has been set.
 
-### SetMessage
+### SetStatusCode
 
-`func (o *ErrorResponseWithStatus) SetMessage(v string)`
+`func (o *ErrorResponseWithStatus) SetStatusCode(v int32)`
 
-SetMessage gets a reference to the given string and assigns it to the Message field.
+SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
 
 ### GetErrors
 
@@ -60,30 +60,30 @@ HasErrors returns a boolean if a field has been set.
 
 SetErrors gets a reference to the given []ApiError and assigns it to the Errors field.
 
-### GetStatusCode
+### GetMessage
 
-`func (o *ErrorResponseWithStatus) GetStatusCode() int32`
+`func (o *ErrorResponseWithStatus) GetMessage() string`
 
-GetStatusCode returns the StatusCode field if non-nil, zero value otherwise.
+GetMessage returns the Message field if non-nil, zero value otherwise.
 
-### GetStatusCodeOk
+### GetMessageOk
 
-`func (o *ErrorResponseWithStatus) GetStatusCodeOk() (int32, bool)`
+`func (o *ErrorResponseWithStatus) GetMessageOk() (string, bool)`
 
-GetStatusCodeOk returns a tuple with the StatusCode field if it's non-nil, zero value otherwise
+GetMessageOk returns a tuple with the Message field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasStatusCode
+### HasMessage
 
-`func (o *ErrorResponseWithStatus) HasStatusCode() bool`
+`func (o *ErrorResponseWithStatus) HasMessage() bool`
 
-HasStatusCode returns a boolean if a field has been set.
+HasMessage returns a boolean if a field has been set.
 
-### SetStatusCode
+### SetMessage
 
-`func (o *ErrorResponseWithStatus) SetStatusCode(v int32)`
+`func (o *ErrorResponseWithStatus) SetMessage(v string)`
 
-SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
+SetMessage gets a reference to the given string and assigns it to the Message field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

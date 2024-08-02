@@ -4,38 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
-**Name** | Pointer to **string** | The name of the tier | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
 **MinPoints** | Pointer to **float32** | The minimum amount of points required to be eligible for the tier. | 
+**Name** | Pointer to **string** | The name of the tier | 
+**ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
 
 ## Methods
-
-### GetId
-
-`func (o *LoyaltyTier) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *LoyaltyTier) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *LoyaltyTier) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *LoyaltyTier) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetCreated
 
@@ -62,30 +37,55 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetProgramID
+### GetId
 
-`func (o *LoyaltyTier) GetProgramID() int32`
+`func (o *LoyaltyTier) GetId() int32`
 
-GetProgramID returns the ProgramID field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetProgramIDOk
+### GetIdOk
 
-`func (o *LoyaltyTier) GetProgramIDOk() (int32, bool)`
+`func (o *LoyaltyTier) GetIdOk() (int32, bool)`
 
-GetProgramIDOk returns a tuple with the ProgramID field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasProgramID
+### HasId
 
-`func (o *LoyaltyTier) HasProgramID() bool`
+`func (o *LoyaltyTier) HasId() bool`
 
-HasProgramID returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetProgramID
+### SetId
 
-`func (o *LoyaltyTier) SetProgramID(v int32)`
+`func (o *LoyaltyTier) SetId(v int32)`
 
-SetProgramID gets a reference to the given int32 and assigns it to the ProgramID field.
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
+### GetMinPoints
+
+`func (o *LoyaltyTier) GetMinPoints() float32`
+
+GetMinPoints returns the MinPoints field if non-nil, zero value otherwise.
+
+### GetMinPointsOk
+
+`func (o *LoyaltyTier) GetMinPointsOk() (float32, bool)`
+
+GetMinPointsOk returns a tuple with the MinPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasMinPoints
+
+`func (o *LoyaltyTier) HasMinPoints() bool`
+
+HasMinPoints returns a boolean if a field has been set.
+
+### SetMinPoints
+
+`func (o *LoyaltyTier) SetMinPoints(v float32)`
+
+SetMinPoints gets a reference to the given float32 and assigns it to the MinPoints field.
 
 ### GetName
 
@@ -112,30 +112,30 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
-### GetMinPoints
+### GetProgramID
 
-`func (o *LoyaltyTier) GetMinPoints() float32`
+`func (o *LoyaltyTier) GetProgramID() int32`
 
-GetMinPoints returns the MinPoints field if non-nil, zero value otherwise.
+GetProgramID returns the ProgramID field if non-nil, zero value otherwise.
 
-### GetMinPointsOk
+### GetProgramIDOk
 
-`func (o *LoyaltyTier) GetMinPointsOk() (float32, bool)`
+`func (o *LoyaltyTier) GetProgramIDOk() (int32, bool)`
 
-GetMinPointsOk returns a tuple with the MinPoints field if it's non-nil, zero value otherwise
+GetProgramIDOk returns a tuple with the ProgramID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasMinPoints
+### HasProgramID
 
-`func (o *LoyaltyTier) HasMinPoints() bool`
+`func (o *LoyaltyTier) HasProgramID() bool`
 
-HasMinPoints returns a boolean if a field has been set.
+HasProgramID returns a boolean if a field has been set.
 
-### SetMinPoints
+### SetProgramID
 
-`func (o *LoyaltyTier) SetMinPoints(v float32)`
+`func (o *LoyaltyTier) SetProgramID(v int32)`
 
-SetMinPoints gets a reference to the given float32 and assigns it to the MinPoints field.
+SetProgramID gets a reference to the given int32 and assigns it to the ProgramID field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

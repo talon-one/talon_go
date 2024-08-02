@@ -4,19 +4,144 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ActivePoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all currently active points. | [optional] 
+**CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
+**ExpiredPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of expired points. | [optional] 
+**ExpiringPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points that will expire. | [optional] 
+**PendingPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points pending activation. | [optional] 
 **Total** | Pointer to **float32** | **DEPRECATED** Use &#x60;totalActivePoints&#x60; property instead. Total amount of currently active and available points in the customer&#39;s balance.  | 
 **TotalActivePoints** | Pointer to **float32** | Total amount of currently active and available points in the customer&#39;s balance. | 
+**TotalExpiredPoints** | Pointer to **float32** | Total amount of points, that expired without ever being spent. | 
 **TotalPendingPoints** | Pointer to **float32** | Total amount of pending points, which are not active yet but will become active in the future. | 
 **TotalSpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer. | 
-**TotalExpiredPoints** | Pointer to **float32** | Total amount of points, that expired without ever being spent. | 
 **Transactions** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all events that have happened such as additions, subtractions and expiries. | [optional] 
-**ExpiringPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points that will expire. | [optional] 
-**ActivePoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all currently active points. | [optional] 
-**PendingPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points pending activation. | [optional] 
-**ExpiredPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of expired points. | [optional] 
-**CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 
 ## Methods
+
+### GetActivePoints
+
+`func (o *LoyaltySubLedger) GetActivePoints() []LoyaltyLedgerEntry`
+
+GetActivePoints returns the ActivePoints field if non-nil, zero value otherwise.
+
+### GetActivePointsOk
+
+`func (o *LoyaltySubLedger) GetActivePointsOk() ([]LoyaltyLedgerEntry, bool)`
+
+GetActivePointsOk returns a tuple with the ActivePoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasActivePoints
+
+`func (o *LoyaltySubLedger) HasActivePoints() bool`
+
+HasActivePoints returns a boolean if a field has been set.
+
+### SetActivePoints
+
+`func (o *LoyaltySubLedger) SetActivePoints(v []LoyaltyLedgerEntry)`
+
+SetActivePoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ActivePoints field.
+
+### GetCurrentTier
+
+`func (o *LoyaltySubLedger) GetCurrentTier() Tier`
+
+GetCurrentTier returns the CurrentTier field if non-nil, zero value otherwise.
+
+### GetCurrentTierOk
+
+`func (o *LoyaltySubLedger) GetCurrentTierOk() (Tier, bool)`
+
+GetCurrentTierOk returns a tuple with the CurrentTier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCurrentTier
+
+`func (o *LoyaltySubLedger) HasCurrentTier() bool`
+
+HasCurrentTier returns a boolean if a field has been set.
+
+### SetCurrentTier
+
+`func (o *LoyaltySubLedger) SetCurrentTier(v Tier)`
+
+SetCurrentTier gets a reference to the given Tier and assigns it to the CurrentTier field.
+
+### GetExpiredPoints
+
+`func (o *LoyaltySubLedger) GetExpiredPoints() []LoyaltyLedgerEntry`
+
+GetExpiredPoints returns the ExpiredPoints field if non-nil, zero value otherwise.
+
+### GetExpiredPointsOk
+
+`func (o *LoyaltySubLedger) GetExpiredPointsOk() ([]LoyaltyLedgerEntry, bool)`
+
+GetExpiredPointsOk returns a tuple with the ExpiredPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiredPoints
+
+`func (o *LoyaltySubLedger) HasExpiredPoints() bool`
+
+HasExpiredPoints returns a boolean if a field has been set.
+
+### SetExpiredPoints
+
+`func (o *LoyaltySubLedger) SetExpiredPoints(v []LoyaltyLedgerEntry)`
+
+SetExpiredPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ExpiredPoints field.
+
+### GetExpiringPoints
+
+`func (o *LoyaltySubLedger) GetExpiringPoints() []LoyaltyLedgerEntry`
+
+GetExpiringPoints returns the ExpiringPoints field if non-nil, zero value otherwise.
+
+### GetExpiringPointsOk
+
+`func (o *LoyaltySubLedger) GetExpiringPointsOk() ([]LoyaltyLedgerEntry, bool)`
+
+GetExpiringPointsOk returns a tuple with the ExpiringPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasExpiringPoints
+
+`func (o *LoyaltySubLedger) HasExpiringPoints() bool`
+
+HasExpiringPoints returns a boolean if a field has been set.
+
+### SetExpiringPoints
+
+`func (o *LoyaltySubLedger) SetExpiringPoints(v []LoyaltyLedgerEntry)`
+
+SetExpiringPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ExpiringPoints field.
+
+### GetPendingPoints
+
+`func (o *LoyaltySubLedger) GetPendingPoints() []LoyaltyLedgerEntry`
+
+GetPendingPoints returns the PendingPoints field if non-nil, zero value otherwise.
+
+### GetPendingPointsOk
+
+`func (o *LoyaltySubLedger) GetPendingPointsOk() ([]LoyaltyLedgerEntry, bool)`
+
+GetPendingPointsOk returns a tuple with the PendingPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPendingPoints
+
+`func (o *LoyaltySubLedger) HasPendingPoints() bool`
+
+HasPendingPoints returns a boolean if a field has been set.
+
+### SetPendingPoints
+
+`func (o *LoyaltySubLedger) SetPendingPoints(v []LoyaltyLedgerEntry)`
+
+SetPendingPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the PendingPoints field.
 
 ### GetTotal
 
@@ -68,6 +193,31 @@ HasTotalActivePoints returns a boolean if a field has been set.
 
 SetTotalActivePoints gets a reference to the given float32 and assigns it to the TotalActivePoints field.
 
+### GetTotalExpiredPoints
+
+`func (o *LoyaltySubLedger) GetTotalExpiredPoints() float32`
+
+GetTotalExpiredPoints returns the TotalExpiredPoints field if non-nil, zero value otherwise.
+
+### GetTotalExpiredPointsOk
+
+`func (o *LoyaltySubLedger) GetTotalExpiredPointsOk() (float32, bool)`
+
+GetTotalExpiredPointsOk returns a tuple with the TotalExpiredPoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalExpiredPoints
+
+`func (o *LoyaltySubLedger) HasTotalExpiredPoints() bool`
+
+HasTotalExpiredPoints returns a boolean if a field has been set.
+
+### SetTotalExpiredPoints
+
+`func (o *LoyaltySubLedger) SetTotalExpiredPoints(v float32)`
+
+SetTotalExpiredPoints gets a reference to the given float32 and assigns it to the TotalExpiredPoints field.
+
 ### GetTotalPendingPoints
 
 `func (o *LoyaltySubLedger) GetTotalPendingPoints() float32`
@@ -118,31 +268,6 @@ HasTotalSpentPoints returns a boolean if a field has been set.
 
 SetTotalSpentPoints gets a reference to the given float32 and assigns it to the TotalSpentPoints field.
 
-### GetTotalExpiredPoints
-
-`func (o *LoyaltySubLedger) GetTotalExpiredPoints() float32`
-
-GetTotalExpiredPoints returns the TotalExpiredPoints field if non-nil, zero value otherwise.
-
-### GetTotalExpiredPointsOk
-
-`func (o *LoyaltySubLedger) GetTotalExpiredPointsOk() (float32, bool)`
-
-GetTotalExpiredPointsOk returns a tuple with the TotalExpiredPoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalExpiredPoints
-
-`func (o *LoyaltySubLedger) HasTotalExpiredPoints() bool`
-
-HasTotalExpiredPoints returns a boolean if a field has been set.
-
-### SetTotalExpiredPoints
-
-`func (o *LoyaltySubLedger) SetTotalExpiredPoints(v float32)`
-
-SetTotalExpiredPoints gets a reference to the given float32 and assigns it to the TotalExpiredPoints field.
-
 ### GetTransactions
 
 `func (o *LoyaltySubLedger) GetTransactions() []LoyaltyLedgerEntry`
@@ -167,131 +292,6 @@ HasTransactions returns a boolean if a field has been set.
 `func (o *LoyaltySubLedger) SetTransactions(v []LoyaltyLedgerEntry)`
 
 SetTransactions gets a reference to the given []LoyaltyLedgerEntry and assigns it to the Transactions field.
-
-### GetExpiringPoints
-
-`func (o *LoyaltySubLedger) GetExpiringPoints() []LoyaltyLedgerEntry`
-
-GetExpiringPoints returns the ExpiringPoints field if non-nil, zero value otherwise.
-
-### GetExpiringPointsOk
-
-`func (o *LoyaltySubLedger) GetExpiringPointsOk() ([]LoyaltyLedgerEntry, bool)`
-
-GetExpiringPointsOk returns a tuple with the ExpiringPoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExpiringPoints
-
-`func (o *LoyaltySubLedger) HasExpiringPoints() bool`
-
-HasExpiringPoints returns a boolean if a field has been set.
-
-### SetExpiringPoints
-
-`func (o *LoyaltySubLedger) SetExpiringPoints(v []LoyaltyLedgerEntry)`
-
-SetExpiringPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ExpiringPoints field.
-
-### GetActivePoints
-
-`func (o *LoyaltySubLedger) GetActivePoints() []LoyaltyLedgerEntry`
-
-GetActivePoints returns the ActivePoints field if non-nil, zero value otherwise.
-
-### GetActivePointsOk
-
-`func (o *LoyaltySubLedger) GetActivePointsOk() ([]LoyaltyLedgerEntry, bool)`
-
-GetActivePointsOk returns a tuple with the ActivePoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasActivePoints
-
-`func (o *LoyaltySubLedger) HasActivePoints() bool`
-
-HasActivePoints returns a boolean if a field has been set.
-
-### SetActivePoints
-
-`func (o *LoyaltySubLedger) SetActivePoints(v []LoyaltyLedgerEntry)`
-
-SetActivePoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ActivePoints field.
-
-### GetPendingPoints
-
-`func (o *LoyaltySubLedger) GetPendingPoints() []LoyaltyLedgerEntry`
-
-GetPendingPoints returns the PendingPoints field if non-nil, zero value otherwise.
-
-### GetPendingPointsOk
-
-`func (o *LoyaltySubLedger) GetPendingPointsOk() ([]LoyaltyLedgerEntry, bool)`
-
-GetPendingPointsOk returns a tuple with the PendingPoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasPendingPoints
-
-`func (o *LoyaltySubLedger) HasPendingPoints() bool`
-
-HasPendingPoints returns a boolean if a field has been set.
-
-### SetPendingPoints
-
-`func (o *LoyaltySubLedger) SetPendingPoints(v []LoyaltyLedgerEntry)`
-
-SetPendingPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the PendingPoints field.
-
-### GetExpiredPoints
-
-`func (o *LoyaltySubLedger) GetExpiredPoints() []LoyaltyLedgerEntry`
-
-GetExpiredPoints returns the ExpiredPoints field if non-nil, zero value otherwise.
-
-### GetExpiredPointsOk
-
-`func (o *LoyaltySubLedger) GetExpiredPointsOk() ([]LoyaltyLedgerEntry, bool)`
-
-GetExpiredPointsOk returns a tuple with the ExpiredPoints field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasExpiredPoints
-
-`func (o *LoyaltySubLedger) HasExpiredPoints() bool`
-
-HasExpiredPoints returns a boolean if a field has been set.
-
-### SetExpiredPoints
-
-`func (o *LoyaltySubLedger) SetExpiredPoints(v []LoyaltyLedgerEntry)`
-
-SetExpiredPoints gets a reference to the given []LoyaltyLedgerEntry and assigns it to the ExpiredPoints field.
-
-### GetCurrentTier
-
-`func (o *LoyaltySubLedger) GetCurrentTier() Tier`
-
-GetCurrentTier returns the CurrentTier field if non-nil, zero value otherwise.
-
-### GetCurrentTierOk
-
-`func (o *LoyaltySubLedger) GetCurrentTierOk() (Tier, bool)`
-
-GetCurrentTierOk returns a tuple with the CurrentTier field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCurrentTier
-
-`func (o *LoyaltySubLedger) HasCurrentTier() bool`
-
-HasCurrentTier returns a boolean if a field has been set.
-
-### SetCurrentTier
-
-`func (o *LoyaltySubLedger) SetCurrentTier(v Tier)`
-
-SetCurrentTier gets a reference to the given Tier and assigns it to the CurrentTier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

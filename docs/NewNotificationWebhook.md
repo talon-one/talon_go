@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Url** | Pointer to **string** | API URL for the given webhook-based notification. | 
-**Headers** | Pointer to **[]string** | List of API HTTP headers for the given webhook-based notification. | 
 **Enabled** | Pointer to **bool** | Indicates whether the notification is activated. | [optional] [default to true]
+**Headers** | Pointer to **[]string** | List of API HTTP headers for the given webhook-based notification. | 
+**Url** | Pointer to **string** | API URL for the given webhook-based notification. | 
 
 ## Methods
 
-### GetUrl
+### GetEnabled
 
-`func (o *NewNotificationWebhook) GetUrl() string`
+`func (o *NewNotificationWebhook) GetEnabled() bool`
 
-GetUrl returns the Url field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetUrlOk
+### GetEnabledOk
 
-`func (o *NewNotificationWebhook) GetUrlOk() (string, bool)`
+`func (o *NewNotificationWebhook) GetEnabledOk() (bool, bool)`
 
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasUrl
+### HasEnabled
 
-`func (o *NewNotificationWebhook) HasUrl() bool`
+`func (o *NewNotificationWebhook) HasEnabled() bool`
 
-HasUrl returns a boolean if a field has been set.
+HasEnabled returns a boolean if a field has been set.
 
-### SetUrl
+### SetEnabled
 
-`func (o *NewNotificationWebhook) SetUrl(v string)`
+`func (o *NewNotificationWebhook) SetEnabled(v bool)`
 
-SetUrl gets a reference to the given string and assigns it to the Url field.
+SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 
 ### GetHeaders
 
@@ -60,30 +60,30 @@ HasHeaders returns a boolean if a field has been set.
 
 SetHeaders gets a reference to the given []string and assigns it to the Headers field.
 
-### GetEnabled
+### GetUrl
 
-`func (o *NewNotificationWebhook) GetEnabled() bool`
+`func (o *NewNotificationWebhook) GetUrl() string`
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+GetUrl returns the Url field if non-nil, zero value otherwise.
 
-### GetEnabledOk
+### GetUrlOk
 
-`func (o *NewNotificationWebhook) GetEnabledOk() (bool, bool)`
+`func (o *NewNotificationWebhook) GetUrlOk() (string, bool)`
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEnabled
+### HasUrl
 
-`func (o *NewNotificationWebhook) HasEnabled() bool`
+`func (o *NewNotificationWebhook) HasUrl() bool`
 
-HasEnabled returns a boolean if a field has been set.
+HasUrl returns a boolean if a field has been set.
 
-### SetEnabled
+### SetUrl
 
-`func (o *NewNotificationWebhook) SetEnabled(v bool)`
+`func (o *NewNotificationWebhook) SetUrl(v string)`
 
-SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+SetUrl gets a reference to the given string and assigns it to the Url field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

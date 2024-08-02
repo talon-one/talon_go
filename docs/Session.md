@@ -4,36 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**UserId** | Pointer to **int32** | The ID of the user of this session. | 
-**Token** | Pointer to **string** | The token to use as a bearer token to query Management API endpoints. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Unix timestamp indicating when the session was first created. | 
+**Token** | Pointer to **string** | The token to use as a bearer token to query Management API endpoints. | 
+**UserId** | Pointer to **int32** | The ID of the user of this session. | 
 
 ## Methods
 
-### GetUserId
+### GetCreated
 
-`func (o *Session) GetUserId() int32`
+`func (o *Session) GetCreated() time.Time`
 
-GetUserId returns the UserId field if non-nil, zero value otherwise.
+GetCreated returns the Created field if non-nil, zero value otherwise.
 
-### GetUserIdOk
+### GetCreatedOk
 
-`func (o *Session) GetUserIdOk() (int32, bool)`
+`func (o *Session) GetCreatedOk() (time.Time, bool)`
 
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasUserId
+### HasCreated
 
-`func (o *Session) HasUserId() bool`
+`func (o *Session) HasCreated() bool`
 
-HasUserId returns a boolean if a field has been set.
+HasCreated returns a boolean if a field has been set.
 
-### SetUserId
+### SetCreated
 
-`func (o *Session) SetUserId(v int32)`
+`func (o *Session) SetCreated(v time.Time)`
 
-SetUserId gets a reference to the given int32 and assigns it to the UserId field.
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
 ### GetToken
 
@@ -60,30 +60,30 @@ HasToken returns a boolean if a field has been set.
 
 SetToken gets a reference to the given string and assigns it to the Token field.
 
-### GetCreated
+### GetUserId
 
-`func (o *Session) GetCreated() time.Time`
+`func (o *Session) GetUserId() int32`
 
-GetCreated returns the Created field if non-nil, zero value otherwise.
+GetUserId returns the UserId field if non-nil, zero value otherwise.
 
-### GetCreatedOk
+### GetUserIdOk
 
-`func (o *Session) GetCreatedOk() (time.Time, bool)`
+`func (o *Session) GetUserIdOk() (int32, bool)`
 
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCreated
+### HasUserId
 
-`func (o *Session) HasCreated() bool`
+`func (o *Session) HasUserId() bool`
 
-HasCreated returns a boolean if a field has been set.
+HasUserId returns a boolean if a field has been set.
 
-### SetCreated
+### SetUserId
 
-`func (o *Session) SetCreated(v time.Time)`
+`func (o *Session) SetUserId(v int32)`
 
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

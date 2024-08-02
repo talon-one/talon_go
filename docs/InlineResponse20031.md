@@ -4,10 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Data** | Pointer to [**[]CustomerProfile**](CustomerProfile.md) |  | 
 **HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]AudienceAnalytics**](AudienceAnalytics.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | [optional] 
 
 ## Methods
+
+### GetData
+
+`func (o *InlineResponse20031) GetData() []CustomerProfile`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *InlineResponse20031) GetDataOk() ([]CustomerProfile, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasData
+
+`func (o *InlineResponse20031) HasData() bool`
+
+HasData returns a boolean if a field has been set.
+
+### SetData
+
+`func (o *InlineResponse20031) SetData(v []CustomerProfile)`
+
+SetData gets a reference to the given []CustomerProfile and assigns it to the Data field.
 
 ### GetHasMore
 
@@ -34,30 +60,30 @@ HasHasMore returns a boolean if a field has been set.
 
 SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
-### GetData
+### GetTotalResultSize
 
-`func (o *InlineResponse20031) GetData() []AudienceAnalytics`
+`func (o *InlineResponse20031) GetTotalResultSize() int32`
 
-GetData returns the Data field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetDataOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20031) GetDataOk() ([]AudienceAnalytics, bool)`
+`func (o *InlineResponse20031) GetTotalResultSizeOk() (int32, bool)`
 
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasData
+### HasTotalResultSize
 
-`func (o *InlineResponse20031) HasData() bool`
+`func (o *InlineResponse20031) HasTotalResultSize() bool`
 
-HasData returns a boolean if a field has been set.
+HasTotalResultSize returns a boolean if a field has been set.
 
-### SetData
+### SetTotalResultSize
 
-`func (o *InlineResponse20031) SetData(v []AudienceAnalytics)`
+`func (o *InlineResponse20031) SetTotalResultSize(v int32)`
 
-SetData gets a reference to the given []AudienceAnalytics and assigns it to the Data field.
+SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

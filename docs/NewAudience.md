@@ -4,65 +4,40 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
-**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
+**CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
 **Description** | Pointer to **string** | A description of the audience. | [optional] 
 **Integration** | Pointer to **string** | The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Selligent&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property.  | [optional] 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property.  | [optional] 
-**CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
 **LastUpdate** | Pointer to [**time.Time**](time.Time.md) | The last time that the audience memberships changed. | [optional] 
+**Name** | Pointer to **string** | The human-friendly display name for this audience. | 
+**Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
 
 ## Methods
 
-### GetName
+### GetCreatedIn3rdParty
 
-`func (o *NewAudience) GetName() string`
+`func (o *NewAudience) GetCreatedIn3rdParty() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetCreatedIn3rdParty returns the CreatedIn3rdParty field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetCreatedIn3rdPartyOk
 
-`func (o *NewAudience) GetNameOk() (string, bool)`
+`func (o *NewAudience) GetCreatedIn3rdPartyOk() (bool, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasCreatedIn3rdParty
 
-`func (o *NewAudience) HasName() bool`
+`func (o *NewAudience) HasCreatedIn3rdParty() bool`
 
-HasName returns a boolean if a field has been set.
+HasCreatedIn3rdParty returns a boolean if a field has been set.
 
-### SetName
+### SetCreatedIn3rdParty
 
-`func (o *NewAudience) SetName(v string)`
+`func (o *NewAudience) SetCreatedIn3rdParty(v bool)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetSandbox
-
-`func (o *NewAudience) GetSandbox() bool`
-
-GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
-
-### GetSandboxOk
-
-`func (o *NewAudience) GetSandboxOk() (bool, bool)`
-
-GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasSandbox
-
-`func (o *NewAudience) HasSandbox() bool`
-
-HasSandbox returns a boolean if a field has been set.
-
-### SetSandbox
-
-`func (o *NewAudience) SetSandbox(v bool)`
-
-SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
 
 ### GetDescription
 
@@ -139,31 +114,6 @@ HasIntegrationId returns a boolean if a field has been set.
 
 SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
 
-### GetCreatedIn3rdParty
-
-`func (o *NewAudience) GetCreatedIn3rdParty() bool`
-
-GetCreatedIn3rdParty returns the CreatedIn3rdParty field if non-nil, zero value otherwise.
-
-### GetCreatedIn3rdPartyOk
-
-`func (o *NewAudience) GetCreatedIn3rdPartyOk() (bool, bool)`
-
-GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreatedIn3rdParty
-
-`func (o *NewAudience) HasCreatedIn3rdParty() bool`
-
-HasCreatedIn3rdParty returns a boolean if a field has been set.
-
-### SetCreatedIn3rdParty
-
-`func (o *NewAudience) SetCreatedIn3rdParty(v bool)`
-
-SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
-
 ### GetLastUpdate
 
 `func (o *NewAudience) GetLastUpdate() time.Time`
@@ -188,6 +138,56 @@ HasLastUpdate returns a boolean if a field has been set.
 `func (o *NewAudience) SetLastUpdate(v time.Time)`
 
 SetLastUpdate gets a reference to the given time.Time and assigns it to the LastUpdate field.
+
+### GetName
+
+`func (o *NewAudience) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewAudience) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *NewAudience) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *NewAudience) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetSandbox
+
+`func (o *NewAudience) GetSandbox() bool`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *NewAudience) GetSandboxOk() (bool, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandbox
+
+`func (o *NewAudience) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
+
+### SetSandbox
+
+`func (o *NewAudience) SetSandbox(v bool)`
+
+SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

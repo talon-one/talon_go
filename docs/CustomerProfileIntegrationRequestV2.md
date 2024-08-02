@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
-**EvaluableCampaignIds** | Pointer to **[]int32** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **AudiencesChanges** | Pointer to [**ProfileAudiencesChanges**](ProfileAudiencesChanges.md) |  | [optional] 
+**EvaluableCampaignIds** | Pointer to **[]int32** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **ResponseContent** | Pointer to **[]string** | Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints.  | [optional] 
 
 ## Methods
@@ -36,31 +36,6 @@ HasAttributes returns a boolean if a field has been set.
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
-### GetEvaluableCampaignIds
-
-`func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIds() []int32`
-
-GetEvaluableCampaignIds returns the EvaluableCampaignIds field if non-nil, zero value otherwise.
-
-### GetEvaluableCampaignIdsOk
-
-`func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIdsOk() ([]int32, bool)`
-
-GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEvaluableCampaignIds
-
-`func (o *CustomerProfileIntegrationRequestV2) HasEvaluableCampaignIds() bool`
-
-HasEvaluableCampaignIds returns a boolean if a field has been set.
-
-### SetEvaluableCampaignIds
-
-`func (o *CustomerProfileIntegrationRequestV2) SetEvaluableCampaignIds(v []int32)`
-
-SetEvaluableCampaignIds gets a reference to the given []int32 and assigns it to the EvaluableCampaignIds field.
-
 ### GetAudiencesChanges
 
 `func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChanges() ProfileAudiencesChanges`
@@ -85,6 +60,31 @@ HasAudiencesChanges returns a boolean if a field has been set.
 `func (o *CustomerProfileIntegrationRequestV2) SetAudiencesChanges(v ProfileAudiencesChanges)`
 
 SetAudiencesChanges gets a reference to the given ProfileAudiencesChanges and assigns it to the AudiencesChanges field.
+
+### GetEvaluableCampaignIds
+
+`func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIds() []int32`
+
+GetEvaluableCampaignIds returns the EvaluableCampaignIds field if non-nil, zero value otherwise.
+
+### GetEvaluableCampaignIdsOk
+
+`func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIdsOk() ([]int32, bool)`
+
+GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluableCampaignIds
+
+`func (o *CustomerProfileIntegrationRequestV2) HasEvaluableCampaignIds() bool`
+
+HasEvaluableCampaignIds returns a boolean if a field has been set.
+
+### SetEvaluableCampaignIds
+
+`func (o *CustomerProfileIntegrationRequestV2) SetEvaluableCampaignIds(v []int32)`
+
+SetEvaluableCampaignIds gets a reference to the given []int32 and assigns it to the EvaluableCampaignIds field.
 
 ### GetResponseContent
 

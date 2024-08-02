@@ -4,36 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | [optional] 
-**HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]Change**](Change.md) |  | 
+**Data** | Pointer to [**[]LoyaltyProgramTransaction**](LoyaltyProgramTransaction.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
 
 ## Methods
 
-### GetTotalResultSize
+### GetData
 
-`func (o *InlineResponse20042) GetTotalResultSize() int32`
+`func (o *InlineResponse20042) GetData() []LoyaltyProgramTransaction`
 
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+GetData returns the Data field if non-nil, zero value otherwise.
 
-### GetTotalResultSizeOk
+### GetDataOk
 
-`func (o *InlineResponse20042) GetTotalResultSizeOk() (int32, bool)`
+`func (o *InlineResponse20042) GetDataOk() ([]LoyaltyProgramTransaction, bool)`
 
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTotalResultSize
+### HasData
 
-`func (o *InlineResponse20042) HasTotalResultSize() bool`
+`func (o *InlineResponse20042) HasData() bool`
 
-HasTotalResultSize returns a boolean if a field has been set.
+HasData returns a boolean if a field has been set.
 
-### SetTotalResultSize
+### SetData
 
-`func (o *InlineResponse20042) SetTotalResultSize(v int32)`
+`func (o *InlineResponse20042) SetData(v []LoyaltyProgramTransaction)`
 
-SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
+SetData gets a reference to the given []LoyaltyProgramTransaction and assigns it to the Data field.
 
 ### GetHasMore
 
@@ -59,31 +58,6 @@ HasHasMore returns a boolean if a field has been set.
 `func (o *InlineResponse20042) SetHasMore(v bool)`
 
 SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-
-### GetData
-
-`func (o *InlineResponse20042) GetData() []Change`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *InlineResponse20042) GetDataOk() ([]Change, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasData
-
-`func (o *InlineResponse20042) HasData() bool`
-
-HasData returns a boolean if a field has been set.
-
-### SetData
-
-`func (o *InlineResponse20042) SetData(v []Change)`
-
-SetData gets a reference to the given []Change and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

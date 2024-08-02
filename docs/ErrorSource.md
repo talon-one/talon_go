@@ -4,37 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Pointer** | Pointer to **string** | Pointer to the path in the payload that caused this error. | [optional] 
-**Parameter** | Pointer to **string** | Query parameter that caused this error. | [optional] 
 **Line** | Pointer to **string** | Line number in uploaded multipart file that caused this error. &#39;N/A&#39; if unknown. | [optional] 
+**Parameter** | Pointer to **string** | Query parameter that caused this error. | [optional] 
+**Pointer** | Pointer to **string** | Pointer to the path in the payload that caused this error. | [optional] 
 **Resource** | Pointer to **string** | Pointer to the resource that caused this error. | [optional] 
 
 ## Methods
 
-### GetPointer
+### GetLine
 
-`func (o *ErrorSource) GetPointer() string`
+`func (o *ErrorSource) GetLine() string`
 
-GetPointer returns the Pointer field if non-nil, zero value otherwise.
+GetLine returns the Line field if non-nil, zero value otherwise.
 
-### GetPointerOk
+### GetLineOk
 
-`func (o *ErrorSource) GetPointerOk() (string, bool)`
+`func (o *ErrorSource) GetLineOk() (string, bool)`
 
-GetPointerOk returns a tuple with the Pointer field if it's non-nil, zero value otherwise
+GetLineOk returns a tuple with the Line field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPointer
+### HasLine
 
-`func (o *ErrorSource) HasPointer() bool`
+`func (o *ErrorSource) HasLine() bool`
 
-HasPointer returns a boolean if a field has been set.
+HasLine returns a boolean if a field has been set.
 
-### SetPointer
+### SetLine
 
-`func (o *ErrorSource) SetPointer(v string)`
+`func (o *ErrorSource) SetLine(v string)`
 
-SetPointer gets a reference to the given string and assigns it to the Pointer field.
+SetLine gets a reference to the given string and assigns it to the Line field.
 
 ### GetParameter
 
@@ -61,30 +61,30 @@ HasParameter returns a boolean if a field has been set.
 
 SetParameter gets a reference to the given string and assigns it to the Parameter field.
 
-### GetLine
+### GetPointer
 
-`func (o *ErrorSource) GetLine() string`
+`func (o *ErrorSource) GetPointer() string`
 
-GetLine returns the Line field if non-nil, zero value otherwise.
+GetPointer returns the Pointer field if non-nil, zero value otherwise.
 
-### GetLineOk
+### GetPointerOk
 
-`func (o *ErrorSource) GetLineOk() (string, bool)`
+`func (o *ErrorSource) GetPointerOk() (string, bool)`
 
-GetLineOk returns a tuple with the Line field if it's non-nil, zero value otherwise
+GetPointerOk returns a tuple with the Pointer field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasLine
+### HasPointer
 
-`func (o *ErrorSource) HasLine() bool`
+`func (o *ErrorSource) HasPointer() bool`
 
-HasLine returns a boolean if a field has been set.
+HasPointer returns a boolean if a field has been set.
 
-### SetLine
+### SetPointer
 
-`func (o *ErrorSource) SetLine(v string)`
+`func (o *ErrorSource) SetPointer(v string)`
 
-SetLine gets a reference to the given string and assigns it to the Line field.
+SetPointer gets a reference to the given string and assigns it to the Pointer field.
 
 ### GetResource
 

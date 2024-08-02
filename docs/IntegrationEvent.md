@@ -4,12 +4,37 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON data associated with the event. | 
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 
 **StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **Type** | Pointer to **string** | A string representing the event. Must not be a reserved event name. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON data associated with the event. | 
 
 ## Methods
+
+### GetAttributes
+
+`func (o *IntegrationEvent) GetAttributes() map[string]interface{}`
+
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
+
+### GetAttributesOk
+
+`func (o *IntegrationEvent) GetAttributesOk() (map[string]interface{}, bool)`
+
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAttributes
+
+`func (o *IntegrationEvent) HasAttributes() bool`
+
+HasAttributes returns a boolean if a field has been set.
+
+### SetAttributes
+
+`func (o *IntegrationEvent) SetAttributes(v map[string]interface{})`
+
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetProfileId
 
@@ -85,31 +110,6 @@ HasType returns a boolean if a field has been set.
 `func (o *IntegrationEvent) SetType(v string)`
 
 SetType gets a reference to the given string and assigns it to the Type field.
-
-### GetAttributes
-
-`func (o *IntegrationEvent) GetAttributes() map[string]interface{}`
-
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
-
-### GetAttributesOk
-
-`func (o *IntegrationEvent) GetAttributesOk() (map[string]interface{}, bool)`
-
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAttributes
-
-`func (o *IntegrationEvent) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
-
-### SetAttributes
-
-`func (o *IntegrationEvent) SetAttributes(v map[string]interface{})`
-
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

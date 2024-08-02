@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignId** | Pointer to **int32** | The ID of the campaign that effect belongs to. | 
-**RulesetId** | Pointer to **int32** | The ID of the ruleset containing the rule that triggered this effect. | 
+**Props** | Pointer to [**map[string]interface{}**](.md) |  | 
 **RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | 
+**RulesetId** | Pointer to **int32** | The ID of the ruleset containing the rule that triggered this effect. | 
 **Type** | Pointer to **string** | The type of this effect. | 
-**Props** | Pointer to [**map[string]interface{}**](.md) |  | 
 
 ## Methods
 
@@ -38,30 +38,30 @@ HasCampaignId returns a boolean if a field has been set.
 
 SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
-### GetRulesetId
+### GetProps
 
-`func (o *StrikethroughEffect) GetRulesetId() int32`
+`func (o *StrikethroughEffect) GetProps() map[string]interface{}`
 
-GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
+GetProps returns the Props field if non-nil, zero value otherwise.
 
-### GetRulesetIdOk
+### GetPropsOk
 
-`func (o *StrikethroughEffect) GetRulesetIdOk() (int32, bool)`
+`func (o *StrikethroughEffect) GetPropsOk() (map[string]interface{}, bool)`
 
-GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
+GetPropsOk returns a tuple with the Props field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRulesetId
+### HasProps
 
-`func (o *StrikethroughEffect) HasRulesetId() bool`
+`func (o *StrikethroughEffect) HasProps() bool`
 
-HasRulesetId returns a boolean if a field has been set.
+HasProps returns a boolean if a field has been set.
 
-### SetRulesetId
+### SetProps
 
-`func (o *StrikethroughEffect) SetRulesetId(v int32)`
+`func (o *StrikethroughEffect) SetProps(v map[string]interface{})`
 
-SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
+SetProps gets a reference to the given map[string]interface{} and assigns it to the Props field.
 
 ### GetRuleIndex
 
@@ -113,6 +113,31 @@ HasRuleName returns a boolean if a field has been set.
 
 SetRuleName gets a reference to the given string and assigns it to the RuleName field.
 
+### GetRulesetId
+
+`func (o *StrikethroughEffect) GetRulesetId() int32`
+
+GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
+
+### GetRulesetIdOk
+
+`func (o *StrikethroughEffect) GetRulesetIdOk() (int32, bool)`
+
+GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRulesetId
+
+`func (o *StrikethroughEffect) HasRulesetId() bool`
+
+HasRulesetId returns a boolean if a field has been set.
+
+### SetRulesetId
+
+`func (o *StrikethroughEffect) SetRulesetId(v int32)`
+
+SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
+
 ### GetType
 
 `func (o *StrikethroughEffect) GetType() string`
@@ -137,31 +162,6 @@ HasType returns a boolean if a field has been set.
 `func (o *StrikethroughEffect) SetType(v string)`
 
 SetType gets a reference to the given string and assigns it to the Type field.
-
-### GetProps
-
-`func (o *StrikethroughEffect) GetProps() map[string]interface{}`
-
-GetProps returns the Props field if non-nil, zero value otherwise.
-
-### GetPropsOk
-
-`func (o *StrikethroughEffect) GetPropsOk() (map[string]interface{}, bool)`
-
-GetPropsOk returns a tuple with the Props field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProps
-
-`func (o *StrikethroughEffect) HasProps() bool`
-
-HasProps returns a boolean if a field has been set.
-
-### SetProps
-
-`func (o *StrikethroughEffect) SetProps(v map[string]interface{})`
-
-SetProps gets a reference to the given map[string]interface{} and assigns it to the Props field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,36 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Title** | Pointer to **string** | Short description of the problem. | 
 **Details** | Pointer to **string** | Longer description of this specific instance of the problem. | [optional] 
 **Source** | Pointer to [**ErrorSource**](ErrorSource.md) |  | 
+**Title** | Pointer to **string** | Short description of the problem. | 
 
 ## Methods
-
-### GetTitle
-
-`func (o *ApiError) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *ApiError) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *ApiError) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *ApiError) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetDetails
 
@@ -84,6 +59,31 @@ HasSource returns a boolean if a field has been set.
 `func (o *ApiError) SetSource(v ErrorSource)`
 
 SetSource gets a reference to the given ErrorSource and assigns it to the Source field.
+
+### GetTitle
+
+`func (o *ApiError) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *ApiError) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *ApiError) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *ApiError) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

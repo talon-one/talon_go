@@ -4,22 +4,97 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Created** | Pointer to [**time.Time**](time.Time.md) |  | 
-**ProgramID** | Pointer to **int32** |  | 
-**CustomerProfileID** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **float32** |  | 
+**Archived** | Pointer to **bool** | Indicates if the entry belongs to the archived session. | [optional] 
 **CardID** | Pointer to **int32** |  | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) |  | 
+**CustomerProfileID** | Pointer to **string** |  | [optional] 
 **CustomerSessionID** | Pointer to **string** |  | [optional] 
 **EventID** | Pointer to **int32** |  | [optional] 
-**Type** | Pointer to **string** | The type of the ledger transaction. Possible values are: - &#x60;addition&#x60; - &#x60;subtraction&#x60; - &#x60;expire&#x60; - &#x60;expiring&#x60; (for expiring points ledgers)  | 
-**Amount** | Pointer to **float32** |  | 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **Name** | Pointer to **string** | A name referencing the condition or effect that added this entry, or the specific name provided in an API call. | 
+**ProgramID** | Pointer to **int32** |  | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
 **SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger. | 
+**Type** | Pointer to **string** | The type of the ledger transaction. Possible values are: - &#x60;addition&#x60; - &#x60;subtraction&#x60; - &#x60;expire&#x60; - &#x60;expiring&#x60; (for expiring points ledgers)  | 
 **UserID** | Pointer to **int32** | This is the ID of the user who created this entry, if the addition or subtraction was done manually. | [optional] 
-**Archived** | Pointer to **bool** | Indicates if the entry belongs to the archived session. | [optional] 
 
 ## Methods
+
+### GetAmount
+
+`func (o *LoyaltyLedgerEntry) GetAmount() float32`
+
+GetAmount returns the Amount field if non-nil, zero value otherwise.
+
+### GetAmountOk
+
+`func (o *LoyaltyLedgerEntry) GetAmountOk() (float32, bool)`
+
+GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAmount
+
+`func (o *LoyaltyLedgerEntry) HasAmount() bool`
+
+HasAmount returns a boolean if a field has been set.
+
+### SetAmount
+
+`func (o *LoyaltyLedgerEntry) SetAmount(v float32)`
+
+SetAmount gets a reference to the given float32 and assigns it to the Amount field.
+
+### GetArchived
+
+`func (o *LoyaltyLedgerEntry) GetArchived() bool`
+
+GetArchived returns the Archived field if non-nil, zero value otherwise.
+
+### GetArchivedOk
+
+`func (o *LoyaltyLedgerEntry) GetArchivedOk() (bool, bool)`
+
+GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasArchived
+
+`func (o *LoyaltyLedgerEntry) HasArchived() bool`
+
+HasArchived returns a boolean if a field has been set.
+
+### SetArchived
+
+`func (o *LoyaltyLedgerEntry) SetArchived(v bool)`
+
+SetArchived gets a reference to the given bool and assigns it to the Archived field.
+
+### GetCardID
+
+`func (o *LoyaltyLedgerEntry) GetCardID() int32`
+
+GetCardID returns the CardID field if non-nil, zero value otherwise.
+
+### GetCardIDOk
+
+`func (o *LoyaltyLedgerEntry) GetCardIDOk() (int32, bool)`
+
+GetCardIDOk returns a tuple with the CardID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardID
+
+`func (o *LoyaltyLedgerEntry) HasCardID() bool`
+
+HasCardID returns a boolean if a field has been set.
+
+### SetCardID
+
+`func (o *LoyaltyLedgerEntry) SetCardID(v int32)`
+
+SetCardID gets a reference to the given int32 and assigns it to the CardID field.
 
 ### GetCreated
 
@@ -46,31 +121,6 @@ HasCreated returns a boolean if a field has been set.
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 
-### GetProgramID
-
-`func (o *LoyaltyLedgerEntry) GetProgramID() int32`
-
-GetProgramID returns the ProgramID field if non-nil, zero value otherwise.
-
-### GetProgramIDOk
-
-`func (o *LoyaltyLedgerEntry) GetProgramIDOk() (int32, bool)`
-
-GetProgramIDOk returns a tuple with the ProgramID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProgramID
-
-`func (o *LoyaltyLedgerEntry) HasProgramID() bool`
-
-HasProgramID returns a boolean if a field has been set.
-
-### SetProgramID
-
-`func (o *LoyaltyLedgerEntry) SetProgramID(v int32)`
-
-SetProgramID gets a reference to the given int32 and assigns it to the ProgramID field.
-
 ### GetCustomerProfileID
 
 `func (o *LoyaltyLedgerEntry) GetCustomerProfileID() string`
@@ -95,31 +145,6 @@ HasCustomerProfileID returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetCustomerProfileID(v string)`
 
 SetCustomerProfileID gets a reference to the given string and assigns it to the CustomerProfileID field.
-
-### GetCardID
-
-`func (o *LoyaltyLedgerEntry) GetCardID() int32`
-
-GetCardID returns the CardID field if non-nil, zero value otherwise.
-
-### GetCardIDOk
-
-`func (o *LoyaltyLedgerEntry) GetCardIDOk() (int32, bool)`
-
-GetCardIDOk returns a tuple with the CardID field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCardID
-
-`func (o *LoyaltyLedgerEntry) HasCardID() bool`
-
-HasCardID returns a boolean if a field has been set.
-
-### SetCardID
-
-`func (o *LoyaltyLedgerEntry) SetCardID(v int32)`
-
-SetCardID gets a reference to the given int32 and assigns it to the CardID field.
 
 ### GetCustomerSessionID
 
@@ -171,81 +196,6 @@ HasEventID returns a boolean if a field has been set.
 
 SetEventID gets a reference to the given int32 and assigns it to the EventID field.
 
-### GetType
-
-`func (o *LoyaltyLedgerEntry) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *LoyaltyLedgerEntry) GetTypeOk() (string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *LoyaltyLedgerEntry) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *LoyaltyLedgerEntry) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
-
-### GetAmount
-
-`func (o *LoyaltyLedgerEntry) GetAmount() float32`
-
-GetAmount returns the Amount field if non-nil, zero value otherwise.
-
-### GetAmountOk
-
-`func (o *LoyaltyLedgerEntry) GetAmountOk() (float32, bool)`
-
-GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAmount
-
-`func (o *LoyaltyLedgerEntry) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
-
-### SetAmount
-
-`func (o *LoyaltyLedgerEntry) SetAmount(v float32)`
-
-SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-
-### GetStartDate
-
-`func (o *LoyaltyLedgerEntry) GetStartDate() time.Time`
-
-GetStartDate returns the StartDate field if non-nil, zero value otherwise.
-
-### GetStartDateOk
-
-`func (o *LoyaltyLedgerEntry) GetStartDateOk() (time.Time, bool)`
-
-GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasStartDate
-
-`func (o *LoyaltyLedgerEntry) HasStartDate() bool`
-
-HasStartDate returns a boolean if a field has been set.
-
-### SetStartDate
-
-`func (o *LoyaltyLedgerEntry) SetStartDate(v time.Time)`
-
-SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
-
 ### GetExpiryDate
 
 `func (o *LoyaltyLedgerEntry) GetExpiryDate() time.Time`
@@ -296,6 +246,56 @@ HasName returns a boolean if a field has been set.
 
 SetName gets a reference to the given string and assigns it to the Name field.
 
+### GetProgramID
+
+`func (o *LoyaltyLedgerEntry) GetProgramID() int32`
+
+GetProgramID returns the ProgramID field if non-nil, zero value otherwise.
+
+### GetProgramIDOk
+
+`func (o *LoyaltyLedgerEntry) GetProgramIDOk() (int32, bool)`
+
+GetProgramIDOk returns a tuple with the ProgramID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProgramID
+
+`func (o *LoyaltyLedgerEntry) HasProgramID() bool`
+
+HasProgramID returns a boolean if a field has been set.
+
+### SetProgramID
+
+`func (o *LoyaltyLedgerEntry) SetProgramID(v int32)`
+
+SetProgramID gets a reference to the given int32 and assigns it to the ProgramID field.
+
+### GetStartDate
+
+`func (o *LoyaltyLedgerEntry) GetStartDate() time.Time`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *LoyaltyLedgerEntry) GetStartDateOk() (time.Time, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStartDate
+
+`func (o *LoyaltyLedgerEntry) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
+
+### SetStartDate
+
+`func (o *LoyaltyLedgerEntry) SetStartDate(v time.Time)`
+
+SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+
 ### GetSubLedgerID
 
 `func (o *LoyaltyLedgerEntry) GetSubLedgerID() string`
@@ -321,6 +321,31 @@ HasSubLedgerID returns a boolean if a field has been set.
 
 SetSubLedgerID gets a reference to the given string and assigns it to the SubLedgerID field.
 
+### GetType
+
+`func (o *LoyaltyLedgerEntry) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *LoyaltyLedgerEntry) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *LoyaltyLedgerEntry) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *LoyaltyLedgerEntry) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
+
 ### GetUserID
 
 `func (o *LoyaltyLedgerEntry) GetUserID() int32`
@@ -345,31 +370,6 @@ HasUserID returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetUserID(v int32)`
 
 SetUserID gets a reference to the given int32 and assigns it to the UserID field.
-
-### GetArchived
-
-`func (o *LoyaltyLedgerEntry) GetArchived() bool`
-
-GetArchived returns the Archived field if non-nil, zero value otherwise.
-
-### GetArchivedOk
-
-`func (o *LoyaltyLedgerEntry) GetArchivedOk() (bool, bool)`
-
-GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasArchived
-
-`func (o *LoyaltyLedgerEntry) HasArchived() bool`
-
-HasArchived returns a boolean if a field has been set.
-
-### SetArchived
-
-`func (o *LoyaltyLedgerEntry) SetArchived(v bool)`
-
-SetArchived gets a reference to the given bool and assigns it to the Archived field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,63 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The function name used in Talang. | 
-**Type** | Pointer to **string** | The type of this function argument. | 
+**Args** | Pointer to [**[]FuncArgDef**](FuncArgDef.md) | An array of argument definitions. | 
 **Description** | Pointer to **string** | A short description of the function. | [optional] 
 **Help** | Pointer to **string** | Extended help text for the function. | [optional] 
-**Args** | Pointer to [**[]FuncArgDef**](FuncArgDef.md) | An array of argument definitions. | 
+**Name** | Pointer to **string** | The function name used in Talang. | 
+**Type** | Pointer to **string** | The type of this function argument. | 
 
 ## Methods
 
-### GetName
+### GetArgs
 
-`func (o *FunctionDef) GetName() string`
+`func (o *FunctionDef) GetArgs() []FuncArgDef`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetArgs returns the Args field if non-nil, zero value otherwise.
 
-### GetNameOk
+### GetArgsOk
 
-`func (o *FunctionDef) GetNameOk() (string, bool)`
+`func (o *FunctionDef) GetArgsOk() ([]FuncArgDef, bool)`
 
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
+### HasArgs
 
-`func (o *FunctionDef) HasName() bool`
+`func (o *FunctionDef) HasArgs() bool`
 
-HasName returns a boolean if a field has been set.
+HasArgs returns a boolean if a field has been set.
 
-### SetName
+### SetArgs
 
-`func (o *FunctionDef) SetName(v string)`
+`func (o *FunctionDef) SetArgs(v []FuncArgDef)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetType
-
-`func (o *FunctionDef) GetType() string`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *FunctionDef) GetTypeOk() (string, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *FunctionDef) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
-### SetType
-
-`func (o *FunctionDef) SetType(v string)`
-
-SetType gets a reference to the given string and assigns it to the Type field.
+SetArgs gets a reference to the given []FuncArgDef and assigns it to the Args field.
 
 ### GetDescription
 
@@ -112,30 +87,55 @@ HasHelp returns a boolean if a field has been set.
 
 SetHelp gets a reference to the given string and assigns it to the Help field.
 
-### GetArgs
+### GetName
 
-`func (o *FunctionDef) GetArgs() []FuncArgDef`
+`func (o *FunctionDef) GetName() string`
 
-GetArgs returns the Args field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetArgsOk
+### GetNameOk
 
-`func (o *FunctionDef) GetArgsOk() ([]FuncArgDef, bool)`
+`func (o *FunctionDef) GetNameOk() (string, bool)`
 
-GetArgsOk returns a tuple with the Args field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasArgs
+### HasName
 
-`func (o *FunctionDef) HasArgs() bool`
+`func (o *FunctionDef) HasName() bool`
 
-HasArgs returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### SetArgs
+### SetName
 
-`func (o *FunctionDef) SetArgs(v []FuncArgDef)`
+`func (o *FunctionDef) SetName(v string)`
 
-SetArgs gets a reference to the given []FuncArgDef and assigns it to the Args field.
+SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetType
+
+`func (o *FunctionDef) GetType() string`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *FunctionDef) GetTypeOk() (string, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasType
+
+`func (o *FunctionDef) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetType
+
+`func (o *FunctionDef) SetType(v string)`
+
+SetType gets a reference to the given string and assigns it to the Type field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

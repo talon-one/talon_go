@@ -4,64 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | [optional] 
-**Title** | Pointer to **string** | The display name for the achievement in the Campaign Manager. | [optional] 
 **Description** | Pointer to **string** | A description of the achievement. | [optional] 
-**Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
+**Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | [optional] 
 **Period** | Pointer to **string** | The relative duration after which the achievement ends and resets for a particular customer profile.  | [optional] 
 **PeriodEndOverride** | Pointer to [**TimePoint**](TimePoint.md) |  | [optional] 
+**Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
+**Title** | Pointer to **string** | The display name for the achievement in the Campaign Manager. | [optional] 
 
 ## Methods
-
-### GetName
-
-`func (o *UpdateAchievement) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *UpdateAchievement) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *UpdateAchievement) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *UpdateAchievement) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetTitle
-
-`func (o *UpdateAchievement) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *UpdateAchievement) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *UpdateAchievement) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *UpdateAchievement) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
 
 ### GetDescription
 
@@ -88,30 +38,30 @@ HasDescription returns a boolean if a field has been set.
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
 
-### GetTarget
+### GetName
 
-`func (o *UpdateAchievement) GetTarget() float32`
+`func (o *UpdateAchievement) GetName() string`
 
-GetTarget returns the Target field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### GetTargetOk
+### GetNameOk
 
-`func (o *UpdateAchievement) GetTargetOk() (float32, bool)`
+`func (o *UpdateAchievement) GetNameOk() (string, bool)`
 
-GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTarget
+### HasName
 
-`func (o *UpdateAchievement) HasTarget() bool`
+`func (o *UpdateAchievement) HasName() bool`
 
-HasTarget returns a boolean if a field has been set.
+HasName returns a boolean if a field has been set.
 
-### SetTarget
+### SetName
 
-`func (o *UpdateAchievement) SetTarget(v float32)`
+`func (o *UpdateAchievement) SetName(v string)`
 
-SetTarget gets a reference to the given float32 and assigns it to the Target field.
+SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetPeriod
 
@@ -162,6 +112,56 @@ HasPeriodEndOverride returns a boolean if a field has been set.
 `func (o *UpdateAchievement) SetPeriodEndOverride(v TimePoint)`
 
 SetPeriodEndOverride gets a reference to the given TimePoint and assigns it to the PeriodEndOverride field.
+
+### GetTarget
+
+`func (o *UpdateAchievement) GetTarget() float32`
+
+GetTarget returns the Target field if non-nil, zero value otherwise.
+
+### GetTargetOk
+
+`func (o *UpdateAchievement) GetTargetOk() (float32, bool)`
+
+GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTarget
+
+`func (o *UpdateAchievement) HasTarget() bool`
+
+HasTarget returns a boolean if a field has been set.
+
+### SetTarget
+
+`func (o *UpdateAchievement) SetTarget(v float32)`
+
+SetTarget gets a reference to the given float32 and assigns it to the Target field.
+
+### GetTitle
+
+`func (o *UpdateAchievement) GetTitle() string`
+
+GetTitle returns the Title field if non-nil, zero value otherwise.
+
+### GetTitleOk
+
+`func (o *UpdateAchievement) GetTitleOk() (string, bool)`
+
+GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTitle
+
+`func (o *UpdateAchievement) HasTitle() bool`
+
+HasTitle returns a boolean if a field has been set.
+
+### SetTitle
+
+`func (o *UpdateAchievement) SetTitle(v string)`
+
+SetTitle gets a reference to the given string and assigns it to the Title field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

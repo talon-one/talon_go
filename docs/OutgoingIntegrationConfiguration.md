@@ -4,37 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Unique ID for this entity. | 
 **AccountId** | Pointer to **int32** | The ID of the account to which this configuration belongs. | 
-**TypeId** | Pointer to **int32** | The outgoing integration type ID. | 
+**Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Policy** | Pointer to [**map[string]interface{}**](.md) | The outgoing integration policy specific to each integration type. | 
+**TypeId** | Pointer to **int32** | The outgoing integration type ID. | 
 
 ## Methods
-
-### GetId
-
-`func (o *OutgoingIntegrationConfiguration) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *OutgoingIntegrationConfiguration) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *OutgoingIntegrationConfiguration) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *OutgoingIntegrationConfiguration) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetAccountId
 
@@ -61,30 +36,30 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetTypeId
+### GetId
 
-`func (o *OutgoingIntegrationConfiguration) GetTypeId() int32`
+`func (o *OutgoingIntegrationConfiguration) GetId() int32`
 
-GetTypeId returns the TypeId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetTypeIdOk
+### GetIdOk
 
-`func (o *OutgoingIntegrationConfiguration) GetTypeIdOk() (int32, bool)`
+`func (o *OutgoingIntegrationConfiguration) GetIdOk() (int32, bool)`
 
-GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTypeId
+### HasId
 
-`func (o *OutgoingIntegrationConfiguration) HasTypeId() bool`
+`func (o *OutgoingIntegrationConfiguration) HasId() bool`
 
-HasTypeId returns a boolean if a field has been set.
+HasId returns a boolean if a field has been set.
 
-### SetTypeId
+### SetId
 
-`func (o *OutgoingIntegrationConfiguration) SetTypeId(v int32)`
+`func (o *OutgoingIntegrationConfiguration) SetId(v int32)`
 
-SetTypeId gets a reference to the given int32 and assigns it to the TypeId field.
+SetId gets a reference to the given int32 and assigns it to the Id field.
 
 ### GetPolicy
 
@@ -110,6 +85,31 @@ HasPolicy returns a boolean if a field has been set.
 `func (o *OutgoingIntegrationConfiguration) SetPolicy(v map[string]interface{})`
 
 SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
+
+### GetTypeId
+
+`func (o *OutgoingIntegrationConfiguration) GetTypeId() int32`
+
+GetTypeId returns the TypeId field if non-nil, zero value otherwise.
+
+### GetTypeIdOk
+
+`func (o *OutgoingIntegrationConfiguration) GetTypeIdOk() (int32, bool)`
+
+GetTypeIdOk returns a tuple with the TypeId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTypeId
+
+`func (o *OutgoingIntegrationConfiguration) HasTypeId() bool`
+
+HasTypeId returns a boolean if a field has been set.
+
+### SetTypeId
+
+`func (o *OutgoingIntegrationConfiguration) SetTypeId(v int32)`
+
+SetTypeId gets a reference to the given int32 and assigns it to the TypeId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

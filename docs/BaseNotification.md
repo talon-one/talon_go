@@ -4,38 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | Pointer to [**map[string]interface{}**](.md) |  | 
 **Enabled** | Pointer to **bool** | Indicates whether the notification is activated. | [optional] [default to true]
-**Webhook** | Pointer to [**BaseNotificationWebhook**](BaseNotificationWebhook.md) |  | 
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
+**Policy** | Pointer to [**map[string]interface{}**](.md) | Indicates which notification properties to apply. | 
 **Type** | Pointer to **string** | The notification type. | 
+**Webhook** | Pointer to [**BaseNotificationWebhook**](BaseNotificationWebhook.md) |  | 
 
 ## Methods
-
-### GetPolicy
-
-`func (o *BaseNotification) GetPolicy() map[string]interface{}`
-
-GetPolicy returns the Policy field if non-nil, zero value otherwise.
-
-### GetPolicyOk
-
-`func (o *BaseNotification) GetPolicyOk() (map[string]interface{}, bool)`
-
-GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasPolicy
-
-`func (o *BaseNotification) HasPolicy() bool`
-
-HasPolicy returns a boolean if a field has been set.
-
-### SetPolicy
-
-`func (o *BaseNotification) SetPolicy(v map[string]interface{})`
-
-SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
 
 ### GetEnabled
 
@@ -62,31 +37,6 @@ HasEnabled returns a boolean if a field has been set.
 
 SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 
-### GetWebhook
-
-`func (o *BaseNotification) GetWebhook() BaseNotificationWebhook`
-
-GetWebhook returns the Webhook field if non-nil, zero value otherwise.
-
-### GetWebhookOk
-
-`func (o *BaseNotification) GetWebhookOk() (BaseNotificationWebhook, bool)`
-
-GetWebhookOk returns a tuple with the Webhook field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasWebhook
-
-`func (o *BaseNotification) HasWebhook() bool`
-
-HasWebhook returns a boolean if a field has been set.
-
-### SetWebhook
-
-`func (o *BaseNotification) SetWebhook(v BaseNotificationWebhook)`
-
-SetWebhook gets a reference to the given BaseNotificationWebhook and assigns it to the Webhook field.
-
 ### GetId
 
 `func (o *BaseNotification) GetId() int32`
@@ -112,6 +62,31 @@ HasId returns a boolean if a field has been set.
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
 
+### GetPolicy
+
+`func (o *BaseNotification) GetPolicy() map[string]interface{}`
+
+GetPolicy returns the Policy field if non-nil, zero value otherwise.
+
+### GetPolicyOk
+
+`func (o *BaseNotification) GetPolicyOk() (map[string]interface{}, bool)`
+
+GetPolicyOk returns a tuple with the Policy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPolicy
+
+`func (o *BaseNotification) HasPolicy() bool`
+
+HasPolicy returns a boolean if a field has been set.
+
+### SetPolicy
+
+`func (o *BaseNotification) SetPolicy(v map[string]interface{})`
+
+SetPolicy gets a reference to the given map[string]interface{} and assigns it to the Policy field.
+
 ### GetType
 
 `func (o *BaseNotification) GetType() string`
@@ -136,6 +111,31 @@ HasType returns a boolean if a field has been set.
 `func (o *BaseNotification) SetType(v string)`
 
 SetType gets a reference to the given string and assigns it to the Type field.
+
+### GetWebhook
+
+`func (o *BaseNotification) GetWebhook() BaseNotificationWebhook`
+
+GetWebhook returns the Webhook field if non-nil, zero value otherwise.
+
+### GetWebhookOk
+
+`func (o *BaseNotification) GetWebhookOk() (BaseNotificationWebhook, bool)`
+
+GetWebhookOk returns a tuple with the Webhook field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasWebhook
+
+`func (o *BaseNotification) HasWebhook() bool`
+
+HasWebhook returns a boolean if a field has been set.
+
+### SetWebhook
+
+`func (o *BaseNotification) SetWebhook(v BaseNotificationWebhook)`
+
+SetWebhook gets a reference to the given BaseNotificationWebhook and assigns it to the Webhook field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Campaigns** | Pointer to [**map[string]interface{}**](.md) | Maps each evaluated campaign ID to a key-value list of that campaigns attributes. Campaigns without attributes will be omitted. | [optional] 
-**Coupons** | Pointer to [**map[string]interface{}**](.md) | Maps the coupon value to a key-value list of that coupons attributes. | [optional] 
 **CouponRejectionReason** | Pointer to [**CouponRejectionReason**](CouponRejectionReason.md) |  | [optional] 
+**Coupons** | Pointer to [**map[string]interface{}**](.md) | Maps the coupon value to a key-value list of that coupons attributes. | [optional] 
 **ReferralRejectionReason** | Pointer to [**ReferralRejectionReason**](ReferralRejectionReason.md) |  | [optional] 
 **Warnings** | Pointer to [**map[string]interface{}**](.md) | Contains warnings about possible misuse. | [optional] 
 
@@ -37,31 +37,6 @@ HasCampaigns returns a boolean if a field has been set.
 
 SetCampaigns gets a reference to the given map[string]interface{} and assigns it to the Campaigns field.
 
-### GetCoupons
-
-`func (o *Meta) GetCoupons() map[string]interface{}`
-
-GetCoupons returns the Coupons field if non-nil, zero value otherwise.
-
-### GetCouponsOk
-
-`func (o *Meta) GetCouponsOk() (map[string]interface{}, bool)`
-
-GetCouponsOk returns a tuple with the Coupons field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCoupons
-
-`func (o *Meta) HasCoupons() bool`
-
-HasCoupons returns a boolean if a field has been set.
-
-### SetCoupons
-
-`func (o *Meta) SetCoupons(v map[string]interface{})`
-
-SetCoupons gets a reference to the given map[string]interface{} and assigns it to the Coupons field.
-
 ### GetCouponRejectionReason
 
 `func (o *Meta) GetCouponRejectionReason() CouponRejectionReason`
@@ -86,6 +61,31 @@ HasCouponRejectionReason returns a boolean if a field has been set.
 `func (o *Meta) SetCouponRejectionReason(v CouponRejectionReason)`
 
 SetCouponRejectionReason gets a reference to the given CouponRejectionReason and assigns it to the CouponRejectionReason field.
+
+### GetCoupons
+
+`func (o *Meta) GetCoupons() map[string]interface{}`
+
+GetCoupons returns the Coupons field if non-nil, zero value otherwise.
+
+### GetCouponsOk
+
+`func (o *Meta) GetCouponsOk() (map[string]interface{}, bool)`
+
+GetCouponsOk returns a tuple with the Coupons field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCoupons
+
+`func (o *Meta) HasCoupons() bool`
+
+HasCoupons returns a boolean if a field has been set.
+
+### SetCoupons
+
+`func (o *Meta) SetCoupons(v map[string]interface{})`
+
+SetCoupons gets a reference to the given map[string]interface{} and assigns it to the Coupons field.
 
 ### GetReferralRejectionReason
 

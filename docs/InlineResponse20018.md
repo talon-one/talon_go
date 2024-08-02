@@ -4,10 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]CollectionItem**](CollectionItem.md) |  | 
+**Data** | Pointer to [**[]ApplicationReferee**](ApplicationReferee.md) |  | 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**TotalResultSize** | Pointer to **int32** |  | [optional] 
 
 ## Methods
+
+### GetData
+
+`func (o *InlineResponse20018) GetData() []ApplicationReferee`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *InlineResponse20018) GetDataOk() ([]ApplicationReferee, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasData
+
+`func (o *InlineResponse20018) HasData() bool`
+
+HasData returns a boolean if a field has been set.
+
+### SetData
+
+`func (o *InlineResponse20018) SetData(v []ApplicationReferee)`
+
+SetData gets a reference to the given []ApplicationReferee and assigns it to the Data field.
 
 ### GetHasMore
 
@@ -34,30 +60,30 @@ HasHasMore returns a boolean if a field has been set.
 
 SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 
-### GetData
+### GetTotalResultSize
 
-`func (o *InlineResponse20018) GetData() []CollectionItem`
+`func (o *InlineResponse20018) GetTotalResultSize() int32`
 
-GetData returns the Data field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetDataOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20018) GetDataOk() ([]CollectionItem, bool)`
+`func (o *InlineResponse20018) GetTotalResultSizeOk() (int32, bool)`
 
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasData
+### HasTotalResultSize
 
-`func (o *InlineResponse20018) HasData() bool`
+`func (o *InlineResponse20018) HasTotalResultSize() bool`
 
-HasData returns a boolean if a field has been set.
+HasTotalResultSize returns a boolean if a field has been set.
 
-### SetData
+### SetTotalResultSize
 
-`func (o *InlineResponse20018) SetData(v []CollectionItem)`
+`func (o *InlineResponse20018) SetTotalResultSize(v int32)`
 
-SetData gets a reference to the given []CollectionItem and assigns it to the Data field.
+SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

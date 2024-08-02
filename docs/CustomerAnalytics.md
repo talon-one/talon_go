@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **AcceptedCoupons** | Pointer to **int32** | Total accepted coupons for this customer. | 
 **CreatedCoupons** | Pointer to **int32** | Total created coupons for this customer. | 
 **FreeItems** | Pointer to **int32** | Total free items given to this customer. | 
-**TotalOrders** | Pointer to **int32** | Total orders made by this customer. | 
 **TotalDiscountedOrders** | Pointer to **int32** | Total orders made by this customer that had a discount. | 
-**TotalRevenue** | Pointer to **float32** | Total Revenue across all closed sessions. | 
 **TotalDiscounts** | Pointer to **float32** | The sum of discounts that were given across all closed sessions. | 
+**TotalOrders** | Pointer to **int32** | Total orders made by this customer. | 
+**TotalRevenue** | Pointer to **float32** | Total Revenue across all closed sessions. | 
 
 ## Methods
 
@@ -89,31 +89,6 @@ HasFreeItems returns a boolean if a field has been set.
 
 SetFreeItems gets a reference to the given int32 and assigns it to the FreeItems field.
 
-### GetTotalOrders
-
-`func (o *CustomerAnalytics) GetTotalOrders() int32`
-
-GetTotalOrders returns the TotalOrders field if non-nil, zero value otherwise.
-
-### GetTotalOrdersOk
-
-`func (o *CustomerAnalytics) GetTotalOrdersOk() (int32, bool)`
-
-GetTotalOrdersOk returns a tuple with the TotalOrders field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalOrders
-
-`func (o *CustomerAnalytics) HasTotalOrders() bool`
-
-HasTotalOrders returns a boolean if a field has been set.
-
-### SetTotalOrders
-
-`func (o *CustomerAnalytics) SetTotalOrders(v int32)`
-
-SetTotalOrders gets a reference to the given int32 and assigns it to the TotalOrders field.
-
 ### GetTotalDiscountedOrders
 
 `func (o *CustomerAnalytics) GetTotalDiscountedOrders() int32`
@@ -139,31 +114,6 @@ HasTotalDiscountedOrders returns a boolean if a field has been set.
 
 SetTotalDiscountedOrders gets a reference to the given int32 and assigns it to the TotalDiscountedOrders field.
 
-### GetTotalRevenue
-
-`func (o *CustomerAnalytics) GetTotalRevenue() float32`
-
-GetTotalRevenue returns the TotalRevenue field if non-nil, zero value otherwise.
-
-### GetTotalRevenueOk
-
-`func (o *CustomerAnalytics) GetTotalRevenueOk() (float32, bool)`
-
-GetTotalRevenueOk returns a tuple with the TotalRevenue field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalRevenue
-
-`func (o *CustomerAnalytics) HasTotalRevenue() bool`
-
-HasTotalRevenue returns a boolean if a field has been set.
-
-### SetTotalRevenue
-
-`func (o *CustomerAnalytics) SetTotalRevenue(v float32)`
-
-SetTotalRevenue gets a reference to the given float32 and assigns it to the TotalRevenue field.
-
 ### GetTotalDiscounts
 
 `func (o *CustomerAnalytics) GetTotalDiscounts() float32`
@@ -188,6 +138,56 @@ HasTotalDiscounts returns a boolean if a field has been set.
 `func (o *CustomerAnalytics) SetTotalDiscounts(v float32)`
 
 SetTotalDiscounts gets a reference to the given float32 and assigns it to the TotalDiscounts field.
+
+### GetTotalOrders
+
+`func (o *CustomerAnalytics) GetTotalOrders() int32`
+
+GetTotalOrders returns the TotalOrders field if non-nil, zero value otherwise.
+
+### GetTotalOrdersOk
+
+`func (o *CustomerAnalytics) GetTotalOrdersOk() (int32, bool)`
+
+GetTotalOrdersOk returns a tuple with the TotalOrders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalOrders
+
+`func (o *CustomerAnalytics) HasTotalOrders() bool`
+
+HasTotalOrders returns a boolean if a field has been set.
+
+### SetTotalOrders
+
+`func (o *CustomerAnalytics) SetTotalOrders(v int32)`
+
+SetTotalOrders gets a reference to the given int32 and assigns it to the TotalOrders field.
+
+### GetTotalRevenue
+
+`func (o *CustomerAnalytics) GetTotalRevenue() float32`
+
+GetTotalRevenue returns the TotalRevenue field if non-nil, zero value otherwise.
+
+### GetTotalRevenueOk
+
+`func (o *CustomerAnalytics) GetTotalRevenueOk() (float32, bool)`
+
+GetTotalRevenueOk returns a tuple with the TotalRevenue field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalRevenue
+
+`func (o *CustomerAnalytics) HasTotalRevenue() bool`
+
+HasTotalRevenue returns a boolean if a field has been set.
+
+### SetTotalRevenue
+
+`func (o *CustomerAnalytics) SetTotalRevenue(v float32)`
+
+SetTotalRevenue gets a reference to the given float32 and assigns it to the TotalRevenue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

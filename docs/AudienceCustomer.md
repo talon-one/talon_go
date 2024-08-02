@@ -4,121 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. The time this entity was created. | 
-**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
-**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | 
 **AccountId** | Pointer to **int32** | The ID of the Talon.One account that owns this profile. | 
-**ClosedSessions** | Pointer to **int32** | The total amount of closed sessions by a customer. A closed session is a successful purchase. | 
-**TotalSales** | Pointer to **float32** | The total amount of money spent by the customer **before** discounts are applied.  The total sales amount excludes the following: - Cancelled or reopened sessions. - Returned items.  | 
-**LoyaltyMemberships** | Pointer to [**[]LoyaltyMembership**](LoyaltyMembership.md) | **DEPRECATED** A list of loyalty programs joined by the customer.  | [optional] 
+**Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | 
 **AudienceMemberships** | Pointer to [**[]AudienceMembership**](AudienceMembership.md) | The audiences the customer belongs to. | [optional] 
-**LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received from this customer. This field is updated on calls that trigger the Rule Engine and that are not [dry requests](https://docs.talon.one/docs/dev/integration-api/dry-requests/#overlay).  For example, [reserving a coupon](https://docs.talon.one/integration-api#operation/createCouponReservation) for a customer doesn&#39;t impact this field.  | 
-**Sandbox** | Pointer to **bool** | An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments).  | [optional] 
+**ClosedSessions** | Pointer to **int32** | The total amount of closed sessions by a customer. A closed session is a successful purchase. | 
 **ConnectedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the Applications that are connected to this customer profile. | [optional] 
 **ConnectedAudiences** | Pointer to **[]int32** | A list of the IDs of the audiences that are connected to this customer profile. | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
+**LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received from this customer. This field is updated on calls that trigger the Rule Engine and that are not [dry requests](https://docs.talon.one/docs/dev/integration-api/dry-requests/#overlay).  For example, [reserving a coupon](https://docs.talon.one/integration-api#operation/createCouponReservation) for a customer doesn&#39;t impact this field.  | 
+**LoyaltyMemberships** | Pointer to [**[]LoyaltyMembership**](LoyaltyMembership.md) | **DEPRECATED** A list of loyalty programs joined by the customer.  | [optional] 
+**Sandbox** | Pointer to **bool** | An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments).  | [optional] 
+**TotalSales** | Pointer to **float32** | The total amount of money spent by the customer **before** discounts are applied.  The total sales amount excludes the following: - Cancelled or reopened sessions. - Returned items.  | 
 
 ## Methods
-
-### GetId
-
-`func (o *AudienceCustomer) GetId() int32`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *AudienceCustomer) GetIdOk() (int32, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasId
-
-`func (o *AudienceCustomer) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### SetId
-
-`func (o *AudienceCustomer) SetId(v int32)`
-
-SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetCreated
-
-`func (o *AudienceCustomer) GetCreated() time.Time`
-
-GetCreated returns the Created field if non-nil, zero value otherwise.
-
-### GetCreatedOk
-
-`func (o *AudienceCustomer) GetCreatedOk() (time.Time, bool)`
-
-GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *AudienceCustomer) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
-### SetCreated
-
-`func (o *AudienceCustomer) SetCreated(v time.Time)`
-
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-
-### GetIntegrationId
-
-`func (o *AudienceCustomer) GetIntegrationId() string`
-
-GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
-
-### GetIntegrationIdOk
-
-`func (o *AudienceCustomer) GetIntegrationIdOk() (string, bool)`
-
-GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasIntegrationId
-
-`func (o *AudienceCustomer) HasIntegrationId() bool`
-
-HasIntegrationId returns a boolean if a field has been set.
-
-### SetIntegrationId
-
-`func (o *AudienceCustomer) SetIntegrationId(v string)`
-
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
-
-### GetAttributes
-
-`func (o *AudienceCustomer) GetAttributes() map[string]interface{}`
-
-GetAttributes returns the Attributes field if non-nil, zero value otherwise.
-
-### GetAttributesOk
-
-`func (o *AudienceCustomer) GetAttributesOk() (map[string]interface{}, bool)`
-
-GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAttributes
-
-`func (o *AudienceCustomer) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
-
-### SetAttributes
-
-`func (o *AudienceCustomer) SetAttributes(v map[string]interface{})`
-
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetAccountId
 
@@ -145,80 +45,30 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
-### GetClosedSessions
+### GetAttributes
 
-`func (o *AudienceCustomer) GetClosedSessions() int32`
+`func (o *AudienceCustomer) GetAttributes() map[string]interface{}`
 
-GetClosedSessions returns the ClosedSessions field if non-nil, zero value otherwise.
+GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
-### GetClosedSessionsOk
+### GetAttributesOk
 
-`func (o *AudienceCustomer) GetClosedSessionsOk() (int32, bool)`
+`func (o *AudienceCustomer) GetAttributesOk() (map[string]interface{}, bool)`
 
-GetClosedSessionsOk returns a tuple with the ClosedSessions field if it's non-nil, zero value otherwise
+GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasClosedSessions
+### HasAttributes
 
-`func (o *AudienceCustomer) HasClosedSessions() bool`
+`func (o *AudienceCustomer) HasAttributes() bool`
 
-HasClosedSessions returns a boolean if a field has been set.
+HasAttributes returns a boolean if a field has been set.
 
-### SetClosedSessions
+### SetAttributes
 
-`func (o *AudienceCustomer) SetClosedSessions(v int32)`
+`func (o *AudienceCustomer) SetAttributes(v map[string]interface{})`
 
-SetClosedSessions gets a reference to the given int32 and assigns it to the ClosedSessions field.
-
-### GetTotalSales
-
-`func (o *AudienceCustomer) GetTotalSales() float32`
-
-GetTotalSales returns the TotalSales field if non-nil, zero value otherwise.
-
-### GetTotalSalesOk
-
-`func (o *AudienceCustomer) GetTotalSalesOk() (float32, bool)`
-
-GetTotalSalesOk returns a tuple with the TotalSales field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalSales
-
-`func (o *AudienceCustomer) HasTotalSales() bool`
-
-HasTotalSales returns a boolean if a field has been set.
-
-### SetTotalSales
-
-`func (o *AudienceCustomer) SetTotalSales(v float32)`
-
-SetTotalSales gets a reference to the given float32 and assigns it to the TotalSales field.
-
-### GetLoyaltyMemberships
-
-`func (o *AudienceCustomer) GetLoyaltyMemberships() []LoyaltyMembership`
-
-GetLoyaltyMemberships returns the LoyaltyMemberships field if non-nil, zero value otherwise.
-
-### GetLoyaltyMembershipsOk
-
-`func (o *AudienceCustomer) GetLoyaltyMembershipsOk() ([]LoyaltyMembership, bool)`
-
-GetLoyaltyMembershipsOk returns a tuple with the LoyaltyMemberships field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasLoyaltyMemberships
-
-`func (o *AudienceCustomer) HasLoyaltyMemberships() bool`
-
-HasLoyaltyMemberships returns a boolean if a field has been set.
-
-### SetLoyaltyMemberships
-
-`func (o *AudienceCustomer) SetLoyaltyMemberships(v []LoyaltyMembership)`
-
-SetLoyaltyMemberships gets a reference to the given []LoyaltyMembership and assigns it to the LoyaltyMemberships field.
+SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetAudienceMemberships
 
@@ -245,55 +95,30 @@ HasAudienceMemberships returns a boolean if a field has been set.
 
 SetAudienceMemberships gets a reference to the given []AudienceMembership and assigns it to the AudienceMemberships field.
 
-### GetLastActivity
+### GetClosedSessions
 
-`func (o *AudienceCustomer) GetLastActivity() time.Time`
+`func (o *AudienceCustomer) GetClosedSessions() int32`
 
-GetLastActivity returns the LastActivity field if non-nil, zero value otherwise.
+GetClosedSessions returns the ClosedSessions field if non-nil, zero value otherwise.
 
-### GetLastActivityOk
+### GetClosedSessionsOk
 
-`func (o *AudienceCustomer) GetLastActivityOk() (time.Time, bool)`
+`func (o *AudienceCustomer) GetClosedSessionsOk() (int32, bool)`
 
-GetLastActivityOk returns a tuple with the LastActivity field if it's non-nil, zero value otherwise
+GetClosedSessionsOk returns a tuple with the ClosedSessions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasLastActivity
+### HasClosedSessions
 
-`func (o *AudienceCustomer) HasLastActivity() bool`
+`func (o *AudienceCustomer) HasClosedSessions() bool`
 
-HasLastActivity returns a boolean if a field has been set.
+HasClosedSessions returns a boolean if a field has been set.
 
-### SetLastActivity
+### SetClosedSessions
 
-`func (o *AudienceCustomer) SetLastActivity(v time.Time)`
+`func (o *AudienceCustomer) SetClosedSessions(v int32)`
 
-SetLastActivity gets a reference to the given time.Time and assigns it to the LastActivity field.
-
-### GetSandbox
-
-`func (o *AudienceCustomer) GetSandbox() bool`
-
-GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
-
-### GetSandboxOk
-
-`func (o *AudienceCustomer) GetSandboxOk() (bool, bool)`
-
-GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasSandbox
-
-`func (o *AudienceCustomer) HasSandbox() bool`
-
-HasSandbox returns a boolean if a field has been set.
-
-### SetSandbox
-
-`func (o *AudienceCustomer) SetSandbox(v bool)`
-
-SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+SetClosedSessions gets a reference to the given int32 and assigns it to the ClosedSessions field.
 
 ### GetConnectedApplicationsIds
 
@@ -344,6 +169,181 @@ HasConnectedAudiences returns a boolean if a field has been set.
 `func (o *AudienceCustomer) SetConnectedAudiences(v []int32)`
 
 SetConnectedAudiences gets a reference to the given []int32 and assigns it to the ConnectedAudiences field.
+
+### GetCreated
+
+`func (o *AudienceCustomer) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *AudienceCustomer) GetCreatedOk() (time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCreated
+
+`func (o *AudienceCustomer) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### SetCreated
+
+`func (o *AudienceCustomer) SetCreated(v time.Time)`
+
+SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetId
+
+`func (o *AudienceCustomer) GetId() int32`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *AudienceCustomer) GetIdOk() (int32, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasId
+
+`func (o *AudienceCustomer) HasId() bool`
+
+HasId returns a boolean if a field has been set.
+
+### SetId
+
+`func (o *AudienceCustomer) SetId(v int32)`
+
+SetId gets a reference to the given int32 and assigns it to the Id field.
+
+### GetIntegrationId
+
+`func (o *AudienceCustomer) GetIntegrationId() string`
+
+GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
+
+### GetIntegrationIdOk
+
+`func (o *AudienceCustomer) GetIntegrationIdOk() (string, bool)`
+
+GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIntegrationId
+
+`func (o *AudienceCustomer) HasIntegrationId() bool`
+
+HasIntegrationId returns a boolean if a field has been set.
+
+### SetIntegrationId
+
+`func (o *AudienceCustomer) SetIntegrationId(v string)`
+
+SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+
+### GetLastActivity
+
+`func (o *AudienceCustomer) GetLastActivity() time.Time`
+
+GetLastActivity returns the LastActivity field if non-nil, zero value otherwise.
+
+### GetLastActivityOk
+
+`func (o *AudienceCustomer) GetLastActivityOk() (time.Time, bool)`
+
+GetLastActivityOk returns a tuple with the LastActivity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLastActivity
+
+`func (o *AudienceCustomer) HasLastActivity() bool`
+
+HasLastActivity returns a boolean if a field has been set.
+
+### SetLastActivity
+
+`func (o *AudienceCustomer) SetLastActivity(v time.Time)`
+
+SetLastActivity gets a reference to the given time.Time and assigns it to the LastActivity field.
+
+### GetLoyaltyMemberships
+
+`func (o *AudienceCustomer) GetLoyaltyMemberships() []LoyaltyMembership`
+
+GetLoyaltyMemberships returns the LoyaltyMemberships field if non-nil, zero value otherwise.
+
+### GetLoyaltyMembershipsOk
+
+`func (o *AudienceCustomer) GetLoyaltyMembershipsOk() ([]LoyaltyMembership, bool)`
+
+GetLoyaltyMembershipsOk returns a tuple with the LoyaltyMemberships field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLoyaltyMemberships
+
+`func (o *AudienceCustomer) HasLoyaltyMemberships() bool`
+
+HasLoyaltyMemberships returns a boolean if a field has been set.
+
+### SetLoyaltyMemberships
+
+`func (o *AudienceCustomer) SetLoyaltyMemberships(v []LoyaltyMembership)`
+
+SetLoyaltyMemberships gets a reference to the given []LoyaltyMembership and assigns it to the LoyaltyMemberships field.
+
+### GetSandbox
+
+`func (o *AudienceCustomer) GetSandbox() bool`
+
+GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
+
+### GetSandboxOk
+
+`func (o *AudienceCustomer) GetSandboxOk() (bool, bool)`
+
+GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSandbox
+
+`func (o *AudienceCustomer) HasSandbox() bool`
+
+HasSandbox returns a boolean if a field has been set.
+
+### SetSandbox
+
+`func (o *AudienceCustomer) SetSandbox(v bool)`
+
+SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
+
+### GetTotalSales
+
+`func (o *AudienceCustomer) GetTotalSales() float32`
+
+GetTotalSales returns the TotalSales field if non-nil, zero value otherwise.
+
+### GetTotalSalesOk
+
+`func (o *AudienceCustomer) GetTotalSalesOk() (float32, bool)`
+
+GetTotalSalesOk returns a tuple with the TotalSales field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalSales
+
+`func (o *AudienceCustomer) HasTotalSales() bool`
+
+HasTotalSales returns a boolean if a field has been set.
+
+### SetTotalSales
+
+`func (o *AudienceCustomer) SetTotalSales(v float32)`
+
+SetTotalSales gets a reference to the given float32 and assigns it to the TotalSales field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

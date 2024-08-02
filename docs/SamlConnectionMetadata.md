@@ -4,62 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | ID of the SAML service. | 
-**Enabled** | Pointer to **bool** | Determines if this SAML connection active. | 
 **AccountId** | Pointer to **float32** |  | 
+**Enabled** | Pointer to **bool** | Determines if this SAML connection active. | 
 **MetadataDocument** | Pointer to **string** | Identity Provider metadata XML document. | 
+**Name** | Pointer to **string** | ID of the SAML service. | 
 
 ## Methods
-
-### GetName
-
-`func (o *SamlConnectionMetadata) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *SamlConnectionMetadata) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *SamlConnectionMetadata) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *SamlConnectionMetadata) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetEnabled
-
-`func (o *SamlConnectionMetadata) GetEnabled() bool`
-
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
-
-### GetEnabledOk
-
-`func (o *SamlConnectionMetadata) GetEnabledOk() (bool, bool)`
-
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasEnabled
-
-`func (o *SamlConnectionMetadata) HasEnabled() bool`
-
-HasEnabled returns a boolean if a field has been set.
-
-### SetEnabled
-
-`func (o *SamlConnectionMetadata) SetEnabled(v bool)`
-
-SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
 
 ### GetAccountId
 
@@ -86,6 +36,31 @@ HasAccountId returns a boolean if a field has been set.
 
 SetAccountId gets a reference to the given float32 and assigns it to the AccountId field.
 
+### GetEnabled
+
+`func (o *SamlConnectionMetadata) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *SamlConnectionMetadata) GetEnabledOk() (bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEnabled
+
+`func (o *SamlConnectionMetadata) HasEnabled() bool`
+
+HasEnabled returns a boolean if a field has been set.
+
+### SetEnabled
+
+`func (o *SamlConnectionMetadata) SetEnabled(v bool)`
+
+SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+
 ### GetMetadataDocument
 
 `func (o *SamlConnectionMetadata) GetMetadataDocument() string`
@@ -110,6 +85,31 @@ HasMetadataDocument returns a boolean if a field has been set.
 `func (o *SamlConnectionMetadata) SetMetadataDocument(v string)`
 
 SetMetadataDocument gets a reference to the given string and assigns it to the MetadataDocument field.
+
+### GetName
+
+`func (o *SamlConnectionMetadata) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *SamlConnectionMetadata) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *SamlConnectionMetadata) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *SamlConnectionMetadata) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

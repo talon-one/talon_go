@@ -4,10 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Data** | Pointer to [**[]User**](User.md) |  | 
 **TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]Export**](Export.md) |  | 
 
 ## Methods
+
+### GetData
+
+`func (o *InlineResponse20043) GetData() []User`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *InlineResponse20043) GetDataOk() ([]User, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasData
+
+`func (o *InlineResponse20043) HasData() bool`
+
+HasData returns a boolean if a field has been set.
+
+### SetData
+
+`func (o *InlineResponse20043) SetData(v []User)`
+
+SetData gets a reference to the given []User and assigns it to the Data field.
 
 ### GetTotalResultSize
 
@@ -33,31 +58,6 @@ HasTotalResultSize returns a boolean if a field has been set.
 `func (o *InlineResponse20043) SetTotalResultSize(v int32)`
 
 SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
-
-### GetData
-
-`func (o *InlineResponse20043) GetData() []Export`
-
-GetData returns the Data field if non-nil, zero value otherwise.
-
-### GetDataOk
-
-`func (o *InlineResponse20043) GetDataOk() ([]Export, bool)`
-
-GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasData
-
-`func (o *InlineResponse20043) HasData() bool`
-
-HasData returns a boolean if a field has been set.
-
-### SetData
-
-`func (o *InlineResponse20043) SetData(v []Export)`
-
-SetData gets a reference to the given []Export and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

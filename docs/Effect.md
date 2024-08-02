@@ -5,14 +5,16 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignId** | Pointer to **int32** | The ID of the campaign that triggered this effect. | 
-**RulesetId** | Pointer to **int32** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
+**ConditionIndex** | Pointer to **int32** | The index of the condition that was triggered. | [optional] 
+**EffectType** | Pointer to **string** | The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
+**EvaluationGroupID** | Pointer to **int32** | The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation). | [optional] 
+**EvaluationGroupMode** | Pointer to **string** | The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation). | [optional] 
+**Props** | Pointer to [**map[string]interface{}**](.md) | The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 **RuleIndex** | Pointer to **int32** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | 
-**EffectType** | Pointer to **string** | The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
+**RulesetId** | Pointer to **int32** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
 **TriggeredByCoupon** | Pointer to **int32** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
 **TriggeredForCatalogItem** | Pointer to **int32** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 
-**ConditionIndex** | Pointer to **int32** | The index of the condition that was triggered. | [optional] 
-**Props** | Pointer to [**map[string]interface{}**](.md) | The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 
 ## Methods
 
@@ -41,30 +43,130 @@ HasCampaignId returns a boolean if a field has been set.
 
 SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
-### GetRulesetId
+### GetConditionIndex
 
-`func (o *Effect) GetRulesetId() int32`
+`func (o *Effect) GetConditionIndex() int32`
 
-GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
+GetConditionIndex returns the ConditionIndex field if non-nil, zero value otherwise.
 
-### GetRulesetIdOk
+### GetConditionIndexOk
 
-`func (o *Effect) GetRulesetIdOk() (int32, bool)`
+`func (o *Effect) GetConditionIndexOk() (int32, bool)`
 
-GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
+GetConditionIndexOk returns a tuple with the ConditionIndex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRulesetId
+### HasConditionIndex
 
-`func (o *Effect) HasRulesetId() bool`
+`func (o *Effect) HasConditionIndex() bool`
 
-HasRulesetId returns a boolean if a field has been set.
+HasConditionIndex returns a boolean if a field has been set.
 
-### SetRulesetId
+### SetConditionIndex
 
-`func (o *Effect) SetRulesetId(v int32)`
+`func (o *Effect) SetConditionIndex(v int32)`
 
-SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
+SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
+
+### GetEffectType
+
+`func (o *Effect) GetEffectType() string`
+
+GetEffectType returns the EffectType field if non-nil, zero value otherwise.
+
+### GetEffectTypeOk
+
+`func (o *Effect) GetEffectTypeOk() (string, bool)`
+
+GetEffectTypeOk returns a tuple with the EffectType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEffectType
+
+`func (o *Effect) HasEffectType() bool`
+
+HasEffectType returns a boolean if a field has been set.
+
+### SetEffectType
+
+`func (o *Effect) SetEffectType(v string)`
+
+SetEffectType gets a reference to the given string and assigns it to the EffectType field.
+
+### GetEvaluationGroupID
+
+`func (o *Effect) GetEvaluationGroupID() int32`
+
+GetEvaluationGroupID returns the EvaluationGroupID field if non-nil, zero value otherwise.
+
+### GetEvaluationGroupIDOk
+
+`func (o *Effect) GetEvaluationGroupIDOk() (int32, bool)`
+
+GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluationGroupID
+
+`func (o *Effect) HasEvaluationGroupID() bool`
+
+HasEvaluationGroupID returns a boolean if a field has been set.
+
+### SetEvaluationGroupID
+
+`func (o *Effect) SetEvaluationGroupID(v int32)`
+
+SetEvaluationGroupID gets a reference to the given int32 and assigns it to the EvaluationGroupID field.
+
+### GetEvaluationGroupMode
+
+`func (o *Effect) GetEvaluationGroupMode() string`
+
+GetEvaluationGroupMode returns the EvaluationGroupMode field if non-nil, zero value otherwise.
+
+### GetEvaluationGroupModeOk
+
+`func (o *Effect) GetEvaluationGroupModeOk() (string, bool)`
+
+GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEvaluationGroupMode
+
+`func (o *Effect) HasEvaluationGroupMode() bool`
+
+HasEvaluationGroupMode returns a boolean if a field has been set.
+
+### SetEvaluationGroupMode
+
+`func (o *Effect) SetEvaluationGroupMode(v string)`
+
+SetEvaluationGroupMode gets a reference to the given string and assigns it to the EvaluationGroupMode field.
+
+### GetProps
+
+`func (o *Effect) GetProps() map[string]interface{}`
+
+GetProps returns the Props field if non-nil, zero value otherwise.
+
+### GetPropsOk
+
+`func (o *Effect) GetPropsOk() (map[string]interface{}, bool)`
+
+GetPropsOk returns a tuple with the Props field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProps
+
+`func (o *Effect) HasProps() bool`
+
+HasProps returns a boolean if a field has been set.
+
+### SetProps
+
+`func (o *Effect) SetProps(v map[string]interface{})`
+
+SetProps gets a reference to the given map[string]interface{} and assigns it to the Props field.
 
 ### GetRuleIndex
 
@@ -116,30 +218,30 @@ HasRuleName returns a boolean if a field has been set.
 
 SetRuleName gets a reference to the given string and assigns it to the RuleName field.
 
-### GetEffectType
+### GetRulesetId
 
-`func (o *Effect) GetEffectType() string`
+`func (o *Effect) GetRulesetId() int32`
 
-GetEffectType returns the EffectType field if non-nil, zero value otherwise.
+GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
 
-### GetEffectTypeOk
+### GetRulesetIdOk
 
-`func (o *Effect) GetEffectTypeOk() (string, bool)`
+`func (o *Effect) GetRulesetIdOk() (int32, bool)`
 
-GetEffectTypeOk returns a tuple with the EffectType field if it's non-nil, zero value otherwise
+GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEffectType
+### HasRulesetId
 
-`func (o *Effect) HasEffectType() bool`
+`func (o *Effect) HasRulesetId() bool`
 
-HasEffectType returns a boolean if a field has been set.
+HasRulesetId returns a boolean if a field has been set.
 
-### SetEffectType
+### SetRulesetId
 
-`func (o *Effect) SetEffectType(v string)`
+`func (o *Effect) SetRulesetId(v int32)`
 
-SetEffectType gets a reference to the given string and assigns it to the EffectType field.
+SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
 
 ### GetTriggeredByCoupon
 
@@ -190,56 +292,6 @@ HasTriggeredForCatalogItem returns a boolean if a field has been set.
 `func (o *Effect) SetTriggeredForCatalogItem(v int32)`
 
 SetTriggeredForCatalogItem gets a reference to the given int32 and assigns it to the TriggeredForCatalogItem field.
-
-### GetConditionIndex
-
-`func (o *Effect) GetConditionIndex() int32`
-
-GetConditionIndex returns the ConditionIndex field if non-nil, zero value otherwise.
-
-### GetConditionIndexOk
-
-`func (o *Effect) GetConditionIndexOk() (int32, bool)`
-
-GetConditionIndexOk returns a tuple with the ConditionIndex field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasConditionIndex
-
-`func (o *Effect) HasConditionIndex() bool`
-
-HasConditionIndex returns a boolean if a field has been set.
-
-### SetConditionIndex
-
-`func (o *Effect) SetConditionIndex(v int32)`
-
-SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
-
-### GetProps
-
-`func (o *Effect) GetProps() map[string]interface{}`
-
-GetProps returns the Props field if non-nil, zero value otherwise.
-
-### GetPropsOk
-
-`func (o *Effect) GetPropsOk() (map[string]interface{}, bool)`
-
-GetPropsOk returns a tuple with the Props field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasProps
-
-`func (o *Effect) HasProps() bool`
-
-HasProps returns a boolean if a field has been set.
-
-### SetProps
-
-`func (o *Effect) SetProps(v map[string]interface{})`
-
-SetProps gets a reference to the given map[string]interface{} and assigns it to the Props field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

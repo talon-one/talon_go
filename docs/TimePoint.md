@@ -4,39 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Month** | Pointer to **int32** | The achievement ends and resets in this month.  **Note**: Only applicable if the period is set to &#x60;Y&#x60;.  | [optional] 
 **DayOfMonth** | Pointer to **int32** | The achievement ends and resets on this day of the month.  **Note**: Only applicable if the period is set to &#x60;Y&#x60; or &#x60;M&#x60;.  | [optional] 
 **DayOfWeek** | Pointer to **int32** | The achievement ends and resets on this day of the week. &#x60;1&#x60; represents &#x60;Monday&#x60; and &#x60;7&#x60; represents &#x60;Sunday&#x60;.  **Note**: Only applicable if the period is set to &#x60;W&#x60;.  | [optional] 
 **Hour** | Pointer to **int32** | The achievement ends and resets at this hour. | 
 **Minute** | Pointer to **int32** | The achievement ends and resets at this minute. | 
+**Month** | Pointer to **int32** | The achievement ends and resets in this month.  **Note**: Only applicable if the period is set to &#x60;Y&#x60;.  | [optional] 
 **Second** | Pointer to **int32** | The achievement ends and resets at this second. | 
 
 ## Methods
-
-### GetMonth
-
-`func (o *TimePoint) GetMonth() int32`
-
-GetMonth returns the Month field if non-nil, zero value otherwise.
-
-### GetMonthOk
-
-`func (o *TimePoint) GetMonthOk() (int32, bool)`
-
-GetMonthOk returns a tuple with the Month field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasMonth
-
-`func (o *TimePoint) HasMonth() bool`
-
-HasMonth returns a boolean if a field has been set.
-
-### SetMonth
-
-`func (o *TimePoint) SetMonth(v int32)`
-
-SetMonth gets a reference to the given int32 and assigns it to the Month field.
 
 ### GetDayOfMonth
 
@@ -137,6 +112,31 @@ HasMinute returns a boolean if a field has been set.
 `func (o *TimePoint) SetMinute(v int32)`
 
 SetMinute gets a reference to the given int32 and assigns it to the Minute field.
+
+### GetMonth
+
+`func (o *TimePoint) GetMonth() int32`
+
+GetMonth returns the Month field if non-nil, zero value otherwise.
+
+### GetMonthOk
+
+`func (o *TimePoint) GetMonthOk() (int32, bool)`
+
+GetMonthOk returns a tuple with the Month field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasMonth
+
+`func (o *TimePoint) HasMonth() bool`
+
+HasMonth returns a boolean if a field has been set.
+
+### SetMonth
+
+`func (o *TimePoint) SetMonth(v int32)`
+
+SetMonth gets a reference to the given int32 and assigns it to the Month field.
 
 ### GetSecond
 

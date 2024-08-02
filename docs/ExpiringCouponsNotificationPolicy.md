@@ -4,11 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BatchingEnabled** | Pointer to **bool** | Indicates whether batching is activated. | [optional] [default to true]
 **Name** | Pointer to **string** | Notification name. | 
 **Triggers** | Pointer to [**[]ExpiringCouponsNotificationTrigger**](ExpiringCouponsNotificationTrigger.md) |  | 
-**BatchingEnabled** | Pointer to **bool** | Indicates whether batching is activated. | [optional] [default to true]
 
 ## Methods
+
+### GetBatchingEnabled
+
+`func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabled() bool`
+
+GetBatchingEnabled returns the BatchingEnabled field if non-nil, zero value otherwise.
+
+### GetBatchingEnabledOk
+
+`func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabledOk() (bool, bool)`
+
+GetBatchingEnabledOk returns a tuple with the BatchingEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBatchingEnabled
+
+`func (o *ExpiringCouponsNotificationPolicy) HasBatchingEnabled() bool`
+
+HasBatchingEnabled returns a boolean if a field has been set.
+
+### SetBatchingEnabled
+
+`func (o *ExpiringCouponsNotificationPolicy) SetBatchingEnabled(v bool)`
+
+SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
 
 ### GetName
 
@@ -59,31 +84,6 @@ HasTriggers returns a boolean if a field has been set.
 `func (o *ExpiringCouponsNotificationPolicy) SetTriggers(v []ExpiringCouponsNotificationTrigger)`
 
 SetTriggers gets a reference to the given []ExpiringCouponsNotificationTrigger and assigns it to the Triggers field.
-
-### GetBatchingEnabled
-
-`func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabled() bool`
-
-GetBatchingEnabled returns the BatchingEnabled field if non-nil, zero value otherwise.
-
-### GetBatchingEnabledOk
-
-`func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabledOk() (bool, bool)`
-
-GetBatchingEnabledOk returns a tuple with the BatchingEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasBatchingEnabled
-
-`func (o *ExpiringCouponsNotificationPolicy) HasBatchingEnabled() bool`
-
-HasBatchingEnabled returns a boolean if a field has been set.
-
-### SetBatchingEnabled
-
-`func (o *ExpiringCouponsNotificationPolicy) SetBatchingEnabled(v bool)`
-
-SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

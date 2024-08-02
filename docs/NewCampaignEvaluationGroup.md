@@ -4,64 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the campaign evaluation group. | 
-**ParentId** | Pointer to **int32** | The ID of the parent group that contains the campaign evaluation group. | 
 **Description** | Pointer to **string** | A description of the campaign evaluation group. | [optional] 
 **EvaluationMode** | Pointer to **string** | The mode by which campaigns in the campaign evaluation group are evaluated. | 
 **EvaluationScope** | Pointer to **string** | The evaluation scope of the campaign evaluation group. | 
 **Locked** | Pointer to **bool** | An indicator of whether the campaign evaluation group is locked for modification. | 
+**Name** | Pointer to **string** | The name of the campaign evaluation group. | 
+**ParentId** | Pointer to **int32** | The ID of the parent group that contains the campaign evaluation group. | 
 
 ## Methods
-
-### GetName
-
-`func (o *NewCampaignEvaluationGroup) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *NewCampaignEvaluationGroup) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *NewCampaignEvaluationGroup) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *NewCampaignEvaluationGroup) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetParentId
-
-`func (o *NewCampaignEvaluationGroup) GetParentId() int32`
-
-GetParentId returns the ParentId field if non-nil, zero value otherwise.
-
-### GetParentIdOk
-
-`func (o *NewCampaignEvaluationGroup) GetParentIdOk() (int32, bool)`
-
-GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasParentId
-
-`func (o *NewCampaignEvaluationGroup) HasParentId() bool`
-
-HasParentId returns a boolean if a field has been set.
-
-### SetParentId
-
-`func (o *NewCampaignEvaluationGroup) SetParentId(v int32)`
-
-SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
 
 ### GetDescription
 
@@ -162,6 +112,56 @@ HasLocked returns a boolean if a field has been set.
 `func (o *NewCampaignEvaluationGroup) SetLocked(v bool)`
 
 SetLocked gets a reference to the given bool and assigns it to the Locked field.
+
+### GetName
+
+`func (o *NewCampaignEvaluationGroup) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewCampaignEvaluationGroup) GetNameOk() (string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasName
+
+`func (o *NewCampaignEvaluationGroup) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetName
+
+`func (o *NewCampaignEvaluationGroup) SetName(v string)`
+
+SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetParentId
+
+`func (o *NewCampaignEvaluationGroup) GetParentId() int32`
+
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
+
+### GetParentIdOk
+
+`func (o *NewCampaignEvaluationGroup) GetParentIdOk() (int32, bool)`
+
+GetParentIdOk returns a tuple with the ParentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasParentId
+
+`func (o *NewCampaignEvaluationGroup) HasParentId() bool`
+
+HasParentId returns a boolean if a field has been set.
+
+### SetParentId
+
+`func (o *NewCampaignEvaluationGroup) SetParentId(v int32)`
+
+SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

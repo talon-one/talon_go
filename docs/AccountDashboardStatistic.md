@@ -4,38 +4,38 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Revenue** | Pointer to [**[]AccountDashboardStatisticRevenue**](AccountDashboardStatisticRevenue.md) | Aggregated statistic for account revenue. | [optional] 
+**Campaigns** | Pointer to [**AccountDashboardStatisticCampaigns**](AccountDashboardStatisticCampaigns.md) |  | 
 **Discounts** | Pointer to [**[]AccountDashboardStatisticDiscount**](AccountDashboardStatisticDiscount.md) | Aggregated statistic for account discount. | [optional] 
 **LoyaltyPoints** | Pointer to [**[]AccountDashboardStatisticLoyaltyPoints**](AccountDashboardStatisticLoyaltyPoints.md) | Aggregated statistic for account loyalty points. | [optional] 
 **Referrals** | Pointer to [**[]AccountDashboardStatisticReferrals**](AccountDashboardStatisticReferrals.md) | Aggregated statistic for account referrals. | [optional] 
-**Campaigns** | Pointer to [**AccountDashboardStatisticCampaigns**](AccountDashboardStatisticCampaigns.md) |  | 
+**Revenue** | Pointer to [**[]AccountDashboardStatisticRevenue**](AccountDashboardStatisticRevenue.md) | Aggregated statistic for account revenue. | [optional] 
 
 ## Methods
 
-### GetRevenue
+### GetCampaigns
 
-`func (o *AccountDashboardStatistic) GetRevenue() []AccountDashboardStatisticRevenue`
+`func (o *AccountDashboardStatistic) GetCampaigns() AccountDashboardStatisticCampaigns`
 
-GetRevenue returns the Revenue field if non-nil, zero value otherwise.
+GetCampaigns returns the Campaigns field if non-nil, zero value otherwise.
 
-### GetRevenueOk
+### GetCampaignsOk
 
-`func (o *AccountDashboardStatistic) GetRevenueOk() ([]AccountDashboardStatisticRevenue, bool)`
+`func (o *AccountDashboardStatistic) GetCampaignsOk() (AccountDashboardStatisticCampaigns, bool)`
 
-GetRevenueOk returns a tuple with the Revenue field if it's non-nil, zero value otherwise
+GetCampaignsOk returns a tuple with the Campaigns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRevenue
+### HasCampaigns
 
-`func (o *AccountDashboardStatistic) HasRevenue() bool`
+`func (o *AccountDashboardStatistic) HasCampaigns() bool`
 
-HasRevenue returns a boolean if a field has been set.
+HasCampaigns returns a boolean if a field has been set.
 
-### SetRevenue
+### SetCampaigns
 
-`func (o *AccountDashboardStatistic) SetRevenue(v []AccountDashboardStatisticRevenue)`
+`func (o *AccountDashboardStatistic) SetCampaigns(v AccountDashboardStatisticCampaigns)`
 
-SetRevenue gets a reference to the given []AccountDashboardStatisticRevenue and assigns it to the Revenue field.
+SetCampaigns gets a reference to the given AccountDashboardStatisticCampaigns and assigns it to the Campaigns field.
 
 ### GetDiscounts
 
@@ -112,30 +112,30 @@ HasReferrals returns a boolean if a field has been set.
 
 SetReferrals gets a reference to the given []AccountDashboardStatisticReferrals and assigns it to the Referrals field.
 
-### GetCampaigns
+### GetRevenue
 
-`func (o *AccountDashboardStatistic) GetCampaigns() AccountDashboardStatisticCampaigns`
+`func (o *AccountDashboardStatistic) GetRevenue() []AccountDashboardStatisticRevenue`
 
-GetCampaigns returns the Campaigns field if non-nil, zero value otherwise.
+GetRevenue returns the Revenue field if non-nil, zero value otherwise.
 
-### GetCampaignsOk
+### GetRevenueOk
 
-`func (o *AccountDashboardStatistic) GetCampaignsOk() (AccountDashboardStatisticCampaigns, bool)`
+`func (o *AccountDashboardStatistic) GetRevenueOk() ([]AccountDashboardStatisticRevenue, bool)`
 
-GetCampaignsOk returns a tuple with the Campaigns field if it's non-nil, zero value otherwise
+GetRevenueOk returns a tuple with the Revenue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCampaigns
+### HasRevenue
 
-`func (o *AccountDashboardStatistic) HasCampaigns() bool`
+`func (o *AccountDashboardStatistic) HasRevenue() bool`
 
-HasCampaigns returns a boolean if a field has been set.
+HasRevenue returns a boolean if a field has been set.
 
-### SetCampaigns
+### SetRevenue
 
-`func (o *AccountDashboardStatistic) SetCampaigns(v AccountDashboardStatisticCampaigns)`
+`func (o *AccountDashboardStatistic) SetRevenue(v []AccountDashboardStatisticRevenue)`
 
-SetCampaigns gets a reference to the given AccountDashboardStatisticCampaigns and assigns it to the Campaigns field.
+SetRevenue gets a reference to the given []AccountDashboardStatisticRevenue and assigns it to the Revenue field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

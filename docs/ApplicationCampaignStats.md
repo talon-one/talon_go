@@ -4,39 +4,39 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Draft** | Pointer to **int32** | Number of draft campaigns. | 
-**Disabled** | Pointer to **int32** | Number of disabled campaigns. | 
-**Scheduled** | Pointer to **int32** | Number of scheduled campaigns. | 
-**Running** | Pointer to **int32** | Number of running campaigns. | 
-**Expired** | Pointer to **int32** | Number of expired campaigns. | 
 **Archived** | Pointer to **int32** | Number of archived campaigns. | 
+**Disabled** | Pointer to **int32** | Number of disabled campaigns. | 
+**Draft** | Pointer to **int32** | Number of draft campaigns. | 
+**Expired** | Pointer to **int32** | Number of expired campaigns. | 
+**Running** | Pointer to **int32** | Number of running campaigns. | 
+**Scheduled** | Pointer to **int32** | Number of scheduled campaigns. | 
 
 ## Methods
 
-### GetDraft
+### GetArchived
 
-`func (o *ApplicationCampaignStats) GetDraft() int32`
+`func (o *ApplicationCampaignStats) GetArchived() int32`
 
-GetDraft returns the Draft field if non-nil, zero value otherwise.
+GetArchived returns the Archived field if non-nil, zero value otherwise.
 
-### GetDraftOk
+### GetArchivedOk
 
-`func (o *ApplicationCampaignStats) GetDraftOk() (int32, bool)`
+`func (o *ApplicationCampaignStats) GetArchivedOk() (int32, bool)`
 
-GetDraftOk returns a tuple with the Draft field if it's non-nil, zero value otherwise
+GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasDraft
+### HasArchived
 
-`func (o *ApplicationCampaignStats) HasDraft() bool`
+`func (o *ApplicationCampaignStats) HasArchived() bool`
 
-HasDraft returns a boolean if a field has been set.
+HasArchived returns a boolean if a field has been set.
 
-### SetDraft
+### SetArchived
 
-`func (o *ApplicationCampaignStats) SetDraft(v int32)`
+`func (o *ApplicationCampaignStats) SetArchived(v int32)`
 
-SetDraft gets a reference to the given int32 and assigns it to the Draft field.
+SetArchived gets a reference to the given int32 and assigns it to the Archived field.
 
 ### GetDisabled
 
@@ -63,55 +63,30 @@ HasDisabled returns a boolean if a field has been set.
 
 SetDisabled gets a reference to the given int32 and assigns it to the Disabled field.
 
-### GetScheduled
+### GetDraft
 
-`func (o *ApplicationCampaignStats) GetScheduled() int32`
+`func (o *ApplicationCampaignStats) GetDraft() int32`
 
-GetScheduled returns the Scheduled field if non-nil, zero value otherwise.
+GetDraft returns the Draft field if non-nil, zero value otherwise.
 
-### GetScheduledOk
+### GetDraftOk
 
-`func (o *ApplicationCampaignStats) GetScheduledOk() (int32, bool)`
+`func (o *ApplicationCampaignStats) GetDraftOk() (int32, bool)`
 
-GetScheduledOk returns a tuple with the Scheduled field if it's non-nil, zero value otherwise
+GetDraftOk returns a tuple with the Draft field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasScheduled
+### HasDraft
 
-`func (o *ApplicationCampaignStats) HasScheduled() bool`
+`func (o *ApplicationCampaignStats) HasDraft() bool`
 
-HasScheduled returns a boolean if a field has been set.
+HasDraft returns a boolean if a field has been set.
 
-### SetScheduled
+### SetDraft
 
-`func (o *ApplicationCampaignStats) SetScheduled(v int32)`
+`func (o *ApplicationCampaignStats) SetDraft(v int32)`
 
-SetScheduled gets a reference to the given int32 and assigns it to the Scheduled field.
-
-### GetRunning
-
-`func (o *ApplicationCampaignStats) GetRunning() int32`
-
-GetRunning returns the Running field if non-nil, zero value otherwise.
-
-### GetRunningOk
-
-`func (o *ApplicationCampaignStats) GetRunningOk() (int32, bool)`
-
-GetRunningOk returns a tuple with the Running field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasRunning
-
-`func (o *ApplicationCampaignStats) HasRunning() bool`
-
-HasRunning returns a boolean if a field has been set.
-
-### SetRunning
-
-`func (o *ApplicationCampaignStats) SetRunning(v int32)`
-
-SetRunning gets a reference to the given int32 and assigns it to the Running field.
+SetDraft gets a reference to the given int32 and assigns it to the Draft field.
 
 ### GetExpired
 
@@ -138,30 +113,55 @@ HasExpired returns a boolean if a field has been set.
 
 SetExpired gets a reference to the given int32 and assigns it to the Expired field.
 
-### GetArchived
+### GetRunning
 
-`func (o *ApplicationCampaignStats) GetArchived() int32`
+`func (o *ApplicationCampaignStats) GetRunning() int32`
 
-GetArchived returns the Archived field if non-nil, zero value otherwise.
+GetRunning returns the Running field if non-nil, zero value otherwise.
 
-### GetArchivedOk
+### GetRunningOk
 
-`func (o *ApplicationCampaignStats) GetArchivedOk() (int32, bool)`
+`func (o *ApplicationCampaignStats) GetRunningOk() (int32, bool)`
 
-GetArchivedOk returns a tuple with the Archived field if it's non-nil, zero value otherwise
+GetRunningOk returns a tuple with the Running field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasArchived
+### HasRunning
 
-`func (o *ApplicationCampaignStats) HasArchived() bool`
+`func (o *ApplicationCampaignStats) HasRunning() bool`
 
-HasArchived returns a boolean if a field has been set.
+HasRunning returns a boolean if a field has been set.
 
-### SetArchived
+### SetRunning
 
-`func (o *ApplicationCampaignStats) SetArchived(v int32)`
+`func (o *ApplicationCampaignStats) SetRunning(v int32)`
 
-SetArchived gets a reference to the given int32 and assigns it to the Archived field.
+SetRunning gets a reference to the given int32 and assigns it to the Running field.
+
+### GetScheduled
+
+`func (o *ApplicationCampaignStats) GetScheduled() int32`
+
+GetScheduled returns the Scheduled field if non-nil, zero value otherwise.
+
+### GetScheduledOk
+
+`func (o *ApplicationCampaignStats) GetScheduledOk() (int32, bool)`
+
+GetScheduledOk returns a tuple with the Scheduled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasScheduled
+
+`func (o *ApplicationCampaignStats) HasScheduled() bool`
+
+HasScheduled returns a boolean if a field has been set.
+
+### SetScheduled
+
+`func (o *ApplicationCampaignStats) SetScheduled(v int32)`
+
+SetScheduled gets a reference to the given int32 and assigns it to the Scheduled field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
