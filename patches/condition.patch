@@ -1,0 +1,78 @@
+@@
+var strName identifier
+@@
+type strName struct {
+    ...
+-	Condition *[]map[string]interface{} `json:"condition,omitempty"`
++	Condition []interface{} `json:"condition,omitempty"`
+    ...
+}
+@@
+var strName identifier
+@@
+type strName struct {
+    ...
+-	Condition []map[string]interface{} `json:"condition"`
++	Condition []interface{} `json:"condition"`
+    ...
+}
+
+
+# Replace GetEffects
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) GetCondition() []map[string]interface{} {
++func (a *strName) GetCondition() []interface{} {
+    ...
+}
+
+# Replace GetEffectsOk
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) GetConditionOk() ([]map[string]interface{}, bool) {
++func (a *strName) GetConditionOk() ([]interface{}, bool) {
+    ...
+}
+
+# Replace SetCondition
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) SetCondition(v []map[string]interface{}) {
++func (a *strName) SetCondition(v []interface{}) {
+    ...
+ }
+
+# Replace optional in SetCondition
+@@
+var a identifier
+@@
+- 	a.Condition = &v
++ 	a.Condition = v
+
+# Replace return type
+@@
+var ret identifier
+@@
+-		var ret []map[string]interface{}
++		var ret []interface{}
+
+# Replace return value in GetCondition method
+@@
+var a identifier
+@@
+-	return *a.Condition
++	return a.Condition
+
+# Replace return value in GetConditionOk method
+@@
+var a identifier
+@@
+-	return *a.Condition, true
++	return a.Condition, true
+
