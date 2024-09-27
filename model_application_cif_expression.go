@@ -26,7 +26,7 @@ type ApplicationCifExpression struct {
 	// The ID of the user who created the Application cart item filter.
 	CreatedBy *int32 `json:"createdBy,omitempty"`
 	// Arbitrary additional JSON data associated with the Application cart item filter.
-	Expression *[]map[string]interface{} `json:"expression,omitempty"`
+	Expression []interface{} `json:"expression,omitempty"`
 	// The ID of the application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 }
@@ -128,22 +128,22 @@ func (o *ApplicationCifExpression) SetCreatedBy(v int32) {
 }
 
 // GetExpression returns the Expression field value if set, zero value otherwise.
-func (o *ApplicationCifExpression) GetExpression() []map[string]interface{} {
+func (o *ApplicationCifExpression) GetExpression() []interface{} {
 	if o == nil || o.Expression == nil {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret
 	}
-	return *o.Expression
+	return o.Expression
 }
 
 // GetExpressionOk returns a tuple with the Expression field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCifExpression) GetExpressionOk() ([]map[string]interface{}, bool) {
+func (o *ApplicationCifExpression) GetExpressionOk() ([]interface{}, bool) {
 	if o == nil || o.Expression == nil {
-		var ret []map[string]interface{}
+		var ret []interface{}
 		return ret, false
 	}
-	return *o.Expression, true
+	return o.Expression, true
 }
 
 // HasExpression returns a boolean if a field has been set.
@@ -156,8 +156,8 @@ func (o *ApplicationCifExpression) HasExpression() bool {
 }
 
 // SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
-func (o *ApplicationCifExpression) SetExpression(v []map[string]interface{}) {
-	o.Expression = &v
+func (o *ApplicationCifExpression) SetExpression(v []interface{}) {
+	o.Expression = v
 }
 
 // GetApplicationId returns the ApplicationId field value
