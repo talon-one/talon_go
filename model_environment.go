@@ -45,6 +45,8 @@ type Environment struct {
 	Audiences *[]Audience `json:"audiences,omitempty"`
 	// The account-level collections that the application is subscribed to.
 	Collections *[]Collection `json:"collections,omitempty"`
+	// The cart item filters belonging to the Application.
+	ApplicationCartItemFilters *[]ApplicationCif `json:"applicationCartItemFilters,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -381,6 +383,39 @@ func (o *Environment) HasCollections() bool {
 // SetCollections gets a reference to the given []Collection and assigns it to the Collections field.
 func (o *Environment) SetCollections(v []Collection) {
 	o.Collections = &v
+}
+
+// GetApplicationCartItemFilters returns the ApplicationCartItemFilters field value if set, zero value otherwise.
+func (o *Environment) GetApplicationCartItemFilters() []ApplicationCif {
+	if o == nil || o.ApplicationCartItemFilters == nil {
+		var ret []ApplicationCif
+		return ret
+	}
+	return *o.ApplicationCartItemFilters
+}
+
+// GetApplicationCartItemFiltersOk returns a tuple with the ApplicationCartItemFilters field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetApplicationCartItemFiltersOk() ([]ApplicationCif, bool) {
+	if o == nil || o.ApplicationCartItemFilters == nil {
+		var ret []ApplicationCif
+		return ret, false
+	}
+	return *o.ApplicationCartItemFilters, true
+}
+
+// HasApplicationCartItemFilters returns a boolean if a field has been set.
+func (o *Environment) HasApplicationCartItemFilters() bool {
+	if o != nil && o.ApplicationCartItemFilters != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationCartItemFilters gets a reference to the given []ApplicationCif and assigns it to the ApplicationCartItemFilters field.
+func (o *Environment) SetApplicationCartItemFilters(v []ApplicationCif) {
+	o.ApplicationCartItemFilters = &v
 }
 
 type NullableEnvironment struct {

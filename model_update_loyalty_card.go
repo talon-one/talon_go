@@ -16,8 +16,10 @@ import (
 
 // UpdateLoyaltyCard struct for UpdateLoyaltyCard
 type UpdateLoyaltyCard struct {
-	// Status of the loyalty card. Can be one of: ['active', 'inactive']
+	// Status of the loyalty card. Can be `active` or `inactive`.
 	Status string `json:"status"`
+	// Reason for transferring and blocking the loyalty card.
+	BlockReason *string `json:"blockReason,omitempty"`
 }
 
 // GetStatus returns the Status field value
@@ -33,6 +35,39 @@ func (o *UpdateLoyaltyCard) GetStatus() string {
 // SetStatus sets field value
 func (o *UpdateLoyaltyCard) SetStatus(v string) {
 	o.Status = v
+}
+
+// GetBlockReason returns the BlockReason field value if set, zero value otherwise.
+func (o *UpdateLoyaltyCard) GetBlockReason() string {
+	if o == nil || o.BlockReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.BlockReason
+}
+
+// GetBlockReasonOk returns a tuple with the BlockReason field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoyaltyCard) GetBlockReasonOk() (string, bool) {
+	if o == nil || o.BlockReason == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.BlockReason, true
+}
+
+// HasBlockReason returns a boolean if a field has been set.
+func (o *UpdateLoyaltyCard) HasBlockReason() bool {
+	if o != nil && o.BlockReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
+func (o *UpdateLoyaltyCard) SetBlockReason(v string) {
+	o.BlockReason = &v
 }
 
 type NullableUpdateLoyaltyCard struct {

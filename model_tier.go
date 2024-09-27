@@ -21,9 +21,11 @@ type Tier struct {
 	Id int32 `json:"id"`
 	// The name of the tier.
 	Name string `json:"name"`
+	// Date and time when the customer moved to this tier. This value uses the loyalty program's time zone setting.
+	StartDate *time.Time `json:"startDate,omitempty"`
 	// Date when tier level expires in the RFC3339 format (in the Loyalty Program's timezone).
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
-	// Customers's tier downgrade policy. - `one_down`: Once the tier expires and if the user doesn't have enough points to stay in the tier, the user is downgraded one tier down. - `balance_based`: Once the tier expires, the user's tier is evaluated based on the amount of active points the user has at this instant.
+	// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
 	DowngradePolicy *string `json:"downgradePolicy,omitempty"`
 }
 
@@ -55,6 +57,39 @@ func (o *Tier) GetName() string {
 // SetName sets field value
 func (o *Tier) SetName(v string) {
 	o.Name = v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *Tier) GetStartDate() time.Time {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Tier) GetStartDateOk() (time.Time, bool) {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *Tier) HasStartDate() bool {
+	if o != nil && o.StartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+func (o *Tier) SetStartDate(v time.Time) {
+	o.StartDate = &v
 }
 
 // GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.

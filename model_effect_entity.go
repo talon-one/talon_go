@@ -32,6 +32,14 @@ type EffectEntity struct {
 	TriggeredForCatalogItem *int32 `json:"triggeredForCatalogItem,omitempty"`
 	// The index of the condition that was triggered.
 	ConditionIndex *int32 `json:"conditionIndex,omitempty"`
+	// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+	EvaluationGroupID *int32 `json:"evaluationGroupID,omitempty"`
+	// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+	EvaluationGroupMode *string `json:"evaluationGroupMode,omitempty"`
+	// The revision ID of the campaign that was used when triggering the effect.
+	CampaignRevisionId *int32 `json:"campaignRevisionId,omitempty"`
+	// The revision version ID of the campaign that was used when triggering the effect.
+	CampaignRevisionVersionId *int32 `json:"campaignRevisionVersionId,omitempty"`
 }
 
 // GetCampaignId returns the CampaignId field value
@@ -206,6 +214,138 @@ func (o *EffectEntity) HasConditionIndex() bool {
 // SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
 func (o *EffectEntity) SetConditionIndex(v int32) {
 	o.ConditionIndex = &v
+}
+
+// GetEvaluationGroupID returns the EvaluationGroupID field value if set, zero value otherwise.
+func (o *EffectEntity) GetEvaluationGroupID() int32 {
+	if o == nil || o.EvaluationGroupID == nil {
+		var ret int32
+		return ret
+	}
+	return *o.EvaluationGroupID
+}
+
+// GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetEvaluationGroupIDOk() (int32, bool) {
+	if o == nil || o.EvaluationGroupID == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.EvaluationGroupID, true
+}
+
+// HasEvaluationGroupID returns a boolean if a field has been set.
+func (o *EffectEntity) HasEvaluationGroupID() bool {
+	if o != nil && o.EvaluationGroupID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupID gets a reference to the given int32 and assigns it to the EvaluationGroupID field.
+func (o *EffectEntity) SetEvaluationGroupID(v int32) {
+	o.EvaluationGroupID = &v
+}
+
+// GetEvaluationGroupMode returns the EvaluationGroupMode field value if set, zero value otherwise.
+func (o *EffectEntity) GetEvaluationGroupMode() string {
+	if o == nil || o.EvaluationGroupMode == nil {
+		var ret string
+		return ret
+	}
+	return *o.EvaluationGroupMode
+}
+
+// GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetEvaluationGroupModeOk() (string, bool) {
+	if o == nil || o.EvaluationGroupMode == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.EvaluationGroupMode, true
+}
+
+// HasEvaluationGroupMode returns a boolean if a field has been set.
+func (o *EffectEntity) HasEvaluationGroupMode() bool {
+	if o != nil && o.EvaluationGroupMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupMode gets a reference to the given string and assigns it to the EvaluationGroupMode field.
+func (o *EffectEntity) SetEvaluationGroupMode(v string) {
+	o.EvaluationGroupMode = &v
+}
+
+// GetCampaignRevisionId returns the CampaignRevisionId field value if set, zero value otherwise.
+func (o *EffectEntity) GetCampaignRevisionId() int32 {
+	if o == nil || o.CampaignRevisionId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CampaignRevisionId
+}
+
+// GetCampaignRevisionIdOk returns a tuple with the CampaignRevisionId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetCampaignRevisionIdOk() (int32, bool) {
+	if o == nil || o.CampaignRevisionId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CampaignRevisionId, true
+}
+
+// HasCampaignRevisionId returns a boolean if a field has been set.
+func (o *EffectEntity) HasCampaignRevisionId() bool {
+	if o != nil && o.CampaignRevisionId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignRevisionId gets a reference to the given int32 and assigns it to the CampaignRevisionId field.
+func (o *EffectEntity) SetCampaignRevisionId(v int32) {
+	o.CampaignRevisionId = &v
+}
+
+// GetCampaignRevisionVersionId returns the CampaignRevisionVersionId field value if set, zero value otherwise.
+func (o *EffectEntity) GetCampaignRevisionVersionId() int32 {
+	if o == nil || o.CampaignRevisionVersionId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CampaignRevisionVersionId
+}
+
+// GetCampaignRevisionVersionIdOk returns a tuple with the CampaignRevisionVersionId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetCampaignRevisionVersionIdOk() (int32, bool) {
+	if o == nil || o.CampaignRevisionVersionId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CampaignRevisionVersionId, true
+}
+
+// HasCampaignRevisionVersionId returns a boolean if a field has been set.
+func (o *EffectEntity) HasCampaignRevisionVersionId() bool {
+	if o != nil && o.CampaignRevisionVersionId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignRevisionVersionId gets a reference to the given int32 and assigns it to the CampaignRevisionVersionId field.
+func (o *EffectEntity) SetCampaignRevisionVersionId(v int32) {
+	o.CampaignRevisionVersionId = &v
 }
 
 type NullableEffectEntity struct {

@@ -25,7 +25,7 @@ type NewCouponsForMultipleRecipients struct {
 	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
-	// Expiration date of the coupon. Coupon never expires if this is omitted, zero, or negative.
+	// Expiration date of the coupon. Coupon never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`

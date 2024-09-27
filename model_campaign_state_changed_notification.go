@@ -17,9 +17,9 @@ import (
 // CampaignStateChangedNotification A notification regarding a campaign whose state changed.
 type CampaignStateChangedNotification struct {
 	Campaign Campaign `json:"campaign"`
-	// The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'draft', 'archived']
+	// The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
 	OldState string `json:"oldState"`
-	// The campaign's new state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'draft', 'archived']
+	// The campaign's new state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
 	NewState string   `json:"newState"`
 	Ruleset  *Ruleset `json:"ruleset,omitempty"`
 }

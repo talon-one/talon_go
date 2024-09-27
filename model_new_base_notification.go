@@ -16,6 +16,7 @@ import (
 
 // NewBaseNotification
 type NewBaseNotification struct {
+	// Indicates which notification properties to apply.
 	Policy map[string]interface{} `json:"policy"`
 	// Indicates whether the notification is activated.
 	Enabled *bool                  `json:"enabled,omitempty"`

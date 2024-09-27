@@ -23,6 +23,8 @@ type AchievementProgress struct {
 	Name string `json:"name"`
 	// The display name of the achievement in the Campaign Manager.
 	Title string `json:"title"`
+	// The description of the achievement in the Campaign Manager.
+	Description string `json:"description"`
 	// The ID of the campaign the achievement belongs to.
 	CampaignId int32 `json:"campaignId"`
 	// The status of the achievement.
@@ -82,6 +84,21 @@ func (o *AchievementProgress) GetTitle() string {
 // SetTitle sets field value
 func (o *AchievementProgress) SetTitle(v string) {
 	o.Title = v
+}
+
+// GetDescription returns the Description field value
+func (o *AchievementProgress) GetDescription() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Description
+}
+
+// SetDescription sets field value
+func (o *AchievementProgress) SetDescription(v string) {
+	o.Description = v
 }
 
 // GetCampaignId returns the CampaignId field value

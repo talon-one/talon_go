@@ -27,9 +27,9 @@ type Rule struct {
 	// An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array.
 	Bindings *[]Binding `json:"bindings,omitempty"`
 	// A Talang expression that will be evaluated in the context of the given event.
-	Condition []interface{} `json:"condition"`
+	Condition []map[string]interface{} `json:"condition"`
 	// An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.
-	Effects [][]interface{} `json:"effects"`
+	Effects []map[string]interface{} `json:"effects"`
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -180,9 +180,9 @@ func (o *Rule) SetBindings(v []Binding) {
 }
 
 // GetCondition returns the Condition field value
-func (o *Rule) GetCondition() []interface{} {
+func (o *Rule) GetCondition() []map[string]interface{} {
 	if o == nil {
-		var ret []interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -190,14 +190,14 @@ func (o *Rule) GetCondition() []interface{} {
 }
 
 // SetCondition sets field value
-func (o *Rule) SetCondition(v []interface{}) {
+func (o *Rule) SetCondition(v []map[string]interface{}) {
 	o.Condition = v
 }
 
 // GetEffects returns the Effects field value
-func (o *Rule) GetEffects() [][]interface{} {
+func (o *Rule) GetEffects() []map[string]interface{} {
 	if o == nil {
-		var ret [][]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -205,7 +205,7 @@ func (o *Rule) GetEffects() [][]interface{} {
 }
 
 // SetEffects sets field value
-func (o *Rule) SetEffects(v [][]interface{}) {
+func (o *Rule) SetEffects(v []map[string]interface{}) {
 	o.Effects = v
 }
 

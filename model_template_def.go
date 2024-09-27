@@ -32,7 +32,7 @@ type TemplateDef struct {
 	// Used for grouping templates in the rule editor sidebar.
 	Category string `json:"category"`
 	// A Talang expression that contains variable bindings referring to args.
-	Expr []interface{} `json:"expr"`
+	Expr []map[string]interface{} `json:"expr"`
 	// An array of argument definitions.
 	Args []TemplateArgDef `json:"args"`
 	// A flag to control exposure in Rule Builder.
@@ -147,9 +147,9 @@ func (o *TemplateDef) SetCategory(v string) {
 }
 
 // GetExpr returns the Expr field value
-func (o *TemplateDef) GetExpr() []interface{} {
+func (o *TemplateDef) GetExpr() []map[string]interface{} {
 	if o == nil {
-		var ret []interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -157,7 +157,7 @@ func (o *TemplateDef) GetExpr() []interface{} {
 }
 
 // SetExpr sets field value
-func (o *TemplateDef) SetExpr(v []interface{}) {
+func (o *TemplateDef) SetExpr(v []map[string]interface{}) {
 	o.Expr = v
 }
 
