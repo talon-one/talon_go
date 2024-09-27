@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **EnablePartialDiscounts** | Pointer to **bool** | Indicates if this Application supports partial discounts. | [optional] 
 **DefaultDiscountAdditionalCostPerItemScope** | Pointer to **string** | The default scope to apply &#x60;setDiscountPerItem&#x60; effects on if no scope was provided with the effect.  | [optional] 
 **DefaultEvaluationGroupId** | Pointer to **int32** | The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign. | [optional] 
+**DefaultCartItemFilterId** | Pointer to **int32** | The ID of the default Cart-Item-Filter for this application. | [optional] 
+**EnableCampaignStateManagement** | Pointer to **bool** | Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.  | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | An array containing all the loyalty programs to which this application is subscribed. | 
 
 ## Methods
@@ -501,6 +503,56 @@ HasDefaultEvaluationGroupId returns a boolean if a field has been set.
 `func (o *Application) SetDefaultEvaluationGroupId(v int32)`
 
 SetDefaultEvaluationGroupId gets a reference to the given int32 and assigns it to the DefaultEvaluationGroupId field.
+
+### GetDefaultCartItemFilterId
+
+`func (o *Application) GetDefaultCartItemFilterId() int32`
+
+GetDefaultCartItemFilterId returns the DefaultCartItemFilterId field if non-nil, zero value otherwise.
+
+### GetDefaultCartItemFilterIdOk
+
+`func (o *Application) GetDefaultCartItemFilterIdOk() (int32, bool)`
+
+GetDefaultCartItemFilterIdOk returns a tuple with the DefaultCartItemFilterId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDefaultCartItemFilterId
+
+`func (o *Application) HasDefaultCartItemFilterId() bool`
+
+HasDefaultCartItemFilterId returns a boolean if a field has been set.
+
+### SetDefaultCartItemFilterId
+
+`func (o *Application) SetDefaultCartItemFilterId(v int32)`
+
+SetDefaultCartItemFilterId gets a reference to the given int32 and assigns it to the DefaultCartItemFilterId field.
+
+### GetEnableCampaignStateManagement
+
+`func (o *Application) GetEnableCampaignStateManagement() bool`
+
+GetEnableCampaignStateManagement returns the EnableCampaignStateManagement field if non-nil, zero value otherwise.
+
+### GetEnableCampaignStateManagementOk
+
+`func (o *Application) GetEnableCampaignStateManagementOk() (bool, bool)`
+
+GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEnableCampaignStateManagement
+
+`func (o *Application) HasEnableCampaignStateManagement() bool`
+
+HasEnableCampaignStateManagement returns a boolean if a field has been set.
+
+### SetEnableCampaignStateManagement
+
+`func (o *Application) SetEnableCampaignStateManagement(v bool)`
+
+SetEnableCampaignStateManagement gets a reference to the given bool and assigns it to the EnableCampaignStateManagement field.
 
 ### GetLoyaltyPrograms
 

@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **LastSignedIn** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the user last signed in to Talon.One. | [optional] 
 **LastAccessed** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the user&#39;s last activity after signing in to Talon.One. | [optional] 
 **LatestFeedTimestamp** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the user was notified for feed. | [optional] 
+**AdditionalAttributes** | Pointer to [**map[string]interface{}**](.md) | Additional user attributes, created and used by external identity providers. | [optional] 
 
 ## Methods
 
@@ -422,6 +423,31 @@ HasLatestFeedTimestamp returns a boolean if a field has been set.
 `func (o *User) SetLatestFeedTimestamp(v time.Time)`
 
 SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
+
+### GetAdditionalAttributes
+
+`func (o *User) GetAdditionalAttributes() map[string]interface{}`
+
+GetAdditionalAttributes returns the AdditionalAttributes field if non-nil, zero value otherwise.
+
+### GetAdditionalAttributesOk
+
+`func (o *User) GetAdditionalAttributesOk() (map[string]interface{}, bool)`
+
+GetAdditionalAttributesOk returns a tuple with the AdditionalAttributes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdditionalAttributes
+
+`func (o *User) HasAdditionalAttributes() bool`
+
+HasAdditionalAttributes returns a boolean if a field has been set.
+
+### SetAdditionalAttributes
+
+`func (o *User) SetAdditionalAttributes(v map[string]interface{})`
+
+SetAdditionalAttributes gets a reference to the given map[string]interface{} and assigns it to the AdditionalAttributes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AchievementId** | Pointer to **int32** | The internal ID of the achievement. | 
 **Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | 
 **Title** | Pointer to **string** | The display name of the achievement in the Campaign Manager. | 
+**Description** | Pointer to **string** | The description of the achievement in the Campaign Manager. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign the achievement belongs to. | 
 **Status** | Pointer to **string** | The status of the achievement. | 
 **Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
@@ -91,6 +92,31 @@ HasTitle returns a boolean if a field has been set.
 `func (o *AchievementProgress) SetTitle(v string)`
 
 SetTitle gets a reference to the given string and assigns it to the Title field.
+
+### GetDescription
+
+`func (o *AchievementProgress) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *AchievementProgress) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *AchievementProgress) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *AchievementProgress) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetCampaignId
 
