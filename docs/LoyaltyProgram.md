@@ -14,18 +14,22 @@ Name | Type | Description | Notes
 **AllowSubledger** | Pointer to **bool** | Indicates if this program supports subledgers inside the program. | 
 **UsersPerCardLimit** | Pointer to **int32** | The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when &#x60;cardBased&#x60; is &#x60;true&#x60;.  | [optional] 
 **Sandbox** | Pointer to **bool** | Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type. | 
-**TiersExpirationPolicy** | Pointer to **string** | The policy that defines which date is used to calculate the expiration date of a customer&#39;s current tier.  - &#x60;tier_start_date&#x60;: The tier expiration date is calculated based on when the customer joined the current tier.  - &#x60;program_join_date&#x60;: The tier expiration date is calculated based on when the customer joined the loyalty program.  | [optional] 
-**TiersExpireIn** | Pointer to **string** | The amount of time after which the tier expires.  The time format is an **integer** followed by one letter indicating the time unit. Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  | [optional] 
-**TiersDowngradePolicy** | Pointer to **string** | Customers&#39;s tier downgrade policy.  - &#x60;one_down&#x60;: Once the tier expires and if the user doesn&#39;t have enough points to stay in the tier, the user is downgraded one tier down.  - &#x60;balance_based&#x60;: Once the tier expires, the user&#39;s tier is evaluated based on the amount of active points the user has at this instant.  | [optional] 
 **ProgramJoinPolicy** | Pointer to **string** | The policy that defines when the customer joins the loyalty program.   - &#x60;not_join&#x60;: The customer does not join the loyalty program but can still earn and spend loyalty points.       **Note**: The customer does not have a program join date.   - &#x60;points_activated&#x60;: The customer joins the loyalty program only when their earned loyalty points become active for the first time.   - &#x60;points_earned&#x60;: The customer joins the loyalty program when they earn loyalty points for the first time.  | [optional] 
+**TiersExpirationPolicy** | Pointer to **string** | The policy that defines how tier expiration, used to reevaluate the customer&#39;s current tier, is determined.  - &#x60;tier_start_date&#x60;: The tier expiration is relative to when the customer joined the current tier.  - &#x60;program_join_date&#x60;: The tier expiration is relative to when the customer joined the loyalty program.  - &#x60;customer_attribute&#x60;: The tier expiration is determined by a custom customer attribute.  - &#x60;absolute_expiration&#x60;: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a &#x60;tierCycleStartDate&#x60;.  | [optional] 
+**TierCycleStartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which the tier cycle starts for all customers in the loyalty program.  **Note**: This is only required when the tier expiration policy is set to &#x60;absolute_expiration&#x60;.  | [optional] 
+**TiersExpireIn** | Pointer to **string** | The amount of time after which the tier expires and is reevaluated.  The time format is an **integer** followed by one letter indicating the time unit. Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  | [optional] 
+**TiersDowngradePolicy** | Pointer to **string** | The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment.  | [optional] 
+**CardCodeSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **AccountID** | Pointer to **int32** | The ID of the Talon.One account that owns this program. | 
 **Name** | Pointer to **string** | The internal name for the Loyalty Program. This is an immutable value. | 
 **Tiers** | Pointer to [**[]LoyaltyTier**](LoyaltyTier.md) | The tiers in this loyalty program. | [optional] 
 **Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | 
 **CardBased** | Pointer to **bool** | Defines the type of loyalty program: - &#x60;true&#x60;: the program is a card-based. - &#x60;false&#x60;: the program is profile-based.  | [default to false]
 **CanUpdateTiers** | Pointer to **bool** | &#x60;True&#x60; if the tier definitions can be updated.  | [optional] [default to false]
-**CanUpdateJoinPolicy** | Pointer to **bool** | Indicates whether the program join policy can be updated. The join policy can be updated when this value is set to &#x60;true&#x60;.  | [optional] 
+**CanUpdateJoinPolicy** | Pointer to **bool** | &#x60;True&#x60; if the program join policy can be updated.  | [optional] 
+**CanUpdateTierExpirationPolicy** | Pointer to **bool** | &#x60;True&#x60; if the tier expiration policy can be updated.  | [optional] 
 **CanUpgradeToAdvancedTiers** | Pointer to **bool** | &#x60;True&#x60; if the program can be upgraded to use the &#x60;tiersExpireIn&#x60; and &#x60;tiersDowngradePolicy&#x60; properties.  | [optional] [default to false]
+**CanUpdateSubledgers** | Pointer to **bool** | &#x60;True&#x60; if the &#x60;allowSubledger&#x60; property can be updated in the loyalty program.  | [optional] [default to false]
 
 ## Methods
 
@@ -279,6 +283,31 @@ HasSandbox returns a boolean if a field has been set.
 
 SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
+### GetProgramJoinPolicy
+
+`func (o *LoyaltyProgram) GetProgramJoinPolicy() string`
+
+GetProgramJoinPolicy returns the ProgramJoinPolicy field if non-nil, zero value otherwise.
+
+### GetProgramJoinPolicyOk
+
+`func (o *LoyaltyProgram) GetProgramJoinPolicyOk() (string, bool)`
+
+GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProgramJoinPolicy
+
+`func (o *LoyaltyProgram) HasProgramJoinPolicy() bool`
+
+HasProgramJoinPolicy returns a boolean if a field has been set.
+
+### SetProgramJoinPolicy
+
+`func (o *LoyaltyProgram) SetProgramJoinPolicy(v string)`
+
+SetProgramJoinPolicy gets a reference to the given string and assigns it to the ProgramJoinPolicy field.
+
 ### GetTiersExpirationPolicy
 
 `func (o *LoyaltyProgram) GetTiersExpirationPolicy() string`
@@ -303,6 +332,31 @@ HasTiersExpirationPolicy returns a boolean if a field has been set.
 `func (o *LoyaltyProgram) SetTiersExpirationPolicy(v string)`
 
 SetTiersExpirationPolicy gets a reference to the given string and assigns it to the TiersExpirationPolicy field.
+
+### GetTierCycleStartDate
+
+`func (o *LoyaltyProgram) GetTierCycleStartDate() time.Time`
+
+GetTierCycleStartDate returns the TierCycleStartDate field if non-nil, zero value otherwise.
+
+### GetTierCycleStartDateOk
+
+`func (o *LoyaltyProgram) GetTierCycleStartDateOk() (time.Time, bool)`
+
+GetTierCycleStartDateOk returns a tuple with the TierCycleStartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTierCycleStartDate
+
+`func (o *LoyaltyProgram) HasTierCycleStartDate() bool`
+
+HasTierCycleStartDate returns a boolean if a field has been set.
+
+### SetTierCycleStartDate
+
+`func (o *LoyaltyProgram) SetTierCycleStartDate(v time.Time)`
+
+SetTierCycleStartDate gets a reference to the given time.Time and assigns it to the TierCycleStartDate field.
 
 ### GetTiersExpireIn
 
@@ -354,30 +408,30 @@ HasTiersDowngradePolicy returns a boolean if a field has been set.
 
 SetTiersDowngradePolicy gets a reference to the given string and assigns it to the TiersDowngradePolicy field.
 
-### GetProgramJoinPolicy
+### GetCardCodeSettings
 
-`func (o *LoyaltyProgram) GetProgramJoinPolicy() string`
+`func (o *LoyaltyProgram) GetCardCodeSettings() CodeGeneratorSettings`
 
-GetProgramJoinPolicy returns the ProgramJoinPolicy field if non-nil, zero value otherwise.
+GetCardCodeSettings returns the CardCodeSettings field if non-nil, zero value otherwise.
 
-### GetProgramJoinPolicyOk
+### GetCardCodeSettingsOk
 
-`func (o *LoyaltyProgram) GetProgramJoinPolicyOk() (string, bool)`
+`func (o *LoyaltyProgram) GetCardCodeSettingsOk() (CodeGeneratorSettings, bool)`
 
-GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field if it's non-nil, zero value otherwise
+GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasProgramJoinPolicy
+### HasCardCodeSettings
 
-`func (o *LoyaltyProgram) HasProgramJoinPolicy() bool`
+`func (o *LoyaltyProgram) HasCardCodeSettings() bool`
 
-HasProgramJoinPolicy returns a boolean if a field has been set.
+HasCardCodeSettings returns a boolean if a field has been set.
 
-### SetProgramJoinPolicy
+### SetCardCodeSettings
 
-`func (o *LoyaltyProgram) SetProgramJoinPolicy(v string)`
+`func (o *LoyaltyProgram) SetCardCodeSettings(v CodeGeneratorSettings)`
 
-SetProgramJoinPolicy gets a reference to the given string and assigns it to the ProgramJoinPolicy field.
+SetCardCodeSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CardCodeSettings field.
 
 ### GetAccountID
 
@@ -554,6 +608,31 @@ HasCanUpdateJoinPolicy returns a boolean if a field has been set.
 
 SetCanUpdateJoinPolicy gets a reference to the given bool and assigns it to the CanUpdateJoinPolicy field.
 
+### GetCanUpdateTierExpirationPolicy
+
+`func (o *LoyaltyProgram) GetCanUpdateTierExpirationPolicy() bool`
+
+GetCanUpdateTierExpirationPolicy returns the CanUpdateTierExpirationPolicy field if non-nil, zero value otherwise.
+
+### GetCanUpdateTierExpirationPolicyOk
+
+`func (o *LoyaltyProgram) GetCanUpdateTierExpirationPolicyOk() (bool, bool)`
+
+GetCanUpdateTierExpirationPolicyOk returns a tuple with the CanUpdateTierExpirationPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCanUpdateTierExpirationPolicy
+
+`func (o *LoyaltyProgram) HasCanUpdateTierExpirationPolicy() bool`
+
+HasCanUpdateTierExpirationPolicy returns a boolean if a field has been set.
+
+### SetCanUpdateTierExpirationPolicy
+
+`func (o *LoyaltyProgram) SetCanUpdateTierExpirationPolicy(v bool)`
+
+SetCanUpdateTierExpirationPolicy gets a reference to the given bool and assigns it to the CanUpdateTierExpirationPolicy field.
+
 ### GetCanUpgradeToAdvancedTiers
 
 `func (o *LoyaltyProgram) GetCanUpgradeToAdvancedTiers() bool`
@@ -578,6 +657,31 @@ HasCanUpgradeToAdvancedTiers returns a boolean if a field has been set.
 `func (o *LoyaltyProgram) SetCanUpgradeToAdvancedTiers(v bool)`
 
 SetCanUpgradeToAdvancedTiers gets a reference to the given bool and assigns it to the CanUpgradeToAdvancedTiers field.
+
+### GetCanUpdateSubledgers
+
+`func (o *LoyaltyProgram) GetCanUpdateSubledgers() bool`
+
+GetCanUpdateSubledgers returns the CanUpdateSubledgers field if non-nil, zero value otherwise.
+
+### GetCanUpdateSubledgersOk
+
+`func (o *LoyaltyProgram) GetCanUpdateSubledgersOk() (bool, bool)`
+
+GetCanUpdateSubledgersOk returns a tuple with the CanUpdateSubledgers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCanUpdateSubledgers
+
+`func (o *LoyaltyProgram) HasCanUpdateSubledgers() bool`
+
+HasCanUpdateSubledgers returns a boolean if a field has been set.
+
+### SetCanUpdateSubledgers
+
+`func (o *LoyaltyProgram) SetCanUpdateSubledgers(v bool)`
+
+SetCanUpdateSubledgers gets a reference to the given bool and assigns it to the CanUpdateSubledgers field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

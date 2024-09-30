@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **ProgressTrackerId** | Pointer to **int32** | The internal ID of the achievement progress tracker. | [optional] 
 **Delta** | Pointer to **float32** | The value by which the customer&#39;s current progress in the achievement is increased. | 
 **Value** | Pointer to **float32** | The current progress of the customer in the achievement. | 
-**Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | 
+**Target** | Pointer to **float32** | The target value to complete the achievement. | 
 **IsJustCompleted** | Pointer to **bool** | Indicates if the customer has completed the achievement in the current session. | 
 
 ## Methods

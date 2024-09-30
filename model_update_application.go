@@ -45,6 +45,10 @@ type UpdateApplication struct {
 	DefaultDiscountAdditionalCostPerItemScope *string `json:"defaultDiscountAdditionalCostPerItemScope,omitempty"`
 	// The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign.
 	DefaultEvaluationGroupId *int32 `json:"defaultEvaluationGroupId,omitempty"`
+	// The ID of the default Cart-Item-Filter for this application.
+	DefaultCartItemFilterId *int32 `json:"defaultCartItemFilterId,omitempty"`
+	// Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.
+	EnableCampaignStateManagement *bool `json:"enableCampaignStateManagement,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -486,6 +490,72 @@ func (o *UpdateApplication) HasDefaultEvaluationGroupId() bool {
 // SetDefaultEvaluationGroupId gets a reference to the given int32 and assigns it to the DefaultEvaluationGroupId field.
 func (o *UpdateApplication) SetDefaultEvaluationGroupId(v int32) {
 	o.DefaultEvaluationGroupId = &v
+}
+
+// GetDefaultCartItemFilterId returns the DefaultCartItemFilterId field value if set, zero value otherwise.
+func (o *UpdateApplication) GetDefaultCartItemFilterId() int32 {
+	if o == nil || o.DefaultCartItemFilterId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DefaultCartItemFilterId
+}
+
+// GetDefaultCartItemFilterIdOk returns a tuple with the DefaultCartItemFilterId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateApplication) GetDefaultCartItemFilterIdOk() (int32, bool) {
+	if o == nil || o.DefaultCartItemFilterId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.DefaultCartItemFilterId, true
+}
+
+// HasDefaultCartItemFilterId returns a boolean if a field has been set.
+func (o *UpdateApplication) HasDefaultCartItemFilterId() bool {
+	if o != nil && o.DefaultCartItemFilterId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDefaultCartItemFilterId gets a reference to the given int32 and assigns it to the DefaultCartItemFilterId field.
+func (o *UpdateApplication) SetDefaultCartItemFilterId(v int32) {
+	o.DefaultCartItemFilterId = &v
+}
+
+// GetEnableCampaignStateManagement returns the EnableCampaignStateManagement field value if set, zero value otherwise.
+func (o *UpdateApplication) GetEnableCampaignStateManagement() bool {
+	if o == nil || o.EnableCampaignStateManagement == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableCampaignStateManagement
+}
+
+// GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateApplication) GetEnableCampaignStateManagementOk() (bool, bool) {
+	if o == nil || o.EnableCampaignStateManagement == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.EnableCampaignStateManagement, true
+}
+
+// HasEnableCampaignStateManagement returns a boolean if a field has been set.
+func (o *UpdateApplication) HasEnableCampaignStateManagement() bool {
+	if o != nil && o.EnableCampaignStateManagement != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableCampaignStateManagement gets a reference to the given bool and assigns it to the EnableCampaignStateManagement field.
+func (o *UpdateApplication) SetEnableCampaignStateManagement(v bool) {
+	o.EnableCampaignStateManagement = &v
 }
 
 type NullableUpdateApplication struct {

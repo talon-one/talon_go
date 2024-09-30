@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ConditionIndex** | Pointer to **int32** | The index of the condition that caused the rejection of the coupon. | [optional] 
 **EffectIndex** | Pointer to **int32** | The index of the effect that caused the rejection of the coupon. | [optional] 
 **Details** | Pointer to **string** | More details about the failure. | [optional] 
+**CampaignExclusionReason** | Pointer to **string** | The reason why the campaign was not applied. | [optional] 
 
 ## Methods
 
@@ -136,6 +137,31 @@ HasDetails returns a boolean if a field has been set.
 `func (o *RejectCouponEffectProps) SetDetails(v string)`
 
 SetDetails gets a reference to the given string and assigns it to the Details field.
+
+### GetCampaignExclusionReason
+
+`func (o *RejectCouponEffectProps) GetCampaignExclusionReason() string`
+
+GetCampaignExclusionReason returns the CampaignExclusionReason field if non-nil, zero value otherwise.
+
+### GetCampaignExclusionReasonOk
+
+`func (o *RejectCouponEffectProps) GetCampaignExclusionReasonOk() (string, bool)`
+
+GetCampaignExclusionReasonOk returns a tuple with the CampaignExclusionReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignExclusionReason
+
+`func (o *RejectCouponEffectProps) HasCampaignExclusionReason() bool`
+
+HasCampaignExclusionReason returns a boolean if a field has been set.
+
+### SetCampaignExclusionReason
+
+`func (o *RejectCouponEffectProps) SetCampaignExclusionReason(v string)`
+
+SetCampaignExclusionReason gets a reference to the given string and assigns it to the CampaignExclusionReason field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

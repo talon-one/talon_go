@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Draft** | Pointer to **int32** | Number of draft campaigns. | 
 **Disabled** | Pointer to **int32** | Number of disabled campaigns. | 
 **Scheduled** | Pointer to **int32** | Number of scheduled campaigns. | 
 **Running** | Pointer to **int32** | Number of running campaigns. | 
@@ -12,31 +11,6 @@ Name | Type | Description | Notes
 **Archived** | Pointer to **int32** | Number of archived campaigns. | 
 
 ## Methods
-
-### GetDraft
-
-`func (o *ApplicationCampaignStats) GetDraft() int32`
-
-GetDraft returns the Draft field if non-nil, zero value otherwise.
-
-### GetDraftOk
-
-`func (o *ApplicationCampaignStats) GetDraftOk() (int32, bool)`
-
-GetDraftOk returns a tuple with the Draft field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDraft
-
-`func (o *ApplicationCampaignStats) HasDraft() bool`
-
-HasDraft returns a boolean if a field has been set.
-
-### SetDraft
-
-`func (o *ApplicationCampaignStats) SetDraft(v int32)`
-
-SetDraft gets a reference to the given int32 and assigns it to the Draft field.
 
 ### GetDisabled
 

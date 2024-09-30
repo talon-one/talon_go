@@ -20,6 +20,8 @@ type NewWebhook struct {
 	ApplicationIds []int32 `json:"applicationIds"`
 	// Name or title for this webhook.
 	Title string `json:"title"`
+	// A description of the webhook.
+	Description *string `json:"description,omitempty"`
 	// API method for this webhook.
 	Verb string `json:"verb"`
 	// API URL (supports templating using parameters) for this webhook.
@@ -62,6 +64,39 @@ func (o *NewWebhook) GetTitle() string {
 // SetTitle sets field value
 func (o *NewWebhook) SetTitle(v string) {
 	o.Title = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *NewWebhook) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewWebhook) GetDescriptionOk() (string, bool) {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *NewWebhook) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *NewWebhook) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetVerb returns the Verb field value

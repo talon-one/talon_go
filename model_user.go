@@ -49,6 +49,8 @@ type User struct {
 	LastAccessed *time.Time `json:"lastAccessed,omitempty"`
 	// Timestamp when the user was notified for feed.
 	LatestFeedTimestamp *time.Time `json:"latestFeedTimestamp,omitempty"`
+	// Additional user attributes, created and used by external identity providers.
+	AdditionalAttributes *map[string]interface{} `json:"additionalAttributes,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -415,6 +417,39 @@ func (o *User) HasLatestFeedTimestamp() bool {
 // SetLatestFeedTimestamp gets a reference to the given time.Time and assigns it to the LatestFeedTimestamp field.
 func (o *User) SetLatestFeedTimestamp(v time.Time) {
 	o.LatestFeedTimestamp = &v
+}
+
+// GetAdditionalAttributes returns the AdditionalAttributes field value if set, zero value otherwise.
+func (o *User) GetAdditionalAttributes() map[string]interface{} {
+	if o == nil || o.AdditionalAttributes == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.AdditionalAttributes
+}
+
+// GetAdditionalAttributesOk returns a tuple with the AdditionalAttributes field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *User) GetAdditionalAttributesOk() (map[string]interface{}, bool) {
+	if o == nil || o.AdditionalAttributes == nil {
+		var ret map[string]interface{}
+		return ret, false
+	}
+	return *o.AdditionalAttributes, true
+}
+
+// HasAdditionalAttributes returns a boolean if a field has been set.
+func (o *User) HasAdditionalAttributes() bool {
+	if o != nil && o.AdditionalAttributes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalAttributes gets a reference to the given map[string]interface{} and assigns it to the AdditionalAttributes field.
+func (o *User) SetAdditionalAttributes(v map[string]interface{}) {
+	o.AdditionalAttributes = &v
 }
 
 type NullableUser struct {

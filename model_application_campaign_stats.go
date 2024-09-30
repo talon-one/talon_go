@@ -16,8 +16,6 @@ import (
 
 // ApplicationCampaignStats Provides statistics regarding an application's campaigns.
 type ApplicationCampaignStats struct {
-	// Number of draft campaigns.
-	Draft int32 `json:"draft"`
 	// Number of disabled campaigns.
 	Disabled int32 `json:"disabled"`
 	// Number of scheduled campaigns.
@@ -28,21 +26,6 @@ type ApplicationCampaignStats struct {
 	Expired int32 `json:"expired"`
 	// Number of archived campaigns.
 	Archived int32 `json:"archived"`
-}
-
-// GetDraft returns the Draft field value
-func (o *ApplicationCampaignStats) GetDraft() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Draft
-}
-
-// SetDraft sets field value
-func (o *ApplicationCampaignStats) SetDraft(v int32) {
-	o.Draft = v
 }
 
 // GetDisabled returns the Disabled field value

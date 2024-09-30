@@ -61,6 +61,8 @@ type AdditionalCampaignProperties struct {
 	TemplateId *int32 `json:"templateId,omitempty"`
 	// A campaign state described exactly as in the Campaign Manager.
 	FrontendState string `json:"frontendState"`
+	// Indicates whether the linked stores were imported via a CSV file.
+	StoresImported bool `json:"storesImported"`
 }
 
 // GetBudgets returns the Budgets field value
@@ -751,6 +753,21 @@ func (o *AdditionalCampaignProperties) GetFrontendState() string {
 // SetFrontendState sets field value
 func (o *AdditionalCampaignProperties) SetFrontendState(v string) {
 	o.FrontendState = v
+}
+
+// GetStoresImported returns the StoresImported field value
+func (o *AdditionalCampaignProperties) GetStoresImported() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.StoresImported
+}
+
+// SetStoresImported sets field value
+func (o *AdditionalCampaignProperties) SetStoresImported(v bool) {
+	o.StoresImported = v
 }
 
 type NullableAdditionalCampaignProperties struct {

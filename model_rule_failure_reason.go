@@ -40,6 +40,10 @@ type RuleFailureReason struct {
 	EffectIndex *int32 `json:"effectIndex,omitempty"`
 	// More details about the failure.
 	Details *string `json:"details,omitempty"`
+	// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
+	EvaluationGroupID *int32 `json:"evaluationGroupID,omitempty"`
+	// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-
+	EvaluationGroupMode *string `json:"evaluationGroupMode,omitempty"`
 }
 
 // GetCampaignID returns the CampaignID field value
@@ -346,6 +350,72 @@ func (o *RuleFailureReason) HasDetails() bool {
 // SetDetails gets a reference to the given string and assigns it to the Details field.
 func (o *RuleFailureReason) SetDetails(v string) {
 	o.Details = &v
+}
+
+// GetEvaluationGroupID returns the EvaluationGroupID field value if set, zero value otherwise.
+func (o *RuleFailureReason) GetEvaluationGroupID() int32 {
+	if o == nil || o.EvaluationGroupID == nil {
+		var ret int32
+		return ret
+	}
+	return *o.EvaluationGroupID
+}
+
+// GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetEvaluationGroupIDOk() (int32, bool) {
+	if o == nil || o.EvaluationGroupID == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.EvaluationGroupID, true
+}
+
+// HasEvaluationGroupID returns a boolean if a field has been set.
+func (o *RuleFailureReason) HasEvaluationGroupID() bool {
+	if o != nil && o.EvaluationGroupID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupID gets a reference to the given int32 and assigns it to the EvaluationGroupID field.
+func (o *RuleFailureReason) SetEvaluationGroupID(v int32) {
+	o.EvaluationGroupID = &v
+}
+
+// GetEvaluationGroupMode returns the EvaluationGroupMode field value if set, zero value otherwise.
+func (o *RuleFailureReason) GetEvaluationGroupMode() string {
+	if o == nil || o.EvaluationGroupMode == nil {
+		var ret string
+		return ret
+	}
+	return *o.EvaluationGroupMode
+}
+
+// GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetEvaluationGroupModeOk() (string, bool) {
+	if o == nil || o.EvaluationGroupMode == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.EvaluationGroupMode, true
+}
+
+// HasEvaluationGroupMode returns a boolean if a field has been set.
+func (o *RuleFailureReason) HasEvaluationGroupMode() bool {
+	if o != nil && o.EvaluationGroupMode != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluationGroupMode gets a reference to the given string and assigns it to the EvaluationGroupMode field.
+func (o *RuleFailureReason) SetEvaluationGroupMode(v string) {
+	o.EvaluationGroupMode = &v
 }
 
 type NullableRuleFailureReason struct {

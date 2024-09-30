@@ -21,7 +21,7 @@ type UpdateReferral struct {
 	FriendProfileIntegrationId *string `json:"friendProfileIntegrationId,omitempty"`
 	// Timestamp at which point the referral code becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
-	// Expiration date of the referral code. Referral never expires if this is omitted, zero, or negative.
+	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
 	UsageLimit *int32 `json:"usageLimit,omitempty"`

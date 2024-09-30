@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | A short description of the template that will be shown in the rule editor. | [optional] 
 **Help** | Pointer to **string** | Extended help text for the template. | [optional] 
 **Category** | Pointer to **string** | Used for grouping templates in the rule editor sidebar. | 
-**Expr** | Pointer to [**[]interface{}**]([]interface{}.md) | A Talang expression that contains variable bindings referring to args. |
+**Expr** | Pointer to [**[]interface{}**]([]interface{}.md) | A Talang expression that contains variable bindings referring to args. | 
 **Args** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | An array of argument definitions. | 
 **Expose** | Pointer to **bool** | A flag to control exposure in Rule Builder. | [optional] [default to false]
 

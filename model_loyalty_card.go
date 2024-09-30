@@ -23,8 +23,10 @@ type LoyaltyCard struct {
 	Created time.Time `json:"created"`
 	// The ID of the loyalty program that owns this entity.
 	ProgramID int32 `json:"programID"`
-	// Status of the loyalty card. Can be one of: ['active', 'inactive']
+	// Status of the loyalty card. Can be `active` or `inactive`.
 	Status string `json:"status"`
+	// Reason for transferring and blocking the loyalty card.
+	BlockReason *string `json:"blockReason,omitempty"`
 	// The alphanumeric identifier of the loyalty card.
 	Identifier string `json:"identifier"`
 	// The max amount of customer profiles that can be linked to the card. 0 means unlimited.
@@ -40,6 +42,8 @@ type LoyaltyCard struct {
 	OldCardIdentifier *string `json:"oldCardIdentifier,omitempty"`
 	// The alphanumeric identifier of the loyalty card.
 	NewCardIdentifier *string `json:"newCardIdentifier,omitempty"`
+	// The ID of the batch in which the loyalty card was created.
+	BatchId *string `json:"batchId,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -100,6 +104,39 @@ func (o *LoyaltyCard) GetStatus() string {
 // SetStatus sets field value
 func (o *LoyaltyCard) SetStatus(v string) {
 	o.Status = v
+}
+
+// GetBlockReason returns the BlockReason field value if set, zero value otherwise.
+func (o *LoyaltyCard) GetBlockReason() string {
+	if o == nil || o.BlockReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.BlockReason
+}
+
+// GetBlockReasonOk returns a tuple with the BlockReason field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetBlockReasonOk() (string, bool) {
+	if o == nil || o.BlockReason == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.BlockReason, true
+}
+
+// HasBlockReason returns a boolean if a field has been set.
+func (o *LoyaltyCard) HasBlockReason() bool {
+	if o != nil && o.BlockReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
+func (o *LoyaltyCard) SetBlockReason(v string) {
+	o.BlockReason = &v
 }
 
 // GetIdentifier returns the Identifier field value
@@ -328,6 +365,39 @@ func (o *LoyaltyCard) HasNewCardIdentifier() bool {
 // SetNewCardIdentifier gets a reference to the given string and assigns it to the NewCardIdentifier field.
 func (o *LoyaltyCard) SetNewCardIdentifier(v string) {
 	o.NewCardIdentifier = &v
+}
+
+// GetBatchId returns the BatchId field value if set, zero value otherwise.
+func (o *LoyaltyCard) GetBatchId() string {
+	if o == nil || o.BatchId == nil {
+		var ret string
+		return ret
+	}
+	return *o.BatchId
+}
+
+// GetBatchIdOk returns a tuple with the BatchId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetBatchIdOk() (string, bool) {
+	if o == nil || o.BatchId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.BatchId, true
+}
+
+// HasBatchId returns a boolean if a field has been set.
+func (o *LoyaltyCard) HasBatchId() bool {
+	if o != nil && o.BatchId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchId gets a reference to the given string and assigns it to the BatchId field.
+func (o *LoyaltyCard) SetBatchId(v string) {
+	o.BatchId = &v
 }
 
 type NullableLoyaltyCard struct {

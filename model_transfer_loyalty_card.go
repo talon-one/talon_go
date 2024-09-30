@@ -18,6 +18,8 @@ import (
 type TransferLoyaltyCard struct {
 	// The alphanumeric identifier of the loyalty card.
 	NewCardIdentifier string `json:"newCardIdentifier"`
+	// Reason for transferring and blocking the loyalty card.
+	BlockReason *string `json:"blockReason,omitempty"`
 }
 
 // GetNewCardIdentifier returns the NewCardIdentifier field value
@@ -33,6 +35,39 @@ func (o *TransferLoyaltyCard) GetNewCardIdentifier() string {
 // SetNewCardIdentifier sets field value
 func (o *TransferLoyaltyCard) SetNewCardIdentifier(v string) {
 	o.NewCardIdentifier = v
+}
+
+// GetBlockReason returns the BlockReason field value if set, zero value otherwise.
+func (o *TransferLoyaltyCard) GetBlockReason() string {
+	if o == nil || o.BlockReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.BlockReason
+}
+
+// GetBlockReasonOk returns a tuple with the BlockReason field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *TransferLoyaltyCard) GetBlockReasonOk() (string, bool) {
+	if o == nil || o.BlockReason == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.BlockReason, true
+}
+
+// HasBlockReason returns a boolean if a field has been set.
+func (o *TransferLoyaltyCard) HasBlockReason() bool {
+	if o != nil && o.BlockReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
+func (o *TransferLoyaltyCard) SetBlockReason(v string) {
+	o.BlockReason = &v
 }
 
 type NullableTransferLoyaltyCard struct {

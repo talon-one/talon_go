@@ -26,7 +26,7 @@ type IncreaseAchievementProgressEffectProps struct {
 	Delta float32 `json:"delta"`
 	// The current progress of the customer in the achievement.
 	Value float32 `json:"value"`
-	// The required number of actions or the transactional milestone to complete the achievement.
+	// The target value to complete the achievement.
 	Target float32 `json:"target"`
 	// Indicates if the customer has completed the achievement in the current session.
 	IsJustCompleted bool `json:"isJustCompleted"`
