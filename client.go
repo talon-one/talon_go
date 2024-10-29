@@ -159,6 +159,17 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
+// parameterToStringsWithCallback convert interface{} parameters to a slice of strings
+// and iterate over the strings with a callback
+func parameterToStringsWithCallback(obj interface{}, callback func(string)) {
+	if reflect.TypeOf(obj).Kind() == reflect.Slice {
+		slice := strings.Split(strings.Trim(fmt.Sprint(obj), "[]"), " ")
+		for _, str := range slice {
+			callback(str)
+		}
+	}
+}
+
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 	if c.cfg.Debug {

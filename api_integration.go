@@ -2052,7 +2052,11 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2003, *_nethttp
 		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	if r.subledgerId != nil {
-		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, "csv"))
+		// inconsistently, talone one does not accept multiple subledgerIds as a comma-separated list for this request
+		// add multiple subledgerId params instead
+		parameterToStringsWithCallback(*r.subledgerId, func(subledgerId string) {
+			localVarQueryParams.Add("subledgerId", subledgerId)
+		})
 	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
