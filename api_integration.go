@@ -1237,6 +1237,170 @@ func (r apiDeleteCustomerDataRequest) Execute() (*_nethttp.Response, error) {
 	return localVarHTTPResponse, nil
 }
 
+type apiGenerateLoyaltyCardRequest struct {
+	ctx              _context.Context
+	apiService       *IntegrationApiService
+	loyaltyProgramId int32
+	body             *GenerateLoyaltyCard
+}
+
+func (r apiGenerateLoyaltyCardRequest) Body(body GenerateLoyaltyCard) apiGenerateLoyaltyCardRequest {
+	r.body = &body
+	return r
+}
+
+/*
+GenerateLoyaltyCard Generate loyalty card
+Generate a loyalty card in a specified [card-based loyalty program](https://docs.talon.one/docs/product/loyalty-programs/card-based/card-based-overview).
+
+To link the card to one or more customer profiles, use the `customerProfileIds` parameter in the request body.
+
+**Note:**
+- The number of customer profiles linked to the loyalty card cannot exceed the loyalty program's `usersPerCardLimit`. To find the program's limit, use the [Get loyalty program](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgram) endpoint.
+- If the loyalty program has a defined code format, it will be used for the loyalty card identifier.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param loyaltyProgramId Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+
+@return apiGenerateLoyaltyCardRequest
+*/
+func (a *IntegrationApiService) GenerateLoyaltyCard(ctx _context.Context, loyaltyProgramId int32) apiGenerateLoyaltyCardRequest {
+	return apiGenerateLoyaltyCardRequest{
+		apiService:       a,
+		ctx:              ctx,
+		loyaltyProgramId: loyaltyProgramId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return LoyaltyCard
+*/
+func (r apiGenerateLoyaltyCardRequest) Execute() (LoyaltyCard, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  LoyaltyCard
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GenerateLoyaltyCard")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/loyalty_programs/{loyaltyProgramId}/cards"
+	localVarPath = strings.Replace(localVarPath, "{"+"loyaltyProgramId"+"}", _neturl.QueryEscape(parameterToString(r.loyaltyProgramId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v LoyaltyCard
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiGetCustomerInventoryRequest struct {
 	ctx           _context.Context
 	apiService    *IntegrationApiService
@@ -1592,12 +1756,14 @@ func (r apiGetCustomerSessionRequest) Execute() (IntegrationCustomerSessionRespo
 }
 
 type apiGetLoyaltyBalancesRequest struct {
-	ctx              _context.Context
-	apiService       *IntegrationApiService
-	loyaltyProgramId int32
-	integrationId    string
-	endDate          *time.Time
-	subledgerId      *string
+	ctx                  _context.Context
+	apiService           *IntegrationApiService
+	loyaltyProgramId     int32
+	integrationId        string
+	endDate              *time.Time
+	subledgerId          *string
+	includeTiers         *bool
+	includeProjectedTier *bool
 }
 
 func (r apiGetLoyaltyBalancesRequest) EndDate(endDate time.Time) apiGetLoyaltyBalancesRequest {
@@ -1607,6 +1773,16 @@ func (r apiGetLoyaltyBalancesRequest) EndDate(endDate time.Time) apiGetLoyaltyBa
 
 func (r apiGetLoyaltyBalancesRequest) SubledgerId(subledgerId string) apiGetLoyaltyBalancesRequest {
 	r.subledgerId = &subledgerId
+	return r
+}
+
+func (r apiGetLoyaltyBalancesRequest) IncludeTiers(includeTiers bool) apiGetLoyaltyBalancesRequest {
+	r.includeTiers = &includeTiers
+	return r
+}
+
+func (r apiGetLoyaltyBalancesRequest) IncludeProjectedTier(includeProjectedTier bool) apiGetLoyaltyBalancesRequest {
+	r.includeProjectedTier = &includeProjectedTier
 	return r
 }
 
@@ -1641,16 +1817,16 @@ func (a *IntegrationApiService) GetLoyaltyBalances(ctx _context.Context, loyalty
 /*
 Execute executes the request
 
-	@return LoyaltyBalances
+	@return LoyaltyBalancesWithTiers
 */
-func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.Response, error) {
+func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalancesWithTiers, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  LoyaltyBalances
+		localVarReturnValue  LoyaltyBalancesWithTiers
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyBalances")
@@ -1671,6 +1847,12 @@ func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.Resp
 	}
 	if r.subledgerId != nil {
 		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
+	}
+	if r.includeTiers != nil {
+		localVarQueryParams.Add("includeTiers", parameterToString(*r.includeTiers, ""))
+	}
+	if r.includeProjectedTier != nil {
+		localVarQueryParams.Add("includeProjectedTier", parameterToString(*r.includeProjectedTier, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1725,7 +1907,7 @@ func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalances, *_nethttp.Resp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v LoyaltyBalances
+			var v LoyaltyBalancesWithTiers
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -3512,18 +3694,18 @@ func (r apiSyncCatalogRequest) Body(body CatalogSyncRequest) apiSyncCatalogReque
 
 /*
 SyncCatalog Sync cart item catalog
-Perform one or more of the following actions for a given cart item catalog:
+Perform the following actions for a given cart item catalog:
 
-- Adding an item to the catalog.
-- Adding several items to the catalog.
-- Editing the attributes of an item in the catalog.
-- Editing the attributes of several items in the catalog.
-- Removing an item from the catalog.
-- Removing several items from the catalog.
+- Add an item to the catalog.
+- Add multiple items to the catalog.
+- Update the attributes of an item in the catalog.
+- Update the attributes of multiple items in the catalog.
+- Remove an item from the catalog.
+- Remove multiple items from the catalog.
 
-You can add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.
+You can either add, update, or delete up to 1000 cart items in a single request. Each item synced to a catalog must have a unique `SKU`.
 
-**Important**: Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.
+**Important**: You can perform only one type of action in a single sync request. Syncing items with duplicate `SKU` values in a single request returns an error message with a `400` status code.
 
 For more information, read [managing cart item catalogs](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs).
 
@@ -3596,7 +3778,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 <details>
 
-	<summary><strong>Adding several items to the catalog</strong></summary>
+	<summary><strong>Adding multiple items to the catalog</strong></summary>
 	<div>
 
 	```json
@@ -3641,7 +3823,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 <details>
 
-	<summary><strong>Editing the attributes of an item in the catalog</strong></summary>
+	<summary><strong>Updating the attributes of an item in the catalog</strong></summary>
 	<div>
 
 	```json
@@ -3670,7 +3852,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 <details>
 
-	<summary><strong>Editing the attributes of several items in the catalog</strong></summary>
+	<summary><strong>Updating the attributes of multiple items in the catalog</strong></summary>
 	<div>
 
 	```json
@@ -3723,7 +3905,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 <details>
 
-	<summary><strong>Removing several items from the catalog</strong></summary>
+	<summary><strong>Removing multiple items from the catalog</strong></summary>
 	<div>
 
 	```json

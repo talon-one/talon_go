@@ -45,6 +45,8 @@ type NewApplication struct {
 	DefaultDiscountAdditionalCostPerItemScope *string `json:"defaultDiscountAdditionalCostPerItemScope,omitempty"`
 	// Hex key for HMAC-signing API calls as coming from this application (16 hex digits).
 	Key *string `json:"key,omitempty"`
+	// Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.
+	EnableCampaignStateManagement *bool `json:"enableCampaignStateManagement,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -486,6 +488,39 @@ func (o *NewApplication) HasKey() bool {
 // SetKey gets a reference to the given string and assigns it to the Key field.
 func (o *NewApplication) SetKey(v string) {
 	o.Key = &v
+}
+
+// GetEnableCampaignStateManagement returns the EnableCampaignStateManagement field value if set, zero value otherwise.
+func (o *NewApplication) GetEnableCampaignStateManagement() bool {
+	if o == nil || o.EnableCampaignStateManagement == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableCampaignStateManagement
+}
+
+// GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewApplication) GetEnableCampaignStateManagementOk() (bool, bool) {
+	if o == nil || o.EnableCampaignStateManagement == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.EnableCampaignStateManagement, true
+}
+
+// HasEnableCampaignStateManagement returns a boolean if a field has been set.
+func (o *NewApplication) HasEnableCampaignStateManagement() bool {
+	if o != nil && o.EnableCampaignStateManagement != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableCampaignStateManagement gets a reference to the given bool and assigns it to the EnableCampaignStateManagement field.
+func (o *NewApplication) SetEnableCampaignStateManagement(v bool) {
+	o.EnableCampaignStateManagement = &v
 }
 
 type NullableNewApplication struct {

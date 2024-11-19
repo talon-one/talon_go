@@ -18,7 +18,7 @@ import (
 type CodeGeneratorSettings struct {
 	// List of characters used to generate the random parts of a code.
 	ValidCharacters []string `json:"validCharacters"`
-	// The pattern used to generate coupon codes. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
+	// The pattern used to generate codes, such as coupon codes, referral codes, and loyalty cards. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
 	CouponPattern string `json:"couponPattern"`
 }
 

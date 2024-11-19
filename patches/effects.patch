@@ -1,0 +1,77 @@
+@@
+var strName identifier
+@@
+type strName struct {
+    ...
+-	Effects *[]map[string]interface{} `json:"effects,omitempty"`
++	Effects [][]interface{} `json:"effects,omitempty"`
+    ...
+}
+
+@@
+var strName identifier
+@@
+type strName struct {
+    ...
+-	Effects []map[string]interface{} `json:"effects"`
++	Effects [][]interface{} `json:"effects"`
+    ...
+}
+
+
+# Replace GetEffects
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) GetEffects() []map[string]interface{} {
++func (a *strName) GetEffects() [][]interface{} {
+    ...
+}
+
+# Replace GetEffectsOk
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) GetEffectsOk() ([]map[string]interface{}, bool) {
++func (a *strName) GetEffectsOk() ([][]interface{}, bool) {
+    ...
+}
+# Replace SetEffects
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) SetEffects(v []map[string]interface{}) {
++func (a *strName) SetEffects(v [][]interface{}) {
+    ...
+}
+
+# Replace optional in SetEffects
+@@
+var a identifier
+@@
+-	a.Effects = &v
++	a.Effects = v
+
+# Replace return type
+@@
+var ret identifier
+@@
+-		var ret []map[string]interface{}
++		var ret [][]interface{}
+
+# Replace return value
+@@
+var a identifier
+@@
+-	return *a.Effects
++	return a.Effects
+
+# Replace return value, bool
+@@
+var a identifier
+@@
+-	return *a.Effects, true
++	return a.Effects, true

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Policy** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Policy** | Pointer to [**map[string]interface{}**](.md) | Indicates which notification properties to apply. | 
 **Enabled** | Pointer to **bool** | Indicates whether the notification is activated. | [optional] [default to true]
 **Webhook** | Pointer to [**NewNotificationWebhook**](NewNotificationWebhook.md) |  | 
 

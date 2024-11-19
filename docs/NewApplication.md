@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **EnablePartialDiscounts** | Pointer to **bool** | Indicates if this Application supports partial discounts. | [optional] 
 **DefaultDiscountAdditionalCostPerItemScope** | Pointer to **string** | The default scope to apply &#x60;setDiscountPerItem&#x60; effects on if no scope was provided with the effect.  | [optional] 
 **Key** | Pointer to **string** | Hex key for HMAC-signing API calls as coming from this application (16 hex digits). | [optional] 
+**EnableCampaignStateManagement** | Pointer to **bool** | Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.  | [optional] 
 
 ## Methods
 
@@ -396,6 +397,31 @@ HasKey returns a boolean if a field has been set.
 `func (o *NewApplication) SetKey(v string)`
 
 SetKey gets a reference to the given string and assigns it to the Key field.
+
+### GetEnableCampaignStateManagement
+
+`func (o *NewApplication) GetEnableCampaignStateManagement() bool`
+
+GetEnableCampaignStateManagement returns the EnableCampaignStateManagement field if non-nil, zero value otherwise.
+
+### GetEnableCampaignStateManagementOk
+
+`func (o *NewApplication) GetEnableCampaignStateManagementOk() (bool, bool)`
+
+GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasEnableCampaignStateManagement
+
+`func (o *NewApplication) HasEnableCampaignStateManagement() bool`
+
+HasEnableCampaignStateManagement returns a boolean if a field has been set.
+
+### SetEnableCampaignStateManagement
+
+`func (o *NewApplication) SetEnableCampaignStateManagement(v bool)`
+
+SetEnableCampaignStateManagement gets a reference to the given bool and assigns it to the EnableCampaignStateManagement field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -18,89 +18,53 @@ import (
 // ApplicationAnalyticsDataPoint struct for ApplicationAnalyticsDataPoint
 type ApplicationAnalyticsDataPoint struct {
 	// The start of the aggregation time frame in UTC.
-	StartTime *time.Time `json:"startTime,omitempty"`
+	StartTime time.Time `json:"startTime"`
 	// The end of the aggregation time frame in UTC.
-	EndTime            *time.Time                                       `json:"endTime,omitempty"`
-	TotalRevenue       *ApplicationAnalyticsDataPointTotalRevenue       `json:"totalRevenue,omitempty"`
-	SessionsCount      *ApplicationAnalyticsDataPointSessionsCount      `json:"sessionsCount,omitempty"`
-	AvgItemsPerSession *ApplicationAnalyticsDataPointAvgItemsPerSession `json:"avgItemsPerSession,omitempty"`
-	AvgSessionValue    *ApplicationAnalyticsDataPointAvgSessionValue    `json:"avgSessionValue,omitempty"`
+	EndTime            time.Time           `json:"endTime"`
+	TotalRevenue       *AnalyticsDataPoint `json:"totalRevenue,omitempty"`
+	SessionsCount      *AnalyticsDataPoint `json:"sessionsCount,omitempty"`
+	AvgItemsPerSession *AnalyticsDataPoint `json:"avgItemsPerSession,omitempty"`
+	AvgSessionValue    *AnalyticsDataPoint `json:"avgSessionValue,omitempty"`
 	// The total value of discounts given for cart items in influenced sessions.
 	TotalDiscounts *float32 `json:"totalDiscounts,omitempty"`
 	// The number of times a coupon was successfully redeemed in influenced sessions.
 	CouponsCount *float32 `json:"couponsCount,omitempty"`
 }
 
-// GetStartTime returns the StartTime field value if set, zero value otherwise.
+// GetStartTime returns the StartTime field value
 func (o *ApplicationAnalyticsDataPoint) GetStartTime() time.Time {
-	if o == nil || o.StartTime == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.StartTime
+
+	return o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetStartTimeOk() (time.Time, bool) {
-	if o == nil || o.StartTime == nil {
-		var ret time.Time
-		return ret, false
-	}
-	return *o.StartTime, true
-}
-
-// HasStartTime returns a boolean if a field has been set.
-func (o *ApplicationAnalyticsDataPoint) HasStartTime() bool {
-	if o != nil && o.StartTime != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
+// SetStartTime sets field value
 func (o *ApplicationAnalyticsDataPoint) SetStartTime(v time.Time) {
-	o.StartTime = &v
+	o.StartTime = v
 }
 
-// GetEndTime returns the EndTime field value if set, zero value otherwise.
+// GetEndTime returns the EndTime field value
 func (o *ApplicationAnalyticsDataPoint) GetEndTime() time.Time {
-	if o == nil || o.EndTime == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.EndTime
+
+	return o.EndTime
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetEndTimeOk() (time.Time, bool) {
-	if o == nil || o.EndTime == nil {
-		var ret time.Time
-		return ret, false
-	}
-	return *o.EndTime, true
-}
-
-// HasEndTime returns a boolean if a field has been set.
-func (o *ApplicationAnalyticsDataPoint) HasEndTime() bool {
-	if o != nil && o.EndTime != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetEndTime gets a reference to the given time.Time and assigns it to the EndTime field.
+// SetEndTime sets field value
 func (o *ApplicationAnalyticsDataPoint) SetEndTime(v time.Time) {
-	o.EndTime = &v
+	o.EndTime = v
 }
 
 // GetTotalRevenue returns the TotalRevenue field value if set, zero value otherwise.
-func (o *ApplicationAnalyticsDataPoint) GetTotalRevenue() ApplicationAnalyticsDataPointTotalRevenue {
+func (o *ApplicationAnalyticsDataPoint) GetTotalRevenue() AnalyticsDataPoint {
 	if o == nil || o.TotalRevenue == nil {
-		var ret ApplicationAnalyticsDataPointTotalRevenue
+		var ret AnalyticsDataPoint
 		return ret
 	}
 	return *o.TotalRevenue
@@ -108,9 +72,9 @@ func (o *ApplicationAnalyticsDataPoint) GetTotalRevenue() ApplicationAnalyticsDa
 
 // GetTotalRevenueOk returns a tuple with the TotalRevenue field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetTotalRevenueOk() (ApplicationAnalyticsDataPointTotalRevenue, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetTotalRevenueOk() (AnalyticsDataPoint, bool) {
 	if o == nil || o.TotalRevenue == nil {
-		var ret ApplicationAnalyticsDataPointTotalRevenue
+		var ret AnalyticsDataPoint
 		return ret, false
 	}
 	return *o.TotalRevenue, true
@@ -125,15 +89,15 @@ func (o *ApplicationAnalyticsDataPoint) HasTotalRevenue() bool {
 	return false
 }
 
-// SetTotalRevenue gets a reference to the given ApplicationAnalyticsDataPointTotalRevenue and assigns it to the TotalRevenue field.
-func (o *ApplicationAnalyticsDataPoint) SetTotalRevenue(v ApplicationAnalyticsDataPointTotalRevenue) {
+// SetTotalRevenue gets a reference to the given AnalyticsDataPoint and assigns it to the TotalRevenue field.
+func (o *ApplicationAnalyticsDataPoint) SetTotalRevenue(v AnalyticsDataPoint) {
 	o.TotalRevenue = &v
 }
 
 // GetSessionsCount returns the SessionsCount field value if set, zero value otherwise.
-func (o *ApplicationAnalyticsDataPoint) GetSessionsCount() ApplicationAnalyticsDataPointSessionsCount {
+func (o *ApplicationAnalyticsDataPoint) GetSessionsCount() AnalyticsDataPoint {
 	if o == nil || o.SessionsCount == nil {
-		var ret ApplicationAnalyticsDataPointSessionsCount
+		var ret AnalyticsDataPoint
 		return ret
 	}
 	return *o.SessionsCount
@@ -141,9 +105,9 @@ func (o *ApplicationAnalyticsDataPoint) GetSessionsCount() ApplicationAnalyticsD
 
 // GetSessionsCountOk returns a tuple with the SessionsCount field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetSessionsCountOk() (ApplicationAnalyticsDataPointSessionsCount, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetSessionsCountOk() (AnalyticsDataPoint, bool) {
 	if o == nil || o.SessionsCount == nil {
-		var ret ApplicationAnalyticsDataPointSessionsCount
+		var ret AnalyticsDataPoint
 		return ret, false
 	}
 	return *o.SessionsCount, true
@@ -158,15 +122,15 @@ func (o *ApplicationAnalyticsDataPoint) HasSessionsCount() bool {
 	return false
 }
 
-// SetSessionsCount gets a reference to the given ApplicationAnalyticsDataPointSessionsCount and assigns it to the SessionsCount field.
-func (o *ApplicationAnalyticsDataPoint) SetSessionsCount(v ApplicationAnalyticsDataPointSessionsCount) {
+// SetSessionsCount gets a reference to the given AnalyticsDataPoint and assigns it to the SessionsCount field.
+func (o *ApplicationAnalyticsDataPoint) SetSessionsCount(v AnalyticsDataPoint) {
 	o.SessionsCount = &v
 }
 
 // GetAvgItemsPerSession returns the AvgItemsPerSession field value if set, zero value otherwise.
-func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSession() ApplicationAnalyticsDataPointAvgItemsPerSession {
+func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSession() AnalyticsDataPoint {
 	if o == nil || o.AvgItemsPerSession == nil {
-		var ret ApplicationAnalyticsDataPointAvgItemsPerSession
+		var ret AnalyticsDataPoint
 		return ret
 	}
 	return *o.AvgItemsPerSession
@@ -174,9 +138,9 @@ func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSession() ApplicationAnaly
 
 // GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSessionOk() (ApplicationAnalyticsDataPointAvgItemsPerSession, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSessionOk() (AnalyticsDataPoint, bool) {
 	if o == nil || o.AvgItemsPerSession == nil {
-		var ret ApplicationAnalyticsDataPointAvgItemsPerSession
+		var ret AnalyticsDataPoint
 		return ret, false
 	}
 	return *o.AvgItemsPerSession, true
@@ -191,15 +155,15 @@ func (o *ApplicationAnalyticsDataPoint) HasAvgItemsPerSession() bool {
 	return false
 }
 
-// SetAvgItemsPerSession gets a reference to the given ApplicationAnalyticsDataPointAvgItemsPerSession and assigns it to the AvgItemsPerSession field.
-func (o *ApplicationAnalyticsDataPoint) SetAvgItemsPerSession(v ApplicationAnalyticsDataPointAvgItemsPerSession) {
+// SetAvgItemsPerSession gets a reference to the given AnalyticsDataPoint and assigns it to the AvgItemsPerSession field.
+func (o *ApplicationAnalyticsDataPoint) SetAvgItemsPerSession(v AnalyticsDataPoint) {
 	o.AvgItemsPerSession = &v
 }
 
 // GetAvgSessionValue returns the AvgSessionValue field value if set, zero value otherwise.
-func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValue() ApplicationAnalyticsDataPointAvgSessionValue {
+func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValue() AnalyticsDataPoint {
 	if o == nil || o.AvgSessionValue == nil {
-		var ret ApplicationAnalyticsDataPointAvgSessionValue
+		var ret AnalyticsDataPoint
 		return ret
 	}
 	return *o.AvgSessionValue
@@ -207,9 +171,9 @@ func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValue() ApplicationAnalytic
 
 // GetAvgSessionValueOk returns a tuple with the AvgSessionValue field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValueOk() (ApplicationAnalyticsDataPointAvgSessionValue, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValueOk() (AnalyticsDataPoint, bool) {
 	if o == nil || o.AvgSessionValue == nil {
-		var ret ApplicationAnalyticsDataPointAvgSessionValue
+		var ret AnalyticsDataPoint
 		return ret, false
 	}
 	return *o.AvgSessionValue, true
@@ -224,8 +188,8 @@ func (o *ApplicationAnalyticsDataPoint) HasAvgSessionValue() bool {
 	return false
 }
 
-// SetAvgSessionValue gets a reference to the given ApplicationAnalyticsDataPointAvgSessionValue and assigns it to the AvgSessionValue field.
-func (o *ApplicationAnalyticsDataPoint) SetAvgSessionValue(v ApplicationAnalyticsDataPointAvgSessionValue) {
+// SetAvgSessionValue gets a reference to the given AnalyticsDataPoint and assigns it to the AvgSessionValue field.
+func (o *ApplicationAnalyticsDataPoint) SetAvgSessionValue(v AnalyticsDataPoint) {
 	o.AvgSessionValue = &v
 }
 

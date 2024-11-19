@@ -18,6 +18,8 @@ import (
 type SsoConfig struct {
 	// An indication of whether single sign-on is enforced for the account. When enforced, users cannot use their email and password to sign in to Talon.One. It is not possible to change this to `false` after it is set to `true`.
 	Enforced bool `json:"enforced"`
+	// Assertion Consumer Service (ACS) URL for setting up a new SAML connection with an identity provider like Okta or Microsoft Entra ID.
+	NewAcsUrl *string `json:"newAcsUrl,omitempty"`
 }
 
 // GetEnforced returns the Enforced field value
@@ -33,6 +35,39 @@ func (o *SsoConfig) GetEnforced() bool {
 // SetEnforced sets field value
 func (o *SsoConfig) SetEnforced(v bool) {
 	o.Enforced = v
+}
+
+// GetNewAcsUrl returns the NewAcsUrl field value if set, zero value otherwise.
+func (o *SsoConfig) GetNewAcsUrl() string {
+	if o == nil || o.NewAcsUrl == nil {
+		var ret string
+		return ret
+	}
+	return *o.NewAcsUrl
+}
+
+// GetNewAcsUrlOk returns a tuple with the NewAcsUrl field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *SsoConfig) GetNewAcsUrlOk() (string, bool) {
+	if o == nil || o.NewAcsUrl == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.NewAcsUrl, true
+}
+
+// HasNewAcsUrl returns a boolean if a field has been set.
+func (o *SsoConfig) HasNewAcsUrl() bool {
+	if o != nil && o.NewAcsUrl != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNewAcsUrl gets a reference to the given string and assigns it to the NewAcsUrl field.
+func (o *SsoConfig) SetNewAcsUrl(v string) {
+	o.NewAcsUrl = &v
 }
 
 type NullableSsoConfig struct {

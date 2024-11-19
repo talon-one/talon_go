@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Title** | Pointer to **string** | Webhook title. | 
+**Description** | Pointer to **string** | A description of the webhook. | [optional] 
 **ApplicationIds** | Pointer to **[]int32** | IDs of the Applications to which a webhook must be linked. | 
 
 ## Methods
@@ -33,6 +34,31 @@ HasTitle returns a boolean if a field has been set.
 `func (o *NewOutgoingIntegrationWebhook) SetTitle(v string)`
 
 SetTitle gets a reference to the given string and assigns it to the Title field.
+
+### GetDescription
+
+`func (o *NewOutgoingIntegrationWebhook) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *NewOutgoingIntegrationWebhook) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *NewOutgoingIntegrationWebhook) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *NewOutgoingIntegrationWebhook) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetApplicationIds
 

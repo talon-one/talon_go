@@ -26,6 +26,7 @@ Name | Type | Description | Notes
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
 **FrontendState** | Pointer to **string** | A campaign state described exactly as in the Campaign Manager. | 
+**StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
 
 ## Methods
 
@@ -578,6 +579,31 @@ HasFrontendState returns a boolean if a field has been set.
 `func (o *AdditionalCampaignProperties) SetFrontendState(v string)`
 
 SetFrontendState gets a reference to the given string and assigns it to the FrontendState field.
+
+### GetStoresImported
+
+`func (o *AdditionalCampaignProperties) GetStoresImported() bool`
+
+GetStoresImported returns the StoresImported field if non-nil, zero value otherwise.
+
+### GetStoresImportedOk
+
+`func (o *AdditionalCampaignProperties) GetStoresImportedOk() (bool, bool)`
+
+GetStoresImportedOk returns a tuple with the StoresImported field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStoresImported
+
+`func (o *AdditionalCampaignProperties) HasStoresImported() bool`
+
+HasStoresImported returns a boolean if a field has been set.
+
+### SetStoresImported
+
+`func (o *AdditionalCampaignProperties) SetStoresImported(v bool)`
+
+SetStoresImported gets a reference to the given bool and assigns it to the StoresImported field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
