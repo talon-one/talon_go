@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
-**Status** | Pointer to **string** | Status of the loyalty card. Can be one of: [&#39;active&#39;, &#39;inactive&#39;]  | 
+**Status** | Pointer to **string** | Status of the loyalty card. Can be &#x60;active&#x60; or &#x60;inactive&#x60;.  | 
+**BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
 **Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
 **UsersPerCardLimit** | Pointer to **int32** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
 **Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update of the loyalty card. | [optional] 
 **OldCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 **NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**BatchId** | Pointer to **string** | The ID of the batch in which the loyalty card was created. | [optional] 
 
 ## Methods
 
@@ -118,6 +120,31 @@ HasStatus returns a boolean if a field has been set.
 `func (o *LoyaltyCard) SetStatus(v string)`
 
 SetStatus gets a reference to the given string and assigns it to the Status field.
+
+### GetBlockReason
+
+`func (o *LoyaltyCard) GetBlockReason() string`
+
+GetBlockReason returns the BlockReason field if non-nil, zero value otherwise.
+
+### GetBlockReasonOk
+
+`func (o *LoyaltyCard) GetBlockReasonOk() (string, bool)`
+
+GetBlockReasonOk returns a tuple with the BlockReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBlockReason
+
+`func (o *LoyaltyCard) HasBlockReason() bool`
+
+HasBlockReason returns a boolean if a field has been set.
+
+### SetBlockReason
+
+`func (o *LoyaltyCard) SetBlockReason(v string)`
+
+SetBlockReason gets a reference to the given string and assigns it to the BlockReason field.
 
 ### GetIdentifier
 
@@ -318,6 +345,31 @@ HasNewCardIdentifier returns a boolean if a field has been set.
 `func (o *LoyaltyCard) SetNewCardIdentifier(v string)`
 
 SetNewCardIdentifier gets a reference to the given string and assigns it to the NewCardIdentifier field.
+
+### GetBatchId
+
+`func (o *LoyaltyCard) GetBatchId() string`
+
+GetBatchId returns the BatchId field if non-nil, zero value otherwise.
+
+### GetBatchIdOk
+
+`func (o *LoyaltyCard) GetBatchIdOk() (string, bool)`
+
+GetBatchIdOk returns a tuple with the BatchId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasBatchId
+
+`func (o *LoyaltyCard) HasBatchId() bool`
+
+HasBatchId returns a boolean if a field has been set.
+
+### SetBatchId
+
+`func (o *LoyaltyCard) SetBatchId(v string)`
+
+SetBatchId gets a reference to the given string and assigns it to the BatchId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

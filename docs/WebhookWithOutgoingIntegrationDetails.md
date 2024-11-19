@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. The IDs of the Applications that are related to this entity. | 
 **Title** | Pointer to **string** | Name or title for this webhook. | 
+**Description** | Pointer to **string** | A description of the webhook. | [optional] 
 **Verb** | Pointer to **string** | API method for this webhook. | 
 **Url** | Pointer to **string** | API URL (supports templating using parameters) for this webhook. | 
 **Headers** | Pointer to **[]string** | List of API HTTP headers for this webhook. | 
@@ -145,6 +146,31 @@ HasTitle returns a boolean if a field has been set.
 `func (o *WebhookWithOutgoingIntegrationDetails) SetTitle(v string)`
 
 SetTitle gets a reference to the given string and assigns it to the Title field.
+
+### GetDescription
+
+`func (o *WebhookWithOutgoingIntegrationDetails) GetDescription() string`
+
+GetDescription returns the Description field if non-nil, zero value otherwise.
+
+### GetDescriptionOk
+
+`func (o *WebhookWithOutgoingIntegrationDetails) GetDescriptionOk() (string, bool)`
+
+GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDescription
+
+`func (o *WebhookWithOutgoingIntegrationDetails) HasDescription() bool`
+
+HasDescription returns a boolean if a field has been set.
+
+### SetDescription
+
+`func (o *WebhookWithOutgoingIntegrationDetails) SetDescription(v string)`
+
+SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetVerb
 

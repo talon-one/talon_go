@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **AdditionalCosts** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) | The additional costs that the application is subscribed to. | [optional] 
 **Audiences** | Pointer to [**[]Audience**](Audience.md) | The audiences contained in the account which the application belongs to. | [optional] 
 **Collections** | Pointer to [**[]Collection**](Collection.md) | The account-level collections that the application is subscribed to. | [optional] 
+**ApplicationCartItemFilters** | Pointer to [**[]ApplicationCif**](ApplicationCIF.md) | The cart item filters belonging to the Application. | [optional] 
 
 ## Methods
 
@@ -370,6 +371,31 @@ HasCollections returns a boolean if a field has been set.
 `func (o *Environment) SetCollections(v []Collection)`
 
 SetCollections gets a reference to the given []Collection and assigns it to the Collections field.
+
+### GetApplicationCartItemFilters
+
+`func (o *Environment) GetApplicationCartItemFilters() []ApplicationCif`
+
+GetApplicationCartItemFilters returns the ApplicationCartItemFilters field if non-nil, zero value otherwise.
+
+### GetApplicationCartItemFiltersOk
+
+`func (o *Environment) GetApplicationCartItemFiltersOk() ([]ApplicationCif, bool)`
+
+GetApplicationCartItemFiltersOk returns a tuple with the ApplicationCartItemFilters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasApplicationCartItemFilters
+
+`func (o *Environment) HasApplicationCartItemFilters() bool`
+
+HasApplicationCartItemFilters returns a boolean if a field has been set.
+
+### SetApplicationCartItemFilters
+
+`func (o *Environment) SetApplicationCartItemFilters(v []ApplicationCif)`
+
+SetApplicationCartItemFilters gets a reference to the given []ApplicationCif and assigns it to the ApplicationCartItemFilters field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

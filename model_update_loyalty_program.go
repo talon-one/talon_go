@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // UpdateLoyaltyProgram
@@ -32,14 +33,17 @@ type UpdateLoyaltyProgram struct {
 	UsersPerCardLimit *int32 `json:"usersPerCardLimit,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox *bool `json:"sandbox,omitempty"`
-	// The policy that defines which date is used to calculate the expiration date of a customer's current tier.  - `tier_start_date`: The tier expiration date is calculated based on when the customer joined the current tier.  - `program_join_date`: The tier expiration date is calculated based on when the customer joined the loyalty program.
-	TiersExpirationPolicy *string `json:"tiersExpirationPolicy,omitempty"`
-	// The amount of time after which the tier expires.  The time format is an **integer** followed by one letter indicating the time unit. Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
-	TiersExpireIn *string `json:"tiersExpireIn,omitempty"`
-	// Customers's tier downgrade policy.  - `one_down`: Once the tier expires and if the user doesn't have enough points to stay in the tier, the user is downgraded one tier down.  - `balance_based`: Once the tier expires, the user's tier is evaluated based on the amount of active points the user has at this instant.
-	TiersDowngradePolicy *string `json:"tiersDowngradePolicy,omitempty"`
 	// The policy that defines when the customer joins the loyalty program.   - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.       **Note**: The customer does not have a program join date.   - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.   - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
 	ProgramJoinPolicy *string `json:"programJoinPolicy,omitempty"`
+	// The policy that defines how tier expiration, used to reevaluate the customer's current tier, is determined.  - `tier_start_date`: The tier expiration is relative to when the customer joined the current tier.  - `program_join_date`: The tier expiration is relative to when the customer joined the loyalty program.  - `customer_attribute`: The tier expiration is determined by a custom customer attribute.  - `absolute_expiration`: The tier is reevaluated at the start of each tier cycle. For this policy, it is required to provide a `tierCycleStartDate`.
+	TiersExpirationPolicy *string `json:"tiersExpirationPolicy,omitempty"`
+	// Timestamp at which the tier cycle starts for all customers in the loyalty program.  **Note**: This is only required when the tier expiration policy is set to `absolute_expiration`.
+	TierCycleStartDate *time.Time `json:"tierCycleStartDate,omitempty"`
+	// The amount of time after which the tier expires and is reevaluated.  The time format is an **integer** followed by one letter indicating the time unit. Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
+	TiersExpireIn *string `json:"tiersExpireIn,omitempty"`
+	// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
+	TiersDowngradePolicy *string                `json:"tiersDowngradePolicy,omitempty"`
+	CardCodeSettings     *CodeGeneratorSettings `json:"cardCodeSettings,omitempty"`
 	// The tiers in this loyalty program.
 	Tiers *[]NewLoyaltyTier `json:"tiers,omitempty"`
 }
@@ -308,6 +312,39 @@ func (o *UpdateLoyaltyProgram) SetSandbox(v bool) {
 	o.Sandbox = &v
 }
 
+// GetProgramJoinPolicy returns the ProgramJoinPolicy field value if set, zero value otherwise.
+func (o *UpdateLoyaltyProgram) GetProgramJoinPolicy() string {
+	if o == nil || o.ProgramJoinPolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProgramJoinPolicy
+}
+
+// GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoyaltyProgram) GetProgramJoinPolicyOk() (string, bool) {
+	if o == nil || o.ProgramJoinPolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.ProgramJoinPolicy, true
+}
+
+// HasProgramJoinPolicy returns a boolean if a field has been set.
+func (o *UpdateLoyaltyProgram) HasProgramJoinPolicy() bool {
+	if o != nil && o.ProgramJoinPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProgramJoinPolicy gets a reference to the given string and assigns it to the ProgramJoinPolicy field.
+func (o *UpdateLoyaltyProgram) SetProgramJoinPolicy(v string) {
+	o.ProgramJoinPolicy = &v
+}
+
 // GetTiersExpirationPolicy returns the TiersExpirationPolicy field value if set, zero value otherwise.
 func (o *UpdateLoyaltyProgram) GetTiersExpirationPolicy() string {
 	if o == nil || o.TiersExpirationPolicy == nil {
@@ -339,6 +376,39 @@ func (o *UpdateLoyaltyProgram) HasTiersExpirationPolicy() bool {
 // SetTiersExpirationPolicy gets a reference to the given string and assigns it to the TiersExpirationPolicy field.
 func (o *UpdateLoyaltyProgram) SetTiersExpirationPolicy(v string) {
 	o.TiersExpirationPolicy = &v
+}
+
+// GetTierCycleStartDate returns the TierCycleStartDate field value if set, zero value otherwise.
+func (o *UpdateLoyaltyProgram) GetTierCycleStartDate() time.Time {
+	if o == nil || o.TierCycleStartDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.TierCycleStartDate
+}
+
+// GetTierCycleStartDateOk returns a tuple with the TierCycleStartDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoyaltyProgram) GetTierCycleStartDateOk() (time.Time, bool) {
+	if o == nil || o.TierCycleStartDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.TierCycleStartDate, true
+}
+
+// HasTierCycleStartDate returns a boolean if a field has been set.
+func (o *UpdateLoyaltyProgram) HasTierCycleStartDate() bool {
+	if o != nil && o.TierCycleStartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTierCycleStartDate gets a reference to the given time.Time and assigns it to the TierCycleStartDate field.
+func (o *UpdateLoyaltyProgram) SetTierCycleStartDate(v time.Time) {
+	o.TierCycleStartDate = &v
 }
 
 // GetTiersExpireIn returns the TiersExpireIn field value if set, zero value otherwise.
@@ -407,37 +477,37 @@ func (o *UpdateLoyaltyProgram) SetTiersDowngradePolicy(v string) {
 	o.TiersDowngradePolicy = &v
 }
 
-// GetProgramJoinPolicy returns the ProgramJoinPolicy field value if set, zero value otherwise.
-func (o *UpdateLoyaltyProgram) GetProgramJoinPolicy() string {
-	if o == nil || o.ProgramJoinPolicy == nil {
-		var ret string
+// GetCardCodeSettings returns the CardCodeSettings field value if set, zero value otherwise.
+func (o *UpdateLoyaltyProgram) GetCardCodeSettings() CodeGeneratorSettings {
+	if o == nil || o.CardCodeSettings == nil {
+		var ret CodeGeneratorSettings
 		return ret
 	}
-	return *o.ProgramJoinPolicy
+	return *o.CardCodeSettings
 }
 
-// GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field value if set, zero value otherwise
+// GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetProgramJoinPolicyOk() (string, bool) {
-	if o == nil || o.ProgramJoinPolicy == nil {
-		var ret string
+func (o *UpdateLoyaltyProgram) GetCardCodeSettingsOk() (CodeGeneratorSettings, bool) {
+	if o == nil || o.CardCodeSettings == nil {
+		var ret CodeGeneratorSettings
 		return ret, false
 	}
-	return *o.ProgramJoinPolicy, true
+	return *o.CardCodeSettings, true
 }
 
-// HasProgramJoinPolicy returns a boolean if a field has been set.
-func (o *UpdateLoyaltyProgram) HasProgramJoinPolicy() bool {
-	if o != nil && o.ProgramJoinPolicy != nil {
+// HasCardCodeSettings returns a boolean if a field has been set.
+func (o *UpdateLoyaltyProgram) HasCardCodeSettings() bool {
+	if o != nil && o.CardCodeSettings != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetProgramJoinPolicy gets a reference to the given string and assigns it to the ProgramJoinPolicy field.
-func (o *UpdateLoyaltyProgram) SetProgramJoinPolicy(v string) {
-	o.ProgramJoinPolicy = &v
+// SetCardCodeSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CardCodeSettings field.
+func (o *UpdateLoyaltyProgram) SetCardCodeSettings(v CodeGeneratorSettings) {
+	o.CardCodeSettings = &v
 }
 
 // GetTiers returns the Tiers field value if set, zero value otherwise.

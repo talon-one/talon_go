@@ -1,5 +1,5 @@
-module github.com/NandosUK/talon_go/v7
+module github.com/talon-one/talon_go/v8
 
 go 1.13
 
-require golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
+require golang.org/x/oauth2 v0.23.0

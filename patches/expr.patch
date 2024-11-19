@@ -1,0 +1,78 @@
+@@
+var strName identifier
+@@
+type strName struct {
+    ...
+-	Expr *[]map[string]interface{} `json:"expr,omitempty"`
++	Expr []interface{} `json:"expr,omitempty"`
+    ...
+}
+
+@@
+var strName identifier
+@@
+type strName struct {
+    ...
+-	Expr []map[string]interface{} `json:"expr"`
++	Expr []interface{} `json:"expr"`
+    ...
+}
+
+
+# Replace GetExpression
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) GetExpr() []map[string]interface{} {
++func (a *strName) GetExpr() []interface{} {
+    ...
+}
+
+# Replace GetExpressionOk
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) GetExprOk() ([]map[string]interface{}, bool) {
++func (a *strName) GetExprOk() ([]interface{}, bool) {
+    ...
+}
+
+# Replace SetExpression
+@@
+var strName identifier
+var a identifier
+@@
+-func (a *strName) SetExpr(v []map[string]interface{}) {
++func (a *strName) SetExpr(v []interface{}) {
+    ...
+ }
+
+# Replace optional in SetExpression
+@@
+var strName identifier
+var a identifier
+@@
+- 	a.Expr = &v
++ 	a.Expr = v
+
+@@
+var ret identifier
+@@
+-		var ret []map[string]interface{}
++		var ret []interface{}
+
+# Replace return value in GetExpression
+@@
+var a identifier
+@@
+-	return *a.Expr
++	return a.Expr
+
+# Replace return value in GetExpressionOk
+@@
+var a identifier
+@@
+-	return *a.Expr, true
++	return a.Expr, true

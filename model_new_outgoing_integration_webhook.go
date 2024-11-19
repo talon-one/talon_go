@@ -18,6 +18,8 @@ import (
 type NewOutgoingIntegrationWebhook struct {
 	// Webhook title.
 	Title string `json:"title"`
+	// A description of the webhook.
+	Description *string `json:"description,omitempty"`
 	// IDs of the Applications to which a webhook must be linked.
 	ApplicationIds []int32 `json:"applicationIds"`
 }
@@ -35,6 +37,39 @@ func (o *NewOutgoingIntegrationWebhook) GetTitle() string {
 // SetTitle sets field value
 func (o *NewOutgoingIntegrationWebhook) SetTitle(v string) {
 	o.Title = v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *NewOutgoingIntegrationWebhook) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewOutgoingIntegrationWebhook) GetDescriptionOk() (string, bool) {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *NewOutgoingIntegrationWebhook) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *NewOutgoingIntegrationWebhook) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetApplicationIds returns the ApplicationIds field value

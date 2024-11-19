@@ -26,6 +26,8 @@ type RejectCouponEffectProps struct {
 	EffectIndex *int32 `json:"effectIndex,omitempty"`
 	// More details about the failure.
 	Details *string `json:"details,omitempty"`
+	// The reason why the campaign was not applied.
+	CampaignExclusionReason *string `json:"campaignExclusionReason,omitempty"`
 }
 
 // GetValue returns the Value field value
@@ -155,6 +157,39 @@ func (o *RejectCouponEffectProps) HasDetails() bool {
 // SetDetails gets a reference to the given string and assigns it to the Details field.
 func (o *RejectCouponEffectProps) SetDetails(v string) {
 	o.Details = &v
+}
+
+// GetCampaignExclusionReason returns the CampaignExclusionReason field value if set, zero value otherwise.
+func (o *RejectCouponEffectProps) GetCampaignExclusionReason() string {
+	if o == nil || o.CampaignExclusionReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.CampaignExclusionReason
+}
+
+// GetCampaignExclusionReasonOk returns a tuple with the CampaignExclusionReason field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *RejectCouponEffectProps) GetCampaignExclusionReasonOk() (string, bool) {
+	if o == nil || o.CampaignExclusionReason == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CampaignExclusionReason, true
+}
+
+// HasCampaignExclusionReason returns a boolean if a field has been set.
+func (o *RejectCouponEffectProps) HasCampaignExclusionReason() bool {
+	if o != nil && o.CampaignExclusionReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignExclusionReason gets a reference to the given string and assigns it to the CampaignExclusionReason field.
+func (o *RejectCouponEffectProps) SetCampaignExclusionReason(v string) {
+	o.CampaignExclusionReason = &v
 }
 
 type NullableRejectCouponEffectProps struct {
