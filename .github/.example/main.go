@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	talon "github.com/talon-one/talon_go/v8"
+	talon "github.com/talon-one/talon_go/v9"
 )
 
 func main() {
