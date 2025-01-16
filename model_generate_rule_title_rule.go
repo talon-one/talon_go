@@ -58,7 +58,7 @@ func (o *GenerateRuleTitleRule) SetEffects(v [][]interface{}) {
 // GetCondition returns the Condition field value if set, zero value otherwise.
 func (o *GenerateRuleTitleRule) GetCondition() []interface{} {
 	if o == nil || o.Condition == nil {
-		var ret [][]interface{}
+		var ret []interface{}
 		return ret
 	}
 	return o.Condition
@@ -68,7 +68,7 @@ func (o *GenerateRuleTitleRule) GetCondition() []interface{} {
 // and a boolean to check if the value has been set.
 func (o *GenerateRuleTitleRule) GetConditionOk() ([]interface{}, bool) {
 	if o == nil || o.Condition == nil {
-		var ret [][]interface{}
+		var ret []interface{}
 		return ret, false
 	}
 	return o.Condition, true

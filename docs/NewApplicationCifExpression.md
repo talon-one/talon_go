@@ -62,13 +62,13 @@ SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy
 
 ### GetExpression
 
-`func (o *NewApplicationCifExpression) GetExpression() []map[string]interface{}`
+`func (o *NewApplicationCifExpression) GetExpression() []interface{}`
 
 GetExpression returns the Expression field if non-nil, zero value otherwise.
 
 ### GetExpressionOk
 
-`func (o *NewApplicationCifExpression) GetExpressionOk() ([]map[string]interface{}, bool)`
+`func (o *NewApplicationCifExpression) GetExpressionOk() ([]interface{}, bool)`
 
 GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +81,9 @@ HasExpression returns a boolean if a field has been set.
 
 ### SetExpression
 
-`func (o *NewApplicationCifExpression) SetExpression(v []map[string]interface{})`
+`func (o *NewApplicationCifExpression) SetExpression(v []interface{})`
 
-SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
+SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
