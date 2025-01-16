@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**RevisionFrontendState** | Pointer to **string** | The campaign revision state displayed in the Campaign Manager. | [optional] 
 **ActiveRevisionId** | Pointer to **int32** | ID of the revision that was last activated on this campaign.  | [optional] 
 **ActiveRevisionVersionId** | Pointer to **int32** | ID of the revision version that is active on the campaign.  | [optional] 
 **Version** | Pointer to **int32** | Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.  | [optional] 
@@ -12,6 +13,31 @@ Name | Type | Description | Notes
 **StageRevision** | Pointer to **bool** | Flag for determining whether we use current revision when sending requests with staging API key.  | [optional] [default to false]
 
 ## Methods
+
+### GetRevisionFrontendState
+
+`func (o *CampaignVersions) GetRevisionFrontendState() string`
+
+GetRevisionFrontendState returns the RevisionFrontendState field if non-nil, zero value otherwise.
+
+### GetRevisionFrontendStateOk
+
+`func (o *CampaignVersions) GetRevisionFrontendStateOk() (string, bool)`
+
+GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRevisionFrontendState
+
+`func (o *CampaignVersions) HasRevisionFrontendState() bool`
+
+HasRevisionFrontendState returns a boolean if a field has been set.
+
+### SetRevisionFrontendState
+
+`func (o *CampaignVersions) SetRevisionFrontendState(v string)`
+
+SetRevisionFrontendState gets a reference to the given string and assigns it to the RevisionFrontendState field.
 
 ### GetActiveRevisionId
 

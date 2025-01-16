@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional] 
 **CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
-**Expression** | Pointer to [**[]interface{}**](map[string]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
+**Expression** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 
 ## Methods
@@ -115,13 +115,13 @@ SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy
 
 ### GetExpression
 
-`func (o *ApplicationCifExpression) GetExpression() []interface{}`
+`func (o *ApplicationCifExpression) GetExpression() []map[string]interface{}`
 
 GetExpression returns the Expression field if non-nil, zero value otherwise.
 
 ### GetExpressionOk
 
-`func (o *ApplicationCifExpression) GetExpressionOk() ([]interface{}, bool)`
+`func (o *ApplicationCifExpression) GetExpressionOk() ([]map[string]interface{}, bool)`
 
 GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -134,7 +134,7 @@ HasExpression returns a boolean if a field has been set.
 
 ### SetExpression
 
-`func (o *ApplicationCifExpression) SetExpression(v []interface{})`
+`func (o *ApplicationCifExpression) SetExpression(v []map[string]interface{})`
 
 SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
 

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CouponCreationJob
+// CouponCreationJob struct for CouponCreationJob
 type CouponCreationJob struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

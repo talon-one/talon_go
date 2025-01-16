@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewStore
+// NewStore struct for NewStore
 type NewStore struct {
 	// The name of the store.
 	Name string `json:"name"`

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// TemplateLimitConfig
+// TemplateLimitConfig struct for TemplateLimitConfig
 type TemplateLimitConfig struct {
 	// The limitable action to which this limit applies. For example: - `setDiscount` - `setDiscountEffect` - `redeemCoupon` - `createCoupon`
 	Action string `json:"action"`

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewCollection
+// NewCollection struct for NewCollection
 type NewCollection struct {
 	// A short description of the purpose of this collection.
 	Description *string `json:"description,omitempty"`

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewAdditionalCost
+// NewAdditionalCost struct for NewAdditionalCost
 type NewAdditionalCost struct {
 	// The internal name used in API requests.
 	Name string `json:"name"`

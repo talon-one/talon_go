@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewMultipleAudiencesItem
+// NewMultipleAudiencesItem struct for NewMultipleAudiencesItem
 type NewMultipleAudiencesItem struct {
 	// The human-friendly display name for this audience.
 	Name string `json:"name"`

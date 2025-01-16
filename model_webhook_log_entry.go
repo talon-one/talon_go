@@ -25,7 +25,7 @@ type WebhookLogEntry struct {
 	WebhookId int32 `json:"webhookId"`
 	// ID of the application that triggered the webhook.
 	ApplicationId *int32 `json:"applicationId,omitempty"`
-	// Target url of request
+	// The target URL of the request.
 	Url string `json:"url"`
 	// Request message
 	Request string `json:"request"`

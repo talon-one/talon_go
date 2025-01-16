@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// IntegrationCoupon
+// IntegrationCoupon struct for IntegrationCoupon
 type IntegrationCoupon struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

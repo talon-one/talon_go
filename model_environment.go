@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Environment
+// Environment struct for Environment
 type Environment struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

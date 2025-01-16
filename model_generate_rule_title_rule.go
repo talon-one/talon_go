@@ -17,28 +17,28 @@ import (
 // GenerateRuleTitleRule struct for GenerateRuleTitleRule
 type GenerateRuleTitleRule struct {
 	// An array of effectful Talang expressions in arrays that will be evaluated when a rule matches.
-	Effects [][]interface{} `json:"effects,omitempty"`
+	Effects *[]map[string]interface{} `json:"effects,omitempty"`
 	// A Talang expression that will be evaluated in the context of the given event.
-	Condition []interface{} `json:"condition,omitempty"`
+	Condition *[]map[string]interface{} `json:"condition,omitempty"`
 }
 
 // GetEffects returns the Effects field value if set, zero value otherwise.
-func (o *GenerateRuleTitleRule) GetEffects() [][]interface{} {
+func (o *GenerateRuleTitleRule) GetEffects() []map[string]interface{} {
 	if o == nil || o.Effects == nil {
-		var ret [][]interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
-	return o.Effects
+	return *o.Effects
 }
 
 // GetEffectsOk returns a tuple with the Effects field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateRuleTitleRule) GetEffectsOk() ([][]interface{}, bool) {
+func (o *GenerateRuleTitleRule) GetEffectsOk() ([]map[string]interface{}, bool) {
 	if o == nil || o.Effects == nil {
-		var ret [][]interface{}
+		var ret []map[string]interface{}
 		return ret, false
 	}
-	return o.Effects, true
+	return *o.Effects, true
 }
 
 // HasEffects returns a boolean if a field has been set.
@@ -51,27 +51,27 @@ func (o *GenerateRuleTitleRule) HasEffects() bool {
 }
 
 // SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
-func (o *GenerateRuleTitleRule) SetEffects(v [][]interface{}) {
-	o.Effects = v
+func (o *GenerateRuleTitleRule) SetEffects(v []map[string]interface{}) {
+	o.Effects = &v
 }
 
 // GetCondition returns the Condition field value if set, zero value otherwise.
-func (o *GenerateRuleTitleRule) GetCondition() []interface{} {
+func (o *GenerateRuleTitleRule) GetCondition() []map[string]interface{} {
 	if o == nil || o.Condition == nil {
-		var ret []interface{}
+		var ret []map[string]interface{}
 		return ret
 	}
-	return o.Condition
+	return *o.Condition
 }
 
 // GetConditionOk returns a tuple with the Condition field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateRuleTitleRule) GetConditionOk() ([]interface{}, bool) {
+func (o *GenerateRuleTitleRule) GetConditionOk() ([]map[string]interface{}, bool) {
 	if o == nil || o.Condition == nil {
-		var ret []interface{}
+		var ret []map[string]interface{}
 		return ret, false
 	}
-	return o.Condition, true
+	return *o.Condition, true
 }
 
 // HasCondition returns a boolean if a field has been set.
@@ -84,8 +84,8 @@ func (o *GenerateRuleTitleRule) HasCondition() bool {
 }
 
 // SetCondition gets a reference to the given []map[string]interface{} and assigns it to the Condition field.
-func (o *GenerateRuleTitleRule) SetCondition(v []interface{}) {
-	o.Condition = v
+func (o *GenerateRuleTitleRule) SetCondition(v []map[string]interface{}) {
+	o.Condition = &v
 }
 
 type NullableGenerateRuleTitleRule struct {

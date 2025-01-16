@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
-**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. The IDs of the Applications that are related to this entity. | 
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in &#x60;All Applications&#x60;.  | 
 **Title** | Pointer to **string** | Name or title for this webhook. | 
 **Description** | Pointer to **string** | A description of the webhook. | [optional] 
 **Verb** | Pointer to **string** | API method for this webhook. | 

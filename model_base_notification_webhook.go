@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// BaseNotificationWebhook
+// BaseNotificationWebhook struct for BaseNotificationWebhook
 type BaseNotificationWebhook struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

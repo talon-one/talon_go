@@ -26,17 +26,25 @@ type MessageLogEntry struct {
 	// ID of the notification.
 	NotificationId *int32 `json:"notificationId,omitempty"`
 	// The name of the notification.
-	NotificationName *string             `json:"notificationName,omitempty"`
-	Request          *MessageLogRequest  `json:"request,omitempty"`
-	Response         *MessageLogResponse `json:"response,omitempty"`
+	NotificationName *string `json:"notificationName,omitempty"`
+	// ID of the webhook.
+	WebhookId *int32 `json:"webhookId,omitempty"`
+	// The name of the webhook.
+	WebhookName *string             `json:"webhookName,omitempty"`
+	Request     *MessageLogRequest  `json:"request,omitempty"`
+	Response    *MessageLogResponse `json:"response,omitempty"`
 	// Timestamp when the log entry was created.
 	CreatedAt time.Time `json:"createdAt"`
-	// The entity type the notification is related to.
-	EntityType *string `json:"entityType,omitempty"`
+	// The entity type the log is related to.
+	EntityType string `json:"entityType"`
+	// The target URL of the request.
+	Url *string `json:"url,omitempty"`
 	// Identifier of the Application.
 	ApplicationId *int32 `json:"applicationId,omitempty"`
 	// Identifier of the loyalty program.
 	LoyaltyProgramId *int32 `json:"loyaltyProgramId,omitempty"`
+	// Identifier of the campaign.
+	CampaignId *int32 `json:"campaignId,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -168,6 +176,72 @@ func (o *MessageLogEntry) SetNotificationName(v string) {
 	o.NotificationName = &v
 }
 
+// GetWebhookId returns the WebhookId field value if set, zero value otherwise.
+func (o *MessageLogEntry) GetWebhookId() int32 {
+	if o == nil || o.WebhookId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.WebhookId
+}
+
+// GetWebhookIdOk returns a tuple with the WebhookId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetWebhookIdOk() (int32, bool) {
+	if o == nil || o.WebhookId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.WebhookId, true
+}
+
+// HasWebhookId returns a boolean if a field has been set.
+func (o *MessageLogEntry) HasWebhookId() bool {
+	if o != nil && o.WebhookId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWebhookId gets a reference to the given int32 and assigns it to the WebhookId field.
+func (o *MessageLogEntry) SetWebhookId(v int32) {
+	o.WebhookId = &v
+}
+
+// GetWebhookName returns the WebhookName field value if set, zero value otherwise.
+func (o *MessageLogEntry) GetWebhookName() string {
+	if o == nil || o.WebhookName == nil {
+		var ret string
+		return ret
+	}
+	return *o.WebhookName
+}
+
+// GetWebhookNameOk returns a tuple with the WebhookName field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetWebhookNameOk() (string, bool) {
+	if o == nil || o.WebhookName == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.WebhookName, true
+}
+
+// HasWebhookName returns a boolean if a field has been set.
+func (o *MessageLogEntry) HasWebhookName() bool {
+	if o != nil && o.WebhookName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetWebhookName gets a reference to the given string and assigns it to the WebhookName field.
+func (o *MessageLogEntry) SetWebhookName(v string) {
+	o.WebhookName = &v
+}
+
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *MessageLogEntry) GetRequest() MessageLogRequest {
 	if o == nil || o.Request == nil {
@@ -249,37 +323,52 @@ func (o *MessageLogEntry) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
-// GetEntityType returns the EntityType field value if set, zero value otherwise.
+// GetEntityType returns the EntityType field value
 func (o *MessageLogEntry) GetEntityType() string {
-	if o == nil || o.EntityType == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.EntityType
+
+	return o.EntityType
 }
 
-// GetEntityTypeOk returns a tuple with the EntityType field value if set, zero value otherwise
+// SetEntityType sets field value
+func (o *MessageLogEntry) SetEntityType(v string) {
+	o.EntityType = v
+}
+
+// GetUrl returns the Url field value if set, zero value otherwise.
+func (o *MessageLogEntry) GetUrl() string {
+	if o == nil || o.Url == nil {
+		var ret string
+		return ret
+	}
+	return *o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetEntityTypeOk() (string, bool) {
-	if o == nil || o.EntityType == nil {
+func (o *MessageLogEntry) GetUrlOk() (string, bool) {
+	if o == nil || o.Url == nil {
 		var ret string
 		return ret, false
 	}
-	return *o.EntityType, true
+	return *o.Url, true
 }
 
-// HasEntityType returns a boolean if a field has been set.
-func (o *MessageLogEntry) HasEntityType() bool {
-	if o != nil && o.EntityType != nil {
+// HasUrl returns a boolean if a field has been set.
+func (o *MessageLogEntry) HasUrl() bool {
+	if o != nil && o.Url != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetEntityType gets a reference to the given string and assigns it to the EntityType field.
-func (o *MessageLogEntry) SetEntityType(v string) {
-	o.EntityType = &v
+// SetUrl gets a reference to the given string and assigns it to the Url field.
+func (o *MessageLogEntry) SetUrl(v string) {
+	o.Url = &v
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
@@ -346,6 +435,39 @@ func (o *MessageLogEntry) HasLoyaltyProgramId() bool {
 // SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
 func (o *MessageLogEntry) SetLoyaltyProgramId(v int32) {
 	o.LoyaltyProgramId = &v
+}
+
+// GetCampaignId returns the CampaignId field value if set, zero value otherwise.
+func (o *MessageLogEntry) GetCampaignId() int32 {
+	if o == nil || o.CampaignId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.CampaignId
+}
+
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetCampaignIdOk() (int32, bool) {
+	if o == nil || o.CampaignId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.CampaignId, true
+}
+
+// HasCampaignId returns a boolean if a field has been set.
+func (o *MessageLogEntry) HasCampaignId() bool {
+	if o != nil && o.CampaignId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
+func (o *MessageLogEntry) SetCampaignId(v int32) {
+	o.CampaignId = &v
 }
 
 type NullableMessageLogEntry struct {

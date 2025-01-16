@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | A list of tags for the campaign template. | [optional] 
 **Features** | Pointer to **[]string** | A list of features for the campaign template. | [optional] 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
+**CouponReservationSettings** | Pointer to [**CampaignTemplateCouponReservationSettings**](CampaignTemplateCouponReservationSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]TemplateLimitConfig**](TemplateLimitConfig.md) | The set of limits that operate for this campaign template. | [optional] 
 **TemplateParams** | Pointer to [**[]CampaignTemplateParams**](CampaignTemplateParams.md) | Fields which can be used to replace values in a rule. | [optional] 
@@ -273,6 +274,31 @@ HasCouponSettings returns a boolean if a field has been set.
 `func (o *UpdateCampaignTemplate) SetCouponSettings(v CodeGeneratorSettings)`
 
 SetCouponSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CouponSettings field.
+
+### GetCouponReservationSettings
+
+`func (o *UpdateCampaignTemplate) GetCouponReservationSettings() CampaignTemplateCouponReservationSettings`
+
+GetCouponReservationSettings returns the CouponReservationSettings field if non-nil, zero value otherwise.
+
+### GetCouponReservationSettingsOk
+
+`func (o *UpdateCampaignTemplate) GetCouponReservationSettingsOk() (CampaignTemplateCouponReservationSettings, bool)`
+
+GetCouponReservationSettingsOk returns a tuple with the CouponReservationSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCouponReservationSettings
+
+`func (o *UpdateCampaignTemplate) HasCouponReservationSettings() bool`
+
+HasCouponReservationSettings returns a boolean if a field has been set.
+
+### SetCouponReservationSettings
+
+`func (o *UpdateCampaignTemplate) SetCouponReservationSettings(v CampaignTemplateCouponReservationSettings)`
+
+SetCouponReservationSettings gets a reference to the given CampaignTemplateCouponReservationSettings and assigns it to the CouponReservationSettings field.
 
 ### GetReferralSettings
 

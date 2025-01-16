@@ -16,47 +16,29 @@ import (
 
 // InlineResponse20046 struct for InlineResponse20046
 type InlineResponse20046 struct {
-	HasMore *bool         `json:"hasMore,omitempty"`
-	Data    []Achievement `json:"data"`
+	HasMore bool                  `json:"hasMore"`
+	Data    []AchievementProgress `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
+// GetHasMore returns the HasMore field value
 func (o *InlineResponse20046) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.HasMore
+
+	return o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20046) GetHasMoreOk() (bool, bool) {
-	if o == nil || o.HasMore == nil {
-		var ret bool
-		return ret, false
-	}
-	return *o.HasMore, true
-}
-
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20046) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+// SetHasMore sets field value
 func (o *InlineResponse20046) SetHasMore(v bool) {
-	o.HasMore = &v
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20046) GetData() []Achievement {
+func (o *InlineResponse20046) GetData() []AchievementProgress {
 	if o == nil {
-		var ret []Achievement
+		var ret []AchievementProgress
 		return ret
 	}
 
@@ -64,7 +46,7 @@ func (o *InlineResponse20046) GetData() []Achievement {
 }
 
 // SetData sets field value
-func (o *InlineResponse20046) SetData(v []Achievement) {
+func (o *InlineResponse20046) SetData(v []AchievementProgress) {
 	o.Data = v
 }
 

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// ApplicationCif
+// ApplicationCif struct for ApplicationCif
 type ApplicationCif struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

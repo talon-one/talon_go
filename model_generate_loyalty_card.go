@@ -20,6 +20,8 @@ type GenerateLoyaltyCard struct {
 	Status *string `json:"status,omitempty"`
 	// Integration IDs of the customer profiles linked to the card.
 	CustomerProfileIds *[]string `json:"customerProfileIds,omitempty"`
+	// The alphanumeric identifier of the loyalty card.
+	CardIdentifier *string `json:"cardIdentifier,omitempty"`
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -86,6 +88,39 @@ func (o *GenerateLoyaltyCard) HasCustomerProfileIds() bool {
 // SetCustomerProfileIds gets a reference to the given []string and assigns it to the CustomerProfileIds field.
 func (o *GenerateLoyaltyCard) SetCustomerProfileIds(v []string) {
 	o.CustomerProfileIds = &v
+}
+
+// GetCardIdentifier returns the CardIdentifier field value if set, zero value otherwise.
+func (o *GenerateLoyaltyCard) GetCardIdentifier() string {
+	if o == nil || o.CardIdentifier == nil {
+		var ret string
+		return ret
+	}
+	return *o.CardIdentifier
+}
+
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *GenerateLoyaltyCard) GetCardIdentifierOk() (string, bool) {
+	if o == nil || o.CardIdentifier == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CardIdentifier, true
+}
+
+// HasCardIdentifier returns a boolean if a field has been set.
+func (o *GenerateLoyaltyCard) HasCardIdentifier() bool {
+	if o != nil && o.CardIdentifier != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
+func (o *GenerateLoyaltyCard) SetCardIdentifier(v string) {
+	o.CardIdentifier = &v
 }
 
 type NullableGenerateLoyaltyCard struct {

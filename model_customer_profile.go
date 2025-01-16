@@ -15,11 +15,11 @@ import (
 	"time"
 )
 
-// CustomerProfile
+// CustomerProfile struct for CustomerProfile
 type CustomerProfile struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
-	// The time this entity was created. The time this entity was created.
+	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
 	IntegrationId string `json:"integrationId"`

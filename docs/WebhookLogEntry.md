@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **IntegrationRequestUuid** | Pointer to **string** | UUID reference of the integration request linked to this webhook request. | 
 **WebhookId** | Pointer to **int32** | ID of the webhook that triggered the request. | 
 **ApplicationId** | Pointer to **int32** | ID of the application that triggered the webhook. | [optional] 
-**Url** | Pointer to **string** | Target url of request | 
+**Url** | Pointer to **string** | The target URL of the request. | 
 **Request** | Pointer to **string** | Request message | 
 **Response** | Pointer to **string** | Response message | [optional] 
 **Status** | Pointer to **int32** | HTTP status code of response. | [optional] 

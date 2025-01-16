@@ -16,25 +16,25 @@ import (
 
 // GenerateCampaignDescription struct for GenerateCampaignDescription
 type GenerateCampaignDescription struct {
-	// ID of the campaign.
-	CampaignID int32 `json:"campaignID"`
+	// ID of a ruleset.
+	RulesetID int32 `json:"rulesetID"`
 	// Currency for the campaign.
 	Currency string `json:"currency"`
 }
 
-// GetCampaignID returns the CampaignID field value
-func (o *GenerateCampaignDescription) GetCampaignID() int32 {
+// GetRulesetID returns the RulesetID field value
+func (o *GenerateCampaignDescription) GetRulesetID() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.CampaignID
+	return o.RulesetID
 }
 
-// SetCampaignID sets field value
-func (o *GenerateCampaignDescription) SetCampaignID(v int32) {
-	o.CampaignID = v
+// SetRulesetID sets field value
+func (o *GenerateCampaignDescription) SetRulesetID(v int32) {
+	o.RulesetID = v
 }
 
 // GetCurrency returns the Currency field value

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | A campaigner-friendly description of the argument, this will also be shown in the rule editor. | [optional] 
 **Title** | Pointer to **string** | A campaigner friendly name for the argument, this will be shown in the rule editor. | 
 **Ui** | Pointer to [**map[string]interface{}**](.md) | Arbitrary metadata that may be used to render an input for this argument. | 
+**Key** | Pointer to **string** | The identifier for the associated value within the JSON object. | [optional] 
 **PicklistID** | Pointer to **int32** | ID of the picklist linked to a template. | [optional] 
 **RestrictedByPicklist** | Pointer to **bool** | Whether or not this attribute&#39;s value is restricted by picklist (&#x60;picklist&#x60; property) | [optional] 
 
@@ -112,6 +113,31 @@ HasUi returns a boolean if a field has been set.
 `func (o *TemplateArgDef) SetUi(v map[string]interface{})`
 
 SetUi gets a reference to the given map[string]interface{} and assigns it to the Ui field.
+
+### GetKey
+
+`func (o *TemplateArgDef) GetKey() string`
+
+GetKey returns the Key field if non-nil, zero value otherwise.
+
+### GetKeyOk
+
+`func (o *TemplateArgDef) GetKeyOk() (string, bool)`
+
+GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasKey
+
+`func (o *TemplateArgDef) HasKey() bool`
+
+HasKey returns a boolean if a field has been set.
+
+### SetKey
+
+`func (o *TemplateArgDef) SetKey(v string)`
+
+SetKey gets a reference to the given string and assigns it to the Key field.
 
 ### GetPicklistID
 

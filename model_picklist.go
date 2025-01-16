@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Picklist
+// Picklist struct for Picklist
 type Picklist struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

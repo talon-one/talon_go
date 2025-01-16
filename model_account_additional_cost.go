@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// AccountAdditionalCost
+// AccountAdditionalCost struct for AccountAdditionalCost
 type AccountAdditionalCost struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

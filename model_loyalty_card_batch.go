@@ -14,14 +14,15 @@ import (
 	"encoding/json"
 )
 
-// LoyaltyCardBatch
+// LoyaltyCardBatch struct for LoyaltyCardBatch
 type LoyaltyCardBatch struct {
 	// Number of loyalty cards in the batch.
 	NumberOfCards int32 `json:"numberOfCards"`
 	// ID of the loyalty card batch.
 	BatchId *string `json:"batchId,omitempty"`
 	// Status of the loyalty cards in the batch.
-	Status *string `json:"status,omitempty"`
+	Status           *string                `json:"status,omitempty"`
+	CardCodeSettings *CodeGeneratorSettings `json:"cardCodeSettings,omitempty"`
 }
 
 // GetNumberOfCards returns the NumberOfCards field value
@@ -103,6 +104,39 @@ func (o *LoyaltyCardBatch) HasStatus() bool {
 // SetStatus gets a reference to the given string and assigns it to the Status field.
 func (o *LoyaltyCardBatch) SetStatus(v string) {
 	o.Status = &v
+}
+
+// GetCardCodeSettings returns the CardCodeSettings field value if set, zero value otherwise.
+func (o *LoyaltyCardBatch) GetCardCodeSettings() CodeGeneratorSettings {
+	if o == nil || o.CardCodeSettings == nil {
+		var ret CodeGeneratorSettings
+		return ret
+	}
+	return *o.CardCodeSettings
+}
+
+// GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardBatch) GetCardCodeSettingsOk() (CodeGeneratorSettings, bool) {
+	if o == nil || o.CardCodeSettings == nil {
+		var ret CodeGeneratorSettings
+		return ret, false
+	}
+	return *o.CardCodeSettings, true
+}
+
+// HasCardCodeSettings returns a boolean if a field has been set.
+func (o *LoyaltyCardBatch) HasCardCodeSettings() bool {
+	if o != nil && o.CardCodeSettings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCardCodeSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CardCodeSettings field.
+func (o *LoyaltyCardBatch) SetCardCodeSettings(v CodeGeneratorSettings) {
+	o.CardCodeSettings = &v
 }
 
 type NullableLoyaltyCardBatch struct {

@@ -7,8 +7,10 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
-**Name** | Pointer to **string** | The name of the tier | 
-**MinPoints** | Pointer to **float32** | The minimum amount of points required to be eligible for the tier. | 
+**ProgramName** | Pointer to **string** | The integration name of the loyalty program that owns this entity. | [optional] 
+**ProgramTitle** | Pointer to **string** | The Campaign Manager-displayed name of the loyalty program that owns this entity. | [optional] 
+**Name** | Pointer to **string** | The name of the tier. | 
+**MinPoints** | Pointer to **float32** | The minimum amount of points required to enter the tier. | 
 
 ## Methods
 
@@ -86,6 +88,56 @@ HasProgramID returns a boolean if a field has been set.
 `func (o *LoyaltyTier) SetProgramID(v int32)`
 
 SetProgramID gets a reference to the given int32 and assigns it to the ProgramID field.
+
+### GetProgramName
+
+`func (o *LoyaltyTier) GetProgramName() string`
+
+GetProgramName returns the ProgramName field if non-nil, zero value otherwise.
+
+### GetProgramNameOk
+
+`func (o *LoyaltyTier) GetProgramNameOk() (string, bool)`
+
+GetProgramNameOk returns a tuple with the ProgramName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProgramName
+
+`func (o *LoyaltyTier) HasProgramName() bool`
+
+HasProgramName returns a boolean if a field has been set.
+
+### SetProgramName
+
+`func (o *LoyaltyTier) SetProgramName(v string)`
+
+SetProgramName gets a reference to the given string and assigns it to the ProgramName field.
+
+### GetProgramTitle
+
+`func (o *LoyaltyTier) GetProgramTitle() string`
+
+GetProgramTitle returns the ProgramTitle field if non-nil, zero value otherwise.
+
+### GetProgramTitleOk
+
+`func (o *LoyaltyTier) GetProgramTitleOk() (string, bool)`
+
+GetProgramTitleOk returns a tuple with the ProgramTitle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasProgramTitle
+
+`func (o *LoyaltyTier) HasProgramTitle() bool`
+
+HasProgramTitle returns a boolean if a field has been set.
+
+### SetProgramTitle
+
+`func (o *LoyaltyTier) SetProgramTitle(v string)`
+
+SetProgramTitle gets a reference to the given string and assigns it to the ProgramTitle field.
 
 ### GetName
 

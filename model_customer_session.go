@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CustomerSession
+// CustomerSession struct for CustomerSession
 type CustomerSession struct {
 	// The integration ID set by your integration layer.
 	IntegrationId string `json:"integrationId"`

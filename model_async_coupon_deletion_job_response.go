@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// AsyncCouponDeletionJobResponse
+// AsyncCouponDeletionJobResponse struct for AsyncCouponDeletionJobResponse
 type AsyncCouponDeletionJobResponse struct {
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
 	Id int32 `json:"id"`

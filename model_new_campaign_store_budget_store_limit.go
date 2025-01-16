@@ -14,48 +14,50 @@ import (
 	"encoding/json"
 )
 
-// InlineResponse20047 struct for InlineResponse20047
-type InlineResponse20047 struct {
-	HasMore bool                  `json:"hasMore"`
-	Data    []AchievementProgress `json:"data"`
+// NewCampaignStoreBudgetStoreLimit struct for NewCampaignStoreBudgetStoreLimit
+type NewCampaignStoreBudgetStoreLimit struct {
+	// The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
+	StoreId int32 `json:"storeId"`
+	// The value to set for the limit.
+	Limit float32 `json:"limit"`
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20047) GetHasMore() bool {
+// GetStoreId returns the StoreId field value
+func (o *NewCampaignStoreBudgetStoreLimit) GetStoreId() int32 {
 	if o == nil {
-		var ret bool
+		var ret int32
 		return ret
 	}
 
-	return o.HasMore
+	return o.StoreId
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20047) SetHasMore(v bool) {
-	o.HasMore = v
+// SetStoreId sets field value
+func (o *NewCampaignStoreBudgetStoreLimit) SetStoreId(v int32) {
+	o.StoreId = v
 }
 
-// GetData returns the Data field value
-func (o *InlineResponse20047) GetData() []AchievementProgress {
+// GetLimit returns the Limit field value
+func (o *NewCampaignStoreBudgetStoreLimit) GetLimit() float32 {
 	if o == nil {
-		var ret []AchievementProgress
+		var ret float32
 		return ret
 	}
 
-	return o.Data
+	return o.Limit
 }
 
-// SetData sets field value
-func (o *InlineResponse20047) SetData(v []AchievementProgress) {
-	o.Data = v
+// SetLimit sets field value
+func (o *NewCampaignStoreBudgetStoreLimit) SetLimit(v float32) {
+	o.Limit = v
 }
 
-type NullableInlineResponse20047 struct {
-	Value        InlineResponse20047
+type NullableNewCampaignStoreBudgetStoreLimit struct {
+	Value        NewCampaignStoreBudgetStoreLimit
 	ExplicitNull bool
 }
 
-func (v NullableInlineResponse20047) MarshalJSON() ([]byte, error) {
+func (v NullableNewCampaignStoreBudgetStoreLimit) MarshalJSON() ([]byte, error) {
 	switch {
 	case v.ExplicitNull:
 		return []byte("null"), nil
@@ -64,7 +66,7 @@ func (v NullableInlineResponse20047) MarshalJSON() ([]byte, error) {
 	}
 }
 
-func (v *NullableInlineResponse20047) UnmarshalJSON(src []byte) error {
+func (v *NullableNewCampaignStoreBudgetStoreLimit) UnmarshalJSON(src []byte) error {
 	if bytes.Equal(src, []byte("null")) {
 		v.ExplicitNull = true
 		return nil

@@ -4,45 +4,45 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]ApplicationEvent**](ApplicationEvent.md) |  | 
+**TotalResultSize** | Pointer to **int32** |  | 
+**Data** | Pointer to **[]string** |  | 
 
 ## Methods
 
-### GetHasMore
+### GetTotalResultSize
 
-`func (o *InlineResponse20028) GetHasMore() bool`
+`func (o *InlineResponse20028) GetTotalResultSize() int32`
 
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetHasMoreOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20028) GetHasMoreOk() (bool, bool)`
+`func (o *InlineResponse20028) GetTotalResultSizeOk() (int32, bool)`
 
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasHasMore
+### HasTotalResultSize
 
-`func (o *InlineResponse20028) HasHasMore() bool`
+`func (o *InlineResponse20028) HasTotalResultSize() bool`
 
-HasHasMore returns a boolean if a field has been set.
+HasTotalResultSize returns a boolean if a field has been set.
 
-### SetHasMore
+### SetTotalResultSize
 
-`func (o *InlineResponse20028) SetHasMore(v bool)`
+`func (o *InlineResponse20028) SetTotalResultSize(v int32)`
 
-SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
 
 ### GetData
 
-`func (o *InlineResponse20028) GetData() []ApplicationEvent`
+`func (o *InlineResponse20028) GetData() []string`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20028) GetDataOk() ([]ApplicationEvent, bool)`
+`func (o *InlineResponse20028) GetDataOk() ([]string, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20028) SetData(v []ApplicationEvent)`
+`func (o *InlineResponse20028) SetData(v []string)`
 
-SetData gets a reference to the given []ApplicationEvent and assigns it to the Data field.
+SetData gets a reference to the given []string and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

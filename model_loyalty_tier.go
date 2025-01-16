@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// LoyaltyTier
+// LoyaltyTier A tier in a loyalty program.
 type LoyaltyTier struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
@@ -23,9 +23,13 @@ type LoyaltyTier struct {
 	Created time.Time `json:"created"`
 	// The ID of the loyalty program that owns this entity.
 	ProgramID int32 `json:"programID"`
-	// The name of the tier
+	// The integration name of the loyalty program that owns this entity.
+	ProgramName *string `json:"programName,omitempty"`
+	// The Campaign Manager-displayed name of the loyalty program that owns this entity.
+	ProgramTitle *string `json:"programTitle,omitempty"`
+	// The name of the tier.
 	Name string `json:"name"`
-	// The minimum amount of points required to be eligible for the tier.
+	// The minimum amount of points required to enter the tier.
 	MinPoints float32 `json:"minPoints"`
 }
 
@@ -72,6 +76,72 @@ func (o *LoyaltyTier) GetProgramID() int32 {
 // SetProgramID sets field value
 func (o *LoyaltyTier) SetProgramID(v int32) {
 	o.ProgramID = v
+}
+
+// GetProgramName returns the ProgramName field value if set, zero value otherwise.
+func (o *LoyaltyTier) GetProgramName() string {
+	if o == nil || o.ProgramName == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProgramName
+}
+
+// GetProgramNameOk returns a tuple with the ProgramName field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetProgramNameOk() (string, bool) {
+	if o == nil || o.ProgramName == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.ProgramName, true
+}
+
+// HasProgramName returns a boolean if a field has been set.
+func (o *LoyaltyTier) HasProgramName() bool {
+	if o != nil && o.ProgramName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProgramName gets a reference to the given string and assigns it to the ProgramName field.
+func (o *LoyaltyTier) SetProgramName(v string) {
+	o.ProgramName = &v
+}
+
+// GetProgramTitle returns the ProgramTitle field value if set, zero value otherwise.
+func (o *LoyaltyTier) GetProgramTitle() string {
+	if o == nil || o.ProgramTitle == nil {
+		var ret string
+		return ret
+	}
+	return *o.ProgramTitle
+}
+
+// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetProgramTitleOk() (string, bool) {
+	if o == nil || o.ProgramTitle == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.ProgramTitle, true
+}
+
+// HasProgramTitle returns a boolean if a field has been set.
+func (o *LoyaltyTier) HasProgramTitle() bool {
+	if o != nil && o.ProgramTitle != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProgramTitle gets a reference to the given string and assigns it to the ProgramTitle field.
+func (o *LoyaltyTier) SetProgramTitle(v string) {
+	o.ProgramTitle = &v
 }
 
 // GetName returns the Name field value

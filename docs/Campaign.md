@@ -44,8 +44,9 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
-**FrontendState** | Pointer to **string** | A campaign state described exactly as in the Campaign Manager. | 
+**FrontendState** | Pointer to **string** | The campaign state displayed in the Campaign Manager. | 
 **StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
+**RevisionFrontendState** | Pointer to **string** | The campaign revision state displayed in the Campaign Manager. | [optional] 
 **ActiveRevisionId** | Pointer to **int32** | ID of the revision that was last activated on this campaign.  | [optional] 
 **ActiveRevisionVersionId** | Pointer to **int32** | ID of the revision version that is active on the campaign.  | [optional] 
 **Version** | Pointer to **int32** | Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.  | [optional] 
@@ -1104,6 +1105,31 @@ HasStoresImported returns a boolean if a field has been set.
 `func (o *Campaign) SetStoresImported(v bool)`
 
 SetStoresImported gets a reference to the given bool and assigns it to the StoresImported field.
+
+### GetRevisionFrontendState
+
+`func (o *Campaign) GetRevisionFrontendState() string`
+
+GetRevisionFrontendState returns the RevisionFrontendState field if non-nil, zero value otherwise.
+
+### GetRevisionFrontendStateOk
+
+`func (o *Campaign) GetRevisionFrontendStateOk() (string, bool)`
+
+GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasRevisionFrontendState
+
+`func (o *Campaign) HasRevisionFrontendState() bool`
+
+HasRevisionFrontendState returns a boolean if a field has been set.
+
+### SetRevisionFrontendState
+
+`func (o *Campaign) SetRevisionFrontendState(v string)`
+
+SetRevisionFrontendState gets a reference to the given string and assigns it to the RevisionFrontendState field.
 
 ### GetActiveRevisionId
 

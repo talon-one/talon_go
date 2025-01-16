@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the product. | 
+**Name** | Pointer to **string** | The product the item belongs to. | 
 
 ## Methods
 

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewEventType
+// NewEventType struct for NewEventType
 type NewEventType struct {
 	// The human-friendly name for this event type.
 	Title string `json:"title"`

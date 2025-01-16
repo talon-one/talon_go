@@ -15,11 +15,11 @@ import (
 	"time"
 )
 
-// ApplicationSession
+// ApplicationSession struct for ApplicationSession
 type ApplicationSession struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
-	// The time this entity was created. The time this entity was created.
+	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
 	IntegrationId string `json:"integrationId"`

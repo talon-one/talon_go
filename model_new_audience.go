@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// NewAudience
+// NewAudience struct for NewAudience
 type NewAudience struct {
 	// The human-friendly display name for this audience.
 	Name string `json:"name"`

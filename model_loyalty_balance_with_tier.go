@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// LoyaltyBalanceWithTier
+// LoyaltyBalanceWithTier Point balance of a ledger in the Loyalty Program.
 type LoyaltyBalanceWithTier struct {
 	// Total amount of points awarded to this customer and available to spend.
 	ActivePoints *float32 `json:"activePoints,omitempty"`

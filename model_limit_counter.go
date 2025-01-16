@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// LimitCounter
+// LimitCounter struct for LimitCounter
 type LimitCounter struct {
 	// The ID of the campaign that owns this entity.
 	CampaignId int32 `json:"campaignId"`

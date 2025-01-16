@@ -21,7 +21,7 @@ type ScimUser struct {
 	// Display name of the user.
 	DisplayName *string `json:"displayName,omitempty"`
 	// Unique identifier of the user. This is usually an email address.
-	UserName *string           `json:"userName,omitempty"`
+	UserName string            `json:"userName"`
 	Name     *ScimBaseUserName `json:"name,omitempty"`
 	// ID of the user.
 	Id string `json:"id"`
@@ -93,37 +93,19 @@ func (o *ScimUser) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
-// GetUserName returns the UserName field value if set, zero value otherwise.
+// GetUserName returns the UserName field value
 func (o *ScimUser) GetUserName() string {
-	if o == nil || o.UserName == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.UserName
+
+	return o.UserName
 }
 
-// GetUserNameOk returns a tuple with the UserName field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *ScimUser) GetUserNameOk() (string, bool) {
-	if o == nil || o.UserName == nil {
-		var ret string
-		return ret, false
-	}
-	return *o.UserName, true
-}
-
-// HasUserName returns a boolean if a field has been set.
-func (o *ScimUser) HasUserName() bool {
-	if o != nil && o.UserName != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUserName gets a reference to the given string and assigns it to the UserName field.
+// SetUserName sets field value
 func (o *ScimUser) SetUserName(v string) {
-	o.UserName = &v
+	o.UserName = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.

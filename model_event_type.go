@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// EventType
+// EventType struct for EventType
 type EventType struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

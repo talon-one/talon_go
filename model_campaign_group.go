@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CampaignGroup
+// CampaignGroup struct for CampaignGroup
 type CampaignGroup struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

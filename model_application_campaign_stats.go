@@ -18,6 +18,8 @@ import (
 type ApplicationCampaignStats struct {
 	// Number of disabled campaigns.
 	Disabled int32 `json:"disabled"`
+	// Number of staged campaigns.
+	Staged int32 `json:"staged"`
 	// Number of scheduled campaigns.
 	Scheduled int32 `json:"scheduled"`
 	// Number of running campaigns.
@@ -41,6 +43,21 @@ func (o *ApplicationCampaignStats) GetDisabled() int32 {
 // SetDisabled sets field value
 func (o *ApplicationCampaignStats) SetDisabled(v int32) {
 	o.Disabled = v
+}
+
+// GetStaged returns the Staged field value
+func (o *ApplicationCampaignStats) GetStaged() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Staged
+}
+
+// SetStaged sets field value
+func (o *ApplicationCampaignStats) SetStaged(v int32) {
+	o.Staged = v
 }
 
 // GetScheduled returns the Scheduled field value

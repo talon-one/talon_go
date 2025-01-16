@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewUser
+// NewUser struct for NewUser
 type NewUser struct {
 	// The email address associated with the user profile.
 	Email string `json:"email"`

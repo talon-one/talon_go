@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// CollectionItem
+// CollectionItem struct for CollectionItem
 type CollectionItem struct {
 	Item string `json:"item"`
 }

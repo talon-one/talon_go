@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewEvent
+// NewEvent struct for NewEvent
 type NewEvent struct {
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId *string `json:"profileId,omitempty"`

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Role
+// Role struct for Role
 type Role struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

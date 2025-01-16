@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// NewReferral
+// NewReferral struct for NewReferral
 type NewReferral struct {
 	// Timestamp at which point the referral code becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`

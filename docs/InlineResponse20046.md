@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]Achievement**](Achievement.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]AchievementProgress**](AchievementProgress.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetHasMore gets a reference to the given bool and assigns it to the HasMore fiel
 
 ### GetData
 
-`func (o *InlineResponse20046) GetData() []Achievement`
+`func (o *InlineResponse20046) GetData() []AchievementProgress`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20046) GetDataOk() ([]Achievement, bool)`
+`func (o *InlineResponse20046) GetDataOk() ([]AchievementProgress, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20046) SetData(v []Achievement)`
+`func (o *InlineResponse20046) SetData(v []AchievementProgress)`
 
-SetData gets a reference to the given []Achievement and assigns it to the Data field.
+SetData gets a reference to the given []AchievementProgress and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

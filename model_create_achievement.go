@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // CreateAchievement struct for CreateAchievement
@@ -27,6 +28,14 @@ type CreateAchievement struct {
 	// The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The `period` does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can also round certain units down to the beginning of period and up to the end of period.: - `_D` for rounding down days only. Signifies the start of the day. Example: `30D_D` - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: `23W_U`  **Note**: You can either use the round down and round up option or set an absolute period.
 	Period            string     `json:"period"`
 	PeriodEndOverride *TimePoint `json:"periodEndOverride,omitempty"`
+	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again.
+	RecurrencePolicy *string `json:"recurrencePolicy,omitempty"`
+	// The policy that determines how the achievement starts, ends, or resets. - `user_action`: The achievement ends or resets relative to when the customer started the achievement. - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
+	ActivationPolicy *string `json:"activationPolicy,omitempty"`
+	// The achievement's start date when `activationPolicy` is set to `fixed_schedule`.  **Note:** It must be an RFC3339 timestamp string.
+	FixedStartDate *time.Time `json:"fixedStartDate,omitempty"`
+	// The achievement's end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string.
+	EndDate *time.Time `json:"endDate,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -135,6 +144,138 @@ func (o *CreateAchievement) HasPeriodEndOverride() bool {
 // SetPeriodEndOverride gets a reference to the given TimePoint and assigns it to the PeriodEndOverride field.
 func (o *CreateAchievement) SetPeriodEndOverride(v TimePoint) {
 	o.PeriodEndOverride = &v
+}
+
+// GetRecurrencePolicy returns the RecurrencePolicy field value if set, zero value otherwise.
+func (o *CreateAchievement) GetRecurrencePolicy() string {
+	if o == nil || o.RecurrencePolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.RecurrencePolicy
+}
+
+// GetRecurrencePolicyOk returns a tuple with the RecurrencePolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAchievement) GetRecurrencePolicyOk() (string, bool) {
+	if o == nil || o.RecurrencePolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.RecurrencePolicy, true
+}
+
+// HasRecurrencePolicy returns a boolean if a field has been set.
+func (o *CreateAchievement) HasRecurrencePolicy() bool {
+	if o != nil && o.RecurrencePolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRecurrencePolicy gets a reference to the given string and assigns it to the RecurrencePolicy field.
+func (o *CreateAchievement) SetRecurrencePolicy(v string) {
+	o.RecurrencePolicy = &v
+}
+
+// GetActivationPolicy returns the ActivationPolicy field value if set, zero value otherwise.
+func (o *CreateAchievement) GetActivationPolicy() string {
+	if o == nil || o.ActivationPolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.ActivationPolicy
+}
+
+// GetActivationPolicyOk returns a tuple with the ActivationPolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAchievement) GetActivationPolicyOk() (string, bool) {
+	if o == nil || o.ActivationPolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.ActivationPolicy, true
+}
+
+// HasActivationPolicy returns a boolean if a field has been set.
+func (o *CreateAchievement) HasActivationPolicy() bool {
+	if o != nil && o.ActivationPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetActivationPolicy gets a reference to the given string and assigns it to the ActivationPolicy field.
+func (o *CreateAchievement) SetActivationPolicy(v string) {
+	o.ActivationPolicy = &v
+}
+
+// GetFixedStartDate returns the FixedStartDate field value if set, zero value otherwise.
+func (o *CreateAchievement) GetFixedStartDate() time.Time {
+	if o == nil || o.FixedStartDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.FixedStartDate
+}
+
+// GetFixedStartDateOk returns a tuple with the FixedStartDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAchievement) GetFixedStartDateOk() (time.Time, bool) {
+	if o == nil || o.FixedStartDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.FixedStartDate, true
+}
+
+// HasFixedStartDate returns a boolean if a field has been set.
+func (o *CreateAchievement) HasFixedStartDate() bool {
+	if o != nil && o.FixedStartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFixedStartDate gets a reference to the given time.Time and assigns it to the FixedStartDate field.
+func (o *CreateAchievement) SetFixedStartDate(v time.Time) {
+	o.FixedStartDate = &v
+}
+
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *CreateAchievement) GetEndDate() time.Time {
+	if o == nil || o.EndDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAchievement) GetEndDateOk() (time.Time, bool) {
+	if o == nil || o.EndDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *CreateAchievement) HasEndDate() bool {
+	if o != nil && o.EndDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
+func (o *CreateAchievement) SetEndDate(v time.Time) {
+	o.EndDate = &v
 }
 
 type NullableCreateAchievement struct {

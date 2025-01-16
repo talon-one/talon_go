@@ -16,9 +16,8 @@ import (
 
 // InlineResponse20045 struct for InlineResponse20045
 type InlineResponse20045 struct {
-	HasMore         *bool   `json:"hasMore,omitempty"`
-	TotalResultSize *int32  `json:"totalResultSize,omitempty"`
-	Data            []Store `json:"data"`
+	HasMore *bool         `json:"hasMore,omitempty"`
+	Data    []Achievement `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value if set, zero value otherwise.
@@ -54,43 +53,10 @@ func (o *InlineResponse20045) SetHasMore(v bool) {
 	o.HasMore = &v
 }
 
-// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
-func (o *InlineResponse20045) GetTotalResultSize() int32 {
-	if o == nil || o.TotalResultSize == nil {
-		var ret int32
-		return ret
-	}
-	return *o.TotalResultSize
-}
-
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20045) GetTotalResultSizeOk() (int32, bool) {
-	if o == nil || o.TotalResultSize == nil {
-		var ret int32
-		return ret, false
-	}
-	return *o.TotalResultSize, true
-}
-
-// HasTotalResultSize returns a boolean if a field has been set.
-func (o *InlineResponse20045) HasTotalResultSize() bool {
-	if o != nil && o.TotalResultSize != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
-func (o *InlineResponse20045) SetTotalResultSize(v int32) {
-	o.TotalResultSize = &v
-}
-
 // GetData returns the Data field value
-func (o *InlineResponse20045) GetData() []Store {
+func (o *InlineResponse20045) GetData() []Achievement {
 	if o == nil {
-		var ret []Store
+		var ret []Achievement
 		return ret
 	}
 
@@ -98,7 +64,7 @@ func (o *InlineResponse20045) GetData() []Store {
 }
 
 // SetData sets field value
-func (o *InlineResponse20045) SetData(v []Store) {
+func (o *InlineResponse20045) SetData(v []Achievement) {
 	o.Data = v
 }
 

@@ -16,7 +16,7 @@ import (
 
 // Product The specific properties of the product this item belongs to, if available.
 type Product struct {
-	// The name of the product.
+	// The product the item belongs to.
 	Name string `json:"name"`
 }
 

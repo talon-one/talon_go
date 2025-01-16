@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Filter** | Pointer to [**ScimServiceProviderConfigResponseFilter**](ScimServiceProviderConfigResponse_filter.md) |  | [optional] 
 **Patch** | Pointer to [**ScimServiceProviderConfigResponsePatch**](ScimServiceProviderConfigResponse_patch.md) |  | [optional] 
 **Schemas** | Pointer to **[]string** | A list of SCIM schemas that define the structure and data types supported by the service provider. | [optional] 
+**Sort** | Pointer to [**ScimServiceProviderConfigResponseSort**](ScimServiceProviderConfigResponse_sort.md) |  | [optional] 
 
 ## Methods
 
@@ -162,6 +163,31 @@ HasSchemas returns a boolean if a field has been set.
 `func (o *ScimServiceProviderConfigResponse) SetSchemas(v []string)`
 
 SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+
+### GetSort
+
+`func (o *ScimServiceProviderConfigResponse) GetSort() ScimServiceProviderConfigResponseSort`
+
+GetSort returns the Sort field if non-nil, zero value otherwise.
+
+### GetSortOk
+
+`func (o *ScimServiceProviderConfigResponse) GetSortOk() (ScimServiceProviderConfigResponseSort, bool)`
+
+GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSort
+
+`func (o *ScimServiceProviderConfigResponse) HasSort() bool`
+
+HasSort returns a boolean if a field has been set.
+
+### SetSort
+
+`func (o *ScimServiceProviderConfigResponse) SetSort(v ScimServiceProviderConfigResponseSort)`
+
+SetSort gets a reference to the given ScimServiceProviderConfigResponseSort and assigns it to the Sort field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

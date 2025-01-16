@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// MultipleAudiencesItem
+// MultipleAudiencesItem struct for MultipleAudiencesItem
 type MultipleAudiencesItem struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

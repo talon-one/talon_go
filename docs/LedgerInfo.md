@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **PendingBalance** | Pointer to **float32** | Sum of pending points. | 
 **ExpiredBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **SpentBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
-**TentativeCurrentBalance** | Pointer to **float32** | Sum of the tentative active points (including additions and deductions) inside the currently open session. The &#x60;currentBalance&#x60; is updated to this value when you close the session, and the effects are applied. | 
-**TentativePendingBalance** | Pointer to **float32** | Sum of pending points (including additions and deductions) inside the currently open session. The &#x60;pendingBalance&#x60; is updated to this value when you close the session, and the effects are applied. | [optional] 
+**TentativeCurrentBalance** | Pointer to **float32** | The tentative points balance, reflecting the &#x60;currentBalance&#x60; and all point additions and deductions within the current open customer session. When the session is closed, the effects are applied and the &#x60;currentBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | 
+**TentativePendingBalance** | Pointer to **float32** | The tentative points balance, reflecting the &#x60;pendingBalance&#x60; and all point additions with a future activation date within the current open customer session. When the session is closed, the effects are applied and the &#x60;pendingBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | [optional] 
 **CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **PointsToNextTier** | Pointer to **float32** | Points required to move up a tier. | [optional] 
 

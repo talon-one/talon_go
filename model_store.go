@@ -15,11 +15,11 @@ import (
 	"time"
 )
 
-// Store
+// Store struct for Store
 type Store struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
-	// The time this entity was created. The time this entity was created.
+	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The name of the store.
 	Name string `json:"name"`
