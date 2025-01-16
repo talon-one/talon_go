@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// ManagementKey
+// ManagementKey struct for ManagementKey
 type ManagementKey struct {
 	// Name for management key.
 	Name string `json:"name"`

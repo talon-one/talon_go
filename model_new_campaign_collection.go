@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewCampaignCollection
+// NewCampaignCollection struct for NewCampaignCollection
 type NewCampaignCollection struct {
 	// A short description of the purpose of this collection.
 	Description *string `json:"description,omitempty"`

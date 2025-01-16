@@ -16,23 +16,23 @@ import (
 
 // GenerateCampaignTags struct for GenerateCampaignTags
 type GenerateCampaignTags struct {
-	// ID of the campaign.
-	CampaignID int32 `json:"campaignID"`
+	// ID of a ruleset.
+	RulesetID int32 `json:"rulesetID"`
 }
 
-// GetCampaignID returns the CampaignID field value
-func (o *GenerateCampaignTags) GetCampaignID() int32 {
+// GetRulesetID returns the RulesetID field value
+func (o *GenerateCampaignTags) GetRulesetID() int32 {
 	if o == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.CampaignID
+	return o.RulesetID
 }
 
-// SetCampaignID sets field value
-func (o *GenerateCampaignTags) SetCampaignID(v int32) {
-	o.CampaignID = v
+// SetRulesetID sets field value
+func (o *GenerateCampaignTags) SetRulesetID(v int32) {
+	o.RulesetID = v
 }
 
 type NullableGenerateCampaignTags struct {

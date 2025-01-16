@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// CustomerProfileIntegrationRequestV2
+// CustomerProfileIntegrationRequestV2 The body of a V2 integration API request (customer profile update). Next to the customer profile details, this contains an optional listing of extra properties that should be returned in the response.
 type CustomerProfileIntegrationRequestV2 struct {
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`

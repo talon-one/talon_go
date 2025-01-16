@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// OutgoingIntegrationTemplateWithConfigurationDetails
+// OutgoingIntegrationTemplateWithConfigurationDetails struct for OutgoingIntegrationTemplateWithConfigurationDetails
 type OutgoingIntegrationTemplateWithConfigurationDetails struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`

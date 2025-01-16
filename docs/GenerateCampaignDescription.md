@@ -4,35 +4,35 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CampaignID** | Pointer to **int32** | ID of the campaign. | 
+**RulesetID** | Pointer to **int32** | ID of a ruleset. | 
 **Currency** | Pointer to **string** | Currency for the campaign. | 
 
 ## Methods
 
-### GetCampaignID
+### GetRulesetID
 
-`func (o *GenerateCampaignDescription) GetCampaignID() int32`
+`func (o *GenerateCampaignDescription) GetRulesetID() int32`
 
-GetCampaignID returns the CampaignID field if non-nil, zero value otherwise.
+GetRulesetID returns the RulesetID field if non-nil, zero value otherwise.
 
-### GetCampaignIDOk
+### GetRulesetIDOk
 
-`func (o *GenerateCampaignDescription) GetCampaignIDOk() (int32, bool)`
+`func (o *GenerateCampaignDescription) GetRulesetIDOk() (int32, bool)`
 
-GetCampaignIDOk returns a tuple with the CampaignID field if it's non-nil, zero value otherwise
+GetRulesetIDOk returns a tuple with the RulesetID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCampaignID
+### HasRulesetID
 
-`func (o *GenerateCampaignDescription) HasCampaignID() bool`
+`func (o *GenerateCampaignDescription) HasRulesetID() bool`
 
-HasCampaignID returns a boolean if a field has been set.
+HasRulesetID returns a boolean if a field has been set.
 
-### SetCampaignID
+### SetRulesetID
 
-`func (o *GenerateCampaignDescription) SetCampaignID(v int32)`
+`func (o *GenerateCampaignDescription) SetRulesetID(v int32)`
 
-SetCampaignID gets a reference to the given int32 and assigns it to the CampaignID field.
+SetRulesetID gets a reference to the given int32 and assigns it to the RulesetID field.
 
 ### GetCurrency
 

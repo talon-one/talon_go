@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// LedgerEntry
+// LedgerEntry Entry in the point ledger.
 type LedgerEntry struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

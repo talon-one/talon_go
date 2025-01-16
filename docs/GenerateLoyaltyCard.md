@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to **string** | Status of the loyalty card. | [optional] [default to STATUS_ACTIVE]
 **CustomerProfileIds** | Pointer to **[]string** | Integration IDs of the customer profiles linked to the card. | [optional] 
+**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 
 ## Methods
 
@@ -58,6 +59,31 @@ HasCustomerProfileIds returns a boolean if a field has been set.
 `func (o *GenerateLoyaltyCard) SetCustomerProfileIds(v []string)`
 
 SetCustomerProfileIds gets a reference to the given []string and assigns it to the CustomerProfileIds field.
+
+### GetCardIdentifier
+
+`func (o *GenerateLoyaltyCard) GetCardIdentifier() string`
+
+GetCardIdentifier returns the CardIdentifier field if non-nil, zero value otherwise.
+
+### GetCardIdentifierOk
+
+`func (o *GenerateLoyaltyCard) GetCardIdentifierOk() (string, bool)`
+
+GetCardIdentifierOk returns a tuple with the CardIdentifier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardIdentifier
+
+`func (o *GenerateLoyaltyCard) HasCardIdentifier() bool`
+
+HasCardIdentifier returns a boolean if a field has been set.
+
+### SetCardIdentifier
+
+`func (o *GenerateLoyaltyCard) SetCardIdentifier(v string)`
+
+SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

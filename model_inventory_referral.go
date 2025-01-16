@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// InventoryReferral
+// InventoryReferral struct for InventoryReferral
 type InventoryReferral struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

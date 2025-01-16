@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// TemplateArgDef
+// TemplateArgDef struct for TemplateArgDef
 type TemplateArgDef struct {
 	// The type of value this argument expects.
 	Type string `json:"type"`
@@ -24,6 +24,8 @@ type TemplateArgDef struct {
 	Title string `json:"title"`
 	// Arbitrary metadata that may be used to render an input for this argument.
 	Ui map[string]interface{} `json:"ui"`
+	// The identifier for the associated value within the JSON object.
+	Key *string `json:"key,omitempty"`
 	// ID of the picklist linked to a template.
 	PicklistID *int32 `json:"picklistID,omitempty"`
 	// Whether or not this attribute's value is restricted by picklist (`picklist` property)
@@ -106,6 +108,39 @@ func (o *TemplateArgDef) GetUi() map[string]interface{} {
 // SetUi sets field value
 func (o *TemplateArgDef) SetUi(v map[string]interface{}) {
 	o.Ui = v
+}
+
+// GetKey returns the Key field value if set, zero value otherwise.
+func (o *TemplateArgDef) GetKey() string {
+	if o == nil || o.Key == nil {
+		var ret string
+		return ret
+	}
+	return *o.Key
+}
+
+// GetKeyOk returns a tuple with the Key field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *TemplateArgDef) GetKeyOk() (string, bool) {
+	if o == nil || o.Key == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Key, true
+}
+
+// HasKey returns a boolean if a field has been set.
+func (o *TemplateArgDef) HasKey() bool {
+	if o != nil && o.Key != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetKey gets a reference to the given string and assigns it to the Key field.
+func (o *TemplateArgDef) SetKey(v string) {
+	o.Key = &v
 }
 
 // GetPicklistID returns the PicklistID field value if set, zero value otherwise.

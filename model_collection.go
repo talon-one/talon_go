@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Collection
+// Collection struct for Collection
 type Collection struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Catalog
+// Catalog struct for Catalog
 type Catalog struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

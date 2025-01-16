@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// ItemAttribute
+// ItemAttribute struct for ItemAttribute
 type ItemAttribute struct {
 	// The ID of the attribute of the item.
 	Attributeid int32 `json:"attributeid"`

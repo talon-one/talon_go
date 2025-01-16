@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // BulkOperationOnCampaigns struct for BulkOperationOnCampaigns
@@ -20,6 +21,8 @@ type BulkOperationOnCampaigns struct {
 	Operation string `json:"operation"`
 	// The list of campaign IDs on which the operation will be performed.
 	CampaignIds []int32 `json:"campaignIds"`
+	// Timestamp when the revisions are finalized after the `activate_revision` operation. The current time is used when left blank.  **Note:** It must be an RFC3339 timestamp string.
+	ActivateAt *time.Time `json:"activateAt,omitempty"`
 }
 
 // GetOperation returns the Operation field value
@@ -50,6 +53,39 @@ func (o *BulkOperationOnCampaigns) GetCampaignIds() []int32 {
 // SetCampaignIds sets field value
 func (o *BulkOperationOnCampaigns) SetCampaignIds(v []int32) {
 	o.CampaignIds = v
+}
+
+// GetActivateAt returns the ActivateAt field value if set, zero value otherwise.
+func (o *BulkOperationOnCampaigns) GetActivateAt() time.Time {
+	if o == nil || o.ActivateAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ActivateAt
+}
+
+// GetActivateAtOk returns a tuple with the ActivateAt field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *BulkOperationOnCampaigns) GetActivateAtOk() (time.Time, bool) {
+	if o == nil || o.ActivateAt == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.ActivateAt, true
+}
+
+// HasActivateAt returns a boolean if a field has been set.
+func (o *BulkOperationOnCampaigns) HasActivateAt() bool {
+	if o != nil && o.ActivateAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetActivateAt gets a reference to the given time.Time and assigns it to the ActivateAt field.
+func (o *BulkOperationOnCampaigns) SetActivateAt(v time.Time) {
+	o.ActivateAt = &v
 }
 
 type NullableBulkOperationOnCampaigns struct {

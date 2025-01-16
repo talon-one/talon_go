@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
+**ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in &#x60;All Applications&#x60;.  | 
 **Title** | Pointer to **string** | Name or title for this webhook. | 
 **Description** | Pointer to **string** | A description of the webhook. | [optional] 
 **Verb** | Pointer to **string** | API method for this webhook. | 

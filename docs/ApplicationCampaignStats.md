@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Disabled** | Pointer to **int32** | Number of disabled campaigns. | 
+**Staged** | Pointer to **int32** | Number of staged campaigns. | 
 **Scheduled** | Pointer to **int32** | Number of scheduled campaigns. | 
 **Running** | Pointer to **int32** | Number of running campaigns. | 
 **Expired** | Pointer to **int32** | Number of expired campaigns. | 
@@ -36,6 +37,31 @@ HasDisabled returns a boolean if a field has been set.
 `func (o *ApplicationCampaignStats) SetDisabled(v int32)`
 
 SetDisabled gets a reference to the given int32 and assigns it to the Disabled field.
+
+### GetStaged
+
+`func (o *ApplicationCampaignStats) GetStaged() int32`
+
+GetStaged returns the Staged field if non-nil, zero value otherwise.
+
+### GetStagedOk
+
+`func (o *ApplicationCampaignStats) GetStagedOk() (int32, bool)`
+
+GetStagedOk returns a tuple with the Staged field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStaged
+
+`func (o *ApplicationCampaignStats) HasStaged() bool`
+
+HasStaged returns a boolean if a field has been set.
+
+### SetStaged
+
+`func (o *ApplicationCampaignStats) SetStaged(v int32)`
+
+SetStaged gets a reference to the given int32 and assigns it to the Staged field.
 
 ### GetScheduled
 

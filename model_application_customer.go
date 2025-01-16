@@ -15,17 +15,17 @@ import (
 	"time"
 )
 
-// ApplicationCustomer
+// ApplicationCustomer struct for ApplicationCustomer
 type ApplicationCustomer struct {
-	// Internal ID of this entity. Internal ID of this entity.
+	// Internal ID of this entity.
 	Id int32 `json:"id"`
-	// The time this entity was created. The time this entity was created. The time this entity was created. The time this entity was created.
+	// The time this entity was created.
 	Created time.Time `json:"created"`
-	// The integration ID set by your integration layer. The integration ID set by your integration layer.
+	// The integration ID set by your integration layer.
 	IntegrationId string `json:"integrationId"`
 	// Arbitrary properties associated with this item.
 	Attributes map[string]interface{} `json:"attributes"`
-	// The ID of the Talon.One account that owns this profile. The ID of the Talon.One account that owns this profile.
+	// The ID of the Talon.One account that owns this profile.
 	AccountId int32 `json:"accountId"`
 	// The total amount of closed sessions by a customer. A closed session is a successful purchase.
 	ClosedSessions int32 `json:"closedSessions"`

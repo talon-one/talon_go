@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// Effect
+// Effect A generic effect that is fired by a triggered campaign. The props property will contain information specific to the specific effect type.
 type Effect struct {
 	// The ID of the campaign that triggered this effect.
 	CampaignId int32 `json:"campaignId"`

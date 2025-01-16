@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewBaseNotification
+// NewBaseNotification struct for NewBaseNotification
 type NewBaseNotification struct {
 	// Indicates which notification properties to apply.
 	Policy map[string]interface{} `json:"policy"`

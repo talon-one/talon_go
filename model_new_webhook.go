@@ -14,9 +14,9 @@ import (
 	"encoding/json"
 )
 
-// NewWebhook
+// NewWebhook struct for NewWebhook
 type NewWebhook struct {
-	// The IDs of the Applications that are related to this entity.
+	// The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in `All Applications`.
 	ApplicationIds []int32 `json:"applicationIds"`
 	// Name or title for this webhook.
 	Title string `json:"title"`

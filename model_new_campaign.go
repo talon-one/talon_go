@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// NewCampaign
+// NewCampaign struct for NewCampaign
 type NewCampaign struct {
 	// A user-facing name for this campaign.
 	Name string `json:"name"`

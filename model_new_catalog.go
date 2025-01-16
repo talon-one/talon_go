@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewCatalog
+// NewCatalog struct for NewCatalog
 type NewCatalog struct {
 	// The cart item catalog name.
 	Name string `json:"name"`

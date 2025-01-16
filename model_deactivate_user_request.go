@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// DeactivateUserRequest
+// DeactivateUserRequest struct for DeactivateUserRequest
 type DeactivateUserRequest struct {
 	// The email address associated with the user profile.
 	Email string `json:"email"`

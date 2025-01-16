@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Campaign
+// Campaign struct for Campaign
 type Campaign struct {
 	// Unique ID for this entity.
 	Id int32 `json:"id"`
@@ -95,10 +95,12 @@ type Campaign struct {
 	UpdatedBy *string `json:"updatedBy,omitempty"`
 	// The ID of the Campaign Template this Campaign was created from.
 	TemplateId *int32 `json:"templateId,omitempty"`
-	// A campaign state described exactly as in the Campaign Manager.
+	// The campaign state displayed in the Campaign Manager.
 	FrontendState string `json:"frontendState"`
 	// Indicates whether the linked stores were imported via a CSV file.
 	StoresImported bool `json:"storesImported"`
+	// The campaign revision state displayed in the Campaign Manager.
+	RevisionFrontendState *string `json:"revisionFrontendState,omitempty"`
 	// ID of the revision that was last activated on this campaign.
 	ActiveRevisionId *int32 `json:"activeRevisionId,omitempty"`
 	// ID of the revision version that is active on the campaign.
@@ -1245,6 +1247,39 @@ func (o *Campaign) GetStoresImported() bool {
 // SetStoresImported sets field value
 func (o *Campaign) SetStoresImported(v bool) {
 	o.StoresImported = v
+}
+
+// GetRevisionFrontendState returns the RevisionFrontendState field value if set, zero value otherwise.
+func (o *Campaign) GetRevisionFrontendState() string {
+	if o == nil || o.RevisionFrontendState == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevisionFrontendState
+}
+
+// GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetRevisionFrontendStateOk() (string, bool) {
+	if o == nil || o.RevisionFrontendState == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.RevisionFrontendState, true
+}
+
+// HasRevisionFrontendState returns a boolean if a field has been set.
+func (o *Campaign) HasRevisionFrontendState() bool {
+	if o != nil && o.RevisionFrontendState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRevisionFrontendState gets a reference to the given string and assigns it to the RevisionFrontendState field.
+func (o *Campaign) SetRevisionFrontendState(v string) {
+	o.RevisionFrontendState = &v
 }
 
 // GetActiveRevisionId returns the ActiveRevisionId field value if set, zero value otherwise.

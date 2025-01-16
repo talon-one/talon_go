@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Return
+// Return struct for Return
 type Return struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

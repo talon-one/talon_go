@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Coupon
+// Coupon struct for Coupon
 type Coupon struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

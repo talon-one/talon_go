@@ -59,7 +59,7 @@ type AdditionalCampaignProperties struct {
 	UpdatedBy *string `json:"updatedBy,omitempty"`
 	// The ID of the Campaign Template this Campaign was created from.
 	TemplateId *int32 `json:"templateId,omitempty"`
-	// A campaign state described exactly as in the Campaign Manager.
+	// The campaign state displayed in the Campaign Manager.
 	FrontendState string `json:"frontendState"`
 	// Indicates whether the linked stores were imported via a CSV file.
 	StoresImported bool `json:"storesImported"`

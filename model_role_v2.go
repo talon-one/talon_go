@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// RoleV2
+// RoleV2 struct for RoleV2
 type RoleV2 struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional] 
 **CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
-**Expression** | Pointer to [**[]interface{}**](map[string]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
+**Expression** | Pointer to [**[]interface{}**](interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
 **ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
 
 ## Methods
@@ -136,7 +136,7 @@ HasExpression returns a boolean if a field has been set.
 
 `func (o *ApplicationCifExpression) SetExpression(v []interface{})`
 
-SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
+SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
 
 ### GetApplicationId
 

@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// TemplateDef
+// TemplateDef struct for TemplateDef
 type TemplateDef struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

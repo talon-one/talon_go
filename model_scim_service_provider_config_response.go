@@ -23,7 +23,8 @@ type ScimServiceProviderConfigResponse struct {
 	Filter           *ScimServiceProviderConfigResponseFilter `json:"filter,omitempty"`
 	Patch            *ScimServiceProviderConfigResponsePatch  `json:"patch,omitempty"`
 	// A list of SCIM schemas that define the structure and data types supported by the service provider.
-	Schemas *[]string `json:"schemas,omitempty"`
+	Schemas *[]string                              `json:"schemas,omitempty"`
+	Sort    *ScimServiceProviderConfigResponseSort `json:"sort,omitempty"`
 }
 
 // GetBulk returns the Bulk field value if set, zero value otherwise.
@@ -222,6 +223,39 @@ func (o *ScimServiceProviderConfigResponse) HasSchemas() bool {
 // SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
 func (o *ScimServiceProviderConfigResponse) SetSchemas(v []string) {
 	o.Schemas = &v
+}
+
+// GetSort returns the Sort field value if set, zero value otherwise.
+func (o *ScimServiceProviderConfigResponse) GetSort() ScimServiceProviderConfigResponseSort {
+	if o == nil || o.Sort == nil {
+		var ret ScimServiceProviderConfigResponseSort
+		return ret
+	}
+	return *o.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ScimServiceProviderConfigResponse) GetSortOk() (ScimServiceProviderConfigResponseSort, bool) {
+	if o == nil || o.Sort == nil {
+		var ret ScimServiceProviderConfigResponseSort
+		return ret, false
+	}
+	return *o.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (o *ScimServiceProviderConfigResponse) HasSort() bool {
+	if o != nil && o.Sort != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSort gets a reference to the given ScimServiceProviderConfigResponseSort and assigns it to the Sort field.
+func (o *ScimServiceProviderConfigResponse) SetSort(v ScimServiceProviderConfigResponseSort) {
+	o.Sort = &v
 }
 
 type NullableScimServiceProviderConfigResponse struct {

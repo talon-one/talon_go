@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// NewReferralsForMultipleAdvocates
+// NewReferralsForMultipleAdvocates struct for NewReferralsForMultipleAdvocates
 type NewReferralsForMultipleAdvocates struct {
 	// Timestamp at which point the referral code becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`

@@ -16,9 +16,9 @@ import (
 
 // NewLoyaltyTier A tier in a loyalty program.
 type NewLoyaltyTier struct {
-	// The name of the tier
+	// The name of the tier.
 	Name string `json:"name"`
-	// The minimum amount of points required to be eligible for the tier.
+	// The minimum amount of points required to enter the tier.
 	MinPoints float32 `json:"minPoints"`
 }
 

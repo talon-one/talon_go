@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** | Name of the user who created this campaign if available. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign if available. | [optional] 
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
-**FrontendState** | Pointer to **string** | A campaign state described exactly as in the Campaign Manager. | 
+**FrontendState** | Pointer to **string** | The campaign state displayed in the Campaign Manager. | 
 **StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
 
 ## Methods

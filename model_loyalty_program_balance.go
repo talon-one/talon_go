@@ -24,9 +24,9 @@ type LoyaltyProgramBalance struct {
 	ExpiredBalance float32 `json:"expiredBalance"`
 	// **DEPRECATED** Value is shown as 0.
 	SpentBalance float32 `json:"spentBalance"`
-	// Sum of the tentative active points (including additions and deductions) inside the currently open session. The `currentBalance` is updated to this value when you close the session, and the effects are applied.
+	// The tentative points balance, reflecting the `currentBalance` and all point additions and deductions within the current open customer session. When the session is closed, the effects are applied and the `currentBalance` is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
 	TentativeCurrentBalance float32 `json:"tentativeCurrentBalance"`
-	// Sum of pending points (including additions and deductions) inside the currently open session. The `pendingBalance` is updated to this value when you close the session, and the effects are applied.
+	// The tentative points balance, reflecting the `pendingBalance` and all point additions with a future activation date within the current open customer session. When the session is closed, the effects are applied and the `pendingBalance` is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
 	TentativePendingBalance *float32 `json:"tentativePendingBalance,omitempty"`
 }
 

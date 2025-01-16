@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Active** | Pointer to **bool** | Status of the user. | [optional] 
 **DisplayName** | Pointer to **string** | Display name of the user. | [optional] 
-**UserName** | Pointer to **string** | Unique identifier of the user. This is usually an email address. | [optional] 
+**UserName** | Pointer to **string** | Unique identifier of the user. This is usually an email address. | 
 **Name** | Pointer to [**ScimBaseUserName**](ScimBaseUser_name.md) |  | [optional] 
 
 ## Methods

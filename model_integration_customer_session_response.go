@@ -17,7 +17,8 @@ import (
 // IntegrationCustomerSessionResponse struct for IntegrationCustomerSessionResponse
 type IntegrationCustomerSessionResponse struct {
 	CustomerSession *CustomerSessionV2 `json:"customerSession,omitempty"`
-	Effects         *[]Effect          `json:"effects,omitempty"`
+	// The returned effects.  **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed.
+	Effects *[]Effect `json:"effects,omitempty"`
 }
 
 // GetCustomerSession returns the CustomerSession field value if set, zero value otherwise.

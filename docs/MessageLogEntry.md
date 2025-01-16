@@ -9,12 +9,16 @@ Name | Type | Description | Notes
 **ChangeType** | Pointer to **string** | Type of change that triggered the notification. | [optional] 
 **NotificationId** | Pointer to **int32** | ID of the notification. | [optional] 
 **NotificationName** | Pointer to **string** | The name of the notification. | [optional] 
+**WebhookId** | Pointer to **int32** | ID of the webhook. | [optional] 
+**WebhookName** | Pointer to **string** | The name of the webhook. | [optional] 
 **Request** | Pointer to [**MessageLogRequest**](MessageLogRequest.md) |  | [optional] 
 **Response** | Pointer to [**MessageLogResponse**](MessageLogResponse.md) |  | [optional] 
 **CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the log entry was created. | 
-**EntityType** | Pointer to **string** | The entity type the notification is related to.  | [optional] 
+**EntityType** | Pointer to **string** | The entity type the log is related to.  | 
+**Url** | Pointer to **string** | The target URL of the request. | [optional] 
 **ApplicationId** | Pointer to **int32** | Identifier of the Application. | [optional] 
 **LoyaltyProgramId** | Pointer to **int32** | Identifier of the loyalty program. | [optional] 
+**CampaignId** | Pointer to **int32** | Identifier of the campaign. | [optional] 
 
 ## Methods
 
@@ -143,6 +147,56 @@ HasNotificationName returns a boolean if a field has been set.
 
 SetNotificationName gets a reference to the given string and assigns it to the NotificationName field.
 
+### GetWebhookId
+
+`func (o *MessageLogEntry) GetWebhookId() int32`
+
+GetWebhookId returns the WebhookId field if non-nil, zero value otherwise.
+
+### GetWebhookIdOk
+
+`func (o *MessageLogEntry) GetWebhookIdOk() (int32, bool)`
+
+GetWebhookIdOk returns a tuple with the WebhookId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasWebhookId
+
+`func (o *MessageLogEntry) HasWebhookId() bool`
+
+HasWebhookId returns a boolean if a field has been set.
+
+### SetWebhookId
+
+`func (o *MessageLogEntry) SetWebhookId(v int32)`
+
+SetWebhookId gets a reference to the given int32 and assigns it to the WebhookId field.
+
+### GetWebhookName
+
+`func (o *MessageLogEntry) GetWebhookName() string`
+
+GetWebhookName returns the WebhookName field if non-nil, zero value otherwise.
+
+### GetWebhookNameOk
+
+`func (o *MessageLogEntry) GetWebhookNameOk() (string, bool)`
+
+GetWebhookNameOk returns a tuple with the WebhookName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasWebhookName
+
+`func (o *MessageLogEntry) HasWebhookName() bool`
+
+HasWebhookName returns a boolean if a field has been set.
+
+### SetWebhookName
+
+`func (o *MessageLogEntry) SetWebhookName(v string)`
+
+SetWebhookName gets a reference to the given string and assigns it to the WebhookName field.
+
 ### GetRequest
 
 `func (o *MessageLogEntry) GetRequest() MessageLogRequest`
@@ -243,6 +297,31 @@ HasEntityType returns a boolean if a field has been set.
 
 SetEntityType gets a reference to the given string and assigns it to the EntityType field.
 
+### GetUrl
+
+`func (o *MessageLogEntry) GetUrl() string`
+
+GetUrl returns the Url field if non-nil, zero value otherwise.
+
+### GetUrlOk
+
+`func (o *MessageLogEntry) GetUrlOk() (string, bool)`
+
+GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUrl
+
+`func (o *MessageLogEntry) HasUrl() bool`
+
+HasUrl returns a boolean if a field has been set.
+
+### SetUrl
+
+`func (o *MessageLogEntry) SetUrl(v string)`
+
+SetUrl gets a reference to the given string and assigns it to the Url field.
+
 ### GetApplicationId
 
 `func (o *MessageLogEntry) GetApplicationId() int32`
@@ -292,6 +371,31 @@ HasLoyaltyProgramId returns a boolean if a field has been set.
 `func (o *MessageLogEntry) SetLoyaltyProgramId(v int32)`
 
 SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
+
+### GetCampaignId
+
+`func (o *MessageLogEntry) GetCampaignId() int32`
+
+GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
+
+### GetCampaignIdOk
+
+`func (o *MessageLogEntry) GetCampaignIdOk() (int32, bool)`
+
+GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCampaignId
+
+`func (o *MessageLogEntry) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### SetCampaignId
+
+`func (o *MessageLogEntry) SetCampaignId(v int32)`
+
+SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// CampaignEvaluationGroup
+// CampaignEvaluationGroup struct for CampaignEvaluationGroup
 type CampaignEvaluationGroup struct {
 	// The ID of the application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`

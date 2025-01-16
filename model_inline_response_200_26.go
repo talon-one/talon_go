@@ -16,29 +16,47 @@ import (
 
 // InlineResponse20026 struct for InlineResponse20026
 type InlineResponse20026 struct {
-	HasMore bool                     `json:"hasMore"`
-	Data    []CustomerActivityReport `json:"data"`
+	HasMore *bool                `json:"hasMore,omitempty"`
+	Data    []ApplicationSession `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
 func (o *InlineResponse20026) GetHasMore() bool {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.HasMore
+	return *o.HasMore
 }
 
-// SetHasMore sets field value
+// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20026) GetHasMoreOk() (bool, bool) {
+	if o == nil || o.HasMore == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.HasMore, true
+}
+
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20026) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 func (o *InlineResponse20026) SetHasMore(v bool) {
-	o.HasMore = v
+	o.HasMore = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20026) GetData() []CustomerActivityReport {
+func (o *InlineResponse20026) GetData() []ApplicationSession {
 	if o == nil {
-		var ret []CustomerActivityReport
+		var ret []ApplicationSession
 		return ret
 	}
 
@@ -46,7 +64,7 @@ func (o *InlineResponse20026) GetData() []CustomerActivityReport {
 }
 
 // SetData sets field value
-func (o *InlineResponse20026) SetData(v []CustomerActivityReport) {
+func (o *InlineResponse20026) SetData(v []ApplicationSession) {
 	o.Data = v
 }
 

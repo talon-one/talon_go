@@ -16,8 +16,8 @@ import (
 
 // InlineResponse20031 struct for InlineResponse20031
 type InlineResponse20031 struct {
-	HasMore *bool               `json:"hasMore,omitempty"`
-	Data    []AudienceAnalytics `json:"data"`
+	HasMore *bool             `json:"hasMore,omitempty"`
+	Data    []CustomerProfile `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value if set, zero value otherwise.
@@ -54,9 +54,9 @@ func (o *InlineResponse20031) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20031) GetData() []AudienceAnalytics {
+func (o *InlineResponse20031) GetData() []CustomerProfile {
 	if o == nil {
-		var ret []AudienceAnalytics
+		var ret []CustomerProfile
 		return ret
 	}
 
@@ -64,7 +64,7 @@ func (o *InlineResponse20031) GetData() []AudienceAnalytics {
 }
 
 // SetData sets field value
-func (o *InlineResponse20031) SetData(v []AudienceAnalytics) {
+func (o *InlineResponse20031) SetData(v []CustomerProfile) {
 	o.Data = v
 }
 

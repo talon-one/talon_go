@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// TalangAttribute
+// TalangAttribute struct for TalangAttribute
 type TalangAttribute struct {
 	// The name of the entity of the attribute.
 	Entity *string `json:"entity,omitempty"`

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The ID of loyalty program. Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The ID of loyalty program. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Title** | Pointer to **string** | The display title for the Loyalty Program. | 
 **Description** | Pointer to **string** | Description of our Loyalty Program. | 
@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **TiersExpireIn** | Pointer to **string** | The amount of time after which the tier expires and is reevaluated.  The time format is an **integer** followed by one letter indicating the time unit. Examples: &#x60;30s&#x60;, &#x60;40m&#x60;, &#x60;1h&#x60;, &#x60;5D&#x60;, &#x60;7W&#x60;, &#x60;10M&#x60;, &#x60;15Y&#x60;.  Available units:  - &#x60;s&#x60;: seconds - &#x60;m&#x60;: minutes - &#x60;h&#x60;: hours - &#x60;D&#x60;: days - &#x60;W&#x60;: weeks - &#x60;M&#x60;: months - &#x60;Y&#x60;: years  You can round certain units up or down: - &#x60;_D&#x60; for rounding down days only. Signifies the start of the day. - &#x60;_U&#x60; for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  | [optional] 
 **TiersDowngradePolicy** | Pointer to **string** | The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - &#x60;one_down&#x60;: If the customer doesn&#39;t have enough points to stay in the current tier, they are downgraded by one tier.  - &#x60;balance_based&#x60;: The customer&#39;s tier is reevaluated based on the amount of active points they have at the moment.  | [optional] 
 **CardCodeSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
+**ReturnPolicy** | Pointer to **string** | The policy that defines the rollback of points in case of a partially returned, cancelled, or reopened [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). - &#x60;only_pending&#x60;: Only pending points can be rolled back. - &#x60;within_balance&#x60;: Available active points can be rolled back if there aren&#39;t enough pending points. The active balance of the customer cannot be negative.  | [optional] 
 **AccountID** | Pointer to **int32** | The ID of the Talon.One account that owns this program. | 
 **Name** | Pointer to **string** | The internal name for the Loyalty Program. This is an immutable value. | 
 **Tiers** | Pointer to [**[]LoyaltyTier**](LoyaltyTier.md) | The tiers in this loyalty program. | [optional] 
@@ -432,6 +433,31 @@ HasCardCodeSettings returns a boolean if a field has been set.
 `func (o *LoyaltyProgram) SetCardCodeSettings(v CodeGeneratorSettings)`
 
 SetCardCodeSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CardCodeSettings field.
+
+### GetReturnPolicy
+
+`func (o *LoyaltyProgram) GetReturnPolicy() string`
+
+GetReturnPolicy returns the ReturnPolicy field if non-nil, zero value otherwise.
+
+### GetReturnPolicyOk
+
+`func (o *LoyaltyProgram) GetReturnPolicyOk() (string, bool)`
+
+GetReturnPolicyOk returns a tuple with the ReturnPolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasReturnPolicy
+
+`func (o *LoyaltyProgram) HasReturnPolicy() bool`
+
+HasReturnPolicy returns a boolean if a field has been set.
+
+### SetReturnPolicy
+
+`func (o *LoyaltyProgram) SetReturnPolicy(v string)`
+
+SetReturnPolicy gets a reference to the given string and assigns it to the ReturnPolicy field.
 
 ### GetAccountID
 

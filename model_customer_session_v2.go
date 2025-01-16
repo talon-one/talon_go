@@ -15,11 +15,11 @@ import (
 	"time"
 )
 
-// CustomerSessionV2
+// CustomerSessionV2 The representation of the customer session.
 type CustomerSessionV2 struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
-	// The time this entity was created. The time this entity was created.
+	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
 	IntegrationId string `json:"integrationId"`
@@ -31,9 +31,9 @@ type CustomerSessionV2 struct {
 	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
 	EvaluableCampaignIds *[]int32 `json:"evaluableCampaignIds,omitempty"`
-	// Any coupon codes entered.  **Important - for requests only**:  - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it. - In requests where `dry=false`, providing an empty array discards any previous coupons. To avoid this, provide `\"couponCodes\": null` or omit the parameter entirely.
+	// Any coupon codes entered.  **Important - for requests only**:  - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it. - In requests where `dry=false`, providing an empty array discards any previous coupons. To avoid this, omit the parameter entirely.
 	CouponCodes *[]string `json:"couponCodes,omitempty"`
-	// Any referral code entered.  **Important - for requests only**:  - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it. - In requests where `dry=false`, providing an empty value discards the previous referral code. To avoid this, provide `\"referralCode\": null` or omit the parameter entirely.
+	// Any referral code entered.  **Important - for requests only**:  - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it. - In requests where `dry=false`, providing an empty value discards the previous referral code. To avoid this, omit the parameter entirely.
 	ReferralCode *string `json:"referralCode,omitempty"`
 	// Identifier of a loyalty card.
 	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
@@ -43,11 +43,11 @@ type CustomerSessionV2 struct {
 	CartItems []CartItem `json:"cartItems"`
 	// Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
-	// Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview).
+	// Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value.
 	Identifiers *[]string `json:"identifiers,omitempty"`
 	// Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property.
 	Attributes map[string]interface{} `json:"attributes"`
-	// Indicates whether this is the first session for the customer's profile. Will always be true for anonymous sessions.
+	// Indicates whether this is the first session for the customer's profile. It's always `true` for anonymous sessions.
 	FirstSession bool `json:"firstSession"`
 	// The total value of cart items and additional costs in the session, before any discounts are applied.
 	Total float32 `json:"total"`
@@ -57,6 +57,8 @@ type CustomerSessionV2 struct {
 	AdditionalCostTotal float32 `json:"additionalCostTotal"`
 	// Timestamp of the most recent event received on this session.
 	Updated time.Time `json:"updated"`
+	// The likelihood of the customer session closing based on predictive modeling, expressed as a decimal between `0` and `1`.
+	ClosurePrediction *float32 `json:"closurePrediction,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -483,6 +485,39 @@ func (o *CustomerSessionV2) GetUpdated() time.Time {
 // SetUpdated sets field value
 func (o *CustomerSessionV2) SetUpdated(v time.Time) {
 	o.Updated = v
+}
+
+// GetClosurePrediction returns the ClosurePrediction field value if set, zero value otherwise.
+func (o *CustomerSessionV2) GetClosurePrediction() float32 {
+	if o == nil || o.ClosurePrediction == nil {
+		var ret float32
+		return ret
+	}
+	return *o.ClosurePrediction
+}
+
+// GetClosurePredictionOk returns a tuple with the ClosurePrediction field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerSessionV2) GetClosurePredictionOk() (float32, bool) {
+	if o == nil || o.ClosurePrediction == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.ClosurePrediction, true
+}
+
+// HasClosurePrediction returns a boolean if a field has been set.
+func (o *CustomerSessionV2) HasClosurePrediction() bool {
+	if o != nil && o.ClosurePrediction != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClosurePrediction gets a reference to the given float32 and assigns it to the ClosurePrediction field.
+func (o *CustomerSessionV2) SetClosurePrediction(v float32) {
+	o.ClosurePrediction = &v
 }
 
 type NullableCustomerSessionV2 struct {

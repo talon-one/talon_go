@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **NumberOfCards** | Pointer to **int32** | Number of loyalty cards in the batch. | 
 **BatchId** | Pointer to **string** | ID of the loyalty card batch. | [optional] 
 **Status** | Pointer to **string** | Status of the loyalty cards in the batch. | [optional] [default to STATUS_ACTIVE]
+**CardCodeSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 
 ## Methods
 
@@ -84,6 +85,31 @@ HasStatus returns a boolean if a field has been set.
 `func (o *LoyaltyCardBatch) SetStatus(v string)`
 
 SetStatus gets a reference to the given string and assigns it to the Status field.
+
+### GetCardCodeSettings
+
+`func (o *LoyaltyCardBatch) GetCardCodeSettings() CodeGeneratorSettings`
+
+GetCardCodeSettings returns the CardCodeSettings field if non-nil, zero value otherwise.
+
+### GetCardCodeSettingsOk
+
+`func (o *LoyaltyCardBatch) GetCardCodeSettingsOk() (CodeGeneratorSettings, bool)`
+
+GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasCardCodeSettings
+
+`func (o *LoyaltyCardBatch) HasCardCodeSettings() bool`
+
+HasCardCodeSettings returns a boolean if a field has been set.
+
+### SetCardCodeSettings
+
+`func (o *LoyaltyCardBatch) SetCardCodeSettings(v CodeGeneratorSettings)`
+
+SetCardCodeSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CardCodeSettings field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

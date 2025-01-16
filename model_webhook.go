@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// Webhook
+// Webhook struct for Webhook
 type Webhook struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
@@ -23,7 +23,7 @@ type Webhook struct {
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
-	// The IDs of the Applications that are related to this entity. The IDs of the Applications that are related to this entity.
+	// The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in `All Applications`.
 	ApplicationIds []int32 `json:"applicationIds"`
 	// Name or title for this webhook.
 	Title string `json:"title"`

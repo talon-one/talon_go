@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// CampaignTemplate
+// CampaignTemplate struct for CampaignTemplate
 type CampaignTemplate struct {
 	// Internal ID of this entity.
 	Id int32 `json:"id"`
@@ -42,9 +42,10 @@ type CampaignTemplate struct {
 	// A list of tags for the campaign template.
 	Tags *[]string `json:"tags,omitempty"`
 	// A list of features for the campaign template.
-	Features         *[]string              `json:"features,omitempty"`
-	CouponSettings   *CodeGeneratorSettings `json:"couponSettings,omitempty"`
-	ReferralSettings *CodeGeneratorSettings `json:"referralSettings,omitempty"`
+	Features                  *[]string                                  `json:"features,omitempty"`
+	CouponSettings            *CodeGeneratorSettings                     `json:"couponSettings,omitempty"`
+	CouponReservationSettings *CampaignTemplateCouponReservationSettings `json:"couponReservationSettings,omitempty"`
+	ReferralSettings          *CodeGeneratorSettings                     `json:"referralSettings,omitempty"`
 	// The set of limits that operate for this campaign template.
 	Limits *[]TemplateLimitConfig `json:"limits,omitempty"`
 	// Fields which can be used to replace values in a rule.
@@ -381,6 +382,39 @@ func (o *CampaignTemplate) HasCouponSettings() bool {
 // SetCouponSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CouponSettings field.
 func (o *CampaignTemplate) SetCouponSettings(v CodeGeneratorSettings) {
 	o.CouponSettings = &v
+}
+
+// GetCouponReservationSettings returns the CouponReservationSettings field value if set, zero value otherwise.
+func (o *CampaignTemplate) GetCouponReservationSettings() CampaignTemplateCouponReservationSettings {
+	if o == nil || o.CouponReservationSettings == nil {
+		var ret CampaignTemplateCouponReservationSettings
+		return ret
+	}
+	return *o.CouponReservationSettings
+}
+
+// GetCouponReservationSettingsOk returns a tuple with the CouponReservationSettings field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignTemplate) GetCouponReservationSettingsOk() (CampaignTemplateCouponReservationSettings, bool) {
+	if o == nil || o.CouponReservationSettings == nil {
+		var ret CampaignTemplateCouponReservationSettings
+		return ret, false
+	}
+	return *o.CouponReservationSettings, true
+}
+
+// HasCouponReservationSettings returns a boolean if a field has been set.
+func (o *CampaignTemplate) HasCouponReservationSettings() bool {
+	if o != nil && o.CouponReservationSettings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponReservationSettings gets a reference to the given CampaignTemplateCouponReservationSettings and assigns it to the CouponReservationSettings field.
+func (o *CampaignTemplate) SetCouponReservationSettings(v CampaignTemplateCouponReservationSettings) {
+	o.CouponReservationSettings = &v
 }
 
 // GetReferralSettings returns the ReferralSettings field value if set, zero value otherwise.

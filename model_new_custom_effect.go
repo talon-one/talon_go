@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// NewCustomEffect
+// NewCustomEffect struct for NewCustomEffect
 type NewCustomEffect struct {
 	// The IDs of the Applications that are related to this entity.
 	ApplicationIds []int32 `json:"applicationIds"`

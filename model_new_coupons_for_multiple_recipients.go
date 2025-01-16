@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// NewCouponsForMultipleRecipients
+// NewCouponsForMultipleRecipients struct for NewCouponsForMultipleRecipients
 type NewCouponsForMultipleRecipients struct {
 	// The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
 	UsageLimit int32 `json:"usageLimit"`

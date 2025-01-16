@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
 **TotalResultSize** | Pointer to **int32** |  | [optional] 
-**Data** | Pointer to [**[]ApplicationCustomer**](ApplicationCustomer.md) |  | 
+**Data** | Pointer to [**[]CustomerProfile**](CustomerProfile.md) |  | 
 
 ## Methods
 
@@ -62,13 +62,13 @@ SetTotalResultSize gets a reference to the given int32 and assigns it to the Tot
 
 ### GetData
 
-`func (o *InlineResponse20023) GetData() []ApplicationCustomer`
+`func (o *InlineResponse20023) GetData() []CustomerProfile`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20023) GetDataOk() ([]ApplicationCustomer, bool)`
+`func (o *InlineResponse20023) GetDataOk() ([]CustomerProfile, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -81,9 +81,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20023) SetData(v []ApplicationCustomer)`
+`func (o *InlineResponse20023) SetData(v []CustomerProfile)`
 
-SetData gets a reference to the given []ApplicationCustomer and assigns it to the Data field.
+SetData gets a reference to the given []CustomerProfile and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// LoyaltyCardBalances
+// LoyaltyCardBalances List of customer profiles linked to the loyalty card.
 type LoyaltyCardBalances struct {
 	Balance *LoyaltyBalance `json:"balance,omitempty"`
 	// Map of the loyalty balances of the subledgers of a ledger.

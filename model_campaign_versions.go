@@ -16,6 +16,8 @@ import (
 
 // CampaignVersions struct for CampaignVersions
 type CampaignVersions struct {
+	// The campaign revision state displayed in the Campaign Manager.
+	RevisionFrontendState *string `json:"revisionFrontendState,omitempty"`
 	// ID of the revision that was last activated on this campaign.
 	ActiveRevisionId *int32 `json:"activeRevisionId,omitempty"`
 	// ID of the revision version that is active on the campaign.
@@ -28,6 +30,39 @@ type CampaignVersions struct {
 	CurrentRevisionVersionId *int32 `json:"currentRevisionVersionId,omitempty"`
 	// Flag for determining whether we use current revision when sending requests with staging API key.
 	StageRevision *bool `json:"stageRevision,omitempty"`
+}
+
+// GetRevisionFrontendState returns the RevisionFrontendState field value if set, zero value otherwise.
+func (o *CampaignVersions) GetRevisionFrontendState() string {
+	if o == nil || o.RevisionFrontendState == nil {
+		var ret string
+		return ret
+	}
+	return *o.RevisionFrontendState
+}
+
+// GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignVersions) GetRevisionFrontendStateOk() (string, bool) {
+	if o == nil || o.RevisionFrontendState == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.RevisionFrontendState, true
+}
+
+// HasRevisionFrontendState returns a boolean if a field has been set.
+func (o *CampaignVersions) HasRevisionFrontendState() bool {
+	if o != nil && o.RevisionFrontendState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRevisionFrontendState gets a reference to the given string and assigns it to the RevisionFrontendState field.
+func (o *CampaignVersions) SetRevisionFrontendState(v string) {
+	o.RevisionFrontendState = &v
 }
 
 // GetActiveRevisionId returns the ActiveRevisionId field value if set, zero value otherwise.

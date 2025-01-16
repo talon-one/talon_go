@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// UpdateLoyaltyProgram
+// UpdateLoyaltyProgram An updated loyalty program.
 type UpdateLoyaltyProgram struct {
 	// The display title for the Loyalty Program.
 	Title *string `json:"title,omitempty"`
@@ -44,6 +44,8 @@ type UpdateLoyaltyProgram struct {
 	// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
 	TiersDowngradePolicy *string                `json:"tiersDowngradePolicy,omitempty"`
 	CardCodeSettings     *CodeGeneratorSettings `json:"cardCodeSettings,omitempty"`
+	// The policy that defines the rollback of points in case of a partially returned, cancelled, or reopened [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). - `only_pending`: Only pending points can be rolled back. - `within_balance`: Available active points can be rolled back if there aren't enough pending points. The active balance of the customer cannot be negative.
+	ReturnPolicy *string `json:"returnPolicy,omitempty"`
 	// The tiers in this loyalty program.
 	Tiers *[]NewLoyaltyTier `json:"tiers,omitempty"`
 }
@@ -508,6 +510,39 @@ func (o *UpdateLoyaltyProgram) HasCardCodeSettings() bool {
 // SetCardCodeSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CardCodeSettings field.
 func (o *UpdateLoyaltyProgram) SetCardCodeSettings(v CodeGeneratorSettings) {
 	o.CardCodeSettings = &v
+}
+
+// GetReturnPolicy returns the ReturnPolicy field value if set, zero value otherwise.
+func (o *UpdateLoyaltyProgram) GetReturnPolicy() string {
+	if o == nil || o.ReturnPolicy == nil {
+		var ret string
+		return ret
+	}
+	return *o.ReturnPolicy
+}
+
+// GetReturnPolicyOk returns a tuple with the ReturnPolicy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateLoyaltyProgram) GetReturnPolicyOk() (string, bool) {
+	if o == nil || o.ReturnPolicy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.ReturnPolicy, true
+}
+
+// HasReturnPolicy returns a boolean if a field has been set.
+func (o *UpdateLoyaltyProgram) HasReturnPolicy() bool {
+	if o != nil && o.ReturnPolicy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReturnPolicy gets a reference to the given string and assigns it to the ReturnPolicy field.
+func (o *UpdateLoyaltyProgram) SetReturnPolicy(v string) {
+	o.ReturnPolicy = &v
 }
 
 // GetTiers returns the Tiers field value if set, zero value otherwise.

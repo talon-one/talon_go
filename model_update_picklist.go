@@ -14,7 +14,7 @@ import (
 	"encoding/json"
 )
 
-// UpdatePicklist
+// UpdatePicklist struct for UpdatePicklist
 type UpdatePicklist struct {
 	// The type of allowed values in the picklist. If the type `time` is chosen, it must be an RFC3339 timestamp string.
 	Type string `json:"type"`
