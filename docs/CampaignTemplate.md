@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the campaign template or any of its elements. | [optional] 
 **UpdatedBy** | Pointer to **string** | Name of the user who last updated this campaign template, if available. | [optional] 
 **ValidApplicationIds** | Pointer to **[]int32** | The IDs of the Applications that are related to this entity. | 
+**IsUserFavorite** | Pointer to **bool** | A flag indicating whether the user marked the template as a favorite. | [optional] [default to false]
 
 ## Methods
 
@@ -656,6 +657,31 @@ HasValidApplicationIds returns a boolean if a field has been set.
 `func (o *CampaignTemplate) SetValidApplicationIds(v []int32)`
 
 SetValidApplicationIds gets a reference to the given []int32 and assigns it to the ValidApplicationIds field.
+
+### GetIsUserFavorite
+
+`func (o *CampaignTemplate) GetIsUserFavorite() bool`
+
+GetIsUserFavorite returns the IsUserFavorite field if non-nil, zero value otherwise.
+
+### GetIsUserFavoriteOk
+
+`func (o *CampaignTemplate) GetIsUserFavoriteOk() (bool, bool)`
+
+GetIsUserFavoriteOk returns a tuple with the IsUserFavorite field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasIsUserFavorite
+
+`func (o *CampaignTemplate) HasIsUserFavorite() bool`
+
+HasIsUserFavorite returns a boolean if a field has been set.
+
+### SetIsUserFavorite
+
+`func (o *CampaignTemplate) SetIsUserFavorite(v bool)`
+
+SetIsUserFavorite gets a reference to the given bool and assigns it to the IsUserFavorite field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -19,6 +19,7 @@ type SummaryCampaignStoreBudget struct {
 	Action     string  `json:"action"`
 	Period     *string `json:"period,omitempty"`
 	StoreCount int32   `json:"storeCount"`
+	Imported   bool    `json:"imported"`
 }
 
 // GetAction returns the Action field value
@@ -82,6 +83,21 @@ func (o *SummaryCampaignStoreBudget) GetStoreCount() int32 {
 // SetStoreCount sets field value
 func (o *SummaryCampaignStoreBudget) SetStoreCount(v int32) {
 	o.StoreCount = v
+}
+
+// GetImported returns the Imported field value
+func (o *SummaryCampaignStoreBudget) GetImported() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Imported
+}
+
+// SetImported sets field value
+func (o *SummaryCampaignStoreBudget) SetImported(v bool) {
+	o.Imported = v
 }
 
 type NullableSummaryCampaignStoreBudget struct {

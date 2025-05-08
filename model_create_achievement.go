@@ -26,7 +26,7 @@ type CreateAchievement struct {
 	// The required number of actions or the transactional milestone to complete the achievement.
 	Target float32 `json:"target"`
 	// The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The `period` does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can also round certain units down to the beginning of period and up to the end of period.: - `_D` for rounding down days only. Signifies the start of the day. Example: `30D_D` - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: `23W_U`  **Note**: You can either use the round down and round up option or set an absolute period.
-	Period            string     `json:"period"`
+	Period            *string    `json:"period,omitempty"`
 	PeriodEndOverride *TimePoint `json:"periodEndOverride,omitempty"`
 	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again.
 	RecurrencePolicy *string `json:"recurrencePolicy,omitempty"`
@@ -98,19 +98,37 @@ func (o *CreateAchievement) SetTarget(v float32) {
 	o.Target = v
 }
 
-// GetPeriod returns the Period field value
+// GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *CreateAchievement) GetPeriod() string {
-	if o == nil {
+	if o == nil || o.Period == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Period
+	return *o.Period
 }
 
-// SetPeriod sets field value
+// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateAchievement) GetPeriodOk() (string, bool) {
+	if o == nil || o.Period == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Period, true
+}
+
+// HasPeriod returns a boolean if a field has been set.
+func (o *CreateAchievement) HasPeriod() bool {
+	if o != nil && o.Period != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriod gets a reference to the given string and assigns it to the Period field.
 func (o *CreateAchievement) SetPeriod(v string) {
-	o.Period = v
+	o.Period = &v
 }
 
 // GetPeriodEndOverride returns the PeriodEndOverride field value if set, zero value otherwise.

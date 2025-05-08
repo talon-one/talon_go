@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **PendingPoints** | Pointer to **float32** | Total amount of points awarded to this customer but not available until their start date. | [optional] 
 **SpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer. | [optional] 
 **ExpiredPoints** | Pointer to **float32** | Total amount of points awarded but never redeemed. They cannot be used anymore. | [optional] 
+**NegativePoints** | Pointer to **float32** | Total amount of negative points. This implies that &#x60;activePoints&#x60; is &#x60;0&#x60;. | [optional] 
 **CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **ProjectedTier** | Pointer to [**ProjectedTier**](ProjectedTier.md) |  | [optional] 
 **PointsToNextTier** | Pointer to **float32** | The number of points required to move up a tier. | [optional] 
@@ -114,6 +115,31 @@ HasExpiredPoints returns a boolean if a field has been set.
 `func (o *LoyaltyBalanceWithTier) SetExpiredPoints(v float32)`
 
 SetExpiredPoints gets a reference to the given float32 and assigns it to the ExpiredPoints field.
+
+### GetNegativePoints
+
+`func (o *LoyaltyBalanceWithTier) GetNegativePoints() float32`
+
+GetNegativePoints returns the NegativePoints field if non-nil, zero value otherwise.
+
+### GetNegativePointsOk
+
+`func (o *LoyaltyBalanceWithTier) GetNegativePointsOk() (float32, bool)`
+
+GetNegativePointsOk returns a tuple with the NegativePoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasNegativePoints
+
+`func (o *LoyaltyBalanceWithTier) HasNegativePoints() bool`
+
+HasNegativePoints returns a boolean if a field has been set.
+
+### SetNegativePoints
+
+`func (o *LoyaltyBalanceWithTier) SetNegativePoints(v float32)`
+
+SetNegativePoints gets a reference to the given float32 and assigns it to the NegativePoints field.
 
 ### GetCurrentTier
 

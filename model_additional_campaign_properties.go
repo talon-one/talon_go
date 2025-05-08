@@ -18,7 +18,7 @@ import (
 // AdditionalCampaignProperties struct for AdditionalCampaignProperties
 type AdditionalCampaignProperties struct {
 	// A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.
-	Budgets []CampaignBudget `json:"budgets"`
+	Budgets *[]CampaignBudget `json:"budgets,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.
 	CouponRedemptionCount *int32 `json:"couponRedemptionCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.
@@ -63,21 +63,41 @@ type AdditionalCampaignProperties struct {
 	FrontendState string `json:"frontendState"`
 	// Indicates whether the linked stores were imported via a CSV file.
 	StoresImported bool `json:"storesImported"`
+	// A list of value map IDs for the campaign.
+	ValueMapsIds *[]int32 `json:"valueMapsIds,omitempty"`
 }
 
-// GetBudgets returns the Budgets field value
+// GetBudgets returns the Budgets field value if set, zero value otherwise.
 func (o *AdditionalCampaignProperties) GetBudgets() []CampaignBudget {
-	if o == nil {
+	if o == nil || o.Budgets == nil {
 		var ret []CampaignBudget
 		return ret
 	}
-
-	return o.Budgets
+	return *o.Budgets
 }
 
-// SetBudgets sets field value
+// GetBudgetsOk returns a tuple with the Budgets field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AdditionalCampaignProperties) GetBudgetsOk() ([]CampaignBudget, bool) {
+	if o == nil || o.Budgets == nil {
+		var ret []CampaignBudget
+		return ret, false
+	}
+	return *o.Budgets, true
+}
+
+// HasBudgets returns a boolean if a field has been set.
+func (o *AdditionalCampaignProperties) HasBudgets() bool {
+	if o != nil && o.Budgets != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBudgets gets a reference to the given []CampaignBudget and assigns it to the Budgets field.
 func (o *AdditionalCampaignProperties) SetBudgets(v []CampaignBudget) {
-	o.Budgets = v
+	o.Budgets = &v
 }
 
 // GetCouponRedemptionCount returns the CouponRedemptionCount field value if set, zero value otherwise.
@@ -768,6 +788,39 @@ func (o *AdditionalCampaignProperties) GetStoresImported() bool {
 // SetStoresImported sets field value
 func (o *AdditionalCampaignProperties) SetStoresImported(v bool) {
 	o.StoresImported = v
+}
+
+// GetValueMapsIds returns the ValueMapsIds field value if set, zero value otherwise.
+func (o *AdditionalCampaignProperties) GetValueMapsIds() []int32 {
+	if o == nil || o.ValueMapsIds == nil {
+		var ret []int32
+		return ret
+	}
+	return *o.ValueMapsIds
+}
+
+// GetValueMapsIdsOk returns a tuple with the ValueMapsIds field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AdditionalCampaignProperties) GetValueMapsIdsOk() ([]int32, bool) {
+	if o == nil || o.ValueMapsIds == nil {
+		var ret []int32
+		return ret, false
+	}
+	return *o.ValueMapsIds, true
+}
+
+// HasValueMapsIds returns a boolean if a field has been set.
+func (o *AdditionalCampaignProperties) HasValueMapsIds() bool {
+	if o != nil && o.ValueMapsIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValueMapsIds gets a reference to the given []int32 and assigns it to the ValueMapsIds field.
+func (o *AdditionalCampaignProperties) SetValueMapsIds(v []int32) {
+	o.ValueMapsIds = &v
 }
 
 type NullableAdditionalCampaignProperties struct {

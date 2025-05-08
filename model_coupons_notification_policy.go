@@ -21,6 +21,10 @@ type CouponsNotificationPolicy struct {
 	Scopes []string `json:"scopes"`
 	// Indicates whether batching is activated.
 	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
+	// Indicates whether to include all generated coupons. If `false`, only the `batchId` of the generated coupons is included.
+	IncludeData *bool `json:"includeData,omitempty"`
+	// The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
+	BatchSize *int32 `json:"batchSize,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -84,6 +88,72 @@ func (o *CouponsNotificationPolicy) HasBatchingEnabled() bool {
 // SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
 func (o *CouponsNotificationPolicy) SetBatchingEnabled(v bool) {
 	o.BatchingEnabled = &v
+}
+
+// GetIncludeData returns the IncludeData field value if set, zero value otherwise.
+func (o *CouponsNotificationPolicy) GetIncludeData() bool {
+	if o == nil || o.IncludeData == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IncludeData
+}
+
+// GetIncludeDataOk returns a tuple with the IncludeData field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CouponsNotificationPolicy) GetIncludeDataOk() (bool, bool) {
+	if o == nil || o.IncludeData == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IncludeData, true
+}
+
+// HasIncludeData returns a boolean if a field has been set.
+func (o *CouponsNotificationPolicy) HasIncludeData() bool {
+	if o != nil && o.IncludeData != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIncludeData gets a reference to the given bool and assigns it to the IncludeData field.
+func (o *CouponsNotificationPolicy) SetIncludeData(v bool) {
+	o.IncludeData = &v
+}
+
+// GetBatchSize returns the BatchSize field value if set, zero value otherwise.
+func (o *CouponsNotificationPolicy) GetBatchSize() int32 {
+	if o == nil || o.BatchSize == nil {
+		var ret int32
+		return ret
+	}
+	return *o.BatchSize
+}
+
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CouponsNotificationPolicy) GetBatchSizeOk() (int32, bool) {
+	if o == nil || o.BatchSize == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.BatchSize, true
+}
+
+// HasBatchSize returns a boolean if a field has been set.
+func (o *CouponsNotificationPolicy) HasBatchSize() bool {
+	if o != nil && o.BatchSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchSize gets a reference to the given int32 and assigns it to the BatchSize field.
+func (o *CouponsNotificationPolicy) SetBatchSize(v int32) {
+	o.BatchSize = &v
 }
 
 type NullableCouponsNotificationPolicy struct {

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Action** | Pointer to **string** | The limitable action of the limit counter. | 

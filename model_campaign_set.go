@@ -16,7 +16,7 @@ import (
 
 // CampaignSet struct for CampaignSet
 type CampaignSet struct {
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// Internal ID of this entity.
 	Id int32 `json:"id"`

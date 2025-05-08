@@ -20,9 +20,9 @@ type CustomerInventory struct {
 	Loyalty   *Loyalty             `json:"loyalty,omitempty"`
 	Referrals *[]InventoryReferral `json:"referrals,omitempty"`
 	// The coupons reserved by this profile. This array includes hard and soft reservations.
-	Coupons      *[]InventoryCoupon     `json:"coupons,omitempty"`
-	Giveaways    *[]Giveaway            `json:"giveaways,omitempty"`
-	Achievements *[]AchievementProgress `json:"achievements,omitempty"`
+	Coupons      *[]InventoryCoupon                   `json:"coupons,omitempty"`
+	Giveaways    *[]Giveaway                          `json:"giveaways,omitempty"`
+	Achievements *[]AchievementProgressWithDefinition `json:"achievements,omitempty"`
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -191,9 +191,9 @@ func (o *CustomerInventory) SetGiveaways(v []Giveaway) {
 }
 
 // GetAchievements returns the Achievements field value if set, zero value otherwise.
-func (o *CustomerInventory) GetAchievements() []AchievementProgress {
+func (o *CustomerInventory) GetAchievements() []AchievementProgressWithDefinition {
 	if o == nil || o.Achievements == nil {
-		var ret []AchievementProgress
+		var ret []AchievementProgressWithDefinition
 		return ret
 	}
 	return *o.Achievements
@@ -201,9 +201,9 @@ func (o *CustomerInventory) GetAchievements() []AchievementProgress {
 
 // GetAchievementsOk returns a tuple with the Achievements field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgress, bool) {
+func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgressWithDefinition, bool) {
 	if o == nil || o.Achievements == nil {
-		var ret []AchievementProgress
+		var ret []AchievementProgressWithDefinition
 		return ret, false
 	}
 	return *o.Achievements, true
@@ -218,8 +218,8 @@ func (o *CustomerInventory) HasAchievements() bool {
 	return false
 }
 
-// SetAchievements gets a reference to the given []AchievementProgress and assigns it to the Achievements field.
-func (o *CustomerInventory) SetAchievements(v []AchievementProgress) {
+// SetAchievements gets a reference to the given []AchievementProgressWithDefinition and assigns it to the Achievements field.
+func (o *CustomerInventory) SetAchievements(v []AchievementProgressWithDefinition) {
 	o.Achievements = &v
 }
 

@@ -26,6 +26,8 @@ type LoyaltySubLedger struct {
 	TotalSpentPoints float32 `json:"totalSpentPoints"`
 	// Total amount of points, that expired without ever being spent.
 	TotalExpiredPoints float32 `json:"totalExpiredPoints"`
+	// Total amount of negative points. This implies that `totalActivePoints` is `0`.
+	TotalNegativePoints float32 `json:"totalNegativePoints"`
 	// List of all events that have happened such as additions, subtractions and expiries.
 	Transactions *[]LoyaltyLedgerEntry `json:"transactions,omitempty"`
 	// List of all points that will expire.
@@ -112,6 +114,21 @@ func (o *LoyaltySubLedger) GetTotalExpiredPoints() float32 {
 // SetTotalExpiredPoints sets field value
 func (o *LoyaltySubLedger) SetTotalExpiredPoints(v float32) {
 	o.TotalExpiredPoints = v
+}
+
+// GetTotalNegativePoints returns the TotalNegativePoints field value
+func (o *LoyaltySubLedger) GetTotalNegativePoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalNegativePoints
+}
+
+// SetTotalNegativePoints sets field value
+func (o *LoyaltySubLedger) SetTotalNegativePoints(v float32) {
+	o.TotalNegativePoints = v
 }
 
 // GetTransactions returns the Transactions field value if set, zero value otherwise.

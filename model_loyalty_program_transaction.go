@@ -52,7 +52,8 @@ type LoyaltyProgramTransaction struct {
 	// ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
 	RulesetId *int32 `json:"rulesetId,omitempty"`
 	// Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
-	RuleName *string `json:"ruleName,omitempty"`
+	RuleName *string                  `json:"ruleName,omitempty"`
+	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -485,6 +486,39 @@ func (o *LoyaltyProgramTransaction) HasRuleName() bool {
 // SetRuleName gets a reference to the given string and assigns it to the RuleName field.
 func (o *LoyaltyProgramTransaction) SetRuleName(v string) {
 	o.RuleName = &v
+}
+
+// GetFlags returns the Flags field value if set, zero value otherwise.
+func (o *LoyaltyProgramTransaction) GetFlags() LoyaltyLedgerEntryFlags {
+	if o == nil || o.Flags == nil {
+		var ret LoyaltyLedgerEntryFlags
+		return ret
+	}
+	return *o.Flags
+}
+
+// GetFlagsOk returns a tuple with the Flags field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool) {
+	if o == nil || o.Flags == nil {
+		var ret LoyaltyLedgerEntryFlags
+		return ret, false
+	}
+	return *o.Flags, true
+}
+
+// HasFlags returns a boolean if a field has been set.
+func (o *LoyaltyProgramTransaction) HasFlags() bool {
+	if o != nil && o.Flags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
+func (o *LoyaltyProgramTransaction) SetFlags(v LoyaltyLedgerEntryFlags) {
+	o.Flags = &v
 }
 
 type NullableLoyaltyProgramTransaction struct {

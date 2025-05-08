@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **StoreId** | Pointer to **int32** | The ID of the store. | 
-**Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of budget limits for stores linked to the campaign. | 
+**Limits** | Pointer to [**[]CampaignStoreBudgetLimitConfig**](CampaignStoreBudgetLimitConfig.md) | The set of budget limits for stores linked to the campaign. | 
 
 ## Methods
 
@@ -114,13 +114,13 @@ SetStoreId gets a reference to the given int32 and assigns it to the StoreId fie
 
 ### GetLimits
 
-`func (o *CampaignStoreBudget) GetLimits() []LimitConfig`
+`func (o *CampaignStoreBudget) GetLimits() []CampaignStoreBudgetLimitConfig`
 
 GetLimits returns the Limits field if non-nil, zero value otherwise.
 
 ### GetLimitsOk
 
-`func (o *CampaignStoreBudget) GetLimitsOk() ([]LimitConfig, bool)`
+`func (o *CampaignStoreBudget) GetLimitsOk() ([]CampaignStoreBudgetLimitConfig, bool)`
 
 GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -133,9 +133,9 @@ HasLimits returns a boolean if a field has been set.
 
 ### SetLimits
 
-`func (o *CampaignStoreBudget) SetLimits(v []LimitConfig)`
+`func (o *CampaignStoreBudget) SetLimits(v []CampaignStoreBudgetLimitConfig)`
 
-SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
+SetLimits gets a reference to the given []CampaignStoreBudgetLimitConfig and assigns it to the Limits field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

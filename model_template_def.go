@@ -21,7 +21,7 @@ type TemplateDef struct {
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// Campaigner-friendly name for the template that will be shown in the rule editor.
 	Title string `json:"title"`

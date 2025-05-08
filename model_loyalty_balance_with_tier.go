@@ -23,9 +23,11 @@ type LoyaltyBalanceWithTier struct {
 	// Total amount of points already spent by this customer.
 	SpentPoints *float32 `json:"spentPoints,omitempty"`
 	// Total amount of points awarded but never redeemed. They cannot be used anymore.
-	ExpiredPoints *float32       `json:"expiredPoints,omitempty"`
-	CurrentTier   *Tier          `json:"currentTier,omitempty"`
-	ProjectedTier *ProjectedTier `json:"projectedTier,omitempty"`
+	ExpiredPoints *float32 `json:"expiredPoints,omitempty"`
+	// Total amount of negative points. This implies that `activePoints` is `0`.
+	NegativePoints *float32       `json:"negativePoints,omitempty"`
+	CurrentTier    *Tier          `json:"currentTier,omitempty"`
+	ProjectedTier  *ProjectedTier `json:"projectedTier,omitempty"`
 	// The number of points required to move up a tier.
 	PointsToNextTier *float32 `json:"pointsToNextTier,omitempty"`
 	// The name of the tier consecutive to the current tier.
@@ -162,6 +164,39 @@ func (o *LoyaltyBalanceWithTier) HasExpiredPoints() bool {
 // SetExpiredPoints gets a reference to the given float32 and assigns it to the ExpiredPoints field.
 func (o *LoyaltyBalanceWithTier) SetExpiredPoints(v float32) {
 	o.ExpiredPoints = &v
+}
+
+// GetNegativePoints returns the NegativePoints field value if set, zero value otherwise.
+func (o *LoyaltyBalanceWithTier) GetNegativePoints() float32 {
+	if o == nil || o.NegativePoints == nil {
+		var ret float32
+		return ret
+	}
+	return *o.NegativePoints
+}
+
+// GetNegativePointsOk returns a tuple with the NegativePoints field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyBalanceWithTier) GetNegativePointsOk() (float32, bool) {
+	if o == nil || o.NegativePoints == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.NegativePoints, true
+}
+
+// HasNegativePoints returns a boolean if a field has been set.
+func (o *LoyaltyBalanceWithTier) HasNegativePoints() bool {
+	if o != nil && o.NegativePoints != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetNegativePoints gets a reference to the given float32 and assigns it to the NegativePoints field.
+func (o *LoyaltyBalanceWithTier) SetNegativePoints(v float32) {
+	o.NegativePoints = &v
 }
 
 // GetCurrentTier returns the CurrentTier field value if set, zero value otherwise.

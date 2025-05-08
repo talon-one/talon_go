@@ -23,7 +23,7 @@ type CustomerSessionV2 struct {
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
 	IntegrationId string `json:"integrationId"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId string `json:"profileId"`
@@ -57,8 +57,6 @@ type CustomerSessionV2 struct {
 	AdditionalCostTotal float32 `json:"additionalCostTotal"`
 	// Timestamp of the most recent event received on this session.
 	Updated time.Time `json:"updated"`
-	// The likelihood of the customer session closing based on predictive modeling, expressed as a decimal between `0` and `1`.
-	ClosurePrediction *float32 `json:"closurePrediction,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -485,39 +483,6 @@ func (o *CustomerSessionV2) GetUpdated() time.Time {
 // SetUpdated sets field value
 func (o *CustomerSessionV2) SetUpdated(v time.Time) {
 	o.Updated = v
-}
-
-// GetClosurePrediction returns the ClosurePrediction field value if set, zero value otherwise.
-func (o *CustomerSessionV2) GetClosurePrediction() float32 {
-	if o == nil || o.ClosurePrediction == nil {
-		var ret float32
-		return ret
-	}
-	return *o.ClosurePrediction
-}
-
-// GetClosurePredictionOk returns a tuple with the ClosurePrediction field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomerSessionV2) GetClosurePredictionOk() (float32, bool) {
-	if o == nil || o.ClosurePrediction == nil {
-		var ret float32
-		return ret, false
-	}
-	return *o.ClosurePrediction, true
-}
-
-// HasClosurePrediction returns a boolean if a field has been set.
-func (o *CustomerSessionV2) HasClosurePrediction() bool {
-	if o != nil && o.ClosurePrediction != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetClosurePrediction gets a reference to the given float32 and assigns it to the ClosurePrediction field.
-func (o *CustomerSessionV2) SetClosurePrediction(v float32) {
-	o.ClosurePrediction = &v
 }
 
 type NullableCustomerSessionV2 struct {

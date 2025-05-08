@@ -21,7 +21,7 @@ type Environment struct {
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The slots defined for this application.
 	Slots []SlotDef `json:"slots"`

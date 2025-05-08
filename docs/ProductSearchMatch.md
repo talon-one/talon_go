@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ProductId** | Pointer to **int32** | The ID of the product. | 
+**ProductId** | Pointer to **int32** | The ID of the product. | [optional] 
 **Value** | Pointer to **string** | The string matching the given value. Either a product name or SKU. | 
-**ProductSkuId** | Pointer to **int32** | The ID of the SKU linked to a product. If empty, this is an analytics-level product. | [optional] 
+**ProductSkuId** | Pointer to **int32** | The ID of the SKU linked to a product. If empty, this is an product. | [optional] 
 
 ## Methods
 

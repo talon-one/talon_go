@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **UserEmail** | Pointer to **string** | The email of the Campaign Manager account that manually added or deducted points. Applies only to manual transactions. | [optional] 
 **RulesetId** | Pointer to **int32** | ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session. | [optional] 
 **RuleName** | Pointer to **string** | Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session. | [optional] 
+**Flags** | Pointer to [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) |  | [optional] 
 
 ## Methods
 
@@ -474,6 +475,31 @@ HasRuleName returns a boolean if a field has been set.
 `func (o *LoyaltyProgramTransaction) SetRuleName(v string)`
 
 SetRuleName gets a reference to the given string and assigns it to the RuleName field.
+
+### GetFlags
+
+`func (o *LoyaltyProgramTransaction) GetFlags() LoyaltyLedgerEntryFlags`
+
+GetFlags returns the Flags field if non-nil, zero value otherwise.
+
+### GetFlagsOk
+
+`func (o *LoyaltyProgramTransaction) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool)`
+
+GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasFlags
+
+`func (o *LoyaltyProgramTransaction) HasFlags() bool`
+
+HasFlags returns a boolean if a field has been set.
+
+### SetFlags
+
+`func (o *LoyaltyProgramTransaction) SetFlags(v LoyaltyLedgerEntryFlags)`
+
+SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

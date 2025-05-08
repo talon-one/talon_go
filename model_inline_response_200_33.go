@@ -16,29 +16,47 @@ import (
 
 // InlineResponse20033 struct for InlineResponse20033
 type InlineResponse20033 struct {
-	TotalResultSize int32       `json:"totalResultSize"`
-	Data            []Attribute `json:"data"`
+	HasMore *bool               `json:"hasMore,omitempty"`
+	Data    []AudienceAnalytics `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20033) GetTotalResultSize() int32 {
-	if o == nil {
-		var ret int32
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
+func (o *InlineResponse20033) GetHasMore() bool {
+	if o == nil || o.HasMore == nil {
+		var ret bool
 		return ret
 	}
-
-	return o.TotalResultSize
+	return *o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20033) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20033) GetHasMoreOk() (bool, bool) {
+	if o == nil || o.HasMore == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.HasMore, true
+}
+
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20033) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+func (o *InlineResponse20033) SetHasMore(v bool) {
+	o.HasMore = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20033) GetData() []Attribute {
+func (o *InlineResponse20033) GetData() []AudienceAnalytics {
 	if o == nil {
-		var ret []Attribute
+		var ret []AudienceAnalytics
 		return ret
 	}
 
@@ -46,7 +64,7 @@ func (o *InlineResponse20033) GetData() []Attribute {
 }
 
 // SetData sets field value
-func (o *InlineResponse20033) SetData(v []Attribute) {
+func (o *InlineResponse20033) SetData(v []AudienceAnalytics) {
 	o.Data = v
 }
 

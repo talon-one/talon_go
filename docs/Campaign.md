@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Unique ID for this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The exact moment this entity was created. | 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **Name** | Pointer to **string** | A user-facing name for this campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | 
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **CampaignGroups** | Pointer to **[]int32** | The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.  | [optional] 
 **Type** | Pointer to **string** | The campaign type. Possible type values:   - &#x60;cartItem&#x60;: Type of campaign that can apply effects only to cart items.   - &#x60;advanced&#x60;: Type of campaign that can apply effects to customer sessions and cart items.  | [default to TYPE_ADVANCED]
 **LinkedStoreIds** | Pointer to **[]int32** | A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.  | [optional] 
-**Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | 
+**Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | [optional] 
 **CouponRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.  | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.  | [optional] 
 **DiscountCount** | Pointer to **float32** | This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign.  | [optional] 
@@ -46,6 +46,7 @@ Name | Type | Description | Notes
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
 **FrontendState** | Pointer to **string** | The campaign state displayed in the Campaign Manager. | 
 **StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
+**ValueMapsIds** | Pointer to **[]int32** | A list of value map IDs for the campaign. | [optional] 
 **RevisionFrontendState** | Pointer to **string** | The campaign revision state displayed in the Campaign Manager. | [optional] 
 **ActiveRevisionId** | Pointer to **int32** | ID of the revision that was last activated on this campaign.  | [optional] 
 **ActiveRevisionVersionId** | Pointer to **int32** | ID of the revision version that is active on the campaign.  | [optional] 
@@ -1105,6 +1106,31 @@ HasStoresImported returns a boolean if a field has been set.
 `func (o *Campaign) SetStoresImported(v bool)`
 
 SetStoresImported gets a reference to the given bool and assigns it to the StoresImported field.
+
+### GetValueMapsIds
+
+`func (o *Campaign) GetValueMapsIds() []int32`
+
+GetValueMapsIds returns the ValueMapsIds field if non-nil, zero value otherwise.
+
+### GetValueMapsIdsOk
+
+`func (o *Campaign) GetValueMapsIdsOk() ([]int32, bool)`
+
+GetValueMapsIdsOk returns a tuple with the ValueMapsIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasValueMapsIds
+
+`func (o *Campaign) HasValueMapsIds() bool`
+
+HasValueMapsIds returns a boolean if a field has been set.
+
+### SetValueMapsIds
+
+`func (o *Campaign) SetValueMapsIds(v []int32)`
+
+SetValueMapsIds gets a reference to the given []int32 and assigns it to the ValueMapsIds field.
 
 ### GetRevisionFrontendState
 

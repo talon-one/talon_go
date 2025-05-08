@@ -26,7 +26,7 @@ type CampaignStoreBudget struct {
 	// The ID of the store.
 	StoreId int32 `json:"storeId"`
 	// The set of budget limits for stores linked to the campaign.
-	Limits []LimitConfig `json:"limits"`
+	Limits []CampaignStoreBudgetLimitConfig `json:"limits"`
 }
 
 // GetId returns the Id field value
@@ -90,9 +90,9 @@ func (o *CampaignStoreBudget) SetStoreId(v int32) {
 }
 
 // GetLimits returns the Limits field value
-func (o *CampaignStoreBudget) GetLimits() []LimitConfig {
+func (o *CampaignStoreBudget) GetLimits() []CampaignStoreBudgetLimitConfig {
 	if o == nil {
-		var ret []LimitConfig
+		var ret []CampaignStoreBudgetLimitConfig
 		return ret
 	}
 
@@ -100,7 +100,7 @@ func (o *CampaignStoreBudget) GetLimits() []LimitConfig {
 }
 
 // SetLimits sets field value
-func (o *CampaignStoreBudget) SetLimits(v []LimitConfig) {
+func (o *CampaignStoreBudget) SetLimits(v []CampaignStoreBudgetLimitConfig) {
 	o.Limits = v
 }
 

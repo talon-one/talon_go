@@ -407,6 +407,8 @@ func (r apiCreateReferralRequest) Body(body NewReferral) apiCreateReferralReques
 CreateReferral Create referral code for an advocate
 Creates a referral code for an advocate. The code will be valid for the referral campaign for which is created, indicated in the `campaignId` parameter, and will be associated with the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.
 
+**Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint.
+
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return apiCreateReferralRequest
@@ -566,6 +568,8 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Silent(silent string) api
 /*
 CreateReferralsForMultipleAdvocates Create referral codes for multiple advocates
 Creates unique referral codes for multiple advocates. The code will be valid for the referral campaign for which it is created, indicated in the `campaignId` parameter, and one referral code will be associated with one advocate using the profile specified in the `advocateProfileIntegrationId` parameter as the advocate's profile.
+
+**Note:** Any [referral limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets#referral-limits) set are ignored when you use this endpoint.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
@@ -1416,6 +1420,421 @@ func (r apiGenerateLoyaltyCardRequest) Execute() (LoyaltyCard, *_nethttp.Respons
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiGetCustomerAchievementHistoryRequest struct {
+	ctx            _context.Context
+	apiService     *IntegrationApiService
+	integrationId  string
+	achievementId  int32
+	progressStatus *[]string
+	startDate      *time.Time
+	endDate        *time.Time
+	pageSize       *int32
+	skip           *int32
+}
+
+func (r apiGetCustomerAchievementHistoryRequest) ProgressStatus(progressStatus []string) apiGetCustomerAchievementHistoryRequest {
+	r.progressStatus = &progressStatus
+	return r
+}
+
+func (r apiGetCustomerAchievementHistoryRequest) StartDate(startDate time.Time) apiGetCustomerAchievementHistoryRequest {
+	r.startDate = &startDate
+	return r
+}
+
+func (r apiGetCustomerAchievementHistoryRequest) EndDate(endDate time.Time) apiGetCustomerAchievementHistoryRequest {
+	r.endDate = &endDate
+	return r
+}
+
+func (r apiGetCustomerAchievementHistoryRequest) PageSize(pageSize int32) apiGetCustomerAchievementHistoryRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiGetCustomerAchievementHistoryRequest) Skip(skip int32) apiGetCustomerAchievementHistoryRequest {
+	r.skip = &skip
+	return r
+}
+
+/*
+GetCustomerAchievementHistory List customer's achievement history
+Retrieve all progress history of a given customer in the given achievement.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+  - @param achievementId The achievement identifier.
+
+@return apiGetCustomerAchievementHistoryRequest
+*/
+func (a *IntegrationApiService) GetCustomerAchievementHistory(ctx _context.Context, integrationId string, achievementId int32) apiGetCustomerAchievementHistoryRequest {
+	return apiGetCustomerAchievementHistoryRequest{
+		apiService:    a,
+		ctx:           ctx,
+		integrationId: integrationId,
+		achievementId: achievementId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse2002
+*/
+func (r apiGetCustomerAchievementHistoryRequest) Execute() (InlineResponse2002, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse2002
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetCustomerAchievementHistory")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/customer_profiles/{integrationId}/achievements/{achievementId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"achievementId"+"}", _neturl.QueryEscape(parameterToString(r.achievementId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.progressStatus != nil {
+		localVarQueryParams.Add("progressStatus", parameterToString(*r.progressStatus, "csv"))
+	}
+	if r.startDate != nil {
+		localVarQueryParams.Add("startDate", parameterToString(*r.startDate, ""))
+	}
+	if r.endDate != nil {
+		localVarQueryParams.Add("endDate", parameterToString(*r.endDate, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v InlineResponse2002
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetCustomerAchievementsRequest struct {
+	ctx                   _context.Context
+	apiService            *IntegrationApiService
+	integrationId         string
+	campaignIds           *[]string
+	achievementIds        *[]string
+	achievementStatus     *[]string
+	currentProgressStatus *[]string
+	pageSize              *int32
+	skip                  *int32
+}
+
+func (r apiGetCustomerAchievementsRequest) CampaignIds(campaignIds []string) apiGetCustomerAchievementsRequest {
+	r.campaignIds = &campaignIds
+	return r
+}
+
+func (r apiGetCustomerAchievementsRequest) AchievementIds(achievementIds []string) apiGetCustomerAchievementsRequest {
+	r.achievementIds = &achievementIds
+	return r
+}
+
+func (r apiGetCustomerAchievementsRequest) AchievementStatus(achievementStatus []string) apiGetCustomerAchievementsRequest {
+	r.achievementStatus = &achievementStatus
+	return r
+}
+
+func (r apiGetCustomerAchievementsRequest) CurrentProgressStatus(currentProgressStatus []string) apiGetCustomerAchievementsRequest {
+	r.currentProgressStatus = &currentProgressStatus
+	return r
+}
+
+func (r apiGetCustomerAchievementsRequest) PageSize(pageSize int32) apiGetCustomerAchievementsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiGetCustomerAchievementsRequest) Skip(skip int32) apiGetCustomerAchievementsRequest {
+	r.skip = &skip
+	return r
+}
+
+/*
+GetCustomerAchievements List customer's available achievements
+Retrieve all the achievements available to a given customer and their progress in them.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param integrationId The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.
+
+@return apiGetCustomerAchievementsRequest
+*/
+func (a *IntegrationApiService) GetCustomerAchievements(ctx _context.Context, integrationId string) apiGetCustomerAchievementsRequest {
+	return apiGetCustomerAchievementsRequest{
+		apiService:    a,
+		ctx:           ctx,
+		integrationId: integrationId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse2001
+*/
+func (r apiGetCustomerAchievementsRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse2001
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetCustomerAchievements")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/customer_profiles/{integrationId}/achievements"
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.campaignIds != nil {
+		localVarQueryParams.Add("campaignIds", parameterToString(*r.campaignIds, "csv"))
+	}
+	if r.achievementIds != nil {
+		localVarQueryParams.Add("achievementIds", parameterToString(*r.achievementIds, "csv"))
+	}
+	if r.achievementStatus != nil {
+		localVarQueryParams.Add("achievementStatus", parameterToString(*r.achievementStatus, "csv"))
+	}
+	if r.currentProgressStatus != nil {
+		localVarQueryParams.Add("currentProgressStatus", parameterToString(*r.currentProgressStatus, "csv"))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v InlineResponse2001
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiGetCustomerInventoryRequest struct {
 	ctx           _context.Context
 	apiService    *IntegrationApiService
@@ -2224,16 +2643,16 @@ func (a *IntegrationApiService) GetLoyaltyCardPoints(ctx _context.Context, loyal
 /*
 Execute executes the request
 
-	@return InlineResponse2003
+	@return InlineResponse2005
 */
-func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
+func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2003
+		localVarReturnValue  InlineResponse2005
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyCardPoints")
@@ -2326,7 +2745,7 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2003, *_nethttp
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2003
+			var v InlineResponse2005
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2445,16 +2864,16 @@ func (a *IntegrationApiService) GetLoyaltyCardTransactions(ctx _context.Context,
 /*
 Execute executes the request
 
-	@return InlineResponse2001
+	@return InlineResponse2003
 */
-func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2001, *_nethttp.Response, error) {
+func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2003, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2001
+		localVarReturnValue  InlineResponse2003
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyCardTransactions")
@@ -2553,7 +2972,7 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2001, *_n
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2001
+			var v InlineResponse2003
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2664,16 +3083,16 @@ func (a *IntegrationApiService) GetLoyaltyProgramProfilePoints(ctx _context.Cont
 /*
 Execute executes the request
 
-	@return InlineResponse2004
+	@return InlineResponse2006
 */
-func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
+func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2004
+		localVarReturnValue  InlineResponse2006
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyProgramProfilePoints")
@@ -2754,7 +3173,7 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2004,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2004
+			var v InlineResponse2006
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -2877,16 +3296,16 @@ func (a *IntegrationApiService) GetLoyaltyProgramProfileTransactions(ctx _contex
 /*
 Execute executes the request
 
-	@return InlineResponse2002
+	@return InlineResponse2004
 */
-func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineResponse2002, *_nethttp.Response, error) {
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2002
+		localVarReturnValue  InlineResponse2004
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyProgramProfileTransactions")
@@ -2973,7 +3392,7 @@ func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineRespons
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2002
+			var v InlineResponse2004
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -4149,11 +4568,12 @@ func (r apiSyncCatalogRequest) Execute() (Catalog, *_nethttp.Response, error) {
 }
 
 type apiTrackEventV2Request struct {
-	ctx        _context.Context
-	apiService *IntegrationApiService
-	body       *IntegrationEventV2Request
-	silent     *string
-	dry        *bool
+	ctx                     _context.Context
+	apiService              *IntegrationApiService
+	body                    *IntegrationEventV2Request
+	silent                  *string
+	dry                     *bool
+	forceCompleteEvaluation *bool
 }
 
 func (r apiTrackEventV2Request) Body(body IntegrationEventV2Request) apiTrackEventV2Request {
@@ -4168,6 +4588,11 @@ func (r apiTrackEventV2Request) Silent(silent string) apiTrackEventV2Request {
 
 func (r apiTrackEventV2Request) Dry(dry bool) apiTrackEventV2Request {
 	r.dry = &dry
+	return r
+}
+
+func (r apiTrackEventV2Request) ForceCompleteEvaluation(forceCompleteEvaluation bool) apiTrackEventV2Request {
+	r.forceCompleteEvaluation = &forceCompleteEvaluation
 	return r
 }
 
@@ -4242,6 +4667,9 @@ func (r apiTrackEventV2Request) Execute() (TrackEventV2Response, *_nethttp.Respo
 	}
 	if r.dry != nil {
 		localVarQueryParams.Add("dry", parameterToString(*r.dry, ""))
+	}
+	if r.forceCompleteEvaluation != nil {
+		localVarQueryParams.Add("forceCompleteEvaluation", parameterToString(*r.forceCompleteEvaluation, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}

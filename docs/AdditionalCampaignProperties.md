@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | 
+**Budgets** | Pointer to [**[]CampaignBudget**](CampaignBudget.md) | A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.  | [optional] 
 **CouponRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.  | [optional] 
 **ReferralRedemptionCount** | Pointer to **int32** | This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.  | [optional] 
 **DiscountCount** | Pointer to **float32** | This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign.  | [optional] 
@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **TemplateId** | Pointer to **int32** | The ID of the Campaign Template this Campaign was created from. | [optional] 
 **FrontendState** | Pointer to **string** | The campaign state displayed in the Campaign Manager. | 
 **StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
+**ValueMapsIds** | Pointer to **[]int32** | A list of value map IDs for the campaign. | [optional] 
 
 ## Methods
 
@@ -604,6 +605,31 @@ HasStoresImported returns a boolean if a field has been set.
 `func (o *AdditionalCampaignProperties) SetStoresImported(v bool)`
 
 SetStoresImported gets a reference to the given bool and assigns it to the StoresImported field.
+
+### GetValueMapsIds
+
+`func (o *AdditionalCampaignProperties) GetValueMapsIds() []int32`
+
+GetValueMapsIds returns the ValueMapsIds field if non-nil, zero value otherwise.
+
+### GetValueMapsIdsOk
+
+`func (o *AdditionalCampaignProperties) GetValueMapsIdsOk() ([]int32, bool)`
+
+GetValueMapsIdsOk returns a tuple with the ValueMapsIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasValueMapsIds
+
+`func (o *AdditionalCampaignProperties) HasValueMapsIds() bool`
+
+HasValueMapsIds returns a boolean if a field has been set.
+
+### SetValueMapsIds
+
+`func (o *AdditionalCampaignProperties) SetValueMapsIds(v []int32)`
+
+SetValueMapsIds gets a reference to the given []int32 and assigns it to the ValueMapsIds field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

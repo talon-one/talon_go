@@ -20,6 +20,8 @@ type AddFreeItemEffectProps struct {
 	Sku string `json:"sku"`
 	// The name / description of the effect
 	Name string `json:"name"`
+	// The original quantity in case a partial reward was applied.
+	DesiredQuantity *int32 `json:"desiredQuantity,omitempty"`
 }
 
 // GetSku returns the Sku field value
@@ -50,6 +52,39 @@ func (o *AddFreeItemEffectProps) GetName() string {
 // SetName sets field value
 func (o *AddFreeItemEffectProps) SetName(v string) {
 	o.Name = v
+}
+
+// GetDesiredQuantity returns the DesiredQuantity field value if set, zero value otherwise.
+func (o *AddFreeItemEffectProps) GetDesiredQuantity() int32 {
+	if o == nil || o.DesiredQuantity == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DesiredQuantity
+}
+
+// GetDesiredQuantityOk returns a tuple with the DesiredQuantity field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AddFreeItemEffectProps) GetDesiredQuantityOk() (int32, bool) {
+	if o == nil || o.DesiredQuantity == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.DesiredQuantity, true
+}
+
+// HasDesiredQuantity returns a boolean if a field has been set.
+func (o *AddFreeItemEffectProps) HasDesiredQuantity() bool {
+	if o != nil && o.DesiredQuantity != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDesiredQuantity gets a reference to the given int32 and assigns it to the DesiredQuantity field.
+func (o *AddFreeItemEffectProps) SetDesiredQuantity(v int32) {
+	o.DesiredQuantity = &v
 }
 
 type NullableAddFreeItemEffectProps struct {

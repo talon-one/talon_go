@@ -12,95 +12,42 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
-	"time"
 )
 
 // ProductUnitAnalytics struct for ProductUnitAnalytics
 type ProductUnitAnalytics struct {
-	// The start of the aggregation time frame in UTC.
-	StartTime time.Time `json:"startTime"`
-	// The end of the aggregation time frame in UTC.
-	EndTime        time.Time                   `json:"endTime"`
-	PurchasedUnits AnalyticsDataPointWithTrend `json:"purchasedUnits"`
-	// The ID of the analytics-level product.
-	ProductId int32 `json:"productId"`
-	// The name of the analytics-level product.
-	ProductName string `json:"productName"`
+	Data   []ProductUnitAnalyticsDataPoint `json:"data"`
+	Totals ProductUnitAnalyticsTotals      `json:"totals"`
 }
 
-// GetStartTime returns the StartTime field value
-func (o *ProductUnitAnalytics) GetStartTime() time.Time {
+// GetData returns the Data field value
+func (o *ProductUnitAnalytics) GetData() []ProductUnitAnalyticsDataPoint {
 	if o == nil {
-		var ret time.Time
+		var ret []ProductUnitAnalyticsDataPoint
 		return ret
 	}
 
-	return o.StartTime
+	return o.Data
 }
 
-// SetStartTime sets field value
-func (o *ProductUnitAnalytics) SetStartTime(v time.Time) {
-	o.StartTime = v
+// SetData sets field value
+func (o *ProductUnitAnalytics) SetData(v []ProductUnitAnalyticsDataPoint) {
+	o.Data = v
 }
 
-// GetEndTime returns the EndTime field value
-func (o *ProductUnitAnalytics) GetEndTime() time.Time {
+// GetTotals returns the Totals field value
+func (o *ProductUnitAnalytics) GetTotals() ProductUnitAnalyticsTotals {
 	if o == nil {
-		var ret time.Time
+		var ret ProductUnitAnalyticsTotals
 		return ret
 	}
 
-	return o.EndTime
+	return o.Totals
 }
 
-// SetEndTime sets field value
-func (o *ProductUnitAnalytics) SetEndTime(v time.Time) {
-	o.EndTime = v
-}
-
-// GetPurchasedUnits returns the PurchasedUnits field value
-func (o *ProductUnitAnalytics) GetPurchasedUnits() AnalyticsDataPointWithTrend {
-	if o == nil {
-		var ret AnalyticsDataPointWithTrend
-		return ret
-	}
-
-	return o.PurchasedUnits
-}
-
-// SetPurchasedUnits sets field value
-func (o *ProductUnitAnalytics) SetPurchasedUnits(v AnalyticsDataPointWithTrend) {
-	o.PurchasedUnits = v
-}
-
-// GetProductId returns the ProductId field value
-func (o *ProductUnitAnalytics) GetProductId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.ProductId
-}
-
-// SetProductId sets field value
-func (o *ProductUnitAnalytics) SetProductId(v int32) {
-	o.ProductId = v
-}
-
-// GetProductName returns the ProductName field value
-func (o *ProductUnitAnalytics) GetProductName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProductName
-}
-
-// SetProductName sets field value
-func (o *ProductUnitAnalytics) SetProductName(v string) {
-	o.ProductName = v
+// SetTotals sets field value
+func (o *ProductUnitAnalytics) SetTotals(v ProductUnitAnalyticsTotals) {
+	o.Totals = v
 }
 
 type NullableProductUnitAnalytics struct {

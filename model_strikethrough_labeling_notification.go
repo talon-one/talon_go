@@ -12,11 +12,16 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // StrikethroughLabelingNotification The strikethrough labels notification for an application.
 type StrikethroughLabelingNotification struct {
-	// The ID of the application that catalog items labels belongs to.
+	// The version of the strikethrough pricing notification.
+	Version *string `json:"version,omitempty"`
+	// Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only.
+	ValidFrom *time.Time `json:"validFrom,omitempty"`
+	// The ID of the Application to which the catalog items labels belongs.
 	ApplicationId int32 `json:"applicationId"`
 	// The batch number of the notification. Notifications might be sent in different batches.
 	CurrentBatch int32 `json:"currentBatch"`
@@ -24,6 +29,72 @@ type StrikethroughLabelingNotification struct {
 	TotalBatches int32                      `json:"totalBatches"`
 	Trigger      StrikethroughTrigger       `json:"trigger"`
 	ChangedItems []StrikethroughChangedItem `json:"changedItems"`
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *StrikethroughLabelingNotification) GetVersion() string {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetVersionOk() (string, bool) {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *StrikethroughLabelingNotification) HasVersion() bool {
+	if o != nil && o.Version != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *StrikethroughLabelingNotification) SetVersion(v string) {
+	o.Version = &v
+}
+
+// GetValidFrom returns the ValidFrom field value if set, zero value otherwise.
+func (o *StrikethroughLabelingNotification) GetValidFrom() time.Time {
+	if o == nil || o.ValidFrom == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ValidFrom
+}
+
+// GetValidFromOk returns a tuple with the ValidFrom field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetValidFromOk() (time.Time, bool) {
+	if o == nil || o.ValidFrom == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.ValidFrom, true
+}
+
+// HasValidFrom returns a boolean if a field has been set.
+func (o *StrikethroughLabelingNotification) HasValidFrom() bool {
+	if o != nil && o.ValidFrom != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValidFrom gets a reference to the given time.Time and assigns it to the ValidFrom field.
+func (o *StrikethroughLabelingNotification) SetValidFrom(v time.Time) {
+	o.ValidFrom = &v
 }
 
 // GetApplicationId returns the ApplicationId field value

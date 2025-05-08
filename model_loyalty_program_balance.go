@@ -20,6 +20,8 @@ type LoyaltyProgramBalance struct {
 	CurrentBalance float32 `json:"currentBalance"`
 	// Sum of pending points.
 	PendingBalance float32 `json:"pendingBalance"`
+	// Sum of negative points. This implies that `currentBalance` is `0`.
+	NegativeBalance float32 `json:"negativeBalance"`
 	// **DEPRECATED** Value is shown as 0.
 	ExpiredBalance float32 `json:"expiredBalance"`
 	// **DEPRECATED** Value is shown as 0.
@@ -28,6 +30,8 @@ type LoyaltyProgramBalance struct {
 	TentativeCurrentBalance float32 `json:"tentativeCurrentBalance"`
 	// The tentative points balance, reflecting the `pendingBalance` and all point additions with a future activation date within the current open customer session. When the session is closed, the effects are applied and the `pendingBalance` is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
 	TentativePendingBalance *float32 `json:"tentativePendingBalance,omitempty"`
+	// The tentative negative balance after all additions and deductions from the current customer session are applied to `negativeBalance`. When the session is closed, the tentative effects are applied and `negativeBalance` is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.
+	TentativeNegativeBalance float32 `json:"tentativeNegativeBalance"`
 }
 
 // GetCurrentBalance returns the CurrentBalance field value
@@ -58,6 +62,21 @@ func (o *LoyaltyProgramBalance) GetPendingBalance() float32 {
 // SetPendingBalance sets field value
 func (o *LoyaltyProgramBalance) SetPendingBalance(v float32) {
 	o.PendingBalance = v
+}
+
+// GetNegativeBalance returns the NegativeBalance field value
+func (o *LoyaltyProgramBalance) GetNegativeBalance() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.NegativeBalance
+}
+
+// SetNegativeBalance sets field value
+func (o *LoyaltyProgramBalance) SetNegativeBalance(v float32) {
+	o.NegativeBalance = v
 }
 
 // GetExpiredBalance returns the ExpiredBalance field value
@@ -136,6 +155,21 @@ func (o *LoyaltyProgramBalance) HasTentativePendingBalance() bool {
 // SetTentativePendingBalance gets a reference to the given float32 and assigns it to the TentativePendingBalance field.
 func (o *LoyaltyProgramBalance) SetTentativePendingBalance(v float32) {
 	o.TentativePendingBalance = &v
+}
+
+// GetTentativeNegativeBalance returns the TentativeNegativeBalance field value
+func (o *LoyaltyProgramBalance) GetTentativeNegativeBalance() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TentativeNegativeBalance
+}
+
+// SetTentativeNegativeBalance sets field value
+func (o *LoyaltyProgramBalance) SetTentativeNegativeBalance(v float32) {
+	o.TentativeNegativeBalance = v
 }
 
 type NullableLoyaltyProgramBalance struct {

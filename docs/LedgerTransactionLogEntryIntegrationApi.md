@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | ID of the loyalty ledger transaction. | 
 **RulesetId** | Pointer to **int32** | The ID of the ruleset containing the rule that triggered this effect. | [optional] 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | [optional] 
+**Flags** | Pointer to [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) |  | [optional] 
 
 ## Methods
 
@@ -318,6 +319,31 @@ HasRuleName returns a boolean if a field has been set.
 `func (o *LedgerTransactionLogEntryIntegrationApi) SetRuleName(v string)`
 
 SetRuleName gets a reference to the given string and assigns it to the RuleName field.
+
+### GetFlags
+
+`func (o *LedgerTransactionLogEntryIntegrationApi) GetFlags() LoyaltyLedgerEntryFlags`
+
+GetFlags returns the Flags field if non-nil, zero value otherwise.
+
+### GetFlagsOk
+
+`func (o *LedgerTransactionLogEntryIntegrationApi) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool)`
+
+GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasFlags
+
+`func (o *LedgerTransactionLogEntryIntegrationApi) HasFlags() bool`
+
+HasFlags returns a boolean if a field has been set.
+
+### SetFlags
+
+`func (o *LedgerTransactionLogEntryIntegrationApi) SetFlags(v LoyaltyLedgerEntryFlags)`
+
+SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

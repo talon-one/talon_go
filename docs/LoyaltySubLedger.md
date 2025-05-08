@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **TotalPendingPoints** | Pointer to **float32** | Total amount of pending points, which are not active yet but will become active in the future. | 
 **TotalSpentPoints** | Pointer to **float32** | Total amount of points already spent by this customer. | 
 **TotalExpiredPoints** | Pointer to **float32** | Total amount of points, that expired without ever being spent. | 
+**TotalNegativePoints** | Pointer to **float32** | Total amount of negative points. This implies that &#x60;totalActivePoints&#x60; is &#x60;0&#x60;. | 
 **Transactions** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all events that have happened such as additions, subtractions and expiries. | [optional] 
 **ExpiringPoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all points that will expire. | [optional] 
 **ActivePoints** | Pointer to [**[]LoyaltyLedgerEntry**](LoyaltyLedgerEntry.md) | List of all currently active points. | [optional] 
@@ -142,6 +143,31 @@ HasTotalExpiredPoints returns a boolean if a field has been set.
 `func (o *LoyaltySubLedger) SetTotalExpiredPoints(v float32)`
 
 SetTotalExpiredPoints gets a reference to the given float32 and assigns it to the TotalExpiredPoints field.
+
+### GetTotalNegativePoints
+
+`func (o *LoyaltySubLedger) GetTotalNegativePoints() float32`
+
+GetTotalNegativePoints returns the TotalNegativePoints field if non-nil, zero value otherwise.
+
+### GetTotalNegativePointsOk
+
+`func (o *LoyaltySubLedger) GetTotalNegativePointsOk() (float32, bool)`
+
+GetTotalNegativePointsOk returns a tuple with the TotalNegativePoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTotalNegativePoints
+
+`func (o *LoyaltySubLedger) HasTotalNegativePoints() bool`
+
+HasTotalNegativePoints returns a boolean if a field has been set.
+
+### SetTotalNegativePoints
+
+`func (o *LoyaltySubLedger) SetTotalNegativePoints(v float32)`
+
+SetTotalNegativePoints gets a reference to the given float32 and assigns it to the TotalNegativePoints field.
 
 ### GetTransactions
 

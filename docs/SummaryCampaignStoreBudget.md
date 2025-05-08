@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Action** | Pointer to **string** |  | 
 **Period** | Pointer to **string** |  | [optional] 
 **StoreCount** | Pointer to **int32** |  | 
+**Imported** | Pointer to **bool** |  | 
 
 ## Methods
 
@@ -84,6 +85,31 @@ HasStoreCount returns a boolean if a field has been set.
 `func (o *SummaryCampaignStoreBudget) SetStoreCount(v int32)`
 
 SetStoreCount gets a reference to the given int32 and assigns it to the StoreCount field.
+
+### GetImported
+
+`func (o *SummaryCampaignStoreBudget) GetImported() bool`
+
+GetImported returns the Imported field if non-nil, zero value otherwise.
+
+### GetImportedOk
+
+`func (o *SummaryCampaignStoreBudget) GetImportedOk() (bool, bool)`
+
+GetImportedOk returns a tuple with the Imported field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasImported
+
+`func (o *SummaryCampaignStoreBudget) HasImported() bool`
+
+HasImported returns a boolean if a field has been set.
+
+### SetImported
+
+`func (o *SummaryCampaignStoreBudget) SetImported(v bool)`
+
+SetImported gets a reference to the given bool and assigns it to the Imported field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

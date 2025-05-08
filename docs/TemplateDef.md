@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **Title** | Pointer to **string** | Campaigner-friendly name for the template that will be shown in the rule editor. | 
 **Description** | Pointer to **string** | A short description of the template that will be shown in the rule editor. | 
 **Help** | Pointer to **string** | Extended help text for the template. | 

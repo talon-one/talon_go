@@ -33,6 +33,8 @@ type NewManagementKey struct {
 	AccountID int32 `json:"accountID"`
 	// The date the management key was created.
 	Created time.Time `json:"created"`
+	// The management key is disabled (this property is set to `true`) when the user who created the key is disabled or deleted.
+	Disabled *bool `json:"disabled,omitempty"`
 	// The management key.
 	Key string `json:"key"`
 }
@@ -173,6 +175,39 @@ func (o *NewManagementKey) GetCreated() time.Time {
 // SetCreated sets field value
 func (o *NewManagementKey) SetCreated(v time.Time) {
 	o.Created = v
+}
+
+// GetDisabled returns the Disabled field value if set, zero value otherwise.
+func (o *NewManagementKey) GetDisabled() bool {
+	if o == nil || o.Disabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetDisabledOk() (bool, bool) {
+	if o == nil || o.Disabled == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.Disabled, true
+}
+
+// HasDisabled returns a boolean if a field has been set.
+func (o *NewManagementKey) HasDisabled() bool {
+	if o != nil && o.Disabled != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
+func (o *NewManagementKey) SetDisabled(v bool) {
+	o.Disabled = &v
 }
 
 // GetKey returns the Key field value

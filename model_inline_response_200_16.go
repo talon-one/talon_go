@@ -16,31 +16,29 @@ import (
 
 // InlineResponse20016 struct for InlineResponse20016
 type InlineResponse20016 struct {
-	// true means there is more data in the source collection to request..
-	HasMore bool `json:"hasMore"`
-	// List of loyalty card transaction logs.
-	Data []CardLedgerTransactionLogEntry `json:"data"`
+	TotalResultSize int32                  `json:"totalResultSize"`
+	Data            []LoyaltyDashboardData `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20016) GetHasMore() bool {
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20016) GetTotalResultSize() int32 {
 	if o == nil {
-		var ret bool
+		var ret int32
 		return ret
 	}
 
-	return o.HasMore
+	return o.TotalResultSize
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20016) SetHasMore(v bool) {
-	o.HasMore = v
+// SetTotalResultSize sets field value
+func (o *InlineResponse20016) SetTotalResultSize(v int32) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20016) GetData() []CardLedgerTransactionLogEntry {
+func (o *InlineResponse20016) GetData() []LoyaltyDashboardData {
 	if o == nil {
-		var ret []CardLedgerTransactionLogEntry
+		var ret []LoyaltyDashboardData
 		return ret
 	}
 
@@ -48,7 +46,7 @@ func (o *InlineResponse20016) GetData() []CardLedgerTransactionLogEntry {
 }
 
 // SetData sets field value
-func (o *InlineResponse20016) SetData(v []CardLedgerTransactionLogEntry) {
+func (o *InlineResponse20016) SetData(v []LoyaltyDashboardData) {
 	o.Data = v
 }
 

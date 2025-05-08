@@ -35,7 +35,8 @@ type LoyaltyLedgerEntry struct {
 	// This is the ID of the user who created this entry, if the addition or subtraction was done manually.
 	UserID *int32 `json:"userID,omitempty"`
 	// Indicates if the entry belongs to the archived session.
-	Archived *bool `json:"archived,omitempty"`
+	Archived *bool                    `json:"archived,omitempty"`
+	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
 }
 
 // GetCreated returns the Created field value
@@ -390,6 +391,39 @@ func (o *LoyaltyLedgerEntry) HasArchived() bool {
 // SetArchived gets a reference to the given bool and assigns it to the Archived field.
 func (o *LoyaltyLedgerEntry) SetArchived(v bool) {
 	o.Archived = &v
+}
+
+// GetFlags returns the Flags field value if set, zero value otherwise.
+func (o *LoyaltyLedgerEntry) GetFlags() LoyaltyLedgerEntryFlags {
+	if o == nil || o.Flags == nil {
+		var ret LoyaltyLedgerEntryFlags
+		return ret
+	}
+	return *o.Flags
+}
+
+// GetFlagsOk returns a tuple with the Flags field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyLedgerEntry) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool) {
+	if o == nil || o.Flags == nil {
+		var ret LoyaltyLedgerEntryFlags
+		return ret, false
+	}
+	return *o.Flags, true
+}
+
+// HasFlags returns a boolean if a field has been set.
+func (o *LoyaltyLedgerEntry) HasFlags() bool {
+	if o != nil && o.Flags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
+func (o *LoyaltyLedgerEntry) SetFlags(v LoyaltyLedgerEntryFlags) {
+	o.Flags = &v
 }
 
 type NullableLoyaltyLedgerEntry struct {

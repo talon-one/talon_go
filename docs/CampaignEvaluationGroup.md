@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **Name** | Pointer to **string** | The name of the campaign evaluation group. | 
 **ParentId** | Pointer to **int32** | The ID of the parent group that contains the campaign evaluation group. | 
 **Description** | Pointer to **string** | A description of the campaign evaluation group. | [optional] 

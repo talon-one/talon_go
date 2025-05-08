@@ -16,8 +16,8 @@ import (
 
 // InlineResponse2008 struct for InlineResponse2008
 type InlineResponse2008 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
-	Data            []Coupon `json:"data"`
+	TotalResultSize int32      `json:"totalResultSize"`
+	Data            []Campaign `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2008) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2008) GetData() []Coupon {
+func (o *InlineResponse2008) GetData() []Campaign {
 	if o == nil {
-		var ret []Coupon
+		var ret []Campaign
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2008) GetData() []Coupon {
 }
 
 // SetData sets field value
-func (o *InlineResponse2008) SetData(v []Coupon) {
+func (o *InlineResponse2008) SetData(v []Campaign) {
 	o.Data = v
 }
 

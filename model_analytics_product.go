@@ -16,14 +16,13 @@ import (
 
 // AnalyticsProduct struct for AnalyticsProduct
 type AnalyticsProduct struct {
-	// The ID of the analytics-level product.
+	// The ID of the product.
 	Id int32 `json:"id"`
-	// Indicates whether the analytics-level product is connected to a catalog and also has a product name.
-	IsPreliminary bool `json:"isPreliminary"`
-	// The name of the analytics-level product.
+	// The name of the product.
 	Name string `json:"name"`
 	// The ID of the catalog. You can find the ID in the Campaign Manager in **Account** > **Tools** > **Cart item catalogs**.
-	CatalogId *int32 `json:"catalogId,omitempty"`
+	CatalogId int32                        `json:"catalogId"`
+	UnitsSold *AnalyticsDataPointWithTrend `json:"unitsSold,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -41,21 +40,6 @@ func (o *AnalyticsProduct) SetId(v int32) {
 	o.Id = v
 }
 
-// GetIsPreliminary returns the IsPreliminary field value
-func (o *AnalyticsProduct) GetIsPreliminary() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.IsPreliminary
-}
-
-// SetIsPreliminary sets field value
-func (o *AnalyticsProduct) SetIsPreliminary(v bool) {
-	o.IsPreliminary = v
-}
-
 // GetName returns the Name field value
 func (o *AnalyticsProduct) GetName() string {
 	if o == nil {
@@ -71,37 +55,52 @@ func (o *AnalyticsProduct) SetName(v string) {
 	o.Name = v
 }
 
-// GetCatalogId returns the CatalogId field value if set, zero value otherwise.
+// GetCatalogId returns the CatalogId field value
 func (o *AnalyticsProduct) GetCatalogId() int32 {
-	if o == nil || o.CatalogId == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.CatalogId
+
+	return o.CatalogId
 }
 
-// GetCatalogIdOk returns a tuple with the CatalogId field value if set, zero value otherwise
+// SetCatalogId sets field value
+func (o *AnalyticsProduct) SetCatalogId(v int32) {
+	o.CatalogId = v
+}
+
+// GetUnitsSold returns the UnitsSold field value if set, zero value otherwise.
+func (o *AnalyticsProduct) GetUnitsSold() AnalyticsDataPointWithTrend {
+	if o == nil || o.UnitsSold == nil {
+		var ret AnalyticsDataPointWithTrend
+		return ret
+	}
+	return *o.UnitsSold
+}
+
+// GetUnitsSoldOk returns a tuple with the UnitsSold field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *AnalyticsProduct) GetCatalogIdOk() (int32, bool) {
-	if o == nil || o.CatalogId == nil {
-		var ret int32
+func (o *AnalyticsProduct) GetUnitsSoldOk() (AnalyticsDataPointWithTrend, bool) {
+	if o == nil || o.UnitsSold == nil {
+		var ret AnalyticsDataPointWithTrend
 		return ret, false
 	}
-	return *o.CatalogId, true
+	return *o.UnitsSold, true
 }
 
-// HasCatalogId returns a boolean if a field has been set.
-func (o *AnalyticsProduct) HasCatalogId() bool {
-	if o != nil && o.CatalogId != nil {
+// HasUnitsSold returns a boolean if a field has been set.
+func (o *AnalyticsProduct) HasUnitsSold() bool {
+	if o != nil && o.UnitsSold != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCatalogId gets a reference to the given int32 and assigns it to the CatalogId field.
-func (o *AnalyticsProduct) SetCatalogId(v int32) {
-	o.CatalogId = &v
+// SetUnitsSold gets a reference to the given AnalyticsDataPointWithTrend and assigns it to the UnitsSold field.
+func (o *AnalyticsProduct) SetUnitsSold(v AnalyticsDataPointWithTrend) {
+	o.UnitsSold = &v
 }
 
 type NullableAnalyticsProduct struct {
