@@ -18,6 +18,8 @@ import (
 type CatalogsStrikethroughNotificationPolicy struct {
 	// Notification name.
 	Name string `json:"name"`
+	// The number of days in advance that strikethrough pricing updates should be sent.
+	AheadOfDaysTrigger *int32 `json:"aheadOfDaysTrigger,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -33,6 +35,39 @@ func (o *CatalogsStrikethroughNotificationPolicy) GetName() string {
 // SetName sets field value
 func (o *CatalogsStrikethroughNotificationPolicy) SetName(v string) {
 	o.Name = v
+}
+
+// GetAheadOfDaysTrigger returns the AheadOfDaysTrigger field value if set, zero value otherwise.
+func (o *CatalogsStrikethroughNotificationPolicy) GetAheadOfDaysTrigger() int32 {
+	if o == nil || o.AheadOfDaysTrigger == nil {
+		var ret int32
+		return ret
+	}
+	return *o.AheadOfDaysTrigger
+}
+
+// GetAheadOfDaysTriggerOk returns a tuple with the AheadOfDaysTrigger field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogsStrikethroughNotificationPolicy) GetAheadOfDaysTriggerOk() (int32, bool) {
+	if o == nil || o.AheadOfDaysTrigger == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.AheadOfDaysTrigger, true
+}
+
+// HasAheadOfDaysTrigger returns a boolean if a field has been set.
+func (o *CatalogsStrikethroughNotificationPolicy) HasAheadOfDaysTrigger() bool {
+	if o != nil && o.AheadOfDaysTrigger != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAheadOfDaysTrigger gets a reference to the given int32 and assigns it to the AheadOfDaysTrigger field.
+func (o *CatalogsStrikethroughNotificationPolicy) SetAheadOfDaysTrigger(v int32) {
+	o.AheadOfDaysTrigger = &v
 }
 
 type NullableCatalogsStrikethroughNotificationPolicy struct {

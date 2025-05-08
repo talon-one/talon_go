@@ -16,29 +16,29 @@ import (
 
 // InlineResponse20046 struct for InlineResponse20046
 type InlineResponse20046 struct {
-	HasMore bool                  `json:"hasMore"`
-	Data    []AchievementProgress `json:"data"`
+	TotalResultSize int32    `json:"totalResultSize"`
+	Data            []RoleV2 `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20046) GetHasMore() bool {
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20046) GetTotalResultSize() int32 {
 	if o == nil {
-		var ret bool
+		var ret int32
 		return ret
 	}
 
-	return o.HasMore
+	return o.TotalResultSize
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20046) SetHasMore(v bool) {
-	o.HasMore = v
+// SetTotalResultSize sets field value
+func (o *InlineResponse20046) SetTotalResultSize(v int32) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20046) GetData() []AchievementProgress {
+func (o *InlineResponse20046) GetData() []RoleV2 {
 	if o == nil {
-		var ret []AchievementProgress
+		var ret []RoleV2
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20046) GetData() []AchievementProgress {
 }
 
 // SetData sets field value
-func (o *InlineResponse20046) SetData(v []AchievementProgress) {
+func (o *InlineResponse20046) SetData(v []RoleV2) {
 	o.Data = v
 }
 

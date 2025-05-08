@@ -17,7 +17,7 @@ import (
 
 // ApplicationReferee struct for ApplicationReferee
 type ApplicationReferee struct {
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// Integration ID of the session in which the customer redeemed the referral.
 	SessionId string `json:"sessionId"`

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
 **StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **ProfileId** | Pointer to **int32** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
 **Profileintegrationid** | Pointer to **string** | Integration ID of the customer for the session. | [optional] 
 **Coupon** | Pointer to **string** | Any coupon code entered. | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. &#x60;closed&#x60; → &#x60;cancelled&#x60; or &#x60;partially_returned&#x60; 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  | 
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | Serialized JSON representation. | 
 **Discounts** | Pointer to **map[string]float32** | **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the &#x60;totalDiscounts&#x60; property instead.  | 
-**TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session. | 
+**TotalDiscounts** | Pointer to **float32** | The total sum of the discounts applied to this session.  **Note:** If more than one session is returned, this value is displayed as &#x60;0&#x60;.  | 
 **Total** | Pointer to **float32** | The total sum of the session before any discounts applied. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 

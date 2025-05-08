@@ -16,14 +16,16 @@ import (
 
 // AchievementAdditionalProperties struct for AchievementAdditionalProperties
 type AchievementAdditionalProperties struct {
-	// ID of the campaign, to which the achievement belongs to
+	// The ID of the campaign the achievement belongs to.
 	CampaignId int32 `json:"campaignId"`
 	// ID of the user that created this achievement.
 	UserId int32 `json:"userId"`
 	// Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.
-	CreatedBy string `json:"createdBy"`
+	CreatedBy *string `json:"createdBy,omitempty"`
 	// Indicates if a customer has made progress in the achievement.
 	HasProgress *bool `json:"hasProgress,omitempty"`
+	// The status of the achievement.
+	Status *string `json:"status,omitempty"`
 }
 
 // GetCampaignId returns the CampaignId field value
@@ -56,19 +58,37 @@ func (o *AchievementAdditionalProperties) SetUserId(v int32) {
 	o.UserId = v
 }
 
-// GetCreatedBy returns the CreatedBy field value
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *AchievementAdditionalProperties) GetCreatedBy() string {
-	if o == nil {
+	if o == nil || o.CreatedBy == nil {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedBy
+	return *o.CreatedBy
 }
 
-// SetCreatedBy sets field value
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementAdditionalProperties) GetCreatedByOk() (string, bool) {
+	if o == nil || o.CreatedBy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *AchievementAdditionalProperties) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *AchievementAdditionalProperties) SetCreatedBy(v string) {
-	o.CreatedBy = v
+	o.CreatedBy = &v
 }
 
 // GetHasProgress returns the HasProgress field value if set, zero value otherwise.
@@ -102,6 +122,39 @@ func (o *AchievementAdditionalProperties) HasHasProgress() bool {
 // SetHasProgress gets a reference to the given bool and assigns it to the HasProgress field.
 func (o *AchievementAdditionalProperties) SetHasProgress(v bool) {
 	o.HasProgress = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *AchievementAdditionalProperties) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementAdditionalProperties) GetStatusOk() (string, bool) {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *AchievementAdditionalProperties) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *AchievementAdditionalProperties) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableAchievementAdditionalProperties struct {

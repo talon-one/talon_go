@@ -21,7 +21,7 @@ type Event struct {
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId *string `json:"profileId,omitempty"`

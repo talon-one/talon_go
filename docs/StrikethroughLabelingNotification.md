@@ -4,13 +4,65 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationId** | Pointer to **int32** | The ID of the application that catalog items labels belongs to. | 
+**Version** | Pointer to **string** | The version of the strikethrough pricing notification. | [optional] 
+**ValidFrom** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only.  | [optional] 
+**ApplicationId** | Pointer to **int32** | The ID of the Application to which the catalog items labels belongs. | 
 **CurrentBatch** | Pointer to **int32** | The batch number of the notification. Notifications might be sent in different batches. | 
 **TotalBatches** | Pointer to **int32** | The total number of batches for the notification. | 
 **Trigger** | Pointer to [**StrikethroughTrigger**](StrikethroughTrigger.md) |  | 
 **ChangedItems** | Pointer to [**[]StrikethroughChangedItem**](StrikethroughChangedItem.md) |  | 
 
 ## Methods
+
+### GetVersion
+
+`func (o *StrikethroughLabelingNotification) GetVersion() string`
+
+GetVersion returns the Version field if non-nil, zero value otherwise.
+
+### GetVersionOk
+
+`func (o *StrikethroughLabelingNotification) GetVersionOk() (string, bool)`
+
+GetVersionOk returns a tuple with the Version field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasVersion
+
+`func (o *StrikethroughLabelingNotification) HasVersion() bool`
+
+HasVersion returns a boolean if a field has been set.
+
+### SetVersion
+
+`func (o *StrikethroughLabelingNotification) SetVersion(v string)`
+
+SetVersion gets a reference to the given string and assigns it to the Version field.
+
+### GetValidFrom
+
+`func (o *StrikethroughLabelingNotification) GetValidFrom() time.Time`
+
+GetValidFrom returns the ValidFrom field if non-nil, zero value otherwise.
+
+### GetValidFromOk
+
+`func (o *StrikethroughLabelingNotification) GetValidFromOk() (time.Time, bool)`
+
+GetValidFromOk returns a tuple with the ValidFrom field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasValidFrom
+
+`func (o *StrikethroughLabelingNotification) HasValidFrom() bool`
+
+HasValidFrom returns a boolean if a field has been set.
+
+### SetValidFrom
+
+`func (o *StrikethroughLabelingNotification) SetValidFrom(v time.Time)`
+
+SetValidFrom gets a reference to the given time.Time and assigns it to the ValidFrom field.
 
 ### GetApplicationId
 

@@ -21,7 +21,7 @@ type Return struct {
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`

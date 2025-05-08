@@ -16,9 +16,9 @@ import (
 
 // InlineResponse20032 struct for InlineResponse20032
 type InlineResponse20032 struct {
-	HasMore         *bool                `json:"hasMore,omitempty"`
-	TotalResultSize *int32               `json:"totalResultSize,omitempty"`
-	Data            []ApplicationReferee `json:"data"`
+	HasMore         *bool      `json:"hasMore,omitempty"`
+	TotalResultSize *int32     `json:"totalResultSize,omitempty"`
+	Data            []Audience `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value if set, zero value otherwise.
@@ -88,9 +88,9 @@ func (o *InlineResponse20032) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20032) GetData() []ApplicationReferee {
+func (o *InlineResponse20032) GetData() []Audience {
 	if o == nil {
-		var ret []ApplicationReferee
+		var ret []Audience
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *InlineResponse20032) GetData() []ApplicationReferee {
 }
 
 // SetData sets field value
-func (o *InlineResponse20032) SetData(v []ApplicationReferee) {
+func (o *InlineResponse20032) SetData(v []Audience) {
 	o.Data = v
 }
 

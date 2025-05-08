@@ -18,7 +18,7 @@ import (
 type LimitCounter struct {
 	// The ID of the campaign that owns this entity.
 	CampaignId int32 `json:"campaignId"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`

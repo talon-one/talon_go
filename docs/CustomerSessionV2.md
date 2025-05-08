@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **IntegrationId** | Pointer to **string** | The integration ID set by your integration layer. | 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | 
 **StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **EvaluableCampaignIds** | Pointer to **[]int32** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
@@ -24,7 +24,6 @@ Name | Type | Description | Notes
 **CartItemTotal** | Pointer to **float32** | The total value of cart items, before any discounts are applied. | 
 **AdditionalCostTotal** | Pointer to **float32** | The total value of additional costs, before any discounts are applied. | 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received on this session. | 
-**ClosurePrediction** | Pointer to **float32** | The likelihood of the customer session closing based on predictive modeling, expressed as a decimal between &#x60;0&#x60; and &#x60;1&#x60;. | [optional] 
 
 ## Methods
 
@@ -527,31 +526,6 @@ HasUpdated returns a boolean if a field has been set.
 `func (o *CustomerSessionV2) SetUpdated(v time.Time)`
 
 SetUpdated gets a reference to the given time.Time and assigns it to the Updated field.
-
-### GetClosurePrediction
-
-`func (o *CustomerSessionV2) GetClosurePrediction() float32`
-
-GetClosurePrediction returns the ClosurePrediction field if non-nil, zero value otherwise.
-
-### GetClosurePredictionOk
-
-`func (o *CustomerSessionV2) GetClosurePredictionOk() (float32, bool)`
-
-GetClosurePredictionOk returns a tuple with the ClosurePrediction field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasClosurePrediction
-
-`func (o *CustomerSessionV2) HasClosurePrediction() bool`
-
-HasClosurePrediction returns a boolean if a field has been set.
-
-### SetClosurePrediction
-
-`func (o *CustomerSessionV2) SetClosurePrediction(v float32)`
-
-SetClosurePrediction gets a reference to the given float32 and assigns it to the ClosurePrediction field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

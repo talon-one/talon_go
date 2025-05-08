@@ -25,7 +25,7 @@ type ApplicationSession struct {
 	IntegrationId string `json:"integrationId"`
 	// The integration ID of the store. You choose this ID when you create a store.
 	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
 	ProfileId *int32 `json:"profileId,omitempty"`
@@ -41,7 +41,7 @@ type ApplicationSession struct {
 	CartItems []CartItem `json:"cartItems"`
 	// **API V1 only.** A map of labeled discount values, in the same currency as the session.  If you are using the V2 endpoints, refer to the `totalDiscounts` property instead.
 	Discounts map[string]float32 `json:"discounts"`
-	// The total sum of the discounts applied to this session.
+	// The total sum of the discounts applied to this session.  **Note:** If more than one session is returned, this value is displayed as `0`.
 	TotalDiscounts float32 `json:"totalDiscounts"`
 	// The total sum of the session before any discounts applied.
 	Total float32 `json:"total"`

@@ -16,8 +16,8 @@ import (
 
 // InlineResponse20013 struct for InlineResponse20013
 type InlineResponse20013 struct {
-	TotalResultSize int32            `json:"totalResultSize"`
-	Data            []LoyaltyProgram `json:"data"`
+	TotalResultSize int32           `json:"totalResultSize"`
+	Data            []CampaignGroup `json:"data"`
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
@@ -36,9 +36,9 @@ func (o *InlineResponse20013) SetTotalResultSize(v int32) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20013) GetData() []LoyaltyProgram {
+func (o *InlineResponse20013) GetData() []CampaignGroup {
 	if o == nil {
-		var ret []LoyaltyProgram
+		var ret []CampaignGroup
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse20013) GetData() []LoyaltyProgram {
 }
 
 // SetData sets field value
-func (o *InlineResponse20013) SetData(v []LoyaltyProgram) {
+func (o *InlineResponse20013) SetData(v []CampaignGroup) {
 	o.Data = v
 }
 

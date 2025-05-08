@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The ID of the analytics-level product. | 
-**IsPreliminary** | Pointer to **bool** | Indicates whether the analytics-level product is connected to a catalog and also has a product name. | 
-**Name** | Pointer to **string** | The name of the analytics-level product. | 
-**CatalogId** | Pointer to **int32** | The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**.  | [optional] 
+**Id** | Pointer to **int32** | The ID of the product. | 
+**Name** | Pointer to **string** | The name of the product. | 
+**CatalogId** | Pointer to **int32** | The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**.  | 
+**UnitsSold** | Pointer to [**AnalyticsDataPointWithTrend**](AnalyticsDataPointWithTrend.md) |  | [optional] 
 
 ## Methods
 
@@ -35,31 +35,6 @@ HasId returns a boolean if a field has been set.
 `func (o *AnalyticsProduct) SetId(v int32)`
 
 SetId gets a reference to the given int32 and assigns it to the Id field.
-
-### GetIsPreliminary
-
-`func (o *AnalyticsProduct) GetIsPreliminary() bool`
-
-GetIsPreliminary returns the IsPreliminary field if non-nil, zero value otherwise.
-
-### GetIsPreliminaryOk
-
-`func (o *AnalyticsProduct) GetIsPreliminaryOk() (bool, bool)`
-
-GetIsPreliminaryOk returns a tuple with the IsPreliminary field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasIsPreliminary
-
-`func (o *AnalyticsProduct) HasIsPreliminary() bool`
-
-HasIsPreliminary returns a boolean if a field has been set.
-
-### SetIsPreliminary
-
-`func (o *AnalyticsProduct) SetIsPreliminary(v bool)`
-
-SetIsPreliminary gets a reference to the given bool and assigns it to the IsPreliminary field.
 
 ### GetName
 
@@ -110,6 +85,31 @@ HasCatalogId returns a boolean if a field has been set.
 `func (o *AnalyticsProduct) SetCatalogId(v int32)`
 
 SetCatalogId gets a reference to the given int32 and assigns it to the CatalogId field.
+
+### GetUnitsSold
+
+`func (o *AnalyticsProduct) GetUnitsSold() AnalyticsDataPointWithTrend`
+
+GetUnitsSold returns the UnitsSold field if non-nil, zero value otherwise.
+
+### GetUnitsSoldOk
+
+`func (o *AnalyticsProduct) GetUnitsSoldOk() (AnalyticsDataPointWithTrend, bool)`
+
+GetUnitsSoldOk returns a tuple with the UnitsSold field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasUnitsSold
+
+`func (o *AnalyticsProduct) HasUnitsSold() bool`
+
+HasUnitsSold returns a boolean if a field has been set.
+
+### SetUnitsSold
+
+`func (o *AnalyticsProduct) SetUnitsSold(v AnalyticsDataPointWithTrend)`
+
+SetUnitsSold gets a reference to the given AnalyticsDataPointWithTrend and assigns it to the UnitsSold field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

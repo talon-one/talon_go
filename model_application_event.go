@@ -21,7 +21,7 @@ type ApplicationEvent struct {
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
 	ProfileId *int32 `json:"profileId,omitempty"`

@@ -16,8 +16,8 @@ import (
 
 // InlineResponse2003 struct for InlineResponse2003
 type InlineResponse2003 struct {
-	HasMore bool                                  `json:"hasMore"`
-	Data    []CardLedgerPointsEntryIntegrationApi `json:"data"`
+	HasMore bool                                          `json:"hasMore"`
+	Data    []CardLedgerTransactionLogEntryIntegrationApi `json:"data"`
 }
 
 // GetHasMore returns the HasMore field value
@@ -36,9 +36,9 @@ func (o *InlineResponse2003) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2003) GetData() []CardLedgerPointsEntryIntegrationApi {
+func (o *InlineResponse2003) GetData() []CardLedgerTransactionLogEntryIntegrationApi {
 	if o == nil {
-		var ret []CardLedgerPointsEntryIntegrationApi
+		var ret []CardLedgerTransactionLogEntryIntegrationApi
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2003) GetData() []CardLedgerPointsEntryIntegrationApi {
 }
 
 // SetData sets field value
-func (o *InlineResponse2003) SetData(v []CardLedgerPointsEntryIntegrationApi) {
+func (o *InlineResponse2003) SetData(v []CardLedgerTransactionLogEntryIntegrationApi) {
 	o.Data = v
 }
 

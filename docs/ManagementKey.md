@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **int32** | ID of the user who created it. | 
 **AccountID** | Pointer to **int32** | ID of account the key is used for. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The date the management key was created. | 
+**Disabled** | Pointer to **bool** | The management key is disabled (this property is set to &#x60;true&#x60;) when the user who created the key is disabled or deleted. | [optional] 
 
 ## Methods
 
@@ -214,6 +215,31 @@ HasCreated returns a boolean if a field has been set.
 `func (o *ManagementKey) SetCreated(v time.Time)`
 
 SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+
+### GetDisabled
+
+`func (o *ManagementKey) GetDisabled() bool`
+
+GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+
+### GetDisabledOk
+
+`func (o *ManagementKey) GetDisabledOk() (bool, bool)`
+
+GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDisabled
+
+`func (o *ManagementKey) HasDisabled() bool`
+
+HasDisabled returns a boolean if a field has been set.
+
+### SetDisabled
+
+`func (o *ManagementKey) SetDisabled(v bool)`
+
+SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

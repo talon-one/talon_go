@@ -1,4 +1,4 @@
-# NotificationTest
+# MessageTest
 
 ## Properties
 
@@ -11,51 +11,51 @@ Name | Type | Description | Notes
 
 ### GetHttpResponse
 
-`func (o *NotificationTest) GetHttpResponse() string`
+`func (o *MessageTest) GetHttpResponse() string`
 
 GetHttpResponse returns the HttpResponse field if non-nil, zero value otherwise.
 
 ### GetHttpResponseOk
 
-`func (o *NotificationTest) GetHttpResponseOk() (string, bool)`
+`func (o *MessageTest) GetHttpResponseOk() (string, bool)`
 
 GetHttpResponseOk returns a tuple with the HttpResponse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasHttpResponse
 
-`func (o *NotificationTest) HasHttpResponse() bool`
+`func (o *MessageTest) HasHttpResponse() bool`
 
 HasHttpResponse returns a boolean if a field has been set.
 
 ### SetHttpResponse
 
-`func (o *NotificationTest) SetHttpResponse(v string)`
+`func (o *MessageTest) SetHttpResponse(v string)`
 
 SetHttpResponse gets a reference to the given string and assigns it to the HttpResponse field.
 
 ### GetHttpStatus
 
-`func (o *NotificationTest) GetHttpStatus() int32`
+`func (o *MessageTest) GetHttpStatus() int32`
 
 GetHttpStatus returns the HttpStatus field if non-nil, zero value otherwise.
 
 ### GetHttpStatusOk
 
-`func (o *NotificationTest) GetHttpStatusOk() (int32, bool)`
+`func (o *MessageTest) GetHttpStatusOk() (int32, bool)`
 
 GetHttpStatusOk returns a tuple with the HttpStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasHttpStatus
 
-`func (o *NotificationTest) HasHttpStatus() bool`
+`func (o *MessageTest) HasHttpStatus() bool`
 
 HasHttpStatus returns a boolean if a field has been set.
 
 ### SetHttpStatus
 
-`func (o *NotificationTest) SetHttpStatus(v int32)`
+`func (o *MessageTest) SetHttpStatus(v int32)`
 
 SetHttpStatus gets a reference to the given int32 and assigns it to the HttpStatus field.
 

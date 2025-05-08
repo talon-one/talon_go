@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **ModifiedBy** | Pointer to **int32** | The ID of the user who last updated the Application cart item filter. | [optional] 
 **CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the Application cart item filter. | [optional] 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 
 ## Methods
 

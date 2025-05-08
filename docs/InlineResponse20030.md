@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]AudienceAnalytics**](AudienceAnalytics.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]ApplicationEvent**](ApplicationEvent.md) |  | 
 
 ## Methods
 
@@ -36,13 +36,13 @@ SetHasMore gets a reference to the given bool and assigns it to the HasMore fiel
 
 ### GetData
 
-`func (o *InlineResponse20030) GetData() []AudienceAnalytics`
+`func (o *InlineResponse20030) GetData() []ApplicationEvent`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20030) GetDataOk() ([]AudienceAnalytics, bool)`
+`func (o *InlineResponse20030) GetDataOk() ([]ApplicationEvent, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -55,9 +55,9 @@ HasData returns a boolean if a field has been set.
 
 ### SetData
 
-`func (o *InlineResponse20030) SetData(v []AudienceAnalytics)`
+`func (o *InlineResponse20030) SetData(v []ApplicationEvent)`
 
-SetData gets a reference to the given []AudienceAnalytics and assigns it to the Data field.
+SetData gets a reference to the given []ApplicationEvent and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -30,7 +30,7 @@ type Achievement struct {
 	// The required number of actions or the transactional milestone to complete the achievement.
 	Target float32 `json:"target"`
 	// The relative duration after which the achievement ends and resets for a particular customer profile.  **Note**: The `period` does not start when the achievement is created.  The period is a **positive real number** followed by one letter indicating the time unit.  Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can also round certain units down to the beginning of period and up to the end of period.: - `_D` for rounding down days only. Signifies the start of the day. Example: `30D_D` - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year. Example: `23W_U`  **Note**: You can either use the round down and round up option or set an absolute period.
-	Period            string     `json:"period"`
+	Period            *string    `json:"period,omitempty"`
 	PeriodEndOverride *TimePoint `json:"periodEndOverride,omitempty"`
 	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again.
 	RecurrencePolicy *string `json:"recurrencePolicy,omitempty"`
@@ -40,14 +40,16 @@ type Achievement struct {
 	FixedStartDate *time.Time `json:"fixedStartDate,omitempty"`
 	// The achievement's end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string.
 	EndDate *time.Time `json:"endDate,omitempty"`
-	// ID of the campaign, to which the achievement belongs to
+	// The ID of the campaign the achievement belongs to.
 	CampaignId int32 `json:"campaignId"`
 	// ID of the user that created this achievement.
 	UserId int32 `json:"userId"`
 	// Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.
-	CreatedBy string `json:"createdBy"`
+	CreatedBy *string `json:"createdBy,omitempty"`
 	// Indicates if a customer has made progress in the achievement.
 	HasProgress *bool `json:"hasProgress,omitempty"`
+	// The status of the achievement.
+	Status *string `json:"status,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -140,19 +142,37 @@ func (o *Achievement) SetTarget(v float32) {
 	o.Target = v
 }
 
-// GetPeriod returns the Period field value
+// GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *Achievement) GetPeriod() string {
-	if o == nil {
+	if o == nil || o.Period == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Period
+	return *o.Period
 }
 
-// SetPeriod sets field value
+// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Achievement) GetPeriodOk() (string, bool) {
+	if o == nil || o.Period == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Period, true
+}
+
+// HasPeriod returns a boolean if a field has been set.
+func (o *Achievement) HasPeriod() bool {
+	if o != nil && o.Period != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriod gets a reference to the given string and assigns it to the Period field.
 func (o *Achievement) SetPeriod(v string) {
-	o.Period = v
+	o.Period = &v
 }
 
 // GetPeriodEndOverride returns the PeriodEndOverride field value if set, zero value otherwise.
@@ -350,19 +370,37 @@ func (o *Achievement) SetUserId(v int32) {
 	o.UserId = v
 }
 
-// GetCreatedBy returns the CreatedBy field value
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *Achievement) GetCreatedBy() string {
-	if o == nil {
+	if o == nil || o.CreatedBy == nil {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedBy
+	return *o.CreatedBy
 }
 
-// SetCreatedBy sets field value
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Achievement) GetCreatedByOk() (string, bool) {
+	if o == nil || o.CreatedBy == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *Achievement) HasCreatedBy() bool {
+	if o != nil && o.CreatedBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *Achievement) SetCreatedBy(v string) {
-	o.CreatedBy = v
+	o.CreatedBy = &v
 }
 
 // GetHasProgress returns the HasProgress field value if set, zero value otherwise.
@@ -396,6 +434,39 @@ func (o *Achievement) HasHasProgress() bool {
 // SetHasProgress gets a reference to the given bool and assigns it to the HasProgress field.
 func (o *Achievement) SetHasProgress(v bool) {
 	o.HasProgress = &v
+}
+
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *Achievement) GetStatus() string {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Achievement) GetStatusOk() (string, bool) {
+	if o == nil || o.Status == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *Achievement) HasStatus() bool {
+	if o != nil && o.Status != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given string and assigns it to the Status field.
+func (o *Achievement) SetStatus(v string) {
+	o.Status = &v
 }
 
 type NullableAchievement struct {

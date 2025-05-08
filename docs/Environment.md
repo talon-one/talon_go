@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **Slots** | Pointer to [**[]SlotDef**](SlotDef.md) | The slots defined for this application. | 
 **Functions** | Pointer to [**[]FunctionDef**](FunctionDef.md) | The functions defined for this application. | 
 **Templates** | Pointer to [**[]TemplateDef**](TemplateDef.md) | The templates defined for this application. | 

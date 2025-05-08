@@ -27,7 +27,7 @@ type ApplicationCifExpression struct {
 	CreatedBy *int32 `json:"createdBy,omitempty"`
 	// Arbitrary additional JSON data associated with the Application cart item filter.
 	Expression []interface{} `json:"expression,omitempty"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 }
 
@@ -155,7 +155,7 @@ func (o *ApplicationCifExpression) HasExpression() bool {
 	return false
 }
 
-// SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
+// SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
 func (o *ApplicationCifExpression) SetExpression(v []interface{}) {
 	o.Expression = v
 }

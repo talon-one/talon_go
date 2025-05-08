@@ -16,23 +16,6 @@ import (
 
 // DeactivateUserRequest struct for DeactivateUserRequest
 type DeactivateUserRequest struct {
-	// The email address associated with the user profile.
-	Email string `json:"email"`
-}
-
-// GetEmail returns the Email field value
-func (o *DeactivateUserRequest) GetEmail() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Email
-}
-
-// SetEmail sets field value
-func (o *DeactivateUserRequest) SetEmail(v string) {
-	o.Email = v
 }
 
 type NullableDeactivateUserRequest struct {

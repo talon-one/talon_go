@@ -64,6 +64,8 @@ type CampaignTemplate struct {
 	UpdatedBy *string `json:"updatedBy,omitempty"`
 	// The IDs of the Applications that are related to this entity.
 	ValidApplicationIds []int32 `json:"validApplicationIds"`
+	// A flag indicating whether the user marked the template as a favorite.
+	IsUserFavorite *bool `json:"isUserFavorite,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -691,6 +693,39 @@ func (o *CampaignTemplate) GetValidApplicationIds() []int32 {
 // SetValidApplicationIds sets field value
 func (o *CampaignTemplate) SetValidApplicationIds(v []int32) {
 	o.ValidApplicationIds = v
+}
+
+// GetIsUserFavorite returns the IsUserFavorite field value if set, zero value otherwise.
+func (o *CampaignTemplate) GetIsUserFavorite() bool {
+	if o == nil || o.IsUserFavorite == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsUserFavorite
+}
+
+// GetIsUserFavoriteOk returns a tuple with the IsUserFavorite field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignTemplate) GetIsUserFavoriteOk() (bool, bool) {
+	if o == nil || o.IsUserFavorite == nil {
+		var ret bool
+		return ret, false
+	}
+	return *o.IsUserFavorite, true
+}
+
+// HasIsUserFavorite returns a boolean if a field has been set.
+func (o *CampaignTemplate) HasIsUserFavorite() bool {
+	if o != nil && o.IsUserFavorite != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsUserFavorite gets a reference to the given bool and assigns it to the IsUserFavorite field.
+func (o *CampaignTemplate) SetIsUserFavorite(v bool) {
+	o.IsUserFavorite = &v
 }
 
 type NullableCampaignTemplate struct {

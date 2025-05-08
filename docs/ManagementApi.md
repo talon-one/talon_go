@@ -97,6 +97,7 @@ Method | HTTP request | Description
 [**GetCustomerProfileAchievementProgress**](ManagementApi.md#GetCustomerProfileAchievementProgress) | **Get** /v1/applications/{applicationId}/achievement_progress/{integrationId} | List customer achievements
 [**GetCustomerProfiles**](ManagementApi.md#GetCustomerProfiles) | **Get** /v1/customers/no_total | List customer profiles
 [**GetCustomersByAttributes**](ManagementApi.md#GetCustomersByAttributes) | **Post** /v1/customer_search/no_total | List customer profiles matching the given attributes
+[**GetDashboardStatistics**](ManagementApi.md#GetDashboardStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/dashboard | Get statistics for loyalty dashboard
 [**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List event types
 [**GetExports**](ManagementApi.md#GetExports) | **Get** /v1/exports | Get exports
 [**GetLoyaltyCard**](ManagementApi.md#GetLoyaltyCard) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
@@ -107,6 +108,7 @@ Method | HTTP request | Description
 [**GetLoyaltyProgramTransactions**](ManagementApi.md#GetLoyaltyProgramTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List loyalty programs
 [**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
+[**GetMessageLogs**](ManagementApi.md#GetMessageLogs) | **Get** /v1/message_logs | List message log entries
 [**GetReferralsWithoutTotalCount**](ManagementApi.md#GetReferralsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/no_total | List referrals
 [**GetRoleV2**](ManagementApi.md#GetRoleV2) | **Get** /v2/roles/{roleId} | Get role
 [**GetRuleset**](ManagementApi.md#GetRuleset) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/rulesets/{rulesetId} | Get ruleset
@@ -137,11 +139,7 @@ Method | HTTP request | Description
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
 [**ListStores**](ManagementApi.md#ListStores) | **Get** /v1/applications/{applicationId}/stores | List stores
-[**NotificationActivation**](ManagementApi.md#NotificationActivation) | **Put** /v1/notifications/{notificationId}/activation | Activate or deactivate notification
 [**OktaEventHandlerChallenge**](ManagementApi.md#OktaEventHandlerChallenge) | **Get** /v1/provisioning/okta | Validate Okta API ownership
-[**PostAddedDeductedPointsNotification**](ManagementApi.md#PostAddedDeductedPointsNotification) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/notifications/added_deducted_points | Create notification about added or deducted loyalty points
-[**PostCatalogsStrikethroughNotification**](ManagementApi.md#PostCatalogsStrikethroughNotification) | **Post** /v1/applications/{applicationId}/catalogs/notifications/strikethrough | Create strikethrough notification
-[**PostPendingPointsNotification**](ManagementApi.md#PostPendingPointsNotification) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/notifications/pending_points | Create notification about pending loyalty points
 [**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
 [**ScimCreateUser**](ManagementApi.md#ScimCreateUser) | **Post** /v1/provisioning/scim/Users | Create SCIM user
@@ -186,7 +184,7 @@ Enable a [disabled user](https://docs.talon.one/docs/product/account/account-set
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**body** | **DeactivateUserRequest**| body | 
+**body** | **DeleteUserRequest**| body | 
 
 ### Return type
 
@@ -257,7 +255,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **loyaltyProgramId** | **string**| The identifier for the loyalty program. | 
-**integrationId** | **string**| The identifier of the profile. | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
 **body** | [**AddLoyaltyPoints**](AddLoyaltyPoints.md)| body | 
 
 ### Return type
@@ -280,7 +278,7 @@ Name | Type | Description  | Notes
 
 ## CopyCampaignToApplications
 
-> InlineResponse2006 CopyCampaignToApplications(ctx, applicationId, campaignId, body)
+> InlineResponse2008 CopyCampaignToApplications(ctx, applicationId, campaignId, body)
 
 Copy the campaign into the specified Application
 
@@ -298,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -560,7 +558,7 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse2008 CreateCoupons(ctx, applicationId, campaignId, body, optional)
+> InlineResponse20010 CreateCoupons(ctx, applicationId, campaignId, body, optional)
 
 Create coupons
 
@@ -587,11 +585,11 @@ Name | Type | Description  | Notes
 
 
 
- **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
+ **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -681,7 +679,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse2008 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId, body, optional)
+> InlineResponse20010 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId, body, optional)
 
 Create coupons for multiple recipients
 
@@ -708,11 +706,11 @@ Name | Type | Description  | Notes
 
 
 
- **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the perfomance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
+ **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -913,7 +911,7 @@ Disable user by email address
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**body** | [**DeactivateUserRequest**](DeactivateUserRequest.md)| body | 
+**body** | **DeleteUserRequest**| body | 
 
 ### Return type
 
@@ -1359,7 +1357,7 @@ Delete user by email address
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**body** | **DeactivateUserRequest**| body | 
+**body** | [**DeleteUserRequest**](DeleteUserRequest.md)| body | 
 
 ### Return type
 
@@ -1645,7 +1643,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **campaignId** | **optional.**| Filter results by campaign ID. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **value** | **optional.**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -2058,7 +2056,7 @@ Name | Type | Description  | Notes
 
 Export customer's transaction logs
 
-Download a CSV file containing a customer's transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. 
+Download a CSV file containing a customer's transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. 
 
 ### Required Parameters
 
@@ -2069,7 +2067,7 @@ Name | Type | Description  | Notes
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **loyaltyProgramId** | **string**| The identifier for the loyalty program. | 
-**integrationId** | **string**| The identifier of the profile. | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
  **optional** | ***ExportLoyaltyLedgerOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2202,7 +2200,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20019 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
+> InlineResponse20022 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
 
 Get access logs for Application
 
@@ -2234,11 +2232,11 @@ Name | Type | Description  | Notes
  **status** | **optional.**| Filter results by HTTP status codes. | 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**InlineResponse20022**](InlineResponse20022.md)
 
 ### Authorization
 
@@ -2428,7 +2426,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20035 GetAdditionalCosts(ctx, optional)
+> InlineResponse20038 GetAdditionalCosts(ctx, optional)
 
 List additional costs
 
@@ -2451,11 +2449,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20035**](InlineResponse20035.md)
+[**InlineResponse20038**](InlineResponse20038.md)
 
 ### Authorization
 
@@ -2576,7 +2574,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20032 GetApplicationCustomerFriends(ctx, applicationId, integrationId, optional)
+> InlineResponse20035 GetApplicationCustomerFriends(ctx, applicationId, integrationId, optional)
 
 List friends referred by customer profile
 
@@ -2603,12 +2601,12 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**InlineResponse20035**](InlineResponse20035.md)
 
 ### Authorization
 
@@ -2626,7 +2624,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20021 GetApplicationCustomers(ctx, applicationId, optional)
+> InlineResponse20024 GetApplicationCustomers(ctx, applicationId, optional)
 
 List application's customers
 
@@ -2656,7 +2654,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**InlineResponse20024**](InlineResponse20024.md)
 
 ### Authorization
 
@@ -2674,7 +2672,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20022 GetApplicationCustomersByAttributes(ctx, applicationId, body, optional)
+> InlineResponse20025 GetApplicationCustomersByAttributes(ctx, applicationId, body, optional)
 
 List application customers matching the given attributes
 
@@ -2705,7 +2703,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**InlineResponse20025**](InlineResponse20025.md)
 
 ### Authorization
 
@@ -2723,7 +2721,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20028 GetApplicationEventTypes(ctx, applicationId, optional)
+> InlineResponse20031 GetApplicationEventTypes(ctx, applicationId, optional)
 
 List Applications event types
 
@@ -2748,11 +2746,11 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+[**InlineResponse20031**](InlineResponse20031.md)
 
 ### Authorization
 
@@ -2770,7 +2768,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20027 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
+> InlineResponse20030 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
 
 List Applications events
 
@@ -2795,7 +2793,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **type_** | **optional.**| Comma-separated list of types by which to filter events. Must be exact match(es). | 
  **createdBefore** | **optional.**| Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -2810,7 +2808,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](InlineResponse20027.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -2863,7 +2861,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20026 GetApplicationSessions(ctx, applicationId, optional)
+> InlineResponse20029 GetApplicationSessions(ctx, applicationId, optional)
 
 List Application sessions
 
@@ -2888,7 +2886,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **profile** | **optional.**| Profile integration ID filter for sessions. Must be exact match. | 
  **state** | **optional.**| Filter by sessions with this state. Must be exact match. | 
  **createdBefore** | **optional.**| Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -2900,7 +2898,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](InlineResponse20026.md)
+[**InlineResponse20029**](InlineResponse20029.md)
 
 ### Authorization
 
@@ -2918,7 +2916,7 @@ Name | Type | Description  | Notes
 
 ## GetApplications
 
-> InlineResponse2005 GetApplications(ctx, optional)
+> InlineResponse2007 GetApplications(ctx, optional)
 
 List Applications
 
@@ -2941,11 +2939,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 
@@ -2997,7 +2995,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20033 GetAttributes(ctx, optional)
+> InlineResponse20036 GetAttributes(ctx, optional)
 
 List custom attributes
 
@@ -3020,12 +3018,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **entity** | **optional.**| Returned attributes will be filtered by supplied entity. | 
 
 ### Return type
 
-[**InlineResponse20033**](InlineResponse20033.md)
+[**InlineResponse20036**](InlineResponse20036.md)
 
 ### Authorization
 
@@ -3043,7 +3041,7 @@ Name | Type | Description  | Notes
 
 ## GetAudienceMemberships
 
-> InlineResponse20031 GetAudienceMemberships(ctx, audienceId, optional)
+> InlineResponse20034 GetAudienceMemberships(ctx, audienceId, optional)
 
 List audience members
 
@@ -3068,12 +3066,12 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **profileQuery** | **optional.**| The filter to select a profile. | 
 
 ### Return type
 
-[**InlineResponse20031**](InlineResponse20031.md)
+[**InlineResponse20034**](InlineResponse20034.md)
 
 ### Authorization
 
@@ -3091,7 +3089,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20029 GetAudiences(ctx, optional)
+> InlineResponse20032 GetAudiences(ctx, optional)
 
 List audiences
 
@@ -3114,12 +3112,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
 
 ### Return type
 
-[**InlineResponse20029**](InlineResponse20029.md)
+[**InlineResponse20032**](InlineResponse20032.md)
 
 ### Authorization
 
@@ -3137,7 +3135,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiencesAnalytics
 
-> InlineResponse20030 GetAudiencesAnalytics(ctx, audienceIds, optional)
+> InlineResponse20033 GetAudiencesAnalytics(ctx, audienceIds, optional)
 
 List audience analytics
 
@@ -3160,11 +3158,11 @@ Optional parameters are passed through a pointer to a GetAudiencesAnalyticsOpts 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**InlineResponse20033**](InlineResponse20033.md)
 
 ### Authorization
 
@@ -3217,7 +3215,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20020 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
+> InlineResponse20023 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
 
 Get analytics of campaigns
 
@@ -3250,7 +3248,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**InlineResponse20023**](InlineResponse20023.md)
 
 ### Authorization
 
@@ -3268,7 +3266,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignByAttributes
 
-> InlineResponse2006 GetCampaignByAttributes(ctx, applicationId, body, optional)
+> InlineResponse2008 GetCampaignByAttributes(ctx, applicationId, body, optional)
 
 List campaigns that match the given attributes
 
@@ -3295,12 +3293,12 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **campaignState** | **optional.**| Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  | 
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -3352,7 +3350,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignGroups
 
-> InlineResponse20011 GetCampaignGroups(ctx, optional)
+> InlineResponse20013 GetCampaignGroups(ctx, optional)
 
 List campaign access groups
 
@@ -3375,11 +3373,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
@@ -3397,7 +3395,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignTemplates
 
-> InlineResponse20012 GetCampaignTemplates(ctx, optional)
+> InlineResponse20014 GetCampaignTemplates(ctx, optional)
 
 List campaign templates
 
@@ -3420,7 +3418,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **state** | **optional.**| Filter results by the state of the campaign template. | 
  **name** | **optional.**| Filter results performing case-insensitive matching against the name of the campaign template. | 
  **tags** | **optional.**| Filter results performing case-insensitive matching against the tags of the campaign template. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values.  | 
@@ -3428,7 +3426,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 
@@ -3446,7 +3444,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaigns
 
-> InlineResponse2006 GetCampaigns(ctx, applicationId, optional)
+> InlineResponse2008 GetCampaigns(ctx, applicationId, optional)
 
 List campaigns
 
@@ -3471,7 +3469,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **campaignState** | **optional.**| Filter results by the state of the campaign.  - &#x60;enabled&#x60;: Campaigns that are scheduled, running (activated), or expired. - &#x60;running&#x60;: Campaigns that are running (activated). - &#x60;disabled&#x60;: Campaigns that are disabled. - &#x60;expired&#x60;: Campaigns that are expired. - &#x60;archived&#x60;: Campaigns that are archived.  | 
  **name** | **optional.**| Filter results performing case-insensitive matching against the name of the campaign. | 
  **tags** | **optional.**| Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
@@ -3483,7 +3481,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -3501,7 +3499,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20041 GetChanges(ctx, optional)
+> InlineResponse20044 GetChanges(ctx, optional)
 
 Get audit logs for an account
 
@@ -3524,7 +3522,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **applicationId** | **optional.**| Filter results by Application ID. | 
  **entityPath** | **optional.**| Filter results on a case insensitive matching of the url path of the entity | 
  **userId** | **optional.**| Filter results by user ID. | 
@@ -3536,7 +3534,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**InlineResponse20044**](InlineResponse20044.md)
 
 ### Authorization
 
@@ -3590,7 +3588,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20018 GetCollectionItems(ctx, collectionId, optional)
+> InlineResponse20021 GetCollectionItems(ctx, collectionId, optional)
 
 Get collection items
 
@@ -3618,7 +3616,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**InlineResponse20021**](InlineResponse20021.md)
 
 ### Authorization
 
@@ -3636,7 +3634,7 @@ Name | Type | Description  | Notes
 
 ## GetCouponsWithoutTotalCount
 
-> InlineResponse2009 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse20011 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId, optional)
 
 List coupons
 
@@ -3663,7 +3661,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **value** | **optional.**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -3682,7 +3680,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -3752,7 +3750,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20025 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
+> InlineResponse20028 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
 
 Get Activity Reports for Application Customers
 
@@ -3781,7 +3779,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **name** | **optional.**| Only return reports matching the customer name. | 
  **integrationId** | **optional.**| Filter results performing an exact matching against the profile integration identifier. | 
  **campaignName** | **optional.**| Only return reports matching the campaign name. | 
@@ -3789,7 +3787,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**InlineResponse20028**](InlineResponse20028.md)
 
 ### Authorization
 
@@ -3834,7 +3832,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
@@ -3890,7 +3888,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfileAchievementProgress
 
-> InlineResponse20046 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
+> InlineResponse20049 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
 
 List customer achievements
 
@@ -3903,7 +3901,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**integrationId** | **string**| The identifier of the profile. | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
  **optional** | ***GetCustomerProfileAchievementProgressOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3922,7 +3920,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**InlineResponse20049**](InlineResponse20049.md)
 
 ### Authorization
 
@@ -3940,7 +3938,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20024 GetCustomerProfiles(ctx, optional)
+> InlineResponse20027 GetCustomerProfiles(ctx, optional)
 
 List customer profiles
 
@@ -3967,7 +3965,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**InlineResponse20027**](InlineResponse20027.md)
 
 ### Authorization
 
@@ -3985,7 +3983,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20023 GetCustomersByAttributes(ctx, body, optional)
+> InlineResponse20026 GetCustomersByAttributes(ctx, body, optional)
 
 List customer profiles matching the given attributes
 
@@ -4014,7 +4012,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**InlineResponse20026**](InlineResponse20026.md)
 
 ### Authorization
 
@@ -4030,9 +4028,58 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetDashboardStatistics
+
+> InlineResponse20016 GetDashboardStatistics(ctx, loyaltyProgramId, rangeStart, rangeEnd, optional)
+
+Get statistics for loyalty dashboard
+
+Retrieve the statistics displayed on the specified loyalty program's dashboard, such as the total active points, pending points, spent points, and expired points.  **Important:** The returned data does not include the current day. All statistics are updated daily at 11:59 PM in the loyalty program time zone. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+**rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **optional** | ***GetDashboardStatisticsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetDashboardStatisticsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **subledgerId** | **optional.**| The ID of the subledger by which we filter the data. | 
+
+### Return type
+
+[**InlineResponse20016**](InlineResponse20016.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetEventTypes
 
-> InlineResponse20039 GetEventTypes(ctx, optional)
+> InlineResponse20042 GetEventTypes(ctx, optional)
 
 List event types
 
@@ -4057,11 +4104,11 @@ Name | Type | Description  | Notes
  **includeOldVersions** | **optional.**| Include all versions of every event type. | [default to false]
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20042**](InlineResponse20042.md)
 
 ### Authorization
 
@@ -4079,7 +4126,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20042 GetExports(ctx, optional)
+> InlineResponse20045 GetExports(ctx, optional)
 
 Get exports
 
@@ -4108,7 +4155,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**InlineResponse20045**](InlineResponse20045.md)
 
 ### Authorization
 
@@ -4161,7 +4208,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactionLogs
 
-> InlineResponse20016 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId, optional)
+> InlineResponse20019 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId, optional)
 
 List card's transactions
 
@@ -4194,7 +4241,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**InlineResponse20019**](InlineResponse20019.md)
 
 ### Authorization
 
@@ -4212,7 +4259,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCards
 
-> InlineResponse20015 GetLoyaltyCards(ctx, loyaltyProgramId, optional)
+> InlineResponse20018 GetLoyaltyCards(ctx, loyaltyProgramId, optional)
 
 List loyalty cards
 
@@ -4237,14 +4284,14 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **identifier** | **optional.**| The card code by which to filter loyalty cards in the response. | 
  **profileId** | **optional.**| Filter results by customer profile ID. | 
  **batchId** | **optional.**| Filter results by loyalty card batch ID. | 
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**InlineResponse20018**](InlineResponse20018.md)
 
 ### Authorization
 
@@ -4275,7 +4322,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **loyaltyProgramId** | **string**| The identifier for the loyalty program. | 
-**integrationId** | **string**| The identifier of the profile. | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
 
 ### Return type
 
@@ -4331,7 +4378,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramTransactions
 
-> InlineResponse20014 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId, optional)
+> InlineResponse20017 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId, optional)
 
 List loyalty program transactions
 
@@ -4363,7 +4410,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**InlineResponse20017**](InlineResponse20017.md)
 
 ### Authorization
 
@@ -4381,7 +4428,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse20013 GetLoyaltyPrograms(ctx, )
+> InlineResponse20015 GetLoyaltyPrograms(ctx, )
 
 List loyalty programs
 
@@ -4393,7 +4440,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 
@@ -4415,7 +4462,7 @@ This endpoint does not need any parameter.
 
 Get loyalty program statistics
 
-Retrieve the statistics of the specified loyalty program such as the total active points, pending points, spent points, and expired points.  **Important:** The returned data does not include the current day. All statistics are updated daily at 11:59 PM in the loyalty program time zone. 
+⚠️ Deprecation notice: Support for requests to this endpoint will end soon. To retrieve statistics for a loyalty program, use the [Get statistics for loyalty dashboard](/management-api#tag/Loyalty/operation/getDashboardStatistics) endpoint.  Retrieve the statistics of the specified loyalty program, such as the total active points, pending points, spent points, and expired points. 
 
 ### Required Parameters
 
@@ -4443,9 +4490,66 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetMessageLogs
+
+> MessageLogEntries GetMessageLogs(ctx, entityType, optional)
+
+List message log entries
+
+Retrieve all message log entries.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**entityType** | **string**| The entity type the log is related to.  | 
+ **optional** | ***GetMessageLogsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetMessageLogsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **messageID** | **optional.**| Filter results by message ID. | 
+ **changeType** | **optional.**| Filter results by change type. | 
+ **notificationIDs** | **optional.**| Filter results by notification ID (include up to 30 values, separated by a comma). | 
+ **createdBefore** | **optional.**| Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdAfter** | **optional.**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **cursor** | **optional.**| A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  | 
+ **period** | **optional.**| Filter results by time period. Choose between the available relative time frames.  | 
+ **isSuccessful** | **optional.**| Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  | 
+ **applicationId** | **optional.**| Filter results by Application ID. | 
+ **campaignId** | **optional.**| Filter results by campaign ID. | 
+ **loyaltyProgramId** | **optional.**| Identifier of the loyalty program. | 
+ **responseCode** | **optional.**| Filter results by response status code. | 
+ **webhookIDs** | **optional.**| Filter results by webhook ID (include up to 30 values, separated by a comma). | 
+
+### Return type
+
+[**MessageLogEntries**](MessageLogEntries.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse20010 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse20012 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId, optional)
 
 List referrals
 
@@ -4472,7 +4576,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **code** | **optional.**| Filter results performing case-insensitive matching against the referral code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the referral creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -4482,7 +4586,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 
@@ -4570,7 +4674,7 @@ Name | Type | Description  | Notes
 
 ## GetRulesets
 
-> InlineResponse2007 GetRulesets(ctx, applicationId, campaignId, optional)
+> InlineResponse2009 GetRulesets(ctx, applicationId, campaignId, optional)
 
 List campaign rulesets
 
@@ -4597,11 +4701,11 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**InlineResponse2009**](InlineResponse2009.md)
 
 ### Authorization
 
@@ -4688,7 +4792,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20040 GetUsers(ctx, optional)
+> InlineResponse20043 GetUsers(ctx, optional)
 
 List users in account
 
@@ -4711,11 +4815,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
 
 ### Return type
 
-[**InlineResponse20040**](InlineResponse20040.md)
+[**InlineResponse20043**](InlineResponse20043.md)
 
 ### Authorization
 
@@ -4767,7 +4871,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookActivationLogs
 
-> InlineResponse20037 GetWebhookActivationLogs(ctx, optional)
+> InlineResponse20040 GetWebhookActivationLogs(ctx, optional)
 
 List webhook activation log entries
 
@@ -4790,7 +4894,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **integrationRequestUuid** | **optional.**| Filter results by integration request UUID. | 
  **webhookId** | **optional.**| Filter results by webhook id. | 
  **applicationId** | **optional.**| Filter results by Application ID. | 
@@ -4800,7 +4904,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**InlineResponse20040**](InlineResponse20040.md)
 
 ### Authorization
 
@@ -4818,7 +4922,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhookLogs
 
-> InlineResponse20038 GetWebhookLogs(ctx, optional)
+> InlineResponse20041 GetWebhookLogs(ctx, optional)
 
 List webhook log entries
 
@@ -4841,7 +4945,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **status** | **optional.**| Filter results by HTTP status codes. | 
  **webhookId** | **optional.**| Filter results by webhook id. | 
  **applicationId** | **optional.**| Filter results by Application ID. | 
@@ -4852,7 +4956,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20038**](InlineResponse20038.md)
+[**InlineResponse20041**](InlineResponse20041.md)
 
 ### Authorization
 
@@ -4870,7 +4974,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20036 GetWebhooks(ctx, optional)
+> InlineResponse20039 GetWebhooks(ctx, optional)
 
 List webhooks
 
@@ -4892,7 +4996,7 @@ Optional parameters are passed through a pointer to a GetWebhooksOpts struct
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **applicationIds** | **optional.**| Checks if the given catalog or its attributes are referenced in the specified Application ID.  **Note**: If no Application ID is provided, we check for all connected Applications.  | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **creationType** | **optional.**| Filter results by creation type. | 
@@ -4902,7 +5006,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20036**](InlineResponse20036.md)
+[**InlineResponse20039**](InlineResponse20039.md)
 
 ### Authorization
 
@@ -5460,7 +5564,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20017 ListAccountCollections(ctx, optional)
+> InlineResponse20020 ListAccountCollections(ctx, optional)
 
 List collections in account
 
@@ -5483,13 +5587,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **optional.**| Filter by collection name. | 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**InlineResponse20020**](InlineResponse20020.md)
 
 ### Authorization
 
@@ -5507,7 +5611,7 @@ Name | Type | Description  | Notes
 
 ## ListAchievements
 
-> InlineResponse20045 ListAchievements(ctx, applicationId, campaignId, optional)
+> InlineResponse20048 ListAchievements(ctx, applicationId, campaignId, optional)
 
 List achievements
 
@@ -5538,7 +5642,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20048**](InlineResponse20048.md)
 
 ### Authorization
 
@@ -5556,7 +5660,7 @@ Name | Type | Description  | Notes
 
 ## ListAllRolesV2
 
-> InlineResponse20043 ListAllRolesV2(ctx, )
+> InlineResponse20046 ListAllRolesV2(ctx, )
 
 List roles
 
@@ -5568,7 +5672,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**InlineResponse20046**](InlineResponse20046.md)
 
 ### Authorization
 
@@ -5586,7 +5690,7 @@ This endpoint does not need any parameter.
 
 ## ListCatalogItems
 
-> InlineResponse20034 ListCatalogItems(ctx, catalogId, optional)
+> InlineResponse20037 ListCatalogItems(ctx, catalogId, optional)
 
 List items in a catalog
 
@@ -5617,7 +5721,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20034**](InlineResponse20034.md)
+[**InlineResponse20037**](InlineResponse20037.md)
 
 ### Authorization
 
@@ -5635,7 +5739,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20017 ListCollections(ctx, applicationId, campaignId, optional)
+> InlineResponse20020 ListCollections(ctx, applicationId, campaignId, optional)
 
 List collections in campaign
 
@@ -5662,13 +5766,13 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **optional.**| Filter by collection name. | 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**InlineResponse20020**](InlineResponse20020.md)
 
 ### Authorization
 
@@ -5686,7 +5790,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20017 ListCollectionsInApplication(ctx, applicationId, optional)
+> InlineResponse20020 ListCollectionsInApplication(ctx, applicationId, optional)
 
 List collections in Application
 
@@ -5711,13 +5815,13 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **name** | **optional.**| Filter by collection name. | 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**InlineResponse20020**](InlineResponse20020.md)
 
 ### Authorization
 
@@ -5735,7 +5839,7 @@ Name | Type | Description  | Notes
 
 ## ListStores
 
-> InlineResponse20044 ListStores(ctx, applicationId, optional)
+> InlineResponse20047 ListStores(ctx, applicationId, optional)
 
 List stores
 
@@ -5760,7 +5864,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total size of the result, across all pages. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;hasMore&#x60; is true when there is a next page. &#x60;totalResultSize&#x60; is always zero. - When &#x60;false&#x60;: &#x60;hasMore&#x60; is always false. &#x60;totalResultSize&#x60; contains the total number of results for this query.  | 
  **campaignId** | **optional.**| Filter results by campaign ID. | 
  **name** | **optional.**| The name of the store. | 
@@ -5769,7 +5873,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**InlineResponse20047**](InlineResponse20047.md)
 
 ### Authorization
 
@@ -5779,41 +5883,6 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## NotificationActivation
-
-> NotificationActivation(ctx, notificationId, body)
-
-Activate or deactivate notification
-
-Activate or deactivate the given notification. When `enabled` is false, updates will no longer be sent for the given notification. 
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**notificationId** | **int32**| The ID of the notification. Get it with the appropriate _List notifications_ endpoint. | 
-**body** | [**NotificationActivation**](NotificationActivation.md)| body | 
-
-### Return type
-
- (empty response body)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -5850,111 +5919,6 @@ This endpoint does not need any parameter.
 [[Back to README]](../README.md)
 
 
-## PostAddedDeductedPointsNotification
-
-> BaseNotification PostAddedDeductedPointsNotification(ctx, loyaltyProgramId, body)
-
-Create notification about added or deducted loyalty points
-
-Create a notification about added or deducted loyalty points in a given profile-based loyalty program. A notification for added or deducted loyalty points is different from regular webhooks in that it is loyalty program-scoped and has a predefined payload.  For more information, see [Managing loyalty notifications](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-notifications). 
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
-**body** | [**NewBaseNotification**](NewBaseNotification.md)| body | 
-
-### Return type
-
-[**BaseNotification**](BaseNotification.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PostCatalogsStrikethroughNotification
-
-> BaseNotification PostCatalogsStrikethroughNotification(ctx, applicationId, body)
-
-Create strikethrough notification
-
-Create a notification for the in the given Application. For more information, see [Managing notifications](https://docs.talon.one/docs/product/applications/outbound-notifications).  See the [payload](https://docs.talon.one/outbound-notifications) you will receive. 
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**body** | [**NewBaseNotification**](NewBaseNotification.md)| body | 
-
-### Return type
-
-[**BaseNotification**](BaseNotification.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PostPendingPointsNotification
-
-> BaseNotification PostPendingPointsNotification(ctx, loyaltyProgramId, body)
-
-Create notification about pending loyalty points
-
-Create a notification about pending loyalty points for a given profile-based loyalty program. For more information, see [Managing loyalty notifications](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-notifications). 
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
-**body** | [**NewBaseNotification**](NewBaseNotification.md)| body | 
-
-### Return type
-
-[**BaseNotification**](BaseNotification.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## RemoveLoyaltyPoints
 
 > RemoveLoyaltyPoints(ctx, loyaltyProgramId, integrationId, body)
@@ -5970,7 +5934,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **loyaltyProgramId** | **string**| The identifier for the loyalty program. | 
-**integrationId** | **string**| The identifier of the profile. | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
 **body** | [**DeductLoyaltyPoints**](DeductLoyaltyPoints.md)| body | 
 
 ### Return type
@@ -6319,7 +6283,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedApplicationWideWithoutTotalCount
 
-> InlineResponse2009 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, body, optional)
+> InlineResponse20011 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, body, optional)
 
 List coupons that match the given attributes (without total count)
 
@@ -6346,7 +6310,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **value** | **optional.**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -6360,7 +6324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -6378,7 +6342,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedWithoutTotalCount
 
-> InlineResponse2009 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, body, optional)
+> InlineResponse20011 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, body, optional)
 
 List coupons that match the given attributes in campaign (without total count)
 
@@ -6407,7 +6371,7 @@ Name | Type | Description  | Notes
 
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** This parameter works only with numeric fields.  | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **value** | **optional.**| Filter results performing case-insensitive matching against the coupon code. Both the code and the query are folded to remove all non-alpha-numeric characters. | 
  **createdBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
@@ -6420,7 +6384,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -6848,7 +6812,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **roleId** | **int32**| The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
-**body** | **RoleV2Base**| body | 
+**body** | [**RoleV2Base**](RoleV2Base.md)| body | 
 
 ### Return type
 

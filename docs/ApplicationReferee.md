@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **SessionId** | Pointer to **string** | Integration ID of the session in which the customer redeemed the referral. | 
 **AdvocateIntegrationId** | Pointer to **string** | Integration ID of the Advocate&#39;s Profile. | 
 **FriendIntegrationId** | Pointer to **string** | Integration ID of the Friend&#39;s Profile. | 

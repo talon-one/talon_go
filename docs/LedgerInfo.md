@@ -6,10 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
 **PendingBalance** | Pointer to **float32** | Sum of pending points. | 
+**NegativeBalance** | Pointer to **float32** | Sum of negative points. This implies that &#x60;currentBalance&#x60; is &#x60;0&#x60;. | 
 **ExpiredBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **SpentBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **TentativeCurrentBalance** | Pointer to **float32** | The tentative points balance, reflecting the &#x60;currentBalance&#x60; and all point additions and deductions within the current open customer session. When the session is closed, the effects are applied and the &#x60;currentBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | 
 **TentativePendingBalance** | Pointer to **float32** | The tentative points balance, reflecting the &#x60;pendingBalance&#x60; and all point additions with a future activation date within the current open customer session. When the session is closed, the effects are applied and the &#x60;pendingBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | [optional] 
+**TentativeNegativeBalance** | Pointer to **float32** | The tentative negative balance after all additions and deductions from the current customer session are applied to &#x60;negativeBalance&#x60;. When the session is closed, the tentative effects are applied and &#x60;negativeBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | 
 **CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **PointsToNextTier** | Pointer to **float32** | Points required to move up a tier. | [optional] 
 
@@ -64,6 +66,31 @@ HasPendingBalance returns a boolean if a field has been set.
 `func (o *LedgerInfo) SetPendingBalance(v float32)`
 
 SetPendingBalance gets a reference to the given float32 and assigns it to the PendingBalance field.
+
+### GetNegativeBalance
+
+`func (o *LedgerInfo) GetNegativeBalance() float32`
+
+GetNegativeBalance returns the NegativeBalance field if non-nil, zero value otherwise.
+
+### GetNegativeBalanceOk
+
+`func (o *LedgerInfo) GetNegativeBalanceOk() (float32, bool)`
+
+GetNegativeBalanceOk returns a tuple with the NegativeBalance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasNegativeBalance
+
+`func (o *LedgerInfo) HasNegativeBalance() bool`
+
+HasNegativeBalance returns a boolean if a field has been set.
+
+### SetNegativeBalance
+
+`func (o *LedgerInfo) SetNegativeBalance(v float32)`
+
+SetNegativeBalance gets a reference to the given float32 and assigns it to the NegativeBalance field.
 
 ### GetExpiredBalance
 
@@ -164,6 +191,31 @@ HasTentativePendingBalance returns a boolean if a field has been set.
 `func (o *LedgerInfo) SetTentativePendingBalance(v float32)`
 
 SetTentativePendingBalance gets a reference to the given float32 and assigns it to the TentativePendingBalance field.
+
+### GetTentativeNegativeBalance
+
+`func (o *LedgerInfo) GetTentativeNegativeBalance() float32`
+
+GetTentativeNegativeBalance returns the TentativeNegativeBalance field if non-nil, zero value otherwise.
+
+### GetTentativeNegativeBalanceOk
+
+`func (o *LedgerInfo) GetTentativeNegativeBalanceOk() (float32, bool)`
+
+GetTentativeNegativeBalanceOk returns a tuple with the TentativeNegativeBalance field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasTentativeNegativeBalance
+
+`func (o *LedgerInfo) HasTentativeNegativeBalance() bool`
+
+HasTentativeNegativeBalance returns a boolean if a field has been set.
+
+### SetTentativeNegativeBalance
+
+`func (o *LedgerInfo) SetTentativeNegativeBalance(v float32)`
+
+SetTentativeNegativeBalance gets a reference to the given float32 and assigns it to the TentativeNegativeBalance field.
 
 ### GetCurrentTier
 

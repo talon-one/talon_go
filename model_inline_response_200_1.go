@@ -16,29 +16,29 @@ import (
 
 // InlineResponse2001 struct for InlineResponse2001
 type InlineResponse2001 struct {
-	HasMore bool                                          `json:"hasMore"`
-	Data    []CardLedgerTransactionLogEntryIntegrationApi `json:"data"`
+	TotalResultSize int32                    `json:"totalResultSize"`
+	Data            []AchievementStatusEntry `json:"data"`
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse2001) GetHasMore() bool {
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse2001) GetTotalResultSize() int32 {
 	if o == nil {
-		var ret bool
+		var ret int32
 		return ret
 	}
 
-	return o.HasMore
+	return o.TotalResultSize
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse2001) SetHasMore(v bool) {
-	o.HasMore = v
+// SetTotalResultSize sets field value
+func (o *InlineResponse2001) SetTotalResultSize(v int32) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2001) GetData() []CardLedgerTransactionLogEntryIntegrationApi {
+func (o *InlineResponse2001) GetData() []AchievementStatusEntry {
 	if o == nil {
-		var ret []CardLedgerTransactionLogEntryIntegrationApi
+		var ret []AchievementStatusEntry
 		return ret
 	}
 
@@ -46,7 +46,7 @@ func (o *InlineResponse2001) GetData() []CardLedgerTransactionLogEntryIntegratio
 }
 
 // SetData sets field value
-func (o *InlineResponse2001) SetData(v []CardLedgerTransactionLogEntryIntegrationApi) {
+func (o *InlineResponse2001) SetData(v []AchievementStatusEntry) {
 	o.Data = v
 }
 

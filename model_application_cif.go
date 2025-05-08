@@ -33,7 +33,7 @@ type ApplicationCif struct {
 	CreatedBy *int32 `json:"createdBy,omitempty"`
 	// Timestamp of the most recent update to the Application cart item filter.
 	Modified *time.Time `json:"modified,omitempty"`
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 }
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **Id** | Pointer to **int32** | Internal ID of this entity. | 
 **Version** | Pointer to **int32** | Version of the campaign set. | 
 **Set** | Pointer to [**CampaignSetBranchNode**](CampaignSetBranchNode.md) |  | 

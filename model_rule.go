@@ -182,7 +182,7 @@ func (o *Rule) SetBindings(v []Binding) {
 // GetCondition returns the Condition field value
 func (o *Rule) GetCondition() []interface{} {
 	if o == nil {
-		var ret []interface{}
+		var ret [][]interface{}
 		return ret
 	}
 

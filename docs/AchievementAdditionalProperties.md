@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CampaignId** | Pointer to **int32** | ID of the campaign, to which the achievement belongs to | 
+**CampaignId** | Pointer to **int32** | The ID of the campaign the achievement belongs to. | 
 **UserId** | Pointer to **int32** | ID of the user that created this achievement. | 
-**CreatedBy** | Pointer to **string** | Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.  | 
+**CreatedBy** | Pointer to **string** | Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.  | [optional] 
 **HasProgress** | Pointer to **bool** | Indicates if a customer has made progress in the achievement. | [optional] 
+**Status** | Pointer to **string** | The status of the achievement. | [optional] 
 
 ## Methods
 
@@ -110,6 +111,31 @@ HasHasProgress returns a boolean if a field has been set.
 `func (o *AchievementAdditionalProperties) SetHasProgress(v bool)`
 
 SetHasProgress gets a reference to the given bool and assigns it to the HasProgress field.
+
+### GetStatus
+
+`func (o *AchievementAdditionalProperties) GetStatus() string`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *AchievementAdditionalProperties) GetStatusOk() (string, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasStatus
+
+`func (o *AchievementAdditionalProperties) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### SetStatus
+
+`func (o *AchievementAdditionalProperties) SetStatus(v string)`
+
+SetStatus gets a reference to the given string and assigns it to the Status field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

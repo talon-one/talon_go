@@ -29,7 +29,7 @@ type Audience struct {
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// A description of the audience.
 	Description *string `json:"description,omitempty"`
-	// The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, `mParticle`, `Segment`, `Selligent`, `Braze`, or `Iterable`.  **Note:** If you do not integrate with any of these platforms, do not use this property.
+	// The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, `mParticle`, `Segment`, `Shopify`, `Braze`, or `Iterable`.  **Note:** If you do not integrate with any of these platforms, do not use this property.
 	Integration *string `json:"integration,omitempty"`
 	// The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn't come from a 3rd party platform, do not use this property.
 	IntegrationId *string `json:"integrationId,omitempty"`

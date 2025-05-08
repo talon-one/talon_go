@@ -16,7 +16,7 @@ import (
 
 // CampaignEvaluationGroup struct for CampaignEvaluationGroup
 type CampaignEvaluationGroup struct {
-	// The ID of the application that owns this entity.
+	// The ID of the Application that owns this entity.
 	ApplicationId int32 `json:"applicationId"`
 	// The name of the campaign evaluation group.
 	Name string `json:"name"`

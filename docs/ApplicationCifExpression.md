@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional] 
 **CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
-**Expression** | Pointer to [**[]interface{}**](interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
-**ApplicationId** | Pointer to **int32** | The ID of the application that owns this entity. | 
+**Expression** | Pointer to [**[]interface{}**]([]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
+**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 
 ## Methods
 

@@ -44,7 +44,7 @@ type NewLoyaltyProgram struct {
 	// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
 	TiersDowngradePolicy *string                `json:"tiersDowngradePolicy,omitempty"`
 	CardCodeSettings     *CodeGeneratorSettings `json:"cardCodeSettings,omitempty"`
-	// The policy that defines the rollback of points in case of a partially returned, cancelled, or reopened [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). - `only_pending`: Only pending points can be rolled back. - `within_balance`: Available active points can be rolled back if there aren't enough pending points. The active balance of the customer cannot be negative.
+	// The policy that defines the rollback of points in case of a partially returned, cancelled, or reopened [customer session](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions). - `only_pending`: Only pending points can be rolled back. - `within_balance`: Available active points can be rolled back if there aren't enough pending points. The active balance of the customer cannot be negative. - `unlimited`: Allows negative balance without any limit.
 	ReturnPolicy *string `json:"returnPolicy,omitempty"`
 	// The internal name for the Loyalty Program. This is an immutable value.
 	Name string `json:"name"`

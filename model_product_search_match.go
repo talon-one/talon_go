@@ -17,26 +17,44 @@ import (
 // ProductSearchMatch struct for ProductSearchMatch
 type ProductSearchMatch struct {
 	// The ID of the product.
-	ProductId int32 `json:"productId"`
+	ProductId *int32 `json:"productId,omitempty"`
 	// The string matching the given value. Either a product name or SKU.
 	Value string `json:"value"`
-	// The ID of the SKU linked to a product. If empty, this is an analytics-level product.
+	// The ID of the SKU linked to a product. If empty, this is an product.
 	ProductSkuId *int32 `json:"productSkuId,omitempty"`
 }
 
-// GetProductId returns the ProductId field value
+// GetProductId returns the ProductId field value if set, zero value otherwise.
 func (o *ProductSearchMatch) GetProductId() int32 {
-	if o == nil {
+	if o == nil || o.ProductId == nil {
 		var ret int32
 		return ret
 	}
-
-	return o.ProductId
+	return *o.ProductId
 }
 
-// SetProductId sets field value
+// GetProductIdOk returns a tuple with the ProductId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *ProductSearchMatch) GetProductIdOk() (int32, bool) {
+	if o == nil || o.ProductId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.ProductId, true
+}
+
+// HasProductId returns a boolean if a field has been set.
+func (o *ProductSearchMatch) HasProductId() bool {
+	if o != nil && o.ProductId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProductId gets a reference to the given int32 and assigns it to the ProductId field.
 func (o *ProductSearchMatch) SetProductId(v int32) {
-	o.ProductId = v
+	o.ProductId = &v
 }
 
 // GetValue returns the Value field value

@@ -15,105 +15,18 @@ import (
 	"time"
 )
 
-// AchievementProgress struct for AchievementProgress
+// AchievementProgress The current progress of the customer in the achievement.
 type AchievementProgress struct {
-	// The internal ID of the achievement.
-	AchievementId int32 `json:"achievementId"`
-	// The internal name of the achievement used in API requests.
-	Name string `json:"name"`
-	// The display name of the achievement in the Campaign Manager.
-	Title string `json:"title"`
-	// The description of the achievement in the Campaign Manager.
-	Description string `json:"description"`
-	// The ID of the campaign the achievement belongs to.
-	CampaignId int32 `json:"campaignId"`
 	// The status of the achievement.
 	Status string `json:"status"`
-	// The required number of actions or the transactional milestone to complete the achievement.
-	Target *float32 `json:"target,omitempty"`
 	// The current progress of the customer in the achievement.
 	Progress float32 `json:"progress"`
 	// Timestamp at which the customer started the achievement.
-	StartDate time.Time `json:"startDate"`
+	StartDate *time.Time `json:"startDate,omitempty"`
 	// Timestamp at which point the customer completed the achievement.
 	CompletionDate *time.Time `json:"completionDate,omitempty"`
 	// Timestamp at which point the achievement ends and resets for the customer.
-	EndDate time.Time `json:"endDate"`
-}
-
-// GetAchievementId returns the AchievementId field value
-func (o *AchievementProgress) GetAchievementId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.AchievementId
-}
-
-// SetAchievementId sets field value
-func (o *AchievementProgress) SetAchievementId(v int32) {
-	o.AchievementId = v
-}
-
-// GetName returns the Name field value
-func (o *AchievementProgress) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// SetName sets field value
-func (o *AchievementProgress) SetName(v string) {
-	o.Name = v
-}
-
-// GetTitle returns the Title field value
-func (o *AchievementProgress) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// SetTitle sets field value
-func (o *AchievementProgress) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetDescription returns the Description field value
-func (o *AchievementProgress) GetDescription() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Description
-}
-
-// SetDescription sets field value
-func (o *AchievementProgress) SetDescription(v string) {
-	o.Description = v
-}
-
-// GetCampaignId returns the CampaignId field value
-func (o *AchievementProgress) GetCampaignId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.CampaignId
-}
-
-// SetCampaignId sets field value
-func (o *AchievementProgress) SetCampaignId(v int32) {
-	o.CampaignId = v
+	EndDate *time.Time `json:"endDate,omitempty"`
 }
 
 // GetStatus returns the Status field value
@@ -131,39 +44,6 @@ func (o *AchievementProgress) SetStatus(v string) {
 	o.Status = v
 }
 
-// GetTarget returns the Target field value if set, zero value otherwise.
-func (o *AchievementProgress) GetTarget() float32 {
-	if o == nil || o.Target == nil {
-		var ret float32
-		return ret
-	}
-	return *o.Target
-}
-
-// GetTargetOk returns a tuple with the Target field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *AchievementProgress) GetTargetOk() (float32, bool) {
-	if o == nil || o.Target == nil {
-		var ret float32
-		return ret, false
-	}
-	return *o.Target, true
-}
-
-// HasTarget returns a boolean if a field has been set.
-func (o *AchievementProgress) HasTarget() bool {
-	if o != nil && o.Target != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTarget gets a reference to the given float32 and assigns it to the Target field.
-func (o *AchievementProgress) SetTarget(v float32) {
-	o.Target = &v
-}
-
 // GetProgress returns the Progress field value
 func (o *AchievementProgress) GetProgress() float32 {
 	if o == nil {
@@ -179,19 +59,37 @@ func (o *AchievementProgress) SetProgress(v float32) {
 	o.Progress = v
 }
 
-// GetStartDate returns the StartDate field value
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *AchievementProgress) GetStartDate() time.Time {
-	if o == nil {
+	if o == nil || o.StartDate == nil {
 		var ret time.Time
 		return ret
 	}
-
-	return o.StartDate
+	return *o.StartDate
 }
 
-// SetStartDate sets field value
+// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementProgress) GetStartDateOk() (time.Time, bool) {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *AchievementProgress) HasStartDate() bool {
+	if o != nil && o.StartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 func (o *AchievementProgress) SetStartDate(v time.Time) {
-	o.StartDate = v
+	o.StartDate = &v
 }
 
 // GetCompletionDate returns the CompletionDate field value if set, zero value otherwise.
@@ -227,19 +125,37 @@ func (o *AchievementProgress) SetCompletionDate(v time.Time) {
 	o.CompletionDate = &v
 }
 
-// GetEndDate returns the EndDate field value
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *AchievementProgress) GetEndDate() time.Time {
-	if o == nil {
+	if o == nil || o.EndDate == nil {
 		var ret time.Time
 		return ret
 	}
-
-	return o.EndDate
+	return *o.EndDate
 }
 
-// SetEndDate sets field value
+// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementProgress) GetEndDateOk() (time.Time, bool) {
+	if o == nil || o.EndDate == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *AchievementProgress) HasEndDate() bool {
+	if o != nil && o.EndDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
 func (o *AchievementProgress) SetEndDate(v time.Time) {
-	o.EndDate = v
+	o.EndDate = &v
 }
 
 type NullableAchievementProgress struct {

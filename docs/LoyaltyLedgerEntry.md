@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **SubLedgerID** | Pointer to **string** | This specifies if we are adding loyalty points to the main ledger or a subledger. | 
 **UserID** | Pointer to **int32** | This is the ID of the user who created this entry, if the addition or subtraction was done manually. | [optional] 
 **Archived** | Pointer to **bool** | Indicates if the entry belongs to the archived session. | [optional] 
+**Flags** | Pointer to [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) |  | [optional] 
 
 ## Methods
 
@@ -370,6 +371,31 @@ HasArchived returns a boolean if a field has been set.
 `func (o *LoyaltyLedgerEntry) SetArchived(v bool)`
 
 SetArchived gets a reference to the given bool and assigns it to the Archived field.
+
+### GetFlags
+
+`func (o *LoyaltyLedgerEntry) GetFlags() LoyaltyLedgerEntryFlags`
+
+GetFlags returns the Flags field if non-nil, zero value otherwise.
+
+### GetFlagsOk
+
+`func (o *LoyaltyLedgerEntry) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool)`
+
+GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasFlags
+
+`func (o *LoyaltyLedgerEntry) HasFlags() bool`
+
+HasFlags returns a boolean if a field has been set.
+
+### SetFlags
+
+`func (o *LoyaltyLedgerEntry) SetFlags(v LoyaltyLedgerEntryFlags)`
+
+SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

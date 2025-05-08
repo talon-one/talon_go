@@ -1,4 +1,4 @@
-# ProductSkuUnitAnalytics
+# SkuUnitAnalyticsDataPoint
 
 ## Properties
 
@@ -6,108 +6,108 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | The start of the aggregation time frame in UTC. | 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | The end of the aggregation time frame in UTC. | 
-**PurchasedUnits** | Pointer to [**AnalyticsDataPointWithTrend**](AnalyticsDataPointWithTrend.md) |  | 
-**Sku** | Pointer to **string** | The SKU linked to the analytics-level product. | 
+**UnitsSold** | Pointer to [**AnalyticsDataPointWithTrend**](AnalyticsDataPointWithTrend.md) |  | 
+**Sku** | Pointer to **string** | The SKU linked to the application. | 
 
 ## Methods
 
 ### GetStartTime
 
-`func (o *ProductSkuUnitAnalytics) GetStartTime() time.Time`
+`func (o *SkuUnitAnalyticsDataPoint) GetStartTime() time.Time`
 
 GetStartTime returns the StartTime field if non-nil, zero value otherwise.
 
 ### GetStartTimeOk
 
-`func (o *ProductSkuUnitAnalytics) GetStartTimeOk() (time.Time, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetStartTimeOk() (time.Time, bool)`
 
 GetStartTimeOk returns a tuple with the StartTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasStartTime
 
-`func (o *ProductSkuUnitAnalytics) HasStartTime() bool`
+`func (o *SkuUnitAnalyticsDataPoint) HasStartTime() bool`
 
 HasStartTime returns a boolean if a field has been set.
 
 ### SetStartTime
 
-`func (o *ProductSkuUnitAnalytics) SetStartTime(v time.Time)`
+`func (o *SkuUnitAnalyticsDataPoint) SetStartTime(v time.Time)`
 
 SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
 
 ### GetEndTime
 
-`func (o *ProductSkuUnitAnalytics) GetEndTime() time.Time`
+`func (o *SkuUnitAnalyticsDataPoint) GetEndTime() time.Time`
 
 GetEndTime returns the EndTime field if non-nil, zero value otherwise.
 
 ### GetEndTimeOk
 
-`func (o *ProductSkuUnitAnalytics) GetEndTimeOk() (time.Time, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetEndTimeOk() (time.Time, bool)`
 
 GetEndTimeOk returns a tuple with the EndTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasEndTime
 
-`func (o *ProductSkuUnitAnalytics) HasEndTime() bool`
+`func (o *SkuUnitAnalyticsDataPoint) HasEndTime() bool`
 
 HasEndTime returns a boolean if a field has been set.
 
 ### SetEndTime
 
-`func (o *ProductSkuUnitAnalytics) SetEndTime(v time.Time)`
+`func (o *SkuUnitAnalyticsDataPoint) SetEndTime(v time.Time)`
 
 SetEndTime gets a reference to the given time.Time and assigns it to the EndTime field.
 
-### GetPurchasedUnits
+### GetUnitsSold
 
-`func (o *ProductSkuUnitAnalytics) GetPurchasedUnits() AnalyticsDataPointWithTrend`
+`func (o *SkuUnitAnalyticsDataPoint) GetUnitsSold() AnalyticsDataPointWithTrend`
 
-GetPurchasedUnits returns the PurchasedUnits field if non-nil, zero value otherwise.
+GetUnitsSold returns the UnitsSold field if non-nil, zero value otherwise.
 
-### GetPurchasedUnitsOk
+### GetUnitsSoldOk
 
-`func (o *ProductSkuUnitAnalytics) GetPurchasedUnitsOk() (AnalyticsDataPointWithTrend, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetUnitsSoldOk() (AnalyticsDataPointWithTrend, bool)`
 
-GetPurchasedUnitsOk returns a tuple with the PurchasedUnits field if it's non-nil, zero value otherwise
+GetUnitsSoldOk returns a tuple with the UnitsSold field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasPurchasedUnits
+### HasUnitsSold
 
-`func (o *ProductSkuUnitAnalytics) HasPurchasedUnits() bool`
+`func (o *SkuUnitAnalyticsDataPoint) HasUnitsSold() bool`
 
-HasPurchasedUnits returns a boolean if a field has been set.
+HasUnitsSold returns a boolean if a field has been set.
 
-### SetPurchasedUnits
+### SetUnitsSold
 
-`func (o *ProductSkuUnitAnalytics) SetPurchasedUnits(v AnalyticsDataPointWithTrend)`
+`func (o *SkuUnitAnalyticsDataPoint) SetUnitsSold(v AnalyticsDataPointWithTrend)`
 
-SetPurchasedUnits gets a reference to the given AnalyticsDataPointWithTrend and assigns it to the PurchasedUnits field.
+SetUnitsSold gets a reference to the given AnalyticsDataPointWithTrend and assigns it to the UnitsSold field.
 
 ### GetSku
 
-`func (o *ProductSkuUnitAnalytics) GetSku() string`
+`func (o *SkuUnitAnalyticsDataPoint) GetSku() string`
 
 GetSku returns the Sku field if non-nil, zero value otherwise.
 
 ### GetSkuOk
 
-`func (o *ProductSkuUnitAnalytics) GetSkuOk() (string, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetSkuOk() (string, bool)`
 
 GetSkuOk returns a tuple with the Sku field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### HasSku
 
-`func (o *ProductSkuUnitAnalytics) HasSku() bool`
+`func (o *SkuUnitAnalyticsDataPoint) HasSku() bool`
 
 HasSku returns a boolean if a field has been set.
 
 ### SetSku
 
-`func (o *ProductSkuUnitAnalytics) SetSku(v string)`
+`func (o *SkuUnitAnalyticsDataPoint) SetSku(v string)`
 
 SetSku gets a reference to the given string and assigns it to the Sku field.
 

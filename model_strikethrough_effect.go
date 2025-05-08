@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // StrikethroughEffect The effect produced for the catalog item.
@@ -27,6 +28,10 @@ type StrikethroughEffect struct {
 	// The type of this effect.
 	Type  string                 `json:"type"`
 	Props map[string]interface{} `json:"props"`
+	// The start of the time frame where the effect is active in UTC.
+	StartTime *time.Time `json:"startTime,omitempty"`
+	// The end of the time frame where the effect is active in UTC.
+	EndTime *time.Time `json:"endTime,omitempty"`
 }
 
 // GetCampaignId returns the CampaignId field value
@@ -117,6 +122,72 @@ func (o *StrikethroughEffect) GetProps() map[string]interface{} {
 // SetProps sets field value
 func (o *StrikethroughEffect) SetProps(v map[string]interface{}) {
 	o.Props = v
+}
+
+// GetStartTime returns the StartTime field value if set, zero value otherwise.
+func (o *StrikethroughEffect) GetStartTime() time.Time {
+	if o == nil || o.StartTime == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetStartTimeOk() (time.Time, bool) {
+	if o == nil || o.StartTime == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.StartTime, true
+}
+
+// HasStartTime returns a boolean if a field has been set.
+func (o *StrikethroughEffect) HasStartTime() bool {
+	if o != nil && o.StartTime != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
+func (o *StrikethroughEffect) SetStartTime(v time.Time) {
+	o.StartTime = &v
+}
+
+// GetEndTime returns the EndTime field value if set, zero value otherwise.
+func (o *StrikethroughEffect) GetEndTime() time.Time {
+	if o == nil || o.EndTime == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.EndTime
+}
+
+// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetEndTimeOk() (time.Time, bool) {
+	if o == nil || o.EndTime == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.EndTime, true
+}
+
+// HasEndTime returns a boolean if a field has been set.
+func (o *StrikethroughEffect) HasEndTime() bool {
+	if o != nil && o.EndTime != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEndTime gets a reference to the given time.Time and assigns it to the EndTime field.
+func (o *StrikethroughEffect) SetEndTime(v time.Time) {
+	o.EndTime = &v
 }
 
 type NullableStrikethroughEffect struct {

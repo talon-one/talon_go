@@ -16,6 +16,23 @@ import (
 
 // DeleteUserRequest struct for DeleteUserRequest
 type DeleteUserRequest struct {
+	// The email address associated with the user profile.
+	Email string `json:"email"`
+}
+
+// GetEmail returns the Email field value
+func (o *DeleteUserRequest) GetEmail() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Email
+}
+
+// SetEmail sets field value
+func (o *DeleteUserRequest) SetEmail(v string) {
+	o.Email = v
 }
 
 type NullableDeleteUserRequest struct {

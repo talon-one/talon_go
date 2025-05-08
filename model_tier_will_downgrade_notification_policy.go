@@ -19,8 +19,10 @@ type TierWillDowngradeNotificationPolicy struct {
 	// The name of the notification.
 	Name string `json:"name"`
 	// Indicates whether batching is activated.
-	BatchingEnabled *bool                                  `json:"batchingEnabled,omitempty"`
-	Triggers        []TierWillDowngradeNotificationTrigger `json:"triggers"`
+	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
+	// The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
+	BatchSize *int32                                 `json:"batchSize,omitempty"`
+	Triggers  []TierWillDowngradeNotificationTrigger `json:"triggers"`
 }
 
 // GetName returns the Name field value
@@ -69,6 +71,39 @@ func (o *TierWillDowngradeNotificationPolicy) HasBatchingEnabled() bool {
 // SetBatchingEnabled gets a reference to the given bool and assigns it to the BatchingEnabled field.
 func (o *TierWillDowngradeNotificationPolicy) SetBatchingEnabled(v bool) {
 	o.BatchingEnabled = &v
+}
+
+// GetBatchSize returns the BatchSize field value if set, zero value otherwise.
+func (o *TierWillDowngradeNotificationPolicy) GetBatchSize() int32 {
+	if o == nil || o.BatchSize == nil {
+		var ret int32
+		return ret
+	}
+	return *o.BatchSize
+}
+
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *TierWillDowngradeNotificationPolicy) GetBatchSizeOk() (int32, bool) {
+	if o == nil || o.BatchSize == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.BatchSize, true
+}
+
+// HasBatchSize returns a boolean if a field has been set.
+func (o *TierWillDowngradeNotificationPolicy) HasBatchSize() bool {
+	if o != nil && o.BatchSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchSize gets a reference to the given int32 and assigns it to the BatchSize field.
+func (o *TierWillDowngradeNotificationPolicy) SetBatchSize(v int32) {
+	o.BatchSize = &v
 }
 
 // GetTriggers returns the Triggers field value

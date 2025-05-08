@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sku** | Pointer to **string** | SKU of the item that needs to be added. | 
 **Name** | Pointer to **string** | The name / description of the effect | 
+**DesiredQuantity** | Pointer to **int32** | The original quantity in case a partial reward was applied. | [optional] 
 
 ## Methods
 
@@ -58,6 +59,31 @@ HasName returns a boolean if a field has been set.
 `func (o *AddFreeItemEffectProps) SetName(v string)`
 
 SetName gets a reference to the given string and assigns it to the Name field.
+
+### GetDesiredQuantity
+
+`func (o *AddFreeItemEffectProps) GetDesiredQuantity() int32`
+
+GetDesiredQuantity returns the DesiredQuantity field if non-nil, zero value otherwise.
+
+### GetDesiredQuantityOk
+
+`func (o *AddFreeItemEffectProps) GetDesiredQuantityOk() (int32, bool)`
+
+GetDesiredQuantityOk returns a tuple with the DesiredQuantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDesiredQuantity
+
+`func (o *AddFreeItemEffectProps) HasDesiredQuantity() bool`
+
+HasDesiredQuantity returns a boolean if a field has been set.
+
+### SetDesiredQuantity
+
+`func (o *AddFreeItemEffectProps) SetDesiredQuantity(v int32)`
+
+SetDesiredQuantity gets a reference to the given int32 and assigns it to the DesiredQuantity field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

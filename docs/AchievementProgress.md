@@ -4,144 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AchievementId** | Pointer to **int32** | The internal ID of the achievement. | 
-**Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | 
-**Title** | Pointer to **string** | The display name of the achievement in the Campaign Manager. | 
-**Description** | Pointer to **string** | The description of the achievement in the Campaign Manager. | 
-**CampaignId** | Pointer to **int32** | The ID of the campaign the achievement belongs to. | 
 **Status** | Pointer to **string** | The status of the achievement. | 
-**Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
 **Progress** | Pointer to **float32** | The current progress of the customer in the achievement. | 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which the customer started the achievement. | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which the customer started the achievement. | [optional] 
 **CompletionDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the customer completed the achievement. | [optional] 
-**EndDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the achievement ends and resets for the customer. | 
+**EndDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the achievement ends and resets for the customer. | [optional] 
 
 ## Methods
-
-### GetAchievementId
-
-`func (o *AchievementProgress) GetAchievementId() int32`
-
-GetAchievementId returns the AchievementId field if non-nil, zero value otherwise.
-
-### GetAchievementIdOk
-
-`func (o *AchievementProgress) GetAchievementIdOk() (int32, bool)`
-
-GetAchievementIdOk returns a tuple with the AchievementId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasAchievementId
-
-`func (o *AchievementProgress) HasAchievementId() bool`
-
-HasAchievementId returns a boolean if a field has been set.
-
-### SetAchievementId
-
-`func (o *AchievementProgress) SetAchievementId(v int32)`
-
-SetAchievementId gets a reference to the given int32 and assigns it to the AchievementId field.
-
-### GetName
-
-`func (o *AchievementProgress) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AchievementProgress) GetNameOk() (string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *AchievementProgress) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *AchievementProgress) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
-### GetTitle
-
-`func (o *AchievementProgress) GetTitle() string`
-
-GetTitle returns the Title field if non-nil, zero value otherwise.
-
-### GetTitleOk
-
-`func (o *AchievementProgress) GetTitleOk() (string, bool)`
-
-GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *AchievementProgress) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
-### SetTitle
-
-`func (o *AchievementProgress) SetTitle(v string)`
-
-SetTitle gets a reference to the given string and assigns it to the Title field.
-
-### GetDescription
-
-`func (o *AchievementProgress) GetDescription() string`
-
-GetDescription returns the Description field if non-nil, zero value otherwise.
-
-### GetDescriptionOk
-
-`func (o *AchievementProgress) GetDescriptionOk() (string, bool)`
-
-GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *AchievementProgress) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *AchievementProgress) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
-
-### GetCampaignId
-
-`func (o *AchievementProgress) GetCampaignId() int32`
-
-GetCampaignId returns the CampaignId field if non-nil, zero value otherwise.
-
-### GetCampaignIdOk
-
-`func (o *AchievementProgress) GetCampaignIdOk() (int32, bool)`
-
-GetCampaignIdOk returns a tuple with the CampaignId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasCampaignId
-
-`func (o *AchievementProgress) HasCampaignId() bool`
-
-HasCampaignId returns a boolean if a field has been set.
-
-### SetCampaignId
-
-`func (o *AchievementProgress) SetCampaignId(v int32)`
-
-SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
 
 ### GetStatus
 
@@ -167,31 +36,6 @@ HasStatus returns a boolean if a field has been set.
 `func (o *AchievementProgress) SetStatus(v string)`
 
 SetStatus gets a reference to the given string and assigns it to the Status field.
-
-### GetTarget
-
-`func (o *AchievementProgress) GetTarget() float32`
-
-GetTarget returns the Target field if non-nil, zero value otherwise.
-
-### GetTargetOk
-
-`func (o *AchievementProgress) GetTargetOk() (float32, bool)`
-
-GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTarget
-
-`func (o *AchievementProgress) HasTarget() bool`
-
-HasTarget returns a boolean if a field has been set.
-
-### SetTarget
-
-`func (o *AchievementProgress) SetTarget(v float32)`
-
-SetTarget gets a reference to the given float32 and assigns it to the Target field.
 
 ### GetProgress
 
