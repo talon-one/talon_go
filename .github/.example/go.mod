@@ -6,4 +6,4 @@ replace github.com/talon-one/talon_go/v9 => ../..
 
 require github.com/talon-one/talon_go/v9 v9.0.0
 
-require golang.org/x/oauth2 v0.25.0 // indirect
+require golang.org/x/oauth2 v0.27.0 // indirect
