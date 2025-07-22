@@ -13,3 +13,14 @@ apply-patches:
 	gopatch -p patches/expr.patch model_new_template_def.go
 	gopatch -p patches/condition.patch model_rule.go
 	gopatch -p patches/condition.patch model_generate_rule_title_rule.go
+
+apply-git-patches:
+	git apply patches/git/ApplicationCIFExpression.patch
+	git apply patches/git/Binding.patch
+	git apply patches/git/Event.patch
+	git apply patches/git/GenerateItemFilterDescription.patch
+	git apply patches/git/GenerateRuleTitleRule.patch
+	git apply patches/git/NewApplicationCIFExpression.patch
+	git apply patches/git/NewTemplateDef.patch
+	git apply patches/git/Rule.patch
+	git apply patches/git/TemplateDef.patch

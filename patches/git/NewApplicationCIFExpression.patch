@@ -1,0 +1,36 @@
+diff --git a/docs/NewApplicationCIFExpression.md b/docs/NewApplicationCIFExpression.md
+--- a/docs/NewApplicationCIFExpression.md
++++ b/docs/NewApplicationCIFExpression.md
+@@ -6,7 +6,7 @@ Name | Type | Description | Notes
+ ------------ | ------------- | ------------- | -------------
+ **CartItemFilterId** | Pointer to **int64** | The ID of the Application cart item filter. | [optional] 
+ **CreatedBy** | Pointer to **int64** | The ID of the user who created the Application cart item filter. | [optional] 
+-**Expression** | Pointer to **[]map[string]interface{}** | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
++**Expression** | Pointer to **[]interface{}** | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
+ 
+ ## Methods
+ 
+@@ -79,20 +79,20 @@ HasCreatedBy returns a boolean if a field has been set.
+ 
+ ### GetExpression
+ 
+-`func (o *NewApplicationCIFExpression) GetExpression() []map[string]interface{}`
++`func (o *NewApplicationCIFExpression) GetExpression() []interface{}`
+ 
+ GetExpression returns the Expression field if non-nil, zero value otherwise.
+ 
+ ### GetExpressionOk
+ 
+-`func (o *NewApplicationCIFExpression) GetExpressionOk() (*[]map[string]interface{}, bool)`
++`func (o *NewApplicationCIFExpression) GetExpressionOk() (*[]interface{}, bool)`
+ 
+ GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
+ and a boolean to check if the value has been set.
+ 
+ ### SetExpression
+ 
+-`func (o *NewApplicationCIFExpression) SetExpression(v []map[string]interface{})`
++`func (o *NewApplicationCIFExpression) SetExpression(v []interface{})`
+ 
+ SetExpression sets Expression field to given value.
+ 

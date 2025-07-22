@@ -1,0 +1,43 @@
+diff --git a/docs/GenerateItemFilterDescription.md b/docs/GenerateItemFilterDescription.md
+--- a/docs/GenerateItemFilterDescription.md
++++ b/docs/GenerateItemFilterDescription.md
+@@ -4,13 +4,13 @@
+ 
+ Name | Type | Description | Notes
+ ------------ | ------------- | ------------- | -------------
+-**ItemFilter** | Pointer to **[]map[string]interface{}** | An array of item filter Talang expressions. | 
++**ItemFilter** | Pointer to **[][]interface{}** | An array of item filter Talang expressions. | 
+ 
+ ## Methods
+ 
+ ### NewGenerateItemFilterDescription
+ 
+-`func NewGenerateItemFilterDescription(itemFilter []map[string]interface{}, ) *GenerateItemFilterDescription`
++`func NewGenerateItemFilterDescription(itemFilter [][]interface{}, ) *GenerateItemFilterDescription`
+ 
+ NewGenerateItemFilterDescription instantiates a new GenerateItemFilterDescription object
+ This constructor will assign default values to properties that have it defined,
+@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set
+ 
+ ### GetItemFilter
+ 
+-`func (o *GenerateItemFilterDescription) GetItemFilter() []map[string]interface{}`
++`func (o *GenerateItemFilterDescription) GetItemFilter() [][]interface{}`
+ 
+ GetItemFilter returns the ItemFilter field if non-nil, zero value otherwise.
+ 
+ ### GetItemFilterOk
+ 
+-`func (o *GenerateItemFilterDescription) GetItemFilterOk() (*[]map[string]interface{}, bool)`
++`func (o *GenerateItemFilterDescription) GetItemFilterOk() (*[][]interface{}, bool)`
+ 
+ GetItemFilterOk returns a tuple with the ItemFilter field if it's non-nil, zero value otherwise
+ and a boolean to check if the value has been set.
+ 
+ ### SetItemFilter
+ 
+-`func (o *GenerateItemFilterDescription) SetItemFilter(v []map[string]interface{})`
++`func (o *GenerateItemFilterDescription) SetItemFilter(v [][]interface{})`
+ 
+ SetItemFilter sets ItemFilter field to given value.
+ 
