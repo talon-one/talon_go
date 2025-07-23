@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **ApplicationId** | Pointer to **int32** | ID of application associated with change. | [optional] 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **Slots** | Pointer to [**[]SlotDef**](SlotDef.md) | The slots defined for this application. | 
@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Audiences** | Pointer to [**[]Audience**](Audience.md) | The audiences contained in the account which the application belongs to. | [optional] 
 **Collections** | Pointer to [**[]Collection**](Collection.md) | The account-level collections that the application is subscribed to. | [optional] 
 **ApplicationCartItemFilters** | Pointer to [**[]ApplicationCif**](ApplicationCIF.md) | The cart item filters belonging to the Application. | [optional] 
+**PriceTypes** | Pointer to [**[]PriceType**](PriceType.md) | The price types that this Application can use. | [optional] 
 
 ## Methods
 
@@ -396,6 +397,31 @@ HasApplicationCartItemFilters returns a boolean if a field has been set.
 `func (o *Environment) SetApplicationCartItemFilters(v []ApplicationCif)`
 
 SetApplicationCartItemFilters gets a reference to the given []ApplicationCif and assigns it to the ApplicationCartItemFilters field.
+
+### GetPriceTypes
+
+`func (o *Environment) GetPriceTypes() []PriceType`
+
+GetPriceTypes returns the PriceTypes field if non-nil, zero value otherwise.
+
+### GetPriceTypesOk
+
+`func (o *Environment) GetPriceTypesOk() ([]PriceType, bool)`
+
+GetPriceTypesOk returns a tuple with the PriceTypes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPriceTypes
+
+`func (o *Environment) HasPriceTypes() bool`
+
+HasPriceTypes returns a boolean if a field has been set.
+
+### SetPriceTypes
+
+`func (o *Environment) SetPriceTypes(v []PriceType)`
+
+SetPriceTypes gets a reference to the given []PriceType and assigns it to the PriceTypes field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -50,7 +50,7 @@ func (o *GenerateRuleTitleRule) HasEffects() bool {
 	return false
 }
 
-// SetEffects gets a reference to the given [][]interface{} and assigns it to the Effects field.
+// SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
 func (o *GenerateRuleTitleRule) SetEffects(v [][]interface{}) {
 	o.Effects = v
 }
@@ -58,7 +58,7 @@ func (o *GenerateRuleTitleRule) SetEffects(v [][]interface{}) {
 // GetCondition returns the Condition field value if set, zero value otherwise.
 func (o *GenerateRuleTitleRule) GetCondition() []interface{} {
 	if o == nil || o.Condition == nil {
-		var ret []interface{}
+		var ret [][]interface{}
 		return ret
 	}
 	return o.Condition
@@ -68,7 +68,7 @@ func (o *GenerateRuleTitleRule) GetCondition() []interface{} {
 // and a boolean to check if the value has been set.
 func (o *GenerateRuleTitleRule) GetConditionOk() ([]interface{}, bool) {
 	if o == nil || o.Condition == nil {
-		var ret []interface{}
+		var ret [][]interface{}
 		return ret, false
 	}
 	return o.Condition, true
@@ -83,7 +83,7 @@ func (o *GenerateRuleTitleRule) HasCondition() bool {
 	return false
 }
 
-// SetCondition gets a reference to the given []interface{} and assigns it to the Condition field.
+// SetCondition gets a reference to the given []map[string]interface{} and assigns it to the Condition field.
 func (o *GenerateRuleTitleRule) SetCondition(v []interface{}) {
 	o.Condition = v
 }

@@ -17,9 +17,9 @@ import (
 
 // Coupon struct for Coupon
 type Coupon struct {
-	// Internal ID of this entity.
+	// The internal ID of the coupon.
 	Id int32 `json:"id"`
-	// The time this entity was created.
+	// The time the coupon was created.
 	Created time.Time `json:"created"`
 	// The ID of the campaign that owns this entity.
 	CampaignId int32 `json:"campaignId"`

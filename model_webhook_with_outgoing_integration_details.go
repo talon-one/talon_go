@@ -17,7 +17,7 @@ import (
 
 // WebhookWithOutgoingIntegrationDetails struct for WebhookWithOutgoingIntegrationDetails
 type WebhookWithOutgoingIntegrationDetails struct {
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
@@ -29,6 +29,8 @@ type WebhookWithOutgoingIntegrationDetails struct {
 	Title string `json:"title"`
 	// A description of the webhook.
 	Description *string `json:"description,omitempty"`
+	// Indicates if the webhook is a draft.
+	Draft bool `json:"draft"`
 	// API method for this webhook.
 	Verb string `json:"verb"`
 	// API URL (supports templating using parameters) for this webhook.
@@ -155,6 +157,21 @@ func (o *WebhookWithOutgoingIntegrationDetails) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *WebhookWithOutgoingIntegrationDetails) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetDraft returns the Draft field value
+func (o *WebhookWithOutgoingIntegrationDetails) GetDraft() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Draft
+}
+
+// SetDraft sets field value
+func (o *WebhookWithOutgoingIntegrationDetails) SetDraft(v bool) {
+	o.Draft = v
 }
 
 // GetVerb returns the Verb field value

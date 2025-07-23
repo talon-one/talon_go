@@ -14,6 +14,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
 	"time"
 )
@@ -156,7 +157,7 @@ func (r apiActivateUserByEmailRequest) Execute() (*_nethttp.Response, error) {
 type apiAddLoyaltyCardPointsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	body             *AddLoyaltyPoints
 }
@@ -176,7 +177,7 @@ Add points to the given loyalty card in the specified card-based loyalty program
 
 @return apiAddLoyaltyCardPointsRequest
 */
-func (a *ManagementApiService) AddLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiAddLoyaltyCardPointsRequest {
+func (a *ManagementApiService) AddLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiAddLoyaltyCardPointsRequest {
 	return apiAddLoyaltyCardPointsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -491,8 +492,8 @@ func (r apiAddLoyaltyPointsRequest) Execute() (*_nethttp.Response, error) {
 type apiCopyCampaignToApplicationsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *CampaignCopy
 }
 
@@ -510,7 +511,7 @@ Copy the campaign into all specified Applications.
 
 @return apiCopyCampaignToApplicationsRequest
 */
-func (a *ManagementApiService) CopyCampaignToApplications(ctx _context.Context, applicationId int32, campaignId int32) apiCopyCampaignToApplicationsRequest {
+func (a *ManagementApiService) CopyCampaignToApplications(ctx _context.Context, applicationId int64, campaignId int64) apiCopyCampaignToApplicationsRequest {
 	return apiCopyCampaignToApplicationsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -823,8 +824,8 @@ func (r apiCreateAccountCollectionRequest) Execute() (Collection, *_nethttp.Resp
 type apiCreateAchievementRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *CreateAchievement
 }
 
@@ -842,7 +843,7 @@ Create a new achievement in a specific campaign.
 
 @return apiCreateAchievementRequest
 */
-func (a *ManagementApiService) CreateAchievement(ctx _context.Context, applicationId int32, campaignId int32) apiCreateAchievementRequest {
+func (a *ManagementApiService) CreateAchievement(ctx _context.Context, applicationId int64, campaignId int64) apiCreateAchievementRequest {
 	return apiCreateAchievementRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -1308,7 +1309,7 @@ func (r apiCreateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 type apiCreateBatchLoyaltyCardsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	body             *LoyaltyCardBatch
 }
 
@@ -1333,7 +1334,7 @@ Customers can use loyalty cards to collect and spend loyalty points.
 
 @return apiCreateBatchLoyaltyCardsRequest
 */
-func (a *ManagementApiService) CreateBatchLoyaltyCards(ctx _context.Context, loyaltyProgramId int32) apiCreateBatchLoyaltyCardsRequest {
+func (a *ManagementApiService) CreateBatchLoyaltyCards(ctx _context.Context, loyaltyProgramId int64) apiCreateBatchLoyaltyCardsRequest {
 	return apiCreateBatchLoyaltyCardsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -1497,7 +1498,7 @@ func (r apiCreateBatchLoyaltyCardsRequest) Execute() (LoyaltyCardBatchResponse, 
 type apiCreateCampaignFromTemplateRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	body          *CreateTemplateCampaign
 }
 
@@ -1519,7 +1520,7 @@ the corresponding collections for the new campaign are created automatically.
 
 @return apiCreateCampaignFromTemplateRequest
 */
-func (a *ManagementApiService) CreateCampaignFromTemplate(ctx _context.Context, applicationId int32) apiCreateCampaignFromTemplateRequest {
+func (a *ManagementApiService) CreateCampaignFromTemplate(ctx _context.Context, applicationId int64) apiCreateCampaignFromTemplateRequest {
 	return apiCreateCampaignFromTemplateRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -1650,11 +1651,164 @@ func (r apiCreateCampaignFromTemplateRequest) Execute() (CreateTemplateCampaignR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiCreateCampaignStoreBudgetRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	applicationId int64
+	campaignId    int64
+	body          *NewCampaignStoreBudget
+}
+
+func (r apiCreateCampaignStoreBudgetRequest) Body(body NewCampaignStoreBudget) apiCreateCampaignStoreBudgetRequest {
+	r.body = &body
+	return r
+}
+
+/*
+CreateCampaignStoreBudget Create campaign store budget
+Create a new store budget for a given campaign.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
+@return apiCreateCampaignStoreBudgetRequest
+*/
+func (a *ManagementApiService) CreateCampaignStoreBudget(ctx _context.Context, applicationId int64, campaignId int64) apiCreateCampaignStoreBudgetRequest {
+	return apiCreateCampaignStoreBudgetRequest{
+		apiService:    a,
+		ctx:           ctx,
+		applicationId: applicationId,
+		campaignId:    campaignId,
+	}
+}
+
+/*
+Execute executes the request
+*/
+func (r apiCreateCampaignStoreBudgetRequest) Execute() (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.CreateCampaignStoreBudget")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets"
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"campaignId"+"}", _neturl.QueryEscape(parameterToString(r.campaignId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type apiCreateCollectionRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *NewCampaignCollection
 }
 
@@ -1672,7 +1826,7 @@ Create a campaign-level collection in a given campaign.
 
 @return apiCreateCollectionRequest
 */
-func (a *ManagementApiService) CreateCollection(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCollectionRequest {
+func (a *ManagementApiService) CreateCollection(ctx _context.Context, applicationId int64, campaignId int64) apiCreateCollectionRequest {
 	return apiCreateCollectionRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -1808,8 +1962,8 @@ func (r apiCreateCollectionRequest) Execute() (Collection, *_nethttp.Response, e
 type apiCreateCouponsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *NewCoupons
 	silent        *string
 }
@@ -1833,7 +1987,7 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 
 @return apiCreateCouponsRequest
 */
-func (a *ManagementApiService) CreateCoupons(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsRequest {
+func (a *ManagementApiService) CreateCoupons(ctx _context.Context, applicationId int64, campaignId int64) apiCreateCouponsRequest {
 	return apiCreateCouponsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -1973,8 +2127,8 @@ func (r apiCreateCouponsRequest) Execute() (InlineResponse20010, *_nethttp.Respo
 type apiCreateCouponsAsyncRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *NewCouponCreationJob
 }
 
@@ -1995,7 +2149,7 @@ If you want to create less than 20,001 coupons, you can use the [Create coupons]
 
 @return apiCreateCouponsAsyncRequest
 */
-func (a *ManagementApiService) CreateCouponsAsync(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsAsyncRequest {
+func (a *ManagementApiService) CreateCouponsAsync(ctx _context.Context, applicationId int64, campaignId int64) apiCreateCouponsAsyncRequest {
 	return apiCreateCouponsAsyncRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -2131,8 +2285,8 @@ func (r apiCreateCouponsAsyncRequest) Execute() (AsyncCouponCreationResponse, *_
 type apiCreateCouponsDeletionJobRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *NewCouponDeletionJob
 }
 
@@ -2151,7 +2305,7 @@ This endpoint handles creating a job to delete coupons asynchronously.
 
 @return apiCreateCouponsDeletionJobRequest
 */
-func (a *ManagementApiService) CreateCouponsDeletionJob(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsDeletionJobRequest {
+func (a *ManagementApiService) CreateCouponsDeletionJob(ctx _context.Context, applicationId int64, campaignId int64) apiCreateCouponsDeletionJobRequest {
 	return apiCreateCouponsDeletionJobRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -2287,8 +2441,8 @@ func (r apiCreateCouponsDeletionJobRequest) Execute() (AsyncCouponDeletionJobRes
 type apiCreateCouponsForMultipleRecipientsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *NewCouponsForMultipleRecipients
 	silent        *string
 }
@@ -2312,7 +2466,7 @@ Create coupons according to some pattern for up to 1000 recipients.
 
 @return apiCreateCouponsForMultipleRecipientsRequest
 */
-func (a *ManagementApiService) CreateCouponsForMultipleRecipients(ctx _context.Context, applicationId int32, campaignId int32) apiCreateCouponsForMultipleRecipientsRequest {
+func (a *ManagementApiService) CreateCouponsForMultipleRecipients(ctx _context.Context, applicationId int64, campaignId int64) apiCreateCouponsForMultipleRecipientsRequest {
 	return apiCreateCouponsForMultipleRecipientsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -3064,7 +3218,7 @@ func (r apiCreateSessionRequest) Execute() (Session, *_nethttp.Response, error) 
 type apiCreateStoreRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	body          *NewStore
 }
 
@@ -3081,7 +3235,7 @@ Create a new store in a specific Application.
 
 @return apiCreateStoreRequest
 */
-func (a *ManagementApiService) CreateStore(ctx _context.Context, applicationId int32) apiCreateStoreRequest {
+func (a *ManagementApiService) CreateStore(ctx _context.Context, applicationId int64) apiCreateStoreRequest {
 	return apiCreateStoreRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -3362,7 +3516,7 @@ func (r apiDeactivateUserByEmailRequest) Execute() (*_nethttp.Response, error) {
 type apiDeductLoyaltyCardPointsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	body             *DeductLoyaltyPoints
 }
@@ -3382,7 +3536,7 @@ Deduct points from the given loyalty card in the specified card-based loyalty pr
 
 @return apiDeductLoyaltyCardPointsRequest
 */
-func (a *ManagementApiService) DeductLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiDeductLoyaltyCardPointsRequest {
+func (a *ManagementApiService) DeductLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiDeductLoyaltyCardPointsRequest {
 	return apiDeductLoyaltyCardPointsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -3530,7 +3684,7 @@ func (r apiDeductLoyaltyCardPointsRequest) Execute() (*_nethttp.Response, error)
 type apiDeleteAccountCollectionRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	collectionId int32
+	collectionId int64
 }
 
 /*
@@ -3541,7 +3695,7 @@ Delete a given account-level collection.
 
 @return apiDeleteAccountCollectionRequest
 */
-func (a *ManagementApiService) DeleteAccountCollection(ctx _context.Context, collectionId int32) apiDeleteAccountCollectionRequest {
+func (a *ManagementApiService) DeleteAccountCollection(ctx _context.Context, collectionId int64) apiDeleteAccountCollectionRequest {
 	return apiDeleteAccountCollectionRequest{
 		apiService:   a,
 		ctx:          ctx,
@@ -3657,9 +3811,9 @@ func (r apiDeleteAccountCollectionRequest) Execute() (*_nethttp.Response, error)
 type apiDeleteAchievementRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	achievementId int32
+	applicationId int64
+	campaignId    int64
+	achievementId int64
 }
 
 /*
@@ -3672,7 +3826,7 @@ Delete the specified achievement.
 
 @return apiDeleteAchievementRequest
 */
-func (a *ManagementApiService) DeleteAchievement(ctx _context.Context, applicationId int32, campaignId int32, achievementId int32) apiDeleteAchievementRequest {
+func (a *ManagementApiService) DeleteAchievement(ctx _context.Context, applicationId int64, campaignId int64, achievementId int64) apiDeleteAchievementRequest {
 	return apiDeleteAchievementRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -3802,8 +3956,8 @@ func (r apiDeleteAchievementRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteCampaignRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 }
 
 /*
@@ -3815,7 +3969,7 @@ Delete the given campaign.
 
 @return apiDeleteCampaignRequest
 */
-func (a *ManagementApiService) DeleteCampaign(ctx _context.Context, applicationId int32, campaignId int32) apiDeleteCampaignRequest {
+func (a *ManagementApiService) DeleteCampaign(ctx _context.Context, applicationId int64, campaignId int64) apiDeleteCampaignRequest {
 	return apiDeleteCampaignRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -3921,12 +4075,161 @@ func (r apiDeleteCampaignRequest) Execute() (*_nethttp.Response, error) {
 	return localVarHTTPResponse, nil
 }
 
+type apiDeleteCampaignStoreBudgetsRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	applicationId int64
+	campaignId    int64
+	action        *string
+	period        *string
+}
+
+func (r apiDeleteCampaignStoreBudgetsRequest) Action(action string) apiDeleteCampaignStoreBudgetsRequest {
+	r.action = &action
+	return r
+}
+
+func (r apiDeleteCampaignStoreBudgetsRequest) Period(period string) apiDeleteCampaignStoreBudgetsRequest {
+	r.period = &period
+	return r
+}
+
+/*
+DeleteCampaignStoreBudgets Delete campaign store budgets
+Delete the store budgets for a given campaign.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
+@return apiDeleteCampaignStoreBudgetsRequest
+*/
+func (a *ManagementApiService) DeleteCampaignStoreBudgets(ctx _context.Context, applicationId int64, campaignId int64) apiDeleteCampaignStoreBudgetsRequest {
+	return apiDeleteCampaignStoreBudgetsRequest{
+		apiService:    a,
+		ctx:           ctx,
+		applicationId: applicationId,
+		campaignId:    campaignId,
+	}
+}
+
+/*
+Execute executes the request
+*/
+func (r apiDeleteCampaignStoreBudgetsRequest) Execute() (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.DeleteCampaignStoreBudgets")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets"
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"campaignId"+"}", _neturl.QueryEscape(parameterToString(r.campaignId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.action != nil {
+		localVarQueryParams.Add("action", parameterToString(*r.action, ""))
+	}
+	if r.period != nil {
+		localVarQueryParams.Add("period", parameterToString(*r.period, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type apiDeleteCollectionRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	collectionId  int32
+	applicationId int64
+	campaignId    int64
+	collectionId  int64
 }
 
 /*
@@ -3939,7 +4242,7 @@ Delete a given campaign-level collection.
 
 @return apiDeleteCollectionRequest
 */
-func (a *ManagementApiService) DeleteCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiDeleteCollectionRequest {
+func (a *ManagementApiService) DeleteCollection(ctx _context.Context, applicationId int64, campaignId int64, collectionId int64) apiDeleteCollectionRequest {
 	return apiDeleteCollectionRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -4059,8 +4362,8 @@ func (r apiDeleteCollectionRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteCouponRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	couponId      string
 }
 
@@ -4074,7 +4377,7 @@ Delete the specified coupon.
 
 @return apiDeleteCouponRequest
 */
-func (a *ManagementApiService) DeleteCoupon(ctx _context.Context, applicationId int32, campaignId int32, couponId string) apiDeleteCouponRequest {
+func (a *ManagementApiService) DeleteCoupon(ctx _context.Context, applicationId int64, campaignId int64, couponId string) apiDeleteCouponRequest {
 	return apiDeleteCouponRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -4185,8 +4488,8 @@ func (r apiDeleteCouponRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteCouponsRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	applicationId          int32
-	campaignId             int32
+	applicationId          int64
+	campaignId             int64
 	value                  *string
 	createdBefore          *time.Time
 	createdAfter           *time.Time
@@ -4197,7 +4500,7 @@ type apiDeleteCouponsRequest struct {
 	valid                  *string
 	batchId                *string
 	usable                 *string
-	referralId             *int32
+	referralId             *int64
 	recipientIntegrationId *string
 	exactMatch             *bool
 }
@@ -4252,7 +4555,7 @@ func (r apiDeleteCouponsRequest) Usable(usable string) apiDeleteCouponsRequest {
 	return r
 }
 
-func (r apiDeleteCouponsRequest) ReferralId(referralId int32) apiDeleteCouponsRequest {
+func (r apiDeleteCouponsRequest) ReferralId(referralId int64) apiDeleteCouponsRequest {
 	r.referralId = &referralId
 	return r
 }
@@ -4276,7 +4579,7 @@ Deletes all the coupons matching the specified criteria.
 
 @return apiDeleteCouponsRequest
 */
-func (a *ManagementApiService) DeleteCoupons(ctx _context.Context, applicationId int32, campaignId int32) apiDeleteCouponsRequest {
+func (a *ManagementApiService) DeleteCoupons(ctx _context.Context, applicationId int64, campaignId int64) apiDeleteCouponsRequest {
 	return apiDeleteCouponsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -4424,7 +4727,7 @@ func (r apiDeleteCouponsRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteLoyaltyCardRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 }
 
@@ -4437,7 +4740,7 @@ Delete the given loyalty card.
 
 @return apiDeleteLoyaltyCardRequest
 */
-func (a *ManagementApiService) DeleteLoyaltyCard(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiDeleteLoyaltyCardRequest {
+func (a *ManagementApiService) DeleteLoyaltyCard(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiDeleteLoyaltyCardRequest {
 	return apiDeleteLoyaltyCardRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -4569,8 +4872,8 @@ func (r apiDeleteLoyaltyCardRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteReferralRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	referralId    string
 }
 
@@ -4584,7 +4887,7 @@ Delete the specified referral.
 
 @return apiDeleteReferralRequest
 */
-func (a *ManagementApiService) DeleteReferral(ctx _context.Context, applicationId int32, campaignId int32, referralId string) apiDeleteReferralRequest {
+func (a *ManagementApiService) DeleteReferral(ctx _context.Context, applicationId int64, campaignId int64, referralId string) apiDeleteReferralRequest {
 	return apiDeleteReferralRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -4695,7 +4998,7 @@ func (r apiDeleteReferralRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteStoreRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	storeId       string
 }
 
@@ -4708,7 +5011,7 @@ Delete the specified store.
 
 @return apiDeleteStoreRequest
 */
-func (a *ManagementApiService) DeleteStore(ctx _context.Context, applicationId int32, storeId string) apiDeleteStoreRequest {
+func (a *ManagementApiService) DeleteStore(ctx _context.Context, applicationId int64, storeId string) apiDeleteStoreRequest {
 	return apiDeleteStoreRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -4826,7 +5129,7 @@ func (r apiDeleteStoreRequest) Execute() (*_nethttp.Response, error) {
 type apiDeleteUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 }
 
 /*
@@ -4837,7 +5140,7 @@ Delete a specific user.
 
 @return apiDeleteUserRequest
 */
-func (a *ManagementApiService) DeleteUser(ctx _context.Context, userId int32) apiDeleteUserRequest {
+func (a *ManagementApiService) DeleteUser(ctx _context.Context, userId int64) apiDeleteUserRequest {
 	return apiDeleteUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -5185,8 +5488,8 @@ func (r apiDestroySessionRequest) Execute() (*_nethttp.Response, error) {
 type apiDisconnectCampaignStoresRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 }
 
 /*
@@ -5198,7 +5501,7 @@ Disconnect the stores linked to a specific campaign.
 
 @return apiDisconnectCampaignStoresRequest
 */
-func (a *ManagementApiService) DisconnectCampaignStores(ctx _context.Context, applicationId int32, campaignId int32) apiDisconnectCampaignStoresRequest {
+func (a *ManagementApiService) DisconnectCampaignStores(ctx _context.Context, applicationId int64, campaignId int64) apiDisconnectCampaignStoresRequest {
 	return apiDisconnectCampaignStoresRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -5336,7 +5639,7 @@ func (r apiDisconnectCampaignStoresRequest) Execute() (*_nethttp.Response, error
 type apiExportAccountCollectionItemsRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	collectionId int32
+	collectionId int64
 }
 
 /*
@@ -5350,7 +5653,7 @@ Download a CSV file containing items from a given account-level collection.
 
 @return apiExportAccountCollectionItemsRequest
 */
-func (a *ManagementApiService) ExportAccountCollectionItems(ctx _context.Context, collectionId int32) apiExportAccountCollectionItemsRequest {
+func (a *ManagementApiService) ExportAccountCollectionItems(ctx _context.Context, collectionId int64) apiExportAccountCollectionItemsRequest {
 	return apiExportAccountCollectionItemsRequest{
 		apiService:   a,
 		ctx:          ctx,
@@ -5498,9 +5801,9 @@ func (r apiExportAccountCollectionItemsRequest) Execute() (string, *_nethttp.Res
 type apiExportAchievementsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	achievementId int32
+	applicationId int64
+	campaignId    int64
+	achievementId int64
 }
 
 /*
@@ -5524,7 +5827,7 @@ The CSV file contains the following columns:
 
 @return apiExportAchievementsRequest
 */
-func (a *ManagementApiService) ExportAchievements(ctx _context.Context, applicationId int32, campaignId int32, achievementId int32) apiExportAchievementsRequest {
+func (a *ManagementApiService) ExportAchievements(ctx _context.Context, applicationId int64, campaignId int64, achievementId int64) apiExportAchievementsRequest {
 	return apiExportAchievementsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -5686,7 +5989,7 @@ func (r apiExportAchievementsRequest) Execute() (string, *_nethttp.Response, err
 type apiExportAudiencesMembershipsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	audienceId int32
+	audienceId int64
 }
 
 /*
@@ -5703,7 +6006,7 @@ The file contains the following column:
 
 @return apiExportAudiencesMembershipsRequest
 */
-func (a *ManagementApiService) ExportAudiencesMemberships(ctx _context.Context, audienceId int32) apiExportAudiencesMembershipsRequest {
+func (a *ManagementApiService) ExportAudiencesMemberships(ctx _context.Context, audienceId int64) apiExportAudiencesMembershipsRequest {
 	return apiExportAudiencesMembershipsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -5858,11 +6161,210 @@ func (r apiExportAudiencesMembershipsRequest) Execute() (string, *_nethttp.Respo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiExportCampaignStoreBudgetsRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	applicationId int64
+	campaignId    int64
+	action        *string
+	period        *string
+}
+
+func (r apiExportCampaignStoreBudgetsRequest) Action(action string) apiExportCampaignStoreBudgetsRequest {
+	r.action = &action
+	return r
+}
+
+func (r apiExportCampaignStoreBudgetsRequest) Period(period string) apiExportCampaignStoreBudgetsRequest {
+	r.period = &period
+	return r
+}
+
+/*
+ExportCampaignStoreBudgets Export campaign store budgets
+Download a CSV file containing the store budgets for a given campaign.
+
+**Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).
+
+The CSV file contains the following columns:
+
+- `store_integration_id`: The identifier of the store.
+- `limit`: The budget limit for the store.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
+@return apiExportCampaignStoreBudgetsRequest
+*/
+func (a *ManagementApiService) ExportCampaignStoreBudgets(ctx _context.Context, applicationId int64, campaignId int64) apiExportCampaignStoreBudgetsRequest {
+	return apiExportCampaignStoreBudgetsRequest{
+		apiService:    a,
+		ctx:           ctx,
+		applicationId: applicationId,
+		campaignId:    campaignId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return string
+*/
+func (r apiExportCampaignStoreBudgetsRequest) Execute() (string, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  string
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ExportCampaignStoreBudgets")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export"
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"campaignId"+"}", _neturl.QueryEscape(parameterToString(r.campaignId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.action != nil {
+		localVarQueryParams.Add("action", parameterToString(*r.action, ""))
+	}
+	if r.period != nil {
+		localVarQueryParams.Add("period", parameterToString(*r.period, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/csv"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v string
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiExportCampaignStoresRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 }
 
 /*
@@ -5881,7 +6383,7 @@ The CSV file contains the following column:
 
 @return apiExportCampaignStoresRequest
 */
-func (a *ManagementApiService) ExportCampaignStores(ctx _context.Context, applicationId int32, campaignId int32) apiExportCampaignStoresRequest {
+func (a *ManagementApiService) ExportCampaignStores(ctx _context.Context, applicationId int64, campaignId int64) apiExportCampaignStoresRequest {
 	return apiExportCampaignStoresRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -6041,9 +6543,9 @@ func (r apiExportCampaignStoresRequest) Execute() (string, *_nethttp.Response, e
 type apiExportCollectionItemsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	collectionId  int32
+	applicationId int64
+	campaignId    int64
+	collectionId  int64
 }
 
 /*
@@ -6059,7 +6561,7 @@ Download a CSV file containing items from a given campaign-level collection.
 
 @return apiExportCollectionItemsRequest
 */
-func (a *ManagementApiService) ExportCollectionItems(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiExportCollectionItemsRequest {
+func (a *ManagementApiService) ExportCollectionItems(ctx _context.Context, applicationId int64, campaignId int64, collectionId int64) apiExportCollectionItemsRequest {
 	return apiExportCollectionItemsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -6211,7 +6713,7 @@ func (r apiExportCollectionItemsRequest) Execute() (string, *_nethttp.Response, 
 type apiExportCouponsRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	applicationId          int32
+	applicationId          int64
 	campaignId             *float32
 	sort                   *string
 	value                  *string
@@ -6219,7 +6721,7 @@ type apiExportCouponsRequest struct {
 	createdAfter           *time.Time
 	valid                  *string
 	usable                 *string
-	referralId             *int32
+	referralId             *int64
 	recipientIntegrationId *string
 	batchId                *string
 	exactMatch             *bool
@@ -6263,7 +6765,7 @@ func (r apiExportCouponsRequest) Usable(usable string) apiExportCouponsRequest {
 	return r
 }
 
-func (r apiExportCouponsRequest) ReferralId(referralId int32) apiExportCouponsRequest {
+func (r apiExportCouponsRequest) ReferralId(referralId int64) apiExportCouponsRequest {
 	r.referralId = &referralId
 	return r
 }
@@ -6361,7 +6863,7 @@ The CSV file can contain the following columns:
 
 @return apiExportCouponsRequest
 */
-func (a *ManagementApiService) ExportCoupons(ctx _context.Context, applicationId int32) apiExportCouponsRequest {
+func (a *ManagementApiService) ExportCoupons(ctx _context.Context, applicationId int64) apiExportCouponsRequest {
 	return apiExportCouponsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -6531,7 +7033,7 @@ func (r apiExportCouponsRequest) Execute() (string, *_nethttp.Response, error) {
 type apiExportCustomerSessionsRequest struct {
 	ctx                  _context.Context
 	apiService           *ManagementApiService
-	applicationId        int32
+	applicationId        int64
 	createdBefore        *time.Time
 	createdAfter         *time.Time
 	profileIntegrationId *string
@@ -6568,7 +7070,7 @@ func (r apiExportCustomerSessionsRequest) CustomerSessionState(customerSessionSt
 ExportCustomerSessions Export customer sessions
 Download a CSV file containing the customer sessions that match the request.
 
-**Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/product/server-infrastructure-and-data-retention#data-retention-policy).
+**Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).
 
 **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).
 
@@ -6598,7 +7100,7 @@ Download a CSV file containing the customer sessions that match the request.
 
 @return apiExportCustomerSessionsRequest
 */
-func (a *ManagementApiService) ExportCustomerSessions(ctx _context.Context, applicationId int32) apiExportCustomerSessionsRequest {
+func (a *ManagementApiService) ExportCustomerSessions(ctx _context.Context, applicationId int64) apiExportCustomerSessionsRequest {
 	return apiExportCustomerSessionsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -6913,7 +7415,7 @@ func (r apiExportCustomersTiersRequest) Execute() (string, *_nethttp.Response, e
 type apiExportEffectsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	campaignId    *float32
 	createdBefore *time.Time
 	createdAfter  *time.Time
@@ -6970,7 +7472,7 @@ The generated file can contain the following columns:
 
 @return apiExportEffectsRequest
 */
-func (a *ManagementApiService) ExportEffects(ctx _context.Context, applicationId int32) apiExportEffectsRequest {
+func (a *ManagementApiService) ExportEffects(ctx _context.Context, applicationId int64) apiExportEffectsRequest {
 	return apiExportEffectsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -7466,7 +7968,7 @@ func (r apiExportLoyaltyBalancesRequest) Execute() (string, *_nethttp.Response, 
 type apiExportLoyaltyCardBalancesRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	endDate          *time.Time
 }
 
@@ -7496,7 +7998,7 @@ The CSV file contains the following columns:
 
 @return apiExportLoyaltyCardBalancesRequest
 */
-func (a *ManagementApiService) ExportLoyaltyCardBalances(ctx _context.Context, loyaltyProgramId int32) apiExportLoyaltyCardBalancesRequest {
+func (a *ManagementApiService) ExportLoyaltyCardBalances(ctx _context.Context, loyaltyProgramId int64) apiExportLoyaltyCardBalancesRequest {
 	return apiExportLoyaltyCardBalancesRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -7647,7 +8149,7 @@ func (r apiExportLoyaltyCardBalancesRequest) Execute() (string, *_nethttp.Respon
 type apiExportLoyaltyCardLedgerRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	rangeStart       *time.Time
 	rangeEnd         *time.Time
@@ -7681,7 +8183,7 @@ Download a CSV file containing a loyalty card ledger log of the loyalty program.
 
 @return apiExportLoyaltyCardLedgerRequest
 */
-func (a *ManagementApiService) ExportLoyaltyCardLedger(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiExportLoyaltyCardLedgerRequest {
+func (a *ManagementApiService) ExportLoyaltyCardLedger(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiExportLoyaltyCardLedgerRequest {
 	return apiExportLoyaltyCardLedgerRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -7848,13 +8350,25 @@ func (r apiExportLoyaltyCardLedgerRequest) Execute() (string, *_nethttp.Response
 type apiExportLoyaltyCardsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	batchId          *string
+	createdBefore    *time.Time
+	createdAfter     *time.Time
 	dateFormat       *string
 }
 
 func (r apiExportLoyaltyCardsRequest) BatchId(batchId string) apiExportLoyaltyCardsRequest {
 	r.batchId = &batchId
+	return r
+}
+
+func (r apiExportLoyaltyCardsRequest) CreatedBefore(createdBefore time.Time) apiExportLoyaltyCardsRequest {
+	r.createdBefore = &createdBefore
+	return r
+}
+
+func (r apiExportLoyaltyCardsRequest) CreatedAfter(createdAfter time.Time) apiExportLoyaltyCardsRequest {
+	r.createdAfter = &createdAfter
 	return r
 }
 
@@ -7884,7 +8398,7 @@ The CSV file contains the following columns:
 
 @return apiExportLoyaltyCardsRequest
 */
-func (a *ManagementApiService) ExportLoyaltyCards(ctx _context.Context, loyaltyProgramId int32) apiExportLoyaltyCardsRequest {
+func (a *ManagementApiService) ExportLoyaltyCards(ctx _context.Context, loyaltyProgramId int64) apiExportLoyaltyCardsRequest {
 	return apiExportLoyaltyCardsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -7921,6 +8435,12 @@ func (r apiExportLoyaltyCardsRequest) Execute() (string, *_nethttp.Response, err
 
 	if r.batchId != nil {
 		localVarQueryParams.Add("batchId", parameterToString(*r.batchId, ""))
+	}
+	if r.createdBefore != nil {
+		localVarQueryParams.Add("createdBefore", parameterToString(*r.createdBefore, ""))
+	}
+	if r.createdAfter != nil {
+		localVarQueryParams.Add("createdAfter", parameterToString(*r.createdAfter, ""))
 	}
 	if r.dateFormat != nil {
 		localVarQueryParams.Add("dateFormat", parameterToString(*r.dateFormat, ""))
@@ -8234,7 +8754,7 @@ func (r apiExportLoyaltyLedgerRequest) Execute() (string, *_nethttp.Response, er
 type apiExportPoolGiveawaysRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	poolId        int32
+	poolId        int64
 	createdBefore *time.Time
 	createdAfter  *time.Time
 }
@@ -8274,7 +8794,7 @@ The CSV file contains the following columns:
 
 @return apiExportPoolGiveawaysRequest
 */
-func (a *ManagementApiService) ExportPoolGiveaways(ctx _context.Context, poolId int32) apiExportPoolGiveawaysRequest {
+func (a *ManagementApiService) ExportPoolGiveaways(ctx _context.Context, poolId int64) apiExportPoolGiveawaysRequest {
 	return apiExportPoolGiveawaysRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -8418,7 +8938,7 @@ func (r apiExportPoolGiveawaysRequest) Execute() (string, *_nethttp.Response, er
 type apiExportReferralsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	campaignId    *float32
 	createdBefore *time.Time
 	createdAfter  *time.Time
@@ -8483,7 +9003,7 @@ The CSV file contains the following columns:
 
 @return apiExportReferralsRequest
 */
-func (a *ManagementApiService) ExportReferrals(ctx _context.Context, applicationId int32) apiExportReferralsRequest {
+func (a *ManagementApiService) ExportReferrals(ctx _context.Context, applicationId int64) apiExportReferralsRequest {
 	return apiExportReferralsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -8632,14 +9152,14 @@ func (r apiExportReferralsRequest) Execute() (string, *_nethttp.Response, error)
 type apiGetAccessLogsWithoutTotalCountRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	rangeStart    *time.Time
 	rangeEnd      *time.Time
 	path          *string
 	method        *string
 	status        *string
-	pageSize      *int32
-	skip          *int32
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 }
 
@@ -8668,12 +9188,12 @@ func (r apiGetAccessLogsWithoutTotalCountRequest) Status(status string) apiGetAc
 	return r
 }
 
-func (r apiGetAccessLogsWithoutTotalCountRequest) PageSize(pageSize int32) apiGetAccessLogsWithoutTotalCountRequest {
+func (r apiGetAccessLogsWithoutTotalCountRequest) PageSize(pageSize int64) apiGetAccessLogsWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetAccessLogsWithoutTotalCountRequest) Skip(skip int32) apiGetAccessLogsWithoutTotalCountRequest {
+func (r apiGetAccessLogsWithoutTotalCountRequest) Skip(skip int64) apiGetAccessLogsWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -8692,7 +9212,7 @@ Retrieve the list of API calls sent to the specified Application.
 
 @return apiGetAccessLogsWithoutTotalCountRequest
 */
-func (a *ManagementApiService) GetAccessLogsWithoutTotalCount(ctx _context.Context, applicationId int32) apiGetAccessLogsWithoutTotalCountRequest {
+func (a *ManagementApiService) GetAccessLogsWithoutTotalCount(ctx _context.Context, applicationId int64) apiGetAccessLogsWithoutTotalCountRequest {
 	return apiGetAccessLogsWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -8848,7 +9368,7 @@ func (r apiGetAccessLogsWithoutTotalCountRequest) Execute() (InlineResponse20022
 type apiGetAccountRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	accountId  int32
+	accountId  int64
 }
 
 /*
@@ -8860,7 +9380,7 @@ Return the details of your companies Talon.One account.
 
 @return apiGetAccountRequest
 */
-func (a *ManagementApiService) GetAccount(ctx _context.Context, accountId int32) apiGetAccountRequest {
+func (a *ManagementApiService) GetAccount(ctx _context.Context, accountId int64) apiGetAccountRequest {
 	return apiGetAccountRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -8988,7 +9508,7 @@ func (r apiGetAccountRequest) Execute() (Account, *_nethttp.Response, error) {
 type apiGetAccountAnalyticsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	accountId  int32
+	accountId  int64
 }
 
 /*
@@ -9000,7 +9520,7 @@ Return the analytics of your Talon.One account.
 
 @return apiGetAccountAnalyticsRequest
 */
-func (a *ManagementApiService) GetAccountAnalytics(ctx _context.Context, accountId int32) apiGetAccountAnalyticsRequest {
+func (a *ManagementApiService) GetAccountAnalytics(ctx _context.Context, accountId int64) apiGetAccountAnalyticsRequest {
 	return apiGetAccountAnalyticsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -9128,7 +9648,7 @@ func (r apiGetAccountAnalyticsRequest) Execute() (AccountAnalytics, *_nethttp.Re
 type apiGetAccountCollectionRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	collectionId int32
+	collectionId int64
 }
 
 /*
@@ -9139,7 +9659,7 @@ Retrieve a given account-level collection.
 
 @return apiGetAccountCollectionRequest
 */
-func (a *ManagementApiService) GetAccountCollection(ctx _context.Context, collectionId int32) apiGetAccountCollectionRequest {
+func (a *ManagementApiService) GetAccountCollection(ctx _context.Context, collectionId int64) apiGetAccountCollectionRequest {
 	return apiGetAccountCollectionRequest{
 		apiService:   a,
 		ctx:          ctx,
@@ -9277,9 +9797,9 @@ func (r apiGetAccountCollectionRequest) Execute() (Collection, *_nethttp.Respons
 type apiGetAchievementRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	achievementId int32
+	applicationId int64
+	campaignId    int64
+	achievementId int64
 }
 
 /*
@@ -9292,7 +9812,7 @@ Get the details of a specific achievement.
 
 @return apiGetAchievementRequest
 */
-func (a *ManagementApiService) GetAchievement(ctx _context.Context, applicationId int32, campaignId int32, achievementId int32) apiGetAchievementRequest {
+func (a *ManagementApiService) GetAchievement(ctx _context.Context, applicationId int64, campaignId int64, achievementId int64) apiGetAchievementRequest {
 	return apiGetAchievementRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -9444,7 +9964,7 @@ func (r apiGetAchievementRequest) Execute() (Achievement, *_nethttp.Response, er
 type apiGetAdditionalCostRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	additionalCostId int32
+	additionalCostId int64
 }
 
 /*
@@ -9456,7 +9976,7 @@ Returns the additional cost.
 
 @return apiGetAdditionalCostRequest
 */
-func (a *ManagementApiService) GetAdditionalCost(ctx _context.Context, additionalCostId int32) apiGetAdditionalCostRequest {
+func (a *ManagementApiService) GetAdditionalCost(ctx _context.Context, additionalCostId int64) apiGetAdditionalCostRequest {
 	return apiGetAdditionalCostRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -9584,17 +10104,17 @@ func (r apiGetAdditionalCostRequest) Execute() (AccountAdditionalCost, *_nethttp
 type apiGetAdditionalCostsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sort       *string
 }
 
-func (r apiGetAdditionalCostsRequest) PageSize(pageSize int32) apiGetAdditionalCostsRequest {
+func (r apiGetAdditionalCostsRequest) PageSize(pageSize int64) apiGetAdditionalCostsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetAdditionalCostsRequest) Skip(skip int32) apiGetAdditionalCostsRequest {
+func (r apiGetAdditionalCostsRequest) Skip(skip int64) apiGetAdditionalCostsRequest {
 	r.skip = &skip
 	return r
 }
@@ -9747,7 +10267,7 @@ func (r apiGetAdditionalCostsRequest) Execute() (InlineResponse20038, *_nethttp.
 type apiGetApplicationRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 }
 
 /*
@@ -9758,7 +10278,7 @@ Get the application specified by the ID.
 
 @return apiGetApplicationRequest
 */
-func (a *ManagementApiService) GetApplication(ctx _context.Context, applicationId int32) apiGetApplicationRequest {
+func (a *ManagementApiService) GetApplication(ctx _context.Context, applicationId int64) apiGetApplicationRequest {
 	return apiGetApplicationRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -9886,7 +10406,7 @@ func (r apiGetApplicationRequest) Execute() (Application, *_nethttp.Response, er
 type apiGetApplicationApiHealthRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 }
 
 /*
@@ -9902,7 +10422,7 @@ See the [docs](https://docs.talon.one/docs/dev/tutorials/monitoring-integration-
 
 @return apiGetApplicationApiHealthRequest
 */
-func (a *ManagementApiService) GetApplicationApiHealth(ctx _context.Context, applicationId int32) apiGetApplicationApiHealthRequest {
+func (a *ManagementApiService) GetApplicationApiHealth(ctx _context.Context, applicationId int64) apiGetApplicationApiHealthRequest {
 	return apiGetApplicationApiHealthRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -10030,8 +10550,8 @@ func (r apiGetApplicationApiHealthRequest) Execute() (ApplicationApiHealth, *_ne
 type apiGetApplicationCustomerRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	customerId    int32
+	applicationId int64
+	customerId    int64
 }
 
 /*
@@ -10044,7 +10564,7 @@ Retrieve the customers of the specified application.
 
 @return apiGetApplicationCustomerRequest
 */
-func (a *ManagementApiService) GetApplicationCustomer(ctx _context.Context, applicationId int32, customerId int32) apiGetApplicationCustomerRequest {
+func (a *ManagementApiService) GetApplicationCustomer(ctx _context.Context, applicationId int64, customerId int64) apiGetApplicationCustomerRequest {
 	return apiGetApplicationCustomerRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -10174,20 +10694,20 @@ func (r apiGetApplicationCustomerRequest) Execute() (ApplicationCustomer, *_neth
 type apiGetApplicationCustomerFriendsRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	applicationId       int32
+	applicationId       int64
 	integrationId       string
-	pageSize            *int32
-	skip                *int32
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	withTotalResultSize *bool
 }
 
-func (r apiGetApplicationCustomerFriendsRequest) PageSize(pageSize int32) apiGetApplicationCustomerFriendsRequest {
+func (r apiGetApplicationCustomerFriendsRequest) PageSize(pageSize int64) apiGetApplicationCustomerFriendsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationCustomerFriendsRequest) Skip(skip int32) apiGetApplicationCustomerFriendsRequest {
+func (r apiGetApplicationCustomerFriendsRequest) Skip(skip int64) apiGetApplicationCustomerFriendsRequest {
 	r.skip = &skip
 	return r
 }
@@ -10212,7 +10732,7 @@ List the friends referred by the specified customer profile in this Application.
 
 @return apiGetApplicationCustomerFriendsRequest
 */
-func (a *ManagementApiService) GetApplicationCustomerFriends(ctx _context.Context, applicationId int32, integrationId string) apiGetApplicationCustomerFriendsRequest {
+func (a *ManagementApiService) GetApplicationCustomerFriends(ctx _context.Context, applicationId int64, integrationId string) apiGetApplicationCustomerFriendsRequest {
 	return apiGetApplicationCustomerFriendsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -10354,10 +10874,10 @@ func (r apiGetApplicationCustomerFriendsRequest) Execute() (InlineResponse20035,
 type apiGetApplicationCustomersRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	applicationId       int32
+	applicationId       int64
 	integrationId       *string
-	pageSize            *int32
-	skip                *int32
+	pageSize            *int64
+	skip                *int64
 	withTotalResultSize *bool
 }
 
@@ -10366,12 +10886,12 @@ func (r apiGetApplicationCustomersRequest) IntegrationId(integrationId string) a
 	return r
 }
 
-func (r apiGetApplicationCustomersRequest) PageSize(pageSize int32) apiGetApplicationCustomersRequest {
+func (r apiGetApplicationCustomersRequest) PageSize(pageSize int64) apiGetApplicationCustomersRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationCustomersRequest) Skip(skip int32) apiGetApplicationCustomersRequest {
+func (r apiGetApplicationCustomersRequest) Skip(skip int64) apiGetApplicationCustomersRequest {
 	r.skip = &skip
 	return r
 }
@@ -10389,7 +10909,7 @@ List all the customers of the specified application.
 
 @return apiGetApplicationCustomersRequest
 */
-func (a *ManagementApiService) GetApplicationCustomers(ctx _context.Context, applicationId int32) apiGetApplicationCustomersRequest {
+func (a *ManagementApiService) GetApplicationCustomers(ctx _context.Context, applicationId int64) apiGetApplicationCustomersRequest {
 	return apiGetApplicationCustomersRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -10529,10 +11049,10 @@ func (r apiGetApplicationCustomersRequest) Execute() (InlineResponse20024, *_net
 type apiGetApplicationCustomersByAttributesRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	applicationId       int32
+	applicationId       int64
 	body                *CustomerProfileSearchQuery
-	pageSize            *int32
-	skip                *int32
+	pageSize            *int64
+	skip                *int64
 	withTotalResultSize *bool
 }
 
@@ -10541,12 +11061,12 @@ func (r apiGetApplicationCustomersByAttributesRequest) Body(body CustomerProfile
 	return r
 }
 
-func (r apiGetApplicationCustomersByAttributesRequest) PageSize(pageSize int32) apiGetApplicationCustomersByAttributesRequest {
+func (r apiGetApplicationCustomersByAttributesRequest) PageSize(pageSize int64) apiGetApplicationCustomersByAttributesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationCustomersByAttributesRequest) Skip(skip int32) apiGetApplicationCustomersByAttributesRequest {
+func (r apiGetApplicationCustomersByAttributesRequest) Skip(skip int64) apiGetApplicationCustomersByAttributesRequest {
 	r.skip = &skip
 	return r
 }
@@ -10567,7 +11087,7 @@ The match is successful if all the attributes of the request are found in a prof
 
 @return apiGetApplicationCustomersByAttributesRequest
 */
-func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx _context.Context, applicationId int32) apiGetApplicationCustomersByAttributesRequest {
+func (a *ManagementApiService) GetApplicationCustomersByAttributes(ctx _context.Context, applicationId int64) apiGetApplicationCustomersByAttributesRequest {
 	return apiGetApplicationCustomersByAttributesRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -10710,18 +11230,18 @@ func (r apiGetApplicationCustomersByAttributesRequest) Execute() (InlineResponse
 type apiGetApplicationEventTypesRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 }
 
-func (r apiGetApplicationEventTypesRequest) PageSize(pageSize int32) apiGetApplicationEventTypesRequest {
+func (r apiGetApplicationEventTypesRequest) PageSize(pageSize int64) apiGetApplicationEventTypesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationEventTypesRequest) Skip(skip int32) apiGetApplicationEventTypesRequest {
+func (r apiGetApplicationEventTypesRequest) Skip(skip int64) apiGetApplicationEventTypesRequest {
 	r.skip = &skip
 	return r
 }
@@ -10742,7 +11262,7 @@ See also: [Track an event](https://docs.talon.one/integration-api#tag/Events/ope
 
 @return apiGetApplicationEventTypesRequest
 */
-func (a *ManagementApiService) GetApplicationEventTypes(ctx _context.Context, applicationId int32) apiGetApplicationEventTypesRequest {
+func (a *ManagementApiService) GetApplicationEventTypes(ctx _context.Context, applicationId int64) apiGetApplicationEventTypesRequest {
 	return apiGetApplicationEventTypesRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -10879,9 +11399,9 @@ func (r apiGetApplicationEventTypesRequest) Execute() (InlineResponse20031, *_ne
 type apiGetApplicationEventsWithoutTotalCountRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 	type_         *string
 	createdBefore *time.Time
@@ -10896,12 +11416,12 @@ type apiGetApplicationEventsWithoutTotalCountRequest struct {
 	campaignQuery *string
 }
 
-func (r apiGetApplicationEventsWithoutTotalCountRequest) PageSize(pageSize int32) apiGetApplicationEventsWithoutTotalCountRequest {
+func (r apiGetApplicationEventsWithoutTotalCountRequest) PageSize(pageSize int64) apiGetApplicationEventsWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationEventsWithoutTotalCountRequest) Skip(skip int32) apiGetApplicationEventsWithoutTotalCountRequest {
+func (r apiGetApplicationEventsWithoutTotalCountRequest) Skip(skip int64) apiGetApplicationEventsWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -10975,7 +11495,7 @@ Lists all events recorded for an application. Instead of having the total number
 
 @return apiGetApplicationEventsWithoutTotalCountRequest
 */
-func (a *ManagementApiService) GetApplicationEventsWithoutTotalCount(ctx _context.Context, applicationId int32) apiGetApplicationEventsWithoutTotalCountRequest {
+func (a *ManagementApiService) GetApplicationEventsWithoutTotalCount(ctx _context.Context, applicationId int64) apiGetApplicationEventsWithoutTotalCountRequest {
 	return apiGetApplicationEventsWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -11145,8 +11665,8 @@ func (r apiGetApplicationEventsWithoutTotalCountRequest) Execute() (InlineRespon
 type apiGetApplicationSessionRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	sessionId     int32
+	applicationId int64
+	sessionId     int64
 }
 
 /*
@@ -11160,7 +11680,7 @@ You can list the sessions with the [List Application sessions](https://docs.talo
 
 @return apiGetApplicationSessionRequest
 */
-func (a *ManagementApiService) GetApplicationSession(ctx _context.Context, applicationId int32, sessionId int32) apiGetApplicationSessionRequest {
+func (a *ManagementApiService) GetApplicationSession(ctx _context.Context, applicationId int64, sessionId int64) apiGetApplicationSessionRequest {
 	return apiGetApplicationSessionRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -11290,9 +11810,9 @@ func (r apiGetApplicationSessionRequest) Execute() (ApplicationSession, *_nethtt
 type apiGetApplicationSessionsRequest struct {
 	ctx                _context.Context
 	apiService         *ManagementApiService
-	applicationId      int32
-	pageSize           *int32
-	skip               *int32
+	applicationId      int64
+	pageSize           *int64
+	skip               *int64
 	sort               *string
 	profile            *string
 	state              *string
@@ -11304,12 +11824,12 @@ type apiGetApplicationSessionsRequest struct {
 	storeIntegrationId *string
 }
 
-func (r apiGetApplicationSessionsRequest) PageSize(pageSize int32) apiGetApplicationSessionsRequest {
+func (r apiGetApplicationSessionsRequest) PageSize(pageSize int64) apiGetApplicationSessionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationSessionsRequest) Skip(skip int32) apiGetApplicationSessionsRequest {
+func (r apiGetApplicationSessionsRequest) Skip(skip int64) apiGetApplicationSessionsRequest {
 	r.skip = &skip
 	return r
 }
@@ -11368,7 +11888,7 @@ List all the sessions of the specified Application.
 
 @return apiGetApplicationSessionsRequest
 */
-func (a *ManagementApiService) GetApplicationSessions(ctx _context.Context, applicationId int32) apiGetApplicationSessionsRequest {
+func (a *ManagementApiService) GetApplicationSessions(ctx _context.Context, applicationId int64) apiGetApplicationSessionsRequest {
 	return apiGetApplicationSessionsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -11529,17 +12049,17 @@ func (r apiGetApplicationSessionsRequest) Execute() (InlineResponse20029, *_neth
 type apiGetApplicationsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sort       *string
 }
 
-func (r apiGetApplicationsRequest) PageSize(pageSize int32) apiGetApplicationsRequest {
+func (r apiGetApplicationsRequest) PageSize(pageSize int64) apiGetApplicationsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetApplicationsRequest) Skip(skip int32) apiGetApplicationsRequest {
+func (r apiGetApplicationsRequest) Skip(skip int64) apiGetApplicationsRequest {
 	r.skip = &skip
 	return r
 }
@@ -11691,7 +12211,7 @@ func (r apiGetApplicationsRequest) Execute() (InlineResponse2007, *_nethttp.Resp
 type apiGetAttributeRequest struct {
 	ctx         _context.Context
 	apiService  *ManagementApiService
-	attributeId int32
+	attributeId int64
 }
 
 /*
@@ -11703,7 +12223,7 @@ Retrieve the specified custom attribute.
 
 @return apiGetAttributeRequest
 */
-func (a *ManagementApiService) GetAttribute(ctx _context.Context, attributeId int32) apiGetAttributeRequest {
+func (a *ManagementApiService) GetAttribute(ctx _context.Context, attributeId int64) apiGetAttributeRequest {
 	return apiGetAttributeRequest{
 		apiService:  a,
 		ctx:         ctx,
@@ -11831,18 +12351,18 @@ func (r apiGetAttributeRequest) Execute() (Attribute, *_nethttp.Response, error)
 type apiGetAttributesRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sort       *string
 	entity     *string
 }
 
-func (r apiGetAttributesRequest) PageSize(pageSize int32) apiGetAttributesRequest {
+func (r apiGetAttributesRequest) PageSize(pageSize int64) apiGetAttributesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetAttributesRequest) Skip(skip int32) apiGetAttributesRequest {
+func (r apiGetAttributesRequest) Skip(skip int64) apiGetAttributesRequest {
 	r.skip = &skip
 	return r
 }
@@ -12003,19 +12523,19 @@ func (r apiGetAttributesRequest) Execute() (InlineResponse20036, *_nethttp.Respo
 type apiGetAudienceMembershipsRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	audienceId   int32
-	pageSize     *int32
-	skip         *int32
+	audienceId   int64
+	pageSize     *int64
+	skip         *int64
 	sort         *string
 	profileQuery *string
 }
 
-func (r apiGetAudienceMembershipsRequest) PageSize(pageSize int32) apiGetAudienceMembershipsRequest {
+func (r apiGetAudienceMembershipsRequest) PageSize(pageSize int64) apiGetAudienceMembershipsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetAudienceMembershipsRequest) Skip(skip int32) apiGetAudienceMembershipsRequest {
+func (r apiGetAudienceMembershipsRequest) Skip(skip int64) apiGetAudienceMembershipsRequest {
 	r.skip = &skip
 	return r
 }
@@ -12041,7 +12561,7 @@ A maximum of 1000 customer profiles per page is allowed.
 
 @return apiGetAudienceMembershipsRequest
 */
-func (a *ManagementApiService) GetAudienceMemberships(ctx _context.Context, audienceId int32) apiGetAudienceMembershipsRequest {
+func (a *ManagementApiService) GetAudienceMemberships(ctx _context.Context, audienceId int64) apiGetAudienceMembershipsRequest {
 	return apiGetAudienceMembershipsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -12191,18 +12711,18 @@ func (r apiGetAudienceMembershipsRequest) Execute() (InlineResponse20034, *_neth
 type apiGetAudiencesRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	pageSize            *int32
-	skip                *int32
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	withTotalResultSize *bool
 }
 
-func (r apiGetAudiencesRequest) PageSize(pageSize int32) apiGetAudiencesRequest {
+func (r apiGetAudiencesRequest) PageSize(pageSize int64) apiGetAudiencesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetAudiencesRequest) Skip(skip int32) apiGetAudiencesRequest {
+func (r apiGetAudiencesRequest) Skip(skip int64) apiGetAudiencesRequest {
 	r.skip = &skip
 	return r
 }
@@ -12519,8 +13039,8 @@ func (r apiGetAudiencesAnalyticsRequest) Execute() (InlineResponse20033, *_netht
 type apiGetCampaignRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 }
 
 /*
@@ -12532,7 +13052,7 @@ Retrieve the given campaign.
 
 @return apiGetCampaignRequest
 */
-func (a *ManagementApiService) GetCampaign(ctx _context.Context, applicationId int32, campaignId int32) apiGetCampaignRequest {
+func (a *ManagementApiService) GetCampaign(ctx _context.Context, applicationId int64, campaignId int64) apiGetCampaignRequest {
 	return apiGetCampaignRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -12662,8 +13182,8 @@ func (r apiGetCampaignRequest) Execute() (Campaign, *_nethttp.Response, error) {
 type apiGetCampaignAnalyticsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	rangeStart    *time.Time
 	rangeEnd      *time.Time
 	granularity   *string
@@ -12693,7 +13213,7 @@ Retrieve statistical data about the performance of the given campaign.
 
 @return apiGetCampaignAnalyticsRequest
 */
-func (a *ManagementApiService) GetCampaignAnalytics(ctx _context.Context, applicationId int32, campaignId int32) apiGetCampaignAnalyticsRequest {
+func (a *ManagementApiService) GetCampaignAnalytics(ctx _context.Context, applicationId int64, campaignId int64) apiGetCampaignAnalyticsRequest {
 	return apiGetCampaignAnalyticsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -12836,10 +13356,10 @@ func (r apiGetCampaignAnalyticsRequest) Execute() (InlineResponse20023, *_nethtt
 type apiGetCampaignByAttributesRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	body          *CampaignSearch
-	pageSize      *int32
-	skip          *int32
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 	campaignState *string
 }
@@ -12849,12 +13369,12 @@ func (r apiGetCampaignByAttributesRequest) Body(body CampaignSearch) apiGetCampa
 	return r
 }
 
-func (r apiGetCampaignByAttributesRequest) PageSize(pageSize int32) apiGetCampaignByAttributesRequest {
+func (r apiGetCampaignByAttributesRequest) PageSize(pageSize int64) apiGetCampaignByAttributesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCampaignByAttributesRequest) Skip(skip int32) apiGetCampaignByAttributesRequest {
+func (r apiGetCampaignByAttributesRequest) Skip(skip int64) apiGetCampaignByAttributesRequest {
 	r.skip = &skip
 	return r
 }
@@ -12878,7 +13398,7 @@ Get a list of all the campaigns that match a set of attributes.
 
 @return apiGetCampaignByAttributesRequest
 */
-func (a *ManagementApiService) GetCampaignByAttributes(ctx _context.Context, applicationId int32) apiGetCampaignByAttributesRequest {
+func (a *ManagementApiService) GetCampaignByAttributes(ctx _context.Context, applicationId int64) apiGetCampaignByAttributesRequest {
 	return apiGetCampaignByAttributesRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -13024,7 +13544,7 @@ func (r apiGetCampaignByAttributesRequest) Execute() (InlineResponse2008, *_neth
 type apiGetCampaignGroupRequest struct {
 	ctx             _context.Context
 	apiService      *ManagementApiService
-	campaignGroupId int32
+	campaignGroupId int64
 }
 
 /*
@@ -13035,7 +13555,7 @@ Get a campaign access group specified by its ID.
 
 @return apiGetCampaignGroupRequest
 */
-func (a *ManagementApiService) GetCampaignGroup(ctx _context.Context, campaignGroupId int32) apiGetCampaignGroupRequest {
+func (a *ManagementApiService) GetCampaignGroup(ctx _context.Context, campaignGroupId int64) apiGetCampaignGroupRequest {
 	return apiGetCampaignGroupRequest{
 		apiService:      a,
 		ctx:             ctx,
@@ -13163,17 +13683,17 @@ func (r apiGetCampaignGroupRequest) Execute() (CampaignGroup, *_nethttp.Response
 type apiGetCampaignGroupsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sort       *string
 }
 
-func (r apiGetCampaignGroupsRequest) PageSize(pageSize int32) apiGetCampaignGroupsRequest {
+func (r apiGetCampaignGroupsRequest) PageSize(pageSize int64) apiGetCampaignGroupsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCampaignGroupsRequest) Skip(skip int32) apiGetCampaignGroupsRequest {
+func (r apiGetCampaignGroupsRequest) Skip(skip int64) apiGetCampaignGroupsRequest {
 	r.skip = &skip
 	return r
 }
@@ -13325,21 +13845,21 @@ func (r apiGetCampaignGroupsRequest) Execute() (InlineResponse20013, *_nethttp.R
 type apiGetCampaignTemplatesRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sort       *string
 	state      *string
 	name       *string
 	tags       *string
-	userId     *int32
+	userId     *int64
 }
 
-func (r apiGetCampaignTemplatesRequest) PageSize(pageSize int32) apiGetCampaignTemplatesRequest {
+func (r apiGetCampaignTemplatesRequest) PageSize(pageSize int64) apiGetCampaignTemplatesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCampaignTemplatesRequest) Skip(skip int32) apiGetCampaignTemplatesRequest {
+func (r apiGetCampaignTemplatesRequest) Skip(skip int64) apiGetCampaignTemplatesRequest {
 	r.skip = &skip
 	return r
 }
@@ -13364,7 +13884,7 @@ func (r apiGetCampaignTemplatesRequest) Tags(tags string) apiGetCampaignTemplate
 	return r
 }
 
-func (r apiGetCampaignTemplatesRequest) UserId(userId int32) apiGetCampaignTemplatesRequest {
+func (r apiGetCampaignTemplatesRequest) UserId(userId int64) apiGetCampaignTemplatesRequest {
 	r.userId = &userId
 	return r
 }
@@ -13523,26 +14043,26 @@ func (r apiGetCampaignTemplatesRequest) Execute() (InlineResponse20014, *_nethtt
 type apiGetCampaignsRequest struct {
 	ctx             _context.Context
 	apiService      *ManagementApiService
-	applicationId   int32
-	pageSize        *int32
-	skip            *int32
+	applicationId   int64
+	pageSize        *int64
+	skip            *int64
 	sort            *string
 	campaignState   *string
 	name            *string
 	tags            *string
 	createdBefore   *time.Time
 	createdAfter    *time.Time
-	campaignGroupId *int32
-	templateId      *int32
-	storeId         *int32
+	campaignGroupId *int64
+	templateId      *int64
+	storeId         *int64
 }
 
-func (r apiGetCampaignsRequest) PageSize(pageSize int32) apiGetCampaignsRequest {
+func (r apiGetCampaignsRequest) PageSize(pageSize int64) apiGetCampaignsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCampaignsRequest) Skip(skip int32) apiGetCampaignsRequest {
+func (r apiGetCampaignsRequest) Skip(skip int64) apiGetCampaignsRequest {
 	r.skip = &skip
 	return r
 }
@@ -13577,17 +14097,17 @@ func (r apiGetCampaignsRequest) CreatedAfter(createdAfter time.Time) apiGetCampa
 	return r
 }
 
-func (r apiGetCampaignsRequest) CampaignGroupId(campaignGroupId int32) apiGetCampaignsRequest {
+func (r apiGetCampaignsRequest) CampaignGroupId(campaignGroupId int64) apiGetCampaignsRequest {
 	r.campaignGroupId = &campaignGroupId
 	return r
 }
 
-func (r apiGetCampaignsRequest) TemplateId(templateId int32) apiGetCampaignsRequest {
+func (r apiGetCampaignsRequest) TemplateId(templateId int64) apiGetCampaignsRequest {
 	r.templateId = &templateId
 	return r
 }
 
-func (r apiGetCampaignsRequest) StoreId(storeId int32) apiGetCampaignsRequest {
+func (r apiGetCampaignsRequest) StoreId(storeId int64) apiGetCampaignsRequest {
 	r.storeId = &storeId
 	return r
 }
@@ -13601,7 +14121,7 @@ List the campaigns of the specified application that match your filter criteria.
 
 @return apiGetCampaignsRequest
 */
-func (a *ManagementApiService) GetCampaigns(ctx _context.Context, applicationId int32) apiGetCampaignsRequest {
+func (a *ManagementApiService) GetCampaigns(ctx _context.Context, applicationId int64) apiGetCampaignsRequest {
 	return apiGetCampaignsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -13772,25 +14292,25 @@ func (r apiGetCampaignsRequest) Execute() (InlineResponse2008, *_nethttp.Respons
 type apiGetChangesRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	pageSize            *int32
-	skip                *int32
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	applicationId       *float32
 	entityPath          *string
-	userId              *int32
+	userId              *int64
 	createdBefore       *time.Time
 	createdAfter        *time.Time
 	withTotalResultSize *bool
-	managementKeyId     *int32
+	managementKeyId     *int64
 	includeOld          *bool
 }
 
-func (r apiGetChangesRequest) PageSize(pageSize int32) apiGetChangesRequest {
+func (r apiGetChangesRequest) PageSize(pageSize int64) apiGetChangesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetChangesRequest) Skip(skip int32) apiGetChangesRequest {
+func (r apiGetChangesRequest) Skip(skip int64) apiGetChangesRequest {
 	r.skip = &skip
 	return r
 }
@@ -13810,7 +14330,7 @@ func (r apiGetChangesRequest) EntityPath(entityPath string) apiGetChangesRequest
 	return r
 }
 
-func (r apiGetChangesRequest) UserId(userId int32) apiGetChangesRequest {
+func (r apiGetChangesRequest) UserId(userId int64) apiGetChangesRequest {
 	r.userId = &userId
 	return r
 }
@@ -13830,7 +14350,7 @@ func (r apiGetChangesRequest) WithTotalResultSize(withTotalResultSize bool) apiG
 	return r
 }
 
-func (r apiGetChangesRequest) ManagementKeyId(managementKeyId int32) apiGetChangesRequest {
+func (r apiGetChangesRequest) ManagementKeyId(managementKeyId int64) apiGetChangesRequest {
 	r.managementKeyId = &managementKeyId
 	return r
 }
@@ -14007,9 +14527,9 @@ func (r apiGetChangesRequest) Execute() (InlineResponse20044, *_nethttp.Response
 type apiGetCollectionRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	collectionId  int32
+	applicationId int64
+	campaignId    int64
+	collectionId  int64
 }
 
 /*
@@ -14022,7 +14542,7 @@ Retrieve a given campaign-level collection.
 
 @return apiGetCollectionRequest
 */
-func (a *ManagementApiService) GetCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiGetCollectionRequest {
+func (a *ManagementApiService) GetCollection(ctx _context.Context, applicationId int64, campaignId int64, collectionId int64) apiGetCollectionRequest {
 	return apiGetCollectionRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -14164,17 +14684,17 @@ func (r apiGetCollectionRequest) Execute() (Collection, *_nethttp.Response, erro
 type apiGetCollectionItemsRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	collectionId int32
-	pageSize     *int32
-	skip         *int32
+	collectionId int64
+	pageSize     *int64
+	skip         *int64
 }
 
-func (r apiGetCollectionItemsRequest) PageSize(pageSize int32) apiGetCollectionItemsRequest {
+func (r apiGetCollectionItemsRequest) PageSize(pageSize int64) apiGetCollectionItemsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCollectionItemsRequest) Skip(skip int32) apiGetCollectionItemsRequest {
+func (r apiGetCollectionItemsRequest) Skip(skip int64) apiGetCollectionItemsRequest {
 	r.skip = &skip
 	return r
 }
@@ -14190,7 +14710,7 @@ You can retrieve items from both account-level collections and campaign-level co
 
 @return apiGetCollectionItemsRequest
 */
-func (a *ManagementApiService) GetCollectionItems(ctx _context.Context, collectionId int32) apiGetCollectionItemsRequest {
+func (a *ManagementApiService) GetCollectionItems(ctx _context.Context, collectionId int64) apiGetCollectionItemsRequest {
 	return apiGetCollectionItemsRequest{
 		apiService:   a,
 		ctx:          ctx,
@@ -14334,10 +14854,10 @@ func (r apiGetCollectionItemsRequest) Execute() (InlineResponse20021, *_nethttp.
 type apiGetCouponsWithoutTotalCountRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	applicationId          int32
-	campaignId             int32
-	pageSize               *int32
-	skip                   *int32
+	applicationId          int64
+	campaignId             int64
+	pageSize               *int64
+	skip                   *int64
 	sort                   *string
 	value                  *string
 	createdBefore          *time.Time
@@ -14345,7 +14865,7 @@ type apiGetCouponsWithoutTotalCountRequest struct {
 	valid                  *string
 	usable                 *string
 	redeemed               *string
-	referralId             *int32
+	referralId             *int64
 	recipientIntegrationId *string
 	batchId                *string
 	exactMatch             *bool
@@ -14356,12 +14876,12 @@ type apiGetCouponsWithoutTotalCountRequest struct {
 	valuesOnly             *bool
 }
 
-func (r apiGetCouponsWithoutTotalCountRequest) PageSize(pageSize int32) apiGetCouponsWithoutTotalCountRequest {
+func (r apiGetCouponsWithoutTotalCountRequest) PageSize(pageSize int64) apiGetCouponsWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCouponsWithoutTotalCountRequest) Skip(skip int32) apiGetCouponsWithoutTotalCountRequest {
+func (r apiGetCouponsWithoutTotalCountRequest) Skip(skip int64) apiGetCouponsWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -14401,7 +14921,7 @@ func (r apiGetCouponsWithoutTotalCountRequest) Redeemed(redeemed string) apiGetC
 	return r
 }
 
-func (r apiGetCouponsWithoutTotalCountRequest) ReferralId(referralId int32) apiGetCouponsWithoutTotalCountRequest {
+func (r apiGetCouponsWithoutTotalCountRequest) ReferralId(referralId int64) apiGetCouponsWithoutTotalCountRequest {
 	r.referralId = &referralId
 	return r
 }
@@ -14456,7 +14976,7 @@ List all the coupons matching the specified criteria.
 
 @return apiGetCouponsWithoutTotalCountRequest
 */
-func (a *ManagementApiService) GetCouponsWithoutTotalCount(ctx _context.Context, applicationId int32, campaignId int32) apiGetCouponsWithoutTotalCountRequest {
+func (a *ManagementApiService) GetCouponsWithoutTotalCount(ctx _context.Context, applicationId int64, campaignId int64) apiGetCouponsWithoutTotalCountRequest {
 	return apiGetCouponsWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -14642,10 +15162,10 @@ type apiGetCustomerActivityReportRequest struct {
 	apiService    *ManagementApiService
 	rangeStart    *time.Time
 	rangeEnd      *time.Time
-	applicationId int32
-	customerId    int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	customerId    int64
+	pageSize      *int64
+	skip          *int64
 }
 
 func (r apiGetCustomerActivityReportRequest) RangeStart(rangeStart time.Time) apiGetCustomerActivityReportRequest {
@@ -14658,12 +15178,12 @@ func (r apiGetCustomerActivityReportRequest) RangeEnd(rangeEnd time.Time) apiGet
 	return r
 }
 
-func (r apiGetCustomerActivityReportRequest) PageSize(pageSize int32) apiGetCustomerActivityReportRequest {
+func (r apiGetCustomerActivityReportRequest) PageSize(pageSize int64) apiGetCustomerActivityReportRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerActivityReportRequest) Skip(skip int32) apiGetCustomerActivityReportRequest {
+func (r apiGetCustomerActivityReportRequest) Skip(skip int64) apiGetCustomerActivityReportRequest {
 	r.skip = &skip
 	return r
 }
@@ -14677,7 +15197,7 @@ Fetch the summary report of a given customer in the given application, in a time
 
 @return apiGetCustomerActivityReportRequest
 */
-func (a *ManagementApiService) GetCustomerActivityReport(ctx _context.Context, applicationId int32, customerId int32) apiGetCustomerActivityReportRequest {
+func (a *ManagementApiService) GetCustomerActivityReport(ctx _context.Context, applicationId int64, customerId int64) apiGetCustomerActivityReportRequest {
 	return apiGetCustomerActivityReportRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -14825,9 +15345,9 @@ type apiGetCustomerActivityReportsWithoutTotalCountRequest struct {
 	apiService    *ManagementApiService
 	rangeStart    *time.Time
 	rangeEnd      *time.Time
-	applicationId int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 	name          *string
 	integrationId *string
@@ -14845,12 +15365,12 @@ func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) RangeEnd(rangeEnd
 	return r
 }
 
-func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) PageSize(pageSize int32) apiGetCustomerActivityReportsWithoutTotalCountRequest {
+func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) PageSize(pageSize int64) apiGetCustomerActivityReportsWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Skip(skip int32) apiGetCustomerActivityReportsWithoutTotalCountRequest {
+func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Skip(skip int64) apiGetCustomerActivityReportsWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -14890,7 +15410,7 @@ in the response, this endpoint only mentions whether there are more results.
 
 @return apiGetCustomerActivityReportsWithoutTotalCountRequest
 */
-func (a *ManagementApiService) GetCustomerActivityReportsWithoutTotalCount(ctx _context.Context, applicationId int32) apiGetCustomerActivityReportsWithoutTotalCountRequest {
+func (a *ManagementApiService) GetCustomerActivityReportsWithoutTotalCount(ctx _context.Context, applicationId int64) apiGetCustomerActivityReportsWithoutTotalCountRequest {
 	return apiGetCustomerActivityReportsWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -15049,19 +15569,19 @@ func (r apiGetCustomerActivityReportsWithoutTotalCountRequest) Execute() (Inline
 type apiGetCustomerAnalyticsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	customerId    int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	customerId    int64
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 }
 
-func (r apiGetCustomerAnalyticsRequest) PageSize(pageSize int32) apiGetCustomerAnalyticsRequest {
+func (r apiGetCustomerAnalyticsRequest) PageSize(pageSize int64) apiGetCustomerAnalyticsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerAnalyticsRequest) Skip(skip int32) apiGetCustomerAnalyticsRequest {
+func (r apiGetCustomerAnalyticsRequest) Skip(skip int64) apiGetCustomerAnalyticsRequest {
 	r.skip = &skip
 	return r
 }
@@ -15080,7 +15600,7 @@ Fetch analytics for a given customer in the given application.
 
 @return apiGetCustomerAnalyticsRequest
 */
-func (a *ManagementApiService) GetCustomerAnalytics(ctx _context.Context, applicationId int32, customerId int32) apiGetCustomerAnalyticsRequest {
+func (a *ManagementApiService) GetCustomerAnalytics(ctx _context.Context, applicationId int64, customerId int64) apiGetCustomerAnalyticsRequest {
 	return apiGetCustomerAnalyticsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -15219,7 +15739,7 @@ func (r apiGetCustomerAnalyticsRequest) Execute() (CustomerAnalytics, *_nethttp.
 type apiGetCustomerProfileRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	customerId int32
+	customerId int64
 }
 
 /*
@@ -15243,7 +15763,7 @@ Return the details of the specified customer profile.
 
 @return apiGetCustomerProfileRequest
 */
-func (a *ManagementApiService) GetCustomerProfile(ctx _context.Context, customerId int32) apiGetCustomerProfileRequest {
+func (a *ManagementApiService) GetCustomerProfile(ctx _context.Context, customerId int64) apiGetCustomerProfileRequest {
 	return apiGetCustomerProfileRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -15371,25 +15891,25 @@ func (r apiGetCustomerProfileRequest) Execute() (CustomerProfile, *_nethttp.Resp
 type apiGetCustomerProfileAchievementProgressRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	integrationId string
-	pageSize      *int32
-	skip          *int32
-	achievementId *int32
+	pageSize      *int64
+	skip          *int64
+	achievementId *int64
 	title         *string
 }
 
-func (r apiGetCustomerProfileAchievementProgressRequest) PageSize(pageSize int32) apiGetCustomerProfileAchievementProgressRequest {
+func (r apiGetCustomerProfileAchievementProgressRequest) PageSize(pageSize int64) apiGetCustomerProfileAchievementProgressRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerProfileAchievementProgressRequest) Skip(skip int32) apiGetCustomerProfileAchievementProgressRequest {
+func (r apiGetCustomerProfileAchievementProgressRequest) Skip(skip int64) apiGetCustomerProfileAchievementProgressRequest {
 	r.skip = &skip
 	return r
 }
 
-func (r apiGetCustomerProfileAchievementProgressRequest) AchievementId(achievementId int32) apiGetCustomerProfileAchievementProgressRequest {
+func (r apiGetCustomerProfileAchievementProgressRequest) AchievementId(achievementId int64) apiGetCustomerProfileAchievementProgressRequest {
 	r.achievementId = &achievementId
 	return r
 }
@@ -15409,7 +15929,7 @@ For the given customer profile, list all the achievements that match your filter
 
 @return apiGetCustomerProfileAchievementProgressRequest
 */
-func (a *ManagementApiService) GetCustomerProfileAchievementProgress(ctx _context.Context, applicationId int32, integrationId string) apiGetCustomerProfileAchievementProgressRequest {
+func (a *ManagementApiService) GetCustomerProfileAchievementProgress(ctx _context.Context, applicationId int64, integrationId string) apiGetCustomerProfileAchievementProgressRequest {
 	return apiGetCustomerProfileAchievementProgressRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -15421,16 +15941,16 @@ func (a *ManagementApiService) GetCustomerProfileAchievementProgress(ctx _contex
 /*
 Execute executes the request
 
-	@return InlineResponse20049
+	@return InlineResponse20051
 */
-func (r apiGetCustomerProfileAchievementProgressRequest) Execute() (InlineResponse20049, *_nethttp.Response, error) {
+func (r apiGetCustomerProfileAchievementProgressRequest) Execute() (InlineResponse20051, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20049
+		localVarReturnValue  InlineResponse20051
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.GetCustomerProfileAchievementProgress")
@@ -15525,7 +16045,7 @@ func (r apiGetCustomerProfileAchievementProgressRequest) Execute() (InlineRespon
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20049
+			var v InlineResponse20051
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -15571,17 +16091,17 @@ func (r apiGetCustomerProfileAchievementProgressRequest) Execute() (InlineRespon
 type apiGetCustomerProfilesRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sandbox    *bool
 }
 
-func (r apiGetCustomerProfilesRequest) PageSize(pageSize int32) apiGetCustomerProfilesRequest {
+func (r apiGetCustomerProfilesRequest) PageSize(pageSize int64) apiGetCustomerProfilesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerProfilesRequest) Skip(skip int32) apiGetCustomerProfilesRequest {
+func (r apiGetCustomerProfilesRequest) Skip(skip int64) apiGetCustomerProfilesRequest {
 	r.skip = &skip
 	return r
 }
@@ -15734,8 +16254,8 @@ type apiGetCustomersByAttributesRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
 	body       *CustomerProfileSearchQuery
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sandbox    *bool
 }
 
@@ -15744,12 +16264,12 @@ func (r apiGetCustomersByAttributesRequest) Body(body CustomerProfileSearchQuery
 	return r
 }
 
-func (r apiGetCustomersByAttributesRequest) PageSize(pageSize int32) apiGetCustomersByAttributesRequest {
+func (r apiGetCustomersByAttributesRequest) PageSize(pageSize int64) apiGetCustomersByAttributesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomersByAttributesRequest) Skip(skip int32) apiGetCustomersByAttributesRequest {
+func (r apiGetCustomersByAttributesRequest) Skip(skip int64) apiGetCustomersByAttributesRequest {
 	r.skip = &skip
 	return r
 }
@@ -15910,7 +16430,7 @@ func (r apiGetCustomersByAttributesRequest) Execute() (InlineResponse20026, *_ne
 type apiGetDashboardStatisticsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	rangeStart       *time.Time
 	rangeEnd         *time.Time
 	subledgerId      *string
@@ -15944,7 +16464,7 @@ are updated daily at 11:59 PM in the loyalty program time zone.
 
 @return apiGetDashboardStatisticsRequest
 */
-func (a *ManagementApiService) GetDashboardStatistics(ctx _context.Context, loyaltyProgramId int32) apiGetDashboardStatisticsRequest {
+func (a *ManagementApiService) GetDashboardStatistics(ctx _context.Context, loyaltyProgramId int64) apiGetDashboardStatisticsRequest {
 	return apiGetDashboardStatisticsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -16087,8 +16607,8 @@ type apiGetEventTypesRequest struct {
 	apiService         *ManagementApiService
 	name               *string
 	includeOldVersions *bool
-	pageSize           *int32
-	skip               *int32
+	pageSize           *int64
+	skip               *int64
 	sort               *string
 }
 
@@ -16102,12 +16622,12 @@ func (r apiGetEventTypesRequest) IncludeOldVersions(includeOldVersions bool) api
 	return r
 }
 
-func (r apiGetEventTypesRequest) PageSize(pageSize int32) apiGetEventTypesRequest {
+func (r apiGetEventTypesRequest) PageSize(pageSize int64) apiGetEventTypesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetEventTypesRequest) Skip(skip int32) apiGetEventTypesRequest {
+func (r apiGetEventTypesRequest) Skip(skip int64) apiGetEventTypesRequest {
 	r.skip = &skip
 	return r
 }
@@ -16266,19 +16786,19 @@ func (r apiGetEventTypesRequest) Execute() (InlineResponse20042, *_nethttp.Respo
 type apiGetExportsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	pageSize      *int32
-	skip          *int32
+	pageSize      *int64
+	skip          *int64
 	applicationId *float32
-	campaignId    *int32
+	campaignId    *int64
 	entity        *string
 }
 
-func (r apiGetExportsRequest) PageSize(pageSize int32) apiGetExportsRequest {
+func (r apiGetExportsRequest) PageSize(pageSize int64) apiGetExportsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetExportsRequest) Skip(skip int32) apiGetExportsRequest {
+func (r apiGetExportsRequest) Skip(skip int64) apiGetExportsRequest {
 	r.skip = &skip
 	return r
 }
@@ -16288,7 +16808,7 @@ func (r apiGetExportsRequest) ApplicationId(applicationId float32) apiGetExports
 	return r
 }
 
-func (r apiGetExportsRequest) CampaignId(campaignId int32) apiGetExportsRequest {
+func (r apiGetExportsRequest) CampaignId(campaignId int64) apiGetExportsRequest {
 	r.campaignId = &campaignId
 	return r
 }
@@ -16447,7 +16967,7 @@ func (r apiGetExportsRequest) Execute() (InlineResponse20045, *_nethttp.Response
 type apiGetLoyaltyCardRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 }
 
@@ -16460,7 +16980,7 @@ Get the given loyalty card.
 
 @return apiGetLoyaltyCardRequest
 */
-func (a *ManagementApiService) GetLoyaltyCard(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiGetLoyaltyCardRequest {
+func (a *ManagementApiService) GetLoyaltyCard(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiGetLoyaltyCardRequest {
 	return apiGetLoyaltyCardRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -16624,12 +17144,12 @@ func (r apiGetLoyaltyCardRequest) Execute() (LoyaltyCard, *_nethttp.Response, er
 type apiGetLoyaltyCardTransactionLogsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	startDate        *time.Time
 	endDate          *time.Time
-	pageSize         *int32
-	skip             *int32
+	pageSize         *int64
+	skip             *int64
 	subledgerId      *string
 }
 
@@ -16643,12 +17163,12 @@ func (r apiGetLoyaltyCardTransactionLogsRequest) EndDate(endDate time.Time) apiG
 	return r
 }
 
-func (r apiGetLoyaltyCardTransactionLogsRequest) PageSize(pageSize int32) apiGetLoyaltyCardTransactionLogsRequest {
+func (r apiGetLoyaltyCardTransactionLogsRequest) PageSize(pageSize int64) apiGetLoyaltyCardTransactionLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyCardTransactionLogsRequest) Skip(skip int32) apiGetLoyaltyCardTransactionLogsRequest {
+func (r apiGetLoyaltyCardTransactionLogsRequest) Skip(skip int64) apiGetLoyaltyCardTransactionLogsRequest {
 	r.skip = &skip
 	return r
 }
@@ -16670,7 +17190,7 @@ If no filtering options are applied, the last 50 loyalty transactions for the gi
 
 @return apiGetLoyaltyCardTransactionLogsRequest
 */
-func (a *ManagementApiService) GetLoyaltyCardTransactionLogs(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiGetLoyaltyCardTransactionLogsRequest {
+func (a *ManagementApiService) GetLoyaltyCardTransactionLogs(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiGetLoyaltyCardTransactionLogsRequest {
 	return apiGetLoyaltyCardTransactionLogsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -16839,21 +17359,21 @@ func (r apiGetLoyaltyCardTransactionLogsRequest) Execute() (InlineResponse20019,
 type apiGetLoyaltyCardsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
-	pageSize         *int32
-	skip             *int32
+	loyaltyProgramId int64
+	pageSize         *int64
+	skip             *int64
 	sort             *string
 	identifier       *string
-	profileId        *int32
+	profileId        *int64
 	batchId          *string
 }
 
-func (r apiGetLoyaltyCardsRequest) PageSize(pageSize int32) apiGetLoyaltyCardsRequest {
+func (r apiGetLoyaltyCardsRequest) PageSize(pageSize int64) apiGetLoyaltyCardsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyCardsRequest) Skip(skip int32) apiGetLoyaltyCardsRequest {
+func (r apiGetLoyaltyCardsRequest) Skip(skip int64) apiGetLoyaltyCardsRequest {
 	r.skip = &skip
 	return r
 }
@@ -16868,7 +17388,7 @@ func (r apiGetLoyaltyCardsRequest) Identifier(identifier string) apiGetLoyaltyCa
 	return r
 }
 
-func (r apiGetLoyaltyCardsRequest) ProfileId(profileId int32) apiGetLoyaltyCardsRequest {
+func (r apiGetLoyaltyCardsRequest) ProfileId(profileId int64) apiGetLoyaltyCardsRequest {
 	r.profileId = &profileId
 	return r
 }
@@ -16887,7 +17407,7 @@ For the given card-based loyalty program, list the loyalty cards that match your
 
 @return apiGetLoyaltyCardsRequest
 */
-func (a *ManagementApiService) GetLoyaltyCards(ctx _context.Context, loyaltyProgramId int32) apiGetLoyaltyCardsRequest {
+func (a *ManagementApiService) GetLoyaltyCards(ctx _context.Context, loyaltyProgramId int64) apiGetLoyaltyCardsRequest {
 	return apiGetLoyaltyCardsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -17203,7 +17723,7 @@ func (r apiGetLoyaltyPointsRequest) Execute() (LoyaltyLedger, *_nethttp.Response
 type apiGetLoyaltyProgramRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 }
 
 /*
@@ -17219,7 +17739,7 @@ To list the loyalty programs that a customer profile is part of, use the
 
 @return apiGetLoyaltyProgramRequest
 */
-func (a *ManagementApiService) GetLoyaltyProgram(ctx _context.Context, loyaltyProgramId int32) apiGetLoyaltyProgramRequest {
+func (a *ManagementApiService) GetLoyaltyProgram(ctx _context.Context, loyaltyProgramId int64) apiGetLoyaltyProgramRequest {
 	return apiGetLoyaltyProgramRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -17347,13 +17867,13 @@ func (r apiGetLoyaltyProgramRequest) Execute() (LoyaltyProgram, *_nethttp.Respon
 type apiGetLoyaltyProgramTransactionsRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	loyaltyProgramId       int32
+	loyaltyProgramId       int64
 	loyaltyTransactionType *string
 	subledgerId            *string
 	startDate              *time.Time
 	endDate                *time.Time
-	pageSize               *int32
-	skip                   *int32
+	pageSize               *int64
+	skip                   *int64
 }
 
 func (r apiGetLoyaltyProgramTransactionsRequest) LoyaltyTransactionType(loyaltyTransactionType string) apiGetLoyaltyProgramTransactionsRequest {
@@ -17376,12 +17896,12 @@ func (r apiGetLoyaltyProgramTransactionsRequest) EndDate(endDate time.Time) apiG
 	return r
 }
 
-func (r apiGetLoyaltyProgramTransactionsRequest) PageSize(pageSize int32) apiGetLoyaltyProgramTransactionsRequest {
+func (r apiGetLoyaltyProgramTransactionsRequest) PageSize(pageSize int64) apiGetLoyaltyProgramTransactionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyProgramTransactionsRequest) Skip(skip int32) apiGetLoyaltyProgramTransactionsRequest {
+func (r apiGetLoyaltyProgramTransactionsRequest) Skip(skip int64) apiGetLoyaltyProgramTransactionsRequest {
 	r.skip = &skip
 	return r
 }
@@ -17399,7 +17919,7 @@ we recommend using the Integration API's [Get customer's loyalty logs](https://d
 
 @return apiGetLoyaltyProgramTransactionsRequest
 */
-func (a *ManagementApiService) GetLoyaltyProgramTransactions(ctx _context.Context, loyaltyProgramId int32) apiGetLoyaltyProgramTransactionsRequest {
+func (a *ManagementApiService) GetLoyaltyProgramTransactions(ctx _context.Context, loyaltyProgramId int64) apiGetLoyaltyProgramTransactionsRequest {
 	return apiGetLoyaltyProgramTransactionsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -17710,7 +18230,7 @@ func (r apiGetLoyaltyProgramsRequest) Execute() (InlineResponse20015, *_nethttp.
 type apiGetLoyaltyStatisticsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 }
 
 /*
@@ -17728,7 +18248,7 @@ total active points, pending points, spent points, and expired points.
 
 @return apiGetLoyaltyStatisticsRequest
 */
-func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, loyaltyProgramId int32) apiGetLoyaltyStatisticsRequest {
+func (a *ManagementApiService) GetLoyaltyStatistics(ctx _context.Context, loyaltyProgramId int64) apiGetLoyaltyStatisticsRequest {
 	return apiGetLoyaltyStatisticsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -17867,8 +18387,8 @@ type apiGetMessageLogsRequest struct {
 	isSuccessful     *bool
 	applicationId    *float32
 	campaignId       *float32
-	loyaltyProgramId *int32
-	responseCode     *int32
+	loyaltyProgramId *int64
+	responseCode     *int64
 	webhookIDs       *string
 }
 
@@ -17927,12 +18447,12 @@ func (r apiGetMessageLogsRequest) CampaignId(campaignId float32) apiGetMessageLo
 	return r
 }
 
-func (r apiGetMessageLogsRequest) LoyaltyProgramId(loyaltyProgramId int32) apiGetMessageLogsRequest {
+func (r apiGetMessageLogsRequest) LoyaltyProgramId(loyaltyProgramId int64) apiGetMessageLogsRequest {
 	r.loyaltyProgramId = &loyaltyProgramId
 	return r
 }
 
-func (r apiGetMessageLogsRequest) ResponseCode(responseCode int32) apiGetMessageLogsRequest {
+func (r apiGetMessageLogsRequest) ResponseCode(responseCode int64) apiGetMessageLogsRequest {
 	r.responseCode = &responseCode
 	return r
 }
@@ -18119,10 +18639,10 @@ func (r apiGetMessageLogsRequest) Execute() (MessageLogEntries, *_nethttp.Respon
 type apiGetReferralsWithoutTotalCountRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	campaignId    int64
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 	code          *string
 	createdBefore *time.Time
@@ -18132,12 +18652,12 @@ type apiGetReferralsWithoutTotalCountRequest struct {
 	advocate      *string
 }
 
-func (r apiGetReferralsWithoutTotalCountRequest) PageSize(pageSize int32) apiGetReferralsWithoutTotalCountRequest {
+func (r apiGetReferralsWithoutTotalCountRequest) PageSize(pageSize int64) apiGetReferralsWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetReferralsWithoutTotalCountRequest) Skip(skip int32) apiGetReferralsWithoutTotalCountRequest {
+func (r apiGetReferralsWithoutTotalCountRequest) Skip(skip int64) apiGetReferralsWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -18186,7 +18706,7 @@ List all referrals of the specified campaign.
 
 @return apiGetReferralsWithoutTotalCountRequest
 */
-func (a *ManagementApiService) GetReferralsWithoutTotalCount(ctx _context.Context, applicationId int32, campaignId int32) apiGetReferralsWithoutTotalCountRequest {
+func (a *ManagementApiService) GetReferralsWithoutTotalCount(ctx _context.Context, applicationId int64, campaignId int64) apiGetReferralsWithoutTotalCountRequest {
 	return apiGetReferralsWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -18343,7 +18863,7 @@ func (r apiGetReferralsWithoutTotalCountRequest) Execute() (InlineResponse20012,
 type apiGetRoleV2Request struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	roleId     int32
+	roleId     int64
 }
 
 /*
@@ -18355,7 +18875,7 @@ Get the details of a specific role. To see all the roles, use the [List roles](/
 
 @return apiGetRoleV2Request
 */
-func (a *ManagementApiService) GetRoleV2(ctx _context.Context, roleId int32) apiGetRoleV2Request {
+func (a *ManagementApiService) GetRoleV2(ctx _context.Context, roleId int64) apiGetRoleV2Request {
 	return apiGetRoleV2Request{
 		apiService: a,
 		ctx:        ctx,
@@ -18483,9 +19003,9 @@ func (r apiGetRoleV2Request) Execute() (RoleV2, *_nethttp.Response, error) {
 type apiGetRulesetRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	rulesetId     int32
+	applicationId int64
+	campaignId    int64
+	rulesetId     int64
 }
 
 /*
@@ -18498,7 +19018,7 @@ Retrieve the specified ruleset.
 
 @return apiGetRulesetRequest
 */
-func (a *ManagementApiService) GetRuleset(ctx _context.Context, applicationId int32, campaignId int32, rulesetId int32) apiGetRulesetRequest {
+func (a *ManagementApiService) GetRuleset(ctx _context.Context, applicationId int64, campaignId int64, rulesetId int64) apiGetRulesetRequest {
 	return apiGetRulesetRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -18630,19 +19150,19 @@ func (r apiGetRulesetRequest) Execute() (Ruleset, *_nethttp.Response, error) {
 type apiGetRulesetsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	campaignId    int64
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 }
 
-func (r apiGetRulesetsRequest) PageSize(pageSize int32) apiGetRulesetsRequest {
+func (r apiGetRulesetsRequest) PageSize(pageSize int64) apiGetRulesetsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetRulesetsRequest) Skip(skip int32) apiGetRulesetsRequest {
+func (r apiGetRulesetsRequest) Skip(skip int64) apiGetRulesetsRequest {
 	r.skip = &skip
 	return r
 }
@@ -18664,7 +19184,7 @@ You should only consider the latest revision of the returned rulesets.
 
 @return apiGetRulesetsRequest
 */
-func (a *ManagementApiService) GetRulesets(ctx _context.Context, applicationId int32, campaignId int32) apiGetRulesetsRequest {
+func (a *ManagementApiService) GetRulesets(ctx _context.Context, applicationId int64, campaignId int64) apiGetRulesetsRequest {
 	return apiGetRulesetsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -18803,7 +19323,7 @@ func (r apiGetRulesetsRequest) Execute() (InlineResponse2009, *_nethttp.Response
 type apiGetStoreRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	storeId       string
 }
 
@@ -18816,7 +19336,7 @@ Get store details for a specific store ID.
 
 @return apiGetStoreRequest
 */
-func (a *ManagementApiService) GetStore(ctx _context.Context, applicationId int32, storeId string) apiGetStoreRequest {
+func (a *ManagementApiService) GetStore(ctx _context.Context, applicationId int64, storeId string) apiGetStoreRequest {
 	return apiGetStoreRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -18956,7 +19476,7 @@ func (r apiGetStoreRequest) Execute() (Store, *_nethttp.Response, error) {
 type apiGetUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 }
 
 /*
@@ -18968,7 +19488,7 @@ Retrieve the data (including an invitation code) for a user. Non-admin users can
 
 @return apiGetUserRequest
 */
-func (a *ManagementApiService) GetUser(ctx _context.Context, userId int32) apiGetUserRequest {
+func (a *ManagementApiService) GetUser(ctx _context.Context, userId int64) apiGetUserRequest {
 	return apiGetUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -19096,17 +19616,17 @@ func (r apiGetUserRequest) Execute() (User, *_nethttp.Response, error) {
 type apiGetUsersRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	pageSize   *int32
-	skip       *int32
+	pageSize   *int64
+	skip       *int64
 	sort       *string
 }
 
-func (r apiGetUsersRequest) PageSize(pageSize int32) apiGetUsersRequest {
+func (r apiGetUsersRequest) PageSize(pageSize int64) apiGetUsersRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetUsersRequest) Skip(skip int32) apiGetUsersRequest {
+func (r apiGetUsersRequest) Skip(skip int64) apiGetUsersRequest {
 	r.skip = &skip
 	return r
 }
@@ -19259,7 +19779,7 @@ func (r apiGetUsersRequest) Execute() (InlineResponse20043, *_nethttp.Response, 
 type apiGetWebhookRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	webhookId  int32
+	webhookId  int64
 }
 
 /*
@@ -19270,7 +19790,7 @@ Returns a webhook by its id.
 
 @return apiGetWebhookRequest
 */
-func (a *ManagementApiService) GetWebhook(ctx _context.Context, webhookId int32) apiGetWebhookRequest {
+func (a *ManagementApiService) GetWebhook(ctx _context.Context, webhookId int64) apiGetWebhookRequest {
 	return apiGetWebhookRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -19398,8 +19918,8 @@ func (r apiGetWebhookRequest) Execute() (Webhook, *_nethttp.Response, error) {
 type apiGetWebhookActivationLogsRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	pageSize               *int32
-	skip                   *int32
+	pageSize               *int64
+	skip                   *int64
 	sort                   *string
 	integrationRequestUuid *string
 	webhookId              *float32
@@ -19409,12 +19929,12 @@ type apiGetWebhookActivationLogsRequest struct {
 	createdAfter           *time.Time
 }
 
-func (r apiGetWebhookActivationLogsRequest) PageSize(pageSize int32) apiGetWebhookActivationLogsRequest {
+func (r apiGetWebhookActivationLogsRequest) PageSize(pageSize int64) apiGetWebhookActivationLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetWebhookActivationLogsRequest) Skip(skip int32) apiGetWebhookActivationLogsRequest {
+func (r apiGetWebhookActivationLogsRequest) Skip(skip int64) apiGetWebhookActivationLogsRequest {
 	r.skip = &skip
 	return r
 }
@@ -19616,8 +20136,8 @@ func (r apiGetWebhookActivationLogsRequest) Execute() (InlineResponse20040, *_ne
 type apiGetWebhookLogsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	pageSize      *int32
-	skip          *int32
+	pageSize      *int64
+	skip          *int64
 	sort          *string
 	status        *string
 	webhookId     *float32
@@ -19628,12 +20148,12 @@ type apiGetWebhookLogsRequest struct {
 	createdAfter  *time.Time
 }
 
-func (r apiGetWebhookLogsRequest) PageSize(pageSize int32) apiGetWebhookLogsRequest {
+func (r apiGetWebhookLogsRequest) PageSize(pageSize int64) apiGetWebhookLogsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetWebhookLogsRequest) Skip(skip int32) apiGetWebhookLogsRequest {
+func (r apiGetWebhookLogsRequest) Skip(skip int64) apiGetWebhookLogsRequest {
 	r.skip = &skip
 	return r
 }
@@ -19843,11 +20363,11 @@ type apiGetWebhooksRequest struct {
 	apiService                 *ManagementApiService
 	applicationIds             *string
 	sort                       *string
-	pageSize                   *int32
-	skip                       *int32
+	pageSize                   *int64
+	skip                       *int64
 	creationType               *string
 	visibility                 *string
-	outgoingIntegrationsTypeId *int32
+	outgoingIntegrationsTypeId *int64
 	title                      *string
 }
 
@@ -19861,12 +20381,12 @@ func (r apiGetWebhooksRequest) Sort(sort string) apiGetWebhooksRequest {
 	return r
 }
 
-func (r apiGetWebhooksRequest) PageSize(pageSize int32) apiGetWebhooksRequest {
+func (r apiGetWebhooksRequest) PageSize(pageSize int64) apiGetWebhooksRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetWebhooksRequest) Skip(skip int32) apiGetWebhooksRequest {
+func (r apiGetWebhooksRequest) Skip(skip int64) apiGetWebhooksRequest {
 	r.skip = &skip
 	return r
 }
@@ -19881,7 +20401,7 @@ func (r apiGetWebhooksRequest) Visibility(visibility string) apiGetWebhooksReque
 	return r
 }
 
-func (r apiGetWebhooksRequest) OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId int32) apiGetWebhooksRequest {
+func (r apiGetWebhooksRequest) OutgoingIntegrationsTypeId(outgoingIntegrationsTypeId int64) apiGetWebhooksRequest {
 	r.outgoingIntegrationsTypeId = &outgoingIntegrationsTypeId
 	return r
 }
@@ -20048,7 +20568,7 @@ func (r apiGetWebhooksRequest) Execute() (InlineResponse20039, *_nethttp.Respons
 type apiImportAccountCollectionRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	collectionId int32
+	collectionId int64
 	upFile       *string
 }
 
@@ -20086,7 +20606,7 @@ Asics
 
 @return apiImportAccountCollectionRequest
 */
-func (a *ManagementApiService) ImportAccountCollection(ctx _context.Context, collectionId int32) apiImportAccountCollectionRequest {
+func (a *ManagementApiService) ImportAccountCollection(ctx _context.Context, collectionId int64) apiImportAccountCollectionRequest {
 	return apiImportAccountCollectionRequest{
 		apiService:   a,
 		ctx:          ctx,
@@ -20237,7 +20757,7 @@ func (r apiImportAccountCollectionRequest) Execute() (Import, *_nethttp.Response
 type apiImportAllowedListRequest struct {
 	ctx         _context.Context
 	apiService  *ManagementApiService
-	attributeId int32
+	attributeId int64
 	upFile      *string
 }
 
@@ -20273,7 +20793,7 @@ CS-DG-02082021-UP-50G-07
 
 @return apiImportAllowedListRequest
 */
-func (a *ManagementApiService) ImportAllowedList(ctx _context.Context, attributeId int32) apiImportAllowedListRequest {
+func (a *ManagementApiService) ImportAllowedList(ctx _context.Context, attributeId int64) apiImportAllowedListRequest {
 	return apiImportAllowedListRequest{
 		apiService:  a,
 		ctx:         ctx,
@@ -20434,7 +20954,7 @@ func (r apiImportAllowedListRequest) Execute() (Import, *_nethttp.Response, erro
 type apiImportAudiencesMembershipsRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	audienceId int32
+	audienceId int64
 	upFile     *string
 }
 
@@ -20467,7 +20987,7 @@ alexa
 
 @return apiImportAudiencesMembershipsRequest
 */
-func (a *ManagementApiService) ImportAudiencesMemberships(ctx _context.Context, audienceId int32) apiImportAudiencesMembershipsRequest {
+func (a *ManagementApiService) ImportAudiencesMemberships(ctx _context.Context, audienceId int64) apiImportAudiencesMembershipsRequest {
 	return apiImportAudiencesMembershipsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -20625,11 +21145,200 @@ func (r apiImportAudiencesMembershipsRequest) Execute() (Import, *_nethttp.Respo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiImportCampaignStoreBudgetRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	applicationId int64
+	campaignId    int64
+	action        *string
+	period        *string
+	upFile        *string
+}
+
+func (r apiImportCampaignStoreBudgetRequest) Action(action string) apiImportCampaignStoreBudgetRequest {
+	r.action = &action
+	return r
+}
+
+func (r apiImportCampaignStoreBudgetRequest) Period(period string) apiImportCampaignStoreBudgetRequest {
+	r.period = &period
+	return r
+}
+
+func (r apiImportCampaignStoreBudgetRequest) UpFile(upFile string) apiImportCampaignStoreBudgetRequest {
+	r.upFile = &upFile
+	return r
+}
+
+/*
+ImportCampaignStoreBudget Import campaign store budgets
+Upload a CSV file containing store budgets for a given campaign.
+
+Send the file as multipart data.
+
+The CSV file **must** only contain the following columns:
+- `store_integration_id`: The identifier of the store.
+- `limit`: The budget limit for the store.
+
+The import **replaces** the previous list of store budgets.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
+@return apiImportCampaignStoreBudgetRequest
+*/
+func (a *ManagementApiService) ImportCampaignStoreBudget(ctx _context.Context, applicationId int64, campaignId int64) apiImportCampaignStoreBudgetRequest {
+	return apiImportCampaignStoreBudgetRequest{
+		apiService:    a,
+		ctx:           ctx,
+		applicationId: applicationId,
+		campaignId:    campaignId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return Import
+*/
+func (r apiImportCampaignStoreBudgetRequest) Execute() (Import, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  Import
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ImportCampaignStoreBudget")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/import"
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"campaignId"+"}", _neturl.QueryEscape(parameterToString(r.campaignId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.action != nil {
+		localVarQueryParams.Add("action", parameterToString(*r.action, ""))
+	}
+	if r.period != nil {
+		localVarQueryParams.Add("period", parameterToString(*r.period, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.upFile != nil {
+		localVarFormParams.Add("upFile", parameterToString(*r.upFile, ""))
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 201 {
+			var v Import
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiImportCampaignStoresRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	upFile        *string
 }
 
@@ -20655,7 +21364,7 @@ The import **replaces** the previous list of stores linked to the campaign.
 
 @return apiImportCampaignStoresRequest
 */
-func (a *ManagementApiService) ImportCampaignStores(ctx _context.Context, applicationId int32, campaignId int32) apiImportCampaignStoresRequest {
+func (a *ManagementApiService) ImportCampaignStores(ctx _context.Context, applicationId int64, campaignId int64) apiImportCampaignStoresRequest {
 	return apiImportCampaignStoresRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -20818,9 +21527,9 @@ func (r apiImportCampaignStoresRequest) Execute() (Import, *_nethttp.Response, e
 type apiImportCollectionRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	collectionId  int32
+	applicationId int64
+	campaignId    int64
+	collectionId  int64
 	upFile        *string
 }
 
@@ -20860,7 +21569,7 @@ Asics
 
 @return apiImportCollectionRequest
 */
-func (a *ManagementApiService) ImportCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiImportCollectionRequest {
+func (a *ManagementApiService) ImportCollection(ctx _context.Context, applicationId int64, campaignId int64, collectionId int64) apiImportCollectionRequest {
 	return apiImportCollectionRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -21005,8 +21714,8 @@ func (r apiImportCollectionRequest) Execute() (Import, *_nethttp.Response, error
 type apiImportCouponsRequest struct {
 	ctx            _context.Context
 	apiService     *ManagementApiService
-	applicationId  int32
-	campaignId     int32
+	applicationId  int64
+	campaignId     int64
 	skipDuplicates *bool
 	upFile         *string
 }
@@ -21065,7 +21774,7 @@ using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount).
 
 @return apiImportCouponsRequest
 */
-func (a *ManagementApiService) ImportCoupons(ctx _context.Context, applicationId int32, campaignId int32) apiImportCouponsRequest {
+func (a *ManagementApiService) ImportCoupons(ctx _context.Context, applicationId int64, campaignId int64) apiImportCouponsRequest {
 	return apiImportCouponsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -21201,7 +21910,7 @@ func (r apiImportCouponsRequest) Execute() (Import, *_nethttp.Response, error) {
 type apiImportLoyaltyCardsRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	upFile           *string
 }
 
@@ -21235,7 +21944,7 @@ identifier,state,customerprofileids
 
 @return apiImportLoyaltyCardsRequest
 */
-func (a *ManagementApiService) ImportLoyaltyCards(ctx _context.Context, loyaltyProgramId int32) apiImportLoyaltyCardsRequest {
+func (a *ManagementApiService) ImportLoyaltyCards(ctx _context.Context, loyaltyProgramId int64) apiImportLoyaltyCardsRequest {
 	return apiImportLoyaltyCardsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -21386,7 +22095,7 @@ func (r apiImportLoyaltyCardsRequest) Execute() (Import, *_nethttp.Response, err
 type apiImportLoyaltyCustomersTiersRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	upFile           *string
 }
 
@@ -21432,7 +22141,7 @@ SUB2,avocado,Bronze,2026-05-03T11:47:01Z
 
 @return apiImportLoyaltyCustomersTiersRequest
 */
-func (a *ManagementApiService) ImportLoyaltyCustomersTiers(ctx _context.Context, loyaltyProgramId int32) apiImportLoyaltyCustomersTiersRequest {
+func (a *ManagementApiService) ImportLoyaltyCustomersTiers(ctx _context.Context, loyaltyProgramId int64) apiImportLoyaltyCustomersTiersRequest {
 	return apiImportLoyaltyCustomersTiersRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -21591,10 +22300,16 @@ func (r apiImportLoyaltyCustomersTiersRequest) Execute() (Import, *_nethttp.Resp
 }
 
 type apiImportLoyaltyPointsRequest struct {
-	ctx              _context.Context
-	apiService       *ManagementApiService
-	loyaltyProgramId int32
-	upFile           *string
+	ctx                  _context.Context
+	apiService           *ManagementApiService
+	loyaltyProgramId     int64
+	notificationsEnabled *bool
+	upFile               *string
+}
+
+func (r apiImportLoyaltyPointsRequest) NotificationsEnabled(notificationsEnabled bool) apiImportLoyaltyPointsRequest {
+	r.notificationsEnabled = &notificationsEnabled
+	return r
 }
 
 func (r apiImportLoyaltyPointsRequest) UpFile(upFile string) apiImportLoyaltyPointsRequest {
@@ -21656,7 +22371,7 @@ summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger
 
 @return apiImportLoyaltyPointsRequest
 */
-func (a *ManagementApiService) ImportLoyaltyPoints(ctx _context.Context, loyaltyProgramId int32) apiImportLoyaltyPointsRequest {
+func (a *ManagementApiService) ImportLoyaltyPoints(ctx _context.Context, loyaltyProgramId int64) apiImportLoyaltyPointsRequest {
 	return apiImportLoyaltyPointsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -21691,6 +22406,9 @@ func (r apiImportLoyaltyPointsRequest) Execute() (Import, *_nethttp.Response, er
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.notificationsEnabled != nil {
+		localVarQueryParams.Add("notificationsEnabled", parameterToString(*r.notificationsEnabled, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"multipart/form-data"}
 
@@ -21787,7 +22505,7 @@ func (r apiImportLoyaltyPointsRequest) Execute() (Import, *_nethttp.Response, er
 type apiImportPoolGiveawaysRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	poolId     int32
+	poolId     int64
 	upFile     *string
 }
 
@@ -21831,7 +22549,7 @@ GIVEAWAY3,2021-01-10T23:00:00Z,2022-11-11T23:00:00Z,"{""provider"": ""Aliexpress
 
 @return apiImportPoolGiveawaysRequest
 */
-func (a *ManagementApiService) ImportPoolGiveaways(ctx _context.Context, poolId int32) apiImportPoolGiveawaysRequest {
+func (a *ManagementApiService) ImportPoolGiveaways(ctx _context.Context, poolId int64) apiImportPoolGiveawaysRequest {
 	return apiImportPoolGiveawaysRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -21962,8 +22680,8 @@ func (r apiImportPoolGiveawaysRequest) Execute() (Import, *_nethttp.Response, er
 type apiImportReferralsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	upFile        *string
 }
 
@@ -22012,7 +22730,7 @@ REFERRAL_CODE2,2020-11-10T23:00:00Z,2021-11-11T23:00:00Z,integid1,1,"{""my_attri
 
 @return apiImportReferralsRequest
 */
-func (a *ManagementApiService) ImportReferrals(ctx _context.Context, applicationId int32, campaignId int32) apiImportReferralsRequest {
+func (a *ManagementApiService) ImportReferrals(ctx _context.Context, applicationId int64, campaignId int64) apiImportReferralsRequest {
 	return apiImportReferralsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -22272,19 +22990,19 @@ func (r apiInviteUserExternalRequest) Execute() (*_nethttp.Response, error) {
 type apiListAccountCollectionsRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	pageSize            *int32
-	skip                *int32
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	withTotalResultSize *bool
 	name                *string
 }
 
-func (r apiListAccountCollectionsRequest) PageSize(pageSize int32) apiListAccountCollectionsRequest {
+func (r apiListAccountCollectionsRequest) PageSize(pageSize int64) apiListAccountCollectionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListAccountCollectionsRequest) Skip(skip int32) apiListAccountCollectionsRequest {
+func (r apiListAccountCollectionsRequest) Skip(skip int64) apiListAccountCollectionsRequest {
 	r.skip = &skip
 	return r
 }
@@ -22482,19 +23200,19 @@ func (r apiListAccountCollectionsRequest) Execute() (InlineResponse20020, *_neth
 type apiListAchievementsRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	pageSize      *int32
-	skip          *int32
+	applicationId int64
+	campaignId    int64
+	pageSize      *int64
+	skip          *int64
 	title         *string
 }
 
-func (r apiListAchievementsRequest) PageSize(pageSize int32) apiListAchievementsRequest {
+func (r apiListAchievementsRequest) PageSize(pageSize int64) apiListAchievementsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListAchievementsRequest) Skip(skip int32) apiListAchievementsRequest {
+func (r apiListAchievementsRequest) Skip(skip int64) apiListAchievementsRequest {
 	r.skip = &skip
 	return r
 }
@@ -22513,7 +23231,7 @@ List all the achievements for a specific campaign.
 
 @return apiListAchievementsRequest
 */
-func (a *ManagementApiService) ListAchievements(ctx _context.Context, applicationId int32, campaignId int32) apiListAchievementsRequest {
+func (a *ManagementApiService) ListAchievements(ctx _context.Context, applicationId int64, campaignId int64) apiListAchievementsRequest {
 	return apiListAchievementsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -22525,16 +23243,16 @@ func (a *ManagementApiService) ListAchievements(ctx _context.Context, applicatio
 /*
 Execute executes the request
 
-	@return InlineResponse20048
+	@return InlineResponse20050
 */
-func (r apiListAchievementsRequest) Execute() (InlineResponse20048, *_nethttp.Response, error) {
+func (r apiListAchievementsRequest) Execute() (InlineResponse20050, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20048
+		localVarReturnValue  InlineResponse20050
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ListAchievements")
@@ -22626,7 +23344,7 @@ func (r apiListAchievementsRequest) Execute() (InlineResponse20048, *_nethttp.Re
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse20048
+			var v InlineResponse20050
 			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -22784,23 +23502,214 @@ func (r apiListAllRolesV2Request) Execute() (InlineResponse20046, *_nethttp.Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiListCampaignStoreBudgetLimitsRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	applicationId int64
+	campaignId    int64
+	action        *string
+	period        *string
+}
+
+func (r apiListCampaignStoreBudgetLimitsRequest) Action(action string) apiListCampaignStoreBudgetLimitsRequest {
+	r.action = &action
+	return r
+}
+
+func (r apiListCampaignStoreBudgetLimitsRequest) Period(period string) apiListCampaignStoreBudgetLimitsRequest {
+	r.period = &period
+	return r
+}
+
+/*
+ListCampaignStoreBudgetLimits List campaign store budget limits
+Return the store budget limits for a given campaign.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
+@return apiListCampaignStoreBudgetLimitsRequest
+*/
+func (a *ManagementApiService) ListCampaignStoreBudgetLimits(ctx _context.Context, applicationId int64, campaignId int64) apiListCampaignStoreBudgetLimitsRequest {
+	return apiListCampaignStoreBudgetLimitsRequest{
+		apiService:    a,
+		ctx:           ctx,
+		applicationId: applicationId,
+		campaignId:    campaignId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse20048
+*/
+func (r apiListCampaignStoreBudgetLimitsRequest) Execute() (InlineResponse20048, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse20048
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ListCampaignStoreBudgetLimits")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets"
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"campaignId"+"}", _neturl.QueryEscape(parameterToString(r.campaignId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.action != nil {
+		localVarQueryParams.Add("action", parameterToString(*r.action, ""))
+	}
+	if r.period != nil {
+		localVarQueryParams.Add("period", parameterToString(*r.period, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v InlineResponse20048
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiListCatalogItemsRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	catalogId           int32
-	pageSize            *int32
-	skip                *int32
+	catalogId           int64
+	pageSize            *int64
+	skip                *int64
 	withTotalResultSize *bool
 	sku                 *[]string
 	productNames        *[]string
 }
 
-func (r apiListCatalogItemsRequest) PageSize(pageSize int32) apiListCatalogItemsRequest {
+func (r apiListCatalogItemsRequest) PageSize(pageSize int64) apiListCatalogItemsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListCatalogItemsRequest) Skip(skip int32) apiListCatalogItemsRequest {
+func (r apiListCatalogItemsRequest) Skip(skip int64) apiListCatalogItemsRequest {
 	r.skip = &skip
 	return r
 }
@@ -22829,7 +23738,7 @@ Return a paginated list of cart items in the given catalog.
 
 @return apiListCatalogItemsRequest
 */
-func (a *ManagementApiService) ListCatalogItems(ctx _context.Context, catalogId int32) apiListCatalogItemsRequest {
+func (a *ManagementApiService) ListCatalogItems(ctx _context.Context, catalogId int64) apiListCatalogItemsRequest {
 	return apiListCatalogItemsRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -22874,10 +23783,26 @@ func (r apiListCatalogItemsRequest) Execute() (InlineResponse20037, *_nethttp.Re
 		localVarQueryParams.Add("withTotalResultSize", parameterToString(*r.withTotalResultSize, ""))
 	}
 	if r.sku != nil {
-		localVarQueryParams.Add("sku", parameterToString(*r.sku, "csv"))
+		t := *r.sku
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("sku", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("sku", parameterToString(t, "multi"))
+		}
 	}
 	if r.productNames != nil {
-		localVarQueryParams.Add("productNames", parameterToString(*r.productNames, "csv"))
+		t := *r.productNames
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("productNames", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("productNames", parameterToString(t, "multi"))
+		}
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -22972,21 +23897,21 @@ func (r apiListCatalogItemsRequest) Execute() (InlineResponse20037, *_nethttp.Re
 type apiListCollectionsRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	applicationId       int32
-	campaignId          int32
-	pageSize            *int32
-	skip                *int32
+	applicationId       int64
+	campaignId          int64
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	withTotalResultSize *bool
 	name                *string
 }
 
-func (r apiListCollectionsRequest) PageSize(pageSize int32) apiListCollectionsRequest {
+func (r apiListCollectionsRequest) PageSize(pageSize int64) apiListCollectionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListCollectionsRequest) Skip(skip int32) apiListCollectionsRequest {
+func (r apiListCollectionsRequest) Skip(skip int64) apiListCollectionsRequest {
 	r.skip = &skip
 	return r
 }
@@ -23015,7 +23940,7 @@ List collections in a given campaign.
 
 @return apiListCollectionsRequest
 */
-func (a *ManagementApiService) ListCollections(ctx _context.Context, applicationId int32, campaignId int32) apiListCollectionsRequest {
+func (a *ManagementApiService) ListCollections(ctx _context.Context, applicationId int64, campaignId int64) apiListCollectionsRequest {
 	return apiListCollectionsRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -23170,20 +24095,20 @@ func (r apiListCollectionsRequest) Execute() (InlineResponse20020, *_nethttp.Res
 type apiListCollectionsInApplicationRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	applicationId       int32
-	pageSize            *int32
-	skip                *int32
+	applicationId       int64
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	withTotalResultSize *bool
 	name                *string
 }
 
-func (r apiListCollectionsInApplicationRequest) PageSize(pageSize int32) apiListCollectionsInApplicationRequest {
+func (r apiListCollectionsInApplicationRequest) PageSize(pageSize int64) apiListCollectionsInApplicationRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListCollectionsInApplicationRequest) Skip(skip int32) apiListCollectionsInApplicationRequest {
+func (r apiListCollectionsInApplicationRequest) Skip(skip int64) apiListCollectionsInApplicationRequest {
 	r.skip = &skip
 	return r
 }
@@ -23211,7 +24136,7 @@ List campaign-level collections from all campaigns in a given Application.
 
 @return apiListCollectionsInApplicationRequest
 */
-func (a *ManagementApiService) ListCollectionsInApplication(ctx _context.Context, applicationId int32) apiListCollectionsInApplicationRequest {
+func (a *ManagementApiService) ListCollectionsInApplication(ctx _context.Context, applicationId int64) apiListCollectionsInApplicationRequest {
 	return apiListCollectionsInApplicationRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -23364,9 +24289,9 @@ func (r apiListCollectionsInApplicationRequest) Execute() (InlineResponse20020, 
 type apiListStoresRequest struct {
 	ctx                 _context.Context
 	apiService          *ManagementApiService
-	applicationId       int32
-	pageSize            *int32
-	skip                *int32
+	applicationId       int64
+	pageSize            *int64
+	skip                *int64
 	sort                *string
 	withTotalResultSize *bool
 	campaignId          *float32
@@ -23375,12 +24300,12 @@ type apiListStoresRequest struct {
 	query               *string
 }
 
-func (r apiListStoresRequest) PageSize(pageSize int32) apiListStoresRequest {
+func (r apiListStoresRequest) PageSize(pageSize int64) apiListStoresRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiListStoresRequest) Skip(skip int32) apiListStoresRequest {
+func (r apiListStoresRequest) Skip(skip int64) apiListStoresRequest {
 	r.skip = &skip
 	return r
 }
@@ -23423,7 +24348,7 @@ List all stores for a specific Application.
 
 @return apiListStoresRequest
 */
-func (a *ManagementApiService) ListStores(ctx _context.Context, applicationId int32) apiListStoresRequest {
+func (a *ManagementApiService) ListStores(ctx _context.Context, applicationId int64) apiListStoresRequest {
 	return apiListStoresRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -24010,6 +24935,154 @@ func (r apiResetPasswordRequest) Execute() (NewPassword, *_nethttp.Response, err
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiScimCreateGroupRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+	body       *ScimBaseGroup
+}
+
+func (r apiScimCreateGroupRequest) Body(body ScimBaseGroup) apiScimCreateGroupRequest {
+	r.body = &body
+	return r
+}
+
+/*
+ScimCreateGroup Create SCIM group
+Create a new Talon.One group using the SCIM Group provisioning protocol with an identity provider, for example, Microsoft Entra ID, and assign members from the payload to the new group.
+In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
+@return apiScimCreateGroupRequest
+*/
+func (a *ManagementApiService) ScimCreateGroup(ctx _context.Context) apiScimCreateGroupRequest {
+	return apiScimCreateGroupRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return ScimGroup
+*/
+func (r apiScimCreateGroupRequest) Execute() (ScimGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ScimGroup
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ScimCreateGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/provisioning/scim/Groups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 201 {
+			var v ScimGroup
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiScimCreateUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
@@ -24157,10 +25230,129 @@ func (r apiScimCreateUserRequest) Execute() (ScimUser, *_nethttp.Response, error
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiScimDeleteGroupRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+	groupId    int64
+}
+
+/*
+ScimDeleteGroup Delete SCIM group
+Delete a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param groupId The ID of the group.
+
+@return apiScimDeleteGroupRequest
+*/
+func (a *ManagementApiService) ScimDeleteGroup(ctx _context.Context, groupId int64) apiScimDeleteGroupRequest {
+	return apiScimDeleteGroupRequest{
+		apiService: a,
+		ctx:        ctx,
+		groupId:    groupId,
+	}
+}
+
+/*
+Execute executes the request
+*/
+func (r apiScimDeleteGroupRequest) Execute() (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ScimDeleteGroup")
+	if err != nil {
+		return nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/provisioning/scim/Groups/{groupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", _neturl.QueryEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type apiScimDeleteUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 }
 
 /*
@@ -24171,7 +25363,7 @@ Delete a specific Talon.One user created using the SCIM provisioning protocol wi
 
 @return apiScimDeleteUserRequest
 */
-func (a *ManagementApiService) ScimDeleteUser(ctx _context.Context, userId int32) apiScimDeleteUserRequest {
+func (a *ManagementApiService) ScimDeleteUser(ctx _context.Context, userId int64) apiScimDeleteUserRequest {
 	return apiScimDeleteUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -24273,6 +25465,282 @@ func (r apiScimDeleteUserRequest) Execute() (*_nethttp.Response, error) {
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type apiScimGetGroupRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+	groupId    int64
+}
+
+/*
+ScimGetGroup Get SCIM group
+Retrieve data for a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID.
+In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param groupId The ID of the group.
+
+@return apiScimGetGroupRequest
+*/
+func (a *ManagementApiService) ScimGetGroup(ctx _context.Context, groupId int64) apiScimGetGroupRequest {
+	return apiScimGetGroupRequest{
+		apiService: a,
+		ctx:        ctx,
+		groupId:    groupId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return ScimGroup
+*/
+func (r apiScimGetGroupRequest) Execute() (ScimGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ScimGroup
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ScimGetGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/provisioning/scim/Groups/{groupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", _neturl.QueryEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v ScimGroup
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiScimGetGroupsRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+}
+
+/*
+ScimGetGroups List SCIM groups
+Retrieve a paginated list of groups created using the SCIM protocol with an identity provider, for example, Microsoft Entra ID.
+In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
+@return apiScimGetGroupsRequest
+*/
+func (a *ManagementApiService) ScimGetGroups(ctx _context.Context) apiScimGetGroupsRequest {
+	return apiScimGetGroupsRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return ScimGroupsListResponse
+*/
+func (r apiScimGetGroupsRequest) Execute() (ScimGroupsListResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ScimGroupsListResponse
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ScimGetGroups")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/provisioning/scim/Groups"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v ScimGroupsListResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type apiScimGetResourceTypesRequest struct {
@@ -24690,7 +26158,7 @@ func (r apiScimGetServiceProviderConfigRequest) Execute() (ScimServiceProviderCo
 type apiScimGetUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 }
 
 /*
@@ -24701,7 +26169,7 @@ Retrieve data for a specific Talon.One user created using the SCIM provisioning 
 
 @return apiScimGetUserRequest
 */
-func (a *ManagementApiService) ScimGetUser(ctx _context.Context, userId int32) apiScimGetUserRequest {
+func (a *ManagementApiService) ScimGetUser(ctx _context.Context, userId int64) apiScimGetUserRequest {
 	return apiScimGetUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -24961,10 +26429,163 @@ func (r apiScimGetUsersRequest) Execute() (ScimUsersListResponse, *_nethttp.Resp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiScimPatchGroupRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+	groupId    int64
+	body       *ScimPatchRequest
+}
+
+func (r apiScimPatchGroupRequest) Body(body ScimPatchRequest) apiScimPatchGroupRequest {
+	r.body = &body
+	return r
+}
+
+/*
+ScimPatchGroup Update SCIM group attributes
+Update certain attributes of a group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint allows for selective adding, removing, or replacing of specific group attributes while other attributes remain unchanged.
+In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param groupId The ID of the group.
+
+@return apiScimPatchGroupRequest
+*/
+func (a *ManagementApiService) ScimPatchGroup(ctx _context.Context, groupId int64) apiScimPatchGroupRequest {
+	return apiScimPatchGroupRequest{
+		apiService: a,
+		ctx:        ctx,
+		groupId:    groupId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return ScimGroup
+*/
+func (r apiScimPatchGroupRequest) Execute() (ScimGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ScimGroup
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ScimPatchGroup")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/provisioning/scim/Groups/{groupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", _neturl.QueryEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v ScimGroup
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiScimPatchUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 	body       *ScimPatchRequest
 }
 
@@ -24984,7 +26605,7 @@ This endpoint allows for selective adding, removing, or replacing specific attri
 
 @return apiScimPatchUserRequest
 */
-func (a *ManagementApiService) ScimPatchUser(ctx _context.Context, userId int32) apiScimPatchUserRequest {
+func (a *ManagementApiService) ScimPatchUser(ctx _context.Context, userId int64) apiScimPatchUserRequest {
 	return apiScimPatchUserRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -25115,10 +26736,163 @@ func (r apiScimPatchUserRequest) Execute() (ScimUser, *_nethttp.Response, error)
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiScimReplaceGroupAttributesRequest struct {
+	ctx        _context.Context
+	apiService *ManagementApiService
+	groupId    int64
+	body       *ScimBaseGroup
+}
+
+func (r apiScimReplaceGroupAttributesRequest) Body(body ScimBaseGroup) apiScimReplaceGroupAttributesRequest {
+	r.body = &body
+	return r
+}
+
+/*
+ScimReplaceGroupAttributes Update SCIM group
+Update the details of a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint replaces all attributes of the given group with the attributes provided in the request payload.
+In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param groupId The ID of the group.
+
+@return apiScimReplaceGroupAttributesRequest
+*/
+func (a *ManagementApiService) ScimReplaceGroupAttributes(ctx _context.Context, groupId int64) apiScimReplaceGroupAttributesRequest {
+	return apiScimReplaceGroupAttributesRequest{
+		apiService: a,
+		ctx:        ctx,
+		groupId:    groupId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return ScimGroup
+*/
+func (r apiScimReplaceGroupAttributesRequest) Execute() (ScimGroup, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  ScimGroup
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.ScimReplaceGroupAttributes")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/provisioning/scim/Groups/{groupId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"groupId"+"}", _neturl.QueryEscape(parameterToString(r.groupId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v ScimGroup
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiScimReplaceUserAttributesRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 	body       *ScimNewUser
 }
 
@@ -25138,7 +26912,7 @@ This endpoint replaces all attributes of the specific user with the attributes p
 
 @return apiScimReplaceUserAttributesRequest
 */
-func (a *ManagementApiService) ScimReplaceUserAttributes(ctx _context.Context, userId int32) apiScimReplaceUserAttributesRequest {
+func (a *ManagementApiService) ScimReplaceUserAttributes(ctx _context.Context, userId int64) apiScimReplaceUserAttributesRequest {
 	return apiScimReplaceUserAttributesRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -25272,17 +27046,17 @@ func (r apiScimReplaceUserAttributesRequest) Execute() (ScimUser, *_nethttp.Resp
 type apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	applicationId          int32
+	applicationId          int64
 	body                   *map[string]interface{}
-	pageSize               *int32
-	skip                   *int32
+	pageSize               *int64
+	skip                   *int64
 	sort                   *string
 	value                  *string
 	createdBefore          *time.Time
 	createdAfter           *time.Time
 	valid                  *string
 	usable                 *string
-	referralId             *int32
+	referralId             *int64
 	recipientIntegrationId *string
 	batchId                *string
 	exactMatch             *bool
@@ -25294,12 +27068,12 @@ func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Body(bo
 	return r
 }
 
-func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) PageSize(pageSize int32) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
+func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) PageSize(pageSize int64) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Skip(skip int32) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
+func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Skip(skip int64) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -25334,7 +27108,7 @@ func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Usable(
 	return r
 }
 
-func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) ReferralId(referralId int32) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
+func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) ReferralId(referralId int64) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
 	r.referralId = &referralId
 	return r
 }
@@ -25373,7 +27147,7 @@ even if the coupon has more attributes that are not present on the request.
 
 @return apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest
 */
-func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx _context.Context, applicationId int32) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
+func (a *ManagementApiService) SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx _context.Context, applicationId int64) apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest {
 	return apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -25546,18 +27320,18 @@ func (r apiSearchCouponsAdvancedApplicationWideWithoutTotalCountRequest) Execute
 type apiSearchCouponsAdvancedWithoutTotalCountRequest struct {
 	ctx                    _context.Context
 	apiService             *ManagementApiService
-	applicationId          int32
-	campaignId             int32
+	applicationId          int64
+	campaignId             int64
 	body                   *map[string]interface{}
-	pageSize               *int32
-	skip                   *int32
+	pageSize               *int64
+	skip                   *int64
 	sort                   *string
 	value                  *string
 	createdBefore          *time.Time
 	createdAfter           *time.Time
 	valid                  *string
 	usable                 *string
-	referralId             *int32
+	referralId             *int64
 	recipientIntegrationId *string
 	exactMatch             *bool
 	batchId                *string
@@ -25568,12 +27342,12 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Body(body map[string]i
 	return r
 }
 
-func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) PageSize(pageSize int32) apiSearchCouponsAdvancedWithoutTotalCountRequest {
+func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) PageSize(pageSize int64) apiSearchCouponsAdvancedWithoutTotalCountRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Skip(skip int32) apiSearchCouponsAdvancedWithoutTotalCountRequest {
+func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Skip(skip int64) apiSearchCouponsAdvancedWithoutTotalCountRequest {
 	r.skip = &skip
 	return r
 }
@@ -25608,7 +27382,7 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Usable(usable string) 
 	return r
 }
 
-func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) ReferralId(referralId int32) apiSearchCouponsAdvancedWithoutTotalCountRequest {
+func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) ReferralId(referralId int64) apiSearchCouponsAdvancedWithoutTotalCountRequest {
 	r.referralId = &referralId
 	return r
 }
@@ -25644,7 +27418,7 @@ even if the coupon has more attributes that are not present on the request.
 
 @return apiSearchCouponsAdvancedWithoutTotalCountRequest
 */
-func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx _context.Context, applicationId int32, campaignId int32) apiSearchCouponsAdvancedWithoutTotalCountRequest {
+func (a *ManagementApiService) SearchCouponsAdvancedWithoutTotalCount(ctx _context.Context, applicationId int64, campaignId int64) apiSearchCouponsAdvancedWithoutTotalCountRequest {
 	return apiSearchCouponsAdvancedWithoutTotalCountRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -25813,10 +27587,183 @@ func (r apiSearchCouponsAdvancedWithoutTotalCountRequest) Execute() (InlineRespo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiSummarizeCampaignStoreBudgetRequest struct {
+	ctx           _context.Context
+	apiService    *ManagementApiService
+	applicationId int64
+	campaignId    int64
+}
+
+/*
+SummarizeCampaignStoreBudget Get summary of campaign store budgets
+Fetch a summary of all store budget information for a given campaign.
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param applicationId The ID of the Application. It is displayed in your Talon.One deployment URL.
+  - @param campaignId The ID of the campaign. It is displayed in your Talon.One deployment URL.
+
+@return apiSummarizeCampaignStoreBudgetRequest
+*/
+func (a *ManagementApiService) SummarizeCampaignStoreBudget(ctx _context.Context, applicationId int64, campaignId int64) apiSummarizeCampaignStoreBudgetRequest {
+	return apiSummarizeCampaignStoreBudgetRequest{
+		apiService:    a,
+		ctx:           ctx,
+		applicationId: applicationId,
+		campaignId:    campaignId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse20049
+*/
+func (r apiSummarizeCampaignStoreBudgetRequest) Execute() (InlineResponse20049, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse20049
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "ManagementApiService.SummarizeCampaignStoreBudget")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/summary"
+	localVarPath = strings.Replace(localVarPath, "{"+"applicationId"+"}", _neturl.QueryEscape(parameterToString(r.applicationId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"campaignId"+"}", _neturl.QueryEscape(parameterToString(r.campaignId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["Authorization"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 200 {
+			var v InlineResponse20049
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponse
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiTransferLoyaltyCardRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	body             *TransferLoyaltyCard
 }
@@ -25841,7 +27788,7 @@ Transfer loyalty card data, such as linked customers, loyalty balances and trans
 
 @return apiTransferLoyaltyCardRequest
 */
-func (a *ManagementApiService) TransferLoyaltyCard(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiTransferLoyaltyCardRequest {
+func (a *ManagementApiService) TransferLoyaltyCard(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiTransferLoyaltyCardRequest {
 	return apiTransferLoyaltyCardRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -25989,7 +27936,7 @@ func (r apiTransferLoyaltyCardRequest) Execute() (*_nethttp.Response, error) {
 type apiUpdateAccountCollectionRequest struct {
 	ctx          _context.Context
 	apiService   *ManagementApiService
-	collectionId int32
+	collectionId int64
 	body         *UpdateCollection
 }
 
@@ -26006,7 +27953,7 @@ Edit the description of a given account-level collection and enable or disable t
 
 @return apiUpdateAccountCollectionRequest
 */
-func (a *ManagementApiService) UpdateAccountCollection(ctx _context.Context, collectionId int32) apiUpdateAccountCollectionRequest {
+func (a *ManagementApiService) UpdateAccountCollection(ctx _context.Context, collectionId int64) apiUpdateAccountCollectionRequest {
 	return apiUpdateAccountCollectionRequest{
 		apiService:   a,
 		ctx:          ctx,
@@ -26170,9 +28117,9 @@ func (r apiUpdateAccountCollectionRequest) Execute() (Collection, *_nethttp.Resp
 type apiUpdateAchievementRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	achievementId int32
+	applicationId int64
+	campaignId    int64
+	achievementId int64
 	body          *UpdateAchievement
 }
 
@@ -26191,7 +28138,7 @@ Update the details of a specific achievement.
 
 @return apiUpdateAchievementRequest
 */
-func (a *ManagementApiService) UpdateAchievement(ctx _context.Context, applicationId int32, campaignId int32, achievementId int32) apiUpdateAchievementRequest {
+func (a *ManagementApiService) UpdateAchievement(ctx _context.Context, applicationId int64, campaignId int64, achievementId int64) apiUpdateAchievementRequest {
 	return apiUpdateAchievementRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -26359,7 +28306,7 @@ func (r apiUpdateAchievementRequest) Execute() (Achievement, *_nethttp.Response,
 type apiUpdateAdditionalCostRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	additionalCostId int32
+	additionalCostId int64
 	body             *NewAdditionalCost
 }
 
@@ -26377,7 +28324,7 @@ Updates an existing additional cost. Once created, the only property of an addit
 
 @return apiUpdateAdditionalCostRequest
 */
-func (a *ManagementApiService) UpdateAdditionalCost(ctx _context.Context, additionalCostId int32) apiUpdateAdditionalCostRequest {
+func (a *ManagementApiService) UpdateAdditionalCost(ctx _context.Context, additionalCostId int64) apiUpdateAdditionalCostRequest {
 	return apiUpdateAdditionalCostRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -26511,7 +28458,7 @@ func (r apiUpdateAdditionalCostRequest) Execute() (AccountAdditionalCost, *_neth
 type apiUpdateAttributeRequest struct {
 	ctx         _context.Context
 	apiService  *ManagementApiService
-	attributeId int32
+	attributeId int64
 	body        *NewAttribute
 }
 
@@ -26533,7 +28480,7 @@ update any relevant integrations and rules to use the new attribute.
 
 @return apiUpdateAttributeRequest
 */
-func (a *ManagementApiService) UpdateAttribute(ctx _context.Context, attributeId int32) apiUpdateAttributeRequest {
+func (a *ManagementApiService) UpdateAttribute(ctx _context.Context, attributeId int64) apiUpdateAttributeRequest {
 	return apiUpdateAttributeRequest{
 		apiService:  a,
 		ctx:         ctx,
@@ -26667,8 +28614,8 @@ func (r apiUpdateAttributeRequest) Execute() (Attribute, *_nethttp.Response, err
 type apiUpdateCampaignRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *UpdateCampaign
 }
 
@@ -26689,7 +28636,7 @@ Update the given campaign.
 
 @return apiUpdateCampaignRequest
 */
-func (a *ManagementApiService) UpdateCampaign(ctx _context.Context, applicationId int32, campaignId int32) apiUpdateCampaignRequest {
+func (a *ManagementApiService) UpdateCampaign(ctx _context.Context, applicationId int64, campaignId int64) apiUpdateCampaignRequest {
 	return apiUpdateCampaignRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -26825,9 +28772,9 @@ func (r apiUpdateCampaignRequest) Execute() (Campaign, *_nethttp.Response, error
 type apiUpdateCollectionRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
-	collectionId  int32
+	applicationId int64
+	campaignId    int64
+	collectionId  int64
 	body          *UpdateCampaignCollection
 }
 
@@ -26846,7 +28793,7 @@ Edit the description of a given campaign-level collection.
 
 @return apiUpdateCollectionRequest
 */
-func (a *ManagementApiService) UpdateCollection(ctx _context.Context, applicationId int32, campaignId int32, collectionId int32) apiUpdateCollectionRequest {
+func (a *ManagementApiService) UpdateCollection(ctx _context.Context, applicationId int64, campaignId int64, collectionId int64) apiUpdateCollectionRequest {
 	return apiUpdateCollectionRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -26994,8 +28941,8 @@ func (r apiUpdateCollectionRequest) Execute() (Collection, *_nethttp.Response, e
 type apiUpdateCouponRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	couponId      string
 	body          *UpdateCoupon
 }
@@ -27024,7 +28971,7 @@ Update the specified coupon.
 
 @return apiUpdateCouponRequest
 */
-func (a *ManagementApiService) UpdateCoupon(ctx _context.Context, applicationId int32, campaignId int32, couponId string) apiUpdateCouponRequest {
+func (a *ManagementApiService) UpdateCoupon(ctx _context.Context, applicationId int64, campaignId int64, couponId string) apiUpdateCouponRequest {
 	return apiUpdateCouponRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -27162,8 +29109,8 @@ func (r apiUpdateCouponRequest) Execute() (Coupon, *_nethttp.Response, error) {
 type apiUpdateCouponBatchRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	body          *UpdateCouponBatch
 }
 
@@ -27198,7 +29145,7 @@ To update a specific coupon, use [Update coupon](#operation/updateCoupon).
 
 @return apiUpdateCouponBatchRequest
 */
-func (a *ManagementApiService) UpdateCouponBatch(ctx _context.Context, applicationId int32, campaignId int32) apiUpdateCouponBatchRequest {
+func (a *ManagementApiService) UpdateCouponBatch(ctx _context.Context, applicationId int64, campaignId int64) apiUpdateCouponBatchRequest {
 	return apiUpdateCouponBatchRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -27313,7 +29260,7 @@ func (r apiUpdateCouponBatchRequest) Execute() (*_nethttp.Response, error) {
 type apiUpdateLoyaltyCardRequest struct {
 	ctx              _context.Context
 	apiService       *ManagementApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	body             *UpdateLoyaltyCard
 }
@@ -27332,7 +29279,7 @@ Update the status of the given loyalty card. A card can be _active_ or _inactive
 
 @return apiUpdateLoyaltyCardRequest
 */
-func (a *ManagementApiService) UpdateLoyaltyCard(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiUpdateLoyaltyCardRequest {
+func (a *ManagementApiService) UpdateLoyaltyCard(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiUpdateLoyaltyCardRequest {
 	return apiUpdateLoyaltyCardRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -27502,8 +29449,8 @@ func (r apiUpdateLoyaltyCardRequest) Execute() (LoyaltyCard, *_nethttp.Response,
 type apiUpdateReferralRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
-	campaignId    int32
+	applicationId int64
+	campaignId    int64
 	referralId    string
 	body          *UpdateReferral
 }
@@ -27523,7 +29470,7 @@ Update the specified referral.
 
 @return apiUpdateReferralRequest
 */
-func (a *ManagementApiService) UpdateReferral(ctx _context.Context, applicationId int32, campaignId int32, referralId string) apiUpdateReferralRequest {
+func (a *ManagementApiService) UpdateReferral(ctx _context.Context, applicationId int64, campaignId int64, referralId string) apiUpdateReferralRequest {
 	return apiUpdateReferralRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -27661,7 +29608,7 @@ func (r apiUpdateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 type apiUpdateRoleV2Request struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	roleId     int32
+	roleId     int64
 	body       *RoleV2Base
 }
 
@@ -27678,7 +29625,7 @@ Update a specific role.
 
 @return apiUpdateRoleV2Request
 */
-func (a *ManagementApiService) UpdateRoleV2(ctx _context.Context, roleId int32) apiUpdateRoleV2Request {
+func (a *ManagementApiService) UpdateRoleV2(ctx _context.Context, roleId int64) apiUpdateRoleV2Request {
 	return apiUpdateRoleV2Request{
 		apiService: a,
 		ctx:        ctx,
@@ -27812,7 +29759,7 @@ func (r apiUpdateRoleV2Request) Execute() (RoleV2, *_nethttp.Response, error) {
 type apiUpdateStoreRequest struct {
 	ctx           _context.Context
 	apiService    *ManagementApiService
-	applicationId int32
+	applicationId int64
 	storeId       string
 	body          *NewStore
 }
@@ -27831,7 +29778,7 @@ Update store details for a specific store ID.
 
 @return apiUpdateStoreRequest
 */
-func (a *ManagementApiService) UpdateStore(ctx _context.Context, applicationId int32, storeId string) apiUpdateStoreRequest {
+func (a *ManagementApiService) UpdateStore(ctx _context.Context, applicationId int64, storeId string) apiUpdateStoreRequest {
 	return apiUpdateStoreRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -27987,7 +29934,7 @@ func (r apiUpdateStoreRequest) Execute() (Store, *_nethttp.Response, error) {
 type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	apiService *ManagementApiService
-	userId     int32
+	userId     int64
 	body       *UpdateUser
 }
 
@@ -28004,7 +29951,7 @@ Update the details of a specific user.
 
 @return apiUpdateUserRequest
 */
-func (a *ManagementApiService) UpdateUser(ctx _context.Context, userId int32) apiUpdateUserRequest {
+func (a *ManagementApiService) UpdateUser(ctx _context.Context, userId int64) apiUpdateUserRequest {
 	return apiUpdateUserRequest{
 		apiService: a,
 		ctx:        ctx,

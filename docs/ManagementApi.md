@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Create custom attribute
 [**CreateBatchLoyaltyCards**](ManagementApi.md#CreateBatchLoyaltyCards) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/cards/batch | Create loyalty cards
 [**CreateCampaignFromTemplate**](ManagementApi.md#CreateCampaignFromTemplate) | **Post** /v1/applications/{applicationId}/create_campaign_from_template | Create campaign from campaign template
+[**CreateCampaignStoreBudget**](ManagementApi.md#CreateCampaignStoreBudget) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Create campaign store budget
 [**CreateCollection**](ManagementApi.md#CreateCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create campaign-level collection
 [**CreateCoupons**](ManagementApi.md#CreateCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Create coupons
 [**CreateCouponsAsync**](ManagementApi.md#CreateCouponsAsync) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_async | Create coupons asynchronously
@@ -29,6 +30,7 @@ Method | HTTP request | Description
 [**DeleteAccountCollection**](ManagementApi.md#DeleteAccountCollection) | **Delete** /v1/collections/{collectionId} | Delete account-level collection
 [**DeleteAchievement**](ManagementApi.md#DeleteAchievement) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Delete achievement
 [**DeleteCampaign**](ManagementApi.md#DeleteCampaign) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId} | Delete campaign
+[**DeleteCampaignStoreBudgets**](ManagementApi.md#DeleteCampaignStoreBudgets) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Delete campaign store budgets
 [**DeleteCollection**](ManagementApi.md#DeleteCollection) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Delete campaign-level collection
 [**DeleteCoupon**](ManagementApi.md#DeleteCoupon) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Delete coupon
 [**DeleteCoupons**](ManagementApi.md#DeleteCoupons) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Delete coupons
@@ -42,6 +44,7 @@ Method | HTTP request | Description
 [**ExportAccountCollectionItems**](ManagementApi.md#ExportAccountCollectionItems) | **Get** /v1/collections/{collectionId}/export | Export account-level collection&#39;s items
 [**ExportAchievements**](ManagementApi.md#ExportAchievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
 [**ExportAudiencesMemberships**](ManagementApi.md#ExportAudiencesMemberships) | **Get** /v1/audiences/{audienceId}/memberships/export | Export audience members
+[**ExportCampaignStoreBudgets**](ManagementApi.md#ExportCampaignStoreBudgets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets
 [**ExportCampaignStores**](ManagementApi.md#ExportCampaignStores) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores
 [**ExportCollectionItems**](ManagementApi.md#ExportCollectionItems) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/export | Export campaign-level collection&#39;s items
 [**ExportCoupons**](ManagementApi.md#ExportCoupons) | **Get** /v1/applications/{applicationId}/export_coupons | Export coupons
@@ -123,6 +126,7 @@ Method | HTTP request | Description
 [**ImportAccountCollection**](ManagementApi.md#ImportAccountCollection) | **Post** /v1/collections/{collectionId}/import | Import data into existing account-level collection
 [**ImportAllowedList**](ManagementApi.md#ImportAllowedList) | **Post** /v1/attributes/{attributeId}/allowed_list/import | Import allowed values for attribute
 [**ImportAudiencesMemberships**](ManagementApi.md#ImportAudiencesMemberships) | **Post** /v1/audiences/{audienceId}/memberships/import | Import audience members
+[**ImportCampaignStoreBudget**](ManagementApi.md#ImportCampaignStoreBudget) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/import | Import campaign store budgets
 [**ImportCampaignStores**](ManagementApi.md#ImportCampaignStores) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/import | Import stores
 [**ImportCollection**](ManagementApi.md#ImportCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId}/import | Import data into existing campaign-level collection
 [**ImportCoupons**](ManagementApi.md#ImportCoupons) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/import_coupons | Import coupons
@@ -135,6 +139,7 @@ Method | HTTP request | Description
 [**ListAccountCollections**](ManagementApi.md#ListAccountCollections) | **Get** /v1/collections | List collections in account
 [**ListAchievements**](ManagementApi.md#ListAchievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements | List achievements
 [**ListAllRolesV2**](ManagementApi.md#ListAllRolesV2) | **Get** /v2/roles | List roles
+[**ListCampaignStoreBudgetLimits**](ManagementApi.md#ListCampaignStoreBudgetLimits) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | List campaign store budget limits
 [**ListCatalogItems**](ManagementApi.md#ListCatalogItems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
@@ -142,17 +147,24 @@ Method | HTTP request | Description
 [**OktaEventHandlerChallenge**](ManagementApi.md#OktaEventHandlerChallenge) | **Get** /v1/provisioning/okta | Validate Okta API ownership
 [**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
 [**ResetPassword**](ManagementApi.md#ResetPassword) | **Post** /v1/reset_password | Reset password
+[**ScimCreateGroup**](ManagementApi.md#ScimCreateGroup) | **Post** /v1/provisioning/scim/Groups | Create SCIM group
 [**ScimCreateUser**](ManagementApi.md#ScimCreateUser) | **Post** /v1/provisioning/scim/Users | Create SCIM user
+[**ScimDeleteGroup**](ManagementApi.md#ScimDeleteGroup) | **Delete** /v1/provisioning/scim/Groups/{groupId} | Delete SCIM group
 [**ScimDeleteUser**](ManagementApi.md#ScimDeleteUser) | **Delete** /v1/provisioning/scim/Users/{userId} | Delete SCIM user
+[**ScimGetGroup**](ManagementApi.md#ScimGetGroup) | **Get** /v1/provisioning/scim/Groups/{groupId} | Get SCIM group
+[**ScimGetGroups**](ManagementApi.md#ScimGetGroups) | **Get** /v1/provisioning/scim/Groups | List SCIM groups
 [**ScimGetResourceTypes**](ManagementApi.md#ScimGetResourceTypes) | **Get** /v1/provisioning/scim/ResourceTypes | List supported SCIM resource types
 [**ScimGetSchemas**](ManagementApi.md#ScimGetSchemas) | **Get** /v1/provisioning/scim/Schemas | List supported SCIM schemas
 [**ScimGetServiceProviderConfig**](ManagementApi.md#ScimGetServiceProviderConfig) | **Get** /v1/provisioning/scim/ServiceProviderConfig | Get SCIM service provider configuration
 [**ScimGetUser**](ManagementApi.md#ScimGetUser) | **Get** /v1/provisioning/scim/Users/{userId} | Get SCIM user
 [**ScimGetUsers**](ManagementApi.md#ScimGetUsers) | **Get** /v1/provisioning/scim/Users | List SCIM users
+[**ScimPatchGroup**](ManagementApi.md#ScimPatchGroup) | **Patch** /v1/provisioning/scim/Groups/{groupId} | Update SCIM group attributes
 [**ScimPatchUser**](ManagementApi.md#ScimPatchUser) | **Patch** /v1/provisioning/scim/Users/{userId} | Update SCIM user attributes
+[**ScimReplaceGroupAttributes**](ManagementApi.md#ScimReplaceGroupAttributes) | **Put** /v1/provisioning/scim/Groups/{groupId} | Update SCIM group
 [**ScimReplaceUserAttributes**](ManagementApi.md#ScimReplaceUserAttributes) | **Put** /v1/provisioning/scim/Users/{userId} | Update SCIM user
 [**SearchCouponsAdvancedApplicationWideWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedApplicationWideWithoutTotalCount) | **Post** /v1/applications/{applicationId}/coupons_search_advanced/no_total | List coupons that match the given attributes (without total count)
 [**SearchCouponsAdvancedWithoutTotalCount**](ManagementApi.md#SearchCouponsAdvancedWithoutTotalCount) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons_search_advanced/no_total | List coupons that match the given attributes in campaign (without total count)
+[**SummarizeCampaignStoreBudget**](ManagementApi.md#SummarizeCampaignStoreBudget) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/summary | Get summary of campaign store budgets
 [**TransferLoyaltyCard**](ManagementApi.md#TransferLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/transfer | Transfer card data
 [**UpdateAccountCollection**](ManagementApi.md#UpdateAccountCollection) | **Put** /v1/collections/{collectionId} | Update account-level collection
 [**UpdateAchievement**](ManagementApi.md#UpdateAchievement) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId} | Update achievement
@@ -218,7 +230,7 @@ Add points to the given loyalty card in the specified card-based loyalty program
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 **body** | [**AddLoyaltyPoints**](AddLoyaltyPoints.md)| body | 
 
@@ -290,8 +302,8 @@ Copy the campaign into all specified Applications.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**CampaignCopy**](CampaignCopy.md)| body | 
 
 ### Return type
@@ -360,8 +372,8 @@ Create a new achievement in a specific campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**CreateAchievement**](CreateAchievement.md)| body | 
 
 ### Return type
@@ -464,7 +476,7 @@ Create a batch of loyalty cards in a specified [card-based loyalty program](http
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **body** | [**LoyaltyCardBatch**](LoyaltyCardBatch.md)| body | 
 
 ### Return type
@@ -499,12 +511,48 @@ Use the campaign template referenced in the request body to create a new campaig
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **body** | [**CreateTemplateCampaign**](CreateTemplateCampaign.md)| body | 
 
 ### Return type
 
 [**CreateTemplateCampaignResponse**](CreateTemplateCampaignResponse.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateCampaignStoreBudget
+
+> CreateCampaignStoreBudget(ctx, applicationId, campaignId, body)
+
+Create campaign store budget
+
+Create a new store budget for a given campaign.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**body** | [**NewCampaignStoreBudget**](NewCampaignStoreBudget.md)| body | 
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 
@@ -534,8 +582,8 @@ Create a campaign-level collection in a given campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**NewCampaignCollection**](NewCampaignCollection.md)| body | 
 
 ### Return type
@@ -570,8 +618,8 @@ Create coupons according to some pattern. Up to 20.000 coupons can be created wi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**NewCoupons**](NewCoupons.md)| body | 
  **optional** | ***CreateCouponsOpts** | optional parameters | nil if no parameters
 
@@ -619,8 +667,8 @@ Create up to 5,000,000 coupons asynchronously. You should typically use this enp
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**NewCouponCreationJob**](NewCouponCreationJob.md)| body | 
 
 ### Return type
@@ -655,8 +703,8 @@ This endpoint handles creating a job to delete coupons asynchronously.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**NewCouponDeletionJob**](NewCouponDeletionJob.md)| body | 
 
 ### Return type
@@ -691,8 +739,8 @@ Create coupons according to some pattern for up to 1000 recipients.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**NewCouponsForMultipleRecipients**](NewCouponsForMultipleRecipients.md)| body | 
  **optional** | ***CreateCouponsForMultipleRecipientsOpts** | optional parameters | nil if no parameters
 
@@ -876,7 +924,7 @@ Create a new store in a specific Application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **body** | [**NewStore**](NewStore.md)| body | 
 
 ### Return type
@@ -945,7 +993,7 @@ Deduct points from the given loyalty card in the specified card-based loyalty pr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 **body** | [**DeductLoyaltyPoints**](DeductLoyaltyPoints.md)| body | 
 
@@ -981,7 +1029,7 @@ Delete a given account-level collection.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Return type
 
@@ -1015,9 +1063,9 @@ Delete the specified achievement.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**achievementId** | **int32**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int64**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
 
 ### Return type
 
@@ -1051,8 +1099,8 @@ Delete the given campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 
 ### Return type
 
@@ -1066,6 +1114,54 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteCampaignStoreBudgets
+
+> DeleteCampaignStoreBudgets(ctx, applicationId, campaignId, optional)
+
+Delete campaign store budgets
+
+Delete the store budgets for a given campaign.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+ **optional** | ***DeleteCampaignStoreBudgetsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a DeleteCampaignStoreBudgetsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **action** | **optional.**| The action that this budget is limiting. | 
+ **period** | **optional.**| The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1086,9 +1182,9 @@ Delete a given campaign-level collection.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Return type
 
@@ -1122,8 +1218,8 @@ Delete the specified coupon.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **couponId** | **string**| The internal ID of the coupon code. You can find this value in the &#x60;id&#x60; property from the [List coupons](https://docs.talon.one/management-api#tag/Coupons/operation/getCouponsWithoutTotalCount) endpoint response.  | 
 
 ### Return type
@@ -1158,8 +1254,8 @@ Deletes all the coupons matching the specified criteria.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***DeleteCouponsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1217,7 +1313,7 @@ Delete the given loyalty card.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 
 ### Return type
@@ -1252,8 +1348,8 @@ Delete the specified referral.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **referralId** | **string**| The ID of the referral code. | 
 
 ### Return type
@@ -1288,7 +1384,7 @@ Delete the specified store.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **storeId** | **string**| The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.  | 
 
 ### Return type
@@ -1323,7 +1419,7 @@ Delete a specific user.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 
 ### Return type
 
@@ -1421,8 +1517,8 @@ Disconnect the stores linked to a specific campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 
 ### Return type
 
@@ -1456,7 +1552,7 @@ Download a CSV file containing items from a given account-level collection.  **T
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Return type
 
@@ -1490,9 +1586,9 @@ Download a CSV file containing a list of all the customers who have participated
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**achievementId** | **int32**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int64**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
 
 ### Return type
 
@@ -1526,7 +1622,55 @@ Download a CSV file containing the integration IDs of the members of an audience
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32**| The ID of the audience. | 
+**audienceId** | **int64**| The ID of the audience. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportCampaignStoreBudgets
+
+> string ExportCampaignStoreBudgets(ctx, applicationId, campaignId, optional)
+
+Export campaign store budgets
+
+Download a CSV file containing the store budgets for a given campaign.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns:  - `store_integration_id`: The identifier of the store. - `limit`: The budget limit for the store. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+ **optional** | ***ExportCampaignStoreBudgetsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ExportCampaignStoreBudgetsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **action** | **optional.**| The action that this budget is limiting. | 
+ **period** | **optional.**| The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | 
 
 ### Return type
 
@@ -1560,8 +1704,8 @@ Download a CSV file containing the stores linked to a specific campaign.  **Tip:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 
 ### Return type
 
@@ -1595,9 +1739,9 @@ Download a CSV file containing items from a given campaign-level collection.  **
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Return type
 
@@ -1631,7 +1775,7 @@ Download a CSV file containing the coupons that match the given properties.  **T
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ExportCouponsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1681,7 +1825,7 @@ Name | Type | Description  | Notes
 
 Export customer sessions
 
-Download a CSV file containing the customer sessions that match the request.  **Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/product/server-infrastructure-and-data-retention#data-retention-policy).  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  - `id`: The internal ID of the session. - `firstsession`: Whether this is a first session. - `integrationid`: The integration ID of the session. - `applicationid`: The ID of the Application. - `profileid`: The internal ID of the customer profile. - `profileintegrationid`: The integration ID of the customer profile. - `created`: The timestamp when the session was created. - `state`: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) of the session. - `cartitems`: The cart items in the session. - `discounts`: The discounts in the session. - `total`: The total value of cart items and additional costs in the session, before any discounts are applied. - `attributes`: The attributes set in the session. - `closedat`: Timestamp when the session was closed. - `cancelledat`: Timestamp when the session was cancelled. - `referral`: The referral code in the session. - `identifiers`: The identifiers in the session. - `additional_costs`: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs) in the session. - `updated`: Timestamp of the last session update. - `store_integration_id`: The integration ID of the store. - `coupons`: Coupon codes in the session. 
+Download a CSV file containing the customer sessions that match the request.  **Important:** Archived sessions cannot be exported. See the [retention policy](https://docs.talon.one/docs/dev/server-infrastructure-and-data-retention).  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  - `id`: The internal ID of the session. - `firstsession`: Whether this is a first session. - `integrationid`: The integration ID of the session. - `applicationid`: The ID of the Application. - `profileid`: The internal ID of the customer profile. - `profileintegrationid`: The integration ID of the customer profile. - `created`: The timestamp when the session was created. - `state`: The [state](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states) of the session. - `cartitems`: The cart items in the session. - `discounts`: The discounts in the session. - `total`: The total value of cart items and additional costs in the session, before any discounts are applied. - `attributes`: The attributes set in the session. - `closedat`: Timestamp when the session was closed. - `cancelledat`: Timestamp when the session was cancelled. - `referral`: The referral code in the session. - `identifiers`: The identifiers in the session. - `additional_costs`: The [additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs) in the session. - `updated`: Timestamp of the last session update. - `store_integration_id`: The integration ID of the store. - `coupons`: Coupon codes in the session. 
 
 ### Required Parameters
 
@@ -1689,7 +1833,7 @@ Download a CSV file containing the customer sessions that match the request.  **
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ExportCustomerSessionsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1784,7 +1928,7 @@ Download a CSV file containing the triggered effects that match the given attrib
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ExportEffectsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1922,7 +2066,7 @@ Download a CSV file containing the balances of all cards in the loyalty program.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***ExportLoyaltyCardBalancesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -1967,7 +2111,7 @@ Download a CSV file containing a loyalty card ledger log of the loyalty program.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
@@ -2018,7 +2162,7 @@ Download a CSV file containing the loyalty cards from a specified loyalty progra
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***ExportLoyaltyCardsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2030,6 +2174,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **batchId** | **optional.**| Filter results by loyalty card batch ID. | 
+ **createdBefore** | **optional.**| Only return loyalty cards created before this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | 
+ **createdAfter** | **optional.**| Only return loyalty cards created after this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | 
  **dateFormat** | **optional.**| Determines the format of dates in the export document. | 
 
 ### Return type
@@ -2115,7 +2261,7 @@ Download a CSV file containing the giveaway codes of a specific giveaway pool.  
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**poolId** | **int32**| The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | 
+**poolId** | **int64**| The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | 
  **optional** | ***ExportPoolGiveawaysOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2161,7 +2307,7 @@ Download a CSV file containing the referrals that match the given parameters.  *
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ExportReferralsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2212,7 +2358,7 @@ Retrieve the list of API calls sent to the specified Application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **optional** | ***GetAccessLogsWithoutTotalCountOpts** | optional parameters | nil if no parameters
@@ -2266,7 +2412,7 @@ Return the details of your companies Talon.One account.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **int32**| The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | 
+**accountId** | **int64**| The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | 
 
 ### Return type
 
@@ -2300,7 +2446,7 @@ Return the analytics of your Talon.One account.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**accountId** | **int32**| The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | 
+**accountId** | **int64**| The identifier of the account. Retrieve it via the [List users in account](https://docs.talon.one/management-api#operation/getUsers) endpoint in the &#x60;accountId&#x60; property.  | 
 
 ### Return type
 
@@ -2334,7 +2480,7 @@ Retrieve a given account-level collection.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 
 ### Return type
 
@@ -2368,9 +2514,9 @@ Get the details of a specific achievement.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**achievementId** | **int32**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int64**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
 
 ### Return type
 
@@ -2404,7 +2550,7 @@ Returns the additional cost.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**additionalCostId** | **int32**| The ID of the additional cost. You can find the ID the the Campaign Manager&#39;s URL when you display the details of the cost in **Account** &gt; **Tools** &gt; **Additional costs**.  | 
+**additionalCostId** | **int64**| The ID of the additional cost. You can find the ID the the Campaign Manager&#39;s URL when you display the details of the cost in **Account** &gt; **Tools** &gt; **Additional costs**.  | 
 
 ### Return type
 
@@ -2483,7 +2629,7 @@ Get the application specified by the ID.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 
 ### Return type
 
@@ -2517,7 +2663,7 @@ Display the health of the Application and show the last time the Application was
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 
 ### Return type
 
@@ -2551,8 +2697,8 @@ Retrieve the customers of the specified application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**customerId** | **int32**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**customerId** | **int64**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Return type
 
@@ -2586,7 +2732,7 @@ List the friends referred by the specified customer profile in this Application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **integrationId** | **string**| The Integration ID of the Advocate&#39;s Profile. | 
  **optional** | ***GetApplicationCustomerFriendsOpts** | optional parameters | nil if no parameters
 
@@ -2636,7 +2782,7 @@ List all the customers of the specified application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetApplicationCustomersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2684,7 +2830,7 @@ Get a list of the application customers matching the provided criteria.  The mat
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **body** | [**CustomerProfileSearchQuery**](CustomerProfileSearchQuery.md)| body | 
  **optional** | ***GetApplicationCustomersByAttributesOpts** | optional parameters | nil if no parameters
 
@@ -2733,7 +2879,7 @@ Get all of the distinct values of the Event `type` property for events recorded 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetApplicationEventTypesOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2780,7 +2926,7 @@ Lists all events recorded for an application. Instead of having the total number
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetApplicationEventsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2838,8 +2984,8 @@ Get the details of the given session. You can list the sessions with the [List A
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**sessionId** | **int32**| The **internal** ID of the session. You can get the ID with the [List Application sessions](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.  | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**sessionId** | **int64**| The **internal** ID of the session. You can get the ID with the [List Application sessions](https://docs.talon.one/management-api#tag/Customer-data/operation/getApplicationSessions) endpoint.  | 
 
 ### Return type
 
@@ -2873,7 +3019,7 @@ List all the sessions of the specified Application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetApplicationSessionsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -2973,7 +3119,7 @@ Retrieve the specified custom attribute.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attributeId** | **int32**| The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
+**attributeId** | **int64**| The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
 
 ### Return type
 
@@ -3053,7 +3199,7 @@ Get a paginated list of the customer profiles in a given audience.  A maximum of
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32**| The ID of the audience. | 
+**audienceId** | **int64**| The ID of the audience. | 
  **optional** | ***GetAudienceMembershipsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3192,8 +3338,8 @@ Retrieve the given campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 
 ### Return type
 
@@ -3227,8 +3373,8 @@ Retrieve statistical data about the performance of the given campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **optional** | ***GetCampaignAnalyticsOpts** | optional parameters | nil if no parameters
@@ -3278,7 +3424,7 @@ Get a list of all the campaigns that match a set of attributes.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **body** | [**CampaignSearch**](CampaignSearch.md)| body | 
  **optional** | ***GetCampaignByAttributesOpts** | optional parameters | nil if no parameters
 
@@ -3328,7 +3474,7 @@ Get a campaign access group specified by its ID.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**campaignGroupId** | **int32**| The ID of the campaign access group. | 
+**campaignGroupId** | **int64**| The ID of the campaign access group. | 
 
 ### Return type
 
@@ -3456,7 +3602,7 @@ List the campaigns of the specified application that match your filter criteria.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetCampaignsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3564,9 +3710,9 @@ Retrieve a given campaign-level collection.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 
 ### Return type
 
@@ -3600,7 +3746,7 @@ Retrieve items from a given collection.  You can retrieve items from both accoun
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
  **optional** | ***GetCollectionItemsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3646,8 +3792,8 @@ List all the coupons matching the specified criteria.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetCouponsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3712,8 +3858,8 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**customerId** | **int32**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**customerId** | **int64**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
  **optional** | ***GetCustomerActivityReportOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3764,7 +3910,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetCustomerActivityReportsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3817,8 +3963,8 @@ Fetch analytics for a given customer in the given application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**customerId** | **int32**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**customerId** | **int64**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
  **optional** | ***GetCustomerAnalyticsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -3866,7 +4012,7 @@ Return the details of the specified customer profile.  <div class=\"redoc-sectio
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**customerId** | **int32**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
+**customerId** | **int64**| The value of the &#x60;id&#x60; property of a customer profile. Get it with the [List Application&#39;s customers](https://docs.talon.one/management-api#operation/getApplicationCustomers) endpoint.  | 
 
 ### Return type
 
@@ -3888,7 +4034,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfileAchievementProgress
 
-> InlineResponse20049 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
+> InlineResponse20051 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
 
 List customer achievements
 
@@ -3900,7 +4046,7 @@ For the given customer profile, list all the achievements that match your filter
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
  **optional** | ***GetCustomerProfileAchievementProgressOpts** | optional parameters | nil if no parameters
 
@@ -3920,7 +4066,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**InlineResponse20051**](InlineResponse20051.md)
 
 ### Authorization
 
@@ -4042,7 +4188,7 @@ Retrieve the statistics displayed on the specified loyalty program's dashboard, 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
 **rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **optional** | ***GetDashboardStatisticsOpts** | optional parameters | nil if no parameters
@@ -4185,7 +4331,7 @@ Get the given loyalty card.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 
 ### Return type
@@ -4220,7 +4366,7 @@ Retrieve the transaction logs for the given [loyalty card](https://docs.talon.on
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
  **optional** | ***GetLoyaltyCardTransactionLogsOpts** | optional parameters | nil if no parameters
 
@@ -4271,7 +4417,7 @@ For the given card-based loyalty program, list the loyalty cards that match your
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***GetLoyaltyCardsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -4356,7 +4502,7 @@ Get the specified [loyalty program](https://docs.talon.one/docs/product/loyalty-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Return type
 
@@ -4390,7 +4536,7 @@ Retrieve loyalty program transaction logs in a given loyalty program with filter
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***GetLoyaltyProgramTransactionsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -4470,7 +4616,7 @@ Get loyalty program statistics
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 
 ### Return type
 
@@ -4561,8 +4707,8 @@ List all referrals of the specified campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetReferralsWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -4616,7 +4762,7 @@ Get the details of a specific role. To see all the roles, use the [List roles](/
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **int32**| The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
+**roleId** | **int64**| The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
 
 ### Return type
 
@@ -4650,9 +4796,9 @@ Retrieve the specified ruleset.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**rulesetId** | **int32**| The ID of the ruleset. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**rulesetId** | **int64**| The ID of the ruleset. | 
 
 ### Return type
 
@@ -4686,8 +4832,8 @@ List all rulesets of this campaign. A ruleset is a revision of the rules of a ca
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***GetRulesetsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -4735,7 +4881,7 @@ Get store details for a specific store ID.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **storeId** | **string**| The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.  | 
 
 ### Return type
@@ -4770,7 +4916,7 @@ Retrieve the data (including an invitation code) for a user. Non-admin users can
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 
 ### Return type
 
@@ -4849,7 +4995,7 @@ Returns a webhook by its id.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**webhookId** | **int32**| The ID of the webhook. You can find the ID in the Campaign Manager&#39;s URL when you display the details of the webhook in **Account** &gt; **Webhooks**.  | 
+**webhookId** | **int64**| The ID of the webhook. You can find the ID in the Campaign Manager&#39;s URL when you display the details of the webhook in **Account** &gt; **Webhooks**.  | 
 
 ### Return type
 
@@ -5036,7 +5182,7 @@ Upload a CSV file containing the collection of string values that should be atta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
  **optional** | ***ImportAccountCollectionOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5081,7 +5227,7 @@ Upload a CSV file containing a list of [picklist values](https://docs.talon.one/
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attributeId** | **int32**| The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
+**attributeId** | **int64**| The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
  **optional** | ***ImportAllowedListOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5126,7 +5272,7 @@ Upload a CSV file containing the integration IDs of the members you want to add 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**audienceId** | **int32**| The ID of the audience. | 
+**audienceId** | **int64**| The ID of the audience. | 
  **optional** | ***ImportAudiencesMembershipsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5137,6 +5283,55 @@ Optional parameters are passed through a pointer to a ImportAudiencesMemberships
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **upFile** | **optional.**| The file containing the data that is being imported. | 
+
+### Return type
+
+[**Import**](Import.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ImportCampaignStoreBudget
+
+> Import ImportCampaignStoreBudget(ctx, applicationId, campaignId, optional)
+
+Import campaign store budgets
+
+Upload a CSV file containing store budgets for a given campaign.  Send the file as multipart data.  The CSV file **must** only contain the following columns: - `store_integration_id`: The identifier of the store. - `limit`: The budget limit for the store.  The import **replaces** the previous list of store budgets. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+ **optional** | ***ImportCampaignStoreBudgetOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ImportCampaignStoreBudgetOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **action** | **optional.**| The action that this budget is limiting. | 
+ **period** | **optional.**| The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | 
  **upFile** | **optional.**| The file containing the data that is being imported. | 
 
 ### Return type
@@ -5171,8 +5366,8 @@ Upload a CSV file containing the stores you want to link to a specific campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ImportCampaignStoresOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5218,9 +5413,9 @@ Upload a CSV file containing the collection of string values that should be atta
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
  **optional** | ***ImportCollectionOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5267,8 +5462,8 @@ Upload a CSV file containing the coupons that should be created. The file should
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ImportCouponsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5315,7 +5510,7 @@ Upload a CSV file containing the loyalty cards that you want to use in your card
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***ImportLoyaltyCardsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5360,7 +5555,7 @@ Upload a CSV file containing existing customers to be assigned to existing tiers
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***ImportLoyaltyCustomersTiersOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5405,7 +5600,7 @@ Upload a CSV file containing the loyalty points you want to import into a given 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
  **optional** | ***ImportLoyaltyPointsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5416,6 +5611,7 @@ Optional parameters are passed through a pointer to a ImportLoyaltyPointsOpts st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **notificationsEnabled** | **optional.**| Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  | 
  **upFile** | **optional.**| The file containing the data that is being imported. | 
 
 ### Return type
@@ -5450,7 +5646,7 @@ Upload a CSV file containing the giveaway codes that should be created. Send the
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**poolId** | **int32**| The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | 
+**poolId** | **int64**| The ID of the pool. You can find it in the Campaign Manager, in the **Giveaways** section. | 
  **optional** | ***ImportPoolGiveawaysOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5495,8 +5691,8 @@ Upload a CSV file containing the referrals that should be created. The file shou
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ImportReferralsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5611,7 +5807,7 @@ Name | Type | Description  | Notes
 
 ## ListAchievements
 
-> InlineResponse20048 ListAchievements(ctx, applicationId, campaignId, optional)
+> InlineResponse20050 ListAchievements(ctx, applicationId, campaignId, optional)
 
 List achievements
 
@@ -5623,8 +5819,8 @@ List all the achievements for a specific campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ListAchievementsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5642,7 +5838,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+[**InlineResponse20050**](InlineResponse20050.md)
 
 ### Authorization
 
@@ -5688,6 +5884,54 @@ This endpoint does not need any parameter.
 [[Back to README]](../README.md)
 
 
+## ListCampaignStoreBudgetLimits
+
+> InlineResponse20048 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
+
+List campaign store budget limits
+
+Return the store budget limits for a given campaign.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+ **optional** | ***ListCampaignStoreBudgetLimitsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListCampaignStoreBudgetLimitsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **action** | **optional.**| The action that this budget is limiting. | 
+ **period** | **optional.**| The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | 
+
+### Return type
+
+[**InlineResponse20048**](InlineResponse20048.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListCatalogItems
 
 > InlineResponse20037 ListCatalogItems(ctx, catalogId, optional)
@@ -5702,7 +5946,7 @@ Return a paginated list of cart items in the given catalog.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**catalogId** | **int32**| The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**. | 
+**catalogId** | **int64**| The ID of the catalog. You can find the ID in the Campaign Manager in **Account** &gt; **Tools** &gt; **Cart item catalogs**. | 
  **optional** | ***ListCatalogItemsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5751,8 +5995,8 @@ List collections in a given campaign.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ListCollectionsOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5802,7 +6046,7 @@ List campaign-level collections from all campaigns in a given Application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ListCollectionsInApplicationOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5851,7 +6095,7 @@ List all stores for a specific Application.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
  **optional** | ***ListStoresOpts** | optional parameters | nil if no parameters
 
 ### Optional Parameters
@@ -5989,6 +6233,40 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ScimCreateGroup
+
+> ScimGroup ScimCreateGroup(ctx, body)
+
+Create SCIM group
+
+Create a new Talon.One group using the SCIM Group provisioning protocol with an identity provider, for example, Microsoft Entra ID, and assign members from the payload to the new group. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**body** | [**ScimBaseGroup**](ScimBaseGroup.md)| body | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ScimCreateUser
 
 > ScimUser ScimCreateUser(ctx, body)
@@ -6023,6 +6301,40 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ScimDeleteGroup
+
+> ScimDeleteGroup(ctx, groupId)
+
+Delete SCIM group
+
+Delete a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**groupId** | **int64**| The ID of the group. | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ScimDeleteUser
 
 > ScimDeleteUser(ctx, userId)
@@ -6037,7 +6349,7 @@ Delete a specific Talon.One user created using the SCIM provisioning protocol wi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 
 ### Return type
 
@@ -6051,6 +6363,70 @@ Name | Type | Description  | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ScimGetGroup
+
+> ScimGroup ScimGetGroup(ctx, groupId)
+
+Get SCIM group
+
+Retrieve data for a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**groupId** | **int64**| The ID of the group. | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ScimGetGroups
+
+> ScimGroupsListResponse ScimGetGroups(ctx, )
+
+List SCIM groups
+
+Retrieve a paginated list of groups created using the SCIM protocol with an identity provider, for example, Microsoft Entra ID. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role.
+
+### Required Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ScimGroupsListResponse**](ScimGroupsListResponse.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -6161,7 +6537,7 @@ Retrieve data for a specific Talon.One user created using the SCIM provisioning 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 
 ### Return type
 
@@ -6211,6 +6587,41 @@ This endpoint does not need any parameter.
 [[Back to README]](../README.md)
 
 
+## ScimPatchGroup
+
+> ScimGroup ScimPatchGroup(ctx, groupId, body)
+
+Update SCIM group attributes
+
+Update certain attributes of a group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint allows for selective adding, removing, or replacing of specific group attributes while other attributes remain unchanged. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**groupId** | **int64**| The ID of the group. | 
+**body** | [**ScimPatchRequest**](ScimPatchRequest.md)| body | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ScimPatchUser
 
 > ScimUser ScimPatchUser(ctx, userId, body)
@@ -6225,12 +6636,47 @@ Update certain attributes of a specific Talon.One user created using the SCIM pr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 **body** | [**ScimPatchRequest**](ScimPatchRequest.md)| body | 
 
 ### Return type
 
 [**ScimUser**](ScimUser.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ScimReplaceGroupAttributes
+
+> ScimGroup ScimReplaceGroupAttributes(ctx, groupId, body)
+
+Update SCIM group
+
+Update the details of a specific group created using the SCIM provisioning protocol with an identity provider, for example, Microsoft Entra ID. This endpoint replaces all attributes of the given group with the attributes provided in the request payload. In Talon.One, a `Group` corresponds to a [role](https://docs.talon.one/docs/product/account/account-settings/managing-roles), and `members` are the [users](https://docs.talon.one/docs/product/account/account-settings/managing-users) assigned to that role. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**groupId** | **int64**| The ID of the group. | 
+**body** | [**ScimBaseGroup**](ScimBaseGroup.md)| body | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
 
 ### Authorization
 
@@ -6260,7 +6706,7 @@ Update the details of a specific Talon.One user created using the SCIM provision
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 **body** | [**ScimNewUser**](ScimNewUser.md)| body | 
 
 ### Return type
@@ -6295,7 +6741,7 @@ List the coupons whose attributes match the query criteria in all the campaigns 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **body** | **map[string]interface{}**| body | 
  **optional** | ***SearchCouponsAdvancedApplicationWideWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
@@ -6354,8 +6800,8 @@ List the coupons whose attributes match the query criteria in the given campaign
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | **map[string]interface{}**| body | 
  **optional** | ***SearchCouponsAdvancedWithoutTotalCountOpts** | optional parameters | nil if no parameters
 
@@ -6400,6 +6846,41 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SummarizeCampaignStoreBudget
+
+> InlineResponse20049 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
+
+Get summary of campaign store budgets
+
+Fetch a summary of all store budget information for a given campaign.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+
+### Return type
+
+[**InlineResponse20049**](InlineResponse20049.md)
+
+### Authorization
+
+[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## TransferLoyaltyCard
 
 > TransferLoyaltyCard(ctx, loyaltyProgramId, loyaltyCardId, body)
@@ -6414,7 +6895,7 @@ Transfer loyalty card data, such as linked customers, loyalty balances and trans
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 **body** | [**TransferLoyaltyCard**](TransferLoyaltyCard.md)| body | 
 
@@ -6450,7 +6931,7 @@ Edit the description of a given account-level collection and enable or disable t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in account](#operation/listAccountCollections) endpoint. | 
 **body** | [**UpdateCollection**](UpdateCollection.md)| body | 
 
 ### Return type
@@ -6485,9 +6966,9 @@ Update the details of a specific achievement.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**achievementId** | **int32**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**achievementId** | **int64**| The ID of the achievement. You can get this ID with the [List achievement](https://docs.talon.one/management-api#tag/Achievements/operation/listAchievements) endpoint. | 
 **body** | [**UpdateAchievement**](UpdateAchievement.md)| body | 
 
 ### Return type
@@ -6522,7 +7003,7 @@ Updates an existing additional cost. Once created, the only property of an addit
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**additionalCostId** | **int32**| The ID of the additional cost. You can find the ID the the Campaign Manager&#39;s URL when you display the details of the cost in **Account** &gt; **Tools** &gt; **Additional costs**.  | 
+**additionalCostId** | **int64**| The ID of the additional cost. You can find the ID the the Campaign Manager&#39;s URL when you display the details of the cost in **Account** &gt; **Tools** &gt; **Additional costs**.  | 
 **body** | [**NewAdditionalCost**](NewAdditionalCost.md)| body | 
 
 ### Return type
@@ -6557,7 +7038,7 @@ Update an existing custom attribute. Once created, the only property of a custom
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**attributeId** | **int32**| The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
+**attributeId** | **int64**| The ID of the attribute. You can find the ID in the Campaign Manager&#39;s URL when you display the details of an attribute in **Account** &gt; **Tools** &gt; **Attributes**. | 
 **body** | [**NewAttribute**](NewAttribute.md)| body | 
 
 ### Return type
@@ -6592,8 +7073,8 @@ Update the given campaign.  **Important:** You cannot use this endpoint to updat
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**UpdateCampaign**](UpdateCampaign.md)| body | 
 
 ### Return type
@@ -6628,9 +7109,9 @@ Edit the description of a given campaign-level collection.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
-**collectionId** | **int32**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**collectionId** | **int64**| The ID of the collection. You can get it with the [List collections in Application](#operation/listCollectionsInApplication) endpoint. | 
 **body** | [**UpdateCampaignCollection**](UpdateCampaignCollection.md)| body | 
 
 ### Return type
@@ -6665,8 +7146,8 @@ Update the specified coupon.  <div class=\"redoc-section\">   <p class=\"title\"
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **couponId** | **string**| The internal ID of the coupon code. You can find this value in the &#x60;id&#x60; property from the [List coupons](https://docs.talon.one/management-api#tag/Coupons/operation/getCouponsWithoutTotalCount) endpoint response.  | 
 **body** | [**UpdateCoupon**](UpdateCoupon.md)| body | 
 
@@ -6702,8 +7183,8 @@ Update all coupons or a specific batch of coupons in the given campaign. You can
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **body** | [**UpdateCouponBatch**](UpdateCouponBatch.md)| body | 
 
 ### Return type
@@ -6738,7 +7219,7 @@ Update the status of the given loyalty card. A card can be _active_ or _inactive
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**loyaltyProgramId** | **int32**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
 **body** | [**UpdateLoyaltyCard**](UpdateLoyaltyCard.md)| body | 
 
@@ -6774,8 +7255,8 @@ Update the specified referral.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
-**campaignId** | **int32**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
 **referralId** | **string**| The ID of the referral code. | 
 **body** | [**UpdateReferral**](UpdateReferral.md)| body | 
 
@@ -6811,7 +7292,7 @@ Update a specific role.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**roleId** | **int32**| The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
+**roleId** | **int64**| The ID of role.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.  | 
 **body** | [**RoleV2Base**](RoleV2Base.md)| body | 
 
 ### Return type
@@ -6846,7 +7327,7 @@ Update store details for a specific store ID.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**applicationId** | **int32**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
 **storeId** | **string**| The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.  | 
 **body** | [**NewStore**](NewStore.md)| body | 
 
@@ -6882,7 +7363,7 @@ Update the details of a specific user.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **int32**| The ID of the user. | 
+**userId** | **int64**| The ID of the user. | 
 **body** | [**UpdateUser**](UpdateUser.md)| body | 
 
 ### Return type

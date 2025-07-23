@@ -19,7 +19,7 @@ import (
 type Audience struct {
 	// The ID of the account that owns this entity.
 	AccountId int32 `json:"accountId"`
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`

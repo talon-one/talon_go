@@ -16,6 +16,9 @@ Name | Type | Description | Notes
 **EvaluationGroupMode** | Pointer to **string** | The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation). | [optional] 
 **CampaignRevisionId** | Pointer to **int32** | The revision ID of the campaign that was used when triggering the effect. | [optional] 
 **CampaignRevisionVersionId** | Pointer to **int32** | The revision version ID of the campaign that was used when triggering the effect. | [optional] 
+**SelectedPriceType** | Pointer to **string** | The selected price type for the SKU targeted by this effect. | [optional] 
+**SelectedPrice** | Pointer to **float32** | The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied. | [optional] 
+**AdjustmentReferenceId** | Pointer to **string** | The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment. | [optional] 
 
 ## Methods
 
@@ -318,6 +321,81 @@ HasCampaignRevisionVersionId returns a boolean if a field has been set.
 `func (o *EffectEntity) SetCampaignRevisionVersionId(v int32)`
 
 SetCampaignRevisionVersionId gets a reference to the given int32 and assigns it to the CampaignRevisionVersionId field.
+
+### GetSelectedPriceType
+
+`func (o *EffectEntity) GetSelectedPriceType() string`
+
+GetSelectedPriceType returns the SelectedPriceType field if non-nil, zero value otherwise.
+
+### GetSelectedPriceTypeOk
+
+`func (o *EffectEntity) GetSelectedPriceTypeOk() (string, bool)`
+
+GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSelectedPriceType
+
+`func (o *EffectEntity) HasSelectedPriceType() bool`
+
+HasSelectedPriceType returns a boolean if a field has been set.
+
+### SetSelectedPriceType
+
+`func (o *EffectEntity) SetSelectedPriceType(v string)`
+
+SetSelectedPriceType gets a reference to the given string and assigns it to the SelectedPriceType field.
+
+### GetSelectedPrice
+
+`func (o *EffectEntity) GetSelectedPrice() float32`
+
+GetSelectedPrice returns the SelectedPrice field if non-nil, zero value otherwise.
+
+### GetSelectedPriceOk
+
+`func (o *EffectEntity) GetSelectedPriceOk() (float32, bool)`
+
+GetSelectedPriceOk returns a tuple with the SelectedPrice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSelectedPrice
+
+`func (o *EffectEntity) HasSelectedPrice() bool`
+
+HasSelectedPrice returns a boolean if a field has been set.
+
+### SetSelectedPrice
+
+`func (o *EffectEntity) SetSelectedPrice(v float32)`
+
+SetSelectedPrice gets a reference to the given float32 and assigns it to the SelectedPrice field.
+
+### GetAdjustmentReferenceId
+
+`func (o *EffectEntity) GetAdjustmentReferenceId() string`
+
+GetAdjustmentReferenceId returns the AdjustmentReferenceId field if non-nil, zero value otherwise.
+
+### GetAdjustmentReferenceIdOk
+
+`func (o *EffectEntity) GetAdjustmentReferenceIdOk() (string, bool)`
+
+GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdjustmentReferenceId
+
+`func (o *EffectEntity) HasAdjustmentReferenceId() bool`
+
+HasAdjustmentReferenceId returns a boolean if a field has been set.
+
+### SetAdjustmentReferenceId
+
+`func (o *EffectEntity) SetAdjustmentReferenceId(v string)`
+
+SetAdjustmentReferenceId gets a reference to the given string and assigns it to the AdjustmentReferenceId field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

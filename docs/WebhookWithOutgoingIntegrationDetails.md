@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The time this entity was last modified. | 
 **ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in &#x60;All Applications&#x60;.  | 
 **Title** | Pointer to **string** | Name or title for this webhook. | 
 **Description** | Pointer to **string** | A description of the webhook. | [optional] 
+**Draft** | Pointer to **bool** | Indicates if the webhook is a draft. | 
 **Verb** | Pointer to **string** | API method for this webhook. | 
 **Url** | Pointer to **string** | API URL (supports templating using parameters) for this webhook. | 
 **Headers** | Pointer to **[]string** | List of API HTTP headers for this webhook. | 
@@ -171,6 +172,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *WebhookWithOutgoingIntegrationDetails) SetDescription(v string)`
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetDraft
+
+`func (o *WebhookWithOutgoingIntegrationDetails) GetDraft() bool`
+
+GetDraft returns the Draft field if non-nil, zero value otherwise.
+
+### GetDraftOk
+
+`func (o *WebhookWithOutgoingIntegrationDetails) GetDraftOk() (bool, bool)`
+
+GetDraftOk returns a tuple with the Draft field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDraft
+
+`func (o *WebhookWithOutgoingIntegrationDetails) HasDraft() bool`
+
+HasDraft returns a boolean if a field has been set.
+
+### SetDraft
+
+`func (o *WebhookWithOutgoingIntegrationDetails) SetDraft(v bool)`
+
+SetDraft gets a reference to the given bool and assigns it to the Draft field.
 
 ### GetVerb
 

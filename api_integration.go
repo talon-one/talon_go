@@ -716,7 +716,7 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 type apiDeleteAudienceMembershipsV2Request struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
-	audienceId int32
+	audienceId int64
 }
 
 /*
@@ -728,7 +728,7 @@ Remove all members from this audience.
 
 @return apiDeleteAudienceMembershipsV2Request
 */
-func (a *IntegrationApiService) DeleteAudienceMembershipsV2(ctx _context.Context, audienceId int32) apiDeleteAudienceMembershipsV2Request {
+func (a *IntegrationApiService) DeleteAudienceMembershipsV2(ctx _context.Context, audienceId int64) apiDeleteAudienceMembershipsV2Request {
 	return apiDeleteAudienceMembershipsV2Request{
 		apiService: a,
 		ctx:        ctx,
@@ -840,7 +840,7 @@ func (r apiDeleteAudienceMembershipsV2Request) Execute() (*_nethttp.Response, er
 type apiDeleteAudienceV2Request struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
-	audienceId int32
+	audienceId int64
 }
 
 /*
@@ -856,7 +856,7 @@ Delete an audience created by a third-party integration.
 
 @return apiDeleteAudienceV2Request
 */
-func (a *IntegrationApiService) DeleteAudienceV2(ctx _context.Context, audienceId int32) apiDeleteAudienceV2Request {
+func (a *IntegrationApiService) DeleteAudienceV2(ctx _context.Context, audienceId int64) apiDeleteAudienceV2Request {
 	return apiDeleteAudienceV2Request{
 		apiService: a,
 		ctx:        ctx,
@@ -1259,7 +1259,7 @@ func (r apiDeleteCustomerDataRequest) Execute() (*_nethttp.Response, error) {
 type apiGenerateLoyaltyCardRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	body             *GenerateLoyaltyCard
 }
 
@@ -1283,7 +1283,7 @@ To link the card to one or more customer profiles, use the `customerProfileIds` 
 
 @return apiGenerateLoyaltyCardRequest
 */
-func (a *IntegrationApiService) GenerateLoyaltyCard(ctx _context.Context, loyaltyProgramId int32) apiGenerateLoyaltyCardRequest {
+func (a *IntegrationApiService) GenerateLoyaltyCard(ctx _context.Context, loyaltyProgramId int64) apiGenerateLoyaltyCardRequest {
 	return apiGenerateLoyaltyCardRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -1424,12 +1424,12 @@ type apiGetCustomerAchievementHistoryRequest struct {
 	ctx            _context.Context
 	apiService     *IntegrationApiService
 	integrationId  string
-	achievementId  int32
+	achievementId  int64
 	progressStatus *[]string
 	startDate      *time.Time
 	endDate        *time.Time
-	pageSize       *int32
-	skip           *int32
+	pageSize       *int64
+	skip           *int64
 }
 
 func (r apiGetCustomerAchievementHistoryRequest) ProgressStatus(progressStatus []string) apiGetCustomerAchievementHistoryRequest {
@@ -1447,12 +1447,12 @@ func (r apiGetCustomerAchievementHistoryRequest) EndDate(endDate time.Time) apiG
 	return r
 }
 
-func (r apiGetCustomerAchievementHistoryRequest) PageSize(pageSize int32) apiGetCustomerAchievementHistoryRequest {
+func (r apiGetCustomerAchievementHistoryRequest) PageSize(pageSize int64) apiGetCustomerAchievementHistoryRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerAchievementHistoryRequest) Skip(skip int32) apiGetCustomerAchievementHistoryRequest {
+func (r apiGetCustomerAchievementHistoryRequest) Skip(skip int64) apiGetCustomerAchievementHistoryRequest {
 	r.skip = &skip
 	return r
 }
@@ -1467,7 +1467,7 @@ Retrieve all progress history of a given customer in the given achievement.
 
 @return apiGetCustomerAchievementHistoryRequest
 */
-func (a *IntegrationApiService) GetCustomerAchievementHistory(ctx _context.Context, integrationId string, achievementId int32) apiGetCustomerAchievementHistoryRequest {
+func (a *IntegrationApiService) GetCustomerAchievementHistory(ctx _context.Context, integrationId string, achievementId int64) apiGetCustomerAchievementHistoryRequest {
 	return apiGetCustomerAchievementHistoryRequest{
 		apiService:    a,
 		ctx:           ctx,
@@ -1633,8 +1633,8 @@ type apiGetCustomerAchievementsRequest struct {
 	achievementIds        *[]string
 	achievementStatus     *[]string
 	currentProgressStatus *[]string
-	pageSize              *int32
-	skip                  *int32
+	pageSize              *int64
+	skip                  *int64
 }
 
 func (r apiGetCustomerAchievementsRequest) CampaignIds(campaignIds []string) apiGetCustomerAchievementsRequest {
@@ -1657,12 +1657,12 @@ func (r apiGetCustomerAchievementsRequest) CurrentProgressStatus(currentProgress
 	return r
 }
 
-func (r apiGetCustomerAchievementsRequest) PageSize(pageSize int32) apiGetCustomerAchievementsRequest {
+func (r apiGetCustomerAchievementsRequest) PageSize(pageSize int64) apiGetCustomerAchievementsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetCustomerAchievementsRequest) Skip(skip int32) apiGetCustomerAchievementsRequest {
+func (r apiGetCustomerAchievementsRequest) Skip(skip int64) apiGetCustomerAchievementsRequest {
 	r.skip = &skip
 	return r
 }
@@ -2192,7 +2192,7 @@ func (r apiGetCustomerSessionRequest) Execute() (IntegrationCustomerSessionRespo
 type apiGetLoyaltyBalancesRequest struct {
 	ctx                  _context.Context
 	apiService           *IntegrationApiService
-	loyaltyProgramId     int32
+	loyaltyProgramId     int64
 	integrationId        string
 	endDate              *time.Time
 	subledgerId          *string
@@ -2239,7 +2239,7 @@ For more information, see:
 
 @return apiGetLoyaltyBalancesRequest
 */
-func (a *IntegrationApiService) GetLoyaltyBalances(ctx _context.Context, loyaltyProgramId int32, integrationId string) apiGetLoyaltyBalancesRequest {
+func (a *IntegrationApiService) GetLoyaltyBalances(ctx _context.Context, loyaltyProgramId int64, integrationId string) apiGetLoyaltyBalancesRequest {
 	return apiGetLoyaltyBalancesRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -2397,7 +2397,7 @@ func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalancesWithTiers, *_net
 type apiGetLoyaltyCardBalancesRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	endDate          *time.Time
 	subledgerId      *[]string
@@ -2424,7 +2424,7 @@ If no filtering options are applied, all loyalty balances for the given loyalty 
 
 @return apiGetLoyaltyCardBalancesRequest
 */
-func (a *IntegrationApiService) GetLoyaltyCardBalances(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiGetLoyaltyCardBalancesRequest {
+func (a *IntegrationApiService) GetLoyaltyCardBalances(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiGetLoyaltyCardBalancesRequest {
 	return apiGetLoyaltyCardBalancesRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -2588,12 +2588,12 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyCardBalances, *_neth
 type apiGetLoyaltyCardPointsRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	status           *string
 	subledgerId      *[]string
-	pageSize         *int32
-	skip             *int32
+	pageSize         *int64
+	skip             *int64
 }
 
 func (r apiGetLoyaltyCardPointsRequest) Status(status string) apiGetLoyaltyCardPointsRequest {
@@ -2606,12 +2606,12 @@ func (r apiGetLoyaltyCardPointsRequest) SubledgerId(subledgerId []string) apiGet
 	return r
 }
 
-func (r apiGetLoyaltyCardPointsRequest) PageSize(pageSize int32) apiGetLoyaltyCardPointsRequest {
+func (r apiGetLoyaltyCardPointsRequest) PageSize(pageSize int64) apiGetLoyaltyCardPointsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyCardPointsRequest) Skip(skip int32) apiGetLoyaltyCardPointsRequest {
+func (r apiGetLoyaltyCardPointsRequest) Skip(skip int64) apiGetLoyaltyCardPointsRequest {
 	r.skip = &skip
 	return r
 }
@@ -2631,7 +2631,7 @@ You can filter points by status:
 
 @return apiGetLoyaltyCardPointsRequest
 */
-func (a *IntegrationApiService) GetLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiGetLoyaltyCardPointsRequest {
+func (a *IntegrationApiService) GetLoyaltyCardPoints(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiGetLoyaltyCardPointsRequest {
 	return apiGetLoyaltyCardPointsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -2801,14 +2801,14 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2005, *_nethttp
 type apiGetLoyaltyCardTransactionsRequest struct {
 	ctx                    _context.Context
 	apiService             *IntegrationApiService
-	loyaltyProgramId       int32
+	loyaltyProgramId       int64
 	loyaltyCardId          string
 	subledgerId            *[]string
 	loyaltyTransactionType *string
 	startDate              *time.Time
 	endDate                *time.Time
-	pageSize               *int32
-	skip                   *int32
+	pageSize               *int64
+	skip                   *int64
 }
 
 func (r apiGetLoyaltyCardTransactionsRequest) SubledgerId(subledgerId []string) apiGetLoyaltyCardTransactionsRequest {
@@ -2831,12 +2831,12 @@ func (r apiGetLoyaltyCardTransactionsRequest) EndDate(endDate time.Time) apiGetL
 	return r
 }
 
-func (r apiGetLoyaltyCardTransactionsRequest) PageSize(pageSize int32) apiGetLoyaltyCardTransactionsRequest {
+func (r apiGetLoyaltyCardTransactionsRequest) PageSize(pageSize int64) apiGetLoyaltyCardTransactionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyCardTransactionsRequest) Skip(skip int32) apiGetLoyaltyCardTransactionsRequest {
+func (r apiGetLoyaltyCardTransactionsRequest) Skip(skip int64) apiGetLoyaltyCardTransactionsRequest {
 	r.skip = &skip
 	return r
 }
@@ -2852,7 +2852,7 @@ If no filtering options are applied, the last 50 loyalty transactions for the gi
 
 @return apiGetLoyaltyCardTransactionsRequest
 */
-func (a *IntegrationApiService) GetLoyaltyCardTransactions(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiGetLoyaltyCardTransactionsRequest {
+func (a *IntegrationApiService) GetLoyaltyCardTransactions(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiGetLoyaltyCardTransactionsRequest {
 	return apiGetLoyaltyCardTransactionsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -3028,12 +3028,12 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2003, *_n
 type apiGetLoyaltyProgramProfilePointsRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	integrationId    string
 	status           *string
 	subledgerId      *string
-	pageSize         *int32
-	skip             *int32
+	pageSize         *int64
+	skip             *int64
 }
 
 func (r apiGetLoyaltyProgramProfilePointsRequest) Status(status string) apiGetLoyaltyProgramProfilePointsRequest {
@@ -3046,12 +3046,12 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) SubledgerId(subledgerId string
 	return r
 }
 
-func (r apiGetLoyaltyProgramProfilePointsRequest) PageSize(pageSize int32) apiGetLoyaltyProgramProfilePointsRequest {
+func (r apiGetLoyaltyProgramProfilePointsRequest) PageSize(pageSize int64) apiGetLoyaltyProgramProfilePointsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyProgramProfilePointsRequest) Skip(skip int32) apiGetLoyaltyProgramProfilePointsRequest {
+func (r apiGetLoyaltyProgramProfilePointsRequest) Skip(skip int64) apiGetLoyaltyProgramProfilePointsRequest {
 	r.skip = &skip
 	return r
 }
@@ -3071,7 +3071,7 @@ You can filter points by status:
 
 @return apiGetLoyaltyProgramProfilePointsRequest
 */
-func (a *IntegrationApiService) GetLoyaltyProgramProfilePoints(ctx _context.Context, loyaltyProgramId int32, integrationId string) apiGetLoyaltyProgramProfilePointsRequest {
+func (a *IntegrationApiService) GetLoyaltyProgramProfilePoints(ctx _context.Context, loyaltyProgramId int64, integrationId string) apiGetLoyaltyProgramProfilePointsRequest {
 	return apiGetLoyaltyProgramProfilePointsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -3229,14 +3229,14 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2006,
 type apiGetLoyaltyProgramProfileTransactionsRequest struct {
 	ctx                    _context.Context
 	apiService             *IntegrationApiService
-	loyaltyProgramId       int32
+	loyaltyProgramId       int64
 	integrationId          string
 	subledgerId            *string
 	loyaltyTransactionType *string
 	startDate              *time.Time
 	endDate                *time.Time
-	pageSize               *int32
-	skip                   *int32
+	pageSize               *int64
+	skip                   *int64
 }
 
 func (r apiGetLoyaltyProgramProfileTransactionsRequest) SubledgerId(subledgerId string) apiGetLoyaltyProgramProfileTransactionsRequest {
@@ -3259,12 +3259,12 @@ func (r apiGetLoyaltyProgramProfileTransactionsRequest) EndDate(endDate time.Tim
 	return r
 }
 
-func (r apiGetLoyaltyProgramProfileTransactionsRequest) PageSize(pageSize int32) apiGetLoyaltyProgramProfileTransactionsRequest {
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) PageSize(pageSize int64) apiGetLoyaltyProgramProfileTransactionsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r apiGetLoyaltyProgramProfileTransactionsRequest) Skip(skip int32) apiGetLoyaltyProgramProfileTransactionsRequest {
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) Skip(skip int64) apiGetLoyaltyProgramProfileTransactionsRequest {
 	r.skip = &skip
 	return r
 }
@@ -3284,7 +3284,7 @@ use the [List loyalty program transactions](https://docs.talon.one/management-ap
 
 @return apiGetLoyaltyProgramProfileTransactionsRequest
 */
-func (a *IntegrationApiService) GetLoyaltyProgramProfileTransactions(ctx _context.Context, loyaltyProgramId int32, integrationId string) apiGetLoyaltyProgramProfileTransactionsRequest {
+func (a *IntegrationApiService) GetLoyaltyProgramProfileTransactions(ctx _context.Context, loyaltyProgramId int64, integrationId string) apiGetLoyaltyProgramProfileTransactionsRequest {
 	return apiGetLoyaltyProgramProfileTransactionsRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -3604,7 +3604,7 @@ func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.
 type apiLinkLoyaltyCardToProfileRequest struct {
 	ctx              _context.Context
 	apiService       *IntegrationApiService
-	loyaltyProgramId int32
+	loyaltyProgramId int64
 	loyaltyCardId    string
 	body             *LoyaltyCardRegistration
 }
@@ -3631,7 +3631,7 @@ This affects how it can be used. See the [docs](https://docs.talon.one/docs/prod
 
 @return apiLinkLoyaltyCardToProfileRequest
 */
-func (a *IntegrationApiService) LinkLoyaltyCardToProfile(ctx _context.Context, loyaltyProgramId int32, loyaltyCardId string) apiLinkLoyaltyCardToProfileRequest {
+func (a *IntegrationApiService) LinkLoyaltyCardToProfile(ctx _context.Context, loyaltyProgramId int64, loyaltyCardId string) apiLinkLoyaltyCardToProfileRequest {
 	return apiLinkLoyaltyCardToProfileRequest{
 		apiService:       a,
 		ctx:              ctx,
@@ -4137,7 +4137,7 @@ func (r apiReturnCartItemsRequest) Execute() (IntegrationStateV2, *_nethttp.Resp
 type apiSyncCatalogRequest struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
-	catalogId  int32
+	catalogId  int64
 	body       *CatalogSyncRequest
 }
 
@@ -4420,7 +4420,7 @@ Synchronization actions are sent as `PUT` requests. See the structure for each a
 
 @return apiSyncCatalogRequest
 */
-func (a *IntegrationApiService) SyncCatalog(ctx _context.Context, catalogId int32) apiSyncCatalogRequest {
+func (a *IntegrationApiService) SyncCatalog(ctx _context.Context, catalogId int64) apiSyncCatalogRequest {
 	return apiSyncCatalogRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -4615,9 +4615,10 @@ See the [tutorial](https://docs.talon.one/docs/product/tutorials/referrals/incen
 
 	<p class="title">Important</p>
 
-	1. `profileId` is required even though the schema does not say it.
+	1. `profileId` is required even though the schema does not specify it.
 	1. If the customer profile ID is new, a new profile is automatically created but the `customer_profile_created` [built-in event ](https://docs.talon.one/docs/dev/concepts/entities/events) is **not** triggered.
 	1. We recommend sending requests sequentially. See [Managing parallel requests](https://docs.talon.one/docs/dev/getting-started/integration-tutorial#managing-parallel-requests).
+	1. [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation.
 
 </div>
 
@@ -4782,7 +4783,7 @@ func (r apiTrackEventV2Request) Execute() (TrackEventV2Response, *_nethttp.Respo
 type apiUpdateAudienceCustomersAttributesRequest struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
-	audienceId int32
+	audienceId int64
 	body       *map[string]interface{}
 }
 
@@ -4800,7 +4801,7 @@ Update the specified profile attributes to the provided values for all customers
 
 @return apiUpdateAudienceCustomersAttributesRequest
 */
-func (a *IntegrationApiService) UpdateAudienceCustomersAttributes(ctx _context.Context, audienceId int32) apiUpdateAudienceCustomersAttributesRequest {
+func (a *IntegrationApiService) UpdateAudienceCustomersAttributes(ctx _context.Context, audienceId int64) apiUpdateAudienceCustomersAttributesRequest {
 	return apiUpdateAudienceCustomersAttributesRequest{
 		apiService: a,
 		ctx:        ctx,
@@ -4918,7 +4919,7 @@ func (r apiUpdateAudienceCustomersAttributesRequest) Execute() (*_nethttp.Respon
 type apiUpdateAudienceV2Request struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
-	audienceId int32
+	audienceId int64
 	body       *UpdateAudience
 }
 
@@ -4938,7 +4939,7 @@ To update the audience's members, use the [Update customer profile](#tag/Custome
 
 @return apiUpdateAudienceV2Request
 */
-func (a *IntegrationApiService) UpdateAudienceV2(ctx _context.Context, audienceId int32) apiUpdateAudienceV2Request {
+func (a *IntegrationApiService) UpdateAudienceV2(ctx _context.Context, audienceId int64) apiUpdateAudienceV2Request {
 	return apiUpdateAudienceV2Request{
 		apiService: a,
 		ctx:        ctx,
@@ -5252,7 +5253,7 @@ Update or create a [Customer Profile](https://docs.talon.one/docs/dev/concepts/e
 You can use this endpoint to:
 - Set attributes on the given customer profile. Ensure you create the attributes in the Campaign Manager, first.
 - Modify the audience the customer profile is a member of.
-
+**Note:** [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered in rule evaluation when `runRuleEngine` is `true`.
 <div class="redoc-section">
 
 	<p class="title">Performance tips</p>
@@ -5625,8 +5626,8 @@ Update or create a [customer session](https://docs.talon.one/docs/dev/concepts/e
 The endpoint responds with the potential promotion rule [effects](https://docs.talon.one/docs/dev/integration-api/api-effects) that match the current cart.
 For example, use this endpoint to share the contents of a customer's cart with Talon.One.
 
-**Note:** The currency for the session and the cart items in the session is the currency set for the
-Application that owns this session.
+**Note:**
+- The currency for the session and the cart items in it is the currency set for the Application linked to this session. - [Archived campaigns](https://docs.talon.one/docs/product/campaigns/managing-campaigns#archiving-a-campaign) are not considered for rule evaluation.
 
 ### Session management
 

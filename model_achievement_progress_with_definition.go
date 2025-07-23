@@ -39,7 +39,7 @@ type AchievementProgressWithDefinition struct {
 	CampaignId int32 `json:"campaignId"`
 	// The required number of actions or the transactional milestone to complete the achievement.
 	Target *float32 `json:"target,omitempty"`
-	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again.
+	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again. - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
 	AchievementRecurrencePolicy string `json:"achievementRecurrencePolicy"`
 	// The policy that determines how the achievement starts, ends, or resets. - `user_action`: The achievement ends or resets relative to when the customer started the achievement. - `fixed_schedule`: The achievement starts, ends, or resets for all customers following a fixed schedule.
 	AchievementActivationPolicy string `json:"achievementActivationPolicy"`
