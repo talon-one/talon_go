@@ -1,0 +1,45 @@
+diff --git a/docs/TemplateDef.md b/docs/TemplateDef.md
+--- a/docs/TemplateDef.md
++++ b/docs/TemplateDef.md
+@@ -11,7 +11,7 @@ Name | Type | Description | Notes
+ **Description** | Pointer to **string** | A short description of the template that will be shown in the rule editor. | 
+ **Help** | Pointer to **string** | Extended help text for the template. | 
+ **Category** | Pointer to **string** | Used for grouping templates in the rule editor sidebar. | 
+-**Expr** | Pointer to **[]map[string]interface{}** | A Talang expression that contains variable bindings referring to args. | 
++**Expr** | Pointer to **[]interface{}** | A Talang expression that contains variable bindings referring to args. | 
+ **Args** | Pointer to [**[]TemplateArgDef**](TemplateArgDef.md) | An array of argument definitions. | 
+ **Expose** | Pointer to **bool** | A flag to control exposure in Rule Builder. | [optional] [default to false]
+ **Name** | Pointer to **string** | The template name used in Talang. | 
+@@ -20,7 +20,7 @@ Name | Type | Description | Notes
+ 
+ ### NewTemplateDef
+ 
+-`func NewTemplateDef(id int64, created time.Time, applicationId int64, title string, description string, help string, category string, expr []map[string]interface{}, args []TemplateArgDef, name string, ) *TemplateDef`
++`func NewTemplateDef(id int64, created time.Time, applicationId int64, title string, description string, help string, category string, expr []interface{}, args []TemplateArgDef, name string, ) *TemplateDef`
+ 
+ NewTemplateDef instantiates a new TemplateDef object
+ This constructor will assign default values to properties that have it defined,
+@@ -177,20 +177,20 @@ SetCategory sets Category field to given value.
+ 
+ ### GetExpr
+ 
+-`func (o *TemplateDef) GetExpr() []map[string]interface{}`
++`func (o *TemplateDef) GetExpr() []interface{}`
+ 
+ GetExpr returns the Expr field if non-nil, zero value otherwise.
+ 
+ ### GetExprOk
+ 
+-`func (o *TemplateDef) GetExprOk() (*[]map[string]interface{}, bool)`
++`func (o *TemplateDef) GetExprOk() (*[]interface{}, bool)`
+ 
+ GetExprOk returns a tuple with the Expr field if it's non-nil, zero value otherwise
+ and a boolean to check if the value has been set.
+ 
+ ### SetExpr
+ 
+-`func (o *TemplateDef) SetExpr(v []map[string]interface{})`
++`func (o *TemplateDef) SetExpr(v []interface{})`
+ 
+ SetExpr sets Expr field to given value.
+ 

@@ -1,0 +1,45 @@
+diff --git a/docs/Binding.md b/docs/Binding.md
+--- a/docs/Binding.md
++++ b/docs/Binding.md
+@@ -6,7 +6,7 @@ Name | Type | Description | Notes
+ ------------ | ------------- | ------------- | -------------
+ **Name** | Pointer to **string** | A descriptive name for the value to be bound. | 
+ **Type** | Pointer to **string** | The kind of binding. Possible values are: - &#x60;bundle&#x60; - &#x60;cartItemFilter&#x60; - &#x60;subledgerBalance&#x60; - &#x60;templateParameter&#x60;  | [optional] 
+-**Expression** | Pointer to **[]map[string]interface{}** | A Talang expression that will be evaluated and its result attached to the name of the binding. | 
++**Expression** | Pointer to **[]interface{}** | A Talang expression that will be evaluated and its result attached to the name of the binding. | 
+ **ValueType** | Pointer to **string** | Can be one of the following: - &#x60;string&#x60; - &#x60;number&#x60; - &#x60;boolean&#x60;  | [optional] 
+ **MinValue** | Pointer to **float32** | The minimum value allowed for this placeholder. | [optional] 
+ **MaxValue** | Pointer to **float32** | The maximum value allowed for this placeholder. | [optional] 
+@@ -17,7 +17,7 @@ Name | Type | Description | Notes
+ 
+ ### NewBinding
+ 
+-`func NewBinding(name string, expression []map[string]interface{}, ) *Binding`
++`func NewBinding(name string, expression []interface{}, ) *Binding`
+ 
+ NewBinding instantiates a new Binding object
+ This constructor will assign default values to properties that have it defined,
+@@ -79,20 +79,20 @@ HasType returns a boolean if a field has been set.
+ 
+ ### GetExpression
+ 
+-`func (o *Binding) GetExpression() []map[string]interface{}`
++`func (o *Binding) GetExpression() []interface{}`
+ 
+ GetExpression returns the Expression field if non-nil, zero value otherwise.
+ 
+ ### GetExpressionOk
+ 
+-`func (o *Binding) GetExpressionOk() (*[]map[string]interface{}, bool)`
++`func (o *Binding) GetExpressionOk() (*[]interface{}, bool)`
+ 
+ GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
+ and a boolean to check if the value has been set.
+ 
+ ### SetExpression
+ 
+-`func (o *Binding) SetExpression(v []map[string]interface{})`
++`func (o *Binding) SetExpression(v []interface{})`
+ 
+ SetExpression sets Expression field to given value.
+ 
