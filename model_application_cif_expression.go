@@ -17,7 +17,7 @@ import (
 
 // ApplicationCifExpression struct for ApplicationCifExpression
 type ApplicationCifExpression struct {
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
@@ -155,7 +155,7 @@ func (o *ApplicationCifExpression) HasExpression() bool {
 	return false
 }
 
-// SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
+// SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
 func (o *ApplicationCifExpression) SetExpression(v []interface{}) {
 	o.Expression = v
 }

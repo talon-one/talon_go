@@ -12,6 +12,7 @@ package talon
 import (
 	"bytes"
 	"encoding/json"
+	"time"
 )
 
 // CartItem struct for CartItem
@@ -45,8 +46,18 @@ type CartItem struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
-	// The [catalog item ID](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/#synchronizing-a-cart-item-catalog).
+	// The catalog item ID.
 	CatalogItemID *int32 `json:"catalogItemID,omitempty"`
+	// The selected price type for this cart item (e.g. the price for members only).
+	SelectedPriceType *string `json:"selectedPriceType,omitempty"`
+	// The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment.
+	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
+	// The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.
+	AdjustmentEffectiveFrom *time.Time `json:"adjustmentEffectiveFrom,omitempty"`
+	// The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field.
+	AdjustmentEffectiveUntil *time.Time `json:"adjustmentEffectiveUntil,omitempty"`
+	// A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the `priceType` names.
+	Prices *map[string]PriceDetail `json:"prices,omitempty"`
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -539,6 +550,171 @@ func (o *CartItem) HasCatalogItemID() bool {
 // SetCatalogItemID gets a reference to the given int32 and assigns it to the CatalogItemID field.
 func (o *CartItem) SetCatalogItemID(v int32) {
 	o.CatalogItemID = &v
+}
+
+// GetSelectedPriceType returns the SelectedPriceType field value if set, zero value otherwise.
+func (o *CartItem) GetSelectedPriceType() string {
+	if o == nil || o.SelectedPriceType == nil {
+		var ret string
+		return ret
+	}
+	return *o.SelectedPriceType
+}
+
+// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetSelectedPriceTypeOk() (string, bool) {
+	if o == nil || o.SelectedPriceType == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.SelectedPriceType, true
+}
+
+// HasSelectedPriceType returns a boolean if a field has been set.
+func (o *CartItem) HasSelectedPriceType() bool {
+	if o != nil && o.SelectedPriceType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectedPriceType gets a reference to the given string and assigns it to the SelectedPriceType field.
+func (o *CartItem) SetSelectedPriceType(v string) {
+	o.SelectedPriceType = &v
+}
+
+// GetAdjustmentReferenceId returns the AdjustmentReferenceId field value if set, zero value otherwise.
+func (o *CartItem) GetAdjustmentReferenceId() string {
+	if o == nil || o.AdjustmentReferenceId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdjustmentReferenceId
+}
+
+// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetAdjustmentReferenceIdOk() (string, bool) {
+	if o == nil || o.AdjustmentReferenceId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.AdjustmentReferenceId, true
+}
+
+// HasAdjustmentReferenceId returns a boolean if a field has been set.
+func (o *CartItem) HasAdjustmentReferenceId() bool {
+	if o != nil && o.AdjustmentReferenceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustmentReferenceId gets a reference to the given string and assigns it to the AdjustmentReferenceId field.
+func (o *CartItem) SetAdjustmentReferenceId(v string) {
+	o.AdjustmentReferenceId = &v
+}
+
+// GetAdjustmentEffectiveFrom returns the AdjustmentEffectiveFrom field value if set, zero value otherwise.
+func (o *CartItem) GetAdjustmentEffectiveFrom() time.Time {
+	if o == nil || o.AdjustmentEffectiveFrom == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.AdjustmentEffectiveFrom
+}
+
+// GetAdjustmentEffectiveFromOk returns a tuple with the AdjustmentEffectiveFrom field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetAdjustmentEffectiveFromOk() (time.Time, bool) {
+	if o == nil || o.AdjustmentEffectiveFrom == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.AdjustmentEffectiveFrom, true
+}
+
+// HasAdjustmentEffectiveFrom returns a boolean if a field has been set.
+func (o *CartItem) HasAdjustmentEffectiveFrom() bool {
+	if o != nil && o.AdjustmentEffectiveFrom != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustmentEffectiveFrom gets a reference to the given time.Time and assigns it to the AdjustmentEffectiveFrom field.
+func (o *CartItem) SetAdjustmentEffectiveFrom(v time.Time) {
+	o.AdjustmentEffectiveFrom = &v
+}
+
+// GetAdjustmentEffectiveUntil returns the AdjustmentEffectiveUntil field value if set, zero value otherwise.
+func (o *CartItem) GetAdjustmentEffectiveUntil() time.Time {
+	if o == nil || o.AdjustmentEffectiveUntil == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.AdjustmentEffectiveUntil
+}
+
+// GetAdjustmentEffectiveUntilOk returns a tuple with the AdjustmentEffectiveUntil field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetAdjustmentEffectiveUntilOk() (time.Time, bool) {
+	if o == nil || o.AdjustmentEffectiveUntil == nil {
+		var ret time.Time
+		return ret, false
+	}
+	return *o.AdjustmentEffectiveUntil, true
+}
+
+// HasAdjustmentEffectiveUntil returns a boolean if a field has been set.
+func (o *CartItem) HasAdjustmentEffectiveUntil() bool {
+	if o != nil && o.AdjustmentEffectiveUntil != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustmentEffectiveUntil gets a reference to the given time.Time and assigns it to the AdjustmentEffectiveUntil field.
+func (o *CartItem) SetAdjustmentEffectiveUntil(v time.Time) {
+	o.AdjustmentEffectiveUntil = &v
+}
+
+// GetPrices returns the Prices field value if set, zero value otherwise.
+func (o *CartItem) GetPrices() map[string]PriceDetail {
+	if o == nil || o.Prices == nil {
+		var ret map[string]PriceDetail
+		return ret
+	}
+	return *o.Prices
+}
+
+// GetPricesOk returns a tuple with the Prices field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetPricesOk() (map[string]PriceDetail, bool) {
+	if o == nil || o.Prices == nil {
+		var ret map[string]PriceDetail
+		return ret, false
+	}
+	return *o.Prices, true
+}
+
+// HasPrices returns a boolean if a field has been set.
+func (o *CartItem) HasPrices() bool {
+	if o != nil && o.Prices != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrices gets a reference to the given map[string]PriceDetail and assigns it to the Prices field.
+func (o *CartItem) SetPrices(v map[string]PriceDetail) {
+	o.Prices = &v
 }
 
 type NullableCartItem struct {

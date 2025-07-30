@@ -17,7 +17,7 @@ import (
 
 // CustomerSessionV2 The representation of the customer session.
 type CustomerSessionV2 struct {
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`

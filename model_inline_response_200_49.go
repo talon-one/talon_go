@@ -16,38 +16,40 @@ import (
 
 // InlineResponse20049 struct for InlineResponse20049
 type InlineResponse20049 struct {
-	HasMore bool                                `json:"hasMore"`
-	Data    []AchievementProgressWithDefinition `json:"data"`
+	Data *[]SummaryCampaignStoreBudget `json:"data,omitempty"`
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20049) GetHasMore() bool {
-	if o == nil {
-		var ret bool
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *InlineResponse20049) GetData() []SummaryCampaignStoreBudget {
+	if o == nil || o.Data == nil {
+		var ret []SummaryCampaignStoreBudget
 		return ret
 	}
-
-	return o.HasMore
+	return *o.Data
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20049) SetHasMore(v bool) {
-	o.HasMore = v
+// GetDataOk returns a tuple with the Data field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20049) GetDataOk() ([]SummaryCampaignStoreBudget, bool) {
+	if o == nil || o.Data == nil {
+		var ret []SummaryCampaignStoreBudget
+		return ret, false
+	}
+	return *o.Data, true
 }
 
-// GetData returns the Data field value
-func (o *InlineResponse20049) GetData() []AchievementProgressWithDefinition {
-	if o == nil {
-		var ret []AchievementProgressWithDefinition
-		return ret
+// HasData returns a boolean if a field has been set.
+func (o *InlineResponse20049) HasData() bool {
+	if o != nil && o.Data != nil {
+		return true
 	}
 
-	return o.Data
+	return false
 }
 
-// SetData sets field value
-func (o *InlineResponse20049) SetData(v []AchievementProgressWithDefinition) {
-	o.Data = v
+// SetData gets a reference to the given []SummaryCampaignStoreBudget and assigns it to the Data field.
+func (o *InlineResponse20049) SetData(v []SummaryCampaignStoreBudget) {
+	o.Data = &v
 }
 
 type NullableInlineResponse20049 struct {

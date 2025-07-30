@@ -16,56 +16,40 @@ import (
 
 // InlineResponse20048 struct for InlineResponse20048
 type InlineResponse20048 struct {
-	HasMore *bool         `json:"hasMore,omitempty"`
-	Data    []Achievement `json:"data"`
+	Data *[]ListCampaignStoreBudgets `json:"data,omitempty"`
 }
 
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
-func (o *InlineResponse20048) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
-		var ret bool
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *InlineResponse20048) GetData() []ListCampaignStoreBudgets {
+	if o == nil || o.Data == nil {
+		var ret []ListCampaignStoreBudgets
 		return ret
 	}
-	return *o.HasMore
+	return *o.Data
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
+// GetDataOk returns a tuple with the Data field value if set, zero value otherwise
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20048) GetHasMoreOk() (bool, bool) {
-	if o == nil || o.HasMore == nil {
-		var ret bool
+func (o *InlineResponse20048) GetDataOk() ([]ListCampaignStoreBudgets, bool) {
+	if o == nil || o.Data == nil {
+		var ret []ListCampaignStoreBudgets
 		return ret, false
 	}
-	return *o.HasMore, true
+	return *o.Data, true
 }
 
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20048) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
+// HasData returns a boolean if a field has been set.
+func (o *InlineResponse20048) HasData() bool {
+	if o != nil && o.Data != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-func (o *InlineResponse20048) SetHasMore(v bool) {
-	o.HasMore = &v
-}
-
-// GetData returns the Data field value
-func (o *InlineResponse20048) GetData() []Achievement {
-	if o == nil {
-		var ret []Achievement
-		return ret
-	}
-
-	return o.Data
-}
-
-// SetData sets field value
-func (o *InlineResponse20048) SetData(v []Achievement) {
-	o.Data = v
+// SetData gets a reference to the given []ListCampaignStoreBudgets and assigns it to the Data field.
+func (o *InlineResponse20048) SetData(v []ListCampaignStoreBudgets) {
+	o.Data = &v
 }
 
 type NullableInlineResponse20048 struct {

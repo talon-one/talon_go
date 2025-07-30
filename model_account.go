@@ -17,7 +17,7 @@ import (
 
 // Account struct for Account
 type Account struct {
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
