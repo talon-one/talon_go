@@ -1,3 +1,5 @@
+.PHONY: apply-patches apply-sed-changes update-pkg-cache
+
 update-pkg-cache:
 	GOPROXY=https://proxy.golang.org GO111MODULE=on \
 	go get github.com/talon-one/talon_go/v10
@@ -14,8 +16,14 @@ apply-patches:
 	gopatch -p patches/condition.patch model_rule.go
 	gopatch -p patches/condition.patch model_generate_rule_title_rule.go
 
+apply-sed-changes:
+	@echo "Executing sed command..."
+	@sed -i -f patches/expression.sed docs/ApplicationCifExpression.md
+	@sed -i -f patches/expression.sed docs/Binding.md
+	@sed -i -f patches/expression.sed docs/NewApplicationCifExpression.md
+
+
 apply-git-patches:
-	git apply patches/git/ApplicationCIFExpression.patch
 	git apply patches/git/Binding.patch
 	git apply patches/git/Event.patch
 	git apply patches/git/GenerateItemFilterDescription.patch
