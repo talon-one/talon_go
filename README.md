@@ -32,7 +32,7 @@ import (
     "encoding/json"
     "fmt"
 
-    talon "github.com/talon-one/talon_go/v8"
+    talon "github.com/talon-one/talon_go/v25.15"
 )
 
 func main() {

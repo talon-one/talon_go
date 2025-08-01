@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Effects** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | An array of effectful Talang expressions in arrays that will be evaluated when a rule matches. | [optional] 
+**Effects** | Pointer to [**[]interface{}**]([]interface{}.md) | An array of effectful Talang expressions in arrays that will be evaluated when a rule matches. | [optional] 
 **Condition** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | A Talang expression that will be evaluated in the context of the given event. | [optional] 
 
 ## Methods
 
 ### GetEffects
 
-`func (o *GenerateRuleTitleRule) GetEffects() []map[string]interface{}`
+`func (o *GenerateRuleTitleRule) GetEffects() []interface{}`
 
 GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *GenerateRuleTitleRule) GetEffectsOk() ([]map[string]interface{}, bool)`
+`func (o *GenerateRuleTitleRule) GetEffectsOk() ([]interface{}, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -30,7 +30,7 @@ HasEffects returns a boolean if a field has been set.
 
 ### SetEffects
 
-`func (o *GenerateRuleTitleRule) SetEffects(v []map[string]interface{})`
+`func (o *GenerateRuleTitleRule) SetEffects(v []interface{})`
 
 SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
 

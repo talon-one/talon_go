@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | A longer, more detailed description of the rule. | [optional] 
 **Bindings** | Pointer to [**[]Binding**](Binding.md) | An array that provides objects with variable names (name) and talang expressions to whose result they are bound (expression) during rule evaluation. The order of the evaluation is decided by the position in the array. | [optional] 
 **Condition** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | A Talang expression that will be evaluated in the context of the given event. | 
-**Effects** | Pointer to [**[]map[string]interface{}**](map[string]interface{}.md) | An array of effectful Talang expressions in arrays that will be evaluated when a rule matches. | 
+**Effects** | Pointer to [**[]interface{}**]([]interface{}.md) | An array of effectful Talang expressions in arrays that will be evaluated when a rule matches. | 
 
 ## Methods
 
@@ -166,13 +166,13 @@ SetCondition gets a reference to the given []map[string]interface{} and assigns 
 
 ### GetEffects
 
-`func (o *Rule) GetEffects() []map[string]interface{}`
+`func (o *Rule) GetEffects() []interface{}`
 
 GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *Rule) GetEffectsOk() ([]map[string]interface{}, bool)`
+`func (o *Rule) GetEffectsOk() ([]interface{}, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -185,7 +185,7 @@ HasEffects returns a boolean if a field has been set.
 
 ### SetEffects
 
-`func (o *Rule) SetEffects(v []map[string]interface{})`
+`func (o *Rule) SetEffects(v []interface{})`
 
 SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
 
