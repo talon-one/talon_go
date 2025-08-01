@@ -20,6 +20,8 @@ apply-patches:
 
 apply-sed-changes:
 	@echo "Executing sed command..."
+	@sed -i -f patches/condition.sed docs/Rule.md
+	@sed -i -f patches/condition.sed docs/GenerateRuleTitleRule.md
 	@sed -i -f patches/effects.sed docs/Event.md
 	@sed -i -f patches/effects.sed docs/GenerateRuleTitleRule.md
 	@sed -i -f patches/effects.sed docs/Rule.md
@@ -28,14 +30,3 @@ apply-sed-changes:
 	@sed -i -f patches/expression.sed docs/ApplicationCifExpression.md
 	@sed -i -f patches/expression.sed docs/Binding.md
 	@sed -i -f patches/expression.sed docs/NewApplicationCifExpression.md
-
-
-apply-git-patches:
-	git apply patches/git/Binding.patch
-	git apply patches/git/Event.patch
-	git apply patches/git/GenerateItemFilterDescription.patch
-	git apply patches/git/GenerateRuleTitleRule.patch
-	git apply patches/git/NewApplicationCIFExpression.patch
-	git apply patches/git/NewTemplateDef.patch
-	git apply patches/git/Rule.patch
-	git apply patches/git/TemplateDef.patch
