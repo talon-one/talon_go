@@ -93,11 +93,6 @@ jobs:
           git tag -f "$ver" "$GITHUB_SHA"
           git push -f origin "refs/tags/$ver"
 
-      - name: Publish new version
-        if: ${{ steps.get_version.outputs.version != '' }}
-        run: |
-            make update-pkg-cache
-
       - name: Create GitHub release
         if: ${{ steps.get_version.outputs.version != '' }}
         env:
