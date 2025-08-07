@@ -94,6 +94,7 @@ jobs:
           git push -f origin "refs/tags/$ver"
 
       - name: Publish new version
+        if: ${{ steps.get_version.outputs.version != '' }}
         run: |
             make update-pkg-cache
 
