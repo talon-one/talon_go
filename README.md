@@ -2,6 +2,10 @@
 
 This SDK supports all of the operations of Talon.One's Integration API and Management API.
 
+# Important information regarding release version change
+
+We are synchronizing our SDK version with our internal release version to simplify our release process and improve our bug fix process. The new version schema follows this structure: current year, week number, and minor changes if needed.
+
 ## Installation
 
 Install the following dependencies:
