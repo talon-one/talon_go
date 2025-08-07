@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Title** | Pointer to **string** | The human-friendly name for this event type. | 
 **Name** | Pointer to **string** | The integration name for this event type. This will be used in URLs and cannot be changed after an event type has been created. | 

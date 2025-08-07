@@ -137,7 +137,7 @@ HasExpr returns a boolean if a field has been set.
 
 `func (o *NewTemplateDef) SetExpr(v []interface{})`
 
-SetExpr gets a reference to the given []interface{} and assigns it to the Expr field.
+SetExpr gets a reference to the given []map[string]interface{} and assigns it to the Expr field.
 
 ### GetArgs
 

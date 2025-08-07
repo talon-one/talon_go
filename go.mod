@@ -1,4 +1,4 @@
-module github.com/talon-one/talon_go/v10
+module github.com/talon-one/talon_go/v25
 
 go 1.13
 

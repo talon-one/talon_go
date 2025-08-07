@@ -22,6 +22,8 @@ type NewWebhook struct {
 	Title string `json:"title"`
 	// A description of the webhook.
 	Description *string `json:"description,omitempty"`
+	// Indicates if the webhook is a draft.
+	Draft bool `json:"draft"`
 	// API method for this webhook.
 	Verb string `json:"verb"`
 	// API URL (supports templating using parameters) for this webhook.
@@ -97,6 +99,21 @@ func (o *NewWebhook) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *NewWebhook) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetDraft returns the Draft field value
+func (o *NewWebhook) GetDraft() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Draft
+}
+
+// SetDraft sets field value
+func (o *NewWebhook) SetDraft(v bool) {
+	o.Draft = v
 }
 
 // GetVerb returns the Verb field value

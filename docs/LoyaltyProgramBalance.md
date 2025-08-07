@@ -6,12 +6,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CurrentBalance** | Pointer to **float32** | Sum of currently active points. | 
 **PendingBalance** | Pointer to **float32** | Sum of pending points. | 
-**NegativeBalance** | Pointer to **float32** | Sum of negative points. This implies that &#x60;currentBalance&#x60; is &#x60;0&#x60;. | 
+**NegativeBalance** | Pointer to **float32** | Sum of negative points. This implies that &#x60;currentBalance&#x60; is &#x60;0&#x60;. | [optional] 
 **ExpiredBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **SpentBalance** | Pointer to **float32** | **DEPRECATED** Value is shown as 0.  | 
 **TentativeCurrentBalance** | Pointer to **float32** | The tentative points balance, reflecting the &#x60;currentBalance&#x60; and all point additions and deductions within the current open customer session. When the session is closed, the effects are applied and the &#x60;currentBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | 
 **TentativePendingBalance** | Pointer to **float32** | The tentative points balance, reflecting the &#x60;pendingBalance&#x60; and all point additions with a future activation date within the current open customer session. When the session is closed, the effects are applied and the &#x60;pendingBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | [optional] 
-**TentativeNegativeBalance** | Pointer to **float32** | The tentative negative balance after all additions and deductions from the current customer session are applied to &#x60;negativeBalance&#x60;. When the session is closed, the tentative effects are applied and &#x60;negativeBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | 
+**TentativeNegativeBalance** | Pointer to **float32** | The tentative negative balance after all additions and deductions from the current customer session are applied to &#x60;negativeBalance&#x60;. When the session is closed, the tentative effects are applied and &#x60;negativeBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | [optional] 
 
 ## Methods
 

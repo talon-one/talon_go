@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | [optional] 
@@ -220,13 +220,13 @@ SetSessionId gets a reference to the given string and assigns it to the SessionI
 
 ### GetEffects
 
-`func (o *Event) GetEffects() []interface{}`
+`func (o *Event) GetEffects() [][]interface{}`
 
 GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *Event) GetEffectsOk() ([]interface{}, bool)`
+`func (o *Event) GetEffectsOk() ([][]interface{}, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
@@ -239,9 +239,9 @@ HasEffects returns a boolean if a field has been set.
 
 ### SetEffects
 
-`func (o *Event) SetEffects(v []interface{})`
+`func (o *Event) SetEffects(v [][]interface{})`
 
-SetEffects gets a reference to the given []interface{} and assigns it to the Effects field.
+SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
 
 ### GetLedgerEntries
 

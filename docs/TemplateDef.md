@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
 **Title** | Pointer to **string** | Campaigner-friendly name for the template that will be shown in the rule editor. | 
@@ -216,7 +216,7 @@ HasExpr returns a boolean if a field has been set.
 
 `func (o *TemplateDef) SetExpr(v []interface{})`
 
-SetExpr gets a reference to the given []interface{} and assigns it to the Expr field.
+SetExpr gets a reference to the given []map[string]interface{} and assigns it to the Expr field.
 
 ### GetArgs
 

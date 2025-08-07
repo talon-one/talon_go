@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **EvaluableCampaignIds** | Pointer to **[]int32** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **Type** | Pointer to **string** | A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type &#x60;event&#x60; in the Campaign Manager.  | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute). | [optional] 
+**LoyaltyCards** | Pointer to **[]string** | Identifier of the loyalty card used during this event. | [optional] 
 **ResponseContent** | Pointer to **[]string** | Optional list of requested information to be present on the response related to the tracking custom event.  | [optional] 
 
 ## Methods
@@ -137,6 +138,31 @@ HasAttributes returns a boolean if a field has been set.
 `func (o *IntegrationEventV2Request) SetAttributes(v map[string]interface{})`
 
 SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+
+### GetLoyaltyCards
+
+`func (o *IntegrationEventV2Request) GetLoyaltyCards() []string`
+
+GetLoyaltyCards returns the LoyaltyCards field if non-nil, zero value otherwise.
+
+### GetLoyaltyCardsOk
+
+`func (o *IntegrationEventV2Request) GetLoyaltyCardsOk() ([]string, bool)`
+
+GetLoyaltyCardsOk returns a tuple with the LoyaltyCards field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasLoyaltyCards
+
+`func (o *IntegrationEventV2Request) HasLoyaltyCards() bool`
+
+HasLoyaltyCards returns a boolean if a field has been set.
+
+### SetLoyaltyCards
+
+`func (o *IntegrationEventV2Request) SetLoyaltyCards(v []string)`
+
+SetLoyaltyCards gets a reference to the given []string and assigns it to the LoyaltyCards field.
 
 ### GetResponseContent
 

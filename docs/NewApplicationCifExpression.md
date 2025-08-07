@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional]
-**CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional]
-**Expression** | Pointer to [**[]interface{}**]([]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional]
+**CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional] 
+**CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
+**Expression** | Pointer to [**[]interface{}**]([]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
 
 ## Methods
 
@@ -83,7 +83,9 @@ HasExpression returns a boolean if a field has been set.
 
 `func (o *NewApplicationCifExpression) SetExpression(v []interface{})`
 
-SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
+SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

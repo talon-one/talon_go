@@ -17,7 +17,7 @@ import (
 
 // ApplicationCustomer struct for ApplicationCustomer
 type ApplicationCustomer struct {
-	// Internal ID of this entity.
+	// The internal ID of the customer profile.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
@@ -27,7 +27,7 @@ type ApplicationCustomer struct {
 	Attributes map[string]interface{} `json:"attributes"`
 	// The ID of the Talon.One account that owns this profile.
 	AccountId int32 `json:"accountId"`
-	// The total amount of closed sessions by a customer. A closed session is a successful purchase.
+	// The total number of closed sessions. Does not include closed sessions that have been cancelled or reopened. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).
 	ClosedSessions int32 `json:"closedSessions"`
 	// The total amount of money spent by the customer **before** discounts are applied.  The total sales amount excludes the following: - Cancelled or reopened sessions. - Returned items.
 	TotalSales float32 `json:"totalSales"`

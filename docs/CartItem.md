@@ -19,7 +19,12 @@ Name | Type | Description | Notes
 **Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally). | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.  Custom _cart item_ attributes must be created in the Campaign Manager before you set them with this property.  **Note:** Any previously defined attributes that you do not include in the array will be removed.  | [optional] 
 **AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  | [optional] 
-**CatalogItemID** | Pointer to **int32** | The [catalog item ID](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs/#synchronizing-a-cart-item-catalog). | [optional] 
+**CatalogItemID** | Pointer to **int32** | The catalog item ID. | [optional] 
+**SelectedPriceType** | Pointer to **string** | The selected price type for this cart item (e.g. the price for members only). | [optional] 
+**AdjustmentReferenceId** | Pointer to **string** | The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment. | [optional] 
+**AdjustmentEffectiveFrom** | Pointer to [**time.Time**](time.Time.md) | The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field. | [optional] 
+**AdjustmentEffectiveUntil** | Pointer to [**time.Time**](time.Time.md) | The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field. | [optional] 
+**Prices** | Pointer to [**map[string]PriceDetail**](PriceDetail.md) | A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the &#x60;priceType&#x60; names.  | [optional] 
 
 ## Methods
 
@@ -422,6 +427,131 @@ HasCatalogItemID returns a boolean if a field has been set.
 `func (o *CartItem) SetCatalogItemID(v int32)`
 
 SetCatalogItemID gets a reference to the given int32 and assigns it to the CatalogItemID field.
+
+### GetSelectedPriceType
+
+`func (o *CartItem) GetSelectedPriceType() string`
+
+GetSelectedPriceType returns the SelectedPriceType field if non-nil, zero value otherwise.
+
+### GetSelectedPriceTypeOk
+
+`func (o *CartItem) GetSelectedPriceTypeOk() (string, bool)`
+
+GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasSelectedPriceType
+
+`func (o *CartItem) HasSelectedPriceType() bool`
+
+HasSelectedPriceType returns a boolean if a field has been set.
+
+### SetSelectedPriceType
+
+`func (o *CartItem) SetSelectedPriceType(v string)`
+
+SetSelectedPriceType gets a reference to the given string and assigns it to the SelectedPriceType field.
+
+### GetAdjustmentReferenceId
+
+`func (o *CartItem) GetAdjustmentReferenceId() string`
+
+GetAdjustmentReferenceId returns the AdjustmentReferenceId field if non-nil, zero value otherwise.
+
+### GetAdjustmentReferenceIdOk
+
+`func (o *CartItem) GetAdjustmentReferenceIdOk() (string, bool)`
+
+GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdjustmentReferenceId
+
+`func (o *CartItem) HasAdjustmentReferenceId() bool`
+
+HasAdjustmentReferenceId returns a boolean if a field has been set.
+
+### SetAdjustmentReferenceId
+
+`func (o *CartItem) SetAdjustmentReferenceId(v string)`
+
+SetAdjustmentReferenceId gets a reference to the given string and assigns it to the AdjustmentReferenceId field.
+
+### GetAdjustmentEffectiveFrom
+
+`func (o *CartItem) GetAdjustmentEffectiveFrom() time.Time`
+
+GetAdjustmentEffectiveFrom returns the AdjustmentEffectiveFrom field if non-nil, zero value otherwise.
+
+### GetAdjustmentEffectiveFromOk
+
+`func (o *CartItem) GetAdjustmentEffectiveFromOk() (time.Time, bool)`
+
+GetAdjustmentEffectiveFromOk returns a tuple with the AdjustmentEffectiveFrom field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdjustmentEffectiveFrom
+
+`func (o *CartItem) HasAdjustmentEffectiveFrom() bool`
+
+HasAdjustmentEffectiveFrom returns a boolean if a field has been set.
+
+### SetAdjustmentEffectiveFrom
+
+`func (o *CartItem) SetAdjustmentEffectiveFrom(v time.Time)`
+
+SetAdjustmentEffectiveFrom gets a reference to the given time.Time and assigns it to the AdjustmentEffectiveFrom field.
+
+### GetAdjustmentEffectiveUntil
+
+`func (o *CartItem) GetAdjustmentEffectiveUntil() time.Time`
+
+GetAdjustmentEffectiveUntil returns the AdjustmentEffectiveUntil field if non-nil, zero value otherwise.
+
+### GetAdjustmentEffectiveUntilOk
+
+`func (o *CartItem) GetAdjustmentEffectiveUntilOk() (time.Time, bool)`
+
+GetAdjustmentEffectiveUntilOk returns a tuple with the AdjustmentEffectiveUntil field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasAdjustmentEffectiveUntil
+
+`func (o *CartItem) HasAdjustmentEffectiveUntil() bool`
+
+HasAdjustmentEffectiveUntil returns a boolean if a field has been set.
+
+### SetAdjustmentEffectiveUntil
+
+`func (o *CartItem) SetAdjustmentEffectiveUntil(v time.Time)`
+
+SetAdjustmentEffectiveUntil gets a reference to the given time.Time and assigns it to the AdjustmentEffectiveUntil field.
+
+### GetPrices
+
+`func (o *CartItem) GetPrices() map[string]PriceDetail`
+
+GetPrices returns the Prices field if non-nil, zero value otherwise.
+
+### GetPricesOk
+
+`func (o *CartItem) GetPricesOk() (map[string]PriceDetail, bool)`
+
+GetPricesOk returns a tuple with the Prices field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasPrices
+
+`func (o *CartItem) HasPrices() bool`
+
+HasPrices returns a boolean if a field has been set.
+
+### SetPrices
+
+`func (o *CartItem) SetPrices(v map[string]PriceDetail)`
+
+SetPrices gets a reference to the given map[string]PriceDetail and assigns it to the Prices field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

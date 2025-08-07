@@ -40,6 +40,12 @@ type EffectEntity struct {
 	CampaignRevisionId *int32 `json:"campaignRevisionId,omitempty"`
 	// The revision version ID of the campaign that was used when triggering the effect.
 	CampaignRevisionVersionId *int32 `json:"campaignRevisionVersionId,omitempty"`
+	// The selected price type for the SKU targeted by this effect.
+	SelectedPriceType *string `json:"selectedPriceType,omitempty"`
+	// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
+	SelectedPrice *float32 `json:"selectedPrice,omitempty"`
+	// The reference identifier of the selected price adjustment for this SKU. This is only returned if the `selectedPrice` resulted from a price adjustment.
+	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
 }
 
 // GetCampaignId returns the CampaignId field value
@@ -346,6 +352,105 @@ func (o *EffectEntity) HasCampaignRevisionVersionId() bool {
 // SetCampaignRevisionVersionId gets a reference to the given int32 and assigns it to the CampaignRevisionVersionId field.
 func (o *EffectEntity) SetCampaignRevisionVersionId(v int32) {
 	o.CampaignRevisionVersionId = &v
+}
+
+// GetSelectedPriceType returns the SelectedPriceType field value if set, zero value otherwise.
+func (o *EffectEntity) GetSelectedPriceType() string {
+	if o == nil || o.SelectedPriceType == nil {
+		var ret string
+		return ret
+	}
+	return *o.SelectedPriceType
+}
+
+// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetSelectedPriceTypeOk() (string, bool) {
+	if o == nil || o.SelectedPriceType == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.SelectedPriceType, true
+}
+
+// HasSelectedPriceType returns a boolean if a field has been set.
+func (o *EffectEntity) HasSelectedPriceType() bool {
+	if o != nil && o.SelectedPriceType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectedPriceType gets a reference to the given string and assigns it to the SelectedPriceType field.
+func (o *EffectEntity) SetSelectedPriceType(v string) {
+	o.SelectedPriceType = &v
+}
+
+// GetSelectedPrice returns the SelectedPrice field value if set, zero value otherwise.
+func (o *EffectEntity) GetSelectedPrice() float32 {
+	if o == nil || o.SelectedPrice == nil {
+		var ret float32
+		return ret
+	}
+	return *o.SelectedPrice
+}
+
+// GetSelectedPriceOk returns a tuple with the SelectedPrice field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetSelectedPriceOk() (float32, bool) {
+	if o == nil || o.SelectedPrice == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.SelectedPrice, true
+}
+
+// HasSelectedPrice returns a boolean if a field has been set.
+func (o *EffectEntity) HasSelectedPrice() bool {
+	if o != nil && o.SelectedPrice != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectedPrice gets a reference to the given float32 and assigns it to the SelectedPrice field.
+func (o *EffectEntity) SetSelectedPrice(v float32) {
+	o.SelectedPrice = &v
+}
+
+// GetAdjustmentReferenceId returns the AdjustmentReferenceId field value if set, zero value otherwise.
+func (o *EffectEntity) GetAdjustmentReferenceId() string {
+	if o == nil || o.AdjustmentReferenceId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdjustmentReferenceId
+}
+
+// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetAdjustmentReferenceIdOk() (string, bool) {
+	if o == nil || o.AdjustmentReferenceId == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.AdjustmentReferenceId, true
+}
+
+// HasAdjustmentReferenceId returns a boolean if a field has been set.
+func (o *EffectEntity) HasAdjustmentReferenceId() bool {
+	if o != nil && o.AdjustmentReferenceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustmentReferenceId gets a reference to the given string and assigns it to the AdjustmentReferenceId field.
+func (o *EffectEntity) SetAdjustmentReferenceId(v string) {
+	o.AdjustmentReferenceId = &v
 }
 
 type NullableEffectEntity struct {

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **UserId** | Pointer to **int32** | The ID of the user associated with this entity. | 
 **Rules** | Pointer to [**[]Rule**](Rule.md) | Set of rules to apply. | 

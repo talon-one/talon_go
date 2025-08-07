@@ -17,7 +17,7 @@ import (
 
 // Environment struct for Environment
 type Environment struct {
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
@@ -47,6 +47,8 @@ type Environment struct {
 	Collections *[]Collection `json:"collections,omitempty"`
 	// The cart item filters belonging to the Application.
 	ApplicationCartItemFilters *[]ApplicationCif `json:"applicationCartItemFilters,omitempty"`
+	// The price types that this Application can use.
+	PriceTypes *[]PriceType `json:"priceTypes,omitempty"`
 }
 
 // GetId returns the Id field value
@@ -416,6 +418,39 @@ func (o *Environment) HasApplicationCartItemFilters() bool {
 // SetApplicationCartItemFilters gets a reference to the given []ApplicationCif and assigns it to the ApplicationCartItemFilters field.
 func (o *Environment) SetApplicationCartItemFilters(v []ApplicationCif) {
 	o.ApplicationCartItemFilters = &v
+}
+
+// GetPriceTypes returns the PriceTypes field value if set, zero value otherwise.
+func (o *Environment) GetPriceTypes() []PriceType {
+	if o == nil || o.PriceTypes == nil {
+		var ret []PriceType
+		return ret
+	}
+	return *o.PriceTypes
+}
+
+// GetPriceTypesOk returns a tuple with the PriceTypes field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Environment) GetPriceTypesOk() ([]PriceType, bool) {
+	if o == nil || o.PriceTypes == nil {
+		var ret []PriceType
+		return ret, false
+	}
+	return *o.PriceTypes, true
+}
+
+// HasPriceTypes returns a boolean if a field has been set.
+func (o *Environment) HasPriceTypes() bool {
+	if o != nil && o.PriceTypes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceTypes gets a reference to the given []PriceType and assigns it to the PriceTypes field.
+func (o *Environment) SetPriceTypes(v []PriceType) {
+	o.PriceTypes = &v
 }
 
 type NullableEnvironment struct {

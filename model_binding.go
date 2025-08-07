@@ -24,6 +24,14 @@ type Binding struct {
 	Expression []interface{} `json:"expression"`
 	// Can be one of the following: - `string` - `number` - `boolean`
 	ValueType *string `json:"valueType,omitempty"`
+	// The minimum value allowed for this placeholder.
+	MinValue *float32 `json:"minValue,omitempty"`
+	// The maximum value allowed for this placeholder.
+	MaxValue *float32 `json:"maxValue,omitempty"`
+	// Id of the attribute attached to the placeholder.
+	AttributeId *int32 `json:"attributeId,omitempty"`
+	// Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.
+	Description *string `json:"description,omitempty"`
 }
 
 // GetName returns the Name field value
@@ -120,6 +128,138 @@ func (o *Binding) HasValueType() bool {
 // SetValueType gets a reference to the given string and assigns it to the ValueType field.
 func (o *Binding) SetValueType(v string) {
 	o.ValueType = &v
+}
+
+// GetMinValue returns the MinValue field value if set, zero value otherwise.
+func (o *Binding) GetMinValue() float32 {
+	if o == nil || o.MinValue == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MinValue
+}
+
+// GetMinValueOk returns a tuple with the MinValue field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Binding) GetMinValueOk() (float32, bool) {
+	if o == nil || o.MinValue == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.MinValue, true
+}
+
+// HasMinValue returns a boolean if a field has been set.
+func (o *Binding) HasMinValue() bool {
+	if o != nil && o.MinValue != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMinValue gets a reference to the given float32 and assigns it to the MinValue field.
+func (o *Binding) SetMinValue(v float32) {
+	o.MinValue = &v
+}
+
+// GetMaxValue returns the MaxValue field value if set, zero value otherwise.
+func (o *Binding) GetMaxValue() float32 {
+	if o == nil || o.MaxValue == nil {
+		var ret float32
+		return ret
+	}
+	return *o.MaxValue
+}
+
+// GetMaxValueOk returns a tuple with the MaxValue field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Binding) GetMaxValueOk() (float32, bool) {
+	if o == nil || o.MaxValue == nil {
+		var ret float32
+		return ret, false
+	}
+	return *o.MaxValue, true
+}
+
+// HasMaxValue returns a boolean if a field has been set.
+func (o *Binding) HasMaxValue() bool {
+	if o != nil && o.MaxValue != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxValue gets a reference to the given float32 and assigns it to the MaxValue field.
+func (o *Binding) SetMaxValue(v float32) {
+	o.MaxValue = &v
+}
+
+// GetAttributeId returns the AttributeId field value if set, zero value otherwise.
+func (o *Binding) GetAttributeId() int32 {
+	if o == nil || o.AttributeId == nil {
+		var ret int32
+		return ret
+	}
+	return *o.AttributeId
+}
+
+// GetAttributeIdOk returns a tuple with the AttributeId field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Binding) GetAttributeIdOk() (int32, bool) {
+	if o == nil || o.AttributeId == nil {
+		var ret int32
+		return ret, false
+	}
+	return *o.AttributeId, true
+}
+
+// HasAttributeId returns a boolean if a field has been set.
+func (o *Binding) HasAttributeId() bool {
+	if o != nil && o.AttributeId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAttributeId gets a reference to the given int32 and assigns it to the AttributeId field.
+func (o *Binding) SetAttributeId(v int32) {
+	o.AttributeId = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Binding) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// and a boolean to check if the value has been set.
+func (o *Binding) GetDescriptionOk() (string, bool) {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret, false
+	}
+	return *o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Binding) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Binding) SetDescription(v string) {
+	o.Description = &v
 }
 
 type NullableBinding struct {

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Name** | Pointer to **string** | The name of the Application cart item filter used in API requests. | 
 **Description** | Pointer to **string** | A short description of the Application cart item filter. | [optional] 

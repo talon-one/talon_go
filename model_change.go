@@ -17,7 +17,7 @@ import (
 
 // Change struct for Change
 type Change struct {
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
-**Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
+**Id** | Pointer to **int32** | The internal ID of the coupon. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The time the coupon was created. | 
 **CampaignId** | Pointer to **int32** | The ID of the campaign that owns this entity. | 
 **Value** | Pointer to **string** | The coupon code. | 
 **UsageLimit** | Pointer to **int32** | The number of times the coupon code can be redeemed. &#x60;0&#x60; means unlimited redemptions but any campaign usage limits will still apply.  | 

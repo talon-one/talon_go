@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ProgramID** | Pointer to **int32** | The ID of the loyalty program that owns this entity. | 
 **ProgramName** | Pointer to **string** | The integration name of the loyalty program that owns this entity. | [optional] 

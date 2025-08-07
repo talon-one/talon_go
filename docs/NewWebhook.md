@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **ApplicationIds** | Pointer to **[]int32** | The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in &#x60;All Applications&#x60;.  | 
 **Title** | Pointer to **string** | Name or title for this webhook. | 
 **Description** | Pointer to **string** | A description of the webhook. | [optional] 
+**Draft** | Pointer to **bool** | Indicates if the webhook is a draft. | 
 **Verb** | Pointer to **string** | API method for this webhook. | 
 **Url** | Pointer to **string** | API URL (supports templating using parameters) for this webhook. | 
 **Headers** | Pointer to **[]string** | List of API HTTP headers for this webhook. | 
@@ -90,6 +91,31 @@ HasDescription returns a boolean if a field has been set.
 `func (o *NewWebhook) SetDescription(v string)`
 
 SetDescription gets a reference to the given string and assigns it to the Description field.
+
+### GetDraft
+
+`func (o *NewWebhook) GetDraft() bool`
+
+GetDraft returns the Draft field if non-nil, zero value otherwise.
+
+### GetDraftOk
+
+`func (o *NewWebhook) GetDraftOk() (bool, bool)`
+
+GetDraftOk returns a tuple with the Draft field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### HasDraft
+
+`func (o *NewWebhook) HasDraft() bool`
+
+HasDraft returns a boolean if a field has been set.
+
+### SetDraft
+
+`func (o *NewWebhook) SetDraft(v bool)`
+
+SetDraft gets a reference to the given bool and assigns it to the Draft field.
 
 ### GetVerb
 

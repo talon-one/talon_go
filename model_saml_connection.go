@@ -35,7 +35,7 @@ type SamlConnection struct {
 	MetadataURL *string `json:"metadataURL,omitempty"`
 	// The application-defined unique identifier that is the intended audience of the SAML assertion. This is most often the SP Entity ID of your application. When not specified, the ACS URL will be used.
 	AudienceURI string `json:"audienceURI"`
-	// Internal ID of this entity.
+	// The internal ID of this entity.
 	Id int32 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`

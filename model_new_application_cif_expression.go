@@ -118,7 +118,7 @@ func (o *NewApplicationCifExpression) HasExpression() bool {
 	return false
 }
 
-// SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
+// SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
 func (o *NewApplicationCifExpression) SetExpression(v []interface{}) {
 	o.Expression = v
 }

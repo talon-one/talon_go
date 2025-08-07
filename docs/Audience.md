@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **Name** | Pointer to **string** | The human-friendly display name for this audience. | 
 **Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | Internal ID of this entity. | 
+**Id** | Pointer to **int32** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional] 
 **CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
@@ -136,7 +136,7 @@ HasExpression returns a boolean if a field has been set.
 
 `func (o *ApplicationCifExpression) SetExpression(v []interface{})`
 
-SetExpression gets a reference to the given []interface{} and assigns it to the Expression field.
+SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
 
 ### GetApplicationId
 
