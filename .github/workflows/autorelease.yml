@@ -89,7 +89,7 @@ jobs:
       - name: Create Git tag
         if: ${{ steps.get_version.outputs.version != '' }}
         run: |
-          ver="${{ steps.get_version.outputs.version }}"
+          ver="v${{ steps.get_version.outputs.version }}"
           git tag -f "$ver" "$GITHUB_SHA"
           git push -f origin "refs/tags/$ver"
 
@@ -98,7 +98,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ver="${{ steps.get_version.outputs.version }}"
+          ver="v${{ steps.get_version.outputs.version }}"
           notes_file="${{ steps.relnotes.outputs.notes_file }}"
 
           if gh release view "$ver" &>/dev/null; then
