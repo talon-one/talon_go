@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,25 @@ type UpdateStore struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
+// NewUpdateStore instantiates a new UpdateStore object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateStore(name string, description string) *UpdateStore {
+	this := UpdateStore{}
+	this.Name = name
+	this.Description = description
+	return &this
+}
+
+// NewUpdateStoreWithDefaults instantiates a new UpdateStore object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateStoreWithDefaults() *UpdateStore {
+	this := UpdateStore{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *UpdateStore) GetName() string {
 	if o == nil {
@@ -32,6 +50,15 @@ func (o *UpdateStore) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *UpdateStore) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -49,6 +76,15 @@ func (o *UpdateStore) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *UpdateStore) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *UpdateStore) SetDescription(v string) {
 	o.Description = v
@@ -63,14 +99,13 @@ func (o *UpdateStore) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateStore) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *UpdateStore) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -87,25 +122,52 @@ func (o *UpdateStore) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o UpdateStore) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateStore struct {
-	Value        UpdateStore
-	ExplicitNull bool
+	value *UpdateStore
+	isSet bool
+}
+
+func (v NullableUpdateStore) Get() *UpdateStore {
+	return v.value
+}
+
+func (v *NullableUpdateStore) Set(val *UpdateStore) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateStore) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateStore) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateStore(val *UpdateStore) *NullableUpdateStore {
+	return &NullableUpdateStore{value: val, isSet: true}
 }
 
 func (v NullableUpdateStore) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateStore) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

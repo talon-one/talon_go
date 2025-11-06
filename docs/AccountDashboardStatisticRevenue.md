@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewAccountDashboardStatisticRevenue
+
+`func NewAccountDashboardStatisticRevenue(total float32, influenced float32, datetime time.Time, ) *AccountDashboardStatisticRevenue`
+
+NewAccountDashboardStatisticRevenue instantiates a new AccountDashboardStatisticRevenue object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewAccountDashboardStatisticRevenueWithDefaults
+
+`func NewAccountDashboardStatisticRevenueWithDefaults() *AccountDashboardStatisticRevenue`
+
+NewAccountDashboardStatisticRevenueWithDefaults instantiates a new AccountDashboardStatisticRevenue object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetTotal
 
 `func (o *AccountDashboardStatisticRevenue) GetTotal() float32`
@@ -18,22 +35,17 @@ GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *AccountDashboardStatisticRevenue) GetTotalOk() (float32, bool)`
+`func (o *AccountDashboardStatisticRevenue) GetTotalOk() (*float32, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTotal
-
-`func (o *AccountDashboardStatisticRevenue) HasTotal() bool`
-
-HasTotal returns a boolean if a field has been set.
 
 ### SetTotal
 
 `func (o *AccountDashboardStatisticRevenue) SetTotal(v float32)`
 
-SetTotal gets a reference to the given float32 and assigns it to the Total field.
+SetTotal sets Total field to given value.
+
 
 ### GetInfluenced
 
@@ -43,22 +55,17 @@ GetInfluenced returns the Influenced field if non-nil, zero value otherwise.
 
 ### GetInfluencedOk
 
-`func (o *AccountDashboardStatisticRevenue) GetInfluencedOk() (float32, bool)`
+`func (o *AccountDashboardStatisticRevenue) GetInfluencedOk() (*float32, bool)`
 
 GetInfluencedOk returns a tuple with the Influenced field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasInfluenced
-
-`func (o *AccountDashboardStatisticRevenue) HasInfluenced() bool`
-
-HasInfluenced returns a boolean if a field has been set.
 
 ### SetInfluenced
 
 `func (o *AccountDashboardStatisticRevenue) SetInfluenced(v float32)`
 
-SetInfluenced gets a reference to the given float32 and assigns it to the Influenced field.
+SetInfluenced sets Influenced field to given value.
+
 
 ### GetDatetime
 
@@ -68,22 +75,17 @@ GetDatetime returns the Datetime field if non-nil, zero value otherwise.
 
 ### GetDatetimeOk
 
-`func (o *AccountDashboardStatisticRevenue) GetDatetimeOk() (time.Time, bool)`
+`func (o *AccountDashboardStatisticRevenue) GetDatetimeOk() (*time.Time, bool)`
 
 GetDatetimeOk returns a tuple with the Datetime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDatetime
-
-`func (o *AccountDashboardStatisticRevenue) HasDatetime() bool`
-
-HasDatetime returns a boolean if a field has been set.
 
 ### SetDatetime
 
 `func (o *AccountDashboardStatisticRevenue) SetDatetime(v time.Time)`
 
-SetDatetime gets a reference to the given time.Time and assigns it to the Datetime field.
+SetDatetime sets Datetime field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

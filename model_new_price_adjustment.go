@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,7 +19,7 @@ type NewPriceAdjustment struct {
 	// The price type (e.g. the price for members only) to apply to a given SKU.
 	PriceType string `json:"priceType"`
 	// The value of the price type applied to the SKU. When set to `null`, the defined price type no longer applies to the SKU.
-	Price *NullableFloat32 `json:"price,omitempty"`
+	Price NullableFloat32 `json:"price,omitempty"`
 	// A unique reference identifier, e.g. a UUID.
 	ReferenceId string `json:"referenceId"`
 	// The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided.
@@ -29,6 +28,27 @@ type NewPriceAdjustment struct {
 	EffectiveFrom *time.Time `json:"effectiveFrom,omitempty"`
 	// The date and time until which the price adjustment is effective.
 	EffectiveUntil *time.Time `json:"effectiveUntil,omitempty"`
+	// Identifier of the context of this price adjustment (e.g. summer sale).
+	ContextId *string `json:"contextId,omitempty"`
+}
+
+// NewNewPriceAdjustment instantiates a new NewPriceAdjustment object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewPriceAdjustment(priceType string, referenceId string) *NewPriceAdjustment {
+	this := NewPriceAdjustment{}
+	this.PriceType = priceType
+	this.ReferenceId = referenceId
+	return &this
+}
+
+// NewNewPriceAdjustmentWithDefaults instantiates a new NewPriceAdjustment object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewPriceAdjustmentWithDefaults() *NewPriceAdjustment {
+	this := NewPriceAdjustment{}
+	return &this
 }
 
 // GetPriceType returns the PriceType field value
@@ -41,33 +61,42 @@ func (o *NewPriceAdjustment) GetPriceType() string {
 	return o.PriceType
 }
 
+// GetPriceTypeOk returns a tuple with the PriceType field value
+// and a boolean to check if the value has been set.
+func (o *NewPriceAdjustment) GetPriceTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PriceType, true
+}
+
 // SetPriceType sets field value
 func (o *NewPriceAdjustment) SetPriceType(v string) {
 	o.PriceType = v
 }
 
-// GetPrice returns the Price field value if set, zero value otherwise.
-func (o *NewPriceAdjustment) GetPrice() NullableFloat32 {
-	if o == nil || o.Price == nil {
-		var ret NullableFloat32
+// GetPrice returns the Price field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *NewPriceAdjustment) GetPrice() float32 {
+	if o == nil || o.Price.Get() == nil {
+		var ret float32
 		return ret
 	}
-	return *o.Price
+	return *o.Price.Get()
 }
 
-// GetPriceOk returns a tuple with the Price field value if set, zero value otherwise
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewPriceAdjustment) GetPriceOk() (NullableFloat32, bool) {
-	if o == nil || o.Price == nil {
-		var ret NullableFloat32
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *NewPriceAdjustment) GetPriceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return *o.Price, true
+	return o.Price.Get(), o.Price.IsSet()
 }
 
 // HasPrice returns a boolean if a field has been set.
 func (o *NewPriceAdjustment) HasPrice() bool {
-	if o != nil && o.Price != nil {
+	if o != nil && o.Price.IsSet() {
 		return true
 	}
 
@@ -75,8 +104,18 @@ func (o *NewPriceAdjustment) HasPrice() bool {
 }
 
 // SetPrice gets a reference to the given NullableFloat32 and assigns it to the Price field.
-func (o *NewPriceAdjustment) SetPrice(v NullableFloat32) {
-	o.Price = &v
+func (o *NewPriceAdjustment) SetPrice(v float32) {
+	o.Price.Set(&v)
+}
+
+// SetPriceNil sets the value for Price to be an explicit nil
+func (o *NewPriceAdjustment) SetPriceNil() {
+	o.Price.Set(nil)
+}
+
+// UnsetPrice ensures that no value is present for Price, not even an explicit nil
+func (o *NewPriceAdjustment) UnsetPrice() {
+	o.Price.Unset()
 }
 
 // GetReferenceId returns the ReferenceId field value
@@ -87,6 +126,15 @@ func (o *NewPriceAdjustment) GetReferenceId() string {
 	}
 
 	return o.ReferenceId
+}
+
+// GetReferenceIdOk returns a tuple with the ReferenceId field value
+// and a boolean to check if the value has been set.
+func (o *NewPriceAdjustment) GetReferenceIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferenceId, true
 }
 
 // SetReferenceId sets field value
@@ -103,14 +151,13 @@ func (o *NewPriceAdjustment) GetCalculatedAt() time.Time {
 	return *o.CalculatedAt
 }
 
-// GetCalculatedAtOk returns a tuple with the CalculatedAt field value if set, zero value otherwise
+// GetCalculatedAtOk returns a tuple with the CalculatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewPriceAdjustment) GetCalculatedAtOk() (time.Time, bool) {
+func (o *NewPriceAdjustment) GetCalculatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CalculatedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CalculatedAt, true
+	return o.CalculatedAt, true
 }
 
 // HasCalculatedAt returns a boolean if a field has been set.
@@ -136,14 +183,13 @@ func (o *NewPriceAdjustment) GetEffectiveFrom() time.Time {
 	return *o.EffectiveFrom
 }
 
-// GetEffectiveFromOk returns a tuple with the EffectiveFrom field value if set, zero value otherwise
+// GetEffectiveFromOk returns a tuple with the EffectiveFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewPriceAdjustment) GetEffectiveFromOk() (time.Time, bool) {
+func (o *NewPriceAdjustment) GetEffectiveFromOk() (*time.Time, bool) {
 	if o == nil || o.EffectiveFrom == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EffectiveFrom, true
+	return o.EffectiveFrom, true
 }
 
 // HasEffectiveFrom returns a boolean if a field has been set.
@@ -169,14 +215,13 @@ func (o *NewPriceAdjustment) GetEffectiveUntil() time.Time {
 	return *o.EffectiveUntil
 }
 
-// GetEffectiveUntilOk returns a tuple with the EffectiveUntil field value if set, zero value otherwise
+// GetEffectiveUntilOk returns a tuple with the EffectiveUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewPriceAdjustment) GetEffectiveUntilOk() (time.Time, bool) {
+func (o *NewPriceAdjustment) GetEffectiveUntilOk() (*time.Time, bool) {
 	if o == nil || o.EffectiveUntil == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EffectiveUntil, true
+	return o.EffectiveUntil, true
 }
 
 // HasEffectiveUntil returns a boolean if a field has been set.
@@ -193,25 +238,96 @@ func (o *NewPriceAdjustment) SetEffectiveUntil(v time.Time) {
 	o.EffectiveUntil = &v
 }
 
+// GetContextId returns the ContextId field value if set, zero value otherwise.
+func (o *NewPriceAdjustment) GetContextId() string {
+	if o == nil || o.ContextId == nil {
+		var ret string
+		return ret
+	}
+	return *o.ContextId
+}
+
+// GetContextIdOk returns a tuple with the ContextId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewPriceAdjustment) GetContextIdOk() (*string, bool) {
+	if o == nil || o.ContextId == nil {
+		return nil, false
+	}
+	return o.ContextId, true
+}
+
+// HasContextId returns a boolean if a field has been set.
+func (o *NewPriceAdjustment) HasContextId() bool {
+	if o != nil && o.ContextId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetContextId gets a reference to the given string and assigns it to the ContextId field.
+func (o *NewPriceAdjustment) SetContextId(v string) {
+	o.ContextId = &v
+}
+
+func (o NewPriceAdjustment) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["priceType"] = o.PriceType
+	}
+	if o.Price.IsSet() {
+		toSerialize["price"] = o.Price.Get()
+	}
+	if true {
+		toSerialize["referenceId"] = o.ReferenceId
+	}
+	if o.CalculatedAt != nil {
+		toSerialize["calculatedAt"] = o.CalculatedAt
+	}
+	if o.EffectiveFrom != nil {
+		toSerialize["effectiveFrom"] = o.EffectiveFrom
+	}
+	if o.EffectiveUntil != nil {
+		toSerialize["effectiveUntil"] = o.EffectiveUntil
+	}
+	if o.ContextId != nil {
+		toSerialize["contextId"] = o.ContextId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewPriceAdjustment struct {
-	Value        NewPriceAdjustment
-	ExplicitNull bool
+	value *NewPriceAdjustment
+	isSet bool
+}
+
+func (v NullableNewPriceAdjustment) Get() *NewPriceAdjustment {
+	return v.value
+}
+
+func (v *NullableNewPriceAdjustment) Set(val *NewPriceAdjustment) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewPriceAdjustment) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewPriceAdjustment) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewPriceAdjustment(val *NewPriceAdjustment) *NullableNewPriceAdjustment {
+	return &NullableNewPriceAdjustment{value: val, isSet: true}
 }
 
 func (v NullableNewPriceAdjustment) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewPriceAdjustment) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

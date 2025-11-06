@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // Store struct for Store
 type Store struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The name of the store.
@@ -30,25 +29,58 @@ type Store struct {
 	// The integration ID of the store. You choose this ID when you create a store.  **Note**: You cannot edit the `integrationId` after the store has been created.
 	IntegrationId string `json:"integrationId"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// Timestamp of the most recent update on this entity.
 	Updated time.Time `json:"updated"`
 	// A list of IDs of the campaigns that are linked with current store.
-	LinkedCampaignIds *[]int32 `json:"linkedCampaignIds,omitempty"`
+	LinkedCampaignIds *[]int64 `json:"linkedCampaignIds,omitempty"`
+}
+
+// NewStore instantiates a new Store object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildStore(id int64, created time.Time, name string, description string, integrationId string, applicationId int64, updated time.Time) *Store {
+	this := Store{}
+	this.Id = id
+	this.Created = created
+	this.Name = name
+	this.Description = description
+	this.IntegrationId = integrationId
+	this.ApplicationId = applicationId
+	this.Updated = updated
+	return &this
+}
+
+// NewStoreWithDefaults instantiates a new Store object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStoreWithDefaults() *Store {
+	this := Store{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Store) GetId() int32 {
+func (o *Store) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Store) SetId(v int32) {
+func (o *Store) SetId(v int64) {
 	o.Id = v
 }
 
@@ -60,6 +92,15 @@ func (o *Store) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -77,6 +118,15 @@ func (o *Store) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *Store) SetName(v string) {
 	o.Name = v
@@ -90,6 +140,15 @@ func (o *Store) GetDescription() string {
 	}
 
 	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
 }
 
 // SetDescription sets field value
@@ -106,14 +165,13 @@ func (o *Store) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Store) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *Store) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -140,23 +198,41 @@ func (o *Store) GetIntegrationId() string {
 	return o.IntegrationId
 }
 
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
+}
+
 // SetIntegrationId sets field value
 func (o *Store) SetIntegrationId(v string) {
 	o.IntegrationId = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *Store) GetApplicationId() int32 {
+func (o *Store) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *Store) SetApplicationId(v int32) {
+func (o *Store) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -170,28 +246,36 @@ func (o *Store) GetUpdated() time.Time {
 	return o.Updated
 }
 
+// GetUpdatedOk returns a tuple with the Updated field value
+// and a boolean to check if the value has been set.
+func (o *Store) GetUpdatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Updated, true
+}
+
 // SetUpdated sets field value
 func (o *Store) SetUpdated(v time.Time) {
 	o.Updated = v
 }
 
 // GetLinkedCampaignIds returns the LinkedCampaignIds field value if set, zero value otherwise.
-func (o *Store) GetLinkedCampaignIds() []int32 {
+func (o *Store) GetLinkedCampaignIds() []int64 {
 	if o == nil || o.LinkedCampaignIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.LinkedCampaignIds
 }
 
-// GetLinkedCampaignIdsOk returns a tuple with the LinkedCampaignIds field value if set, zero value otherwise
+// GetLinkedCampaignIdsOk returns a tuple with the LinkedCampaignIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Store) GetLinkedCampaignIdsOk() ([]int32, bool) {
+func (o *Store) GetLinkedCampaignIdsOk() (*[]int64, bool) {
 	if o == nil || o.LinkedCampaignIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.LinkedCampaignIds, true
+	return o.LinkedCampaignIds, true
 }
 
 // HasLinkedCampaignIds returns a boolean if a field has been set.
@@ -203,30 +287,75 @@ func (o *Store) HasLinkedCampaignIds() bool {
 	return false
 }
 
-// SetLinkedCampaignIds gets a reference to the given []int32 and assigns it to the LinkedCampaignIds field.
-func (o *Store) SetLinkedCampaignIds(v []int32) {
+// SetLinkedCampaignIds gets a reference to the given []int64 and assigns it to the LinkedCampaignIds field.
+func (o *Store) SetLinkedCampaignIds(v []int64) {
 	o.LinkedCampaignIds = &v
 }
 
+func (o Store) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["updated"] = o.Updated
+	}
+	if o.LinkedCampaignIds != nil {
+		toSerialize["linkedCampaignIds"] = o.LinkedCampaignIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStore struct {
-	Value        Store
-	ExplicitNull bool
+	value *Store
+	isSet bool
+}
+
+func (v NullableStore) Get() *Store {
+	return v.value
+}
+
+func (v *NullableStore) Set(val *Store) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStore) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStore) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableStore(val *Store) *NullableStore {
+	return &NullableStore{value: val, isSet: true}
 }
 
 func (v NullableStore) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStore) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

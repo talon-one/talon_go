@@ -1,4 +1,4 @@
-.PHONY: apply-patches apply-sed-changes update-pkg-cache
+.PHONY: apply-patches apply-sed-changes update-pkg-cache apply-ruleengine-patches
 
 update-pkg-cache:
 	@echo "Updating new package version..."
@@ -30,3 +30,14 @@ apply-sed-changes:
 	@sed -i -f patches/expression.sed docs/ApplicationCifExpression.md
 	@sed -i -f patches/expression.sed docs/Binding.md
 	@sed -i -f patches/expression.sed docs/NewApplicationCifExpression.md
+
+rename-constructors:
+	@find . -name 'model_*.go' -print0 | \
+		xargs -0 perl -0pi -e 's/func(\s+)New([A-Za-z0-9_]+)(\s*)\(([^)]*)\)(\s*)\*(\s*)\2\b/func$$1Build$$2$$3($$4)$$5*$$6$$2/g'
+
+apply-ruleengine-patches:
+	@for patch in $(wildcard patches/ruleengine-types/*.patch); do \
+		target=$$(basename $$patch .patch).go; \
+		echo "Applying $$patch → $$target"; \
+		gopatch -p "$$patch" "$$target"; \
+	done

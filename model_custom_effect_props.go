@@ -10,14 +10,13 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CustomEffectProps Effect containing custom payload.
 type CustomEffectProps struct {
 	// The ID of the custom effect that was triggered.
-	EffectId int32 `json:"effectId"`
+	EffectId int64 `json:"effectId"`
 	// The type of the custom effect.
 	Name string `json:"name"`
 	// The index of the item in the cart item list to which the custom effect is applied.
@@ -25,25 +24,54 @@ type CustomEffectProps struct {
 	// For cart items with quantity > 1, the sub position indicates to which item unit the custom effect is applied.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
 	// The position of the bundle in a list of item bundles created from the same bundle definition.
-	BundleIndex *int32 `json:"bundleIndex,omitempty"`
+	BundleIndex *int64 `json:"bundleIndex,omitempty"`
 	// The name of the bundle definition.
 	BundleName *string `json:"bundleName,omitempty"`
 	// The JSON payload of the custom effect.
 	Payload map[string]interface{} `json:"payload"`
 }
 
+// NewCustomEffectProps instantiates a new CustomEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomEffectProps(effectId int64, name string, payload map[string]interface{}) *CustomEffectProps {
+	this := CustomEffectProps{}
+	this.EffectId = effectId
+	this.Name = name
+	this.Payload = payload
+	return &this
+}
+
+// NewCustomEffectPropsWithDefaults instantiates a new CustomEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomEffectPropsWithDefaults() *CustomEffectProps {
+	this := CustomEffectProps{}
+	return &this
+}
+
 // GetEffectId returns the EffectId field value
-func (o *CustomEffectProps) GetEffectId() int32 {
+func (o *CustomEffectProps) GetEffectId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.EffectId
 }
 
+// GetEffectIdOk returns a tuple with the EffectId field value
+// and a boolean to check if the value has been set.
+func (o *CustomEffectProps) GetEffectIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EffectId, true
+}
+
 // SetEffectId sets field value
-func (o *CustomEffectProps) SetEffectId(v int32) {
+func (o *CustomEffectProps) SetEffectId(v int64) {
 	o.EffectId = v
 }
 
@@ -55,6 +83,15 @@ func (o *CustomEffectProps) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CustomEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -71,14 +108,13 @@ func (o *CustomEffectProps) GetCartItemPosition() float32 {
 	return *o.CartItemPosition
 }
 
-// GetCartItemPositionOk returns a tuple with the CartItemPosition field value if set, zero value otherwise
+// GetCartItemPositionOk returns a tuple with the CartItemPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomEffectProps) GetCartItemPositionOk() (float32, bool) {
+func (o *CustomEffectProps) GetCartItemPositionOk() (*float32, bool) {
 	if o == nil || o.CartItemPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemPosition, true
+	return o.CartItemPosition, true
 }
 
 // HasCartItemPosition returns a boolean if a field has been set.
@@ -104,14 +140,13 @@ func (o *CustomEffectProps) GetCartItemSubPosition() float32 {
 	return *o.CartItemSubPosition
 }
 
-// GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field value if set, zero value otherwise
+// GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomEffectProps) GetCartItemSubPositionOk() (float32, bool) {
+func (o *CustomEffectProps) GetCartItemSubPositionOk() (*float32, bool) {
 	if o == nil || o.CartItemSubPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemSubPosition, true
+	return o.CartItemSubPosition, true
 }
 
 // HasCartItemSubPosition returns a boolean if a field has been set.
@@ -129,22 +164,21 @@ func (o *CustomEffectProps) SetCartItemSubPosition(v float32) {
 }
 
 // GetBundleIndex returns the BundleIndex field value if set, zero value otherwise.
-func (o *CustomEffectProps) GetBundleIndex() int32 {
+func (o *CustomEffectProps) GetBundleIndex() int64 {
 	if o == nil || o.BundleIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BundleIndex
 }
 
-// GetBundleIndexOk returns a tuple with the BundleIndex field value if set, zero value otherwise
+// GetBundleIndexOk returns a tuple with the BundleIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomEffectProps) GetBundleIndexOk() (int32, bool) {
+func (o *CustomEffectProps) GetBundleIndexOk() (*int64, bool) {
 	if o == nil || o.BundleIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BundleIndex, true
+	return o.BundleIndex, true
 }
 
 // HasBundleIndex returns a boolean if a field has been set.
@@ -156,8 +190,8 @@ func (o *CustomEffectProps) HasBundleIndex() bool {
 	return false
 }
 
-// SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
-func (o *CustomEffectProps) SetBundleIndex(v int32) {
+// SetBundleIndex gets a reference to the given int64 and assigns it to the BundleIndex field.
+func (o *CustomEffectProps) SetBundleIndex(v int64) {
 	o.BundleIndex = &v
 }
 
@@ -170,14 +204,13 @@ func (o *CustomEffectProps) GetBundleName() string {
 	return *o.BundleName
 }
 
-// GetBundleNameOk returns a tuple with the BundleName field value if set, zero value otherwise
+// GetBundleNameOk returns a tuple with the BundleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomEffectProps) GetBundleNameOk() (string, bool) {
+func (o *CustomEffectProps) GetBundleNameOk() (*string, bool) {
 	if o == nil || o.BundleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BundleName, true
+	return o.BundleName, true
 }
 
 // HasBundleName returns a boolean if a field has been set.
@@ -204,30 +237,78 @@ func (o *CustomEffectProps) GetPayload() map[string]interface{} {
 	return o.Payload
 }
 
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *CustomEffectProps) GetPayloadOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
+}
+
 // SetPayload sets field value
 func (o *CustomEffectProps) SetPayload(v map[string]interface{}) {
 	o.Payload = v
 }
 
+func (o CustomEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["effectId"] = o.EffectId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.CartItemPosition != nil {
+		toSerialize["cartItemPosition"] = o.CartItemPosition
+	}
+	if o.CartItemSubPosition != nil {
+		toSerialize["cartItemSubPosition"] = o.CartItemSubPosition
+	}
+	if o.BundleIndex != nil {
+		toSerialize["bundleIndex"] = o.BundleIndex
+	}
+	if o.BundleName != nil {
+		toSerialize["bundleName"] = o.BundleName
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomEffectProps struct {
-	Value        CustomEffectProps
-	ExplicitNull bool
+	value *CustomEffectProps
+	isSet bool
+}
+
+func (v NullableCustomEffectProps) Get() *CustomEffectProps {
+	return v.value
+}
+
+func (v *NullableCustomEffectProps) Set(val *CustomEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomEffectProps(val *CustomEffectProps) *NullableCustomEffectProps {
+	return &NullableCustomEffectProps{value: val, isSet: true}
 }
 
 func (v NullableCustomEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

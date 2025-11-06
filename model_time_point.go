@@ -10,43 +10,61 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // TimePoint The absolute duration after which the achievement ends and resets for a particular customer profile.  **Note**: The duration follows the time zone of the Application this achievement belongs to.
 type TimePoint struct {
 	// The achievement ends and resets in this month.  **Note**: Only applicable if the period is set to `Y`.
-	Month *int32 `json:"month,omitempty"`
+	Month *int64 `json:"month,omitempty"`
 	// The achievement ends and resets on this day of the month.  **Note**: Only applicable if the period is set to `Y` or `M`.
-	DayOfMonth *int32 `json:"dayOfMonth,omitempty"`
+	DayOfMonth *int64 `json:"dayOfMonth,omitempty"`
 	// The achievement ends and resets on this day of the week. `1` represents `Monday` and `7` represents `Sunday`.  **Note**: Only applicable if the period is set to `W`.
-	DayOfWeek *int32 `json:"dayOfWeek,omitempty"`
+	DayOfWeek *int64 `json:"dayOfWeek,omitempty"`
 	// The achievement ends and resets at this hour.
-	Hour int32 `json:"hour"`
+	Hour int64 `json:"hour"`
 	// The achievement ends and resets at this minute.
-	Minute int32 `json:"minute"`
+	Minute int64 `json:"minute"`
 	// The achievement ends and resets at this second.
-	Second int32 `json:"second"`
+	Second int64 `json:"second"`
+}
+
+// NewTimePoint instantiates a new TimePoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildTimePoint(hour int64, minute int64, second int64) *TimePoint {
+	this := TimePoint{}
+	this.Hour = hour
+	this.Minute = minute
+	this.Second = second
+	return &this
+}
+
+// NewTimePointWithDefaults instantiates a new TimePoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTimePointWithDefaults() *TimePoint {
+	this := TimePoint{}
+	return &this
 }
 
 // GetMonth returns the Month field value if set, zero value otherwise.
-func (o *TimePoint) GetMonth() int32 {
+func (o *TimePoint) GetMonth() int64 {
 	if o == nil || o.Month == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Month
 }
 
-// GetMonthOk returns a tuple with the Month field value if set, zero value otherwise
+// GetMonthOk returns a tuple with the Month field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimePoint) GetMonthOk() (int32, bool) {
+func (o *TimePoint) GetMonthOk() (*int64, bool) {
 	if o == nil || o.Month == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Month, true
+	return o.Month, true
 }
 
 // HasMonth returns a boolean if a field has been set.
@@ -58,28 +76,27 @@ func (o *TimePoint) HasMonth() bool {
 	return false
 }
 
-// SetMonth gets a reference to the given int32 and assigns it to the Month field.
-func (o *TimePoint) SetMonth(v int32) {
+// SetMonth gets a reference to the given int64 and assigns it to the Month field.
+func (o *TimePoint) SetMonth(v int64) {
 	o.Month = &v
 }
 
 // GetDayOfMonth returns the DayOfMonth field value if set, zero value otherwise.
-func (o *TimePoint) GetDayOfMonth() int32 {
+func (o *TimePoint) GetDayOfMonth() int64 {
 	if o == nil || o.DayOfMonth == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DayOfMonth
 }
 
-// GetDayOfMonthOk returns a tuple with the DayOfMonth field value if set, zero value otherwise
+// GetDayOfMonthOk returns a tuple with the DayOfMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimePoint) GetDayOfMonthOk() (int32, bool) {
+func (o *TimePoint) GetDayOfMonthOk() (*int64, bool) {
 	if o == nil || o.DayOfMonth == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DayOfMonth, true
+	return o.DayOfMonth, true
 }
 
 // HasDayOfMonth returns a boolean if a field has been set.
@@ -91,28 +108,27 @@ func (o *TimePoint) HasDayOfMonth() bool {
 	return false
 }
 
-// SetDayOfMonth gets a reference to the given int32 and assigns it to the DayOfMonth field.
-func (o *TimePoint) SetDayOfMonth(v int32) {
+// SetDayOfMonth gets a reference to the given int64 and assigns it to the DayOfMonth field.
+func (o *TimePoint) SetDayOfMonth(v int64) {
 	o.DayOfMonth = &v
 }
 
 // GetDayOfWeek returns the DayOfWeek field value if set, zero value otherwise.
-func (o *TimePoint) GetDayOfWeek() int32 {
+func (o *TimePoint) GetDayOfWeek() int64 {
 	if o == nil || o.DayOfWeek == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DayOfWeek
 }
 
-// GetDayOfWeekOk returns a tuple with the DayOfWeek field value if set, zero value otherwise
+// GetDayOfWeekOk returns a tuple with the DayOfWeek field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimePoint) GetDayOfWeekOk() (int32, bool) {
+func (o *TimePoint) GetDayOfWeekOk() (*int64, bool) {
 	if o == nil || o.DayOfWeek == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DayOfWeek, true
+	return o.DayOfWeek, true
 }
 
 // HasDayOfWeek returns a boolean if a field has been set.
@@ -124,75 +140,138 @@ func (o *TimePoint) HasDayOfWeek() bool {
 	return false
 }
 
-// SetDayOfWeek gets a reference to the given int32 and assigns it to the DayOfWeek field.
-func (o *TimePoint) SetDayOfWeek(v int32) {
+// SetDayOfWeek gets a reference to the given int64 and assigns it to the DayOfWeek field.
+func (o *TimePoint) SetDayOfWeek(v int64) {
 	o.DayOfWeek = &v
 }
 
 // GetHour returns the Hour field value
-func (o *TimePoint) GetHour() int32 {
+func (o *TimePoint) GetHour() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Hour
 }
 
+// GetHourOk returns a tuple with the Hour field value
+// and a boolean to check if the value has been set.
+func (o *TimePoint) GetHourOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Hour, true
+}
+
 // SetHour sets field value
-func (o *TimePoint) SetHour(v int32) {
+func (o *TimePoint) SetHour(v int64) {
 	o.Hour = v
 }
 
 // GetMinute returns the Minute field value
-func (o *TimePoint) GetMinute() int32 {
+func (o *TimePoint) GetMinute() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Minute
 }
 
+// GetMinuteOk returns a tuple with the Minute field value
+// and a boolean to check if the value has been set.
+func (o *TimePoint) GetMinuteOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Minute, true
+}
+
 // SetMinute sets field value
-func (o *TimePoint) SetMinute(v int32) {
+func (o *TimePoint) SetMinute(v int64) {
 	o.Minute = v
 }
 
 // GetSecond returns the Second field value
-func (o *TimePoint) GetSecond() int32 {
+func (o *TimePoint) GetSecond() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Second
 }
 
+// GetSecondOk returns a tuple with the Second field value
+// and a boolean to check if the value has been set.
+func (o *TimePoint) GetSecondOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Second, true
+}
+
 // SetSecond sets field value
-func (o *TimePoint) SetSecond(v int32) {
+func (o *TimePoint) SetSecond(v int64) {
 	o.Second = v
 }
 
+func (o TimePoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Month != nil {
+		toSerialize["month"] = o.Month
+	}
+	if o.DayOfMonth != nil {
+		toSerialize["dayOfMonth"] = o.DayOfMonth
+	}
+	if o.DayOfWeek != nil {
+		toSerialize["dayOfWeek"] = o.DayOfWeek
+	}
+	if true {
+		toSerialize["hour"] = o.Hour
+	}
+	if true {
+		toSerialize["minute"] = o.Minute
+	}
+	if true {
+		toSerialize["second"] = o.Second
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTimePoint struct {
-	Value        TimePoint
-	ExplicitNull bool
+	value *TimePoint
+	isSet bool
+}
+
+func (v NullableTimePoint) Get() *TimePoint {
+	return v.value
+}
+
+func (v *NullableTimePoint) Set(val *TimePoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTimePoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTimePoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableTimePoint(val *TimePoint) *NullableTimePoint {
+	return &NullableTimePoint{value: val, isSet: true}
 }
 
 func (v NullableTimePoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTimePoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

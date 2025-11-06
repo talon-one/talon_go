@@ -10,32 +10,58 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // LoyaltyProgramEntity struct for LoyaltyProgramEntity
 type LoyaltyProgramEntity struct {
 	// The ID of the loyalty program that owns this entity.
-	ProgramID int32 `json:"programID"`
+	ProgramID int64 `json:"programID"`
 	// The integration name of the loyalty program that owns this entity.
 	ProgramName *string `json:"programName,omitempty"`
 	// The Campaign Manager-displayed name of the loyalty program that owns this entity.
 	ProgramTitle *string `json:"programTitle,omitempty"`
 }
 
+// NewLoyaltyProgramEntity instantiates a new LoyaltyProgramEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyProgramEntity(programID int64) *LoyaltyProgramEntity {
+	this := LoyaltyProgramEntity{}
+	this.ProgramID = programID
+	return &this
+}
+
+// NewLoyaltyProgramEntityWithDefaults instantiates a new LoyaltyProgramEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyProgramEntityWithDefaults() *LoyaltyProgramEntity {
+	this := LoyaltyProgramEntity{}
+	return &this
+}
+
 // GetProgramID returns the ProgramID field value
-func (o *LoyaltyProgramEntity) GetProgramID() int32 {
+func (o *LoyaltyProgramEntity) GetProgramID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramID
 }
 
+// GetProgramIDOk returns a tuple with the ProgramID field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramEntity) GetProgramIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramID, true
+}
+
 // SetProgramID sets field value
-func (o *LoyaltyProgramEntity) SetProgramID(v int32) {
+func (o *LoyaltyProgramEntity) SetProgramID(v int64) {
 	o.ProgramID = v
 }
 
@@ -48,14 +74,13 @@ func (o *LoyaltyProgramEntity) GetProgramName() string {
 	return *o.ProgramName
 }
 
-// GetProgramNameOk returns a tuple with the ProgramName field value if set, zero value otherwise
+// GetProgramNameOk returns a tuple with the ProgramName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramEntity) GetProgramNameOk() (string, bool) {
+func (o *LoyaltyProgramEntity) GetProgramNameOk() (*string, bool) {
 	if o == nil || o.ProgramName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramName, true
+	return o.ProgramName, true
 }
 
 // HasProgramName returns a boolean if a field has been set.
@@ -81,14 +106,13 @@ func (o *LoyaltyProgramEntity) GetProgramTitle() string {
 	return *o.ProgramTitle
 }
 
-// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, zero value otherwise
+// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramEntity) GetProgramTitleOk() (string, bool) {
+func (o *LoyaltyProgramEntity) GetProgramTitleOk() (*string, bool) {
 	if o == nil || o.ProgramTitle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramTitle, true
+	return o.ProgramTitle, true
 }
 
 // HasProgramTitle returns a boolean if a field has been set.
@@ -105,25 +129,52 @@ func (o *LoyaltyProgramEntity) SetProgramTitle(v string) {
 	o.ProgramTitle = &v
 }
 
+func (o LoyaltyProgramEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["programID"] = o.ProgramID
+	}
+	if o.ProgramName != nil {
+		toSerialize["programName"] = o.ProgramName
+	}
+	if o.ProgramTitle != nil {
+		toSerialize["programTitle"] = o.ProgramTitle
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyProgramEntity struct {
-	Value        LoyaltyProgramEntity
-	ExplicitNull bool
+	value *LoyaltyProgramEntity
+	isSet bool
+}
+
+func (v NullableLoyaltyProgramEntity) Get() *LoyaltyProgramEntity {
+	return v.value
+}
+
+func (v *NullableLoyaltyProgramEntity) Set(val *LoyaltyProgramEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyProgramEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyProgramEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyProgramEntity(val *LoyaltyProgramEntity) *NullableLoyaltyProgramEntity {
+	return &NullableLoyaltyProgramEntity{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyProgramEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyProgramEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

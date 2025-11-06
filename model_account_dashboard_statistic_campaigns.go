@@ -10,84 +10,157 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AccountDashboardStatisticCampaigns struct for AccountDashboardStatisticCampaigns
 type AccountDashboardStatisticCampaigns struct {
 	// Number of campaigns that are active and live (across all Applications).
-	Live int32 `json:"live"`
+	Live int64 `json:"live"`
 	// Campaigns scheduled to expire sometime in the next 7 days.
-	EndingSoon int32 `json:"endingSoon"`
+	EndingSoon int64 `json:"endingSoon"`
 	// Campaigns with less than 10% of budget left.
-	LowOnBudget int32 `json:"lowOnBudget"`
+	LowOnBudget int64 `json:"lowOnBudget"`
+}
+
+// NewAccountDashboardStatisticCampaigns instantiates a new AccountDashboardStatisticCampaigns object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountDashboardStatisticCampaigns(live int64, endingSoon int64, lowOnBudget int64) *AccountDashboardStatisticCampaigns {
+	this := AccountDashboardStatisticCampaigns{}
+	this.Live = live
+	this.EndingSoon = endingSoon
+	this.LowOnBudget = lowOnBudget
+	return &this
+}
+
+// NewAccountDashboardStatisticCampaignsWithDefaults instantiates a new AccountDashboardStatisticCampaigns object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountDashboardStatisticCampaignsWithDefaults() *AccountDashboardStatisticCampaigns {
+	this := AccountDashboardStatisticCampaigns{}
+	return &this
 }
 
 // GetLive returns the Live field value
-func (o *AccountDashboardStatisticCampaigns) GetLive() int32 {
+func (o *AccountDashboardStatisticCampaigns) GetLive() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Live
 }
 
+// GetLiveOk returns a tuple with the Live field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticCampaigns) GetLiveOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Live, true
+}
+
 // SetLive sets field value
-func (o *AccountDashboardStatisticCampaigns) SetLive(v int32) {
+func (o *AccountDashboardStatisticCampaigns) SetLive(v int64) {
 	o.Live = v
 }
 
 // GetEndingSoon returns the EndingSoon field value
-func (o *AccountDashboardStatisticCampaigns) GetEndingSoon() int32 {
+func (o *AccountDashboardStatisticCampaigns) GetEndingSoon() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.EndingSoon
 }
 
+// GetEndingSoonOk returns a tuple with the EndingSoon field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticCampaigns) GetEndingSoonOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndingSoon, true
+}
+
 // SetEndingSoon sets field value
-func (o *AccountDashboardStatisticCampaigns) SetEndingSoon(v int32) {
+func (o *AccountDashboardStatisticCampaigns) SetEndingSoon(v int64) {
 	o.EndingSoon = v
 }
 
 // GetLowOnBudget returns the LowOnBudget field value
-func (o *AccountDashboardStatisticCampaigns) GetLowOnBudget() int32 {
+func (o *AccountDashboardStatisticCampaigns) GetLowOnBudget() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LowOnBudget
 }
 
+// GetLowOnBudgetOk returns a tuple with the LowOnBudget field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticCampaigns) GetLowOnBudgetOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LowOnBudget, true
+}
+
 // SetLowOnBudget sets field value
-func (o *AccountDashboardStatisticCampaigns) SetLowOnBudget(v int32) {
+func (o *AccountDashboardStatisticCampaigns) SetLowOnBudget(v int64) {
 	o.LowOnBudget = v
 }
 
+func (o AccountDashboardStatisticCampaigns) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["live"] = o.Live
+	}
+	if true {
+		toSerialize["endingSoon"] = o.EndingSoon
+	}
+	if true {
+		toSerialize["lowOnBudget"] = o.LowOnBudget
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountDashboardStatisticCampaigns struct {
-	Value        AccountDashboardStatisticCampaigns
-	ExplicitNull bool
+	value *AccountDashboardStatisticCampaigns
+	isSet bool
+}
+
+func (v NullableAccountDashboardStatisticCampaigns) Get() *AccountDashboardStatisticCampaigns {
+	return v.value
+}
+
+func (v *NullableAccountDashboardStatisticCampaigns) Set(val *AccountDashboardStatisticCampaigns) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountDashboardStatisticCampaigns) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountDashboardStatisticCampaigns) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountDashboardStatisticCampaigns(val *AccountDashboardStatisticCampaigns) *NullableAccountDashboardStatisticCampaigns {
+	return &NullableAccountDashboardStatisticCampaigns{value: val, isSet: true}
 }
 
 func (v NullableAccountDashboardStatisticCampaigns) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountDashboardStatisticCampaigns) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

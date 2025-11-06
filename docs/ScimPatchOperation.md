@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewScimPatchOperation
+
+`func NewScimPatchOperation(op string, ) *ScimPatchOperation`
+
+NewScimPatchOperation instantiates a new ScimPatchOperation object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewScimPatchOperationWithDefaults
+
+`func NewScimPatchOperationWithDefaults() *ScimPatchOperation`
+
+NewScimPatchOperationWithDefaults instantiates a new ScimPatchOperation object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetOp
 
 `func (o *ScimPatchOperation) GetOp() string`
@@ -18,22 +35,17 @@ GetOp returns the Op field if non-nil, zero value otherwise.
 
 ### GetOpOk
 
-`func (o *ScimPatchOperation) GetOpOk() (string, bool)`
+`func (o *ScimPatchOperation) GetOpOk() (*string, bool)`
 
 GetOpOk returns a tuple with the Op field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasOp
-
-`func (o *ScimPatchOperation) HasOp() bool`
-
-HasOp returns a boolean if a field has been set.
 
 ### SetOp
 
 `func (o *ScimPatchOperation) SetOp(v string)`
 
-SetOp gets a reference to the given string and assigns it to the Op field.
+SetOp sets Op field to given value.
+
 
 ### GetPath
 
@@ -43,22 +55,22 @@ GetPath returns the Path field if non-nil, zero value otherwise.
 
 ### GetPathOk
 
-`func (o *ScimPatchOperation) GetPathOk() (string, bool)`
+`func (o *ScimPatchOperation) GetPathOk() (*string, bool)`
 
 GetPathOk returns a tuple with the Path field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPath
+
+`func (o *ScimPatchOperation) SetPath(v string)`
+
+SetPath sets Path field to given value.
 
 ### HasPath
 
 `func (o *ScimPatchOperation) HasPath() bool`
 
 HasPath returns a boolean if a field has been set.
-
-### SetPath
-
-`func (o *ScimPatchOperation) SetPath(v string)`
-
-SetPath gets a reference to the given string and assigns it to the Path field.
 
 ### GetValue
 
@@ -68,22 +80,22 @@ GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *ScimPatchOperation) GetValueOk() (string, bool)`
+`func (o *ScimPatchOperation) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValue
+
+`func (o *ScimPatchOperation) SetValue(v string)`
+
+SetValue sets Value field to given value.
 
 ### HasValue
 
 `func (o *ScimPatchOperation) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
-
-### SetValue
-
-`func (o *ScimPatchOperation) SetValue(v string)`
-
-SetValue gets a reference to the given string and assigns it to the Value field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

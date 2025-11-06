@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // EventType struct for EventType
 type EventType struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The human-friendly name for this event type.
@@ -29,18 +28,48 @@ type EventType struct {
 	Description *string `json:"description,omitempty"`
 }
 
+// NewEventType instantiates a new EventType object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildEventType(id int64, created time.Time, title string, name string) *EventType {
+	this := EventType{}
+	this.Id = id
+	this.Created = created
+	this.Title = title
+	this.Name = name
+	return &this
+}
+
+// NewEventTypeWithDefaults instantiates a new EventType object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventTypeWithDefaults() *EventType {
+	this := EventType{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *EventType) GetId() int32 {
+func (o *EventType) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *EventType) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *EventType) SetId(v int32) {
+func (o *EventType) SetId(v int64) {
 	o.Id = v
 }
 
@@ -52,6 +81,15 @@ func (o *EventType) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *EventType) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -69,6 +107,15 @@ func (o *EventType) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *EventType) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *EventType) SetTitle(v string) {
 	o.Title = v
@@ -82,6 +129,15 @@ func (o *EventType) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *EventType) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -98,14 +154,13 @@ func (o *EventType) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventType) GetDescriptionOk() (string, bool) {
+func (o *EventType) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -122,25 +177,58 @@ func (o *EventType) SetDescription(v string) {
 	o.Description = &v
 }
 
+func (o EventType) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEventType struct {
-	Value        EventType
-	ExplicitNull bool
+	value *EventType
+	isSet bool
+}
+
+func (v NullableEventType) Get() *EventType {
+	return v.value
+}
+
+func (v *NullableEventType) Set(val *EventType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEventType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEventType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableEventType(val *EventType) *NullableEventType {
+	return &NullableEventType{value: val, isSet: true}
 }
 
 func (v NullableEventType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEventType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

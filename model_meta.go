@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,23 @@ type Meta struct {
 	Warnings *map[string]interface{} `json:"warnings,omitempty"`
 }
 
+// NewMeta instantiates a new Meta object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMeta() *Meta {
+	this := Meta{}
+	return &this
+}
+
+// NewMetaWithDefaults instantiates a new Meta object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMetaWithDefaults() *Meta {
+	this := Meta{}
+	return &this
+}
+
 // GetCampaigns returns the Campaigns field value if set, zero value otherwise.
 func (o *Meta) GetCampaigns() map[string]interface{} {
 	if o == nil || o.Campaigns == nil {
@@ -35,14 +51,13 @@ func (o *Meta) GetCampaigns() map[string]interface{} {
 	return *o.Campaigns
 }
 
-// GetCampaignsOk returns a tuple with the Campaigns field value if set, zero value otherwise
+// GetCampaignsOk returns a tuple with the Campaigns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetCampaignsOk() (map[string]interface{}, bool) {
+func (o *Meta) GetCampaignsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Campaigns == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Campaigns, true
+	return o.Campaigns, true
 }
 
 // HasCampaigns returns a boolean if a field has been set.
@@ -68,14 +83,13 @@ func (o *Meta) GetCoupons() map[string]interface{} {
 	return *o.Coupons
 }
 
-// GetCouponsOk returns a tuple with the Coupons field value if set, zero value otherwise
+// GetCouponsOk returns a tuple with the Coupons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetCouponsOk() (map[string]interface{}, bool) {
+func (o *Meta) GetCouponsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Coupons == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Coupons, true
+	return o.Coupons, true
 }
 
 // HasCoupons returns a boolean if a field has been set.
@@ -101,14 +115,13 @@ func (o *Meta) GetCouponRejectionReason() CouponRejectionReason {
 	return *o.CouponRejectionReason
 }
 
-// GetCouponRejectionReasonOk returns a tuple with the CouponRejectionReason field value if set, zero value otherwise
+// GetCouponRejectionReasonOk returns a tuple with the CouponRejectionReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetCouponRejectionReasonOk() (CouponRejectionReason, bool) {
+func (o *Meta) GetCouponRejectionReasonOk() (*CouponRejectionReason, bool) {
 	if o == nil || o.CouponRejectionReason == nil {
-		var ret CouponRejectionReason
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponRejectionReason, true
+	return o.CouponRejectionReason, true
 }
 
 // HasCouponRejectionReason returns a boolean if a field has been set.
@@ -134,14 +147,13 @@ func (o *Meta) GetReferralRejectionReason() ReferralRejectionReason {
 	return *o.ReferralRejectionReason
 }
 
-// GetReferralRejectionReasonOk returns a tuple with the ReferralRejectionReason field value if set, zero value otherwise
+// GetReferralRejectionReasonOk returns a tuple with the ReferralRejectionReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetReferralRejectionReasonOk() (ReferralRejectionReason, bool) {
+func (o *Meta) GetReferralRejectionReasonOk() (*ReferralRejectionReason, bool) {
 	if o == nil || o.ReferralRejectionReason == nil {
-		var ret ReferralRejectionReason
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralRejectionReason, true
+	return o.ReferralRejectionReason, true
 }
 
 // HasReferralRejectionReason returns a boolean if a field has been set.
@@ -167,14 +179,13 @@ func (o *Meta) GetWarnings() map[string]interface{} {
 	return *o.Warnings
 }
 
-// GetWarningsOk returns a tuple with the Warnings field value if set, zero value otherwise
+// GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Meta) GetWarningsOk() (map[string]interface{}, bool) {
+func (o *Meta) GetWarningsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Warnings == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Warnings, true
+	return o.Warnings, true
 }
 
 // HasWarnings returns a boolean if a field has been set.
@@ -191,25 +202,58 @@ func (o *Meta) SetWarnings(v map[string]interface{}) {
 	o.Warnings = &v
 }
 
+func (o Meta) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Campaigns != nil {
+		toSerialize["campaigns"] = o.Campaigns
+	}
+	if o.Coupons != nil {
+		toSerialize["coupons"] = o.Coupons
+	}
+	if o.CouponRejectionReason != nil {
+		toSerialize["couponRejectionReason"] = o.CouponRejectionReason
+	}
+	if o.ReferralRejectionReason != nil {
+		toSerialize["referralRejectionReason"] = o.ReferralRejectionReason
+	}
+	if o.Warnings != nil {
+		toSerialize["warnings"] = o.Warnings
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMeta struct {
-	Value        Meta
-	ExplicitNull bool
+	value *Meta
+	isSet bool
+}
+
+func (v NullableMeta) Get() *Meta {
+	return v.value
+}
+
+func (v *NullableMeta) Set(val *Meta) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMeta) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMeta) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMeta(val *Meta) *NullableMeta {
+	return &NullableMeta{value: val, isSet: true}
 }
 
 func (v NullableMeta) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMeta) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -16,6 +16,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewCustomerProfileIntegrationResponseV2
+
+`func NewCustomerProfileIntegrationResponseV2(effects []Effect, createdCoupons []Coupon, createdReferrals []Referral, ) *CustomerProfileIntegrationResponseV2`
+
+NewCustomerProfileIntegrationResponseV2 instantiates a new CustomerProfileIntegrationResponseV2 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCustomerProfileIntegrationResponseV2WithDefaults
+
+`func NewCustomerProfileIntegrationResponseV2WithDefaults() *CustomerProfileIntegrationResponseV2`
+
+NewCustomerProfileIntegrationResponseV2WithDefaults instantiates a new CustomerProfileIntegrationResponseV2 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCustomerProfile
 
 `func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfile() CustomerProfile`
@@ -24,22 +41,22 @@ GetCustomerProfile returns the CustomerProfile field if non-nil, zero value othe
 
 ### GetCustomerProfileOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfileOk() (CustomerProfile, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfileOk() (*CustomerProfile, bool)`
 
 GetCustomerProfileOk returns a tuple with the CustomerProfile field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCustomerProfile
+
+`func (o *CustomerProfileIntegrationResponseV2) SetCustomerProfile(v CustomerProfile)`
+
+SetCustomerProfile sets CustomerProfile field to given value.
 
 ### HasCustomerProfile
 
 `func (o *CustomerProfileIntegrationResponseV2) HasCustomerProfile() bool`
 
 HasCustomerProfile returns a boolean if a field has been set.
-
-### SetCustomerProfile
-
-`func (o *CustomerProfileIntegrationResponseV2) SetCustomerProfile(v CustomerProfile)`
-
-SetCustomerProfile gets a reference to the given CustomerProfile and assigns it to the CustomerProfile field.
 
 ### GetEvent
 
@@ -49,22 +66,22 @@ GetEvent returns the Event field if non-nil, zero value otherwise.
 
 ### GetEventOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetEventOk() (Event, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetEventOk() (*Event, bool)`
 
 GetEventOk returns a tuple with the Event field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEvent
+
+`func (o *CustomerProfileIntegrationResponseV2) SetEvent(v Event)`
+
+SetEvent sets Event field to given value.
 
 ### HasEvent
 
 `func (o *CustomerProfileIntegrationResponseV2) HasEvent() bool`
 
 HasEvent returns a boolean if a field has been set.
-
-### SetEvent
-
-`func (o *CustomerProfileIntegrationResponseV2) SetEvent(v Event)`
-
-SetEvent gets a reference to the given Event and assigns it to the Event field.
 
 ### GetLoyalty
 
@@ -74,22 +91,22 @@ GetLoyalty returns the Loyalty field if non-nil, zero value otherwise.
 
 ### GetLoyaltyOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetLoyaltyOk() (Loyalty, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetLoyaltyOk() (*Loyalty, bool)`
 
 GetLoyaltyOk returns a tuple with the Loyalty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLoyalty
+
+`func (o *CustomerProfileIntegrationResponseV2) SetLoyalty(v Loyalty)`
+
+SetLoyalty sets Loyalty field to given value.
 
 ### HasLoyalty
 
 `func (o *CustomerProfileIntegrationResponseV2) HasLoyalty() bool`
 
 HasLoyalty returns a boolean if a field has been set.
-
-### SetLoyalty
-
-`func (o *CustomerProfileIntegrationResponseV2) SetLoyalty(v Loyalty)`
-
-SetLoyalty gets a reference to the given Loyalty and assigns it to the Loyalty field.
 
 ### GetTriggeredCampaigns
 
@@ -99,22 +116,22 @@ GetTriggeredCampaigns returns the TriggeredCampaigns field if non-nil, zero valu
 
 ### GetTriggeredCampaignsOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetTriggeredCampaignsOk() ([]Campaign, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetTriggeredCampaignsOk() (*[]Campaign, bool)`
 
 GetTriggeredCampaignsOk returns a tuple with the TriggeredCampaigns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTriggeredCampaigns
+
+`func (o *CustomerProfileIntegrationResponseV2) SetTriggeredCampaigns(v []Campaign)`
+
+SetTriggeredCampaigns sets TriggeredCampaigns field to given value.
 
 ### HasTriggeredCampaigns
 
 `func (o *CustomerProfileIntegrationResponseV2) HasTriggeredCampaigns() bool`
 
 HasTriggeredCampaigns returns a boolean if a field has been set.
-
-### SetTriggeredCampaigns
-
-`func (o *CustomerProfileIntegrationResponseV2) SetTriggeredCampaigns(v []Campaign)`
-
-SetTriggeredCampaigns gets a reference to the given []Campaign and assigns it to the TriggeredCampaigns field.
 
 ### GetRuleFailureReasons
 
@@ -124,22 +141,22 @@ GetRuleFailureReasons returns the RuleFailureReasons field if non-nil, zero valu
 
 ### GetRuleFailureReasonsOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetRuleFailureReasonsOk() (*[]RuleFailureReason, bool)`
 
 GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRuleFailureReasons
+
+`func (o *CustomerProfileIntegrationResponseV2) SetRuleFailureReasons(v []RuleFailureReason)`
+
+SetRuleFailureReasons sets RuleFailureReasons field to given value.
 
 ### HasRuleFailureReasons
 
 `func (o *CustomerProfileIntegrationResponseV2) HasRuleFailureReasons() bool`
 
 HasRuleFailureReasons returns a boolean if a field has been set.
-
-### SetRuleFailureReasons
-
-`func (o *CustomerProfileIntegrationResponseV2) SetRuleFailureReasons(v []RuleFailureReason)`
-
-SetRuleFailureReasons gets a reference to the given []RuleFailureReason and assigns it to the RuleFailureReasons field.
 
 ### GetAwardedGiveaways
 
@@ -149,22 +166,22 @@ GetAwardedGiveaways returns the AwardedGiveaways field if non-nil, zero value ot
 
 ### GetAwardedGiveawaysOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetAwardedGiveawaysOk() ([]Giveaway, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetAwardedGiveawaysOk() (*[]Giveaway, bool)`
 
 GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAwardedGiveaways
+
+`func (o *CustomerProfileIntegrationResponseV2) SetAwardedGiveaways(v []Giveaway)`
+
+SetAwardedGiveaways sets AwardedGiveaways field to given value.
 
 ### HasAwardedGiveaways
 
 `func (o *CustomerProfileIntegrationResponseV2) HasAwardedGiveaways() bool`
 
 HasAwardedGiveaways returns a boolean if a field has been set.
-
-### SetAwardedGiveaways
-
-`func (o *CustomerProfileIntegrationResponseV2) SetAwardedGiveaways(v []Giveaway)`
-
-SetAwardedGiveaways gets a reference to the given []Giveaway and assigns it to the AwardedGiveaways field.
 
 ### GetEffects
 
@@ -174,22 +191,17 @@ GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetEffectsOk() ([]Effect, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetEffectsOk() (*[]Effect, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEffects
-
-`func (o *CustomerProfileIntegrationResponseV2) HasEffects() bool`
-
-HasEffects returns a boolean if a field has been set.
 
 ### SetEffects
 
 `func (o *CustomerProfileIntegrationResponseV2) SetEffects(v []Effect)`
 
-SetEffects gets a reference to the given []Effect and assigns it to the Effects field.
+SetEffects sets Effects field to given value.
+
 
 ### GetCreatedCoupons
 
@@ -199,22 +211,17 @@ GetCreatedCoupons returns the CreatedCoupons field if non-nil, zero value otherw
 
 ### GetCreatedCouponsOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetCreatedCouponsOk() ([]Coupon, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetCreatedCouponsOk() (*[]Coupon, bool)`
 
 GetCreatedCouponsOk returns a tuple with the CreatedCoupons field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCreatedCoupons
-
-`func (o *CustomerProfileIntegrationResponseV2) HasCreatedCoupons() bool`
-
-HasCreatedCoupons returns a boolean if a field has been set.
 
 ### SetCreatedCoupons
 
 `func (o *CustomerProfileIntegrationResponseV2) SetCreatedCoupons(v []Coupon)`
 
-SetCreatedCoupons gets a reference to the given []Coupon and assigns it to the CreatedCoupons field.
+SetCreatedCoupons sets CreatedCoupons field to given value.
+
 
 ### GetCreatedReferrals
 
@@ -224,22 +231,17 @@ GetCreatedReferrals returns the CreatedReferrals field if non-nil, zero value ot
 
 ### GetCreatedReferralsOk
 
-`func (o *CustomerProfileIntegrationResponseV2) GetCreatedReferralsOk() ([]Referral, bool)`
+`func (o *CustomerProfileIntegrationResponseV2) GetCreatedReferralsOk() (*[]Referral, bool)`
 
 GetCreatedReferralsOk returns a tuple with the CreatedReferrals field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCreatedReferrals
-
-`func (o *CustomerProfileIntegrationResponseV2) HasCreatedReferrals() bool`
-
-HasCreatedReferrals returns a boolean if a field has been set.
 
 ### SetCreatedReferrals
 
 `func (o *CustomerProfileIntegrationResponseV2) SetCreatedReferrals(v []Referral)`
 
-SetCreatedReferrals gets a reference to the given []Referral and assigns it to the CreatedReferrals field.
+SetCreatedReferrals sets CreatedReferrals field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

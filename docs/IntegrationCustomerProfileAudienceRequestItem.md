@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewIntegrationCustomerProfileAudienceRequestItem
+
+`func NewIntegrationCustomerProfileAudienceRequestItem(action string, profileIntegrationId string, integrationId string, ) *IntegrationCustomerProfileAudienceRequestItem`
+
+NewIntegrationCustomerProfileAudienceRequestItem instantiates a new IntegrationCustomerProfileAudienceRequestItem object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewIntegrationCustomerProfileAudienceRequestItemWithDefaults
+
+`func NewIntegrationCustomerProfileAudienceRequestItemWithDefaults() *IntegrationCustomerProfileAudienceRequestItem`
+
+NewIntegrationCustomerProfileAudienceRequestItemWithDefaults instantiates a new IntegrationCustomerProfileAudienceRequestItem object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetAction
 
 `func (o *IntegrationCustomerProfileAudienceRequestItem) GetAction() string`
@@ -18,22 +35,17 @@ GetAction returns the Action field if non-nil, zero value otherwise.
 
 ### GetActionOk
 
-`func (o *IntegrationCustomerProfileAudienceRequestItem) GetActionOk() (string, bool)`
+`func (o *IntegrationCustomerProfileAudienceRequestItem) GetActionOk() (*string, bool)`
 
 GetActionOk returns a tuple with the Action field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAction
-
-`func (o *IntegrationCustomerProfileAudienceRequestItem) HasAction() bool`
-
-HasAction returns a boolean if a field has been set.
 
 ### SetAction
 
 `func (o *IntegrationCustomerProfileAudienceRequestItem) SetAction(v string)`
 
-SetAction gets a reference to the given string and assigns it to the Action field.
+SetAction sets Action field to given value.
+
 
 ### GetProfileIntegrationId
 
@@ -43,22 +55,17 @@ GetProfileIntegrationId returns the ProfileIntegrationId field if non-nil, zero 
 
 ### GetProfileIntegrationIdOk
 
-`func (o *IntegrationCustomerProfileAudienceRequestItem) GetProfileIntegrationIdOk() (string, bool)`
+`func (o *IntegrationCustomerProfileAudienceRequestItem) GetProfileIntegrationIdOk() (*string, bool)`
 
 GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasProfileIntegrationId
-
-`func (o *IntegrationCustomerProfileAudienceRequestItem) HasProfileIntegrationId() bool`
-
-HasProfileIntegrationId returns a boolean if a field has been set.
 
 ### SetProfileIntegrationId
 
 `func (o *IntegrationCustomerProfileAudienceRequestItem) SetProfileIntegrationId(v string)`
 
-SetProfileIntegrationId gets a reference to the given string and assigns it to the ProfileIntegrationId field.
+SetProfileIntegrationId sets ProfileIntegrationId field to given value.
+
 
 ### GetIntegrationId
 
@@ -68,22 +75,17 @@ GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwis
 
 ### GetIntegrationIdOk
 
-`func (o *IntegrationCustomerProfileAudienceRequestItem) GetIntegrationIdOk() (string, bool)`
+`func (o *IntegrationCustomerProfileAudienceRequestItem) GetIntegrationIdOk() (*string, bool)`
 
 GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasIntegrationId
-
-`func (o *IntegrationCustomerProfileAudienceRequestItem) HasIntegrationId() bool`
-
-HasIntegrationId returns a boolean if a field has been set.
 
 ### SetIntegrationId
 
 `func (o *IntegrationCustomerProfileAudienceRequestItem) SetIntegrationId(v string)`
 
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+SetIntegrationId sets IntegrationId field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // WebhookAuthenticationDataCustom struct for WebhookAuthenticationDataCustom
 type WebhookAuthenticationDataCustom struct {
 	Headers map[string]string `json:"headers"`
+}
+
+// NewWebhookAuthenticationDataCustom instantiates a new WebhookAuthenticationDataCustom object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildWebhookAuthenticationDataCustom(headers map[string]string) *WebhookAuthenticationDataCustom {
+	this := WebhookAuthenticationDataCustom{}
+	this.Headers = headers
+	return &this
+}
+
+// NewWebhookAuthenticationDataCustomWithDefaults instantiates a new WebhookAuthenticationDataCustom object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWebhookAuthenticationDataCustomWithDefaults() *WebhookAuthenticationDataCustom {
+	this := WebhookAuthenticationDataCustom{}
+	return &this
 }
 
 // GetHeaders returns the Headers field value
@@ -29,30 +46,60 @@ func (o *WebhookAuthenticationDataCustom) GetHeaders() map[string]string {
 	return o.Headers
 }
 
+// GetHeadersOk returns a tuple with the Headers field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthenticationDataCustom) GetHeadersOk() (*map[string]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Headers, true
+}
+
 // SetHeaders sets field value
 func (o *WebhookAuthenticationDataCustom) SetHeaders(v map[string]string) {
 	o.Headers = v
 }
 
+func (o WebhookAuthenticationDataCustom) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["headers"] = o.Headers
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableWebhookAuthenticationDataCustom struct {
-	Value        WebhookAuthenticationDataCustom
-	ExplicitNull bool
+	value *WebhookAuthenticationDataCustom
+	isSet bool
+}
+
+func (v NullableWebhookAuthenticationDataCustom) Get() *WebhookAuthenticationDataCustom {
+	return v.value
+}
+
+func (v *NullableWebhookAuthenticationDataCustom) Set(val *WebhookAuthenticationDataCustom) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWebhookAuthenticationDataCustom) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWebhookAuthenticationDataCustom) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableWebhookAuthenticationDataCustom(val *WebhookAuthenticationDataCustom) *NullableWebhookAuthenticationDataCustom {
+	return &NullableWebhookAuthenticationDataCustom{value: val, isSet: true}
 }
 
 func (v NullableWebhookAuthenticationDataCustom) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableWebhookAuthenticationDataCustom) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

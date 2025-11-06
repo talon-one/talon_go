@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,6 +22,23 @@ type LoyaltyCardBalances struct {
 	Profiles *[]LoyaltyCardProfileRegistration `json:"profiles,omitempty"`
 }
 
+// NewLoyaltyCardBalances instantiates a new LoyaltyCardBalances object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyCardBalances() *LoyaltyCardBalances {
+	this := LoyaltyCardBalances{}
+	return &this
+}
+
+// NewLoyaltyCardBalancesWithDefaults instantiates a new LoyaltyCardBalances object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyCardBalancesWithDefaults() *LoyaltyCardBalances {
+	this := LoyaltyCardBalances{}
+	return &this
+}
+
 // GetBalance returns the Balance field value if set, zero value otherwise.
 func (o *LoyaltyCardBalances) GetBalance() LoyaltyBalance {
 	if o == nil || o.Balance == nil {
@@ -32,14 +48,13 @@ func (o *LoyaltyCardBalances) GetBalance() LoyaltyBalance {
 	return *o.Balance
 }
 
-// GetBalanceOk returns a tuple with the Balance field value if set, zero value otherwise
+// GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCardBalances) GetBalanceOk() (LoyaltyBalance, bool) {
+func (o *LoyaltyCardBalances) GetBalanceOk() (*LoyaltyBalance, bool) {
 	if o == nil || o.Balance == nil {
-		var ret LoyaltyBalance
-		return ret, false
+		return nil, false
 	}
-	return *o.Balance, true
+	return o.Balance, true
 }
 
 // HasBalance returns a boolean if a field has been set.
@@ -65,14 +80,13 @@ func (o *LoyaltyCardBalances) GetSubledgerBalances() map[string]LoyaltyBalance {
 	return *o.SubledgerBalances
 }
 
-// GetSubledgerBalancesOk returns a tuple with the SubledgerBalances field value if set, zero value otherwise
+// GetSubledgerBalancesOk returns a tuple with the SubledgerBalances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCardBalances) GetSubledgerBalancesOk() (map[string]LoyaltyBalance, bool) {
+func (o *LoyaltyCardBalances) GetSubledgerBalancesOk() (*map[string]LoyaltyBalance, bool) {
 	if o == nil || o.SubledgerBalances == nil {
-		var ret map[string]LoyaltyBalance
-		return ret, false
+		return nil, false
 	}
-	return *o.SubledgerBalances, true
+	return o.SubledgerBalances, true
 }
 
 // HasSubledgerBalances returns a boolean if a field has been set.
@@ -98,14 +112,13 @@ func (o *LoyaltyCardBalances) GetProfiles() []LoyaltyCardProfileRegistration {
 	return *o.Profiles
 }
 
-// GetProfilesOk returns a tuple with the Profiles field value if set, zero value otherwise
+// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCardBalances) GetProfilesOk() ([]LoyaltyCardProfileRegistration, bool) {
+func (o *LoyaltyCardBalances) GetProfilesOk() (*[]LoyaltyCardProfileRegistration, bool) {
 	if o == nil || o.Profiles == nil {
-		var ret []LoyaltyCardProfileRegistration
-		return ret, false
+		return nil, false
 	}
-	return *o.Profiles, true
+	return o.Profiles, true
 }
 
 // HasProfiles returns a boolean if a field has been set.
@@ -122,25 +135,52 @@ func (o *LoyaltyCardBalances) SetProfiles(v []LoyaltyCardProfileRegistration) {
 	o.Profiles = &v
 }
 
+func (o LoyaltyCardBalances) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Balance != nil {
+		toSerialize["balance"] = o.Balance
+	}
+	if o.SubledgerBalances != nil {
+		toSerialize["subledgerBalances"] = o.SubledgerBalances
+	}
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyCardBalances struct {
-	Value        LoyaltyCardBalances
-	ExplicitNull bool
+	value *LoyaltyCardBalances
+	isSet bool
+}
+
+func (v NullableLoyaltyCardBalances) Get() *LoyaltyCardBalances {
+	return v.value
+}
+
+func (v *NullableLoyaltyCardBalances) Set(val *LoyaltyCardBalances) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyCardBalances) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyCardBalances) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyCardBalances(val *LoyaltyCardBalances) *NullableLoyaltyCardBalances {
+	return &NullableLoyaltyCardBalances{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyCardBalances) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyCardBalances) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

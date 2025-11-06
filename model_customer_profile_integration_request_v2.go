@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,10 +18,27 @@ type CustomerProfileIntegrationRequestV2 struct {
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
-	EvaluableCampaignIds *[]int32                 `json:"evaluableCampaignIds,omitempty"`
+	EvaluableCampaignIds *[]int64                 `json:"evaluableCampaignIds,omitempty"`
 	AudiencesChanges     *ProfileAudiencesChanges `json:"audiencesChanges,omitempty"`
 	// Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints.
 	ResponseContent *[]string `json:"responseContent,omitempty"`
+}
+
+// NewCustomerProfileIntegrationRequestV2 instantiates a new CustomerProfileIntegrationRequestV2 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerProfileIntegrationRequestV2() *CustomerProfileIntegrationRequestV2 {
+	this := CustomerProfileIntegrationRequestV2{}
+	return &this
+}
+
+// NewCustomerProfileIntegrationRequestV2WithDefaults instantiates a new CustomerProfileIntegrationRequestV2 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileIntegrationRequestV2WithDefaults() *CustomerProfileIntegrationRequestV2 {
+	this := CustomerProfileIntegrationRequestV2{}
+	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -34,14 +50,13 @@ func (o *CustomerProfileIntegrationRequestV2) GetAttributes() map[string]interfa
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationRequestV2) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *CustomerProfileIntegrationRequestV2) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -59,22 +74,21 @@ func (o *CustomerProfileIntegrationRequestV2) SetAttributes(v map[string]interfa
 }
 
 // GetEvaluableCampaignIds returns the EvaluableCampaignIds field value if set, zero value otherwise.
-func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIds() []int32 {
+func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIds() []int64 {
 	if o == nil || o.EvaluableCampaignIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.EvaluableCampaignIds
 }
 
-// GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field value if set, zero value otherwise
+// GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIdsOk() ([]int32, bool) {
+func (o *CustomerProfileIntegrationRequestV2) GetEvaluableCampaignIdsOk() (*[]int64, bool) {
 	if o == nil || o.EvaluableCampaignIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluableCampaignIds, true
+	return o.EvaluableCampaignIds, true
 }
 
 // HasEvaluableCampaignIds returns a boolean if a field has been set.
@@ -86,8 +100,8 @@ func (o *CustomerProfileIntegrationRequestV2) HasEvaluableCampaignIds() bool {
 	return false
 }
 
-// SetEvaluableCampaignIds gets a reference to the given []int32 and assigns it to the EvaluableCampaignIds field.
-func (o *CustomerProfileIntegrationRequestV2) SetEvaluableCampaignIds(v []int32) {
+// SetEvaluableCampaignIds gets a reference to the given []int64 and assigns it to the EvaluableCampaignIds field.
+func (o *CustomerProfileIntegrationRequestV2) SetEvaluableCampaignIds(v []int64) {
 	o.EvaluableCampaignIds = &v
 }
 
@@ -100,14 +114,13 @@ func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChanges() ProfileAudie
 	return *o.AudiencesChanges
 }
 
-// GetAudiencesChangesOk returns a tuple with the AudiencesChanges field value if set, zero value otherwise
+// GetAudiencesChangesOk returns a tuple with the AudiencesChanges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChangesOk() (ProfileAudiencesChanges, bool) {
+func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChangesOk() (*ProfileAudiencesChanges, bool) {
 	if o == nil || o.AudiencesChanges == nil {
-		var ret ProfileAudiencesChanges
-		return ret, false
+		return nil, false
 	}
-	return *o.AudiencesChanges, true
+	return o.AudiencesChanges, true
 }
 
 // HasAudiencesChanges returns a boolean if a field has been set.
@@ -133,14 +146,13 @@ func (o *CustomerProfileIntegrationRequestV2) GetResponseContent() []string {
 	return *o.ResponseContent
 }
 
-// GetResponseContentOk returns a tuple with the ResponseContent field value if set, zero value otherwise
+// GetResponseContentOk returns a tuple with the ResponseContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationRequestV2) GetResponseContentOk() ([]string, bool) {
+func (o *CustomerProfileIntegrationRequestV2) GetResponseContentOk() (*[]string, bool) {
 	if o == nil || o.ResponseContent == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ResponseContent, true
+	return o.ResponseContent, true
 }
 
 // HasResponseContent returns a boolean if a field has been set.
@@ -157,25 +169,55 @@ func (o *CustomerProfileIntegrationRequestV2) SetResponseContent(v []string) {
 	o.ResponseContent = &v
 }
 
+func (o CustomerProfileIntegrationRequestV2) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.EvaluableCampaignIds != nil {
+		toSerialize["evaluableCampaignIds"] = o.EvaluableCampaignIds
+	}
+	if o.AudiencesChanges != nil {
+		toSerialize["audiencesChanges"] = o.AudiencesChanges
+	}
+	if o.ResponseContent != nil {
+		toSerialize["responseContent"] = o.ResponseContent
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileIntegrationRequestV2 struct {
-	Value        CustomerProfileIntegrationRequestV2
-	ExplicitNull bool
+	value *CustomerProfileIntegrationRequestV2
+	isSet bool
+}
+
+func (v NullableCustomerProfileIntegrationRequestV2) Get() *CustomerProfileIntegrationRequestV2 {
+	return v.value
+}
+
+func (v *NullableCustomerProfileIntegrationRequestV2) Set(val *CustomerProfileIntegrationRequestV2) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileIntegrationRequestV2) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileIntegrationRequestV2) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerProfileIntegrationRequestV2(val *CustomerProfileIntegrationRequestV2) *NullableCustomerProfileIntegrationRequestV2 {
+	return &NullableCustomerProfileIntegrationRequestV2{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileIntegrationRequestV2) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileIntegrationRequestV2) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

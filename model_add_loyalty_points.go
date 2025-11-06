@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -21,18 +20,36 @@ type AddLoyaltyPoints struct {
 	Points float32 `json:"points"`
 	// Name / reason for the point addition.
 	Name *string `json:"name,omitempty"`
-	// The time format is either: - `immediate` or, - an **integer** followed by one letter indicating the time unit.  Examples: `immediate`, `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  If passed, `validUntil` should be omitted.
+	// The time format is either: - `unlimited` or, - an **integer** followed by one letter indicating the time unit.  Examples: `unlimited`, `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.  If passed, `validUntil` should be omitted.
 	ValidityDuration *string `json:"validityDuration,omitempty"`
 	// Date and time when points should expire. The value should be provided in RFC 3339 format. If passed, `validityDuration` should be omitted.
 	ValidUntil *time.Time `json:"validUntil,omitempty"`
-	// The amount of time before the points are considered valid.  The time format is either: - `immediate` or, - an **integer** followed by one letter indicating the time unit.  Examples: `immediate`, `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
+	// The amount of time before the points are considered valid.  The time format is either: - `immediate` or, - `on_action` or, - an **integer** followed by one letter indicating the time unit.  Examples: `immediate`, `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`, `on_action`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
 	PendingDuration *string `json:"pendingDuration,omitempty"`
 	// Date and time after the points are considered valid. The value should be provided in RFC 3339 format. If passed, `pendingDuration` should be omitted.
 	PendingUntil *time.Time `json:"pendingUntil,omitempty"`
 	// ID of the subledger the points are added to. If there is no existing subledger with this ID, the subledger is created automatically.
 	SubledgerId *string `json:"subledgerId,omitempty"`
 	// ID of the Application that is connected to the loyalty program. It is displayed in your Talon.One deployment URL.
-	ApplicationId *int32 `json:"applicationId,omitempty"`
+	ApplicationId *int64 `json:"applicationId,omitempty"`
+}
+
+// NewAddLoyaltyPoints instantiates a new AddLoyaltyPoints object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAddLoyaltyPoints(points float32) *AddLoyaltyPoints {
+	this := AddLoyaltyPoints{}
+	this.Points = points
+	return &this
+}
+
+// NewAddLoyaltyPointsWithDefaults instantiates a new AddLoyaltyPoints object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddLoyaltyPointsWithDefaults() *AddLoyaltyPoints {
+	this := AddLoyaltyPoints{}
+	return &this
 }
 
 // GetPoints returns the Points field value
@@ -43,6 +60,15 @@ func (o *AddLoyaltyPoints) GetPoints() float32 {
 	}
 
 	return o.Points
+}
+
+// GetPointsOk returns a tuple with the Points field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPoints) GetPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Points, true
 }
 
 // SetPoints sets field value
@@ -59,14 +85,13 @@ func (o *AddLoyaltyPoints) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetNameOk() (string, bool) {
+func (o *AddLoyaltyPoints) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -92,14 +117,13 @@ func (o *AddLoyaltyPoints) GetValidityDuration() string {
 	return *o.ValidityDuration
 }
 
-// GetValidityDurationOk returns a tuple with the ValidityDuration field value if set, zero value otherwise
+// GetValidityDurationOk returns a tuple with the ValidityDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetValidityDurationOk() (string, bool) {
+func (o *AddLoyaltyPoints) GetValidityDurationOk() (*string, bool) {
 	if o == nil || o.ValidityDuration == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidityDuration, true
+	return o.ValidityDuration, true
 }
 
 // HasValidityDuration returns a boolean if a field has been set.
@@ -125,14 +149,13 @@ func (o *AddLoyaltyPoints) GetValidUntil() time.Time {
 	return *o.ValidUntil
 }
 
-// GetValidUntilOk returns a tuple with the ValidUntil field value if set, zero value otherwise
+// GetValidUntilOk returns a tuple with the ValidUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetValidUntilOk() (time.Time, bool) {
+func (o *AddLoyaltyPoints) GetValidUntilOk() (*time.Time, bool) {
 	if o == nil || o.ValidUntil == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidUntil, true
+	return o.ValidUntil, true
 }
 
 // HasValidUntil returns a boolean if a field has been set.
@@ -158,14 +181,13 @@ func (o *AddLoyaltyPoints) GetPendingDuration() string {
 	return *o.PendingDuration
 }
 
-// GetPendingDurationOk returns a tuple with the PendingDuration field value if set, zero value otherwise
+// GetPendingDurationOk returns a tuple with the PendingDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetPendingDurationOk() (string, bool) {
+func (o *AddLoyaltyPoints) GetPendingDurationOk() (*string, bool) {
 	if o == nil || o.PendingDuration == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PendingDuration, true
+	return o.PendingDuration, true
 }
 
 // HasPendingDuration returns a boolean if a field has been set.
@@ -191,14 +213,13 @@ func (o *AddLoyaltyPoints) GetPendingUntil() time.Time {
 	return *o.PendingUntil
 }
 
-// GetPendingUntilOk returns a tuple with the PendingUntil field value if set, zero value otherwise
+// GetPendingUntilOk returns a tuple with the PendingUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetPendingUntilOk() (time.Time, bool) {
+func (o *AddLoyaltyPoints) GetPendingUntilOk() (*time.Time, bool) {
 	if o == nil || o.PendingUntil == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.PendingUntil, true
+	return o.PendingUntil, true
 }
 
 // HasPendingUntil returns a boolean if a field has been set.
@@ -224,14 +245,13 @@ func (o *AddLoyaltyPoints) GetSubledgerId() string {
 	return *o.SubledgerId
 }
 
-// GetSubledgerIdOk returns a tuple with the SubledgerId field value if set, zero value otherwise
+// GetSubledgerIdOk returns a tuple with the SubledgerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetSubledgerIdOk() (string, bool) {
+func (o *AddLoyaltyPoints) GetSubledgerIdOk() (*string, bool) {
 	if o == nil || o.SubledgerId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SubledgerId, true
+	return o.SubledgerId, true
 }
 
 // HasSubledgerId returns a boolean if a field has been set.
@@ -249,22 +269,21 @@ func (o *AddLoyaltyPoints) SetSubledgerId(v string) {
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
-func (o *AddLoyaltyPoints) GetApplicationId() int32 {
+func (o *AddLoyaltyPoints) GetApplicationId() int64 {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationId
 }
 
-// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, zero value otherwise
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPoints) GetApplicationIdOk() (int32, bool) {
+func (o *AddLoyaltyPoints) GetApplicationIdOk() (*int64, bool) {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationId, true
+	return o.ApplicationId, true
 }
 
 // HasApplicationId returns a boolean if a field has been set.
@@ -276,30 +295,72 @@ func (o *AddLoyaltyPoints) HasApplicationId() bool {
 	return false
 }
 
-// SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
-func (o *AddLoyaltyPoints) SetApplicationId(v int32) {
+// SetApplicationId gets a reference to the given int64 and assigns it to the ApplicationId field.
+func (o *AddLoyaltyPoints) SetApplicationId(v int64) {
 	o.ApplicationId = &v
 }
 
+func (o AddLoyaltyPoints) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["points"] = o.Points
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.ValidityDuration != nil {
+		toSerialize["validityDuration"] = o.ValidityDuration
+	}
+	if o.ValidUntil != nil {
+		toSerialize["validUntil"] = o.ValidUntil
+	}
+	if o.PendingDuration != nil {
+		toSerialize["pendingDuration"] = o.PendingDuration
+	}
+	if o.PendingUntil != nil {
+		toSerialize["pendingUntil"] = o.PendingUntil
+	}
+	if o.SubledgerId != nil {
+		toSerialize["subledgerId"] = o.SubledgerId
+	}
+	if o.ApplicationId != nil {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddLoyaltyPoints struct {
-	Value        AddLoyaltyPoints
-	ExplicitNull bool
+	value *AddLoyaltyPoints
+	isSet bool
+}
+
+func (v NullableAddLoyaltyPoints) Get() *AddLoyaltyPoints {
+	return v.value
+}
+
+func (v *NullableAddLoyaltyPoints) Set(val *AddLoyaltyPoints) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddLoyaltyPoints) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddLoyaltyPoints) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAddLoyaltyPoints(val *AddLoyaltyPoints) *NullableAddLoyaltyPoints {
+	return &NullableAddLoyaltyPoints{value: val, isSet: true}
 }
 
 func (v NullableAddLoyaltyPoints) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddLoyaltyPoints) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

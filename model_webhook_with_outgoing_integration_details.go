@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,13 +17,13 @@ import (
 // WebhookWithOutgoingIntegrationDetails struct for WebhookWithOutgoingIntegrationDetails
 type WebhookWithOutgoingIntegrationDetails struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
 	// The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in `All Applications`.
-	ApplicationIds []int32 `json:"applicationIds"`
+	ApplicationIds []int64 `json:"applicationIds"`
 	// Name or title for this webhook.
 	Title string `json:"title"`
 	// A description of the webhook.
@@ -43,26 +42,65 @@ type WebhookWithOutgoingIntegrationDetails struct {
 	Params []TemplateArgDef `json:"params"`
 	// Enables or disables webhook from showing in the Rule Builder.
 	Enabled bool `json:"enabled"`
+	// The ID of the credential that this webhook is using.
+	AuthenticationId *int64 `json:"authenticationId,omitempty"`
 	// Identifier of the outgoing integration template.
-	OutgoingIntegrationTemplateId *int32 `json:"outgoingIntegrationTemplateId,omitempty"`
+	OutgoingIntegrationTemplateId *int64 `json:"outgoingIntegrationTemplateId,omitempty"`
 	// Identifier of the outgoing integration type.
-	OutgoingIntegrationTypeId *int32 `json:"outgoingIntegrationTypeId,omitempty"`
+	OutgoingIntegrationTypeId *int64 `json:"outgoingIntegrationTypeId,omitempty"`
 	// Name of the outgoing integration.
 	OutgoingIntegrationTypeName *string `json:"outgoingIntegrationTypeName,omitempty"`
 }
 
+// NewWebhookWithOutgoingIntegrationDetails instantiates a new WebhookWithOutgoingIntegrationDetails object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildWebhookWithOutgoingIntegrationDetails(id int64, created time.Time, modified time.Time, applicationIds []int64, title string, draft bool, verb string, url string, headers []string, params []TemplateArgDef, enabled bool) *WebhookWithOutgoingIntegrationDetails {
+	this := WebhookWithOutgoingIntegrationDetails{}
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	this.ApplicationIds = applicationIds
+	this.Title = title
+	this.Draft = draft
+	this.Verb = verb
+	this.Url = url
+	this.Headers = headers
+	this.Params = params
+	this.Enabled = enabled
+	return &this
+}
+
+// NewWebhookWithOutgoingIntegrationDetailsWithDefaults instantiates a new WebhookWithOutgoingIntegrationDetails object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWebhookWithOutgoingIntegrationDetailsWithDefaults() *WebhookWithOutgoingIntegrationDetails {
+	this := WebhookWithOutgoingIntegrationDetails{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *WebhookWithOutgoingIntegrationDetails) GetId() int32 {
+func (o *WebhookWithOutgoingIntegrationDetails) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *WebhookWithOutgoingIntegrationDetails) SetId(v int32) {
+func (o *WebhookWithOutgoingIntegrationDetails) SetId(v int64) {
 	o.Id = v
 }
 
@@ -74,6 +112,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -91,23 +138,41 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *WebhookWithOutgoingIntegrationDetails) SetModified(v time.Time) {
 	o.Modified = v
 }
 
 // GetApplicationIds returns the ApplicationIds field value
-func (o *WebhookWithOutgoingIntegrationDetails) GetApplicationIds() []int32 {
+func (o *WebhookWithOutgoingIntegrationDetails) GetApplicationIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.ApplicationIds
 }
 
+// GetApplicationIdsOk returns a tuple with the ApplicationIds field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetApplicationIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationIds, true
+}
+
 // SetApplicationIds sets field value
-func (o *WebhookWithOutgoingIntegrationDetails) SetApplicationIds(v []int32) {
+func (o *WebhookWithOutgoingIntegrationDetails) SetApplicationIds(v []int64) {
 	o.ApplicationIds = v
 }
 
@@ -119,6 +184,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -135,14 +209,13 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookWithOutgoingIntegrationDetails) GetDescriptionOk() (string, bool) {
+func (o *WebhookWithOutgoingIntegrationDetails) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -169,6 +242,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetDraft() bool {
 	return o.Draft
 }
 
+// GetDraftOk returns a tuple with the Draft field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetDraftOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Draft, true
+}
+
 // SetDraft sets field value
 func (o *WebhookWithOutgoingIntegrationDetails) SetDraft(v bool) {
 	o.Draft = v
@@ -182,6 +264,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetVerb() string {
 	}
 
 	return o.Verb
+}
+
+// GetVerbOk returns a tuple with the Verb field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetVerbOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Verb, true
 }
 
 // SetVerb sets field value
@@ -199,6 +290,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetUrl() string {
 	return o.Url
 }
 
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
+}
+
 // SetUrl sets field value
 func (o *WebhookWithOutgoingIntegrationDetails) SetUrl(v string) {
 	o.Url = v
@@ -212,6 +312,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetHeaders() []string {
 	}
 
 	return o.Headers
+}
+
+// GetHeadersOk returns a tuple with the Headers field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetHeadersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Headers, true
 }
 
 // SetHeaders sets field value
@@ -228,14 +337,13 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetPayload() string {
 	return *o.Payload
 }
 
-// GetPayloadOk returns a tuple with the Payload field value if set, zero value otherwise
+// GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookWithOutgoingIntegrationDetails) GetPayloadOk() (string, bool) {
+func (o *WebhookWithOutgoingIntegrationDetails) GetPayloadOk() (*string, bool) {
 	if o == nil || o.Payload == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Payload, true
+	return o.Payload, true
 }
 
 // HasPayload returns a boolean if a field has been set.
@@ -262,6 +370,15 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetParams() []TemplateArgDef {
 	return o.Params
 }
 
+// GetParamsOk returns a tuple with the Params field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetParamsOk() (*[]TemplateArgDef, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Params, true
+}
+
 // SetParams sets field value
 func (o *WebhookWithOutgoingIntegrationDetails) SetParams(v []TemplateArgDef) {
 	o.Params = v
@@ -277,28 +394,68 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *WebhookWithOutgoingIntegrationDetails) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+// GetAuthenticationId returns the AuthenticationId field value if set, zero value otherwise.
+func (o *WebhookWithOutgoingIntegrationDetails) GetAuthenticationId() int64 {
+	if o == nil || o.AuthenticationId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AuthenticationId
+}
+
+// GetAuthenticationIdOk returns a tuple with the AuthenticationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) GetAuthenticationIdOk() (*int64, bool) {
+	if o == nil || o.AuthenticationId == nil {
+		return nil, false
+	}
+	return o.AuthenticationId, true
+}
+
+// HasAuthenticationId returns a boolean if a field has been set.
+func (o *WebhookWithOutgoingIntegrationDetails) HasAuthenticationId() bool {
+	if o != nil && o.AuthenticationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthenticationId gets a reference to the given int64 and assigns it to the AuthenticationId field.
+func (o *WebhookWithOutgoingIntegrationDetails) SetAuthenticationId(v int64) {
+	o.AuthenticationId = &v
+}
+
 // GetOutgoingIntegrationTemplateId returns the OutgoingIntegrationTemplateId field value if set, zero value otherwise.
-func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTemplateId() int32 {
+func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTemplateId() int64 {
 	if o == nil || o.OutgoingIntegrationTemplateId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OutgoingIntegrationTemplateId
 }
 
-// GetOutgoingIntegrationTemplateIdOk returns a tuple with the OutgoingIntegrationTemplateId field value if set, zero value otherwise
+// GetOutgoingIntegrationTemplateIdOk returns a tuple with the OutgoingIntegrationTemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTemplateIdOk() (int32, bool) {
+func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTemplateIdOk() (*int64, bool) {
 	if o == nil || o.OutgoingIntegrationTemplateId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.OutgoingIntegrationTemplateId, true
+	return o.OutgoingIntegrationTemplateId, true
 }
 
 // HasOutgoingIntegrationTemplateId returns a boolean if a field has been set.
@@ -310,28 +467,27 @@ func (o *WebhookWithOutgoingIntegrationDetails) HasOutgoingIntegrationTemplateId
 	return false
 }
 
-// SetOutgoingIntegrationTemplateId gets a reference to the given int32 and assigns it to the OutgoingIntegrationTemplateId field.
-func (o *WebhookWithOutgoingIntegrationDetails) SetOutgoingIntegrationTemplateId(v int32) {
+// SetOutgoingIntegrationTemplateId gets a reference to the given int64 and assigns it to the OutgoingIntegrationTemplateId field.
+func (o *WebhookWithOutgoingIntegrationDetails) SetOutgoingIntegrationTemplateId(v int64) {
 	o.OutgoingIntegrationTemplateId = &v
 }
 
 // GetOutgoingIntegrationTypeId returns the OutgoingIntegrationTypeId field value if set, zero value otherwise.
-func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeId() int32 {
+func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeId() int64 {
 	if o == nil || o.OutgoingIntegrationTypeId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.OutgoingIntegrationTypeId
 }
 
-// GetOutgoingIntegrationTypeIdOk returns a tuple with the OutgoingIntegrationTypeId field value if set, zero value otherwise
+// GetOutgoingIntegrationTypeIdOk returns a tuple with the OutgoingIntegrationTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeIdOk() (int32, bool) {
+func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeIdOk() (*int64, bool) {
 	if o == nil || o.OutgoingIntegrationTypeId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.OutgoingIntegrationTypeId, true
+	return o.OutgoingIntegrationTypeId, true
 }
 
 // HasOutgoingIntegrationTypeId returns a boolean if a field has been set.
@@ -343,8 +499,8 @@ func (o *WebhookWithOutgoingIntegrationDetails) HasOutgoingIntegrationTypeId() b
 	return false
 }
 
-// SetOutgoingIntegrationTypeId gets a reference to the given int32 and assigns it to the OutgoingIntegrationTypeId field.
-func (o *WebhookWithOutgoingIntegrationDetails) SetOutgoingIntegrationTypeId(v int32) {
+// SetOutgoingIntegrationTypeId gets a reference to the given int64 and assigns it to the OutgoingIntegrationTypeId field.
+func (o *WebhookWithOutgoingIntegrationDetails) SetOutgoingIntegrationTypeId(v int64) {
 	o.OutgoingIntegrationTypeId = &v
 }
 
@@ -357,14 +513,13 @@ func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeName()
 	return *o.OutgoingIntegrationTypeName
 }
 
-// GetOutgoingIntegrationTypeNameOk returns a tuple with the OutgoingIntegrationTypeName field value if set, zero value otherwise
+// GetOutgoingIntegrationTypeNameOk returns a tuple with the OutgoingIntegrationTypeName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeNameOk() (string, bool) {
+func (o *WebhookWithOutgoingIntegrationDetails) GetOutgoingIntegrationTypeNameOk() (*string, bool) {
 	if o == nil || o.OutgoingIntegrationTypeName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.OutgoingIntegrationTypeName, true
+	return o.OutgoingIntegrationTypeName, true
 }
 
 // HasOutgoingIntegrationTypeName returns a boolean if a field has been set.
@@ -381,25 +536,94 @@ func (o *WebhookWithOutgoingIntegrationDetails) SetOutgoingIntegrationTypeName(v
 	o.OutgoingIntegrationTypeName = &v
 }
 
+func (o WebhookWithOutgoingIntegrationDetails) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["applicationIds"] = o.ApplicationIds
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["draft"] = o.Draft
+	}
+	if true {
+		toSerialize["verb"] = o.Verb
+	}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	if true {
+		toSerialize["headers"] = o.Headers
+	}
+	if o.Payload != nil {
+		toSerialize["payload"] = o.Payload
+	}
+	if true {
+		toSerialize["params"] = o.Params
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if o.AuthenticationId != nil {
+		toSerialize["authenticationId"] = o.AuthenticationId
+	}
+	if o.OutgoingIntegrationTemplateId != nil {
+		toSerialize["outgoingIntegrationTemplateId"] = o.OutgoingIntegrationTemplateId
+	}
+	if o.OutgoingIntegrationTypeId != nil {
+		toSerialize["outgoingIntegrationTypeId"] = o.OutgoingIntegrationTypeId
+	}
+	if o.OutgoingIntegrationTypeName != nil {
+		toSerialize["outgoingIntegrationTypeName"] = o.OutgoingIntegrationTypeName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableWebhookWithOutgoingIntegrationDetails struct {
-	Value        WebhookWithOutgoingIntegrationDetails
-	ExplicitNull bool
+	value *WebhookWithOutgoingIntegrationDetails
+	isSet bool
+}
+
+func (v NullableWebhookWithOutgoingIntegrationDetails) Get() *WebhookWithOutgoingIntegrationDetails {
+	return v.value
+}
+
+func (v *NullableWebhookWithOutgoingIntegrationDetails) Set(val *WebhookWithOutgoingIntegrationDetails) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWebhookWithOutgoingIntegrationDetails) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWebhookWithOutgoingIntegrationDetails) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableWebhookWithOutgoingIntegrationDetails(val *WebhookWithOutgoingIntegrationDetails) *NullableWebhookWithOutgoingIntegrationDetails {
+	return &NullableWebhookWithOutgoingIntegrationDetails{value: val, isSet: true}
 }
 
 func (v NullableWebhookWithOutgoingIntegrationDetails) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableWebhookWithOutgoingIntegrationDetails) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

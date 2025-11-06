@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,23 +17,50 @@ import (
 // RevisionActivationRequest struct for RevisionActivationRequest
 type RevisionActivationRequest struct {
 	// The list of IDs of the users who will receive the activation request.
-	UserIds []int32 `json:"userIds"`
+	UserIds []int64 `json:"userIds"`
 	// Time when the revisions are finalized after the `activate_revision` operation. The current time is used when left blank.  **Note:** It must be an RFC3339 timestamp string.
 	ActivateAt *time.Time `json:"activateAt,omitempty"`
 }
 
+// NewRevisionActivationRequest instantiates a new RevisionActivationRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRevisionActivationRequest(userIds []int64) *RevisionActivationRequest {
+	this := RevisionActivationRequest{}
+	this.UserIds = userIds
+	return &this
+}
+
+// NewRevisionActivationRequestWithDefaults instantiates a new RevisionActivationRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRevisionActivationRequestWithDefaults() *RevisionActivationRequest {
+	this := RevisionActivationRequest{}
+	return &this
+}
+
 // GetUserIds returns the UserIds field value
-func (o *RevisionActivationRequest) GetUserIds() []int32 {
+func (o *RevisionActivationRequest) GetUserIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.UserIds
 }
 
+// GetUserIdsOk returns a tuple with the UserIds field value
+// and a boolean to check if the value has been set.
+func (o *RevisionActivationRequest) GetUserIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserIds, true
+}
+
 // SetUserIds sets field value
-func (o *RevisionActivationRequest) SetUserIds(v []int32) {
+func (o *RevisionActivationRequest) SetUserIds(v []int64) {
 	o.UserIds = v
 }
 
@@ -47,14 +73,13 @@ func (o *RevisionActivationRequest) GetActivateAt() time.Time {
 	return *o.ActivateAt
 }
 
-// GetActivateAtOk returns a tuple with the ActivateAt field value if set, zero value otherwise
+// GetActivateAtOk returns a tuple with the ActivateAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionActivationRequest) GetActivateAtOk() (time.Time, bool) {
+func (o *RevisionActivationRequest) GetActivateAtOk() (*time.Time, bool) {
 	if o == nil || o.ActivateAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivateAt, true
+	return o.ActivateAt, true
 }
 
 // HasActivateAt returns a boolean if a field has been set.
@@ -71,25 +96,49 @@ func (o *RevisionActivationRequest) SetActivateAt(v time.Time) {
 	o.ActivateAt = &v
 }
 
+func (o RevisionActivationRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["userIds"] = o.UserIds
+	}
+	if o.ActivateAt != nil {
+		toSerialize["activateAt"] = o.ActivateAt
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRevisionActivationRequest struct {
-	Value        RevisionActivationRequest
-	ExplicitNull bool
+	value *RevisionActivationRequest
+	isSet bool
+}
+
+func (v NullableRevisionActivationRequest) Get() *RevisionActivationRequest {
+	return v.value
+}
+
+func (v *NullableRevisionActivationRequest) Set(val *RevisionActivationRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRevisionActivationRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRevisionActivationRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRevisionActivationRequest(val *RevisionActivationRequest) *NullableRevisionActivationRequest {
+	return &NullableRevisionActivationRequest{value: val, isSet: true}
 }
 
 func (v NullableRevisionActivationRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRevisionActivationRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

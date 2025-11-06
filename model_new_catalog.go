@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,7 +20,26 @@ type NewCatalog struct {
 	// A description of this cart item catalog.
 	Description string `json:"description"`
 	// A list of the IDs of the applications that are subscribed to this catalog.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
+}
+
+// NewNewCatalog instantiates a new NewCatalog object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewCatalog(name string, description string) *NewCatalog {
+	this := NewCatalog{}
+	this.Name = name
+	this.Description = description
+	return &this
+}
+
+// NewNewCatalogWithDefaults instantiates a new NewCatalog object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCatalogWithDefaults() *NewCatalog {
+	this := NewCatalog{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -32,6 +50,15 @@ func (o *NewCatalog) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewCatalog) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -49,28 +76,36 @@ func (o *NewCatalog) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *NewCatalog) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *NewCatalog) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *NewCatalog) GetSubscribedApplicationsIds() []int32 {
+func (o *NewCatalog) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCatalog) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *NewCatalog) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -82,30 +117,57 @@ func (o *NewCatalog) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *NewCatalog) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *NewCatalog) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
+func (o NewCatalog) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCatalog struct {
-	Value        NewCatalog
-	ExplicitNull bool
+	value *NewCatalog
+	isSet bool
+}
+
+func (v NullableNewCatalog) Get() *NewCatalog {
+	return v.value
+}
+
+func (v *NullableNewCatalog) Set(val *NewCatalog) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCatalog) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCatalog) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewCatalog(val *NewCatalog) *NullableNewCatalog {
+	return &NullableNewCatalog{value: val, isSet: true}
 }
 
 func (v NullableNewCatalog) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCatalog) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

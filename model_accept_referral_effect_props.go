@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type AcceptReferralEffectProps struct {
 	// The referral code that was accepted.
 	Value string `json:"value"`
+}
+
+// NewAcceptReferralEffectProps instantiates a new AcceptReferralEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAcceptReferralEffectProps(value string) *AcceptReferralEffectProps {
+	this := AcceptReferralEffectProps{}
+	this.Value = value
+	return &this
+}
+
+// NewAcceptReferralEffectPropsWithDefaults instantiates a new AcceptReferralEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAcceptReferralEffectPropsWithDefaults() *AcceptReferralEffectProps {
+	this := AcceptReferralEffectProps{}
+	return &this
 }
 
 // GetValue returns the Value field value
@@ -30,30 +47,60 @@ func (o *AcceptReferralEffectProps) GetValue() string {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *AcceptReferralEffectProps) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *AcceptReferralEffectProps) SetValue(v string) {
 	o.Value = v
 }
 
+func (o AcceptReferralEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAcceptReferralEffectProps struct {
-	Value        AcceptReferralEffectProps
-	ExplicitNull bool
+	value *AcceptReferralEffectProps
+	isSet bool
+}
+
+func (v NullableAcceptReferralEffectProps) Get() *AcceptReferralEffectProps {
+	return v.value
+}
+
+func (v *NullableAcceptReferralEffectProps) Set(val *AcceptReferralEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAcceptReferralEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAcceptReferralEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAcceptReferralEffectProps(val *AcceptReferralEffectProps) *NullableAcceptReferralEffectProps {
+	return &NullableAcceptReferralEffectProps{value: val, isSet: true}
 }
 
 func (v NullableAcceptReferralEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAcceptReferralEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

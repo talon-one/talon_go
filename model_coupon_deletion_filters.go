@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -40,11 +39,32 @@ type CouponDeletionFilters struct {
 	// Filter results by batches of coupons
 	BatchId *string `json:"batchId,omitempty"`
 	// Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code.
-	ReferralId *int32 `json:"referralId,omitempty"`
+	ReferralId *int64 `json:"referralId,omitempty"`
 	// Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
 	ExpiresAfter *time.Time `json:"expiresAfter,omitempty"`
 	// Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally.
 	ExpiresBefore *time.Time `json:"expiresBefore,omitempty"`
+}
+
+// NewCouponDeletionFilters instantiates a new CouponDeletionFilters object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCouponDeletionFilters() *CouponDeletionFilters {
+	this := CouponDeletionFilters{}
+	var exactMatch bool = false
+	this.ExactMatch = &exactMatch
+	return &this
+}
+
+// NewCouponDeletionFiltersWithDefaults instantiates a new CouponDeletionFilters object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponDeletionFiltersWithDefaults() *CouponDeletionFilters {
+	this := CouponDeletionFilters{}
+	var exactMatch bool = false
+	this.ExactMatch = &exactMatch
+	return &this
 }
 
 // GetCreatedBefore returns the CreatedBefore field value if set, zero value otherwise.
@@ -56,14 +76,13 @@ func (o *CouponDeletionFilters) GetCreatedBefore() time.Time {
 	return *o.CreatedBefore
 }
 
-// GetCreatedBeforeOk returns a tuple with the CreatedBefore field value if set, zero value otherwise
+// GetCreatedBeforeOk returns a tuple with the CreatedBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetCreatedBeforeOk() (time.Time, bool) {
+func (o *CouponDeletionFilters) GetCreatedBeforeOk() (*time.Time, bool) {
 	if o == nil || o.CreatedBefore == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBefore, true
+	return o.CreatedBefore, true
 }
 
 // HasCreatedBefore returns a boolean if a field has been set.
@@ -89,14 +108,13 @@ func (o *CouponDeletionFilters) GetCreatedAfter() time.Time {
 	return *o.CreatedAfter
 }
 
-// GetCreatedAfterOk returns a tuple with the CreatedAfter field value if set, zero value otherwise
+// GetCreatedAfterOk returns a tuple with the CreatedAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetCreatedAfterOk() (time.Time, bool) {
+func (o *CouponDeletionFilters) GetCreatedAfterOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAfter == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedAfter, true
+	return o.CreatedAfter, true
 }
 
 // HasCreatedAfter returns a boolean if a field has been set.
@@ -122,14 +140,13 @@ func (o *CouponDeletionFilters) GetStartsAfter() time.Time {
 	return *o.StartsAfter
 }
 
-// GetStartsAfterOk returns a tuple with the StartsAfter field value if set, zero value otherwise
+// GetStartsAfterOk returns a tuple with the StartsAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetStartsAfterOk() (time.Time, bool) {
+func (o *CouponDeletionFilters) GetStartsAfterOk() (*time.Time, bool) {
 	if o == nil || o.StartsAfter == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartsAfter, true
+	return o.StartsAfter, true
 }
 
 // HasStartsAfter returns a boolean if a field has been set.
@@ -155,14 +172,13 @@ func (o *CouponDeletionFilters) GetStartsBefore() time.Time {
 	return *o.StartsBefore
 }
 
-// GetStartsBeforeOk returns a tuple with the StartsBefore field value if set, zero value otherwise
+// GetStartsBeforeOk returns a tuple with the StartsBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetStartsBeforeOk() (time.Time, bool) {
+func (o *CouponDeletionFilters) GetStartsBeforeOk() (*time.Time, bool) {
 	if o == nil || o.StartsBefore == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartsBefore, true
+	return o.StartsBefore, true
 }
 
 // HasStartsBefore returns a boolean if a field has been set.
@@ -188,14 +204,13 @@ func (o *CouponDeletionFilters) GetValid() string {
 	return *o.Valid
 }
 
-// GetValidOk returns a tuple with the Valid field value if set, zero value otherwise
+// GetValidOk returns a tuple with the Valid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetValidOk() (string, bool) {
+func (o *CouponDeletionFilters) GetValidOk() (*string, bool) {
 	if o == nil || o.Valid == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Valid, true
+	return o.Valid, true
 }
 
 // HasValid returns a boolean if a field has been set.
@@ -221,14 +236,13 @@ func (o *CouponDeletionFilters) GetUsable() bool {
 	return *o.Usable
 }
 
-// GetUsableOk returns a tuple with the Usable field value if set, zero value otherwise
+// GetUsableOk returns a tuple with the Usable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetUsableOk() (bool, bool) {
+func (o *CouponDeletionFilters) GetUsableOk() (*bool, bool) {
 	if o == nil || o.Usable == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Usable, true
+	return o.Usable, true
 }
 
 // HasUsable returns a boolean if a field has been set.
@@ -254,14 +268,13 @@ func (o *CouponDeletionFilters) GetRedeemed() bool {
 	return *o.Redeemed
 }
 
-// GetRedeemedOk returns a tuple with the Redeemed field value if set, zero value otherwise
+// GetRedeemedOk returns a tuple with the Redeemed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetRedeemedOk() (bool, bool) {
+func (o *CouponDeletionFilters) GetRedeemedOk() (*bool, bool) {
 	if o == nil || o.Redeemed == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Redeemed, true
+	return o.Redeemed, true
 }
 
 // HasRedeemed returns a boolean if a field has been set.
@@ -287,14 +300,13 @@ func (o *CouponDeletionFilters) GetRecipientIntegrationId() string {
 	return *o.RecipientIntegrationId
 }
 
-// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value if set, zero value otherwise
+// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetRecipientIntegrationIdOk() (string, bool) {
+func (o *CouponDeletionFilters) GetRecipientIntegrationIdOk() (*string, bool) {
 	if o == nil || o.RecipientIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RecipientIntegrationId, true
+	return o.RecipientIntegrationId, true
 }
 
 // HasRecipientIntegrationId returns a boolean if a field has been set.
@@ -320,14 +332,13 @@ func (o *CouponDeletionFilters) GetExactMatch() bool {
 	return *o.ExactMatch
 }
 
-// GetExactMatchOk returns a tuple with the ExactMatch field value if set, zero value otherwise
+// GetExactMatchOk returns a tuple with the ExactMatch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetExactMatchOk() (bool, bool) {
+func (o *CouponDeletionFilters) GetExactMatchOk() (*bool, bool) {
 	if o == nil || o.ExactMatch == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ExactMatch, true
+	return o.ExactMatch, true
 }
 
 // HasExactMatch returns a boolean if a field has been set.
@@ -353,14 +364,13 @@ func (o *CouponDeletionFilters) GetValue() string {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetValueOk() (string, bool) {
+func (o *CouponDeletionFilters) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -386,14 +396,13 @@ func (o *CouponDeletionFilters) GetBatchId() string {
 	return *o.BatchId
 }
 
-// GetBatchIdOk returns a tuple with the BatchId field value if set, zero value otherwise
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetBatchIdOk() (string, bool) {
+func (o *CouponDeletionFilters) GetBatchIdOk() (*string, bool) {
 	if o == nil || o.BatchId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchId, true
+	return o.BatchId, true
 }
 
 // HasBatchId returns a boolean if a field has been set.
@@ -411,22 +420,21 @@ func (o *CouponDeletionFilters) SetBatchId(v string) {
 }
 
 // GetReferralId returns the ReferralId field value if set, zero value otherwise.
-func (o *CouponDeletionFilters) GetReferralId() int32 {
+func (o *CouponDeletionFilters) GetReferralId() int64 {
 	if o == nil || o.ReferralId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferralId
 }
 
-// GetReferralIdOk returns a tuple with the ReferralId field value if set, zero value otherwise
+// GetReferralIdOk returns a tuple with the ReferralId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetReferralIdOk() (int32, bool) {
+func (o *CouponDeletionFilters) GetReferralIdOk() (*int64, bool) {
 	if o == nil || o.ReferralId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralId, true
+	return o.ReferralId, true
 }
 
 // HasReferralId returns a boolean if a field has been set.
@@ -438,8 +446,8 @@ func (o *CouponDeletionFilters) HasReferralId() bool {
 	return false
 }
 
-// SetReferralId gets a reference to the given int32 and assigns it to the ReferralId field.
-func (o *CouponDeletionFilters) SetReferralId(v int32) {
+// SetReferralId gets a reference to the given int64 and assigns it to the ReferralId field.
+func (o *CouponDeletionFilters) SetReferralId(v int64) {
 	o.ReferralId = &v
 }
 
@@ -452,14 +460,13 @@ func (o *CouponDeletionFilters) GetExpiresAfter() time.Time {
 	return *o.ExpiresAfter
 }
 
-// GetExpiresAfterOk returns a tuple with the ExpiresAfter field value if set, zero value otherwise
+// GetExpiresAfterOk returns a tuple with the ExpiresAfter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetExpiresAfterOk() (time.Time, bool) {
+func (o *CouponDeletionFilters) GetExpiresAfterOk() (*time.Time, bool) {
 	if o == nil || o.ExpiresAfter == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiresAfter, true
+	return o.ExpiresAfter, true
 }
 
 // HasExpiresAfter returns a boolean if a field has been set.
@@ -485,14 +492,13 @@ func (o *CouponDeletionFilters) GetExpiresBefore() time.Time {
 	return *o.ExpiresBefore
 }
 
-// GetExpiresBeforeOk returns a tuple with the ExpiresBefore field value if set, zero value otherwise
+// GetExpiresBeforeOk returns a tuple with the ExpiresBefore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionFilters) GetExpiresBeforeOk() (time.Time, bool) {
+func (o *CouponDeletionFilters) GetExpiresBeforeOk() (*time.Time, bool) {
 	if o == nil || o.ExpiresBefore == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiresBefore, true
+	return o.ExpiresBefore, true
 }
 
 // HasExpiresBefore returns a boolean if a field has been set.
@@ -509,25 +515,85 @@ func (o *CouponDeletionFilters) SetExpiresBefore(v time.Time) {
 	o.ExpiresBefore = &v
 }
 
+func (o CouponDeletionFilters) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CreatedBefore != nil {
+		toSerialize["createdBefore"] = o.CreatedBefore
+	}
+	if o.CreatedAfter != nil {
+		toSerialize["createdAfter"] = o.CreatedAfter
+	}
+	if o.StartsAfter != nil {
+		toSerialize["startsAfter"] = o.StartsAfter
+	}
+	if o.StartsBefore != nil {
+		toSerialize["startsBefore"] = o.StartsBefore
+	}
+	if o.Valid != nil {
+		toSerialize["valid"] = o.Valid
+	}
+	if o.Usable != nil {
+		toSerialize["usable"] = o.Usable
+	}
+	if o.Redeemed != nil {
+		toSerialize["redeemed"] = o.Redeemed
+	}
+	if o.RecipientIntegrationId != nil {
+		toSerialize["recipientIntegrationId"] = o.RecipientIntegrationId
+	}
+	if o.ExactMatch != nil {
+		toSerialize["exactMatch"] = o.ExactMatch
+	}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
+	}
+	if o.ReferralId != nil {
+		toSerialize["referralId"] = o.ReferralId
+	}
+	if o.ExpiresAfter != nil {
+		toSerialize["expiresAfter"] = o.ExpiresAfter
+	}
+	if o.ExpiresBefore != nil {
+		toSerialize["expiresBefore"] = o.ExpiresBefore
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponDeletionFilters struct {
-	Value        CouponDeletionFilters
-	ExplicitNull bool
+	value *CouponDeletionFilters
+	isSet bool
+}
+
+func (v NullableCouponDeletionFilters) Get() *CouponDeletionFilters {
+	return v.value
+}
+
+func (v *NullableCouponDeletionFilters) Set(val *CouponDeletionFilters) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponDeletionFilters) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponDeletionFilters) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCouponDeletionFilters(val *CouponDeletionFilters) *NullableCouponDeletionFilters {
+	return &NullableCouponDeletionFilters{value: val, isSet: true}
 }
 
 func (v NullableCouponDeletionFilters) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponDeletionFilters) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,24 @@ type ScimPatchRequest struct {
 	// SCIM schema for the given resource.
 	Schemas    *[]string            `json:"schemas,omitempty"`
 	Operations []ScimPatchOperation `json:"Operations"`
+}
+
+// NewScimPatchRequest instantiates a new ScimPatchRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildScimPatchRequest(operations []ScimPatchOperation) *ScimPatchRequest {
+	this := ScimPatchRequest{}
+	this.Operations = operations
+	return &this
+}
+
+// NewScimPatchRequestWithDefaults instantiates a new ScimPatchRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimPatchRequestWithDefaults() *ScimPatchRequest {
+	this := ScimPatchRequest{}
+	return &this
 }
 
 // GetSchemas returns the Schemas field value if set, zero value otherwise.
@@ -30,14 +47,13 @@ func (o *ScimPatchRequest) GetSchemas() []string {
 	return *o.Schemas
 }
 
-// GetSchemasOk returns a tuple with the Schemas field value if set, zero value otherwise
+// GetSchemasOk returns a tuple with the Schemas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimPatchRequest) GetSchemasOk() ([]string, bool) {
+func (o *ScimPatchRequest) GetSchemasOk() (*[]string, bool) {
 	if o == nil || o.Schemas == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Schemas, true
+	return o.Schemas, true
 }
 
 // HasSchemas returns a boolean if a field has been set.
@@ -64,30 +80,63 @@ func (o *ScimPatchRequest) GetOperations() []ScimPatchOperation {
 	return o.Operations
 }
 
+// GetOperationsOk returns a tuple with the Operations field value
+// and a boolean to check if the value has been set.
+func (o *ScimPatchRequest) GetOperationsOk() (*[]ScimPatchOperation, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Operations, true
+}
+
 // SetOperations sets field value
 func (o *ScimPatchRequest) SetOperations(v []ScimPatchOperation) {
 	o.Operations = v
 }
 
+func (o ScimPatchRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Schemas != nil {
+		toSerialize["schemas"] = o.Schemas
+	}
+	if true {
+		toSerialize["Operations"] = o.Operations
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimPatchRequest struct {
-	Value        ScimPatchRequest
-	ExplicitNull bool
+	value *ScimPatchRequest
+	isSet bool
+}
+
+func (v NullableScimPatchRequest) Get() *ScimPatchRequest {
+	return v.value
+}
+
+func (v *NullableScimPatchRequest) Set(val *ScimPatchRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimPatchRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimPatchRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableScimPatchRequest(val *ScimPatchRequest) *NullableScimPatchRequest {
+	return &NullableScimPatchRequest{value: val, isSet: true}
 }
 
 func (v NullableScimPatchRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimPatchRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

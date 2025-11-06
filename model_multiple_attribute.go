@@ -10,13 +10,29 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MultipleAttribute struct for MultipleAttribute
 type MultipleAttribute struct {
 	Attributes *[]Attribute `json:"attributes,omitempty"`
+}
+
+// NewMultipleAttribute instantiates a new MultipleAttribute object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMultipleAttribute() *MultipleAttribute {
+	this := MultipleAttribute{}
+	return &this
+}
+
+// NewMultipleAttributeWithDefaults instantiates a new MultipleAttribute object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMultipleAttributeWithDefaults() *MultipleAttribute {
+	this := MultipleAttribute{}
+	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -28,14 +44,13 @@ func (o *MultipleAttribute) GetAttributes() []Attribute {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultipleAttribute) GetAttributesOk() ([]Attribute, bool) {
+func (o *MultipleAttribute) GetAttributesOk() (*[]Attribute, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret []Attribute
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -52,25 +67,46 @@ func (o *MultipleAttribute) SetAttributes(v []Attribute) {
 	o.Attributes = &v
 }
 
+func (o MultipleAttribute) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMultipleAttribute struct {
-	Value        MultipleAttribute
-	ExplicitNull bool
+	value *MultipleAttribute
+	isSet bool
+}
+
+func (v NullableMultipleAttribute) Get() *MultipleAttribute {
+	return v.value
+}
+
+func (v *NullableMultipleAttribute) Set(val *MultipleAttribute) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMultipleAttribute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMultipleAttribute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMultipleAttribute(val *MultipleAttribute) *NullableMultipleAttribute {
+	return &NullableMultipleAttribute{value: val, isSet: true}
 }
 
 func (v NullableMultipleAttribute) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMultipleAttribute) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

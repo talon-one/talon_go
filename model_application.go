@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,13 +17,13 @@ import (
 // Application struct for Application
 type Application struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The name of this application.
 	Name string `json:"name"`
 	// A longer description of the application.
@@ -53,27 +52,61 @@ type Application struct {
 	// The default scope to apply `setDiscountPerItem` effects on if no scope was provided with the effect.
 	DefaultDiscountAdditionalCostPerItemScope *string `json:"defaultDiscountAdditionalCostPerItemScope,omitempty"`
 	// The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign.
-	DefaultEvaluationGroupId *int32 `json:"defaultEvaluationGroupId,omitempty"`
+	DefaultEvaluationGroupId *int64 `json:"defaultEvaluationGroupId,omitempty"`
 	// The ID of the default Cart-Item-Filter for this application.
-	DefaultCartItemFilterId *int32 `json:"defaultCartItemFilterId,omitempty"`
+	DefaultCartItemFilterId *int64 `json:"defaultCartItemFilterId,omitempty"`
 	// Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.
 	EnableCampaignStateManagement *bool `json:"enableCampaignStateManagement,omitempty"`
 	// An array containing all the loyalty programs to which this application is subscribed.
 	LoyaltyPrograms []LoyaltyProgram `json:"loyaltyPrograms"`
 }
 
+// NewApplication instantiates a new Application object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildApplication(id int64, created time.Time, modified time.Time, accountId int64, name string, timezone string, currency string, loyaltyPrograms []LoyaltyProgram) *Application {
+	this := Application{}
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	this.AccountId = accountId
+	this.Name = name
+	this.Timezone = timezone
+	this.Currency = currency
+	this.LoyaltyPrograms = loyaltyPrograms
+	return &this
+}
+
+// NewApplicationWithDefaults instantiates a new Application object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationWithDefaults() *Application {
+	this := Application{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Application) GetId() int32 {
+func (o *Application) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Application) SetId(v int32) {
+func (o *Application) SetId(v int64) {
 	o.Id = v
 }
 
@@ -85,6 +118,15 @@ func (o *Application) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -102,23 +144,41 @@ func (o *Application) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *Application) SetModified(v time.Time) {
 	o.Modified = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Application) GetAccountId() int32 {
+func (o *Application) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Application) SetAccountId(v int32) {
+func (o *Application) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -130,6 +190,15 @@ func (o *Application) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -146,14 +215,13 @@ func (o *Application) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetDescriptionOk() (string, bool) {
+func (o *Application) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -180,6 +248,15 @@ func (o *Application) GetTimezone() string {
 	return o.Timezone
 }
 
+// GetTimezoneOk returns a tuple with the Timezone field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetTimezoneOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timezone, true
+}
+
 // SetTimezone sets field value
 func (o *Application) SetTimezone(v string) {
 	o.Timezone = v
@@ -193,6 +270,15 @@ func (o *Application) GetCurrency() string {
 	}
 
 	return o.Currency
+}
+
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetCurrencyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Currency, true
 }
 
 // SetCurrency sets field value
@@ -209,14 +295,13 @@ func (o *Application) GetCaseSensitivity() string {
 	return *o.CaseSensitivity
 }
 
-// GetCaseSensitivityOk returns a tuple with the CaseSensitivity field value if set, zero value otherwise
+// GetCaseSensitivityOk returns a tuple with the CaseSensitivity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetCaseSensitivityOk() (string, bool) {
+func (o *Application) GetCaseSensitivityOk() (*string, bool) {
 	if o == nil || o.CaseSensitivity == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CaseSensitivity, true
+	return o.CaseSensitivity, true
 }
 
 // HasCaseSensitivity returns a boolean if a field has been set.
@@ -242,14 +327,13 @@ func (o *Application) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *Application) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -275,14 +359,13 @@ func (o *Application) GetLimits() []LimitConfig {
 	return *o.Limits
 }
 
-// GetLimitsOk returns a tuple with the Limits field value if set, zero value otherwise
+// GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetLimitsOk() ([]LimitConfig, bool) {
+func (o *Application) GetLimitsOk() (*[]LimitConfig, bool) {
 	if o == nil || o.Limits == nil {
-		var ret []LimitConfig
-		return ret, false
+		return nil, false
 	}
-	return *o.Limits, true
+	return o.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
@@ -308,14 +391,13 @@ func (o *Application) GetDefaultDiscountScope() string {
 	return *o.DefaultDiscountScope
 }
 
-// GetDefaultDiscountScopeOk returns a tuple with the DefaultDiscountScope field value if set, zero value otherwise
+// GetDefaultDiscountScopeOk returns a tuple with the DefaultDiscountScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetDefaultDiscountScopeOk() (string, bool) {
+func (o *Application) GetDefaultDiscountScopeOk() (*string, bool) {
 	if o == nil || o.DefaultDiscountScope == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultDiscountScope, true
+	return o.DefaultDiscountScope, true
 }
 
 // HasDefaultDiscountScope returns a boolean if a field has been set.
@@ -341,14 +423,13 @@ func (o *Application) GetEnableCascadingDiscounts() bool {
 	return *o.EnableCascadingDiscounts
 }
 
-// GetEnableCascadingDiscountsOk returns a tuple with the EnableCascadingDiscounts field value if set, zero value otherwise
+// GetEnableCascadingDiscountsOk returns a tuple with the EnableCascadingDiscounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetEnableCascadingDiscountsOk() (bool, bool) {
+func (o *Application) GetEnableCascadingDiscountsOk() (*bool, bool) {
 	if o == nil || o.EnableCascadingDiscounts == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.EnableCascadingDiscounts, true
+	return o.EnableCascadingDiscounts, true
 }
 
 // HasEnableCascadingDiscounts returns a boolean if a field has been set.
@@ -374,14 +455,13 @@ func (o *Application) GetEnableFlattenedCartItems() bool {
 	return *o.EnableFlattenedCartItems
 }
 
-// GetEnableFlattenedCartItemsOk returns a tuple with the EnableFlattenedCartItems field value if set, zero value otherwise
+// GetEnableFlattenedCartItemsOk returns a tuple with the EnableFlattenedCartItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetEnableFlattenedCartItemsOk() (bool, bool) {
+func (o *Application) GetEnableFlattenedCartItemsOk() (*bool, bool) {
 	if o == nil || o.EnableFlattenedCartItems == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.EnableFlattenedCartItems, true
+	return o.EnableFlattenedCartItems, true
 }
 
 // HasEnableFlattenedCartItems returns a boolean if a field has been set.
@@ -407,14 +487,13 @@ func (o *Application) GetAttributesSettings() AttributesSettings {
 	return *o.AttributesSettings
 }
 
-// GetAttributesSettingsOk returns a tuple with the AttributesSettings field value if set, zero value otherwise
+// GetAttributesSettingsOk returns a tuple with the AttributesSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetAttributesSettingsOk() (AttributesSettings, bool) {
+func (o *Application) GetAttributesSettingsOk() (*AttributesSettings, bool) {
 	if o == nil || o.AttributesSettings == nil {
-		var ret AttributesSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.AttributesSettings, true
+	return o.AttributesSettings, true
 }
 
 // HasAttributesSettings returns a boolean if a field has been set.
@@ -440,14 +519,13 @@ func (o *Application) GetSandbox() bool {
 	return *o.Sandbox
 }
 
-// GetSandboxOk returns a tuple with the Sandbox field value if set, zero value otherwise
+// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetSandboxOk() (bool, bool) {
+func (o *Application) GetSandboxOk() (*bool, bool) {
 	if o == nil || o.Sandbox == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Sandbox, true
+	return o.Sandbox, true
 }
 
 // HasSandbox returns a boolean if a field has been set.
@@ -473,14 +551,13 @@ func (o *Application) GetEnablePartialDiscounts() bool {
 	return *o.EnablePartialDiscounts
 }
 
-// GetEnablePartialDiscountsOk returns a tuple with the EnablePartialDiscounts field value if set, zero value otherwise
+// GetEnablePartialDiscountsOk returns a tuple with the EnablePartialDiscounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetEnablePartialDiscountsOk() (bool, bool) {
+func (o *Application) GetEnablePartialDiscountsOk() (*bool, bool) {
 	if o == nil || o.EnablePartialDiscounts == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.EnablePartialDiscounts, true
+	return o.EnablePartialDiscounts, true
 }
 
 // HasEnablePartialDiscounts returns a boolean if a field has been set.
@@ -506,14 +583,13 @@ func (o *Application) GetDefaultDiscountAdditionalCostPerItemScope() string {
 	return *o.DefaultDiscountAdditionalCostPerItemScope
 }
 
-// GetDefaultDiscountAdditionalCostPerItemScopeOk returns a tuple with the DefaultDiscountAdditionalCostPerItemScope field value if set, zero value otherwise
+// GetDefaultDiscountAdditionalCostPerItemScopeOk returns a tuple with the DefaultDiscountAdditionalCostPerItemScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetDefaultDiscountAdditionalCostPerItemScopeOk() (string, bool) {
+func (o *Application) GetDefaultDiscountAdditionalCostPerItemScopeOk() (*string, bool) {
 	if o == nil || o.DefaultDiscountAdditionalCostPerItemScope == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultDiscountAdditionalCostPerItemScope, true
+	return o.DefaultDiscountAdditionalCostPerItemScope, true
 }
 
 // HasDefaultDiscountAdditionalCostPerItemScope returns a boolean if a field has been set.
@@ -531,22 +607,21 @@ func (o *Application) SetDefaultDiscountAdditionalCostPerItemScope(v string) {
 }
 
 // GetDefaultEvaluationGroupId returns the DefaultEvaluationGroupId field value if set, zero value otherwise.
-func (o *Application) GetDefaultEvaluationGroupId() int32 {
+func (o *Application) GetDefaultEvaluationGroupId() int64 {
 	if o == nil || o.DefaultEvaluationGroupId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultEvaluationGroupId
 }
 
-// GetDefaultEvaluationGroupIdOk returns a tuple with the DefaultEvaluationGroupId field value if set, zero value otherwise
+// GetDefaultEvaluationGroupIdOk returns a tuple with the DefaultEvaluationGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetDefaultEvaluationGroupIdOk() (int32, bool) {
+func (o *Application) GetDefaultEvaluationGroupIdOk() (*int64, bool) {
 	if o == nil || o.DefaultEvaluationGroupId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultEvaluationGroupId, true
+	return o.DefaultEvaluationGroupId, true
 }
 
 // HasDefaultEvaluationGroupId returns a boolean if a field has been set.
@@ -558,28 +633,27 @@ func (o *Application) HasDefaultEvaluationGroupId() bool {
 	return false
 }
 
-// SetDefaultEvaluationGroupId gets a reference to the given int32 and assigns it to the DefaultEvaluationGroupId field.
-func (o *Application) SetDefaultEvaluationGroupId(v int32) {
+// SetDefaultEvaluationGroupId gets a reference to the given int64 and assigns it to the DefaultEvaluationGroupId field.
+func (o *Application) SetDefaultEvaluationGroupId(v int64) {
 	o.DefaultEvaluationGroupId = &v
 }
 
 // GetDefaultCartItemFilterId returns the DefaultCartItemFilterId field value if set, zero value otherwise.
-func (o *Application) GetDefaultCartItemFilterId() int32 {
+func (o *Application) GetDefaultCartItemFilterId() int64 {
 	if o == nil || o.DefaultCartItemFilterId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DefaultCartItemFilterId
 }
 
-// GetDefaultCartItemFilterIdOk returns a tuple with the DefaultCartItemFilterId field value if set, zero value otherwise
+// GetDefaultCartItemFilterIdOk returns a tuple with the DefaultCartItemFilterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetDefaultCartItemFilterIdOk() (int32, bool) {
+func (o *Application) GetDefaultCartItemFilterIdOk() (*int64, bool) {
 	if o == nil || o.DefaultCartItemFilterId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultCartItemFilterId, true
+	return o.DefaultCartItemFilterId, true
 }
 
 // HasDefaultCartItemFilterId returns a boolean if a field has been set.
@@ -591,8 +665,8 @@ func (o *Application) HasDefaultCartItemFilterId() bool {
 	return false
 }
 
-// SetDefaultCartItemFilterId gets a reference to the given int32 and assigns it to the DefaultCartItemFilterId field.
-func (o *Application) SetDefaultCartItemFilterId(v int32) {
+// SetDefaultCartItemFilterId gets a reference to the given int64 and assigns it to the DefaultCartItemFilterId field.
+func (o *Application) SetDefaultCartItemFilterId(v int64) {
 	o.DefaultCartItemFilterId = &v
 }
 
@@ -605,14 +679,13 @@ func (o *Application) GetEnableCampaignStateManagement() bool {
 	return *o.EnableCampaignStateManagement
 }
 
-// GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field value if set, zero value otherwise
+// GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Application) GetEnableCampaignStateManagementOk() (bool, bool) {
+func (o *Application) GetEnableCampaignStateManagementOk() (*bool, bool) {
 	if o == nil || o.EnableCampaignStateManagement == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.EnableCampaignStateManagement, true
+	return o.EnableCampaignStateManagement, true
 }
 
 // HasEnableCampaignStateManagement returns a boolean if a field has been set.
@@ -639,30 +712,123 @@ func (o *Application) GetLoyaltyPrograms() []LoyaltyProgram {
 	return o.LoyaltyPrograms
 }
 
+// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value
+// and a boolean to check if the value has been set.
+func (o *Application) GetLoyaltyProgramsOk() (*[]LoyaltyProgram, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoyaltyPrograms, true
+}
+
 // SetLoyaltyPrograms sets field value
 func (o *Application) SetLoyaltyPrograms(v []LoyaltyProgram) {
 	o.LoyaltyPrograms = v
 }
 
+func (o Application) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	if o.CaseSensitivity != nil {
+		toSerialize["caseSensitivity"] = o.CaseSensitivity
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Limits != nil {
+		toSerialize["limits"] = o.Limits
+	}
+	if o.DefaultDiscountScope != nil {
+		toSerialize["defaultDiscountScope"] = o.DefaultDiscountScope
+	}
+	if o.EnableCascadingDiscounts != nil {
+		toSerialize["enableCascadingDiscounts"] = o.EnableCascadingDiscounts
+	}
+	if o.EnableFlattenedCartItems != nil {
+		toSerialize["enableFlattenedCartItems"] = o.EnableFlattenedCartItems
+	}
+	if o.AttributesSettings != nil {
+		toSerialize["attributesSettings"] = o.AttributesSettings
+	}
+	if o.Sandbox != nil {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if o.EnablePartialDiscounts != nil {
+		toSerialize["enablePartialDiscounts"] = o.EnablePartialDiscounts
+	}
+	if o.DefaultDiscountAdditionalCostPerItemScope != nil {
+		toSerialize["defaultDiscountAdditionalCostPerItemScope"] = o.DefaultDiscountAdditionalCostPerItemScope
+	}
+	if o.DefaultEvaluationGroupId != nil {
+		toSerialize["defaultEvaluationGroupId"] = o.DefaultEvaluationGroupId
+	}
+	if o.DefaultCartItemFilterId != nil {
+		toSerialize["defaultCartItemFilterId"] = o.DefaultCartItemFilterId
+	}
+	if o.EnableCampaignStateManagement != nil {
+		toSerialize["enableCampaignStateManagement"] = o.EnableCampaignStateManagement
+	}
+	if true {
+		toSerialize["loyaltyPrograms"] = o.LoyaltyPrograms
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplication struct {
-	Value        Application
-	ExplicitNull bool
+	value *Application
+	isSet bool
+}
+
+func (v NullableApplication) Get() *Application {
+	return v.value
+}
+
+func (v *NullableApplication) Set(val *Application) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplication) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplication) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableApplication(val *Application) *NullableApplication {
+	return &NullableApplication{value: val, isSet: true}
 }
 
 func (v NullableApplication) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplication) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

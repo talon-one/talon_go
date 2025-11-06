@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type Product struct {
 	// The product the item belongs to.
 	Name string `json:"name"`
+}
+
+// NewProduct instantiates a new Product object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildProduct(name string) *Product {
+	this := Product{}
+	this.Name = name
+	return &this
+}
+
+// NewProductWithDefaults instantiates a new Product object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProductWithDefaults() *Product {
+	this := Product{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -30,30 +47,60 @@ func (o *Product) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Product) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *Product) SetName(v string) {
 	o.Name = v
 }
 
+func (o Product) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableProduct struct {
-	Value        Product
-	ExplicitNull bool
+	value *Product
+	isSet bool
+}
+
+func (v NullableProduct) Get() *Product {
+	return v.value
+}
+
+func (v *NullableProduct) Set(val *Product) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProduct) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProduct) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableProduct(val *Product) *NullableProduct {
+	return &NullableProduct{value: val, isSet: true}
 }
 
 func (v NullableProduct) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableProduct) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

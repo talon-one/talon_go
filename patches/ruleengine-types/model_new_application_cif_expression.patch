@@ -1,0 +1,7 @@
+@@
+var model identifier
+@@
+-func (o *model) GetExpressionOk() (*[]map[string]interface{}, bool) {
++func (o *model) GetExpressionOk() ([]interface{}, bool) {
+	...
+}

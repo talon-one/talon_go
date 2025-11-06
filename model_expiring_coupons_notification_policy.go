@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,7 +21,34 @@ type ExpiringCouponsNotificationPolicy struct {
 	// Indicates whether batching is activated.
 	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 	// The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-	BatchSize *int32 `json:"batchSize,omitempty"`
+	BatchSize *int64 `json:"batchSize,omitempty"`
+}
+
+// NewExpiringCouponsNotificationPolicy instantiates a new ExpiringCouponsNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildExpiringCouponsNotificationPolicy(name string, triggers []ExpiringCouponsNotificationTrigger) *ExpiringCouponsNotificationPolicy {
+	this := ExpiringCouponsNotificationPolicy{}
+	this.Name = name
+	this.Triggers = triggers
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
+}
+
+// NewExpiringCouponsNotificationPolicyWithDefaults instantiates a new ExpiringCouponsNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExpiringCouponsNotificationPolicyWithDefaults() *ExpiringCouponsNotificationPolicy {
+	this := ExpiringCouponsNotificationPolicy{}
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
 }
 
 // GetName returns the Name field value
@@ -33,6 +59,15 @@ func (o *ExpiringCouponsNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExpiringCouponsNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -50,6 +85,15 @@ func (o *ExpiringCouponsNotificationPolicy) GetTriggers() []ExpiringCouponsNotif
 	return o.Triggers
 }
 
+// GetTriggersOk returns a tuple with the Triggers field value
+// and a boolean to check if the value has been set.
+func (o *ExpiringCouponsNotificationPolicy) GetTriggersOk() (*[]ExpiringCouponsNotificationTrigger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Triggers, true
+}
+
 // SetTriggers sets field value
 func (o *ExpiringCouponsNotificationPolicy) SetTriggers(v []ExpiringCouponsNotificationTrigger) {
 	o.Triggers = v
@@ -64,14 +108,13 @@ func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabled() bool {
 	return *o.BatchingEnabled
 }
 
-// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+func (o *ExpiringCouponsNotificationPolicy) GetBatchingEnabledOk() (*bool, bool) {
 	if o == nil || o.BatchingEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchingEnabled, true
+	return o.BatchingEnabled, true
 }
 
 // HasBatchingEnabled returns a boolean if a field has been set.
@@ -89,22 +132,21 @@ func (o *ExpiringCouponsNotificationPolicy) SetBatchingEnabled(v bool) {
 }
 
 // GetBatchSize returns the BatchSize field value if set, zero value otherwise.
-func (o *ExpiringCouponsNotificationPolicy) GetBatchSize() int32 {
+func (o *ExpiringCouponsNotificationPolicy) GetBatchSize() int64 {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BatchSize
 }
 
-// GetBatchSizeOk returns a tuple with the BatchSize field value if set, zero value otherwise
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpiringCouponsNotificationPolicy) GetBatchSizeOk() (int32, bool) {
+func (o *ExpiringCouponsNotificationPolicy) GetBatchSizeOk() (*int64, bool) {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchSize, true
+	return o.BatchSize, true
 }
 
 // HasBatchSize returns a boolean if a field has been set.
@@ -116,30 +158,60 @@ func (o *ExpiringCouponsNotificationPolicy) HasBatchSize() bool {
 	return false
 }
 
-// SetBatchSize gets a reference to the given int32 and assigns it to the BatchSize field.
-func (o *ExpiringCouponsNotificationPolicy) SetBatchSize(v int32) {
+// SetBatchSize gets a reference to the given int64 and assigns it to the BatchSize field.
+func (o *ExpiringCouponsNotificationPolicy) SetBatchSize(v int64) {
 	o.BatchSize = &v
 }
 
+func (o ExpiringCouponsNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["triggers"] = o.Triggers
+	}
+	if o.BatchingEnabled != nil {
+		toSerialize["batchingEnabled"] = o.BatchingEnabled
+	}
+	if o.BatchSize != nil {
+		toSerialize["batchSize"] = o.BatchSize
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableExpiringCouponsNotificationPolicy struct {
-	Value        ExpiringCouponsNotificationPolicy
-	ExplicitNull bool
+	value *ExpiringCouponsNotificationPolicy
+	isSet bool
+}
+
+func (v NullableExpiringCouponsNotificationPolicy) Get() *ExpiringCouponsNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableExpiringCouponsNotificationPolicy) Set(val *ExpiringCouponsNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExpiringCouponsNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExpiringCouponsNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableExpiringCouponsNotificationPolicy(val *ExpiringCouponsNotificationPolicy) *NullableExpiringCouponsNotificationPolicy {
+	return &NullableExpiringCouponsNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableExpiringCouponsNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableExpiringCouponsNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

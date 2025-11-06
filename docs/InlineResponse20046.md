@@ -4,60 +4,51 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int32** |  | 
-**Data** | Pointer to [**[]RoleV2**](RoleV2.md) |  | 
+**Data** | Pointer to [**[]ListCampaignStoreBudgets**](ListCampaignStoreBudgets.md) |  | [optional] 
 
 ## Methods
 
-### GetTotalResultSize
+### NewInlineResponse20046
 
-`func (o *InlineResponse20046) GetTotalResultSize() int32`
+`func NewInlineResponse20046() *InlineResponse20046`
 
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+NewInlineResponse20046 instantiates a new InlineResponse20046 object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-### GetTotalResultSizeOk
+### NewInlineResponse20046WithDefaults
 
-`func (o *InlineResponse20046) GetTotalResultSizeOk() (int32, bool)`
+`func NewInlineResponse20046WithDefaults() *InlineResponse20046`
 
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### HasTotalResultSize
-
-`func (o *InlineResponse20046) HasTotalResultSize() bool`
-
-HasTotalResultSize returns a boolean if a field has been set.
-
-### SetTotalResultSize
-
-`func (o *InlineResponse20046) SetTotalResultSize(v int32)`
-
-SetTotalResultSize gets a reference to the given int32 and assigns it to the TotalResultSize field.
+NewInlineResponse20046WithDefaults instantiates a new InlineResponse20046 object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetData
 
-`func (o *InlineResponse20046) GetData() []RoleV2`
+`func (o *InlineResponse20046) GetData() []ListCampaignStoreBudgets`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20046) GetDataOk() ([]RoleV2, bool)`
+`func (o *InlineResponse20046) GetDataOk() (*[]ListCampaignStoreBudgets, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *InlineResponse20046) SetData(v []ListCampaignStoreBudgets)`
+
+SetData sets Data field to given value.
 
 ### HasData
 
 `func (o *InlineResponse20046) HasData() bool`
 
 HasData returns a boolean if a field has been set.
-
-### SetData
-
-`func (o *InlineResponse20046) SetData(v []RoleV2)`
-
-SetData gets a reference to the given []RoleV2 and assigns it to the Data field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

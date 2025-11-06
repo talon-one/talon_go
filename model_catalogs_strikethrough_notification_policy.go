@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,31 @@ type CatalogsStrikethroughNotificationPolicy struct {
 	// Notification name.
 	Name string `json:"name"`
 	// The number of days in advance that strikethrough pricing updates should be sent.
-	AheadOfDaysTrigger *int32 `json:"aheadOfDaysTrigger,omitempty"`
+	AheadOfDaysTrigger *int64 `json:"aheadOfDaysTrigger,omitempty"`
+	// The required size of each batch of data.
+	BatchSize *int64 `json:"batchSize,omitempty"`
+}
+
+// NewCatalogsStrikethroughNotificationPolicy instantiates a new CatalogsStrikethroughNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCatalogsStrikethroughNotificationPolicy(name string) *CatalogsStrikethroughNotificationPolicy {
+	this := CatalogsStrikethroughNotificationPolicy{}
+	this.Name = name
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
+}
+
+// NewCatalogsStrikethroughNotificationPolicyWithDefaults instantiates a new CatalogsStrikethroughNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCatalogsStrikethroughNotificationPolicyWithDefaults() *CatalogsStrikethroughNotificationPolicy {
+	this := CatalogsStrikethroughNotificationPolicy{}
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
 }
 
 // GetName returns the Name field value
@@ -32,28 +55,36 @@ func (o *CatalogsStrikethroughNotificationPolicy) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CatalogsStrikethroughNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *CatalogsStrikethroughNotificationPolicy) SetName(v string) {
 	o.Name = v
 }
 
 // GetAheadOfDaysTrigger returns the AheadOfDaysTrigger field value if set, zero value otherwise.
-func (o *CatalogsStrikethroughNotificationPolicy) GetAheadOfDaysTrigger() int32 {
+func (o *CatalogsStrikethroughNotificationPolicy) GetAheadOfDaysTrigger() int64 {
 	if o == nil || o.AheadOfDaysTrigger == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AheadOfDaysTrigger
 }
 
-// GetAheadOfDaysTriggerOk returns a tuple with the AheadOfDaysTrigger field value if set, zero value otherwise
+// GetAheadOfDaysTriggerOk returns a tuple with the AheadOfDaysTrigger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogsStrikethroughNotificationPolicy) GetAheadOfDaysTriggerOk() (int32, bool) {
+func (o *CatalogsStrikethroughNotificationPolicy) GetAheadOfDaysTriggerOk() (*int64, bool) {
 	if o == nil || o.AheadOfDaysTrigger == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AheadOfDaysTrigger, true
+	return o.AheadOfDaysTrigger, true
 }
 
 // HasAheadOfDaysTrigger returns a boolean if a field has been set.
@@ -65,30 +96,89 @@ func (o *CatalogsStrikethroughNotificationPolicy) HasAheadOfDaysTrigger() bool {
 	return false
 }
 
-// SetAheadOfDaysTrigger gets a reference to the given int32 and assigns it to the AheadOfDaysTrigger field.
-func (o *CatalogsStrikethroughNotificationPolicy) SetAheadOfDaysTrigger(v int32) {
+// SetAheadOfDaysTrigger gets a reference to the given int64 and assigns it to the AheadOfDaysTrigger field.
+func (o *CatalogsStrikethroughNotificationPolicy) SetAheadOfDaysTrigger(v int64) {
 	o.AheadOfDaysTrigger = &v
 }
 
+// GetBatchSize returns the BatchSize field value if set, zero value otherwise.
+func (o *CatalogsStrikethroughNotificationPolicy) GetBatchSize() int64 {
+	if o == nil || o.BatchSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.BatchSize
+}
+
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CatalogsStrikethroughNotificationPolicy) GetBatchSizeOk() (*int64, bool) {
+	if o == nil || o.BatchSize == nil {
+		return nil, false
+	}
+	return o.BatchSize, true
+}
+
+// HasBatchSize returns a boolean if a field has been set.
+func (o *CatalogsStrikethroughNotificationPolicy) HasBatchSize() bool {
+	if o != nil && o.BatchSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchSize gets a reference to the given int64 and assigns it to the BatchSize field.
+func (o *CatalogsStrikethroughNotificationPolicy) SetBatchSize(v int64) {
+	o.BatchSize = &v
+}
+
+func (o CatalogsStrikethroughNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.AheadOfDaysTrigger != nil {
+		toSerialize["aheadOfDaysTrigger"] = o.AheadOfDaysTrigger
+	}
+	if o.BatchSize != nil {
+		toSerialize["batchSize"] = o.BatchSize
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCatalogsStrikethroughNotificationPolicy struct {
-	Value        CatalogsStrikethroughNotificationPolicy
-	ExplicitNull bool
+	value *CatalogsStrikethroughNotificationPolicy
+	isSet bool
+}
+
+func (v NullableCatalogsStrikethroughNotificationPolicy) Get() *CatalogsStrikethroughNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableCatalogsStrikethroughNotificationPolicy) Set(val *CatalogsStrikethroughNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCatalogsStrikethroughNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCatalogsStrikethroughNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCatalogsStrikethroughNotificationPolicy(val *CatalogsStrikethroughNotificationPolicy) *NullableCatalogsStrikethroughNotificationPolicy {
+	return &NullableCatalogsStrikethroughNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableCatalogsStrikethroughNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCatalogsStrikethroughNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

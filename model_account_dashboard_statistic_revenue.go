@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -25,6 +24,26 @@ type AccountDashboardStatisticRevenue struct {
 	Datetime time.Time `json:"datetime"`
 }
 
+// NewAccountDashboardStatisticRevenue instantiates a new AccountDashboardStatisticRevenue object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountDashboardStatisticRevenue(total float32, influenced float32, datetime time.Time) *AccountDashboardStatisticRevenue {
+	this := AccountDashboardStatisticRevenue{}
+	this.Total = total
+	this.Influenced = influenced
+	this.Datetime = datetime
+	return &this
+}
+
+// NewAccountDashboardStatisticRevenueWithDefaults instantiates a new AccountDashboardStatisticRevenue object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountDashboardStatisticRevenueWithDefaults() *AccountDashboardStatisticRevenue {
+	this := AccountDashboardStatisticRevenue{}
+	return &this
+}
+
 // GetTotal returns the Total field value
 func (o *AccountDashboardStatisticRevenue) GetTotal() float32 {
 	if o == nil {
@@ -33,6 +52,15 @@ func (o *AccountDashboardStatisticRevenue) GetTotal() float32 {
 	}
 
 	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticRevenue) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
 }
 
 // SetTotal sets field value
@@ -50,6 +78,15 @@ func (o *AccountDashboardStatisticRevenue) GetInfluenced() float32 {
 	return o.Influenced
 }
 
+// GetInfluencedOk returns a tuple with the Influenced field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticRevenue) GetInfluencedOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Influenced, true
+}
+
 // SetInfluenced sets field value
 func (o *AccountDashboardStatisticRevenue) SetInfluenced(v float32) {
 	o.Influenced = v
@@ -65,30 +102,66 @@ func (o *AccountDashboardStatisticRevenue) GetDatetime() time.Time {
 	return o.Datetime
 }
 
+// GetDatetimeOk returns a tuple with the Datetime field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticRevenue) GetDatetimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Datetime, true
+}
+
 // SetDatetime sets field value
 func (o *AccountDashboardStatisticRevenue) SetDatetime(v time.Time) {
 	o.Datetime = v
 }
 
+func (o AccountDashboardStatisticRevenue) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["influenced"] = o.Influenced
+	}
+	if true {
+		toSerialize["datetime"] = o.Datetime
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountDashboardStatisticRevenue struct {
-	Value        AccountDashboardStatisticRevenue
-	ExplicitNull bool
+	value *AccountDashboardStatisticRevenue
+	isSet bool
+}
+
+func (v NullableAccountDashboardStatisticRevenue) Get() *AccountDashboardStatisticRevenue {
+	return v.value
+}
+
+func (v *NullableAccountDashboardStatisticRevenue) Set(val *AccountDashboardStatisticRevenue) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountDashboardStatisticRevenue) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountDashboardStatisticRevenue) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountDashboardStatisticRevenue(val *AccountDashboardStatisticRevenue) *NullableAccountDashboardStatisticRevenue {
+	return &NullableAccountDashboardStatisticRevenue{value: val, isSet: true}
 }
 
 func (v NullableAccountDashboardStatisticRevenue) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountDashboardStatisticRevenue) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

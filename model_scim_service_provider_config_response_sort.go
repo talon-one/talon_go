@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type ScimServiceProviderConfigResponseSort struct {
 	// Indicates whether the service provider supports sorting operations for ordered query results.
 	Supported *bool `json:"supported,omitempty"`
+}
+
+// NewScimServiceProviderConfigResponseSort instantiates a new ScimServiceProviderConfigResponseSort object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildScimServiceProviderConfigResponseSort() *ScimServiceProviderConfigResponseSort {
+	this := ScimServiceProviderConfigResponseSort{}
+	return &this
+}
+
+// NewScimServiceProviderConfigResponseSortWithDefaults instantiates a new ScimServiceProviderConfigResponseSort object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimServiceProviderConfigResponseSortWithDefaults() *ScimServiceProviderConfigResponseSort {
+	this := ScimServiceProviderConfigResponseSort{}
+	return &this
 }
 
 // GetSupported returns the Supported field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *ScimServiceProviderConfigResponseSort) GetSupported() bool {
 	return *o.Supported
 }
 
-// GetSupportedOk returns a tuple with the Supported field value if set, zero value otherwise
+// GetSupportedOk returns a tuple with the Supported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponseSort) GetSupportedOk() (bool, bool) {
+func (o *ScimServiceProviderConfigResponseSort) GetSupportedOk() (*bool, bool) {
 	if o == nil || o.Supported == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Supported, true
+	return o.Supported, true
 }
 
 // HasSupported returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *ScimServiceProviderConfigResponseSort) SetSupported(v bool) {
 	o.Supported = &v
 }
 
+func (o ScimServiceProviderConfigResponseSort) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Supported != nil {
+		toSerialize["supported"] = o.Supported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimServiceProviderConfigResponseSort struct {
-	Value        ScimServiceProviderConfigResponseSort
-	ExplicitNull bool
+	value *ScimServiceProviderConfigResponseSort
+	isSet bool
+}
+
+func (v NullableScimServiceProviderConfigResponseSort) Get() *ScimServiceProviderConfigResponseSort {
+	return v.value
+}
+
+func (v *NullableScimServiceProviderConfigResponseSort) Set(val *ScimServiceProviderConfigResponseSort) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimServiceProviderConfigResponseSort) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimServiceProviderConfigResponseSort) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableScimServiceProviderConfigResponseSort(val *ScimServiceProviderConfigResponseSort) *NullableScimServiceProviderConfigResponseSort {
+	return &NullableScimServiceProviderConfigResponseSort{value: val, isSet: true}
 }
 
 func (v NullableScimServiceProviderConfigResponseSort) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimServiceProviderConfigResponseSort) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

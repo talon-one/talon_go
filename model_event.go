@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // Event struct for Event
 type Event struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId *string `json:"profileId,omitempty"`
 	// The integration ID of the store. You choose this ID when you create a store.
@@ -40,18 +39,50 @@ type Event struct {
 	Meta          *Meta          `json:"meta,omitempty"`
 }
 
+// NewEvent instantiates a new Event object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects [][]interface{}) *Event {
+	this := Event{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.Type = type_
+	this.Attributes = attributes
+	this.Effects = effects
+	return &this
+}
+
+// NewEventWithDefaults instantiates a new Event object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventWithDefaults() *Event {
+	this := Event{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Event) GetId() int32 {
+func (o *Event) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Event) SetId(v int32) {
+func (o *Event) SetId(v int64) {
 	o.Id = v
 }
 
@@ -65,23 +96,41 @@ func (o *Event) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Event) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *Event) GetApplicationId() int32 {
+func (o *Event) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *Event) SetApplicationId(v int32) {
+func (o *Event) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -94,14 +143,13 @@ func (o *Event) GetProfileId() string {
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetProfileIdOk() (string, bool) {
+func (o *Event) GetProfileIdOk() (*string, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -127,14 +175,13 @@ func (o *Event) GetStoreIntegrationId() string {
 	return *o.StoreIntegrationId
 }
 
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetStoreIntegrationIdOk() (string, bool) {
+func (o *Event) GetStoreIntegrationIdOk() (*string, bool) {
 	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreIntegrationId, true
+	return o.StoreIntegrationId, true
 }
 
 // HasStoreIntegrationId returns a boolean if a field has been set.
@@ -161,6 +208,15 @@ func (o *Event) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *Event) SetType(v string) {
 	o.Type = v
@@ -174,6 +230,15 @@ func (o *Event) GetAttributes() map[string]interface{} {
 	}
 
 	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
 }
 
 // SetAttributes sets field value
@@ -190,14 +255,13 @@ func (o *Event) GetSessionId() string {
 	return *o.SessionId
 }
 
-// GetSessionIdOk returns a tuple with the SessionId field value if set, zero value otherwise
+// GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetSessionIdOk() (string, bool) {
+func (o *Event) GetSessionIdOk() (*string, bool) {
 	if o == nil || o.SessionId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SessionId, true
+	return o.SessionId, true
 }
 
 // HasSessionId returns a boolean if a field has been set.
@@ -224,6 +288,15 @@ func (o *Event) GetEffects() [][]interface{} {
 	return o.Effects
 }
 
+// GetEffectsOk returns a tuple with the Effects field value
+// and a boolean to check if the value has been set.
+func (o *Event) GetEffectsOk() (*[][]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Effects, true
+}
+
 // SetEffects sets field value
 func (o *Event) SetEffects(v [][]interface{}) {
 	o.Effects = v
@@ -238,14 +311,13 @@ func (o *Event) GetLedgerEntries() []LedgerEntry {
 	return *o.LedgerEntries
 }
 
-// GetLedgerEntriesOk returns a tuple with the LedgerEntries field value if set, zero value otherwise
+// GetLedgerEntriesOk returns a tuple with the LedgerEntries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetLedgerEntriesOk() ([]LedgerEntry, bool) {
+func (o *Event) GetLedgerEntriesOk() (*[]LedgerEntry, bool) {
 	if o == nil || o.LedgerEntries == nil {
-		var ret []LedgerEntry
-		return ret, false
+		return nil, false
 	}
-	return *o.LedgerEntries, true
+	return o.LedgerEntries, true
 }
 
 // HasLedgerEntries returns a boolean if a field has been set.
@@ -271,14 +343,13 @@ func (o *Event) GetMeta() Meta {
 	return *o.Meta
 }
 
-// GetMetaOk returns a tuple with the Meta field value if set, zero value otherwise
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Event) GetMetaOk() (Meta, bool) {
+func (o *Event) GetMetaOk() (*Meta, bool) {
 	if o == nil || o.Meta == nil {
-		var ret Meta
-		return ret, false
+		return nil, false
 	}
-	return *o.Meta, true
+	return o.Meta, true
 }
 
 // HasMeta returns a boolean if a field has been set.
@@ -295,25 +366,76 @@ func (o *Event) SetMeta(v Meta) {
 	o.Meta = &v
 }
 
+func (o Event) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.SessionId != nil {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	if true {
+		toSerialize["effects"] = o.Effects
+	}
+	if o.LedgerEntries != nil {
+		toSerialize["ledgerEntries"] = o.LedgerEntries
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEvent struct {
-	Value        Event
-	ExplicitNull bool
+	value *Event
+	isSet bool
+}
+
+func (v NullableEvent) Get() *Event {
+	return v.value
+}
+
+func (v *NullableEvent) Set(val *Event) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableEvent(val *Event) *NullableEvent {
+	return &NullableEvent{value: val, isSet: true}
 }
 
 func (v NullableEvent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEvent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

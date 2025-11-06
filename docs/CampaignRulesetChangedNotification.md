@@ -4,86 +4,93 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
-**OldRuleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
-**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
+**NotificationType** | Pointer to **string** | The type of the notification | 
+**TotalResultSize** | Pointer to **int64** | The total size of the result set. | 
+**Data** | Pointer to [**[]CampaignRulesetChangedNotificationItem**](CampaignRulesetChangedNotificationItem.md) | A list of campaign notification data. | [optional] 
 
 ## Methods
 
-### GetCampaign
+### NewCampaignRulesetChangedNotification
 
-`func (o *CampaignRulesetChangedNotification) GetCampaign() Campaign`
+`func NewCampaignRulesetChangedNotification(notificationType string, totalResultSize int64, ) *CampaignRulesetChangedNotification`
 
-GetCampaign returns the Campaign field if non-nil, zero value otherwise.
+NewCampaignRulesetChangedNotification instantiates a new CampaignRulesetChangedNotification object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-### GetCampaignOk
+### NewCampaignRulesetChangedNotificationWithDefaults
 
-`func (o *CampaignRulesetChangedNotification) GetCampaignOk() (Campaign, bool)`
+`func NewCampaignRulesetChangedNotificationWithDefaults() *CampaignRulesetChangedNotification`
 
-GetCampaignOk returns a tuple with the Campaign field if it's non-nil, zero value otherwise
+NewCampaignRulesetChangedNotificationWithDefaults instantiates a new CampaignRulesetChangedNotification object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetNotificationType
+
+`func (o *CampaignRulesetChangedNotification) GetNotificationType() string`
+
+GetNotificationType returns the NotificationType field if non-nil, zero value otherwise.
+
+### GetNotificationTypeOk
+
+`func (o *CampaignRulesetChangedNotification) GetNotificationTypeOk() (*string, bool)`
+
+GetNotificationTypeOk returns a tuple with the NotificationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCampaign
+### SetNotificationType
 
-`func (o *CampaignRulesetChangedNotification) HasCampaign() bool`
+`func (o *CampaignRulesetChangedNotification) SetNotificationType(v string)`
 
-HasCampaign returns a boolean if a field has been set.
+SetNotificationType sets NotificationType field to given value.
 
-### SetCampaign
 
-`func (o *CampaignRulesetChangedNotification) SetCampaign(v Campaign)`
+### GetTotalResultSize
 
-SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
+`func (o *CampaignRulesetChangedNotification) GetTotalResultSize() int64`
 
-### GetOldRuleset
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-`func (o *CampaignRulesetChangedNotification) GetOldRuleset() Ruleset`
+### GetTotalResultSizeOk
 
-GetOldRuleset returns the OldRuleset field if non-nil, zero value otherwise.
+`func (o *CampaignRulesetChangedNotification) GetTotalResultSizeOk() (*int64, bool)`
 
-### GetOldRulesetOk
-
-`func (o *CampaignRulesetChangedNotification) GetOldRulesetOk() (Ruleset, bool)`
-
-GetOldRulesetOk returns a tuple with the OldRuleset field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasOldRuleset
+### SetTotalResultSize
 
-`func (o *CampaignRulesetChangedNotification) HasOldRuleset() bool`
+`func (o *CampaignRulesetChangedNotification) SetTotalResultSize(v int64)`
 
-HasOldRuleset returns a boolean if a field has been set.
+SetTotalResultSize sets TotalResultSize field to given value.
 
-### SetOldRuleset
 
-`func (o *CampaignRulesetChangedNotification) SetOldRuleset(v Ruleset)`
+### GetData
 
-SetOldRuleset gets a reference to the given Ruleset and assigns it to the OldRuleset field.
+`func (o *CampaignRulesetChangedNotification) GetData() []CampaignRulesetChangedNotificationItem`
 
-### GetRuleset
+GetData returns the Data field if non-nil, zero value otherwise.
 
-`func (o *CampaignRulesetChangedNotification) GetRuleset() Ruleset`
+### GetDataOk
 
-GetRuleset returns the Ruleset field if non-nil, zero value otherwise.
+`func (o *CampaignRulesetChangedNotification) GetDataOk() (*[]CampaignRulesetChangedNotificationItem, bool)`
 
-### GetRulesetOk
-
-`func (o *CampaignRulesetChangedNotification) GetRulesetOk() (Ruleset, bool)`
-
-GetRulesetOk returns a tuple with the Ruleset field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRuleset
+### SetData
 
-`func (o *CampaignRulesetChangedNotification) HasRuleset() bool`
+`func (o *CampaignRulesetChangedNotification) SetData(v []CampaignRulesetChangedNotificationItem)`
 
-HasRuleset returns a boolean if a field has been set.
+SetData sets Data field to given value.
 
-### SetRuleset
+### HasData
 
-`func (o *CampaignRulesetChangedNotification) SetRuleset(v Ruleset)`
+`func (o *CampaignRulesetChangedNotification) HasData() bool`
 
-SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

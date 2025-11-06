@@ -10,32 +10,31 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // LimitCounter struct for LimitCounter
 type LimitCounter struct {
 	// The ID of the campaign that owns this entity.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The limitable action of the limit counter.
 	Action string `json:"action"`
 	// The profile ID for which this limit counter is used.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
 	// The profile integration ID for which this limit counter is used.
 	ProfileIntegrationId *string `json:"profileIntegrationId,omitempty"`
 	// The internal coupon ID for which this limit counter is used.
-	CouponId *int32 `json:"couponId,omitempty"`
+	CouponId *int64 `json:"couponId,omitempty"`
 	// The coupon value for which this limit counter is used.
 	CouponValue *string `json:"couponValue,omitempty"`
 	// The referral ID for which this limit counter is used.
-	ReferralId *int32 `json:"referralId,omitempty"`
+	ReferralId *int64 `json:"referralId,omitempty"`
 	// The referral value for which this limit counter is used.
 	ReferralValue *string `json:"referralValue,omitempty"`
 	// The arbitrary identifier for which this limit counter is used.
@@ -48,63 +47,123 @@ type LimitCounter struct {
 	Counter float32 `json:"counter"`
 }
 
+// NewLimitCounter instantiates a new LimitCounter object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLimitCounter(campaignId int64, applicationId int64, accountId int64, id int64, action string, limit float32, counter float32) *LimitCounter {
+	this := LimitCounter{}
+	this.CampaignId = campaignId
+	this.ApplicationId = applicationId
+	this.AccountId = accountId
+	this.Id = id
+	this.Action = action
+	this.Limit = limit
+	this.Counter = counter
+	return &this
+}
+
+// NewLimitCounterWithDefaults instantiates a new LimitCounter object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLimitCounterWithDefaults() *LimitCounter {
+	this := LimitCounter{}
+	return &this
+}
+
 // GetCampaignId returns the CampaignId field value
-func (o *LimitCounter) GetCampaignId() int32 {
+func (o *LimitCounter) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *LimitCounter) SetCampaignId(v int32) {
+func (o *LimitCounter) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *LimitCounter) GetApplicationId() int32 {
+func (o *LimitCounter) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *LimitCounter) SetApplicationId(v int32) {
+func (o *LimitCounter) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *LimitCounter) GetAccountId() int32 {
+func (o *LimitCounter) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *LimitCounter) SetAccountId(v int32) {
+func (o *LimitCounter) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetId returns the Id field value
-func (o *LimitCounter) GetId() int32 {
+func (o *LimitCounter) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LimitCounter) SetId(v int32) {
+func (o *LimitCounter) SetId(v int64) {
 	o.Id = v
 }
 
@@ -118,28 +177,36 @@ func (o *LimitCounter) GetAction() string {
 	return o.Action
 }
 
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
+}
+
 // SetAction sets field value
 func (o *LimitCounter) SetAction(v string) {
 	o.Action = v
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *LimitCounter) GetProfileId() int32 {
+func (o *LimitCounter) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetProfileIdOk() (int32, bool) {
+func (o *LimitCounter) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -151,8 +218,8 @@ func (o *LimitCounter) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *LimitCounter) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *LimitCounter) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
@@ -165,14 +232,13 @@ func (o *LimitCounter) GetProfileIntegrationId() string {
 	return *o.ProfileIntegrationId
 }
 
-// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, zero value otherwise
+// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetProfileIntegrationIdOk() (string, bool) {
+func (o *LimitCounter) GetProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.ProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileIntegrationId, true
+	return o.ProfileIntegrationId, true
 }
 
 // HasProfileIntegrationId returns a boolean if a field has been set.
@@ -190,22 +256,21 @@ func (o *LimitCounter) SetProfileIntegrationId(v string) {
 }
 
 // GetCouponId returns the CouponId field value if set, zero value otherwise.
-func (o *LimitCounter) GetCouponId() int32 {
+func (o *LimitCounter) GetCouponId() int64 {
 	if o == nil || o.CouponId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CouponId
 }
 
-// GetCouponIdOk returns a tuple with the CouponId field value if set, zero value otherwise
+// GetCouponIdOk returns a tuple with the CouponId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetCouponIdOk() (int32, bool) {
+func (o *LimitCounter) GetCouponIdOk() (*int64, bool) {
 	if o == nil || o.CouponId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponId, true
+	return o.CouponId, true
 }
 
 // HasCouponId returns a boolean if a field has been set.
@@ -217,8 +282,8 @@ func (o *LimitCounter) HasCouponId() bool {
 	return false
 }
 
-// SetCouponId gets a reference to the given int32 and assigns it to the CouponId field.
-func (o *LimitCounter) SetCouponId(v int32) {
+// SetCouponId gets a reference to the given int64 and assigns it to the CouponId field.
+func (o *LimitCounter) SetCouponId(v int64) {
 	o.CouponId = &v
 }
 
@@ -231,14 +296,13 @@ func (o *LimitCounter) GetCouponValue() string {
 	return *o.CouponValue
 }
 
-// GetCouponValueOk returns a tuple with the CouponValue field value if set, zero value otherwise
+// GetCouponValueOk returns a tuple with the CouponValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetCouponValueOk() (string, bool) {
+func (o *LimitCounter) GetCouponValueOk() (*string, bool) {
 	if o == nil || o.CouponValue == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponValue, true
+	return o.CouponValue, true
 }
 
 // HasCouponValue returns a boolean if a field has been set.
@@ -256,22 +320,21 @@ func (o *LimitCounter) SetCouponValue(v string) {
 }
 
 // GetReferralId returns the ReferralId field value if set, zero value otherwise.
-func (o *LimitCounter) GetReferralId() int32 {
+func (o *LimitCounter) GetReferralId() int64 {
 	if o == nil || o.ReferralId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferralId
 }
 
-// GetReferralIdOk returns a tuple with the ReferralId field value if set, zero value otherwise
+// GetReferralIdOk returns a tuple with the ReferralId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetReferralIdOk() (int32, bool) {
+func (o *LimitCounter) GetReferralIdOk() (*int64, bool) {
 	if o == nil || o.ReferralId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralId, true
+	return o.ReferralId, true
 }
 
 // HasReferralId returns a boolean if a field has been set.
@@ -283,8 +346,8 @@ func (o *LimitCounter) HasReferralId() bool {
 	return false
 }
 
-// SetReferralId gets a reference to the given int32 and assigns it to the ReferralId field.
-func (o *LimitCounter) SetReferralId(v int32) {
+// SetReferralId gets a reference to the given int64 and assigns it to the ReferralId field.
+func (o *LimitCounter) SetReferralId(v int64) {
 	o.ReferralId = &v
 }
 
@@ -297,14 +360,13 @@ func (o *LimitCounter) GetReferralValue() string {
 	return *o.ReferralValue
 }
 
-// GetReferralValueOk returns a tuple with the ReferralValue field value if set, zero value otherwise
+// GetReferralValueOk returns a tuple with the ReferralValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetReferralValueOk() (string, bool) {
+func (o *LimitCounter) GetReferralValueOk() (*string, bool) {
 	if o == nil || o.ReferralValue == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralValue, true
+	return o.ReferralValue, true
 }
 
 // HasReferralValue returns a boolean if a field has been set.
@@ -330,14 +392,13 @@ func (o *LimitCounter) GetIdentifier() string {
 	return *o.Identifier
 }
 
-// GetIdentifierOk returns a tuple with the Identifier field value if set, zero value otherwise
+// GetIdentifierOk returns a tuple with the Identifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetIdentifierOk() (string, bool) {
+func (o *LimitCounter) GetIdentifierOk() (*string, bool) {
 	if o == nil || o.Identifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Identifier, true
+	return o.Identifier, true
 }
 
 // HasIdentifier returns a boolean if a field has been set.
@@ -363,14 +424,13 @@ func (o *LimitCounter) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitCounter) GetPeriodOk() (string, bool) {
+func (o *LimitCounter) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -397,6 +457,15 @@ func (o *LimitCounter) GetLimit() float32 {
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetLimitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
 func (o *LimitCounter) SetLimit(v float32) {
 	o.Limit = v
@@ -412,30 +481,102 @@ func (o *LimitCounter) GetCounter() float32 {
 	return o.Counter
 }
 
+// GetCounterOk returns a tuple with the Counter field value
+// and a boolean to check if the value has been set.
+func (o *LimitCounter) GetCounterOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Counter, true
+}
+
 // SetCounter sets field value
 func (o *LimitCounter) SetCounter(v float32) {
 	o.Counter = v
 }
 
+func (o LimitCounter) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.ProfileIntegrationId != nil {
+		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
+	}
+	if o.CouponId != nil {
+		toSerialize["couponId"] = o.CouponId
+	}
+	if o.CouponValue != nil {
+		toSerialize["couponValue"] = o.CouponValue
+	}
+	if o.ReferralId != nil {
+		toSerialize["referralId"] = o.ReferralId
+	}
+	if o.ReferralValue != nil {
+		toSerialize["referralValue"] = o.ReferralValue
+	}
+	if o.Identifier != nil {
+		toSerialize["identifier"] = o.Identifier
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	if true {
+		toSerialize["counter"] = o.Counter
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLimitCounter struct {
-	Value        LimitCounter
-	ExplicitNull bool
+	value *LimitCounter
+	isSet bool
+}
+
+func (v NullableLimitCounter) Get() *LimitCounter {
+	return v.value
+}
+
+func (v *NullableLimitCounter) Set(val *LimitCounter) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLimitCounter) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLimitCounter) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLimitCounter(val *LimitCounter) *NullableLimitCounter {
+	return &NullableLimitCounter{value: val, isSet: true}
 }
 
 func (v NullableLimitCounter) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLimitCounter) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

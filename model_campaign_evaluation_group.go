@@ -10,18 +10,17 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignEvaluationGroup struct for CampaignEvaluationGroup
 type CampaignEvaluationGroup struct {
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The name of the campaign evaluation group.
 	Name string `json:"name"`
 	// The ID of the parent group that contains the campaign evaluation group.
-	ParentId int32 `json:"parentId"`
+	ParentId int64 `json:"parentId"`
 	// A description of the campaign evaluation group.
 	Description *string `json:"description,omitempty"`
 	// The mode by which campaigns in the campaign evaluation group are evaluated.
@@ -31,21 +30,54 @@ type CampaignEvaluationGroup struct {
 	// An indicator of whether the campaign evaluation group is locked for modification.
 	Locked bool `json:"locked"`
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
+}
+
+// NewCampaignEvaluationGroup instantiates a new CampaignEvaluationGroup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignEvaluationGroup(applicationId int64, name string, parentId int64, evaluationMode string, evaluationScope string, locked bool, id int64) *CampaignEvaluationGroup {
+	this := CampaignEvaluationGroup{}
+	this.ApplicationId = applicationId
+	this.Name = name
+	this.ParentId = parentId
+	this.EvaluationMode = evaluationMode
+	this.EvaluationScope = evaluationScope
+	this.Locked = locked
+	this.Id = id
+	return &this
+}
+
+// NewCampaignEvaluationGroupWithDefaults instantiates a new CampaignEvaluationGroup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignEvaluationGroupWithDefaults() *CampaignEvaluationGroup {
+	this := CampaignEvaluationGroup{}
+	return &this
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *CampaignEvaluationGroup) GetApplicationId() int32 {
+func (o *CampaignEvaluationGroup) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *CampaignEvaluationGroup) SetApplicationId(v int32) {
+func (o *CampaignEvaluationGroup) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -59,23 +91,41 @@ func (o *CampaignEvaluationGroup) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *CampaignEvaluationGroup) SetName(v string) {
 	o.Name = v
 }
 
 // GetParentId returns the ParentId field value
-func (o *CampaignEvaluationGroup) GetParentId() int32 {
+func (o *CampaignEvaluationGroup) GetParentId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ParentId
 }
 
+// GetParentIdOk returns a tuple with the ParentId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetParentIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ParentId, true
+}
+
 // SetParentId sets field value
-func (o *CampaignEvaluationGroup) SetParentId(v int32) {
+func (o *CampaignEvaluationGroup) SetParentId(v int64) {
 	o.ParentId = v
 }
 
@@ -88,14 +138,13 @@ func (o *CampaignEvaluationGroup) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignEvaluationGroup) GetDescriptionOk() (string, bool) {
+func (o *CampaignEvaluationGroup) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -122,6 +171,15 @@ func (o *CampaignEvaluationGroup) GetEvaluationMode() string {
 	return o.EvaluationMode
 }
 
+// GetEvaluationModeOk returns a tuple with the EvaluationMode field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetEvaluationModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EvaluationMode, true
+}
+
 // SetEvaluationMode sets field value
 func (o *CampaignEvaluationGroup) SetEvaluationMode(v string) {
 	o.EvaluationMode = v
@@ -135,6 +193,15 @@ func (o *CampaignEvaluationGroup) GetEvaluationScope() string {
 	}
 
 	return o.EvaluationScope
+}
+
+// GetEvaluationScopeOk returns a tuple with the EvaluationScope field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetEvaluationScopeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EvaluationScope, true
 }
 
 // SetEvaluationScope sets field value
@@ -152,45 +219,105 @@ func (o *CampaignEvaluationGroup) GetLocked() bool {
 	return o.Locked
 }
 
+// GetLockedOk returns a tuple with the Locked field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetLockedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Locked, true
+}
+
 // SetLocked sets field value
 func (o *CampaignEvaluationGroup) SetLocked(v bool) {
 	o.Locked = v
 }
 
 // GetId returns the Id field value
-func (o *CampaignEvaluationGroup) GetId() int32 {
+func (o *CampaignEvaluationGroup) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationGroup) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *CampaignEvaluationGroup) SetId(v int32) {
+func (o *CampaignEvaluationGroup) SetId(v int64) {
 	o.Id = v
 }
 
+func (o CampaignEvaluationGroup) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["parentId"] = o.ParentId
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["evaluationMode"] = o.EvaluationMode
+	}
+	if true {
+		toSerialize["evaluationScope"] = o.EvaluationScope
+	}
+	if true {
+		toSerialize["locked"] = o.Locked
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignEvaluationGroup struct {
-	Value        CampaignEvaluationGroup
-	ExplicitNull bool
+	value *CampaignEvaluationGroup
+	isSet bool
+}
+
+func (v NullableCampaignEvaluationGroup) Get() *CampaignEvaluationGroup {
+	return v.value
+}
+
+func (v *NullableCampaignEvaluationGroup) Set(val *CampaignEvaluationGroup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignEvaluationGroup) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignEvaluationGroup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignEvaluationGroup(val *CampaignEvaluationGroup) *NullableCampaignEvaluationGroup {
+	return &NullableCampaignEvaluationGroup{value: val, isSet: true}
 }
 
 func (v NullableCampaignEvaluationGroup) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignEvaluationGroup) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

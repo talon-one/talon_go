@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type NewInviteEmail struct {
 	Token string `json:"token"`
 }
 
+// NewNewInviteEmail instantiates a new NewInviteEmail object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewInviteEmail(email string, token string) *NewInviteEmail {
+	this := NewInviteEmail{}
+	this.Email = email
+	this.Token = token
+	return &this
+}
+
+// NewNewInviteEmailWithDefaults instantiates a new NewInviteEmail object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewInviteEmailWithDefaults() *NewInviteEmail {
+	this := NewInviteEmail{}
+	return &this
+}
+
 // GetEmail returns the Email field value
 func (o *NewInviteEmail) GetEmail() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *NewInviteEmail) GetEmail() string {
 	}
 
 	return o.Email
+}
+
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *NewInviteEmail) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
 }
 
 // SetEmail sets field value
@@ -47,30 +74,63 @@ func (o *NewInviteEmail) GetToken() string {
 	return o.Token
 }
 
+// GetTokenOk returns a tuple with the Token field value
+// and a boolean to check if the value has been set.
+func (o *NewInviteEmail) GetTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Token, true
+}
+
 // SetToken sets field value
 func (o *NewInviteEmail) SetToken(v string) {
 	o.Token = v
 }
 
+func (o NewInviteEmail) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	if true {
+		toSerialize["token"] = o.Token
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewInviteEmail struct {
-	Value        NewInviteEmail
-	ExplicitNull bool
+	value *NewInviteEmail
+	isSet bool
+}
+
+func (v NullableNewInviteEmail) Get() *NewInviteEmail {
+	return v.value
+}
+
+func (v *NullableNewInviteEmail) Set(val *NewInviteEmail) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewInviteEmail) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewInviteEmail) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewInviteEmail(val *NewInviteEmail) *NullableNewInviteEmail {
+	return &NullableNewInviteEmail{value: val, isSet: true}
 }
 
 func (v NullableNewInviteEmail) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewInviteEmail) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type LoyaltyLedgerEntryFlags struct {
 	// Set to true if the entry creates negative balance.
 	CreatesNegativeBalance *bool `json:"createsNegativeBalance,omitempty"`
+}
+
+// NewLoyaltyLedgerEntryFlags instantiates a new LoyaltyLedgerEntryFlags object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyLedgerEntryFlags() *LoyaltyLedgerEntryFlags {
+	this := LoyaltyLedgerEntryFlags{}
+	return &this
+}
+
+// NewLoyaltyLedgerEntryFlagsWithDefaults instantiates a new LoyaltyLedgerEntryFlags object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyLedgerEntryFlagsWithDefaults() *LoyaltyLedgerEntryFlags {
+	this := LoyaltyLedgerEntryFlags{}
+	return &this
 }
 
 // GetCreatesNegativeBalance returns the CreatesNegativeBalance field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *LoyaltyLedgerEntryFlags) GetCreatesNegativeBalance() bool {
 	return *o.CreatesNegativeBalance
 }
 
-// GetCreatesNegativeBalanceOk returns a tuple with the CreatesNegativeBalance field value if set, zero value otherwise
+// GetCreatesNegativeBalanceOk returns a tuple with the CreatesNegativeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyLedgerEntryFlags) GetCreatesNegativeBalanceOk() (bool, bool) {
+func (o *LoyaltyLedgerEntryFlags) GetCreatesNegativeBalanceOk() (*bool, bool) {
 	if o == nil || o.CreatesNegativeBalance == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatesNegativeBalance, true
+	return o.CreatesNegativeBalance, true
 }
 
 // HasCreatesNegativeBalance returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *LoyaltyLedgerEntryFlags) SetCreatesNegativeBalance(v bool) {
 	o.CreatesNegativeBalance = &v
 }
 
+func (o LoyaltyLedgerEntryFlags) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CreatesNegativeBalance != nil {
+		toSerialize["createsNegativeBalance"] = o.CreatesNegativeBalance
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyLedgerEntryFlags struct {
-	Value        LoyaltyLedgerEntryFlags
-	ExplicitNull bool
+	value *LoyaltyLedgerEntryFlags
+	isSet bool
+}
+
+func (v NullableLoyaltyLedgerEntryFlags) Get() *LoyaltyLedgerEntryFlags {
+	return v.value
+}
+
+func (v *NullableLoyaltyLedgerEntryFlags) Set(val *LoyaltyLedgerEntryFlags) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyLedgerEntryFlags) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyLedgerEntryFlags) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyLedgerEntryFlags(val *LoyaltyLedgerEntryFlags) *NullableLoyaltyLedgerEntryFlags {
+	return &NullableLoyaltyLedgerEntryFlags{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyLedgerEntryFlags) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyLedgerEntryFlags) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

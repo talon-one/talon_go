@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,23 @@ type ScimResource struct {
 	Description *string `json:"description,omitempty"`
 }
 
+// NewScimResource instantiates a new ScimResource object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildScimResource() *ScimResource {
+	this := ScimResource{}
+	return &this
+}
+
+// NewScimResourceWithDefaults instantiates a new ScimResource object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimResourceWithDefaults() *ScimResource {
+	this := ScimResource{}
+	return &this
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ScimResource) GetId() string {
 	if o == nil || o.Id == nil {
@@ -33,14 +49,13 @@ func (o *ScimResource) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimResource) GetIdOk() (string, bool) {
+func (o *ScimResource) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -66,14 +81,13 @@ func (o *ScimResource) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimResource) GetNameOk() (string, bool) {
+func (o *ScimResource) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -99,14 +113,13 @@ func (o *ScimResource) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimResource) GetDescriptionOk() (string, bool) {
+func (o *ScimResource) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -123,25 +136,52 @@ func (o *ScimResource) SetDescription(v string) {
 	o.Description = &v
 }
 
+func (o ScimResource) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimResource struct {
-	Value        ScimResource
-	ExplicitNull bool
+	value *ScimResource
+	isSet bool
+}
+
+func (v NullableScimResource) Get() *ScimResource {
+	return v.value
+}
+
+func (v *NullableScimResource) Set(val *ScimResource) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimResource) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimResource) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableScimResource(val *ScimResource) *NullableScimResource {
+	return &NullableScimResource{value: val, isSet: true}
 }
 
 func (v NullableScimResource) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimResource) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

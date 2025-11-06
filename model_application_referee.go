@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // ApplicationReferee struct for ApplicationReferee
 type ApplicationReferee struct {
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// Integration ID of the session in which the customer redeemed the referral.
 	SessionId string `json:"sessionId"`
 	// Integration ID of the Advocate's Profile.
@@ -31,18 +30,50 @@ type ApplicationReferee struct {
 	Created time.Time `json:"created"`
 }
 
+// NewApplicationReferee instantiates a new ApplicationReferee object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildApplicationReferee(applicationId int64, sessionId string, advocateIntegrationId string, friendIntegrationId string, code string, created time.Time) *ApplicationReferee {
+	this := ApplicationReferee{}
+	this.ApplicationId = applicationId
+	this.SessionId = sessionId
+	this.AdvocateIntegrationId = advocateIntegrationId
+	this.FriendIntegrationId = friendIntegrationId
+	this.Code = code
+	this.Created = created
+	return &this
+}
+
+// NewApplicationRefereeWithDefaults instantiates a new ApplicationReferee object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationRefereeWithDefaults() *ApplicationReferee {
+	this := ApplicationReferee{}
+	return &this
+}
+
 // GetApplicationId returns the ApplicationId field value
-func (o *ApplicationReferee) GetApplicationId() int32 {
+func (o *ApplicationReferee) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationReferee) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *ApplicationReferee) SetApplicationId(v int32) {
+func (o *ApplicationReferee) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -54,6 +85,15 @@ func (o *ApplicationReferee) GetSessionId() string {
 	}
 
 	return o.SessionId
+}
+
+// GetSessionIdOk returns a tuple with the SessionId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationReferee) GetSessionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionId, true
 }
 
 // SetSessionId sets field value
@@ -71,6 +111,15 @@ func (o *ApplicationReferee) GetAdvocateIntegrationId() string {
 	return o.AdvocateIntegrationId
 }
 
+// GetAdvocateIntegrationIdOk returns a tuple with the AdvocateIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationReferee) GetAdvocateIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdvocateIntegrationId, true
+}
+
 // SetAdvocateIntegrationId sets field value
 func (o *ApplicationReferee) SetAdvocateIntegrationId(v string) {
 	o.AdvocateIntegrationId = v
@@ -84,6 +133,15 @@ func (o *ApplicationReferee) GetFriendIntegrationId() string {
 	}
 
 	return o.FriendIntegrationId
+}
+
+// GetFriendIntegrationIdOk returns a tuple with the FriendIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationReferee) GetFriendIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FriendIntegrationId, true
 }
 
 // SetFriendIntegrationId sets field value
@@ -101,6 +159,15 @@ func (o *ApplicationReferee) GetCode() string {
 	return o.Code
 }
 
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationReferee) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
 // SetCode sets field value
 func (o *ApplicationReferee) SetCode(v string) {
 	o.Code = v
@@ -116,30 +183,75 @@ func (o *ApplicationReferee) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationReferee) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *ApplicationReferee) SetCreated(v time.Time) {
 	o.Created = v
 }
 
+func (o ApplicationReferee) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	if true {
+		toSerialize["advocateIntegrationId"] = o.AdvocateIntegrationId
+	}
+	if true {
+		toSerialize["friendIntegrationId"] = o.FriendIntegrationId
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationReferee struct {
-	Value        ApplicationReferee
-	ExplicitNull bool
+	value *ApplicationReferee
+	isSet bool
+}
+
+func (v NullableApplicationReferee) Get() *ApplicationReferee {
+	return v.value
+}
+
+func (v *NullableApplicationReferee) Set(val *ApplicationReferee) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationReferee) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationReferee) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableApplicationReferee(val *ApplicationReferee) *NullableApplicationReferee {
+	return &NullableApplicationReferee{value: val, isSet: true}
 }
 
 func (v NullableApplicationReferee) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationReferee) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

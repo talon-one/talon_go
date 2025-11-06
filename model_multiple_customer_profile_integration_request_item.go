@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type MultipleCustomerProfileIntegrationRequestItem struct {
 	IntegrationId string `json:"integrationId"`
 }
 
+// NewMultipleCustomerProfileIntegrationRequestItem instantiates a new MultipleCustomerProfileIntegrationRequestItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMultipleCustomerProfileIntegrationRequestItem(integrationId string) *MultipleCustomerProfileIntegrationRequestItem {
+	this := MultipleCustomerProfileIntegrationRequestItem{}
+	this.IntegrationId = integrationId
+	return &this
+}
+
+// NewMultipleCustomerProfileIntegrationRequestItemWithDefaults instantiates a new MultipleCustomerProfileIntegrationRequestItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMultipleCustomerProfileIntegrationRequestItemWithDefaults() *MultipleCustomerProfileIntegrationRequestItem {
+	this := MultipleCustomerProfileIntegrationRequestItem{}
+	return &this
+}
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -31,14 +48,13 @@ func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributes() map[stri
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *MultipleCustomerProfileIntegrationRequestItem) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -65,30 +81,63 @@ func (o *MultipleCustomerProfileIntegrationRequestItem) GetIntegrationId() strin
 	return o.IntegrationId
 }
 
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *MultipleCustomerProfileIntegrationRequestItem) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
+}
+
 // SetIntegrationId sets field value
 func (o *MultipleCustomerProfileIntegrationRequestItem) SetIntegrationId(v string) {
 	o.IntegrationId = v
 }
 
+func (o MultipleCustomerProfileIntegrationRequestItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMultipleCustomerProfileIntegrationRequestItem struct {
-	Value        MultipleCustomerProfileIntegrationRequestItem
-	ExplicitNull bool
+	value *MultipleCustomerProfileIntegrationRequestItem
+	isSet bool
+}
+
+func (v NullableMultipleCustomerProfileIntegrationRequestItem) Get() *MultipleCustomerProfileIntegrationRequestItem {
+	return v.value
+}
+
+func (v *NullableMultipleCustomerProfileIntegrationRequestItem) Set(val *MultipleCustomerProfileIntegrationRequestItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMultipleCustomerProfileIntegrationRequestItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMultipleCustomerProfileIntegrationRequestItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMultipleCustomerProfileIntegrationRequestItem(val *MultipleCustomerProfileIntegrationRequestItem) *NullableMultipleCustomerProfileIntegrationRequestItem {
+	return &NullableMultipleCustomerProfileIntegrationRequestItem{value: val, isSet: true}
 }
 
 func (v NullableMultipleCustomerProfileIntegrationRequestItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMultipleCustomerProfileIntegrationRequestItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -39,6 +39,9 @@ var (
 	// ContextAPIKeys takes a string apikey as authentication for the request
 	ContextAPIKeys = contextKey("apiKeys")
 
+	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
+	ContextHttpSignatureAuth = contextKey("httpsignature")
+
 	// ContextServerIndex uses a server configuration from the index.
 	ContextServerIndex = contextKey("serverIndex")
 
@@ -97,7 +100,7 @@ type Configuration struct {
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "OpenAPI-Generator/25.15.0/go",
+		UserAgent:     "OpenAPI-Generator/25.16.0/go",
 		Debug:         false,
 		Servers: ServerConfigurations{
 			{

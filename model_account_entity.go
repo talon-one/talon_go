@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AccountEntity struct for AccountEntity
 type AccountEntity struct {
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
+}
+
+// NewAccountEntity instantiates a new AccountEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountEntity(accountId int64) *AccountEntity {
+	this := AccountEntity{}
+	this.AccountId = accountId
+	return &this
+}
+
+// NewAccountEntityWithDefaults instantiates a new AccountEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountEntityWithDefaults() *AccountEntity {
+	this := AccountEntity{}
+	return &this
 }
 
 // GetAccountId returns the AccountId field value
-func (o *AccountEntity) GetAccountId() int32 {
+func (o *AccountEntity) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *AccountEntity) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *AccountEntity) SetAccountId(v int32) {
+func (o *AccountEntity) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
+func (o AccountEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountEntity struct {
-	Value        AccountEntity
-	ExplicitNull bool
+	value *AccountEntity
+	isSet bool
+}
+
+func (v NullableAccountEntity) Get() *AccountEntity {
+	return v.value
+}
+
+func (v *NullableAccountEntity) Set(val *AccountEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountEntity(val *AccountEntity) *NullableAccountEntity {
+	return &NullableAccountEntity{value: val, isSet: true}
 }
 
 func (v NullableAccountEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

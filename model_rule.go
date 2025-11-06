@@ -9,10 +9,7 @@
 
 package talon
 
-import (
-	"bytes"
-	"encoding/json"
-)
+import "encoding/json"
 
 // Rule struct for Rule
 type Rule struct {
@@ -32,6 +29,26 @@ type Rule struct {
 	Effects [][]interface{} `json:"effects"`
 }
 
+// NewRule instantiates a new Rule object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRule(title string, condition []interface{}, effects [][]interface{}) *Rule {
+	this := Rule{}
+	this.Title = title
+	this.Condition = condition
+	this.Effects = effects
+	return &this
+}
+
+// NewRuleWithDefaults instantiates a new Rule object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRuleWithDefaults() *Rule {
+	this := Rule{}
+	return &this
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Rule) GetId() string {
 	if o == nil || o.Id == nil {
@@ -41,14 +58,13 @@ func (o *Rule) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Rule) GetIdOk() (string, bool) {
+func (o *Rule) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -74,14 +90,13 @@ func (o *Rule) GetParentId() string {
 	return *o.ParentId
 }
 
-// GetParentIdOk returns a tuple with the ParentId field value if set, zero value otherwise
+// GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Rule) GetParentIdOk() (string, bool) {
+func (o *Rule) GetParentIdOk() (*string, bool) {
 	if o == nil || o.ParentId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ParentId, true
+	return o.ParentId, true
 }
 
 // HasParentId returns a boolean if a field has been set.
@@ -108,6 +123,15 @@ func (o *Rule) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *Rule) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *Rule) SetTitle(v string) {
 	o.Title = v
@@ -122,14 +146,13 @@ func (o *Rule) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Rule) GetDescriptionOk() (string, bool) {
+func (o *Rule) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -155,14 +178,13 @@ func (o *Rule) GetBindings() []Binding {
 	return *o.Bindings
 }
 
-// GetBindingsOk returns a tuple with the Bindings field value if set, zero value otherwise
+// GetBindingsOk returns a tuple with the Bindings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Rule) GetBindingsOk() ([]Binding, bool) {
+func (o *Rule) GetBindingsOk() (*[]Binding, bool) {
 	if o == nil || o.Bindings == nil {
-		var ret []Binding
-		return ret, false
+		return nil, false
 	}
-	return *o.Bindings, true
+	return o.Bindings, true
 }
 
 // HasBindings returns a boolean if a field has been set.
@@ -189,6 +211,15 @@ func (o *Rule) GetCondition() []interface{} {
 	return o.Condition
 }
 
+// GetConditionOk returns a tuple with the Condition field value
+// and a boolean to check if the value has been set.
+func (o *Rule) GetConditionOk() (*[]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Condition, true
+}
+
 // SetCondition sets field value
 func (o *Rule) SetCondition(v []interface{}) {
 	o.Condition = v
@@ -198,10 +229,20 @@ func (o *Rule) SetCondition(v []interface{}) {
 func (o *Rule) GetEffects() [][]interface{} {
 	if o == nil {
 		var ret [][]interface{}
+
 		return ret
 	}
 
 	return o.Effects
+}
+
+// GetEffectsOk returns a tuple with the Effects field value
+// and a boolean to check if the value has been set.
+func (o *Rule) GetEffectsOk() (*[][]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Effects, true
 }
 
 // SetEffects sets field value
@@ -209,25 +250,64 @@ func (o *Rule) SetEffects(v [][]interface{}) {
 	o.Effects = v
 }
 
+func (o Rule) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.ParentId != nil {
+		toSerialize["parentId"] = o.ParentId
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Bindings != nil {
+		toSerialize["bindings"] = o.Bindings
+	}
+	if true {
+		toSerialize["condition"] = o.Condition
+	}
+	if true {
+		toSerialize["effects"] = o.Effects
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRule struct {
-	Value        Rule
-	ExplicitNull bool
+	value *Rule
+	isSet bool
+}
+
+func (v NullableRule) Get() *Rule {
+	return v.value
+}
+
+func (v *NullableRule) Set(val *Rule) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRule) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRule) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRule(val *Rule) *NullableRule {
+	return &NullableRule{value: val, isSet: true}
 }
 
 func (v NullableRule) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRule) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

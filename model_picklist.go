@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // Picklist struct for Picklist
 type Picklist struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The type of allowed values in the picklist. If the type `time` is chosen, it must be an RFC3339 timestamp string.
@@ -26,27 +25,58 @@ type Picklist struct {
 	// The list of allowed values provided by this picklist.
 	Values []string `json:"values"`
 	// ID of the user who last updated this effect if available.
-	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int64 `json:"modifiedBy,omitempty"`
 	// ID of the user who created this effect.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
 	// The ID of the account that owns this entity.
-	AccountId *int32 `json:"accountId,omitempty"`
+	AccountId *int64 `json:"accountId,omitempty"`
 	// Imported flag shows that a picklist is imported by a CSV file or not
 	Imported *bool `json:"imported,omitempty"`
 }
 
+// NewPicklist instantiates a new Picklist object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildPicklist(id int64, created time.Time, type_ string, values []string, createdBy int64) *Picklist {
+	this := Picklist{}
+	this.Id = id
+	this.Created = created
+	this.Type = type_
+	this.Values = values
+	this.CreatedBy = createdBy
+	return &this
+}
+
+// NewPicklistWithDefaults instantiates a new Picklist object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPicklistWithDefaults() *Picklist {
+	this := Picklist{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Picklist) GetId() int32 {
+func (o *Picklist) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Picklist) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Picklist) SetId(v int32) {
+func (o *Picklist) SetId(v int64) {
 	o.Id = v
 }
 
@@ -58,6 +88,15 @@ func (o *Picklist) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Picklist) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -75,6 +114,15 @@ func (o *Picklist) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Picklist) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *Picklist) SetType(v string) {
 	o.Type = v
@@ -90,28 +138,36 @@ func (o *Picklist) GetValues() []string {
 	return o.Values
 }
 
+// GetValuesOk returns a tuple with the Values field value
+// and a boolean to check if the value has been set.
+func (o *Picklist) GetValuesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Values, true
+}
+
 // SetValues sets field value
 func (o *Picklist) SetValues(v []string) {
 	o.Values = v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *Picklist) GetModifiedBy() int32 {
+func (o *Picklist) GetModifiedBy() int64 {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ModifiedBy
 }
 
-// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, zero value otherwise
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Picklist) GetModifiedByOk() (int32, bool) {
+func (o *Picklist) GetModifiedByOk() (*int64, bool) {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedBy, true
+	return o.ModifiedBy, true
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
@@ -123,43 +179,51 @@ func (o *Picklist) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
-func (o *Picklist) SetModifiedBy(v int32) {
+// SetModifiedBy gets a reference to the given int64 and assigns it to the ModifiedBy field.
+func (o *Picklist) SetModifiedBy(v int64) {
 	o.ModifiedBy = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *Picklist) GetCreatedBy() int32 {
+func (o *Picklist) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *Picklist) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *Picklist) SetCreatedBy(v int32) {
+func (o *Picklist) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *Picklist) GetAccountId() int32 {
+func (o *Picklist) GetAccountId() int64 {
 	if o == nil || o.AccountId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountId
 }
 
-// GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Picklist) GetAccountIdOk() (int32, bool) {
+func (o *Picklist) GetAccountIdOk() (*int64, bool) {
 	if o == nil || o.AccountId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AccountId, true
+	return o.AccountId, true
 }
 
 // HasAccountId returns a boolean if a field has been set.
@@ -171,8 +235,8 @@ func (o *Picklist) HasAccountId() bool {
 	return false
 }
 
-// SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
-func (o *Picklist) SetAccountId(v int32) {
+// SetAccountId gets a reference to the given int64 and assigns it to the AccountId field.
+func (o *Picklist) SetAccountId(v int64) {
 	o.AccountId = &v
 }
 
@@ -185,14 +249,13 @@ func (o *Picklist) GetImported() bool {
 	return *o.Imported
 }
 
-// GetImportedOk returns a tuple with the Imported field value if set, zero value otherwise
+// GetImportedOk returns a tuple with the Imported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Picklist) GetImportedOk() (bool, bool) {
+func (o *Picklist) GetImportedOk() (*bool, bool) {
 	if o == nil || o.Imported == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Imported, true
+	return o.Imported, true
 }
 
 // HasImported returns a boolean if a field has been set.
@@ -209,25 +272,67 @@ func (o *Picklist) SetImported(v bool) {
 	o.Imported = &v
 }
 
+func (o Picklist) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["values"] = o.Values
+	}
+	if o.ModifiedBy != nil {
+		toSerialize["modifiedBy"] = o.ModifiedBy
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.AccountId != nil {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if o.Imported != nil {
+		toSerialize["imported"] = o.Imported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullablePicklist struct {
-	Value        Picklist
-	ExplicitNull bool
+	value *Picklist
+	isSet bool
+}
+
+func (v NullablePicklist) Get() *Picklist {
+	return v.value
+}
+
+func (v *NullablePicklist) Set(val *Picklist) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePicklist) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePicklist) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullablePicklist(val *Picklist) *NullablePicklist {
+	return &NullablePicklist{value: val, isSet: true}
 }
 
 func (v NullablePicklist) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullablePicklist) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

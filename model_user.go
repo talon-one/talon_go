@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // User struct for User
 type User struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
@@ -26,7 +25,7 @@ type User struct {
 	// The email address associated with the user profile.
 	Email string `json:"email"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// Name of the user.
 	Name string `json:"name"`
 	// State of the user.
@@ -38,7 +37,7 @@ type User struct {
 	// Access level of the user.
 	Policy map[string]interface{} `json:"policy"`
 	// A list of the IDs of the roles assigned to the user.
-	Roles *[]int32 `json:"roles,omitempty"`
+	Roles *[]int64 `json:"roles,omitempty"`
 	// Authentication method for this user.
 	AuthMethod *string `json:"authMethod,omitempty"`
 	// Application notifications that the user is subscribed to.
@@ -53,18 +52,53 @@ type User struct {
 	AdditionalAttributes *map[string]interface{} `json:"additionalAttributes,omitempty"`
 }
 
+// NewUser instantiates a new User object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUser(id int64, created time.Time, modified time.Time, email string, accountId int64, name string, state string, inviteToken string, policy map[string]interface{}) *User {
+	this := User{}
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	this.Email = email
+	this.AccountId = accountId
+	this.Name = name
+	this.State = state
+	this.InviteToken = inviteToken
+	this.Policy = policy
+	return &this
+}
+
+// NewUserWithDefaults instantiates a new User object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUserWithDefaults() *User {
+	this := User{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *User) GetId() int32 {
+func (o *User) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *User) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *User) SetId(v int32) {
+func (o *User) SetId(v int64) {
 	o.Id = v
 }
 
@@ -76,6 +110,15 @@ func (o *User) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *User) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -93,6 +136,15 @@ func (o *User) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *User) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *User) SetModified(v time.Time) {
 	o.Modified = v
@@ -108,23 +160,41 @@ func (o *User) GetEmail() string {
 	return o.Email
 }
 
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *User) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
 // SetEmail sets field value
 func (o *User) SetEmail(v string) {
 	o.Email = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *User) GetAccountId() int32 {
+func (o *User) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *User) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *User) SetAccountId(v int32) {
+func (o *User) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -136,6 +206,15 @@ func (o *User) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *User) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -153,6 +232,15 @@ func (o *User) GetState() string {
 	return o.State
 }
 
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *User) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
 // SetState sets field value
 func (o *User) SetState(v string) {
 	o.State = v
@@ -166,6 +254,15 @@ func (o *User) GetInviteToken() string {
 	}
 
 	return o.InviteToken
+}
+
+// GetInviteTokenOk returns a tuple with the InviteToken field value
+// and a boolean to check if the value has been set.
+func (o *User) GetInviteTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InviteToken, true
 }
 
 // SetInviteToken sets field value
@@ -182,14 +279,13 @@ func (o *User) GetIsAdmin() bool {
 	return *o.IsAdmin
 }
 
-// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetIsAdminOk() (bool, bool) {
+func (o *User) GetIsAdminOk() (*bool, bool) {
 	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsAdmin, true
+	return o.IsAdmin, true
 }
 
 // HasIsAdmin returns a boolean if a field has been set.
@@ -216,28 +312,36 @@ func (o *User) GetPolicy() map[string]interface{} {
 	return o.Policy
 }
 
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *User) GetPolicyOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Policy, true
+}
+
 // SetPolicy sets field value
 func (o *User) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *User) GetRoles() []int32 {
+func (o *User) GetRoles() []int64 {
 	if o == nil || o.Roles == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Roles
 }
 
-// GetRolesOk returns a tuple with the Roles field value if set, zero value otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetRolesOk() ([]int32, bool) {
+func (o *User) GetRolesOk() (*[]int64, bool) {
 	if o == nil || o.Roles == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Roles, true
+	return o.Roles, true
 }
 
 // HasRoles returns a boolean if a field has been set.
@@ -249,8 +353,8 @@ func (o *User) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
-func (o *User) SetRoles(v []int32) {
+// SetRoles gets a reference to the given []int64 and assigns it to the Roles field.
+func (o *User) SetRoles(v []int64) {
 	o.Roles = &v
 }
 
@@ -263,14 +367,13 @@ func (o *User) GetAuthMethod() string {
 	return *o.AuthMethod
 }
 
-// GetAuthMethodOk returns a tuple with the AuthMethod field value if set, zero value otherwise
+// GetAuthMethodOk returns a tuple with the AuthMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetAuthMethodOk() (string, bool) {
+func (o *User) GetAuthMethodOk() (*string, bool) {
 	if o == nil || o.AuthMethod == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AuthMethod, true
+	return o.AuthMethod, true
 }
 
 // HasAuthMethod returns a boolean if a field has been set.
@@ -296,14 +399,13 @@ func (o *User) GetApplicationNotificationSubscriptions() map[string]interface{} 
 	return *o.ApplicationNotificationSubscriptions
 }
 
-// GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field value if set, zero value otherwise
+// GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool) {
+func (o *User) GetApplicationNotificationSubscriptionsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.ApplicationNotificationSubscriptions == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationNotificationSubscriptions, true
+	return o.ApplicationNotificationSubscriptions, true
 }
 
 // HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
@@ -329,14 +431,13 @@ func (o *User) GetLastSignedIn() time.Time {
 	return *o.LastSignedIn
 }
 
-// GetLastSignedInOk returns a tuple with the LastSignedIn field value if set, zero value otherwise
+// GetLastSignedInOk returns a tuple with the LastSignedIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetLastSignedInOk() (time.Time, bool) {
+func (o *User) GetLastSignedInOk() (*time.Time, bool) {
 	if o == nil || o.LastSignedIn == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastSignedIn, true
+	return o.LastSignedIn, true
 }
 
 // HasLastSignedIn returns a boolean if a field has been set.
@@ -362,14 +463,13 @@ func (o *User) GetLastAccessed() time.Time {
 	return *o.LastAccessed
 }
 
-// GetLastAccessedOk returns a tuple with the LastAccessed field value if set, zero value otherwise
+// GetLastAccessedOk returns a tuple with the LastAccessed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetLastAccessedOk() (time.Time, bool) {
+func (o *User) GetLastAccessedOk() (*time.Time, bool) {
 	if o == nil || o.LastAccessed == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastAccessed, true
+	return o.LastAccessed, true
 }
 
 // HasLastAccessed returns a boolean if a field has been set.
@@ -395,14 +495,13 @@ func (o *User) GetLatestFeedTimestamp() time.Time {
 	return *o.LatestFeedTimestamp
 }
 
-// GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field value if set, zero value otherwise
+// GetLatestFeedTimestampOk returns a tuple with the LatestFeedTimestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetLatestFeedTimestampOk() (time.Time, bool) {
+func (o *User) GetLatestFeedTimestampOk() (*time.Time, bool) {
 	if o == nil || o.LatestFeedTimestamp == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LatestFeedTimestamp, true
+	return o.LatestFeedTimestamp, true
 }
 
 // HasLatestFeedTimestamp returns a boolean if a field has been set.
@@ -428,14 +527,13 @@ func (o *User) GetAdditionalAttributes() map[string]interface{} {
 	return *o.AdditionalAttributes
 }
 
-// GetAdditionalAttributesOk returns a tuple with the AdditionalAttributes field value if set, zero value otherwise
+// GetAdditionalAttributesOk returns a tuple with the AdditionalAttributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *User) GetAdditionalAttributesOk() (map[string]interface{}, bool) {
+func (o *User) GetAdditionalAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.AdditionalAttributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.AdditionalAttributes, true
+	return o.AdditionalAttributes, true
 }
 
 // HasAdditionalAttributes returns a boolean if a field has been set.
@@ -452,25 +550,94 @@ func (o *User) SetAdditionalAttributes(v map[string]interface{}) {
 	o.AdditionalAttributes = &v
 }
 
+func (o User) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if true {
+		toSerialize["inviteToken"] = o.InviteToken
+	}
+	if o.IsAdmin != nil {
+		toSerialize["isAdmin"] = o.IsAdmin
+	}
+	if true {
+		toSerialize["policy"] = o.Policy
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	if o.AuthMethod != nil {
+		toSerialize["authMethod"] = o.AuthMethod
+	}
+	if o.ApplicationNotificationSubscriptions != nil {
+		toSerialize["applicationNotificationSubscriptions"] = o.ApplicationNotificationSubscriptions
+	}
+	if o.LastSignedIn != nil {
+		toSerialize["lastSignedIn"] = o.LastSignedIn
+	}
+	if o.LastAccessed != nil {
+		toSerialize["lastAccessed"] = o.LastAccessed
+	}
+	if o.LatestFeedTimestamp != nil {
+		toSerialize["latestFeedTimestamp"] = o.LatestFeedTimestamp
+	}
+	if o.AdditionalAttributes != nil {
+		toSerialize["additionalAttributes"] = o.AdditionalAttributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUser struct {
-	Value        User
-	ExplicitNull bool
+	value *User
+	isSet bool
+}
+
+func (v NullableUser) Get() *User {
+	return v.value
+}
+
+func (v *NullableUser) Set(val *User) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUser(val *User) *NullableUser {
+	return &NullableUser{value: val, isSet: true}
 }
 
 func (v NullableUser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

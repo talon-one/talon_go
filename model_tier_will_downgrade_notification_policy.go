@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,8 +20,35 @@ type TierWillDowngradeNotificationPolicy struct {
 	// Indicates whether batching is activated.
 	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 	// The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-	BatchSize *int32                                 `json:"batchSize,omitempty"`
+	BatchSize *int64                                 `json:"batchSize,omitempty"`
 	Triggers  []TierWillDowngradeNotificationTrigger `json:"triggers"`
+}
+
+// NewTierWillDowngradeNotificationPolicy instantiates a new TierWillDowngradeNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildTierWillDowngradeNotificationPolicy(name string, triggers []TierWillDowngradeNotificationTrigger) *TierWillDowngradeNotificationPolicy {
+	this := TierWillDowngradeNotificationPolicy{}
+	this.Name = name
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	this.Triggers = triggers
+	return &this
+}
+
+// NewTierWillDowngradeNotificationPolicyWithDefaults instantiates a new TierWillDowngradeNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTierWillDowngradeNotificationPolicyWithDefaults() *TierWillDowngradeNotificationPolicy {
+	this := TierWillDowngradeNotificationPolicy{}
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
 }
 
 // GetName returns the Name field value
@@ -33,6 +59,15 @@ func (o *TierWillDowngradeNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TierWillDowngradeNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -49,14 +84,13 @@ func (o *TierWillDowngradeNotificationPolicy) GetBatchingEnabled() bool {
 	return *o.BatchingEnabled
 }
 
-// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TierWillDowngradeNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+func (o *TierWillDowngradeNotificationPolicy) GetBatchingEnabledOk() (*bool, bool) {
 	if o == nil || o.BatchingEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchingEnabled, true
+	return o.BatchingEnabled, true
 }
 
 // HasBatchingEnabled returns a boolean if a field has been set.
@@ -74,22 +108,21 @@ func (o *TierWillDowngradeNotificationPolicy) SetBatchingEnabled(v bool) {
 }
 
 // GetBatchSize returns the BatchSize field value if set, zero value otherwise.
-func (o *TierWillDowngradeNotificationPolicy) GetBatchSize() int32 {
+func (o *TierWillDowngradeNotificationPolicy) GetBatchSize() int64 {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BatchSize
 }
 
-// GetBatchSizeOk returns a tuple with the BatchSize field value if set, zero value otherwise
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TierWillDowngradeNotificationPolicy) GetBatchSizeOk() (int32, bool) {
+func (o *TierWillDowngradeNotificationPolicy) GetBatchSizeOk() (*int64, bool) {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchSize, true
+	return o.BatchSize, true
 }
 
 // HasBatchSize returns a boolean if a field has been set.
@@ -101,8 +134,8 @@ func (o *TierWillDowngradeNotificationPolicy) HasBatchSize() bool {
 	return false
 }
 
-// SetBatchSize gets a reference to the given int32 and assigns it to the BatchSize field.
-func (o *TierWillDowngradeNotificationPolicy) SetBatchSize(v int32) {
+// SetBatchSize gets a reference to the given int64 and assigns it to the BatchSize field.
+func (o *TierWillDowngradeNotificationPolicy) SetBatchSize(v int64) {
 	o.BatchSize = &v
 }
 
@@ -116,30 +149,69 @@ func (o *TierWillDowngradeNotificationPolicy) GetTriggers() []TierWillDowngradeN
 	return o.Triggers
 }
 
+// GetTriggersOk returns a tuple with the Triggers field value
+// and a boolean to check if the value has been set.
+func (o *TierWillDowngradeNotificationPolicy) GetTriggersOk() (*[]TierWillDowngradeNotificationTrigger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Triggers, true
+}
+
 // SetTriggers sets field value
 func (o *TierWillDowngradeNotificationPolicy) SetTriggers(v []TierWillDowngradeNotificationTrigger) {
 	o.Triggers = v
 }
 
+func (o TierWillDowngradeNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.BatchingEnabled != nil {
+		toSerialize["batchingEnabled"] = o.BatchingEnabled
+	}
+	if o.BatchSize != nil {
+		toSerialize["batchSize"] = o.BatchSize
+	}
+	if true {
+		toSerialize["triggers"] = o.Triggers
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTierWillDowngradeNotificationPolicy struct {
-	Value        TierWillDowngradeNotificationPolicy
-	ExplicitNull bool
+	value *TierWillDowngradeNotificationPolicy
+	isSet bool
+}
+
+func (v NullableTierWillDowngradeNotificationPolicy) Get() *TierWillDowngradeNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableTierWillDowngradeNotificationPolicy) Set(val *TierWillDowngradeNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTierWillDowngradeNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTierWillDowngradeNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableTierWillDowngradeNotificationPolicy(val *TierWillDowngradeNotificationPolicy) *NullableTierWillDowngradeNotificationPolicy {
+	return &NullableTierWillDowngradeNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableTierWillDowngradeNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTierWillDowngradeNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

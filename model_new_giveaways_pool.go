@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,9 +20,28 @@ type NewGiveawaysPool struct {
 	// The description of this giveaways pool.
 	Description *string `json:"description,omitempty"`
 	// A list of the IDs of the applications that this giveaways pool is enabled for.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox bool `json:"sandbox"`
+}
+
+// NewNewGiveawaysPool instantiates a new NewGiveawaysPool object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewGiveawaysPool(name string, sandbox bool) *NewGiveawaysPool {
+	this := NewGiveawaysPool{}
+	this.Name = name
+	this.Sandbox = sandbox
+	return &this
+}
+
+// NewNewGiveawaysPoolWithDefaults instantiates a new NewGiveawaysPool object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewGiveawaysPoolWithDefaults() *NewGiveawaysPool {
+	this := NewGiveawaysPool{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -34,6 +52,15 @@ func (o *NewGiveawaysPool) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewGiveawaysPool) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -50,14 +77,13 @@ func (o *NewGiveawaysPool) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewGiveawaysPool) GetDescriptionOk() (string, bool) {
+func (o *NewGiveawaysPool) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -75,22 +101,21 @@ func (o *NewGiveawaysPool) SetDescription(v string) {
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *NewGiveawaysPool) GetSubscribedApplicationsIds() []int32 {
+func (o *NewGiveawaysPool) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewGiveawaysPool) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *NewGiveawaysPool) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -102,8 +127,8 @@ func (o *NewGiveawaysPool) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *NewGiveawaysPool) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *NewGiveawaysPool) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
@@ -117,30 +142,69 @@ func (o *NewGiveawaysPool) GetSandbox() bool {
 	return o.Sandbox
 }
 
+// GetSandboxOk returns a tuple with the Sandbox field value
+// and a boolean to check if the value has been set.
+func (o *NewGiveawaysPool) GetSandboxOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sandbox, true
+}
+
 // SetSandbox sets field value
 func (o *NewGiveawaysPool) SetSandbox(v bool) {
 	o.Sandbox = v
 }
 
+func (o NewGiveawaysPool) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if true {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewGiveawaysPool struct {
-	Value        NewGiveawaysPool
-	ExplicitNull bool
+	value *NewGiveawaysPool
+	isSet bool
+}
+
+func (v NullableNewGiveawaysPool) Get() *NewGiveawaysPool {
+	return v.value
+}
+
+func (v *NullableNewGiveawaysPool) Set(val *NewGiveawaysPool) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewGiveawaysPool) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewGiveawaysPool) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewGiveawaysPool(val *NewGiveawaysPool) *NullableNewGiveawaysPool {
+	return &NullableNewGiveawaysPool{value: val, isSet: true}
 }
 
 func (v NullableNewGiveawaysPool) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewGiveawaysPool) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

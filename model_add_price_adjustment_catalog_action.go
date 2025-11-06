@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type AddPriceAdjustmentCatalogAction struct {
 	Adjustments []NewPriceAdjustment `json:"adjustments"`
 }
 
+// NewAddPriceAdjustmentCatalogAction instantiates a new AddPriceAdjustmentCatalogAction object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAddPriceAdjustmentCatalogAction(sku string, adjustments []NewPriceAdjustment) *AddPriceAdjustmentCatalogAction {
+	this := AddPriceAdjustmentCatalogAction{}
+	this.Sku = sku
+	this.Adjustments = adjustments
+	return &this
+}
+
+// NewAddPriceAdjustmentCatalogActionWithDefaults instantiates a new AddPriceAdjustmentCatalogAction object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddPriceAdjustmentCatalogActionWithDefaults() *AddPriceAdjustmentCatalogAction {
+	this := AddPriceAdjustmentCatalogAction{}
+	return &this
+}
+
 // GetSku returns the Sku field value
 func (o *AddPriceAdjustmentCatalogAction) GetSku() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *AddPriceAdjustmentCatalogAction) GetSku() string {
 	}
 
 	return o.Sku
+}
+
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *AddPriceAdjustmentCatalogAction) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
 }
 
 // SetSku sets field value
@@ -47,30 +74,63 @@ func (o *AddPriceAdjustmentCatalogAction) GetAdjustments() []NewPriceAdjustment 
 	return o.Adjustments
 }
 
+// GetAdjustmentsOk returns a tuple with the Adjustments field value
+// and a boolean to check if the value has been set.
+func (o *AddPriceAdjustmentCatalogAction) GetAdjustmentsOk() (*[]NewPriceAdjustment, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Adjustments, true
+}
+
 // SetAdjustments sets field value
 func (o *AddPriceAdjustmentCatalogAction) SetAdjustments(v []NewPriceAdjustment) {
 	o.Adjustments = v
 }
 
+func (o AddPriceAdjustmentCatalogAction) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if true {
+		toSerialize["adjustments"] = o.Adjustments
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddPriceAdjustmentCatalogAction struct {
-	Value        AddPriceAdjustmentCatalogAction
-	ExplicitNull bool
+	value *AddPriceAdjustmentCatalogAction
+	isSet bool
+}
+
+func (v NullableAddPriceAdjustmentCatalogAction) Get() *AddPriceAdjustmentCatalogAction {
+	return v.value
+}
+
+func (v *NullableAddPriceAdjustmentCatalogAction) Set(val *AddPriceAdjustmentCatalogAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddPriceAdjustmentCatalogAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddPriceAdjustmentCatalogAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAddPriceAdjustmentCatalogAction(val *AddPriceAdjustmentCatalogAction) *NullableAddPriceAdjustmentCatalogAction {
+	return &NullableAddPriceAdjustmentCatalogAction{value: val, isSet: true}
 }
 
 func (v NullableAddPriceAdjustmentCatalogAction) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddPriceAdjustmentCatalogAction) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

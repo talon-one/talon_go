@@ -10,29 +10,46 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// NewApplicationCif struct for NewApplicationCif
-type NewApplicationCif struct {
+// NewApplicationCIF struct for NewApplicationCIF
+type NewApplicationCIF struct {
 	// The name of the Application cart item filter used in API requests.
 	Name string `json:"name"`
 	// A short description of the Application cart item filter.
 	Description *string `json:"description,omitempty"`
 	// The ID of the expression that the Application cart item filter uses.
-	ActiveExpressionId *int32 `json:"activeExpressionId,omitempty"`
+	ActiveExpressionId *int64 `json:"activeExpressionId,omitempty"`
 	// The ID of the user who last updated the Application cart item filter.
-	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int64 `json:"modifiedBy,omitempty"`
 	// The ID of the user who created the Application cart item filter.
-	CreatedBy *int32 `json:"createdBy,omitempty"`
+	CreatedBy *int64 `json:"createdBy,omitempty"`
 	// Timestamp of the most recent update to the Application cart item filter.
 	Modified *time.Time `json:"modified,omitempty"`
 }
 
+// NewNewApplicationCIF instantiates a new NewApplicationCIF object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewApplicationCIF(name string) *NewApplicationCIF {
+	this := NewApplicationCIF{}
+	this.Name = name
+	return &this
+}
+
+// NewNewApplicationCIFWithDefaults instantiates a new NewApplicationCIF object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewApplicationCIFWithDefaults() *NewApplicationCIF {
+	this := NewApplicationCIF{}
+	return &this
+}
+
 // GetName returns the Name field value
-func (o *NewApplicationCif) GetName() string {
+func (o *NewApplicationCIF) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -41,13 +58,22 @@ func (o *NewApplicationCif) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationCIF) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
-func (o *NewApplicationCif) SetName(v string) {
+func (o *NewApplicationCIF) SetName(v string) {
 	o.Name = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *NewApplicationCif) GetDescription() string {
+func (o *NewApplicationCIF) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -55,18 +81,17 @@ func (o *NewApplicationCif) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCif) GetDescriptionOk() (string, bool) {
+func (o *NewApplicationCIF) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *NewApplicationCif) HasDescription() bool {
+func (o *NewApplicationCIF) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -75,31 +100,30 @@ func (o *NewApplicationCif) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *NewApplicationCif) SetDescription(v string) {
+func (o *NewApplicationCIF) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetActiveExpressionId returns the ActiveExpressionId field value if set, zero value otherwise.
-func (o *NewApplicationCif) GetActiveExpressionId() int32 {
+func (o *NewApplicationCIF) GetActiveExpressionId() int64 {
 	if o == nil || o.ActiveExpressionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveExpressionId
 }
 
-// GetActiveExpressionIdOk returns a tuple with the ActiveExpressionId field value if set, zero value otherwise
+// GetActiveExpressionIdOk returns a tuple with the ActiveExpressionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCif) GetActiveExpressionIdOk() (int32, bool) {
+func (o *NewApplicationCIF) GetActiveExpressionIdOk() (*int64, bool) {
 	if o == nil || o.ActiveExpressionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveExpressionId, true
+	return o.ActiveExpressionId, true
 }
 
 // HasActiveExpressionId returns a boolean if a field has been set.
-func (o *NewApplicationCif) HasActiveExpressionId() bool {
+func (o *NewApplicationCIF) HasActiveExpressionId() bool {
 	if o != nil && o.ActiveExpressionId != nil {
 		return true
 	}
@@ -107,32 +131,31 @@ func (o *NewApplicationCif) HasActiveExpressionId() bool {
 	return false
 }
 
-// SetActiveExpressionId gets a reference to the given int32 and assigns it to the ActiveExpressionId field.
-func (o *NewApplicationCif) SetActiveExpressionId(v int32) {
+// SetActiveExpressionId gets a reference to the given int64 and assigns it to the ActiveExpressionId field.
+func (o *NewApplicationCIF) SetActiveExpressionId(v int64) {
 	o.ActiveExpressionId = &v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *NewApplicationCif) GetModifiedBy() int32 {
+func (o *NewApplicationCIF) GetModifiedBy() int64 {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ModifiedBy
 }
 
-// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, zero value otherwise
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCif) GetModifiedByOk() (int32, bool) {
+func (o *NewApplicationCIF) GetModifiedByOk() (*int64, bool) {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedBy, true
+	return o.ModifiedBy, true
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
-func (o *NewApplicationCif) HasModifiedBy() bool {
+func (o *NewApplicationCIF) HasModifiedBy() bool {
 	if o != nil && o.ModifiedBy != nil {
 		return true
 	}
@@ -140,32 +163,31 @@ func (o *NewApplicationCif) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
-func (o *NewApplicationCif) SetModifiedBy(v int32) {
+// SetModifiedBy gets a reference to the given int64 and assigns it to the ModifiedBy field.
+func (o *NewApplicationCIF) SetModifiedBy(v int64) {
 	o.ModifiedBy = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *NewApplicationCif) GetCreatedBy() int32 {
+func (o *NewApplicationCIF) GetCreatedBy() int64 {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCif) GetCreatedByOk() (int32, bool) {
+func (o *NewApplicationCIF) GetCreatedByOk() (*int64, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
-func (o *NewApplicationCif) HasCreatedBy() bool {
+func (o *NewApplicationCIF) HasCreatedBy() bool {
 	if o != nil && o.CreatedBy != nil {
 		return true
 	}
@@ -173,13 +195,13 @@ func (o *NewApplicationCif) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-func (o *NewApplicationCif) SetCreatedBy(v int32) {
+// SetCreatedBy gets a reference to the given int64 and assigns it to the CreatedBy field.
+func (o *NewApplicationCIF) SetCreatedBy(v int64) {
 	o.CreatedBy = &v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *NewApplicationCif) GetModified() time.Time {
+func (o *NewApplicationCIF) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
 		var ret time.Time
 		return ret
@@ -187,18 +209,17 @@ func (o *NewApplicationCif) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCif) GetModifiedOk() (time.Time, bool) {
+func (o *NewApplicationCIF) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
-func (o *NewApplicationCif) HasModified() bool {
+func (o *NewApplicationCIF) HasModified() bool {
 	if o != nil && o.Modified != nil {
 		return true
 	}
@@ -207,29 +228,65 @@ func (o *NewApplicationCif) HasModified() bool {
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *NewApplicationCif) SetModified(v time.Time) {
+func (o *NewApplicationCIF) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
-type NullableNewApplicationCif struct {
-	Value        NewApplicationCif
-	ExplicitNull bool
+func (o NewApplicationCIF) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.ActiveExpressionId != nil {
+		toSerialize["activeExpressionId"] = o.ActiveExpressionId
+	}
+	if o.ModifiedBy != nil {
+		toSerialize["modifiedBy"] = o.ModifiedBy
+	}
+	if o.CreatedBy != nil {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableNewApplicationCif) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableNewApplicationCIF struct {
+	value *NewApplicationCIF
+	isSet bool
 }
 
-func (v *NullableNewApplicationCif) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableNewApplicationCIF) Get() *NewApplicationCIF {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableNewApplicationCIF) Set(val *NewApplicationCIF) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewApplicationCIF) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewApplicationCIF) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewApplicationCIF(val *NewApplicationCIF) *NullableNewApplicationCIF {
+	return &NullableNewApplicationCIF{value: val, isSet: true}
+}
+
+func (v NullableNewApplicationCIF) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNewApplicationCIF) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,18 +10,17 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // RollbackIncreasedAchievementProgressEffectProps The properties specific to the \"rollbackIncreasedAchievementProgress\" effect. This gets triggered whenever a closed session where the `increaseAchievementProgress` effect was triggered is cancelled. This is applicable only when the customer has not completed the achievement.
 type RollbackIncreasedAchievementProgressEffectProps struct {
 	// The internal ID of the achievement.
-	AchievementId int32 `json:"achievementId"`
+	AchievementId int64 `json:"achievementId"`
 	// The name of the achievement.
 	AchievementName string `json:"achievementName"`
 	// The internal ID of the achievement progress tracker.
-	ProgressTrackerId int32 `json:"progressTrackerId"`
+	ProgressTrackerId int64 `json:"progressTrackerId"`
 	// The value by which the customer's current progress in the achievement is decreased.
 	DecreaseProgressBy float32 `json:"decreaseProgressBy"`
 	// The current progress of the customer in the achievement.
@@ -30,18 +29,50 @@ type RollbackIncreasedAchievementProgressEffectProps struct {
 	Target float32 `json:"target"`
 }
 
+// NewRollbackIncreasedAchievementProgressEffectProps instantiates a new RollbackIncreasedAchievementProgressEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRollbackIncreasedAchievementProgressEffectProps(achievementId int64, achievementName string, progressTrackerId int64, decreaseProgressBy float32, currentProgress float32, target float32) *RollbackIncreasedAchievementProgressEffectProps {
+	this := RollbackIncreasedAchievementProgressEffectProps{}
+	this.AchievementId = achievementId
+	this.AchievementName = achievementName
+	this.ProgressTrackerId = progressTrackerId
+	this.DecreaseProgressBy = decreaseProgressBy
+	this.CurrentProgress = currentProgress
+	this.Target = target
+	return &this
+}
+
+// NewRollbackIncreasedAchievementProgressEffectPropsWithDefaults instantiates a new RollbackIncreasedAchievementProgressEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRollbackIncreasedAchievementProgressEffectPropsWithDefaults() *RollbackIncreasedAchievementProgressEffectProps {
+	this := RollbackIncreasedAchievementProgressEffectProps{}
+	return &this
+}
+
 // GetAchievementId returns the AchievementId field value
-func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementId() int32 {
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AchievementId
 }
 
+// GetAchievementIdOk returns a tuple with the AchievementId field value
+// and a boolean to check if the value has been set.
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementId, true
+}
+
 // SetAchievementId sets field value
-func (o *RollbackIncreasedAchievementProgressEffectProps) SetAchievementId(v int32) {
+func (o *RollbackIncreasedAchievementProgressEffectProps) SetAchievementId(v int64) {
 	o.AchievementId = v
 }
 
@@ -55,23 +86,41 @@ func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementName() s
 	return o.AchievementName
 }
 
+// GetAchievementNameOk returns a tuple with the AchievementName field value
+// and a boolean to check if the value has been set.
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementName, true
+}
+
 // SetAchievementName sets field value
 func (o *RollbackIncreasedAchievementProgressEffectProps) SetAchievementName(v string) {
 	o.AchievementName = v
 }
 
 // GetProgressTrackerId returns the ProgressTrackerId field value
-func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerId() int32 {
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgressTrackerId
 }
 
+// GetProgressTrackerIdOk returns a tuple with the ProgressTrackerId field value
+// and a boolean to check if the value has been set.
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgressTrackerId, true
+}
+
 // SetProgressTrackerId sets field value
-func (o *RollbackIncreasedAchievementProgressEffectProps) SetProgressTrackerId(v int32) {
+func (o *RollbackIncreasedAchievementProgressEffectProps) SetProgressTrackerId(v int64) {
 	o.ProgressTrackerId = v
 }
 
@@ -83,6 +132,15 @@ func (o *RollbackIncreasedAchievementProgressEffectProps) GetDecreaseProgressBy(
 	}
 
 	return o.DecreaseProgressBy
+}
+
+// GetDecreaseProgressByOk returns a tuple with the DecreaseProgressBy field value
+// and a boolean to check if the value has been set.
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetDecreaseProgressByOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DecreaseProgressBy, true
 }
 
 // SetDecreaseProgressBy sets field value
@@ -100,6 +158,15 @@ func (o *RollbackIncreasedAchievementProgressEffectProps) GetCurrentProgress() f
 	return o.CurrentProgress
 }
 
+// GetCurrentProgressOk returns a tuple with the CurrentProgress field value
+// and a boolean to check if the value has been set.
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetCurrentProgressOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrentProgress, true
+}
+
 // SetCurrentProgress sets field value
 func (o *RollbackIncreasedAchievementProgressEffectProps) SetCurrentProgress(v float32) {
 	o.CurrentProgress = v
@@ -115,30 +182,75 @@ func (o *RollbackIncreasedAchievementProgressEffectProps) GetTarget() float32 {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *RollbackIncreasedAchievementProgressEffectProps) GetTargetOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *RollbackIncreasedAchievementProgressEffectProps) SetTarget(v float32) {
 	o.Target = v
 }
 
+func (o RollbackIncreasedAchievementProgressEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["achievementId"] = o.AchievementId
+	}
+	if true {
+		toSerialize["achievementName"] = o.AchievementName
+	}
+	if true {
+		toSerialize["progressTrackerId"] = o.ProgressTrackerId
+	}
+	if true {
+		toSerialize["decreaseProgressBy"] = o.DecreaseProgressBy
+	}
+	if true {
+		toSerialize["currentProgress"] = o.CurrentProgress
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRollbackIncreasedAchievementProgressEffectProps struct {
-	Value        RollbackIncreasedAchievementProgressEffectProps
-	ExplicitNull bool
+	value *RollbackIncreasedAchievementProgressEffectProps
+	isSet bool
+}
+
+func (v NullableRollbackIncreasedAchievementProgressEffectProps) Get() *RollbackIncreasedAchievementProgressEffectProps {
+	return v.value
+}
+
+func (v *NullableRollbackIncreasedAchievementProgressEffectProps) Set(val *RollbackIncreasedAchievementProgressEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRollbackIncreasedAchievementProgressEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRollbackIncreasedAchievementProgressEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRollbackIncreasedAchievementProgressEffectProps(val *RollbackIncreasedAchievementProgressEffectProps) *NullableRollbackIncreasedAchievementProgressEffectProps {
+	return &NullableRollbackIncreasedAchievementProgressEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRollbackIncreasedAchievementProgressEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRollbackIncreasedAchievementProgressEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

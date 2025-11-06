@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,41 +17,75 @@ import (
 // Return struct for Return
 type Return struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// List of cart items to be returned.
 	ReturnedCartItems []ReturnedCartItem `json:"returnedCartItems"`
 	// The event ID of that was generated for this return.
-	EventId int32 `json:"eventId"`
+	EventId int64 `json:"eventId"`
 	// The internal ID of the session this return was requested on.
-	SessionId int32 `json:"sessionId"`
+	SessionId int64 `json:"sessionId"`
 	// The integration ID of the session this return was requested on.
 	SessionIntegrationId string `json:"sessionIntegrationId"`
 	// The internal ID of the profile this return was requested on.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
 	// The integration ID of the profile this return was requested on.
 	ProfileIntegrationId *string `json:"profileIntegrationId,omitempty"`
 	// ID of the user who requested this return.
-	CreatedBy *int32 `json:"createdBy,omitempty"`
+	CreatedBy *int64 `json:"createdBy,omitempty"`
+}
+
+// NewReturn instantiates a new Return object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildReturn(id int64, created time.Time, applicationId int64, accountId int64, returnedCartItems []ReturnedCartItem, eventId int64, sessionId int64, sessionIntegrationId string) *Return {
+	this := Return{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.AccountId = accountId
+	this.ReturnedCartItems = returnedCartItems
+	this.EventId = eventId
+	this.SessionId = sessionId
+	this.SessionIntegrationId = sessionIntegrationId
+	return &this
+}
+
+// NewReturnWithDefaults instantiates a new Return object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewReturnWithDefaults() *Return {
+	this := Return{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Return) GetId() int32 {
+func (o *Return) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Return) SetId(v int32) {
+func (o *Return) SetId(v int64) {
 	o.Id = v
 }
 
@@ -66,38 +99,65 @@ func (o *Return) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Return) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *Return) GetApplicationId() int32 {
+func (o *Return) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *Return) SetApplicationId(v int32) {
+func (o *Return) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Return) GetAccountId() int32 {
+func (o *Return) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Return) SetAccountId(v int32) {
+func (o *Return) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -111,38 +171,65 @@ func (o *Return) GetReturnedCartItems() []ReturnedCartItem {
 	return o.ReturnedCartItems
 }
 
+// GetReturnedCartItemsOk returns a tuple with the ReturnedCartItems field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetReturnedCartItemsOk() (*[]ReturnedCartItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReturnedCartItems, true
+}
+
 // SetReturnedCartItems sets field value
 func (o *Return) SetReturnedCartItems(v []ReturnedCartItem) {
 	o.ReturnedCartItems = v
 }
 
 // GetEventId returns the EventId field value
-func (o *Return) GetEventId() int32 {
+func (o *Return) GetEventId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.EventId
 }
 
+// GetEventIdOk returns a tuple with the EventId field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetEventIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventId, true
+}
+
 // SetEventId sets field value
-func (o *Return) SetEventId(v int32) {
+func (o *Return) SetEventId(v int64) {
 	o.EventId = v
 }
 
 // GetSessionId returns the SessionId field value
-func (o *Return) GetSessionId() int32 {
+func (o *Return) GetSessionId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.SessionId
 }
 
+// GetSessionIdOk returns a tuple with the SessionId field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetSessionIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionId, true
+}
+
 // SetSessionId sets field value
-func (o *Return) SetSessionId(v int32) {
+func (o *Return) SetSessionId(v int64) {
 	o.SessionId = v
 }
 
@@ -156,28 +243,36 @@ func (o *Return) GetSessionIntegrationId() string {
 	return o.SessionIntegrationId
 }
 
+// GetSessionIntegrationIdOk returns a tuple with the SessionIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *Return) GetSessionIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionIntegrationId, true
+}
+
 // SetSessionIntegrationId sets field value
 func (o *Return) SetSessionIntegrationId(v string) {
 	o.SessionIntegrationId = v
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *Return) GetProfileId() int32 {
+func (o *Return) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Return) GetProfileIdOk() (int32, bool) {
+func (o *Return) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -189,8 +284,8 @@ func (o *Return) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *Return) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *Return) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
@@ -203,14 +298,13 @@ func (o *Return) GetProfileIntegrationId() string {
 	return *o.ProfileIntegrationId
 }
 
-// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, zero value otherwise
+// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Return) GetProfileIntegrationIdOk() (string, bool) {
+func (o *Return) GetProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.ProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileIntegrationId, true
+	return o.ProfileIntegrationId, true
 }
 
 // HasProfileIntegrationId returns a boolean if a field has been set.
@@ -228,22 +322,21 @@ func (o *Return) SetProfileIntegrationId(v string) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *Return) GetCreatedBy() int32 {
+func (o *Return) GetCreatedBy() int64 {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Return) GetCreatedByOk() (int32, bool) {
+func (o *Return) GetCreatedByOk() (*int64, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -255,30 +348,81 @@ func (o *Return) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-func (o *Return) SetCreatedBy(v int32) {
+// SetCreatedBy gets a reference to the given int64 and assigns it to the CreatedBy field.
+func (o *Return) SetCreatedBy(v int64) {
 	o.CreatedBy = &v
 }
 
+func (o Return) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["returnedCartItems"] = o.ReturnedCartItems
+	}
+	if true {
+		toSerialize["eventId"] = o.EventId
+	}
+	if true {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	if true {
+		toSerialize["sessionIntegrationId"] = o.SessionIntegrationId
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.ProfileIntegrationId != nil {
+		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
+	}
+	if o.CreatedBy != nil {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableReturn struct {
-	Value        Return
-	ExplicitNull bool
+	value *Return
+	isSet bool
+}
+
+func (v NullableReturn) Get() *Return {
+	return v.value
+}
+
+func (v *NullableReturn) Set(val *Return) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableReturn) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableReturn) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableReturn(val *Return) *NullableReturn {
+	return &NullableReturn{value: val, isSet: true}
 }
 
 func (v NullableReturn) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableReturn) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

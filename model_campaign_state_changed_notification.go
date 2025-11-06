@@ -10,117 +10,164 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// CampaignStateChangedNotification A notification regarding a campaign whose state changed.
+// CampaignStateChangedNotification struct for CampaignStateChangedNotification
 type CampaignStateChangedNotification struct {
-	Campaign Campaign `json:"campaign"`
-	// The campaign's old state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
-	OldState string `json:"oldState"`
-	// The campaign's new state. Can be one of the following: ['running', 'disabled', 'scheduled', 'expired', 'archived']
-	NewState string   `json:"newState"`
-	Ruleset  *Ruleset `json:"ruleset,omitempty"`
+	// The type of the notification
+	NotificationType string `json:"NotificationType"`
+	// The total size of the result set.
+	TotalResultSize int64 `json:"TotalResultSize"`
+	// A list of campaign notification data.
+	Data *[]CampaignStateChangedNotificationItem `json:"Data,omitempty"`
 }
 
-// GetCampaign returns the Campaign field value
-func (o *CampaignStateChangedNotification) GetCampaign() Campaign {
-	if o == nil {
-		var ret Campaign
-		return ret
-	}
-
-	return o.Campaign
+// NewCampaignStateChangedNotification instantiates a new CampaignStateChangedNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignStateChangedNotification(notificationType string, totalResultSize int64) *CampaignStateChangedNotification {
+	this := CampaignStateChangedNotification{}
+	this.NotificationType = notificationType
+	this.TotalResultSize = totalResultSize
+	return &this
 }
 
-// SetCampaign sets field value
-func (o *CampaignStateChangedNotification) SetCampaign(v Campaign) {
-	o.Campaign = v
+// NewCampaignStateChangedNotificationWithDefaults instantiates a new CampaignStateChangedNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignStateChangedNotificationWithDefaults() *CampaignStateChangedNotification {
+	this := CampaignStateChangedNotification{}
+	return &this
 }
 
-// GetOldState returns the OldState field value
-func (o *CampaignStateChangedNotification) GetOldState() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.OldState
-}
-
-// SetOldState sets field value
-func (o *CampaignStateChangedNotification) SetOldState(v string) {
-	o.OldState = v
-}
-
-// GetNewState returns the NewState field value
-func (o *CampaignStateChangedNotification) GetNewState() string {
+// GetNotificationType returns the NotificationType field value
+func (o *CampaignStateChangedNotification) GetNotificationType() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.NewState
+	return o.NotificationType
 }
 
-// SetNewState sets field value
-func (o *CampaignStateChangedNotification) SetNewState(v string) {
-	o.NewState = v
-}
-
-// GetRuleset returns the Ruleset field value if set, zero value otherwise.
-func (o *CampaignStateChangedNotification) GetRuleset() Ruleset {
-	if o == nil || o.Ruleset == nil {
-		var ret Ruleset
-		return ret
-	}
-	return *o.Ruleset
-}
-
-// GetRulesetOk returns a tuple with the Ruleset field value if set, zero value otherwise
+// GetNotificationTypeOk returns a tuple with the NotificationType field value
 // and a boolean to check if the value has been set.
-func (o *CampaignStateChangedNotification) GetRulesetOk() (Ruleset, bool) {
-	if o == nil || o.Ruleset == nil {
-		var ret Ruleset
-		return ret, false
+func (o *CampaignStateChangedNotification) GetNotificationTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return *o.Ruleset, true
+	return &o.NotificationType, true
 }
 
-// HasRuleset returns a boolean if a field has been set.
-func (o *CampaignStateChangedNotification) HasRuleset() bool {
-	if o != nil && o.Ruleset != nil {
+// SetNotificationType sets field value
+func (o *CampaignStateChangedNotification) SetNotificationType(v string) {
+	o.NotificationType = v
+}
+
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *CampaignStateChangedNotification) GetTotalResultSize() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.TotalResultSize
+}
+
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// and a boolean to check if the value has been set.
+func (o *CampaignStateChangedNotification) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalResultSize, true
+}
+
+// SetTotalResultSize sets field value
+func (o *CampaignStateChangedNotification) SetTotalResultSize(v int64) {
+	o.TotalResultSize = v
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *CampaignStateChangedNotification) GetData() []CampaignStateChangedNotificationItem {
+	if o == nil || o.Data == nil {
+		var ret []CampaignStateChangedNotificationItem
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignStateChangedNotification) GetDataOk() (*[]CampaignStateChangedNotificationItem, bool) {
+	if o == nil || o.Data == nil {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *CampaignStateChangedNotification) HasData() bool {
+	if o != nil && o.Data != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
-func (o *CampaignStateChangedNotification) SetRuleset(v Ruleset) {
-	o.Ruleset = &v
+// SetData gets a reference to the given []CampaignStateChangedNotificationItem and assigns it to the Data field.
+func (o *CampaignStateChangedNotification) SetData(v []CampaignStateChangedNotificationItem) {
+	o.Data = &v
+}
+
+func (o CampaignStateChangedNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["NotificationType"] = o.NotificationType
+	}
+	if true {
+		toSerialize["TotalResultSize"] = o.TotalResultSize
+	}
+	if o.Data != nil {
+		toSerialize["Data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableCampaignStateChangedNotification struct {
-	Value        CampaignStateChangedNotification
-	ExplicitNull bool
+	value *CampaignStateChangedNotification
+	isSet bool
+}
+
+func (v NullableCampaignStateChangedNotification) Get() *CampaignStateChangedNotification {
+	return v.value
+}
+
+func (v *NullableCampaignStateChangedNotification) Set(val *CampaignStateChangedNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignStateChangedNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignStateChangedNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignStateChangedNotification(val *CampaignStateChangedNotification) *NullableCampaignStateChangedNotification {
+	return &NullableCampaignStateChangedNotification{value: val, isSet: true}
 }
 
 func (v NullableCampaignStateChangedNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignStateChangedNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

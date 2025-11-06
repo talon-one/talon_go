@@ -5,9 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HttpResponse** | Pointer to **string** | The returned http response. | 
-**HttpStatus** | Pointer to **int32** | The returned http status code. | 
+**HttpStatus** | Pointer to **int64** | The returned http status code. | 
 
 ## Methods
+
+### NewMessageTest
+
+`func NewMessageTest(httpResponse string, httpStatus int64, ) *MessageTest`
+
+NewMessageTest instantiates a new MessageTest object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewMessageTestWithDefaults
+
+`func NewMessageTestWithDefaults() *MessageTest`
+
+NewMessageTestWithDefaults instantiates a new MessageTest object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetHttpResponse
 
@@ -17,47 +34,37 @@ GetHttpResponse returns the HttpResponse field if non-nil, zero value otherwise.
 
 ### GetHttpResponseOk
 
-`func (o *MessageTest) GetHttpResponseOk() (string, bool)`
+`func (o *MessageTest) GetHttpResponseOk() (*string, bool)`
 
 GetHttpResponseOk returns a tuple with the HttpResponse field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasHttpResponse
-
-`func (o *MessageTest) HasHttpResponse() bool`
-
-HasHttpResponse returns a boolean if a field has been set.
 
 ### SetHttpResponse
 
 `func (o *MessageTest) SetHttpResponse(v string)`
 
-SetHttpResponse gets a reference to the given string and assigns it to the HttpResponse field.
+SetHttpResponse sets HttpResponse field to given value.
+
 
 ### GetHttpStatus
 
-`func (o *MessageTest) GetHttpStatus() int32`
+`func (o *MessageTest) GetHttpStatus() int64`
 
 GetHttpStatus returns the HttpStatus field if non-nil, zero value otherwise.
 
 ### GetHttpStatusOk
 
-`func (o *MessageTest) GetHttpStatusOk() (int32, bool)`
+`func (o *MessageTest) GetHttpStatusOk() (*int64, bool)`
 
 GetHttpStatusOk returns a tuple with the HttpStatus field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasHttpStatus
-
-`func (o *MessageTest) HasHttpStatus() bool`
-
-HasHttpStatus returns a boolean if a field has been set.
-
 ### SetHttpStatus
 
-`func (o *MessageTest) SetHttpStatus(v int32)`
+`func (o *MessageTest) SetHttpStatus(v int64)`
 
-SetHttpStatus gets a reference to the given int32 and assigns it to the HttpStatus field.
+SetHttpStatus sets HttpStatus field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

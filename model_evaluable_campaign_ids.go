@@ -10,33 +10,48 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // EvaluableCampaignIds struct for EvaluableCampaignIds
 type EvaluableCampaignIds struct {
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
-	EvaluableCampaignIds *[]int32 `json:"evaluableCampaignIds,omitempty"`
+	EvaluableCampaignIds *[]int64 `json:"evaluableCampaignIds,omitempty"`
+}
+
+// NewEvaluableCampaignIds instantiates a new EvaluableCampaignIds object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildEvaluableCampaignIds() *EvaluableCampaignIds {
+	this := EvaluableCampaignIds{}
+	return &this
+}
+
+// NewEvaluableCampaignIdsWithDefaults instantiates a new EvaluableCampaignIds object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEvaluableCampaignIdsWithDefaults() *EvaluableCampaignIds {
+	this := EvaluableCampaignIds{}
+	return &this
 }
 
 // GetEvaluableCampaignIds returns the EvaluableCampaignIds field value if set, zero value otherwise.
-func (o *EvaluableCampaignIds) GetEvaluableCampaignIds() []int32 {
+func (o *EvaluableCampaignIds) GetEvaluableCampaignIds() []int64 {
 	if o == nil || o.EvaluableCampaignIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.EvaluableCampaignIds
 }
 
-// GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field value if set, zero value otherwise
+// GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EvaluableCampaignIds) GetEvaluableCampaignIdsOk() ([]int32, bool) {
+func (o *EvaluableCampaignIds) GetEvaluableCampaignIdsOk() (*[]int64, bool) {
 	if o == nil || o.EvaluableCampaignIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluableCampaignIds, true
+	return o.EvaluableCampaignIds, true
 }
 
 // HasEvaluableCampaignIds returns a boolean if a field has been set.
@@ -48,30 +63,51 @@ func (o *EvaluableCampaignIds) HasEvaluableCampaignIds() bool {
 	return false
 }
 
-// SetEvaluableCampaignIds gets a reference to the given []int32 and assigns it to the EvaluableCampaignIds field.
-func (o *EvaluableCampaignIds) SetEvaluableCampaignIds(v []int32) {
+// SetEvaluableCampaignIds gets a reference to the given []int64 and assigns it to the EvaluableCampaignIds field.
+func (o *EvaluableCampaignIds) SetEvaluableCampaignIds(v []int64) {
 	o.EvaluableCampaignIds = &v
 }
 
+func (o EvaluableCampaignIds) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.EvaluableCampaignIds != nil {
+		toSerialize["evaluableCampaignIds"] = o.EvaluableCampaignIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEvaluableCampaignIds struct {
-	Value        EvaluableCampaignIds
-	ExplicitNull bool
+	value *EvaluableCampaignIds
+	isSet bool
+}
+
+func (v NullableEvaluableCampaignIds) Get() *EvaluableCampaignIds {
+	return v.value
+}
+
+func (v *NullableEvaluableCampaignIds) Set(val *EvaluableCampaignIds) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEvaluableCampaignIds) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEvaluableCampaignIds) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableEvaluableCampaignIds(val *EvaluableCampaignIds) *NullableEvaluableCampaignIds {
+	return &NullableEvaluableCampaignIds{value: val, isSet: true}
 }
 
 func (v NullableEvaluableCampaignIds) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEvaluableCampaignIds) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

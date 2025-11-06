@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -37,6 +36,28 @@ type LedgerInfo struct {
 	PointsToNextTier *float32 `json:"pointsToNextTier,omitempty"`
 }
 
+// NewLedgerInfo instantiates a new LedgerInfo object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLedgerInfo(currentBalance float32, pendingBalance float32, expiredBalance float32, spentBalance float32, tentativeCurrentBalance float32) *LedgerInfo {
+	this := LedgerInfo{}
+	this.CurrentBalance = currentBalance
+	this.PendingBalance = pendingBalance
+	this.ExpiredBalance = expiredBalance
+	this.SpentBalance = spentBalance
+	this.TentativeCurrentBalance = tentativeCurrentBalance
+	return &this
+}
+
+// NewLedgerInfoWithDefaults instantiates a new LedgerInfo object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLedgerInfoWithDefaults() *LedgerInfo {
+	this := LedgerInfo{}
+	return &this
+}
+
 // GetCurrentBalance returns the CurrentBalance field value
 func (o *LedgerInfo) GetCurrentBalance() float32 {
 	if o == nil {
@@ -45,6 +66,15 @@ func (o *LedgerInfo) GetCurrentBalance() float32 {
 	}
 
 	return o.CurrentBalance
+}
+
+// GetCurrentBalanceOk returns a tuple with the CurrentBalance field value
+// and a boolean to check if the value has been set.
+func (o *LedgerInfo) GetCurrentBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrentBalance, true
 }
 
 // SetCurrentBalance sets field value
@@ -62,6 +92,15 @@ func (o *LedgerInfo) GetPendingBalance() float32 {
 	return o.PendingBalance
 }
 
+// GetPendingBalanceOk returns a tuple with the PendingBalance field value
+// and a boolean to check if the value has been set.
+func (o *LedgerInfo) GetPendingBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PendingBalance, true
+}
+
 // SetPendingBalance sets field value
 func (o *LedgerInfo) SetPendingBalance(v float32) {
 	o.PendingBalance = v
@@ -76,14 +115,13 @@ func (o *LedgerInfo) GetNegativeBalance() float32 {
 	return *o.NegativeBalance
 }
 
-// GetNegativeBalanceOk returns a tuple with the NegativeBalance field value if set, zero value otherwise
+// GetNegativeBalanceOk returns a tuple with the NegativeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerInfo) GetNegativeBalanceOk() (float32, bool) {
+func (o *LedgerInfo) GetNegativeBalanceOk() (*float32, bool) {
 	if o == nil || o.NegativeBalance == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.NegativeBalance, true
+	return o.NegativeBalance, true
 }
 
 // HasNegativeBalance returns a boolean if a field has been set.
@@ -110,6 +148,15 @@ func (o *LedgerInfo) GetExpiredBalance() float32 {
 	return o.ExpiredBalance
 }
 
+// GetExpiredBalanceOk returns a tuple with the ExpiredBalance field value
+// and a boolean to check if the value has been set.
+func (o *LedgerInfo) GetExpiredBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiredBalance, true
+}
+
 // SetExpiredBalance sets field value
 func (o *LedgerInfo) SetExpiredBalance(v float32) {
 	o.ExpiredBalance = v
@@ -123,6 +170,15 @@ func (o *LedgerInfo) GetSpentBalance() float32 {
 	}
 
 	return o.SpentBalance
+}
+
+// GetSpentBalanceOk returns a tuple with the SpentBalance field value
+// and a boolean to check if the value has been set.
+func (o *LedgerInfo) GetSpentBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SpentBalance, true
 }
 
 // SetSpentBalance sets field value
@@ -140,6 +196,15 @@ func (o *LedgerInfo) GetTentativeCurrentBalance() float32 {
 	return o.TentativeCurrentBalance
 }
 
+// GetTentativeCurrentBalanceOk returns a tuple with the TentativeCurrentBalance field value
+// and a boolean to check if the value has been set.
+func (o *LedgerInfo) GetTentativeCurrentBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TentativeCurrentBalance, true
+}
+
 // SetTentativeCurrentBalance sets field value
 func (o *LedgerInfo) SetTentativeCurrentBalance(v float32) {
 	o.TentativeCurrentBalance = v
@@ -154,14 +219,13 @@ func (o *LedgerInfo) GetTentativePendingBalance() float32 {
 	return *o.TentativePendingBalance
 }
 
-// GetTentativePendingBalanceOk returns a tuple with the TentativePendingBalance field value if set, zero value otherwise
+// GetTentativePendingBalanceOk returns a tuple with the TentativePendingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerInfo) GetTentativePendingBalanceOk() (float32, bool) {
+func (o *LedgerInfo) GetTentativePendingBalanceOk() (*float32, bool) {
 	if o == nil || o.TentativePendingBalance == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TentativePendingBalance, true
+	return o.TentativePendingBalance, true
 }
 
 // HasTentativePendingBalance returns a boolean if a field has been set.
@@ -187,14 +251,13 @@ func (o *LedgerInfo) GetTentativeNegativeBalance() float32 {
 	return *o.TentativeNegativeBalance
 }
 
-// GetTentativeNegativeBalanceOk returns a tuple with the TentativeNegativeBalance field value if set, zero value otherwise
+// GetTentativeNegativeBalanceOk returns a tuple with the TentativeNegativeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerInfo) GetTentativeNegativeBalanceOk() (float32, bool) {
+func (o *LedgerInfo) GetTentativeNegativeBalanceOk() (*float32, bool) {
 	if o == nil || o.TentativeNegativeBalance == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TentativeNegativeBalance, true
+	return o.TentativeNegativeBalance, true
 }
 
 // HasTentativeNegativeBalance returns a boolean if a field has been set.
@@ -220,14 +283,13 @@ func (o *LedgerInfo) GetCurrentTier() Tier {
 	return *o.CurrentTier
 }
 
-// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, zero value otherwise
+// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerInfo) GetCurrentTierOk() (Tier, bool) {
+func (o *LedgerInfo) GetCurrentTierOk() (*Tier, bool) {
 	if o == nil || o.CurrentTier == nil {
-		var ret Tier
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentTier, true
+	return o.CurrentTier, true
 }
 
 // HasCurrentTier returns a boolean if a field has been set.
@@ -253,14 +315,13 @@ func (o *LedgerInfo) GetPointsToNextTier() float32 {
 	return *o.PointsToNextTier
 }
 
-// GetPointsToNextTierOk returns a tuple with the PointsToNextTier field value if set, zero value otherwise
+// GetPointsToNextTierOk returns a tuple with the PointsToNextTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerInfo) GetPointsToNextTierOk() (float32, bool) {
+func (o *LedgerInfo) GetPointsToNextTierOk() (*float32, bool) {
 	if o == nil || o.PointsToNextTier == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.PointsToNextTier, true
+	return o.PointsToNextTier, true
 }
 
 // HasPointsToNextTier returns a boolean if a field has been set.
@@ -277,25 +338,73 @@ func (o *LedgerInfo) SetPointsToNextTier(v float32) {
 	o.PointsToNextTier = &v
 }
 
+func (o LedgerInfo) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["currentBalance"] = o.CurrentBalance
+	}
+	if true {
+		toSerialize["pendingBalance"] = o.PendingBalance
+	}
+	if o.NegativeBalance != nil {
+		toSerialize["negativeBalance"] = o.NegativeBalance
+	}
+	if true {
+		toSerialize["expiredBalance"] = o.ExpiredBalance
+	}
+	if true {
+		toSerialize["spentBalance"] = o.SpentBalance
+	}
+	if true {
+		toSerialize["tentativeCurrentBalance"] = o.TentativeCurrentBalance
+	}
+	if o.TentativePendingBalance != nil {
+		toSerialize["tentativePendingBalance"] = o.TentativePendingBalance
+	}
+	if o.TentativeNegativeBalance != nil {
+		toSerialize["tentativeNegativeBalance"] = o.TentativeNegativeBalance
+	}
+	if o.CurrentTier != nil {
+		toSerialize["currentTier"] = o.CurrentTier
+	}
+	if o.PointsToNextTier != nil {
+		toSerialize["pointsToNextTier"] = o.PointsToNextTier
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLedgerInfo struct {
-	Value        LedgerInfo
-	ExplicitNull bool
+	value *LedgerInfo
+	isSet bool
+}
+
+func (v NullableLedgerInfo) Get() *LedgerInfo {
+	return v.value
+}
+
+func (v *NullableLedgerInfo) Set(val *LedgerInfo) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLedgerInfo) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLedgerInfo) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLedgerInfo(val *LedgerInfo) *NullableLedgerInfo {
+	return &NullableLedgerInfo{value: val, isSet: true}
 }
 
 func (v NullableLedgerInfo) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLedgerInfo) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

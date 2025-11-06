@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,23 @@ type LoyaltyBalances struct {
 	Balance *LoyaltyBalance `json:"balance,omitempty"`
 	// Map of the loyalty balances of the subledgers of a ledger.
 	SubledgerBalances *map[string]LoyaltyBalance `json:"subledgerBalances,omitempty"`
+}
+
+// NewLoyaltyBalances instantiates a new LoyaltyBalances object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyBalances() *LoyaltyBalances {
+	this := LoyaltyBalances{}
+	return &this
+}
+
+// NewLoyaltyBalancesWithDefaults instantiates a new LoyaltyBalances object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyBalancesWithDefaults() *LoyaltyBalances {
+	this := LoyaltyBalances{}
+	return &this
 }
 
 // GetBalance returns the Balance field value if set, zero value otherwise.
@@ -30,14 +46,13 @@ func (o *LoyaltyBalances) GetBalance() LoyaltyBalance {
 	return *o.Balance
 }
 
-// GetBalanceOk returns a tuple with the Balance field value if set, zero value otherwise
+// GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalances) GetBalanceOk() (LoyaltyBalance, bool) {
+func (o *LoyaltyBalances) GetBalanceOk() (*LoyaltyBalance, bool) {
 	if o == nil || o.Balance == nil {
-		var ret LoyaltyBalance
-		return ret, false
+		return nil, false
 	}
-	return *o.Balance, true
+	return o.Balance, true
 }
 
 // HasBalance returns a boolean if a field has been set.
@@ -63,14 +78,13 @@ func (o *LoyaltyBalances) GetSubledgerBalances() map[string]LoyaltyBalance {
 	return *o.SubledgerBalances
 }
 
-// GetSubledgerBalancesOk returns a tuple with the SubledgerBalances field value if set, zero value otherwise
+// GetSubledgerBalancesOk returns a tuple with the SubledgerBalances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalances) GetSubledgerBalancesOk() (map[string]LoyaltyBalance, bool) {
+func (o *LoyaltyBalances) GetSubledgerBalancesOk() (*map[string]LoyaltyBalance, bool) {
 	if o == nil || o.SubledgerBalances == nil {
-		var ret map[string]LoyaltyBalance
-		return ret, false
+		return nil, false
 	}
-	return *o.SubledgerBalances, true
+	return o.SubledgerBalances, true
 }
 
 // HasSubledgerBalances returns a boolean if a field has been set.
@@ -87,25 +101,49 @@ func (o *LoyaltyBalances) SetSubledgerBalances(v map[string]LoyaltyBalance) {
 	o.SubledgerBalances = &v
 }
 
+func (o LoyaltyBalances) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Balance != nil {
+		toSerialize["balance"] = o.Balance
+	}
+	if o.SubledgerBalances != nil {
+		toSerialize["subledgerBalances"] = o.SubledgerBalances
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyBalances struct {
-	Value        LoyaltyBalances
-	ExplicitNull bool
+	value *LoyaltyBalances
+	isSet bool
+}
+
+func (v NullableLoyaltyBalances) Get() *LoyaltyBalances {
+	return v.value
+}
+
+func (v *NullableLoyaltyBalances) Set(val *LoyaltyBalances) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyBalances) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyBalances) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyBalances(val *LoyaltyBalances) *NullableLoyaltyBalances {
+	return &NullableLoyaltyBalances{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyBalances) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyBalances) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

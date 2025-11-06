@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type CouponReservations struct {
 	// List of customer integration IDs.
 	IntegrationIDs []string `json:"integrationIDs"`
+}
+
+// NewCouponReservations instantiates a new CouponReservations object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCouponReservations(integrationIDs []string) *CouponReservations {
+	this := CouponReservations{}
+	this.IntegrationIDs = integrationIDs
+	return &this
+}
+
+// NewCouponReservationsWithDefaults instantiates a new CouponReservations object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponReservationsWithDefaults() *CouponReservations {
+	this := CouponReservations{}
+	return &this
 }
 
 // GetIntegrationIDs returns the IntegrationIDs field value
@@ -30,30 +47,60 @@ func (o *CouponReservations) GetIntegrationIDs() []string {
 	return o.IntegrationIDs
 }
 
+// GetIntegrationIDsOk returns a tuple with the IntegrationIDs field value
+// and a boolean to check if the value has been set.
+func (o *CouponReservations) GetIntegrationIDsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationIDs, true
+}
+
 // SetIntegrationIDs sets field value
 func (o *CouponReservations) SetIntegrationIDs(v []string) {
 	o.IntegrationIDs = v
 }
 
+func (o CouponReservations) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["integrationIDs"] = o.IntegrationIDs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponReservations struct {
-	Value        CouponReservations
-	ExplicitNull bool
+	value *CouponReservations
+	isSet bool
+}
+
+func (v NullableCouponReservations) Get() *CouponReservations {
+	return v.value
+}
+
+func (v *NullableCouponReservations) Set(val *CouponReservations) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponReservations) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponReservations) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCouponReservations(val *CouponReservations) *NullableCouponReservations {
+	return &NullableCouponReservations{value: val, isSet: true}
 }
 
 func (v NullableCouponReservations) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponReservations) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

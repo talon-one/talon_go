@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewCodeGeneratorSettings
+
+`func NewCodeGeneratorSettings(validCharacters []string, couponPattern string, ) *CodeGeneratorSettings`
+
+NewCodeGeneratorSettings instantiates a new CodeGeneratorSettings object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCodeGeneratorSettingsWithDefaults
+
+`func NewCodeGeneratorSettingsWithDefaults() *CodeGeneratorSettings`
+
+NewCodeGeneratorSettingsWithDefaults instantiates a new CodeGeneratorSettings object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetValidCharacters
 
 `func (o *CodeGeneratorSettings) GetValidCharacters() []string`
@@ -17,22 +34,17 @@ GetValidCharacters returns the ValidCharacters field if non-nil, zero value othe
 
 ### GetValidCharactersOk
 
-`func (o *CodeGeneratorSettings) GetValidCharactersOk() ([]string, bool)`
+`func (o *CodeGeneratorSettings) GetValidCharactersOk() (*[]string, bool)`
 
 GetValidCharactersOk returns a tuple with the ValidCharacters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasValidCharacters
-
-`func (o *CodeGeneratorSettings) HasValidCharacters() bool`
-
-HasValidCharacters returns a boolean if a field has been set.
 
 ### SetValidCharacters
 
 `func (o *CodeGeneratorSettings) SetValidCharacters(v []string)`
 
-SetValidCharacters gets a reference to the given []string and assigns it to the ValidCharacters field.
+SetValidCharacters sets ValidCharacters field to given value.
+
 
 ### GetCouponPattern
 
@@ -42,22 +54,17 @@ GetCouponPattern returns the CouponPattern field if non-nil, zero value otherwis
 
 ### GetCouponPatternOk
 
-`func (o *CodeGeneratorSettings) GetCouponPatternOk() (string, bool)`
+`func (o *CodeGeneratorSettings) GetCouponPatternOk() (*string, bool)`
 
 GetCouponPatternOk returns a tuple with the CouponPattern field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCouponPattern
-
-`func (o *CodeGeneratorSettings) HasCouponPattern() bool`
-
-HasCouponPattern returns a boolean if a field has been set.
 
 ### SetCouponPattern
 
 `func (o *CodeGeneratorSettings) SetCouponPattern(v string)`
 
-SetCouponPattern gets a reference to the given string and assigns it to the CouponPattern field.
+SetCouponPattern sets CouponPattern field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

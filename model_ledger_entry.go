@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,39 +17,74 @@ import (
 // LedgerEntry Entry in the point ledger.
 type LedgerEntry struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId string `json:"profileId"`
 	// The ID of the Talon.One account that owns this profile.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// ID of the ledger.
-	LoyaltyProgramId int32 `json:"loyaltyProgramId"`
+	LoyaltyProgramId int64 `json:"loyaltyProgramId"`
 	// ID of the related event.
-	EventId int32 `json:"eventId"`
+	EventId int64 `json:"eventId"`
 	// Amount of loyalty points.
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
 	// reason for awarding/deducting points.
 	Reason string `json:"reason"`
 	// Expiration date of the points.
 	ExpiryDate time.Time `json:"expiryDate"`
 	// The ID of the balancing ledgerEntry.
-	ReferenceId *int32 `json:"referenceId,omitempty"`
+	ReferenceId *int64 `json:"referenceId,omitempty"`
+}
+
+// NewLedgerEntry instantiates a new LedgerEntry object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLedgerEntry(id int64, created time.Time, profileId string, accountId int64, loyaltyProgramId int64, eventId int64, amount int64, reason string, expiryDate time.Time) *LedgerEntry {
+	this := LedgerEntry{}
+	this.Id = id
+	this.Created = created
+	this.ProfileId = profileId
+	this.AccountId = accountId
+	this.LoyaltyProgramId = loyaltyProgramId
+	this.EventId = eventId
+	this.Amount = amount
+	this.Reason = reason
+	this.ExpiryDate = expiryDate
+	return &this
+}
+
+// NewLedgerEntryWithDefaults instantiates a new LedgerEntry object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLedgerEntryWithDefaults() *LedgerEntry {
+	this := LedgerEntry{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *LedgerEntry) GetId() int32 {
+func (o *LedgerEntry) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LedgerEntry) SetId(v int32) {
+func (o *LedgerEntry) SetId(v int64) {
 	o.Id = v
 }
 
@@ -62,6 +96,15 @@ func (o *LedgerEntry) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -79,68 +122,113 @@ func (o *LedgerEntry) GetProfileId() string {
 	return o.ProfileId
 }
 
+// GetProfileIdOk returns a tuple with the ProfileId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileId, true
+}
+
 // SetProfileId sets field value
 func (o *LedgerEntry) SetProfileId(v string) {
 	o.ProfileId = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *LedgerEntry) GetAccountId() int32 {
+func (o *LedgerEntry) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *LedgerEntry) SetAccountId(v int32) {
+func (o *LedgerEntry) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetLoyaltyProgramId returns the LoyaltyProgramId field value
-func (o *LedgerEntry) GetLoyaltyProgramId() int32 {
+func (o *LedgerEntry) GetLoyaltyProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LoyaltyProgramId
 }
 
+// GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetLoyaltyProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoyaltyProgramId, true
+}
+
 // SetLoyaltyProgramId sets field value
-func (o *LedgerEntry) SetLoyaltyProgramId(v int32) {
+func (o *LedgerEntry) SetLoyaltyProgramId(v int64) {
 	o.LoyaltyProgramId = v
 }
 
 // GetEventId returns the EventId field value
-func (o *LedgerEntry) GetEventId() int32 {
+func (o *LedgerEntry) GetEventId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.EventId
 }
 
+// GetEventIdOk returns a tuple with the EventId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetEventIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventId, true
+}
+
 // SetEventId sets field value
-func (o *LedgerEntry) SetEventId(v int32) {
+func (o *LedgerEntry) SetEventId(v int64) {
 	o.EventId = v
 }
 
 // GetAmount returns the Amount field value
-func (o *LedgerEntry) GetAmount() int32 {
+func (o *LedgerEntry) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetAmountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *LedgerEntry) SetAmount(v int32) {
+func (o *LedgerEntry) SetAmount(v int64) {
 	o.Amount = v
 }
 
@@ -152,6 +240,15 @@ func (o *LedgerEntry) GetReason() string {
 	}
 
 	return o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Reason, true
 }
 
 // SetReason sets field value
@@ -169,28 +266,36 @@ func (o *LedgerEntry) GetExpiryDate() time.Time {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *LedgerEntry) GetExpiryDateOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
 func (o *LedgerEntry) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = v
 }
 
 // GetReferenceId returns the ReferenceId field value if set, zero value otherwise.
-func (o *LedgerEntry) GetReferenceId() int32 {
+func (o *LedgerEntry) GetReferenceId() int64 {
 	if o == nil || o.ReferenceId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferenceId
 }
 
-// GetReferenceIdOk returns a tuple with the ReferenceId field value if set, zero value otherwise
+// GetReferenceIdOk returns a tuple with the ReferenceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerEntry) GetReferenceIdOk() (int32, bool) {
+func (o *LedgerEntry) GetReferenceIdOk() (*int64, bool) {
 	if o == nil || o.ReferenceId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferenceId, true
+	return o.ReferenceId, true
 }
 
 // HasReferenceId returns a boolean if a field has been set.
@@ -202,30 +307,78 @@ func (o *LedgerEntry) HasReferenceId() bool {
 	return false
 }
 
-// SetReferenceId gets a reference to the given int32 and assigns it to the ReferenceId field.
-func (o *LedgerEntry) SetReferenceId(v int32) {
+// SetReferenceId gets a reference to the given int64 and assigns it to the ReferenceId field.
+func (o *LedgerEntry) SetReferenceId(v int64) {
 	o.ReferenceId = &v
 }
 
+func (o LedgerEntry) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["loyaltyProgramId"] = o.LoyaltyProgramId
+	}
+	if true {
+		toSerialize["eventId"] = o.EventId
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["reason"] = o.Reason
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.ReferenceId != nil {
+		toSerialize["referenceId"] = o.ReferenceId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLedgerEntry struct {
-	Value        LedgerEntry
-	ExplicitNull bool
+	value *LedgerEntry
+	isSet bool
+}
+
+func (v NullableLedgerEntry) Get() *LedgerEntry {
+	return v.value
+}
+
+func (v *NullableLedgerEntry) Set(val *LedgerEntry) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLedgerEntry) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLedgerEntry) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLedgerEntry(val *LedgerEntry) *NullableLedgerEntry {
+	return &NullableLedgerEntry{value: val, isSet: true}
 }
 
 func (v NullableLedgerEntry) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLedgerEntry) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,23 @@ type TalangAttributeVisibility struct {
 	Visible *[]string `json:"visible,omitempty"`
 }
 
+// NewTalangAttributeVisibility instantiates a new TalangAttributeVisibility object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildTalangAttributeVisibility() *TalangAttributeVisibility {
+	this := TalangAttributeVisibility{}
+	return &this
+}
+
+// NewTalangAttributeVisibilityWithDefaults instantiates a new TalangAttributeVisibility object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTalangAttributeVisibilityWithDefaults() *TalangAttributeVisibility {
+	this := TalangAttributeVisibility{}
+	return &this
+}
+
 // GetInvisible returns the Invisible field value if set, zero value otherwise.
 func (o *TalangAttributeVisibility) GetInvisible() []string {
 	if o == nil || o.Invisible == nil {
@@ -31,14 +47,13 @@ func (o *TalangAttributeVisibility) GetInvisible() []string {
 	return *o.Invisible
 }
 
-// GetInvisibleOk returns a tuple with the Invisible field value if set, zero value otherwise
+// GetInvisibleOk returns a tuple with the Invisible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TalangAttributeVisibility) GetInvisibleOk() ([]string, bool) {
+func (o *TalangAttributeVisibility) GetInvisibleOk() (*[]string, bool) {
 	if o == nil || o.Invisible == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Invisible, true
+	return o.Invisible, true
 }
 
 // HasInvisible returns a boolean if a field has been set.
@@ -64,14 +79,13 @@ func (o *TalangAttributeVisibility) GetVisible() []string {
 	return *o.Visible
 }
 
-// GetVisibleOk returns a tuple with the Visible field value if set, zero value otherwise
+// GetVisibleOk returns a tuple with the Visible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TalangAttributeVisibility) GetVisibleOk() ([]string, bool) {
+func (o *TalangAttributeVisibility) GetVisibleOk() (*[]string, bool) {
 	if o == nil || o.Visible == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Visible, true
+	return o.Visible, true
 }
 
 // HasVisible returns a boolean if a field has been set.
@@ -88,25 +102,49 @@ func (o *TalangAttributeVisibility) SetVisible(v []string) {
 	o.Visible = &v
 }
 
+func (o TalangAttributeVisibility) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Invisible != nil {
+		toSerialize["invisible"] = o.Invisible
+	}
+	if o.Visible != nil {
+		toSerialize["visible"] = o.Visible
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTalangAttributeVisibility struct {
-	Value        TalangAttributeVisibility
-	ExplicitNull bool
+	value *TalangAttributeVisibility
+	isSet bool
+}
+
+func (v NullableTalangAttributeVisibility) Get() *TalangAttributeVisibility {
+	return v.value
+}
+
+func (v *NullableTalangAttributeVisibility) Set(val *TalangAttributeVisibility) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTalangAttributeVisibility) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTalangAttributeVisibility) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableTalangAttributeVisibility(val *TalangAttributeVisibility) *NullableTalangAttributeVisibility {
+	return &NullableTalangAttributeVisibility{value: val, isSet: true}
 }
 
 func (v NullableTalangAttributeVisibility) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTalangAttributeVisibility) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

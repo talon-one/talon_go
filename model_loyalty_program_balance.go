@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -34,6 +33,28 @@ type LoyaltyProgramBalance struct {
 	TentativeNegativeBalance *float32 `json:"tentativeNegativeBalance,omitempty"`
 }
 
+// NewLoyaltyProgramBalance instantiates a new LoyaltyProgramBalance object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyProgramBalance(currentBalance float32, pendingBalance float32, expiredBalance float32, spentBalance float32, tentativeCurrentBalance float32) *LoyaltyProgramBalance {
+	this := LoyaltyProgramBalance{}
+	this.CurrentBalance = currentBalance
+	this.PendingBalance = pendingBalance
+	this.ExpiredBalance = expiredBalance
+	this.SpentBalance = spentBalance
+	this.TentativeCurrentBalance = tentativeCurrentBalance
+	return &this
+}
+
+// NewLoyaltyProgramBalanceWithDefaults instantiates a new LoyaltyProgramBalance object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyProgramBalanceWithDefaults() *LoyaltyProgramBalance {
+	this := LoyaltyProgramBalance{}
+	return &this
+}
+
 // GetCurrentBalance returns the CurrentBalance field value
 func (o *LoyaltyProgramBalance) GetCurrentBalance() float32 {
 	if o == nil {
@@ -42,6 +63,15 @@ func (o *LoyaltyProgramBalance) GetCurrentBalance() float32 {
 	}
 
 	return o.CurrentBalance
+}
+
+// GetCurrentBalanceOk returns a tuple with the CurrentBalance field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramBalance) GetCurrentBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrentBalance, true
 }
 
 // SetCurrentBalance sets field value
@@ -59,6 +89,15 @@ func (o *LoyaltyProgramBalance) GetPendingBalance() float32 {
 	return o.PendingBalance
 }
 
+// GetPendingBalanceOk returns a tuple with the PendingBalance field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramBalance) GetPendingBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PendingBalance, true
+}
+
 // SetPendingBalance sets field value
 func (o *LoyaltyProgramBalance) SetPendingBalance(v float32) {
 	o.PendingBalance = v
@@ -73,14 +112,13 @@ func (o *LoyaltyProgramBalance) GetNegativeBalance() float32 {
 	return *o.NegativeBalance
 }
 
-// GetNegativeBalanceOk returns a tuple with the NegativeBalance field value if set, zero value otherwise
+// GetNegativeBalanceOk returns a tuple with the NegativeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramBalance) GetNegativeBalanceOk() (float32, bool) {
+func (o *LoyaltyProgramBalance) GetNegativeBalanceOk() (*float32, bool) {
 	if o == nil || o.NegativeBalance == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.NegativeBalance, true
+	return o.NegativeBalance, true
 }
 
 // HasNegativeBalance returns a boolean if a field has been set.
@@ -107,6 +145,15 @@ func (o *LoyaltyProgramBalance) GetExpiredBalance() float32 {
 	return o.ExpiredBalance
 }
 
+// GetExpiredBalanceOk returns a tuple with the ExpiredBalance field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramBalance) GetExpiredBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiredBalance, true
+}
+
 // SetExpiredBalance sets field value
 func (o *LoyaltyProgramBalance) SetExpiredBalance(v float32) {
 	o.ExpiredBalance = v
@@ -120,6 +167,15 @@ func (o *LoyaltyProgramBalance) GetSpentBalance() float32 {
 	}
 
 	return o.SpentBalance
+}
+
+// GetSpentBalanceOk returns a tuple with the SpentBalance field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramBalance) GetSpentBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SpentBalance, true
 }
 
 // SetSpentBalance sets field value
@@ -137,6 +193,15 @@ func (o *LoyaltyProgramBalance) GetTentativeCurrentBalance() float32 {
 	return o.TentativeCurrentBalance
 }
 
+// GetTentativeCurrentBalanceOk returns a tuple with the TentativeCurrentBalance field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramBalance) GetTentativeCurrentBalanceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TentativeCurrentBalance, true
+}
+
 // SetTentativeCurrentBalance sets field value
 func (o *LoyaltyProgramBalance) SetTentativeCurrentBalance(v float32) {
 	o.TentativeCurrentBalance = v
@@ -151,14 +216,13 @@ func (o *LoyaltyProgramBalance) GetTentativePendingBalance() float32 {
 	return *o.TentativePendingBalance
 }
 
-// GetTentativePendingBalanceOk returns a tuple with the TentativePendingBalance field value if set, zero value otherwise
+// GetTentativePendingBalanceOk returns a tuple with the TentativePendingBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramBalance) GetTentativePendingBalanceOk() (float32, bool) {
+func (o *LoyaltyProgramBalance) GetTentativePendingBalanceOk() (*float32, bool) {
 	if o == nil || o.TentativePendingBalance == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TentativePendingBalance, true
+	return o.TentativePendingBalance, true
 }
 
 // HasTentativePendingBalance returns a boolean if a field has been set.
@@ -184,14 +248,13 @@ func (o *LoyaltyProgramBalance) GetTentativeNegativeBalance() float32 {
 	return *o.TentativeNegativeBalance
 }
 
-// GetTentativeNegativeBalanceOk returns a tuple with the TentativeNegativeBalance field value if set, zero value otherwise
+// GetTentativeNegativeBalanceOk returns a tuple with the TentativeNegativeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramBalance) GetTentativeNegativeBalanceOk() (float32, bool) {
+func (o *LoyaltyProgramBalance) GetTentativeNegativeBalanceOk() (*float32, bool) {
 	if o == nil || o.TentativeNegativeBalance == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TentativeNegativeBalance, true
+	return o.TentativeNegativeBalance, true
 }
 
 // HasTentativeNegativeBalance returns a boolean if a field has been set.
@@ -208,25 +271,67 @@ func (o *LoyaltyProgramBalance) SetTentativeNegativeBalance(v float32) {
 	o.TentativeNegativeBalance = &v
 }
 
+func (o LoyaltyProgramBalance) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["currentBalance"] = o.CurrentBalance
+	}
+	if true {
+		toSerialize["pendingBalance"] = o.PendingBalance
+	}
+	if o.NegativeBalance != nil {
+		toSerialize["negativeBalance"] = o.NegativeBalance
+	}
+	if true {
+		toSerialize["expiredBalance"] = o.ExpiredBalance
+	}
+	if true {
+		toSerialize["spentBalance"] = o.SpentBalance
+	}
+	if true {
+		toSerialize["tentativeCurrentBalance"] = o.TentativeCurrentBalance
+	}
+	if o.TentativePendingBalance != nil {
+		toSerialize["tentativePendingBalance"] = o.TentativePendingBalance
+	}
+	if o.TentativeNegativeBalance != nil {
+		toSerialize["tentativeNegativeBalance"] = o.TentativeNegativeBalance
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyProgramBalance struct {
-	Value        LoyaltyProgramBalance
-	ExplicitNull bool
+	value *LoyaltyProgramBalance
+	isSet bool
+}
+
+func (v NullableLoyaltyProgramBalance) Get() *LoyaltyProgramBalance {
+	return v.value
+}
+
+func (v *NullableLoyaltyProgramBalance) Set(val *LoyaltyProgramBalance) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyProgramBalance) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyProgramBalance) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyProgramBalance(val *LoyaltyProgramBalance) *NullableLoyaltyProgramBalance {
+	return &NullableLoyaltyProgramBalance{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyProgramBalance) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyProgramBalance) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

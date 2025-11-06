@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,23 @@ type IntegrationCustomerSessionResponse struct {
 	CustomerSession *CustomerSessionV2 `json:"customerSession,omitempty"`
 	// The returned effects.  **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed.
 	Effects *[]Effect `json:"effects,omitempty"`
+}
+
+// NewIntegrationCustomerSessionResponse instantiates a new IntegrationCustomerSessionResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildIntegrationCustomerSessionResponse() *IntegrationCustomerSessionResponse {
+	this := IntegrationCustomerSessionResponse{}
+	return &this
+}
+
+// NewIntegrationCustomerSessionResponseWithDefaults instantiates a new IntegrationCustomerSessionResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIntegrationCustomerSessionResponseWithDefaults() *IntegrationCustomerSessionResponse {
+	this := IntegrationCustomerSessionResponse{}
+	return &this
 }
 
 // GetCustomerSession returns the CustomerSession field value if set, zero value otherwise.
@@ -30,14 +46,13 @@ func (o *IntegrationCustomerSessionResponse) GetCustomerSession() CustomerSessio
 	return *o.CustomerSession
 }
 
-// GetCustomerSessionOk returns a tuple with the CustomerSession field value if set, zero value otherwise
+// GetCustomerSessionOk returns a tuple with the CustomerSession field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCustomerSessionResponse) GetCustomerSessionOk() (CustomerSessionV2, bool) {
+func (o *IntegrationCustomerSessionResponse) GetCustomerSessionOk() (*CustomerSessionV2, bool) {
 	if o == nil || o.CustomerSession == nil {
-		var ret CustomerSessionV2
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerSession, true
+	return o.CustomerSession, true
 }
 
 // HasCustomerSession returns a boolean if a field has been set.
@@ -63,14 +78,13 @@ func (o *IntegrationCustomerSessionResponse) GetEffects() []Effect {
 	return *o.Effects
 }
 
-// GetEffectsOk returns a tuple with the Effects field value if set, zero value otherwise
+// GetEffectsOk returns a tuple with the Effects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCustomerSessionResponse) GetEffectsOk() ([]Effect, bool) {
+func (o *IntegrationCustomerSessionResponse) GetEffectsOk() (*[]Effect, bool) {
 	if o == nil || o.Effects == nil {
-		var ret []Effect
-		return ret, false
+		return nil, false
 	}
-	return *o.Effects, true
+	return o.Effects, true
 }
 
 // HasEffects returns a boolean if a field has been set.
@@ -87,25 +101,49 @@ func (o *IntegrationCustomerSessionResponse) SetEffects(v []Effect) {
 	o.Effects = &v
 }
 
+func (o IntegrationCustomerSessionResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CustomerSession != nil {
+		toSerialize["customerSession"] = o.CustomerSession
+	}
+	if o.Effects != nil {
+		toSerialize["effects"] = o.Effects
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIntegrationCustomerSessionResponse struct {
-	Value        IntegrationCustomerSessionResponse
-	ExplicitNull bool
+	value *IntegrationCustomerSessionResponse
+	isSet bool
+}
+
+func (v NullableIntegrationCustomerSessionResponse) Get() *IntegrationCustomerSessionResponse {
+	return v.value
+}
+
+func (v *NullableIntegrationCustomerSessionResponse) Set(val *IntegrationCustomerSessionResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIntegrationCustomerSessionResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIntegrationCustomerSessionResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableIntegrationCustomerSessionResponse(val *IntegrationCustomerSessionResponse) *NullableIntegrationCustomerSessionResponse {
+	return &NullableIntegrationCustomerSessionResponse{value: val, isSet: true}
 }
 
 func (v NullableIntegrationCustomerSessionResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIntegrationCustomerSessionResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

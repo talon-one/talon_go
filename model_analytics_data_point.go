@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,25 @@ import (
 type AnalyticsDataPoint struct {
 	Total      float32 `json:"total"`
 	Influenced float32 `json:"influenced"`
+}
+
+// NewAnalyticsDataPoint instantiates a new AnalyticsDataPoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAnalyticsDataPoint(total float32, influenced float32) *AnalyticsDataPoint {
+	this := AnalyticsDataPoint{}
+	this.Total = total
+	this.Influenced = influenced
+	return &this
+}
+
+// NewAnalyticsDataPointWithDefaults instantiates a new AnalyticsDataPoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAnalyticsDataPointWithDefaults() *AnalyticsDataPoint {
+	this := AnalyticsDataPoint{}
+	return &this
 }
 
 // GetTotal returns the Total field value
@@ -28,6 +46,15 @@ func (o *AnalyticsDataPoint) GetTotal() float32 {
 	}
 
 	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsDataPoint) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
 }
 
 // SetTotal sets field value
@@ -45,30 +72,63 @@ func (o *AnalyticsDataPoint) GetInfluenced() float32 {
 	return o.Influenced
 }
 
+// GetInfluencedOk returns a tuple with the Influenced field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsDataPoint) GetInfluencedOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Influenced, true
+}
+
 // SetInfluenced sets field value
 func (o *AnalyticsDataPoint) SetInfluenced(v float32) {
 	o.Influenced = v
 }
 
+func (o AnalyticsDataPoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["influenced"] = o.Influenced
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAnalyticsDataPoint struct {
-	Value        AnalyticsDataPoint
-	ExplicitNull bool
+	value *AnalyticsDataPoint
+	isSet bool
+}
+
+func (v NullableAnalyticsDataPoint) Get() *AnalyticsDataPoint {
+	return v.value
+}
+
+func (v *NullableAnalyticsDataPoint) Set(val *AnalyticsDataPoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAnalyticsDataPoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAnalyticsDataPoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAnalyticsDataPoint(val *AnalyticsDataPoint) *NullableAnalyticsDataPoint {
+	return &NullableAnalyticsDataPoint{value: val, isSet: true}
 }
 
 func (v NullableAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAnalyticsDataPoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

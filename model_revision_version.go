@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,26 +17,26 @@ import (
 // RevisionVersion struct for RevisionVersion
 type RevisionVersion struct {
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-	Id            int32     `json:"id"`
-	AccountId     int32     `json:"accountId"`
-	ApplicationId int32     `json:"applicationId"`
-	CampaignId    int32     `json:"campaignId"`
+	Id            int64     `json:"id"`
+	AccountId     int64     `json:"accountId"`
+	ApplicationId int64     `json:"applicationId"`
+	CampaignId    int64     `json:"campaignId"`
 	Created       time.Time `json:"created"`
-	CreatedBy     int32     `json:"createdBy"`
-	RevisionId    int32     `json:"revisionId"`
-	Version       int32     `json:"version"`
+	CreatedBy     int64     `json:"createdBy"`
+	RevisionId    int64     `json:"revisionId"`
+	Version       int64     `json:"version"`
 	// A user-facing name for this campaign.
 	Name *string `json:"name,omitempty"`
 	// Timestamp when the campaign will become active.
-	StartTime *NullableTime `json:"startTime,omitempty"`
+	StartTime NullableTime `json:"startTime,omitempty"`
 	// Timestamp when the campaign will become inactive.
-	EndTime *NullableTime `json:"endTime,omitempty"`
+	EndTime NullableTime `json:"endTime,omitempty"`
 	// Arbitrary properties associated with this campaign.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// A detailed description of the campaign.
-	Description *NullableString `json:"description,omitempty"`
+	Description NullableString `json:"description,omitempty"`
 	// The ID of the ruleset this campaign template will use.
-	ActiveRulesetId *NullableInt32 `json:"activeRulesetId,omitempty"`
+	ActiveRulesetId NullableInt32 `json:"activeRulesetId,omitempty"`
 	// A list of tags for the campaign template.
 	Tags             *[]string              `json:"tags,omitempty"`
 	CouponSettings   *CodeGeneratorSettings `json:"couponSettings,omitempty"`
@@ -48,63 +47,124 @@ type RevisionVersion struct {
 	Features *[]string `json:"features,omitempty"`
 }
 
+// NewRevisionVersion instantiates a new RevisionVersion object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRevisionVersion(id int64, accountId int64, applicationId int64, campaignId int64, created time.Time, createdBy int64, revisionId int64, version int64) *RevisionVersion {
+	this := RevisionVersion{}
+	this.Id = id
+	this.AccountId = accountId
+	this.ApplicationId = applicationId
+	this.CampaignId = campaignId
+	this.Created = created
+	this.CreatedBy = createdBy
+	this.RevisionId = revisionId
+	this.Version = version
+	return &this
+}
+
+// NewRevisionVersionWithDefaults instantiates a new RevisionVersion object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRevisionVersionWithDefaults() *RevisionVersion {
+	this := RevisionVersion{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *RevisionVersion) GetId() int32 {
+func (o *RevisionVersion) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *RevisionVersion) SetId(v int32) {
+func (o *RevisionVersion) SetId(v int64) {
 	o.Id = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *RevisionVersion) GetAccountId() int32 {
+func (o *RevisionVersion) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *RevisionVersion) SetAccountId(v int32) {
+func (o *RevisionVersion) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *RevisionVersion) GetApplicationId() int32 {
+func (o *RevisionVersion) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *RevisionVersion) SetApplicationId(v int32) {
+func (o *RevisionVersion) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *RevisionVersion) GetCampaignId() int32 {
+func (o *RevisionVersion) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *RevisionVersion) SetCampaignId(v int32) {
+func (o *RevisionVersion) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -118,53 +178,89 @@ func (o *RevisionVersion) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *RevisionVersion) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *RevisionVersion) GetCreatedBy() int32 {
+func (o *RevisionVersion) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *RevisionVersion) SetCreatedBy(v int32) {
+func (o *RevisionVersion) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetRevisionId returns the RevisionId field value
-func (o *RevisionVersion) GetRevisionId() int32 {
+func (o *RevisionVersion) GetRevisionId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RevisionId
 }
 
+// GetRevisionIdOk returns a tuple with the RevisionId field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetRevisionIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RevisionId, true
+}
+
 // SetRevisionId sets field value
-func (o *RevisionVersion) SetRevisionId(v int32) {
+func (o *RevisionVersion) SetRevisionId(v int64) {
 	o.RevisionId = v
 }
 
 // GetVersion returns the Version field value
-func (o *RevisionVersion) GetVersion() int32 {
+func (o *RevisionVersion) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Version
 }
 
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
 // SetVersion sets field value
-func (o *RevisionVersion) SetVersion(v int32) {
+func (o *RevisionVersion) SetVersion(v int64) {
 	o.Version = v
 }
 
@@ -177,14 +273,13 @@ func (o *RevisionVersion) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetNameOk() (string, bool) {
+func (o *RevisionVersion) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -201,28 +296,28 @@ func (o *RevisionVersion) SetName(v string) {
 	o.Name = &v
 }
 
-// GetStartTime returns the StartTime field value if set, zero value otherwise.
-func (o *RevisionVersion) GetStartTime() NullableTime {
-	if o == nil || o.StartTime == nil {
-		var ret NullableTime
+// GetStartTime returns the StartTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RevisionVersion) GetStartTime() time.Time {
+	if o == nil || o.StartTime.Get() == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.StartTime
+	return *o.StartTime.Get()
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetStartTimeOk() (NullableTime, bool) {
-	if o == nil || o.StartTime == nil {
-		var ret NullableTime
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RevisionVersion) GetStartTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return *o.StartTime, true
+	return o.StartTime.Get(), o.StartTime.IsSet()
 }
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *RevisionVersion) HasStartTime() bool {
-	if o != nil && o.StartTime != nil {
+	if o != nil && o.StartTime.IsSet() {
 		return true
 	}
 
@@ -230,32 +325,42 @@ func (o *RevisionVersion) HasStartTime() bool {
 }
 
 // SetStartTime gets a reference to the given NullableTime and assigns it to the StartTime field.
-func (o *RevisionVersion) SetStartTime(v NullableTime) {
-	o.StartTime = &v
+func (o *RevisionVersion) SetStartTime(v time.Time) {
+	o.StartTime.Set(&v)
 }
 
-// GetEndTime returns the EndTime field value if set, zero value otherwise.
-func (o *RevisionVersion) GetEndTime() NullableTime {
-	if o == nil || o.EndTime == nil {
-		var ret NullableTime
+// SetStartTimeNil sets the value for StartTime to be an explicit nil
+func (o *RevisionVersion) SetStartTimeNil() {
+	o.StartTime.Set(nil)
+}
+
+// UnsetStartTime ensures that no value is present for StartTime, not even an explicit nil
+func (o *RevisionVersion) UnsetStartTime() {
+	o.StartTime.Unset()
+}
+
+// GetEndTime returns the EndTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RevisionVersion) GetEndTime() time.Time {
+	if o == nil || o.EndTime.Get() == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.EndTime
+	return *o.EndTime.Get()
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetEndTimeOk() (NullableTime, bool) {
-	if o == nil || o.EndTime == nil {
-		var ret NullableTime
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RevisionVersion) GetEndTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return *o.EndTime, true
+	return o.EndTime.Get(), o.EndTime.IsSet()
 }
 
 // HasEndTime returns a boolean if a field has been set.
 func (o *RevisionVersion) HasEndTime() bool {
-	if o != nil && o.EndTime != nil {
+	if o != nil && o.EndTime.IsSet() {
 		return true
 	}
 
@@ -263,8 +368,18 @@ func (o *RevisionVersion) HasEndTime() bool {
 }
 
 // SetEndTime gets a reference to the given NullableTime and assigns it to the EndTime field.
-func (o *RevisionVersion) SetEndTime(v NullableTime) {
-	o.EndTime = &v
+func (o *RevisionVersion) SetEndTime(v time.Time) {
+	o.EndTime.Set(&v)
+}
+
+// SetEndTimeNil sets the value for EndTime to be an explicit nil
+func (o *RevisionVersion) SetEndTimeNil() {
+	o.EndTime.Set(nil)
+}
+
+// UnsetEndTime ensures that no value is present for EndTime, not even an explicit nil
+func (o *RevisionVersion) UnsetEndTime() {
+	o.EndTime.Unset()
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -276,14 +391,13 @@ func (o *RevisionVersion) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *RevisionVersion) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -300,28 +414,28 @@ func (o *RevisionVersion) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *RevisionVersion) GetDescription() NullableString {
-	if o == nil || o.Description == nil {
-		var ret NullableString
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RevisionVersion) GetDescription() string {
+	if o == nil || o.Description.Get() == nil {
+		var ret string
 		return ret
 	}
-	return *o.Description
+	return *o.Description.Get()
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetDescriptionOk() (NullableString, bool) {
-	if o == nil || o.Description == nil {
-		var ret NullableString
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RevisionVersion) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description.Get(), o.Description.IsSet()
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *RevisionVersion) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && o.Description.IsSet() {
 		return true
 	}
 
@@ -329,32 +443,42 @@ func (o *RevisionVersion) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given NullableString and assigns it to the Description field.
-func (o *RevisionVersion) SetDescription(v NullableString) {
-	o.Description = &v
+func (o *RevisionVersion) SetDescription(v string) {
+	o.Description.Set(&v)
 }
 
-// GetActiveRulesetId returns the ActiveRulesetId field value if set, zero value otherwise.
-func (o *RevisionVersion) GetActiveRulesetId() NullableInt32 {
-	if o == nil || o.ActiveRulesetId == nil {
-		var ret NullableInt32
+// SetDescriptionNil sets the value for Description to be an explicit nil
+func (o *RevisionVersion) SetDescriptionNil() {
+	o.Description.Set(nil)
+}
+
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+func (o *RevisionVersion) UnsetDescription() {
+	o.Description.Unset()
+}
+
+// GetActiveRulesetId returns the ActiveRulesetId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *RevisionVersion) GetActiveRulesetId() int32 {
+	if o == nil || o.ActiveRulesetId.Get() == nil {
+		var ret int32
 		return ret
 	}
-	return *o.ActiveRulesetId
+	return *o.ActiveRulesetId.Get()
 }
 
-// GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field value if set, zero value otherwise
+// GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetActiveRulesetIdOk() (NullableInt32, bool) {
-	if o == nil || o.ActiveRulesetId == nil {
-		var ret NullableInt32
-		return ret, false
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *RevisionVersion) GetActiveRulesetIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
 	}
-	return *o.ActiveRulesetId, true
+	return o.ActiveRulesetId.Get(), o.ActiveRulesetId.IsSet()
 }
 
 // HasActiveRulesetId returns a boolean if a field has been set.
 func (o *RevisionVersion) HasActiveRulesetId() bool {
-	if o != nil && o.ActiveRulesetId != nil {
+	if o != nil && o.ActiveRulesetId.IsSet() {
 		return true
 	}
 
@@ -362,8 +486,18 @@ func (o *RevisionVersion) HasActiveRulesetId() bool {
 }
 
 // SetActiveRulesetId gets a reference to the given NullableInt32 and assigns it to the ActiveRulesetId field.
-func (o *RevisionVersion) SetActiveRulesetId(v NullableInt32) {
-	o.ActiveRulesetId = &v
+func (o *RevisionVersion) SetActiveRulesetId(v int32) {
+	o.ActiveRulesetId.Set(&v)
+}
+
+// SetActiveRulesetIdNil sets the value for ActiveRulesetId to be an explicit nil
+func (o *RevisionVersion) SetActiveRulesetIdNil() {
+	o.ActiveRulesetId.Set(nil)
+}
+
+// UnsetActiveRulesetId ensures that no value is present for ActiveRulesetId, not even an explicit nil
+func (o *RevisionVersion) UnsetActiveRulesetId() {
+	o.ActiveRulesetId.Unset()
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -375,14 +509,13 @@ func (o *RevisionVersion) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetTagsOk() ([]string, bool) {
+func (o *RevisionVersion) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -408,14 +541,13 @@ func (o *RevisionVersion) GetCouponSettings() CodeGeneratorSettings {
 	return *o.CouponSettings
 }
 
-// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, zero value otherwise
+// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetCouponSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *RevisionVersion) GetCouponSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.CouponSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponSettings, true
+	return o.CouponSettings, true
 }
 
 // HasCouponSettings returns a boolean if a field has been set.
@@ -441,14 +573,13 @@ func (o *RevisionVersion) GetReferralSettings() CodeGeneratorSettings {
 	return *o.ReferralSettings
 }
 
-// GetReferralSettingsOk returns a tuple with the ReferralSettings field value if set, zero value otherwise
+// GetReferralSettingsOk returns a tuple with the ReferralSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetReferralSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *RevisionVersion) GetReferralSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.ReferralSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralSettings, true
+	return o.ReferralSettings, true
 }
 
 // HasReferralSettings returns a boolean if a field has been set.
@@ -474,14 +605,13 @@ func (o *RevisionVersion) GetLimits() []LimitConfig {
 	return *o.Limits
 }
 
-// GetLimitsOk returns a tuple with the Limits field value if set, zero value otherwise
+// GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetLimitsOk() ([]LimitConfig, bool) {
+func (o *RevisionVersion) GetLimitsOk() (*[]LimitConfig, bool) {
 	if o == nil || o.Limits == nil {
-		var ret []LimitConfig
-		return ret, false
+		return nil, false
 	}
-	return *o.Limits, true
+	return o.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
@@ -507,14 +637,13 @@ func (o *RevisionVersion) GetFeatures() []string {
 	return *o.Features
 }
 
-// GetFeaturesOk returns a tuple with the Features field value if set, zero value otherwise
+// GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionVersion) GetFeaturesOk() ([]string, bool) {
+func (o *RevisionVersion) GetFeaturesOk() (*[]string, bool) {
 	if o == nil || o.Features == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Features, true
+	return o.Features, true
 }
 
 // HasFeatures returns a boolean if a field has been set.
@@ -531,25 +660,100 @@ func (o *RevisionVersion) SetFeatures(v []string) {
 	o.Features = &v
 }
 
+func (o RevisionVersion) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["revisionId"] = o.RevisionId
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.StartTime.IsSet() {
+		toSerialize["startTime"] = o.StartTime.Get()
+	}
+	if o.EndTime.IsSet() {
+		toSerialize["endTime"] = o.EndTime.Get()
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Description.IsSet() {
+		toSerialize["description"] = o.Description.Get()
+	}
+	if o.ActiveRulesetId.IsSet() {
+		toSerialize["activeRulesetId"] = o.ActiveRulesetId.Get()
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.CouponSettings != nil {
+		toSerialize["couponSettings"] = o.CouponSettings
+	}
+	if o.ReferralSettings != nil {
+		toSerialize["referralSettings"] = o.ReferralSettings
+	}
+	if o.Limits != nil {
+		toSerialize["limits"] = o.Limits
+	}
+	if o.Features != nil {
+		toSerialize["features"] = o.Features
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRevisionVersion struct {
-	Value        RevisionVersion
-	ExplicitNull bool
+	value *RevisionVersion
+	isSet bool
+}
+
+func (v NullableRevisionVersion) Get() *RevisionVersion {
+	return v.value
+}
+
+func (v *NullableRevisionVersion) Set(val *RevisionVersion) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRevisionVersion) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRevisionVersion) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRevisionVersion(val *RevisionVersion) *NullableRevisionVersion {
+	return &NullableRevisionVersion{value: val, isSet: true}
 }
 
 func (v NullableRevisionVersion) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRevisionVersion) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

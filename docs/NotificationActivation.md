@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewNotificationActivation
+
+`func NewNotificationActivation(enabled bool, ) *NotificationActivation`
+
+NewNotificationActivation instantiates a new NotificationActivation object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNotificationActivationWithDefaults
+
+`func NewNotificationActivationWithDefaults() *NotificationActivation`
+
+NewNotificationActivationWithDefaults instantiates a new NotificationActivation object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetEnabled
 
 `func (o *NotificationActivation) GetEnabled() bool`
@@ -16,22 +33,17 @@ GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
 ### GetEnabledOk
 
-`func (o *NotificationActivation) GetEnabledOk() (bool, bool)`
+`func (o *NotificationActivation) GetEnabledOk() (*bool, bool)`
 
 GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEnabled
-
-`func (o *NotificationActivation) HasEnabled() bool`
-
-HasEnabled returns a boolean if a field has been set.
 
 ### SetEnabled
 
 `func (o *NotificationActivation) SetEnabled(v bool)`
 
-SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+SetEnabled sets Enabled field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

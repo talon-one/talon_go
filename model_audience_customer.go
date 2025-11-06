@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // AudienceCustomer struct for AudienceCustomer
 type AudienceCustomer struct {
 	// The internal ID of the customer profile.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
@@ -26,12 +25,12 @@ type AudienceCustomer struct {
 	// Arbitrary properties associated with this item.
 	Attributes map[string]interface{} `json:"attributes"`
 	// The ID of the Talon.One account that owns this profile.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The total number of closed sessions. Does not include closed sessions that have been cancelled or reopened. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).
-	ClosedSessions int32 `json:"closedSessions"`
+	ClosedSessions int64 `json:"closedSessions"`
 	// The total amount of money spent by the customer **before** discounts are applied.  The total sales amount excludes the following: - Cancelled or reopened sessions. - Returned items.
 	TotalSales float32 `json:"totalSales"`
-	// **DEPRECATED** A list of loyalty programs joined by the customer.
+	// **DEPRECATED. Always returns `null`.** A list of loyalty programs joined by the customer.
 	LoyaltyMemberships *[]LoyaltyMembership `json:"loyaltyMemberships,omitempty"`
 	// The audiences the customer belongs to.
 	AudienceMemberships *[]AudienceMembership `json:"audienceMemberships,omitempty"`
@@ -40,23 +39,57 @@ type AudienceCustomer struct {
 	// An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments).
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// A list of the IDs of the Applications that are connected to this customer profile.
-	ConnectedApplicationsIds *[]int32 `json:"connectedApplicationsIds,omitempty"`
+	ConnectedApplicationsIds *[]int64 `json:"connectedApplicationsIds,omitempty"`
 	// A list of the IDs of the audiences that are connected to this customer profile.
-	ConnectedAudiences *[]int32 `json:"connectedAudiences,omitempty"`
+	ConnectedAudiences *[]int64 `json:"connectedAudiences,omitempty"`
+}
+
+// NewAudienceCustomer instantiates a new AudienceCustomer object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAudienceCustomer(id int64, created time.Time, integrationId string, attributes map[string]interface{}, accountId int64, closedSessions int64, totalSales float32, lastActivity time.Time) *AudienceCustomer {
+	this := AudienceCustomer{}
+	this.Id = id
+	this.Created = created
+	this.IntegrationId = integrationId
+	this.Attributes = attributes
+	this.AccountId = accountId
+	this.ClosedSessions = closedSessions
+	this.TotalSales = totalSales
+	this.LastActivity = lastActivity
+	return &this
+}
+
+// NewAudienceCustomerWithDefaults instantiates a new AudienceCustomer object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAudienceCustomerWithDefaults() *AudienceCustomer {
+	this := AudienceCustomer{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *AudienceCustomer) GetId() int32 {
+func (o *AudienceCustomer) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *AudienceCustomer) SetId(v int32) {
+func (o *AudienceCustomer) SetId(v int64) {
 	o.Id = v
 }
 
@@ -68,6 +101,15 @@ func (o *AudienceCustomer) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -85,6 +127,15 @@ func (o *AudienceCustomer) GetIntegrationId() string {
 	return o.IntegrationId
 }
 
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
+}
+
 // SetIntegrationId sets field value
 func (o *AudienceCustomer) SetIntegrationId(v string) {
 	o.IntegrationId = v
@@ -100,38 +151,65 @@ func (o *AudienceCustomer) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *AudienceCustomer) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *AudienceCustomer) GetAccountId() int32 {
+func (o *AudienceCustomer) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *AudienceCustomer) SetAccountId(v int32) {
+func (o *AudienceCustomer) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetClosedSessions returns the ClosedSessions field value
-func (o *AudienceCustomer) GetClosedSessions() int32 {
+func (o *AudienceCustomer) GetClosedSessions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ClosedSessions
 }
 
+// GetClosedSessionsOk returns a tuple with the ClosedSessions field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetClosedSessionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClosedSessions, true
+}
+
 // SetClosedSessions sets field value
-func (o *AudienceCustomer) SetClosedSessions(v int32) {
+func (o *AudienceCustomer) SetClosedSessions(v int64) {
 	o.ClosedSessions = v
 }
 
@@ -143,6 +221,15 @@ func (o *AudienceCustomer) GetTotalSales() float32 {
 	}
 
 	return o.TotalSales
+}
+
+// GetTotalSalesOk returns a tuple with the TotalSales field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetTotalSalesOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalSales, true
 }
 
 // SetTotalSales sets field value
@@ -159,14 +246,13 @@ func (o *AudienceCustomer) GetLoyaltyMemberships() []LoyaltyMembership {
 	return *o.LoyaltyMemberships
 }
 
-// GetLoyaltyMembershipsOk returns a tuple with the LoyaltyMemberships field value if set, zero value otherwise
+// GetLoyaltyMembershipsOk returns a tuple with the LoyaltyMemberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceCustomer) GetLoyaltyMembershipsOk() ([]LoyaltyMembership, bool) {
+func (o *AudienceCustomer) GetLoyaltyMembershipsOk() (*[]LoyaltyMembership, bool) {
 	if o == nil || o.LoyaltyMemberships == nil {
-		var ret []LoyaltyMembership
-		return ret, false
+		return nil, false
 	}
-	return *o.LoyaltyMemberships, true
+	return o.LoyaltyMemberships, true
 }
 
 // HasLoyaltyMemberships returns a boolean if a field has been set.
@@ -192,14 +278,13 @@ func (o *AudienceCustomer) GetAudienceMemberships() []AudienceMembership {
 	return *o.AudienceMemberships
 }
 
-// GetAudienceMembershipsOk returns a tuple with the AudienceMemberships field value if set, zero value otherwise
+// GetAudienceMembershipsOk returns a tuple with the AudienceMemberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceCustomer) GetAudienceMembershipsOk() ([]AudienceMembership, bool) {
+func (o *AudienceCustomer) GetAudienceMembershipsOk() (*[]AudienceMembership, bool) {
 	if o == nil || o.AudienceMemberships == nil {
-		var ret []AudienceMembership
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceMemberships, true
+	return o.AudienceMemberships, true
 }
 
 // HasAudienceMemberships returns a boolean if a field has been set.
@@ -226,6 +311,15 @@ func (o *AudienceCustomer) GetLastActivity() time.Time {
 	return o.LastActivity
 }
 
+// GetLastActivityOk returns a tuple with the LastActivity field value
+// and a boolean to check if the value has been set.
+func (o *AudienceCustomer) GetLastActivityOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastActivity, true
+}
+
 // SetLastActivity sets field value
 func (o *AudienceCustomer) SetLastActivity(v time.Time) {
 	o.LastActivity = v
@@ -240,14 +334,13 @@ func (o *AudienceCustomer) GetSandbox() bool {
 	return *o.Sandbox
 }
 
-// GetSandboxOk returns a tuple with the Sandbox field value if set, zero value otherwise
+// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceCustomer) GetSandboxOk() (bool, bool) {
+func (o *AudienceCustomer) GetSandboxOk() (*bool, bool) {
 	if o == nil || o.Sandbox == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Sandbox, true
+	return o.Sandbox, true
 }
 
 // HasSandbox returns a boolean if a field has been set.
@@ -265,22 +358,21 @@ func (o *AudienceCustomer) SetSandbox(v bool) {
 }
 
 // GetConnectedApplicationsIds returns the ConnectedApplicationsIds field value if set, zero value otherwise.
-func (o *AudienceCustomer) GetConnectedApplicationsIds() []int32 {
+func (o *AudienceCustomer) GetConnectedApplicationsIds() []int64 {
 	if o == nil || o.ConnectedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.ConnectedApplicationsIds
 }
 
-// GetConnectedApplicationsIdsOk returns a tuple with the ConnectedApplicationsIds field value if set, zero value otherwise
+// GetConnectedApplicationsIdsOk returns a tuple with the ConnectedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceCustomer) GetConnectedApplicationsIdsOk() ([]int32, bool) {
+func (o *AudienceCustomer) GetConnectedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.ConnectedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ConnectedApplicationsIds, true
+	return o.ConnectedApplicationsIds, true
 }
 
 // HasConnectedApplicationsIds returns a boolean if a field has been set.
@@ -292,28 +384,27 @@ func (o *AudienceCustomer) HasConnectedApplicationsIds() bool {
 	return false
 }
 
-// SetConnectedApplicationsIds gets a reference to the given []int32 and assigns it to the ConnectedApplicationsIds field.
-func (o *AudienceCustomer) SetConnectedApplicationsIds(v []int32) {
+// SetConnectedApplicationsIds gets a reference to the given []int64 and assigns it to the ConnectedApplicationsIds field.
+func (o *AudienceCustomer) SetConnectedApplicationsIds(v []int64) {
 	o.ConnectedApplicationsIds = &v
 }
 
 // GetConnectedAudiences returns the ConnectedAudiences field value if set, zero value otherwise.
-func (o *AudienceCustomer) GetConnectedAudiences() []int32 {
+func (o *AudienceCustomer) GetConnectedAudiences() []int64 {
 	if o == nil || o.ConnectedAudiences == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.ConnectedAudiences
 }
 
-// GetConnectedAudiencesOk returns a tuple with the ConnectedAudiences field value if set, zero value otherwise
+// GetConnectedAudiencesOk returns a tuple with the ConnectedAudiences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceCustomer) GetConnectedAudiencesOk() ([]int32, bool) {
+func (o *AudienceCustomer) GetConnectedAudiencesOk() (*[]int64, bool) {
 	if o == nil || o.ConnectedAudiences == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ConnectedAudiences, true
+	return o.ConnectedAudiences, true
 }
 
 // HasConnectedAudiences returns a boolean if a field has been set.
@@ -325,30 +416,87 @@ func (o *AudienceCustomer) HasConnectedAudiences() bool {
 	return false
 }
 
-// SetConnectedAudiences gets a reference to the given []int32 and assigns it to the ConnectedAudiences field.
-func (o *AudienceCustomer) SetConnectedAudiences(v []int32) {
+// SetConnectedAudiences gets a reference to the given []int64 and assigns it to the ConnectedAudiences field.
+func (o *AudienceCustomer) SetConnectedAudiences(v []int64) {
 	o.ConnectedAudiences = &v
 }
 
+func (o AudienceCustomer) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["closedSessions"] = o.ClosedSessions
+	}
+	if true {
+		toSerialize["totalSales"] = o.TotalSales
+	}
+	if o.LoyaltyMemberships != nil {
+		toSerialize["loyaltyMemberships"] = o.LoyaltyMemberships
+	}
+	if o.AudienceMemberships != nil {
+		toSerialize["audienceMemberships"] = o.AudienceMemberships
+	}
+	if true {
+		toSerialize["lastActivity"] = o.LastActivity
+	}
+	if o.Sandbox != nil {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if o.ConnectedApplicationsIds != nil {
+		toSerialize["connectedApplicationsIds"] = o.ConnectedApplicationsIds
+	}
+	if o.ConnectedAudiences != nil {
+		toSerialize["connectedAudiences"] = o.ConnectedAudiences
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAudienceCustomer struct {
-	Value        AudienceCustomer
-	ExplicitNull bool
+	value *AudienceCustomer
+	isSet bool
+}
+
+func (v NullableAudienceCustomer) Get() *AudienceCustomer {
+	return v.value
+}
+
+func (v *NullableAudienceCustomer) Set(val *AudienceCustomer) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAudienceCustomer) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAudienceCustomer) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAudienceCustomer(val *AudienceCustomer) *NullableAudienceCustomer {
+	return &NullableAudienceCustomer{value: val, isSet: true}
 }
 
 func (v NullableAudienceCustomer) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAudienceCustomer) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

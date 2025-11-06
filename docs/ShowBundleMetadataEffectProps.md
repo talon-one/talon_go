@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewShowBundleMetadataEffectProps
+
+`func NewShowBundleMetadataEffectProps(description string, bundleAttributes []string, itemsIndices []float32, ) *ShowBundleMetadataEffectProps`
+
+NewShowBundleMetadataEffectProps instantiates a new ShowBundleMetadataEffectProps object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewShowBundleMetadataEffectPropsWithDefaults
+
+`func NewShowBundleMetadataEffectPropsWithDefaults() *ShowBundleMetadataEffectProps`
+
+NewShowBundleMetadataEffectPropsWithDefaults instantiates a new ShowBundleMetadataEffectProps object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetDescription
 
 `func (o *ShowBundleMetadataEffectProps) GetDescription() string`
@@ -18,22 +35,17 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *ShowBundleMetadataEffectProps) GetDescriptionOk() (string, bool)`
+`func (o *ShowBundleMetadataEffectProps) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *ShowBundleMetadataEffectProps) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### SetDescription
 
 `func (o *ShowBundleMetadataEffectProps) SetDescription(v string)`
 
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetDescription sets Description field to given value.
+
 
 ### GetBundleAttributes
 
@@ -43,22 +55,17 @@ GetBundleAttributes returns the BundleAttributes field if non-nil, zero value ot
 
 ### GetBundleAttributesOk
 
-`func (o *ShowBundleMetadataEffectProps) GetBundleAttributesOk() ([]string, bool)`
+`func (o *ShowBundleMetadataEffectProps) GetBundleAttributesOk() (*[]string, bool)`
 
 GetBundleAttributesOk returns a tuple with the BundleAttributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasBundleAttributes
-
-`func (o *ShowBundleMetadataEffectProps) HasBundleAttributes() bool`
-
-HasBundleAttributes returns a boolean if a field has been set.
 
 ### SetBundleAttributes
 
 `func (o *ShowBundleMetadataEffectProps) SetBundleAttributes(v []string)`
 
-SetBundleAttributes gets a reference to the given []string and assigns it to the BundleAttributes field.
+SetBundleAttributes sets BundleAttributes field to given value.
+
 
 ### GetItemsIndices
 
@@ -68,22 +75,17 @@ GetItemsIndices returns the ItemsIndices field if non-nil, zero value otherwise.
 
 ### GetItemsIndicesOk
 
-`func (o *ShowBundleMetadataEffectProps) GetItemsIndicesOk() ([]float32, bool)`
+`func (o *ShowBundleMetadataEffectProps) GetItemsIndicesOk() (*[]float32, bool)`
 
 GetItemsIndicesOk returns a tuple with the ItemsIndices field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasItemsIndices
-
-`func (o *ShowBundleMetadataEffectProps) HasItemsIndices() bool`
-
-HasItemsIndices returns a boolean if a field has been set.
 
 ### SetItemsIndices
 
 `func (o *ShowBundleMetadataEffectProps) SetItemsIndices(v []float32)`
 
-SetItemsIndices gets a reference to the given []float32 and assigns it to the ItemsIndices field.
+SetItemsIndices sets ItemsIndices field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

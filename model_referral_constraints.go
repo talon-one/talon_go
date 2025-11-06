@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,7 +21,24 @@ type ReferralConstraints struct {
 	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
-	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	UsageLimit *int64 `json:"usageLimit,omitempty"`
+}
+
+// NewReferralConstraints instantiates a new ReferralConstraints object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildReferralConstraints() *ReferralConstraints {
+	this := ReferralConstraints{}
+	return &this
+}
+
+// NewReferralConstraintsWithDefaults instantiates a new ReferralConstraints object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewReferralConstraintsWithDefaults() *ReferralConstraints {
+	this := ReferralConstraints{}
+	return &this
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
@@ -34,14 +50,13 @@ func (o *ReferralConstraints) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferralConstraints) GetStartDateOk() (time.Time, bool) {
+func (o *ReferralConstraints) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -67,14 +82,13 @@ func (o *ReferralConstraints) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferralConstraints) GetExpiryDateOk() (time.Time, bool) {
+func (o *ReferralConstraints) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -92,22 +106,21 @@ func (o *ReferralConstraints) SetExpiryDate(v time.Time) {
 }
 
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
-func (o *ReferralConstraints) GetUsageLimit() int32 {
+func (o *ReferralConstraints) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsageLimit
 }
 
-// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReferralConstraints) GetUsageLimitOk() (int32, bool) {
+func (o *ReferralConstraints) GetUsageLimitOk() (*int64, bool) {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsageLimit, true
+	return o.UsageLimit, true
 }
 
 // HasUsageLimit returns a boolean if a field has been set.
@@ -119,30 +132,57 @@ func (o *ReferralConstraints) HasUsageLimit() bool {
 	return false
 }
 
-// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
-func (o *ReferralConstraints) SetUsageLimit(v int32) {
+// SetUsageLimit gets a reference to the given int64 and assigns it to the UsageLimit field.
+func (o *ReferralConstraints) SetUsageLimit(v int64) {
 	o.UsageLimit = &v
 }
 
+func (o ReferralConstraints) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.UsageLimit != nil {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableReferralConstraints struct {
-	Value        ReferralConstraints
-	ExplicitNull bool
+	value *ReferralConstraints
+	isSet bool
+}
+
+func (v NullableReferralConstraints) Get() *ReferralConstraints {
+	return v.value
+}
+
+func (v *NullableReferralConstraints) Set(val *ReferralConstraints) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableReferralConstraints) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableReferralConstraints) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableReferralConstraints(val *ReferralConstraints) *NullableReferralConstraints {
+	return &NullableReferralConstraints{value: val, isSet: true}
 }
 
 func (v NullableReferralConstraints) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableReferralConstraints) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

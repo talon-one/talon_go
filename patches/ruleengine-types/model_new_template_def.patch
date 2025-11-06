@@ -1,0 +1,14 @@
+@@
+@@
+-func BuildNewTemplateDef(title string, category string, expr []map[string]interface{}, args []TemplateArgDef) *NewTemplateDef {
++func BuildNewTemplateDef(title string, category string, expr []interface{}, args []TemplateArgDef) *NewTemplateDef {
+    ...
+}
+
+@@
+var model identifier
+@@
+-func (o *model) GetExprOk() (*[]map[string]interface{}, bool) {
++func (o *model) GetExprOk() (*[]interface{}, bool) {
+	...
+}

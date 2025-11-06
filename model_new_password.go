@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type NewPassword struct {
 	ResetToken string `json:"resetToken"`
 }
 
+// NewNewPassword instantiates a new NewPassword object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewPassword(password string, resetToken string) *NewPassword {
+	this := NewPassword{}
+	this.Password = password
+	this.ResetToken = resetToken
+	return &this
+}
+
+// NewNewPasswordWithDefaults instantiates a new NewPassword object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewPasswordWithDefaults() *NewPassword {
+	this := NewPassword{}
+	return &this
+}
+
 // GetPassword returns the Password field value
 func (o *NewPassword) GetPassword() string {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *NewPassword) GetPassword() string {
 	}
 
 	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *NewPassword) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
 }
 
 // SetPassword sets field value
@@ -46,30 +73,63 @@ func (o *NewPassword) GetResetToken() string {
 	return o.ResetToken
 }
 
+// GetResetTokenOk returns a tuple with the ResetToken field value
+// and a boolean to check if the value has been set.
+func (o *NewPassword) GetResetTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResetToken, true
+}
+
 // SetResetToken sets field value
 func (o *NewPassword) SetResetToken(v string) {
 	o.ResetToken = v
 }
 
+func (o NewPassword) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["password"] = o.Password
+	}
+	if true {
+		toSerialize["resetToken"] = o.ResetToken
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewPassword struct {
-	Value        NewPassword
-	ExplicitNull bool
+	value *NewPassword
+	isSet bool
+}
+
+func (v NullableNewPassword) Get() *NewPassword {
+	return v.value
+}
+
+func (v *NullableNewPassword) Set(val *NewPassword) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewPassword) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewPassword) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewPassword(val *NewPassword) *NullableNewPassword {
+	return &NullableNewPassword{value: val, isSet: true}
 }
 
 func (v NullableNewPassword) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewPassword) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

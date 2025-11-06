@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,23 @@ type ErrorSource struct {
 	Resource *string `json:"resource,omitempty"`
 }
 
+// NewErrorSource instantiates a new ErrorSource object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildErrorSource() *ErrorSource {
+	this := ErrorSource{}
+	return &this
+}
+
+// NewErrorSourceWithDefaults instantiates a new ErrorSource object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewErrorSourceWithDefaults() *ErrorSource {
+	this := ErrorSource{}
+	return &this
+}
+
 // GetPointer returns the Pointer field value if set, zero value otherwise.
 func (o *ErrorSource) GetPointer() string {
 	if o == nil || o.Pointer == nil {
@@ -35,14 +51,13 @@ func (o *ErrorSource) GetPointer() string {
 	return *o.Pointer
 }
 
-// GetPointerOk returns a tuple with the Pointer field value if set, zero value otherwise
+// GetPointerOk returns a tuple with the Pointer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorSource) GetPointerOk() (string, bool) {
+func (o *ErrorSource) GetPointerOk() (*string, bool) {
 	if o == nil || o.Pointer == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Pointer, true
+	return o.Pointer, true
 }
 
 // HasPointer returns a boolean if a field has been set.
@@ -68,14 +83,13 @@ func (o *ErrorSource) GetParameter() string {
 	return *o.Parameter
 }
 
-// GetParameterOk returns a tuple with the Parameter field value if set, zero value otherwise
+// GetParameterOk returns a tuple with the Parameter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorSource) GetParameterOk() (string, bool) {
+func (o *ErrorSource) GetParameterOk() (*string, bool) {
 	if o == nil || o.Parameter == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Parameter, true
+	return o.Parameter, true
 }
 
 // HasParameter returns a boolean if a field has been set.
@@ -101,14 +115,13 @@ func (o *ErrorSource) GetLine() string {
 	return *o.Line
 }
 
-// GetLineOk returns a tuple with the Line field value if set, zero value otherwise
+// GetLineOk returns a tuple with the Line field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorSource) GetLineOk() (string, bool) {
+func (o *ErrorSource) GetLineOk() (*string, bool) {
 	if o == nil || o.Line == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Line, true
+	return o.Line, true
 }
 
 // HasLine returns a boolean if a field has been set.
@@ -134,14 +147,13 @@ func (o *ErrorSource) GetResource() string {
 	return *o.Resource
 }
 
-// GetResourceOk returns a tuple with the Resource field value if set, zero value otherwise
+// GetResourceOk returns a tuple with the Resource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorSource) GetResourceOk() (string, bool) {
+func (o *ErrorSource) GetResourceOk() (*string, bool) {
 	if o == nil || o.Resource == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Resource, true
+	return o.Resource, true
 }
 
 // HasResource returns a boolean if a field has been set.
@@ -158,25 +170,55 @@ func (o *ErrorSource) SetResource(v string) {
 	o.Resource = &v
 }
 
+func (o ErrorSource) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Pointer != nil {
+		toSerialize["pointer"] = o.Pointer
+	}
+	if o.Parameter != nil {
+		toSerialize["parameter"] = o.Parameter
+	}
+	if o.Line != nil {
+		toSerialize["line"] = o.Line
+	}
+	if o.Resource != nil {
+		toSerialize["resource"] = o.Resource
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableErrorSource struct {
-	Value        ErrorSource
-	ExplicitNull bool
+	value *ErrorSource
+	isSet bool
+}
+
+func (v NullableErrorSource) Get() *ErrorSource {
+	return v.value
+}
+
+func (v *NullableErrorSource) Set(val *ErrorSource) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableErrorSource) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableErrorSource) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableErrorSource(val *ErrorSource) *NullableErrorSource {
+	return &NullableErrorSource{value: val, isSet: true}
 }
 
 func (v NullableErrorSource) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableErrorSource) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

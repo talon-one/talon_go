@@ -10,35 +10,50 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignDetail struct for CampaignDetail
 type CampaignDetail struct {
 	// The ID of the campaign that references the application cart item filter.
-	CampaignId *int32 `json:"campaignId,omitempty"`
+	CampaignId *int64 `json:"campaignId,omitempty"`
 	// A user-facing name for this campaign.
 	CampaignName *string `json:"campaignName,omitempty"`
 }
 
+// NewCampaignDetail instantiates a new CampaignDetail object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignDetail() *CampaignDetail {
+	this := CampaignDetail{}
+	return &this
+}
+
+// NewCampaignDetailWithDefaults instantiates a new CampaignDetail object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignDetailWithDefaults() *CampaignDetail {
+	this := CampaignDetail{}
+	return &this
+}
+
 // GetCampaignId returns the CampaignId field value if set, zero value otherwise.
-func (o *CampaignDetail) GetCampaignId() int32 {
+func (o *CampaignDetail) GetCampaignId() int64 {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignDetail) GetCampaignIdOk() (int32, bool) {
+func (o *CampaignDetail) GetCampaignIdOk() (*int64, bool) {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignId, true
+	return o.CampaignId, true
 }
 
 // HasCampaignId returns a boolean if a field has been set.
@@ -50,8 +65,8 @@ func (o *CampaignDetail) HasCampaignId() bool {
 	return false
 }
 
-// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-func (o *CampaignDetail) SetCampaignId(v int32) {
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *CampaignDetail) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
@@ -64,14 +79,13 @@ func (o *CampaignDetail) GetCampaignName() string {
 	return *o.CampaignName
 }
 
-// GetCampaignNameOk returns a tuple with the CampaignName field value if set, zero value otherwise
+// GetCampaignNameOk returns a tuple with the CampaignName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignDetail) GetCampaignNameOk() (string, bool) {
+func (o *CampaignDetail) GetCampaignNameOk() (*string, bool) {
 	if o == nil || o.CampaignName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignName, true
+	return o.CampaignName, true
 }
 
 // HasCampaignName returns a boolean if a field has been set.
@@ -88,25 +102,49 @@ func (o *CampaignDetail) SetCampaignName(v string) {
 	o.CampaignName = &v
 }
 
+func (o CampaignDetail) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if o.CampaignName != nil {
+		toSerialize["campaignName"] = o.CampaignName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignDetail struct {
-	Value        CampaignDetail
-	ExplicitNull bool
+	value *CampaignDetail
+	isSet bool
+}
+
+func (v NullableCampaignDetail) Get() *CampaignDetail {
+	return v.value
+}
+
+func (v *NullableCampaignDetail) Set(val *CampaignDetail) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignDetail) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignDetail) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignDetail(val *CampaignDetail) *NullableCampaignDetail {
+	return &NullableCampaignDetail{value: val, isSet: true}
 }
 
 func (v NullableCampaignDetail) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignDetail) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

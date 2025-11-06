@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type UpdateCampaignCollection struct {
 	// A short description of the purpose of this collection.
 	Description *string `json:"description,omitempty"`
+}
+
+// NewUpdateCampaignCollection instantiates a new UpdateCampaignCollection object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateCampaignCollection() *UpdateCampaignCollection {
+	this := UpdateCampaignCollection{}
+	return &this
+}
+
+// NewUpdateCampaignCollectionWithDefaults instantiates a new UpdateCampaignCollection object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateCampaignCollectionWithDefaults() *UpdateCampaignCollection {
+	this := UpdateCampaignCollection{}
+	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *UpdateCampaignCollection) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCampaignCollection) GetDescriptionOk() (string, bool) {
+func (o *UpdateCampaignCollection) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *UpdateCampaignCollection) SetDescription(v string) {
 	o.Description = &v
 }
 
+func (o UpdateCampaignCollection) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateCampaignCollection struct {
-	Value        UpdateCampaignCollection
-	ExplicitNull bool
+	value *UpdateCampaignCollection
+	isSet bool
+}
+
+func (v NullableUpdateCampaignCollection) Get() *UpdateCampaignCollection {
+	return v.value
+}
+
+func (v *NullableUpdateCampaignCollection) Set(val *UpdateCampaignCollection) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateCampaignCollection) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateCampaignCollection) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateCampaignCollection(val *UpdateCampaignCollection) *NullableUpdateCampaignCollection {
+	return &NullableUpdateCampaignCollection{value: val, isSet: true}
 }
 
 func (v NullableUpdateCampaignCollection) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateCampaignCollection) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

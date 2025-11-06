@@ -10,35 +10,50 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AudienceAnalytics The audiences and their member count.
 type AudienceAnalytics struct {
 	// The ID of the audience.
-	AudienceId *int32 `json:"audienceId,omitempty"`
+	AudienceId *int64 `json:"audienceId,omitempty"`
 	// The member count of the audience.
-	MembersCount *int32 `json:"membersCount,omitempty"`
+	MembersCount *int64 `json:"membersCount,omitempty"`
+}
+
+// NewAudienceAnalytics instantiates a new AudienceAnalytics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAudienceAnalytics() *AudienceAnalytics {
+	this := AudienceAnalytics{}
+	return &this
+}
+
+// NewAudienceAnalyticsWithDefaults instantiates a new AudienceAnalytics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAudienceAnalyticsWithDefaults() *AudienceAnalytics {
+	this := AudienceAnalytics{}
+	return &this
 }
 
 // GetAudienceId returns the AudienceId field value if set, zero value otherwise.
-func (o *AudienceAnalytics) GetAudienceId() int32 {
+func (o *AudienceAnalytics) GetAudienceId() int64 {
 	if o == nil || o.AudienceId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AudienceId
 }
 
-// GetAudienceIdOk returns a tuple with the AudienceId field value if set, zero value otherwise
+// GetAudienceIdOk returns a tuple with the AudienceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceAnalytics) GetAudienceIdOk() (int32, bool) {
+func (o *AudienceAnalytics) GetAudienceIdOk() (*int64, bool) {
 	if o == nil || o.AudienceId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceId, true
+	return o.AudienceId, true
 }
 
 // HasAudienceId returns a boolean if a field has been set.
@@ -50,28 +65,27 @@ func (o *AudienceAnalytics) HasAudienceId() bool {
 	return false
 }
 
-// SetAudienceId gets a reference to the given int32 and assigns it to the AudienceId field.
-func (o *AudienceAnalytics) SetAudienceId(v int32) {
+// SetAudienceId gets a reference to the given int64 and assigns it to the AudienceId field.
+func (o *AudienceAnalytics) SetAudienceId(v int64) {
 	o.AudienceId = &v
 }
 
 // GetMembersCount returns the MembersCount field value if set, zero value otherwise.
-func (o *AudienceAnalytics) GetMembersCount() int32 {
+func (o *AudienceAnalytics) GetMembersCount() int64 {
 	if o == nil || o.MembersCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MembersCount
 }
 
-// GetMembersCountOk returns a tuple with the MembersCount field value if set, zero value otherwise
+// GetMembersCountOk returns a tuple with the MembersCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceAnalytics) GetMembersCountOk() (int32, bool) {
+func (o *AudienceAnalytics) GetMembersCountOk() (*int64, bool) {
 	if o == nil || o.MembersCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.MembersCount, true
+	return o.MembersCount, true
 }
 
 // HasMembersCount returns a boolean if a field has been set.
@@ -83,30 +97,54 @@ func (o *AudienceAnalytics) HasMembersCount() bool {
 	return false
 }
 
-// SetMembersCount gets a reference to the given int32 and assigns it to the MembersCount field.
-func (o *AudienceAnalytics) SetMembersCount(v int32) {
+// SetMembersCount gets a reference to the given int64 and assigns it to the MembersCount field.
+func (o *AudienceAnalytics) SetMembersCount(v int64) {
 	o.MembersCount = &v
 }
 
+func (o AudienceAnalytics) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.AudienceId != nil {
+		toSerialize["audienceId"] = o.AudienceId
+	}
+	if o.MembersCount != nil {
+		toSerialize["membersCount"] = o.MembersCount
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAudienceAnalytics struct {
-	Value        AudienceAnalytics
-	ExplicitNull bool
+	value *AudienceAnalytics
+	isSet bool
+}
+
+func (v NullableAudienceAnalytics) Get() *AudienceAnalytics {
+	return v.value
+}
+
+func (v *NullableAudienceAnalytics) Set(val *AudienceAnalytics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAudienceAnalytics) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAudienceAnalytics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAudienceAnalytics(val *AudienceAnalytics) *NullableAudienceAnalytics {
+	return &NullableAudienceAnalytics{value: val, isSet: true}
 }
 
 func (v NullableAudienceAnalytics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAudienceAnalytics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

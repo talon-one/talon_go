@@ -10,17 +10,18 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// CardLedgerTransactionLogEntryIntegrationApi Log entry for a given loyalty card transaction.
-type CardLedgerTransactionLogEntryIntegrationApi struct {
+// CardLedgerTransactionLogEntryIntegrationAPI Log entry for a given loyalty card transaction.
+type CardLedgerTransactionLogEntryIntegrationAPI struct {
+	// Unique identifier of the transaction in the UUID format.
+	TransactionUUID string `json:"transactionUUID"`
 	// Date and time the loyalty card transaction occurred.
 	Created time.Time `json:"created"`
 	// ID of the loyalty program.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// The alphanumeric identifier of the loyalty card.
 	CardIdentifier string `json:"cardIdentifier"`
 	// ID of the customer session where the transaction occurred.
@@ -29,7 +30,7 @@ type CardLedgerTransactionLogEntryIntegrationApi struct {
 	Type string `json:"type"`
 	// Name or reason of the loyalty ledger transaction.
 	Name string `json:"name"`
-	// When points become active. Possible values:   - `immediate`: Points are active immediately.   - a timestamp value: Points become active at a given date and time.
+	// When points become active. Possible values:   - `immediate`: Points are active immediately.   - `on_action`: Points become active based on the customer's action.   - a timestamp value: Points become active at a given date and time.
 	StartDate string `json:"startDate"`
 	// Date when points expire. Possible values are:   - `unlimited`: Points have no expiration date.   - `timestamp value`: Points expire on the given date.
 	ExpiryDate string `json:"expiryDate"`
@@ -38,15 +39,67 @@ type CardLedgerTransactionLogEntryIntegrationApi struct {
 	// Amount of loyalty points added or deducted in the transaction.
 	Amount float32 `json:"amount"`
 	// ID of the loyalty ledger transaction.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the ruleset containing the rule that triggered this effect.
-	RulesetId *int32 `json:"rulesetId,omitempty"`
+	RulesetId *int64 `json:"rulesetId,omitempty"`
 	// The name of the rule that triggered this effect.
 	RuleName *string `json:"ruleName,omitempty"`
 }
 
+// NewCardLedgerTransactionLogEntryIntegrationAPI instantiates a new CardLedgerTransactionLogEntryIntegrationAPI object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCardLedgerTransactionLogEntryIntegrationAPI(transactionUUID string, created time.Time, programId int64, cardIdentifier string, type_ string, name string, startDate string, expiryDate string, subledgerId string, amount float32, id int64) *CardLedgerTransactionLogEntryIntegrationAPI {
+	this := CardLedgerTransactionLogEntryIntegrationAPI{}
+	this.TransactionUUID = transactionUUID
+	this.Created = created
+	this.ProgramId = programId
+	this.CardIdentifier = cardIdentifier
+	this.Type = type_
+	this.Name = name
+	this.StartDate = startDate
+	this.ExpiryDate = expiryDate
+	this.SubledgerId = subledgerId
+	this.Amount = amount
+	this.Id = id
+	return &this
+}
+
+// NewCardLedgerTransactionLogEntryIntegrationAPIWithDefaults instantiates a new CardLedgerTransactionLogEntryIntegrationAPI object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCardLedgerTransactionLogEntryIntegrationAPIWithDefaults() *CardLedgerTransactionLogEntryIntegrationAPI {
+	this := CardLedgerTransactionLogEntryIntegrationAPI{}
+	return &this
+}
+
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
+// SetTransactionUUID sets field value
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
+}
+
 // GetCreated returns the Created field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCreated() time.Time {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetCreated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -55,28 +108,46 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetCreated(v time.Time) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetProgramId() int32 {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetProgramId(v int32) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
 // GetCardIdentifier returns the CardIdentifier field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCardIdentifier() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetCardIdentifier() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -85,13 +156,22 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCardIdentifier() string
 	return o.CardIdentifier
 }
 
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetCardIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CardIdentifier, true
+}
+
 // SetCardIdentifier sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetCardIdentifier(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetCardIdentifier(v string) {
 	o.CardIdentifier = v
 }
 
 // GetCustomerSessionId returns the CustomerSessionId field value if set, zero value otherwise.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCustomerSessionId() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetCustomerSessionId() string {
 	if o == nil || o.CustomerSessionId == nil {
 		var ret string
 		return ret
@@ -99,18 +179,17 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCustomerSessionId() str
 	return *o.CustomerSessionId
 }
 
-// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, zero value otherwise
+// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetCustomerSessionIdOk() (string, bool) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetCustomerSessionIdOk() (*string, bool) {
 	if o == nil || o.CustomerSessionId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerSessionId, true
+	return o.CustomerSessionId, true
 }
 
 // HasCustomerSessionId returns a boolean if a field has been set.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) HasCustomerSessionId() bool {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) HasCustomerSessionId() bool {
 	if o != nil && o.CustomerSessionId != nil {
 		return true
 	}
@@ -119,12 +198,12 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) HasCustomerSessionId() boo
 }
 
 // SetCustomerSessionId gets a reference to the given string and assigns it to the CustomerSessionId field.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetCustomerSessionId(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetCustomerSessionId(v string) {
 	o.CustomerSessionId = &v
 }
 
 // GetType returns the Type field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetType() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -133,13 +212,22 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetType(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetType(v string) {
 	o.Type = v
 }
 
 // GetName returns the Name field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetName() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -148,13 +236,22 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetName(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetName(v string) {
 	o.Name = v
 }
 
 // GetStartDate returns the StartDate field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetStartDate() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetStartDate() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -163,13 +260,22 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetStartDate() string {
 	return o.StartDate
 }
 
+// GetStartDateOk returns a tuple with the StartDate field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetStartDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartDate, true
+}
+
 // SetStartDate sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetStartDate(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetStartDate(v string) {
 	o.StartDate = v
 }
 
 // GetExpiryDate returns the ExpiryDate field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetExpiryDate() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetExpiryDate() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -178,13 +284,22 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetExpiryDate() string {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetExpiryDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetExpiryDate(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetExpiryDate(v string) {
 	o.ExpiryDate = v
 }
 
 // GetSubledgerId returns the SubledgerId field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetSubledgerId() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetSubledgerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -193,13 +308,22 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetSubledgerId() string {
 	return o.SubledgerId
 }
 
+// GetSubledgerIdOk returns a tuple with the SubledgerId field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetSubledgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubledgerId, true
+}
+
 // SetSubledgerId sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetSubledgerId(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetSubledgerId(v string) {
 	o.SubledgerId = v
 }
 
 // GetAmount returns the Amount field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetAmount() float32 {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetAmount() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -208,47 +332,64 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetAmount() float32 {
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetAmountOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetAmount(v float32) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetAmount(v float32) {
 	o.Amount = v
 }
 
 // GetId returns the Id field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetId() int32 {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetId(v int32) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRulesetId returns the RulesetId field value if set, zero value otherwise.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetRulesetId() int32 {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetRulesetId() int64 {
 	if o == nil || o.RulesetId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RulesetId
 }
 
-// GetRulesetIdOk returns a tuple with the RulesetId field value if set, zero value otherwise
+// GetRulesetIdOk returns a tuple with the RulesetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetRulesetIdOk() (int32, bool) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetRulesetIdOk() (*int64, bool) {
 	if o == nil || o.RulesetId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.RulesetId, true
+	return o.RulesetId, true
 }
 
 // HasRulesetId returns a boolean if a field has been set.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) HasRulesetId() bool {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) HasRulesetId() bool {
 	if o != nil && o.RulesetId != nil {
 		return true
 	}
@@ -256,13 +397,13 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) HasRulesetId() bool {
 	return false
 }
 
-// SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetRulesetId(v int32) {
+// SetRulesetId gets a reference to the given int64 and assigns it to the RulesetId field.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetRulesetId(v int64) {
 	o.RulesetId = &v
 }
 
 // GetRuleName returns the RuleName field value if set, zero value otherwise.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetRuleName() string {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetRuleName() string {
 	if o == nil || o.RuleName == nil {
 		var ret string
 		return ret
@@ -270,18 +411,17 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) GetRuleName() string {
 	return *o.RuleName
 }
 
-// GetRuleNameOk returns a tuple with the RuleName field value if set, zero value otherwise
+// GetRuleNameOk returns a tuple with the RuleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) GetRuleNameOk() (string, bool) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetRuleNameOk() (*string, bool) {
 	if o == nil || o.RuleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RuleName, true
+	return o.RuleName, true
 }
 
 // HasRuleName returns a boolean if a field has been set.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) HasRuleName() bool {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) HasRuleName() bool {
 	if o != nil && o.RuleName != nil {
 		return true
 	}
@@ -290,29 +430,89 @@ func (o *CardLedgerTransactionLogEntryIntegrationApi) HasRuleName() bool {
 }
 
 // SetRuleName gets a reference to the given string and assigns it to the RuleName field.
-func (o *CardLedgerTransactionLogEntryIntegrationApi) SetRuleName(v string) {
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetRuleName(v string) {
 	o.RuleName = &v
 }
 
-type NullableCardLedgerTransactionLogEntryIntegrationApi struct {
-	Value        CardLedgerTransactionLogEntryIntegrationApi
-	ExplicitNull bool
+func (o CardLedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if true {
+		toSerialize["cardIdentifier"] = o.CardIdentifier
+	}
+	if o.CustomerSessionId != nil {
+		toSerialize["customerSessionId"] = o.CustomerSessionId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["subledgerId"] = o.SubledgerId
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.RulesetId != nil {
+		toSerialize["rulesetId"] = o.RulesetId
+	}
+	if o.RuleName != nil {
+		toSerialize["ruleName"] = o.RuleName
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableCardLedgerTransactionLogEntryIntegrationApi) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableCardLedgerTransactionLogEntryIntegrationAPI struct {
+	value *CardLedgerTransactionLogEntryIntegrationAPI
+	isSet bool
 }
 
-func (v *NullableCardLedgerTransactionLogEntryIntegrationApi) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableCardLedgerTransactionLogEntryIntegrationAPI) Get() *CardLedgerTransactionLogEntryIntegrationAPI {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableCardLedgerTransactionLogEntryIntegrationAPI) Set(val *CardLedgerTransactionLogEntryIntegrationAPI) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCardLedgerTransactionLogEntryIntegrationAPI) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCardLedgerTransactionLogEntryIntegrationAPI) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCardLedgerTransactionLogEntryIntegrationAPI(val *CardLedgerTransactionLogEntryIntegrationAPI) *NullableCardLedgerTransactionLogEntryIntegrationAPI {
+	return &NullableCardLedgerTransactionLogEntryIntegrationAPI{value: val, isSet: true}
+}
+
+func (v NullableCardLedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableCardLedgerTransactionLogEntryIntegrationAPI) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

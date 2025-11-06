@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type StrikethroughSetDiscountPerItemEffectProps struct {
 	Value map[string]interface{} `json:"value"`
 }
 
+// NewStrikethroughSetDiscountPerItemEffectProps instantiates a new StrikethroughSetDiscountPerItemEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildStrikethroughSetDiscountPerItemEffectProps(name string, value map[string]interface{}) *StrikethroughSetDiscountPerItemEffectProps {
+	this := StrikethroughSetDiscountPerItemEffectProps{}
+	this.Name = name
+	this.Value = value
+	return &this
+}
+
+// NewStrikethroughSetDiscountPerItemEffectPropsWithDefaults instantiates a new StrikethroughSetDiscountPerItemEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughSetDiscountPerItemEffectPropsWithDefaults() *StrikethroughSetDiscountPerItemEffectProps {
+	this := StrikethroughSetDiscountPerItemEffectProps{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *StrikethroughSetDiscountPerItemEffectProps) GetName() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *StrikethroughSetDiscountPerItemEffectProps) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughSetDiscountPerItemEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -47,30 +74,63 @@ func (o *StrikethroughSetDiscountPerItemEffectProps) GetValue() map[string]inter
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughSetDiscountPerItemEffectProps) GetValueOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *StrikethroughSetDiscountPerItemEffectProps) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
+func (o StrikethroughSetDiscountPerItemEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughSetDiscountPerItemEffectProps struct {
-	Value        StrikethroughSetDiscountPerItemEffectProps
-	ExplicitNull bool
+	value *StrikethroughSetDiscountPerItemEffectProps
+	isSet bool
+}
+
+func (v NullableStrikethroughSetDiscountPerItemEffectProps) Get() *StrikethroughSetDiscountPerItemEffectProps {
+	return v.value
+}
+
+func (v *NullableStrikethroughSetDiscountPerItemEffectProps) Set(val *StrikethroughSetDiscountPerItemEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughSetDiscountPerItemEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughSetDiscountPerItemEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableStrikethroughSetDiscountPerItemEffectProps(val *StrikethroughSetDiscountPerItemEffectProps) *NullableStrikethroughSetDiscountPerItemEffectProps {
+	return &NullableStrikethroughSetDiscountPerItemEffectProps{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughSetDiscountPerItemEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughSetDiscountPerItemEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

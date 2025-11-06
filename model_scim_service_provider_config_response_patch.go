@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type ScimServiceProviderConfigResponsePatch struct {
 	// Indicates whether the service provider supports patch operations for modifying resources.
 	Supported *bool `json:"supported,omitempty"`
+}
+
+// NewScimServiceProviderConfigResponsePatch instantiates a new ScimServiceProviderConfigResponsePatch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildScimServiceProviderConfigResponsePatch() *ScimServiceProviderConfigResponsePatch {
+	this := ScimServiceProviderConfigResponsePatch{}
+	return &this
+}
+
+// NewScimServiceProviderConfigResponsePatchWithDefaults instantiates a new ScimServiceProviderConfigResponsePatch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimServiceProviderConfigResponsePatchWithDefaults() *ScimServiceProviderConfigResponsePatch {
+	this := ScimServiceProviderConfigResponsePatch{}
+	return &this
 }
 
 // GetSupported returns the Supported field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *ScimServiceProviderConfigResponsePatch) GetSupported() bool {
 	return *o.Supported
 }
 
-// GetSupportedOk returns a tuple with the Supported field value if set, zero value otherwise
+// GetSupportedOk returns a tuple with the Supported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponsePatch) GetSupportedOk() (bool, bool) {
+func (o *ScimServiceProviderConfigResponsePatch) GetSupportedOk() (*bool, bool) {
 	if o == nil || o.Supported == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Supported, true
+	return o.Supported, true
 }
 
 // HasSupported returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *ScimServiceProviderConfigResponsePatch) SetSupported(v bool) {
 	o.Supported = &v
 }
 
+func (o ScimServiceProviderConfigResponsePatch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Supported != nil {
+		toSerialize["supported"] = o.Supported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimServiceProviderConfigResponsePatch struct {
-	Value        ScimServiceProviderConfigResponsePatch
-	ExplicitNull bool
+	value *ScimServiceProviderConfigResponsePatch
+	isSet bool
+}
+
+func (v NullableScimServiceProviderConfigResponsePatch) Get() *ScimServiceProviderConfigResponsePatch {
+	return v.value
+}
+
+func (v *NullableScimServiceProviderConfigResponsePatch) Set(val *ScimServiceProviderConfigResponsePatch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimServiceProviderConfigResponsePatch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimServiceProviderConfigResponsePatch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableScimServiceProviderConfigResponsePatch(val *ScimServiceProviderConfigResponsePatch) *NullableScimServiceProviderConfigResponsePatch {
+	return &NullableScimServiceProviderConfigResponsePatch{value: val, isSet: true}
 }
 
 func (v NullableScimServiceProviderConfigResponsePatch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimServiceProviderConfigResponsePatch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

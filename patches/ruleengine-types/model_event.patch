@@ -1,0 +1,14 @@
+@@
+@@
+-func BuildEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects []map[string]interface{}) *Event {
++func BuildEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects [][]interface{}) *Event {
+	...
+}
+
+@@
+var model identifier
+@@
+-func (o *model) GetEffectsOk() (*[]map[string]interface{}, bool) {
++func (o *model) GetEffectsOk() (*[][]interface{}, bool) {
+	...
+}

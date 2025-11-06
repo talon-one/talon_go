@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,26 @@ type CampaignBudget struct {
 	Counter float32 `json:"counter"`
 }
 
+// NewCampaignBudget instantiates a new CampaignBudget object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignBudget(action string, limit float32, counter float32) *CampaignBudget {
+	this := CampaignBudget{}
+	this.Action = action
+	this.Limit = limit
+	this.Counter = counter
+	return &this
+}
+
+// NewCampaignBudgetWithDefaults instantiates a new CampaignBudget object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignBudgetWithDefaults() *CampaignBudget {
+	this := CampaignBudget{}
+	return &this
+}
+
 // GetAction returns the Action field value
 func (o *CampaignBudget) GetAction() string {
 	if o == nil {
@@ -32,6 +51,15 @@ func (o *CampaignBudget) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *CampaignBudget) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -49,6 +77,15 @@ func (o *CampaignBudget) GetLimit() float32 {
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *CampaignBudget) GetLimitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
 func (o *CampaignBudget) SetLimit(v float32) {
 	o.Limit = v
@@ -64,30 +101,66 @@ func (o *CampaignBudget) GetCounter() float32 {
 	return o.Counter
 }
 
+// GetCounterOk returns a tuple with the Counter field value
+// and a boolean to check if the value has been set.
+func (o *CampaignBudget) GetCounterOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Counter, true
+}
+
 // SetCounter sets field value
 func (o *CampaignBudget) SetCounter(v float32) {
 	o.Counter = v
 }
 
+func (o CampaignBudget) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	if true {
+		toSerialize["counter"] = o.Counter
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignBudget struct {
-	Value        CampaignBudget
-	ExplicitNull bool
+	value *CampaignBudget
+	isSet bool
+}
+
+func (v NullableCampaignBudget) Get() *CampaignBudget {
+	return v.value
+}
+
+func (v *NullableCampaignBudget) Set(val *CampaignBudget) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignBudget) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignBudget) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignBudget(val *CampaignBudget) *NullableCampaignBudget {
+	return &NullableCampaignBudget{value: val, isSet: true}
 }
 
 func (v NullableCampaignBudget) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignBudget) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

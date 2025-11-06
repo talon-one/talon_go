@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -20,7 +19,25 @@ type ScimUsersListResponse struct {
 	// SCIM schema for the given resource.
 	Schemas *[]string `json:"schemas,omitempty"`
 	// Number of total results in the response.
-	TotalResults *int32 `json:"totalResults,omitempty"`
+	TotalResults *int64 `json:"totalResults,omitempty"`
+}
+
+// NewScimUsersListResponse instantiates a new ScimUsersListResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildScimUsersListResponse(resources []ScimUser) *ScimUsersListResponse {
+	this := ScimUsersListResponse{}
+	this.Resources = resources
+	return &this
+}
+
+// NewScimUsersListResponseWithDefaults instantiates a new ScimUsersListResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimUsersListResponseWithDefaults() *ScimUsersListResponse {
+	this := ScimUsersListResponse{}
+	return &this
 }
 
 // GetResources returns the Resources field value
@@ -31,6 +48,15 @@ func (o *ScimUsersListResponse) GetResources() []ScimUser {
 	}
 
 	return o.Resources
+}
+
+// GetResourcesOk returns a tuple with the Resources field value
+// and a boolean to check if the value has been set.
+func (o *ScimUsersListResponse) GetResourcesOk() (*[]ScimUser, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Resources, true
 }
 
 // SetResources sets field value
@@ -47,14 +73,13 @@ func (o *ScimUsersListResponse) GetSchemas() []string {
 	return *o.Schemas
 }
 
-// GetSchemasOk returns a tuple with the Schemas field value if set, zero value otherwise
+// GetSchemasOk returns a tuple with the Schemas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimUsersListResponse) GetSchemasOk() ([]string, bool) {
+func (o *ScimUsersListResponse) GetSchemasOk() (*[]string, bool) {
 	if o == nil || o.Schemas == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Schemas, true
+	return o.Schemas, true
 }
 
 // HasSchemas returns a boolean if a field has been set.
@@ -72,22 +97,21 @@ func (o *ScimUsersListResponse) SetSchemas(v []string) {
 }
 
 // GetTotalResults returns the TotalResults field value if set, zero value otherwise.
-func (o *ScimUsersListResponse) GetTotalResults() int32 {
+func (o *ScimUsersListResponse) GetTotalResults() int64 {
 	if o == nil || o.TotalResults == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TotalResults
 }
 
-// GetTotalResultsOk returns a tuple with the TotalResults field value if set, zero value otherwise
+// GetTotalResultsOk returns a tuple with the TotalResults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimUsersListResponse) GetTotalResultsOk() (int32, bool) {
+func (o *ScimUsersListResponse) GetTotalResultsOk() (*int64, bool) {
 	if o == nil || o.TotalResults == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalResults, true
+	return o.TotalResults, true
 }
 
 // HasTotalResults returns a boolean if a field has been set.
@@ -99,30 +123,57 @@ func (o *ScimUsersListResponse) HasTotalResults() bool {
 	return false
 }
 
-// SetTotalResults gets a reference to the given int32 and assigns it to the TotalResults field.
-func (o *ScimUsersListResponse) SetTotalResults(v int32) {
+// SetTotalResults gets a reference to the given int64 and assigns it to the TotalResults field.
+func (o *ScimUsersListResponse) SetTotalResults(v int64) {
 	o.TotalResults = &v
 }
 
+func (o ScimUsersListResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["Resources"] = o.Resources
+	}
+	if o.Schemas != nil {
+		toSerialize["schemas"] = o.Schemas
+	}
+	if o.TotalResults != nil {
+		toSerialize["totalResults"] = o.TotalResults
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimUsersListResponse struct {
-	Value        ScimUsersListResponse
-	ExplicitNull bool
+	value *ScimUsersListResponse
+	isSet bool
+}
+
+func (v NullableScimUsersListResponse) Get() *ScimUsersListResponse {
+	return v.value
+}
+
+func (v *NullableScimUsersListResponse) Set(val *ScimUsersListResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimUsersListResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimUsersListResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableScimUsersListResponse(val *ScimUsersListResponse) *NullableScimUsersListResponse {
+	return &NullableScimUsersListResponse{value: val, isSet: true}
 }
 
 func (v NullableScimUsersListResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimUsersListResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

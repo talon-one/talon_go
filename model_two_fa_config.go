@@ -10,20 +10,37 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// TwoFaConfig struct for TwoFaConfig
-type TwoFaConfig struct {
+// TwoFAConfig struct for TwoFAConfig
+type TwoFAConfig struct {
 	// An indication of whether two-factor authentication is enabled for the account.
 	Enabled bool `json:"enabled"`
 	// Can be `true` or `false`. - `true`: Two-factor authentication is required each time a user signs in to their Talon.One account. - `false`: Two-factor authentication is only required when a user signs in to their Talon.One account on a new device, and every 30 days after that.
 	RequireEverySignIn *bool `json:"requireEverySignIn,omitempty"`
 }
 
+// NewTwoFAConfig instantiates a new TwoFAConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildTwoFAConfig(enabled bool) *TwoFAConfig {
+	this := TwoFAConfig{}
+	this.Enabled = enabled
+	return &this
+}
+
+// NewTwoFAConfigWithDefaults instantiates a new TwoFAConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTwoFAConfigWithDefaults() *TwoFAConfig {
+	this := TwoFAConfig{}
+	return &this
+}
+
 // GetEnabled returns the Enabled field value
-func (o *TwoFaConfig) GetEnabled() bool {
+func (o *TwoFAConfig) GetEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -32,13 +49,22 @@ func (o *TwoFaConfig) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *TwoFAConfig) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
-func (o *TwoFaConfig) SetEnabled(v bool) {
+func (o *TwoFAConfig) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
 // GetRequireEverySignIn returns the RequireEverySignIn field value if set, zero value otherwise.
-func (o *TwoFaConfig) GetRequireEverySignIn() bool {
+func (o *TwoFAConfig) GetRequireEverySignIn() bool {
 	if o == nil || o.RequireEverySignIn == nil {
 		var ret bool
 		return ret
@@ -46,18 +72,17 @@ func (o *TwoFaConfig) GetRequireEverySignIn() bool {
 	return *o.RequireEverySignIn
 }
 
-// GetRequireEverySignInOk returns a tuple with the RequireEverySignIn field value if set, zero value otherwise
+// GetRequireEverySignInOk returns a tuple with the RequireEverySignIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TwoFaConfig) GetRequireEverySignInOk() (bool, bool) {
+func (o *TwoFAConfig) GetRequireEverySignInOk() (*bool, bool) {
 	if o == nil || o.RequireEverySignIn == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.RequireEverySignIn, true
+	return o.RequireEverySignIn, true
 }
 
 // HasRequireEverySignIn returns a boolean if a field has been set.
-func (o *TwoFaConfig) HasRequireEverySignIn() bool {
+func (o *TwoFAConfig) HasRequireEverySignIn() bool {
 	if o != nil && o.RequireEverySignIn != nil {
 		return true
 	}
@@ -66,29 +91,53 @@ func (o *TwoFaConfig) HasRequireEverySignIn() bool {
 }
 
 // SetRequireEverySignIn gets a reference to the given bool and assigns it to the RequireEverySignIn field.
-func (o *TwoFaConfig) SetRequireEverySignIn(v bool) {
+func (o *TwoFAConfig) SetRequireEverySignIn(v bool) {
 	o.RequireEverySignIn = &v
 }
 
-type NullableTwoFaConfig struct {
-	Value        TwoFaConfig
-	ExplicitNull bool
+func (o TwoFAConfig) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if o.RequireEverySignIn != nil {
+		toSerialize["requireEverySignIn"] = o.RequireEverySignIn
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableTwoFaConfig) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableTwoFAConfig struct {
+	value *TwoFAConfig
+	isSet bool
 }
 
-func (v *NullableTwoFaConfig) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableTwoFAConfig) Get() *TwoFAConfig {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableTwoFAConfig) Set(val *TwoFAConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTwoFAConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTwoFAConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableTwoFAConfig(val *TwoFAConfig) *NullableTwoFAConfig {
+	return &NullableTwoFAConfig{value: val, isSet: true}
+}
+
+func (v NullableTwoFAConfig) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableTwoFAConfig) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

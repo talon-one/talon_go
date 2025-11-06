@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,7 +21,24 @@ type MessageLogResponse struct {
 	// Raw response data.
 	Response *string `json:"response,omitempty"`
 	// HTTP status code of the response.
-	Status *int32 `json:"status,omitempty"`
+	Status *int64 `json:"status,omitempty"`
+}
+
+// NewMessageLogResponse instantiates a new MessageLogResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMessageLogResponse() *MessageLogResponse {
+	this := MessageLogResponse{}
+	return &this
+}
+
+// NewMessageLogResponseWithDefaults instantiates a new MessageLogResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMessageLogResponseWithDefaults() *MessageLogResponse {
+	this := MessageLogResponse{}
+	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -34,14 +50,13 @@ func (o *MessageLogResponse) GetCreatedAt() time.Time {
 	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, zero value otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogResponse) GetCreatedAtOk() (time.Time, bool) {
+func (o *MessageLogResponse) GetCreatedAtOk() (*time.Time, bool) {
 	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
@@ -67,14 +82,13 @@ func (o *MessageLogResponse) GetResponse() string {
 	return *o.Response
 }
 
-// GetResponseOk returns a tuple with the Response field value if set, zero value otherwise
+// GetResponseOk returns a tuple with the Response field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogResponse) GetResponseOk() (string, bool) {
+func (o *MessageLogResponse) GetResponseOk() (*string, bool) {
 	if o == nil || o.Response == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Response, true
+	return o.Response, true
 }
 
 // HasResponse returns a boolean if a field has been set.
@@ -92,22 +106,21 @@ func (o *MessageLogResponse) SetResponse(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *MessageLogResponse) GetStatus() int32 {
+func (o *MessageLogResponse) GetStatus() int64 {
 	if o == nil || o.Status == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogResponse) GetStatusOk() (int32, bool) {
+func (o *MessageLogResponse) GetStatusOk() (*int64, bool) {
 	if o == nil || o.Status == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -119,30 +132,57 @@ func (o *MessageLogResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *MessageLogResponse) SetStatus(v int32) {
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *MessageLogResponse) SetStatus(v int64) {
 	o.Status = &v
 }
 
+func (o MessageLogResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CreatedAt != nil {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if o.Response != nil {
+		toSerialize["response"] = o.Response
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMessageLogResponse struct {
-	Value        MessageLogResponse
-	ExplicitNull bool
+	value *MessageLogResponse
+	isSet bool
+}
+
+func (v NullableMessageLogResponse) Get() *MessageLogResponse {
+	return v.value
+}
+
+func (v *NullableMessageLogResponse) Set(val *MessageLogResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMessageLogResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMessageLogResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMessageLogResponse(val *MessageLogResponse) *NullableMessageLogResponse {
+	return &NullableMessageLogResponse{value: val, isSet: true}
 }
 
 func (v NullableMessageLogResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMessageLogResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

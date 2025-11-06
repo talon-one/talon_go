@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type AddedDeductedPointsBalancesNotificationPolicy struct {
 	Scopes []string `json:"scopes"`
 }
 
+// NewAddedDeductedPointsBalancesNotificationPolicy instantiates a new AddedDeductedPointsBalancesNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAddedDeductedPointsBalancesNotificationPolicy(name string, scopes []string) *AddedDeductedPointsBalancesNotificationPolicy {
+	this := AddedDeductedPointsBalancesNotificationPolicy{}
+	this.Name = name
+	this.Scopes = scopes
+	return &this
+}
+
+// NewAddedDeductedPointsBalancesNotificationPolicyWithDefaults instantiates a new AddedDeductedPointsBalancesNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddedDeductedPointsBalancesNotificationPolicyWithDefaults() *AddedDeductedPointsBalancesNotificationPolicy {
+	this := AddedDeductedPointsBalancesNotificationPolicy{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *AddedDeductedPointsBalancesNotificationPolicy) GetName() string {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *AddedDeductedPointsBalancesNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsBalancesNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -46,30 +73,63 @@ func (o *AddedDeductedPointsBalancesNotificationPolicy) GetScopes() []string {
 	return o.Scopes
 }
 
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsBalancesNotificationPolicy) GetScopesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scopes, true
+}
+
 // SetScopes sets field value
 func (o *AddedDeductedPointsBalancesNotificationPolicy) SetScopes(v []string) {
 	o.Scopes = v
 }
 
+func (o AddedDeductedPointsBalancesNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["scopes"] = o.Scopes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddedDeductedPointsBalancesNotificationPolicy struct {
-	Value        AddedDeductedPointsBalancesNotificationPolicy
-	ExplicitNull bool
+	value *AddedDeductedPointsBalancesNotificationPolicy
+	isSet bool
+}
+
+func (v NullableAddedDeductedPointsBalancesNotificationPolicy) Get() *AddedDeductedPointsBalancesNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableAddedDeductedPointsBalancesNotificationPolicy) Set(val *AddedDeductedPointsBalancesNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddedDeductedPointsBalancesNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddedDeductedPointsBalancesNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAddedDeductedPointsBalancesNotificationPolicy(val *AddedDeductedPointsBalancesNotificationPolicy) *NullableAddedDeductedPointsBalancesNotificationPolicy {
+	return &NullableAddedDeductedPointsBalancesNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableAddedDeductedPointsBalancesNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddedDeductedPointsBalancesNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

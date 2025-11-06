@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type NotificationActivation struct {
 	// Indicates whether the notification is activated.
 	Enabled bool `json:"enabled"`
+}
+
+// NewNotificationActivation instantiates a new NotificationActivation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNotificationActivation(enabled bool) *NotificationActivation {
+	this := NotificationActivation{}
+	this.Enabled = enabled
+	return &this
+}
+
+// NewNotificationActivationWithDefaults instantiates a new NotificationActivation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNotificationActivationWithDefaults() *NotificationActivation {
+	this := NotificationActivation{}
+	return &this
 }
 
 // GetEnabled returns the Enabled field value
@@ -30,30 +47,60 @@ func (o *NotificationActivation) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *NotificationActivation) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *NotificationActivation) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+func (o NotificationActivation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNotificationActivation struct {
-	Value        NotificationActivation
-	ExplicitNull bool
+	value *NotificationActivation
+	isSet bool
+}
+
+func (v NullableNotificationActivation) Get() *NotificationActivation {
+	return v.value
+}
+
+func (v *NullableNotificationActivation) Set(val *NotificationActivation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNotificationActivation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNotificationActivation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNotificationActivation(val *NotificationActivation) *NullableNotificationActivation {
+	return &NullableNotificationActivation{value: val, isSet: true}
 }
 
 func (v NullableNotificationActivation) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNotificationActivation) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

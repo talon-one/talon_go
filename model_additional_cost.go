@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AdditionalCost struct for AdditionalCost
 type AdditionalCost struct {
 	Price float32 `json:"price"`
+}
+
+// NewAdditionalCost instantiates a new AdditionalCost object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAdditionalCost(price float32) *AdditionalCost {
+	this := AdditionalCost{}
+	this.Price = price
+	return &this
+}
+
+// NewAdditionalCostWithDefaults instantiates a new AdditionalCost object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAdditionalCostWithDefaults() *AdditionalCost {
+	this := AdditionalCost{}
+	return &this
 }
 
 // GetPrice returns the Price field value
@@ -29,30 +46,60 @@ func (o *AdditionalCost) GetPrice() float32 {
 	return o.Price
 }
 
+// GetPriceOk returns a tuple with the Price field value
+// and a boolean to check if the value has been set.
+func (o *AdditionalCost) GetPriceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Price, true
+}
+
 // SetPrice sets field value
 func (o *AdditionalCost) SetPrice(v float32) {
 	o.Price = v
 }
 
+func (o AdditionalCost) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["price"] = o.Price
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAdditionalCost struct {
-	Value        AdditionalCost
-	ExplicitNull bool
+	value *AdditionalCost
+	isSet bool
+}
+
+func (v NullableAdditionalCost) Get() *AdditionalCost {
+	return v.value
+}
+
+func (v *NullableAdditionalCost) Set(val *AdditionalCost) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAdditionalCost) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAdditionalCost) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAdditionalCost(val *AdditionalCost) *NullableAdditionalCost {
+	return &NullableAdditionalCost{value: val, isSet: true}
 }
 
 func (v NullableAdditionalCost) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAdditionalCost) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

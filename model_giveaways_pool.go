@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,39 +17,71 @@ import (
 // GiveawaysPool Giveaways pools is an entity for managing multiple similar giveaways.
 type GiveawaysPool struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The name of this giveaways pool.
 	Name string `json:"name"`
 	// The description of this giveaways pool.
 	Description *string `json:"description,omitempty"`
 	// A list of the IDs of the applications that this giveaways pool is enabled for.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox bool `json:"sandbox"`
 	// Timestamp of the most recent update to the giveaways pool.
 	Modified *time.Time `json:"modified,omitempty"`
 	// ID of the user who created this giveaways pool.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
 	// ID of the user who last updated this giveaways pool if available.
-	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int64 `json:"modifiedBy,omitempty"`
+}
+
+// NewGiveawaysPool instantiates a new GiveawaysPool object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildGiveawaysPool(id int64, created time.Time, accountId int64, name string, sandbox bool, createdBy int64) *GiveawaysPool {
+	this := GiveawaysPool{}
+	this.Id = id
+	this.Created = created
+	this.AccountId = accountId
+	this.Name = name
+	this.Sandbox = sandbox
+	this.CreatedBy = createdBy
+	return &this
+}
+
+// NewGiveawaysPoolWithDefaults instantiates a new GiveawaysPool object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGiveawaysPoolWithDefaults() *GiveawaysPool {
+	this := GiveawaysPool{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *GiveawaysPool) GetId() int32 {
+func (o *GiveawaysPool) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *GiveawaysPool) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *GiveawaysPool) SetId(v int32) {
+func (o *GiveawaysPool) SetId(v int64) {
 	o.Id = v
 }
 
@@ -64,23 +95,41 @@ func (o *GiveawaysPool) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *GiveawaysPool) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *GiveawaysPool) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *GiveawaysPool) GetAccountId() int32 {
+func (o *GiveawaysPool) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *GiveawaysPool) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *GiveawaysPool) SetAccountId(v int32) {
+func (o *GiveawaysPool) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -92,6 +141,15 @@ func (o *GiveawaysPool) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GiveawaysPool) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -108,14 +166,13 @@ func (o *GiveawaysPool) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GiveawaysPool) GetDescriptionOk() (string, bool) {
+func (o *GiveawaysPool) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -133,22 +190,21 @@ func (o *GiveawaysPool) SetDescription(v string) {
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *GiveawaysPool) GetSubscribedApplicationsIds() []int32 {
+func (o *GiveawaysPool) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GiveawaysPool) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *GiveawaysPool) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -160,8 +216,8 @@ func (o *GiveawaysPool) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *GiveawaysPool) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *GiveawaysPool) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
@@ -173,6 +229,15 @@ func (o *GiveawaysPool) GetSandbox() bool {
 	}
 
 	return o.Sandbox
+}
+
+// GetSandboxOk returns a tuple with the Sandbox field value
+// and a boolean to check if the value has been set.
+func (o *GiveawaysPool) GetSandboxOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sandbox, true
 }
 
 // SetSandbox sets field value
@@ -189,14 +254,13 @@ func (o *GiveawaysPool) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GiveawaysPool) GetModifiedOk() (time.Time, bool) {
+func (o *GiveawaysPool) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
@@ -214,37 +278,45 @@ func (o *GiveawaysPool) SetModified(v time.Time) {
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *GiveawaysPool) GetCreatedBy() int32 {
+func (o *GiveawaysPool) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *GiveawaysPool) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *GiveawaysPool) SetCreatedBy(v int32) {
+func (o *GiveawaysPool) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *GiveawaysPool) GetModifiedBy() int32 {
+func (o *GiveawaysPool) GetModifiedBy() int64 {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ModifiedBy
 }
 
-// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, zero value otherwise
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GiveawaysPool) GetModifiedByOk() (int32, bool) {
+func (o *GiveawaysPool) GetModifiedByOk() (*int64, bool) {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedBy, true
+	return o.ModifiedBy, true
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
@@ -256,30 +328,78 @@ func (o *GiveawaysPool) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
-func (o *GiveawaysPool) SetModifiedBy(v int32) {
+// SetModifiedBy gets a reference to the given int64 and assigns it to the ModifiedBy field.
+func (o *GiveawaysPool) SetModifiedBy(v int64) {
 	o.ModifiedBy = &v
 }
 
+func (o GiveawaysPool) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if true {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.ModifiedBy != nil {
+		toSerialize["modifiedBy"] = o.ModifiedBy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGiveawaysPool struct {
-	Value        GiveawaysPool
-	ExplicitNull bool
+	value *GiveawaysPool
+	isSet bool
+}
+
+func (v NullableGiveawaysPool) Get() *GiveawaysPool {
+	return v.value
+}
+
+func (v *NullableGiveawaysPool) Set(val *GiveawaysPool) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGiveawaysPool) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGiveawaysPool) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableGiveawaysPool(val *GiveawaysPool) *NullableGiveawaysPool {
+	return &NullableGiveawaysPool{value: val, isSet: true}
 }
 
 func (v NullableGiveawaysPool) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGiveawaysPool) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

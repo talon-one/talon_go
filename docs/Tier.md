@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal ID of the tier. | 
+**Id** | Pointer to **int64** | The internal ID of the tier. | 
 **Name** | Pointer to **string** | The name of the tier. | 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Date and time when the customer moved to this tier. This value uses the loyalty program&#39;s time zone setting. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date when tier level expires in the RFC3339 format (in the Loyalty Program&#39;s timezone). | [optional] 
@@ -12,30 +12,42 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewTier
+
+`func NewTier(id int64, name string, ) *Tier`
+
+NewTier instantiates a new Tier object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewTierWithDefaults
+
+`func NewTierWithDefaults() *Tier`
+
+NewTierWithDefaults instantiates a new Tier object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetId
 
-`func (o *Tier) GetId() int32`
+`func (o *Tier) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Tier) GetIdOk() (int32, bool)`
+`func (o *Tier) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
-
-`func (o *Tier) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### SetId
 
-`func (o *Tier) SetId(v int32)`
+`func (o *Tier) SetId(v int64)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetId sets Id field to given value.
+
 
 ### GetName
 
@@ -45,22 +57,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *Tier) GetNameOk() (string, bool)`
+`func (o *Tier) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *Tier) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *Tier) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetStartDate
 
@@ -70,22 +77,22 @@ GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *Tier) GetStartDateOk() (time.Time, bool)`
+`func (o *Tier) GetStartDateOk() (*time.Time, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *Tier) SetStartDate(v time.Time)`
+
+SetStartDate sets StartDate field to given value.
 
 ### HasStartDate
 
 `func (o *Tier) HasStartDate() bool`
 
 HasStartDate returns a boolean if a field has been set.
-
-### SetStartDate
-
-`func (o *Tier) SetStartDate(v time.Time)`
-
-SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
 ### GetExpiryDate
 
@@ -95,22 +102,22 @@ GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
 
 ### GetExpiryDateOk
 
-`func (o *Tier) GetExpiryDateOk() (time.Time, bool)`
+`func (o *Tier) GetExpiryDateOk() (*time.Time, bool)`
 
 GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExpiryDate
+
+`func (o *Tier) SetExpiryDate(v time.Time)`
+
+SetExpiryDate sets ExpiryDate field to given value.
 
 ### HasExpiryDate
 
 `func (o *Tier) HasExpiryDate() bool`
 
 HasExpiryDate returns a boolean if a field has been set.
-
-### SetExpiryDate
-
-`func (o *Tier) SetExpiryDate(v time.Time)`
-
-SetExpiryDate gets a reference to the given time.Time and assigns it to the ExpiryDate field.
 
 ### GetDowngradePolicy
 
@@ -120,22 +127,22 @@ GetDowngradePolicy returns the DowngradePolicy field if non-nil, zero value othe
 
 ### GetDowngradePolicyOk
 
-`func (o *Tier) GetDowngradePolicyOk() (string, bool)`
+`func (o *Tier) GetDowngradePolicyOk() (*string, bool)`
 
 GetDowngradePolicyOk returns a tuple with the DowngradePolicy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDowngradePolicy
+
+`func (o *Tier) SetDowngradePolicy(v string)`
+
+SetDowngradePolicy sets DowngradePolicy field to given value.
 
 ### HasDowngradePolicy
 
 `func (o *Tier) HasDowngradePolicy() bool`
 
 HasDowngradePolicy returns a boolean if a field has been set.
-
-### SetDowngradePolicy
-
-`func (o *Tier) SetDowngradePolicy(v string)`
-
-SetDowngradePolicy gets a reference to the given string and assigns it to the DowngradePolicy field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

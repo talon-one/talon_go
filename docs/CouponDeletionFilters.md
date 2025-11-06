@@ -15,11 +15,28 @@ Name | Type | Description | Notes
 **ExactMatch** | Pointer to **bool** | Filter results to an exact case-insensitive matching against the coupon code | [optional] [default to false]
 **Value** | Pointer to **string** | Filter results by the coupon code | [optional] 
 **BatchId** | Pointer to **string** | Filter results by batches of coupons | [optional] 
-**ReferralId** | Pointer to **int32** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | [optional] 
+**ReferralId** | Pointer to **int64** | Filter the results by matching them with the ID of a referral. This filter shows the coupons created by redeeming a referral code. | [optional] 
 **ExpiresAfter** | Pointer to [**time.Time**](time.Time.md) | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional] 
 **ExpiresBefore** | Pointer to [**time.Time**](time.Time.md) | Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the coupon creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | [optional] 
 
 ## Methods
+
+### NewCouponDeletionFilters
+
+`func NewCouponDeletionFilters() *CouponDeletionFilters`
+
+NewCouponDeletionFilters instantiates a new CouponDeletionFilters object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCouponDeletionFiltersWithDefaults
+
+`func NewCouponDeletionFiltersWithDefaults() *CouponDeletionFilters`
+
+NewCouponDeletionFiltersWithDefaults instantiates a new CouponDeletionFilters object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetCreatedBefore
 
@@ -29,22 +46,22 @@ GetCreatedBefore returns the CreatedBefore field if non-nil, zero value otherwis
 
 ### GetCreatedBeforeOk
 
-`func (o *CouponDeletionFilters) GetCreatedBeforeOk() (time.Time, bool)`
+`func (o *CouponDeletionFilters) GetCreatedBeforeOk() (*time.Time, bool)`
 
 GetCreatedBeforeOk returns a tuple with the CreatedBefore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreatedBefore
+
+`func (o *CouponDeletionFilters) SetCreatedBefore(v time.Time)`
+
+SetCreatedBefore sets CreatedBefore field to given value.
 
 ### HasCreatedBefore
 
 `func (o *CouponDeletionFilters) HasCreatedBefore() bool`
 
 HasCreatedBefore returns a boolean if a field has been set.
-
-### SetCreatedBefore
-
-`func (o *CouponDeletionFilters) SetCreatedBefore(v time.Time)`
-
-SetCreatedBefore gets a reference to the given time.Time and assigns it to the CreatedBefore field.
 
 ### GetCreatedAfter
 
@@ -54,22 +71,22 @@ GetCreatedAfter returns the CreatedAfter field if non-nil, zero value otherwise.
 
 ### GetCreatedAfterOk
 
-`func (o *CouponDeletionFilters) GetCreatedAfterOk() (time.Time, bool)`
+`func (o *CouponDeletionFilters) GetCreatedAfterOk() (*time.Time, bool)`
 
 GetCreatedAfterOk returns a tuple with the CreatedAfter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreatedAfter
+
+`func (o *CouponDeletionFilters) SetCreatedAfter(v time.Time)`
+
+SetCreatedAfter sets CreatedAfter field to given value.
 
 ### HasCreatedAfter
 
 `func (o *CouponDeletionFilters) HasCreatedAfter() bool`
 
 HasCreatedAfter returns a boolean if a field has been set.
-
-### SetCreatedAfter
-
-`func (o *CouponDeletionFilters) SetCreatedAfter(v time.Time)`
-
-SetCreatedAfter gets a reference to the given time.Time and assigns it to the CreatedAfter field.
 
 ### GetStartsAfter
 
@@ -79,22 +96,22 @@ GetStartsAfter returns the StartsAfter field if non-nil, zero value otherwise.
 
 ### GetStartsAfterOk
 
-`func (o *CouponDeletionFilters) GetStartsAfterOk() (time.Time, bool)`
+`func (o *CouponDeletionFilters) GetStartsAfterOk() (*time.Time, bool)`
 
 GetStartsAfterOk returns a tuple with the StartsAfter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStartsAfter
+
+`func (o *CouponDeletionFilters) SetStartsAfter(v time.Time)`
+
+SetStartsAfter sets StartsAfter field to given value.
 
 ### HasStartsAfter
 
 `func (o *CouponDeletionFilters) HasStartsAfter() bool`
 
 HasStartsAfter returns a boolean if a field has been set.
-
-### SetStartsAfter
-
-`func (o *CouponDeletionFilters) SetStartsAfter(v time.Time)`
-
-SetStartsAfter gets a reference to the given time.Time and assigns it to the StartsAfter field.
 
 ### GetStartsBefore
 
@@ -104,22 +121,22 @@ GetStartsBefore returns the StartsBefore field if non-nil, zero value otherwise.
 
 ### GetStartsBeforeOk
 
-`func (o *CouponDeletionFilters) GetStartsBeforeOk() (time.Time, bool)`
+`func (o *CouponDeletionFilters) GetStartsBeforeOk() (*time.Time, bool)`
 
 GetStartsBeforeOk returns a tuple with the StartsBefore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStartsBefore
+
+`func (o *CouponDeletionFilters) SetStartsBefore(v time.Time)`
+
+SetStartsBefore sets StartsBefore field to given value.
 
 ### HasStartsBefore
 
 `func (o *CouponDeletionFilters) HasStartsBefore() bool`
 
 HasStartsBefore returns a boolean if a field has been set.
-
-### SetStartsBefore
-
-`func (o *CouponDeletionFilters) SetStartsBefore(v time.Time)`
-
-SetStartsBefore gets a reference to the given time.Time and assigns it to the StartsBefore field.
 
 ### GetValid
 
@@ -129,22 +146,22 @@ GetValid returns the Valid field if non-nil, zero value otherwise.
 
 ### GetValidOk
 
-`func (o *CouponDeletionFilters) GetValidOk() (string, bool)`
+`func (o *CouponDeletionFilters) GetValidOk() (*string, bool)`
 
 GetValidOk returns a tuple with the Valid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValid
+
+`func (o *CouponDeletionFilters) SetValid(v string)`
+
+SetValid sets Valid field to given value.
 
 ### HasValid
 
 `func (o *CouponDeletionFilters) HasValid() bool`
 
 HasValid returns a boolean if a field has been set.
-
-### SetValid
-
-`func (o *CouponDeletionFilters) SetValid(v string)`
-
-SetValid gets a reference to the given string and assigns it to the Valid field.
 
 ### GetUsable
 
@@ -154,22 +171,22 @@ GetUsable returns the Usable field if non-nil, zero value otherwise.
 
 ### GetUsableOk
 
-`func (o *CouponDeletionFilters) GetUsableOk() (bool, bool)`
+`func (o *CouponDeletionFilters) GetUsableOk() (*bool, bool)`
 
 GetUsableOk returns a tuple with the Usable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetUsable
+
+`func (o *CouponDeletionFilters) SetUsable(v bool)`
+
+SetUsable sets Usable field to given value.
 
 ### HasUsable
 
 `func (o *CouponDeletionFilters) HasUsable() bool`
 
 HasUsable returns a boolean if a field has been set.
-
-### SetUsable
-
-`func (o *CouponDeletionFilters) SetUsable(v bool)`
-
-SetUsable gets a reference to the given bool and assigns it to the Usable field.
 
 ### GetRedeemed
 
@@ -179,22 +196,22 @@ GetRedeemed returns the Redeemed field if non-nil, zero value otherwise.
 
 ### GetRedeemedOk
 
-`func (o *CouponDeletionFilters) GetRedeemedOk() (bool, bool)`
+`func (o *CouponDeletionFilters) GetRedeemedOk() (*bool, bool)`
 
 GetRedeemedOk returns a tuple with the Redeemed field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRedeemed
+
+`func (o *CouponDeletionFilters) SetRedeemed(v bool)`
+
+SetRedeemed sets Redeemed field to given value.
 
 ### HasRedeemed
 
 `func (o *CouponDeletionFilters) HasRedeemed() bool`
 
 HasRedeemed returns a boolean if a field has been set.
-
-### SetRedeemed
-
-`func (o *CouponDeletionFilters) SetRedeemed(v bool)`
-
-SetRedeemed gets a reference to the given bool and assigns it to the Redeemed field.
 
 ### GetRecipientIntegrationId
 
@@ -204,22 +221,22 @@ GetRecipientIntegrationId returns the RecipientIntegrationId field if non-nil, z
 
 ### GetRecipientIntegrationIdOk
 
-`func (o *CouponDeletionFilters) GetRecipientIntegrationIdOk() (string, bool)`
+`func (o *CouponDeletionFilters) GetRecipientIntegrationIdOk() (*string, bool)`
 
 GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRecipientIntegrationId
+
+`func (o *CouponDeletionFilters) SetRecipientIntegrationId(v string)`
+
+SetRecipientIntegrationId sets RecipientIntegrationId field to given value.
 
 ### HasRecipientIntegrationId
 
 `func (o *CouponDeletionFilters) HasRecipientIntegrationId() bool`
 
 HasRecipientIntegrationId returns a boolean if a field has been set.
-
-### SetRecipientIntegrationId
-
-`func (o *CouponDeletionFilters) SetRecipientIntegrationId(v string)`
-
-SetRecipientIntegrationId gets a reference to the given string and assigns it to the RecipientIntegrationId field.
 
 ### GetExactMatch
 
@@ -229,22 +246,22 @@ GetExactMatch returns the ExactMatch field if non-nil, zero value otherwise.
 
 ### GetExactMatchOk
 
-`func (o *CouponDeletionFilters) GetExactMatchOk() (bool, bool)`
+`func (o *CouponDeletionFilters) GetExactMatchOk() (*bool, bool)`
 
 GetExactMatchOk returns a tuple with the ExactMatch field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExactMatch
+
+`func (o *CouponDeletionFilters) SetExactMatch(v bool)`
+
+SetExactMatch sets ExactMatch field to given value.
 
 ### HasExactMatch
 
 `func (o *CouponDeletionFilters) HasExactMatch() bool`
 
 HasExactMatch returns a boolean if a field has been set.
-
-### SetExactMatch
-
-`func (o *CouponDeletionFilters) SetExactMatch(v bool)`
-
-SetExactMatch gets a reference to the given bool and assigns it to the ExactMatch field.
 
 ### GetValue
 
@@ -254,22 +271,22 @@ GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *CouponDeletionFilters) GetValueOk() (string, bool)`
+`func (o *CouponDeletionFilters) GetValueOk() (*string, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetValue
+
+`func (o *CouponDeletionFilters) SetValue(v string)`
+
+SetValue sets Value field to given value.
 
 ### HasValue
 
 `func (o *CouponDeletionFilters) HasValue() bool`
 
 HasValue returns a boolean if a field has been set.
-
-### SetValue
-
-`func (o *CouponDeletionFilters) SetValue(v string)`
-
-SetValue gets a reference to the given string and assigns it to the Value field.
 
 ### GetBatchId
 
@@ -279,10 +296,16 @@ GetBatchId returns the BatchId field if non-nil, zero value otherwise.
 
 ### GetBatchIdOk
 
-`func (o *CouponDeletionFilters) GetBatchIdOk() (string, bool)`
+`func (o *CouponDeletionFilters) GetBatchIdOk() (*string, bool)`
 
 GetBatchIdOk returns a tuple with the BatchId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetBatchId
+
+`func (o *CouponDeletionFilters) SetBatchId(v string)`
+
+SetBatchId sets BatchId field to given value.
 
 ### HasBatchId
 
@@ -290,36 +313,30 @@ and a boolean to check if the value has been set.
 
 HasBatchId returns a boolean if a field has been set.
 
-### SetBatchId
-
-`func (o *CouponDeletionFilters) SetBatchId(v string)`
-
-SetBatchId gets a reference to the given string and assigns it to the BatchId field.
-
 ### GetReferralId
 
-`func (o *CouponDeletionFilters) GetReferralId() int32`
+`func (o *CouponDeletionFilters) GetReferralId() int64`
 
 GetReferralId returns the ReferralId field if non-nil, zero value otherwise.
 
 ### GetReferralIdOk
 
-`func (o *CouponDeletionFilters) GetReferralIdOk() (int32, bool)`
+`func (o *CouponDeletionFilters) GetReferralIdOk() (*int64, bool)`
 
 GetReferralIdOk returns a tuple with the ReferralId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetReferralId
+
+`func (o *CouponDeletionFilters) SetReferralId(v int64)`
+
+SetReferralId sets ReferralId field to given value.
 
 ### HasReferralId
 
 `func (o *CouponDeletionFilters) HasReferralId() bool`
 
 HasReferralId returns a boolean if a field has been set.
-
-### SetReferralId
-
-`func (o *CouponDeletionFilters) SetReferralId(v int32)`
-
-SetReferralId gets a reference to the given int32 and assigns it to the ReferralId field.
 
 ### GetExpiresAfter
 
@@ -329,22 +346,22 @@ GetExpiresAfter returns the ExpiresAfter field if non-nil, zero value otherwise.
 
 ### GetExpiresAfterOk
 
-`func (o *CouponDeletionFilters) GetExpiresAfterOk() (time.Time, bool)`
+`func (o *CouponDeletionFilters) GetExpiresAfterOk() (*time.Time, bool)`
 
 GetExpiresAfterOk returns a tuple with the ExpiresAfter field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExpiresAfter
+
+`func (o *CouponDeletionFilters) SetExpiresAfter(v time.Time)`
+
+SetExpiresAfter sets ExpiresAfter field to given value.
 
 ### HasExpiresAfter
 
 `func (o *CouponDeletionFilters) HasExpiresAfter() bool`
 
 HasExpiresAfter returns a boolean if a field has been set.
-
-### SetExpiresAfter
-
-`func (o *CouponDeletionFilters) SetExpiresAfter(v time.Time)`
-
-SetExpiresAfter gets a reference to the given time.Time and assigns it to the ExpiresAfter field.
 
 ### GetExpiresBefore
 
@@ -354,22 +371,22 @@ GetExpiresBefore returns the ExpiresBefore field if non-nil, zero value otherwis
 
 ### GetExpiresBeforeOk
 
-`func (o *CouponDeletionFilters) GetExpiresBeforeOk() (time.Time, bool)`
+`func (o *CouponDeletionFilters) GetExpiresBeforeOk() (*time.Time, bool)`
 
 GetExpiresBeforeOk returns a tuple with the ExpiresBefore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetExpiresBefore
+
+`func (o *CouponDeletionFilters) SetExpiresBefore(v time.Time)`
+
+SetExpiresBefore sets ExpiresBefore field to given value.
 
 ### HasExpiresBefore
 
 `func (o *CouponDeletionFilters) HasExpiresBefore() bool`
 
 HasExpiresBefore returns a boolean if a field has been set.
-
-### SetExpiresBefore
-
-`func (o *CouponDeletionFilters) SetExpiresBefore(v time.Time)`
-
-SetExpiresBefore gets a reference to the given time.Time and assigns it to the ExpiresBefore field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

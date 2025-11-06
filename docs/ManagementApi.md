@@ -120,8 +120,6 @@ Method | HTTP request | Description
 [**GetUser**](ManagementApi.md#GetUser) | **Get** /v1/users/{userId} | Get user
 [**GetUsers**](ManagementApi.md#GetUsers) | **Get** /v1/users | List users in account
 [**GetWebhook**](ManagementApi.md#GetWebhook) | **Get** /v1/webhooks/{webhookId} | Get webhook
-[**GetWebhookActivationLogs**](ManagementApi.md#GetWebhookActivationLogs) | **Get** /v1/webhook_activation_logs | List webhook activation log entries
-[**GetWebhookLogs**](ManagementApi.md#GetWebhookLogs) | **Get** /v1/webhook_logs | List webhook log entries
 [**GetWebhooks**](ManagementApi.md#GetWebhooks) | **Get** /v1/webhooks | List webhooks
 [**ImportAccountCollection**](ManagementApi.md#ImportAccountCollection) | **Post** /v1/collections/{collectionId}/import | Import data into existing account-level collection
 [**ImportAllowedList**](ManagementApi.md#ImportAllowedList) | **Post** /v1/attributes/{attributeId}/allowed_list/import | Import allowed values for attribute
@@ -204,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -240,7 +238,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -276,7 +274,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -312,7 +310,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -346,7 +344,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -382,7 +380,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -416,7 +414,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -450,7 +448,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -485,7 +483,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -520,7 +518,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -556,7 +554,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -592,7 +590,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -633,7 +631,7 @@ Name | Type | Description  | Notes
 
 
 
- **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
+ **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to &quot;yes&quot;]
 
 ### Return type
 
@@ -641,7 +639,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -677,7 +675,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -713,7 +711,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -754,7 +752,7 @@ Name | Type | Description  | Notes
 
 
 
- **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to yes]
+ **silent** | **optional.**| Possible values: &#x60;yes&#x60; or &#x60;no&#x60;. - &#x60;yes&#x60;: Increases the performance of the API call by returning a 204 response. - &#x60;no&#x60;: Returns a 200 response that contains the updated customer profiles.  | [default to &quot;yes&quot;]
 
 ### Return type
 
@@ -762,7 +760,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -796,7 +794,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -830,7 +828,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -864,7 +862,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -898,7 +896,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -933,7 +931,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -967,7 +965,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1003,7 +1001,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1037,7 +1035,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1073,7 +1071,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1108,7 +1106,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1156,7 +1154,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1192,7 +1190,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1228,7 +1226,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1287,7 +1285,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1322,7 +1320,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1358,7 +1356,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1393,7 +1391,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1427,7 +1425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1461,7 +1459,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1491,7 +1489,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1526,7 +1524,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1560,7 +1558,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1596,7 +1594,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1630,7 +1628,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1678,7 +1676,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1713,7 +1711,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1749,7 +1747,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1807,7 +1805,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1856,7 +1854,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1902,7 +1900,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1950,7 +1948,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -1995,7 +1993,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2040,7 +2038,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2085,7 +2083,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2136,7 +2134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2184,7 +2182,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2202,7 +2200,7 @@ Name | Type | Description  | Notes
 
 Export customer's transaction logs
 
-Download a CSV file containing a customer's transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. 
+Download a CSV file containing a customer's transaction logs in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. 
 
 ### Required Parameters
 
@@ -2235,7 +2233,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2281,7 +2279,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2332,7 +2330,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2386,7 +2384,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2420,7 +2418,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2454,7 +2452,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2488,7 +2486,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2524,7 +2522,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2558,7 +2556,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2603,7 +2601,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2637,7 +2635,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2671,7 +2669,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2706,7 +2704,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2756,7 +2754,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2804,7 +2802,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2853,7 +2851,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2900,7 +2898,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2951,6 +2949,7 @@ Name | Type | Description  | Notes
  **referralCode** | **optional.**| Referral code | 
  **ruleQuery** | **optional.**| Rule name filter for events | 
  **campaignQuery** | **optional.**| Campaign name filter for events | 
+ **effectType** | **optional.**| The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 
 ### Return type
 
@@ -2958,7 +2957,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -2993,7 +2992,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3048,7 +3047,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3093,7 +3092,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3127,7 +3126,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3166,6 +3165,10 @@ Name | Type | Description  | Notes
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **entity** | **optional.**| Returned attributes will be filtered by supplied entity. | 
+ **applicationIds** | **optional.**| Returned attributes will be filtered by supplied application ids | 
+ **type_** | **optional.**| Returned attributes will be filtered by supplied type | 
+ **kind** | **optional.**| Returned attributes will be filtered by supplied kind (builtin or custom) | 
+ **search** | **optional.**| Returned attributes will be filtered by searching case insensitive through Attribute name, description and type | 
 
 ### Return type
 
@@ -3173,7 +3176,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3221,7 +3224,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3267,7 +3270,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3312,7 +3315,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3347,7 +3350,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3398,7 +3401,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3448,7 +3451,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3482,7 +3485,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3527,7 +3530,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3576,7 +3579,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3631,7 +3634,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3645,7 +3648,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20044 GetChanges(ctx, optional)
+> InlineResponse20042 GetChanges(ctx, optional)
 
 Get audit logs for an account
 
@@ -3680,11 +3683,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**InlineResponse20042**](InlineResponse20042.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3720,7 +3723,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3766,7 +3769,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3830,7 +3833,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3882,7 +3885,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3937,7 +3940,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -3986,7 +3989,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4020,7 +4023,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4034,7 +4037,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfileAchievementProgress
 
-> InlineResponse20051 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
+> InlineResponse20049 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
 
 List customer achievements
 
@@ -4066,11 +4069,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20051**](InlineResponse20051.md)
+[**InlineResponse20049**](InlineResponse20049.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4115,7 +4118,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4162,7 +4165,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4211,7 +4214,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4225,7 +4228,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20042 GetEventTypes(ctx, optional)
+> InlineResponse20040 GetEventTypes(ctx, optional)
 
 List event types
 
@@ -4254,11 +4257,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**InlineResponse20040**](InlineResponse20040.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4272,7 +4275,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20045 GetExports(ctx, optional)
+> InlineResponse20043 GetExports(ctx, optional)
 
 Get exports
 
@@ -4301,11 +4304,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20043**](InlineResponse20043.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4340,7 +4343,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4384,6 +4387,8 @@ Name | Type | Description  | Notes
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **subledgerId** | **optional.**| The ID of the subledger by which we filter the data. | 
+ **customerSessionIDs** | [**optional.Interface of []string**](string.md)| Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | 
+ **transactionUUIDs** | [**optional.Interface of []string**](string.md)| Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | 
 
 ### Return type
 
@@ -4391,7 +4396,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4441,7 +4446,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4476,7 +4481,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4510,7 +4515,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4549,10 +4554,13 @@ Name | Type | Description  | Notes
 
  **loyaltyTransactionType** | **optional.**| Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
  **subledgerId** | **optional.**| The ID of the subledger by which we filter the data. | 
+ **customerSessionIDs** | [**optional.Interface of []string**](string.md)| Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | 
+ **transactionUUIDs** | [**optional.Interface of []string**](string.md)| Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | 
  **startDate** | **optional.**| Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **endDate** | **optional.**| Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **pageSize** | **optional.**| The number of items in the response. | [default to 50]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
+ **awaitsActivation** | **optional.**| If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | 
 
 ### Return type
 
@@ -4560,7 +4568,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4590,7 +4598,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4624,7 +4632,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4664,8 +4672,8 @@ Name | Type | Description  | Notes
  **messageID** | **optional.**| Filter results by message ID. | 
  **changeType** | **optional.**| Filter results by change type. | 
  **notificationIDs** | **optional.**| Filter results by notification ID (include up to 30 values, separated by a comma). | 
- **createdBefore** | **optional.**| Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
- **createdAfter** | **optional.**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **createdBefore** | **optional.**| Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. Use UTC time. | 
+ **createdAfter** | **optional.**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. Use UTC time. | 
  **cursor** | **optional.**| A specific unique value in the database. If this value is not given, the server fetches results starting with the first record.  | 
  **period** | **optional.**| Filter results by time period. Choose between the available relative time frames.  | 
  **isSuccessful** | **optional.**| Indicates whether to return log entries with either successful or unsuccessful HTTP response codes. When set to&#x60;true&#x60;, only log entries with &#x60;2xx&#x60; response codes are returned. When set to &#x60;false&#x60;, only log entries with &#x60;4xx&#x60; and &#x60;5xx&#x60; response codes are returned.  | 
@@ -4681,7 +4689,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4736,7 +4744,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4770,7 +4778,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4806,7 +4814,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4855,7 +4863,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4890,7 +4898,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4924,7 +4932,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -4938,7 +4946,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20043 GetUsers(ctx, optional)
+> InlineResponse20041 GetUsers(ctx, optional)
 
 List users in account
 
@@ -4965,11 +4973,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**InlineResponse20041**](InlineResponse20041.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5003,110 +5011,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetWebhookActivationLogs
-
-> InlineResponse20040 GetWebhookActivationLogs(ctx, optional)
-
-List webhook activation log entries
-
-Webhook activation log entries are created as soon as an integration request triggers a webhook effect. See the [docs](https://docs.talon.one/docs/dev/getting-started/webhooks). 
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetWebhookActivationLogsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GetWebhookActivationLogsOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
- **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
- **integrationRequestUuid** | **optional.**| Filter results by integration request UUID. | 
- **webhookId** | **optional.**| Filter results by webhook id. | 
- **applicationId** | **optional.**| Filter results by Application ID. | 
- **campaignId** | **optional.**| Filter results by campaign ID. | 
- **createdBefore** | **optional.**| Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
- **createdAfter** | **optional.**| Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
-
-### Return type
-
-[**InlineResponse20040**](InlineResponse20040.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetWebhookLogs
-
-> InlineResponse20041 GetWebhookLogs(ctx, optional)
-
-List webhook log entries
-
-Retrieve all webhook log entries.
-
-### Required Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **optional** | ***GetWebhookLogsOpts** | optional parameters | nil if no parameters
-
-### Optional Parameters
-
-Optional parameters are passed through a pointer to a GetWebhookLogsOpts struct
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
- **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
- **status** | **optional.**| Filter results by HTTP status codes. | 
- **webhookId** | **optional.**| Filter results by webhook id. | 
- **applicationId** | **optional.**| Filter results by Application ID. | 
- **campaignId** | **optional.**| Filter results by campaign ID. | 
- **requestUuid** | **optional.**| Filter results by request UUID. | 
- **createdBefore** | **optional.**| Filter results where request and response times to return entries before parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
- **createdAfter** | **optional.**| Filter results where request and response times to return entries after parameter value, expected to be an RFC3339 timestamp string. You can use any time zone setting. Talon.One will convert to UTC internally. | 
-
-### Return type
-
-[**InlineResponse20041**](InlineResponse20041.md)
-
-### Authorization
-
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5156,7 +5061,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5201,7 +5106,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5246,7 +5151,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5291,7 +5196,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5340,7 +5245,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5387,7 +5292,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5436,7 +5341,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5484,7 +5389,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5529,7 +5434,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5574,7 +5479,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5592,7 +5497,7 @@ Name | Type | Description  | Notes
 
 Import loyalty points
 
-Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    **Note**: It must be an RFC3339 timestamp string or string `immediate`. Empty or missing values are considered `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
+Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
 
 ### Required Parameters
 
@@ -5620,7 +5525,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5665,7 +5570,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5712,7 +5617,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5746,7 +5651,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5793,7 +5698,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5807,7 +5712,7 @@ Name | Type | Description  | Notes
 
 ## ListAchievements
 
-> InlineResponse20050 ListAchievements(ctx, applicationId, campaignId, optional)
+> InlineResponse20048 ListAchievements(ctx, applicationId, campaignId, optional)
 
 List achievements
 
@@ -5838,11 +5743,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20050**](InlineResponse20050.md)
+[**InlineResponse20048**](InlineResponse20048.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5856,7 +5761,7 @@ Name | Type | Description  | Notes
 
 ## ListAllRolesV2
 
-> InlineResponse20046 ListAllRolesV2(ctx, )
+> InlineResponse20044 ListAllRolesV2(ctx, )
 
 List roles
 
@@ -5868,11 +5773,11 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**InlineResponse20044**](InlineResponse20044.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5886,7 +5791,7 @@ This endpoint does not need any parameter.
 
 ## ListCampaignStoreBudgetLimits
 
-> InlineResponse20048 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
+> InlineResponse20046 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
 
 List campaign store budget limits
 
@@ -5916,11 +5821,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+[**InlineResponse20046**](InlineResponse20046.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -5969,7 +5874,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6020,7 +5925,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6069,7 +5974,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6083,7 +5988,7 @@ Name | Type | Description  | Notes
 
 ## ListStores
 
-> InlineResponse20047 ListStores(ctx, applicationId, optional)
+> InlineResponse20045 ListStores(ctx, applicationId, optional)
 
 List stores
 
@@ -6117,11 +6022,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20047**](InlineResponse20047.md)
+[**InlineResponse20045**](InlineResponse20045.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6151,7 +6056,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6187,7 +6092,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6221,7 +6126,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6255,7 +6160,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6289,7 +6194,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6323,7 +6228,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6357,7 +6262,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6391,7 +6296,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6421,7 +6326,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6451,7 +6356,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6481,7 +6386,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6511,7 +6416,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6545,7 +6450,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6575,7 +6480,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6610,7 +6515,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6645,7 +6550,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6680,7 +6585,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6715,7 +6620,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6774,7 +6679,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6834,7 +6739,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6848,7 +6753,7 @@ Name | Type | Description  | Notes
 
 ## SummarizeCampaignStoreBudget
 
-> InlineResponse20049 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
+> InlineResponse20047 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
 
 Get summary of campaign store budgets
 
@@ -6865,11 +6770,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**InlineResponse20047**](InlineResponse20047.md)
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6905,7 +6810,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6940,7 +6845,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -6977,7 +6882,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7012,7 +6917,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7047,7 +6952,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7083,7 +6988,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7120,7 +7025,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7157,7 +7062,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7193,7 +7098,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7229,7 +7134,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7266,7 +7171,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7301,7 +7206,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7337,7 +7242,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 
@@ -7372,7 +7277,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
 
 ### HTTP request headers
 

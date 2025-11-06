@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,6 +27,26 @@ type CustomerProfileIntegrationResponseV2 struct {
 	CreatedReferrals []Referral `json:"createdReferrals"`
 }
 
+// NewCustomerProfileIntegrationResponseV2 instantiates a new CustomerProfileIntegrationResponseV2 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerProfileIntegrationResponseV2(effects []Effect, createdCoupons []Coupon, createdReferrals []Referral) *CustomerProfileIntegrationResponseV2 {
+	this := CustomerProfileIntegrationResponseV2{}
+	this.Effects = effects
+	this.CreatedCoupons = createdCoupons
+	this.CreatedReferrals = createdReferrals
+	return &this
+}
+
+// NewCustomerProfileIntegrationResponseV2WithDefaults instantiates a new CustomerProfileIntegrationResponseV2 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileIntegrationResponseV2WithDefaults() *CustomerProfileIntegrationResponseV2 {
+	this := CustomerProfileIntegrationResponseV2{}
+	return &this
+}
+
 // GetCustomerProfile returns the CustomerProfile field value if set, zero value otherwise.
 func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfile() CustomerProfile {
 	if o == nil || o.CustomerProfile == nil {
@@ -37,14 +56,13 @@ func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfile() CustomerProf
 	return *o.CustomerProfile
 }
 
-// GetCustomerProfileOk returns a tuple with the CustomerProfile field value if set, zero value otherwise
+// GetCustomerProfileOk returns a tuple with the CustomerProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfileOk() (CustomerProfile, bool) {
+func (o *CustomerProfileIntegrationResponseV2) GetCustomerProfileOk() (*CustomerProfile, bool) {
 	if o == nil || o.CustomerProfile == nil {
-		var ret CustomerProfile
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerProfile, true
+	return o.CustomerProfile, true
 }
 
 // HasCustomerProfile returns a boolean if a field has been set.
@@ -70,14 +88,13 @@ func (o *CustomerProfileIntegrationResponseV2) GetEvent() Event {
 	return *o.Event
 }
 
-// GetEventOk returns a tuple with the Event field value if set, zero value otherwise
+// GetEventOk returns a tuple with the Event field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationResponseV2) GetEventOk() (Event, bool) {
+func (o *CustomerProfileIntegrationResponseV2) GetEventOk() (*Event, bool) {
 	if o == nil || o.Event == nil {
-		var ret Event
-		return ret, false
+		return nil, false
 	}
-	return *o.Event, true
+	return o.Event, true
 }
 
 // HasEvent returns a boolean if a field has been set.
@@ -103,14 +120,13 @@ func (o *CustomerProfileIntegrationResponseV2) GetLoyalty() Loyalty {
 	return *o.Loyalty
 }
 
-// GetLoyaltyOk returns a tuple with the Loyalty field value if set, zero value otherwise
+// GetLoyaltyOk returns a tuple with the Loyalty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationResponseV2) GetLoyaltyOk() (Loyalty, bool) {
+func (o *CustomerProfileIntegrationResponseV2) GetLoyaltyOk() (*Loyalty, bool) {
 	if o == nil || o.Loyalty == nil {
-		var ret Loyalty
-		return ret, false
+		return nil, false
 	}
-	return *o.Loyalty, true
+	return o.Loyalty, true
 }
 
 // HasLoyalty returns a boolean if a field has been set.
@@ -136,14 +152,13 @@ func (o *CustomerProfileIntegrationResponseV2) GetTriggeredCampaigns() []Campaig
 	return *o.TriggeredCampaigns
 }
 
-// GetTriggeredCampaignsOk returns a tuple with the TriggeredCampaigns field value if set, zero value otherwise
+// GetTriggeredCampaignsOk returns a tuple with the TriggeredCampaigns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationResponseV2) GetTriggeredCampaignsOk() ([]Campaign, bool) {
+func (o *CustomerProfileIntegrationResponseV2) GetTriggeredCampaignsOk() (*[]Campaign, bool) {
 	if o == nil || o.TriggeredCampaigns == nil {
-		var ret []Campaign
-		return ret, false
+		return nil, false
 	}
-	return *o.TriggeredCampaigns, true
+	return o.TriggeredCampaigns, true
 }
 
 // HasTriggeredCampaigns returns a boolean if a field has been set.
@@ -169,14 +184,13 @@ func (o *CustomerProfileIntegrationResponseV2) GetRuleFailureReasons() []RuleFai
 	return *o.RuleFailureReasons
 }
 
-// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, zero value otherwise
+// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationResponseV2) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool) {
+func (o *CustomerProfileIntegrationResponseV2) GetRuleFailureReasonsOk() (*[]RuleFailureReason, bool) {
 	if o == nil || o.RuleFailureReasons == nil {
-		var ret []RuleFailureReason
-		return ret, false
+		return nil, false
 	}
-	return *o.RuleFailureReasons, true
+	return o.RuleFailureReasons, true
 }
 
 // HasRuleFailureReasons returns a boolean if a field has been set.
@@ -202,14 +216,13 @@ func (o *CustomerProfileIntegrationResponseV2) GetAwardedGiveaways() []Giveaway 
 	return *o.AwardedGiveaways
 }
 
-// GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field value if set, zero value otherwise
+// GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationResponseV2) GetAwardedGiveawaysOk() ([]Giveaway, bool) {
+func (o *CustomerProfileIntegrationResponseV2) GetAwardedGiveawaysOk() (*[]Giveaway, bool) {
 	if o == nil || o.AwardedGiveaways == nil {
-		var ret []Giveaway
-		return ret, false
+		return nil, false
 	}
-	return *o.AwardedGiveaways, true
+	return o.AwardedGiveaways, true
 }
 
 // HasAwardedGiveaways returns a boolean if a field has been set.
@@ -236,6 +249,15 @@ func (o *CustomerProfileIntegrationResponseV2) GetEffects() []Effect {
 	return o.Effects
 }
 
+// GetEffectsOk returns a tuple with the Effects field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileIntegrationResponseV2) GetEffectsOk() (*[]Effect, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Effects, true
+}
+
 // SetEffects sets field value
 func (o *CustomerProfileIntegrationResponseV2) SetEffects(v []Effect) {
 	o.Effects = v
@@ -249,6 +271,15 @@ func (o *CustomerProfileIntegrationResponseV2) GetCreatedCoupons() []Coupon {
 	}
 
 	return o.CreatedCoupons
+}
+
+// GetCreatedCouponsOk returns a tuple with the CreatedCoupons field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileIntegrationResponseV2) GetCreatedCouponsOk() (*[]Coupon, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedCoupons, true
 }
 
 // SetCreatedCoupons sets field value
@@ -266,30 +297,84 @@ func (o *CustomerProfileIntegrationResponseV2) GetCreatedReferrals() []Referral 
 	return o.CreatedReferrals
 }
 
+// GetCreatedReferralsOk returns a tuple with the CreatedReferrals field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileIntegrationResponseV2) GetCreatedReferralsOk() (*[]Referral, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedReferrals, true
+}
+
 // SetCreatedReferrals sets field value
 func (o *CustomerProfileIntegrationResponseV2) SetCreatedReferrals(v []Referral) {
 	o.CreatedReferrals = v
 }
 
+func (o CustomerProfileIntegrationResponseV2) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CustomerProfile != nil {
+		toSerialize["customerProfile"] = o.CustomerProfile
+	}
+	if o.Event != nil {
+		toSerialize["event"] = o.Event
+	}
+	if o.Loyalty != nil {
+		toSerialize["loyalty"] = o.Loyalty
+	}
+	if o.TriggeredCampaigns != nil {
+		toSerialize["triggeredCampaigns"] = o.TriggeredCampaigns
+	}
+	if o.RuleFailureReasons != nil {
+		toSerialize["ruleFailureReasons"] = o.RuleFailureReasons
+	}
+	if o.AwardedGiveaways != nil {
+		toSerialize["awardedGiveaways"] = o.AwardedGiveaways
+	}
+	if true {
+		toSerialize["effects"] = o.Effects
+	}
+	if true {
+		toSerialize["createdCoupons"] = o.CreatedCoupons
+	}
+	if true {
+		toSerialize["createdReferrals"] = o.CreatedReferrals
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileIntegrationResponseV2 struct {
-	Value        CustomerProfileIntegrationResponseV2
-	ExplicitNull bool
+	value *CustomerProfileIntegrationResponseV2
+	isSet bool
+}
+
+func (v NullableCustomerProfileIntegrationResponseV2) Get() *CustomerProfileIntegrationResponseV2 {
+	return v.value
+}
+
+func (v *NullableCustomerProfileIntegrationResponseV2) Set(val *CustomerProfileIntegrationResponseV2) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileIntegrationResponseV2) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileIntegrationResponseV2) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerProfileIntegrationResponseV2(val *CustomerProfileIntegrationResponseV2) *NullableCustomerProfileIntegrationResponseV2 {
+	return &NullableCustomerProfileIntegrationResponseV2{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileIntegrationResponseV2) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileIntegrationResponseV2) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

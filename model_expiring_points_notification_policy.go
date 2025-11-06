@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,7 +21,34 @@ type ExpiringPointsNotificationPolicy struct {
 	// Indicates whether batching is activated.
 	BatchingEnabled *bool `json:"batchingEnabled,omitempty"`
 	// The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-	BatchSize *int32 `json:"batchSize,omitempty"`
+	BatchSize *int64 `json:"batchSize,omitempty"`
+}
+
+// NewExpiringPointsNotificationPolicy instantiates a new ExpiringPointsNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildExpiringPointsNotificationPolicy(name string, triggers []ExpiringPointsNotificationTrigger) *ExpiringPointsNotificationPolicy {
+	this := ExpiringPointsNotificationPolicy{}
+	this.Name = name
+	this.Triggers = triggers
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
+}
+
+// NewExpiringPointsNotificationPolicyWithDefaults instantiates a new ExpiringPointsNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExpiringPointsNotificationPolicyWithDefaults() *ExpiringPointsNotificationPolicy {
+	this := ExpiringPointsNotificationPolicy{}
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
 }
 
 // GetName returns the Name field value
@@ -33,6 +59,15 @@ func (o *ExpiringPointsNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ExpiringPointsNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -50,6 +85,15 @@ func (o *ExpiringPointsNotificationPolicy) GetTriggers() []ExpiringPointsNotific
 	return o.Triggers
 }
 
+// GetTriggersOk returns a tuple with the Triggers field value
+// and a boolean to check if the value has been set.
+func (o *ExpiringPointsNotificationPolicy) GetTriggersOk() (*[]ExpiringPointsNotificationTrigger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Triggers, true
+}
+
 // SetTriggers sets field value
 func (o *ExpiringPointsNotificationPolicy) SetTriggers(v []ExpiringPointsNotificationTrigger) {
 	o.Triggers = v
@@ -64,14 +108,13 @@ func (o *ExpiringPointsNotificationPolicy) GetBatchingEnabled() bool {
 	return *o.BatchingEnabled
 }
 
-// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpiringPointsNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+func (o *ExpiringPointsNotificationPolicy) GetBatchingEnabledOk() (*bool, bool) {
 	if o == nil || o.BatchingEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchingEnabled, true
+	return o.BatchingEnabled, true
 }
 
 // HasBatchingEnabled returns a boolean if a field has been set.
@@ -89,22 +132,21 @@ func (o *ExpiringPointsNotificationPolicy) SetBatchingEnabled(v bool) {
 }
 
 // GetBatchSize returns the BatchSize field value if set, zero value otherwise.
-func (o *ExpiringPointsNotificationPolicy) GetBatchSize() int32 {
+func (o *ExpiringPointsNotificationPolicy) GetBatchSize() int64 {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BatchSize
 }
 
-// GetBatchSizeOk returns a tuple with the BatchSize field value if set, zero value otherwise
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExpiringPointsNotificationPolicy) GetBatchSizeOk() (int32, bool) {
+func (o *ExpiringPointsNotificationPolicy) GetBatchSizeOk() (*int64, bool) {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchSize, true
+	return o.BatchSize, true
 }
 
 // HasBatchSize returns a boolean if a field has been set.
@@ -116,30 +158,60 @@ func (o *ExpiringPointsNotificationPolicy) HasBatchSize() bool {
 	return false
 }
 
-// SetBatchSize gets a reference to the given int32 and assigns it to the BatchSize field.
-func (o *ExpiringPointsNotificationPolicy) SetBatchSize(v int32) {
+// SetBatchSize gets a reference to the given int64 and assigns it to the BatchSize field.
+func (o *ExpiringPointsNotificationPolicy) SetBatchSize(v int64) {
 	o.BatchSize = &v
 }
 
+func (o ExpiringPointsNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["triggers"] = o.Triggers
+	}
+	if o.BatchingEnabled != nil {
+		toSerialize["batchingEnabled"] = o.BatchingEnabled
+	}
+	if o.BatchSize != nil {
+		toSerialize["batchSize"] = o.BatchSize
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableExpiringPointsNotificationPolicy struct {
-	Value        ExpiringPointsNotificationPolicy
-	ExplicitNull bool
+	value *ExpiringPointsNotificationPolicy
+	isSet bool
+}
+
+func (v NullableExpiringPointsNotificationPolicy) Get() *ExpiringPointsNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableExpiringPointsNotificationPolicy) Set(val *ExpiringPointsNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExpiringPointsNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExpiringPointsNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableExpiringPointsNotificationPolicy(val *ExpiringPointsNotificationPolicy) *NullableExpiringPointsNotificationPolicy {
+	return &NullableExpiringPointsNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableExpiringPointsNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableExpiringPointsNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

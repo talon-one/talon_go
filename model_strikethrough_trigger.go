@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // StrikethroughTrigger Information about the event that triggered the strikethrough labeling.
 type StrikethroughTrigger struct {
 	// The ID of the event that triggered the strikethrough labeling.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The type of event that triggered the strikethrough labeling.
 	Type string `json:"type"`
 	// The creation time of the event that triggered the strikethrough labeling.
@@ -29,18 +28,49 @@ type StrikethroughTrigger struct {
 	Payload map[string]interface{} `json:"payload"`
 }
 
+// NewStrikethroughTrigger instantiates a new StrikethroughTrigger object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildStrikethroughTrigger(id int64, type_ string, triggeredAt time.Time, totalAffectedItems int32, payload map[string]interface{}) *StrikethroughTrigger {
+	this := StrikethroughTrigger{}
+	this.Id = id
+	this.Type = type_
+	this.TriggeredAt = triggeredAt
+	this.TotalAffectedItems = totalAffectedItems
+	this.Payload = payload
+	return &this
+}
+
+// NewStrikethroughTriggerWithDefaults instantiates a new StrikethroughTrigger object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughTriggerWithDefaults() *StrikethroughTrigger {
+	this := StrikethroughTrigger{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *StrikethroughTrigger) GetId() int32 {
+func (o *StrikethroughTrigger) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughTrigger) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *StrikethroughTrigger) SetId(v int32) {
+func (o *StrikethroughTrigger) SetId(v int64) {
 	o.Id = v
 }
 
@@ -52,6 +82,15 @@ func (o *StrikethroughTrigger) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughTrigger) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -69,6 +108,15 @@ func (o *StrikethroughTrigger) GetTriggeredAt() time.Time {
 	return o.TriggeredAt
 }
 
+// GetTriggeredAtOk returns a tuple with the TriggeredAt field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughTrigger) GetTriggeredAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TriggeredAt, true
+}
+
 // SetTriggeredAt sets field value
 func (o *StrikethroughTrigger) SetTriggeredAt(v time.Time) {
 	o.TriggeredAt = v
@@ -82,6 +130,15 @@ func (o *StrikethroughTrigger) GetTotalAffectedItems() int32 {
 	}
 
 	return o.TotalAffectedItems
+}
+
+// GetTotalAffectedItemsOk returns a tuple with the TotalAffectedItems field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughTrigger) GetTotalAffectedItemsOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalAffectedItems, true
 }
 
 // SetTotalAffectedItems sets field value
@@ -99,30 +156,72 @@ func (o *StrikethroughTrigger) GetPayload() map[string]interface{} {
 	return o.Payload
 }
 
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughTrigger) GetPayloadOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
+}
+
 // SetPayload sets field value
 func (o *StrikethroughTrigger) SetPayload(v map[string]interface{}) {
 	o.Payload = v
 }
 
+func (o StrikethroughTrigger) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["triggeredAt"] = o.TriggeredAt
+	}
+	if true {
+		toSerialize["totalAffectedItems"] = o.TotalAffectedItems
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughTrigger struct {
-	Value        StrikethroughTrigger
-	ExplicitNull bool
+	value *StrikethroughTrigger
+	isSet bool
+}
+
+func (v NullableStrikethroughTrigger) Get() *StrikethroughTrigger {
+	return v.value
+}
+
+func (v *NullableStrikethroughTrigger) Set(val *StrikethroughTrigger) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughTrigger) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughTrigger) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableStrikethroughTrigger(val *StrikethroughTrigger) *NullableStrikethroughTrigger {
+	return &NullableStrikethroughTrigger{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughTrigger) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughTrigger) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

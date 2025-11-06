@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -35,29 +34,29 @@ type CampaignAnalytics struct {
 	// Amount of discounts rolledback due to refund in the campaign since it began.
 	TotalCampaignRefundedDiscounts float32 `json:"totalCampaignRefundedDiscounts"`
 	// Amount of free items given in the campaign.
-	CampaignFreeItems int32 `json:"campaignFreeItems"`
+	CampaignFreeItems int64 `json:"campaignFreeItems"`
 	// Amount of free items given in the campaign since it began.
-	TotalCampaignFreeItems int32 `json:"totalCampaignFreeItems"`
+	TotalCampaignFreeItems int64 `json:"totalCampaignFreeItems"`
 	// Number of coupon redemptions in the campaign.
-	CouponRedemptions int32 `json:"couponRedemptions"`
+	CouponRedemptions int64 `json:"couponRedemptions"`
 	// Number of coupon redemptions in the campaign since it began.
-	TotalCouponRedemptions int32 `json:"totalCouponRedemptions"`
+	TotalCouponRedemptions int64 `json:"totalCouponRedemptions"`
 	// Number of coupon redemptions that have been rolled back (due to canceling closed session) in the campaign.
-	CouponRolledbackRedemptions int32 `json:"couponRolledbackRedemptions"`
+	CouponRolledbackRedemptions int64 `json:"couponRolledbackRedemptions"`
 	// Number of coupon redemptions that have been rolled back (due to canceling closed session) in the campaign since it began.
-	TotalCouponRolledbackRedemptions int32 `json:"totalCouponRolledbackRedemptions"`
+	TotalCouponRolledbackRedemptions int64 `json:"totalCouponRolledbackRedemptions"`
 	// Number of referral redemptions in the campaign.
-	ReferralRedemptions int32 `json:"referralRedemptions"`
+	ReferralRedemptions int64 `json:"referralRedemptions"`
 	// Number of referral redemptions in the campaign since it began.
-	TotalReferralRedemptions int32 `json:"totalReferralRedemptions"`
+	TotalReferralRedemptions int64 `json:"totalReferralRedemptions"`
 	// Number of coupons created in the campaign by the rule engine.
-	CouponsCreated int32 `json:"couponsCreated"`
+	CouponsCreated int64 `json:"couponsCreated"`
 	// Number of coupons created in the campaign by the rule engine since it began.
-	TotalCouponsCreated int32 `json:"totalCouponsCreated"`
+	TotalCouponsCreated int64 `json:"totalCouponsCreated"`
 	// Number of referrals created in the campaign by the rule engine.
-	ReferralsCreated int32 `json:"referralsCreated"`
+	ReferralsCreated int64 `json:"referralsCreated"`
 	// Number of referrals created in the campaign by the rule engine since it began.
-	TotalReferralsCreated int32 `json:"totalReferralsCreated"`
+	TotalReferralsCreated int64 `json:"totalReferralsCreated"`
 	// Number of added loyalty points in the campaign in a specific interval.
 	AddedLoyaltyPoints float32 `json:"addedLoyaltyPoints"`
 	// Number of added loyalty points in the campaign since it began.
@@ -68,6 +67,48 @@ type CampaignAnalytics struct {
 	TotalDeductedLoyaltyPoints float32 `json:"totalDeductedLoyaltyPoints"`
 }
 
+// NewCampaignAnalytics instantiates a new CampaignAnalytics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignAnalytics(date time.Time, campaignRevenue float32, totalCampaignRevenue float32, campaignRefund float32, totalCampaignRefund float32, campaignDiscountCosts float32, totalCampaignDiscountCosts float32, campaignRefundedDiscounts float32, totalCampaignRefundedDiscounts float32, campaignFreeItems int64, totalCampaignFreeItems int64, couponRedemptions int64, totalCouponRedemptions int64, couponRolledbackRedemptions int64, totalCouponRolledbackRedemptions int64, referralRedemptions int64, totalReferralRedemptions int64, couponsCreated int64, totalCouponsCreated int64, referralsCreated int64, totalReferralsCreated int64, addedLoyaltyPoints float32, totalAddedLoyaltyPoints float32, deductedLoyaltyPoints float32, totalDeductedLoyaltyPoints float32) *CampaignAnalytics {
+	this := CampaignAnalytics{}
+	this.Date = date
+	this.CampaignRevenue = campaignRevenue
+	this.TotalCampaignRevenue = totalCampaignRevenue
+	this.CampaignRefund = campaignRefund
+	this.TotalCampaignRefund = totalCampaignRefund
+	this.CampaignDiscountCosts = campaignDiscountCosts
+	this.TotalCampaignDiscountCosts = totalCampaignDiscountCosts
+	this.CampaignRefundedDiscounts = campaignRefundedDiscounts
+	this.TotalCampaignRefundedDiscounts = totalCampaignRefundedDiscounts
+	this.CampaignFreeItems = campaignFreeItems
+	this.TotalCampaignFreeItems = totalCampaignFreeItems
+	this.CouponRedemptions = couponRedemptions
+	this.TotalCouponRedemptions = totalCouponRedemptions
+	this.CouponRolledbackRedemptions = couponRolledbackRedemptions
+	this.TotalCouponRolledbackRedemptions = totalCouponRolledbackRedemptions
+	this.ReferralRedemptions = referralRedemptions
+	this.TotalReferralRedemptions = totalReferralRedemptions
+	this.CouponsCreated = couponsCreated
+	this.TotalCouponsCreated = totalCouponsCreated
+	this.ReferralsCreated = referralsCreated
+	this.TotalReferralsCreated = totalReferralsCreated
+	this.AddedLoyaltyPoints = addedLoyaltyPoints
+	this.TotalAddedLoyaltyPoints = totalAddedLoyaltyPoints
+	this.DeductedLoyaltyPoints = deductedLoyaltyPoints
+	this.TotalDeductedLoyaltyPoints = totalDeductedLoyaltyPoints
+	return &this
+}
+
+// NewCampaignAnalyticsWithDefaults instantiates a new CampaignAnalytics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignAnalyticsWithDefaults() *CampaignAnalytics {
+	this := CampaignAnalytics{}
+	return &this
+}
+
 // GetDate returns the Date field value
 func (o *CampaignAnalytics) GetDate() time.Time {
 	if o == nil {
@@ -76,6 +117,15 @@ func (o *CampaignAnalytics) GetDate() time.Time {
 	}
 
 	return o.Date
+}
+
+// GetDateOk returns a tuple with the Date field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetDateOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Date, true
 }
 
 // SetDate sets field value
@@ -93,6 +143,15 @@ func (o *CampaignAnalytics) GetCampaignRevenue() float32 {
 	return o.CampaignRevenue
 }
 
+// GetCampaignRevenueOk returns a tuple with the CampaignRevenue field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCampaignRevenueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignRevenue, true
+}
+
 // SetCampaignRevenue sets field value
 func (o *CampaignAnalytics) SetCampaignRevenue(v float32) {
 	o.CampaignRevenue = v
@@ -106,6 +165,15 @@ func (o *CampaignAnalytics) GetTotalCampaignRevenue() float32 {
 	}
 
 	return o.TotalCampaignRevenue
+}
+
+// GetTotalCampaignRevenueOk returns a tuple with the TotalCampaignRevenue field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCampaignRevenueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCampaignRevenue, true
 }
 
 // SetTotalCampaignRevenue sets field value
@@ -123,6 +191,15 @@ func (o *CampaignAnalytics) GetCampaignRefund() float32 {
 	return o.CampaignRefund
 }
 
+// GetCampaignRefundOk returns a tuple with the CampaignRefund field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCampaignRefundOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignRefund, true
+}
+
 // SetCampaignRefund sets field value
 func (o *CampaignAnalytics) SetCampaignRefund(v float32) {
 	o.CampaignRefund = v
@@ -136,6 +213,15 @@ func (o *CampaignAnalytics) GetTotalCampaignRefund() float32 {
 	}
 
 	return o.TotalCampaignRefund
+}
+
+// GetTotalCampaignRefundOk returns a tuple with the TotalCampaignRefund field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCampaignRefundOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCampaignRefund, true
 }
 
 // SetTotalCampaignRefund sets field value
@@ -153,6 +239,15 @@ func (o *CampaignAnalytics) GetCampaignDiscountCosts() float32 {
 	return o.CampaignDiscountCosts
 }
 
+// GetCampaignDiscountCostsOk returns a tuple with the CampaignDiscountCosts field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCampaignDiscountCostsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignDiscountCosts, true
+}
+
 // SetCampaignDiscountCosts sets field value
 func (o *CampaignAnalytics) SetCampaignDiscountCosts(v float32) {
 	o.CampaignDiscountCosts = v
@@ -166,6 +261,15 @@ func (o *CampaignAnalytics) GetTotalCampaignDiscountCosts() float32 {
 	}
 
 	return o.TotalCampaignDiscountCosts
+}
+
+// GetTotalCampaignDiscountCostsOk returns a tuple with the TotalCampaignDiscountCosts field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCampaignDiscountCostsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCampaignDiscountCosts, true
 }
 
 // SetTotalCampaignDiscountCosts sets field value
@@ -183,6 +287,15 @@ func (o *CampaignAnalytics) GetCampaignRefundedDiscounts() float32 {
 	return o.CampaignRefundedDiscounts
 }
 
+// GetCampaignRefundedDiscountsOk returns a tuple with the CampaignRefundedDiscounts field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCampaignRefundedDiscountsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignRefundedDiscounts, true
+}
+
 // SetCampaignRefundedDiscounts sets field value
 func (o *CampaignAnalytics) SetCampaignRefundedDiscounts(v float32) {
 	o.CampaignRefundedDiscounts = v
@@ -198,188 +311,305 @@ func (o *CampaignAnalytics) GetTotalCampaignRefundedDiscounts() float32 {
 	return o.TotalCampaignRefundedDiscounts
 }
 
+// GetTotalCampaignRefundedDiscountsOk returns a tuple with the TotalCampaignRefundedDiscounts field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCampaignRefundedDiscountsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCampaignRefundedDiscounts, true
+}
+
 // SetTotalCampaignRefundedDiscounts sets field value
 func (o *CampaignAnalytics) SetTotalCampaignRefundedDiscounts(v float32) {
 	o.TotalCampaignRefundedDiscounts = v
 }
 
 // GetCampaignFreeItems returns the CampaignFreeItems field value
-func (o *CampaignAnalytics) GetCampaignFreeItems() int32 {
+func (o *CampaignAnalytics) GetCampaignFreeItems() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignFreeItems
 }
 
+// GetCampaignFreeItemsOk returns a tuple with the CampaignFreeItems field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCampaignFreeItemsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignFreeItems, true
+}
+
 // SetCampaignFreeItems sets field value
-func (o *CampaignAnalytics) SetCampaignFreeItems(v int32) {
+func (o *CampaignAnalytics) SetCampaignFreeItems(v int64) {
 	o.CampaignFreeItems = v
 }
 
 // GetTotalCampaignFreeItems returns the TotalCampaignFreeItems field value
-func (o *CampaignAnalytics) GetTotalCampaignFreeItems() int32 {
+func (o *CampaignAnalytics) GetTotalCampaignFreeItems() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalCampaignFreeItems
 }
 
+// GetTotalCampaignFreeItemsOk returns a tuple with the TotalCampaignFreeItems field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCampaignFreeItemsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCampaignFreeItems, true
+}
+
 // SetTotalCampaignFreeItems sets field value
-func (o *CampaignAnalytics) SetTotalCampaignFreeItems(v int32) {
+func (o *CampaignAnalytics) SetTotalCampaignFreeItems(v int64) {
 	o.TotalCampaignFreeItems = v
 }
 
 // GetCouponRedemptions returns the CouponRedemptions field value
-func (o *CampaignAnalytics) GetCouponRedemptions() int32 {
+func (o *CampaignAnalytics) GetCouponRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponRedemptions
 }
 
+// GetCouponRedemptionsOk returns a tuple with the CouponRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCouponRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponRedemptions, true
+}
+
 // SetCouponRedemptions sets field value
-func (o *CampaignAnalytics) SetCouponRedemptions(v int32) {
+func (o *CampaignAnalytics) SetCouponRedemptions(v int64) {
 	o.CouponRedemptions = v
 }
 
 // GetTotalCouponRedemptions returns the TotalCouponRedemptions field value
-func (o *CampaignAnalytics) GetTotalCouponRedemptions() int32 {
+func (o *CampaignAnalytics) GetTotalCouponRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalCouponRedemptions
 }
 
+// GetTotalCouponRedemptionsOk returns a tuple with the TotalCouponRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCouponRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCouponRedemptions, true
+}
+
 // SetTotalCouponRedemptions sets field value
-func (o *CampaignAnalytics) SetTotalCouponRedemptions(v int32) {
+func (o *CampaignAnalytics) SetTotalCouponRedemptions(v int64) {
 	o.TotalCouponRedemptions = v
 }
 
 // GetCouponRolledbackRedemptions returns the CouponRolledbackRedemptions field value
-func (o *CampaignAnalytics) GetCouponRolledbackRedemptions() int32 {
+func (o *CampaignAnalytics) GetCouponRolledbackRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponRolledbackRedemptions
 }
 
+// GetCouponRolledbackRedemptionsOk returns a tuple with the CouponRolledbackRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCouponRolledbackRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponRolledbackRedemptions, true
+}
+
 // SetCouponRolledbackRedemptions sets field value
-func (o *CampaignAnalytics) SetCouponRolledbackRedemptions(v int32) {
+func (o *CampaignAnalytics) SetCouponRolledbackRedemptions(v int64) {
 	o.CouponRolledbackRedemptions = v
 }
 
 // GetTotalCouponRolledbackRedemptions returns the TotalCouponRolledbackRedemptions field value
-func (o *CampaignAnalytics) GetTotalCouponRolledbackRedemptions() int32 {
+func (o *CampaignAnalytics) GetTotalCouponRolledbackRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalCouponRolledbackRedemptions
 }
 
+// GetTotalCouponRolledbackRedemptionsOk returns a tuple with the TotalCouponRolledbackRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCouponRolledbackRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCouponRolledbackRedemptions, true
+}
+
 // SetTotalCouponRolledbackRedemptions sets field value
-func (o *CampaignAnalytics) SetTotalCouponRolledbackRedemptions(v int32) {
+func (o *CampaignAnalytics) SetTotalCouponRolledbackRedemptions(v int64) {
 	o.TotalCouponRolledbackRedemptions = v
 }
 
 // GetReferralRedemptions returns the ReferralRedemptions field value
-func (o *CampaignAnalytics) GetReferralRedemptions() int32 {
+func (o *CampaignAnalytics) GetReferralRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ReferralRedemptions
 }
 
+// GetReferralRedemptionsOk returns a tuple with the ReferralRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetReferralRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferralRedemptions, true
+}
+
 // SetReferralRedemptions sets field value
-func (o *CampaignAnalytics) SetReferralRedemptions(v int32) {
+func (o *CampaignAnalytics) SetReferralRedemptions(v int64) {
 	o.ReferralRedemptions = v
 }
 
 // GetTotalReferralRedemptions returns the TotalReferralRedemptions field value
-func (o *CampaignAnalytics) GetTotalReferralRedemptions() int32 {
+func (o *CampaignAnalytics) GetTotalReferralRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalReferralRedemptions
 }
 
+// GetTotalReferralRedemptionsOk returns a tuple with the TotalReferralRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalReferralRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalReferralRedemptions, true
+}
+
 // SetTotalReferralRedemptions sets field value
-func (o *CampaignAnalytics) SetTotalReferralRedemptions(v int32) {
+func (o *CampaignAnalytics) SetTotalReferralRedemptions(v int64) {
 	o.TotalReferralRedemptions = v
 }
 
 // GetCouponsCreated returns the CouponsCreated field value
-func (o *CampaignAnalytics) GetCouponsCreated() int32 {
+func (o *CampaignAnalytics) GetCouponsCreated() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponsCreated
 }
 
+// GetCouponsCreatedOk returns a tuple with the CouponsCreated field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetCouponsCreatedOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponsCreated, true
+}
+
 // SetCouponsCreated sets field value
-func (o *CampaignAnalytics) SetCouponsCreated(v int32) {
+func (o *CampaignAnalytics) SetCouponsCreated(v int64) {
 	o.CouponsCreated = v
 }
 
 // GetTotalCouponsCreated returns the TotalCouponsCreated field value
-func (o *CampaignAnalytics) GetTotalCouponsCreated() int32 {
+func (o *CampaignAnalytics) GetTotalCouponsCreated() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalCouponsCreated
 }
 
+// GetTotalCouponsCreatedOk returns a tuple with the TotalCouponsCreated field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalCouponsCreatedOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalCouponsCreated, true
+}
+
 // SetTotalCouponsCreated sets field value
-func (o *CampaignAnalytics) SetTotalCouponsCreated(v int32) {
+func (o *CampaignAnalytics) SetTotalCouponsCreated(v int64) {
 	o.TotalCouponsCreated = v
 }
 
 // GetReferralsCreated returns the ReferralsCreated field value
-func (o *CampaignAnalytics) GetReferralsCreated() int32 {
+func (o *CampaignAnalytics) GetReferralsCreated() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ReferralsCreated
 }
 
+// GetReferralsCreatedOk returns a tuple with the ReferralsCreated field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetReferralsCreatedOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferralsCreated, true
+}
+
 // SetReferralsCreated sets field value
-func (o *CampaignAnalytics) SetReferralsCreated(v int32) {
+func (o *CampaignAnalytics) SetReferralsCreated(v int64) {
 	o.ReferralsCreated = v
 }
 
 // GetTotalReferralsCreated returns the TotalReferralsCreated field value
-func (o *CampaignAnalytics) GetTotalReferralsCreated() int32 {
+func (o *CampaignAnalytics) GetTotalReferralsCreated() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalReferralsCreated
 }
 
+// GetTotalReferralsCreatedOk returns a tuple with the TotalReferralsCreated field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalReferralsCreatedOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalReferralsCreated, true
+}
+
 // SetTotalReferralsCreated sets field value
-func (o *CampaignAnalytics) SetTotalReferralsCreated(v int32) {
+func (o *CampaignAnalytics) SetTotalReferralsCreated(v int64) {
 	o.TotalReferralsCreated = v
 }
 
@@ -391,6 +621,15 @@ func (o *CampaignAnalytics) GetAddedLoyaltyPoints() float32 {
 	}
 
 	return o.AddedLoyaltyPoints
+}
+
+// GetAddedLoyaltyPointsOk returns a tuple with the AddedLoyaltyPoints field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetAddedLoyaltyPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AddedLoyaltyPoints, true
 }
 
 // SetAddedLoyaltyPoints sets field value
@@ -408,6 +647,15 @@ func (o *CampaignAnalytics) GetTotalAddedLoyaltyPoints() float32 {
 	return o.TotalAddedLoyaltyPoints
 }
 
+// GetTotalAddedLoyaltyPointsOk returns a tuple with the TotalAddedLoyaltyPoints field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalAddedLoyaltyPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalAddedLoyaltyPoints, true
+}
+
 // SetTotalAddedLoyaltyPoints sets field value
 func (o *CampaignAnalytics) SetTotalAddedLoyaltyPoints(v float32) {
 	o.TotalAddedLoyaltyPoints = v
@@ -421,6 +669,15 @@ func (o *CampaignAnalytics) GetDeductedLoyaltyPoints() float32 {
 	}
 
 	return o.DeductedLoyaltyPoints
+}
+
+// GetDeductedLoyaltyPointsOk returns a tuple with the DeductedLoyaltyPoints field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetDeductedLoyaltyPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeductedLoyaltyPoints, true
 }
 
 // SetDeductedLoyaltyPoints sets field value
@@ -438,30 +695,132 @@ func (o *CampaignAnalytics) GetTotalDeductedLoyaltyPoints() float32 {
 	return o.TotalDeductedLoyaltyPoints
 }
 
+// GetTotalDeductedLoyaltyPointsOk returns a tuple with the TotalDeductedLoyaltyPoints field value
+// and a boolean to check if the value has been set.
+func (o *CampaignAnalytics) GetTotalDeductedLoyaltyPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalDeductedLoyaltyPoints, true
+}
+
 // SetTotalDeductedLoyaltyPoints sets field value
 func (o *CampaignAnalytics) SetTotalDeductedLoyaltyPoints(v float32) {
 	o.TotalDeductedLoyaltyPoints = v
 }
 
+func (o CampaignAnalytics) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["date"] = o.Date
+	}
+	if true {
+		toSerialize["campaignRevenue"] = o.CampaignRevenue
+	}
+	if true {
+		toSerialize["totalCampaignRevenue"] = o.TotalCampaignRevenue
+	}
+	if true {
+		toSerialize["campaignRefund"] = o.CampaignRefund
+	}
+	if true {
+		toSerialize["totalCampaignRefund"] = o.TotalCampaignRefund
+	}
+	if true {
+		toSerialize["campaignDiscountCosts"] = o.CampaignDiscountCosts
+	}
+	if true {
+		toSerialize["totalCampaignDiscountCosts"] = o.TotalCampaignDiscountCosts
+	}
+	if true {
+		toSerialize["campaignRefundedDiscounts"] = o.CampaignRefundedDiscounts
+	}
+	if true {
+		toSerialize["totalCampaignRefundedDiscounts"] = o.TotalCampaignRefundedDiscounts
+	}
+	if true {
+		toSerialize["campaignFreeItems"] = o.CampaignFreeItems
+	}
+	if true {
+		toSerialize["totalCampaignFreeItems"] = o.TotalCampaignFreeItems
+	}
+	if true {
+		toSerialize["couponRedemptions"] = o.CouponRedemptions
+	}
+	if true {
+		toSerialize["totalCouponRedemptions"] = o.TotalCouponRedemptions
+	}
+	if true {
+		toSerialize["couponRolledbackRedemptions"] = o.CouponRolledbackRedemptions
+	}
+	if true {
+		toSerialize["totalCouponRolledbackRedemptions"] = o.TotalCouponRolledbackRedemptions
+	}
+	if true {
+		toSerialize["referralRedemptions"] = o.ReferralRedemptions
+	}
+	if true {
+		toSerialize["totalReferralRedemptions"] = o.TotalReferralRedemptions
+	}
+	if true {
+		toSerialize["couponsCreated"] = o.CouponsCreated
+	}
+	if true {
+		toSerialize["totalCouponsCreated"] = o.TotalCouponsCreated
+	}
+	if true {
+		toSerialize["referralsCreated"] = o.ReferralsCreated
+	}
+	if true {
+		toSerialize["totalReferralsCreated"] = o.TotalReferralsCreated
+	}
+	if true {
+		toSerialize["addedLoyaltyPoints"] = o.AddedLoyaltyPoints
+	}
+	if true {
+		toSerialize["totalAddedLoyaltyPoints"] = o.TotalAddedLoyaltyPoints
+	}
+	if true {
+		toSerialize["deductedLoyaltyPoints"] = o.DeductedLoyaltyPoints
+	}
+	if true {
+		toSerialize["totalDeductedLoyaltyPoints"] = o.TotalDeductedLoyaltyPoints
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignAnalytics struct {
-	Value        CampaignAnalytics
-	ExplicitNull bool
+	value *CampaignAnalytics
+	isSet bool
+}
+
+func (v NullableCampaignAnalytics) Get() *CampaignAnalytics {
+	return v.value
+}
+
+func (v *NullableCampaignAnalytics) Set(val *CampaignAnalytics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignAnalytics) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignAnalytics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignAnalytics(val *CampaignAnalytics) *NullableCampaignAnalytics {
+	return &NullableCampaignAnalytics{value: val, isSet: true}
 }
 
 func (v NullableCampaignAnalytics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignAnalytics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

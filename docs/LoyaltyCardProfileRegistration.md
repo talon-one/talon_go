@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewLoyaltyCardProfileRegistration
+
+`func NewLoyaltyCardProfileRegistration(integrationId string, timestamp time.Time, ) *LoyaltyCardProfileRegistration`
+
+NewLoyaltyCardProfileRegistration instantiates a new LoyaltyCardProfileRegistration object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewLoyaltyCardProfileRegistrationWithDefaults
+
+`func NewLoyaltyCardProfileRegistrationWithDefaults() *LoyaltyCardProfileRegistration`
+
+NewLoyaltyCardProfileRegistrationWithDefaults instantiates a new LoyaltyCardProfileRegistration object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetIntegrationId
 
 `func (o *LoyaltyCardProfileRegistration) GetIntegrationId() string`
@@ -17,22 +34,17 @@ GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwis
 
 ### GetIntegrationIdOk
 
-`func (o *LoyaltyCardProfileRegistration) GetIntegrationIdOk() (string, bool)`
+`func (o *LoyaltyCardProfileRegistration) GetIntegrationIdOk() (*string, bool)`
 
 GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasIntegrationId
-
-`func (o *LoyaltyCardProfileRegistration) HasIntegrationId() bool`
-
-HasIntegrationId returns a boolean if a field has been set.
 
 ### SetIntegrationId
 
 `func (o *LoyaltyCardProfileRegistration) SetIntegrationId(v string)`
 
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+SetIntegrationId sets IntegrationId field to given value.
+
 
 ### GetTimestamp
 
@@ -42,22 +54,17 @@ GetTimestamp returns the Timestamp field if non-nil, zero value otherwise.
 
 ### GetTimestampOk
 
-`func (o *LoyaltyCardProfileRegistration) GetTimestampOk() (time.Time, bool)`
+`func (o *LoyaltyCardProfileRegistration) GetTimestampOk() (*time.Time, bool)`
 
 GetTimestampOk returns a tuple with the Timestamp field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTimestamp
-
-`func (o *LoyaltyCardProfileRegistration) HasTimestamp() bool`
-
-HasTimestamp returns a boolean if a field has been set.
 
 ### SetTimestamp
 
 `func (o *LoyaltyCardProfileRegistration) SetTimestamp(v time.Time)`
 
-SetTimestamp gets a reference to the given time.Time and assigns it to the Timestamp field.
+SetTimestamp sets Timestamp field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

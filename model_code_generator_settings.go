@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type CodeGeneratorSettings struct {
 	CouponPattern string `json:"couponPattern"`
 }
 
+// NewCodeGeneratorSettings instantiates a new CodeGeneratorSettings object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCodeGeneratorSettings(validCharacters []string, couponPattern string) *CodeGeneratorSettings {
+	this := CodeGeneratorSettings{}
+	this.ValidCharacters = validCharacters
+	this.CouponPattern = couponPattern
+	return &this
+}
+
+// NewCodeGeneratorSettingsWithDefaults instantiates a new CodeGeneratorSettings object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCodeGeneratorSettingsWithDefaults() *CodeGeneratorSettings {
+	this := CodeGeneratorSettings{}
+	return &this
+}
+
 // GetValidCharacters returns the ValidCharacters field value
 func (o *CodeGeneratorSettings) GetValidCharacters() []string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *CodeGeneratorSettings) GetValidCharacters() []string {
 	}
 
 	return o.ValidCharacters
+}
+
+// GetValidCharactersOk returns a tuple with the ValidCharacters field value
+// and a boolean to check if the value has been set.
+func (o *CodeGeneratorSettings) GetValidCharactersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ValidCharacters, true
 }
 
 // SetValidCharacters sets field value
@@ -47,30 +74,63 @@ func (o *CodeGeneratorSettings) GetCouponPattern() string {
 	return o.CouponPattern
 }
 
+// GetCouponPatternOk returns a tuple with the CouponPattern field value
+// and a boolean to check if the value has been set.
+func (o *CodeGeneratorSettings) GetCouponPatternOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponPattern, true
+}
+
 // SetCouponPattern sets field value
 func (o *CodeGeneratorSettings) SetCouponPattern(v string) {
 	o.CouponPattern = v
 }
 
+func (o CodeGeneratorSettings) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["validCharacters"] = o.ValidCharacters
+	}
+	if true {
+		toSerialize["couponPattern"] = o.CouponPattern
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCodeGeneratorSettings struct {
-	Value        CodeGeneratorSettings
-	ExplicitNull bool
+	value *CodeGeneratorSettings
+	isSet bool
+}
+
+func (v NullableCodeGeneratorSettings) Get() *CodeGeneratorSettings {
+	return v.value
+}
+
+func (v *NullableCodeGeneratorSettings) Set(val *CodeGeneratorSettings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCodeGeneratorSettings) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCodeGeneratorSettings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCodeGeneratorSettings(val *CodeGeneratorSettings) *NullableCodeGeneratorSettings {
+	return &NullableCodeGeneratorSettings{value: val, isSet: true}
 }
 
 func (v NullableCodeGeneratorSettings) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCodeGeneratorSettings) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

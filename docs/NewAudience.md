@@ -14,6 +14,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewNewAudience
+
+`func NewNewAudience(name string, ) *NewAudience`
+
+NewNewAudience instantiates a new NewAudience object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewAudienceWithDefaults
+
+`func NewNewAudienceWithDefaults() *NewAudience`
+
+NewNewAudienceWithDefaults instantiates a new NewAudience object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetName
 
 `func (o *NewAudience) GetName() string`
@@ -22,22 +39,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *NewAudience) GetNameOk() (string, bool)`
+`func (o *NewAudience) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *NewAudience) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *NewAudience) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetSandbox
 
@@ -47,22 +59,22 @@ GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
 
 ### GetSandboxOk
 
-`func (o *NewAudience) GetSandboxOk() (bool, bool)`
+`func (o *NewAudience) GetSandboxOk() (*bool, bool)`
 
 GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSandbox
+
+`func (o *NewAudience) SetSandbox(v bool)`
+
+SetSandbox sets Sandbox field to given value.
 
 ### HasSandbox
 
 `func (o *NewAudience) HasSandbox() bool`
 
 HasSandbox returns a boolean if a field has been set.
-
-### SetSandbox
-
-`func (o *NewAudience) SetSandbox(v bool)`
-
-SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
 ### GetDescription
 
@@ -72,22 +84,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *NewAudience) GetDescriptionOk() (string, bool)`
+`func (o *NewAudience) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *NewAudience) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *NewAudience) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *NewAudience) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetIntegration
 
@@ -97,22 +109,22 @@ GetIntegration returns the Integration field if non-nil, zero value otherwise.
 
 ### GetIntegrationOk
 
-`func (o *NewAudience) GetIntegrationOk() (string, bool)`
+`func (o *NewAudience) GetIntegrationOk() (*string, bool)`
 
 GetIntegrationOk returns a tuple with the Integration field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIntegration
+
+`func (o *NewAudience) SetIntegration(v string)`
+
+SetIntegration sets Integration field to given value.
 
 ### HasIntegration
 
 `func (o *NewAudience) HasIntegration() bool`
 
 HasIntegration returns a boolean if a field has been set.
-
-### SetIntegration
-
-`func (o *NewAudience) SetIntegration(v string)`
-
-SetIntegration gets a reference to the given string and assigns it to the Integration field.
 
 ### GetIntegrationId
 
@@ -122,22 +134,22 @@ GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwis
 
 ### GetIntegrationIdOk
 
-`func (o *NewAudience) GetIntegrationIdOk() (string, bool)`
+`func (o *NewAudience) GetIntegrationIdOk() (*string, bool)`
 
 GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetIntegrationId
+
+`func (o *NewAudience) SetIntegrationId(v string)`
+
+SetIntegrationId sets IntegrationId field to given value.
 
 ### HasIntegrationId
 
 `func (o *NewAudience) HasIntegrationId() bool`
 
 HasIntegrationId returns a boolean if a field has been set.
-
-### SetIntegrationId
-
-`func (o *NewAudience) SetIntegrationId(v string)`
-
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
 
 ### GetCreatedIn3rdParty
 
@@ -147,22 +159,22 @@ GetCreatedIn3rdParty returns the CreatedIn3rdParty field if non-nil, zero value 
 
 ### GetCreatedIn3rdPartyOk
 
-`func (o *NewAudience) GetCreatedIn3rdPartyOk() (bool, bool)`
+`func (o *NewAudience) GetCreatedIn3rdPartyOk() (*bool, bool)`
 
 GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreatedIn3rdParty
+
+`func (o *NewAudience) SetCreatedIn3rdParty(v bool)`
+
+SetCreatedIn3rdParty sets CreatedIn3rdParty field to given value.
 
 ### HasCreatedIn3rdParty
 
 `func (o *NewAudience) HasCreatedIn3rdParty() bool`
 
 HasCreatedIn3rdParty returns a boolean if a field has been set.
-
-### SetCreatedIn3rdParty
-
-`func (o *NewAudience) SetCreatedIn3rdParty(v bool)`
-
-SetCreatedIn3rdParty gets a reference to the given bool and assigns it to the CreatedIn3rdParty field.
 
 ### GetLastUpdate
 
@@ -172,22 +184,22 @@ GetLastUpdate returns the LastUpdate field if non-nil, zero value otherwise.
 
 ### GetLastUpdateOk
 
-`func (o *NewAudience) GetLastUpdateOk() (time.Time, bool)`
+`func (o *NewAudience) GetLastUpdateOk() (*time.Time, bool)`
 
 GetLastUpdateOk returns a tuple with the LastUpdate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLastUpdate
+
+`func (o *NewAudience) SetLastUpdate(v time.Time)`
+
+SetLastUpdate sets LastUpdate field to given value.
 
 ### HasLastUpdate
 
 `func (o *NewAudience) HasLastUpdate() bool`
 
 HasLastUpdate returns a boolean if a field has been set.
-
-### SetLastUpdate
-
-`func (o *NewAudience) SetLastUpdate(v time.Time)`
-
-SetLastUpdate gets a reference to the given time.Time and assigns it to the LastUpdate field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

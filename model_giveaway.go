@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,13 +17,13 @@ import (
 // Giveaway struct for Giveaway
 type Giveaway struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The code value of this giveaway.
 	Code string `json:"code"`
 	// The ID of the pool to return giveaway codes from.
-	PoolId int32 `json:"poolId"`
+	PoolId int64 `json:"poolId"`
 	// Timestamp at which point the giveaway becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Timestamp at which point the giveaway becomes invalid.
@@ -34,25 +33,55 @@ type Giveaway struct {
 	// Indicates whether this giveaway code was given before.
 	Used *bool `json:"used,omitempty"`
 	// The ID of the Import which created this giveaway.
-	ImportId *int32 `json:"importId,omitempty"`
+	ImportId *int64 `json:"importId,omitempty"`
 	// The third-party integration ID of the customer profile that was awarded the giveaway, if the giveaway was awarded.
 	ProfileIntegrationId *string `json:"profileIntegrationId,omitempty"`
 	// The internal ID of the customer profile that was awarded the giveaway, if the giveaway was awarded and an internal ID exists.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
+}
+
+// NewGiveaway instantiates a new Giveaway object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildGiveaway(id int64, created time.Time, code string, poolId int64) *Giveaway {
+	this := Giveaway{}
+	this.Id = id
+	this.Created = created
+	this.Code = code
+	this.PoolId = poolId
+	return &this
+}
+
+// NewGiveawayWithDefaults instantiates a new Giveaway object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGiveawayWithDefaults() *Giveaway {
+	this := Giveaway{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Giveaway) GetId() int32 {
+func (o *Giveaway) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Giveaway) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Giveaway) SetId(v int32) {
+func (o *Giveaway) SetId(v int64) {
 	o.Id = v
 }
 
@@ -64,6 +93,15 @@ func (o *Giveaway) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Giveaway) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -81,23 +119,41 @@ func (o *Giveaway) GetCode() string {
 	return o.Code
 }
 
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *Giveaway) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
 // SetCode sets field value
 func (o *Giveaway) SetCode(v string) {
 	o.Code = v
 }
 
 // GetPoolId returns the PoolId field value
-func (o *Giveaway) GetPoolId() int32 {
+func (o *Giveaway) GetPoolId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.PoolId
 }
 
+// GetPoolIdOk returns a tuple with the PoolId field value
+// and a boolean to check if the value has been set.
+func (o *Giveaway) GetPoolIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PoolId, true
+}
+
 // SetPoolId sets field value
-func (o *Giveaway) SetPoolId(v int32) {
+func (o *Giveaway) SetPoolId(v int64) {
 	o.PoolId = v
 }
 
@@ -110,14 +166,13 @@ func (o *Giveaway) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetStartDateOk() (time.Time, bool) {
+func (o *Giveaway) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -143,14 +198,13 @@ func (o *Giveaway) GetEndDate() time.Time {
 	return *o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetEndDateOk() (time.Time, bool) {
+func (o *Giveaway) GetEndDateOk() (*time.Time, bool) {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndDate, true
+	return o.EndDate, true
 }
 
 // HasEndDate returns a boolean if a field has been set.
@@ -176,14 +230,13 @@ func (o *Giveaway) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *Giveaway) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -209,14 +262,13 @@ func (o *Giveaway) GetUsed() bool {
 	return *o.Used
 }
 
-// GetUsedOk returns a tuple with the Used field value if set, zero value otherwise
+// GetUsedOk returns a tuple with the Used field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetUsedOk() (bool, bool) {
+func (o *Giveaway) GetUsedOk() (*bool, bool) {
 	if o == nil || o.Used == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Used, true
+	return o.Used, true
 }
 
 // HasUsed returns a boolean if a field has been set.
@@ -234,22 +286,21 @@ func (o *Giveaway) SetUsed(v bool) {
 }
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
-func (o *Giveaway) GetImportId() int32 {
+func (o *Giveaway) GetImportId() int64 {
 	if o == nil || o.ImportId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ImportId
 }
 
-// GetImportIdOk returns a tuple with the ImportId field value if set, zero value otherwise
+// GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetImportIdOk() (int32, bool) {
+func (o *Giveaway) GetImportIdOk() (*int64, bool) {
 	if o == nil || o.ImportId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ImportId, true
+	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
@@ -261,8 +312,8 @@ func (o *Giveaway) HasImportId() bool {
 	return false
 }
 
-// SetImportId gets a reference to the given int32 and assigns it to the ImportId field.
-func (o *Giveaway) SetImportId(v int32) {
+// SetImportId gets a reference to the given int64 and assigns it to the ImportId field.
+func (o *Giveaway) SetImportId(v int64) {
 	o.ImportId = &v
 }
 
@@ -275,14 +326,13 @@ func (o *Giveaway) GetProfileIntegrationId() string {
 	return *o.ProfileIntegrationId
 }
 
-// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, zero value otherwise
+// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetProfileIntegrationIdOk() (string, bool) {
+func (o *Giveaway) GetProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.ProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileIntegrationId, true
+	return o.ProfileIntegrationId, true
 }
 
 // HasProfileIntegrationId returns a boolean if a field has been set.
@@ -300,22 +350,21 @@ func (o *Giveaway) SetProfileIntegrationId(v string) {
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *Giveaway) GetProfileId() int32 {
+func (o *Giveaway) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Giveaway) GetProfileIdOk() (int32, bool) {
+func (o *Giveaway) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -327,30 +376,81 @@ func (o *Giveaway) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *Giveaway) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *Giveaway) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
+func (o Giveaway) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["poolId"] = o.PoolId
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.EndDate != nil {
+		toSerialize["endDate"] = o.EndDate
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Used != nil {
+		toSerialize["used"] = o.Used
+	}
+	if o.ImportId != nil {
+		toSerialize["importId"] = o.ImportId
+	}
+	if o.ProfileIntegrationId != nil {
+		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGiveaway struct {
-	Value        Giveaway
-	ExplicitNull bool
+	value *Giveaway
+	isSet bool
+}
+
+func (v NullableGiveaway) Get() *Giveaway {
+	return v.value
+}
+
+func (v *NullableGiveaway) Set(val *Giveaway) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGiveaway) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGiveaway) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableGiveaway(val *Giveaway) *NullableGiveaway {
+	return &NullableGiveaway{value: val, isSet: true}
 }
 
 func (v NullableGiveaway) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGiveaway) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

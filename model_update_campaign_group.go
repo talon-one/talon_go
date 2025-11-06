@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,9 +20,27 @@ type UpdateCampaignGroup struct {
 	// A longer description of the campaign access group.
 	Description *string `json:"description,omitempty"`
 	// A list of IDs of the Applications that this campaign access group is enabled for.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// A list of IDs of the campaigns that are part of the campaign access group.
-	CampaignIds *[]int32 `json:"campaignIds,omitempty"`
+	CampaignIds *[]int64 `json:"campaignIds,omitempty"`
+}
+
+// NewUpdateCampaignGroup instantiates a new UpdateCampaignGroup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateCampaignGroup(name string) *UpdateCampaignGroup {
+	this := UpdateCampaignGroup{}
+	this.Name = name
+	return &this
+}
+
+// NewUpdateCampaignGroupWithDefaults instantiates a new UpdateCampaignGroup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateCampaignGroupWithDefaults() *UpdateCampaignGroup {
+	this := UpdateCampaignGroup{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -34,6 +51,15 @@ func (o *UpdateCampaignGroup) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *UpdateCampaignGroup) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -50,14 +76,13 @@ func (o *UpdateCampaignGroup) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCampaignGroup) GetDescriptionOk() (string, bool) {
+func (o *UpdateCampaignGroup) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -75,22 +100,21 @@ func (o *UpdateCampaignGroup) SetDescription(v string) {
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *UpdateCampaignGroup) GetSubscribedApplicationsIds() []int32 {
+func (o *UpdateCampaignGroup) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCampaignGroup) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *UpdateCampaignGroup) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -102,28 +126,27 @@ func (o *UpdateCampaignGroup) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *UpdateCampaignGroup) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *UpdateCampaignGroup) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
 // GetCampaignIds returns the CampaignIds field value if set, zero value otherwise.
-func (o *UpdateCampaignGroup) GetCampaignIds() []int32 {
+func (o *UpdateCampaignGroup) GetCampaignIds() []int64 {
 	if o == nil || o.CampaignIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignIds
 }
 
-// GetCampaignIdsOk returns a tuple with the CampaignIds field value if set, zero value otherwise
+// GetCampaignIdsOk returns a tuple with the CampaignIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCampaignGroup) GetCampaignIdsOk() ([]int32, bool) {
+func (o *UpdateCampaignGroup) GetCampaignIdsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignIds, true
+	return o.CampaignIds, true
 }
 
 // HasCampaignIds returns a boolean if a field has been set.
@@ -135,30 +158,60 @@ func (o *UpdateCampaignGroup) HasCampaignIds() bool {
 	return false
 }
 
-// SetCampaignIds gets a reference to the given []int32 and assigns it to the CampaignIds field.
-func (o *UpdateCampaignGroup) SetCampaignIds(v []int32) {
+// SetCampaignIds gets a reference to the given []int64 and assigns it to the CampaignIds field.
+func (o *UpdateCampaignGroup) SetCampaignIds(v []int64) {
 	o.CampaignIds = &v
 }
 
+func (o UpdateCampaignGroup) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if o.CampaignIds != nil {
+		toSerialize["campaignIds"] = o.CampaignIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateCampaignGroup struct {
-	Value        UpdateCampaignGroup
-	ExplicitNull bool
+	value *UpdateCampaignGroup
+	isSet bool
+}
+
+func (v NullableUpdateCampaignGroup) Get() *UpdateCampaignGroup {
+	return v.value
+}
+
+func (v *NullableUpdateCampaignGroup) Set(val *UpdateCampaignGroup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateCampaignGroup) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateCampaignGroup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateCampaignGroup(val *UpdateCampaignGroup) *NullableUpdateCampaignGroup {
+	return &NullableUpdateCampaignGroup{value: val, isSet: true}
 }
 
 func (v NullableUpdateCampaignGroup) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateCampaignGroup) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

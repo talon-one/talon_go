@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,11 +24,30 @@ type RollbackDiscountEffectProps struct {
 	// For cart items with `quantity` > 1, the subposition returns the index of the item unit in its line item.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
 	// The ID of the additional cost that was rolled back.
-	AdditionalCostId *int32 `json:"additionalCostId,omitempty"`
+	AdditionalCostId *int64 `json:"additionalCostId,omitempty"`
 	// The name of the additional cost that was rolled back.
 	AdditionalCost *string `json:"additionalCost,omitempty"`
 	// The scope of the rolled back discount - For a discount per session, it can be one of `cartItems`, `additionalCosts` or `sessionTotal` - For a discount per item, it can be one of `price`, `additionalCosts` or `itemTotal`
 	Scope *string `json:"scope,omitempty"`
+}
+
+// NewRollbackDiscountEffectProps instantiates a new RollbackDiscountEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRollbackDiscountEffectProps(name string, value float32) *RollbackDiscountEffectProps {
+	this := RollbackDiscountEffectProps{}
+	this.Name = name
+	this.Value = value
+	return &this
+}
+
+// NewRollbackDiscountEffectPropsWithDefaults instantiates a new RollbackDiscountEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRollbackDiscountEffectPropsWithDefaults() *RollbackDiscountEffectProps {
+	this := RollbackDiscountEffectProps{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -40,6 +58,15 @@ func (o *RollbackDiscountEffectProps) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDiscountEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -57,6 +84,15 @@ func (o *RollbackDiscountEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDiscountEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *RollbackDiscountEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -71,14 +107,13 @@ func (o *RollbackDiscountEffectProps) GetCartItemPosition() float32 {
 	return *o.CartItemPosition
 }
 
-// GetCartItemPositionOk returns a tuple with the CartItemPosition field value if set, zero value otherwise
+// GetCartItemPositionOk returns a tuple with the CartItemPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDiscountEffectProps) GetCartItemPositionOk() (float32, bool) {
+func (o *RollbackDiscountEffectProps) GetCartItemPositionOk() (*float32, bool) {
 	if o == nil || o.CartItemPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemPosition, true
+	return o.CartItemPosition, true
 }
 
 // HasCartItemPosition returns a boolean if a field has been set.
@@ -104,14 +139,13 @@ func (o *RollbackDiscountEffectProps) GetCartItemSubPosition() float32 {
 	return *o.CartItemSubPosition
 }
 
-// GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field value if set, zero value otherwise
+// GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDiscountEffectProps) GetCartItemSubPositionOk() (float32, bool) {
+func (o *RollbackDiscountEffectProps) GetCartItemSubPositionOk() (*float32, bool) {
 	if o == nil || o.CartItemSubPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemSubPosition, true
+	return o.CartItemSubPosition, true
 }
 
 // HasCartItemSubPosition returns a boolean if a field has been set.
@@ -129,22 +163,21 @@ func (o *RollbackDiscountEffectProps) SetCartItemSubPosition(v float32) {
 }
 
 // GetAdditionalCostId returns the AdditionalCostId field value if set, zero value otherwise.
-func (o *RollbackDiscountEffectProps) GetAdditionalCostId() int32 {
+func (o *RollbackDiscountEffectProps) GetAdditionalCostId() int64 {
 	if o == nil || o.AdditionalCostId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AdditionalCostId
 }
 
-// GetAdditionalCostIdOk returns a tuple with the AdditionalCostId field value if set, zero value otherwise
+// GetAdditionalCostIdOk returns a tuple with the AdditionalCostId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDiscountEffectProps) GetAdditionalCostIdOk() (int32, bool) {
+func (o *RollbackDiscountEffectProps) GetAdditionalCostIdOk() (*int64, bool) {
 	if o == nil || o.AdditionalCostId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AdditionalCostId, true
+	return o.AdditionalCostId, true
 }
 
 // HasAdditionalCostId returns a boolean if a field has been set.
@@ -156,8 +189,8 @@ func (o *RollbackDiscountEffectProps) HasAdditionalCostId() bool {
 	return false
 }
 
-// SetAdditionalCostId gets a reference to the given int32 and assigns it to the AdditionalCostId field.
-func (o *RollbackDiscountEffectProps) SetAdditionalCostId(v int32) {
+// SetAdditionalCostId gets a reference to the given int64 and assigns it to the AdditionalCostId field.
+func (o *RollbackDiscountEffectProps) SetAdditionalCostId(v int64) {
 	o.AdditionalCostId = &v
 }
 
@@ -170,14 +203,13 @@ func (o *RollbackDiscountEffectProps) GetAdditionalCost() string {
 	return *o.AdditionalCost
 }
 
-// GetAdditionalCostOk returns a tuple with the AdditionalCost field value if set, zero value otherwise
+// GetAdditionalCostOk returns a tuple with the AdditionalCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDiscountEffectProps) GetAdditionalCostOk() (string, bool) {
+func (o *RollbackDiscountEffectProps) GetAdditionalCostOk() (*string, bool) {
 	if o == nil || o.AdditionalCost == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AdditionalCost, true
+	return o.AdditionalCost, true
 }
 
 // HasAdditionalCost returns a boolean if a field has been set.
@@ -203,14 +235,13 @@ func (o *RollbackDiscountEffectProps) GetScope() string {
 	return *o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDiscountEffectProps) GetScopeOk() (string, bool) {
+func (o *RollbackDiscountEffectProps) GetScopeOk() (*string, bool) {
 	if o == nil || o.Scope == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Scope, true
+	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -227,25 +258,64 @@ func (o *RollbackDiscountEffectProps) SetScope(v string) {
 	o.Scope = &v
 }
 
+func (o RollbackDiscountEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.CartItemPosition != nil {
+		toSerialize["cartItemPosition"] = o.CartItemPosition
+	}
+	if o.CartItemSubPosition != nil {
+		toSerialize["cartItemSubPosition"] = o.CartItemSubPosition
+	}
+	if o.AdditionalCostId != nil {
+		toSerialize["additionalCostId"] = o.AdditionalCostId
+	}
+	if o.AdditionalCost != nil {
+		toSerialize["additionalCost"] = o.AdditionalCost
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRollbackDiscountEffectProps struct {
-	Value        RollbackDiscountEffectProps
-	ExplicitNull bool
+	value *RollbackDiscountEffectProps
+	isSet bool
+}
+
+func (v NullableRollbackDiscountEffectProps) Get() *RollbackDiscountEffectProps {
+	return v.value
+}
+
+func (v *NullableRollbackDiscountEffectProps) Set(val *RollbackDiscountEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRollbackDiscountEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRollbackDiscountEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRollbackDiscountEffectProps(val *RollbackDiscountEffectProps) *NullableRollbackDiscountEffectProps {
+	return &NullableRollbackDiscountEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRollbackDiscountEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRollbackDiscountEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

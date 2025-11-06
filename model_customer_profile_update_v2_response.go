@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CustomerProfileUpdateV2Response Contains the updated customer profiles entities. This is the response type returned by the V2 PUT customer_profiles endpoint
 type CustomerProfileUpdateV2Response struct {
 	CustomerProfile CustomerProfile `json:"customerProfile"`
+}
+
+// NewCustomerProfileUpdateV2Response instantiates a new CustomerProfileUpdateV2Response object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerProfileUpdateV2Response(customerProfile CustomerProfile) *CustomerProfileUpdateV2Response {
+	this := CustomerProfileUpdateV2Response{}
+	this.CustomerProfile = customerProfile
+	return &this
+}
+
+// NewCustomerProfileUpdateV2ResponseWithDefaults instantiates a new CustomerProfileUpdateV2Response object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileUpdateV2ResponseWithDefaults() *CustomerProfileUpdateV2Response {
+	this := CustomerProfileUpdateV2Response{}
+	return &this
 }
 
 // GetCustomerProfile returns the CustomerProfile field value
@@ -29,30 +46,60 @@ func (o *CustomerProfileUpdateV2Response) GetCustomerProfile() CustomerProfile {
 	return o.CustomerProfile
 }
 
+// GetCustomerProfileOk returns a tuple with the CustomerProfile field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileUpdateV2Response) GetCustomerProfileOk() (*CustomerProfile, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CustomerProfile, true
+}
+
 // SetCustomerProfile sets field value
 func (o *CustomerProfileUpdateV2Response) SetCustomerProfile(v CustomerProfile) {
 	o.CustomerProfile = v
 }
 
+func (o CustomerProfileUpdateV2Response) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["customerProfile"] = o.CustomerProfile
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileUpdateV2Response struct {
-	Value        CustomerProfileUpdateV2Response
-	ExplicitNull bool
+	value *CustomerProfileUpdateV2Response
+	isSet bool
+}
+
+func (v NullableCustomerProfileUpdateV2Response) Get() *CustomerProfileUpdateV2Response {
+	return v.value
+}
+
+func (v *NullableCustomerProfileUpdateV2Response) Set(val *CustomerProfileUpdateV2Response) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileUpdateV2Response) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileUpdateV2Response) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerProfileUpdateV2Response(val *CustomerProfileUpdateV2Response) *NullableCustomerProfileUpdateV2Response {
+	return &NullableCustomerProfileUpdateV2Response{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileUpdateV2Response) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileUpdateV2Response) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

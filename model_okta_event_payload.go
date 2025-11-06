@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // OktaEventPayload Payload containing provisioning event details from Okta.
 type OktaEventPayload struct {
 	Data OktaEventPayloadData `json:"data"`
+}
+
+// NewOktaEventPayload instantiates a new OktaEventPayload object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildOktaEventPayload(data OktaEventPayloadData) *OktaEventPayload {
+	this := OktaEventPayload{}
+	this.Data = data
+	return &this
+}
+
+// NewOktaEventPayloadWithDefaults instantiates a new OktaEventPayload object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOktaEventPayloadWithDefaults() *OktaEventPayload {
+	this := OktaEventPayload{}
+	return &this
 }
 
 // GetData returns the Data field value
@@ -29,30 +46,60 @@ func (o *OktaEventPayload) GetData() OktaEventPayloadData {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *OktaEventPayload) GetDataOk() (*OktaEventPayloadData, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *OktaEventPayload) SetData(v OktaEventPayloadData) {
 	o.Data = v
 }
 
+func (o OktaEventPayload) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOktaEventPayload struct {
-	Value        OktaEventPayload
-	ExplicitNull bool
+	value *OktaEventPayload
+	isSet bool
+}
+
+func (v NullableOktaEventPayload) Get() *OktaEventPayload {
+	return v.value
+}
+
+func (v *NullableOktaEventPayload) Set(val *OktaEventPayload) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOktaEventPayload) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOktaEventPayload) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableOktaEventPayload(val *OktaEventPayload) *NullableOktaEventPayload {
+	return &NullableOktaEventPayload{value: val, isSet: true}
 }
 
 func (v NullableOktaEventPayload) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOktaEventPayload) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

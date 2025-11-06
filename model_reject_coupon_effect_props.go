@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,13 +20,32 @@ type RejectCouponEffectProps struct {
 	// The reason why this coupon was rejected.
 	RejectionReason string `json:"rejectionReason"`
 	// The index of the condition that caused the rejection of the coupon.
-	ConditionIndex *int32 `json:"conditionIndex,omitempty"`
+	ConditionIndex *int64 `json:"conditionIndex,omitempty"`
 	// The index of the effect that caused the rejection of the coupon.
-	EffectIndex *int32 `json:"effectIndex,omitempty"`
+	EffectIndex *int64 `json:"effectIndex,omitempty"`
 	// More details about the failure.
 	Details *string `json:"details,omitempty"`
 	// The reason why the campaign was not applied.
 	CampaignExclusionReason *string `json:"campaignExclusionReason,omitempty"`
+}
+
+// NewRejectCouponEffectProps instantiates a new RejectCouponEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRejectCouponEffectProps(value string, rejectionReason string) *RejectCouponEffectProps {
+	this := RejectCouponEffectProps{}
+	this.Value = value
+	this.RejectionReason = rejectionReason
+	return &this
+}
+
+// NewRejectCouponEffectPropsWithDefaults instantiates a new RejectCouponEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRejectCouponEffectPropsWithDefaults() *RejectCouponEffectProps {
+	this := RejectCouponEffectProps{}
+	return &this
 }
 
 // GetValue returns the Value field value
@@ -38,6 +56,15 @@ func (o *RejectCouponEffectProps) GetValue() string {
 	}
 
 	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *RejectCouponEffectProps) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
 }
 
 // SetValue sets field value
@@ -55,28 +82,36 @@ func (o *RejectCouponEffectProps) GetRejectionReason() string {
 	return o.RejectionReason
 }
 
+// GetRejectionReasonOk returns a tuple with the RejectionReason field value
+// and a boolean to check if the value has been set.
+func (o *RejectCouponEffectProps) GetRejectionReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RejectionReason, true
+}
+
 // SetRejectionReason sets field value
 func (o *RejectCouponEffectProps) SetRejectionReason(v string) {
 	o.RejectionReason = v
 }
 
 // GetConditionIndex returns the ConditionIndex field value if set, zero value otherwise.
-func (o *RejectCouponEffectProps) GetConditionIndex() int32 {
+func (o *RejectCouponEffectProps) GetConditionIndex() int64 {
 	if o == nil || o.ConditionIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ConditionIndex
 }
 
-// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, zero value otherwise
+// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RejectCouponEffectProps) GetConditionIndexOk() (int32, bool) {
+func (o *RejectCouponEffectProps) GetConditionIndexOk() (*int64, bool) {
 	if o == nil || o.ConditionIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ConditionIndex, true
+	return o.ConditionIndex, true
 }
 
 // HasConditionIndex returns a boolean if a field has been set.
@@ -88,28 +123,27 @@ func (o *RejectCouponEffectProps) HasConditionIndex() bool {
 	return false
 }
 
-// SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
-func (o *RejectCouponEffectProps) SetConditionIndex(v int32) {
+// SetConditionIndex gets a reference to the given int64 and assigns it to the ConditionIndex field.
+func (o *RejectCouponEffectProps) SetConditionIndex(v int64) {
 	o.ConditionIndex = &v
 }
 
 // GetEffectIndex returns the EffectIndex field value if set, zero value otherwise.
-func (o *RejectCouponEffectProps) GetEffectIndex() int32 {
+func (o *RejectCouponEffectProps) GetEffectIndex() int64 {
 	if o == nil || o.EffectIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EffectIndex
 }
 
-// GetEffectIndexOk returns a tuple with the EffectIndex field value if set, zero value otherwise
+// GetEffectIndexOk returns a tuple with the EffectIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RejectCouponEffectProps) GetEffectIndexOk() (int32, bool) {
+func (o *RejectCouponEffectProps) GetEffectIndexOk() (*int64, bool) {
 	if o == nil || o.EffectIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EffectIndex, true
+	return o.EffectIndex, true
 }
 
 // HasEffectIndex returns a boolean if a field has been set.
@@ -121,8 +155,8 @@ func (o *RejectCouponEffectProps) HasEffectIndex() bool {
 	return false
 }
 
-// SetEffectIndex gets a reference to the given int32 and assigns it to the EffectIndex field.
-func (o *RejectCouponEffectProps) SetEffectIndex(v int32) {
+// SetEffectIndex gets a reference to the given int64 and assigns it to the EffectIndex field.
+func (o *RejectCouponEffectProps) SetEffectIndex(v int64) {
 	o.EffectIndex = &v
 }
 
@@ -135,14 +169,13 @@ func (o *RejectCouponEffectProps) GetDetails() string {
 	return *o.Details
 }
 
-// GetDetailsOk returns a tuple with the Details field value if set, zero value otherwise
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RejectCouponEffectProps) GetDetailsOk() (string, bool) {
+func (o *RejectCouponEffectProps) GetDetailsOk() (*string, bool) {
 	if o == nil || o.Details == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Details, true
+	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
@@ -168,14 +201,13 @@ func (o *RejectCouponEffectProps) GetCampaignExclusionReason() string {
 	return *o.CampaignExclusionReason
 }
 
-// GetCampaignExclusionReasonOk returns a tuple with the CampaignExclusionReason field value if set, zero value otherwise
+// GetCampaignExclusionReasonOk returns a tuple with the CampaignExclusionReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RejectCouponEffectProps) GetCampaignExclusionReasonOk() (string, bool) {
+func (o *RejectCouponEffectProps) GetCampaignExclusionReasonOk() (*string, bool) {
 	if o == nil || o.CampaignExclusionReason == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignExclusionReason, true
+	return o.CampaignExclusionReason, true
 }
 
 // HasCampaignExclusionReason returns a boolean if a field has been set.
@@ -192,25 +224,61 @@ func (o *RejectCouponEffectProps) SetCampaignExclusionReason(v string) {
 	o.CampaignExclusionReason = &v
 }
 
+func (o RejectCouponEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["rejectionReason"] = o.RejectionReason
+	}
+	if o.ConditionIndex != nil {
+		toSerialize["conditionIndex"] = o.ConditionIndex
+	}
+	if o.EffectIndex != nil {
+		toSerialize["effectIndex"] = o.EffectIndex
+	}
+	if o.Details != nil {
+		toSerialize["details"] = o.Details
+	}
+	if o.CampaignExclusionReason != nil {
+		toSerialize["campaignExclusionReason"] = o.CampaignExclusionReason
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRejectCouponEffectProps struct {
-	Value        RejectCouponEffectProps
-	ExplicitNull bool
+	value *RejectCouponEffectProps
+	isSet bool
+}
+
+func (v NullableRejectCouponEffectProps) Get() *RejectCouponEffectProps {
+	return v.value
+}
+
+func (v *NullableRejectCouponEffectProps) Set(val *RejectCouponEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRejectCouponEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRejectCouponEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRejectCouponEffectProps(val *RejectCouponEffectProps) *NullableRejectCouponEffectProps {
+	return &NullableRejectCouponEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRejectCouponEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRejectCouponEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,7 @@ type DeductLoyaltyPointsEffectProps struct {
 	// The title of the rule that contained triggered this points deduction.
 	RuleTitle string `json:"ruleTitle"`
 	// The ID of the loyalty program where these points were added.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// The ID of the subledger within the loyalty program where these points were added.
 	SubLedgerId string `json:"subLedgerId"`
 	// The amount of points that were deducted.
@@ -32,6 +31,29 @@ type DeductLoyaltyPointsEffectProps struct {
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`
 }
 
+// NewDeductLoyaltyPointsEffectProps instantiates a new DeductLoyaltyPointsEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildDeductLoyaltyPointsEffectProps(ruleTitle string, programId int64, subLedgerId string, value float32, transactionUUID string, name string) *DeductLoyaltyPointsEffectProps {
+	this := DeductLoyaltyPointsEffectProps{}
+	this.RuleTitle = ruleTitle
+	this.ProgramId = programId
+	this.SubLedgerId = subLedgerId
+	this.Value = value
+	this.TransactionUUID = transactionUUID
+	this.Name = name
+	return &this
+}
+
+// NewDeductLoyaltyPointsEffectPropsWithDefaults instantiates a new DeductLoyaltyPointsEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeductLoyaltyPointsEffectPropsWithDefaults() *DeductLoyaltyPointsEffectProps {
+	this := DeductLoyaltyPointsEffectProps{}
+	return &this
+}
+
 // GetRuleTitle returns the RuleTitle field value
 func (o *DeductLoyaltyPointsEffectProps) GetRuleTitle() string {
 	if o == nil {
@@ -42,23 +64,41 @@ func (o *DeductLoyaltyPointsEffectProps) GetRuleTitle() string {
 	return o.RuleTitle
 }
 
+// GetRuleTitleOk returns a tuple with the RuleTitle field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPointsEffectProps) GetRuleTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleTitle, true
+}
+
 // SetRuleTitle sets field value
 func (o *DeductLoyaltyPointsEffectProps) SetRuleTitle(v string) {
 	o.RuleTitle = v
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *DeductLoyaltyPointsEffectProps) GetProgramId() int32 {
+func (o *DeductLoyaltyPointsEffectProps) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPointsEffectProps) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *DeductLoyaltyPointsEffectProps) SetProgramId(v int32) {
+func (o *DeductLoyaltyPointsEffectProps) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
@@ -70,6 +110,15 @@ func (o *DeductLoyaltyPointsEffectProps) GetSubLedgerId() string {
 	}
 
 	return o.SubLedgerId
+}
+
+// GetSubLedgerIdOk returns a tuple with the SubLedgerId field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPointsEffectProps) GetSubLedgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubLedgerId, true
 }
 
 // SetSubLedgerId sets field value
@@ -87,6 +136,15 @@ func (o *DeductLoyaltyPointsEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPointsEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *DeductLoyaltyPointsEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -100,6 +158,15 @@ func (o *DeductLoyaltyPointsEffectProps) GetTransactionUUID() string {
 	}
 
 	return o.TransactionUUID
+}
+
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPointsEffectProps) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
 }
 
 // SetTransactionUUID sets field value
@@ -117,6 +184,15 @@ func (o *DeductLoyaltyPointsEffectProps) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPointsEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *DeductLoyaltyPointsEffectProps) SetName(v string) {
 	o.Name = v
@@ -131,14 +207,13 @@ func (o *DeductLoyaltyPointsEffectProps) GetCardIdentifier() string {
 	return *o.CardIdentifier
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, zero value otherwise
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeductLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool) {
+func (o *DeductLoyaltyPointsEffectProps) GetCardIdentifierOk() (*string, bool) {
 	if o == nil || o.CardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CardIdentifier, true
+	return o.CardIdentifier, true
 }
 
 // HasCardIdentifier returns a boolean if a field has been set.
@@ -155,25 +230,64 @@ func (o *DeductLoyaltyPointsEffectProps) SetCardIdentifier(v string) {
 	o.CardIdentifier = &v
 }
 
+func (o DeductLoyaltyPointsEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["ruleTitle"] = o.RuleTitle
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if true {
+		toSerialize["subLedgerId"] = o.SubLedgerId
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.CardIdentifier != nil {
+		toSerialize["cardIdentifier"] = o.CardIdentifier
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDeductLoyaltyPointsEffectProps struct {
-	Value        DeductLoyaltyPointsEffectProps
-	ExplicitNull bool
+	value *DeductLoyaltyPointsEffectProps
+	isSet bool
+}
+
+func (v NullableDeductLoyaltyPointsEffectProps) Get() *DeductLoyaltyPointsEffectProps {
+	return v.value
+}
+
+func (v *NullableDeductLoyaltyPointsEffectProps) Set(val *DeductLoyaltyPointsEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeductLoyaltyPointsEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeductLoyaltyPointsEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableDeductLoyaltyPointsEffectProps(val *DeductLoyaltyPointsEffectProps) *NullableDeductLoyaltyPointsEffectProps {
+	return &NullableDeductLoyaltyPointsEffectProps{value: val, isSet: true}
 }
 
 func (v NullableDeductLoyaltyPointsEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDeductLoyaltyPointsEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

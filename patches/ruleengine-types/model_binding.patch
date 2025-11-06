@@ -1,0 +1,16 @@
+@@
+var fnName identifier
+@@
+-func fnName(name string, expression []map[string]interface{}) *Binding {
++func fnName(name string, expression []interface{}) *Binding {
+	...
+}
+
+@@
+var model identifier
+var fnName identifier
+@@
+-func (o *model) fnName() (*[]map[string]interface{}, bool) {
++func (o *model) fnName() (*[]interface{}, bool) {
+	...
+}

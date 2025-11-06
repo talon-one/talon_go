@@ -10,24 +10,25 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// LedgerTransactionLogEntryIntegrationApi Log entry for a given loyalty card transaction.
-type LedgerTransactionLogEntryIntegrationApi struct {
+// LedgerTransactionLogEntryIntegrationAPI Log entry for a given loyalty profile transaction.
+type LedgerTransactionLogEntryIntegrationAPI struct {
+	// Unique identifier of the transaction in the UUID format.
+	TransactionUUID string `json:"transactionUUID"`
 	// Date and time the loyalty transaction occurred.
 	Created time.Time `json:"created"`
 	// ID of the loyalty program.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// ID of the customer session where the transaction occurred.
 	CustomerSessionId *string `json:"customerSessionId,omitempty"`
 	// Type of transaction. Possible values:   - `addition`: Signifies added points.   - `subtraction`: Signifies deducted points.
 	Type string `json:"type"`
 	// Name or reason of the loyalty ledger transaction.
 	Name string `json:"name"`
-	// When points become active. Possible values:   - `immediate`: Points are immediately active.   - a timestamp value: Points become active at a given date and time.
+	// When points become active. Possible values:   - `immediate`: Points are immediately active.   - `on_action`: Points become active based on the customer's action.   - a timestamp value: Points become active at a given date and time.
 	StartDate string `json:"startDate"`
 	// Date when points expire. Possible values are:   - `unlimited`: Points have no expiration date.   - `timestamp value`: Points expire on the given date.
 	ExpiryDate string `json:"expiryDate"`
@@ -36,16 +37,67 @@ type LedgerTransactionLogEntryIntegrationApi struct {
 	// Amount of loyalty points added or deducted in the transaction.
 	Amount float32 `json:"amount"`
 	// ID of the loyalty ledger transaction.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the ruleset containing the rule that triggered this effect.
-	RulesetId *int32 `json:"rulesetId,omitempty"`
+	RulesetId *int64 `json:"rulesetId,omitempty"`
 	// The name of the rule that triggered this effect.
 	RuleName *string                  `json:"ruleName,omitempty"`
 	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
 }
 
+// NewLedgerTransactionLogEntryIntegrationAPI instantiates a new LedgerTransactionLogEntryIntegrationAPI object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLedgerTransactionLogEntryIntegrationAPI(transactionUUID string, created time.Time, programId int64, type_ string, name string, startDate string, expiryDate string, subledgerId string, amount float32, id int64) *LedgerTransactionLogEntryIntegrationAPI {
+	this := LedgerTransactionLogEntryIntegrationAPI{}
+	this.TransactionUUID = transactionUUID
+	this.Created = created
+	this.ProgramId = programId
+	this.Type = type_
+	this.Name = name
+	this.StartDate = startDate
+	this.ExpiryDate = expiryDate
+	this.SubledgerId = subledgerId
+	this.Amount = amount
+	this.Id = id
+	return &this
+}
+
+// NewLedgerTransactionLogEntryIntegrationAPIWithDefaults instantiates a new LedgerTransactionLogEntryIntegrationAPI object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLedgerTransactionLogEntryIntegrationAPIWithDefaults() *LedgerTransactionLogEntryIntegrationAPI {
+	this := LedgerTransactionLogEntryIntegrationAPI{}
+	return &this
+}
+
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
+// SetTransactionUUID sets field value
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
+}
+
 // GetCreated returns the Created field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetCreated() time.Time {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetCreated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -54,28 +106,46 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetCreated(v time.Time) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetProgramId() int32 {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetProgramId(v int32) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
 // GetCustomerSessionId returns the CustomerSessionId field value if set, zero value otherwise.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetCustomerSessionId() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetCustomerSessionId() string {
 	if o == nil || o.CustomerSessionId == nil {
 		var ret string
 		return ret
@@ -83,18 +153,17 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetCustomerSessionId() string 
 	return *o.CustomerSessionId
 }
 
-// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, zero value otherwise
+// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetCustomerSessionIdOk() (string, bool) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetCustomerSessionIdOk() (*string, bool) {
 	if o == nil || o.CustomerSessionId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerSessionId, true
+	return o.CustomerSessionId, true
 }
 
 // HasCustomerSessionId returns a boolean if a field has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) HasCustomerSessionId() bool {
+func (o *LedgerTransactionLogEntryIntegrationAPI) HasCustomerSessionId() bool {
 	if o != nil && o.CustomerSessionId != nil {
 		return true
 	}
@@ -103,12 +172,12 @@ func (o *LedgerTransactionLogEntryIntegrationApi) HasCustomerSessionId() bool {
 }
 
 // SetCustomerSessionId gets a reference to the given string and assigns it to the CustomerSessionId field.
-func (o *LedgerTransactionLogEntryIntegrationApi) SetCustomerSessionId(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetCustomerSessionId(v string) {
 	o.CustomerSessionId = &v
 }
 
 // GetType returns the Type field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetType() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetType() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -117,13 +186,22 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetType(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetType(v string) {
 	o.Type = v
 }
 
 // GetName returns the Name field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetName() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -132,13 +210,22 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetName(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetName(v string) {
 	o.Name = v
 }
 
 // GetStartDate returns the StartDate field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetStartDate() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetStartDate() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -147,13 +234,22 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetStartDate() string {
 	return o.StartDate
 }
 
+// GetStartDateOk returns a tuple with the StartDate field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetStartDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartDate, true
+}
+
 // SetStartDate sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetStartDate(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetStartDate(v string) {
 	o.StartDate = v
 }
 
 // GetExpiryDate returns the ExpiryDate field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetExpiryDate() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetExpiryDate() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -162,13 +258,22 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetExpiryDate() string {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetExpiryDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetExpiryDate(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetExpiryDate(v string) {
 	o.ExpiryDate = v
 }
 
 // GetSubledgerId returns the SubledgerId field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetSubledgerId() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetSubledgerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -177,13 +282,22 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetSubledgerId() string {
 	return o.SubledgerId
 }
 
+// GetSubledgerIdOk returns a tuple with the SubledgerId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetSubledgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubledgerId, true
+}
+
 // SetSubledgerId sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetSubledgerId(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetSubledgerId(v string) {
 	o.SubledgerId = v
 }
 
 // GetAmount returns the Amount field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetAmount() float32 {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetAmount() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -192,47 +306,64 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetAmount() float32 {
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetAmountOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetAmount(v float32) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetAmount(v float32) {
 	o.Amount = v
 }
 
 // GetId returns the Id field value
-func (o *LedgerTransactionLogEntryIntegrationApi) GetId() int32 {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LedgerTransactionLogEntryIntegrationApi) SetId(v int32) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetId(v int64) {
 	o.Id = v
 }
 
 // GetRulesetId returns the RulesetId field value if set, zero value otherwise.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetRulesetId() int32 {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetRulesetId() int64 {
 	if o == nil || o.RulesetId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RulesetId
 }
 
-// GetRulesetIdOk returns a tuple with the RulesetId field value if set, zero value otherwise
+// GetRulesetIdOk returns a tuple with the RulesetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetRulesetIdOk() (int32, bool) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetRulesetIdOk() (*int64, bool) {
 	if o == nil || o.RulesetId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.RulesetId, true
+	return o.RulesetId, true
 }
 
 // HasRulesetId returns a boolean if a field has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) HasRulesetId() bool {
+func (o *LedgerTransactionLogEntryIntegrationAPI) HasRulesetId() bool {
 	if o != nil && o.RulesetId != nil {
 		return true
 	}
@@ -240,13 +371,13 @@ func (o *LedgerTransactionLogEntryIntegrationApi) HasRulesetId() bool {
 	return false
 }
 
-// SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
-func (o *LedgerTransactionLogEntryIntegrationApi) SetRulesetId(v int32) {
+// SetRulesetId gets a reference to the given int64 and assigns it to the RulesetId field.
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetRulesetId(v int64) {
 	o.RulesetId = &v
 }
 
 // GetRuleName returns the RuleName field value if set, zero value otherwise.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetRuleName() string {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetRuleName() string {
 	if o == nil || o.RuleName == nil {
 		var ret string
 		return ret
@@ -254,18 +385,17 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetRuleName() string {
 	return *o.RuleName
 }
 
-// GetRuleNameOk returns a tuple with the RuleName field value if set, zero value otherwise
+// GetRuleNameOk returns a tuple with the RuleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetRuleNameOk() (string, bool) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetRuleNameOk() (*string, bool) {
 	if o == nil || o.RuleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RuleName, true
+	return o.RuleName, true
 }
 
 // HasRuleName returns a boolean if a field has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) HasRuleName() bool {
+func (o *LedgerTransactionLogEntryIntegrationAPI) HasRuleName() bool {
 	if o != nil && o.RuleName != nil {
 		return true
 	}
@@ -274,12 +404,12 @@ func (o *LedgerTransactionLogEntryIntegrationApi) HasRuleName() bool {
 }
 
 // SetRuleName gets a reference to the given string and assigns it to the RuleName field.
-func (o *LedgerTransactionLogEntryIntegrationApi) SetRuleName(v string) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetRuleName(v string) {
 	o.RuleName = &v
 }
 
 // GetFlags returns the Flags field value if set, zero value otherwise.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetFlags() LoyaltyLedgerEntryFlags {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetFlags() LoyaltyLedgerEntryFlags {
 	if o == nil || o.Flags == nil {
 		var ret LoyaltyLedgerEntryFlags
 		return ret
@@ -287,18 +417,17 @@ func (o *LedgerTransactionLogEntryIntegrationApi) GetFlags() LoyaltyLedgerEntryF
 	return *o.Flags
 }
 
-// GetFlagsOk returns a tuple with the Flags field value if set, zero value otherwise
+// GetFlagsOk returns a tuple with the Flags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetFlagsOk() (*LoyaltyLedgerEntryFlags, bool) {
 	if o == nil || o.Flags == nil {
-		var ret LoyaltyLedgerEntryFlags
-		return ret, false
+		return nil, false
 	}
-	return *o.Flags, true
+	return o.Flags, true
 }
 
 // HasFlags returns a boolean if a field has been set.
-func (o *LedgerTransactionLogEntryIntegrationApi) HasFlags() bool {
+func (o *LedgerTransactionLogEntryIntegrationAPI) HasFlags() bool {
 	if o != nil && o.Flags != nil {
 		return true
 	}
@@ -307,29 +436,89 @@ func (o *LedgerTransactionLogEntryIntegrationApi) HasFlags() bool {
 }
 
 // SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
-func (o *LedgerTransactionLogEntryIntegrationApi) SetFlags(v LoyaltyLedgerEntryFlags) {
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetFlags(v LoyaltyLedgerEntryFlags) {
 	o.Flags = &v
 }
 
-type NullableLedgerTransactionLogEntryIntegrationApi struct {
-	Value        LedgerTransactionLogEntryIntegrationApi
-	ExplicitNull bool
+func (o LedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if o.CustomerSessionId != nil {
+		toSerialize["customerSessionId"] = o.CustomerSessionId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["subledgerId"] = o.SubledgerId
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.RulesetId != nil {
+		toSerialize["rulesetId"] = o.RulesetId
+	}
+	if o.RuleName != nil {
+		toSerialize["ruleName"] = o.RuleName
+	}
+	if o.Flags != nil {
+		toSerialize["flags"] = o.Flags
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableLedgerTransactionLogEntryIntegrationApi) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableLedgerTransactionLogEntryIntegrationAPI struct {
+	value *LedgerTransactionLogEntryIntegrationAPI
+	isSet bool
 }
 
-func (v *NullableLedgerTransactionLogEntryIntegrationApi) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableLedgerTransactionLogEntryIntegrationAPI) Get() *LedgerTransactionLogEntryIntegrationAPI {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableLedgerTransactionLogEntryIntegrationAPI) Set(val *LedgerTransactionLogEntryIntegrationAPI) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLedgerTransactionLogEntryIntegrationAPI) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLedgerTransactionLogEntryIntegrationAPI) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLedgerTransactionLogEntryIntegrationAPI(val *LedgerTransactionLogEntryIntegrationAPI) *NullableLedgerTransactionLogEntryIntegrationAPI {
+	return &NullableLedgerTransactionLogEntryIntegrationAPI{value: val, isSet: true}
+}
+
+func (v NullableLedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLedgerTransactionLogEntryIntegrationAPI) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

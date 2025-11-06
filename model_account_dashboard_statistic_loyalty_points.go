@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -23,6 +22,25 @@ type AccountDashboardStatisticLoyaltyPoints struct {
 	Datetime time.Time `json:"datetime"`
 }
 
+// NewAccountDashboardStatisticLoyaltyPoints instantiates a new AccountDashboardStatisticLoyaltyPoints object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountDashboardStatisticLoyaltyPoints(total float32, datetime time.Time) *AccountDashboardStatisticLoyaltyPoints {
+	this := AccountDashboardStatisticLoyaltyPoints{}
+	this.Total = total
+	this.Datetime = datetime
+	return &this
+}
+
+// NewAccountDashboardStatisticLoyaltyPointsWithDefaults instantiates a new AccountDashboardStatisticLoyaltyPoints object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountDashboardStatisticLoyaltyPointsWithDefaults() *AccountDashboardStatisticLoyaltyPoints {
+	this := AccountDashboardStatisticLoyaltyPoints{}
+	return &this
+}
+
 // GetTotal returns the Total field value
 func (o *AccountDashboardStatisticLoyaltyPoints) GetTotal() float32 {
 	if o == nil {
@@ -31,6 +49,15 @@ func (o *AccountDashboardStatisticLoyaltyPoints) GetTotal() float32 {
 	}
 
 	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticLoyaltyPoints) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
 }
 
 // SetTotal sets field value
@@ -48,30 +75,63 @@ func (o *AccountDashboardStatisticLoyaltyPoints) GetDatetime() time.Time {
 	return o.Datetime
 }
 
+// GetDatetimeOk returns a tuple with the Datetime field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticLoyaltyPoints) GetDatetimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Datetime, true
+}
+
 // SetDatetime sets field value
 func (o *AccountDashboardStatisticLoyaltyPoints) SetDatetime(v time.Time) {
 	o.Datetime = v
 }
 
+func (o AccountDashboardStatisticLoyaltyPoints) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["datetime"] = o.Datetime
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountDashboardStatisticLoyaltyPoints struct {
-	Value        AccountDashboardStatisticLoyaltyPoints
-	ExplicitNull bool
+	value *AccountDashboardStatisticLoyaltyPoints
+	isSet bool
+}
+
+func (v NullableAccountDashboardStatisticLoyaltyPoints) Get() *AccountDashboardStatisticLoyaltyPoints {
+	return v.value
+}
+
+func (v *NullableAccountDashboardStatisticLoyaltyPoints) Set(val *AccountDashboardStatisticLoyaltyPoints) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountDashboardStatisticLoyaltyPoints) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountDashboardStatisticLoyaltyPoints) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountDashboardStatisticLoyaltyPoints(val *AccountDashboardStatisticLoyaltyPoints) *NullableAccountDashboardStatisticLoyaltyPoints {
+	return &NullableAccountDashboardStatisticLoyaltyPoints{value: val, isSet: true}
 }
 
 func (v NullableAccountDashboardStatisticLoyaltyPoints) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountDashboardStatisticLoyaltyPoints) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

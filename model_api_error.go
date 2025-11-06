@@ -10,12 +10,11 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// ApiError struct for ApiError
-type ApiError struct {
+// APIError struct for APIError
+type APIError struct {
 	// Short description of the problem.
 	Title string `json:"title"`
 	// Longer description of this specific instance of the problem.
@@ -23,8 +22,27 @@ type ApiError struct {
 	Source  ErrorSource `json:"source"`
 }
 
+// NewAPIError instantiates a new APIError object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAPIError(title string, source ErrorSource) *APIError {
+	this := APIError{}
+	this.Title = title
+	this.Source = source
+	return &this
+}
+
+// NewAPIErrorWithDefaults instantiates a new APIError object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAPIErrorWithDefaults() *APIError {
+	this := APIError{}
+	return &this
+}
+
 // GetTitle returns the Title field value
-func (o *ApiError) GetTitle() string {
+func (o *APIError) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -33,13 +51,22 @@ func (o *ApiError) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *APIError) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
-func (o *ApiError) SetTitle(v string) {
+func (o *APIError) SetTitle(v string) {
 	o.Title = v
 }
 
 // GetDetails returns the Details field value if set, zero value otherwise.
-func (o *ApiError) GetDetails() string {
+func (o *APIError) GetDetails() string {
 	if o == nil || o.Details == nil {
 		var ret string
 		return ret
@@ -47,18 +74,17 @@ func (o *ApiError) GetDetails() string {
 	return *o.Details
 }
 
-// GetDetailsOk returns a tuple with the Details field value if set, zero value otherwise
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApiError) GetDetailsOk() (string, bool) {
+func (o *APIError) GetDetailsOk() (*string, bool) {
 	if o == nil || o.Details == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Details, true
+	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
-func (o *ApiError) HasDetails() bool {
+func (o *APIError) HasDetails() bool {
 	if o != nil && o.Details != nil {
 		return true
 	}
@@ -67,12 +93,12 @@ func (o *ApiError) HasDetails() bool {
 }
 
 // SetDetails gets a reference to the given string and assigns it to the Details field.
-func (o *ApiError) SetDetails(v string) {
+func (o *APIError) SetDetails(v string) {
 	o.Details = &v
 }
 
 // GetSource returns the Source field value
-func (o *ApiError) GetSource() ErrorSource {
+func (o *APIError) GetSource() ErrorSource {
 	if o == nil {
 		var ret ErrorSource
 		return ret
@@ -81,30 +107,66 @@ func (o *ApiError) GetSource() ErrorSource {
 	return o.Source
 }
 
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *APIError) GetSourceOk() (*ErrorSource, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
 // SetSource sets field value
-func (o *ApiError) SetSource(v ErrorSource) {
+func (o *APIError) SetSource(v ErrorSource) {
 	o.Source = v
 }
 
-type NullableApiError struct {
-	Value        ApiError
-	ExplicitNull bool
+func (o APIError) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Details != nil {
+		toSerialize["details"] = o.Details
+	}
+	if true {
+		toSerialize["source"] = o.Source
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableApiError) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableAPIError struct {
+	value *APIError
+	isSet bool
 }
 
-func (v *NullableApiError) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableAPIError) Get() *APIError {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableAPIError) Set(val *APIError) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAPIError) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAPIError) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAPIError(val *APIError) *NullableAPIError {
+	return &NullableAPIError{value: val, isSet: true}
+}
+
+func (v NullableAPIError) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAPIError) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,19 +17,19 @@ import (
 // IntegrationCoupon struct for IntegrationCoupon
 type IntegrationCoupon struct {
 	// The internal ID of the coupon.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time the coupon was created.
 	Created time.Time `json:"created"`
 	// The ID of the campaign that owns this entity.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The coupon code.
 	Value string `json:"value"`
 	// The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
-	UsageLimit int32 `json:"usageLimit"`
+	UsageLimit int64 `json:"usageLimit"`
 	// The total discount value that the code can give. Typically used to represent a gift card value.
 	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// The number of reservations that can be made with this coupon code.
-	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
+	ReservationLimit *int64 `json:"reservationLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiration date of the coupon. Coupon never expires if this is omitted.
@@ -38,7 +37,7 @@ type IntegrationCoupon struct {
 	// Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.
 	Limits *[]LimitConfig `json:"limits,omitempty"`
 	// The number of times the coupon has been successfully redeemed.
-	UsageCounter int32 `json:"usageCounter"`
+	UsageCounter int64 `json:"usageCounter"`
 	// The amount of discounts given on rules redeeming this coupon. Only usable if a coupon discount budget was set for this coupon.
 	DiscountCounter *float32 `json:"discountCounter,omitempty"`
 	// The remaining discount this coupon can give.
@@ -48,11 +47,11 @@ type IntegrationCoupon struct {
 	// Custom attributes associated with this coupon.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// The integration ID of the referring customer (if any) for whom this coupon was created as an effect.
-	ReferralId *int32 `json:"referralId,omitempty"`
+	ReferralId *int64 `json:"referralId,omitempty"`
 	// The Integration ID of the customer that is allowed to redeem this coupon.
 	RecipientIntegrationId *string `json:"recipientIntegrationId,omitempty"`
 	// The ID of the Import which created this coupon.
-	ImportId *int32 `json:"importId,omitempty"`
+	ImportId *int64 `json:"importId,omitempty"`
 	// Defines the reservation type: - `true`: The coupon can be reserved for multiple customers. - `false`: The coupon can be reserved only for one customer. It is a personal code.
 	Reservation *bool `json:"reservation,omitempty"`
 	// The id of the batch the coupon belongs to.
@@ -62,21 +61,62 @@ type IntegrationCoupon struct {
 	// An indication of whether the coupon is implicitly reserved for all customers.
 	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`
 	// The number of times the coupon was redeemed by the profile.
-	ProfileRedemptionCount int32 `json:"profileRedemptionCount"`
+	ProfileRedemptionCount int64 `json:"profileRedemptionCount"`
+}
+
+// NewIntegrationCoupon instantiates a new IntegrationCoupon object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildIntegrationCoupon(id int64, created time.Time, campaignId int64, value string, usageLimit int64, usageCounter int64, profileRedemptionCount int64) *IntegrationCoupon {
+	this := IntegrationCoupon{}
+	this.Id = id
+	this.Created = created
+	this.CampaignId = campaignId
+	this.Value = value
+	this.UsageLimit = usageLimit
+	this.UsageCounter = usageCounter
+	var reservation bool = true
+	this.Reservation = &reservation
+	var isReservationMandatory bool = false
+	this.IsReservationMandatory = &isReservationMandatory
+	this.ProfileRedemptionCount = profileRedemptionCount
+	return &this
+}
+
+// NewIntegrationCouponWithDefaults instantiates a new IntegrationCoupon object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIntegrationCouponWithDefaults() *IntegrationCoupon {
+	this := IntegrationCoupon{}
+	var reservation bool = true
+	this.Reservation = &reservation
+	var isReservationMandatory bool = false
+	this.IsReservationMandatory = &isReservationMandatory
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *IntegrationCoupon) GetId() int32 {
+func (o *IntegrationCoupon) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *IntegrationCoupon) SetId(v int32) {
+func (o *IntegrationCoupon) SetId(v int64) {
 	o.Id = v
 }
 
@@ -90,23 +130,41 @@ func (o *IntegrationCoupon) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *IntegrationCoupon) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *IntegrationCoupon) GetCampaignId() int32 {
+func (o *IntegrationCoupon) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *IntegrationCoupon) SetCampaignId(v int32) {
+func (o *IntegrationCoupon) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -120,23 +178,41 @@ func (o *IntegrationCoupon) GetValue() string {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *IntegrationCoupon) SetValue(v string) {
 	o.Value = v
 }
 
 // GetUsageLimit returns the UsageLimit field value
-func (o *IntegrationCoupon) GetUsageLimit() int32 {
+func (o *IntegrationCoupon) GetUsageLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageLimit
 }
 
+// GetUsageLimitOk returns a tuple with the UsageLimit field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetUsageLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageLimit, true
+}
+
 // SetUsageLimit sets field value
-func (o *IntegrationCoupon) SetUsageLimit(v int32) {
+func (o *IntegrationCoupon) SetUsageLimit(v int64) {
 	o.UsageLimit = v
 }
 
@@ -149,14 +225,13 @@ func (o *IntegrationCoupon) GetDiscountLimit() float32 {
 	return *o.DiscountLimit
 }
 
-// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetDiscountLimitOk() (float32, bool) {
+func (o *IntegrationCoupon) GetDiscountLimitOk() (*float32, bool) {
 	if o == nil || o.DiscountLimit == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountLimit, true
+	return o.DiscountLimit, true
 }
 
 // HasDiscountLimit returns a boolean if a field has been set.
@@ -174,22 +249,21 @@ func (o *IntegrationCoupon) SetDiscountLimit(v float32) {
 }
 
 // GetReservationLimit returns the ReservationLimit field value if set, zero value otherwise.
-func (o *IntegrationCoupon) GetReservationLimit() int32 {
+func (o *IntegrationCoupon) GetReservationLimit() int64 {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservationLimit
 }
 
-// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, zero value otherwise
+// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetReservationLimitOk() (int32, bool) {
+func (o *IntegrationCoupon) GetReservationLimitOk() (*int64, bool) {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationLimit, true
+	return o.ReservationLimit, true
 }
 
 // HasReservationLimit returns a boolean if a field has been set.
@@ -201,8 +275,8 @@ func (o *IntegrationCoupon) HasReservationLimit() bool {
 	return false
 }
 
-// SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
-func (o *IntegrationCoupon) SetReservationLimit(v int32) {
+// SetReservationLimit gets a reference to the given int64 and assigns it to the ReservationLimit field.
+func (o *IntegrationCoupon) SetReservationLimit(v int64) {
 	o.ReservationLimit = &v
 }
 
@@ -215,14 +289,13 @@ func (o *IntegrationCoupon) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetStartDateOk() (time.Time, bool) {
+func (o *IntegrationCoupon) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -248,14 +321,13 @@ func (o *IntegrationCoupon) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetExpiryDateOk() (time.Time, bool) {
+func (o *IntegrationCoupon) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -281,14 +353,13 @@ func (o *IntegrationCoupon) GetLimits() []LimitConfig {
 	return *o.Limits
 }
 
-// GetLimitsOk returns a tuple with the Limits field value if set, zero value otherwise
+// GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetLimitsOk() ([]LimitConfig, bool) {
+func (o *IntegrationCoupon) GetLimitsOk() (*[]LimitConfig, bool) {
 	if o == nil || o.Limits == nil {
-		var ret []LimitConfig
-		return ret, false
+		return nil, false
 	}
-	return *o.Limits, true
+	return o.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
@@ -306,17 +377,26 @@ func (o *IntegrationCoupon) SetLimits(v []LimitConfig) {
 }
 
 // GetUsageCounter returns the UsageCounter field value
-func (o *IntegrationCoupon) GetUsageCounter() int32 {
+func (o *IntegrationCoupon) GetUsageCounter() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageCounter
 }
 
+// GetUsageCounterOk returns a tuple with the UsageCounter field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetUsageCounterOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageCounter, true
+}
+
 // SetUsageCounter sets field value
-func (o *IntegrationCoupon) SetUsageCounter(v int32) {
+func (o *IntegrationCoupon) SetUsageCounter(v int64) {
 	o.UsageCounter = v
 }
 
@@ -329,14 +409,13 @@ func (o *IntegrationCoupon) GetDiscountCounter() float32 {
 	return *o.DiscountCounter
 }
 
-// GetDiscountCounterOk returns a tuple with the DiscountCounter field value if set, zero value otherwise
+// GetDiscountCounterOk returns a tuple with the DiscountCounter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetDiscountCounterOk() (float32, bool) {
+func (o *IntegrationCoupon) GetDiscountCounterOk() (*float32, bool) {
 	if o == nil || o.DiscountCounter == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountCounter, true
+	return o.DiscountCounter, true
 }
 
 // HasDiscountCounter returns a boolean if a field has been set.
@@ -362,14 +441,13 @@ func (o *IntegrationCoupon) GetDiscountRemainder() float32 {
 	return *o.DiscountRemainder
 }
 
-// GetDiscountRemainderOk returns a tuple with the DiscountRemainder field value if set, zero value otherwise
+// GetDiscountRemainderOk returns a tuple with the DiscountRemainder field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetDiscountRemainderOk() (float32, bool) {
+func (o *IntegrationCoupon) GetDiscountRemainderOk() (*float32, bool) {
 	if o == nil || o.DiscountRemainder == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountRemainder, true
+	return o.DiscountRemainder, true
 }
 
 // HasDiscountRemainder returns a boolean if a field has been set.
@@ -395,14 +473,13 @@ func (o *IntegrationCoupon) GetReservationCounter() float32 {
 	return *o.ReservationCounter
 }
 
-// GetReservationCounterOk returns a tuple with the ReservationCounter field value if set, zero value otherwise
+// GetReservationCounterOk returns a tuple with the ReservationCounter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetReservationCounterOk() (float32, bool) {
+func (o *IntegrationCoupon) GetReservationCounterOk() (*float32, bool) {
 	if o == nil || o.ReservationCounter == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationCounter, true
+	return o.ReservationCounter, true
 }
 
 // HasReservationCounter returns a boolean if a field has been set.
@@ -428,14 +505,13 @@ func (o *IntegrationCoupon) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *IntegrationCoupon) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -453,22 +529,21 @@ func (o *IntegrationCoupon) SetAttributes(v map[string]interface{}) {
 }
 
 // GetReferralId returns the ReferralId field value if set, zero value otherwise.
-func (o *IntegrationCoupon) GetReferralId() int32 {
+func (o *IntegrationCoupon) GetReferralId() int64 {
 	if o == nil || o.ReferralId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferralId
 }
 
-// GetReferralIdOk returns a tuple with the ReferralId field value if set, zero value otherwise
+// GetReferralIdOk returns a tuple with the ReferralId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetReferralIdOk() (int32, bool) {
+func (o *IntegrationCoupon) GetReferralIdOk() (*int64, bool) {
 	if o == nil || o.ReferralId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralId, true
+	return o.ReferralId, true
 }
 
 // HasReferralId returns a boolean if a field has been set.
@@ -480,8 +555,8 @@ func (o *IntegrationCoupon) HasReferralId() bool {
 	return false
 }
 
-// SetReferralId gets a reference to the given int32 and assigns it to the ReferralId field.
-func (o *IntegrationCoupon) SetReferralId(v int32) {
+// SetReferralId gets a reference to the given int64 and assigns it to the ReferralId field.
+func (o *IntegrationCoupon) SetReferralId(v int64) {
 	o.ReferralId = &v
 }
 
@@ -494,14 +569,13 @@ func (o *IntegrationCoupon) GetRecipientIntegrationId() string {
 	return *o.RecipientIntegrationId
 }
 
-// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value if set, zero value otherwise
+// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetRecipientIntegrationIdOk() (string, bool) {
+func (o *IntegrationCoupon) GetRecipientIntegrationIdOk() (*string, bool) {
 	if o == nil || o.RecipientIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RecipientIntegrationId, true
+	return o.RecipientIntegrationId, true
 }
 
 // HasRecipientIntegrationId returns a boolean if a field has been set.
@@ -519,22 +593,21 @@ func (o *IntegrationCoupon) SetRecipientIntegrationId(v string) {
 }
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
-func (o *IntegrationCoupon) GetImportId() int32 {
+func (o *IntegrationCoupon) GetImportId() int64 {
 	if o == nil || o.ImportId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ImportId
 }
 
-// GetImportIdOk returns a tuple with the ImportId field value if set, zero value otherwise
+// GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetImportIdOk() (int32, bool) {
+func (o *IntegrationCoupon) GetImportIdOk() (*int64, bool) {
 	if o == nil || o.ImportId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ImportId, true
+	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
@@ -546,8 +619,8 @@ func (o *IntegrationCoupon) HasImportId() bool {
 	return false
 }
 
-// SetImportId gets a reference to the given int32 and assigns it to the ImportId field.
-func (o *IntegrationCoupon) SetImportId(v int32) {
+// SetImportId gets a reference to the given int64 and assigns it to the ImportId field.
+func (o *IntegrationCoupon) SetImportId(v int64) {
 	o.ImportId = &v
 }
 
@@ -560,14 +633,13 @@ func (o *IntegrationCoupon) GetReservation() bool {
 	return *o.Reservation
 }
 
-// GetReservationOk returns a tuple with the Reservation field value if set, zero value otherwise
+// GetReservationOk returns a tuple with the Reservation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetReservationOk() (bool, bool) {
+func (o *IntegrationCoupon) GetReservationOk() (*bool, bool) {
 	if o == nil || o.Reservation == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Reservation, true
+	return o.Reservation, true
 }
 
 // HasReservation returns a boolean if a field has been set.
@@ -593,14 +665,13 @@ func (o *IntegrationCoupon) GetBatchId() string {
 	return *o.BatchId
 }
 
-// GetBatchIdOk returns a tuple with the BatchId field value if set, zero value otherwise
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetBatchIdOk() (string, bool) {
+func (o *IntegrationCoupon) GetBatchIdOk() (*string, bool) {
 	if o == nil || o.BatchId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchId, true
+	return o.BatchId, true
 }
 
 // HasBatchId returns a boolean if a field has been set.
@@ -626,14 +697,13 @@ func (o *IntegrationCoupon) GetIsReservationMandatory() bool {
 	return *o.IsReservationMandatory
 }
 
-// GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field value if set, zero value otherwise
+// GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetIsReservationMandatoryOk() (bool, bool) {
+func (o *IntegrationCoupon) GetIsReservationMandatoryOk() (*bool, bool) {
 	if o == nil || o.IsReservationMandatory == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReservationMandatory, true
+	return o.IsReservationMandatory, true
 }
 
 // HasIsReservationMandatory returns a boolean if a field has been set.
@@ -659,14 +729,13 @@ func (o *IntegrationCoupon) GetImplicitlyReserved() bool {
 	return *o.ImplicitlyReserved
 }
 
-// GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field value if set, zero value otherwise
+// GetImplicitlyReservedOk returns a tuple with the ImplicitlyReserved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCoupon) GetImplicitlyReservedOk() (bool, bool) {
+func (o *IntegrationCoupon) GetImplicitlyReservedOk() (*bool, bool) {
 	if o == nil || o.ImplicitlyReserved == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ImplicitlyReserved, true
+	return o.ImplicitlyReserved, true
 }
 
 // HasImplicitlyReserved returns a boolean if a field has been set.
@@ -684,39 +753,135 @@ func (o *IntegrationCoupon) SetImplicitlyReserved(v bool) {
 }
 
 // GetProfileRedemptionCount returns the ProfileRedemptionCount field value
-func (o *IntegrationCoupon) GetProfileRedemptionCount() int32 {
+func (o *IntegrationCoupon) GetProfileRedemptionCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProfileRedemptionCount
 }
 
+// GetProfileRedemptionCountOk returns a tuple with the ProfileRedemptionCount field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCoupon) GetProfileRedemptionCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileRedemptionCount, true
+}
+
 // SetProfileRedemptionCount sets field value
-func (o *IntegrationCoupon) SetProfileRedemptionCount(v int32) {
+func (o *IntegrationCoupon) SetProfileRedemptionCount(v int64) {
 	o.ProfileRedemptionCount = v
 }
 
+func (o IntegrationCoupon) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if o.DiscountLimit != nil {
+		toSerialize["discountLimit"] = o.DiscountLimit
+	}
+	if o.ReservationLimit != nil {
+		toSerialize["reservationLimit"] = o.ReservationLimit
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.Limits != nil {
+		toSerialize["limits"] = o.Limits
+	}
+	if true {
+		toSerialize["usageCounter"] = o.UsageCounter
+	}
+	if o.DiscountCounter != nil {
+		toSerialize["discountCounter"] = o.DiscountCounter
+	}
+	if o.DiscountRemainder != nil {
+		toSerialize["discountRemainder"] = o.DiscountRemainder
+	}
+	if o.ReservationCounter != nil {
+		toSerialize["reservationCounter"] = o.ReservationCounter
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.ReferralId != nil {
+		toSerialize["referralId"] = o.ReferralId
+	}
+	if o.RecipientIntegrationId != nil {
+		toSerialize["recipientIntegrationId"] = o.RecipientIntegrationId
+	}
+	if o.ImportId != nil {
+		toSerialize["importId"] = o.ImportId
+	}
+	if o.Reservation != nil {
+		toSerialize["reservation"] = o.Reservation
+	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
+	}
+	if o.IsReservationMandatory != nil {
+		toSerialize["isReservationMandatory"] = o.IsReservationMandatory
+	}
+	if o.ImplicitlyReserved != nil {
+		toSerialize["implicitlyReserved"] = o.ImplicitlyReserved
+	}
+	if true {
+		toSerialize["profileRedemptionCount"] = o.ProfileRedemptionCount
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIntegrationCoupon struct {
-	Value        IntegrationCoupon
-	ExplicitNull bool
+	value *IntegrationCoupon
+	isSet bool
+}
+
+func (v NullableIntegrationCoupon) Get() *IntegrationCoupon {
+	return v.value
+}
+
+func (v *NullableIntegrationCoupon) Set(val *IntegrationCoupon) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIntegrationCoupon) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIntegrationCoupon) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableIntegrationCoupon(val *IntegrationCoupon) *NullableIntegrationCoupon {
+	return &NullableIntegrationCoupon{value: val, isSet: true}
 }
 
 func (v NullableIntegrationCoupon) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIntegrationCoupon) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

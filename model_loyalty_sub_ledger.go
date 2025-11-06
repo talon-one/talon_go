@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -41,6 +40,29 @@ type LoyaltySubLedger struct {
 	CurrentTier   *Tier                 `json:"currentTier,omitempty"`
 }
 
+// NewLoyaltySubLedger instantiates a new LoyaltySubLedger object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltySubLedger(total float32, totalActivePoints float32, totalPendingPoints float32, totalSpentPoints float32, totalExpiredPoints float32, totalNegativePoints float32) *LoyaltySubLedger {
+	this := LoyaltySubLedger{}
+	this.Total = total
+	this.TotalActivePoints = totalActivePoints
+	this.TotalPendingPoints = totalPendingPoints
+	this.TotalSpentPoints = totalSpentPoints
+	this.TotalExpiredPoints = totalExpiredPoints
+	this.TotalNegativePoints = totalNegativePoints
+	return &this
+}
+
+// NewLoyaltySubLedgerWithDefaults instantiates a new LoyaltySubLedger object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltySubLedgerWithDefaults() *LoyaltySubLedger {
+	this := LoyaltySubLedger{}
+	return &this
+}
+
 // GetTotal returns the Total field value
 func (o *LoyaltySubLedger) GetTotal() float32 {
 	if o == nil {
@@ -49,6 +71,15 @@ func (o *LoyaltySubLedger) GetTotal() float32 {
 	}
 
 	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
 }
 
 // SetTotal sets field value
@@ -66,6 +97,15 @@ func (o *LoyaltySubLedger) GetTotalActivePoints() float32 {
 	return o.TotalActivePoints
 }
 
+// GetTotalActivePointsOk returns a tuple with the TotalActivePoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetTotalActivePointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalActivePoints, true
+}
+
 // SetTotalActivePoints sets field value
 func (o *LoyaltySubLedger) SetTotalActivePoints(v float32) {
 	o.TotalActivePoints = v
@@ -79,6 +119,15 @@ func (o *LoyaltySubLedger) GetTotalPendingPoints() float32 {
 	}
 
 	return o.TotalPendingPoints
+}
+
+// GetTotalPendingPointsOk returns a tuple with the TotalPendingPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetTotalPendingPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalPendingPoints, true
 }
 
 // SetTotalPendingPoints sets field value
@@ -96,6 +145,15 @@ func (o *LoyaltySubLedger) GetTotalSpentPoints() float32 {
 	return o.TotalSpentPoints
 }
 
+// GetTotalSpentPointsOk returns a tuple with the TotalSpentPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetTotalSpentPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalSpentPoints, true
+}
+
 // SetTotalSpentPoints sets field value
 func (o *LoyaltySubLedger) SetTotalSpentPoints(v float32) {
 	o.TotalSpentPoints = v
@@ -109,6 +167,15 @@ func (o *LoyaltySubLedger) GetTotalExpiredPoints() float32 {
 	}
 
 	return o.TotalExpiredPoints
+}
+
+// GetTotalExpiredPointsOk returns a tuple with the TotalExpiredPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetTotalExpiredPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalExpiredPoints, true
 }
 
 // SetTotalExpiredPoints sets field value
@@ -126,6 +193,15 @@ func (o *LoyaltySubLedger) GetTotalNegativePoints() float32 {
 	return o.TotalNegativePoints
 }
 
+// GetTotalNegativePointsOk returns a tuple with the TotalNegativePoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltySubLedger) GetTotalNegativePointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalNegativePoints, true
+}
+
 // SetTotalNegativePoints sets field value
 func (o *LoyaltySubLedger) SetTotalNegativePoints(v float32) {
 	o.TotalNegativePoints = v
@@ -140,14 +216,13 @@ func (o *LoyaltySubLedger) GetTransactions() []LoyaltyLedgerEntry {
 	return *o.Transactions
 }
 
-// GetTransactionsOk returns a tuple with the Transactions field value if set, zero value otherwise
+// GetTransactionsOk returns a tuple with the Transactions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltySubLedger) GetTransactionsOk() ([]LoyaltyLedgerEntry, bool) {
+func (o *LoyaltySubLedger) GetTransactionsOk() (*[]LoyaltyLedgerEntry, bool) {
 	if o == nil || o.Transactions == nil {
-		var ret []LoyaltyLedgerEntry
-		return ret, false
+		return nil, false
 	}
-	return *o.Transactions, true
+	return o.Transactions, true
 }
 
 // HasTransactions returns a boolean if a field has been set.
@@ -173,14 +248,13 @@ func (o *LoyaltySubLedger) GetExpiringPoints() []LoyaltyLedgerEntry {
 	return *o.ExpiringPoints
 }
 
-// GetExpiringPointsOk returns a tuple with the ExpiringPoints field value if set, zero value otherwise
+// GetExpiringPointsOk returns a tuple with the ExpiringPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltySubLedger) GetExpiringPointsOk() ([]LoyaltyLedgerEntry, bool) {
+func (o *LoyaltySubLedger) GetExpiringPointsOk() (*[]LoyaltyLedgerEntry, bool) {
 	if o == nil || o.ExpiringPoints == nil {
-		var ret []LoyaltyLedgerEntry
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiringPoints, true
+	return o.ExpiringPoints, true
 }
 
 // HasExpiringPoints returns a boolean if a field has been set.
@@ -206,14 +280,13 @@ func (o *LoyaltySubLedger) GetActivePoints() []LoyaltyLedgerEntry {
 	return *o.ActivePoints
 }
 
-// GetActivePointsOk returns a tuple with the ActivePoints field value if set, zero value otherwise
+// GetActivePointsOk returns a tuple with the ActivePoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltySubLedger) GetActivePointsOk() ([]LoyaltyLedgerEntry, bool) {
+func (o *LoyaltySubLedger) GetActivePointsOk() (*[]LoyaltyLedgerEntry, bool) {
 	if o == nil || o.ActivePoints == nil {
-		var ret []LoyaltyLedgerEntry
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivePoints, true
+	return o.ActivePoints, true
 }
 
 // HasActivePoints returns a boolean if a field has been set.
@@ -239,14 +312,13 @@ func (o *LoyaltySubLedger) GetPendingPoints() []LoyaltyLedgerEntry {
 	return *o.PendingPoints
 }
 
-// GetPendingPointsOk returns a tuple with the PendingPoints field value if set, zero value otherwise
+// GetPendingPointsOk returns a tuple with the PendingPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltySubLedger) GetPendingPointsOk() ([]LoyaltyLedgerEntry, bool) {
+func (o *LoyaltySubLedger) GetPendingPointsOk() (*[]LoyaltyLedgerEntry, bool) {
 	if o == nil || o.PendingPoints == nil {
-		var ret []LoyaltyLedgerEntry
-		return ret, false
+		return nil, false
 	}
-	return *o.PendingPoints, true
+	return o.PendingPoints, true
 }
 
 // HasPendingPoints returns a boolean if a field has been set.
@@ -272,14 +344,13 @@ func (o *LoyaltySubLedger) GetExpiredPoints() []LoyaltyLedgerEntry {
 	return *o.ExpiredPoints
 }
 
-// GetExpiredPointsOk returns a tuple with the ExpiredPoints field value if set, zero value otherwise
+// GetExpiredPointsOk returns a tuple with the ExpiredPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltySubLedger) GetExpiredPointsOk() ([]LoyaltyLedgerEntry, bool) {
+func (o *LoyaltySubLedger) GetExpiredPointsOk() (*[]LoyaltyLedgerEntry, bool) {
 	if o == nil || o.ExpiredPoints == nil {
-		var ret []LoyaltyLedgerEntry
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiredPoints, true
+	return o.ExpiredPoints, true
 }
 
 // HasExpiredPoints returns a boolean if a field has been set.
@@ -305,14 +376,13 @@ func (o *LoyaltySubLedger) GetCurrentTier() Tier {
 	return *o.CurrentTier
 }
 
-// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, zero value otherwise
+// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltySubLedger) GetCurrentTierOk() (Tier, bool) {
+func (o *LoyaltySubLedger) GetCurrentTierOk() (*Tier, bool) {
 	if o == nil || o.CurrentTier == nil {
-		var ret Tier
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentTier, true
+	return o.CurrentTier, true
 }
 
 // HasCurrentTier returns a boolean if a field has been set.
@@ -329,25 +399,79 @@ func (o *LoyaltySubLedger) SetCurrentTier(v Tier) {
 	o.CurrentTier = &v
 }
 
+func (o LoyaltySubLedger) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["totalActivePoints"] = o.TotalActivePoints
+	}
+	if true {
+		toSerialize["totalPendingPoints"] = o.TotalPendingPoints
+	}
+	if true {
+		toSerialize["totalSpentPoints"] = o.TotalSpentPoints
+	}
+	if true {
+		toSerialize["totalExpiredPoints"] = o.TotalExpiredPoints
+	}
+	if true {
+		toSerialize["totalNegativePoints"] = o.TotalNegativePoints
+	}
+	if o.Transactions != nil {
+		toSerialize["transactions"] = o.Transactions
+	}
+	if o.ExpiringPoints != nil {
+		toSerialize["expiringPoints"] = o.ExpiringPoints
+	}
+	if o.ActivePoints != nil {
+		toSerialize["activePoints"] = o.ActivePoints
+	}
+	if o.PendingPoints != nil {
+		toSerialize["pendingPoints"] = o.PendingPoints
+	}
+	if o.ExpiredPoints != nil {
+		toSerialize["expiredPoints"] = o.ExpiredPoints
+	}
+	if o.CurrentTier != nil {
+		toSerialize["currentTier"] = o.CurrentTier
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltySubLedger struct {
-	Value        LoyaltySubLedger
-	ExplicitNull bool
+	value *LoyaltySubLedger
+	isSet bool
+}
+
+func (v NullableLoyaltySubLedger) Get() *LoyaltySubLedger {
+	return v.value
+}
+
+func (v *NullableLoyaltySubLedger) Set(val *LoyaltySubLedger) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltySubLedger) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltySubLedger) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltySubLedger(val *LoyaltySubLedger) *NullableLoyaltySubLedger {
+	return &NullableLoyaltySubLedger{value: val, isSet: true}
 }
 
 func (v NullableLoyaltySubLedger) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltySubLedger) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

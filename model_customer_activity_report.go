@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -24,25 +23,54 @@ type CustomerActivityReport struct {
 	// The name for this customer profile.
 	Name string `json:"name"`
 	// The internal Talon.One ID of the customer.
-	CustomerId int32 `json:"customerId"`
+	CustomerId int64 `json:"customerId"`
 	// The last activity of the customer.
 	LastActivity *time.Time `json:"lastActivity,omitempty"`
 	// Number of coupon redemptions in all customer campaigns.
-	CouponRedemptions int32 `json:"couponRedemptions"`
+	CouponRedemptions int64 `json:"couponRedemptions"`
 	// Number of coupon use attempts in all customer campaigns.
-	CouponUseAttempts int32 `json:"couponUseAttempts"`
+	CouponUseAttempts int64 `json:"couponUseAttempts"`
 	// Number of failed coupon use attempts in all customer campaigns.
-	CouponFailedAttempts int32 `json:"couponFailedAttempts"`
+	CouponFailedAttempts int64 `json:"couponFailedAttempts"`
 	// Number of accrued discounts in all customer campaigns.
 	AccruedDiscounts float32 `json:"accruedDiscounts"`
 	// Amount of accrued revenue in all customer campaigns.
 	AccruedRevenue float32 `json:"accruedRevenue"`
 	// Number of orders in all customer campaigns.
-	TotalOrders int32 `json:"totalOrders"`
+	TotalOrders int64 `json:"totalOrders"`
 	// Number of orders without coupon used in all customer campaigns.
-	TotalOrdersNoCoupon int32 `json:"totalOrdersNoCoupon"`
+	TotalOrdersNoCoupon int64 `json:"totalOrdersNoCoupon"`
 	// The name of the campaign this customer belongs to.
 	CampaignName string `json:"campaignName"`
+}
+
+// NewCustomerActivityReport instantiates a new CustomerActivityReport object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerActivityReport(integrationId string, created time.Time, name string, customerId int64, couponRedemptions int64, couponUseAttempts int64, couponFailedAttempts int64, accruedDiscounts float32, accruedRevenue float32, totalOrders int64, totalOrdersNoCoupon int64, campaignName string) *CustomerActivityReport {
+	this := CustomerActivityReport{}
+	this.IntegrationId = integrationId
+	this.Created = created
+	this.Name = name
+	this.CustomerId = customerId
+	this.CouponRedemptions = couponRedemptions
+	this.CouponUseAttempts = couponUseAttempts
+	this.CouponFailedAttempts = couponFailedAttempts
+	this.AccruedDiscounts = accruedDiscounts
+	this.AccruedRevenue = accruedRevenue
+	this.TotalOrders = totalOrders
+	this.TotalOrdersNoCoupon = totalOrdersNoCoupon
+	this.CampaignName = campaignName
+	return &this
+}
+
+// NewCustomerActivityReportWithDefaults instantiates a new CustomerActivityReport object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerActivityReportWithDefaults() *CustomerActivityReport {
+	this := CustomerActivityReport{}
+	return &this
 }
 
 // GetIntegrationId returns the IntegrationId field value
@@ -53,6 +81,15 @@ func (o *CustomerActivityReport) GetIntegrationId() string {
 	}
 
 	return o.IntegrationId
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
 }
 
 // SetIntegrationId sets field value
@@ -70,6 +107,15 @@ func (o *CustomerActivityReport) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *CustomerActivityReport) SetCreated(v time.Time) {
 	o.Created = v
@@ -85,23 +131,41 @@ func (o *CustomerActivityReport) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *CustomerActivityReport) SetName(v string) {
 	o.Name = v
 }
 
 // GetCustomerId returns the CustomerId field value
-func (o *CustomerActivityReport) GetCustomerId() int32 {
+func (o *CustomerActivityReport) GetCustomerId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CustomerId
 }
 
+// GetCustomerIdOk returns a tuple with the CustomerId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetCustomerIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CustomerId, true
+}
+
 // SetCustomerId sets field value
-func (o *CustomerActivityReport) SetCustomerId(v int32) {
+func (o *CustomerActivityReport) SetCustomerId(v int64) {
 	o.CustomerId = v
 }
 
@@ -114,14 +178,13 @@ func (o *CustomerActivityReport) GetLastActivity() time.Time {
 	return *o.LastActivity
 }
 
-// GetLastActivityOk returns a tuple with the LastActivity field value if set, zero value otherwise
+// GetLastActivityOk returns a tuple with the LastActivity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerActivityReport) GetLastActivityOk() (time.Time, bool) {
+func (o *CustomerActivityReport) GetLastActivityOk() (*time.Time, bool) {
 	if o == nil || o.LastActivity == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastActivity, true
+	return o.LastActivity, true
 }
 
 // HasLastActivity returns a boolean if a field has been set.
@@ -139,47 +202,74 @@ func (o *CustomerActivityReport) SetLastActivity(v time.Time) {
 }
 
 // GetCouponRedemptions returns the CouponRedemptions field value
-func (o *CustomerActivityReport) GetCouponRedemptions() int32 {
+func (o *CustomerActivityReport) GetCouponRedemptions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponRedemptions
 }
 
+// GetCouponRedemptionsOk returns a tuple with the CouponRedemptions field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetCouponRedemptionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponRedemptions, true
+}
+
 // SetCouponRedemptions sets field value
-func (o *CustomerActivityReport) SetCouponRedemptions(v int32) {
+func (o *CustomerActivityReport) SetCouponRedemptions(v int64) {
 	o.CouponRedemptions = v
 }
 
 // GetCouponUseAttempts returns the CouponUseAttempts field value
-func (o *CustomerActivityReport) GetCouponUseAttempts() int32 {
+func (o *CustomerActivityReport) GetCouponUseAttempts() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponUseAttempts
 }
 
+// GetCouponUseAttemptsOk returns a tuple with the CouponUseAttempts field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetCouponUseAttemptsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponUseAttempts, true
+}
+
 // SetCouponUseAttempts sets field value
-func (o *CustomerActivityReport) SetCouponUseAttempts(v int32) {
+func (o *CustomerActivityReport) SetCouponUseAttempts(v int64) {
 	o.CouponUseAttempts = v
 }
 
 // GetCouponFailedAttempts returns the CouponFailedAttempts field value
-func (o *CustomerActivityReport) GetCouponFailedAttempts() int32 {
+func (o *CustomerActivityReport) GetCouponFailedAttempts() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponFailedAttempts
 }
 
+// GetCouponFailedAttemptsOk returns a tuple with the CouponFailedAttempts field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetCouponFailedAttemptsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponFailedAttempts, true
+}
+
 // SetCouponFailedAttempts sets field value
-func (o *CustomerActivityReport) SetCouponFailedAttempts(v int32) {
+func (o *CustomerActivityReport) SetCouponFailedAttempts(v int64) {
 	o.CouponFailedAttempts = v
 }
 
@@ -191,6 +281,15 @@ func (o *CustomerActivityReport) GetAccruedDiscounts() float32 {
 	}
 
 	return o.AccruedDiscounts
+}
+
+// GetAccruedDiscountsOk returns a tuple with the AccruedDiscounts field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetAccruedDiscountsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccruedDiscounts, true
 }
 
 // SetAccruedDiscounts sets field value
@@ -208,38 +307,65 @@ func (o *CustomerActivityReport) GetAccruedRevenue() float32 {
 	return o.AccruedRevenue
 }
 
+// GetAccruedRevenueOk returns a tuple with the AccruedRevenue field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetAccruedRevenueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccruedRevenue, true
+}
+
 // SetAccruedRevenue sets field value
 func (o *CustomerActivityReport) SetAccruedRevenue(v float32) {
 	o.AccruedRevenue = v
 }
 
 // GetTotalOrders returns the TotalOrders field value
-func (o *CustomerActivityReport) GetTotalOrders() int32 {
+func (o *CustomerActivityReport) GetTotalOrders() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalOrders
 }
 
+// GetTotalOrdersOk returns a tuple with the TotalOrders field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetTotalOrdersOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalOrders, true
+}
+
 // SetTotalOrders sets field value
-func (o *CustomerActivityReport) SetTotalOrders(v int32) {
+func (o *CustomerActivityReport) SetTotalOrders(v int64) {
 	o.TotalOrders = v
 }
 
 // GetTotalOrdersNoCoupon returns the TotalOrdersNoCoupon field value
-func (o *CustomerActivityReport) GetTotalOrdersNoCoupon() int32 {
+func (o *CustomerActivityReport) GetTotalOrdersNoCoupon() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalOrdersNoCoupon
 }
 
+// GetTotalOrdersNoCouponOk returns a tuple with the TotalOrdersNoCoupon field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetTotalOrdersNoCouponOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalOrdersNoCoupon, true
+}
+
 // SetTotalOrdersNoCoupon sets field value
-func (o *CustomerActivityReport) SetTotalOrdersNoCoupon(v int32) {
+func (o *CustomerActivityReport) SetTotalOrdersNoCoupon(v int64) {
 	o.TotalOrdersNoCoupon = v
 }
 
@@ -253,30 +379,96 @@ func (o *CustomerActivityReport) GetCampaignName() string {
 	return o.CampaignName
 }
 
+// GetCampaignNameOk returns a tuple with the CampaignName field value
+// and a boolean to check if the value has been set.
+func (o *CustomerActivityReport) GetCampaignNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignName, true
+}
+
 // SetCampaignName sets field value
 func (o *CustomerActivityReport) SetCampaignName(v string) {
 	o.CampaignName = v
 }
 
+func (o CustomerActivityReport) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["customerId"] = o.CustomerId
+	}
+	if o.LastActivity != nil {
+		toSerialize["lastActivity"] = o.LastActivity
+	}
+	if true {
+		toSerialize["couponRedemptions"] = o.CouponRedemptions
+	}
+	if true {
+		toSerialize["couponUseAttempts"] = o.CouponUseAttempts
+	}
+	if true {
+		toSerialize["couponFailedAttempts"] = o.CouponFailedAttempts
+	}
+	if true {
+		toSerialize["accruedDiscounts"] = o.AccruedDiscounts
+	}
+	if true {
+		toSerialize["accruedRevenue"] = o.AccruedRevenue
+	}
+	if true {
+		toSerialize["totalOrders"] = o.TotalOrders
+	}
+	if true {
+		toSerialize["totalOrdersNoCoupon"] = o.TotalOrdersNoCoupon
+	}
+	if true {
+		toSerialize["campaignName"] = o.CampaignName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerActivityReport struct {
-	Value        CustomerActivityReport
-	ExplicitNull bool
+	value *CustomerActivityReport
+	isSet bool
+}
+
+func (v NullableCustomerActivityReport) Get() *CustomerActivityReport {
+	return v.value
+}
+
+func (v *NullableCustomerActivityReport) Set(val *CustomerActivityReport) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerActivityReport) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerActivityReport) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerActivityReport(val *CustomerActivityReport) *NullableCustomerActivityReport {
+	return &NullableCustomerActivityReport{value: val, isSet: true}
 }
 
 func (v NullableCustomerActivityReport) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerActivityReport) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

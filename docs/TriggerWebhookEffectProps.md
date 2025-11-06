@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewTriggerWebhookEffectProps
+
+`func NewTriggerWebhookEffectProps(webhookId float32, webhookName string, ) *TriggerWebhookEffectProps`
+
+NewTriggerWebhookEffectProps instantiates a new TriggerWebhookEffectProps object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewTriggerWebhookEffectPropsWithDefaults
+
+`func NewTriggerWebhookEffectPropsWithDefaults() *TriggerWebhookEffectProps`
+
+NewTriggerWebhookEffectPropsWithDefaults instantiates a new TriggerWebhookEffectProps object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetWebhookId
 
 `func (o *TriggerWebhookEffectProps) GetWebhookId() float32`
@@ -17,22 +34,17 @@ GetWebhookId returns the WebhookId field if non-nil, zero value otherwise.
 
 ### GetWebhookIdOk
 
-`func (o *TriggerWebhookEffectProps) GetWebhookIdOk() (float32, bool)`
+`func (o *TriggerWebhookEffectProps) GetWebhookIdOk() (*float32, bool)`
 
 GetWebhookIdOk returns a tuple with the WebhookId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasWebhookId
-
-`func (o *TriggerWebhookEffectProps) HasWebhookId() bool`
-
-HasWebhookId returns a boolean if a field has been set.
 
 ### SetWebhookId
 
 `func (o *TriggerWebhookEffectProps) SetWebhookId(v float32)`
 
-SetWebhookId gets a reference to the given float32 and assigns it to the WebhookId field.
+SetWebhookId sets WebhookId field to given value.
+
 
 ### GetWebhookName
 
@@ -42,22 +54,17 @@ GetWebhookName returns the WebhookName field if non-nil, zero value otherwise.
 
 ### GetWebhookNameOk
 
-`func (o *TriggerWebhookEffectProps) GetWebhookNameOk() (string, bool)`
+`func (o *TriggerWebhookEffectProps) GetWebhookNameOk() (*string, bool)`
 
 GetWebhookNameOk returns a tuple with the WebhookName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasWebhookName
-
-`func (o *TriggerWebhookEffectProps) HasWebhookName() bool`
-
-HasWebhookName returns a boolean if a field has been set.
 
 ### SetWebhookName
 
 `func (o *TriggerWebhookEffectProps) SetWebhookName(v string)`
 
-SetWebhookName gets a reference to the given string and assigns it to the WebhookName field.
+SetWebhookName sets WebhookName field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

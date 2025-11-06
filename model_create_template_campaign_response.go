@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type CreateTemplateCampaignResponse struct {
 	Collections *[]Collection `json:"collections,omitempty"`
 }
 
+// NewCreateTemplateCampaignResponse instantiates a new CreateTemplateCampaignResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCreateTemplateCampaignResponse(campaign Campaign, ruleset Ruleset) *CreateTemplateCampaignResponse {
+	this := CreateTemplateCampaignResponse{}
+	this.Campaign = campaign
+	this.Ruleset = ruleset
+	return &this
+}
+
+// NewCreateTemplateCampaignResponseWithDefaults instantiates a new CreateTemplateCampaignResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateTemplateCampaignResponseWithDefaults() *CreateTemplateCampaignResponse {
+	this := CreateTemplateCampaignResponse{}
+	return &this
+}
+
 // GetCampaign returns the Campaign field value
 func (o *CreateTemplateCampaignResponse) GetCampaign() Campaign {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *CreateTemplateCampaignResponse) GetCampaign() Campaign {
 	}
 
 	return o.Campaign
+}
+
+// GetCampaignOk returns a tuple with the Campaign field value
+// and a boolean to check if the value has been set.
+func (o *CreateTemplateCampaignResponse) GetCampaignOk() (*Campaign, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Campaign, true
 }
 
 // SetCampaign sets field value
@@ -46,6 +73,15 @@ func (o *CreateTemplateCampaignResponse) GetRuleset() Ruleset {
 	return o.Ruleset
 }
 
+// GetRulesetOk returns a tuple with the Ruleset field value
+// and a boolean to check if the value has been set.
+func (o *CreateTemplateCampaignResponse) GetRulesetOk() (*Ruleset, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ruleset, true
+}
+
 // SetRuleset sets field value
 func (o *CreateTemplateCampaignResponse) SetRuleset(v Ruleset) {
 	o.Ruleset = v
@@ -60,14 +96,13 @@ func (o *CreateTemplateCampaignResponse) GetCollections() []Collection {
 	return *o.Collections
 }
 
-// GetCollectionsOk returns a tuple with the Collections field value if set, zero value otherwise
+// GetCollectionsOk returns a tuple with the Collections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaignResponse) GetCollectionsOk() ([]Collection, bool) {
+func (o *CreateTemplateCampaignResponse) GetCollectionsOk() (*[]Collection, bool) {
 	if o == nil || o.Collections == nil {
-		var ret []Collection
-		return ret, false
+		return nil, false
 	}
-	return *o.Collections, true
+	return o.Collections, true
 }
 
 // HasCollections returns a boolean if a field has been set.
@@ -84,25 +119,52 @@ func (o *CreateTemplateCampaignResponse) SetCollections(v []Collection) {
 	o.Collections = &v
 }
 
+func (o CreateTemplateCampaignResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaign"] = o.Campaign
+	}
+	if true {
+		toSerialize["ruleset"] = o.Ruleset
+	}
+	if o.Collections != nil {
+		toSerialize["collections"] = o.Collections
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCreateTemplateCampaignResponse struct {
-	Value        CreateTemplateCampaignResponse
-	ExplicitNull bool
+	value *CreateTemplateCampaignResponse
+	isSet bool
+}
+
+func (v NullableCreateTemplateCampaignResponse) Get() *CreateTemplateCampaignResponse {
+	return v.value
+}
+
+func (v *NullableCreateTemplateCampaignResponse) Set(val *CreateTemplateCampaignResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateTemplateCampaignResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateTemplateCampaignResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCreateTemplateCampaignResponse(val *CreateTemplateCampaignResponse) *NullableCreateTemplateCampaignResponse {
+	return &NullableCreateTemplateCampaignResponse{value: val, isSet: true}
 }
 
 func (v NullableCreateTemplateCampaignResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCreateTemplateCampaignResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

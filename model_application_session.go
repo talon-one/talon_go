@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // ApplicationSession struct for ApplicationSession
 type ApplicationSession struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
@@ -26,9 +25,9 @@ type ApplicationSession struct {
 	// The integration ID of the store. You choose this ID when you create a store.
 	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
 	// Integration ID of the customer for the session.
 	Profileintegrationid *string `json:"profileintegrationid,omitempty"`
 	// Any coupon code entered.
@@ -49,18 +48,55 @@ type ApplicationSession struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
+// NewApplicationSession instantiates a new ApplicationSession object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildApplicationSession(id int64, created time.Time, integrationId string, applicationId int64, coupon string, referral string, state string, cartItems []CartItem, discounts map[string]float32, totalDiscounts float32, total float32) *ApplicationSession {
+	this := ApplicationSession{}
+	this.Id = id
+	this.Created = created
+	this.IntegrationId = integrationId
+	this.ApplicationId = applicationId
+	this.Coupon = coupon
+	this.Referral = referral
+	this.State = state
+	this.CartItems = cartItems
+	this.Discounts = discounts
+	this.TotalDiscounts = totalDiscounts
+	this.Total = total
+	return &this
+}
+
+// NewApplicationSessionWithDefaults instantiates a new ApplicationSession object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationSessionWithDefaults() *ApplicationSession {
+	this := ApplicationSession{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *ApplicationSession) GetId() int32 {
+func (o *ApplicationSession) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *ApplicationSession) SetId(v int32) {
+func (o *ApplicationSession) SetId(v int64) {
 	o.Id = v
 }
 
@@ -72,6 +108,15 @@ func (o *ApplicationSession) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -89,6 +134,15 @@ func (o *ApplicationSession) GetIntegrationId() string {
 	return o.IntegrationId
 }
 
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
+}
+
 // SetIntegrationId sets field value
 func (o *ApplicationSession) SetIntegrationId(v string) {
 	o.IntegrationId = v
@@ -103,14 +157,13 @@ func (o *ApplicationSession) GetStoreIntegrationId() string {
 	return *o.StoreIntegrationId
 }
 
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationSession) GetStoreIntegrationIdOk() (string, bool) {
+func (o *ApplicationSession) GetStoreIntegrationIdOk() (*string, bool) {
 	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreIntegrationId, true
+	return o.StoreIntegrationId, true
 }
 
 // HasStoreIntegrationId returns a boolean if a field has been set.
@@ -128,37 +181,45 @@ func (o *ApplicationSession) SetStoreIntegrationId(v string) {
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *ApplicationSession) GetApplicationId() int32 {
+func (o *ApplicationSession) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *ApplicationSession) SetApplicationId(v int32) {
+func (o *ApplicationSession) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *ApplicationSession) GetProfileId() int32 {
+func (o *ApplicationSession) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationSession) GetProfileIdOk() (int32, bool) {
+func (o *ApplicationSession) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -170,8 +231,8 @@ func (o *ApplicationSession) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *ApplicationSession) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *ApplicationSession) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
@@ -184,14 +245,13 @@ func (o *ApplicationSession) GetProfileintegrationid() string {
 	return *o.Profileintegrationid
 }
 
-// GetProfileintegrationidOk returns a tuple with the Profileintegrationid field value if set, zero value otherwise
+// GetProfileintegrationidOk returns a tuple with the Profileintegrationid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationSession) GetProfileintegrationidOk() (string, bool) {
+func (o *ApplicationSession) GetProfileintegrationidOk() (*string, bool) {
 	if o == nil || o.Profileintegrationid == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Profileintegrationid, true
+	return o.Profileintegrationid, true
 }
 
 // HasProfileintegrationid returns a boolean if a field has been set.
@@ -218,6 +278,15 @@ func (o *ApplicationSession) GetCoupon() string {
 	return o.Coupon
 }
 
+// GetCouponOk returns a tuple with the Coupon field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetCouponOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Coupon, true
+}
+
 // SetCoupon sets field value
 func (o *ApplicationSession) SetCoupon(v string) {
 	o.Coupon = v
@@ -231,6 +300,15 @@ func (o *ApplicationSession) GetReferral() string {
 	}
 
 	return o.Referral
+}
+
+// GetReferralOk returns a tuple with the Referral field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetReferralOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Referral, true
 }
 
 // SetReferral sets field value
@@ -248,6 +326,15 @@ func (o *ApplicationSession) GetState() string {
 	return o.State
 }
 
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
 // SetState sets field value
 func (o *ApplicationSession) SetState(v string) {
 	o.State = v
@@ -261,6 +348,15 @@ func (o *ApplicationSession) GetCartItems() []CartItem {
 	}
 
 	return o.CartItems
+}
+
+// GetCartItemsOk returns a tuple with the CartItems field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetCartItemsOk() (*[]CartItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CartItems, true
 }
 
 // SetCartItems sets field value
@@ -278,6 +374,15 @@ func (o *ApplicationSession) GetDiscounts() map[string]float32 {
 	return o.Discounts
 }
 
+// GetDiscountsOk returns a tuple with the Discounts field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetDiscountsOk() (*map[string]float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Discounts, true
+}
+
 // SetDiscounts sets field value
 func (o *ApplicationSession) SetDiscounts(v map[string]float32) {
 	o.Discounts = v
@@ -291,6 +396,15 @@ func (o *ApplicationSession) GetTotalDiscounts() float32 {
 	}
 
 	return o.TotalDiscounts
+}
+
+// GetTotalDiscountsOk returns a tuple with the TotalDiscounts field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetTotalDiscountsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalDiscounts, true
 }
 
 // SetTotalDiscounts sets field value
@@ -308,6 +422,15 @@ func (o *ApplicationSession) GetTotal() float32 {
 	return o.Total
 }
 
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSession) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
 // SetTotal sets field value
 func (o *ApplicationSession) SetTotal(v float32) {
 	o.Total = v
@@ -322,14 +445,13 @@ func (o *ApplicationSession) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationSession) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *ApplicationSession) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -346,25 +468,88 @@ func (o *ApplicationSession) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o ApplicationSession) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.Profileintegrationid != nil {
+		toSerialize["profileintegrationid"] = o.Profileintegrationid
+	}
+	if true {
+		toSerialize["coupon"] = o.Coupon
+	}
+	if true {
+		toSerialize["referral"] = o.Referral
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if true {
+		toSerialize["cartItems"] = o.CartItems
+	}
+	if true {
+		toSerialize["discounts"] = o.Discounts
+	}
+	if true {
+		toSerialize["totalDiscounts"] = o.TotalDiscounts
+	}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationSession struct {
-	Value        ApplicationSession
-	ExplicitNull bool
+	value *ApplicationSession
+	isSet bool
+}
+
+func (v NullableApplicationSession) Get() *ApplicationSession {
+	return v.value
+}
+
+func (v *NullableApplicationSession) Set(val *ApplicationSession) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationSession) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationSession) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableApplicationSession(val *ApplicationSession) *NullableApplicationSession {
+	return &NullableApplicationSession{value: val, isSet: true}
 }
 
 func (v NullableApplicationSession) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationSession) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

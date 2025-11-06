@@ -10,37 +10,52 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ScimServiceProviderConfigResponseBulk Configuration related to bulk operations, which allow multiple SCIM requests to be processed in a single HTTP request.
 type ScimServiceProviderConfigResponseBulk struct {
 	// The maximum number of individual operations that can be included in a single bulk request.
-	MaxOperations *int32 `json:"maxOperations,omitempty"`
+	MaxOperations *int64 `json:"maxOperations,omitempty"`
 	// The maximum size, in bytes, of the entire payload for a bulk operation request.
-	MaxPayloadSize *int32 `json:"maxPayloadSize,omitempty"`
+	MaxPayloadSize *int64 `json:"maxPayloadSize,omitempty"`
 	// Indicates whether the SCIM service provider supports bulk operations.
 	Supported *bool `json:"supported,omitempty"`
 }
 
+// NewScimServiceProviderConfigResponseBulk instantiates a new ScimServiceProviderConfigResponseBulk object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildScimServiceProviderConfigResponseBulk() *ScimServiceProviderConfigResponseBulk {
+	this := ScimServiceProviderConfigResponseBulk{}
+	return &this
+}
+
+// NewScimServiceProviderConfigResponseBulkWithDefaults instantiates a new ScimServiceProviderConfigResponseBulk object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimServiceProviderConfigResponseBulkWithDefaults() *ScimServiceProviderConfigResponseBulk {
+	this := ScimServiceProviderConfigResponseBulk{}
+	return &this
+}
+
 // GetMaxOperations returns the MaxOperations field value if set, zero value otherwise.
-func (o *ScimServiceProviderConfigResponseBulk) GetMaxOperations() int32 {
+func (o *ScimServiceProviderConfigResponseBulk) GetMaxOperations() int64 {
 	if o == nil || o.MaxOperations == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MaxOperations
 }
 
-// GetMaxOperationsOk returns a tuple with the MaxOperations field value if set, zero value otherwise
+// GetMaxOperationsOk returns a tuple with the MaxOperations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponseBulk) GetMaxOperationsOk() (int32, bool) {
+func (o *ScimServiceProviderConfigResponseBulk) GetMaxOperationsOk() (*int64, bool) {
 	if o == nil || o.MaxOperations == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.MaxOperations, true
+	return o.MaxOperations, true
 }
 
 // HasMaxOperations returns a boolean if a field has been set.
@@ -52,28 +67,27 @@ func (o *ScimServiceProviderConfigResponseBulk) HasMaxOperations() bool {
 	return false
 }
 
-// SetMaxOperations gets a reference to the given int32 and assigns it to the MaxOperations field.
-func (o *ScimServiceProviderConfigResponseBulk) SetMaxOperations(v int32) {
+// SetMaxOperations gets a reference to the given int64 and assigns it to the MaxOperations field.
+func (o *ScimServiceProviderConfigResponseBulk) SetMaxOperations(v int64) {
 	o.MaxOperations = &v
 }
 
 // GetMaxPayloadSize returns the MaxPayloadSize field value if set, zero value otherwise.
-func (o *ScimServiceProviderConfigResponseBulk) GetMaxPayloadSize() int32 {
+func (o *ScimServiceProviderConfigResponseBulk) GetMaxPayloadSize() int64 {
 	if o == nil || o.MaxPayloadSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MaxPayloadSize
 }
 
-// GetMaxPayloadSizeOk returns a tuple with the MaxPayloadSize field value if set, zero value otherwise
+// GetMaxPayloadSizeOk returns a tuple with the MaxPayloadSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponseBulk) GetMaxPayloadSizeOk() (int32, bool) {
+func (o *ScimServiceProviderConfigResponseBulk) GetMaxPayloadSizeOk() (*int64, bool) {
 	if o == nil || o.MaxPayloadSize == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.MaxPayloadSize, true
+	return o.MaxPayloadSize, true
 }
 
 // HasMaxPayloadSize returns a boolean if a field has been set.
@@ -85,8 +99,8 @@ func (o *ScimServiceProviderConfigResponseBulk) HasMaxPayloadSize() bool {
 	return false
 }
 
-// SetMaxPayloadSize gets a reference to the given int32 and assigns it to the MaxPayloadSize field.
-func (o *ScimServiceProviderConfigResponseBulk) SetMaxPayloadSize(v int32) {
+// SetMaxPayloadSize gets a reference to the given int64 and assigns it to the MaxPayloadSize field.
+func (o *ScimServiceProviderConfigResponseBulk) SetMaxPayloadSize(v int64) {
 	o.MaxPayloadSize = &v
 }
 
@@ -99,14 +113,13 @@ func (o *ScimServiceProviderConfigResponseBulk) GetSupported() bool {
 	return *o.Supported
 }
 
-// GetSupportedOk returns a tuple with the Supported field value if set, zero value otherwise
+// GetSupportedOk returns a tuple with the Supported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponseBulk) GetSupportedOk() (bool, bool) {
+func (o *ScimServiceProviderConfigResponseBulk) GetSupportedOk() (*bool, bool) {
 	if o == nil || o.Supported == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Supported, true
+	return o.Supported, true
 }
 
 // HasSupported returns a boolean if a field has been set.
@@ -123,25 +136,52 @@ func (o *ScimServiceProviderConfigResponseBulk) SetSupported(v bool) {
 	o.Supported = &v
 }
 
+func (o ScimServiceProviderConfigResponseBulk) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.MaxOperations != nil {
+		toSerialize["maxOperations"] = o.MaxOperations
+	}
+	if o.MaxPayloadSize != nil {
+		toSerialize["maxPayloadSize"] = o.MaxPayloadSize
+	}
+	if o.Supported != nil {
+		toSerialize["supported"] = o.Supported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimServiceProviderConfigResponseBulk struct {
-	Value        ScimServiceProviderConfigResponseBulk
-	ExplicitNull bool
+	value *ScimServiceProviderConfigResponseBulk
+	isSet bool
+}
+
+func (v NullableScimServiceProviderConfigResponseBulk) Get() *ScimServiceProviderConfigResponseBulk {
+	return v.value
+}
+
+func (v *NullableScimServiceProviderConfigResponseBulk) Set(val *ScimServiceProviderConfigResponseBulk) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimServiceProviderConfigResponseBulk) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimServiceProviderConfigResponseBulk) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableScimServiceProviderConfigResponseBulk(val *ScimServiceProviderConfigResponseBulk) *NullableScimServiceProviderConfigResponseBulk {
+	return &NullableScimServiceProviderConfigResponseBulk{value: val, isSet: true}
 }
 
 func (v NullableScimServiceProviderConfigResponseBulk) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimServiceProviderConfigResponseBulk) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

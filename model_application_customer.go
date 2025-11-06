@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // ApplicationCustomer struct for ApplicationCustomer
 type ApplicationCustomer struct {
 	// The internal ID of the customer profile.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The integration ID set by your integration layer.
@@ -26,12 +25,12 @@ type ApplicationCustomer struct {
 	// Arbitrary properties associated with this item.
 	Attributes map[string]interface{} `json:"attributes"`
 	// The ID of the Talon.One account that owns this profile.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The total number of closed sessions. Does not include closed sessions that have been cancelled or reopened. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions#customer-session-states).
-	ClosedSessions int32 `json:"closedSessions"`
+	ClosedSessions int64 `json:"closedSessions"`
 	// The total amount of money spent by the customer **before** discounts are applied.  The total sales amount excludes the following: - Cancelled or reopened sessions. - Returned items.
 	TotalSales float32 `json:"totalSales"`
-	// **DEPRECATED** A list of loyalty programs joined by the customer.
+	// **DEPRECATED. Always returns `null`.** A list of loyalty programs joined by the customer.
 	LoyaltyMemberships *[]LoyaltyMembership `json:"loyaltyMemberships,omitempty"`
 	// The audiences the customer belongs to.
 	AudienceMemberships *[]AudienceMembership `json:"audienceMemberships,omitempty"`
@@ -43,18 +42,52 @@ type ApplicationCustomer struct {
 	AdvocateIntegrationId *string `json:"advocateIntegrationId,omitempty"`
 }
 
+// NewApplicationCustomer instantiates a new ApplicationCustomer object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildApplicationCustomer(id int64, created time.Time, integrationId string, attributes map[string]interface{}, accountId int64, closedSessions int64, totalSales float32, lastActivity time.Time) *ApplicationCustomer {
+	this := ApplicationCustomer{}
+	this.Id = id
+	this.Created = created
+	this.IntegrationId = integrationId
+	this.Attributes = attributes
+	this.AccountId = accountId
+	this.ClosedSessions = closedSessions
+	this.TotalSales = totalSales
+	this.LastActivity = lastActivity
+	return &this
+}
+
+// NewApplicationCustomerWithDefaults instantiates a new ApplicationCustomer object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationCustomerWithDefaults() *ApplicationCustomer {
+	this := ApplicationCustomer{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *ApplicationCustomer) GetId() int32 {
+func (o *ApplicationCustomer) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *ApplicationCustomer) SetId(v int32) {
+func (o *ApplicationCustomer) SetId(v int64) {
 	o.Id = v
 }
 
@@ -66,6 +99,15 @@ func (o *ApplicationCustomer) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -83,6 +125,15 @@ func (o *ApplicationCustomer) GetIntegrationId() string {
 	return o.IntegrationId
 }
 
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
+}
+
 // SetIntegrationId sets field value
 func (o *ApplicationCustomer) SetIntegrationId(v string) {
 	o.IntegrationId = v
@@ -98,38 +149,65 @@ func (o *ApplicationCustomer) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *ApplicationCustomer) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *ApplicationCustomer) GetAccountId() int32 {
+func (o *ApplicationCustomer) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *ApplicationCustomer) SetAccountId(v int32) {
+func (o *ApplicationCustomer) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetClosedSessions returns the ClosedSessions field value
-func (o *ApplicationCustomer) GetClosedSessions() int32 {
+func (o *ApplicationCustomer) GetClosedSessions() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ClosedSessions
 }
 
+// GetClosedSessionsOk returns a tuple with the ClosedSessions field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetClosedSessionsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClosedSessions, true
+}
+
 // SetClosedSessions sets field value
-func (o *ApplicationCustomer) SetClosedSessions(v int32) {
+func (o *ApplicationCustomer) SetClosedSessions(v int64) {
 	o.ClosedSessions = v
 }
 
@@ -141,6 +219,15 @@ func (o *ApplicationCustomer) GetTotalSales() float32 {
 	}
 
 	return o.TotalSales
+}
+
+// GetTotalSalesOk returns a tuple with the TotalSales field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetTotalSalesOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalSales, true
 }
 
 // SetTotalSales sets field value
@@ -157,14 +244,13 @@ func (o *ApplicationCustomer) GetLoyaltyMemberships() []LoyaltyMembership {
 	return *o.LoyaltyMemberships
 }
 
-// GetLoyaltyMembershipsOk returns a tuple with the LoyaltyMemberships field value if set, zero value otherwise
+// GetLoyaltyMembershipsOk returns a tuple with the LoyaltyMemberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCustomer) GetLoyaltyMembershipsOk() ([]LoyaltyMembership, bool) {
+func (o *ApplicationCustomer) GetLoyaltyMembershipsOk() (*[]LoyaltyMembership, bool) {
 	if o == nil || o.LoyaltyMemberships == nil {
-		var ret []LoyaltyMembership
-		return ret, false
+		return nil, false
 	}
-	return *o.LoyaltyMemberships, true
+	return o.LoyaltyMemberships, true
 }
 
 // HasLoyaltyMemberships returns a boolean if a field has been set.
@@ -190,14 +276,13 @@ func (o *ApplicationCustomer) GetAudienceMemberships() []AudienceMembership {
 	return *o.AudienceMemberships
 }
 
-// GetAudienceMembershipsOk returns a tuple with the AudienceMemberships field value if set, zero value otherwise
+// GetAudienceMembershipsOk returns a tuple with the AudienceMemberships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCustomer) GetAudienceMembershipsOk() ([]AudienceMembership, bool) {
+func (o *ApplicationCustomer) GetAudienceMembershipsOk() (*[]AudienceMembership, bool) {
 	if o == nil || o.AudienceMemberships == nil {
-		var ret []AudienceMembership
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceMemberships, true
+	return o.AudienceMemberships, true
 }
 
 // HasAudienceMemberships returns a boolean if a field has been set.
@@ -224,6 +309,15 @@ func (o *ApplicationCustomer) GetLastActivity() time.Time {
 	return o.LastActivity
 }
 
+// GetLastActivityOk returns a tuple with the LastActivity field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetLastActivityOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastActivity, true
+}
+
 // SetLastActivity sets field value
 func (o *ApplicationCustomer) SetLastActivity(v time.Time) {
 	o.LastActivity = v
@@ -238,14 +332,13 @@ func (o *ApplicationCustomer) GetSandbox() bool {
 	return *o.Sandbox
 }
 
-// GetSandboxOk returns a tuple with the Sandbox field value if set, zero value otherwise
+// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCustomer) GetSandboxOk() (bool, bool) {
+func (o *ApplicationCustomer) GetSandboxOk() (*bool, bool) {
 	if o == nil || o.Sandbox == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Sandbox, true
+	return o.Sandbox, true
 }
 
 // HasSandbox returns a boolean if a field has been set.
@@ -271,14 +364,13 @@ func (o *ApplicationCustomer) GetAdvocateIntegrationId() string {
 	return *o.AdvocateIntegrationId
 }
 
-// GetAdvocateIntegrationIdOk returns a tuple with the AdvocateIntegrationId field value if set, zero value otherwise
+// GetAdvocateIntegrationIdOk returns a tuple with the AdvocateIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCustomer) GetAdvocateIntegrationIdOk() (string, bool) {
+func (o *ApplicationCustomer) GetAdvocateIntegrationIdOk() (*string, bool) {
 	if o == nil || o.AdvocateIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AdvocateIntegrationId, true
+	return o.AdvocateIntegrationId, true
 }
 
 // HasAdvocateIntegrationId returns a boolean if a field has been set.
@@ -295,25 +387,79 @@ func (o *ApplicationCustomer) SetAdvocateIntegrationId(v string) {
 	o.AdvocateIntegrationId = &v
 }
 
+func (o ApplicationCustomer) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["closedSessions"] = o.ClosedSessions
+	}
+	if true {
+		toSerialize["totalSales"] = o.TotalSales
+	}
+	if o.LoyaltyMemberships != nil {
+		toSerialize["loyaltyMemberships"] = o.LoyaltyMemberships
+	}
+	if o.AudienceMemberships != nil {
+		toSerialize["audienceMemberships"] = o.AudienceMemberships
+	}
+	if true {
+		toSerialize["lastActivity"] = o.LastActivity
+	}
+	if o.Sandbox != nil {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if o.AdvocateIntegrationId != nil {
+		toSerialize["advocateIntegrationId"] = o.AdvocateIntegrationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationCustomer struct {
-	Value        ApplicationCustomer
-	ExplicitNull bool
+	value *ApplicationCustomer
+	isSet bool
+}
+
+func (v NullableApplicationCustomer) Get() *ApplicationCustomer {
+	return v.value
+}
+
+func (v *NullableApplicationCustomer) Set(val *ApplicationCustomer) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationCustomer) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationCustomer) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableApplicationCustomer(val *ApplicationCustomer) *NullableApplicationCustomer {
+	return &NullableApplicationCustomer{value: val, isSet: true}
 }
 
 func (v NullableApplicationCustomer) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationCustomer) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

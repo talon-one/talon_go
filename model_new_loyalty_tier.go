@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type NewLoyaltyTier struct {
 	MinPoints float32 `json:"minPoints"`
 }
 
+// NewNewLoyaltyTier instantiates a new NewLoyaltyTier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewLoyaltyTier(name string, minPoints float32) *NewLoyaltyTier {
+	this := NewLoyaltyTier{}
+	this.Name = name
+	this.MinPoints = minPoints
+	return &this
+}
+
+// NewNewLoyaltyTierWithDefaults instantiates a new NewLoyaltyTier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewLoyaltyTierWithDefaults() *NewLoyaltyTier {
+	this := NewLoyaltyTier{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *NewLoyaltyTier) GetName() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *NewLoyaltyTier) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewLoyaltyTier) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -47,30 +74,63 @@ func (o *NewLoyaltyTier) GetMinPoints() float32 {
 	return o.MinPoints
 }
 
+// GetMinPointsOk returns a tuple with the MinPoints field value
+// and a boolean to check if the value has been set.
+func (o *NewLoyaltyTier) GetMinPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MinPoints, true
+}
+
 // SetMinPoints sets field value
 func (o *NewLoyaltyTier) SetMinPoints(v float32) {
 	o.MinPoints = v
 }
 
+func (o NewLoyaltyTier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["minPoints"] = o.MinPoints
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewLoyaltyTier struct {
-	Value        NewLoyaltyTier
-	ExplicitNull bool
+	value *NewLoyaltyTier
+	isSet bool
+}
+
+func (v NullableNewLoyaltyTier) Get() *NewLoyaltyTier {
+	return v.value
+}
+
+func (v *NullableNewLoyaltyTier) Set(val *NewLoyaltyTier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewLoyaltyTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewLoyaltyTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewLoyaltyTier(val *NewLoyaltyTier) *NullableNewLoyaltyTier {
+	return &NullableNewLoyaltyTier{value: val, isSet: true}
 }
 
 func (v NullableNewLoyaltyTier) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewLoyaltyTier) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // LoyaltyTier A tier in a loyalty program.
 type LoyaltyTier struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the loyalty program that owns this entity.
-	ProgramID int32 `json:"programID"`
+	ProgramID int64 `json:"programID"`
 	// The integration name of the loyalty program that owns this entity.
 	ProgramName *string `json:"programName,omitempty"`
 	// The Campaign Manager-displayed name of the loyalty program that owns this entity.
@@ -33,18 +32,49 @@ type LoyaltyTier struct {
 	MinPoints float32 `json:"minPoints"`
 }
 
+// NewLoyaltyTier instantiates a new LoyaltyTier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyTier(id int64, created time.Time, programID int64, name string, minPoints float32) *LoyaltyTier {
+	this := LoyaltyTier{}
+	this.Id = id
+	this.Created = created
+	this.ProgramID = programID
+	this.Name = name
+	this.MinPoints = minPoints
+	return &this
+}
+
+// NewLoyaltyTierWithDefaults instantiates a new LoyaltyTier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyTierWithDefaults() *LoyaltyTier {
+	this := LoyaltyTier{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *LoyaltyTier) GetId() int32 {
+func (o *LoyaltyTier) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LoyaltyTier) SetId(v int32) {
+func (o *LoyaltyTier) SetId(v int64) {
 	o.Id = v
 }
 
@@ -58,23 +88,41 @@ func (o *LoyaltyTier) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *LoyaltyTier) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetProgramID returns the ProgramID field value
-func (o *LoyaltyTier) GetProgramID() int32 {
+func (o *LoyaltyTier) GetProgramID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramID
 }
 
+// GetProgramIDOk returns a tuple with the ProgramID field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetProgramIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramID, true
+}
+
 // SetProgramID sets field value
-func (o *LoyaltyTier) SetProgramID(v int32) {
+func (o *LoyaltyTier) SetProgramID(v int64) {
 	o.ProgramID = v
 }
 
@@ -87,14 +135,13 @@ func (o *LoyaltyTier) GetProgramName() string {
 	return *o.ProgramName
 }
 
-// GetProgramNameOk returns a tuple with the ProgramName field value if set, zero value otherwise
+// GetProgramNameOk returns a tuple with the ProgramName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyTier) GetProgramNameOk() (string, bool) {
+func (o *LoyaltyTier) GetProgramNameOk() (*string, bool) {
 	if o == nil || o.ProgramName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramName, true
+	return o.ProgramName, true
 }
 
 // HasProgramName returns a boolean if a field has been set.
@@ -120,14 +167,13 @@ func (o *LoyaltyTier) GetProgramTitle() string {
 	return *o.ProgramTitle
 }
 
-// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, zero value otherwise
+// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyTier) GetProgramTitleOk() (string, bool) {
+func (o *LoyaltyTier) GetProgramTitleOk() (*string, bool) {
 	if o == nil || o.ProgramTitle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramTitle, true
+	return o.ProgramTitle, true
 }
 
 // HasProgramTitle returns a boolean if a field has been set.
@@ -154,6 +200,15 @@ func (o *LoyaltyTier) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *LoyaltyTier) SetName(v string) {
 	o.Name = v
@@ -169,30 +224,78 @@ func (o *LoyaltyTier) GetMinPoints() float32 {
 	return o.MinPoints
 }
 
+// GetMinPointsOk returns a tuple with the MinPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyTier) GetMinPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MinPoints, true
+}
+
 // SetMinPoints sets field value
 func (o *LoyaltyTier) SetMinPoints(v float32) {
 	o.MinPoints = v
 }
 
+func (o LoyaltyTier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["programID"] = o.ProgramID
+	}
+	if o.ProgramName != nil {
+		toSerialize["programName"] = o.ProgramName
+	}
+	if o.ProgramTitle != nil {
+		toSerialize["programTitle"] = o.ProgramTitle
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["minPoints"] = o.MinPoints
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyTier struct {
-	Value        LoyaltyTier
-	ExplicitNull bool
+	value *LoyaltyTier
+	isSet bool
+}
+
+func (v NullableLoyaltyTier) Get() *LoyaltyTier {
+	return v.value
+}
+
+func (v *NullableLoyaltyTier) Set(val *LoyaltyTier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyTier(val *LoyaltyTier) *NullableLoyaltyTier {
+	return &NullableLoyaltyTier{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyTier) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyTier) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type RemoveManyItemsCatalogAction struct {
 	// The list of filters used to select the items to patch, joined by `AND`.  **Note:** Every item in the catalog will be removed if there are no filters.
 	Filters *[]CatalogActionFilter `json:"filters,omitempty"`
+}
+
+// NewRemoveManyItemsCatalogAction instantiates a new RemoveManyItemsCatalogAction object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRemoveManyItemsCatalogAction() *RemoveManyItemsCatalogAction {
+	this := RemoveManyItemsCatalogAction{}
+	return &this
+}
+
+// NewRemoveManyItemsCatalogActionWithDefaults instantiates a new RemoveManyItemsCatalogAction object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRemoveManyItemsCatalogActionWithDefaults() *RemoveManyItemsCatalogAction {
+	this := RemoveManyItemsCatalogAction{}
+	return &this
 }
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *RemoveManyItemsCatalogAction) GetFilters() []CatalogActionFilter {
 	return *o.Filters
 }
 
-// GetFiltersOk returns a tuple with the Filters field value if set, zero value otherwise
+// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemoveManyItemsCatalogAction) GetFiltersOk() ([]CatalogActionFilter, bool) {
+func (o *RemoveManyItemsCatalogAction) GetFiltersOk() (*[]CatalogActionFilter, bool) {
 	if o == nil || o.Filters == nil {
-		var ret []CatalogActionFilter
-		return ret, false
+		return nil, false
 	}
-	return *o.Filters, true
+	return o.Filters, true
 }
 
 // HasFilters returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *RemoveManyItemsCatalogAction) SetFilters(v []CatalogActionFilter) {
 	o.Filters = &v
 }
 
+func (o RemoveManyItemsCatalogAction) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Filters != nil {
+		toSerialize["filters"] = o.Filters
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRemoveManyItemsCatalogAction struct {
-	Value        RemoveManyItemsCatalogAction
-	ExplicitNull bool
+	value *RemoveManyItemsCatalogAction
+	isSet bool
+}
+
+func (v NullableRemoveManyItemsCatalogAction) Get() *RemoveManyItemsCatalogAction {
+	return v.value
+}
+
+func (v *NullableRemoveManyItemsCatalogAction) Set(val *RemoveManyItemsCatalogAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRemoveManyItemsCatalogAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRemoveManyItemsCatalogAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRemoveManyItemsCatalogAction(val *RemoveManyItemsCatalogAction) *NullableRemoveManyItemsCatalogAction {
+	return &NullableRemoveManyItemsCatalogAction{value: val, isSet: true}
 }
 
 func (v NullableRemoveManyItemsCatalogAction) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRemoveManyItemsCatalogAction) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
