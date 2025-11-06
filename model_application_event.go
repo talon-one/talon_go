@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,19 +17,19 @@ import (
 // ApplicationEvent struct for ApplicationEvent
 type ApplicationEvent struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The globally unique Talon.One ID of the customer that created this entity.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
 	// The ID of the store.
-	StoreId *int32 `json:"storeId,omitempty"`
+	StoreId *int64 `json:"storeId,omitempty"`
 	// The integration ID of the store. You choose this ID when you create a store.
 	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// The globally unique Talon.One ID of the session that contains this event.
-	SessionId *int32 `json:"sessionId,omitempty"`
+	SessionId *int64 `json:"sessionId,omitempty"`
 	// A string representing the event. Must not be a reserved event name.
 	Type string `json:"type"`
 	// Additional JSON serialized data associated with the event.
@@ -41,18 +40,50 @@ type ApplicationEvent struct {
 	RuleFailureReasons *[]RuleFailureReason `json:"ruleFailureReasons,omitempty"`
 }
 
+// NewApplicationEvent instantiates a new ApplicationEvent object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects []Effect) *ApplicationEvent {
+	this := ApplicationEvent{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.Type = type_
+	this.Attributes = attributes
+	this.Effects = effects
+	return &this
+}
+
+// NewApplicationEventWithDefaults instantiates a new ApplicationEvent object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationEventWithDefaults() *ApplicationEvent {
+	this := ApplicationEvent{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *ApplicationEvent) GetId() int32 {
+func (o *ApplicationEvent) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *ApplicationEvent) SetId(v int32) {
+func (o *ApplicationEvent) SetId(v int64) {
 	o.Id = v
 }
 
@@ -66,43 +97,60 @@ func (o *ApplicationEvent) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *ApplicationEvent) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *ApplicationEvent) GetApplicationId() int32 {
+func (o *ApplicationEvent) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *ApplicationEvent) SetApplicationId(v int32) {
+func (o *ApplicationEvent) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *ApplicationEvent) GetProfileId() int32 {
+func (o *ApplicationEvent) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationEvent) GetProfileIdOk() (int32, bool) {
+func (o *ApplicationEvent) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -114,28 +162,27 @@ func (o *ApplicationEvent) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *ApplicationEvent) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *ApplicationEvent) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
 // GetStoreId returns the StoreId field value if set, zero value otherwise.
-func (o *ApplicationEvent) GetStoreId() int32 {
+func (o *ApplicationEvent) GetStoreId() int64 {
 	if o == nil || o.StoreId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StoreId
 }
 
-// GetStoreIdOk returns a tuple with the StoreId field value if set, zero value otherwise
+// GetStoreIdOk returns a tuple with the StoreId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationEvent) GetStoreIdOk() (int32, bool) {
+func (o *ApplicationEvent) GetStoreIdOk() (*int64, bool) {
 	if o == nil || o.StoreId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreId, true
+	return o.StoreId, true
 }
 
 // HasStoreId returns a boolean if a field has been set.
@@ -147,8 +194,8 @@ func (o *ApplicationEvent) HasStoreId() bool {
 	return false
 }
 
-// SetStoreId gets a reference to the given int32 and assigns it to the StoreId field.
-func (o *ApplicationEvent) SetStoreId(v int32) {
+// SetStoreId gets a reference to the given int64 and assigns it to the StoreId field.
+func (o *ApplicationEvent) SetStoreId(v int64) {
 	o.StoreId = &v
 }
 
@@ -161,14 +208,13 @@ func (o *ApplicationEvent) GetStoreIntegrationId() string {
 	return *o.StoreIntegrationId
 }
 
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationEvent) GetStoreIntegrationIdOk() (string, bool) {
+func (o *ApplicationEvent) GetStoreIntegrationIdOk() (*string, bool) {
 	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreIntegrationId, true
+	return o.StoreIntegrationId, true
 }
 
 // HasStoreIntegrationId returns a boolean if a field has been set.
@@ -186,22 +232,21 @@ func (o *ApplicationEvent) SetStoreIntegrationId(v string) {
 }
 
 // GetSessionId returns the SessionId field value if set, zero value otherwise.
-func (o *ApplicationEvent) GetSessionId() int32 {
+func (o *ApplicationEvent) GetSessionId() int64 {
 	if o == nil || o.SessionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SessionId
 }
 
-// GetSessionIdOk returns a tuple with the SessionId field value if set, zero value otherwise
+// GetSessionIdOk returns a tuple with the SessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationEvent) GetSessionIdOk() (int32, bool) {
+func (o *ApplicationEvent) GetSessionIdOk() (*int64, bool) {
 	if o == nil || o.SessionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SessionId, true
+	return o.SessionId, true
 }
 
 // HasSessionId returns a boolean if a field has been set.
@@ -213,8 +258,8 @@ func (o *ApplicationEvent) HasSessionId() bool {
 	return false
 }
 
-// SetSessionId gets a reference to the given int32 and assigns it to the SessionId field.
-func (o *ApplicationEvent) SetSessionId(v int32) {
+// SetSessionId gets a reference to the given int64 and assigns it to the SessionId field.
+func (o *ApplicationEvent) SetSessionId(v int64) {
 	o.SessionId = &v
 }
 
@@ -226,6 +271,15 @@ func (o *ApplicationEvent) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -243,6 +297,15 @@ func (o *ApplicationEvent) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *ApplicationEvent) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
@@ -256,6 +319,15 @@ func (o *ApplicationEvent) GetEffects() []Effect {
 	}
 
 	return o.Effects
+}
+
+// GetEffectsOk returns a tuple with the Effects field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEvent) GetEffectsOk() (*[]Effect, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Effects, true
 }
 
 // SetEffects sets field value
@@ -272,14 +344,13 @@ func (o *ApplicationEvent) GetRuleFailureReasons() []RuleFailureReason {
 	return *o.RuleFailureReasons
 }
 
-// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, zero value otherwise
+// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationEvent) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool) {
+func (o *ApplicationEvent) GetRuleFailureReasonsOk() (*[]RuleFailureReason, bool) {
 	if o == nil || o.RuleFailureReasons == nil {
-		var ret []RuleFailureReason
-		return ret, false
+		return nil, false
 	}
-	return *o.RuleFailureReasons, true
+	return o.RuleFailureReasons, true
 }
 
 // HasRuleFailureReasons returns a boolean if a field has been set.
@@ -296,25 +367,76 @@ func (o *ApplicationEvent) SetRuleFailureReasons(v []RuleFailureReason) {
 	o.RuleFailureReasons = &v
 }
 
+func (o ApplicationEvent) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.StoreId != nil {
+		toSerialize["storeId"] = o.StoreId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
+	}
+	if o.SessionId != nil {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["effects"] = o.Effects
+	}
+	if o.RuleFailureReasons != nil {
+		toSerialize["ruleFailureReasons"] = o.RuleFailureReasons
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationEvent struct {
-	Value        ApplicationEvent
-	ExplicitNull bool
+	value *ApplicationEvent
+	isSet bool
+}
+
+func (v NullableApplicationEvent) Get() *ApplicationEvent {
+	return v.value
+}
+
+func (v *NullableApplicationEvent) Set(val *ApplicationEvent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationEvent(val *ApplicationEvent) *NullableApplicationEvent {
+	return &NullableApplicationEvent{value: val, isSet: true}
 }
 
 func (v NullableApplicationEvent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationEvent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

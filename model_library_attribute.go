@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -32,6 +31,30 @@ type LibraryAttribute struct {
 	Suggestions []string `json:"suggestions"`
 }
 
+// NewLibraryAttribute instantiates a new LibraryAttribute object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLibraryAttribute(entity string, name string, title string, type_ string, description string, presets []string, suggestions []string) *LibraryAttribute {
+	this := LibraryAttribute{}
+	this.Entity = entity
+	this.Name = name
+	this.Title = title
+	this.Type = type_
+	this.Description = description
+	this.Presets = presets
+	this.Suggestions = suggestions
+	return &this
+}
+
+// NewLibraryAttributeWithDefaults instantiates a new LibraryAttribute object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLibraryAttributeWithDefaults() *LibraryAttribute {
+	this := LibraryAttribute{}
+	return &this
+}
+
 // GetEntity returns the Entity field value
 func (o *LibraryAttribute) GetEntity() string {
 	if o == nil {
@@ -40,6 +63,15 @@ func (o *LibraryAttribute) GetEntity() string {
 	}
 
 	return o.Entity
+}
+
+// GetEntityOk returns a tuple with the Entity field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetEntityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entity, true
 }
 
 // SetEntity sets field value
@@ -57,6 +89,15 @@ func (o *LibraryAttribute) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *LibraryAttribute) SetName(v string) {
 	o.Name = v
@@ -70,6 +111,15 @@ func (o *LibraryAttribute) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -87,6 +137,15 @@ func (o *LibraryAttribute) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *LibraryAttribute) SetType(v string) {
 	o.Type = v
@@ -100,6 +159,15 @@ func (o *LibraryAttribute) GetDescription() string {
 	}
 
 	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
 }
 
 // SetDescription sets field value
@@ -117,6 +185,15 @@ func (o *LibraryAttribute) GetPresets() []string {
 	return o.Presets
 }
 
+// GetPresetsOk returns a tuple with the Presets field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetPresetsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Presets, true
+}
+
 // SetPresets sets field value
 func (o *LibraryAttribute) SetPresets(v []string) {
 	o.Presets = v
@@ -132,30 +209,78 @@ func (o *LibraryAttribute) GetSuggestions() []string {
 	return o.Suggestions
 }
 
+// GetSuggestionsOk returns a tuple with the Suggestions field value
+// and a boolean to check if the value has been set.
+func (o *LibraryAttribute) GetSuggestionsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Suggestions, true
+}
+
 // SetSuggestions sets field value
 func (o *LibraryAttribute) SetSuggestions(v []string) {
 	o.Suggestions = v
 }
 
+func (o LibraryAttribute) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["entity"] = o.Entity
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["presets"] = o.Presets
+	}
+	if true {
+		toSerialize["suggestions"] = o.Suggestions
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLibraryAttribute struct {
-	Value        LibraryAttribute
-	ExplicitNull bool
+	value *LibraryAttribute
+	isSet bool
+}
+
+func (v NullableLibraryAttribute) Get() *LibraryAttribute {
+	return v.value
+}
+
+func (v *NullableLibraryAttribute) Set(val *LibraryAttribute) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLibraryAttribute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLibraryAttribute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLibraryAttribute(val *LibraryAttribute) *NullableLibraryAttribute {
+	return &NullableLibraryAttribute{value: val, isSet: true}
 }
 
 func (v NullableLibraryAttribute) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLibraryAttribute) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

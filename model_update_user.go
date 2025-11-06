@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,9 +24,26 @@ type UpdateUser struct {
 	// Indicates the access level of the user.
 	Policy *string `json:"policy,omitempty"`
 	// A list of the IDs of the roles assigned to the user.  **Note**: To find the ID of a role, use the [List roles](/management-api#tag/Roles/operation/listAllRolesV2) endpoint.
-	Roles *[]int32 `json:"roles,omitempty"`
+	Roles *[]int64 `json:"roles,omitempty"`
 	// Application notifications that the user is subscribed to.
 	ApplicationNotificationSubscriptions *map[string]interface{} `json:"applicationNotificationSubscriptions,omitempty"`
+}
+
+// NewUpdateUser instantiates a new UpdateUser object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateUser() *UpdateUser {
+	this := UpdateUser{}
+	return &this
+}
+
+// NewUpdateUserWithDefaults instantiates a new UpdateUser object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateUserWithDefaults() *UpdateUser {
+	this := UpdateUser{}
+	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -39,14 +55,13 @@ func (o *UpdateUser) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetNameOk() (string, bool) {
+func (o *UpdateUser) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -72,14 +87,13 @@ func (o *UpdateUser) GetState() string {
 	return *o.State
 }
 
-// GetStateOk returns a tuple with the State field value if set, zero value otherwise
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetStateOk() (string, bool) {
+func (o *UpdateUser) GetStateOk() (*string, bool) {
 	if o == nil || o.State == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.State, true
+	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
@@ -105,14 +119,13 @@ func (o *UpdateUser) GetIsAdmin() bool {
 	return *o.IsAdmin
 }
 
-// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetIsAdminOk() (bool, bool) {
+func (o *UpdateUser) GetIsAdminOk() (*bool, bool) {
 	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsAdmin, true
+	return o.IsAdmin, true
 }
 
 // HasIsAdmin returns a boolean if a field has been set.
@@ -138,14 +151,13 @@ func (o *UpdateUser) GetPolicy() string {
 	return *o.Policy
 }
 
-// GetPolicyOk returns a tuple with the Policy field value if set, zero value otherwise
+// GetPolicyOk returns a tuple with the Policy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetPolicyOk() (string, bool) {
+func (o *UpdateUser) GetPolicyOk() (*string, bool) {
 	if o == nil || o.Policy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Policy, true
+	return o.Policy, true
 }
 
 // HasPolicy returns a boolean if a field has been set.
@@ -163,22 +175,21 @@ func (o *UpdateUser) SetPolicy(v string) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *UpdateUser) GetRoles() []int32 {
+func (o *UpdateUser) GetRoles() []int64 {
 	if o == nil || o.Roles == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Roles
 }
 
-// GetRolesOk returns a tuple with the Roles field value if set, zero value otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetRolesOk() ([]int32, bool) {
+func (o *UpdateUser) GetRolesOk() (*[]int64, bool) {
 	if o == nil || o.Roles == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Roles, true
+	return o.Roles, true
 }
 
 // HasRoles returns a boolean if a field has been set.
@@ -190,8 +201,8 @@ func (o *UpdateUser) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
-func (o *UpdateUser) SetRoles(v []int32) {
+// SetRoles gets a reference to the given []int64 and assigns it to the Roles field.
+func (o *UpdateUser) SetRoles(v []int64) {
 	o.Roles = &v
 }
 
@@ -204,14 +215,13 @@ func (o *UpdateUser) GetApplicationNotificationSubscriptions() map[string]interf
 	return *o.ApplicationNotificationSubscriptions
 }
 
-// GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field value if set, zero value otherwise
+// GetApplicationNotificationSubscriptionsOk returns a tuple with the ApplicationNotificationSubscriptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateUser) GetApplicationNotificationSubscriptionsOk() (map[string]interface{}, bool) {
+func (o *UpdateUser) GetApplicationNotificationSubscriptionsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.ApplicationNotificationSubscriptions == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationNotificationSubscriptions, true
+	return o.ApplicationNotificationSubscriptions, true
 }
 
 // HasApplicationNotificationSubscriptions returns a boolean if a field has been set.
@@ -228,25 +238,61 @@ func (o *UpdateUser) SetApplicationNotificationSubscriptions(v map[string]interf
 	o.ApplicationNotificationSubscriptions = &v
 }
 
+func (o UpdateUser) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.IsAdmin != nil {
+		toSerialize["isAdmin"] = o.IsAdmin
+	}
+	if o.Policy != nil {
+		toSerialize["policy"] = o.Policy
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	if o.ApplicationNotificationSubscriptions != nil {
+		toSerialize["applicationNotificationSubscriptions"] = o.ApplicationNotificationSubscriptions
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateUser struct {
-	Value        UpdateUser
-	ExplicitNull bool
+	value *UpdateUser
+	isSet bool
+}
+
+func (v NullableUpdateUser) Get() *UpdateUser {
+	return v.value
+}
+
+func (v *NullableUpdateUser) Set(val *UpdateUser) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateUser(val *UpdateUser) *NullableUpdateUser {
+	return &NullableUpdateUser{value: val, isSet: true}
 }
 
 func (v NullableUpdateUser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateUser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

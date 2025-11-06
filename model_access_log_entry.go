@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,7 +19,7 @@ type AccessLogEntry struct {
 	// UUID reference of request.
 	Uuid string `json:"uuid"`
 	// HTTP status code of response.
-	Status int32 `json:"status"`
+	Status int64 `json:"status"`
 	// HTTP method of request.
 	Method string `json:"method"`
 	// target URI of request
@@ -33,6 +32,30 @@ type AccessLogEntry struct {
 	ResponsePayload string `json:"responsePayload"`
 }
 
+// NewAccessLogEntry instantiates a new AccessLogEntry object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAccessLogEntry(uuid string, status int64, method string, requestUri string, time time.Time, requestPayload string, responsePayload string) *AccessLogEntry {
+	this := AccessLogEntry{}
+	this.Uuid = uuid
+	this.Status = status
+	this.Method = method
+	this.RequestUri = requestUri
+	this.Time = time
+	this.RequestPayload = requestPayload
+	this.ResponsePayload = responsePayload
+	return &this
+}
+
+// NewAccessLogEntryWithDefaults instantiates a new AccessLogEntry object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccessLogEntryWithDefaults() *AccessLogEntry {
+	this := AccessLogEntry{}
+	return &this
+}
+
 // GetUuid returns the Uuid field value
 func (o *AccessLogEntry) GetUuid() string {
 	if o == nil {
@@ -43,23 +66,41 @@ func (o *AccessLogEntry) GetUuid() string {
 	return o.Uuid
 }
 
+// GetUuidOk returns a tuple with the Uuid field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetUuidOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Uuid, true
+}
+
 // SetUuid sets field value
 func (o *AccessLogEntry) SetUuid(v string) {
 	o.Uuid = v
 }
 
 // GetStatus returns the Status field value
-func (o *AccessLogEntry) GetStatus() int32 {
+func (o *AccessLogEntry) GetStatus() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Status
 }
 
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetStatusOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
 // SetStatus sets field value
-func (o *AccessLogEntry) SetStatus(v int32) {
+func (o *AccessLogEntry) SetStatus(v int64) {
 	o.Status = v
 }
 
@@ -71,6 +112,15 @@ func (o *AccessLogEntry) GetMethod() string {
 	}
 
 	return o.Method
+}
+
+// GetMethodOk returns a tuple with the Method field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetMethodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Method, true
 }
 
 // SetMethod sets field value
@@ -88,6 +138,15 @@ func (o *AccessLogEntry) GetRequestUri() string {
 	return o.RequestUri
 }
 
+// GetRequestUriOk returns a tuple with the RequestUri field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetRequestUriOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequestUri, true
+}
+
 // SetRequestUri sets field value
 func (o *AccessLogEntry) SetRequestUri(v string) {
 	o.RequestUri = v
@@ -101,6 +160,15 @@ func (o *AccessLogEntry) GetTime() time.Time {
 	}
 
 	return o.Time
+}
+
+// GetTimeOk returns a tuple with the Time field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Time, true
 }
 
 // SetTime sets field value
@@ -118,6 +186,15 @@ func (o *AccessLogEntry) GetRequestPayload() string {
 	return o.RequestPayload
 }
 
+// GetRequestPayloadOk returns a tuple with the RequestPayload field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetRequestPayloadOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequestPayload, true
+}
+
 // SetRequestPayload sets field value
 func (o *AccessLogEntry) SetRequestPayload(v string) {
 	o.RequestPayload = v
@@ -133,30 +210,78 @@ func (o *AccessLogEntry) GetResponsePayload() string {
 	return o.ResponsePayload
 }
 
+// GetResponsePayloadOk returns a tuple with the ResponsePayload field value
+// and a boolean to check if the value has been set.
+func (o *AccessLogEntry) GetResponsePayloadOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ResponsePayload, true
+}
+
 // SetResponsePayload sets field value
 func (o *AccessLogEntry) SetResponsePayload(v string) {
 	o.ResponsePayload = v
 }
 
+func (o AccessLogEntry) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["uuid"] = o.Uuid
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["method"] = o.Method
+	}
+	if true {
+		toSerialize["requestUri"] = o.RequestUri
+	}
+	if true {
+		toSerialize["time"] = o.Time
+	}
+	if true {
+		toSerialize["requestPayload"] = o.RequestPayload
+	}
+	if true {
+		toSerialize["responsePayload"] = o.ResponsePayload
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccessLogEntry struct {
-	Value        AccessLogEntry
-	ExplicitNull bool
+	value *AccessLogEntry
+	isSet bool
+}
+
+func (v NullableAccessLogEntry) Get() *AccessLogEntry {
+	return v.value
+}
+
+func (v *NullableAccessLogEntry) Set(val *AccessLogEntry) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccessLogEntry) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccessLogEntry) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAccessLogEntry(val *AccessLogEntry) *NullableAccessLogEntry {
+	return &NullableAccessLogEntry{value: val, isSet: true}
 }
 
 func (v NullableAccessLogEntry) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccessLogEntry) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

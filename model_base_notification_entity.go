@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,28 @@ type BaseNotificationEntity struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
+// NewBaseNotificationEntity instantiates a new BaseNotificationEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBaseNotificationEntity(policy map[string]interface{}) *BaseNotificationEntity {
+	this := BaseNotificationEntity{}
+	this.Policy = policy
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
+// NewBaseNotificationEntityWithDefaults instantiates a new BaseNotificationEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBaseNotificationEntityWithDefaults() *BaseNotificationEntity {
+	this := BaseNotificationEntity{}
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
 // GetPolicy returns the Policy field value
 func (o *BaseNotificationEntity) GetPolicy() map[string]interface{} {
 	if o == nil {
@@ -30,6 +51,15 @@ func (o *BaseNotificationEntity) GetPolicy() map[string]interface{} {
 	}
 
 	return o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationEntity) GetPolicyOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Policy, true
 }
 
 // SetPolicy sets field value
@@ -46,14 +76,13 @@ func (o *BaseNotificationEntity) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseNotificationEntity) GetEnabledOk() (bool, bool) {
+func (o *BaseNotificationEntity) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -70,25 +99,49 @@ func (o *BaseNotificationEntity) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+func (o BaseNotificationEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["policy"] = o.Policy
+	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBaseNotificationEntity struct {
-	Value        BaseNotificationEntity
-	ExplicitNull bool
+	value *BaseNotificationEntity
+	isSet bool
+}
+
+func (v NullableBaseNotificationEntity) Get() *BaseNotificationEntity {
+	return v.value
+}
+
+func (v *NullableBaseNotificationEntity) Set(val *BaseNotificationEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBaseNotificationEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBaseNotificationEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBaseNotificationEntity(val *BaseNotificationEntity) *NullableBaseNotificationEntity {
+	return &NullableBaseNotificationEntity{value: val, isSet: true}
 }
 
 func (v NullableBaseNotificationEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBaseNotificationEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

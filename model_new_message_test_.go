@@ -10,16 +10,11 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewMessageTest struct for NewMessageTest
 type NewMessageTest struct {
-	// The message type.
-	Type string `json:"type"`
-	// Array of query parameters.
-	QueryParams *map[string]string `json:"queryParams,omitempty"`
 	// List of API HTTP headers for the given message.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// API method for this message.
@@ -28,54 +23,29 @@ type NewMessageTest struct {
 	Url string `json:"url"`
 	// API payload of this message.
 	Payload *string `json:"payload,omitempty"`
+	// Array of template argument definitions.
+	Params *[]TemplateArgDef `json:"params,omitempty"`
+	// The IDs of the Applications in which this webhook is available. An empty array means the webhook is available in `All Applications`.
+	ApplicationIds *[]int64 `json:"applicationIds,omitempty"`
 }
 
-// GetType returns the Type field value
-func (o *NewMessageTest) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
+// NewNewMessageTest instantiates a new NewMessageTest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewMessageTest(verb string, url string) *NewMessageTest {
+	this := NewMessageTest{}
+	this.Verb = verb
+	this.Url = url
+	return &this
 }
 
-// SetType sets field value
-func (o *NewMessageTest) SetType(v string) {
-	o.Type = v
-}
-
-// GetQueryParams returns the QueryParams field value if set, zero value otherwise.
-func (o *NewMessageTest) GetQueryParams() map[string]string {
-	if o == nil || o.QueryParams == nil {
-		var ret map[string]string
-		return ret
-	}
-	return *o.QueryParams
-}
-
-// GetQueryParamsOk returns a tuple with the QueryParams field value if set, zero value otherwise
-// and a boolean to check if the value has been set.
-func (o *NewMessageTest) GetQueryParamsOk() (map[string]string, bool) {
-	if o == nil || o.QueryParams == nil {
-		var ret map[string]string
-		return ret, false
-	}
-	return *o.QueryParams, true
-}
-
-// HasQueryParams returns a boolean if a field has been set.
-func (o *NewMessageTest) HasQueryParams() bool {
-	if o != nil && o.QueryParams != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetQueryParams gets a reference to the given map[string]string and assigns it to the QueryParams field.
-func (o *NewMessageTest) SetQueryParams(v map[string]string) {
-	o.QueryParams = &v
+// NewNewMessageTestWithDefaults instantiates a new NewMessageTest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewMessageTestWithDefaults() *NewMessageTest {
+	this := NewMessageTest{}
+	return &this
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
@@ -87,14 +57,13 @@ func (o *NewMessageTest) GetHeaders() map[string]string {
 	return *o.Headers
 }
 
-// GetHeadersOk returns a tuple with the Headers field value if set, zero value otherwise
+// GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewMessageTest) GetHeadersOk() (map[string]string, bool) {
+func (o *NewMessageTest) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || o.Headers == nil {
-		var ret map[string]string
-		return ret, false
+		return nil, false
 	}
-	return *o.Headers, true
+	return o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
@@ -121,6 +90,15 @@ func (o *NewMessageTest) GetVerb() string {
 	return o.Verb
 }
 
+// GetVerbOk returns a tuple with the Verb field value
+// and a boolean to check if the value has been set.
+func (o *NewMessageTest) GetVerbOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Verb, true
+}
+
 // SetVerb sets field value
 func (o *NewMessageTest) SetVerb(v string) {
 	o.Verb = v
@@ -134,6 +112,15 @@ func (o *NewMessageTest) GetUrl() string {
 	}
 
 	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *NewMessageTest) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
 }
 
 // SetUrl sets field value
@@ -150,14 +137,13 @@ func (o *NewMessageTest) GetPayload() string {
 	return *o.Payload
 }
 
-// GetPayloadOk returns a tuple with the Payload field value if set, zero value otherwise
+// GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewMessageTest) GetPayloadOk() (string, bool) {
+func (o *NewMessageTest) GetPayloadOk() (*string, bool) {
 	if o == nil || o.Payload == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Payload, true
+	return o.Payload, true
 }
 
 // HasPayload returns a boolean if a field has been set.
@@ -174,25 +160,125 @@ func (o *NewMessageTest) SetPayload(v string) {
 	o.Payload = &v
 }
 
+// GetParams returns the Params field value if set, zero value otherwise.
+func (o *NewMessageTest) GetParams() []TemplateArgDef {
+	if o == nil || o.Params == nil {
+		var ret []TemplateArgDef
+		return ret
+	}
+	return *o.Params
+}
+
+// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewMessageTest) GetParamsOk() (*[]TemplateArgDef, bool) {
+	if o == nil || o.Params == nil {
+		return nil, false
+	}
+	return o.Params, true
+}
+
+// HasParams returns a boolean if a field has been set.
+func (o *NewMessageTest) HasParams() bool {
+	if o != nil && o.Params != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetParams gets a reference to the given []TemplateArgDef and assigns it to the Params field.
+func (o *NewMessageTest) SetParams(v []TemplateArgDef) {
+	o.Params = &v
+}
+
+// GetApplicationIds returns the ApplicationIds field value if set, zero value otherwise.
+func (o *NewMessageTest) GetApplicationIds() []int64 {
+	if o == nil || o.ApplicationIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.ApplicationIds
+}
+
+// GetApplicationIdsOk returns a tuple with the ApplicationIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewMessageTest) GetApplicationIdsOk() (*[]int64, bool) {
+	if o == nil || o.ApplicationIds == nil {
+		return nil, false
+	}
+	return o.ApplicationIds, true
+}
+
+// HasApplicationIds returns a boolean if a field has been set.
+func (o *NewMessageTest) HasApplicationIds() bool {
+	if o != nil && o.ApplicationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApplicationIds gets a reference to the given []int64 and assigns it to the ApplicationIds field.
+func (o *NewMessageTest) SetApplicationIds(v []int64) {
+	o.ApplicationIds = &v
+}
+
+func (o NewMessageTest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Headers != nil {
+		toSerialize["headers"] = o.Headers
+	}
+	if true {
+		toSerialize["verb"] = o.Verb
+	}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	if o.Payload != nil {
+		toSerialize["payload"] = o.Payload
+	}
+	if o.Params != nil {
+		toSerialize["params"] = o.Params
+	}
+	if o.ApplicationIds != nil {
+		toSerialize["applicationIds"] = o.ApplicationIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewMessageTest struct {
-	Value        NewMessageTest
-	ExplicitNull bool
+	value *NewMessageTest
+	isSet bool
+}
+
+func (v NullableNewMessageTest) Get() *NewMessageTest {
+	return v.value
+}
+
+func (v *NullableNewMessageTest) Set(val *NewMessageTest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewMessageTest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewMessageTest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewMessageTest(val *NewMessageTest) *NullableNewMessageTest {
+	return &NullableNewMessageTest{value: val, isSet: true}
 }
 
 func (v NullableNewMessageTest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewMessageTest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

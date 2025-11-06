@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -27,11 +26,37 @@ type WebhookAuthentication struct {
 	Type string                 `json:"type"`
 	Data map[string]interface{} `json:"data"`
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
+}
+
+// NewWebhookAuthentication instantiates a new WebhookAuthentication object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewWebhookAuthentication(createdBy string, modifiedBy string, webhooks []WebhookAuthenticationWebhookRef, name string, type_ string, data map[string]interface{}, id int64, created time.Time, modified time.Time) *WebhookAuthentication {
+	this := WebhookAuthentication{}
+	this.CreatedBy = createdBy
+	this.ModifiedBy = modifiedBy
+	this.Webhooks = webhooks
+	this.Name = name
+	this.Type = type_
+	this.Data = data
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	return &this
+}
+
+// NewWebhookAuthenticationWithDefaults instantiates a new WebhookAuthentication object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWebhookAuthenticationWithDefaults() *WebhookAuthentication {
+	this := WebhookAuthentication{}
+	return &this
 }
 
 // GetCreatedBy returns the CreatedBy field value
@@ -42,6 +67,15 @@ func (o *WebhookAuthentication) GetCreatedBy() string {
 	}
 
 	return o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetCreatedByOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
 }
 
 // SetCreatedBy sets field value
@@ -59,6 +93,15 @@ func (o *WebhookAuthentication) GetModifiedBy() string {
 	return o.ModifiedBy
 }
 
+// GetModifiedByOk returns a tuple with the ModifiedBy field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetModifiedByOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ModifiedBy, true
+}
+
 // SetModifiedBy sets field value
 func (o *WebhookAuthentication) SetModifiedBy(v string) {
 	o.ModifiedBy = v
@@ -72,6 +115,15 @@ func (o *WebhookAuthentication) GetWebhooks() []WebhookAuthenticationWebhookRef 
 	}
 
 	return o.Webhooks
+}
+
+// GetWebhooksOk returns a tuple with the Webhooks field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetWebhooksOk() (*[]WebhookAuthenticationWebhookRef, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Webhooks, true
 }
 
 // SetWebhooks sets field value
@@ -89,6 +141,15 @@ func (o *WebhookAuthentication) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *WebhookAuthentication) SetName(v string) {
 	o.Name = v
@@ -102,6 +163,15 @@ func (o *WebhookAuthentication) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -119,23 +189,41 @@ func (o *WebhookAuthentication) GetData() map[string]interface{} {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetDataOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *WebhookAuthentication) SetData(v map[string]interface{}) {
 	o.Data = v
 }
 
 // GetId returns the Id field value
-func (o *WebhookAuthentication) GetId() int32 {
+func (o *WebhookAuthentication) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *WebhookAuthentication) SetId(v int32) {
+func (o *WebhookAuthentication) SetId(v int64) {
 	o.Id = v
 }
 
@@ -147,6 +235,15 @@ func (o *WebhookAuthentication) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -164,30 +261,84 @@ func (o *WebhookAuthentication) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthentication) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *WebhookAuthentication) SetModified(v time.Time) {
 	o.Modified = v
 }
 
+func (o WebhookAuthentication) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["modifiedBy"] = o.ModifiedBy
+	}
+	if true {
+		toSerialize["webhooks"] = o.Webhooks
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableWebhookAuthentication struct {
-	Value        WebhookAuthentication
-	ExplicitNull bool
+	value *WebhookAuthentication
+	isSet bool
+}
+
+func (v NullableWebhookAuthentication) Get() *WebhookAuthentication {
+	return v.value
+}
+
+func (v *NullableWebhookAuthentication) Set(val *WebhookAuthentication) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWebhookAuthentication) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWebhookAuthentication) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableWebhookAuthentication(val *WebhookAuthentication) *NullableWebhookAuthentication {
+	return &NullableWebhookAuthentication{value: val, isSet: true}
 }
 
 func (v NullableWebhookAuthentication) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableWebhookAuthentication) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

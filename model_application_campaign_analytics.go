@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,7 +21,7 @@ type ApplicationCampaignAnalytics struct {
 	// The end of the aggregation time frame in UTC.
 	EndTime time.Time `json:"endTime"`
 	// The ID of the campaign.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The name of the campaign.
 	CampaignName string `json:"campaignName"`
 	// A list of tags for the campaign.
@@ -37,6 +36,29 @@ type ApplicationCampaignAnalytics struct {
 	CouponsCount       *AnalyticsDataPointWithTrend                  `json:"couponsCount,omitempty"`
 }
 
+// NewApplicationCampaignAnalytics instantiates a new ApplicationCampaignAnalytics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationCampaignAnalytics(startTime time.Time, endTime time.Time, campaignId int64, campaignName string, campaignTags []string, campaignState string) *ApplicationCampaignAnalytics {
+	this := ApplicationCampaignAnalytics{}
+	this.StartTime = startTime
+	this.EndTime = endTime
+	this.CampaignId = campaignId
+	this.CampaignName = campaignName
+	this.CampaignTags = campaignTags
+	this.CampaignState = campaignState
+	return &this
+}
+
+// NewApplicationCampaignAnalyticsWithDefaults instantiates a new ApplicationCampaignAnalytics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationCampaignAnalyticsWithDefaults() *ApplicationCampaignAnalytics {
+	this := ApplicationCampaignAnalytics{}
+	return &this
+}
+
 // GetStartTime returns the StartTime field value
 func (o *ApplicationCampaignAnalytics) GetStartTime() time.Time {
 	if o == nil {
@@ -45,6 +67,15 @@ func (o *ApplicationCampaignAnalytics) GetStartTime() time.Time {
 	}
 
 	return o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCampaignAnalytics) GetStartTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartTime, true
 }
 
 // SetStartTime sets field value
@@ -62,23 +93,41 @@ func (o *ApplicationCampaignAnalytics) GetEndTime() time.Time {
 	return o.EndTime
 }
 
+// GetEndTimeOk returns a tuple with the EndTime field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCampaignAnalytics) GetEndTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndTime, true
+}
+
 // SetEndTime sets field value
 func (o *ApplicationCampaignAnalytics) SetEndTime(v time.Time) {
 	o.EndTime = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *ApplicationCampaignAnalytics) GetCampaignId() int32 {
+func (o *ApplicationCampaignAnalytics) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCampaignAnalytics) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *ApplicationCampaignAnalytics) SetCampaignId(v int32) {
+func (o *ApplicationCampaignAnalytics) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -90,6 +139,15 @@ func (o *ApplicationCampaignAnalytics) GetCampaignName() string {
 	}
 
 	return o.CampaignName
+}
+
+// GetCampaignNameOk returns a tuple with the CampaignName field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCampaignAnalytics) GetCampaignNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignName, true
 }
 
 // SetCampaignName sets field value
@@ -107,6 +165,15 @@ func (o *ApplicationCampaignAnalytics) GetCampaignTags() []string {
 	return o.CampaignTags
 }
 
+// GetCampaignTagsOk returns a tuple with the CampaignTags field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCampaignAnalytics) GetCampaignTagsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignTags, true
+}
+
 // SetCampaignTags sets field value
 func (o *ApplicationCampaignAnalytics) SetCampaignTags(v []string) {
 	o.CampaignTags = v
@@ -120,6 +187,15 @@ func (o *ApplicationCampaignAnalytics) GetCampaignState() string {
 	}
 
 	return o.CampaignState
+}
+
+// GetCampaignStateOk returns a tuple with the CampaignState field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationCampaignAnalytics) GetCampaignStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignState, true
 }
 
 // SetCampaignState sets field value
@@ -136,14 +212,13 @@ func (o *ApplicationCampaignAnalytics) GetTotalRevenue() AnalyticsDataPointWithT
 	return *o.TotalRevenue
 }
 
-// GetTotalRevenueOk returns a tuple with the TotalRevenue field value if set, zero value otherwise
+// GetTotalRevenueOk returns a tuple with the TotalRevenue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCampaignAnalytics) GetTotalRevenueOk() (AnalyticsDataPointWithTrendAndInfluencedRate, bool) {
+func (o *ApplicationCampaignAnalytics) GetTotalRevenueOk() (*AnalyticsDataPointWithTrendAndInfluencedRate, bool) {
 	if o == nil || o.TotalRevenue == nil {
-		var ret AnalyticsDataPointWithTrendAndInfluencedRate
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalRevenue, true
+	return o.TotalRevenue, true
 }
 
 // HasTotalRevenue returns a boolean if a field has been set.
@@ -169,14 +244,13 @@ func (o *ApplicationCampaignAnalytics) GetSessionsCount() AnalyticsDataPointWith
 	return *o.SessionsCount
 }
 
-// GetSessionsCountOk returns a tuple with the SessionsCount field value if set, zero value otherwise
+// GetSessionsCountOk returns a tuple with the SessionsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCampaignAnalytics) GetSessionsCountOk() (AnalyticsDataPointWithTrendAndInfluencedRate, bool) {
+func (o *ApplicationCampaignAnalytics) GetSessionsCountOk() (*AnalyticsDataPointWithTrendAndInfluencedRate, bool) {
 	if o == nil || o.SessionsCount == nil {
-		var ret AnalyticsDataPointWithTrendAndInfluencedRate
-		return ret, false
+		return nil, false
 	}
-	return *o.SessionsCount, true
+	return o.SessionsCount, true
 }
 
 // HasSessionsCount returns a boolean if a field has been set.
@@ -202,14 +276,13 @@ func (o *ApplicationCampaignAnalytics) GetAvgItemsPerSession() AnalyticsDataPoin
 	return *o.AvgItemsPerSession
 }
 
-// GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field value if set, zero value otherwise
+// GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCampaignAnalytics) GetAvgItemsPerSessionOk() (AnalyticsDataPointWithTrendAndUplift, bool) {
+func (o *ApplicationCampaignAnalytics) GetAvgItemsPerSessionOk() (*AnalyticsDataPointWithTrendAndUplift, bool) {
 	if o == nil || o.AvgItemsPerSession == nil {
-		var ret AnalyticsDataPointWithTrendAndUplift
-		return ret, false
+		return nil, false
 	}
-	return *o.AvgItemsPerSession, true
+	return o.AvgItemsPerSession, true
 }
 
 // HasAvgItemsPerSession returns a boolean if a field has been set.
@@ -235,14 +308,13 @@ func (o *ApplicationCampaignAnalytics) GetAvgSessionValue() AnalyticsDataPointWi
 	return *o.AvgSessionValue
 }
 
-// GetAvgSessionValueOk returns a tuple with the AvgSessionValue field value if set, zero value otherwise
+// GetAvgSessionValueOk returns a tuple with the AvgSessionValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCampaignAnalytics) GetAvgSessionValueOk() (AnalyticsDataPointWithTrendAndUplift, bool) {
+func (o *ApplicationCampaignAnalytics) GetAvgSessionValueOk() (*AnalyticsDataPointWithTrendAndUplift, bool) {
 	if o == nil || o.AvgSessionValue == nil {
-		var ret AnalyticsDataPointWithTrendAndUplift
-		return ret, false
+		return nil, false
 	}
-	return *o.AvgSessionValue, true
+	return o.AvgSessionValue, true
 }
 
 // HasAvgSessionValue returns a boolean if a field has been set.
@@ -268,14 +340,13 @@ func (o *ApplicationCampaignAnalytics) GetTotalDiscounts() AnalyticsDataPointWit
 	return *o.TotalDiscounts
 }
 
-// GetTotalDiscountsOk returns a tuple with the TotalDiscounts field value if set, zero value otherwise
+// GetTotalDiscountsOk returns a tuple with the TotalDiscounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCampaignAnalytics) GetTotalDiscountsOk() (AnalyticsDataPointWithTrend, bool) {
+func (o *ApplicationCampaignAnalytics) GetTotalDiscountsOk() (*AnalyticsDataPointWithTrend, bool) {
 	if o == nil || o.TotalDiscounts == nil {
-		var ret AnalyticsDataPointWithTrend
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalDiscounts, true
+	return o.TotalDiscounts, true
 }
 
 // HasTotalDiscounts returns a boolean if a field has been set.
@@ -301,14 +372,13 @@ func (o *ApplicationCampaignAnalytics) GetCouponsCount() AnalyticsDataPointWithT
 	return *o.CouponsCount
 }
 
-// GetCouponsCountOk returns a tuple with the CouponsCount field value if set, zero value otherwise
+// GetCouponsCountOk returns a tuple with the CouponsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCampaignAnalytics) GetCouponsCountOk() (AnalyticsDataPointWithTrend, bool) {
+func (o *ApplicationCampaignAnalytics) GetCouponsCountOk() (*AnalyticsDataPointWithTrend, bool) {
 	if o == nil || o.CouponsCount == nil {
-		var ret AnalyticsDataPointWithTrend
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponsCount, true
+	return o.CouponsCount, true
 }
 
 // HasCouponsCount returns a boolean if a field has been set.
@@ -325,25 +395,79 @@ func (o *ApplicationCampaignAnalytics) SetCouponsCount(v AnalyticsDataPointWithT
 	o.CouponsCount = &v
 }
 
+func (o ApplicationCampaignAnalytics) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if true {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["campaignName"] = o.CampaignName
+	}
+	if true {
+		toSerialize["campaignTags"] = o.CampaignTags
+	}
+	if true {
+		toSerialize["campaignState"] = o.CampaignState
+	}
+	if o.TotalRevenue != nil {
+		toSerialize["totalRevenue"] = o.TotalRevenue
+	}
+	if o.SessionsCount != nil {
+		toSerialize["sessionsCount"] = o.SessionsCount
+	}
+	if o.AvgItemsPerSession != nil {
+		toSerialize["avgItemsPerSession"] = o.AvgItemsPerSession
+	}
+	if o.AvgSessionValue != nil {
+		toSerialize["avgSessionValue"] = o.AvgSessionValue
+	}
+	if o.TotalDiscounts != nil {
+		toSerialize["totalDiscounts"] = o.TotalDiscounts
+	}
+	if o.CouponsCount != nil {
+		toSerialize["couponsCount"] = o.CouponsCount
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationCampaignAnalytics struct {
-	Value        ApplicationCampaignAnalytics
-	ExplicitNull bool
+	value *ApplicationCampaignAnalytics
+	isSet bool
+}
+
+func (v NullableApplicationCampaignAnalytics) Get() *ApplicationCampaignAnalytics {
+	return v.value
+}
+
+func (v *NullableApplicationCampaignAnalytics) Set(val *ApplicationCampaignAnalytics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationCampaignAnalytics) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationCampaignAnalytics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationCampaignAnalytics(val *ApplicationCampaignAnalytics) *NullableApplicationCampaignAnalytics {
+	return &NullableApplicationCampaignAnalytics{value: val, isSet: true}
 }
 
 func (v NullableApplicationCampaignAnalytics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationCampaignAnalytics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

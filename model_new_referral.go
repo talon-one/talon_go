@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,15 +21,34 @@ type NewReferral struct {
 	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
-	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	UsageLimit *int64 `json:"usageLimit,omitempty"`
 	// ID of the campaign from which the referral received the referral code.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The Integration ID of the Advocate's Profile.
 	AdvocateProfileIntegrationId string `json:"advocateProfileIntegrationId"`
 	// An optional Integration ID of the Friend's Profile.
 	FriendProfileIntegrationId *string `json:"friendProfileIntegrationId,omitempty"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+}
+
+// NewNewReferral instantiates a new NewReferral object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewReferral(campaignId int64, advocateProfileIntegrationId string) *NewReferral {
+	this := NewReferral{}
+	this.CampaignId = campaignId
+	this.AdvocateProfileIntegrationId = advocateProfileIntegrationId
+	return &this
+}
+
+// NewNewReferralWithDefaults instantiates a new NewReferral object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewReferralWithDefaults() *NewReferral {
+	this := NewReferral{}
+	return &this
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
@@ -42,14 +60,13 @@ func (o *NewReferral) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferral) GetStartDateOk() (time.Time, bool) {
+func (o *NewReferral) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -75,14 +92,13 @@ func (o *NewReferral) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferral) GetExpiryDateOk() (time.Time, bool) {
+func (o *NewReferral) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -100,22 +116,21 @@ func (o *NewReferral) SetExpiryDate(v time.Time) {
 }
 
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
-func (o *NewReferral) GetUsageLimit() int32 {
+func (o *NewReferral) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsageLimit
 }
 
-// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferral) GetUsageLimitOk() (int32, bool) {
+func (o *NewReferral) GetUsageLimitOk() (*int64, bool) {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsageLimit, true
+	return o.UsageLimit, true
 }
 
 // HasUsageLimit returns a boolean if a field has been set.
@@ -127,23 +142,32 @@ func (o *NewReferral) HasUsageLimit() bool {
 	return false
 }
 
-// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
-func (o *NewReferral) SetUsageLimit(v int32) {
+// SetUsageLimit gets a reference to the given int64 and assigns it to the UsageLimit field.
+func (o *NewReferral) SetUsageLimit(v int64) {
 	o.UsageLimit = &v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *NewReferral) GetCampaignId() int32 {
+func (o *NewReferral) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *NewReferral) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *NewReferral) SetCampaignId(v int32) {
+func (o *NewReferral) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -155,6 +179,15 @@ func (o *NewReferral) GetAdvocateProfileIntegrationId() string {
 	}
 
 	return o.AdvocateProfileIntegrationId
+}
+
+// GetAdvocateProfileIntegrationIdOk returns a tuple with the AdvocateProfileIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *NewReferral) GetAdvocateProfileIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdvocateProfileIntegrationId, true
 }
 
 // SetAdvocateProfileIntegrationId sets field value
@@ -171,14 +204,13 @@ func (o *NewReferral) GetFriendProfileIntegrationId() string {
 	return *o.FriendProfileIntegrationId
 }
 
-// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, zero value otherwise
+// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferral) GetFriendProfileIntegrationIdOk() (string, bool) {
+func (o *NewReferral) GetFriendProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.FriendProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FriendProfileIntegrationId, true
+	return o.FriendProfileIntegrationId, true
 }
 
 // HasFriendProfileIntegrationId returns a boolean if a field has been set.
@@ -204,14 +236,13 @@ func (o *NewReferral) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferral) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *NewReferral) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -228,25 +259,64 @@ func (o *NewReferral) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o NewReferral) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.UsageLimit != nil {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["advocateProfileIntegrationId"] = o.AdvocateProfileIntegrationId
+	}
+	if o.FriendProfileIntegrationId != nil {
+		toSerialize["friendProfileIntegrationId"] = o.FriendProfileIntegrationId
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewReferral struct {
-	Value        NewReferral
-	ExplicitNull bool
+	value *NewReferral
+	isSet bool
+}
+
+func (v NullableNewReferral) Get() *NewReferral {
+	return v.value
+}
+
+func (v *NullableNewReferral) Set(val *NewReferral) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewReferral) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewReferral) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewReferral(val *NewReferral) *NullableNewReferral {
+	return &NullableNewReferral{value: val, isSet: true}
 }
 
 func (v NullableNewReferral) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewReferral) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // Tier struct for Tier
 type Tier struct {
 	// The internal ID of the tier.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The name of the tier.
 	Name string `json:"name"`
 	// Date and time when the customer moved to this tier. This value uses the loyalty program's time zone setting.
@@ -29,18 +28,46 @@ type Tier struct {
 	DowngradePolicy *string `json:"downgradePolicy,omitempty"`
 }
 
+// NewTier instantiates a new Tier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTier(id int64, name string) *Tier {
+	this := Tier{}
+	this.Id = id
+	this.Name = name
+	return &this
+}
+
+// NewTierWithDefaults instantiates a new Tier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTierWithDefaults() *Tier {
+	this := Tier{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Tier) GetId() int32 {
+func (o *Tier) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Tier) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Tier) SetId(v int32) {
+func (o *Tier) SetId(v int64) {
 	o.Id = v
 }
 
@@ -52,6 +79,15 @@ func (o *Tier) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Tier) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -68,14 +104,13 @@ func (o *Tier) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Tier) GetStartDateOk() (time.Time, bool) {
+func (o *Tier) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -101,14 +136,13 @@ func (o *Tier) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Tier) GetExpiryDateOk() (time.Time, bool) {
+func (o *Tier) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -134,14 +168,13 @@ func (o *Tier) GetDowngradePolicy() string {
 	return *o.DowngradePolicy
 }
 
-// GetDowngradePolicyOk returns a tuple with the DowngradePolicy field value if set, zero value otherwise
+// GetDowngradePolicyOk returns a tuple with the DowngradePolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Tier) GetDowngradePolicyOk() (string, bool) {
+func (o *Tier) GetDowngradePolicyOk() (*string, bool) {
 	if o == nil || o.DowngradePolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DowngradePolicy, true
+	return o.DowngradePolicy, true
 }
 
 // HasDowngradePolicy returns a boolean if a field has been set.
@@ -158,25 +191,58 @@ func (o *Tier) SetDowngradePolicy(v string) {
 	o.DowngradePolicy = &v
 }
 
+func (o Tier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.DowngradePolicy != nil {
+		toSerialize["downgradePolicy"] = o.DowngradePolicy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTier struct {
-	Value        Tier
-	ExplicitNull bool
+	value *Tier
+	isSet bool
+}
+
+func (v NullableTier) Get() *Tier {
+	return v.value
+}
+
+func (v *NullableTier) Set(val *Tier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTier(val *Tier) *NullableTier {
+	return &NullableTier{value: val, isSet: true}
 }
 
 func (v NullableTier) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTier) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

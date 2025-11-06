@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,27 @@ type OutgoingIntegrationMoEngagePolicy struct {
 	DataApiKey string `json:"dataApiKey"`
 }
 
+// NewOutgoingIntegrationMoEngagePolicy instantiates a new OutgoingIntegrationMoEngagePolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOutgoingIntegrationMoEngagePolicy(baseUrl string, appId string, dataApiId string, dataApiKey string) *OutgoingIntegrationMoEngagePolicy {
+	this := OutgoingIntegrationMoEngagePolicy{}
+	this.BaseUrl = baseUrl
+	this.AppId = appId
+	this.DataApiId = dataApiId
+	this.DataApiKey = dataApiKey
+	return &this
+}
+
+// NewOutgoingIntegrationMoEngagePolicyWithDefaults instantiates a new OutgoingIntegrationMoEngagePolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationMoEngagePolicyWithDefaults() *OutgoingIntegrationMoEngagePolicy {
+	this := OutgoingIntegrationMoEngagePolicy{}
+	return &this
+}
+
 // GetBaseUrl returns the BaseUrl field value
 func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrl() string {
 	if o == nil {
@@ -34,6 +54,15 @@ func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrl() string {
 	}
 
 	return o.BaseUrl
+}
+
+// GetBaseUrlOk returns a tuple with the BaseUrl field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BaseUrl, true
 }
 
 // SetBaseUrl sets field value
@@ -51,6 +80,15 @@ func (o *OutgoingIntegrationMoEngagePolicy) GetAppId() string {
 	return o.AppId
 }
 
+// GetAppIdOk returns a tuple with the AppId field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationMoEngagePolicy) GetAppIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AppId, true
+}
+
 // SetAppId sets field value
 func (o *OutgoingIntegrationMoEngagePolicy) SetAppId(v string) {
 	o.AppId = v
@@ -64,6 +102,15 @@ func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiId() string {
 	}
 
 	return o.DataApiId
+}
+
+// GetDataApiIdOk returns a tuple with the DataApiId field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DataApiId, true
 }
 
 // SetDataApiId sets field value
@@ -81,30 +128,69 @@ func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiKey() string {
 	return o.DataApiKey
 }
 
+// GetDataApiKeyOk returns a tuple with the DataApiKey field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DataApiKey, true
+}
+
 // SetDataApiKey sets field value
 func (o *OutgoingIntegrationMoEngagePolicy) SetDataApiKey(v string) {
 	o.DataApiKey = v
 }
 
+func (o OutgoingIntegrationMoEngagePolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["baseUrl"] = o.BaseUrl
+	}
+	if true {
+		toSerialize["appId"] = o.AppId
+	}
+	if true {
+		toSerialize["dataApiId"] = o.DataApiId
+	}
+	if true {
+		toSerialize["dataApiKey"] = o.DataApiKey
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationMoEngagePolicy struct {
-	Value        OutgoingIntegrationMoEngagePolicy
-	ExplicitNull bool
+	value *OutgoingIntegrationMoEngagePolicy
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationMoEngagePolicy) Get() *OutgoingIntegrationMoEngagePolicy {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationMoEngagePolicy) Set(val *OutgoingIntegrationMoEngagePolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationMoEngagePolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationMoEngagePolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOutgoingIntegrationMoEngagePolicy(val *OutgoingIntegrationMoEngagePolicy) *NullableOutgoingIntegrationMoEngagePolicy {
+	return &NullableOutgoingIntegrationMoEngagePolicy{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationMoEngagePolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationMoEngagePolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

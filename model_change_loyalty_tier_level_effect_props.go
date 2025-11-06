@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,7 +19,7 @@ type ChangeLoyaltyTierLevelEffectProps struct {
 	// The title of the rule that triggered the tier upgrade.
 	RuleTitle string `json:"ruleTitle"`
 	// The ID of the loyalty program where these points were added.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// The ID of the subledger within the loyalty program where these points were added.
 	SubLedgerId string `json:"subLedgerId"`
 	// The name of the tier from which the user was upgraded.
@@ -29,6 +28,27 @@ type ChangeLoyaltyTierLevelEffectProps struct {
 	NewTierName string `json:"newTierName"`
 	// The expiration date of the new tier.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
+}
+
+// NewChangeLoyaltyTierLevelEffectProps instantiates a new ChangeLoyaltyTierLevelEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewChangeLoyaltyTierLevelEffectProps(ruleTitle string, programId int64, subLedgerId string, newTierName string) *ChangeLoyaltyTierLevelEffectProps {
+	this := ChangeLoyaltyTierLevelEffectProps{}
+	this.RuleTitle = ruleTitle
+	this.ProgramId = programId
+	this.SubLedgerId = subLedgerId
+	this.NewTierName = newTierName
+	return &this
+}
+
+// NewChangeLoyaltyTierLevelEffectPropsWithDefaults instantiates a new ChangeLoyaltyTierLevelEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewChangeLoyaltyTierLevelEffectPropsWithDefaults() *ChangeLoyaltyTierLevelEffectProps {
+	this := ChangeLoyaltyTierLevelEffectProps{}
+	return &this
 }
 
 // GetRuleTitle returns the RuleTitle field value
@@ -41,23 +61,41 @@ func (o *ChangeLoyaltyTierLevelEffectProps) GetRuleTitle() string {
 	return o.RuleTitle
 }
 
+// GetRuleTitleOk returns a tuple with the RuleTitle field value
+// and a boolean to check if the value has been set.
+func (o *ChangeLoyaltyTierLevelEffectProps) GetRuleTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleTitle, true
+}
+
 // SetRuleTitle sets field value
 func (o *ChangeLoyaltyTierLevelEffectProps) SetRuleTitle(v string) {
 	o.RuleTitle = v
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *ChangeLoyaltyTierLevelEffectProps) GetProgramId() int32 {
+func (o *ChangeLoyaltyTierLevelEffectProps) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *ChangeLoyaltyTierLevelEffectProps) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *ChangeLoyaltyTierLevelEffectProps) SetProgramId(v int32) {
+func (o *ChangeLoyaltyTierLevelEffectProps) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
@@ -69,6 +107,15 @@ func (o *ChangeLoyaltyTierLevelEffectProps) GetSubLedgerId() string {
 	}
 
 	return o.SubLedgerId
+}
+
+// GetSubLedgerIdOk returns a tuple with the SubLedgerId field value
+// and a boolean to check if the value has been set.
+func (o *ChangeLoyaltyTierLevelEffectProps) GetSubLedgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubLedgerId, true
 }
 
 // SetSubLedgerId sets field value
@@ -85,14 +132,13 @@ func (o *ChangeLoyaltyTierLevelEffectProps) GetPreviousTierName() string {
 	return *o.PreviousTierName
 }
 
-// GetPreviousTierNameOk returns a tuple with the PreviousTierName field value if set, zero value otherwise
+// GetPreviousTierNameOk returns a tuple with the PreviousTierName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeLoyaltyTierLevelEffectProps) GetPreviousTierNameOk() (string, bool) {
+func (o *ChangeLoyaltyTierLevelEffectProps) GetPreviousTierNameOk() (*string, bool) {
 	if o == nil || o.PreviousTierName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PreviousTierName, true
+	return o.PreviousTierName, true
 }
 
 // HasPreviousTierName returns a boolean if a field has been set.
@@ -119,6 +165,15 @@ func (o *ChangeLoyaltyTierLevelEffectProps) GetNewTierName() string {
 	return o.NewTierName
 }
 
+// GetNewTierNameOk returns a tuple with the NewTierName field value
+// and a boolean to check if the value has been set.
+func (o *ChangeLoyaltyTierLevelEffectProps) GetNewTierNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NewTierName, true
+}
+
 // SetNewTierName sets field value
 func (o *ChangeLoyaltyTierLevelEffectProps) SetNewTierName(v string) {
 	o.NewTierName = v
@@ -133,14 +188,13 @@ func (o *ChangeLoyaltyTierLevelEffectProps) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChangeLoyaltyTierLevelEffectProps) GetExpiryDateOk() (time.Time, bool) {
+func (o *ChangeLoyaltyTierLevelEffectProps) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -157,25 +211,61 @@ func (o *ChangeLoyaltyTierLevelEffectProps) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
 }
 
+func (o ChangeLoyaltyTierLevelEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["ruleTitle"] = o.RuleTitle
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if true {
+		toSerialize["subLedgerId"] = o.SubLedgerId
+	}
+	if o.PreviousTierName != nil {
+		toSerialize["previousTierName"] = o.PreviousTierName
+	}
+	if true {
+		toSerialize["newTierName"] = o.NewTierName
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableChangeLoyaltyTierLevelEffectProps struct {
-	Value        ChangeLoyaltyTierLevelEffectProps
-	ExplicitNull bool
+	value *ChangeLoyaltyTierLevelEffectProps
+	isSet bool
+}
+
+func (v NullableChangeLoyaltyTierLevelEffectProps) Get() *ChangeLoyaltyTierLevelEffectProps {
+	return v.value
+}
+
+func (v *NullableChangeLoyaltyTierLevelEffectProps) Set(val *ChangeLoyaltyTierLevelEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableChangeLoyaltyTierLevelEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableChangeLoyaltyTierLevelEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableChangeLoyaltyTierLevelEffectProps(val *ChangeLoyaltyTierLevelEffectProps) *NullableChangeLoyaltyTierLevelEffectProps {
+	return &NullableChangeLoyaltyTierLevelEffectProps{value: val, isSet: true}
 }
 
 func (v NullableChangeLoyaltyTierLevelEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableChangeLoyaltyTierLevelEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,6 +24,23 @@ type ScimSchemaResource struct {
 	Attributes  *[]map[string]interface{} `json:"attributes,omitempty"`
 }
 
+// NewScimSchemaResource instantiates a new ScimSchemaResource object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewScimSchemaResource() *ScimSchemaResource {
+	this := ScimSchemaResource{}
+	return &this
+}
+
+// NewScimSchemaResourceWithDefaults instantiates a new ScimSchemaResource object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimSchemaResourceWithDefaults() *ScimSchemaResource {
+	this := ScimSchemaResource{}
+	return &this
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ScimSchemaResource) GetId() string {
 	if o == nil || o.Id == nil {
@@ -34,14 +50,13 @@ func (o *ScimSchemaResource) GetId() string {
 	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, zero value otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimSchemaResource) GetIdOk() (string, bool) {
+func (o *ScimSchemaResource) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -67,14 +82,13 @@ func (o *ScimSchemaResource) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimSchemaResource) GetNameOk() (string, bool) {
+func (o *ScimSchemaResource) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -100,14 +114,13 @@ func (o *ScimSchemaResource) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimSchemaResource) GetDescriptionOk() (string, bool) {
+func (o *ScimSchemaResource) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -133,14 +146,13 @@ func (o *ScimSchemaResource) GetAttributes() []map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimSchemaResource) GetAttributesOk() ([]map[string]interface{}, bool) {
+func (o *ScimSchemaResource) GetAttributesOk() (*[]map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret []map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -157,25 +169,55 @@ func (o *ScimSchemaResource) SetAttributes(v []map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o ScimSchemaResource) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimSchemaResource struct {
-	Value        ScimSchemaResource
-	ExplicitNull bool
+	value *ScimSchemaResource
+	isSet bool
+}
+
+func (v NullableScimSchemaResource) Get() *ScimSchemaResource {
+	return v.value
+}
+
+func (v *NullableScimSchemaResource) Set(val *ScimSchemaResource) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimSchemaResource) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimSchemaResource) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableScimSchemaResource(val *ScimSchemaResource) *NullableScimSchemaResource {
+	return &NullableScimSchemaResource{value: val, isSet: true}
 }
 
 func (v NullableScimSchemaResource) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimSchemaResource) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

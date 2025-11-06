@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -24,19 +23,44 @@ type NewManagementKey struct {
 	// The list of endpoints that can be accessed with the key
 	Endpoints []Endpoint `json:"endpoints"`
 	// A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account.
-	AllowedApplicationIds *[]int32 `json:"allowedApplicationIds,omitempty"`
+	AllowedApplicationIds *[]int64 `json:"allowedApplicationIds,omitempty"`
 	// ID of the management key.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// ID of the user who created it.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
 	// ID of account the key is used for.
-	AccountID int32 `json:"accountID"`
+	AccountID int64 `json:"accountID"`
 	// The date the management key was created.
 	Created time.Time `json:"created"`
 	// The management key is disabled (this property is set to `true`) when the user who created the key is disabled or deleted.
 	Disabled *bool `json:"disabled,omitempty"`
 	// The management key.
 	Key string `json:"key"`
+}
+
+// NewNewManagementKey instantiates a new NewManagementKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewManagementKey(name string, expiryDate time.Time, endpoints []Endpoint, id int64, createdBy int64, accountID int64, created time.Time, key string) *NewManagementKey {
+	this := NewManagementKey{}
+	this.Name = name
+	this.ExpiryDate = expiryDate
+	this.Endpoints = endpoints
+	this.Id = id
+	this.CreatedBy = createdBy
+	this.AccountID = accountID
+	this.Created = created
+	this.Key = key
+	return &this
+}
+
+// NewNewManagementKeyWithDefaults instantiates a new NewManagementKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewManagementKeyWithDefaults() *NewManagementKey {
+	this := NewManagementKey{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -47,6 +71,15 @@ func (o *NewManagementKey) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -64,6 +97,15 @@ func (o *NewManagementKey) GetExpiryDate() time.Time {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetExpiryDateOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
 func (o *NewManagementKey) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = v
@@ -79,28 +121,36 @@ func (o *NewManagementKey) GetEndpoints() []Endpoint {
 	return o.Endpoints
 }
 
+// GetEndpointsOk returns a tuple with the Endpoints field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetEndpointsOk() (*[]Endpoint, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Endpoints, true
+}
+
 // SetEndpoints sets field value
 func (o *NewManagementKey) SetEndpoints(v []Endpoint) {
 	o.Endpoints = v
 }
 
 // GetAllowedApplicationIds returns the AllowedApplicationIds field value if set, zero value otherwise.
-func (o *NewManagementKey) GetAllowedApplicationIds() []int32 {
+func (o *NewManagementKey) GetAllowedApplicationIds() []int64 {
 	if o == nil || o.AllowedApplicationIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.AllowedApplicationIds
 }
 
-// GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field value if set, zero value otherwise
+// GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewManagementKey) GetAllowedApplicationIdsOk() ([]int32, bool) {
+func (o *NewManagementKey) GetAllowedApplicationIdsOk() (*[]int64, bool) {
 	if o == nil || o.AllowedApplicationIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AllowedApplicationIds, true
+	return o.AllowedApplicationIds, true
 }
 
 // HasAllowedApplicationIds returns a boolean if a field has been set.
@@ -112,53 +162,80 @@ func (o *NewManagementKey) HasAllowedApplicationIds() bool {
 	return false
 }
 
-// SetAllowedApplicationIds gets a reference to the given []int32 and assigns it to the AllowedApplicationIds field.
-func (o *NewManagementKey) SetAllowedApplicationIds(v []int32) {
+// SetAllowedApplicationIds gets a reference to the given []int64 and assigns it to the AllowedApplicationIds field.
+func (o *NewManagementKey) SetAllowedApplicationIds(v []int64) {
 	o.AllowedApplicationIds = &v
 }
 
 // GetId returns the Id field value
-func (o *NewManagementKey) GetId() int32 {
+func (o *NewManagementKey) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *NewManagementKey) SetId(v int32) {
+func (o *NewManagementKey) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *NewManagementKey) GetCreatedBy() int32 {
+func (o *NewManagementKey) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *NewManagementKey) SetCreatedBy(v int32) {
+func (o *NewManagementKey) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetAccountID returns the AccountID field value
-func (o *NewManagementKey) GetAccountID() int32 {
+func (o *NewManagementKey) GetAccountID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountID
 }
 
+// GetAccountIDOk returns a tuple with the AccountID field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetAccountIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountID, true
+}
+
 // SetAccountID sets field value
-func (o *NewManagementKey) SetAccountID(v int32) {
+func (o *NewManagementKey) SetAccountID(v int64) {
 	o.AccountID = v
 }
 
@@ -170,6 +247,15 @@ func (o *NewManagementKey) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -186,14 +272,13 @@ func (o *NewManagementKey) GetDisabled() bool {
 	return *o.Disabled
 }
 
-// GetDisabledOk returns a tuple with the Disabled field value if set, zero value otherwise
+// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewManagementKey) GetDisabledOk() (bool, bool) {
+func (o *NewManagementKey) GetDisabledOk() (*bool, bool) {
 	if o == nil || o.Disabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Disabled, true
+	return o.Disabled, true
 }
 
 // HasDisabled returns a boolean if a field has been set.
@@ -220,30 +305,87 @@ func (o *NewManagementKey) GetKey() string {
 	return o.Key
 }
 
+// GetKeyOk returns a tuple with the Key field value
+// and a boolean to check if the value has been set.
+func (o *NewManagementKey) GetKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Key, true
+}
+
 // SetKey sets field value
 func (o *NewManagementKey) SetKey(v string) {
 	o.Key = v
 }
 
+func (o NewManagementKey) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["endpoints"] = o.Endpoints
+	}
+	if o.AllowedApplicationIds != nil {
+		toSerialize["allowedApplicationIds"] = o.AllowedApplicationIds
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["accountID"] = o.AccountID
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if o.Disabled != nil {
+		toSerialize["disabled"] = o.Disabled
+	}
+	if true {
+		toSerialize["key"] = o.Key
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewManagementKey struct {
-	Value        NewManagementKey
-	ExplicitNull bool
+	value *NewManagementKey
+	isSet bool
+}
+
+func (v NullableNewManagementKey) Get() *NewManagementKey {
+	return v.value
+}
+
+func (v *NullableNewManagementKey) Set(val *NewManagementKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewManagementKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewManagementKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewManagementKey(val *NewManagementKey) *NullableNewManagementKey {
+	return &NullableNewManagementKey{value: val, isSet: true}
 }
 
 func (v NullableNewManagementKey) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewManagementKey) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,16 +10,35 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ListCampaignStoreBudgets struct for ListCampaignStoreBudgets
 type ListCampaignStoreBudgets struct {
 	Store  ListCampaignStoreBudgetsStore `json:"store"`
-	Limit  int32                         `json:"limit"`
+	Limit  int64                         `json:"limit"`
 	Action string                        `json:"action"`
 	Period *string                       `json:"period,omitempty"`
+}
+
+// NewListCampaignStoreBudgets instantiates a new ListCampaignStoreBudgets object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewListCampaignStoreBudgets(store ListCampaignStoreBudgetsStore, limit int64, action string) *ListCampaignStoreBudgets {
+	this := ListCampaignStoreBudgets{}
+	this.Store = store
+	this.Limit = limit
+	this.Action = action
+	return &this
+}
+
+// NewListCampaignStoreBudgetsWithDefaults instantiates a new ListCampaignStoreBudgets object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewListCampaignStoreBudgetsWithDefaults() *ListCampaignStoreBudgets {
+	this := ListCampaignStoreBudgets{}
+	return &this
 }
 
 // GetStore returns the Store field value
@@ -32,23 +51,41 @@ func (o *ListCampaignStoreBudgets) GetStore() ListCampaignStoreBudgetsStore {
 	return o.Store
 }
 
+// GetStoreOk returns a tuple with the Store field value
+// and a boolean to check if the value has been set.
+func (o *ListCampaignStoreBudgets) GetStoreOk() (*ListCampaignStoreBudgetsStore, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Store, true
+}
+
 // SetStore sets field value
 func (o *ListCampaignStoreBudgets) SetStore(v ListCampaignStoreBudgetsStore) {
 	o.Store = v
 }
 
 // GetLimit returns the Limit field value
-func (o *ListCampaignStoreBudgets) GetLimit() int32 {
+func (o *ListCampaignStoreBudgets) GetLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *ListCampaignStoreBudgets) GetLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
-func (o *ListCampaignStoreBudgets) SetLimit(v int32) {
+func (o *ListCampaignStoreBudgets) SetLimit(v int64) {
 	o.Limit = v
 }
 
@@ -60,6 +97,15 @@ func (o *ListCampaignStoreBudgets) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *ListCampaignStoreBudgets) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -76,14 +122,13 @@ func (o *ListCampaignStoreBudgets) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListCampaignStoreBudgets) GetPeriodOk() (string, bool) {
+func (o *ListCampaignStoreBudgets) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -100,25 +145,55 @@ func (o *ListCampaignStoreBudgets) SetPeriod(v string) {
 	o.Period = &v
 }
 
+func (o ListCampaignStoreBudgets) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["store"] = o.Store
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableListCampaignStoreBudgets struct {
-	Value        ListCampaignStoreBudgets
-	ExplicitNull bool
+	value *ListCampaignStoreBudgets
+	isSet bool
+}
+
+func (v NullableListCampaignStoreBudgets) Get() *ListCampaignStoreBudgets {
+	return v.value
+}
+
+func (v *NullableListCampaignStoreBudgets) Set(val *ListCampaignStoreBudgets) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableListCampaignStoreBudgets) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableListCampaignStoreBudgets) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableListCampaignStoreBudgets(val *ListCampaignStoreBudgets) *NullableListCampaignStoreBudgets {
+	return &NullableListCampaignStoreBudgets{value: val, isSet: true}
 }
 
 func (v NullableListCampaignStoreBudgets) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableListCampaignStoreBudgets) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

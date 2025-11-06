@@ -10,37 +10,62 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
-	"time"
 )
 
 // ExtendLoyaltyPointsExpiryDateEffectProps The properties specific to the \"extendLoyaltyPointsExpiryDate\" effect. This gets triggered when a validated rule contains the \"extend expiry date\" effect. The current expiry date gets extended by the time frame given in the effect.
 type ExtendLoyaltyPointsExpiryDateEffectProps struct {
 	// ID of the loyalty program that contains these points.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// API name of the loyalty program subledger that contains these points. added.
 	SubLedgerId string `json:"subLedgerId"`
 	// Time frame by which the expiry date extends.  The time format is either: - immediate, or - an **integer** followed by a letter indicating the time unit.  Examples: `immediate`, `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
 	ExtensionDuration string `json:"extensionDuration"`
-	// The list of identifiers of transactions affected affected by the extension.
-	TransactionUUIDs *[]string `json:"transactionUUIDs,omitempty"`
-	// Expiry date before applying the extension.
-	PreviousExpirationDate time.Time `json:"previousExpirationDate"`
+	// List of transactions affected by the expiry date update.
+	AffectedTransactions *[]LoyaltyLedgerEntryExpiryDateChange `json:"affectedTransactions,omitempty"`
+}
+
+// NewExtendLoyaltyPointsExpiryDateEffectProps instantiates a new ExtendLoyaltyPointsExpiryDateEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewExtendLoyaltyPointsExpiryDateEffectProps(programId int64, subLedgerId string, extensionDuration string) *ExtendLoyaltyPointsExpiryDateEffectProps {
+	this := ExtendLoyaltyPointsExpiryDateEffectProps{}
+	this.ProgramId = programId
+	this.SubLedgerId = subLedgerId
+	this.ExtensionDuration = extensionDuration
+	return &this
+}
+
+// NewExtendLoyaltyPointsExpiryDateEffectPropsWithDefaults instantiates a new ExtendLoyaltyPointsExpiryDateEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExtendLoyaltyPointsExpiryDateEffectPropsWithDefaults() *ExtendLoyaltyPointsExpiryDateEffectProps {
+	this := ExtendLoyaltyPointsExpiryDateEffectProps{}
+	return &this
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetProgramId() int32 {
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) SetProgramId(v int32) {
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
@@ -52,6 +77,15 @@ func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetSubLedgerId() string {
 	}
 
 	return o.SubLedgerId
+}
+
+// GetSubLedgerIdOk returns a tuple with the SubLedgerId field value
+// and a boolean to check if the value has been set.
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetSubLedgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubLedgerId, true
 }
 
 // SetSubLedgerId sets field value
@@ -69,78 +103,101 @@ func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetExtensionDuration() string
 	return o.ExtensionDuration
 }
 
+// GetExtensionDurationOk returns a tuple with the ExtensionDuration field value
+// and a boolean to check if the value has been set.
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetExtensionDurationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExtensionDuration, true
+}
+
 // SetExtensionDuration sets field value
 func (o *ExtendLoyaltyPointsExpiryDateEffectProps) SetExtensionDuration(v string) {
 	o.ExtensionDuration = v
 }
 
-// GetTransactionUUIDs returns the TransactionUUIDs field value if set, zero value otherwise.
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetTransactionUUIDs() []string {
-	if o == nil || o.TransactionUUIDs == nil {
-		var ret []string
+// GetAffectedTransactions returns the AffectedTransactions field value if set, zero value otherwise.
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetAffectedTransactions() []LoyaltyLedgerEntryExpiryDateChange {
+	if o == nil || o.AffectedTransactions == nil {
+		var ret []LoyaltyLedgerEntryExpiryDateChange
 		return ret
 	}
-	return *o.TransactionUUIDs
+	return *o.AffectedTransactions
 }
 
-// GetTransactionUUIDsOk returns a tuple with the TransactionUUIDs field value if set, zero value otherwise
+// GetAffectedTransactionsOk returns a tuple with the AffectedTransactions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetTransactionUUIDsOk() ([]string, bool) {
-	if o == nil || o.TransactionUUIDs == nil {
-		var ret []string
-		return ret, false
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetAffectedTransactionsOk() (*[]LoyaltyLedgerEntryExpiryDateChange, bool) {
+	if o == nil || o.AffectedTransactions == nil {
+		return nil, false
 	}
-	return *o.TransactionUUIDs, true
+	return o.AffectedTransactions, true
 }
 
-// HasTransactionUUIDs returns a boolean if a field has been set.
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) HasTransactionUUIDs() bool {
-	if o != nil && o.TransactionUUIDs != nil {
+// HasAffectedTransactions returns a boolean if a field has been set.
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) HasAffectedTransactions() bool {
+	if o != nil && o.AffectedTransactions != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTransactionUUIDs gets a reference to the given []string and assigns it to the TransactionUUIDs field.
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) SetTransactionUUIDs(v []string) {
-	o.TransactionUUIDs = &v
+// SetAffectedTransactions gets a reference to the given []LoyaltyLedgerEntryExpiryDateChange and assigns it to the AffectedTransactions field.
+func (o *ExtendLoyaltyPointsExpiryDateEffectProps) SetAffectedTransactions(v []LoyaltyLedgerEntryExpiryDateChange) {
+	o.AffectedTransactions = &v
 }
 
-// GetPreviousExpirationDate returns the PreviousExpirationDate field value
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) GetPreviousExpirationDate() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
+func (o ExtendLoyaltyPointsExpiryDateEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["programId"] = o.ProgramId
 	}
-
-	return o.PreviousExpirationDate
-}
-
-// SetPreviousExpirationDate sets field value
-func (o *ExtendLoyaltyPointsExpiryDateEffectProps) SetPreviousExpirationDate(v time.Time) {
-	o.PreviousExpirationDate = v
+	if true {
+		toSerialize["subLedgerId"] = o.SubLedgerId
+	}
+	if true {
+		toSerialize["extensionDuration"] = o.ExtensionDuration
+	}
+	if o.AffectedTransactions != nil {
+		toSerialize["affectedTransactions"] = o.AffectedTransactions
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableExtendLoyaltyPointsExpiryDateEffectProps struct {
-	Value        ExtendLoyaltyPointsExpiryDateEffectProps
-	ExplicitNull bool
+	value *ExtendLoyaltyPointsExpiryDateEffectProps
+	isSet bool
+}
+
+func (v NullableExtendLoyaltyPointsExpiryDateEffectProps) Get() *ExtendLoyaltyPointsExpiryDateEffectProps {
+	return v.value
+}
+
+func (v *NullableExtendLoyaltyPointsExpiryDateEffectProps) Set(val *ExtendLoyaltyPointsExpiryDateEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExtendLoyaltyPointsExpiryDateEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExtendLoyaltyPointsExpiryDateEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExtendLoyaltyPointsExpiryDateEffectProps(val *ExtendLoyaltyPointsExpiryDateEffectProps) *NullableExtendLoyaltyPointsExpiryDateEffectProps {
+	return &NullableExtendLoyaltyPointsExpiryDateEffectProps{value: val, isSet: true}
 }
 
 func (v NullableExtendLoyaltyPointsExpiryDateEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableExtendLoyaltyPointsExpiryDateEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -24,11 +23,11 @@ type MessageLogEntry struct {
 	// Type of change that triggered the notification.
 	ChangeType *string `json:"changeType,omitempty"`
 	// ID of the notification.
-	NotificationId *int32 `json:"notificationId,omitempty"`
+	NotificationId *int64 `json:"notificationId,omitempty"`
 	// The name of the notification.
 	NotificationName *string `json:"notificationName,omitempty"`
 	// ID of the webhook.
-	WebhookId *int32 `json:"webhookId,omitempty"`
+	WebhookId *int64 `json:"webhookId,omitempty"`
 	// The name of the webhook.
 	WebhookName *string             `json:"webhookName,omitempty"`
 	Request     *MessageLogRequest  `json:"request,omitempty"`
@@ -40,11 +39,32 @@ type MessageLogEntry struct {
 	// The target URL of the request.
 	Url *string `json:"url,omitempty"`
 	// Identifier of the Application.
-	ApplicationId *int32 `json:"applicationId,omitempty"`
+	ApplicationId *int64 `json:"applicationId,omitempty"`
 	// Identifier of the loyalty program.
-	LoyaltyProgramId *int32 `json:"loyaltyProgramId,omitempty"`
+	LoyaltyProgramId *int64 `json:"loyaltyProgramId,omitempty"`
 	// Identifier of the campaign.
-	CampaignId *int32 `json:"campaignId,omitempty"`
+	CampaignId *int64 `json:"campaignId,omitempty"`
+}
+
+// NewMessageLogEntry instantiates a new MessageLogEntry object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMessageLogEntry(id string, service string, createdAt time.Time, entityType string) *MessageLogEntry {
+	this := MessageLogEntry{}
+	this.Id = id
+	this.Service = service
+	this.CreatedAt = createdAt
+	this.EntityType = entityType
+	return &this
+}
+
+// NewMessageLogEntryWithDefaults instantiates a new MessageLogEntry object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMessageLogEntryWithDefaults() *MessageLogEntry {
+	this := MessageLogEntry{}
+	return &this
 }
 
 // GetId returns the Id field value
@@ -55,6 +75,15 @@ func (o *MessageLogEntry) GetId() string {
 	}
 
 	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
 }
 
 // SetId sets field value
@@ -72,6 +101,15 @@ func (o *MessageLogEntry) GetService() string {
 	return o.Service
 }
 
+// GetServiceOk returns a tuple with the Service field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetServiceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Service, true
+}
+
 // SetService sets field value
 func (o *MessageLogEntry) SetService(v string) {
 	o.Service = v
@@ -86,14 +124,13 @@ func (o *MessageLogEntry) GetChangeType() string {
 	return *o.ChangeType
 }
 
-// GetChangeTypeOk returns a tuple with the ChangeType field value if set, zero value otherwise
+// GetChangeTypeOk returns a tuple with the ChangeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetChangeTypeOk() (string, bool) {
+func (o *MessageLogEntry) GetChangeTypeOk() (*string, bool) {
 	if o == nil || o.ChangeType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ChangeType, true
+	return o.ChangeType, true
 }
 
 // HasChangeType returns a boolean if a field has been set.
@@ -111,22 +148,21 @@ func (o *MessageLogEntry) SetChangeType(v string) {
 }
 
 // GetNotificationId returns the NotificationId field value if set, zero value otherwise.
-func (o *MessageLogEntry) GetNotificationId() int32 {
+func (o *MessageLogEntry) GetNotificationId() int64 {
 	if o == nil || o.NotificationId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.NotificationId
 }
 
-// GetNotificationIdOk returns a tuple with the NotificationId field value if set, zero value otherwise
+// GetNotificationIdOk returns a tuple with the NotificationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetNotificationIdOk() (int32, bool) {
+func (o *MessageLogEntry) GetNotificationIdOk() (*int64, bool) {
 	if o == nil || o.NotificationId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.NotificationId, true
+	return o.NotificationId, true
 }
 
 // HasNotificationId returns a boolean if a field has been set.
@@ -138,8 +174,8 @@ func (o *MessageLogEntry) HasNotificationId() bool {
 	return false
 }
 
-// SetNotificationId gets a reference to the given int32 and assigns it to the NotificationId field.
-func (o *MessageLogEntry) SetNotificationId(v int32) {
+// SetNotificationId gets a reference to the given int64 and assigns it to the NotificationId field.
+func (o *MessageLogEntry) SetNotificationId(v int64) {
 	o.NotificationId = &v
 }
 
@@ -152,14 +188,13 @@ func (o *MessageLogEntry) GetNotificationName() string {
 	return *o.NotificationName
 }
 
-// GetNotificationNameOk returns a tuple with the NotificationName field value if set, zero value otherwise
+// GetNotificationNameOk returns a tuple with the NotificationName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetNotificationNameOk() (string, bool) {
+func (o *MessageLogEntry) GetNotificationNameOk() (*string, bool) {
 	if o == nil || o.NotificationName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NotificationName, true
+	return o.NotificationName, true
 }
 
 // HasNotificationName returns a boolean if a field has been set.
@@ -177,22 +212,21 @@ func (o *MessageLogEntry) SetNotificationName(v string) {
 }
 
 // GetWebhookId returns the WebhookId field value if set, zero value otherwise.
-func (o *MessageLogEntry) GetWebhookId() int32 {
+func (o *MessageLogEntry) GetWebhookId() int64 {
 	if o == nil || o.WebhookId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.WebhookId
 }
 
-// GetWebhookIdOk returns a tuple with the WebhookId field value if set, zero value otherwise
+// GetWebhookIdOk returns a tuple with the WebhookId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetWebhookIdOk() (int32, bool) {
+func (o *MessageLogEntry) GetWebhookIdOk() (*int64, bool) {
 	if o == nil || o.WebhookId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.WebhookId, true
+	return o.WebhookId, true
 }
 
 // HasWebhookId returns a boolean if a field has been set.
@@ -204,8 +238,8 @@ func (o *MessageLogEntry) HasWebhookId() bool {
 	return false
 }
 
-// SetWebhookId gets a reference to the given int32 and assigns it to the WebhookId field.
-func (o *MessageLogEntry) SetWebhookId(v int32) {
+// SetWebhookId gets a reference to the given int64 and assigns it to the WebhookId field.
+func (o *MessageLogEntry) SetWebhookId(v int64) {
 	o.WebhookId = &v
 }
 
@@ -218,14 +252,13 @@ func (o *MessageLogEntry) GetWebhookName() string {
 	return *o.WebhookName
 }
 
-// GetWebhookNameOk returns a tuple with the WebhookName field value if set, zero value otherwise
+// GetWebhookNameOk returns a tuple with the WebhookName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetWebhookNameOk() (string, bool) {
+func (o *MessageLogEntry) GetWebhookNameOk() (*string, bool) {
 	if o == nil || o.WebhookName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.WebhookName, true
+	return o.WebhookName, true
 }
 
 // HasWebhookName returns a boolean if a field has been set.
@@ -251,14 +284,13 @@ func (o *MessageLogEntry) GetRequest() MessageLogRequest {
 	return *o.Request
 }
 
-// GetRequestOk returns a tuple with the Request field value if set, zero value otherwise
+// GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetRequestOk() (MessageLogRequest, bool) {
+func (o *MessageLogEntry) GetRequestOk() (*MessageLogRequest, bool) {
 	if o == nil || o.Request == nil {
-		var ret MessageLogRequest
-		return ret, false
+		return nil, false
 	}
-	return *o.Request, true
+	return o.Request, true
 }
 
 // HasRequest returns a boolean if a field has been set.
@@ -284,14 +316,13 @@ func (o *MessageLogEntry) GetResponse() MessageLogResponse {
 	return *o.Response
 }
 
-// GetResponseOk returns a tuple with the Response field value if set, zero value otherwise
+// GetResponseOk returns a tuple with the Response field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetResponseOk() (MessageLogResponse, bool) {
+func (o *MessageLogEntry) GetResponseOk() (*MessageLogResponse, bool) {
 	if o == nil || o.Response == nil {
-		var ret MessageLogResponse
-		return ret, false
+		return nil, false
 	}
-	return *o.Response, true
+	return o.Response, true
 }
 
 // HasResponse returns a boolean if a field has been set.
@@ -318,6 +349,15 @@ func (o *MessageLogEntry) GetCreatedAt() time.Time {
 	return o.CreatedAt
 }
 
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
+}
+
 // SetCreatedAt sets field value
 func (o *MessageLogEntry) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
@@ -331,6 +371,15 @@ func (o *MessageLogEntry) GetEntityType() string {
 	}
 
 	return o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntry) GetEntityTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EntityType, true
 }
 
 // SetEntityType sets field value
@@ -347,14 +396,13 @@ func (o *MessageLogEntry) GetUrl() string {
 	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value if set, zero value otherwise
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetUrlOk() (string, bool) {
+func (o *MessageLogEntry) GetUrlOk() (*string, bool) {
 	if o == nil || o.Url == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Url, true
+	return o.Url, true
 }
 
 // HasUrl returns a boolean if a field has been set.
@@ -372,22 +420,21 @@ func (o *MessageLogEntry) SetUrl(v string) {
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
-func (o *MessageLogEntry) GetApplicationId() int32 {
+func (o *MessageLogEntry) GetApplicationId() int64 {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationId
 }
 
-// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, zero value otherwise
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetApplicationIdOk() (int32, bool) {
+func (o *MessageLogEntry) GetApplicationIdOk() (*int64, bool) {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationId, true
+	return o.ApplicationId, true
 }
 
 // HasApplicationId returns a boolean if a field has been set.
@@ -399,28 +446,27 @@ func (o *MessageLogEntry) HasApplicationId() bool {
 	return false
 }
 
-// SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
-func (o *MessageLogEntry) SetApplicationId(v int32) {
+// SetApplicationId gets a reference to the given int64 and assigns it to the ApplicationId field.
+func (o *MessageLogEntry) SetApplicationId(v int64) {
 	o.ApplicationId = &v
 }
 
 // GetLoyaltyProgramId returns the LoyaltyProgramId field value if set, zero value otherwise.
-func (o *MessageLogEntry) GetLoyaltyProgramId() int32 {
+func (o *MessageLogEntry) GetLoyaltyProgramId() int64 {
 	if o == nil || o.LoyaltyProgramId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.LoyaltyProgramId
 }
 
-// GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field value if set, zero value otherwise
+// GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetLoyaltyProgramIdOk() (int32, bool) {
+func (o *MessageLogEntry) GetLoyaltyProgramIdOk() (*int64, bool) {
 	if o == nil || o.LoyaltyProgramId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.LoyaltyProgramId, true
+	return o.LoyaltyProgramId, true
 }
 
 // HasLoyaltyProgramId returns a boolean if a field has been set.
@@ -432,28 +478,27 @@ func (o *MessageLogEntry) HasLoyaltyProgramId() bool {
 	return false
 }
 
-// SetLoyaltyProgramId gets a reference to the given int32 and assigns it to the LoyaltyProgramId field.
-func (o *MessageLogEntry) SetLoyaltyProgramId(v int32) {
+// SetLoyaltyProgramId gets a reference to the given int64 and assigns it to the LoyaltyProgramId field.
+func (o *MessageLogEntry) SetLoyaltyProgramId(v int64) {
 	o.LoyaltyProgramId = &v
 }
 
 // GetCampaignId returns the CampaignId field value if set, zero value otherwise.
-func (o *MessageLogEntry) GetCampaignId() int32 {
+func (o *MessageLogEntry) GetCampaignId() int64 {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntry) GetCampaignIdOk() (int32, bool) {
+func (o *MessageLogEntry) GetCampaignIdOk() (*int64, bool) {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignId, true
+	return o.CampaignId, true
 }
 
 // HasCampaignId returns a boolean if a field has been set.
@@ -465,30 +510,93 @@ func (o *MessageLogEntry) HasCampaignId() bool {
 	return false
 }
 
-// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-func (o *MessageLogEntry) SetCampaignId(v int32) {
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *MessageLogEntry) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
+func (o MessageLogEntry) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["service"] = o.Service
+	}
+	if o.ChangeType != nil {
+		toSerialize["changeType"] = o.ChangeType
+	}
+	if o.NotificationId != nil {
+		toSerialize["notificationId"] = o.NotificationId
+	}
+	if o.NotificationName != nil {
+		toSerialize["notificationName"] = o.NotificationName
+	}
+	if o.WebhookId != nil {
+		toSerialize["webhookId"] = o.WebhookId
+	}
+	if o.WebhookName != nil {
+		toSerialize["webhookName"] = o.WebhookName
+	}
+	if o.Request != nil {
+		toSerialize["request"] = o.Request
+	}
+	if o.Response != nil {
+		toSerialize["response"] = o.Response
+	}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["entityType"] = o.EntityType
+	}
+	if o.Url != nil {
+		toSerialize["url"] = o.Url
+	}
+	if o.ApplicationId != nil {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if o.LoyaltyProgramId != nil {
+		toSerialize["loyaltyProgramId"] = o.LoyaltyProgramId
+	}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMessageLogEntry struct {
-	Value        MessageLogEntry
-	ExplicitNull bool
+	value *MessageLogEntry
+	isSet bool
+}
+
+func (v NullableMessageLogEntry) Get() *MessageLogEntry {
+	return v.value
+}
+
+func (v *NullableMessageLogEntry) Set(val *MessageLogEntry) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMessageLogEntry) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMessageLogEntry) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMessageLogEntry(val *MessageLogEntry) *NullableMessageLogEntry {
+	return &NullableMessageLogEntry{value: val, isSet: true}
 }
 
 func (v NullableMessageLogEntry) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMessageLogEntry) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ApplicationSessionEntity struct for ApplicationSessionEntity
 type ApplicationSessionEntity struct {
 	// The globally unique Talon.One ID of the session where this entity was created.
-	SessionId int32 `json:"sessionId"`
+	SessionId int64 `json:"sessionId"`
+}
+
+// NewApplicationSessionEntity instantiates a new ApplicationSessionEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationSessionEntity(sessionId int64) *ApplicationSessionEntity {
+	this := ApplicationSessionEntity{}
+	this.SessionId = sessionId
+	return &this
+}
+
+// NewApplicationSessionEntityWithDefaults instantiates a new ApplicationSessionEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationSessionEntityWithDefaults() *ApplicationSessionEntity {
+	this := ApplicationSessionEntity{}
+	return &this
 }
 
 // GetSessionId returns the SessionId field value
-func (o *ApplicationSessionEntity) GetSessionId() int32 {
+func (o *ApplicationSessionEntity) GetSessionId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.SessionId
 }
 
+// GetSessionIdOk returns a tuple with the SessionId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationSessionEntity) GetSessionIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionId, true
+}
+
 // SetSessionId sets field value
-func (o *ApplicationSessionEntity) SetSessionId(v int32) {
+func (o *ApplicationSessionEntity) SetSessionId(v int64) {
 	o.SessionId = v
 }
 
+func (o ApplicationSessionEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationSessionEntity struct {
-	Value        ApplicationSessionEntity
-	ExplicitNull bool
+	value *ApplicationSessionEntity
+	isSet bool
+}
+
+func (v NullableApplicationSessionEntity) Get() *ApplicationSessionEntity {
+	return v.value
+}
+
+func (v *NullableApplicationSessionEntity) Set(val *ApplicationSessionEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationSessionEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationSessionEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationSessionEntity(val *ApplicationSessionEntity) *NullableApplicationSessionEntity {
+	return &NullableApplicationSessionEntity{value: val, isSet: true}
 }
 
 func (v NullableApplicationSessionEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationSessionEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

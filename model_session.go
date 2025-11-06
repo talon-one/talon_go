@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,25 +17,54 @@ import (
 // Session struct for Session
 type Session struct {
 	// The ID of the user of this session.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// The token to use as a bearer token to query Management API endpoints.
 	Token string `json:"token"`
 	// Unix timestamp indicating when the session was first created.
 	Created time.Time `json:"created"`
 }
 
+// NewSession instantiates a new Session object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSession(userId int64, token string, created time.Time) *Session {
+	this := Session{}
+	this.UserId = userId
+	this.Token = token
+	this.Created = created
+	return &this
+}
+
+// NewSessionWithDefaults instantiates a new Session object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSessionWithDefaults() *Session {
+	this := Session{}
+	return &this
+}
+
 // GetUserId returns the UserId field value
-func (o *Session) GetUserId() int32 {
+func (o *Session) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *Session) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *Session) SetUserId(v int32) {
+func (o *Session) SetUserId(v int64) {
 	o.UserId = v
 }
 
@@ -48,6 +76,15 @@ func (o *Session) GetToken() string {
 	}
 
 	return o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value
+// and a boolean to check if the value has been set.
+func (o *Session) GetTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Token, true
 }
 
 // SetToken sets field value
@@ -65,30 +102,66 @@ func (o *Session) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Session) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Session) SetCreated(v time.Time) {
 	o.Created = v
 }
 
+func (o Session) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["token"] = o.Token
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSession struct {
-	Value        Session
-	ExplicitNull bool
+	value *Session
+	isSet bool
+}
+
+func (v NullableSession) Get() *Session {
+	return v.value
+}
+
+func (v *NullableSession) Set(val *Session) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSession) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSession) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSession(val *Session) *NullableSession {
+	return &NullableSession{value: val, isSet: true}
 }
 
 func (v NullableSession) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSession) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,6 +22,26 @@ type NewAccountSignUp struct {
 	CompanyName string `json:"companyName"`
 }
 
+// NewNewAccountSignUp instantiates a new NewAccountSignUp object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewAccountSignUp(email string, password string, companyName string) *NewAccountSignUp {
+	this := NewAccountSignUp{}
+	this.Email = email
+	this.Password = password
+	this.CompanyName = companyName
+	return &this
+}
+
+// NewNewAccountSignUpWithDefaults instantiates a new NewAccountSignUp object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewAccountSignUpWithDefaults() *NewAccountSignUp {
+	this := NewAccountSignUp{}
+	return &this
+}
+
 // GetEmail returns the Email field value
 func (o *NewAccountSignUp) GetEmail() string {
 	if o == nil {
@@ -31,6 +50,15 @@ func (o *NewAccountSignUp) GetEmail() string {
 	}
 
 	return o.Email
+}
+
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *NewAccountSignUp) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
 }
 
 // SetEmail sets field value
@@ -48,6 +76,15 @@ func (o *NewAccountSignUp) GetPassword() string {
 	return o.Password
 }
 
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *NewAccountSignUp) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
+}
+
 // SetPassword sets field value
 func (o *NewAccountSignUp) SetPassword(v string) {
 	o.Password = v
@@ -63,30 +100,66 @@ func (o *NewAccountSignUp) GetCompanyName() string {
 	return o.CompanyName
 }
 
+// GetCompanyNameOk returns a tuple with the CompanyName field value
+// and a boolean to check if the value has been set.
+func (o *NewAccountSignUp) GetCompanyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CompanyName, true
+}
+
 // SetCompanyName sets field value
 func (o *NewAccountSignUp) SetCompanyName(v string) {
 	o.CompanyName = v
 }
 
+func (o NewAccountSignUp) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	if true {
+		toSerialize["password"] = o.Password
+	}
+	if true {
+		toSerialize["companyName"] = o.CompanyName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewAccountSignUp struct {
-	Value        NewAccountSignUp
-	ExplicitNull bool
+	value *NewAccountSignUp
+	isSet bool
+}
+
+func (v NullableNewAccountSignUp) Get() *NewAccountSignUp {
+	return v.value
+}
+
+func (v *NullableNewAccountSignUp) Set(val *NewAccountSignUp) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewAccountSignUp) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewAccountSignUp) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewAccountSignUp(val *NewAccountSignUp) *NullableNewAccountSignUp {
+	return &NullableNewAccountSignUp{value: val, isSet: true}
 }
 
 func (v NullableNewAccountSignUp) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewAccountSignUp) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

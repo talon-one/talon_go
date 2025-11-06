@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -27,6 +26,23 @@ type ScimServiceProviderConfigResponse struct {
 	Sort    *ScimServiceProviderConfigResponseSort `json:"sort,omitempty"`
 }
 
+// NewScimServiceProviderConfigResponse instantiates a new ScimServiceProviderConfigResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewScimServiceProviderConfigResponse() *ScimServiceProviderConfigResponse {
+	this := ScimServiceProviderConfigResponse{}
+	return &this
+}
+
+// NewScimServiceProviderConfigResponseWithDefaults instantiates a new ScimServiceProviderConfigResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimServiceProviderConfigResponseWithDefaults() *ScimServiceProviderConfigResponse {
+	this := ScimServiceProviderConfigResponse{}
+	return &this
+}
+
 // GetBulk returns the Bulk field value if set, zero value otherwise.
 func (o *ScimServiceProviderConfigResponse) GetBulk() ScimServiceProviderConfigResponseBulk {
 	if o == nil || o.Bulk == nil {
@@ -36,14 +52,13 @@ func (o *ScimServiceProviderConfigResponse) GetBulk() ScimServiceProviderConfigR
 	return *o.Bulk
 }
 
-// GetBulkOk returns a tuple with the Bulk field value if set, zero value otherwise
+// GetBulkOk returns a tuple with the Bulk field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetBulkOk() (ScimServiceProviderConfigResponseBulk, bool) {
+func (o *ScimServiceProviderConfigResponse) GetBulkOk() (*ScimServiceProviderConfigResponseBulk, bool) {
 	if o == nil || o.Bulk == nil {
-		var ret ScimServiceProviderConfigResponseBulk
-		return ret, false
+		return nil, false
 	}
-	return *o.Bulk, true
+	return o.Bulk, true
 }
 
 // HasBulk returns a boolean if a field has been set.
@@ -69,14 +84,13 @@ func (o *ScimServiceProviderConfigResponse) GetChangePassword() ScimServiceProvi
 	return *o.ChangePassword
 }
 
-// GetChangePasswordOk returns a tuple with the ChangePassword field value if set, zero value otherwise
+// GetChangePasswordOk returns a tuple with the ChangePassword field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetChangePasswordOk() (ScimServiceProviderConfigResponseChangePassword, bool) {
+func (o *ScimServiceProviderConfigResponse) GetChangePasswordOk() (*ScimServiceProviderConfigResponseChangePassword, bool) {
 	if o == nil || o.ChangePassword == nil {
-		var ret ScimServiceProviderConfigResponseChangePassword
-		return ret, false
+		return nil, false
 	}
-	return *o.ChangePassword, true
+	return o.ChangePassword, true
 }
 
 // HasChangePassword returns a boolean if a field has been set.
@@ -102,14 +116,13 @@ func (o *ScimServiceProviderConfigResponse) GetDocumentationUri() string {
 	return *o.DocumentationUri
 }
 
-// GetDocumentationUriOk returns a tuple with the DocumentationUri field value if set, zero value otherwise
+// GetDocumentationUriOk returns a tuple with the DocumentationUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetDocumentationUriOk() (string, bool) {
+func (o *ScimServiceProviderConfigResponse) GetDocumentationUriOk() (*string, bool) {
 	if o == nil || o.DocumentationUri == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DocumentationUri, true
+	return o.DocumentationUri, true
 }
 
 // HasDocumentationUri returns a boolean if a field has been set.
@@ -135,14 +148,13 @@ func (o *ScimServiceProviderConfigResponse) GetFilter() ScimServiceProviderConfi
 	return *o.Filter
 }
 
-// GetFilterOk returns a tuple with the Filter field value if set, zero value otherwise
+// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetFilterOk() (ScimServiceProviderConfigResponseFilter, bool) {
+func (o *ScimServiceProviderConfigResponse) GetFilterOk() (*ScimServiceProviderConfigResponseFilter, bool) {
 	if o == nil || o.Filter == nil {
-		var ret ScimServiceProviderConfigResponseFilter
-		return ret, false
+		return nil, false
 	}
-	return *o.Filter, true
+	return o.Filter, true
 }
 
 // HasFilter returns a boolean if a field has been set.
@@ -168,14 +180,13 @@ func (o *ScimServiceProviderConfigResponse) GetPatch() ScimServiceProviderConfig
 	return *o.Patch
 }
 
-// GetPatchOk returns a tuple with the Patch field value if set, zero value otherwise
+// GetPatchOk returns a tuple with the Patch field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetPatchOk() (ScimServiceProviderConfigResponsePatch, bool) {
+func (o *ScimServiceProviderConfigResponse) GetPatchOk() (*ScimServiceProviderConfigResponsePatch, bool) {
 	if o == nil || o.Patch == nil {
-		var ret ScimServiceProviderConfigResponsePatch
-		return ret, false
+		return nil, false
 	}
-	return *o.Patch, true
+	return o.Patch, true
 }
 
 // HasPatch returns a boolean if a field has been set.
@@ -201,14 +212,13 @@ func (o *ScimServiceProviderConfigResponse) GetSchemas() []string {
 	return *o.Schemas
 }
 
-// GetSchemasOk returns a tuple with the Schemas field value if set, zero value otherwise
+// GetSchemasOk returns a tuple with the Schemas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetSchemasOk() ([]string, bool) {
+func (o *ScimServiceProviderConfigResponse) GetSchemasOk() (*[]string, bool) {
 	if o == nil || o.Schemas == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Schemas, true
+	return o.Schemas, true
 }
 
 // HasSchemas returns a boolean if a field has been set.
@@ -234,14 +244,13 @@ func (o *ScimServiceProviderConfigResponse) GetSort() ScimServiceProviderConfigR
 	return *o.Sort
 }
 
-// GetSortOk returns a tuple with the Sort field value if set, zero value otherwise
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponse) GetSortOk() (ScimServiceProviderConfigResponseSort, bool) {
+func (o *ScimServiceProviderConfigResponse) GetSortOk() (*ScimServiceProviderConfigResponseSort, bool) {
 	if o == nil || o.Sort == nil {
-		var ret ScimServiceProviderConfigResponseSort
-		return ret, false
+		return nil, false
 	}
-	return *o.Sort, true
+	return o.Sort, true
 }
 
 // HasSort returns a boolean if a field has been set.
@@ -258,25 +267,64 @@ func (o *ScimServiceProviderConfigResponse) SetSort(v ScimServiceProviderConfigR
 	o.Sort = &v
 }
 
+func (o ScimServiceProviderConfigResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Bulk != nil {
+		toSerialize["bulk"] = o.Bulk
+	}
+	if o.ChangePassword != nil {
+		toSerialize["changePassword"] = o.ChangePassword
+	}
+	if o.DocumentationUri != nil {
+		toSerialize["documentationUri"] = o.DocumentationUri
+	}
+	if o.Filter != nil {
+		toSerialize["filter"] = o.Filter
+	}
+	if o.Patch != nil {
+		toSerialize["patch"] = o.Patch
+	}
+	if o.Schemas != nil {
+		toSerialize["schemas"] = o.Schemas
+	}
+	if o.Sort != nil {
+		toSerialize["sort"] = o.Sort
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimServiceProviderConfigResponse struct {
-	Value        ScimServiceProviderConfigResponse
-	ExplicitNull bool
+	value *ScimServiceProviderConfigResponse
+	isSet bool
+}
+
+func (v NullableScimServiceProviderConfigResponse) Get() *ScimServiceProviderConfigResponse {
+	return v.value
+}
+
+func (v *NullableScimServiceProviderConfigResponse) Set(val *ScimServiceProviderConfigResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimServiceProviderConfigResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimServiceProviderConfigResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableScimServiceProviderConfigResponse(val *ScimServiceProviderConfigResponse) *NullableScimServiceProviderConfigResponse {
+	return &NullableScimServiceProviderConfigResponse{value: val, isSet: true}
 }
 
 func (v NullableScimServiceProviderConfigResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimServiceProviderConfigResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

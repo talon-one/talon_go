@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,23 @@ type RoleV2ApplicationDetails struct {
 	Tools *string `json:"tools,omitempty"`
 }
 
+// NewRoleV2ApplicationDetails instantiates a new RoleV2ApplicationDetails object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoleV2ApplicationDetails() *RoleV2ApplicationDetails {
+	this := RoleV2ApplicationDetails{}
+	return &this
+}
+
+// NewRoleV2ApplicationDetailsWithDefaults instantiates a new RoleV2ApplicationDetails object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleV2ApplicationDetailsWithDefaults() *RoleV2ApplicationDetails {
+	this := RoleV2ApplicationDetails{}
+	return &this
+}
+
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *RoleV2ApplicationDetails) GetApplication() string {
 	if o == nil || o.Application == nil {
@@ -35,14 +51,13 @@ func (o *RoleV2ApplicationDetails) GetApplication() string {
 	return *o.Application
 }
 
-// GetApplicationOk returns a tuple with the Application field value if set, zero value otherwise
+// GetApplicationOk returns a tuple with the Application field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2ApplicationDetails) GetApplicationOk() (string, bool) {
+func (o *RoleV2ApplicationDetails) GetApplicationOk() (*string, bool) {
 	if o == nil || o.Application == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Application, true
+	return o.Application, true
 }
 
 // HasApplication returns a boolean if a field has been set.
@@ -68,14 +83,13 @@ func (o *RoleV2ApplicationDetails) GetCampaign() string {
 	return *o.Campaign
 }
 
-// GetCampaignOk returns a tuple with the Campaign field value if set, zero value otherwise
+// GetCampaignOk returns a tuple with the Campaign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2ApplicationDetails) GetCampaignOk() (string, bool) {
+func (o *RoleV2ApplicationDetails) GetCampaignOk() (*string, bool) {
 	if o == nil || o.Campaign == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Campaign, true
+	return o.Campaign, true
 }
 
 // HasCampaign returns a boolean if a field has been set.
@@ -101,14 +115,13 @@ func (o *RoleV2ApplicationDetails) GetDraftCampaign() string {
 	return *o.DraftCampaign
 }
 
-// GetDraftCampaignOk returns a tuple with the DraftCampaign field value if set, zero value otherwise
+// GetDraftCampaignOk returns a tuple with the DraftCampaign field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2ApplicationDetails) GetDraftCampaignOk() (string, bool) {
+func (o *RoleV2ApplicationDetails) GetDraftCampaignOk() (*string, bool) {
 	if o == nil || o.DraftCampaign == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DraftCampaign, true
+	return o.DraftCampaign, true
 }
 
 // HasDraftCampaign returns a boolean if a field has been set.
@@ -134,14 +147,13 @@ func (o *RoleV2ApplicationDetails) GetTools() string {
 	return *o.Tools
 }
 
-// GetToolsOk returns a tuple with the Tools field value if set, zero value otherwise
+// GetToolsOk returns a tuple with the Tools field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2ApplicationDetails) GetToolsOk() (string, bool) {
+func (o *RoleV2ApplicationDetails) GetToolsOk() (*string, bool) {
 	if o == nil || o.Tools == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tools, true
+	return o.Tools, true
 }
 
 // HasTools returns a boolean if a field has been set.
@@ -158,25 +170,55 @@ func (o *RoleV2ApplicationDetails) SetTools(v string) {
 	o.Tools = &v
 }
 
+func (o RoleV2ApplicationDetails) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Application != nil {
+		toSerialize["application"] = o.Application
+	}
+	if o.Campaign != nil {
+		toSerialize["campaign"] = o.Campaign
+	}
+	if o.DraftCampaign != nil {
+		toSerialize["draftCampaign"] = o.DraftCampaign
+	}
+	if o.Tools != nil {
+		toSerialize["tools"] = o.Tools
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleV2ApplicationDetails struct {
-	Value        RoleV2ApplicationDetails
-	ExplicitNull bool
+	value *RoleV2ApplicationDetails
+	isSet bool
+}
+
+func (v NullableRoleV2ApplicationDetails) Get() *RoleV2ApplicationDetails {
+	return v.value
+}
+
+func (v *NullableRoleV2ApplicationDetails) Set(val *RoleV2ApplicationDetails) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleV2ApplicationDetails) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleV2ApplicationDetails) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoleV2ApplicationDetails(val *RoleV2ApplicationDetails) *NullableRoleV2ApplicationDetails {
+	return &NullableRoleV2ApplicationDetails{value: val, isSet: true}
 }
 
 func (v NullableRoleV2ApplicationDetails) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleV2ApplicationDetails) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

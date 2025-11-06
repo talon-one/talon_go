@@ -9,10 +9,7 @@
 
 package talon
 
-import (
-	"bytes"
-	"encoding/json"
-)
+import "encoding/json"
 
 // GenerateRuleTitleRule struct for GenerateRuleTitleRule
 type GenerateRuleTitleRule struct {
@@ -22,21 +19,37 @@ type GenerateRuleTitleRule struct {
 	Condition []interface{} `json:"condition,omitempty"`
 }
 
+// NewGenerateRuleTitleRule instantiates a new GenerateRuleTitleRule object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGenerateRuleTitleRule() *GenerateRuleTitleRule {
+	this := GenerateRuleTitleRule{}
+	return &this
+}
+
+// NewGenerateRuleTitleRuleWithDefaults instantiates a new GenerateRuleTitleRule object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGenerateRuleTitleRuleWithDefaults() *GenerateRuleTitleRule {
+	this := GenerateRuleTitleRule{}
+	return &this
+}
+
 // GetEffects returns the Effects field value if set, zero value otherwise.
 func (o *GenerateRuleTitleRule) GetEffects() [][]interface{} {
 	if o == nil || o.Effects == nil {
-		var ret [][]interface{}
+		var ret []interface{}
 		return ret
 	}
 	return o.Effects
 }
 
-// GetEffectsOk returns a tuple with the Effects field value if set, zero value otherwise
+// GetEffectsOk returns a tuple with the Effects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateRuleTitleRule) GetEffectsOk() ([][]interface{}, bool) {
+func (o *GenerateRuleTitleRule) GetEffectsOk() (*[]map[string]interface{}, bool) {
 	if o == nil || o.Effects == nil {
-		var ret [][]interface{}
-		return ret, false
+		return nil, false
 	}
 	return o.Effects, true
 }
@@ -64,12 +77,11 @@ func (o *GenerateRuleTitleRule) GetCondition() []interface{} {
 	return o.Condition
 }
 
-// GetConditionOk returns a tuple with the Condition field value if set, zero value otherwise
+// GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateRuleTitleRule) GetConditionOk() ([]interface{}, bool) {
+func (o *GenerateRuleTitleRule) GetConditionOk() (*[]map[string]interface{}, bool) {
 	if o == nil || o.Condition == nil {
-		var ret []interface{}
-		return ret, false
+		return nil, false
 	}
 	return o.Condition, true
 }
@@ -88,25 +100,49 @@ func (o *GenerateRuleTitleRule) SetCondition(v []interface{}) {
 	o.Condition = v
 }
 
+func (o GenerateRuleTitleRule) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Effects != nil {
+		toSerialize["effects"] = o.Effects
+	}
+	if o.Condition != nil {
+		toSerialize["condition"] = o.Condition
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGenerateRuleTitleRule struct {
-	Value        GenerateRuleTitleRule
-	ExplicitNull bool
+	value *GenerateRuleTitleRule
+	isSet bool
+}
+
+func (v NullableGenerateRuleTitleRule) Get() *GenerateRuleTitleRule {
+	return v.value
+}
+
+func (v *NullableGenerateRuleTitleRule) Set(val *GenerateRuleTitleRule) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGenerateRuleTitleRule) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGenerateRuleTitleRule) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGenerateRuleTitleRule(val *GenerateRuleTitleRule) *NullableGenerateRuleTitleRule {
+	return &NullableGenerateRuleTitleRule{value: val, isSet: true}
 }
 
 func (v NullableGenerateRuleTitleRule) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGenerateRuleTitleRule) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

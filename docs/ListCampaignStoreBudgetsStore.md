@@ -4,36 +4,48 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** |  | 
+**Id** | Pointer to **int64** |  | 
 **IntegrationId** | Pointer to **string** |  | 
 **Name** | Pointer to **string** |  | 
 
 ## Methods
 
+### NewListCampaignStoreBudgetsStore
+
+`func NewListCampaignStoreBudgetsStore(id int64, integrationId string, name string, ) *ListCampaignStoreBudgetsStore`
+
+NewListCampaignStoreBudgetsStore instantiates a new ListCampaignStoreBudgetsStore object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewListCampaignStoreBudgetsStoreWithDefaults
+
+`func NewListCampaignStoreBudgetsStoreWithDefaults() *ListCampaignStoreBudgetsStore`
+
+NewListCampaignStoreBudgetsStoreWithDefaults instantiates a new ListCampaignStoreBudgetsStore object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetId
 
-`func (o *ListCampaignStoreBudgetsStore) GetId() int32`
+`func (o *ListCampaignStoreBudgetsStore) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *ListCampaignStoreBudgetsStore) GetIdOk() (int32, bool)`
+`func (o *ListCampaignStoreBudgetsStore) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
-
-`func (o *ListCampaignStoreBudgetsStore) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### SetId
 
-`func (o *ListCampaignStoreBudgetsStore) SetId(v int32)`
+`func (o *ListCampaignStoreBudgetsStore) SetId(v int64)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetId sets Id field to given value.
+
 
 ### GetIntegrationId
 
@@ -43,22 +55,17 @@ GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwis
 
 ### GetIntegrationIdOk
 
-`func (o *ListCampaignStoreBudgetsStore) GetIntegrationIdOk() (string, bool)`
+`func (o *ListCampaignStoreBudgetsStore) GetIntegrationIdOk() (*string, bool)`
 
 GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasIntegrationId
-
-`func (o *ListCampaignStoreBudgetsStore) HasIntegrationId() bool`
-
-HasIntegrationId returns a boolean if a field has been set.
 
 ### SetIntegrationId
 
 `func (o *ListCampaignStoreBudgetsStore) SetIntegrationId(v string)`
 
-SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
+SetIntegrationId sets IntegrationId field to given value.
+
 
 ### GetName
 
@@ -68,22 +75,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *ListCampaignStoreBudgetsStore) GetNameOk() (string, bool)`
+`func (o *ListCampaignStoreBudgetsStore) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *ListCampaignStoreBudgetsStore) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *ListCampaignStoreBudgetsStore) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

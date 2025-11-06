@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -30,6 +29,27 @@ type SlotDef struct {
 	Writable bool `json:"writable"`
 }
 
+// NewSlotDef instantiates a new SlotDef object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSlotDef(name string, type_ string, title string, writable bool) *SlotDef {
+	this := SlotDef{}
+	this.Name = name
+	this.Type = type_
+	this.Title = title
+	this.Writable = writable
+	return &this
+}
+
+// NewSlotDefWithDefaults instantiates a new SlotDef object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSlotDefWithDefaults() *SlotDef {
+	this := SlotDef{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *SlotDef) GetName() string {
 	if o == nil {
@@ -38,6 +58,15 @@ func (o *SlotDef) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SlotDef) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -55,6 +84,15 @@ func (o *SlotDef) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *SlotDef) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *SlotDef) SetType(v string) {
 	o.Type = v
@@ -68,6 +106,15 @@ func (o *SlotDef) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *SlotDef) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -84,14 +131,13 @@ func (o *SlotDef) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SlotDef) GetDescriptionOk() (string, bool) {
+func (o *SlotDef) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -117,14 +163,13 @@ func (o *SlotDef) GetHelp() string {
 	return *o.Help
 }
 
-// GetHelpOk returns a tuple with the Help field value if set, zero value otherwise
+// GetHelpOk returns a tuple with the Help field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SlotDef) GetHelpOk() (string, bool) {
+func (o *SlotDef) GetHelpOk() (*string, bool) {
 	if o == nil || o.Help == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Help, true
+	return o.Help, true
 }
 
 // HasHelp returns a boolean if a field has been set.
@@ -151,30 +196,75 @@ func (o *SlotDef) GetWritable() bool {
 	return o.Writable
 }
 
+// GetWritableOk returns a tuple with the Writable field value
+// and a boolean to check if the value has been set.
+func (o *SlotDef) GetWritableOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Writable, true
+}
+
 // SetWritable sets field value
 func (o *SlotDef) SetWritable(v bool) {
 	o.Writable = v
 }
 
+func (o SlotDef) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Help != nil {
+		toSerialize["help"] = o.Help
+	}
+	if true {
+		toSerialize["writable"] = o.Writable
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSlotDef struct {
-	Value        SlotDef
-	ExplicitNull bool
+	value *SlotDef
+	isSet bool
+}
+
+func (v NullableSlotDef) Get() *SlotDef {
+	return v.value
+}
+
+func (v *NullableSlotDef) Set(val *SlotDef) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSlotDef) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSlotDef) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSlotDef(val *SlotDef) *NullableSlotDef {
+	return &NullableSlotDef{value: val, isSet: true}
 }
 
 func (v NullableSlotDef) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSlotDef) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

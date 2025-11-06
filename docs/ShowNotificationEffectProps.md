@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewShowNotificationEffectProps
+
+`func NewShowNotificationEffectProps(notificationType string, title string, body string, ) *ShowNotificationEffectProps`
+
+NewShowNotificationEffectProps instantiates a new ShowNotificationEffectProps object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewShowNotificationEffectPropsWithDefaults
+
+`func NewShowNotificationEffectPropsWithDefaults() *ShowNotificationEffectProps`
+
+NewShowNotificationEffectPropsWithDefaults instantiates a new ShowNotificationEffectProps object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetNotificationType
 
 `func (o *ShowNotificationEffectProps) GetNotificationType() string`
@@ -18,22 +35,17 @@ GetNotificationType returns the NotificationType field if non-nil, zero value ot
 
 ### GetNotificationTypeOk
 
-`func (o *ShowNotificationEffectProps) GetNotificationTypeOk() (string, bool)`
+`func (o *ShowNotificationEffectProps) GetNotificationTypeOk() (*string, bool)`
 
 GetNotificationTypeOk returns a tuple with the NotificationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasNotificationType
-
-`func (o *ShowNotificationEffectProps) HasNotificationType() bool`
-
-HasNotificationType returns a boolean if a field has been set.
 
 ### SetNotificationType
 
 `func (o *ShowNotificationEffectProps) SetNotificationType(v string)`
 
-SetNotificationType gets a reference to the given string and assigns it to the NotificationType field.
+SetNotificationType sets NotificationType field to given value.
+
 
 ### GetTitle
 
@@ -43,22 +55,17 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ShowNotificationEffectProps) GetTitleOk() (string, bool)`
+`func (o *ShowNotificationEffectProps) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *ShowNotificationEffectProps) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 ### SetTitle
 
 `func (o *ShowNotificationEffectProps) SetTitle(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetTitle sets Title field to given value.
+
 
 ### GetBody
 
@@ -68,22 +75,17 @@ GetBody returns the Body field if non-nil, zero value otherwise.
 
 ### GetBodyOk
 
-`func (o *ShowNotificationEffectProps) GetBodyOk() (string, bool)`
+`func (o *ShowNotificationEffectProps) GetBodyOk() (*string, bool)`
 
 GetBodyOk returns a tuple with the Body field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasBody
-
-`func (o *ShowNotificationEffectProps) HasBody() bool`
-
-HasBody returns a boolean if a field has been set.
 
 ### SetBody
 
 `func (o *ShowNotificationEffectProps) SetBody(v string)`
 
-SetBody gets a reference to the given string and assigns it to the Body field.
+SetBody sets Body field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

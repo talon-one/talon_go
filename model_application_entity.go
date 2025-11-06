@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ApplicationEntity struct for ApplicationEntity
 type ApplicationEntity struct {
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
+}
+
+// NewApplicationEntity instantiates a new ApplicationEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationEntity(applicationId int64) *ApplicationEntity {
+	this := ApplicationEntity{}
+	this.ApplicationId = applicationId
+	return &this
+}
+
+// NewApplicationEntityWithDefaults instantiates a new ApplicationEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationEntityWithDefaults() *ApplicationEntity {
+	this := ApplicationEntity{}
+	return &this
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *ApplicationEntity) GetApplicationId() int32 {
+func (o *ApplicationEntity) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationEntity) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *ApplicationEntity) SetApplicationId(v int32) {
+func (o *ApplicationEntity) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
+func (o ApplicationEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationEntity struct {
-	Value        ApplicationEntity
-	ExplicitNull bool
+	value *ApplicationEntity
+	isSet bool
+}
+
+func (v NullableApplicationEntity) Get() *ApplicationEntity {
+	return v.value
+}
+
+func (v *NullableApplicationEntity) Set(val *ApplicationEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationEntity(val *ApplicationEntity) *NullableApplicationEntity {
+	return &NullableApplicationEntity{value: val, isSet: true}
 }
 
 func (v NullableApplicationEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

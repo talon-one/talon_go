@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // MultipleAudiencesItem struct for MultipleAudiencesItem
 type MultipleAudiencesItem struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The human-friendly display name for this audience.
@@ -29,18 +28,49 @@ type MultipleAudiencesItem struct {
 	Status string `json:"status"`
 }
 
+// NewMultipleAudiencesItem instantiates a new MultipleAudiencesItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMultipleAudiencesItem(id int64, created time.Time, name string, integrationId string, status string) *MultipleAudiencesItem {
+	this := MultipleAudiencesItem{}
+	this.Id = id
+	this.Created = created
+	this.Name = name
+	this.IntegrationId = integrationId
+	this.Status = status
+	return &this
+}
+
+// NewMultipleAudiencesItemWithDefaults instantiates a new MultipleAudiencesItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMultipleAudiencesItemWithDefaults() *MultipleAudiencesItem {
+	this := MultipleAudiencesItem{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *MultipleAudiencesItem) GetId() int32 {
+func (o *MultipleAudiencesItem) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiencesItem) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *MultipleAudiencesItem) SetId(v int32) {
+func (o *MultipleAudiencesItem) SetId(v int64) {
 	o.Id = v
 }
 
@@ -52,6 +82,15 @@ func (o *MultipleAudiencesItem) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiencesItem) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -69,6 +108,15 @@ func (o *MultipleAudiencesItem) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiencesItem) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *MultipleAudiencesItem) SetName(v string) {
 	o.Name = v
@@ -82,6 +130,15 @@ func (o *MultipleAudiencesItem) GetIntegrationId() string {
 	}
 
 	return o.IntegrationId
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiencesItem) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
 }
 
 // SetIntegrationId sets field value
@@ -99,30 +156,72 @@ func (o *MultipleAudiencesItem) GetStatus() string {
 	return o.Status
 }
 
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiencesItem) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
 // SetStatus sets field value
 func (o *MultipleAudiencesItem) SetStatus(v string) {
 	o.Status = v
 }
 
+func (o MultipleAudiencesItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMultipleAudiencesItem struct {
-	Value        MultipleAudiencesItem
-	ExplicitNull bool
+	value *MultipleAudiencesItem
+	isSet bool
+}
+
+func (v NullableMultipleAudiencesItem) Get() *MultipleAudiencesItem {
+	return v.value
+}
+
+func (v *NullableMultipleAudiencesItem) Set(val *MultipleAudiencesItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMultipleAudiencesItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMultipleAudiencesItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMultipleAudiencesItem(val *MultipleAudiencesItem) *NullableMultipleAudiencesItem {
+	return &NullableMultipleAudiencesItem{value: val, isSet: true}
 }
 
 func (v NullableMultipleAudiencesItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMultipleAudiencesItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,67 +10,127 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // RoleMembership struct for RoleMembership
 type RoleMembership struct {
 	// ID of role.
-	RoleID int32 `json:"RoleID"`
+	RoleID int64 `json:"RoleID"`
 	// ID of User.
-	UserID int32 `json:"UserID"`
+	UserID int64 `json:"UserID"`
+}
+
+// NewRoleMembership instantiates a new RoleMembership object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoleMembership(roleID int64, userID int64) *RoleMembership {
+	this := RoleMembership{}
+	this.RoleID = roleID
+	this.UserID = userID
+	return &this
+}
+
+// NewRoleMembershipWithDefaults instantiates a new RoleMembership object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleMembershipWithDefaults() *RoleMembership {
+	this := RoleMembership{}
+	return &this
 }
 
 // GetRoleID returns the RoleID field value
-func (o *RoleMembership) GetRoleID() int32 {
+func (o *RoleMembership) GetRoleID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RoleID
 }
 
+// GetRoleIDOk returns a tuple with the RoleID field value
+// and a boolean to check if the value has been set.
+func (o *RoleMembership) GetRoleIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RoleID, true
+}
+
 // SetRoleID sets field value
-func (o *RoleMembership) SetRoleID(v int32) {
+func (o *RoleMembership) SetRoleID(v int64) {
 	o.RoleID = v
 }
 
 // GetUserID returns the UserID field value
-func (o *RoleMembership) GetUserID() int32 {
+func (o *RoleMembership) GetUserID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserID
 }
 
+// GetUserIDOk returns a tuple with the UserID field value
+// and a boolean to check if the value has been set.
+func (o *RoleMembership) GetUserIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserID, true
+}
+
 // SetUserID sets field value
-func (o *RoleMembership) SetUserID(v int32) {
+func (o *RoleMembership) SetUserID(v int64) {
 	o.UserID = v
 }
 
+func (o RoleMembership) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["RoleID"] = o.RoleID
+	}
+	if true {
+		toSerialize["UserID"] = o.UserID
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleMembership struct {
-	Value        RoleMembership
-	ExplicitNull bool
+	value *RoleMembership
+	isSet bool
+}
+
+func (v NullableRoleMembership) Get() *RoleMembership {
+	return v.value
+}
+
+func (v *NullableRoleMembership) Set(val *RoleMembership) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleMembership) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleMembership) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoleMembership(val *RoleMembership) *NullableRoleMembership {
+	return &NullableRoleMembership{value: val, isSet: true}
 }
 
 func (v NullableRoleMembership) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleMembership) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewReserveCouponEffectProps
+
+`func NewReserveCouponEffectProps(couponValue string, profileIntegrationId string, isNewReservation bool, ) *ReserveCouponEffectProps`
+
+NewReserveCouponEffectProps instantiates a new ReserveCouponEffectProps object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewReserveCouponEffectPropsWithDefaults
+
+`func NewReserveCouponEffectPropsWithDefaults() *ReserveCouponEffectProps`
+
+NewReserveCouponEffectPropsWithDefaults instantiates a new ReserveCouponEffectProps object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCouponValue
 
 `func (o *ReserveCouponEffectProps) GetCouponValue() string`
@@ -18,22 +35,17 @@ GetCouponValue returns the CouponValue field if non-nil, zero value otherwise.
 
 ### GetCouponValueOk
 
-`func (o *ReserveCouponEffectProps) GetCouponValueOk() (string, bool)`
+`func (o *ReserveCouponEffectProps) GetCouponValueOk() (*string, bool)`
 
 GetCouponValueOk returns a tuple with the CouponValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCouponValue
-
-`func (o *ReserveCouponEffectProps) HasCouponValue() bool`
-
-HasCouponValue returns a boolean if a field has been set.
 
 ### SetCouponValue
 
 `func (o *ReserveCouponEffectProps) SetCouponValue(v string)`
 
-SetCouponValue gets a reference to the given string and assigns it to the CouponValue field.
+SetCouponValue sets CouponValue field to given value.
+
 
 ### GetProfileIntegrationId
 
@@ -43,22 +55,17 @@ GetProfileIntegrationId returns the ProfileIntegrationId field if non-nil, zero 
 
 ### GetProfileIntegrationIdOk
 
-`func (o *ReserveCouponEffectProps) GetProfileIntegrationIdOk() (string, bool)`
+`func (o *ReserveCouponEffectProps) GetProfileIntegrationIdOk() (*string, bool)`
 
 GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasProfileIntegrationId
-
-`func (o *ReserveCouponEffectProps) HasProfileIntegrationId() bool`
-
-HasProfileIntegrationId returns a boolean if a field has been set.
 
 ### SetProfileIntegrationId
 
 `func (o *ReserveCouponEffectProps) SetProfileIntegrationId(v string)`
 
-SetProfileIntegrationId gets a reference to the given string and assigns it to the ProfileIntegrationId field.
+SetProfileIntegrationId sets ProfileIntegrationId field to given value.
+
 
 ### GetIsNewReservation
 
@@ -68,22 +75,17 @@ GetIsNewReservation returns the IsNewReservation field if non-nil, zero value ot
 
 ### GetIsNewReservationOk
 
-`func (o *ReserveCouponEffectProps) GetIsNewReservationOk() (bool, bool)`
+`func (o *ReserveCouponEffectProps) GetIsNewReservationOk() (*bool, bool)`
 
 GetIsNewReservationOk returns a tuple with the IsNewReservation field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasIsNewReservation
-
-`func (o *ReserveCouponEffectProps) HasIsNewReservation() bool`
-
-HasIsNewReservation returns a boolean if a field has been set.
 
 ### SetIsNewReservation
 
 `func (o *ReserveCouponEffectProps) SetIsNewReservation(v bool)`
 
-SetIsNewReservation gets a reference to the given bool and assigns it to the IsNewReservation field.
+SetIsNewReservation sets IsNewReservation field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

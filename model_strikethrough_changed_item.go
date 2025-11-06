@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,47 +17,90 @@ import (
 // StrikethroughChangedItem The information of affected items.
 type StrikethroughChangedItem struct {
 	// The ID of the event that triggered the strikethrough labeling.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the catalog that the changed item belongs to.
-	CatalogId int32 `json:"catalogId"`
+	CatalogId int64 `json:"catalogId"`
 	// The unique SKU of the changed item.
 	Sku string `json:"sku"`
 	// The version of the changed item.
-	Version int32 `json:"version"`
+	Version int64 `json:"version"`
 	// The price of the changed item.
 	Price float32 `json:"price"`
+	// A map of keys and values representing the price types and related price adjustment details for this cart item.       The keys correspond to the `priceType` names.
+	Prices *map[string]PriceDetail `json:"prices,omitempty"`
 	// The evaluation time of the changed item.
 	EvaluatedAt time.Time              `json:"evaluatedAt"`
 	Effects     *[]StrikethroughEffect `json:"effects,omitempty"`
 }
 
+// NewStrikethroughChangedItem instantiates a new StrikethroughChangedItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewStrikethroughChangedItem(id int64, catalogId int64, sku string, version int64, price float32, evaluatedAt time.Time) *StrikethroughChangedItem {
+	this := StrikethroughChangedItem{}
+	this.Id = id
+	this.CatalogId = catalogId
+	this.Sku = sku
+	this.Version = version
+	this.Price = price
+	this.EvaluatedAt = evaluatedAt
+	return &this
+}
+
+// NewStrikethroughChangedItemWithDefaults instantiates a new StrikethroughChangedItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughChangedItemWithDefaults() *StrikethroughChangedItem {
+	this := StrikethroughChangedItem{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *StrikethroughChangedItem) GetId() int32 {
+func (o *StrikethroughChangedItem) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *StrikethroughChangedItem) SetId(v int32) {
+func (o *StrikethroughChangedItem) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCatalogId returns the CatalogId field value
-func (o *StrikethroughChangedItem) GetCatalogId() int32 {
+func (o *StrikethroughChangedItem) GetCatalogId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CatalogId
 }
 
+// GetCatalogIdOk returns a tuple with the CatalogId field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetCatalogIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CatalogId, true
+}
+
 // SetCatalogId sets field value
-func (o *StrikethroughChangedItem) SetCatalogId(v int32) {
+func (o *StrikethroughChangedItem) SetCatalogId(v int64) {
 	o.CatalogId = v
 }
 
@@ -72,23 +114,41 @@ func (o *StrikethroughChangedItem) GetSku() string {
 	return o.Sku
 }
 
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
+}
+
 // SetSku sets field value
 func (o *StrikethroughChangedItem) SetSku(v string) {
 	o.Sku = v
 }
 
 // GetVersion returns the Version field value
-func (o *StrikethroughChangedItem) GetVersion() int32 {
+func (o *StrikethroughChangedItem) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Version
 }
 
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
 // SetVersion sets field value
-func (o *StrikethroughChangedItem) SetVersion(v int32) {
+func (o *StrikethroughChangedItem) SetVersion(v int64) {
 	o.Version = v
 }
 
@@ -102,9 +162,50 @@ func (o *StrikethroughChangedItem) GetPrice() float32 {
 	return o.Price
 }
 
+// GetPriceOk returns a tuple with the Price field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetPriceOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Price, true
+}
+
 // SetPrice sets field value
 func (o *StrikethroughChangedItem) SetPrice(v float32) {
 	o.Price = v
+}
+
+// GetPrices returns the Prices field value if set, zero value otherwise.
+func (o *StrikethroughChangedItem) GetPrices() map[string]PriceDetail {
+	if o == nil || o.Prices == nil {
+		var ret map[string]PriceDetail
+		return ret
+	}
+	return *o.Prices
+}
+
+// GetPricesOk returns a tuple with the Prices field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetPricesOk() (*map[string]PriceDetail, bool) {
+	if o == nil || o.Prices == nil {
+		return nil, false
+	}
+	return o.Prices, true
+}
+
+// HasPrices returns a boolean if a field has been set.
+func (o *StrikethroughChangedItem) HasPrices() bool {
+	if o != nil && o.Prices != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrices gets a reference to the given map[string]PriceDetail and assigns it to the Prices field.
+func (o *StrikethroughChangedItem) SetPrices(v map[string]PriceDetail) {
+	o.Prices = &v
 }
 
 // GetEvaluatedAt returns the EvaluatedAt field value
@@ -115,6 +216,15 @@ func (o *StrikethroughChangedItem) GetEvaluatedAt() time.Time {
 	}
 
 	return o.EvaluatedAt
+}
+
+// GetEvaluatedAtOk returns a tuple with the EvaluatedAt field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughChangedItem) GetEvaluatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EvaluatedAt, true
 }
 
 // SetEvaluatedAt sets field value
@@ -131,14 +241,13 @@ func (o *StrikethroughChangedItem) GetEffects() []StrikethroughEffect {
 	return *o.Effects
 }
 
-// GetEffectsOk returns a tuple with the Effects field value if set, zero value otherwise
+// GetEffectsOk returns a tuple with the Effects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughChangedItem) GetEffectsOk() ([]StrikethroughEffect, bool) {
+func (o *StrikethroughChangedItem) GetEffectsOk() (*[]StrikethroughEffect, bool) {
 	if o == nil || o.Effects == nil {
-		var ret []StrikethroughEffect
-		return ret, false
+		return nil, false
 	}
-	return *o.Effects, true
+	return o.Effects, true
 }
 
 // HasEffects returns a boolean if a field has been set.
@@ -155,25 +264,67 @@ func (o *StrikethroughChangedItem) SetEffects(v []StrikethroughEffect) {
 	o.Effects = &v
 }
 
+func (o StrikethroughChangedItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["catalogId"] = o.CatalogId
+	}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["price"] = o.Price
+	}
+	if o.Prices != nil {
+		toSerialize["prices"] = o.Prices
+	}
+	if true {
+		toSerialize["evaluatedAt"] = o.EvaluatedAt
+	}
+	if o.Effects != nil {
+		toSerialize["effects"] = o.Effects
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughChangedItem struct {
-	Value        StrikethroughChangedItem
-	ExplicitNull bool
+	value *StrikethroughChangedItem
+	isSet bool
+}
+
+func (v NullableStrikethroughChangedItem) Get() *StrikethroughChangedItem {
+	return v.value
+}
+
+func (v *NullableStrikethroughChangedItem) Set(val *StrikethroughChangedItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughChangedItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughChangedItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableStrikethroughChangedItem(val *StrikethroughChangedItem) *NullableStrikethroughChangedItem {
+	return &NullableStrikethroughChangedItem{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughChangedItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughChangedItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

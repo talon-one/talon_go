@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,30 +17,62 @@ import (
 // Revision struct for Revision
 type Revision struct {
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-	Id             int32            `json:"id"`
+	Id             int64            `json:"id"`
 	ActivateAt     *time.Time       `json:"activateAt,omitempty"`
-	AccountId      int32            `json:"accountId"`
-	ApplicationId  int32            `json:"applicationId"`
-	CampaignId     int32            `json:"campaignId"`
+	AccountId      int64            `json:"accountId"`
+	ApplicationId  int64            `json:"applicationId"`
+	CampaignId     int64            `json:"campaignId"`
 	Created        time.Time        `json:"created"`
-	CreatedBy      int32            `json:"createdBy"`
+	CreatedBy      int64            `json:"createdBy"`
 	ActivatedAt    *time.Time       `json:"activatedAt,omitempty"`
-	ActivatedBy    *int32           `json:"activatedBy,omitempty"`
+	ActivatedBy    *int64           `json:"activatedBy,omitempty"`
 	CurrentVersion *RevisionVersion `json:"currentVersion,omitempty"`
 }
 
+// NewRevision instantiates a new Revision object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRevision(id int64, accountId int64, applicationId int64, campaignId int64, created time.Time, createdBy int64) *Revision {
+	this := Revision{}
+	this.Id = id
+	this.AccountId = accountId
+	this.ApplicationId = applicationId
+	this.CampaignId = campaignId
+	this.Created = created
+	this.CreatedBy = createdBy
+	return &this
+}
+
+// NewRevisionWithDefaults instantiates a new Revision object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRevisionWithDefaults() *Revision {
+	this := Revision{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Revision) GetId() int32 {
+func (o *Revision) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Revision) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Revision) SetId(v int32) {
+func (o *Revision) SetId(v int64) {
 	o.Id = v
 }
 
@@ -54,14 +85,13 @@ func (o *Revision) GetActivateAt() time.Time {
 	return *o.ActivateAt
 }
 
-// GetActivateAtOk returns a tuple with the ActivateAt field value if set, zero value otherwise
+// GetActivateAtOk returns a tuple with the ActivateAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Revision) GetActivateAtOk() (time.Time, bool) {
+func (o *Revision) GetActivateAtOk() (*time.Time, bool) {
 	if o == nil || o.ActivateAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivateAt, true
+	return o.ActivateAt, true
 }
 
 // HasActivateAt returns a boolean if a field has been set.
@@ -79,47 +109,74 @@ func (o *Revision) SetActivateAt(v time.Time) {
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Revision) GetAccountId() int32 {
+func (o *Revision) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Revision) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Revision) SetAccountId(v int32) {
+func (o *Revision) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *Revision) GetApplicationId() int32 {
+func (o *Revision) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *Revision) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *Revision) SetApplicationId(v int32) {
+func (o *Revision) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *Revision) GetCampaignId() int32 {
+func (o *Revision) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *Revision) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *Revision) SetCampaignId(v int32) {
+func (o *Revision) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -133,23 +190,41 @@ func (o *Revision) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Revision) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Revision) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *Revision) GetCreatedBy() int32 {
+func (o *Revision) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *Revision) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *Revision) SetCreatedBy(v int32) {
+func (o *Revision) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
@@ -162,14 +237,13 @@ func (o *Revision) GetActivatedAt() time.Time {
 	return *o.ActivatedAt
 }
 
-// GetActivatedAtOk returns a tuple with the ActivatedAt field value if set, zero value otherwise
+// GetActivatedAtOk returns a tuple with the ActivatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Revision) GetActivatedAtOk() (time.Time, bool) {
+func (o *Revision) GetActivatedAtOk() (*time.Time, bool) {
 	if o == nil || o.ActivatedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivatedAt, true
+	return o.ActivatedAt, true
 }
 
 // HasActivatedAt returns a boolean if a field has been set.
@@ -187,22 +261,21 @@ func (o *Revision) SetActivatedAt(v time.Time) {
 }
 
 // GetActivatedBy returns the ActivatedBy field value if set, zero value otherwise.
-func (o *Revision) GetActivatedBy() int32 {
+func (o *Revision) GetActivatedBy() int64 {
 	if o == nil || o.ActivatedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActivatedBy
 }
 
-// GetActivatedByOk returns a tuple with the ActivatedBy field value if set, zero value otherwise
+// GetActivatedByOk returns a tuple with the ActivatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Revision) GetActivatedByOk() (int32, bool) {
+func (o *Revision) GetActivatedByOk() (*int64, bool) {
 	if o == nil || o.ActivatedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivatedBy, true
+	return o.ActivatedBy, true
 }
 
 // HasActivatedBy returns a boolean if a field has been set.
@@ -214,8 +287,8 @@ func (o *Revision) HasActivatedBy() bool {
 	return false
 }
 
-// SetActivatedBy gets a reference to the given int32 and assigns it to the ActivatedBy field.
-func (o *Revision) SetActivatedBy(v int32) {
+// SetActivatedBy gets a reference to the given int64 and assigns it to the ActivatedBy field.
+func (o *Revision) SetActivatedBy(v int64) {
 	o.ActivatedBy = &v
 }
 
@@ -228,14 +301,13 @@ func (o *Revision) GetCurrentVersion() RevisionVersion {
 	return *o.CurrentVersion
 }
 
-// GetCurrentVersionOk returns a tuple with the CurrentVersion field value if set, zero value otherwise
+// GetCurrentVersionOk returns a tuple with the CurrentVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Revision) GetCurrentVersionOk() (RevisionVersion, bool) {
+func (o *Revision) GetCurrentVersionOk() (*RevisionVersion, bool) {
 	if o == nil || o.CurrentVersion == nil {
-		var ret RevisionVersion
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentVersion, true
+	return o.CurrentVersion, true
 }
 
 // HasCurrentVersion returns a boolean if a field has been set.
@@ -252,25 +324,73 @@ func (o *Revision) SetCurrentVersion(v RevisionVersion) {
 	o.CurrentVersion = &v
 }
 
+func (o Revision) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.ActivateAt != nil {
+		toSerialize["activateAt"] = o.ActivateAt
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.ActivatedAt != nil {
+		toSerialize["activatedAt"] = o.ActivatedAt
+	}
+	if o.ActivatedBy != nil {
+		toSerialize["activatedBy"] = o.ActivatedBy
+	}
+	if o.CurrentVersion != nil {
+		toSerialize["currentVersion"] = o.CurrentVersion
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRevision struct {
-	Value        Revision
-	ExplicitNull bool
+	value *Revision
+	isSet bool
+}
+
+func (v NullableRevision) Get() *Revision {
+	return v.value
+}
+
+func (v *NullableRevision) Set(val *Revision) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRevision) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRevision) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRevision(val *Revision) *NullableRevision {
+	return &NullableRevision{value: val, isSet: true}
 }
 
 func (v NullableRevision) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRevision) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

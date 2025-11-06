@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,26 @@ type MessageTest struct {
 	// The returned http response.
 	HttpResponse string `json:"httpResponse"`
 	// The returned http status code.
-	HttpStatus int32 `json:"httpStatus"`
+	HttpStatus int64 `json:"httpStatus"`
+}
+
+// NewMessageTest instantiates a new MessageTest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMessageTest(httpResponse string, httpStatus int64) *MessageTest {
+	this := MessageTest{}
+	this.HttpResponse = httpResponse
+	this.HttpStatus = httpStatus
+	return &this
+}
+
+// NewMessageTestWithDefaults instantiates a new MessageTest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMessageTestWithDefaults() *MessageTest {
+	this := MessageTest{}
+	return &this
 }
 
 // GetHttpResponse returns the HttpResponse field value
@@ -32,45 +50,87 @@ func (o *MessageTest) GetHttpResponse() string {
 	return o.HttpResponse
 }
 
+// GetHttpResponseOk returns a tuple with the HttpResponse field value
+// and a boolean to check if the value has been set.
+func (o *MessageTest) GetHttpResponseOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HttpResponse, true
+}
+
 // SetHttpResponse sets field value
 func (o *MessageTest) SetHttpResponse(v string) {
 	o.HttpResponse = v
 }
 
 // GetHttpStatus returns the HttpStatus field value
-func (o *MessageTest) GetHttpStatus() int32 {
+func (o *MessageTest) GetHttpStatus() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.HttpStatus
 }
 
+// GetHttpStatusOk returns a tuple with the HttpStatus field value
+// and a boolean to check if the value has been set.
+func (o *MessageTest) GetHttpStatusOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HttpStatus, true
+}
+
 // SetHttpStatus sets field value
-func (o *MessageTest) SetHttpStatus(v int32) {
+func (o *MessageTest) SetHttpStatus(v int64) {
 	o.HttpStatus = v
 }
 
+func (o MessageTest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["httpResponse"] = o.HttpResponse
+	}
+	if true {
+		toSerialize["httpStatus"] = o.HttpStatus
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMessageTest struct {
-	Value        MessageTest
-	ExplicitNull bool
+	value *MessageTest
+	isSet bool
+}
+
+func (v NullableMessageTest) Get() *MessageTest {
+	return v.value
+}
+
+func (v *NullableMessageTest) Set(val *MessageTest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMessageTest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMessageTest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMessageTest(val *MessageTest) *NullableMessageTest {
+	return &NullableMessageTest{value: val, isSet: true}
 }
 
 func (v NullableMessageTest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMessageTest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

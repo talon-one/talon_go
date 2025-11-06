@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,25 @@ type ErrorResponse struct {
 	// A message describing the error.
 	Message string `json:"message"`
 	// An array of individual problems encountered during the request.
-	Errors *[]ApiError `json:"errors,omitempty"`
+	Errors *[]APIError `json:"errors,omitempty"`
+}
+
+// NewErrorResponse instantiates a new ErrorResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewErrorResponse(message string) *ErrorResponse {
+	this := ErrorResponse{}
+	this.Message = message
+	return &this
+}
+
+// NewErrorResponseWithDefaults instantiates a new ErrorResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewErrorResponseWithDefaults() *ErrorResponse {
+	this := ErrorResponse{}
+	return &this
 }
 
 // GetMessage returns the Message field value
@@ -32,28 +49,36 @@ func (o *ErrorResponse) GetMessage() string {
 	return o.Message
 }
 
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *ErrorResponse) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
 // SetMessage sets field value
 func (o *ErrorResponse) SetMessage(v string) {
 	o.Message = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *ErrorResponse) GetErrors() []ApiError {
+func (o *ErrorResponse) GetErrors() []APIError {
 	if o == nil || o.Errors == nil {
-		var ret []ApiError
+		var ret []APIError
 		return ret
 	}
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponse) GetErrorsOk() ([]ApiError, bool) {
+func (o *ErrorResponse) GetErrorsOk() (*[]APIError, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []ApiError
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -65,30 +90,54 @@ func (o *ErrorResponse) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []ApiError and assigns it to the Errors field.
-func (o *ErrorResponse) SetErrors(v []ApiError) {
+// SetErrors gets a reference to the given []APIError and assigns it to the Errors field.
+func (o *ErrorResponse) SetErrors(v []APIError) {
 	o.Errors = &v
 }
 
+func (o ErrorResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["message"] = o.Message
+	}
+	if o.Errors != nil {
+		toSerialize["errors"] = o.Errors
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableErrorResponse struct {
-	Value        ErrorResponse
-	ExplicitNull bool
+	value *ErrorResponse
+	isSet bool
+}
+
+func (v NullableErrorResponse) Get() *ErrorResponse {
+	return v.value
+}
+
+func (v *NullableErrorResponse) Set(val *ErrorResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableErrorResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableErrorResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableErrorResponse(val *ErrorResponse) *NullableErrorResponse {
+	return &NullableErrorResponse{value: val, isSet: true}
 }
 
 func (v NullableErrorResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableErrorResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

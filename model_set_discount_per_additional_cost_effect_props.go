@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,13 +18,34 @@ type SetDiscountPerAdditionalCostEffectProps struct {
 	// The name / description of this discount
 	Name string `json:"name"`
 	// The ID of the additional cost.
-	AdditionalCostId int32 `json:"additionalCostId"`
+	AdditionalCostId int64 `json:"additionalCostId"`
 	// The name of the additional cost.
 	AdditionalCost string `json:"additionalCost"`
 	// The total monetary value of the discount.
 	Value float32 `json:"value"`
 	// The original value of the discount.
 	DesiredValue *float32 `json:"desiredValue,omitempty"`
+}
+
+// NewSetDiscountPerAdditionalCostEffectProps instantiates a new SetDiscountPerAdditionalCostEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSetDiscountPerAdditionalCostEffectProps(name string, additionalCostId int64, additionalCost string, value float32) *SetDiscountPerAdditionalCostEffectProps {
+	this := SetDiscountPerAdditionalCostEffectProps{}
+	this.Name = name
+	this.AdditionalCostId = additionalCostId
+	this.AdditionalCost = additionalCost
+	this.Value = value
+	return &this
+}
+
+// NewSetDiscountPerAdditionalCostEffectPropsWithDefaults instantiates a new SetDiscountPerAdditionalCostEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSetDiscountPerAdditionalCostEffectPropsWithDefaults() *SetDiscountPerAdditionalCostEffectProps {
+	this := SetDiscountPerAdditionalCostEffectProps{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -38,23 +58,41 @@ func (o *SetDiscountPerAdditionalCostEffectProps) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerAdditionalCostEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *SetDiscountPerAdditionalCostEffectProps) SetName(v string) {
 	o.Name = v
 }
 
 // GetAdditionalCostId returns the AdditionalCostId field value
-func (o *SetDiscountPerAdditionalCostEffectProps) GetAdditionalCostId() int32 {
+func (o *SetDiscountPerAdditionalCostEffectProps) GetAdditionalCostId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AdditionalCostId
 }
 
+// GetAdditionalCostIdOk returns a tuple with the AdditionalCostId field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerAdditionalCostEffectProps) GetAdditionalCostIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdditionalCostId, true
+}
+
 // SetAdditionalCostId sets field value
-func (o *SetDiscountPerAdditionalCostEffectProps) SetAdditionalCostId(v int32) {
+func (o *SetDiscountPerAdditionalCostEffectProps) SetAdditionalCostId(v int64) {
 	o.AdditionalCostId = v
 }
 
@@ -66,6 +104,15 @@ func (o *SetDiscountPerAdditionalCostEffectProps) GetAdditionalCost() string {
 	}
 
 	return o.AdditionalCost
+}
+
+// GetAdditionalCostOk returns a tuple with the AdditionalCost field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerAdditionalCostEffectProps) GetAdditionalCostOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdditionalCost, true
 }
 
 // SetAdditionalCost sets field value
@@ -83,6 +130,15 @@ func (o *SetDiscountPerAdditionalCostEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerAdditionalCostEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *SetDiscountPerAdditionalCostEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -97,14 +153,13 @@ func (o *SetDiscountPerAdditionalCostEffectProps) GetDesiredValue() float32 {
 	return *o.DesiredValue
 }
 
-// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, zero value otherwise
+// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerAdditionalCostEffectProps) GetDesiredValueOk() (float32, bool) {
+func (o *SetDiscountPerAdditionalCostEffectProps) GetDesiredValueOk() (*float32, bool) {
 	if o == nil || o.DesiredValue == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DesiredValue, true
+	return o.DesiredValue, true
 }
 
 // HasDesiredValue returns a boolean if a field has been set.
@@ -121,25 +176,58 @@ func (o *SetDiscountPerAdditionalCostEffectProps) SetDesiredValue(v float32) {
 	o.DesiredValue = &v
 }
 
+func (o SetDiscountPerAdditionalCostEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["additionalCostId"] = o.AdditionalCostId
+	}
+	if true {
+		toSerialize["additionalCost"] = o.AdditionalCost
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.DesiredValue != nil {
+		toSerialize["desiredValue"] = o.DesiredValue
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSetDiscountPerAdditionalCostEffectProps struct {
-	Value        SetDiscountPerAdditionalCostEffectProps
-	ExplicitNull bool
+	value *SetDiscountPerAdditionalCostEffectProps
+	isSet bool
+}
+
+func (v NullableSetDiscountPerAdditionalCostEffectProps) Get() *SetDiscountPerAdditionalCostEffectProps {
+	return v.value
+}
+
+func (v *NullableSetDiscountPerAdditionalCostEffectProps) Set(val *SetDiscountPerAdditionalCostEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSetDiscountPerAdditionalCostEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSetDiscountPerAdditionalCostEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSetDiscountPerAdditionalCostEffectProps(val *SetDiscountPerAdditionalCostEffectProps) *NullableSetDiscountPerAdditionalCostEffectProps {
+	return &NullableSetDiscountPerAdditionalCostEffectProps{value: val, isSet: true}
 }
 
 func (v NullableSetDiscountPerAdditionalCostEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSetDiscountPerAdditionalCostEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

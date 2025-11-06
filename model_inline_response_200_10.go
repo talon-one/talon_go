@@ -10,28 +10,55 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // InlineResponse20010 struct for InlineResponse20010
 type InlineResponse20010 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
+	TotalResultSize int64    `json:"totalResultSize"`
 	Data            []Coupon `json:"data"`
 }
 
+// NewInlineResponse20010 instantiates a new InlineResponse20010 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInlineResponse20010(totalResultSize int64, data []Coupon) *InlineResponse20010 {
+	this := InlineResponse20010{}
+	this.TotalResultSize = totalResultSize
+	this.Data = data
+	return &this
+}
+
+// NewInlineResponse20010WithDefaults instantiates a new InlineResponse20010 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInlineResponse20010WithDefaults() *InlineResponse20010 {
+	this := InlineResponse20010{}
+	return &this
+}
+
 // GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20010) GetTotalResultSize() int32 {
+func (o *InlineResponse20010) GetTotalResultSize() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalResultSize
 }
 
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20010) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalResultSize, true
+}
+
 // SetTotalResultSize sets field value
-func (o *InlineResponse20010) SetTotalResultSize(v int32) {
+func (o *InlineResponse20010) SetTotalResultSize(v int64) {
 	o.TotalResultSize = v
 }
 
@@ -45,30 +72,63 @@ func (o *InlineResponse20010) GetData() []Coupon {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20010) GetDataOk() (*[]Coupon, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *InlineResponse20010) SetData(v []Coupon) {
 	o.Data = v
 }
 
+func (o InlineResponse20010) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["totalResultSize"] = o.TotalResultSize
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInlineResponse20010 struct {
-	Value        InlineResponse20010
-	ExplicitNull bool
+	value *InlineResponse20010
+	isSet bool
+}
+
+func (v NullableInlineResponse20010) Get() *InlineResponse20010 {
+	return v.value
+}
+
+func (v *NullableInlineResponse20010) Set(val *InlineResponse20010) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInlineResponse20010) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInlineResponse20010) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInlineResponse20010(val *InlineResponse20010) *NullableInlineResponse20010 {
+	return &NullableInlineResponse20010{value: val, isSet: true}
 }
 
 func (v NullableInlineResponse20010) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInlineResponse20010) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type CouponSearch struct {
 	// Properties to match against a coupon. All provided attributes will be exactly matched against attributes.
 	Attributes map[string]interface{} `json:"attributes"`
+}
+
+// NewCouponSearch instantiates a new CouponSearch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCouponSearch(attributes map[string]interface{}) *CouponSearch {
+	this := CouponSearch{}
+	this.Attributes = attributes
+	return &this
+}
+
+// NewCouponSearchWithDefaults instantiates a new CouponSearch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponSearchWithDefaults() *CouponSearch {
+	this := CouponSearch{}
+	return &this
 }
 
 // GetAttributes returns the Attributes field value
@@ -30,30 +47,60 @@ func (o *CouponSearch) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *CouponSearch) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *CouponSearch) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
+func (o CouponSearch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponSearch struct {
-	Value        CouponSearch
-	ExplicitNull bool
+	value *CouponSearch
+	isSet bool
+}
+
+func (v NullableCouponSearch) Get() *CouponSearch {
+	return v.value
+}
+
+func (v *NullableCouponSearch) Set(val *CouponSearch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponSearch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponSearch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCouponSearch(val *CouponSearch) *NullableCouponSearch {
+	return &NullableCouponSearch{value: val, isSet: true}
 }
 
 func (v NullableCouponSearch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponSearch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

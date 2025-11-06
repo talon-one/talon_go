@@ -4,60 +4,93 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
-**DeletedAt** | Pointer to [**time.Time**](time.Time.md) | Time when the campaign was deleted. | 
+**NotificationType** | Pointer to **string** | The type of the notification | 
+**TotalResultSize** | Pointer to **int64** | The total size of the result set. | 
+**Data** | Pointer to [**[]CampaignDeletedNotificationItem**](CampaignDeletedNotificationItem.md) | A list of campaign notification data. | [optional] 
 
 ## Methods
 
-### GetCampaign
+### NewCampaignDeletedNotification
 
-`func (o *CampaignDeletedNotification) GetCampaign() Campaign`
+`func NewCampaignDeletedNotification(notificationType string, totalResultSize int64, ) *CampaignDeletedNotification`
 
-GetCampaign returns the Campaign field if non-nil, zero value otherwise.
+NewCampaignDeletedNotification instantiates a new CampaignDeletedNotification object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-### GetCampaignOk
+### NewCampaignDeletedNotificationWithDefaults
 
-`func (o *CampaignDeletedNotification) GetCampaignOk() (Campaign, bool)`
+`func NewCampaignDeletedNotificationWithDefaults() *CampaignDeletedNotification`
 
-GetCampaignOk returns a tuple with the Campaign field if it's non-nil, zero value otherwise
+NewCampaignDeletedNotificationWithDefaults instantiates a new CampaignDeletedNotification object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetNotificationType
+
+`func (o *CampaignDeletedNotification) GetNotificationType() string`
+
+GetNotificationType returns the NotificationType field if non-nil, zero value otherwise.
+
+### GetNotificationTypeOk
+
+`func (o *CampaignDeletedNotification) GetNotificationTypeOk() (*string, bool)`
+
+GetNotificationTypeOk returns a tuple with the NotificationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCampaign
+### SetNotificationType
 
-`func (o *CampaignDeletedNotification) HasCampaign() bool`
+`func (o *CampaignDeletedNotification) SetNotificationType(v string)`
 
-HasCampaign returns a boolean if a field has been set.
+SetNotificationType sets NotificationType field to given value.
 
-### SetCampaign
 
-`func (o *CampaignDeletedNotification) SetCampaign(v Campaign)`
+### GetTotalResultSize
 
-SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
+`func (o *CampaignDeletedNotification) GetTotalResultSize() int64`
 
-### GetDeletedAt
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-`func (o *CampaignDeletedNotification) GetDeletedAt() time.Time`
+### GetTotalResultSizeOk
 
-GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
+`func (o *CampaignDeletedNotification) GetTotalResultSizeOk() (*int64, bool)`
 
-### GetDeletedAtOk
-
-`func (o *CampaignDeletedNotification) GetDeletedAtOk() (time.Time, bool)`
-
-GetDeletedAtOk returns a tuple with the DeletedAt field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasDeletedAt
+### SetTotalResultSize
 
-`func (o *CampaignDeletedNotification) HasDeletedAt() bool`
+`func (o *CampaignDeletedNotification) SetTotalResultSize(v int64)`
 
-HasDeletedAt returns a boolean if a field has been set.
+SetTotalResultSize sets TotalResultSize field to given value.
 
-### SetDeletedAt
 
-`func (o *CampaignDeletedNotification) SetDeletedAt(v time.Time)`
+### GetData
 
-SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
+`func (o *CampaignDeletedNotification) GetData() []CampaignDeletedNotificationItem`
+
+GetData returns the Data field if non-nil, zero value otherwise.
+
+### GetDataOk
+
+`func (o *CampaignDeletedNotification) GetDataOk() (*[]CampaignDeletedNotificationItem, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetData
+
+`func (o *CampaignDeletedNotification) SetData(v []CampaignDeletedNotificationItem)`
+
+SetData sets Data field to given value.
+
+### HasData
+
+`func (o *CampaignDeletedNotification) HasData() bool`
+
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

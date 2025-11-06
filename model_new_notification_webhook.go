@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,29 @@ type NewNotificationWebhook struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
+// NewNewNotificationWebhook instantiates a new NewNotificationWebhook object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewNotificationWebhook(url string, headers []string) *NewNotificationWebhook {
+	this := NewNotificationWebhook{}
+	this.Url = url
+	this.Headers = headers
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
+// NewNewNotificationWebhookWithDefaults instantiates a new NewNotificationWebhook object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewNotificationWebhookWithDefaults() *NewNotificationWebhook {
+	this := NewNotificationWebhook{}
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
 // GetUrl returns the Url field value
 func (o *NewNotificationWebhook) GetUrl() string {
 	if o == nil {
@@ -32,6 +54,15 @@ func (o *NewNotificationWebhook) GetUrl() string {
 	}
 
 	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *NewNotificationWebhook) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
 }
 
 // SetUrl sets field value
@@ -49,6 +80,15 @@ func (o *NewNotificationWebhook) GetHeaders() []string {
 	return o.Headers
 }
 
+// GetHeadersOk returns a tuple with the Headers field value
+// and a boolean to check if the value has been set.
+func (o *NewNotificationWebhook) GetHeadersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Headers, true
+}
+
 // SetHeaders sets field value
 func (o *NewNotificationWebhook) SetHeaders(v []string) {
 	o.Headers = v
@@ -63,14 +103,13 @@ func (o *NewNotificationWebhook) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewNotificationWebhook) GetEnabledOk() (bool, bool) {
+func (o *NewNotificationWebhook) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -87,25 +126,52 @@ func (o *NewNotificationWebhook) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+func (o NewNotificationWebhook) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	if true {
+		toSerialize["headers"] = o.Headers
+	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewNotificationWebhook struct {
-	Value        NewNotificationWebhook
-	ExplicitNull bool
+	value *NewNotificationWebhook
+	isSet bool
+}
+
+func (v NullableNewNotificationWebhook) Get() *NewNotificationWebhook {
+	return v.value
+}
+
+func (v *NullableNewNotificationWebhook) Set(val *NewNotificationWebhook) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewNotificationWebhook) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewNotificationWebhook) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewNotificationWebhook(val *NewNotificationWebhook) *NullableNewNotificationWebhook {
+	return &NullableNewNotificationWebhook{value: val, isSet: true}
 }
 
 func (v NullableNewNotificationWebhook) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewNotificationWebhook) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

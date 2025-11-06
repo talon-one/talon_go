@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type RoleV2RolesGroup struct {
 	LoyaltyPrograms *map[string]string `json:"loyaltyPrograms,omitempty"`
 	// A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.
 	CampaignAccessGroups *map[string]string `json:"campaignAccessGroups,omitempty"`
+	// Name of the account-level permission set
+	Account *string `json:"account,omitempty"`
+}
+
+// NewRoleV2RolesGroup instantiates a new RoleV2RolesGroup object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoleV2RolesGroup() *RoleV2RolesGroup {
+	this := RoleV2RolesGroup{}
+	return &this
+}
+
+// NewRoleV2RolesGroupWithDefaults instantiates a new RoleV2RolesGroup object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleV2RolesGroupWithDefaults() *RoleV2RolesGroup {
+	this := RoleV2RolesGroup{}
+	return &this
 }
 
 // GetApplications returns the Applications field value if set, zero value otherwise.
@@ -33,14 +51,13 @@ func (o *RoleV2RolesGroup) GetApplications() map[string]RoleV2ApplicationDetails
 	return *o.Applications
 }
 
-// GetApplicationsOk returns a tuple with the Applications field value if set, zero value otherwise
+// GetApplicationsOk returns a tuple with the Applications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2RolesGroup) GetApplicationsOk() (map[string]RoleV2ApplicationDetails, bool) {
+func (o *RoleV2RolesGroup) GetApplicationsOk() (*map[string]RoleV2ApplicationDetails, bool) {
 	if o == nil || o.Applications == nil {
-		var ret map[string]RoleV2ApplicationDetails
-		return ret, false
+		return nil, false
 	}
-	return *o.Applications, true
+	return o.Applications, true
 }
 
 // HasApplications returns a boolean if a field has been set.
@@ -66,14 +83,13 @@ func (o *RoleV2RolesGroup) GetLoyaltyPrograms() map[string]string {
 	return *o.LoyaltyPrograms
 }
 
-// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value if set, zero value otherwise
+// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2RolesGroup) GetLoyaltyProgramsOk() (map[string]string, bool) {
+func (o *RoleV2RolesGroup) GetLoyaltyProgramsOk() (*map[string]string, bool) {
 	if o == nil || o.LoyaltyPrograms == nil {
-		var ret map[string]string
-		return ret, false
+		return nil, false
 	}
-	return *o.LoyaltyPrograms, true
+	return o.LoyaltyPrograms, true
 }
 
 // HasLoyaltyPrograms returns a boolean if a field has been set.
@@ -99,14 +115,13 @@ func (o *RoleV2RolesGroup) GetCampaignAccessGroups() map[string]string {
 	return *o.CampaignAccessGroups
 }
 
-// GetCampaignAccessGroupsOk returns a tuple with the CampaignAccessGroups field value if set, zero value otherwise
+// GetCampaignAccessGroupsOk returns a tuple with the CampaignAccessGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2RolesGroup) GetCampaignAccessGroupsOk() (map[string]string, bool) {
+func (o *RoleV2RolesGroup) GetCampaignAccessGroupsOk() (*map[string]string, bool) {
 	if o == nil || o.CampaignAccessGroups == nil {
-		var ret map[string]string
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignAccessGroups, true
+	return o.CampaignAccessGroups, true
 }
 
 // HasCampaignAccessGroups returns a boolean if a field has been set.
@@ -123,25 +138,87 @@ func (o *RoleV2RolesGroup) SetCampaignAccessGroups(v map[string]string) {
 	o.CampaignAccessGroups = &v
 }
 
+// GetAccount returns the Account field value if set, zero value otherwise.
+func (o *RoleV2RolesGroup) GetAccount() string {
+	if o == nil || o.Account == nil {
+		var ret string
+		return ret
+	}
+	return *o.Account
+}
+
+// GetAccountOk returns a tuple with the Account field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleV2RolesGroup) GetAccountOk() (*string, bool) {
+	if o == nil || o.Account == nil {
+		return nil, false
+	}
+	return o.Account, true
+}
+
+// HasAccount returns a boolean if a field has been set.
+func (o *RoleV2RolesGroup) HasAccount() bool {
+	if o != nil && o.Account != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAccount gets a reference to the given string and assigns it to the Account field.
+func (o *RoleV2RolesGroup) SetAccount(v string) {
+	o.Account = &v
+}
+
+func (o RoleV2RolesGroup) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Applications != nil {
+		toSerialize["applications"] = o.Applications
+	}
+	if o.LoyaltyPrograms != nil {
+		toSerialize["loyaltyPrograms"] = o.LoyaltyPrograms
+	}
+	if o.CampaignAccessGroups != nil {
+		toSerialize["campaignAccessGroups"] = o.CampaignAccessGroups
+	}
+	if o.Account != nil {
+		toSerialize["account"] = o.Account
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleV2RolesGroup struct {
-	Value        RoleV2RolesGroup
-	ExplicitNull bool
+	value *RoleV2RolesGroup
+	isSet bool
+}
+
+func (v NullableRoleV2RolesGroup) Get() *RoleV2RolesGroup {
+	return v.value
+}
+
+func (v *NullableRoleV2RolesGroup) Set(val *RoleV2RolesGroup) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleV2RolesGroup) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleV2RolesGroup) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoleV2RolesGroup(val *RoleV2RolesGroup) *NullableRoleV2RolesGroup {
+	return &NullableRoleV2RolesGroup{value: val, isSet: true}
 }
 
 func (v NullableRoleV2RolesGroup) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleV2RolesGroup) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewIntegrationRequest
+
+`func NewIntegrationRequest(customerSession NewCustomerSessionV2, ) *IntegrationRequest`
+
+NewIntegrationRequest instantiates a new IntegrationRequest object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewIntegrationRequestWithDefaults
+
+`func NewIntegrationRequestWithDefaults() *IntegrationRequest`
+
+NewIntegrationRequestWithDefaults instantiates a new IntegrationRequest object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCustomerSession
 
 `func (o *IntegrationRequest) GetCustomerSession() NewCustomerSessionV2`
@@ -17,22 +34,17 @@ GetCustomerSession returns the CustomerSession field if non-nil, zero value othe
 
 ### GetCustomerSessionOk
 
-`func (o *IntegrationRequest) GetCustomerSessionOk() (NewCustomerSessionV2, bool)`
+`func (o *IntegrationRequest) GetCustomerSessionOk() (*NewCustomerSessionV2, bool)`
 
 GetCustomerSessionOk returns a tuple with the CustomerSession field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCustomerSession
-
-`func (o *IntegrationRequest) HasCustomerSession() bool`
-
-HasCustomerSession returns a boolean if a field has been set.
 
 ### SetCustomerSession
 
 `func (o *IntegrationRequest) SetCustomerSession(v NewCustomerSessionV2)`
 
-SetCustomerSession gets a reference to the given NewCustomerSessionV2 and assigns it to the CustomerSession field.
+SetCustomerSession sets CustomerSession field to given value.
+
 
 ### GetResponseContent
 
@@ -42,22 +54,22 @@ GetResponseContent returns the ResponseContent field if non-nil, zero value othe
 
 ### GetResponseContentOk
 
-`func (o *IntegrationRequest) GetResponseContentOk() ([]string, bool)`
+`func (o *IntegrationRequest) GetResponseContentOk() (*[]string, bool)`
 
 GetResponseContentOk returns a tuple with the ResponseContent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResponseContent
+
+`func (o *IntegrationRequest) SetResponseContent(v []string)`
+
+SetResponseContent sets ResponseContent field to given value.
 
 ### HasResponseContent
 
 `func (o *IntegrationRequest) HasResponseContent() bool`
 
 HasResponseContent returns a boolean if a field has been set.
-
-### SetResponseContent
-
-`func (o *IntegrationRequest) SetResponseContent(v []string)`
-
-SetResponseContent gets a reference to the given []string and assigns it to the ResponseContent field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

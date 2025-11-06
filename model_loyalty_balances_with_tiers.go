@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,23 @@ type LoyaltyBalancesWithTiers struct {
 	Balance *LoyaltyBalanceWithTier `json:"balance,omitempty"`
 	// Map of the loyalty balances of the subledgers of a ledger.
 	SubledgerBalances *map[string]LoyaltyBalanceWithTier `json:"subledgerBalances,omitempty"`
+}
+
+// NewLoyaltyBalancesWithTiers instantiates a new LoyaltyBalancesWithTiers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyBalancesWithTiers() *LoyaltyBalancesWithTiers {
+	this := LoyaltyBalancesWithTiers{}
+	return &this
+}
+
+// NewLoyaltyBalancesWithTiersWithDefaults instantiates a new LoyaltyBalancesWithTiers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyBalancesWithTiersWithDefaults() *LoyaltyBalancesWithTiers {
+	this := LoyaltyBalancesWithTiers{}
+	return &this
 }
 
 // GetBalance returns the Balance field value if set, zero value otherwise.
@@ -30,14 +46,13 @@ func (o *LoyaltyBalancesWithTiers) GetBalance() LoyaltyBalanceWithTier {
 	return *o.Balance
 }
 
-// GetBalanceOk returns a tuple with the Balance field value if set, zero value otherwise
+// GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalancesWithTiers) GetBalanceOk() (LoyaltyBalanceWithTier, bool) {
+func (o *LoyaltyBalancesWithTiers) GetBalanceOk() (*LoyaltyBalanceWithTier, bool) {
 	if o == nil || o.Balance == nil {
-		var ret LoyaltyBalanceWithTier
-		return ret, false
+		return nil, false
 	}
-	return *o.Balance, true
+	return o.Balance, true
 }
 
 // HasBalance returns a boolean if a field has been set.
@@ -63,14 +78,13 @@ func (o *LoyaltyBalancesWithTiers) GetSubledgerBalances() map[string]LoyaltyBala
 	return *o.SubledgerBalances
 }
 
-// GetSubledgerBalancesOk returns a tuple with the SubledgerBalances field value if set, zero value otherwise
+// GetSubledgerBalancesOk returns a tuple with the SubledgerBalances field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalancesWithTiers) GetSubledgerBalancesOk() (map[string]LoyaltyBalanceWithTier, bool) {
+func (o *LoyaltyBalancesWithTiers) GetSubledgerBalancesOk() (*map[string]LoyaltyBalanceWithTier, bool) {
 	if o == nil || o.SubledgerBalances == nil {
-		var ret map[string]LoyaltyBalanceWithTier
-		return ret, false
+		return nil, false
 	}
-	return *o.SubledgerBalances, true
+	return o.SubledgerBalances, true
 }
 
 // HasSubledgerBalances returns a boolean if a field has been set.
@@ -87,25 +101,49 @@ func (o *LoyaltyBalancesWithTiers) SetSubledgerBalances(v map[string]LoyaltyBala
 	o.SubledgerBalances = &v
 }
 
+func (o LoyaltyBalancesWithTiers) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Balance != nil {
+		toSerialize["balance"] = o.Balance
+	}
+	if o.SubledgerBalances != nil {
+		toSerialize["subledgerBalances"] = o.SubledgerBalances
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyBalancesWithTiers struct {
-	Value        LoyaltyBalancesWithTiers
-	ExplicitNull bool
+	value *LoyaltyBalancesWithTiers
+	isSet bool
+}
+
+func (v NullableLoyaltyBalancesWithTiers) Get() *LoyaltyBalancesWithTiers {
+	return v.value
+}
+
+func (v *NullableLoyaltyBalancesWithTiers) Set(val *LoyaltyBalancesWithTiers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyBalancesWithTiers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyBalancesWithTiers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyBalancesWithTiers(val *LoyaltyBalancesWithTiers) *NullableLoyaltyBalancesWithTiers {
+	return &NullableLoyaltyBalancesWithTiers{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyBalancesWithTiers) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyBalancesWithTiers) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

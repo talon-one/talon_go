@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type CardAddedDeductedPointsNotificationPolicy struct {
 	Scopes []string `json:"scopes"`
 }
 
+// NewCardAddedDeductedPointsNotificationPolicy instantiates a new CardAddedDeductedPointsNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCardAddedDeductedPointsNotificationPolicy(name string, scopes []string) *CardAddedDeductedPointsNotificationPolicy {
+	this := CardAddedDeductedPointsNotificationPolicy{}
+	this.Name = name
+	this.Scopes = scopes
+	return &this
+}
+
+// NewCardAddedDeductedPointsNotificationPolicyWithDefaults instantiates a new CardAddedDeductedPointsNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCardAddedDeductedPointsNotificationPolicyWithDefaults() *CardAddedDeductedPointsNotificationPolicy {
+	this := CardAddedDeductedPointsNotificationPolicy{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *CardAddedDeductedPointsNotificationPolicy) GetName() string {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *CardAddedDeductedPointsNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CardAddedDeductedPointsNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -46,30 +73,63 @@ func (o *CardAddedDeductedPointsNotificationPolicy) GetScopes() []string {
 	return o.Scopes
 }
 
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *CardAddedDeductedPointsNotificationPolicy) GetScopesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scopes, true
+}
+
 // SetScopes sets field value
 func (o *CardAddedDeductedPointsNotificationPolicy) SetScopes(v []string) {
 	o.Scopes = v
 }
 
+func (o CardAddedDeductedPointsNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["scopes"] = o.Scopes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCardAddedDeductedPointsNotificationPolicy struct {
-	Value        CardAddedDeductedPointsNotificationPolicy
-	ExplicitNull bool
+	value *CardAddedDeductedPointsNotificationPolicy
+	isSet bool
+}
+
+func (v NullableCardAddedDeductedPointsNotificationPolicy) Get() *CardAddedDeductedPointsNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableCardAddedDeductedPointsNotificationPolicy) Set(val *CardAddedDeductedPointsNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCardAddedDeductedPointsNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCardAddedDeductedPointsNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCardAddedDeductedPointsNotificationPolicy(val *CardAddedDeductedPointsNotificationPolicy) *NullableCardAddedDeductedPointsNotificationPolicy {
+	return &NullableCardAddedDeductedPointsNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableCardAddedDeductedPointsNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCardAddedDeductedPointsNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

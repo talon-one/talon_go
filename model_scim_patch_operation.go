@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,24 @@ type ScimPatchOperation struct {
 	Value *string `json:"value,omitempty"`
 }
 
+// NewScimPatchOperation instantiates a new ScimPatchOperation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewScimPatchOperation(op string) *ScimPatchOperation {
+	this := ScimPatchOperation{}
+	this.Op = op
+	return &this
+}
+
+// NewScimPatchOperationWithDefaults instantiates a new ScimPatchOperation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimPatchOperationWithDefaults() *ScimPatchOperation {
+	this := ScimPatchOperation{}
+	return &this
+}
+
 // GetOp returns the Op field value
 func (o *ScimPatchOperation) GetOp() string {
 	if o == nil {
@@ -32,6 +49,15 @@ func (o *ScimPatchOperation) GetOp() string {
 	}
 
 	return o.Op
+}
+
+// GetOpOk returns a tuple with the Op field value
+// and a boolean to check if the value has been set.
+func (o *ScimPatchOperation) GetOpOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Op, true
 }
 
 // SetOp sets field value
@@ -48,14 +74,13 @@ func (o *ScimPatchOperation) GetPath() string {
 	return *o.Path
 }
 
-// GetPathOk returns a tuple with the Path field value if set, zero value otherwise
+// GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimPatchOperation) GetPathOk() (string, bool) {
+func (o *ScimPatchOperation) GetPathOk() (*string, bool) {
 	if o == nil || o.Path == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Path, true
+	return o.Path, true
 }
 
 // HasPath returns a boolean if a field has been set.
@@ -81,14 +106,13 @@ func (o *ScimPatchOperation) GetValue() string {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimPatchOperation) GetValueOk() (string, bool) {
+func (o *ScimPatchOperation) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -105,25 +129,52 @@ func (o *ScimPatchOperation) SetValue(v string) {
 	o.Value = &v
 }
 
+func (o ScimPatchOperation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["op"] = o.Op
+	}
+	if o.Path != nil {
+		toSerialize["path"] = o.Path
+	}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimPatchOperation struct {
-	Value        ScimPatchOperation
-	ExplicitNull bool
+	value *ScimPatchOperation
+	isSet bool
+}
+
+func (v NullableScimPatchOperation) Get() *ScimPatchOperation {
+	return v.value
+}
+
+func (v *NullableScimPatchOperation) Set(val *ScimPatchOperation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimPatchOperation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimPatchOperation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableScimPatchOperation(val *ScimPatchOperation) *NullableScimPatchOperation {
+	return &NullableScimPatchOperation{value: val, isSet: true}
 }
 
 func (v NullableScimPatchOperation) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimPatchOperation) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

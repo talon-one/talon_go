@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,6 +18,23 @@ type RoleV2Permissions struct {
 	// List of grouped logical operations referenced by roles.
 	PermissionSets *[]RoleV2PermissionSet `json:"permissionSets,omitempty"`
 	Roles          *RoleV2RolesGroup      `json:"roles,omitempty"`
+}
+
+// NewRoleV2Permissions instantiates a new RoleV2Permissions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoleV2Permissions() *RoleV2Permissions {
+	this := RoleV2Permissions{}
+	return &this
+}
+
+// NewRoleV2PermissionsWithDefaults instantiates a new RoleV2Permissions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleV2PermissionsWithDefaults() *RoleV2Permissions {
+	this := RoleV2Permissions{}
+	return &this
 }
 
 // GetPermissionSets returns the PermissionSets field value if set, zero value otherwise.
@@ -30,14 +46,13 @@ func (o *RoleV2Permissions) GetPermissionSets() []RoleV2PermissionSet {
 	return *o.PermissionSets
 }
 
-// GetPermissionSetsOk returns a tuple with the PermissionSets field value if set, zero value otherwise
+// GetPermissionSetsOk returns a tuple with the PermissionSets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Permissions) GetPermissionSetsOk() ([]RoleV2PermissionSet, bool) {
+func (o *RoleV2Permissions) GetPermissionSetsOk() (*[]RoleV2PermissionSet, bool) {
 	if o == nil || o.PermissionSets == nil {
-		var ret []RoleV2PermissionSet
-		return ret, false
+		return nil, false
 	}
-	return *o.PermissionSets, true
+	return o.PermissionSets, true
 }
 
 // HasPermissionSets returns a boolean if a field has been set.
@@ -63,14 +78,13 @@ func (o *RoleV2Permissions) GetRoles() RoleV2RolesGroup {
 	return *o.Roles
 }
 
-// GetRolesOk returns a tuple with the Roles field value if set, zero value otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Permissions) GetRolesOk() (RoleV2RolesGroup, bool) {
+func (o *RoleV2Permissions) GetRolesOk() (*RoleV2RolesGroup, bool) {
 	if o == nil || o.Roles == nil {
-		var ret RoleV2RolesGroup
-		return ret, false
+		return nil, false
 	}
-	return *o.Roles, true
+	return o.Roles, true
 }
 
 // HasRoles returns a boolean if a field has been set.
@@ -87,25 +101,49 @@ func (o *RoleV2Permissions) SetRoles(v RoleV2RolesGroup) {
 	o.Roles = &v
 }
 
+func (o RoleV2Permissions) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.PermissionSets != nil {
+		toSerialize["permissionSets"] = o.PermissionSets
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleV2Permissions struct {
-	Value        RoleV2Permissions
-	ExplicitNull bool
+	value *RoleV2Permissions
+	isSet bool
+}
+
+func (v NullableRoleV2Permissions) Get() *RoleV2Permissions {
+	return v.value
+}
+
+func (v *NullableRoleV2Permissions) Set(val *RoleV2Permissions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleV2Permissions) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleV2Permissions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoleV2Permissions(val *RoleV2Permissions) *NullableRoleV2Permissions {
+	return &NullableRoleV2Permissions{value: val, isSet: true}
 }
 
 func (v NullableRoleV2Permissions) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleV2Permissions) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

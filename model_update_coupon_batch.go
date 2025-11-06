@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // UpdateCouponBatch struct for UpdateCouponBatch
 type UpdateCouponBatch struct {
 	// The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
-	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	UsageLimit *int64 `json:"usageLimit,omitempty"`
 	// The total discount value that the code can give. Typically used to represent a gift card value.
 	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// The number of reservations that can be made with this coupon code.
-	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
+	ReservationLimit *int64 `json:"reservationLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiration date of the coupon. Coupon never expires if this is omitted.
@@ -33,23 +32,39 @@ type UpdateCouponBatch struct {
 	BatchID *string `json:"batchID,omitempty"`
 }
 
+// NewUpdateCouponBatch instantiates a new UpdateCouponBatch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateCouponBatch() *UpdateCouponBatch {
+	this := UpdateCouponBatch{}
+	return &this
+}
+
+// NewUpdateCouponBatchWithDefaults instantiates a new UpdateCouponBatch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateCouponBatchWithDefaults() *UpdateCouponBatch {
+	this := UpdateCouponBatch{}
+	return &this
+}
+
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
-func (o *UpdateCouponBatch) GetUsageLimit() int32 {
+func (o *UpdateCouponBatch) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsageLimit
 }
 
-// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetUsageLimitOk() (int32, bool) {
+func (o *UpdateCouponBatch) GetUsageLimitOk() (*int64, bool) {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsageLimit, true
+	return o.UsageLimit, true
 }
 
 // HasUsageLimit returns a boolean if a field has been set.
@@ -61,8 +76,8 @@ func (o *UpdateCouponBatch) HasUsageLimit() bool {
 	return false
 }
 
-// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
-func (o *UpdateCouponBatch) SetUsageLimit(v int32) {
+// SetUsageLimit gets a reference to the given int64 and assigns it to the UsageLimit field.
+func (o *UpdateCouponBatch) SetUsageLimit(v int64) {
 	o.UsageLimit = &v
 }
 
@@ -75,14 +90,13 @@ func (o *UpdateCouponBatch) GetDiscountLimit() float32 {
 	return *o.DiscountLimit
 }
 
-// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetDiscountLimitOk() (float32, bool) {
+func (o *UpdateCouponBatch) GetDiscountLimitOk() (*float32, bool) {
 	if o == nil || o.DiscountLimit == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountLimit, true
+	return o.DiscountLimit, true
 }
 
 // HasDiscountLimit returns a boolean if a field has been set.
@@ -100,22 +114,21 @@ func (o *UpdateCouponBatch) SetDiscountLimit(v float32) {
 }
 
 // GetReservationLimit returns the ReservationLimit field value if set, zero value otherwise.
-func (o *UpdateCouponBatch) GetReservationLimit() int32 {
+func (o *UpdateCouponBatch) GetReservationLimit() int64 {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservationLimit
 }
 
-// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, zero value otherwise
+// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetReservationLimitOk() (int32, bool) {
+func (o *UpdateCouponBatch) GetReservationLimitOk() (*int64, bool) {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationLimit, true
+	return o.ReservationLimit, true
 }
 
 // HasReservationLimit returns a boolean if a field has been set.
@@ -127,8 +140,8 @@ func (o *UpdateCouponBatch) HasReservationLimit() bool {
 	return false
 }
 
-// SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
-func (o *UpdateCouponBatch) SetReservationLimit(v int32) {
+// SetReservationLimit gets a reference to the given int64 and assigns it to the ReservationLimit field.
+func (o *UpdateCouponBatch) SetReservationLimit(v int64) {
 	o.ReservationLimit = &v
 }
 
@@ -141,14 +154,13 @@ func (o *UpdateCouponBatch) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetStartDateOk() (time.Time, bool) {
+func (o *UpdateCouponBatch) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -174,14 +186,13 @@ func (o *UpdateCouponBatch) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetExpiryDateOk() (time.Time, bool) {
+func (o *UpdateCouponBatch) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -207,14 +218,13 @@ func (o *UpdateCouponBatch) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *UpdateCouponBatch) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -240,14 +250,13 @@ func (o *UpdateCouponBatch) GetBatchID() string {
 	return *o.BatchID
 }
 
-// GetBatchIDOk returns a tuple with the BatchID field value if set, zero value otherwise
+// GetBatchIDOk returns a tuple with the BatchID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateCouponBatch) GetBatchIDOk() (string, bool) {
+func (o *UpdateCouponBatch) GetBatchIDOk() (*string, bool) {
 	if o == nil || o.BatchID == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchID, true
+	return o.BatchID, true
 }
 
 // HasBatchID returns a boolean if a field has been set.
@@ -264,25 +273,64 @@ func (o *UpdateCouponBatch) SetBatchID(v string) {
 	o.BatchID = &v
 }
 
+func (o UpdateCouponBatch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UsageLimit != nil {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if o.DiscountLimit != nil {
+		toSerialize["discountLimit"] = o.DiscountLimit
+	}
+	if o.ReservationLimit != nil {
+		toSerialize["reservationLimit"] = o.ReservationLimit
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.BatchID != nil {
+		toSerialize["batchID"] = o.BatchID
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateCouponBatch struct {
-	Value        UpdateCouponBatch
-	ExplicitNull bool
+	value *UpdateCouponBatch
+	isSet bool
+}
+
+func (v NullableUpdateCouponBatch) Get() *UpdateCouponBatch {
+	return v.value
+}
+
+func (v *NullableUpdateCouponBatch) Set(val *UpdateCouponBatch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateCouponBatch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateCouponBatch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateCouponBatch(val *UpdateCouponBatch) *NullableUpdateCouponBatch {
+	return &NullableUpdateCouponBatch{value: val, isSet: true}
 }
 
 func (v NullableUpdateCouponBatch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateCouponBatch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

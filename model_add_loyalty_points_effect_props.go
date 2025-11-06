@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,7 +19,7 @@ type AddLoyaltyPointsEffectProps struct {
 	// The name / description of this loyalty point addition.
 	Name string `json:"name"`
 	// The ID of the loyalty program where these points were added.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// The ID of the subledger within the loyalty program where these points were added.
 	SubLedgerId string `json:"subLedgerId"`
 	// The amount of points that were added.
@@ -42,9 +41,32 @@ type AddLoyaltyPointsEffectProps struct {
 	// The alphanumeric identifier of the loyalty card.
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`
 	// The position of the bundle in a list of item bundles created from the same bundle definition.
-	BundleIndex *int32 `json:"bundleIndex,omitempty"`
+	BundleIndex *int64 `json:"bundleIndex,omitempty"`
 	// The name of the bundle definition.
 	BundleName *string `json:"bundleName,omitempty"`
+}
+
+// NewAddLoyaltyPointsEffectProps instantiates a new AddLoyaltyPointsEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAddLoyaltyPointsEffectProps(name string, programId int64, subLedgerId string, value float32, recipientIntegrationId string, transactionUUID string) *AddLoyaltyPointsEffectProps {
+	this := AddLoyaltyPointsEffectProps{}
+	this.Name = name
+	this.ProgramId = programId
+	this.SubLedgerId = subLedgerId
+	this.Value = value
+	this.RecipientIntegrationId = recipientIntegrationId
+	this.TransactionUUID = transactionUUID
+	return &this
+}
+
+// NewAddLoyaltyPointsEffectPropsWithDefaults instantiates a new AddLoyaltyPointsEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddLoyaltyPointsEffectPropsWithDefaults() *AddLoyaltyPointsEffectProps {
+	this := AddLoyaltyPointsEffectProps{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -57,23 +79,41 @@ func (o *AddLoyaltyPointsEffectProps) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *AddLoyaltyPointsEffectProps) SetName(v string) {
 	o.Name = v
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *AddLoyaltyPointsEffectProps) GetProgramId() int32 {
+func (o *AddLoyaltyPointsEffectProps) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *AddLoyaltyPointsEffectProps) SetProgramId(v int32) {
+func (o *AddLoyaltyPointsEffectProps) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
@@ -85,6 +125,15 @@ func (o *AddLoyaltyPointsEffectProps) GetSubLedgerId() string {
 	}
 
 	return o.SubLedgerId
+}
+
+// GetSubLedgerIdOk returns a tuple with the SubLedgerId field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetSubLedgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubLedgerId, true
 }
 
 // SetSubLedgerId sets field value
@@ -102,6 +151,15 @@ func (o *AddLoyaltyPointsEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *AddLoyaltyPointsEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -116,14 +174,13 @@ func (o *AddLoyaltyPointsEffectProps) GetDesiredValue() float32 {
 	return *o.DesiredValue
 }
 
-// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, zero value otherwise
+// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetDesiredValueOk() (float32, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetDesiredValueOk() (*float32, bool) {
 	if o == nil || o.DesiredValue == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DesiredValue, true
+	return o.DesiredValue, true
 }
 
 // HasDesiredValue returns a boolean if a field has been set.
@@ -150,6 +207,15 @@ func (o *AddLoyaltyPointsEffectProps) GetRecipientIntegrationId() string {
 	return o.RecipientIntegrationId
 }
 
+// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetRecipientIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RecipientIntegrationId, true
+}
+
 // SetRecipientIntegrationId sets field value
 func (o *AddLoyaltyPointsEffectProps) SetRecipientIntegrationId(v string) {
 	o.RecipientIntegrationId = v
@@ -164,14 +230,13 @@ func (o *AddLoyaltyPointsEffectProps) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetStartDateOk() (time.Time, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -197,14 +262,13 @@ func (o *AddLoyaltyPointsEffectProps) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetExpiryDateOk() (time.Time, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -231,6 +295,15 @@ func (o *AddLoyaltyPointsEffectProps) GetTransactionUUID() string {
 	return o.TransactionUUID
 }
 
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *AddLoyaltyPointsEffectProps) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
 // SetTransactionUUID sets field value
 func (o *AddLoyaltyPointsEffectProps) SetTransactionUUID(v string) {
 	o.TransactionUUID = v
@@ -245,14 +318,13 @@ func (o *AddLoyaltyPointsEffectProps) GetCartItemPosition() float32 {
 	return *o.CartItemPosition
 }
 
-// GetCartItemPositionOk returns a tuple with the CartItemPosition field value if set, zero value otherwise
+// GetCartItemPositionOk returns a tuple with the CartItemPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetCartItemPositionOk() (float32, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetCartItemPositionOk() (*float32, bool) {
 	if o == nil || o.CartItemPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemPosition, true
+	return o.CartItemPosition, true
 }
 
 // HasCartItemPosition returns a boolean if a field has been set.
@@ -278,14 +350,13 @@ func (o *AddLoyaltyPointsEffectProps) GetCartItemSubPosition() float32 {
 	return *o.CartItemSubPosition
 }
 
-// GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field value if set, zero value otherwise
+// GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetCartItemSubPositionOk() (float32, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetCartItemSubPositionOk() (*float32, bool) {
 	if o == nil || o.CartItemSubPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemSubPosition, true
+	return o.CartItemSubPosition, true
 }
 
 // HasCartItemSubPosition returns a boolean if a field has been set.
@@ -311,14 +382,13 @@ func (o *AddLoyaltyPointsEffectProps) GetCardIdentifier() string {
 	return *o.CardIdentifier
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, zero value otherwise
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetCardIdentifierOk() (*string, bool) {
 	if o == nil || o.CardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CardIdentifier, true
+	return o.CardIdentifier, true
 }
 
 // HasCardIdentifier returns a boolean if a field has been set.
@@ -336,22 +406,21 @@ func (o *AddLoyaltyPointsEffectProps) SetCardIdentifier(v string) {
 }
 
 // GetBundleIndex returns the BundleIndex field value if set, zero value otherwise.
-func (o *AddLoyaltyPointsEffectProps) GetBundleIndex() int32 {
+func (o *AddLoyaltyPointsEffectProps) GetBundleIndex() int64 {
 	if o == nil || o.BundleIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BundleIndex
 }
 
-// GetBundleIndexOk returns a tuple with the BundleIndex field value if set, zero value otherwise
+// GetBundleIndexOk returns a tuple with the BundleIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetBundleIndexOk() (int32, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetBundleIndexOk() (*int64, bool) {
 	if o == nil || o.BundleIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BundleIndex, true
+	return o.BundleIndex, true
 }
 
 // HasBundleIndex returns a boolean if a field has been set.
@@ -363,8 +432,8 @@ func (o *AddLoyaltyPointsEffectProps) HasBundleIndex() bool {
 	return false
 }
 
-// SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
-func (o *AddLoyaltyPointsEffectProps) SetBundleIndex(v int32) {
+// SetBundleIndex gets a reference to the given int64 and assigns it to the BundleIndex field.
+func (o *AddLoyaltyPointsEffectProps) SetBundleIndex(v int64) {
 	o.BundleIndex = &v
 }
 
@@ -377,14 +446,13 @@ func (o *AddLoyaltyPointsEffectProps) GetBundleName() string {
 	return *o.BundleName
 }
 
-// GetBundleNameOk returns a tuple with the BundleName field value if set, zero value otherwise
+// GetBundleNameOk returns a tuple with the BundleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddLoyaltyPointsEffectProps) GetBundleNameOk() (string, bool) {
+func (o *AddLoyaltyPointsEffectProps) GetBundleNameOk() (*string, bool) {
 	if o == nil || o.BundleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BundleName, true
+	return o.BundleName, true
 }
 
 // HasBundleName returns a boolean if a field has been set.
@@ -401,25 +469,85 @@ func (o *AddLoyaltyPointsEffectProps) SetBundleName(v string) {
 	o.BundleName = &v
 }
 
+func (o AddLoyaltyPointsEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if true {
+		toSerialize["subLedgerId"] = o.SubLedgerId
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.DesiredValue != nil {
+		toSerialize["desiredValue"] = o.DesiredValue
+	}
+	if true {
+		toSerialize["recipientIntegrationId"] = o.RecipientIntegrationId
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if o.CartItemPosition != nil {
+		toSerialize["cartItemPosition"] = o.CartItemPosition
+	}
+	if o.CartItemSubPosition != nil {
+		toSerialize["cartItemSubPosition"] = o.CartItemSubPosition
+	}
+	if o.CardIdentifier != nil {
+		toSerialize["cardIdentifier"] = o.CardIdentifier
+	}
+	if o.BundleIndex != nil {
+		toSerialize["bundleIndex"] = o.BundleIndex
+	}
+	if o.BundleName != nil {
+		toSerialize["bundleName"] = o.BundleName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddLoyaltyPointsEffectProps struct {
-	Value        AddLoyaltyPointsEffectProps
-	ExplicitNull bool
+	value *AddLoyaltyPointsEffectProps
+	isSet bool
+}
+
+func (v NullableAddLoyaltyPointsEffectProps) Get() *AddLoyaltyPointsEffectProps {
+	return v.value
+}
+
+func (v *NullableAddLoyaltyPointsEffectProps) Set(val *AddLoyaltyPointsEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddLoyaltyPointsEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddLoyaltyPointsEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAddLoyaltyPointsEffectProps(val *AddLoyaltyPointsEffectProps) *NullableAddLoyaltyPointsEffectProps {
+	return &NullableAddLoyaltyPointsEffectProps{value: val, isSet: true}
 }
 
 func (v NullableAddLoyaltyPointsEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddLoyaltyPointsEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

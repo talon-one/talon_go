@@ -10,67 +10,164 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
-	"time"
 )
 
-// CampaignDeletedNotification A notification regarding a campaign that was deleted.
+// CampaignDeletedNotification struct for CampaignDeletedNotification
 type CampaignDeletedNotification struct {
-	Campaign Campaign `json:"campaign"`
-	// Time when the campaign was deleted.
-	DeletedAt time.Time `json:"deletedAt"`
+	// The type of the notification
+	NotificationType string `json:"NotificationType"`
+	// The total size of the result set.
+	TotalResultSize int64 `json:"TotalResultSize"`
+	// A list of campaign notification data.
+	Data *[]CampaignDeletedNotificationItem `json:"Data,omitempty"`
 }
 
-// GetCampaign returns the Campaign field value
-func (o *CampaignDeletedNotification) GetCampaign() Campaign {
+// NewCampaignDeletedNotification instantiates a new CampaignDeletedNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignDeletedNotification(notificationType string, totalResultSize int64) *CampaignDeletedNotification {
+	this := CampaignDeletedNotification{}
+	this.NotificationType = notificationType
+	this.TotalResultSize = totalResultSize
+	return &this
+}
+
+// NewCampaignDeletedNotificationWithDefaults instantiates a new CampaignDeletedNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignDeletedNotificationWithDefaults() *CampaignDeletedNotification {
+	this := CampaignDeletedNotification{}
+	return &this
+}
+
+// GetNotificationType returns the NotificationType field value
+func (o *CampaignDeletedNotification) GetNotificationType() string {
 	if o == nil {
-		var ret Campaign
+		var ret string
 		return ret
 	}
 
-	return o.Campaign
+	return o.NotificationType
 }
 
-// SetCampaign sets field value
-func (o *CampaignDeletedNotification) SetCampaign(v Campaign) {
-	o.Campaign = v
-}
-
-// GetDeletedAt returns the DeletedAt field value
-func (o *CampaignDeletedNotification) GetDeletedAt() time.Time {
+// GetNotificationTypeOk returns a tuple with the NotificationType field value
+// and a boolean to check if the value has been set.
+func (o *CampaignDeletedNotification) GetNotificationTypeOk() (*string, bool) {
 	if o == nil {
-		var ret time.Time
+		return nil, false
+	}
+	return &o.NotificationType, true
+}
+
+// SetNotificationType sets field value
+func (o *CampaignDeletedNotification) SetNotificationType(v string) {
+	o.NotificationType = v
+}
+
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *CampaignDeletedNotification) GetTotalResultSize() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
 
-	return o.DeletedAt
+	return o.TotalResultSize
 }
 
-// SetDeletedAt sets field value
-func (o *CampaignDeletedNotification) SetDeletedAt(v time.Time) {
-	o.DeletedAt = v
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// and a boolean to check if the value has been set.
+func (o *CampaignDeletedNotification) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalResultSize, true
+}
+
+// SetTotalResultSize sets field value
+func (o *CampaignDeletedNotification) SetTotalResultSize(v int64) {
+	o.TotalResultSize = v
+}
+
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *CampaignDeletedNotification) GetData() []CampaignDeletedNotificationItem {
+	if o == nil || o.Data == nil {
+		var ret []CampaignDeletedNotificationItem
+		return ret
+	}
+	return *o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignDeletedNotification) GetDataOk() (*[]CampaignDeletedNotificationItem, bool) {
+	if o == nil || o.Data == nil {
+		return nil, false
+	}
+	return o.Data, true
+}
+
+// HasData returns a boolean if a field has been set.
+func (o *CampaignDeletedNotification) HasData() bool {
+	if o != nil && o.Data != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetData gets a reference to the given []CampaignDeletedNotificationItem and assigns it to the Data field.
+func (o *CampaignDeletedNotification) SetData(v []CampaignDeletedNotificationItem) {
+	o.Data = &v
+}
+
+func (o CampaignDeletedNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["NotificationType"] = o.NotificationType
+	}
+	if true {
+		toSerialize["TotalResultSize"] = o.TotalResultSize
+	}
+	if o.Data != nil {
+		toSerialize["Data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
 }
 
 type NullableCampaignDeletedNotification struct {
-	Value        CampaignDeletedNotification
-	ExplicitNull bool
+	value *CampaignDeletedNotification
+	isSet bool
+}
+
+func (v NullableCampaignDeletedNotification) Get() *CampaignDeletedNotification {
+	return v.value
+}
+
+func (v *NullableCampaignDeletedNotification) Set(val *CampaignDeletedNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignDeletedNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignDeletedNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignDeletedNotification(val *CampaignDeletedNotification) *NullableCampaignDeletedNotification {
+	return &NullableCampaignDeletedNotification{value: val, isSet: true}
 }
 
 func (v NullableCampaignDeletedNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignDeletedNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

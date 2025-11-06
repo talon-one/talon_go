@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -23,6 +22,25 @@ type LoyaltyCardProfileRegistration struct {
 	Timestamp time.Time `json:"timestamp"`
 }
 
+// NewLoyaltyCardProfileRegistration instantiates a new LoyaltyCardProfileRegistration object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyCardProfileRegistration(integrationId string, timestamp time.Time) *LoyaltyCardProfileRegistration {
+	this := LoyaltyCardProfileRegistration{}
+	this.IntegrationId = integrationId
+	this.Timestamp = timestamp
+	return &this
+}
+
+// NewLoyaltyCardProfileRegistrationWithDefaults instantiates a new LoyaltyCardProfileRegistration object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyCardProfileRegistrationWithDefaults() *LoyaltyCardProfileRegistration {
+	this := LoyaltyCardProfileRegistration{}
+	return &this
+}
+
 // GetIntegrationId returns the IntegrationId field value
 func (o *LoyaltyCardProfileRegistration) GetIntegrationId() string {
 	if o == nil {
@@ -31,6 +49,15 @@ func (o *LoyaltyCardProfileRegistration) GetIntegrationId() string {
 	}
 
 	return o.IntegrationId
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardProfileRegistration) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
 }
 
 // SetIntegrationId sets field value
@@ -48,30 +75,63 @@ func (o *LoyaltyCardProfileRegistration) GetTimestamp() time.Time {
 	return o.Timestamp
 }
 
+// GetTimestampOk returns a tuple with the Timestamp field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardProfileRegistration) GetTimestampOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timestamp, true
+}
+
 // SetTimestamp sets field value
 func (o *LoyaltyCardProfileRegistration) SetTimestamp(v time.Time) {
 	o.Timestamp = v
 }
 
+func (o LoyaltyCardProfileRegistration) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyCardProfileRegistration struct {
-	Value        LoyaltyCardProfileRegistration
-	ExplicitNull bool
+	value *LoyaltyCardProfileRegistration
+	isSet bool
+}
+
+func (v NullableLoyaltyCardProfileRegistration) Get() *LoyaltyCardProfileRegistration {
+	return v.value
+}
+
+func (v *NullableLoyaltyCardProfileRegistration) Set(val *LoyaltyCardProfileRegistration) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyCardProfileRegistration) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyCardProfileRegistration) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyCardProfileRegistration(val *LoyaltyCardProfileRegistration) *NullableLoyaltyCardProfileRegistration {
+	return &NullableLoyaltyCardProfileRegistration{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyCardProfileRegistration) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyCardProfileRegistration) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

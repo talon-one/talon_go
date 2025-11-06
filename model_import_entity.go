@@ -10,33 +10,48 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ImportEntity struct for ImportEntity
 type ImportEntity struct {
 	// The ID of the Import which created this referral.
-	ImportId *int32 `json:"importId,omitempty"`
+	ImportId *int64 `json:"importId,omitempty"`
+}
+
+// NewImportEntity instantiates a new ImportEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewImportEntity() *ImportEntity {
+	this := ImportEntity{}
+	return &this
+}
+
+// NewImportEntityWithDefaults instantiates a new ImportEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewImportEntityWithDefaults() *ImportEntity {
+	this := ImportEntity{}
+	return &this
 }
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
-func (o *ImportEntity) GetImportId() int32 {
+func (o *ImportEntity) GetImportId() int64 {
 	if o == nil || o.ImportId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ImportId
 }
 
-// GetImportIdOk returns a tuple with the ImportId field value if set, zero value otherwise
+// GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ImportEntity) GetImportIdOk() (int32, bool) {
+func (o *ImportEntity) GetImportIdOk() (*int64, bool) {
 	if o == nil || o.ImportId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ImportId, true
+	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
@@ -48,30 +63,51 @@ func (o *ImportEntity) HasImportId() bool {
 	return false
 }
 
-// SetImportId gets a reference to the given int32 and assigns it to the ImportId field.
-func (o *ImportEntity) SetImportId(v int32) {
+// SetImportId gets a reference to the given int64 and assigns it to the ImportId field.
+func (o *ImportEntity) SetImportId(v int64) {
 	o.ImportId = &v
 }
 
+func (o ImportEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ImportId != nil {
+		toSerialize["importId"] = o.ImportId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableImportEntity struct {
-	Value        ImportEntity
-	ExplicitNull bool
+	value *ImportEntity
+	isSet bool
+}
+
+func (v NullableImportEntity) Get() *ImportEntity {
+	return v.value
+}
+
+func (v *NullableImportEntity) Set(val *ImportEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableImportEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableImportEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableImportEntity(val *ImportEntity) *NullableImportEntity {
+	return &NullableImportEntity{value: val, isSet: true}
 }
 
 func (v NullableImportEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableImportEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

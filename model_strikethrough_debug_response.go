@@ -10,35 +10,50 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // StrikethroughDebugResponse struct for StrikethroughDebugResponse
 type StrikethroughDebugResponse struct {
 	// The campaign IDs that got fetched for the evaluation process.
-	CampaignsIDs *[]int32 `json:"campaignsIDs,omitempty"`
+	CampaignsIDs *[]int64 `json:"campaignsIDs,omitempty"`
 	// The strikethrough effects that are returned from the evaluation process.
 	Effects *[]StrikethroughEffect `json:"effects,omitempty"`
 }
 
+// NewStrikethroughDebugResponse instantiates a new StrikethroughDebugResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewStrikethroughDebugResponse() *StrikethroughDebugResponse {
+	this := StrikethroughDebugResponse{}
+	return &this
+}
+
+// NewStrikethroughDebugResponseWithDefaults instantiates a new StrikethroughDebugResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughDebugResponseWithDefaults() *StrikethroughDebugResponse {
+	this := StrikethroughDebugResponse{}
+	return &this
+}
+
 // GetCampaignsIDs returns the CampaignsIDs field value if set, zero value otherwise.
-func (o *StrikethroughDebugResponse) GetCampaignsIDs() []int32 {
+func (o *StrikethroughDebugResponse) GetCampaignsIDs() []int64 {
 	if o == nil || o.CampaignsIDs == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignsIDs
 }
 
-// GetCampaignsIDsOk returns a tuple with the CampaignsIDs field value if set, zero value otherwise
+// GetCampaignsIDsOk returns a tuple with the CampaignsIDs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughDebugResponse) GetCampaignsIDsOk() ([]int32, bool) {
+func (o *StrikethroughDebugResponse) GetCampaignsIDsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignsIDs == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignsIDs, true
+	return o.CampaignsIDs, true
 }
 
 // HasCampaignsIDs returns a boolean if a field has been set.
@@ -50,8 +65,8 @@ func (o *StrikethroughDebugResponse) HasCampaignsIDs() bool {
 	return false
 }
 
-// SetCampaignsIDs gets a reference to the given []int32 and assigns it to the CampaignsIDs field.
-func (o *StrikethroughDebugResponse) SetCampaignsIDs(v []int32) {
+// SetCampaignsIDs gets a reference to the given []int64 and assigns it to the CampaignsIDs field.
+func (o *StrikethroughDebugResponse) SetCampaignsIDs(v []int64) {
 	o.CampaignsIDs = &v
 }
 
@@ -64,14 +79,13 @@ func (o *StrikethroughDebugResponse) GetEffects() []StrikethroughEffect {
 	return *o.Effects
 }
 
-// GetEffectsOk returns a tuple with the Effects field value if set, zero value otherwise
+// GetEffectsOk returns a tuple with the Effects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughDebugResponse) GetEffectsOk() ([]StrikethroughEffect, bool) {
+func (o *StrikethroughDebugResponse) GetEffectsOk() (*[]StrikethroughEffect, bool) {
 	if o == nil || o.Effects == nil {
-		var ret []StrikethroughEffect
-		return ret, false
+		return nil, false
 	}
-	return *o.Effects, true
+	return o.Effects, true
 }
 
 // HasEffects returns a boolean if a field has been set.
@@ -88,25 +102,49 @@ func (o *StrikethroughDebugResponse) SetEffects(v []StrikethroughEffect) {
 	o.Effects = &v
 }
 
+func (o StrikethroughDebugResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CampaignsIDs != nil {
+		toSerialize["campaignsIDs"] = o.CampaignsIDs
+	}
+	if o.Effects != nil {
+		toSerialize["effects"] = o.Effects
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughDebugResponse struct {
-	Value        StrikethroughDebugResponse
-	ExplicitNull bool
+	value *StrikethroughDebugResponse
+	isSet bool
+}
+
+func (v NullableStrikethroughDebugResponse) Get() *StrikethroughDebugResponse {
+	return v.value
+}
+
+func (v *NullableStrikethroughDebugResponse) Set(val *StrikethroughDebugResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughDebugResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughDebugResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableStrikethroughDebugResponse(val *StrikethroughDebugResponse) *NullableStrikethroughDebugResponse {
+	return &NullableStrikethroughDebugResponse{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughDebugResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughDebugResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type GenerateRuleTitle struct {
 	Currency string `json:"currency"`
 }
 
+// NewGenerateRuleTitle instantiates a new GenerateRuleTitle object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGenerateRuleTitle(rule GenerateRuleTitleRule, currency string) *GenerateRuleTitle {
+	this := GenerateRuleTitle{}
+	this.Rule = rule
+	this.Currency = currency
+	return &this
+}
+
+// NewGenerateRuleTitleWithDefaults instantiates a new GenerateRuleTitle object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGenerateRuleTitleWithDefaults() *GenerateRuleTitle {
+	this := GenerateRuleTitle{}
+	return &this
+}
+
 // GetRule returns the Rule field value
 func (o *GenerateRuleTitle) GetRule() GenerateRuleTitleRule {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *GenerateRuleTitle) GetRule() GenerateRuleTitleRule {
 	}
 
 	return o.Rule
+}
+
+// GetRuleOk returns a tuple with the Rule field value
+// and a boolean to check if the value has been set.
+func (o *GenerateRuleTitle) GetRuleOk() (*GenerateRuleTitleRule, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Rule, true
 }
 
 // SetRule sets field value
@@ -46,30 +73,63 @@ func (o *GenerateRuleTitle) GetCurrency() string {
 	return o.Currency
 }
 
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *GenerateRuleTitle) GetCurrencyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
 // SetCurrency sets field value
 func (o *GenerateRuleTitle) SetCurrency(v string) {
 	o.Currency = v
 }
 
+func (o GenerateRuleTitle) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["rule"] = o.Rule
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGenerateRuleTitle struct {
-	Value        GenerateRuleTitle
-	ExplicitNull bool
+	value *GenerateRuleTitle
+	isSet bool
+}
+
+func (v NullableGenerateRuleTitle) Get() *GenerateRuleTitle {
+	return v.value
+}
+
+func (v *NullableGenerateRuleTitle) Set(val *GenerateRuleTitle) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGenerateRuleTitle) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGenerateRuleTitle) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGenerateRuleTitle(val *GenerateRuleTitle) *NullableGenerateRuleTitle {
+	return &NullableGenerateRuleTitle{value: val, isSet: true}
 }
 
 func (v NullableGenerateRuleTitle) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGenerateRuleTitle) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // LoyaltyCard struct for LoyaltyCard
 type LoyaltyCard struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the loyalty program that owns this entity.
-	ProgramID int32 `json:"programID"`
+	ProgramID int64 `json:"programID"`
 	// The integration name of the loyalty program that owns this entity.
 	ProgramName *string `json:"programName,omitempty"`
 	// The Campaign Manager-displayed name of the loyalty program that owns this entity.
@@ -34,7 +33,7 @@ type LoyaltyCard struct {
 	// The alphanumeric identifier of the loyalty card.
 	Identifier string `json:"identifier"`
 	// The max amount of customer profiles that can be linked to the card. 0 means unlimited.
-	UsersPerCardLimit int32 `json:"usersPerCardLimit"`
+	UsersPerCardLimit int64 `json:"usersPerCardLimit"`
 	// Integration IDs of the customers profiles linked to the card.
 	Profiles *[]LoyaltyCardProfileRegistration `json:"profiles,omitempty"`
 	Ledger   *LedgerInfo                       `json:"ledger,omitempty"`
@@ -50,18 +49,50 @@ type LoyaltyCard struct {
 	BatchId *string `json:"batchId,omitempty"`
 }
 
+// NewLoyaltyCard instantiates a new LoyaltyCard object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyCard(id int64, created time.Time, programID int64, status string, identifier string, usersPerCardLimit int64) *LoyaltyCard {
+	this := LoyaltyCard{}
+	this.Id = id
+	this.Created = created
+	this.ProgramID = programID
+	this.Status = status
+	this.Identifier = identifier
+	this.UsersPerCardLimit = usersPerCardLimit
+	return &this
+}
+
+// NewLoyaltyCardWithDefaults instantiates a new LoyaltyCard object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyCardWithDefaults() *LoyaltyCard {
+	this := LoyaltyCard{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *LoyaltyCard) GetId() int32 {
+func (o *LoyaltyCard) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LoyaltyCard) SetId(v int32) {
+func (o *LoyaltyCard) SetId(v int64) {
 	o.Id = v
 }
 
@@ -75,23 +106,41 @@ func (o *LoyaltyCard) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *LoyaltyCard) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetProgramID returns the ProgramID field value
-func (o *LoyaltyCard) GetProgramID() int32 {
+func (o *LoyaltyCard) GetProgramID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramID
 }
 
+// GetProgramIDOk returns a tuple with the ProgramID field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetProgramIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramID, true
+}
+
 // SetProgramID sets field value
-func (o *LoyaltyCard) SetProgramID(v int32) {
+func (o *LoyaltyCard) SetProgramID(v int64) {
 	o.ProgramID = v
 }
 
@@ -104,14 +153,13 @@ func (o *LoyaltyCard) GetProgramName() string {
 	return *o.ProgramName
 }
 
-// GetProgramNameOk returns a tuple with the ProgramName field value if set, zero value otherwise
+// GetProgramNameOk returns a tuple with the ProgramName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetProgramNameOk() (string, bool) {
+func (o *LoyaltyCard) GetProgramNameOk() (*string, bool) {
 	if o == nil || o.ProgramName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramName, true
+	return o.ProgramName, true
 }
 
 // HasProgramName returns a boolean if a field has been set.
@@ -137,14 +185,13 @@ func (o *LoyaltyCard) GetProgramTitle() string {
 	return *o.ProgramTitle
 }
 
-// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, zero value otherwise
+// GetProgramTitleOk returns a tuple with the ProgramTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetProgramTitleOk() (string, bool) {
+func (o *LoyaltyCard) GetProgramTitleOk() (*string, bool) {
 	if o == nil || o.ProgramTitle == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramTitle, true
+	return o.ProgramTitle, true
 }
 
 // HasProgramTitle returns a boolean if a field has been set.
@@ -171,6 +218,15 @@ func (o *LoyaltyCard) GetStatus() string {
 	return o.Status
 }
 
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
 // SetStatus sets field value
 func (o *LoyaltyCard) SetStatus(v string) {
 	o.Status = v
@@ -185,14 +241,13 @@ func (o *LoyaltyCard) GetBlockReason() string {
 	return *o.BlockReason
 }
 
-// GetBlockReasonOk returns a tuple with the BlockReason field value if set, zero value otherwise
+// GetBlockReasonOk returns a tuple with the BlockReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetBlockReasonOk() (string, bool) {
+func (o *LoyaltyCard) GetBlockReasonOk() (*string, bool) {
 	if o == nil || o.BlockReason == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BlockReason, true
+	return o.BlockReason, true
 }
 
 // HasBlockReason returns a boolean if a field has been set.
@@ -219,23 +274,41 @@ func (o *LoyaltyCard) GetIdentifier() string {
 	return o.Identifier
 }
 
+// GetIdentifierOk returns a tuple with the Identifier field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Identifier, true
+}
+
 // SetIdentifier sets field value
 func (o *LoyaltyCard) SetIdentifier(v string) {
 	o.Identifier = v
 }
 
 // GetUsersPerCardLimit returns the UsersPerCardLimit field value
-func (o *LoyaltyCard) GetUsersPerCardLimit() int32 {
+func (o *LoyaltyCard) GetUsersPerCardLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsersPerCardLimit
 }
 
+// GetUsersPerCardLimitOk returns a tuple with the UsersPerCardLimit field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCard) GetUsersPerCardLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsersPerCardLimit, true
+}
+
 // SetUsersPerCardLimit sets field value
-func (o *LoyaltyCard) SetUsersPerCardLimit(v int32) {
+func (o *LoyaltyCard) SetUsersPerCardLimit(v int64) {
 	o.UsersPerCardLimit = v
 }
 
@@ -248,14 +321,13 @@ func (o *LoyaltyCard) GetProfiles() []LoyaltyCardProfileRegistration {
 	return *o.Profiles
 }
 
-// GetProfilesOk returns a tuple with the Profiles field value if set, zero value otherwise
+// GetProfilesOk returns a tuple with the Profiles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetProfilesOk() ([]LoyaltyCardProfileRegistration, bool) {
+func (o *LoyaltyCard) GetProfilesOk() (*[]LoyaltyCardProfileRegistration, bool) {
 	if o == nil || o.Profiles == nil {
-		var ret []LoyaltyCardProfileRegistration
-		return ret, false
+		return nil, false
 	}
-	return *o.Profiles, true
+	return o.Profiles, true
 }
 
 // HasProfiles returns a boolean if a field has been set.
@@ -281,14 +353,13 @@ func (o *LoyaltyCard) GetLedger() LedgerInfo {
 	return *o.Ledger
 }
 
-// GetLedgerOk returns a tuple with the Ledger field value if set, zero value otherwise
+// GetLedgerOk returns a tuple with the Ledger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetLedgerOk() (LedgerInfo, bool) {
+func (o *LoyaltyCard) GetLedgerOk() (*LedgerInfo, bool) {
 	if o == nil || o.Ledger == nil {
-		var ret LedgerInfo
-		return ret, false
+		return nil, false
 	}
-	return *o.Ledger, true
+	return o.Ledger, true
 }
 
 // HasLedger returns a boolean if a field has been set.
@@ -314,14 +385,13 @@ func (o *LoyaltyCard) GetSubledgers() map[string]LedgerInfo {
 	return *o.Subledgers
 }
 
-// GetSubledgersOk returns a tuple with the Subledgers field value if set, zero value otherwise
+// GetSubledgersOk returns a tuple with the Subledgers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetSubledgersOk() (map[string]LedgerInfo, bool) {
+func (o *LoyaltyCard) GetSubledgersOk() (*map[string]LedgerInfo, bool) {
 	if o == nil || o.Subledgers == nil {
-		var ret map[string]LedgerInfo
-		return ret, false
+		return nil, false
 	}
-	return *o.Subledgers, true
+	return o.Subledgers, true
 }
 
 // HasSubledgers returns a boolean if a field has been set.
@@ -347,14 +417,13 @@ func (o *LoyaltyCard) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetModifiedOk() (time.Time, bool) {
+func (o *LoyaltyCard) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
@@ -380,14 +449,13 @@ func (o *LoyaltyCard) GetOldCardIdentifier() string {
 	return *o.OldCardIdentifier
 }
 
-// GetOldCardIdentifierOk returns a tuple with the OldCardIdentifier field value if set, zero value otherwise
+// GetOldCardIdentifierOk returns a tuple with the OldCardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetOldCardIdentifierOk() (string, bool) {
+func (o *LoyaltyCard) GetOldCardIdentifierOk() (*string, bool) {
 	if o == nil || o.OldCardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.OldCardIdentifier, true
+	return o.OldCardIdentifier, true
 }
 
 // HasOldCardIdentifier returns a boolean if a field has been set.
@@ -413,14 +481,13 @@ func (o *LoyaltyCard) GetNewCardIdentifier() string {
 	return *o.NewCardIdentifier
 }
 
-// GetNewCardIdentifierOk returns a tuple with the NewCardIdentifier field value if set, zero value otherwise
+// GetNewCardIdentifierOk returns a tuple with the NewCardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetNewCardIdentifierOk() (string, bool) {
+func (o *LoyaltyCard) GetNewCardIdentifierOk() (*string, bool) {
 	if o == nil || o.NewCardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NewCardIdentifier, true
+	return o.NewCardIdentifier, true
 }
 
 // HasNewCardIdentifier returns a boolean if a field has been set.
@@ -446,14 +513,13 @@ func (o *LoyaltyCard) GetBatchId() string {
 	return *o.BatchId
 }
 
-// GetBatchIdOk returns a tuple with the BatchId field value if set, zero value otherwise
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCard) GetBatchIdOk() (string, bool) {
+func (o *LoyaltyCard) GetBatchIdOk() (*string, bool) {
 	if o == nil || o.BatchId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchId, true
+	return o.BatchId, true
 }
 
 // HasBatchId returns a boolean if a field has been set.
@@ -470,25 +536,91 @@ func (o *LoyaltyCard) SetBatchId(v string) {
 	o.BatchId = &v
 }
 
+func (o LoyaltyCard) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["programID"] = o.ProgramID
+	}
+	if o.ProgramName != nil {
+		toSerialize["programName"] = o.ProgramName
+	}
+	if o.ProgramTitle != nil {
+		toSerialize["programTitle"] = o.ProgramTitle
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.BlockReason != nil {
+		toSerialize["blockReason"] = o.BlockReason
+	}
+	if true {
+		toSerialize["identifier"] = o.Identifier
+	}
+	if true {
+		toSerialize["usersPerCardLimit"] = o.UsersPerCardLimit
+	}
+	if o.Profiles != nil {
+		toSerialize["profiles"] = o.Profiles
+	}
+	if o.Ledger != nil {
+		toSerialize["ledger"] = o.Ledger
+	}
+	if o.Subledgers != nil {
+		toSerialize["subledgers"] = o.Subledgers
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	if o.OldCardIdentifier != nil {
+		toSerialize["oldCardIdentifier"] = o.OldCardIdentifier
+	}
+	if o.NewCardIdentifier != nil {
+		toSerialize["newCardIdentifier"] = o.NewCardIdentifier
+	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyCard struct {
-	Value        LoyaltyCard
-	ExplicitNull bool
+	value *LoyaltyCard
+	isSet bool
+}
+
+func (v NullableLoyaltyCard) Get() *LoyaltyCard {
+	return v.value
+}
+
+func (v *NullableLoyaltyCard) Set(val *LoyaltyCard) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyCard) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyCard) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyCard(val *LoyaltyCard) *NullableLoyaltyCard {
+	return &NullableLoyaltyCard{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyCard) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyCard) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

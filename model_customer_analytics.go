@@ -10,100 +10,168 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CustomerAnalytics A summary report of customer activity for a given time range.
 type CustomerAnalytics struct {
 	// Total accepted coupons for this customer.
-	AcceptedCoupons int32 `json:"acceptedCoupons"`
+	AcceptedCoupons int64 `json:"acceptedCoupons"`
 	// Total created coupons for this customer.
-	CreatedCoupons int32 `json:"createdCoupons"`
+	CreatedCoupons int64 `json:"createdCoupons"`
 	// Total free items given to this customer.
-	FreeItems int32 `json:"freeItems"`
+	FreeItems int64 `json:"freeItems"`
 	// Total orders made by this customer.
-	TotalOrders int32 `json:"totalOrders"`
+	TotalOrders int64 `json:"totalOrders"`
 	// Total orders made by this customer that had a discount.
-	TotalDiscountedOrders int32 `json:"totalDiscountedOrders"`
+	TotalDiscountedOrders int64 `json:"totalDiscountedOrders"`
 	// Total Revenue across all closed sessions.
 	TotalRevenue float32 `json:"totalRevenue"`
 	// The sum of discounts that were given across all closed sessions.
 	TotalDiscounts float32 `json:"totalDiscounts"`
 }
 
+// NewCustomerAnalytics instantiates a new CustomerAnalytics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCustomerAnalytics(acceptedCoupons int64, createdCoupons int64, freeItems int64, totalOrders int64, totalDiscountedOrders int64, totalRevenue float32, totalDiscounts float32) *CustomerAnalytics {
+	this := CustomerAnalytics{}
+	this.AcceptedCoupons = acceptedCoupons
+	this.CreatedCoupons = createdCoupons
+	this.FreeItems = freeItems
+	this.TotalOrders = totalOrders
+	this.TotalDiscountedOrders = totalDiscountedOrders
+	this.TotalRevenue = totalRevenue
+	this.TotalDiscounts = totalDiscounts
+	return &this
+}
+
+// NewCustomerAnalyticsWithDefaults instantiates a new CustomerAnalytics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerAnalyticsWithDefaults() *CustomerAnalytics {
+	this := CustomerAnalytics{}
+	return &this
+}
+
 // GetAcceptedCoupons returns the AcceptedCoupons field value
-func (o *CustomerAnalytics) GetAcceptedCoupons() int32 {
+func (o *CustomerAnalytics) GetAcceptedCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AcceptedCoupons
 }
 
+// GetAcceptedCouponsOk returns a tuple with the AcceptedCoupons field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetAcceptedCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AcceptedCoupons, true
+}
+
 // SetAcceptedCoupons sets field value
-func (o *CustomerAnalytics) SetAcceptedCoupons(v int32) {
+func (o *CustomerAnalytics) SetAcceptedCoupons(v int64) {
 	o.AcceptedCoupons = v
 }
 
 // GetCreatedCoupons returns the CreatedCoupons field value
-func (o *CustomerAnalytics) GetCreatedCoupons() int32 {
+func (o *CustomerAnalytics) GetCreatedCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedCoupons
 }
 
+// GetCreatedCouponsOk returns a tuple with the CreatedCoupons field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetCreatedCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedCoupons, true
+}
+
 // SetCreatedCoupons sets field value
-func (o *CustomerAnalytics) SetCreatedCoupons(v int32) {
+func (o *CustomerAnalytics) SetCreatedCoupons(v int64) {
 	o.CreatedCoupons = v
 }
 
 // GetFreeItems returns the FreeItems field value
-func (o *CustomerAnalytics) GetFreeItems() int32 {
+func (o *CustomerAnalytics) GetFreeItems() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.FreeItems
 }
 
+// GetFreeItemsOk returns a tuple with the FreeItems field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetFreeItemsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FreeItems, true
+}
+
 // SetFreeItems sets field value
-func (o *CustomerAnalytics) SetFreeItems(v int32) {
+func (o *CustomerAnalytics) SetFreeItems(v int64) {
 	o.FreeItems = v
 }
 
 // GetTotalOrders returns the TotalOrders field value
-func (o *CustomerAnalytics) GetTotalOrders() int32 {
+func (o *CustomerAnalytics) GetTotalOrders() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalOrders
 }
 
+// GetTotalOrdersOk returns a tuple with the TotalOrders field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetTotalOrdersOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalOrders, true
+}
+
 // SetTotalOrders sets field value
-func (o *CustomerAnalytics) SetTotalOrders(v int32) {
+func (o *CustomerAnalytics) SetTotalOrders(v int64) {
 	o.TotalOrders = v
 }
 
 // GetTotalDiscountedOrders returns the TotalDiscountedOrders field value
-func (o *CustomerAnalytics) GetTotalDiscountedOrders() int32 {
+func (o *CustomerAnalytics) GetTotalDiscountedOrders() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalDiscountedOrders
 }
 
+// GetTotalDiscountedOrdersOk returns a tuple with the TotalDiscountedOrders field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetTotalDiscountedOrdersOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalDiscountedOrders, true
+}
+
 // SetTotalDiscountedOrders sets field value
-func (o *CustomerAnalytics) SetTotalDiscountedOrders(v int32) {
+func (o *CustomerAnalytics) SetTotalDiscountedOrders(v int64) {
 	o.TotalDiscountedOrders = v
 }
 
@@ -115,6 +183,15 @@ func (o *CustomerAnalytics) GetTotalRevenue() float32 {
 	}
 
 	return o.TotalRevenue
+}
+
+// GetTotalRevenueOk returns a tuple with the TotalRevenue field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetTotalRevenueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalRevenue, true
 }
 
 // SetTotalRevenue sets field value
@@ -132,30 +209,78 @@ func (o *CustomerAnalytics) GetTotalDiscounts() float32 {
 	return o.TotalDiscounts
 }
 
+// GetTotalDiscountsOk returns a tuple with the TotalDiscounts field value
+// and a boolean to check if the value has been set.
+func (o *CustomerAnalytics) GetTotalDiscountsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalDiscounts, true
+}
+
 // SetTotalDiscounts sets field value
 func (o *CustomerAnalytics) SetTotalDiscounts(v float32) {
 	o.TotalDiscounts = v
 }
 
+func (o CustomerAnalytics) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["acceptedCoupons"] = o.AcceptedCoupons
+	}
+	if true {
+		toSerialize["createdCoupons"] = o.CreatedCoupons
+	}
+	if true {
+		toSerialize["freeItems"] = o.FreeItems
+	}
+	if true {
+		toSerialize["totalOrders"] = o.TotalOrders
+	}
+	if true {
+		toSerialize["totalDiscountedOrders"] = o.TotalDiscountedOrders
+	}
+	if true {
+		toSerialize["totalRevenue"] = o.TotalRevenue
+	}
+	if true {
+		toSerialize["totalDiscounts"] = o.TotalDiscounts
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerAnalytics struct {
-	Value        CustomerAnalytics
-	ExplicitNull bool
+	value *CustomerAnalytics
+	isSet bool
+}
+
+func (v NullableCustomerAnalytics) Get() *CustomerAnalytics {
+	return v.value
+}
+
+func (v *NullableCustomerAnalytics) Set(val *CustomerAnalytics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerAnalytics) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerAnalytics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCustomerAnalytics(val *CustomerAnalytics) *NullableCustomerAnalytics {
+	return &NullableCustomerAnalytics{value: val, isSet: true}
 }
 
 func (v NullableCustomerAnalytics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerAnalytics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

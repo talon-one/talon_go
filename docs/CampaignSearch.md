@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewCampaignSearch
+
+`func NewCampaignSearch(attributes map[string]interface{}, ) *CampaignSearch`
+
+NewCampaignSearch instantiates a new CampaignSearch object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCampaignSearchWithDefaults
+
+`func NewCampaignSearchWithDefaults() *CampaignSearch`
+
+NewCampaignSearchWithDefaults instantiates a new CampaignSearch object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetAttributes
 
 `func (o *CampaignSearch) GetAttributes() map[string]interface{}`
@@ -16,22 +33,17 @@ GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *CampaignSearch) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *CampaignSearch) GetAttributesOk() (*map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAttributes
-
-`func (o *CampaignSearch) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
 `func (o *CampaignSearch) SetAttributes(v map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes sets Attributes field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

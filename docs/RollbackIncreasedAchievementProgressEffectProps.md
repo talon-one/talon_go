@@ -4,39 +4,51 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AchievementId** | Pointer to **int32** | The internal ID of the achievement. | 
+**AchievementId** | Pointer to **int64** | The internal ID of the achievement. | 
 **AchievementName** | Pointer to **string** | The name of the achievement. | 
-**ProgressTrackerId** | Pointer to **int32** | The internal ID of the achievement progress tracker. | 
+**ProgressTrackerId** | Pointer to **int64** | The internal ID of the achievement progress tracker. | 
 **DecreaseProgressBy** | Pointer to **float32** | The value by which the customer&#39;s current progress in the achievement is decreased. | 
 **CurrentProgress** | Pointer to **float32** | The current progress of the customer in the achievement. | 
 **Target** | Pointer to **float32** | The target value to complete the achievement. | 
 
 ## Methods
 
+### NewRollbackIncreasedAchievementProgressEffectProps
+
+`func NewRollbackIncreasedAchievementProgressEffectProps(achievementId int64, achievementName string, progressTrackerId int64, decreaseProgressBy float32, currentProgress float32, target float32, ) *RollbackIncreasedAchievementProgressEffectProps`
+
+NewRollbackIncreasedAchievementProgressEffectProps instantiates a new RollbackIncreasedAchievementProgressEffectProps object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewRollbackIncreasedAchievementProgressEffectPropsWithDefaults
+
+`func NewRollbackIncreasedAchievementProgressEffectPropsWithDefaults() *RollbackIncreasedAchievementProgressEffectProps`
+
+NewRollbackIncreasedAchievementProgressEffectPropsWithDefaults instantiates a new RollbackIncreasedAchievementProgressEffectProps object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetAchievementId
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementId() int32`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementId() int64`
 
 GetAchievementId returns the AchievementId field if non-nil, zero value otherwise.
 
 ### GetAchievementIdOk
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementIdOk() (int32, bool)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementIdOk() (*int64, bool)`
 
 GetAchievementIdOk returns a tuple with the AchievementId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAchievementId
-
-`func (o *RollbackIncreasedAchievementProgressEffectProps) HasAchievementId() bool`
-
-HasAchievementId returns a boolean if a field has been set.
-
 ### SetAchievementId
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) SetAchievementId(v int32)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) SetAchievementId(v int64)`
 
-SetAchievementId gets a reference to the given int32 and assigns it to the AchievementId field.
+SetAchievementId sets AchievementId field to given value.
+
 
 ### GetAchievementName
 
@@ -46,47 +58,37 @@ GetAchievementName returns the AchievementName field if non-nil, zero value othe
 
 ### GetAchievementNameOk
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementNameOk() (string, bool)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetAchievementNameOk() (*string, bool)`
 
 GetAchievementNameOk returns a tuple with the AchievementName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAchievementName
-
-`func (o *RollbackIncreasedAchievementProgressEffectProps) HasAchievementName() bool`
-
-HasAchievementName returns a boolean if a field has been set.
 
 ### SetAchievementName
 
 `func (o *RollbackIncreasedAchievementProgressEffectProps) SetAchievementName(v string)`
 
-SetAchievementName gets a reference to the given string and assigns it to the AchievementName field.
+SetAchievementName sets AchievementName field to given value.
+
 
 ### GetProgressTrackerId
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerId() int32`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerId() int64`
 
 GetProgressTrackerId returns the ProgressTrackerId field if non-nil, zero value otherwise.
 
 ### GetProgressTrackerIdOk
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerIdOk() (int32, bool)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetProgressTrackerIdOk() (*int64, bool)`
 
 GetProgressTrackerIdOk returns a tuple with the ProgressTrackerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasProgressTrackerId
-
-`func (o *RollbackIncreasedAchievementProgressEffectProps) HasProgressTrackerId() bool`
-
-HasProgressTrackerId returns a boolean if a field has been set.
-
 ### SetProgressTrackerId
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) SetProgressTrackerId(v int32)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) SetProgressTrackerId(v int64)`
 
-SetProgressTrackerId gets a reference to the given int32 and assigns it to the ProgressTrackerId field.
+SetProgressTrackerId sets ProgressTrackerId field to given value.
+
 
 ### GetDecreaseProgressBy
 
@@ -96,22 +98,17 @@ GetDecreaseProgressBy returns the DecreaseProgressBy field if non-nil, zero valu
 
 ### GetDecreaseProgressByOk
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetDecreaseProgressByOk() (float32, bool)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetDecreaseProgressByOk() (*float32, bool)`
 
 GetDecreaseProgressByOk returns a tuple with the DecreaseProgressBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDecreaseProgressBy
-
-`func (o *RollbackIncreasedAchievementProgressEffectProps) HasDecreaseProgressBy() bool`
-
-HasDecreaseProgressBy returns a boolean if a field has been set.
 
 ### SetDecreaseProgressBy
 
 `func (o *RollbackIncreasedAchievementProgressEffectProps) SetDecreaseProgressBy(v float32)`
 
-SetDecreaseProgressBy gets a reference to the given float32 and assigns it to the DecreaseProgressBy field.
+SetDecreaseProgressBy sets DecreaseProgressBy field to given value.
+
 
 ### GetCurrentProgress
 
@@ -121,22 +118,17 @@ GetCurrentProgress returns the CurrentProgress field if non-nil, zero value othe
 
 ### GetCurrentProgressOk
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetCurrentProgressOk() (float32, bool)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetCurrentProgressOk() (*float32, bool)`
 
 GetCurrentProgressOk returns a tuple with the CurrentProgress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCurrentProgress
-
-`func (o *RollbackIncreasedAchievementProgressEffectProps) HasCurrentProgress() bool`
-
-HasCurrentProgress returns a boolean if a field has been set.
 
 ### SetCurrentProgress
 
 `func (o *RollbackIncreasedAchievementProgressEffectProps) SetCurrentProgress(v float32)`
 
-SetCurrentProgress gets a reference to the given float32 and assigns it to the CurrentProgress field.
+SetCurrentProgress sets CurrentProgress field to given value.
+
 
 ### GetTarget
 
@@ -146,22 +138,17 @@ GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *RollbackIncreasedAchievementProgressEffectProps) GetTargetOk() (float32, bool)`
+`func (o *RollbackIncreasedAchievementProgressEffectProps) GetTargetOk() (*float32, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTarget
-
-`func (o *RollbackIncreasedAchievementProgressEffectProps) HasTarget() bool`
-
-HasTarget returns a boolean if a field has been set.
 
 ### SetTarget
 
 `func (o *RollbackIncreasedAchievementProgressEffectProps) SetTarget(v float32)`
 
-SetTarget gets a reference to the given float32 and assigns it to the Target field.
+SetTarget sets Target field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

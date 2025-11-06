@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -23,6 +22,25 @@ type MessageLogRequest struct {
 	Request string `json:"request"`
 }
 
+// NewMessageLogRequest instantiates a new MessageLogRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMessageLogRequest(createdAt time.Time, request string) *MessageLogRequest {
+	this := MessageLogRequest{}
+	this.CreatedAt = createdAt
+	this.Request = request
+	return &this
+}
+
+// NewMessageLogRequestWithDefaults instantiates a new MessageLogRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMessageLogRequestWithDefaults() *MessageLogRequest {
+	this := MessageLogRequest{}
+	return &this
+}
+
 // GetCreatedAt returns the CreatedAt field value
 func (o *MessageLogRequest) GetCreatedAt() time.Time {
 	if o == nil {
@@ -31,6 +49,15 @@ func (o *MessageLogRequest) GetCreatedAt() time.Time {
 	}
 
 	return o.CreatedAt
+}
+
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogRequest) GetCreatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedAt, true
 }
 
 // SetCreatedAt sets field value
@@ -48,30 +75,63 @@ func (o *MessageLogRequest) GetRequest() string {
 	return o.Request
 }
 
+// GetRequestOk returns a tuple with the Request field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogRequest) GetRequestOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Request, true
+}
+
 // SetRequest sets field value
 func (o *MessageLogRequest) SetRequest(v string) {
 	o.Request = v
 }
 
+func (o MessageLogRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["createdAt"] = o.CreatedAt
+	}
+	if true {
+		toSerialize["request"] = o.Request
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMessageLogRequest struct {
-	Value        MessageLogRequest
-	ExplicitNull bool
+	value *MessageLogRequest
+	isSet bool
+}
+
+func (v NullableMessageLogRequest) Get() *MessageLogRequest {
+	return v.value
+}
+
+func (v *NullableMessageLogRequest) Set(val *MessageLogRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMessageLogRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMessageLogRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMessageLogRequest(val *MessageLogRequest) *NullableMessageLogRequest {
+	return &NullableMessageLogRequest{value: val, isSet: true}
 }
 
 func (v NullableMessageLogRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMessageLogRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

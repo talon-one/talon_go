@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,6 +24,23 @@ type ScimBaseUser struct {
 	Name     *ScimBaseUserName `json:"name,omitempty"`
 }
 
+// NewScimBaseUser instantiates a new ScimBaseUser object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewScimBaseUser() *ScimBaseUser {
+	this := ScimBaseUser{}
+	return &this
+}
+
+// NewScimBaseUserWithDefaults instantiates a new ScimBaseUser object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimBaseUserWithDefaults() *ScimBaseUser {
+	this := ScimBaseUser{}
+	return &this
+}
+
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *ScimBaseUser) GetActive() bool {
 	if o == nil || o.Active == nil {
@@ -34,14 +50,13 @@ func (o *ScimBaseUser) GetActive() bool {
 	return *o.Active
 }
 
-// GetActiveOk returns a tuple with the Active field value if set, zero value otherwise
+// GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimBaseUser) GetActiveOk() (bool, bool) {
+func (o *ScimBaseUser) GetActiveOk() (*bool, bool) {
 	if o == nil || o.Active == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Active, true
+	return o.Active, true
 }
 
 // HasActive returns a boolean if a field has been set.
@@ -67,14 +82,13 @@ func (o *ScimBaseUser) GetDisplayName() string {
 	return *o.DisplayName
 }
 
-// GetDisplayNameOk returns a tuple with the DisplayName field value if set, zero value otherwise
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimBaseUser) GetDisplayNameOk() (string, bool) {
+func (o *ScimBaseUser) GetDisplayNameOk() (*string, bool) {
 	if o == nil || o.DisplayName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DisplayName, true
+	return o.DisplayName, true
 }
 
 // HasDisplayName returns a boolean if a field has been set.
@@ -100,14 +114,13 @@ func (o *ScimBaseUser) GetUserName() string {
 	return *o.UserName
 }
 
-// GetUserNameOk returns a tuple with the UserName field value if set, zero value otherwise
+// GetUserNameOk returns a tuple with the UserName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimBaseUser) GetUserNameOk() (string, bool) {
+func (o *ScimBaseUser) GetUserNameOk() (*string, bool) {
 	if o == nil || o.UserName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.UserName, true
+	return o.UserName, true
 }
 
 // HasUserName returns a boolean if a field has been set.
@@ -133,14 +146,13 @@ func (o *ScimBaseUser) GetName() ScimBaseUserName {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimBaseUser) GetNameOk() (ScimBaseUserName, bool) {
+func (o *ScimBaseUser) GetNameOk() (*ScimBaseUserName, bool) {
 	if o == nil || o.Name == nil {
-		var ret ScimBaseUserName
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -157,25 +169,55 @@ func (o *ScimBaseUser) SetName(v ScimBaseUserName) {
 	o.Name = &v
 }
 
+func (o ScimBaseUser) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Active != nil {
+		toSerialize["active"] = o.Active
+	}
+	if o.DisplayName != nil {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	if o.UserName != nil {
+		toSerialize["userName"] = o.UserName
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimBaseUser struct {
-	Value        ScimBaseUser
-	ExplicitNull bool
+	value *ScimBaseUser
+	isSet bool
+}
+
+func (v NullableScimBaseUser) Get() *ScimBaseUser {
+	return v.value
+}
+
+func (v *NullableScimBaseUser) Set(val *ScimBaseUser) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimBaseUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimBaseUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableScimBaseUser(val *ScimBaseUser) *NullableScimBaseUser {
+	return &NullableScimBaseUser{value: val, isSet: true}
 }
 
 func (v NullableScimBaseUser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimBaseUser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

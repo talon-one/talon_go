@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,23 @@ type AttributesMandatory struct {
 	Coupons *[]string `json:"coupons,omitempty"`
 }
 
+// NewAttributesMandatory instantiates a new AttributesMandatory object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAttributesMandatory() *AttributesMandatory {
+	this := AttributesMandatory{}
+	return &this
+}
+
+// NewAttributesMandatoryWithDefaults instantiates a new AttributesMandatory object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAttributesMandatoryWithDefaults() *AttributesMandatory {
+	this := AttributesMandatory{}
+	return &this
+}
+
 // GetCampaigns returns the Campaigns field value if set, zero value otherwise.
 func (o *AttributesMandatory) GetCampaigns() []string {
 	if o == nil || o.Campaigns == nil {
@@ -31,14 +47,13 @@ func (o *AttributesMandatory) GetCampaigns() []string {
 	return *o.Campaigns
 }
 
-// GetCampaignsOk returns a tuple with the Campaigns field value if set, zero value otherwise
+// GetCampaignsOk returns a tuple with the Campaigns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AttributesMandatory) GetCampaignsOk() ([]string, bool) {
+func (o *AttributesMandatory) GetCampaignsOk() (*[]string, bool) {
 	if o == nil || o.Campaigns == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Campaigns, true
+	return o.Campaigns, true
 }
 
 // HasCampaigns returns a boolean if a field has been set.
@@ -64,14 +79,13 @@ func (o *AttributesMandatory) GetCoupons() []string {
 	return *o.Coupons
 }
 
-// GetCouponsOk returns a tuple with the Coupons field value if set, zero value otherwise
+// GetCouponsOk returns a tuple with the Coupons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AttributesMandatory) GetCouponsOk() ([]string, bool) {
+func (o *AttributesMandatory) GetCouponsOk() (*[]string, bool) {
 	if o == nil || o.Coupons == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Coupons, true
+	return o.Coupons, true
 }
 
 // HasCoupons returns a boolean if a field has been set.
@@ -88,25 +102,49 @@ func (o *AttributesMandatory) SetCoupons(v []string) {
 	o.Coupons = &v
 }
 
+func (o AttributesMandatory) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Campaigns != nil {
+		toSerialize["campaigns"] = o.Campaigns
+	}
+	if o.Coupons != nil {
+		toSerialize["coupons"] = o.Coupons
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAttributesMandatory struct {
-	Value        AttributesMandatory
-	ExplicitNull bool
+	value *AttributesMandatory
+	isSet bool
+}
+
+func (v NullableAttributesMandatory) Get() *AttributesMandatory {
+	return v.value
+}
+
+func (v *NullableAttributesMandatory) Set(val *AttributesMandatory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAttributesMandatory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAttributesMandatory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAttributesMandatory(val *AttributesMandatory) *NullableAttributesMandatory {
+	return &NullableAttributesMandatory{value: val, isSet: true}
 }
 
 func (v NullableAttributesMandatory) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAttributesMandatory) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

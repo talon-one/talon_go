@@ -10,39 +10,54 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// ApplicationCifReferences struct for ApplicationCifReferences
-type ApplicationCifReferences struct {
+// ApplicationCIFReferences struct for ApplicationCIFReferences
+type ApplicationCIFReferences struct {
 	// The ID of the Application Cart Item Filter that is referenced by a campaign.
-	ApplicationCartItemFilterId *int32 `json:"applicationCartItemFilterId,omitempty"`
+	ApplicationCartItemFilterId *int64 `json:"applicationCartItemFilterId,omitempty"`
 	// Campaigns that reference a speciifc Application Cart Item Filter.
 	Campaigns *[]CampaignDetail `json:"campaigns,omitempty"`
 }
 
+// NewApplicationCIFReferences instantiates a new ApplicationCIFReferences object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationCIFReferences() *ApplicationCIFReferences {
+	this := ApplicationCIFReferences{}
+	return &this
+}
+
+// NewApplicationCIFReferencesWithDefaults instantiates a new ApplicationCIFReferences object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationCIFReferencesWithDefaults() *ApplicationCIFReferences {
+	this := ApplicationCIFReferences{}
+	return &this
+}
+
 // GetApplicationCartItemFilterId returns the ApplicationCartItemFilterId field value if set, zero value otherwise.
-func (o *ApplicationCifReferences) GetApplicationCartItemFilterId() int32 {
+func (o *ApplicationCIFReferences) GetApplicationCartItemFilterId() int64 {
 	if o == nil || o.ApplicationCartItemFilterId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationCartItemFilterId
 }
 
-// GetApplicationCartItemFilterIdOk returns a tuple with the ApplicationCartItemFilterId field value if set, zero value otherwise
+// GetApplicationCartItemFilterIdOk returns a tuple with the ApplicationCartItemFilterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCifReferences) GetApplicationCartItemFilterIdOk() (int32, bool) {
+func (o *ApplicationCIFReferences) GetApplicationCartItemFilterIdOk() (*int64, bool) {
 	if o == nil || o.ApplicationCartItemFilterId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationCartItemFilterId, true
+	return o.ApplicationCartItemFilterId, true
 }
 
 // HasApplicationCartItemFilterId returns a boolean if a field has been set.
-func (o *ApplicationCifReferences) HasApplicationCartItemFilterId() bool {
+func (o *ApplicationCIFReferences) HasApplicationCartItemFilterId() bool {
 	if o != nil && o.ApplicationCartItemFilterId != nil {
 		return true
 	}
@@ -50,13 +65,13 @@ func (o *ApplicationCifReferences) HasApplicationCartItemFilterId() bool {
 	return false
 }
 
-// SetApplicationCartItemFilterId gets a reference to the given int32 and assigns it to the ApplicationCartItemFilterId field.
-func (o *ApplicationCifReferences) SetApplicationCartItemFilterId(v int32) {
+// SetApplicationCartItemFilterId gets a reference to the given int64 and assigns it to the ApplicationCartItemFilterId field.
+func (o *ApplicationCIFReferences) SetApplicationCartItemFilterId(v int64) {
 	o.ApplicationCartItemFilterId = &v
 }
 
 // GetCampaigns returns the Campaigns field value if set, zero value otherwise.
-func (o *ApplicationCifReferences) GetCampaigns() []CampaignDetail {
+func (o *ApplicationCIFReferences) GetCampaigns() []CampaignDetail {
 	if o == nil || o.Campaigns == nil {
 		var ret []CampaignDetail
 		return ret
@@ -64,18 +79,17 @@ func (o *ApplicationCifReferences) GetCampaigns() []CampaignDetail {
 	return *o.Campaigns
 }
 
-// GetCampaignsOk returns a tuple with the Campaigns field value if set, zero value otherwise
+// GetCampaignsOk returns a tuple with the Campaigns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCifReferences) GetCampaignsOk() ([]CampaignDetail, bool) {
+func (o *ApplicationCIFReferences) GetCampaignsOk() (*[]CampaignDetail, bool) {
 	if o == nil || o.Campaigns == nil {
-		var ret []CampaignDetail
-		return ret, false
+		return nil, false
 	}
-	return *o.Campaigns, true
+	return o.Campaigns, true
 }
 
 // HasCampaigns returns a boolean if a field has been set.
-func (o *ApplicationCifReferences) HasCampaigns() bool {
+func (o *ApplicationCIFReferences) HasCampaigns() bool {
 	if o != nil && o.Campaigns != nil {
 		return true
 	}
@@ -84,29 +98,53 @@ func (o *ApplicationCifReferences) HasCampaigns() bool {
 }
 
 // SetCampaigns gets a reference to the given []CampaignDetail and assigns it to the Campaigns field.
-func (o *ApplicationCifReferences) SetCampaigns(v []CampaignDetail) {
+func (o *ApplicationCIFReferences) SetCampaigns(v []CampaignDetail) {
 	o.Campaigns = &v
 }
 
-type NullableApplicationCifReferences struct {
-	Value        ApplicationCifReferences
-	ExplicitNull bool
+func (o ApplicationCIFReferences) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ApplicationCartItemFilterId != nil {
+		toSerialize["applicationCartItemFilterId"] = o.ApplicationCartItemFilterId
+	}
+	if o.Campaigns != nil {
+		toSerialize["campaigns"] = o.Campaigns
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableApplicationCifReferences) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableApplicationCIFReferences struct {
+	value *ApplicationCIFReferences
+	isSet bool
 }
 
-func (v *NullableApplicationCifReferences) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableApplicationCIFReferences) Get() *ApplicationCIFReferences {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableApplicationCIFReferences) Set(val *ApplicationCIFReferences) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationCIFReferences) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationCIFReferences) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationCIFReferences(val *ApplicationCIFReferences) *NullableApplicationCIFReferences {
+	return &NullableApplicationCIFReferences{value: val, isSet: true}
+}
+
+func (v NullableApplicationCIFReferences) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableApplicationCIFReferences) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

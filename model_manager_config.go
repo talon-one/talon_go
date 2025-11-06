@@ -10,49 +10,96 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ManagerConfig struct for ManagerConfig
 type ManagerConfig struct {
-	SchemaVersion int32 `json:"schemaVersion"`
+	SchemaVersion int64 `json:"schemaVersion"`
+}
+
+// NewManagerConfig instantiates a new ManagerConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewManagerConfig(schemaVersion int64) *ManagerConfig {
+	this := ManagerConfig{}
+	this.SchemaVersion = schemaVersion
+	return &this
+}
+
+// NewManagerConfigWithDefaults instantiates a new ManagerConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewManagerConfigWithDefaults() *ManagerConfig {
+	this := ManagerConfig{}
+	return &this
 }
 
 // GetSchemaVersion returns the SchemaVersion field value
-func (o *ManagerConfig) GetSchemaVersion() int32 {
+func (o *ManagerConfig) GetSchemaVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.SchemaVersion
 }
 
+// GetSchemaVersionOk returns a tuple with the SchemaVersion field value
+// and a boolean to check if the value has been set.
+func (o *ManagerConfig) GetSchemaVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SchemaVersion, true
+}
+
 // SetSchemaVersion sets field value
-func (o *ManagerConfig) SetSchemaVersion(v int32) {
+func (o *ManagerConfig) SetSchemaVersion(v int64) {
 	o.SchemaVersion = v
 }
 
+func (o ManagerConfig) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["schemaVersion"] = o.SchemaVersion
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableManagerConfig struct {
-	Value        ManagerConfig
-	ExplicitNull bool
+	value *ManagerConfig
+	isSet bool
+}
+
+func (v NullableManagerConfig) Get() *ManagerConfig {
+	return v.value
+}
+
+func (v *NullableManagerConfig) Set(val *ManagerConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableManagerConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableManagerConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableManagerConfig(val *ManagerConfig) *NullableManagerConfig {
+	return &NullableManagerConfig{value: val, isSet: true}
 }
 
 func (v NullableManagerConfig) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableManagerConfig) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

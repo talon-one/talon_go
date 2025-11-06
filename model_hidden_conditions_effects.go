@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,9 +20,26 @@ type HiddenConditionsEffects struct {
 	// List of hidden conditions.
 	Conditions *[]string `json:"conditions,omitempty"`
 	// List of the IDs of hidden custom effects.
-	CustomEffects *[]int32 `json:"customEffects,omitempty"`
+	CustomEffects *[]int64 `json:"customEffects,omitempty"`
 	// List of the IDs of hidden webhooks.
-	Webhooks *[]int32 `json:"webhooks,omitempty"`
+	Webhooks *[]int64 `json:"webhooks,omitempty"`
+}
+
+// NewHiddenConditionsEffects instantiates a new HiddenConditionsEffects object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewHiddenConditionsEffects() *HiddenConditionsEffects {
+	this := HiddenConditionsEffects{}
+	return &this
+}
+
+// NewHiddenConditionsEffectsWithDefaults instantiates a new HiddenConditionsEffects object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewHiddenConditionsEffectsWithDefaults() *HiddenConditionsEffects {
+	this := HiddenConditionsEffects{}
+	return &this
 }
 
 // GetBuiltInEffects returns the BuiltInEffects field value if set, zero value otherwise.
@@ -35,14 +51,13 @@ func (o *HiddenConditionsEffects) GetBuiltInEffects() []string {
 	return *o.BuiltInEffects
 }
 
-// GetBuiltInEffectsOk returns a tuple with the BuiltInEffects field value if set, zero value otherwise
+// GetBuiltInEffectsOk returns a tuple with the BuiltInEffects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HiddenConditionsEffects) GetBuiltInEffectsOk() ([]string, bool) {
+func (o *HiddenConditionsEffects) GetBuiltInEffectsOk() (*[]string, bool) {
 	if o == nil || o.BuiltInEffects == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.BuiltInEffects, true
+	return o.BuiltInEffects, true
 }
 
 // HasBuiltInEffects returns a boolean if a field has been set.
@@ -68,14 +83,13 @@ func (o *HiddenConditionsEffects) GetConditions() []string {
 	return *o.Conditions
 }
 
-// GetConditionsOk returns a tuple with the Conditions field value if set, zero value otherwise
+// GetConditionsOk returns a tuple with the Conditions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HiddenConditionsEffects) GetConditionsOk() ([]string, bool) {
+func (o *HiddenConditionsEffects) GetConditionsOk() (*[]string, bool) {
 	if o == nil || o.Conditions == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Conditions, true
+	return o.Conditions, true
 }
 
 // HasConditions returns a boolean if a field has been set.
@@ -93,22 +107,21 @@ func (o *HiddenConditionsEffects) SetConditions(v []string) {
 }
 
 // GetCustomEffects returns the CustomEffects field value if set, zero value otherwise.
-func (o *HiddenConditionsEffects) GetCustomEffects() []int32 {
+func (o *HiddenConditionsEffects) GetCustomEffects() []int64 {
 	if o == nil || o.CustomEffects == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CustomEffects
 }
 
-// GetCustomEffectsOk returns a tuple with the CustomEffects field value if set, zero value otherwise
+// GetCustomEffectsOk returns a tuple with the CustomEffects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HiddenConditionsEffects) GetCustomEffectsOk() ([]int32, bool) {
+func (o *HiddenConditionsEffects) GetCustomEffectsOk() (*[]int64, bool) {
 	if o == nil || o.CustomEffects == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomEffects, true
+	return o.CustomEffects, true
 }
 
 // HasCustomEffects returns a boolean if a field has been set.
@@ -120,28 +133,27 @@ func (o *HiddenConditionsEffects) HasCustomEffects() bool {
 	return false
 }
 
-// SetCustomEffects gets a reference to the given []int32 and assigns it to the CustomEffects field.
-func (o *HiddenConditionsEffects) SetCustomEffects(v []int32) {
+// SetCustomEffects gets a reference to the given []int64 and assigns it to the CustomEffects field.
+func (o *HiddenConditionsEffects) SetCustomEffects(v []int64) {
 	o.CustomEffects = &v
 }
 
 // GetWebhooks returns the Webhooks field value if set, zero value otherwise.
-func (o *HiddenConditionsEffects) GetWebhooks() []int32 {
+func (o *HiddenConditionsEffects) GetWebhooks() []int64 {
 	if o == nil || o.Webhooks == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Webhooks
 }
 
-// GetWebhooksOk returns a tuple with the Webhooks field value if set, zero value otherwise
+// GetWebhooksOk returns a tuple with the Webhooks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HiddenConditionsEffects) GetWebhooksOk() ([]int32, bool) {
+func (o *HiddenConditionsEffects) GetWebhooksOk() (*[]int64, bool) {
 	if o == nil || o.Webhooks == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Webhooks, true
+	return o.Webhooks, true
 }
 
 // HasWebhooks returns a boolean if a field has been set.
@@ -153,30 +165,60 @@ func (o *HiddenConditionsEffects) HasWebhooks() bool {
 	return false
 }
 
-// SetWebhooks gets a reference to the given []int32 and assigns it to the Webhooks field.
-func (o *HiddenConditionsEffects) SetWebhooks(v []int32) {
+// SetWebhooks gets a reference to the given []int64 and assigns it to the Webhooks field.
+func (o *HiddenConditionsEffects) SetWebhooks(v []int64) {
 	o.Webhooks = &v
 }
 
+func (o HiddenConditionsEffects) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.BuiltInEffects != nil {
+		toSerialize["builtInEffects"] = o.BuiltInEffects
+	}
+	if o.Conditions != nil {
+		toSerialize["conditions"] = o.Conditions
+	}
+	if o.CustomEffects != nil {
+		toSerialize["customEffects"] = o.CustomEffects
+	}
+	if o.Webhooks != nil {
+		toSerialize["webhooks"] = o.Webhooks
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableHiddenConditionsEffects struct {
-	Value        HiddenConditionsEffects
-	ExplicitNull bool
+	value *HiddenConditionsEffects
+	isSet bool
+}
+
+func (v NullableHiddenConditionsEffects) Get() *HiddenConditionsEffects {
+	return v.value
+}
+
+func (v *NullableHiddenConditionsEffects) Set(val *HiddenConditionsEffects) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableHiddenConditionsEffects) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableHiddenConditionsEffects) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableHiddenConditionsEffects(val *HiddenConditionsEffects) *NullableHiddenConditionsEffects {
+	return &NullableHiddenConditionsEffects{value: val, isSet: true}
 }
 
 func (v NullableHiddenConditionsEffects) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableHiddenConditionsEffects) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

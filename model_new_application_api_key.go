@@ -10,13 +10,12 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// NewApplicationApiKey struct for NewApplicationApiKey
-type NewApplicationApiKey struct {
+// NewApplicationAPIKey struct for NewApplicationAPIKey
+type NewApplicationAPIKey struct {
 	// Title of the API key.
 	Title string `json:"title"`
 	// The date the API key expires.
@@ -26,23 +25,48 @@ type NewApplicationApiKey struct {
 	// The API key type. Can be empty or `staging`.  Staging API keys can only be used for dry requests with the [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint, [Update customer profile](https://docs.talon.one/integration-api#tag/Customer-profiles/operation/updateCustomerProfileV2) endpoint, and [Track event](https://docs.talon.one/integration-api#tag/Events/operation/trackEventV2) endpoint.  When using the _Update customer profile_ endpoint with a staging API key, the query parameter `runRuleEngine` must be `true`.
 	Type *string `json:"type,omitempty"`
 	// A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date.
-	TimeOffset *int32 `json:"timeOffset,omitempty"`
+	TimeOffset *int64 `json:"timeOffset,omitempty"`
 	// ID of the API Key.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// ID of user who created.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
 	// ID of account the key is used for.
-	AccountID int32 `json:"accountID"`
+	AccountID int64 `json:"accountID"`
 	// ID of application the key is used for.
-	ApplicationID int32 `json:"applicationID"`
+	ApplicationID int64 `json:"applicationID"`
 	// The date the API key was created.
 	Created time.Time `json:"created"`
 	// The API key.
 	Key string `json:"key"`
 }
 
+// NewNewApplicationAPIKey instantiates a new NewApplicationAPIKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewApplicationAPIKey(title string, expires time.Time, id int64, createdBy int64, accountID int64, applicationID int64, created time.Time, key string) *NewApplicationAPIKey {
+	this := NewApplicationAPIKey{}
+	this.Title = title
+	this.Expires = expires
+	this.Id = id
+	this.CreatedBy = createdBy
+	this.AccountID = accountID
+	this.ApplicationID = applicationID
+	this.Created = created
+	this.Key = key
+	return &this
+}
+
+// NewNewApplicationAPIKeyWithDefaults instantiates a new NewApplicationAPIKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewApplicationAPIKeyWithDefaults() *NewApplicationAPIKey {
+	this := NewApplicationAPIKey{}
+	return &this
+}
+
 // GetTitle returns the Title field value
-func (o *NewApplicationApiKey) GetTitle() string {
+func (o *NewApplicationAPIKey) GetTitle() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -51,13 +75,22 @@ func (o *NewApplicationApiKey) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
-func (o *NewApplicationApiKey) SetTitle(v string) {
+func (o *NewApplicationAPIKey) SetTitle(v string) {
 	o.Title = v
 }
 
 // GetExpires returns the Expires field value
-func (o *NewApplicationApiKey) GetExpires() time.Time {
+func (o *NewApplicationAPIKey) GetExpires() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -66,13 +99,22 @@ func (o *NewApplicationApiKey) GetExpires() time.Time {
 	return o.Expires
 }
 
+// GetExpiresOk returns a tuple with the Expires field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetExpiresOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Expires, true
+}
+
 // SetExpires sets field value
-func (o *NewApplicationApiKey) SetExpires(v time.Time) {
+func (o *NewApplicationAPIKey) SetExpires(v time.Time) {
 	o.Expires = v
 }
 
 // GetPlatform returns the Platform field value if set, zero value otherwise.
-func (o *NewApplicationApiKey) GetPlatform() string {
+func (o *NewApplicationAPIKey) GetPlatform() string {
 	if o == nil || o.Platform == nil {
 		var ret string
 		return ret
@@ -80,18 +122,17 @@ func (o *NewApplicationApiKey) GetPlatform() string {
 	return *o.Platform
 }
 
-// GetPlatformOk returns a tuple with the Platform field value if set, zero value otherwise
+// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationApiKey) GetPlatformOk() (string, bool) {
+func (o *NewApplicationAPIKey) GetPlatformOk() (*string, bool) {
 	if o == nil || o.Platform == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Platform, true
+	return o.Platform, true
 }
 
 // HasPlatform returns a boolean if a field has been set.
-func (o *NewApplicationApiKey) HasPlatform() bool {
+func (o *NewApplicationAPIKey) HasPlatform() bool {
 	if o != nil && o.Platform != nil {
 		return true
 	}
@@ -100,12 +141,12 @@ func (o *NewApplicationApiKey) HasPlatform() bool {
 }
 
 // SetPlatform gets a reference to the given string and assigns it to the Platform field.
-func (o *NewApplicationApiKey) SetPlatform(v string) {
+func (o *NewApplicationAPIKey) SetPlatform(v string) {
 	o.Platform = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *NewApplicationApiKey) GetType() string {
+func (o *NewApplicationAPIKey) GetType() string {
 	if o == nil || o.Type == nil {
 		var ret string
 		return ret
@@ -113,18 +154,17 @@ func (o *NewApplicationApiKey) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationApiKey) GetTypeOk() (string, bool) {
+func (o *NewApplicationAPIKey) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *NewApplicationApiKey) HasType() bool {
+func (o *NewApplicationAPIKey) HasType() bool {
 	if o != nil && o.Type != nil {
 		return true
 	}
@@ -133,31 +173,30 @@ func (o *NewApplicationApiKey) HasType() bool {
 }
 
 // SetType gets a reference to the given string and assigns it to the Type field.
-func (o *NewApplicationApiKey) SetType(v string) {
+func (o *NewApplicationAPIKey) SetType(v string) {
 	o.Type = &v
 }
 
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise.
-func (o *NewApplicationApiKey) GetTimeOffset() int32 {
+func (o *NewApplicationAPIKey) GetTimeOffset() int64 {
 	if o == nil || o.TimeOffset == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TimeOffset
 }
 
-// GetTimeOffsetOk returns a tuple with the TimeOffset field value if set, zero value otherwise
+// GetTimeOffsetOk returns a tuple with the TimeOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationApiKey) GetTimeOffsetOk() (int32, bool) {
+func (o *NewApplicationAPIKey) GetTimeOffsetOk() (*int64, bool) {
 	if o == nil || o.TimeOffset == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.TimeOffset, true
+	return o.TimeOffset, true
 }
 
 // HasTimeOffset returns a boolean if a field has been set.
-func (o *NewApplicationApiKey) HasTimeOffset() bool {
+func (o *NewApplicationAPIKey) HasTimeOffset() bool {
 	if o != nil && o.TimeOffset != nil {
 		return true
 	}
@@ -165,73 +204,109 @@ func (o *NewApplicationApiKey) HasTimeOffset() bool {
 	return false
 }
 
-// SetTimeOffset gets a reference to the given int32 and assigns it to the TimeOffset field.
-func (o *NewApplicationApiKey) SetTimeOffset(v int32) {
+// SetTimeOffset gets a reference to the given int64 and assigns it to the TimeOffset field.
+func (o *NewApplicationAPIKey) SetTimeOffset(v int64) {
 	o.TimeOffset = &v
 }
 
 // GetId returns the Id field value
-func (o *NewApplicationApiKey) GetId() int32 {
+func (o *NewApplicationAPIKey) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *NewApplicationApiKey) SetId(v int32) {
+func (o *NewApplicationAPIKey) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *NewApplicationApiKey) GetCreatedBy() int32 {
+func (o *NewApplicationAPIKey) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *NewApplicationApiKey) SetCreatedBy(v int32) {
+func (o *NewApplicationAPIKey) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetAccountID returns the AccountID field value
-func (o *NewApplicationApiKey) GetAccountID() int32 {
+func (o *NewApplicationAPIKey) GetAccountID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountID
 }
 
+// GetAccountIDOk returns a tuple with the AccountID field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetAccountIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountID, true
+}
+
 // SetAccountID sets field value
-func (o *NewApplicationApiKey) SetAccountID(v int32) {
+func (o *NewApplicationAPIKey) SetAccountID(v int64) {
 	o.AccountID = v
 }
 
 // GetApplicationID returns the ApplicationID field value
-func (o *NewApplicationApiKey) GetApplicationID() int32 {
+func (o *NewApplicationAPIKey) GetApplicationID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationID
 }
 
+// GetApplicationIDOk returns a tuple with the ApplicationID field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetApplicationIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationID, true
+}
+
 // SetApplicationID sets field value
-func (o *NewApplicationApiKey) SetApplicationID(v int32) {
+func (o *NewApplicationAPIKey) SetApplicationID(v int64) {
 	o.ApplicationID = v
 }
 
 // GetCreated returns the Created field value
-func (o *NewApplicationApiKey) GetCreated() time.Time {
+func (o *NewApplicationAPIKey) GetCreated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -240,13 +315,22 @@ func (o *NewApplicationApiKey) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
-func (o *NewApplicationApiKey) SetCreated(v time.Time) {
+func (o *NewApplicationAPIKey) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetKey returns the Key field value
-func (o *NewApplicationApiKey) GetKey() string {
+func (o *NewApplicationAPIKey) GetKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -255,30 +339,90 @@ func (o *NewApplicationApiKey) GetKey() string {
 	return o.Key
 }
 
+// GetKeyOk returns a tuple with the Key field value
+// and a boolean to check if the value has been set.
+func (o *NewApplicationAPIKey) GetKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Key, true
+}
+
 // SetKey sets field value
-func (o *NewApplicationApiKey) SetKey(v string) {
+func (o *NewApplicationAPIKey) SetKey(v string) {
 	o.Key = v
 }
 
-type NullableNewApplicationApiKey struct {
-	Value        NewApplicationApiKey
-	ExplicitNull bool
+func (o NewApplicationAPIKey) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["expires"] = o.Expires
+	}
+	if o.Platform != nil {
+		toSerialize["platform"] = o.Platform
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.TimeOffset != nil {
+		toSerialize["timeOffset"] = o.TimeOffset
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["accountID"] = o.AccountID
+	}
+	if true {
+		toSerialize["applicationID"] = o.ApplicationID
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["key"] = o.Key
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableNewApplicationApiKey) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableNewApplicationAPIKey struct {
+	value *NewApplicationAPIKey
+	isSet bool
 }
 
-func (v *NullableNewApplicationApiKey) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableNewApplicationAPIKey) Get() *NewApplicationAPIKey {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableNewApplicationAPIKey) Set(val *NewApplicationAPIKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewApplicationAPIKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewApplicationAPIKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewApplicationAPIKey(val *NewApplicationAPIKey) *NullableNewApplicationAPIKey {
+	return &NullableNewApplicationAPIKey{value: val, isSet: true}
+}
+
+func (v NullableNewApplicationAPIKey) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNewApplicationAPIKey) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

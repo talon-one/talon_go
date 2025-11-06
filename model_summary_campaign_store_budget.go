@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,8 +17,28 @@ import (
 type SummaryCampaignStoreBudget struct {
 	Action     string  `json:"action"`
 	Period     *string `json:"period,omitempty"`
-	StoreCount int32   `json:"storeCount"`
+	StoreCount int64   `json:"storeCount"`
 	Imported   bool    `json:"imported"`
+}
+
+// NewSummaryCampaignStoreBudget instantiates a new SummaryCampaignStoreBudget object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSummaryCampaignStoreBudget(action string, storeCount int64, imported bool) *SummaryCampaignStoreBudget {
+	this := SummaryCampaignStoreBudget{}
+	this.Action = action
+	this.StoreCount = storeCount
+	this.Imported = imported
+	return &this
+}
+
+// NewSummaryCampaignStoreBudgetWithDefaults instantiates a new SummaryCampaignStoreBudget object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSummaryCampaignStoreBudgetWithDefaults() *SummaryCampaignStoreBudget {
+	this := SummaryCampaignStoreBudget{}
+	return &this
 }
 
 // GetAction returns the Action field value
@@ -30,6 +49,15 @@ func (o *SummaryCampaignStoreBudget) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *SummaryCampaignStoreBudget) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -46,14 +74,13 @@ func (o *SummaryCampaignStoreBudget) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SummaryCampaignStoreBudget) GetPeriodOk() (string, bool) {
+func (o *SummaryCampaignStoreBudget) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -71,17 +98,26 @@ func (o *SummaryCampaignStoreBudget) SetPeriod(v string) {
 }
 
 // GetStoreCount returns the StoreCount field value
-func (o *SummaryCampaignStoreBudget) GetStoreCount() int32 {
+func (o *SummaryCampaignStoreBudget) GetStoreCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.StoreCount
 }
 
+// GetStoreCountOk returns a tuple with the StoreCount field value
+// and a boolean to check if the value has been set.
+func (o *SummaryCampaignStoreBudget) GetStoreCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StoreCount, true
+}
+
 // SetStoreCount sets field value
-func (o *SummaryCampaignStoreBudget) SetStoreCount(v int32) {
+func (o *SummaryCampaignStoreBudget) SetStoreCount(v int64) {
 	o.StoreCount = v
 }
 
@@ -95,30 +131,69 @@ func (o *SummaryCampaignStoreBudget) GetImported() bool {
 	return o.Imported
 }
 
+// GetImportedOk returns a tuple with the Imported field value
+// and a boolean to check if the value has been set.
+func (o *SummaryCampaignStoreBudget) GetImportedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Imported, true
+}
+
 // SetImported sets field value
 func (o *SummaryCampaignStoreBudget) SetImported(v bool) {
 	o.Imported = v
 }
 
+func (o SummaryCampaignStoreBudget) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	if true {
+		toSerialize["storeCount"] = o.StoreCount
+	}
+	if true {
+		toSerialize["imported"] = o.Imported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSummaryCampaignStoreBudget struct {
-	Value        SummaryCampaignStoreBudget
-	ExplicitNull bool
+	value *SummaryCampaignStoreBudget
+	isSet bool
+}
+
+func (v NullableSummaryCampaignStoreBudget) Get() *SummaryCampaignStoreBudget {
+	return v.value
+}
+
+func (v *NullableSummaryCampaignStoreBudget) Set(val *SummaryCampaignStoreBudget) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSummaryCampaignStoreBudget) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSummaryCampaignStoreBudget) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSummaryCampaignStoreBudget(val *SummaryCampaignStoreBudget) *NullableSummaryCampaignStoreBudget {
+	return &NullableSummaryCampaignStoreBudget{value: val, isSet: true}
 }
 
 func (v NullableSummaryCampaignStoreBudget) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSummaryCampaignStoreBudget) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

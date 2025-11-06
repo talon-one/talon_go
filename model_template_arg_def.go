@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -27,9 +26,29 @@ type TemplateArgDef struct {
 	// The identifier for the associated value within the JSON object.
 	Key *string `json:"key,omitempty"`
 	// ID of the picklist linked to a template.
-	PicklistID *int32 `json:"picklistID,omitempty"`
+	PicklistID *int64 `json:"picklistID,omitempty"`
 	// Whether or not this attribute's value is restricted by picklist (`picklist` property)
 	RestrictedByPicklist *bool `json:"restrictedByPicklist,omitempty"`
+}
+
+// NewTemplateArgDef instantiates a new TemplateArgDef object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTemplateArgDef(type_ string, title string, ui map[string]interface{}) *TemplateArgDef {
+	this := TemplateArgDef{}
+	this.Type = type_
+	this.Title = title
+	this.Ui = ui
+	return &this
+}
+
+// NewTemplateArgDefWithDefaults instantiates a new TemplateArgDef object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTemplateArgDefWithDefaults() *TemplateArgDef {
+	this := TemplateArgDef{}
+	return &this
 }
 
 // GetType returns the Type field value
@@ -40,6 +59,15 @@ func (o *TemplateArgDef) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *TemplateArgDef) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -56,14 +84,13 @@ func (o *TemplateArgDef) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateArgDef) GetDescriptionOk() (string, bool) {
+func (o *TemplateArgDef) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -90,6 +117,15 @@ func (o *TemplateArgDef) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *TemplateArgDef) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *TemplateArgDef) SetTitle(v string) {
 	o.Title = v
@@ -103,6 +139,15 @@ func (o *TemplateArgDef) GetUi() map[string]interface{} {
 	}
 
 	return o.Ui
+}
+
+// GetUiOk returns a tuple with the Ui field value
+// and a boolean to check if the value has been set.
+func (o *TemplateArgDef) GetUiOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ui, true
 }
 
 // SetUi sets field value
@@ -119,14 +164,13 @@ func (o *TemplateArgDef) GetKey() string {
 	return *o.Key
 }
 
-// GetKeyOk returns a tuple with the Key field value if set, zero value otherwise
+// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateArgDef) GetKeyOk() (string, bool) {
+func (o *TemplateArgDef) GetKeyOk() (*string, bool) {
 	if o == nil || o.Key == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Key, true
+	return o.Key, true
 }
 
 // HasKey returns a boolean if a field has been set.
@@ -144,22 +188,21 @@ func (o *TemplateArgDef) SetKey(v string) {
 }
 
 // GetPicklistID returns the PicklistID field value if set, zero value otherwise.
-func (o *TemplateArgDef) GetPicklistID() int32 {
+func (o *TemplateArgDef) GetPicklistID() int64 {
 	if o == nil || o.PicklistID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.PicklistID
 }
 
-// GetPicklistIDOk returns a tuple with the PicklistID field value if set, zero value otherwise
+// GetPicklistIDOk returns a tuple with the PicklistID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateArgDef) GetPicklistIDOk() (int32, bool) {
+func (o *TemplateArgDef) GetPicklistIDOk() (*int64, bool) {
 	if o == nil || o.PicklistID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.PicklistID, true
+	return o.PicklistID, true
 }
 
 // HasPicklistID returns a boolean if a field has been set.
@@ -171,8 +214,8 @@ func (o *TemplateArgDef) HasPicklistID() bool {
 	return false
 }
 
-// SetPicklistID gets a reference to the given int32 and assigns it to the PicklistID field.
-func (o *TemplateArgDef) SetPicklistID(v int32) {
+// SetPicklistID gets a reference to the given int64 and assigns it to the PicklistID field.
+func (o *TemplateArgDef) SetPicklistID(v int64) {
 	o.PicklistID = &v
 }
 
@@ -185,14 +228,13 @@ func (o *TemplateArgDef) GetRestrictedByPicklist() bool {
 	return *o.RestrictedByPicklist
 }
 
-// GetRestrictedByPicklistOk returns a tuple with the RestrictedByPicklist field value if set, zero value otherwise
+// GetRestrictedByPicklistOk returns a tuple with the RestrictedByPicklist field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateArgDef) GetRestrictedByPicklistOk() (bool, bool) {
+func (o *TemplateArgDef) GetRestrictedByPicklistOk() (*bool, bool) {
 	if o == nil || o.RestrictedByPicklist == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.RestrictedByPicklist, true
+	return o.RestrictedByPicklist, true
 }
 
 // HasRestrictedByPicklist returns a boolean if a field has been set.
@@ -209,25 +251,64 @@ func (o *TemplateArgDef) SetRestrictedByPicklist(v bool) {
 	o.RestrictedByPicklist = &v
 }
 
+func (o TemplateArgDef) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["ui"] = o.Ui
+	}
+	if o.Key != nil {
+		toSerialize["key"] = o.Key
+	}
+	if o.PicklistID != nil {
+		toSerialize["picklistID"] = o.PicklistID
+	}
+	if o.RestrictedByPicklist != nil {
+		toSerialize["restrictedByPicklist"] = o.RestrictedByPicklist
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTemplateArgDef struct {
-	Value        TemplateArgDef
-	ExplicitNull bool
+	value *TemplateArgDef
+	isSet bool
+}
+
+func (v NullableTemplateArgDef) Get() *TemplateArgDef {
+	return v.value
+}
+
+func (v *NullableTemplateArgDef) Set(val *TemplateArgDef) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTemplateArgDef) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTemplateArgDef) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTemplateArgDef(val *TemplateArgDef) *NullableTemplateArgDef {
+	return &NullableTemplateArgDef{value: val, isSet: true}
 }
 
 func (v NullableTemplateArgDef) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTemplateArgDef) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

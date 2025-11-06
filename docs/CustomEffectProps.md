@@ -4,40 +4,52 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EffectId** | Pointer to **int32** | The ID of the custom effect that was triggered. | 
+**EffectId** | Pointer to **int64** | The ID of the custom effect that was triggered. | 
 **Name** | Pointer to **string** | The type of the custom effect. | 
 **CartItemPosition** | Pointer to **float32** | The index of the item in the cart item list to which the custom effect is applied. | [optional] 
 **CartItemSubPosition** | Pointer to **float32** | For cart items with quantity &gt; 1, the sub position indicates to which item unit the custom effect is applied.  | [optional] 
-**BundleIndex** | Pointer to **int32** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
+**BundleIndex** | Pointer to **int64** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
 **BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
 **Payload** | Pointer to [**map[string]interface{}**](.md) | The JSON payload of the custom effect. | 
 
 ## Methods
 
+### NewCustomEffectProps
+
+`func NewCustomEffectProps(effectId int64, name string, payload map[string]interface{}, ) *CustomEffectProps`
+
+NewCustomEffectProps instantiates a new CustomEffectProps object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCustomEffectPropsWithDefaults
+
+`func NewCustomEffectPropsWithDefaults() *CustomEffectProps`
+
+NewCustomEffectPropsWithDefaults instantiates a new CustomEffectProps object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetEffectId
 
-`func (o *CustomEffectProps) GetEffectId() int32`
+`func (o *CustomEffectProps) GetEffectId() int64`
 
 GetEffectId returns the EffectId field if non-nil, zero value otherwise.
 
 ### GetEffectIdOk
 
-`func (o *CustomEffectProps) GetEffectIdOk() (int32, bool)`
+`func (o *CustomEffectProps) GetEffectIdOk() (*int64, bool)`
 
 GetEffectIdOk returns a tuple with the EffectId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEffectId
-
-`func (o *CustomEffectProps) HasEffectId() bool`
-
-HasEffectId returns a boolean if a field has been set.
-
 ### SetEffectId
 
-`func (o *CustomEffectProps) SetEffectId(v int32)`
+`func (o *CustomEffectProps) SetEffectId(v int64)`
 
-SetEffectId gets a reference to the given int32 and assigns it to the EffectId field.
+SetEffectId sets EffectId field to given value.
+
 
 ### GetName
 
@@ -47,22 +59,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *CustomEffectProps) GetNameOk() (string, bool)`
+`func (o *CustomEffectProps) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *CustomEffectProps) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *CustomEffectProps) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetCartItemPosition
 
@@ -72,22 +79,22 @@ GetCartItemPosition returns the CartItemPosition field if non-nil, zero value ot
 
 ### GetCartItemPositionOk
 
-`func (o *CustomEffectProps) GetCartItemPositionOk() (float32, bool)`
+`func (o *CustomEffectProps) GetCartItemPositionOk() (*float32, bool)`
 
 GetCartItemPositionOk returns a tuple with the CartItemPosition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCartItemPosition
+
+`func (o *CustomEffectProps) SetCartItemPosition(v float32)`
+
+SetCartItemPosition sets CartItemPosition field to given value.
 
 ### HasCartItemPosition
 
 `func (o *CustomEffectProps) HasCartItemPosition() bool`
 
 HasCartItemPosition returns a boolean if a field has been set.
-
-### SetCartItemPosition
-
-`func (o *CustomEffectProps) SetCartItemPosition(v float32)`
-
-SetCartItemPosition gets a reference to the given float32 and assigns it to the CartItemPosition field.
 
 ### GetCartItemSubPosition
 
@@ -97,10 +104,16 @@ GetCartItemSubPosition returns the CartItemSubPosition field if non-nil, zero va
 
 ### GetCartItemSubPositionOk
 
-`func (o *CustomEffectProps) GetCartItemSubPositionOk() (float32, bool)`
+`func (o *CustomEffectProps) GetCartItemSubPositionOk() (*float32, bool)`
 
 GetCartItemSubPositionOk returns a tuple with the CartItemSubPosition field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCartItemSubPosition
+
+`func (o *CustomEffectProps) SetCartItemSubPosition(v float32)`
+
+SetCartItemSubPosition sets CartItemSubPosition field to given value.
 
 ### HasCartItemSubPosition
 
@@ -108,36 +121,30 @@ and a boolean to check if the value has been set.
 
 HasCartItemSubPosition returns a boolean if a field has been set.
 
-### SetCartItemSubPosition
-
-`func (o *CustomEffectProps) SetCartItemSubPosition(v float32)`
-
-SetCartItemSubPosition gets a reference to the given float32 and assigns it to the CartItemSubPosition field.
-
 ### GetBundleIndex
 
-`func (o *CustomEffectProps) GetBundleIndex() int32`
+`func (o *CustomEffectProps) GetBundleIndex() int64`
 
 GetBundleIndex returns the BundleIndex field if non-nil, zero value otherwise.
 
 ### GetBundleIndexOk
 
-`func (o *CustomEffectProps) GetBundleIndexOk() (int32, bool)`
+`func (o *CustomEffectProps) GetBundleIndexOk() (*int64, bool)`
 
 GetBundleIndexOk returns a tuple with the BundleIndex field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetBundleIndex
+
+`func (o *CustomEffectProps) SetBundleIndex(v int64)`
+
+SetBundleIndex sets BundleIndex field to given value.
 
 ### HasBundleIndex
 
 `func (o *CustomEffectProps) HasBundleIndex() bool`
 
 HasBundleIndex returns a boolean if a field has been set.
-
-### SetBundleIndex
-
-`func (o *CustomEffectProps) SetBundleIndex(v int32)`
-
-SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
 
 ### GetBundleName
 
@@ -147,22 +154,22 @@ GetBundleName returns the BundleName field if non-nil, zero value otherwise.
 
 ### GetBundleNameOk
 
-`func (o *CustomEffectProps) GetBundleNameOk() (string, bool)`
+`func (o *CustomEffectProps) GetBundleNameOk() (*string, bool)`
 
 GetBundleNameOk returns a tuple with the BundleName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetBundleName
+
+`func (o *CustomEffectProps) SetBundleName(v string)`
+
+SetBundleName sets BundleName field to given value.
 
 ### HasBundleName
 
 `func (o *CustomEffectProps) HasBundleName() bool`
 
 HasBundleName returns a boolean if a field has been set.
-
-### SetBundleName
-
-`func (o *CustomEffectProps) SetBundleName(v string)`
-
-SetBundleName gets a reference to the given string and assigns it to the BundleName field.
 
 ### GetPayload
 
@@ -172,22 +179,17 @@ GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *CustomEffectProps) GetPayloadOk() (map[string]interface{}, bool)`
+`func (o *CustomEffectProps) GetPayloadOk() (*map[string]interface{}, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasPayload
-
-`func (o *CustomEffectProps) HasPayload() bool`
-
-HasPayload returns a boolean if a field has been set.
 
 ### SetPayload
 
 `func (o *CustomEffectProps) SetPayload(v map[string]interface{})`
 
-SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
+SetPayload sets Payload field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

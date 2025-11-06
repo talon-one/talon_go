@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type TriggerWebhookEffectProps struct {
 	WebhookName string `json:"webhookName"`
 }
 
+// NewTriggerWebhookEffectProps instantiates a new TriggerWebhookEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTriggerWebhookEffectProps(webhookId float32, webhookName string) *TriggerWebhookEffectProps {
+	this := TriggerWebhookEffectProps{}
+	this.WebhookId = webhookId
+	this.WebhookName = webhookName
+	return &this
+}
+
+// NewTriggerWebhookEffectPropsWithDefaults instantiates a new TriggerWebhookEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTriggerWebhookEffectPropsWithDefaults() *TriggerWebhookEffectProps {
+	this := TriggerWebhookEffectProps{}
+	return &this
+}
+
 // GetWebhookId returns the WebhookId field value
 func (o *TriggerWebhookEffectProps) GetWebhookId() float32 {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *TriggerWebhookEffectProps) GetWebhookId() float32 {
 	}
 
 	return o.WebhookId
+}
+
+// GetWebhookIdOk returns a tuple with the WebhookId field value
+// and a boolean to check if the value has been set.
+func (o *TriggerWebhookEffectProps) GetWebhookIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.WebhookId, true
 }
 
 // SetWebhookId sets field value
@@ -47,30 +74,63 @@ func (o *TriggerWebhookEffectProps) GetWebhookName() string {
 	return o.WebhookName
 }
 
+// GetWebhookNameOk returns a tuple with the WebhookName field value
+// and a boolean to check if the value has been set.
+func (o *TriggerWebhookEffectProps) GetWebhookNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.WebhookName, true
+}
+
 // SetWebhookName sets field value
 func (o *TriggerWebhookEffectProps) SetWebhookName(v string) {
 	o.WebhookName = v
 }
 
+func (o TriggerWebhookEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["webhookId"] = o.WebhookId
+	}
+	if true {
+		toSerialize["webhookName"] = o.WebhookName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTriggerWebhookEffectProps struct {
-	Value        TriggerWebhookEffectProps
-	ExplicitNull bool
+	value *TriggerWebhookEffectProps
+	isSet bool
+}
+
+func (v NullableTriggerWebhookEffectProps) Get() *TriggerWebhookEffectProps {
+	return v.value
+}
+
+func (v *NullableTriggerWebhookEffectProps) Set(val *TriggerWebhookEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTriggerWebhookEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTriggerWebhookEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTriggerWebhookEffectProps(val *TriggerWebhookEffectProps) *NullableTriggerWebhookEffectProps {
+	return &NullableTriggerWebhookEffectProps{value: val, isSet: true}
 }
 
 func (v NullableTriggerWebhookEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTriggerWebhookEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

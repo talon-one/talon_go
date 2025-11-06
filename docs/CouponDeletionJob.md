@@ -4,45 +4,57 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal ID of this entity. | 
+**Id** | Pointer to **int64** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
-**AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
+**AccountId** | Pointer to **int64** | The ID of the account that owns this entity. | 
 **Filters** | Pointer to [**CouponDeletionFilters**](CouponDeletionFilters.md) |  | 
 **Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;not_ready&#x60; - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60;  | 
-**DeletedAmount** | Pointer to **int32** | The number of coupon codes that were already deleted for this request. | [optional] 
-**FailCount** | Pointer to **int32** | The number of times this job failed. | 
+**DeletedAmount** | Pointer to **int64** | The number of coupon codes that were already deleted for this request. | [optional] 
+**FailCount** | Pointer to **int64** | The number of times this job failed. | 
 **Errors** | Pointer to **[]string** | An array of individual problems encountered during the request. | 
-**CreatedBy** | Pointer to **int32** | ID of the user who created this effect. | 
+**CreatedBy** | Pointer to **int64** | ID of the user who created this effect. | 
 **Communicated** | Pointer to **bool** | Indicates whether the user that created this job was notified of its final state. | 
-**CampaignIDs** | Pointer to **[]int32** |  | [optional] 
+**CampaignIDs** | Pointer to **[]int64** |  | [optional] 
 
 ## Methods
 
+### NewCouponDeletionJob
+
+`func NewCouponDeletionJob(id int64, created time.Time, applicationId int64, accountId int64, filters CouponDeletionFilters, status string, failCount int64, errors []string, createdBy int64, communicated bool, ) *CouponDeletionJob`
+
+NewCouponDeletionJob instantiates a new CouponDeletionJob object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewCouponDeletionJobWithDefaults
+
+`func NewCouponDeletionJobWithDefaults() *CouponDeletionJob`
+
+NewCouponDeletionJobWithDefaults instantiates a new CouponDeletionJob object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetId
 
-`func (o *CouponDeletionJob) GetId() int32`
+`func (o *CouponDeletionJob) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *CouponDeletionJob) GetIdOk() (int32, bool)`
+`func (o *CouponDeletionJob) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
-
-`func (o *CouponDeletionJob) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### SetId
 
-`func (o *CouponDeletionJob) SetId(v int32)`
+`func (o *CouponDeletionJob) SetId(v int64)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetId sets Id field to given value.
+
 
 ### GetCreated
 
@@ -52,72 +64,57 @@ GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *CouponDeletionJob) GetCreatedOk() (time.Time, bool)`
+`func (o *CouponDeletionJob) GetCreatedOk() (*time.Time, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *CouponDeletionJob) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
 
 ### SetCreated
 
 `func (o *CouponDeletionJob) SetCreated(v time.Time)`
 
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+SetCreated sets Created field to given value.
+
 
 ### GetApplicationId
 
-`func (o *CouponDeletionJob) GetApplicationId() int32`
+`func (o *CouponDeletionJob) GetApplicationId() int64`
 
 GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
 
 ### GetApplicationIdOk
 
-`func (o *CouponDeletionJob) GetApplicationIdOk() (int32, bool)`
+`func (o *CouponDeletionJob) GetApplicationIdOk() (*int64, bool)`
 
 GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasApplicationId
-
-`func (o *CouponDeletionJob) HasApplicationId() bool`
-
-HasApplicationId returns a boolean if a field has been set.
-
 ### SetApplicationId
 
-`func (o *CouponDeletionJob) SetApplicationId(v int32)`
+`func (o *CouponDeletionJob) SetApplicationId(v int64)`
 
-SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+SetApplicationId sets ApplicationId field to given value.
+
 
 ### GetAccountId
 
-`func (o *CouponDeletionJob) GetAccountId() int32`
+`func (o *CouponDeletionJob) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *CouponDeletionJob) GetAccountIdOk() (int32, bool)`
+`func (o *CouponDeletionJob) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAccountId
-
-`func (o *CouponDeletionJob) HasAccountId() bool`
-
-HasAccountId returns a boolean if a field has been set.
-
 ### SetAccountId
 
-`func (o *CouponDeletionJob) SetAccountId(v int32)`
+`func (o *CouponDeletionJob) SetAccountId(v int64)`
 
-SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
+SetAccountId sets AccountId field to given value.
+
 
 ### GetFilters
 
@@ -127,22 +124,17 @@ GetFilters returns the Filters field if non-nil, zero value otherwise.
 
 ### GetFiltersOk
 
-`func (o *CouponDeletionJob) GetFiltersOk() (CouponDeletionFilters, bool)`
+`func (o *CouponDeletionJob) GetFiltersOk() (*CouponDeletionFilters, bool)`
 
 GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasFilters
-
-`func (o *CouponDeletionJob) HasFilters() bool`
-
-HasFilters returns a boolean if a field has been set.
 
 ### SetFilters
 
 `func (o *CouponDeletionJob) SetFilters(v CouponDeletionFilters)`
 
-SetFilters gets a reference to the given CouponDeletionFilters and assigns it to the Filters field.
+SetFilters sets Filters field to given value.
+
 
 ### GetStatus
 
@@ -152,35 +144,36 @@ GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *CouponDeletionJob) GetStatusOk() (string, bool)`
+`func (o *CouponDeletionJob) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasStatus
-
-`func (o *CouponDeletionJob) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### SetStatus
 
 `func (o *CouponDeletionJob) SetStatus(v string)`
 
-SetStatus gets a reference to the given string and assigns it to the Status field.
+SetStatus sets Status field to given value.
+
 
 ### GetDeletedAmount
 
-`func (o *CouponDeletionJob) GetDeletedAmount() int32`
+`func (o *CouponDeletionJob) GetDeletedAmount() int64`
 
 GetDeletedAmount returns the DeletedAmount field if non-nil, zero value otherwise.
 
 ### GetDeletedAmountOk
 
-`func (o *CouponDeletionJob) GetDeletedAmountOk() (int32, bool)`
+`func (o *CouponDeletionJob) GetDeletedAmountOk() (*int64, bool)`
 
 GetDeletedAmountOk returns a tuple with the DeletedAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDeletedAmount
+
+`func (o *CouponDeletionJob) SetDeletedAmount(v int64)`
+
+SetDeletedAmount sets DeletedAmount field to given value.
 
 ### HasDeletedAmount
 
@@ -188,36 +181,25 @@ and a boolean to check if the value has been set.
 
 HasDeletedAmount returns a boolean if a field has been set.
 
-### SetDeletedAmount
-
-`func (o *CouponDeletionJob) SetDeletedAmount(v int32)`
-
-SetDeletedAmount gets a reference to the given int32 and assigns it to the DeletedAmount field.
-
 ### GetFailCount
 
-`func (o *CouponDeletionJob) GetFailCount() int32`
+`func (o *CouponDeletionJob) GetFailCount() int64`
 
 GetFailCount returns the FailCount field if non-nil, zero value otherwise.
 
 ### GetFailCountOk
 
-`func (o *CouponDeletionJob) GetFailCountOk() (int32, bool)`
+`func (o *CouponDeletionJob) GetFailCountOk() (*int64, bool)`
 
 GetFailCountOk returns a tuple with the FailCount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasFailCount
-
-`func (o *CouponDeletionJob) HasFailCount() bool`
-
-HasFailCount returns a boolean if a field has been set.
-
 ### SetFailCount
 
-`func (o *CouponDeletionJob) SetFailCount(v int32)`
+`func (o *CouponDeletionJob) SetFailCount(v int64)`
 
-SetFailCount gets a reference to the given int32 and assigns it to the FailCount field.
+SetFailCount sets FailCount field to given value.
+
 
 ### GetErrors
 
@@ -227,47 +209,37 @@ GetErrors returns the Errors field if non-nil, zero value otherwise.
 
 ### GetErrorsOk
 
-`func (o *CouponDeletionJob) GetErrorsOk() ([]string, bool)`
+`func (o *CouponDeletionJob) GetErrorsOk() (*[]string, bool)`
 
 GetErrorsOk returns a tuple with the Errors field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasErrors
-
-`func (o *CouponDeletionJob) HasErrors() bool`
-
-HasErrors returns a boolean if a field has been set.
 
 ### SetErrors
 
 `func (o *CouponDeletionJob) SetErrors(v []string)`
 
-SetErrors gets a reference to the given []string and assigns it to the Errors field.
+SetErrors sets Errors field to given value.
+
 
 ### GetCreatedBy
 
-`func (o *CouponDeletionJob) GetCreatedBy() int32`
+`func (o *CouponDeletionJob) GetCreatedBy() int64`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *CouponDeletionJob) GetCreatedByOk() (int32, bool)`
+`func (o *CouponDeletionJob) GetCreatedByOk() (*int64, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCreatedBy
-
-`func (o *CouponDeletionJob) HasCreatedBy() bool`
-
-HasCreatedBy returns a boolean if a field has been set.
-
 ### SetCreatedBy
 
-`func (o *CouponDeletionJob) SetCreatedBy(v int32)`
+`func (o *CouponDeletionJob) SetCreatedBy(v int64)`
 
-SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
+SetCreatedBy sets CreatedBy field to given value.
+
 
 ### GetCommunicated
 
@@ -277,47 +249,42 @@ GetCommunicated returns the Communicated field if non-nil, zero value otherwise.
 
 ### GetCommunicatedOk
 
-`func (o *CouponDeletionJob) GetCommunicatedOk() (bool, bool)`
+`func (o *CouponDeletionJob) GetCommunicatedOk() (*bool, bool)`
 
 GetCommunicatedOk returns a tuple with the Communicated field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCommunicated
-
-`func (o *CouponDeletionJob) HasCommunicated() bool`
-
-HasCommunicated returns a boolean if a field has been set.
 
 ### SetCommunicated
 
 `func (o *CouponDeletionJob) SetCommunicated(v bool)`
 
-SetCommunicated gets a reference to the given bool and assigns it to the Communicated field.
+SetCommunicated sets Communicated field to given value.
+
 
 ### GetCampaignIDs
 
-`func (o *CouponDeletionJob) GetCampaignIDs() []int32`
+`func (o *CouponDeletionJob) GetCampaignIDs() []int64`
 
 GetCampaignIDs returns the CampaignIDs field if non-nil, zero value otherwise.
 
 ### GetCampaignIDsOk
 
-`func (o *CouponDeletionJob) GetCampaignIDsOk() ([]int32, bool)`
+`func (o *CouponDeletionJob) GetCampaignIDsOk() (*[]int64, bool)`
 
 GetCampaignIDsOk returns a tuple with the CampaignIDs field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCampaignIDs
+
+`func (o *CouponDeletionJob) SetCampaignIDs(v []int64)`
+
+SetCampaignIDs sets CampaignIDs field to given value.
 
 ### HasCampaignIDs
 
 `func (o *CouponDeletionJob) HasCampaignIDs() bool`
 
 HasCampaignIDs returns a boolean if a field has been set.
-
-### SetCampaignIDs
-
-`func (o *CouponDeletionJob) SetCampaignIDs(v []int32)`
-
-SetCampaignIDs gets a reference to the given []int32 and assigns it to the CampaignIDs field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type DeleteUserRequest struct {
 	// The email address associated with the user profile.
 	Email string `json:"email"`
+}
+
+// NewDeleteUserRequest instantiates a new DeleteUserRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeleteUserRequest(email string) *DeleteUserRequest {
+	this := DeleteUserRequest{}
+	this.Email = email
+	return &this
+}
+
+// NewDeleteUserRequestWithDefaults instantiates a new DeleteUserRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeleteUserRequestWithDefaults() *DeleteUserRequest {
+	this := DeleteUserRequest{}
+	return &this
 }
 
 // GetEmail returns the Email field value
@@ -30,30 +47,60 @@ func (o *DeleteUserRequest) GetEmail() string {
 	return o.Email
 }
 
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *DeleteUserRequest) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
 // SetEmail sets field value
 func (o *DeleteUserRequest) SetEmail(v string) {
 	o.Email = v
 }
 
+func (o DeleteUserRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDeleteUserRequest struct {
-	Value        DeleteUserRequest
-	ExplicitNull bool
+	value *DeleteUserRequest
+	isSet bool
+}
+
+func (v NullableDeleteUserRequest) Get() *DeleteUserRequest {
+	return v.value
+}
+
+func (v *NullableDeleteUserRequest) Set(val *DeleteUserRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeleteUserRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeleteUserRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeleteUserRequest(val *DeleteUserRequest) *NullableDeleteUserRequest {
+	return &NullableDeleteUserRequest{value: val, isSet: true}
 }
 
 func (v NullableDeleteUserRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDeleteUserRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

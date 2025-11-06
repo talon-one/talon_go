@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type CouponLimitConfigs struct {
 	// Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.
 	Limits *[]LimitConfig `json:"limits,omitempty"`
+}
+
+// NewCouponLimitConfigs instantiates a new CouponLimitConfigs object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCouponLimitConfigs() *CouponLimitConfigs {
+	this := CouponLimitConfigs{}
+	return &this
+}
+
+// NewCouponLimitConfigsWithDefaults instantiates a new CouponLimitConfigs object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponLimitConfigsWithDefaults() *CouponLimitConfigs {
+	this := CouponLimitConfigs{}
+	return &this
 }
 
 // GetLimits returns the Limits field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *CouponLimitConfigs) GetLimits() []LimitConfig {
 	return *o.Limits
 }
 
-// GetLimitsOk returns a tuple with the Limits field value if set, zero value otherwise
+// GetLimitsOk returns a tuple with the Limits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponLimitConfigs) GetLimitsOk() ([]LimitConfig, bool) {
+func (o *CouponLimitConfigs) GetLimitsOk() (*[]LimitConfig, bool) {
 	if o == nil || o.Limits == nil {
-		var ret []LimitConfig
-		return ret, false
+		return nil, false
 	}
-	return *o.Limits, true
+	return o.Limits, true
 }
 
 // HasLimits returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *CouponLimitConfigs) SetLimits(v []LimitConfig) {
 	o.Limits = &v
 }
 
+func (o CouponLimitConfigs) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Limits != nil {
+		toSerialize["limits"] = o.Limits
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponLimitConfigs struct {
-	Value        CouponLimitConfigs
-	ExplicitNull bool
+	value *CouponLimitConfigs
+	isSet bool
+}
+
+func (v NullableCouponLimitConfigs) Get() *CouponLimitConfigs {
+	return v.value
+}
+
+func (v *NullableCouponLimitConfigs) Set(val *CouponLimitConfigs) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponLimitConfigs) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponLimitConfigs) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCouponLimitConfigs(val *CouponLimitConfigs) *NullableCouponLimitConfigs {
+	return &NullableCouponLimitConfigs{value: val, isSet: true}
 }
 
 func (v NullableCouponLimitConfigs) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponLimitConfigs) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

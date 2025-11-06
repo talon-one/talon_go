@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -27,12 +26,41 @@ type LoyaltyDashboardData struct {
 	TotalSpentPoints float32 `json:"totalSpentPoints"`
 	// Total of expired points for this loyalty program.
 	TotalExpiredPoints float32 `json:"totalExpiredPoints"`
+	// Total of negative points for this loyalty program.
+	TotalNegativePoints float32 `json:"totalNegativePoints"`
 	// Number of loyalty program members.
 	TotalMembers float32 `json:"totalMembers"`
 	// Number of members who joined on this day.
 	NewMembers   float32                         `json:"newMembers"`
 	SpentPoints  LoyaltyDashboardPointsBreakdown `json:"spentPoints"`
 	EarnedPoints LoyaltyDashboardPointsBreakdown `json:"earnedPoints"`
+}
+
+// NewLoyaltyDashboardData instantiates a new LoyaltyDashboardData object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyDashboardData(date time.Time, totalActivePoints float32, totalPendingPoints float32, totalSpentPoints float32, totalExpiredPoints float32, totalNegativePoints float32, totalMembers float32, newMembers float32, spentPoints LoyaltyDashboardPointsBreakdown, earnedPoints LoyaltyDashboardPointsBreakdown) *LoyaltyDashboardData {
+	this := LoyaltyDashboardData{}
+	this.Date = date
+	this.TotalActivePoints = totalActivePoints
+	this.TotalPendingPoints = totalPendingPoints
+	this.TotalSpentPoints = totalSpentPoints
+	this.TotalExpiredPoints = totalExpiredPoints
+	this.TotalNegativePoints = totalNegativePoints
+	this.TotalMembers = totalMembers
+	this.NewMembers = newMembers
+	this.SpentPoints = spentPoints
+	this.EarnedPoints = earnedPoints
+	return &this
+}
+
+// NewLoyaltyDashboardDataWithDefaults instantiates a new LoyaltyDashboardData object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyDashboardDataWithDefaults() *LoyaltyDashboardData {
+	this := LoyaltyDashboardData{}
+	return &this
 }
 
 // GetDate returns the Date field value
@@ -43,6 +71,15 @@ func (o *LoyaltyDashboardData) GetDate() time.Time {
 	}
 
 	return o.Date
+}
+
+// GetDateOk returns a tuple with the Date field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetDateOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Date, true
 }
 
 // SetDate sets field value
@@ -60,6 +97,15 @@ func (o *LoyaltyDashboardData) GetTotalActivePoints() float32 {
 	return o.TotalActivePoints
 }
 
+// GetTotalActivePointsOk returns a tuple with the TotalActivePoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetTotalActivePointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalActivePoints, true
+}
+
 // SetTotalActivePoints sets field value
 func (o *LoyaltyDashboardData) SetTotalActivePoints(v float32) {
 	o.TotalActivePoints = v
@@ -73,6 +119,15 @@ func (o *LoyaltyDashboardData) GetTotalPendingPoints() float32 {
 	}
 
 	return o.TotalPendingPoints
+}
+
+// GetTotalPendingPointsOk returns a tuple with the TotalPendingPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetTotalPendingPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalPendingPoints, true
 }
 
 // SetTotalPendingPoints sets field value
@@ -90,6 +145,15 @@ func (o *LoyaltyDashboardData) GetTotalSpentPoints() float32 {
 	return o.TotalSpentPoints
 }
 
+// GetTotalSpentPointsOk returns a tuple with the TotalSpentPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetTotalSpentPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalSpentPoints, true
+}
+
 // SetTotalSpentPoints sets field value
 func (o *LoyaltyDashboardData) SetTotalSpentPoints(v float32) {
 	o.TotalSpentPoints = v
@@ -105,9 +169,42 @@ func (o *LoyaltyDashboardData) GetTotalExpiredPoints() float32 {
 	return o.TotalExpiredPoints
 }
 
+// GetTotalExpiredPointsOk returns a tuple with the TotalExpiredPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetTotalExpiredPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalExpiredPoints, true
+}
+
 // SetTotalExpiredPoints sets field value
 func (o *LoyaltyDashboardData) SetTotalExpiredPoints(v float32) {
 	o.TotalExpiredPoints = v
+}
+
+// GetTotalNegativePoints returns the TotalNegativePoints field value
+func (o *LoyaltyDashboardData) GetTotalNegativePoints() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.TotalNegativePoints
+}
+
+// GetTotalNegativePointsOk returns a tuple with the TotalNegativePoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetTotalNegativePointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalNegativePoints, true
+}
+
+// SetTotalNegativePoints sets field value
+func (o *LoyaltyDashboardData) SetTotalNegativePoints(v float32) {
+	o.TotalNegativePoints = v
 }
 
 // GetTotalMembers returns the TotalMembers field value
@@ -118,6 +215,15 @@ func (o *LoyaltyDashboardData) GetTotalMembers() float32 {
 	}
 
 	return o.TotalMembers
+}
+
+// GetTotalMembersOk returns a tuple with the TotalMembers field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetTotalMembersOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalMembers, true
 }
 
 // SetTotalMembers sets field value
@@ -135,6 +241,15 @@ func (o *LoyaltyDashboardData) GetNewMembers() float32 {
 	return o.NewMembers
 }
 
+// GetNewMembersOk returns a tuple with the NewMembers field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetNewMembersOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NewMembers, true
+}
+
 // SetNewMembers sets field value
 func (o *LoyaltyDashboardData) SetNewMembers(v float32) {
 	o.NewMembers = v
@@ -148,6 +263,15 @@ func (o *LoyaltyDashboardData) GetSpentPoints() LoyaltyDashboardPointsBreakdown 
 	}
 
 	return o.SpentPoints
+}
+
+// GetSpentPointsOk returns a tuple with the SpentPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetSpentPointsOk() (*LoyaltyDashboardPointsBreakdown, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SpentPoints, true
 }
 
 // SetSpentPoints sets field value
@@ -165,30 +289,87 @@ func (o *LoyaltyDashboardData) GetEarnedPoints() LoyaltyDashboardPointsBreakdown
 	return o.EarnedPoints
 }
 
+// GetEarnedPointsOk returns a tuple with the EarnedPoints field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyDashboardData) GetEarnedPointsOk() (*LoyaltyDashboardPointsBreakdown, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EarnedPoints, true
+}
+
 // SetEarnedPoints sets field value
 func (o *LoyaltyDashboardData) SetEarnedPoints(v LoyaltyDashboardPointsBreakdown) {
 	o.EarnedPoints = v
 }
 
+func (o LoyaltyDashboardData) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["date"] = o.Date
+	}
+	if true {
+		toSerialize["totalActivePoints"] = o.TotalActivePoints
+	}
+	if true {
+		toSerialize["totalPendingPoints"] = o.TotalPendingPoints
+	}
+	if true {
+		toSerialize["totalSpentPoints"] = o.TotalSpentPoints
+	}
+	if true {
+		toSerialize["totalExpiredPoints"] = o.TotalExpiredPoints
+	}
+	if true {
+		toSerialize["totalNegativePoints"] = o.TotalNegativePoints
+	}
+	if true {
+		toSerialize["totalMembers"] = o.TotalMembers
+	}
+	if true {
+		toSerialize["newMembers"] = o.NewMembers
+	}
+	if true {
+		toSerialize["spentPoints"] = o.SpentPoints
+	}
+	if true {
+		toSerialize["earnedPoints"] = o.EarnedPoints
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyDashboardData struct {
-	Value        LoyaltyDashboardData
-	ExplicitNull bool
+	value *LoyaltyDashboardData
+	isSet bool
+}
+
+func (v NullableLoyaltyDashboardData) Get() *LoyaltyDashboardData {
+	return v.value
+}
+
+func (v *NullableLoyaltyDashboardData) Set(val *LoyaltyDashboardData) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyDashboardData) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyDashboardData) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyDashboardData(val *LoyaltyDashboardData) *NullableLoyaltyDashboardData {
+	return &NullableLoyaltyDashboardData{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyDashboardData) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyDashboardData) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,32 +10,60 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // StrikethroughCustomEffectPerItemProps customEffectPerItem effect in strikethrough pricing payload.
 type StrikethroughCustomEffectPerItemProps struct {
 	// ID of the effect.
-	EffectId int32 `json:"effectId"`
+	EffectId int64 `json:"effectId"`
 	// The type of the custom effect.
 	Name string `json:"name"`
 	// The JSON payload of the custom effect.
 	Payload map[string]interface{} `json:"payload"`
 }
 
+// NewStrikethroughCustomEffectPerItemProps instantiates a new StrikethroughCustomEffectPerItemProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewStrikethroughCustomEffectPerItemProps(effectId int64, name string, payload map[string]interface{}) *StrikethroughCustomEffectPerItemProps {
+	this := StrikethroughCustomEffectPerItemProps{}
+	this.EffectId = effectId
+	this.Name = name
+	this.Payload = payload
+	return &this
+}
+
+// NewStrikethroughCustomEffectPerItemPropsWithDefaults instantiates a new StrikethroughCustomEffectPerItemProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughCustomEffectPerItemPropsWithDefaults() *StrikethroughCustomEffectPerItemProps {
+	this := StrikethroughCustomEffectPerItemProps{}
+	return &this
+}
+
 // GetEffectId returns the EffectId field value
-func (o *StrikethroughCustomEffectPerItemProps) GetEffectId() int32 {
+func (o *StrikethroughCustomEffectPerItemProps) GetEffectId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.EffectId
 }
 
+// GetEffectIdOk returns a tuple with the EffectId field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughCustomEffectPerItemProps) GetEffectIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EffectId, true
+}
+
 // SetEffectId sets field value
-func (o *StrikethroughCustomEffectPerItemProps) SetEffectId(v int32) {
+func (o *StrikethroughCustomEffectPerItemProps) SetEffectId(v int64) {
 	o.EffectId = v
 }
 
@@ -47,6 +75,15 @@ func (o *StrikethroughCustomEffectPerItemProps) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughCustomEffectPerItemProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -64,30 +101,66 @@ func (o *StrikethroughCustomEffectPerItemProps) GetPayload() map[string]interfac
 	return o.Payload
 }
 
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughCustomEffectPerItemProps) GetPayloadOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
+}
+
 // SetPayload sets field value
 func (o *StrikethroughCustomEffectPerItemProps) SetPayload(v map[string]interface{}) {
 	o.Payload = v
 }
 
+func (o StrikethroughCustomEffectPerItemProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["effectId"] = o.EffectId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughCustomEffectPerItemProps struct {
-	Value        StrikethroughCustomEffectPerItemProps
-	ExplicitNull bool
+	value *StrikethroughCustomEffectPerItemProps
+	isSet bool
+}
+
+func (v NullableStrikethroughCustomEffectPerItemProps) Get() *StrikethroughCustomEffectPerItemProps {
+	return v.value
+}
+
+func (v *NullableStrikethroughCustomEffectPerItemProps) Set(val *StrikethroughCustomEffectPerItemProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughCustomEffectPerItemProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughCustomEffectPerItemProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableStrikethroughCustomEffectPerItemProps(val *StrikethroughCustomEffectPerItemProps) *NullableStrikethroughCustomEffectPerItemProps {
+	return &NullableStrikethroughCustomEffectPerItemProps{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughCustomEffectPerItemProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughCustomEffectPerItemProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

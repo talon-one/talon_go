@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // NewCouponsForMultipleRecipients struct for NewCouponsForMultipleRecipients
 type NewCouponsForMultipleRecipients struct {
 	// The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
-	UsageLimit int32 `json:"usageLimit"`
+	UsageLimit int64 `json:"usageLimit"`
 	// The total discount value that the code can give. Typically used to represent a gift card value.
 	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// The number of reservations that can be made with this coupon code.
-	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
+	ReservationLimit *int64 `json:"reservationLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiration date of the coupon. Coupon never expires if this is omitted.
@@ -37,18 +36,46 @@ type NewCouponsForMultipleRecipients struct {
 	CouponPattern *string `json:"couponPattern,omitempty"`
 }
 
+// NewNewCouponsForMultipleRecipients instantiates a new NewCouponsForMultipleRecipients object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewCouponsForMultipleRecipients(usageLimit int64, recipientsIntegrationIds []string) *NewCouponsForMultipleRecipients {
+	this := NewCouponsForMultipleRecipients{}
+	this.UsageLimit = usageLimit
+	this.RecipientsIntegrationIds = recipientsIntegrationIds
+	return &this
+}
+
+// NewNewCouponsForMultipleRecipientsWithDefaults instantiates a new NewCouponsForMultipleRecipients object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCouponsForMultipleRecipientsWithDefaults() *NewCouponsForMultipleRecipients {
+	this := NewCouponsForMultipleRecipients{}
+	return &this
+}
+
 // GetUsageLimit returns the UsageLimit field value
-func (o *NewCouponsForMultipleRecipients) GetUsageLimit() int32 {
+func (o *NewCouponsForMultipleRecipients) GetUsageLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageLimit
 }
 
+// GetUsageLimitOk returns a tuple with the UsageLimit field value
+// and a boolean to check if the value has been set.
+func (o *NewCouponsForMultipleRecipients) GetUsageLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageLimit, true
+}
+
 // SetUsageLimit sets field value
-func (o *NewCouponsForMultipleRecipients) SetUsageLimit(v int32) {
+func (o *NewCouponsForMultipleRecipients) SetUsageLimit(v int64) {
 	o.UsageLimit = v
 }
 
@@ -61,14 +88,13 @@ func (o *NewCouponsForMultipleRecipients) GetDiscountLimit() float32 {
 	return *o.DiscountLimit
 }
 
-// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetDiscountLimitOk() (float32, bool) {
+func (o *NewCouponsForMultipleRecipients) GetDiscountLimitOk() (*float32, bool) {
 	if o == nil || o.DiscountLimit == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountLimit, true
+	return o.DiscountLimit, true
 }
 
 // HasDiscountLimit returns a boolean if a field has been set.
@@ -86,22 +112,21 @@ func (o *NewCouponsForMultipleRecipients) SetDiscountLimit(v float32) {
 }
 
 // GetReservationLimit returns the ReservationLimit field value if set, zero value otherwise.
-func (o *NewCouponsForMultipleRecipients) GetReservationLimit() int32 {
+func (o *NewCouponsForMultipleRecipients) GetReservationLimit() int64 {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservationLimit
 }
 
-// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, zero value otherwise
+// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetReservationLimitOk() (int32, bool) {
+func (o *NewCouponsForMultipleRecipients) GetReservationLimitOk() (*int64, bool) {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationLimit, true
+	return o.ReservationLimit, true
 }
 
 // HasReservationLimit returns a boolean if a field has been set.
@@ -113,8 +138,8 @@ func (o *NewCouponsForMultipleRecipients) HasReservationLimit() bool {
 	return false
 }
 
-// SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
-func (o *NewCouponsForMultipleRecipients) SetReservationLimit(v int32) {
+// SetReservationLimit gets a reference to the given int64 and assigns it to the ReservationLimit field.
+func (o *NewCouponsForMultipleRecipients) SetReservationLimit(v int64) {
 	o.ReservationLimit = &v
 }
 
@@ -127,14 +152,13 @@ func (o *NewCouponsForMultipleRecipients) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetStartDateOk() (time.Time, bool) {
+func (o *NewCouponsForMultipleRecipients) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -160,14 +184,13 @@ func (o *NewCouponsForMultipleRecipients) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetExpiryDateOk() (time.Time, bool) {
+func (o *NewCouponsForMultipleRecipients) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -193,14 +216,13 @@ func (o *NewCouponsForMultipleRecipients) GetAttributes() map[string]interface{}
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *NewCouponsForMultipleRecipients) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -227,6 +249,15 @@ func (o *NewCouponsForMultipleRecipients) GetRecipientsIntegrationIds() []string
 	return o.RecipientsIntegrationIds
 }
 
+// GetRecipientsIntegrationIdsOk returns a tuple with the RecipientsIntegrationIds field value
+// and a boolean to check if the value has been set.
+func (o *NewCouponsForMultipleRecipients) GetRecipientsIntegrationIdsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RecipientsIntegrationIds, true
+}
+
 // SetRecipientsIntegrationIds sets field value
 func (o *NewCouponsForMultipleRecipients) SetRecipientsIntegrationIds(v []string) {
 	o.RecipientsIntegrationIds = v
@@ -241,14 +272,13 @@ func (o *NewCouponsForMultipleRecipients) GetValidCharacters() []string {
 	return *o.ValidCharacters
 }
 
-// GetValidCharactersOk returns a tuple with the ValidCharacters field value if set, zero value otherwise
+// GetValidCharactersOk returns a tuple with the ValidCharacters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetValidCharactersOk() ([]string, bool) {
+func (o *NewCouponsForMultipleRecipients) GetValidCharactersOk() (*[]string, bool) {
 	if o == nil || o.ValidCharacters == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidCharacters, true
+	return o.ValidCharacters, true
 }
 
 // HasValidCharacters returns a boolean if a field has been set.
@@ -274,14 +304,13 @@ func (o *NewCouponsForMultipleRecipients) GetCouponPattern() string {
 	return *o.CouponPattern
 }
 
-// GetCouponPatternOk returns a tuple with the CouponPattern field value if set, zero value otherwise
+// GetCouponPatternOk returns a tuple with the CouponPattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponsForMultipleRecipients) GetCouponPatternOk() (string, bool) {
+func (o *NewCouponsForMultipleRecipients) GetCouponPatternOk() (*string, bool) {
 	if o == nil || o.CouponPattern == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponPattern, true
+	return o.CouponPattern, true
 }
 
 // HasCouponPattern returns a boolean if a field has been set.
@@ -298,25 +327,70 @@ func (o *NewCouponsForMultipleRecipients) SetCouponPattern(v string) {
 	o.CouponPattern = &v
 }
 
+func (o NewCouponsForMultipleRecipients) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if o.DiscountLimit != nil {
+		toSerialize["discountLimit"] = o.DiscountLimit
+	}
+	if o.ReservationLimit != nil {
+		toSerialize["reservationLimit"] = o.ReservationLimit
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["recipientsIntegrationIds"] = o.RecipientsIntegrationIds
+	}
+	if o.ValidCharacters != nil {
+		toSerialize["validCharacters"] = o.ValidCharacters
+	}
+	if o.CouponPattern != nil {
+		toSerialize["couponPattern"] = o.CouponPattern
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCouponsForMultipleRecipients struct {
-	Value        NewCouponsForMultipleRecipients
-	ExplicitNull bool
+	value *NewCouponsForMultipleRecipients
+	isSet bool
+}
+
+func (v NullableNewCouponsForMultipleRecipients) Get() *NewCouponsForMultipleRecipients {
+	return v.value
+}
+
+func (v *NullableNewCouponsForMultipleRecipients) Set(val *NewCouponsForMultipleRecipients) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCouponsForMultipleRecipients) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCouponsForMultipleRecipients) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewCouponsForMultipleRecipients(val *NewCouponsForMultipleRecipients) *NullableNewCouponsForMultipleRecipients {
+	return &NullableNewCouponsForMultipleRecipients{value: val, isSet: true}
 }
 
 func (v NullableNewCouponsForMultipleRecipients) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCouponsForMultipleRecipients) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

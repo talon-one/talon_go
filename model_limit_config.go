@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,26 @@ type LimitConfig struct {
 	Entities []string `json:"entities"`
 }
 
+// NewLimitConfig instantiates a new LimitConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLimitConfig(action string, limit float32, entities []string) *LimitConfig {
+	this := LimitConfig{}
+	this.Action = action
+	this.Limit = limit
+	this.Entities = entities
+	return &this
+}
+
+// NewLimitConfigWithDefaults instantiates a new LimitConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLimitConfigWithDefaults() *LimitConfig {
+	this := LimitConfig{}
+	return &this
+}
+
 // GetAction returns the Action field value
 func (o *LimitConfig) GetAction() string {
 	if o == nil {
@@ -34,6 +53,15 @@ func (o *LimitConfig) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *LimitConfig) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -51,6 +79,15 @@ func (o *LimitConfig) GetLimit() float32 {
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *LimitConfig) GetLimitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
 func (o *LimitConfig) SetLimit(v float32) {
 	o.Limit = v
@@ -65,14 +102,13 @@ func (o *LimitConfig) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LimitConfig) GetPeriodOk() (string, bool) {
+func (o *LimitConfig) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -99,30 +135,69 @@ func (o *LimitConfig) GetEntities() []string {
 	return o.Entities
 }
 
+// GetEntitiesOk returns a tuple with the Entities field value
+// and a boolean to check if the value has been set.
+func (o *LimitConfig) GetEntitiesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entities, true
+}
+
 // SetEntities sets field value
 func (o *LimitConfig) SetEntities(v []string) {
 	o.Entities = v
 }
 
+func (o LimitConfig) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	if true {
+		toSerialize["entities"] = o.Entities
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLimitConfig struct {
-	Value        LimitConfig
-	ExplicitNull bool
+	value *LimitConfig
+	isSet bool
+}
+
+func (v NullableLimitConfig) Get() *LimitConfig {
+	return v.value
+}
+
+func (v *NullableLimitConfig) Set(val *LimitConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLimitConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLimitConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLimitConfig(val *LimitConfig) *NullableLimitConfig {
+	return &NullableLimitConfig{value: val, isSet: true}
 }
 
 func (v NullableLimitConfig) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLimitConfig) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

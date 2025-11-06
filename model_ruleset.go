@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // Ruleset struct for Ruleset
 type Ruleset struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the user associated with this entity.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// Set of rules to apply.
 	Rules []Rule `json:"rules"`
 	// Set of rules to apply for strikethrough.
@@ -34,25 +33,56 @@ type Ruleset struct {
 	// Indicates whether this created ruleset should be activated for the campaign that owns it.
 	Activate *bool `json:"activate,omitempty"`
 	// The ID of the campaign that owns this entity.
-	CampaignId *int32 `json:"campaignId,omitempty"`
+	CampaignId *int64 `json:"campaignId,omitempty"`
 	// The ID of the campaign template that owns this entity.
-	TemplateId *int32 `json:"templateId,omitempty"`
+	TemplateId *int64 `json:"templateId,omitempty"`
 	// Timestamp indicating when this Ruleset was activated.
 	ActivatedAt *time.Time `json:"activatedAt,omitempty"`
 }
 
+// NewRuleset instantiates a new Ruleset object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRuleset(id int64, created time.Time, userId int64, rules []Rule, bindings []Binding) *Ruleset {
+	this := Ruleset{}
+	this.Id = id
+	this.Created = created
+	this.UserId = userId
+	this.Rules = rules
+	this.Bindings = bindings
+	return &this
+}
+
+// NewRulesetWithDefaults instantiates a new Ruleset object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRulesetWithDefaults() *Ruleset {
+	this := Ruleset{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Ruleset) GetId() int32 {
+func (o *Ruleset) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Ruleset) SetId(v int32) {
+func (o *Ruleset) SetId(v int64) {
 	o.Id = v
 }
 
@@ -66,23 +96,41 @@ func (o *Ruleset) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Ruleset) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetUserId returns the UserId field value
-func (o *Ruleset) GetUserId() int32 {
+func (o *Ruleset) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *Ruleset) SetUserId(v int32) {
+func (o *Ruleset) SetUserId(v int64) {
 	o.UserId = v
 }
 
@@ -94,6 +142,15 @@ func (o *Ruleset) GetRules() []Rule {
 	}
 
 	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetRulesOk() (*[]Rule, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Rules, true
 }
 
 // SetRules sets field value
@@ -110,14 +167,13 @@ func (o *Ruleset) GetStrikethroughRules() []Rule {
 	return *o.StrikethroughRules
 }
 
-// GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field value if set, zero value otherwise
+// GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ruleset) GetStrikethroughRulesOk() ([]Rule, bool) {
+func (o *Ruleset) GetStrikethroughRulesOk() (*[]Rule, bool) {
 	if o == nil || o.StrikethroughRules == nil {
-		var ret []Rule
-		return ret, false
+		return nil, false
 	}
-	return *o.StrikethroughRules, true
+	return o.StrikethroughRules, true
 }
 
 // HasStrikethroughRules returns a boolean if a field has been set.
@@ -144,6 +200,15 @@ func (o *Ruleset) GetBindings() []Binding {
 	return o.Bindings
 }
 
+// GetBindingsOk returns a tuple with the Bindings field value
+// and a boolean to check if the value has been set.
+func (o *Ruleset) GetBindingsOk() (*[]Binding, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Bindings, true
+}
+
 // SetBindings sets field value
 func (o *Ruleset) SetBindings(v []Binding) {
 	o.Bindings = v
@@ -158,14 +223,13 @@ func (o *Ruleset) GetRbVersion() string {
 	return *o.RbVersion
 }
 
-// GetRbVersionOk returns a tuple with the RbVersion field value if set, zero value otherwise
+// GetRbVersionOk returns a tuple with the RbVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ruleset) GetRbVersionOk() (string, bool) {
+func (o *Ruleset) GetRbVersionOk() (*string, bool) {
 	if o == nil || o.RbVersion == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RbVersion, true
+	return o.RbVersion, true
 }
 
 // HasRbVersion returns a boolean if a field has been set.
@@ -191,14 +255,13 @@ func (o *Ruleset) GetActivate() bool {
 	return *o.Activate
 }
 
-// GetActivateOk returns a tuple with the Activate field value if set, zero value otherwise
+// GetActivateOk returns a tuple with the Activate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ruleset) GetActivateOk() (bool, bool) {
+func (o *Ruleset) GetActivateOk() (*bool, bool) {
 	if o == nil || o.Activate == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Activate, true
+	return o.Activate, true
 }
 
 // HasActivate returns a boolean if a field has been set.
@@ -216,22 +279,21 @@ func (o *Ruleset) SetActivate(v bool) {
 }
 
 // GetCampaignId returns the CampaignId field value if set, zero value otherwise.
-func (o *Ruleset) GetCampaignId() int32 {
+func (o *Ruleset) GetCampaignId() int64 {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ruleset) GetCampaignIdOk() (int32, bool) {
+func (o *Ruleset) GetCampaignIdOk() (*int64, bool) {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignId, true
+	return o.CampaignId, true
 }
 
 // HasCampaignId returns a boolean if a field has been set.
@@ -243,28 +305,27 @@ func (o *Ruleset) HasCampaignId() bool {
 	return false
 }
 
-// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-func (o *Ruleset) SetCampaignId(v int32) {
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *Ruleset) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
 // GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *Ruleset) GetTemplateId() int32 {
+func (o *Ruleset) GetTemplateId() int64 {
 	if o == nil || o.TemplateId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TemplateId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, zero value otherwise
+// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ruleset) GetTemplateIdOk() (int32, bool) {
+func (o *Ruleset) GetTemplateIdOk() (*int64, bool) {
 	if o == nil || o.TemplateId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.TemplateId, true
+	return o.TemplateId, true
 }
 
 // HasTemplateId returns a boolean if a field has been set.
@@ -276,8 +337,8 @@ func (o *Ruleset) HasTemplateId() bool {
 	return false
 }
 
-// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
-func (o *Ruleset) SetTemplateId(v int32) {
+// SetTemplateId gets a reference to the given int64 and assigns it to the TemplateId field.
+func (o *Ruleset) SetTemplateId(v int64) {
 	o.TemplateId = &v
 }
 
@@ -290,14 +351,13 @@ func (o *Ruleset) GetActivatedAt() time.Time {
 	return *o.ActivatedAt
 }
 
-// GetActivatedAtOk returns a tuple with the ActivatedAt field value if set, zero value otherwise
+// GetActivatedAtOk returns a tuple with the ActivatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Ruleset) GetActivatedAtOk() (time.Time, bool) {
+func (o *Ruleset) GetActivatedAtOk() (*time.Time, bool) {
 	if o == nil || o.ActivatedAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivatedAt, true
+	return o.ActivatedAt, true
 }
 
 // HasActivatedAt returns a boolean if a field has been set.
@@ -314,25 +374,76 @@ func (o *Ruleset) SetActivatedAt(v time.Time) {
 	o.ActivatedAt = &v
 }
 
+func (o Ruleset) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["rules"] = o.Rules
+	}
+	if o.StrikethroughRules != nil {
+		toSerialize["strikethroughRules"] = o.StrikethroughRules
+	}
+	if true {
+		toSerialize["bindings"] = o.Bindings
+	}
+	if o.RbVersion != nil {
+		toSerialize["rbVersion"] = o.RbVersion
+	}
+	if o.Activate != nil {
+		toSerialize["activate"] = o.Activate
+	}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if o.TemplateId != nil {
+		toSerialize["templateId"] = o.TemplateId
+	}
+	if o.ActivatedAt != nil {
+		toSerialize["activatedAt"] = o.ActivatedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRuleset struct {
-	Value        Ruleset
-	ExplicitNull bool
+	value *Ruleset
+	isSet bool
+}
+
+func (v NullableRuleset) Get() *Ruleset {
+	return v.value
+}
+
+func (v *NullableRuleset) Set(val *Ruleset) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRuleset) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRuleset) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRuleset(val *Ruleset) *NullableRuleset {
+	return &NullableRuleset{value: val, isSet: true}
 }
 
 func (v NullableRuleset) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRuleset) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

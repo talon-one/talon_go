@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // LoyaltyProgramLedgers Customer-specific information about loyalty points.
 type LoyaltyProgramLedgers struct {
 	// The internal ID of loyalty program.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Visible name of loyalty program.
 	Title string `json:"title"`
 	// Internal name of loyalty program.
@@ -30,18 +29,48 @@ type LoyaltyProgramLedgers struct {
 	SubLedgers *map[string]LedgerInfo `json:"subLedgers,omitempty"`
 }
 
+// NewLoyaltyProgramLedgers instantiates a new LoyaltyProgramLedgers object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyProgramLedgers(id int64, title string, name string, ledger LedgerInfo) *LoyaltyProgramLedgers {
+	this := LoyaltyProgramLedgers{}
+	this.Id = id
+	this.Title = title
+	this.Name = name
+	this.Ledger = ledger
+	return &this
+}
+
+// NewLoyaltyProgramLedgersWithDefaults instantiates a new LoyaltyProgramLedgers object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyProgramLedgersWithDefaults() *LoyaltyProgramLedgers {
+	this := LoyaltyProgramLedgers{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *LoyaltyProgramLedgers) GetId() int32 {
+func (o *LoyaltyProgramLedgers) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramLedgers) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LoyaltyProgramLedgers) SetId(v int32) {
+func (o *LoyaltyProgramLedgers) SetId(v int64) {
 	o.Id = v
 }
 
@@ -53,6 +82,15 @@ func (o *LoyaltyProgramLedgers) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramLedgers) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -70,6 +108,15 @@ func (o *LoyaltyProgramLedgers) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramLedgers) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *LoyaltyProgramLedgers) SetName(v string) {
 	o.Name = v
@@ -84,14 +131,13 @@ func (o *LoyaltyProgramLedgers) GetJoinDate() time.Time {
 	return *o.JoinDate
 }
 
-// GetJoinDateOk returns a tuple with the JoinDate field value if set, zero value otherwise
+// GetJoinDateOk returns a tuple with the JoinDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramLedgers) GetJoinDateOk() (time.Time, bool) {
+func (o *LoyaltyProgramLedgers) GetJoinDateOk() (*time.Time, bool) {
 	if o == nil || o.JoinDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.JoinDate, true
+	return o.JoinDate, true
 }
 
 // HasJoinDate returns a boolean if a field has been set.
@@ -118,6 +164,15 @@ func (o *LoyaltyProgramLedgers) GetLedger() LedgerInfo {
 	return o.Ledger
 }
 
+// GetLedgerOk returns a tuple with the Ledger field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramLedgers) GetLedgerOk() (*LedgerInfo, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ledger, true
+}
+
 // SetLedger sets field value
 func (o *LoyaltyProgramLedgers) SetLedger(v LedgerInfo) {
 	o.Ledger = v
@@ -132,14 +187,13 @@ func (o *LoyaltyProgramLedgers) GetSubLedgers() map[string]LedgerInfo {
 	return *o.SubLedgers
 }
 
-// GetSubLedgersOk returns a tuple with the SubLedgers field value if set, zero value otherwise
+// GetSubLedgersOk returns a tuple with the SubLedgers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramLedgers) GetSubLedgersOk() (map[string]LedgerInfo, bool) {
+func (o *LoyaltyProgramLedgers) GetSubLedgersOk() (*map[string]LedgerInfo, bool) {
 	if o == nil || o.SubLedgers == nil {
-		var ret map[string]LedgerInfo
-		return ret, false
+		return nil, false
 	}
-	return *o.SubLedgers, true
+	return o.SubLedgers, true
 }
 
 // HasSubLedgers returns a boolean if a field has been set.
@@ -156,25 +210,61 @@ func (o *LoyaltyProgramLedgers) SetSubLedgers(v map[string]LedgerInfo) {
 	o.SubLedgers = &v
 }
 
+func (o LoyaltyProgramLedgers) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.JoinDate != nil {
+		toSerialize["joinDate"] = o.JoinDate
+	}
+	if true {
+		toSerialize["ledger"] = o.Ledger
+	}
+	if o.SubLedgers != nil {
+		toSerialize["subLedgers"] = o.SubLedgers
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyProgramLedgers struct {
-	Value        LoyaltyProgramLedgers
-	ExplicitNull bool
+	value *LoyaltyProgramLedgers
+	isSet bool
+}
+
+func (v NullableLoyaltyProgramLedgers) Get() *LoyaltyProgramLedgers {
+	return v.value
+}
+
+func (v *NullableLoyaltyProgramLedgers) Set(val *LoyaltyProgramLedgers) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyProgramLedgers) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyProgramLedgers) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyProgramLedgers(val *LoyaltyProgramLedgers) *NullableLoyaltyProgramLedgers {
+	return &NullableLoyaltyProgramLedgers{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyProgramLedgers) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyProgramLedgers) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

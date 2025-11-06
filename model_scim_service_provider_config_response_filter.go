@@ -10,35 +10,50 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ScimServiceProviderConfigResponseFilter Configuration settings related to filtering SCIM resources based on specific criteria.
 type ScimServiceProviderConfigResponseFilter struct {
 	// The maximum number of resources that can be returned in a single filtered query response.
-	MaxResults *int32 `json:"maxResults,omitempty"`
+	MaxResults *int64 `json:"maxResults,omitempty"`
 	// Indicates whether the SCIM service provider supports filtering operations.
 	Supported *bool `json:"supported,omitempty"`
 }
 
+// NewScimServiceProviderConfigResponseFilter instantiates a new ScimServiceProviderConfigResponseFilter object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewScimServiceProviderConfigResponseFilter() *ScimServiceProviderConfigResponseFilter {
+	this := ScimServiceProviderConfigResponseFilter{}
+	return &this
+}
+
+// NewScimServiceProviderConfigResponseFilterWithDefaults instantiates a new ScimServiceProviderConfigResponseFilter object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimServiceProviderConfigResponseFilterWithDefaults() *ScimServiceProviderConfigResponseFilter {
+	this := ScimServiceProviderConfigResponseFilter{}
+	return &this
+}
+
 // GetMaxResults returns the MaxResults field value if set, zero value otherwise.
-func (o *ScimServiceProviderConfigResponseFilter) GetMaxResults() int32 {
+func (o *ScimServiceProviderConfigResponseFilter) GetMaxResults() int64 {
 	if o == nil || o.MaxResults == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.MaxResults
 }
 
-// GetMaxResultsOk returns a tuple with the MaxResults field value if set, zero value otherwise
+// GetMaxResultsOk returns a tuple with the MaxResults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponseFilter) GetMaxResultsOk() (int32, bool) {
+func (o *ScimServiceProviderConfigResponseFilter) GetMaxResultsOk() (*int64, bool) {
 	if o == nil || o.MaxResults == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.MaxResults, true
+	return o.MaxResults, true
 }
 
 // HasMaxResults returns a boolean if a field has been set.
@@ -50,8 +65,8 @@ func (o *ScimServiceProviderConfigResponseFilter) HasMaxResults() bool {
 	return false
 }
 
-// SetMaxResults gets a reference to the given int32 and assigns it to the MaxResults field.
-func (o *ScimServiceProviderConfigResponseFilter) SetMaxResults(v int32) {
+// SetMaxResults gets a reference to the given int64 and assigns it to the MaxResults field.
+func (o *ScimServiceProviderConfigResponseFilter) SetMaxResults(v int64) {
 	o.MaxResults = &v
 }
 
@@ -64,14 +79,13 @@ func (o *ScimServiceProviderConfigResponseFilter) GetSupported() bool {
 	return *o.Supported
 }
 
-// GetSupportedOk returns a tuple with the Supported field value if set, zero value otherwise
+// GetSupportedOk returns a tuple with the Supported field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimServiceProviderConfigResponseFilter) GetSupportedOk() (bool, bool) {
+func (o *ScimServiceProviderConfigResponseFilter) GetSupportedOk() (*bool, bool) {
 	if o == nil || o.Supported == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Supported, true
+	return o.Supported, true
 }
 
 // HasSupported returns a boolean if a field has been set.
@@ -88,25 +102,49 @@ func (o *ScimServiceProviderConfigResponseFilter) SetSupported(v bool) {
 	o.Supported = &v
 }
 
+func (o ScimServiceProviderConfigResponseFilter) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.MaxResults != nil {
+		toSerialize["maxResults"] = o.MaxResults
+	}
+	if o.Supported != nil {
+		toSerialize["supported"] = o.Supported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimServiceProviderConfigResponseFilter struct {
-	Value        ScimServiceProviderConfigResponseFilter
-	ExplicitNull bool
+	value *ScimServiceProviderConfigResponseFilter
+	isSet bool
+}
+
+func (v NullableScimServiceProviderConfigResponseFilter) Get() *ScimServiceProviderConfigResponseFilter {
+	return v.value
+}
+
+func (v *NullableScimServiceProviderConfigResponseFilter) Set(val *ScimServiceProviderConfigResponseFilter) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimServiceProviderConfigResponseFilter) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimServiceProviderConfigResponseFilter) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableScimServiceProviderConfigResponseFilter(val *ScimServiceProviderConfigResponseFilter) *NullableScimServiceProviderConfigResponseFilter {
+	return &NullableScimServiceProviderConfigResponseFilter{value: val, isSet: true}
 }
 
 func (v NullableScimServiceProviderConfigResponseFilter) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimServiceProviderConfigResponseFilter) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -30,7 +29,7 @@ type BaseCampaign struct {
 	// A disabled or archived campaign is not evaluated for rules or coupons.
 	State string `json:"state"`
 	// [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.
-	ActiveRulesetId *int32 `json:"activeRulesetId,omitempty"`
+	ActiveRulesetId *int64 `json:"activeRulesetId,omitempty"`
 	// A list of tags for the campaign.
 	Tags []string `json:"tags"`
 	// The features enabled in this campaign.
@@ -40,11 +39,39 @@ type BaseCampaign struct {
 	// The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.
 	Limits []LimitConfig `json:"limits"`
 	// The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.
-	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
+	CampaignGroups *[]int64 `json:"campaignGroups,omitempty"`
 	// The campaign type. Possible type values:   - `cartItem`: Type of campaign that can apply effects only to cart items.   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
 	Type *string `json:"type,omitempty"`
 	// A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.
-	LinkedStoreIds *[]int32 `json:"linkedStoreIds,omitempty"`
+	LinkedStoreIds *[]int64 `json:"linkedStoreIds,omitempty"`
+}
+
+// NewBaseCampaign instantiates a new BaseCampaign object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBaseCampaign(name string, state string, tags []string, features []string, limits []LimitConfig) *BaseCampaign {
+	this := BaseCampaign{}
+	this.Name = name
+	this.State = state
+	this.Tags = tags
+	this.Features = features
+	this.Limits = limits
+	var type_ string = "advanced"
+	this.Type = &type_
+	return &this
+}
+
+// NewBaseCampaignWithDefaults instantiates a new BaseCampaign object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBaseCampaignWithDefaults() *BaseCampaign {
+	this := BaseCampaign{}
+	var state string = "enabled"
+	this.State = state
+	var type_ string = "advanced"
+	this.Type = &type_
+	return &this
 }
 
 // GetName returns the Name field value
@@ -55,6 +82,15 @@ func (o *BaseCampaign) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *BaseCampaign) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -71,14 +107,13 @@ func (o *BaseCampaign) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetDescriptionOk() (string, bool) {
+func (o *BaseCampaign) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -104,14 +139,13 @@ func (o *BaseCampaign) GetStartTime() time.Time {
 	return *o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetStartTimeOk() (time.Time, bool) {
+func (o *BaseCampaign) GetStartTimeOk() (*time.Time, bool) {
 	if o == nil || o.StartTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartTime, true
+	return o.StartTime, true
 }
 
 // HasStartTime returns a boolean if a field has been set.
@@ -137,14 +171,13 @@ func (o *BaseCampaign) GetEndTime() time.Time {
 	return *o.EndTime
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetEndTimeOk() (time.Time, bool) {
+func (o *BaseCampaign) GetEndTimeOk() (*time.Time, bool) {
 	if o == nil || o.EndTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndTime, true
+	return o.EndTime, true
 }
 
 // HasEndTime returns a boolean if a field has been set.
@@ -170,14 +203,13 @@ func (o *BaseCampaign) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *BaseCampaign) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -204,28 +236,36 @@ func (o *BaseCampaign) GetState() string {
 	return o.State
 }
 
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *BaseCampaign) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
 // SetState sets field value
 func (o *BaseCampaign) SetState(v string) {
 	o.State = v
 }
 
 // GetActiveRulesetId returns the ActiveRulesetId field value if set, zero value otherwise.
-func (o *BaseCampaign) GetActiveRulesetId() int32 {
+func (o *BaseCampaign) GetActiveRulesetId() int64 {
 	if o == nil || o.ActiveRulesetId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveRulesetId
 }
 
-// GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field value if set, zero value otherwise
+// GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetActiveRulesetIdOk() (int32, bool) {
+func (o *BaseCampaign) GetActiveRulesetIdOk() (*int64, bool) {
 	if o == nil || o.ActiveRulesetId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveRulesetId, true
+	return o.ActiveRulesetId, true
 }
 
 // HasActiveRulesetId returns a boolean if a field has been set.
@@ -237,8 +277,8 @@ func (o *BaseCampaign) HasActiveRulesetId() bool {
 	return false
 }
 
-// SetActiveRulesetId gets a reference to the given int32 and assigns it to the ActiveRulesetId field.
-func (o *BaseCampaign) SetActiveRulesetId(v int32) {
+// SetActiveRulesetId gets a reference to the given int64 and assigns it to the ActiveRulesetId field.
+func (o *BaseCampaign) SetActiveRulesetId(v int64) {
 	o.ActiveRulesetId = &v
 }
 
@@ -250,6 +290,15 @@ func (o *BaseCampaign) GetTags() []string {
 	}
 
 	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value
+// and a boolean to check if the value has been set.
+func (o *BaseCampaign) GetTagsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tags, true
 }
 
 // SetTags sets field value
@@ -267,6 +316,15 @@ func (o *BaseCampaign) GetFeatures() []string {
 	return o.Features
 }
 
+// GetFeaturesOk returns a tuple with the Features field value
+// and a boolean to check if the value has been set.
+func (o *BaseCampaign) GetFeaturesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Features, true
+}
+
 // SetFeatures sets field value
 func (o *BaseCampaign) SetFeatures(v []string) {
 	o.Features = v
@@ -281,14 +339,13 @@ func (o *BaseCampaign) GetCouponSettings() CodeGeneratorSettings {
 	return *o.CouponSettings
 }
 
-// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, zero value otherwise
+// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetCouponSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *BaseCampaign) GetCouponSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.CouponSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponSettings, true
+	return o.CouponSettings, true
 }
 
 // HasCouponSettings returns a boolean if a field has been set.
@@ -314,14 +371,13 @@ func (o *BaseCampaign) GetReferralSettings() CodeGeneratorSettings {
 	return *o.ReferralSettings
 }
 
-// GetReferralSettingsOk returns a tuple with the ReferralSettings field value if set, zero value otherwise
+// GetReferralSettingsOk returns a tuple with the ReferralSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetReferralSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *BaseCampaign) GetReferralSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.ReferralSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralSettings, true
+	return o.ReferralSettings, true
 }
 
 // HasReferralSettings returns a boolean if a field has been set.
@@ -348,28 +404,36 @@ func (o *BaseCampaign) GetLimits() []LimitConfig {
 	return o.Limits
 }
 
+// GetLimitsOk returns a tuple with the Limits field value
+// and a boolean to check if the value has been set.
+func (o *BaseCampaign) GetLimitsOk() (*[]LimitConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limits, true
+}
+
 // SetLimits sets field value
 func (o *BaseCampaign) SetLimits(v []LimitConfig) {
 	o.Limits = v
 }
 
 // GetCampaignGroups returns the CampaignGroups field value if set, zero value otherwise.
-func (o *BaseCampaign) GetCampaignGroups() []int32 {
+func (o *BaseCampaign) GetCampaignGroups() []int64 {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignGroups
 }
 
-// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, zero value otherwise
+// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetCampaignGroupsOk() ([]int32, bool) {
+func (o *BaseCampaign) GetCampaignGroupsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignGroups, true
+	return o.CampaignGroups, true
 }
 
 // HasCampaignGroups returns a boolean if a field has been set.
@@ -381,8 +445,8 @@ func (o *BaseCampaign) HasCampaignGroups() bool {
 	return false
 }
 
-// SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
-func (o *BaseCampaign) SetCampaignGroups(v []int32) {
+// SetCampaignGroups gets a reference to the given []int64 and assigns it to the CampaignGroups field.
+func (o *BaseCampaign) SetCampaignGroups(v []int64) {
 	o.CampaignGroups = &v
 }
 
@@ -395,14 +459,13 @@ func (o *BaseCampaign) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetTypeOk() (string, bool) {
+func (o *BaseCampaign) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -420,22 +483,21 @@ func (o *BaseCampaign) SetType(v string) {
 }
 
 // GetLinkedStoreIds returns the LinkedStoreIds field value if set, zero value otherwise.
-func (o *BaseCampaign) GetLinkedStoreIds() []int32 {
+func (o *BaseCampaign) GetLinkedStoreIds() []int64 {
 	if o == nil || o.LinkedStoreIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.LinkedStoreIds
 }
 
-// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, zero value otherwise
+// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseCampaign) GetLinkedStoreIdsOk() ([]int32, bool) {
+func (o *BaseCampaign) GetLinkedStoreIdsOk() (*[]int64, bool) {
 	if o == nil || o.LinkedStoreIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.LinkedStoreIds, true
+	return o.LinkedStoreIds, true
 }
 
 // HasLinkedStoreIds returns a boolean if a field has been set.
@@ -447,30 +509,93 @@ func (o *BaseCampaign) HasLinkedStoreIds() bool {
 	return false
 }
 
-// SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
-func (o *BaseCampaign) SetLinkedStoreIds(v []int32) {
+// SetLinkedStoreIds gets a reference to the given []int64 and assigns it to the LinkedStoreIds field.
+func (o *BaseCampaign) SetLinkedStoreIds(v []int64) {
 	o.LinkedStoreIds = &v
 }
 
+func (o BaseCampaign) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.StartTime != nil {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if o.EndTime != nil {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if o.ActiveRulesetId != nil {
+		toSerialize["activeRulesetId"] = o.ActiveRulesetId
+	}
+	if true {
+		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["features"] = o.Features
+	}
+	if o.CouponSettings != nil {
+		toSerialize["couponSettings"] = o.CouponSettings
+	}
+	if o.ReferralSettings != nil {
+		toSerialize["referralSettings"] = o.ReferralSettings
+	}
+	if true {
+		toSerialize["limits"] = o.Limits
+	}
+	if o.CampaignGroups != nil {
+		toSerialize["campaignGroups"] = o.CampaignGroups
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if o.LinkedStoreIds != nil {
+		toSerialize["linkedStoreIds"] = o.LinkedStoreIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBaseCampaign struct {
-	Value        BaseCampaign
-	ExplicitNull bool
+	value *BaseCampaign
+	isSet bool
+}
+
+func (v NullableBaseCampaign) Get() *BaseCampaign {
+	return v.value
+}
+
+func (v *NullableBaseCampaign) Set(val *BaseCampaign) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBaseCampaign) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBaseCampaign) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBaseCampaign(val *BaseCampaign) *NullableBaseCampaign {
+	return &NullableBaseCampaign{value: val, isSet: true}
 }
 
 func (v NullableBaseCampaign) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBaseCampaign) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

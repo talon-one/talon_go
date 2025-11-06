@@ -10,44 +10,81 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CouponRejectionReason Holds a reference to the campaign, the coupon and the reason for which that coupon was rejected. Should only be present when there is a 'rejectCoupon' effect.
 type CouponRejectionReason struct {
-	CampaignId int32  `json:"campaignId"`
-	CouponId   int32  `json:"couponId"`
+	CampaignId int64  `json:"campaignId"`
+	CouponId   int64  `json:"couponId"`
 	Reason     string `json:"reason"`
 }
 
+// NewCouponRejectionReason instantiates a new CouponRejectionReason object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCouponRejectionReason(campaignId int64, couponId int64, reason string) *CouponRejectionReason {
+	this := CouponRejectionReason{}
+	this.CampaignId = campaignId
+	this.CouponId = couponId
+	this.Reason = reason
+	return &this
+}
+
+// NewCouponRejectionReasonWithDefaults instantiates a new CouponRejectionReason object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponRejectionReasonWithDefaults() *CouponRejectionReason {
+	this := CouponRejectionReason{}
+	return &this
+}
+
 // GetCampaignId returns the CampaignId field value
-func (o *CouponRejectionReason) GetCampaignId() int32 {
+func (o *CouponRejectionReason) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *CouponRejectionReason) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *CouponRejectionReason) SetCampaignId(v int32) {
+func (o *CouponRejectionReason) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
 // GetCouponId returns the CouponId field value
-func (o *CouponRejectionReason) GetCouponId() int32 {
+func (o *CouponRejectionReason) GetCouponId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CouponId
 }
 
+// GetCouponIdOk returns a tuple with the CouponId field value
+// and a boolean to check if the value has been set.
+func (o *CouponRejectionReason) GetCouponIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponId, true
+}
+
 // SetCouponId sets field value
-func (o *CouponRejectionReason) SetCouponId(v int32) {
+func (o *CouponRejectionReason) SetCouponId(v int64) {
 	o.CouponId = v
 }
 
@@ -61,30 +98,66 @@ func (o *CouponRejectionReason) GetReason() string {
 	return o.Reason
 }
 
+// GetReasonOk returns a tuple with the Reason field value
+// and a boolean to check if the value has been set.
+func (o *CouponRejectionReason) GetReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Reason, true
+}
+
 // SetReason sets field value
 func (o *CouponRejectionReason) SetReason(v string) {
 	o.Reason = v
 }
 
+func (o CouponRejectionReason) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["couponId"] = o.CouponId
+	}
+	if true {
+		toSerialize["reason"] = o.Reason
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponRejectionReason struct {
-	Value        CouponRejectionReason
-	ExplicitNull bool
+	value *CouponRejectionReason
+	isSet bool
+}
+
+func (v NullableCouponRejectionReason) Get() *CouponRejectionReason {
+	return v.value
+}
+
+func (v *NullableCouponRejectionReason) Set(val *CouponRejectionReason) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponRejectionReason) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponRejectionReason) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCouponRejectionReason(val *CouponRejectionReason) *NullableCouponRejectionReason {
+	return &NullableCouponRejectionReason{value: val, isSet: true}
 }
 
 func (v NullableCouponRejectionReason) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponRejectionReason) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

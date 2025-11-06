@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,6 +22,26 @@ type IntegrationState struct {
 	Coupon  *Coupon         `json:"coupon,omitempty"`
 }
 
+// NewIntegrationState instantiates a new IntegrationState object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewIntegrationState(session CustomerSession, profile CustomerProfile, event Event) *IntegrationState {
+	this := IntegrationState{}
+	this.Session = session
+	this.Profile = profile
+	this.Event = event
+	return &this
+}
+
+// NewIntegrationStateWithDefaults instantiates a new IntegrationState object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIntegrationStateWithDefaults() *IntegrationState {
+	this := IntegrationState{}
+	return &this
+}
+
 // GetSession returns the Session field value
 func (o *IntegrationState) GetSession() CustomerSession {
 	if o == nil {
@@ -31,6 +50,15 @@ func (o *IntegrationState) GetSession() CustomerSession {
 	}
 
 	return o.Session
+}
+
+// GetSessionOk returns a tuple with the Session field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationState) GetSessionOk() (*CustomerSession, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Session, true
 }
 
 // SetSession sets field value
@@ -48,6 +76,15 @@ func (o *IntegrationState) GetProfile() CustomerProfile {
 	return o.Profile
 }
 
+// GetProfileOk returns a tuple with the Profile field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationState) GetProfileOk() (*CustomerProfile, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Profile, true
+}
+
 // SetProfile sets field value
 func (o *IntegrationState) SetProfile(v CustomerProfile) {
 	o.Profile = v
@@ -61,6 +98,15 @@ func (o *IntegrationState) GetEvent() Event {
 	}
 
 	return o.Event
+}
+
+// GetEventOk returns a tuple with the Event field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationState) GetEventOk() (*Event, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Event, true
 }
 
 // SetEvent sets field value
@@ -77,14 +123,13 @@ func (o *IntegrationState) GetLoyalty() Loyalty {
 	return *o.Loyalty
 }
 
-// GetLoyaltyOk returns a tuple with the Loyalty field value if set, zero value otherwise
+// GetLoyaltyOk returns a tuple with the Loyalty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationState) GetLoyaltyOk() (Loyalty, bool) {
+func (o *IntegrationState) GetLoyaltyOk() (*Loyalty, bool) {
 	if o == nil || o.Loyalty == nil {
-		var ret Loyalty
-		return ret, false
+		return nil, false
 	}
-	return *o.Loyalty, true
+	return o.Loyalty, true
 }
 
 // HasLoyalty returns a boolean if a field has been set.
@@ -110,14 +155,13 @@ func (o *IntegrationState) GetCoupon() Coupon {
 	return *o.Coupon
 }
 
-// GetCouponOk returns a tuple with the Coupon field value if set, zero value otherwise
+// GetCouponOk returns a tuple with the Coupon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationState) GetCouponOk() (Coupon, bool) {
+func (o *IntegrationState) GetCouponOk() (*Coupon, bool) {
 	if o == nil || o.Coupon == nil {
-		var ret Coupon
-		return ret, false
+		return nil, false
 	}
-	return *o.Coupon, true
+	return o.Coupon, true
 }
 
 // HasCoupon returns a boolean if a field has been set.
@@ -134,25 +178,58 @@ func (o *IntegrationState) SetCoupon(v Coupon) {
 	o.Coupon = &v
 }
 
+func (o IntegrationState) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["session"] = o.Session
+	}
+	if true {
+		toSerialize["profile"] = o.Profile
+	}
+	if true {
+		toSerialize["event"] = o.Event
+	}
+	if o.Loyalty != nil {
+		toSerialize["loyalty"] = o.Loyalty
+	}
+	if o.Coupon != nil {
+		toSerialize["coupon"] = o.Coupon
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIntegrationState struct {
-	Value        IntegrationState
-	ExplicitNull bool
+	value *IntegrationState
+	isSet bool
+}
+
+func (v NullableIntegrationState) Get() *IntegrationState {
+	return v.value
+}
+
+func (v *NullableIntegrationState) Set(val *IntegrationState) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIntegrationState) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIntegrationState) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIntegrationState(val *IntegrationState) *NullableIntegrationState {
+	return &NullableIntegrationState{value: val, isSet: true}
 }
 
 func (v NullableIntegrationState) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIntegrationState) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

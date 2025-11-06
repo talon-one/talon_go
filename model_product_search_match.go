@@ -10,37 +10,53 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ProductSearchMatch struct for ProductSearchMatch
 type ProductSearchMatch struct {
 	// The ID of the product.
-	ProductId *int32 `json:"productId,omitempty"`
+	ProductId *int64 `json:"productId,omitempty"`
 	// The string matching the given value. Either a product name or SKU.
 	Value string `json:"value"`
 	// The ID of the SKU linked to a product. If empty, this is an product.
-	ProductSkuId *int32 `json:"productSkuId,omitempty"`
+	ProductSkuId *int64 `json:"productSkuId,omitempty"`
+}
+
+// NewProductSearchMatch instantiates a new ProductSearchMatch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewProductSearchMatch(value string) *ProductSearchMatch {
+	this := ProductSearchMatch{}
+	this.Value = value
+	return &this
+}
+
+// NewProductSearchMatchWithDefaults instantiates a new ProductSearchMatch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProductSearchMatchWithDefaults() *ProductSearchMatch {
+	this := ProductSearchMatch{}
+	return &this
 }
 
 // GetProductId returns the ProductId field value if set, zero value otherwise.
-func (o *ProductSearchMatch) GetProductId() int32 {
+func (o *ProductSearchMatch) GetProductId() int64 {
 	if o == nil || o.ProductId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProductId
 }
 
-// GetProductIdOk returns a tuple with the ProductId field value if set, zero value otherwise
+// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductSearchMatch) GetProductIdOk() (int32, bool) {
+func (o *ProductSearchMatch) GetProductIdOk() (*int64, bool) {
 	if o == nil || o.ProductId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProductId, true
+	return o.ProductId, true
 }
 
 // HasProductId returns a boolean if a field has been set.
@@ -52,8 +68,8 @@ func (o *ProductSearchMatch) HasProductId() bool {
 	return false
 }
 
-// SetProductId gets a reference to the given int32 and assigns it to the ProductId field.
-func (o *ProductSearchMatch) SetProductId(v int32) {
+// SetProductId gets a reference to the given int64 and assigns it to the ProductId field.
+func (o *ProductSearchMatch) SetProductId(v int64) {
 	o.ProductId = &v
 }
 
@@ -67,28 +83,36 @@ func (o *ProductSearchMatch) GetValue() string {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *ProductSearchMatch) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *ProductSearchMatch) SetValue(v string) {
 	o.Value = v
 }
 
 // GetProductSkuId returns the ProductSkuId field value if set, zero value otherwise.
-func (o *ProductSearchMatch) GetProductSkuId() int32 {
+func (o *ProductSearchMatch) GetProductSkuId() int64 {
 	if o == nil || o.ProductSkuId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProductSkuId
 }
 
-// GetProductSkuIdOk returns a tuple with the ProductSkuId field value if set, zero value otherwise
+// GetProductSkuIdOk returns a tuple with the ProductSkuId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProductSearchMatch) GetProductSkuIdOk() (int32, bool) {
+func (o *ProductSearchMatch) GetProductSkuIdOk() (*int64, bool) {
 	if o == nil || o.ProductSkuId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProductSkuId, true
+	return o.ProductSkuId, true
 }
 
 // HasProductSkuId returns a boolean if a field has been set.
@@ -100,30 +124,57 @@ func (o *ProductSearchMatch) HasProductSkuId() bool {
 	return false
 }
 
-// SetProductSkuId gets a reference to the given int32 and assigns it to the ProductSkuId field.
-func (o *ProductSearchMatch) SetProductSkuId(v int32) {
+// SetProductSkuId gets a reference to the given int64 and assigns it to the ProductSkuId field.
+func (o *ProductSearchMatch) SetProductSkuId(v int64) {
 	o.ProductSkuId = &v
 }
 
+func (o ProductSearchMatch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ProductId != nil {
+		toSerialize["productId"] = o.ProductId
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.ProductSkuId != nil {
+		toSerialize["productSkuId"] = o.ProductSkuId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableProductSearchMatch struct {
-	Value        ProductSearchMatch
-	ExplicitNull bool
+	value *ProductSearchMatch
+	isSet bool
+}
+
+func (v NullableProductSearchMatch) Get() *ProductSearchMatch {
+	return v.value
+}
+
+func (v *NullableProductSearchMatch) Set(val *ProductSearchMatch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProductSearchMatch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProductSearchMatch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProductSearchMatch(val *ProductSearchMatch) *NullableProductSearchMatch {
+	return &NullableProductSearchMatch{value: val, isSet: true}
 }
 
 func (v NullableProductSearchMatch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableProductSearchMatch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

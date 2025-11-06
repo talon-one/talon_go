@@ -27,6 +27,159 @@ var (
 // IntegrationApiService IntegrationApi service
 type IntegrationApiService service
 
+type apiBestPriorPriceRequest struct {
+	ctx        _context.Context
+	apiService *IntegrationApiService
+	body       *BestPriorPriceRequest
+}
+
+func (r apiBestPriorPriceRequest) Body(body BestPriorPriceRequest) apiBestPriorPriceRequest {
+	r.body = &body
+	return r
+}
+
+/*
+BestPriorPrice Fetch best prior price
+Returns the best prior price based on historical pricing data for the specified SKUs within a defined timeframe.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+
+@return apiBestPriorPriceRequest
+*/
+func (a *IntegrationApiService) BestPriorPrice(ctx _context.Context) apiBestPriorPriceRequest {
+	return apiBestPriorPriceRequest{
+		apiService: a,
+		ctx:        ctx,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return []BestPriorPrice
+*/
+func (r apiBestPriorPriceRequest) Execute() ([]BestPriorPrice, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  []BestPriorPrice
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.BestPriorPrice")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/best_prior_price"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["api_key_v1"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["management_key"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["manager_auth"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiCreateAudienceV2Request struct {
 	ctx        _context.Context
 	apiService *IntegrationApiService
@@ -120,7 +273,7 @@ func (r apiCreateAudienceV2Request) Execute() (Audience, *_nethttp.Response, err
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -151,16 +304,6 @@ func (r apiCreateAudienceV2Request) Execute() (Audience, *_nethttp.Response, err
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v Audience
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -306,7 +449,7 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -337,16 +480,6 @@ func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v Coupon
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -472,7 +605,7 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -503,16 +636,6 @@ func (r apiCreateReferralRequest) Execute() (Referral, *_nethttp.Response, error
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v Referral
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
@@ -637,7 +760,7 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -668,16 +791,6 @@ func (r apiCreateReferralsForMultipleAdvocatesRequest) Execute() (InlineResponse
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 201 {
-			var v InlineResponse201
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -780,7 +893,7 @@ func (r apiDeleteAudienceMembershipsV2Request) Execute() (*_nethttp.Response, er
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -908,7 +1021,7 @@ func (r apiDeleteAudienceV2Request) Execute() (*_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1055,7 +1168,7 @@ func (r apiDeleteCouponReservationRequest) Execute() (*_nethttp.Response, error)
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1199,7 +1312,7 @@ func (r apiDeleteCustomerDataRequest) Execute() (*_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1344,7 +1457,7 @@ func (r apiGenerateLoyaltyCardRequest) Execute() (LoyaltyCard, *_nethttp.Respons
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1375,16 +1488,6 @@ func (r apiGenerateLoyaltyCardRequest) Execute() (LoyaltyCard, *_nethttp.Respons
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LoyaltyCard
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -1539,7 +1642,7 @@ func (r apiGetCustomerAchievementHistoryRequest) Execute() (InlineResponse2002, 
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1570,16 +1673,6 @@ func (r apiGetCustomerAchievementHistoryRequest) Execute() (InlineResponse2002, 
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2002
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -1749,7 +1842,7 @@ func (r apiGetCustomerAchievementsRequest) Execute() (InlineResponse2001, *_neth
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1780,16 +1873,6 @@ func (r apiGetCustomerAchievementsRequest) Execute() (InlineResponse2001, *_neth
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2001
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -1962,7 +2045,7 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -1993,16 +2076,6 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v CustomerInventory
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponseWithStatus
@@ -2113,7 +2186,7 @@ func (r apiGetCustomerSessionRequest) Execute() (IntegrationCustomerSessionRespo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -2144,16 +2217,6 @@ func (r apiGetCustomerSessionRequest) Execute() (IntegrationCustomerSessionRespo
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationCustomerSessionResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
@@ -2308,7 +2371,7 @@ func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalancesWithTiers, *_net
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -2339,16 +2402,6 @@ func (r apiGetLoyaltyBalancesRequest) Execute() (LoyaltyBalancesWithTiers, *_net
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LoyaltyBalancesWithTiers
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -2499,7 +2552,7 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyCardBalances, *_neth
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -2530,16 +2583,6 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyCardBalances, *_neth
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LoyaltyCardBalances
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -2586,14 +2629,17 @@ func (r apiGetLoyaltyCardBalancesRequest) Execute() (LoyaltyCardBalances, *_neth
 }
 
 type apiGetLoyaltyCardPointsRequest struct {
-	ctx              _context.Context
-	apiService       *IntegrationApiService
-	loyaltyProgramId int64
-	loyaltyCardId    string
-	status           *string
-	subledgerId      *[]string
-	pageSize         *int64
-	skip             *int64
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	loyaltyProgramId   int64
+	loyaltyCardId      string
+	status             *string
+	subledgerId        *[]string
+	customerSessionIDs *[]string
+	transactionUUIDs   *[]string
+	pageSize           *int64
+	skip               *int64
+	sort               *string
 }
 
 func (r apiGetLoyaltyCardPointsRequest) Status(status string) apiGetLoyaltyCardPointsRequest {
@@ -2606,6 +2652,16 @@ func (r apiGetLoyaltyCardPointsRequest) SubledgerId(subledgerId []string) apiGet
 	return r
 }
 
+func (r apiGetLoyaltyCardPointsRequest) CustomerSessionIDs(customerSessionIDs []string) apiGetLoyaltyCardPointsRequest {
+	r.customerSessionIDs = &customerSessionIDs
+	return r
+}
+
+func (r apiGetLoyaltyCardPointsRequest) TransactionUUIDs(transactionUUIDs []string) apiGetLoyaltyCardPointsRequest {
+	r.transactionUUIDs = &transactionUUIDs
+	return r
+}
+
 func (r apiGetLoyaltyCardPointsRequest) PageSize(pageSize int64) apiGetLoyaltyCardPointsRequest {
 	r.pageSize = &pageSize
 	return r
@@ -2613,6 +2669,11 @@ func (r apiGetLoyaltyCardPointsRequest) PageSize(pageSize int64) apiGetLoyaltyCa
 
 func (r apiGetLoyaltyCardPointsRequest) Skip(skip int64) apiGetLoyaltyCardPointsRequest {
 	r.skip = &skip
+	return r
+}
+
+func (r apiGetLoyaltyCardPointsRequest) Sort(sort string) apiGetLoyaltyCardPointsRequest {
+	r.sort = &sort
 	return r
 }
 
@@ -2686,11 +2747,36 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2005, *_nethttp
 			localVarQueryParams.Add("subledgerId", parameterToString(t, "multi"))
 		}
 	}
+	if r.customerSessionIDs != nil {
+		t := *r.customerSessionIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("customerSessionIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("customerSessionIDs", parameterToString(t, "multi"))
+		}
+	}
+	if r.transactionUUIDs != nil {
+		t := *r.transactionUUIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("transactionUUIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("transactionUUIDs", parameterToString(t, "multi"))
+		}
+	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
 	}
 	if r.skip != nil {
 		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -2712,7 +2798,7 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2005, *_nethttp
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -2743,16 +2829,6 @@ func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2005, *_nethttp
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2005
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -2807,6 +2883,8 @@ type apiGetLoyaltyCardTransactionsRequest struct {
 	loyaltyTransactionType *string
 	startDate              *time.Time
 	endDate                *time.Time
+	customerSessionIDs     *[]string
+	transactionUUIDs       *[]string
 	pageSize               *int64
 	skip                   *int64
 }
@@ -2828,6 +2906,16 @@ func (r apiGetLoyaltyCardTransactionsRequest) StartDate(startDate time.Time) api
 
 func (r apiGetLoyaltyCardTransactionsRequest) EndDate(endDate time.Time) apiGetLoyaltyCardTransactionsRequest {
 	r.endDate = &endDate
+	return r
+}
+
+func (r apiGetLoyaltyCardTransactionsRequest) CustomerSessionIDs(customerSessionIDs []string) apiGetLoyaltyCardTransactionsRequest {
+	r.customerSessionIDs = &customerSessionIDs
+	return r
+}
+
+func (r apiGetLoyaltyCardTransactionsRequest) TransactionUUIDs(transactionUUIDs []string) apiGetLoyaltyCardTransactionsRequest {
+	r.transactionUUIDs = &transactionUUIDs
 	return r
 }
 
@@ -2913,6 +3001,28 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2003, *_n
 	if r.endDate != nil {
 		localVarQueryParams.Add("endDate", parameterToString(*r.endDate, ""))
 	}
+	if r.customerSessionIDs != nil {
+		t := *r.customerSessionIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("customerSessionIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("customerSessionIDs", parameterToString(t, "multi"))
+		}
+	}
+	if r.transactionUUIDs != nil {
+		t := *r.transactionUUIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("transactionUUIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("transactionUUIDs", parameterToString(t, "multi"))
+		}
+	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
 	}
@@ -2939,7 +3049,7 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2003, *_n
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -2970,16 +3080,6 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2003, *_n
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2003
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -3026,14 +3126,17 @@ func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2003, *_n
 }
 
 type apiGetLoyaltyProgramProfilePointsRequest struct {
-	ctx              _context.Context
-	apiService       *IntegrationApiService
-	loyaltyProgramId int64
-	integrationId    string
-	status           *string
-	subledgerId      *string
-	pageSize         *int64
-	skip             *int64
+	ctx                _context.Context
+	apiService         *IntegrationApiService
+	loyaltyProgramId   int64
+	integrationId      string
+	status             *string
+	subledgerId        *string
+	customerSessionIDs *[]string
+	transactionUUIDs   *[]string
+	pageSize           *int64
+	skip               *int64
+	sort               *string
 }
 
 func (r apiGetLoyaltyProgramProfilePointsRequest) Status(status string) apiGetLoyaltyProgramProfilePointsRequest {
@@ -3046,6 +3149,16 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) SubledgerId(subledgerId string
 	return r
 }
 
+func (r apiGetLoyaltyProgramProfilePointsRequest) CustomerSessionIDs(customerSessionIDs []string) apiGetLoyaltyProgramProfilePointsRequest {
+	r.customerSessionIDs = &customerSessionIDs
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfilePointsRequest) TransactionUUIDs(transactionUUIDs []string) apiGetLoyaltyProgramProfilePointsRequest {
+	r.transactionUUIDs = &transactionUUIDs
+	return r
+}
+
 func (r apiGetLoyaltyProgramProfilePointsRequest) PageSize(pageSize int64) apiGetLoyaltyProgramProfilePointsRequest {
 	r.pageSize = &pageSize
 	return r
@@ -3053,6 +3166,11 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) PageSize(pageSize int64) apiGe
 
 func (r apiGetLoyaltyProgramProfilePointsRequest) Skip(skip int64) apiGetLoyaltyProgramProfilePointsRequest {
 	r.skip = &skip
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfilePointsRequest) Sort(sort string) apiGetLoyaltyProgramProfilePointsRequest {
+	r.sort = &sort
 	return r
 }
 
@@ -3114,11 +3232,36 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2006,
 	if r.subledgerId != nil {
 		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
 	}
+	if r.customerSessionIDs != nil {
+		t := *r.customerSessionIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("customerSessionIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("customerSessionIDs", parameterToString(t, "multi"))
+		}
+	}
+	if r.transactionUUIDs != nil {
+		t := *r.transactionUUIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("transactionUUIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("transactionUUIDs", parameterToString(t, "multi"))
+		}
+	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
 	}
 	if r.skip != nil {
 		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	if r.sort != nil {
+		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -3140,7 +3283,7 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2006,
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -3171,16 +3314,6 @@ func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2006,
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2006
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -3231,12 +3364,24 @@ type apiGetLoyaltyProgramProfileTransactionsRequest struct {
 	apiService             *IntegrationApiService
 	loyaltyProgramId       int64
 	integrationId          string
+	customerSessionIDs     *[]string
+	transactionUUIDs       *[]string
 	subledgerId            *string
 	loyaltyTransactionType *string
 	startDate              *time.Time
 	endDate                *time.Time
 	pageSize               *int64
 	skip                   *int64
+}
+
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) CustomerSessionIDs(customerSessionIDs []string) apiGetLoyaltyProgramProfileTransactionsRequest {
+	r.customerSessionIDs = &customerSessionIDs
+	return r
+}
+
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) TransactionUUIDs(transactionUUIDs []string) apiGetLoyaltyProgramProfileTransactionsRequest {
+	r.transactionUUIDs = &transactionUUIDs
+	return r
 }
 
 func (r apiGetLoyaltyProgramProfileTransactionsRequest) SubledgerId(subledgerId string) apiGetLoyaltyProgramProfileTransactionsRequest {
@@ -3321,6 +3466,28 @@ func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineRespons
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
+	if r.customerSessionIDs != nil {
+		t := *r.customerSessionIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("customerSessionIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("customerSessionIDs", parameterToString(t, "multi"))
+		}
+	}
+	if r.transactionUUIDs != nil {
+		t := *r.transactionUUIDs
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("transactionUUIDs", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("transactionUUIDs", parameterToString(t, "multi"))
+		}
+	}
 	if r.subledgerId != nil {
 		localVarQueryParams.Add("subledgerId", parameterToString(*r.subledgerId, ""))
 	}
@@ -3359,7 +3526,7 @@ func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineRespons
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -3390,16 +3557,6 @@ func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineRespons
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse2004
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -3515,7 +3672,7 @@ func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -3546,16 +3703,6 @@ func (r apiGetReservedCustomersRequest) Execute() (InlineResponse200, *_nethttp.
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v InlineResponse200
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -3698,7 +3845,7 @@ func (r apiLinkLoyaltyCardToProfileRequest) Execute() (LoyaltyCard, *_nethttp.Re
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -3729,16 +3876,6 @@ func (r apiLinkLoyaltyCardToProfileRequest) Execute() (LoyaltyCard, *_nethttp.Re
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v LoyaltyCard
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -3797,18 +3934,23 @@ For example, if a session has been completed but still needs to be edited, you c
 A reopen session is treated like a standard open session.
 
 When reopening a session:
-- The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager.
-- The session state is updated to `open`.
-- Modified budgets and triggered effects when the session was closed are rolled back except for the list below.
+  - The `talon_session_reopened` event is triggered. You can see it in the **Events** view in the Campaign Manager.
+  - The session state is updated to `open`.
+  - Any modified budgets and triggered effects are rolled back when the session closes.
+  - Depending on the [return policy](https://docs.talon.one/docs/product/loyalty-programs/managing-loyalty-programs#return-policy)
+    in your loyalty programs, points are rolled back in the following ways:
+  - Pending points are rolled back automatically.
+  - If **Active points deduction** setting is enabled, any points that were earned and activated when the session closed
+    are rolled back.
+  - If **Negative balance** is enabled, the rollback can create a negative points balance.
 
 <details>
 
 	<summary><strong>Effects and budgets unimpacted by a session reopening</strong></summary>
 	<div>
-	  <p>The following effects and budgets are left the way they were once the session was originally closed:</p>
+	  <p>The following effects and budgets remain in the state they were in when the session closed:</p>
 	  <ul>
 	    <li>Add free item effect</li>
-	    <li>Any <strong>non-pending</strong> loyalty points</li>
 	    <li>Award giveaway</li>
 	    <li>Coupon and referral creation</li>
 	    <li>Coupon reservation</li>
@@ -3818,8 +3960,8 @@ When reopening a session:
 	  </ul>
 	</div>
 
-<p>To see an example of roll back, see the <a href="https://docs.talon.one/docs/dev/tutorials/rolling-back-effects">Cancelling a session with campaign budgets tutorial</a>.</p>
 </details>
+<p>To see an example of a rollback, see the <a href="https://docs.talon.one/docs/dev/tutorials/rolling-back-effects">Cancelling a session with campaign budgets</a>tutorial.</p>
 
 **Note:** If your order workflow requires you to create a new session instead of reopening a session, use the
 [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) endpoint to cancel
@@ -3885,7 +4027,7 @@ func (r apiReopenCustomerSessionRequest) Execute() (ReopenSessionResponse, *_net
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -3916,16 +4058,6 @@ func (r apiReopenCustomerSessionRequest) Execute() (ReopenSessionResponse, *_net
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v ReopenSessionResponse
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
@@ -4058,7 +4190,7 @@ func (r apiReturnCartItemsRequest) Execute() (IntegrationStateV2, *_nethttp.Resp
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -4089,16 +4221,6 @@ func (r apiReturnCartItemsRequest) Execute() (IntegrationStateV2, *_nethttp.Resp
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationStateV2
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
@@ -4481,7 +4603,7 @@ func (r apiSyncCatalogRequest) Execute() (Catalog, *_nethttp.Response, error) {
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -4512,16 +4634,6 @@ func (r apiSyncCatalogRequest) Execute() (Catalog, *_nethttp.Response, error) {
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v Catalog
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse
@@ -4694,7 +4806,7 @@ func (r apiTrackEventV2Request) Execute() (TrackEventV2Response, *_nethttp.Respo
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -4725,16 +4837,6 @@ func (r apiTrackEventV2Request) Execute() (TrackEventV2Response, *_nethttp.Respo
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v TrackEventV2Response
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -4859,7 +4961,7 @@ func (r apiUpdateAudienceCustomersAttributesRequest) Execute() (*_nethttp.Respon
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -5000,7 +5102,7 @@ func (r apiUpdateAudienceV2Request) Execute() (Audience, *_nethttp.Response, err
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -5031,16 +5133,6 @@ func (r apiUpdateAudienceV2Request) Execute() (Audience, *_nethttp.Response, err
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v Audience
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorResponseWithStatus
@@ -5155,7 +5247,7 @@ func (r apiUpdateCustomerProfileAudiencesRequest) Execute() (*_nethttp.Response,
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -5338,7 +5430,7 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileIntegration
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -5369,16 +5461,6 @@ func (r apiUpdateCustomerProfileV2Request) Execute() (CustomerProfileIntegration
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v CustomerProfileIntegrationResponseV2
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -5520,7 +5602,7 @@ func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIn
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -5551,16 +5633,6 @@ func (r apiUpdateCustomerProfilesV2Request) Execute() (MultipleCustomerProfileIn
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v MultipleCustomerProfileIntegrationResponseV2
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponseWithStatus
@@ -5732,7 +5804,7 @@ func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_neth
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if auth, ok := auth["Authorization"]; ok {
+			if auth, ok := auth["api_key_v1"]; ok {
 				var key string
 				if auth.Prefix != "" {
 					key = auth.Prefix + " " + auth.Key
@@ -5763,16 +5835,6 @@ func (r apiUpdateCustomerSessionV2Request) Execute() (IntegrationStateV2, *_neth
 		newErr := GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 200 {
-			var v IntegrationStateV2
-			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorResponse

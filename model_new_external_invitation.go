@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,24 @@ type NewExternalInvitation struct {
 	Email string `json:"email"`
 }
 
+// NewNewExternalInvitation instantiates a new NewExternalInvitation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewExternalInvitation(email string) *NewExternalInvitation {
+	this := NewExternalInvitation{}
+	this.Email = email
+	return &this
+}
+
+// NewNewExternalInvitationWithDefaults instantiates a new NewExternalInvitation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewExternalInvitationWithDefaults() *NewExternalInvitation {
+	this := NewExternalInvitation{}
+	return &this
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *NewExternalInvitation) GetName() string {
 	if o == nil || o.Name == nil {
@@ -33,14 +50,13 @@ func (o *NewExternalInvitation) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewExternalInvitation) GetNameOk() (string, bool) {
+func (o *NewExternalInvitation) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -66,14 +82,13 @@ func (o *NewExternalInvitation) GetUserGroups() []string {
 	return *o.UserGroups
 }
 
-// GetUserGroupsOk returns a tuple with the UserGroups field value if set, zero value otherwise
+// GetUserGroupsOk returns a tuple with the UserGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewExternalInvitation) GetUserGroupsOk() ([]string, bool) {
+func (o *NewExternalInvitation) GetUserGroupsOk() (*[]string, bool) {
 	if o == nil || o.UserGroups == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.UserGroups, true
+	return o.UserGroups, true
 }
 
 // HasUserGroups returns a boolean if a field has been set.
@@ -100,30 +115,66 @@ func (o *NewExternalInvitation) GetEmail() string {
 	return o.Email
 }
 
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *NewExternalInvitation) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
 // SetEmail sets field value
 func (o *NewExternalInvitation) SetEmail(v string) {
 	o.Email = v
 }
 
+func (o NewExternalInvitation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.UserGroups != nil {
+		toSerialize["userGroups"] = o.UserGroups
+	}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewExternalInvitation struct {
-	Value        NewExternalInvitation
-	ExplicitNull bool
+	value *NewExternalInvitation
+	isSet bool
+}
+
+func (v NullableNewExternalInvitation) Get() *NewExternalInvitation {
+	return v.value
+}
+
+func (v *NullableNewExternalInvitation) Set(val *NewExternalInvitation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewExternalInvitation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewExternalInvitation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewExternalInvitation(val *NewExternalInvitation) *NullableNewExternalInvitation {
+	return &NullableNewExternalInvitation{value: val, isSet: true}
 }
 
 func (v NullableNewExternalInvitation) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewExternalInvitation) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

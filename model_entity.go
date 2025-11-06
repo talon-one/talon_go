@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,23 +17,51 @@ import (
 // Entity struct for Entity
 type Entity struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 }
 
+// NewEntity instantiates a new Entity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEntity(id int64, created time.Time) *Entity {
+	this := Entity{}
+	this.Id = id
+	this.Created = created
+	return &this
+}
+
+// NewEntityWithDefaults instantiates a new Entity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEntityWithDefaults() *Entity {
+	this := Entity{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Entity) GetId() int32 {
+func (o *Entity) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Entity) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Entity) SetId(v int32) {
+func (o *Entity) SetId(v int64) {
 	o.Id = v
 }
 
@@ -48,30 +75,63 @@ func (o *Entity) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Entity) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Entity) SetCreated(v time.Time) {
 	o.Created = v
 }
 
+func (o Entity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEntity struct {
-	Value        Entity
-	ExplicitNull bool
+	value *Entity
+	isSet bool
+}
+
+func (v NullableEntity) Get() *Entity {
+	return v.value
+}
+
+func (v *NullableEntity) Set(val *Entity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEntity(val *Entity) *NullableEntity {
+	return &NullableEntity{value: val, isSet: true}
 }
 
 func (v NullableEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

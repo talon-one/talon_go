@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,34 +17,63 @@ import (
 // NewCouponCreationJob struct for NewCouponCreationJob
 type NewCouponCreationJob struct {
 	// The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
-	UsageLimit int32 `json:"usageLimit"`
+	UsageLimit int64 `json:"usageLimit"`
 	// The total discount value that the code can give. Typically used to represent a gift card value.
 	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// The number of reservations that can be made with this coupon code.
-	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
+	ReservationLimit *int64 `json:"reservationLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiration date of the coupon. Coupon never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of new coupon codes to generate for the campaign.
-	NumberOfCoupons int32                  `json:"numberOfCoupons"`
+	NumberOfCoupons int64                  `json:"numberOfCoupons"`
 	CouponSettings  *CodeGeneratorSettings `json:"couponSettings,omitempty"`
 	// Arbitrary properties associated with coupons.
 	Attributes map[string]interface{} `json:"attributes"`
 }
 
+// NewNewCouponCreationJob instantiates a new NewCouponCreationJob object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewCouponCreationJob(usageLimit int64, numberOfCoupons int64, attributes map[string]interface{}) *NewCouponCreationJob {
+	this := NewCouponCreationJob{}
+	this.UsageLimit = usageLimit
+	this.NumberOfCoupons = numberOfCoupons
+	this.Attributes = attributes
+	return &this
+}
+
+// NewNewCouponCreationJobWithDefaults instantiates a new NewCouponCreationJob object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCouponCreationJobWithDefaults() *NewCouponCreationJob {
+	this := NewCouponCreationJob{}
+	return &this
+}
+
 // GetUsageLimit returns the UsageLimit field value
-func (o *NewCouponCreationJob) GetUsageLimit() int32 {
+func (o *NewCouponCreationJob) GetUsageLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageLimit
 }
 
+// GetUsageLimitOk returns a tuple with the UsageLimit field value
+// and a boolean to check if the value has been set.
+func (o *NewCouponCreationJob) GetUsageLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageLimit, true
+}
+
 // SetUsageLimit sets field value
-func (o *NewCouponCreationJob) SetUsageLimit(v int32) {
+func (o *NewCouponCreationJob) SetUsageLimit(v int64) {
 	o.UsageLimit = v
 }
 
@@ -58,14 +86,13 @@ func (o *NewCouponCreationJob) GetDiscountLimit() float32 {
 	return *o.DiscountLimit
 }
 
-// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponCreationJob) GetDiscountLimitOk() (float32, bool) {
+func (o *NewCouponCreationJob) GetDiscountLimitOk() (*float32, bool) {
 	if o == nil || o.DiscountLimit == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountLimit, true
+	return o.DiscountLimit, true
 }
 
 // HasDiscountLimit returns a boolean if a field has been set.
@@ -83,22 +110,21 @@ func (o *NewCouponCreationJob) SetDiscountLimit(v float32) {
 }
 
 // GetReservationLimit returns the ReservationLimit field value if set, zero value otherwise.
-func (o *NewCouponCreationJob) GetReservationLimit() int32 {
+func (o *NewCouponCreationJob) GetReservationLimit() int64 {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservationLimit
 }
 
-// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, zero value otherwise
+// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponCreationJob) GetReservationLimitOk() (int32, bool) {
+func (o *NewCouponCreationJob) GetReservationLimitOk() (*int64, bool) {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationLimit, true
+	return o.ReservationLimit, true
 }
 
 // HasReservationLimit returns a boolean if a field has been set.
@@ -110,8 +136,8 @@ func (o *NewCouponCreationJob) HasReservationLimit() bool {
 	return false
 }
 
-// SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
-func (o *NewCouponCreationJob) SetReservationLimit(v int32) {
+// SetReservationLimit gets a reference to the given int64 and assigns it to the ReservationLimit field.
+func (o *NewCouponCreationJob) SetReservationLimit(v int64) {
 	o.ReservationLimit = &v
 }
 
@@ -124,14 +150,13 @@ func (o *NewCouponCreationJob) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponCreationJob) GetStartDateOk() (time.Time, bool) {
+func (o *NewCouponCreationJob) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -157,14 +182,13 @@ func (o *NewCouponCreationJob) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponCreationJob) GetExpiryDateOk() (time.Time, bool) {
+func (o *NewCouponCreationJob) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -182,17 +206,26 @@ func (o *NewCouponCreationJob) SetExpiryDate(v time.Time) {
 }
 
 // GetNumberOfCoupons returns the NumberOfCoupons field value
-func (o *NewCouponCreationJob) GetNumberOfCoupons() int32 {
+func (o *NewCouponCreationJob) GetNumberOfCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.NumberOfCoupons
 }
 
+// GetNumberOfCouponsOk returns a tuple with the NumberOfCoupons field value
+// and a boolean to check if the value has been set.
+func (o *NewCouponCreationJob) GetNumberOfCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NumberOfCoupons, true
+}
+
 // SetNumberOfCoupons sets field value
-func (o *NewCouponCreationJob) SetNumberOfCoupons(v int32) {
+func (o *NewCouponCreationJob) SetNumberOfCoupons(v int64) {
 	o.NumberOfCoupons = v
 }
 
@@ -205,14 +238,13 @@ func (o *NewCouponCreationJob) GetCouponSettings() CodeGeneratorSettings {
 	return *o.CouponSettings
 }
 
-// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, zero value otherwise
+// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCouponCreationJob) GetCouponSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *NewCouponCreationJob) GetCouponSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.CouponSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponSettings, true
+	return o.CouponSettings, true
 }
 
 // HasCouponSettings returns a boolean if a field has been set.
@@ -239,30 +271,81 @@ func (o *NewCouponCreationJob) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *NewCouponCreationJob) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *NewCouponCreationJob) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
+func (o NewCouponCreationJob) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if o.DiscountLimit != nil {
+		toSerialize["discountLimit"] = o.DiscountLimit
+	}
+	if o.ReservationLimit != nil {
+		toSerialize["reservationLimit"] = o.ReservationLimit
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["numberOfCoupons"] = o.NumberOfCoupons
+	}
+	if o.CouponSettings != nil {
+		toSerialize["couponSettings"] = o.CouponSettings
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCouponCreationJob struct {
-	Value        NewCouponCreationJob
-	ExplicitNull bool
+	value *NewCouponCreationJob
+	isSet bool
+}
+
+func (v NullableNewCouponCreationJob) Get() *NewCouponCreationJob {
+	return v.value
+}
+
+func (v *NullableNewCouponCreationJob) Set(val *NewCouponCreationJob) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCouponCreationJob) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCouponCreationJob) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewCouponCreationJob(val *NewCouponCreationJob) *NullableNewCouponCreationJob {
+	return &NullableNewCouponCreationJob{value: val, isSet: true}
 }
 
 func (v NullableNewCouponCreationJob) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCouponCreationJob) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,24 @@ type ReturnIntegrationRequest struct {
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 }
 
+// NewReturnIntegrationRequest instantiates a new ReturnIntegrationRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewReturnIntegrationRequest(return_ NewReturn) *ReturnIntegrationRequest {
+	this := ReturnIntegrationRequest{}
+	this.Return = return_
+	return &this
+}
+
+// NewReturnIntegrationRequestWithDefaults instantiates a new ReturnIntegrationRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewReturnIntegrationRequestWithDefaults() *ReturnIntegrationRequest {
+	this := ReturnIntegrationRequest{}
+	return &this
+}
+
 // GetReturn returns the Return field value
 func (o *ReturnIntegrationRequest) GetReturn() NewReturn {
 	if o == nil {
@@ -29,6 +46,15 @@ func (o *ReturnIntegrationRequest) GetReturn() NewReturn {
 	}
 
 	return o.Return
+}
+
+// GetReturnOk returns a tuple with the Return field value
+// and a boolean to check if the value has been set.
+func (o *ReturnIntegrationRequest) GetReturnOk() (*NewReturn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Return, true
 }
 
 // SetReturn sets field value
@@ -45,14 +71,13 @@ func (o *ReturnIntegrationRequest) GetResponseContent() []string {
 	return *o.ResponseContent
 }
 
-// GetResponseContentOk returns a tuple with the ResponseContent field value if set, zero value otherwise
+// GetResponseContentOk returns a tuple with the ResponseContent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ReturnIntegrationRequest) GetResponseContentOk() ([]string, bool) {
+func (o *ReturnIntegrationRequest) GetResponseContentOk() (*[]string, bool) {
 	if o == nil || o.ResponseContent == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ResponseContent, true
+	return o.ResponseContent, true
 }
 
 // HasResponseContent returns a boolean if a field has been set.
@@ -69,25 +94,49 @@ func (o *ReturnIntegrationRequest) SetResponseContent(v []string) {
 	o.ResponseContent = &v
 }
 
+func (o ReturnIntegrationRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["return"] = o.Return
+	}
+	if o.ResponseContent != nil {
+		toSerialize["responseContent"] = o.ResponseContent
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableReturnIntegrationRequest struct {
-	Value        ReturnIntegrationRequest
-	ExplicitNull bool
+	value *ReturnIntegrationRequest
+	isSet bool
+}
+
+func (v NullableReturnIntegrationRequest) Get() *ReturnIntegrationRequest {
+	return v.value
+}
+
+func (v *NullableReturnIntegrationRequest) Set(val *ReturnIntegrationRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableReturnIntegrationRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableReturnIntegrationRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableReturnIntegrationRequest(val *ReturnIntegrationRequest) *NullableReturnIntegrationRequest {
+	return &NullableReturnIntegrationRequest{value: val, isSet: true}
 }
 
 func (v NullableReturnIntegrationRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableReturnIntegrationRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

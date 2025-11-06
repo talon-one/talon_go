@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,7 @@ type NewSamlConnection struct {
 	// X.509 Certificate.
 	X509certificate string `json:"x509certificate"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// ID of the SAML service.
 	Name string `json:"name"`
 	// Determines if this SAML connection active.
@@ -36,6 +35,29 @@ type NewSamlConnection struct {
 	AudienceURI *string `json:"audienceURI,omitempty"`
 }
 
+// NewNewSamlConnection instantiates a new NewSamlConnection object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewSamlConnection(x509certificate string, accountId int64, name string, enabled bool, issuer string, signOnURL string) *NewSamlConnection {
+	this := NewSamlConnection{}
+	this.X509certificate = x509certificate
+	this.AccountId = accountId
+	this.Name = name
+	this.Enabled = enabled
+	this.Issuer = issuer
+	this.SignOnURL = signOnURL
+	return &this
+}
+
+// NewNewSamlConnectionWithDefaults instantiates a new NewSamlConnection object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewSamlConnectionWithDefaults() *NewSamlConnection {
+	this := NewSamlConnection{}
+	return &this
+}
+
 // GetX509certificate returns the X509certificate field value
 func (o *NewSamlConnection) GetX509certificate() string {
 	if o == nil {
@@ -46,23 +68,41 @@ func (o *NewSamlConnection) GetX509certificate() string {
 	return o.X509certificate
 }
 
+// GetX509certificateOk returns a tuple with the X509certificate field value
+// and a boolean to check if the value has been set.
+func (o *NewSamlConnection) GetX509certificateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.X509certificate, true
+}
+
 // SetX509certificate sets field value
 func (o *NewSamlConnection) SetX509certificate(v string) {
 	o.X509certificate = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *NewSamlConnection) GetAccountId() int32 {
+func (o *NewSamlConnection) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *NewSamlConnection) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *NewSamlConnection) SetAccountId(v int32) {
+func (o *NewSamlConnection) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -74,6 +114,15 @@ func (o *NewSamlConnection) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewSamlConnection) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -91,6 +140,15 @@ func (o *NewSamlConnection) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *NewSamlConnection) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *NewSamlConnection) SetEnabled(v bool) {
 	o.Enabled = v
@@ -104,6 +162,15 @@ func (o *NewSamlConnection) GetIssuer() string {
 	}
 
 	return o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value
+// and a boolean to check if the value has been set.
+func (o *NewSamlConnection) GetIssuerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Issuer, true
 }
 
 // SetIssuer sets field value
@@ -121,6 +188,15 @@ func (o *NewSamlConnection) GetSignOnURL() string {
 	return o.SignOnURL
 }
 
+// GetSignOnURLOk returns a tuple with the SignOnURL field value
+// and a boolean to check if the value has been set.
+func (o *NewSamlConnection) GetSignOnURLOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SignOnURL, true
+}
+
 // SetSignOnURL sets field value
 func (o *NewSamlConnection) SetSignOnURL(v string) {
 	o.SignOnURL = v
@@ -135,14 +211,13 @@ func (o *NewSamlConnection) GetSignOutURL() string {
 	return *o.SignOutURL
 }
 
-// GetSignOutURLOk returns a tuple with the SignOutURL field value if set, zero value otherwise
+// GetSignOutURLOk returns a tuple with the SignOutURL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSamlConnection) GetSignOutURLOk() (string, bool) {
+func (o *NewSamlConnection) GetSignOutURLOk() (*string, bool) {
 	if o == nil || o.SignOutURL == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SignOutURL, true
+	return o.SignOutURL, true
 }
 
 // HasSignOutURL returns a boolean if a field has been set.
@@ -168,14 +243,13 @@ func (o *NewSamlConnection) GetMetadataURL() string {
 	return *o.MetadataURL
 }
 
-// GetMetadataURLOk returns a tuple with the MetadataURL field value if set, zero value otherwise
+// GetMetadataURLOk returns a tuple with the MetadataURL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSamlConnection) GetMetadataURLOk() (string, bool) {
+func (o *NewSamlConnection) GetMetadataURLOk() (*string, bool) {
 	if o == nil || o.MetadataURL == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.MetadataURL, true
+	return o.MetadataURL, true
 }
 
 // HasMetadataURL returns a boolean if a field has been set.
@@ -201,14 +275,13 @@ func (o *NewSamlConnection) GetAudienceURI() string {
 	return *o.AudienceURI
 }
 
-// GetAudienceURIOk returns a tuple with the AudienceURI field value if set, zero value otherwise
+// GetAudienceURIOk returns a tuple with the AudienceURI field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewSamlConnection) GetAudienceURIOk() (string, bool) {
+func (o *NewSamlConnection) GetAudienceURIOk() (*string, bool) {
 	if o == nil || o.AudienceURI == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceURI, true
+	return o.AudienceURI, true
 }
 
 // HasAudienceURI returns a boolean if a field has been set.
@@ -225,25 +298,70 @@ func (o *NewSamlConnection) SetAudienceURI(v string) {
 	o.AudienceURI = &v
 }
 
+func (o NewSamlConnection) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["x509certificate"] = o.X509certificate
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if true {
+		toSerialize["signOnURL"] = o.SignOnURL
+	}
+	if o.SignOutURL != nil {
+		toSerialize["signOutURL"] = o.SignOutURL
+	}
+	if o.MetadataURL != nil {
+		toSerialize["metadataURL"] = o.MetadataURL
+	}
+	if o.AudienceURI != nil {
+		toSerialize["audienceURI"] = o.AudienceURI
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewSamlConnection struct {
-	Value        NewSamlConnection
-	ExplicitNull bool
+	value *NewSamlConnection
+	isSet bool
+}
+
+func (v NullableNewSamlConnection) Get() *NewSamlConnection {
+	return v.value
+}
+
+func (v *NullableNewSamlConnection) Set(val *NewSamlConnection) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewSamlConnection) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewSamlConnection) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewSamlConnection(val *NewSamlConnection) *NullableNewSamlConnection {
+	return &NullableNewSamlConnection{value: val, isSet: true}
 }
 
 func (v NullableNewSamlConnection) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewSamlConnection) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

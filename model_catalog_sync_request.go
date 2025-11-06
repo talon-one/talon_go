@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,7 +17,25 @@ import (
 type CatalogSyncRequest struct {
 	Actions []CatalogAction `json:"actions"`
 	// The version number of the catalog to apply the actions on.
-	Version *int32 `json:"version,omitempty"`
+	Version *int64 `json:"version,omitempty"`
+}
+
+// NewCatalogSyncRequest instantiates a new CatalogSyncRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCatalogSyncRequest(actions []CatalogAction) *CatalogSyncRequest {
+	this := CatalogSyncRequest{}
+	this.Actions = actions
+	return &this
+}
+
+// NewCatalogSyncRequestWithDefaults instantiates a new CatalogSyncRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCatalogSyncRequestWithDefaults() *CatalogSyncRequest {
+	this := CatalogSyncRequest{}
+	return &this
 }
 
 // GetActions returns the Actions field value
@@ -31,28 +48,36 @@ func (o *CatalogSyncRequest) GetActions() []CatalogAction {
 	return o.Actions
 }
 
+// GetActionsOk returns a tuple with the Actions field value
+// and a boolean to check if the value has been set.
+func (o *CatalogSyncRequest) GetActionsOk() (*[]CatalogAction, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Actions, true
+}
+
 // SetActions sets field value
 func (o *CatalogSyncRequest) SetActions(v []CatalogAction) {
 	o.Actions = v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *CatalogSyncRequest) GetVersion() int32 {
+func (o *CatalogSyncRequest) GetVersion() int64 {
 	if o == nil || o.Version == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, zero value otherwise
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogSyncRequest) GetVersionOk() (int32, bool) {
+func (o *CatalogSyncRequest) GetVersionOk() (*int64, bool) {
 	if o == nil || o.Version == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Version, true
+	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
@@ -64,30 +89,54 @@ func (o *CatalogSyncRequest) HasVersion() bool {
 	return false
 }
 
-// SetVersion gets a reference to the given int32 and assigns it to the Version field.
-func (o *CatalogSyncRequest) SetVersion(v int32) {
+// SetVersion gets a reference to the given int64 and assigns it to the Version field.
+func (o *CatalogSyncRequest) SetVersion(v int64) {
 	o.Version = &v
 }
 
+func (o CatalogSyncRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["actions"] = o.Actions
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCatalogSyncRequest struct {
-	Value        CatalogSyncRequest
-	ExplicitNull bool
+	value *CatalogSyncRequest
+	isSet bool
+}
+
+func (v NullableCatalogSyncRequest) Get() *CatalogSyncRequest {
+	return v.value
+}
+
+func (v *NullableCatalogSyncRequest) Set(val *CatalogSyncRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCatalogSyncRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCatalogSyncRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCatalogSyncRequest(val *CatalogSyncRequest) *NullableCatalogSyncRequest {
+	return &NullableCatalogSyncRequest{value: val, isSet: true}
 }
 
 func (v NullableCatalogSyncRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCatalogSyncRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

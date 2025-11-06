@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type CouponCreatedEffectProps struct {
 	ProfileId string `json:"profileId"`
 }
 
+// NewCouponCreatedEffectProps instantiates a new CouponCreatedEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCouponCreatedEffectProps(value string, profileId string) *CouponCreatedEffectProps {
+	this := CouponCreatedEffectProps{}
+	this.Value = value
+	this.ProfileId = profileId
+	return &this
+}
+
+// NewCouponCreatedEffectPropsWithDefaults instantiates a new CouponCreatedEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponCreatedEffectPropsWithDefaults() *CouponCreatedEffectProps {
+	this := CouponCreatedEffectProps{}
+	return &this
+}
+
 // GetValue returns the Value field value
 func (o *CouponCreatedEffectProps) GetValue() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *CouponCreatedEffectProps) GetValue() string {
 	}
 
 	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *CouponCreatedEffectProps) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
 }
 
 // SetValue sets field value
@@ -47,30 +74,63 @@ func (o *CouponCreatedEffectProps) GetProfileId() string {
 	return o.ProfileId
 }
 
+// GetProfileIdOk returns a tuple with the ProfileId field value
+// and a boolean to check if the value has been set.
+func (o *CouponCreatedEffectProps) GetProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileId, true
+}
+
 // SetProfileId sets field value
 func (o *CouponCreatedEffectProps) SetProfileId(v string) {
 	o.ProfileId = v
 }
 
+func (o CouponCreatedEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponCreatedEffectProps struct {
-	Value        CouponCreatedEffectProps
-	ExplicitNull bool
+	value *CouponCreatedEffectProps
+	isSet bool
+}
+
+func (v NullableCouponCreatedEffectProps) Get() *CouponCreatedEffectProps {
+	return v.value
+}
+
+func (v *NullableCouponCreatedEffectProps) Set(val *CouponCreatedEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponCreatedEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponCreatedEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCouponCreatedEffectProps(val *CouponCreatedEffectProps) *NullableCouponCreatedEffectProps {
+	return &NullableCouponCreatedEffectProps{value: val, isSet: true}
 }
 
 func (v NullableCouponCreatedEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponCreatedEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

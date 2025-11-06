@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,15 +21,15 @@ type UpdateLoyaltyProgram struct {
 	// Description of our Loyalty Program.
 	Description *string `json:"description,omitempty"`
 	// A list containing the IDs of all applications that are subscribed to this Loyalty Program.
-	SubscribedApplications *[]int32 `json:"subscribedApplications,omitempty"`
+	SubscribedApplications *[]int64 `json:"subscribedApplications,omitempty"`
 	// The default duration after which new loyalty points should expire. Can be 'unlimited' or a specific time. The time format is a number followed by one letter indicating the time unit, like '30s', '40m', '1h', '5D', '7W', or 10M'. These rounding suffixes are also supported: - '_D' for rounding down. Can be used as a suffix after 'D', and signifies the start of the day. - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
 	DefaultValidity *string `json:"defaultValidity,omitempty"`
-	// The default duration of the pending time after which points should be valid. Can be 'immediate' or a specific time. The time format is a number followed by one letter indicating the time unit, like '30s', '40m', '1h', '5D', '7W', or 10M'. These rounding suffixes are also supported: - '_D' for rounding down. Can be used as a suffix after 'D', and signifies the start of the day. - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
+	// The default duration of the pending time after which points should be valid. Accepted values: 'immediate', 'on_action' or a specific time. The time format is a number followed by one letter indicating the time unit, like '30s', '40m', '1h', '5D', '7W', or 10M'. These rounding suffixes are also supported: - '_D' for rounding down. Can be used as a suffix after 'D', and signifies the start of the day. - '_U' for rounding up. Can be used as a suffix after 'D', 'W', and 'M', and signifies the end of the day, week, and month.
 	DefaultPending *string `json:"defaultPending,omitempty"`
 	// Indicates if this program supports subledgers inside the program.
 	AllowSubledger *bool `json:"allowSubledger,omitempty"`
 	// The max amount of user profiles with whom a card can be shared. This can be set to 0 for no limit. This property is only used when `cardBased` is `true`.
-	UsersPerCardLimit *int32 `json:"usersPerCardLimit,omitempty"`
+	UsersPerCardLimit *int64 `json:"usersPerCardLimit,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// The policy that defines when the customer joins the loyalty program.   - `not_join`: The customer does not join the loyalty program but can still earn and spend loyalty points.       **Note**: The customer does not have a program join date.   - `points_activated`: The customer joins the loyalty program only when their earned loyalty points become active for the first time.   - `points_earned`: The customer joins the loyalty program when they earn loyalty points for the first time.
@@ -50,6 +49,23 @@ type UpdateLoyaltyProgram struct {
 	Tiers *[]NewLoyaltyTier `json:"tiers,omitempty"`
 }
 
+// NewUpdateLoyaltyProgram instantiates a new UpdateLoyaltyProgram object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateLoyaltyProgram() *UpdateLoyaltyProgram {
+	this := UpdateLoyaltyProgram{}
+	return &this
+}
+
+// NewUpdateLoyaltyProgramWithDefaults instantiates a new UpdateLoyaltyProgram object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateLoyaltyProgramWithDefaults() *UpdateLoyaltyProgram {
+	this := UpdateLoyaltyProgram{}
+	return &this
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *UpdateLoyaltyProgram) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -59,14 +75,13 @@ func (o *UpdateLoyaltyProgram) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetTitleOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -92,14 +107,13 @@ func (o *UpdateLoyaltyProgram) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetDescriptionOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -117,22 +131,21 @@ func (o *UpdateLoyaltyProgram) SetDescription(v string) {
 }
 
 // GetSubscribedApplications returns the SubscribedApplications field value if set, zero value otherwise.
-func (o *UpdateLoyaltyProgram) GetSubscribedApplications() []int32 {
+func (o *UpdateLoyaltyProgram) GetSubscribedApplications() []int64 {
 	if o == nil || o.SubscribedApplications == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplications
 }
 
-// GetSubscribedApplicationsOk returns a tuple with the SubscribedApplications field value if set, zero value otherwise
+// GetSubscribedApplicationsOk returns a tuple with the SubscribedApplications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetSubscribedApplicationsOk() ([]int32, bool) {
+func (o *UpdateLoyaltyProgram) GetSubscribedApplicationsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplications == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplications, true
+	return o.SubscribedApplications, true
 }
 
 // HasSubscribedApplications returns a boolean if a field has been set.
@@ -144,8 +157,8 @@ func (o *UpdateLoyaltyProgram) HasSubscribedApplications() bool {
 	return false
 }
 
-// SetSubscribedApplications gets a reference to the given []int32 and assigns it to the SubscribedApplications field.
-func (o *UpdateLoyaltyProgram) SetSubscribedApplications(v []int32) {
+// SetSubscribedApplications gets a reference to the given []int64 and assigns it to the SubscribedApplications field.
+func (o *UpdateLoyaltyProgram) SetSubscribedApplications(v []int64) {
 	o.SubscribedApplications = &v
 }
 
@@ -158,14 +171,13 @@ func (o *UpdateLoyaltyProgram) GetDefaultValidity() string {
 	return *o.DefaultValidity
 }
 
-// GetDefaultValidityOk returns a tuple with the DefaultValidity field value if set, zero value otherwise
+// GetDefaultValidityOk returns a tuple with the DefaultValidity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetDefaultValidityOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetDefaultValidityOk() (*string, bool) {
 	if o == nil || o.DefaultValidity == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultValidity, true
+	return o.DefaultValidity, true
 }
 
 // HasDefaultValidity returns a boolean if a field has been set.
@@ -191,14 +203,13 @@ func (o *UpdateLoyaltyProgram) GetDefaultPending() string {
 	return *o.DefaultPending
 }
 
-// GetDefaultPendingOk returns a tuple with the DefaultPending field value if set, zero value otherwise
+// GetDefaultPendingOk returns a tuple with the DefaultPending field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetDefaultPendingOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetDefaultPendingOk() (*string, bool) {
 	if o == nil || o.DefaultPending == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DefaultPending, true
+	return o.DefaultPending, true
 }
 
 // HasDefaultPending returns a boolean if a field has been set.
@@ -224,14 +235,13 @@ func (o *UpdateLoyaltyProgram) GetAllowSubledger() bool {
 	return *o.AllowSubledger
 }
 
-// GetAllowSubledgerOk returns a tuple with the AllowSubledger field value if set, zero value otherwise
+// GetAllowSubledgerOk returns a tuple with the AllowSubledger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetAllowSubledgerOk() (bool, bool) {
+func (o *UpdateLoyaltyProgram) GetAllowSubledgerOk() (*bool, bool) {
 	if o == nil || o.AllowSubledger == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.AllowSubledger, true
+	return o.AllowSubledger, true
 }
 
 // HasAllowSubledger returns a boolean if a field has been set.
@@ -249,22 +259,21 @@ func (o *UpdateLoyaltyProgram) SetAllowSubledger(v bool) {
 }
 
 // GetUsersPerCardLimit returns the UsersPerCardLimit field value if set, zero value otherwise.
-func (o *UpdateLoyaltyProgram) GetUsersPerCardLimit() int32 {
+func (o *UpdateLoyaltyProgram) GetUsersPerCardLimit() int64 {
 	if o == nil || o.UsersPerCardLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsersPerCardLimit
 }
 
-// GetUsersPerCardLimitOk returns a tuple with the UsersPerCardLimit field value if set, zero value otherwise
+// GetUsersPerCardLimitOk returns a tuple with the UsersPerCardLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetUsersPerCardLimitOk() (int32, bool) {
+func (o *UpdateLoyaltyProgram) GetUsersPerCardLimitOk() (*int64, bool) {
 	if o == nil || o.UsersPerCardLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsersPerCardLimit, true
+	return o.UsersPerCardLimit, true
 }
 
 // HasUsersPerCardLimit returns a boolean if a field has been set.
@@ -276,8 +285,8 @@ func (o *UpdateLoyaltyProgram) HasUsersPerCardLimit() bool {
 	return false
 }
 
-// SetUsersPerCardLimit gets a reference to the given int32 and assigns it to the UsersPerCardLimit field.
-func (o *UpdateLoyaltyProgram) SetUsersPerCardLimit(v int32) {
+// SetUsersPerCardLimit gets a reference to the given int64 and assigns it to the UsersPerCardLimit field.
+func (o *UpdateLoyaltyProgram) SetUsersPerCardLimit(v int64) {
 	o.UsersPerCardLimit = &v
 }
 
@@ -290,14 +299,13 @@ func (o *UpdateLoyaltyProgram) GetSandbox() bool {
 	return *o.Sandbox
 }
 
-// GetSandboxOk returns a tuple with the Sandbox field value if set, zero value otherwise
+// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetSandboxOk() (bool, bool) {
+func (o *UpdateLoyaltyProgram) GetSandboxOk() (*bool, bool) {
 	if o == nil || o.Sandbox == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Sandbox, true
+	return o.Sandbox, true
 }
 
 // HasSandbox returns a boolean if a field has been set.
@@ -323,14 +331,13 @@ func (o *UpdateLoyaltyProgram) GetProgramJoinPolicy() string {
 	return *o.ProgramJoinPolicy
 }
 
-// GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field value if set, zero value otherwise
+// GetProgramJoinPolicyOk returns a tuple with the ProgramJoinPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetProgramJoinPolicyOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetProgramJoinPolicyOk() (*string, bool) {
 	if o == nil || o.ProgramJoinPolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgramJoinPolicy, true
+	return o.ProgramJoinPolicy, true
 }
 
 // HasProgramJoinPolicy returns a boolean if a field has been set.
@@ -356,14 +363,13 @@ func (o *UpdateLoyaltyProgram) GetTiersExpirationPolicy() string {
 	return *o.TiersExpirationPolicy
 }
 
-// GetTiersExpirationPolicyOk returns a tuple with the TiersExpirationPolicy field value if set, zero value otherwise
+// GetTiersExpirationPolicyOk returns a tuple with the TiersExpirationPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetTiersExpirationPolicyOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetTiersExpirationPolicyOk() (*string, bool) {
 	if o == nil || o.TiersExpirationPolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TiersExpirationPolicy, true
+	return o.TiersExpirationPolicy, true
 }
 
 // HasTiersExpirationPolicy returns a boolean if a field has been set.
@@ -389,14 +395,13 @@ func (o *UpdateLoyaltyProgram) GetTierCycleStartDate() time.Time {
 	return *o.TierCycleStartDate
 }
 
-// GetTierCycleStartDateOk returns a tuple with the TierCycleStartDate field value if set, zero value otherwise
+// GetTierCycleStartDateOk returns a tuple with the TierCycleStartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetTierCycleStartDateOk() (time.Time, bool) {
+func (o *UpdateLoyaltyProgram) GetTierCycleStartDateOk() (*time.Time, bool) {
 	if o == nil || o.TierCycleStartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.TierCycleStartDate, true
+	return o.TierCycleStartDate, true
 }
 
 // HasTierCycleStartDate returns a boolean if a field has been set.
@@ -422,14 +427,13 @@ func (o *UpdateLoyaltyProgram) GetTiersExpireIn() string {
 	return *o.TiersExpireIn
 }
 
-// GetTiersExpireInOk returns a tuple with the TiersExpireIn field value if set, zero value otherwise
+// GetTiersExpireInOk returns a tuple with the TiersExpireIn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetTiersExpireInOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetTiersExpireInOk() (*string, bool) {
 	if o == nil || o.TiersExpireIn == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TiersExpireIn, true
+	return o.TiersExpireIn, true
 }
 
 // HasTiersExpireIn returns a boolean if a field has been set.
@@ -455,14 +459,13 @@ func (o *UpdateLoyaltyProgram) GetTiersDowngradePolicy() string {
 	return *o.TiersDowngradePolicy
 }
 
-// GetTiersDowngradePolicyOk returns a tuple with the TiersDowngradePolicy field value if set, zero value otherwise
+// GetTiersDowngradePolicyOk returns a tuple with the TiersDowngradePolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetTiersDowngradePolicyOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetTiersDowngradePolicyOk() (*string, bool) {
 	if o == nil || o.TiersDowngradePolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.TiersDowngradePolicy, true
+	return o.TiersDowngradePolicy, true
 }
 
 // HasTiersDowngradePolicy returns a boolean if a field has been set.
@@ -488,14 +491,13 @@ func (o *UpdateLoyaltyProgram) GetCardCodeSettings() CodeGeneratorSettings {
 	return *o.CardCodeSettings
 }
 
-// GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field value if set, zero value otherwise
+// GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetCardCodeSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *UpdateLoyaltyProgram) GetCardCodeSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.CardCodeSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.CardCodeSettings, true
+	return o.CardCodeSettings, true
 }
 
 // HasCardCodeSettings returns a boolean if a field has been set.
@@ -521,14 +523,13 @@ func (o *UpdateLoyaltyProgram) GetReturnPolicy() string {
 	return *o.ReturnPolicy
 }
 
-// GetReturnPolicyOk returns a tuple with the ReturnPolicy field value if set, zero value otherwise
+// GetReturnPolicyOk returns a tuple with the ReturnPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetReturnPolicyOk() (string, bool) {
+func (o *UpdateLoyaltyProgram) GetReturnPolicyOk() (*string, bool) {
 	if o == nil || o.ReturnPolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ReturnPolicy, true
+	return o.ReturnPolicy, true
 }
 
 // HasReturnPolicy returns a boolean if a field has been set.
@@ -554,14 +555,13 @@ func (o *UpdateLoyaltyProgram) GetTiers() []NewLoyaltyTier {
 	return *o.Tiers
 }
 
-// GetTiersOk returns a tuple with the Tiers field value if set, zero value otherwise
+// GetTiersOk returns a tuple with the Tiers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyProgram) GetTiersOk() ([]NewLoyaltyTier, bool) {
+func (o *UpdateLoyaltyProgram) GetTiersOk() (*[]NewLoyaltyTier, bool) {
 	if o == nil || o.Tiers == nil {
-		var ret []NewLoyaltyTier
-		return ret, false
+		return nil, false
 	}
-	return *o.Tiers, true
+	return o.Tiers, true
 }
 
 // HasTiers returns a boolean if a field has been set.
@@ -578,25 +578,91 @@ func (o *UpdateLoyaltyProgram) SetTiers(v []NewLoyaltyTier) {
 	o.Tiers = &v
 }
 
+func (o UpdateLoyaltyProgram) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplications != nil {
+		toSerialize["subscribedApplications"] = o.SubscribedApplications
+	}
+	if o.DefaultValidity != nil {
+		toSerialize["defaultValidity"] = o.DefaultValidity
+	}
+	if o.DefaultPending != nil {
+		toSerialize["defaultPending"] = o.DefaultPending
+	}
+	if o.AllowSubledger != nil {
+		toSerialize["allowSubledger"] = o.AllowSubledger
+	}
+	if o.UsersPerCardLimit != nil {
+		toSerialize["usersPerCardLimit"] = o.UsersPerCardLimit
+	}
+	if o.Sandbox != nil {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if o.ProgramJoinPolicy != nil {
+		toSerialize["programJoinPolicy"] = o.ProgramJoinPolicy
+	}
+	if o.TiersExpirationPolicy != nil {
+		toSerialize["tiersExpirationPolicy"] = o.TiersExpirationPolicy
+	}
+	if o.TierCycleStartDate != nil {
+		toSerialize["tierCycleStartDate"] = o.TierCycleStartDate
+	}
+	if o.TiersExpireIn != nil {
+		toSerialize["tiersExpireIn"] = o.TiersExpireIn
+	}
+	if o.TiersDowngradePolicy != nil {
+		toSerialize["tiersDowngradePolicy"] = o.TiersDowngradePolicy
+	}
+	if o.CardCodeSettings != nil {
+		toSerialize["cardCodeSettings"] = o.CardCodeSettings
+	}
+	if o.ReturnPolicy != nil {
+		toSerialize["returnPolicy"] = o.ReturnPolicy
+	}
+	if o.Tiers != nil {
+		toSerialize["tiers"] = o.Tiers
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateLoyaltyProgram struct {
-	Value        UpdateLoyaltyProgram
-	ExplicitNull bool
+	value *UpdateLoyaltyProgram
+	isSet bool
+}
+
+func (v NullableUpdateLoyaltyProgram) Get() *UpdateLoyaltyProgram {
+	return v.value
+}
+
+func (v *NullableUpdateLoyaltyProgram) Set(val *UpdateLoyaltyProgram) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateLoyaltyProgram) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateLoyaltyProgram) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateLoyaltyProgram(val *UpdateLoyaltyProgram) *NullableUpdateLoyaltyProgram {
+	return &NullableUpdateLoyaltyProgram{value: val, isSet: true}
 }
 
 func (v NullableUpdateLoyaltyProgram) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateLoyaltyProgram) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

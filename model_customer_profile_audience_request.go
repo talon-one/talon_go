@@ -10,13 +10,29 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CustomerProfileAudienceRequest struct for CustomerProfileAudienceRequest
 type CustomerProfileAudienceRequest struct {
 	Data *[]CustomerProfileAudienceRequestItem `json:"data,omitempty"`
+}
+
+// NewCustomerProfileAudienceRequest instantiates a new CustomerProfileAudienceRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCustomerProfileAudienceRequest() *CustomerProfileAudienceRequest {
+	this := CustomerProfileAudienceRequest{}
+	return &this
+}
+
+// NewCustomerProfileAudienceRequestWithDefaults instantiates a new CustomerProfileAudienceRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileAudienceRequestWithDefaults() *CustomerProfileAudienceRequest {
+	this := CustomerProfileAudienceRequest{}
+	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -28,14 +44,13 @@ func (o *CustomerProfileAudienceRequest) GetData() []CustomerProfileAudienceRequ
 	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, zero value otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileAudienceRequest) GetDataOk() ([]CustomerProfileAudienceRequestItem, bool) {
+func (o *CustomerProfileAudienceRequest) GetDataOk() (*[]CustomerProfileAudienceRequestItem, bool) {
 	if o == nil || o.Data == nil {
-		var ret []CustomerProfileAudienceRequestItem
-		return ret, false
+		return nil, false
 	}
-	return *o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -52,25 +67,46 @@ func (o *CustomerProfileAudienceRequest) SetData(v []CustomerProfileAudienceRequ
 	o.Data = &v
 }
 
+func (o CustomerProfileAudienceRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileAudienceRequest struct {
-	Value        CustomerProfileAudienceRequest
-	ExplicitNull bool
+	value *CustomerProfileAudienceRequest
+	isSet bool
+}
+
+func (v NullableCustomerProfileAudienceRequest) Get() *CustomerProfileAudienceRequest {
+	return v.value
+}
+
+func (v *NullableCustomerProfileAudienceRequest) Set(val *CustomerProfileAudienceRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileAudienceRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileAudienceRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCustomerProfileAudienceRequest(val *CustomerProfileAudienceRequest) *NullableCustomerProfileAudienceRequest {
+	return &NullableCustomerProfileAudienceRequest{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileAudienceRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileAudienceRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

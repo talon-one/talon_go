@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// UpdateApplicationApiKey struct for UpdateApplicationApiKey
-type UpdateApplicationApiKey struct {
+// UpdateApplicationAPIKey struct for UpdateApplicationAPIKey
+type UpdateApplicationAPIKey struct {
 	// A time offset in nanoseconds associated with the API key. When making a request using the API key, rule evaluation is based on a date that is calculated by adding the offset to the current date.
-	TimeOffset int32 `json:"timeOffset"`
+	TimeOffset int64 `json:"timeOffset"`
+}
+
+// NewUpdateApplicationAPIKey instantiates a new UpdateApplicationAPIKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateApplicationAPIKey(timeOffset int64) *UpdateApplicationAPIKey {
+	this := UpdateApplicationAPIKey{}
+	this.TimeOffset = timeOffset
+	return &this
+}
+
+// NewUpdateApplicationAPIKeyWithDefaults instantiates a new UpdateApplicationAPIKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateApplicationAPIKeyWithDefaults() *UpdateApplicationAPIKey {
+	this := UpdateApplicationAPIKey{}
+	return &this
 }
 
 // GetTimeOffset returns the TimeOffset field value
-func (o *UpdateApplicationApiKey) GetTimeOffset() int32 {
+func (o *UpdateApplicationAPIKey) GetTimeOffset() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TimeOffset
 }
 
+// GetTimeOffsetOk returns a tuple with the TimeOffset field value
+// and a boolean to check if the value has been set.
+func (o *UpdateApplicationAPIKey) GetTimeOffsetOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TimeOffset, true
+}
+
 // SetTimeOffset sets field value
-func (o *UpdateApplicationApiKey) SetTimeOffset(v int32) {
+func (o *UpdateApplicationAPIKey) SetTimeOffset(v int64) {
 	o.TimeOffset = v
 }
 
-type NullableUpdateApplicationApiKey struct {
-	Value        UpdateApplicationApiKey
-	ExplicitNull bool
+func (o UpdateApplicationAPIKey) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["timeOffset"] = o.TimeOffset
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableUpdateApplicationApiKey) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableUpdateApplicationAPIKey struct {
+	value *UpdateApplicationAPIKey
+	isSet bool
 }
 
-func (v *NullableUpdateApplicationApiKey) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableUpdateApplicationAPIKey) Get() *UpdateApplicationAPIKey {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableUpdateApplicationAPIKey) Set(val *UpdateApplicationAPIKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateApplicationAPIKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateApplicationAPIKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateApplicationAPIKey(val *UpdateApplicationAPIKey) *NullableUpdateApplicationAPIKey {
+	return &NullableUpdateApplicationAPIKey{value: val, isSet: true}
+}
+
+func (v NullableUpdateApplicationAPIKey) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateApplicationAPIKey) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type Endpoint struct {
 	// allowed endpoint
 	Path string `json:"path"`
+}
+
+// NewEndpoint instantiates a new Endpoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEndpoint(path string) *Endpoint {
+	this := Endpoint{}
+	this.Path = path
+	return &this
+}
+
+// NewEndpointWithDefaults instantiates a new Endpoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEndpointWithDefaults() *Endpoint {
+	this := Endpoint{}
+	return &this
 }
 
 // GetPath returns the Path field value
@@ -30,30 +47,60 @@ func (o *Endpoint) GetPath() string {
 	return o.Path
 }
 
+// GetPathOk returns a tuple with the Path field value
+// and a boolean to check if the value has been set.
+func (o *Endpoint) GetPathOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Path, true
+}
+
 // SetPath sets field value
 func (o *Endpoint) SetPath(v string) {
 	o.Path = v
 }
 
+func (o Endpoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["path"] = o.Path
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEndpoint struct {
-	Value        Endpoint
-	ExplicitNull bool
+	value *Endpoint
+	isSet bool
+}
+
+func (v NullableEndpoint) Get() *Endpoint {
+	return v.value
+}
+
+func (v *NullableEndpoint) Set(val *Endpoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEndpoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEndpoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEndpoint(val *Endpoint) *NullableEndpoint {
+	return &NullableEndpoint{value: val, isSet: true}
 }
 
 func (v NullableEndpoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEndpoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

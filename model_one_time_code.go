@@ -10,49 +10,86 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // OneTimeCode struct for OneTimeCode
 type OneTimeCode struct {
 	// The ID of the user.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// The ID of the account.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The two-factor authentication token created during sign-in. This token is used to ensure that the correct user is trying to sign in with a given one-time security code.
 	Token string `json:"token"`
 	// The one-time security code used for signing in.
 	Code *string `json:"code,omitempty"`
 }
 
+// NewOneTimeCode instantiates a new OneTimeCode object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOneTimeCode(userId int64, accountId int64, token string) *OneTimeCode {
+	this := OneTimeCode{}
+	this.UserId = userId
+	this.AccountId = accountId
+	this.Token = token
+	return &this
+}
+
+// NewOneTimeCodeWithDefaults instantiates a new OneTimeCode object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOneTimeCodeWithDefaults() *OneTimeCode {
+	this := OneTimeCode{}
+	return &this
+}
+
 // GetUserId returns the UserId field value
-func (o *OneTimeCode) GetUserId() int32 {
+func (o *OneTimeCode) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *OneTimeCode) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *OneTimeCode) SetUserId(v int32) {
+func (o *OneTimeCode) SetUserId(v int64) {
 	o.UserId = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *OneTimeCode) GetAccountId() int32 {
+func (o *OneTimeCode) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *OneTimeCode) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *OneTimeCode) SetAccountId(v int32) {
+func (o *OneTimeCode) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -64,6 +101,15 @@ func (o *OneTimeCode) GetToken() string {
 	}
 
 	return o.Token
+}
+
+// GetTokenOk returns a tuple with the Token field value
+// and a boolean to check if the value has been set.
+func (o *OneTimeCode) GetTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Token, true
 }
 
 // SetToken sets field value
@@ -80,14 +126,13 @@ func (o *OneTimeCode) GetCode() string {
 	return *o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value if set, zero value otherwise
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OneTimeCode) GetCodeOk() (string, bool) {
+func (o *OneTimeCode) GetCodeOk() (*string, bool) {
 	if o == nil || o.Code == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Code, true
+	return o.Code, true
 }
 
 // HasCode returns a boolean if a field has been set.
@@ -104,25 +149,55 @@ func (o *OneTimeCode) SetCode(v string) {
 	o.Code = &v
 }
 
+func (o OneTimeCode) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["token"] = o.Token
+	}
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOneTimeCode struct {
-	Value        OneTimeCode
-	ExplicitNull bool
+	value *OneTimeCode
+	isSet bool
+}
+
+func (v NullableOneTimeCode) Get() *OneTimeCode {
+	return v.value
+}
+
+func (v *NullableOneTimeCode) Set(val *OneTimeCode) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOneTimeCode) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOneTimeCode) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOneTimeCode(val *OneTimeCode) *NullableOneTimeCode {
+	return &NullableOneTimeCode{value: val, isSet: true}
 }
 
 func (v NullableOneTimeCode) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOneTimeCode) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

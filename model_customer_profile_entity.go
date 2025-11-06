@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,23 +17,51 @@ import (
 // CustomerProfileEntity struct for CustomerProfileEntity
 type CustomerProfileEntity struct {
 	// The internal ID of the customer profile.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time the customer profile was created.
 	Created time.Time `json:"created"`
 }
 
+// NewCustomerProfileEntity instantiates a new CustomerProfileEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCustomerProfileEntity(id int64, created time.Time) *CustomerProfileEntity {
+	this := CustomerProfileEntity{}
+	this.Id = id
+	this.Created = created
+	return &this
+}
+
+// NewCustomerProfileEntityWithDefaults instantiates a new CustomerProfileEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileEntityWithDefaults() *CustomerProfileEntity {
+	this := CustomerProfileEntity{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *CustomerProfileEntity) GetId() int32 {
+func (o *CustomerProfileEntity) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileEntity) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *CustomerProfileEntity) SetId(v int32) {
+func (o *CustomerProfileEntity) SetId(v int64) {
 	o.Id = v
 }
 
@@ -48,30 +75,63 @@ func (o *CustomerProfileEntity) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileEntity) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *CustomerProfileEntity) SetCreated(v time.Time) {
 	o.Created = v
 }
 
+func (o CustomerProfileEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileEntity struct {
-	Value        CustomerProfileEntity
-	ExplicitNull bool
+	value *CustomerProfileEntity
+	isSet bool
+}
+
+func (v NullableCustomerProfileEntity) Get() *CustomerProfileEntity {
+	return v.value
+}
+
+func (v *NullableCustomerProfileEntity) Set(val *CustomerProfileEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCustomerProfileEntity(val *CustomerProfileEntity) *NullableCustomerProfileEntity {
+	return &NullableCustomerProfileEntity{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

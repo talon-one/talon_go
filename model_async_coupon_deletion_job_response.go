@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AsyncCouponDeletionJobResponse struct for AsyncCouponDeletionJobResponse
 type AsyncCouponDeletionJobResponse struct {
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
+}
+
+// NewAsyncCouponDeletionJobResponse instantiates a new AsyncCouponDeletionJobResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAsyncCouponDeletionJobResponse(id int64) *AsyncCouponDeletionJobResponse {
+	this := AsyncCouponDeletionJobResponse{}
+	this.Id = id
+	return &this
+}
+
+// NewAsyncCouponDeletionJobResponseWithDefaults instantiates a new AsyncCouponDeletionJobResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAsyncCouponDeletionJobResponseWithDefaults() *AsyncCouponDeletionJobResponse {
+	this := AsyncCouponDeletionJobResponse{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *AsyncCouponDeletionJobResponse) GetId() int32 {
+func (o *AsyncCouponDeletionJobResponse) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AsyncCouponDeletionJobResponse) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *AsyncCouponDeletionJobResponse) SetId(v int32) {
+func (o *AsyncCouponDeletionJobResponse) SetId(v int64) {
 	o.Id = v
 }
 
+func (o AsyncCouponDeletionJobResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAsyncCouponDeletionJobResponse struct {
-	Value        AsyncCouponDeletionJobResponse
-	ExplicitNull bool
+	value *AsyncCouponDeletionJobResponse
+	isSet bool
+}
+
+func (v NullableAsyncCouponDeletionJobResponse) Get() *AsyncCouponDeletionJobResponse {
+	return v.value
+}
+
+func (v *NullableAsyncCouponDeletionJobResponse) Set(val *AsyncCouponDeletionJobResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAsyncCouponDeletionJobResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAsyncCouponDeletionJobResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAsyncCouponDeletionJobResponse(val *AsyncCouponDeletionJobResponse) *NullableAsyncCouponDeletionJobResponse {
+	return &NullableAsyncCouponDeletionJobResponse{value: val, isSet: true}
 }
 
 func (v NullableAsyncCouponDeletionJobResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAsyncCouponDeletionJobResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

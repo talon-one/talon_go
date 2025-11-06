@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // Attribute struct for Attribute
 type Attribute struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The name of the entity that can have this attribute. When creating or updating the entities of a given type, you can include an `attributes` object with keys corresponding to the `name` of the custom attributes for that type.
 	Entity    string  `json:"entity"`
 	EventType *string `json:"eventType,omitempty"`
@@ -43,26 +42,70 @@ type Attribute struct {
 	// Whether or not this attribute can be edited.
 	Editable bool `json:"editable"`
 	// A list of the IDs of the applications where this attribute is available.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// A list of the IDs of the catalogs where this attribute is available.
-	SubscribedCatalogsIds *[]int32 `json:"subscribedCatalogsIds,omitempty"`
+	SubscribedCatalogsIds *[]int64 `json:"subscribedCatalogsIds,omitempty"`
 	// A list of allowed subscription types for this attribute.  **Note:** This only applies to attributes associated with the `CartItem` entity.
 	AllowedSubscriptions *[]string `json:"allowedSubscriptions,omitempty"`
-	EventTypeId          *int32    `json:"eventTypeId,omitempty"`
+	EventTypeId          *int64    `json:"eventTypeId,omitempty"`
+}
+
+// NewAttribute instantiates a new Attribute object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAttribute(id int64, created time.Time, accountId int64, entity string, name string, title string, type_ string, description string, suggestions []string, editable bool) *Attribute {
+	this := Attribute{}
+	this.Id = id
+	this.Created = created
+	this.AccountId = accountId
+	this.Entity = entity
+	this.Name = name
+	this.Title = title
+	this.Type = type_
+	this.Description = description
+	this.Suggestions = suggestions
+	var hasAllowedList bool = false
+	this.HasAllowedList = &hasAllowedList
+	var restrictedBySuggestions bool = false
+	this.RestrictedBySuggestions = &restrictedBySuggestions
+	this.Editable = editable
+	return &this
+}
+
+// NewAttributeWithDefaults instantiates a new Attribute object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAttributeWithDefaults() *Attribute {
+	this := Attribute{}
+	var hasAllowedList bool = false
+	this.HasAllowedList = &hasAllowedList
+	var restrictedBySuggestions bool = false
+	this.RestrictedBySuggestions = &restrictedBySuggestions
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Attribute) GetId() int32 {
+func (o *Attribute) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Attribute) SetId(v int32) {
+func (o *Attribute) SetId(v int64) {
 	o.Id = v
 }
 
@@ -76,23 +119,41 @@ func (o *Attribute) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Attribute) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Attribute) GetAccountId() int32 {
+func (o *Attribute) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Attribute) SetAccountId(v int32) {
+func (o *Attribute) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -104,6 +165,15 @@ func (o *Attribute) GetEntity() string {
 	}
 
 	return o.Entity
+}
+
+// GetEntityOk returns a tuple with the Entity field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetEntityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entity, true
 }
 
 // SetEntity sets field value
@@ -120,14 +190,13 @@ func (o *Attribute) GetEventType() string {
 	return *o.EventType
 }
 
-// GetEventTypeOk returns a tuple with the EventType field value if set, zero value otherwise
+// GetEventTypeOk returns a tuple with the EventType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetEventTypeOk() (string, bool) {
+func (o *Attribute) GetEventTypeOk() (*string, bool) {
 	if o == nil || o.EventType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.EventType, true
+	return o.EventType, true
 }
 
 // HasEventType returns a boolean if a field has been set.
@@ -154,6 +223,15 @@ func (o *Attribute) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *Attribute) SetName(v string) {
 	o.Name = v
@@ -167,6 +245,15 @@ func (o *Attribute) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -184,6 +271,15 @@ func (o *Attribute) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *Attribute) SetType(v string) {
 	o.Type = v
@@ -197,6 +293,15 @@ func (o *Attribute) GetDescription() string {
 	}
 
 	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
 }
 
 // SetDescription sets field value
@@ -214,6 +319,15 @@ func (o *Attribute) GetSuggestions() []string {
 	return o.Suggestions
 }
 
+// GetSuggestionsOk returns a tuple with the Suggestions field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetSuggestionsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Suggestions, true
+}
+
 // SetSuggestions sets field value
 func (o *Attribute) SetSuggestions(v []string) {
 	o.Suggestions = v
@@ -228,14 +342,13 @@ func (o *Attribute) GetHasAllowedList() bool {
 	return *o.HasAllowedList
 }
 
-// GetHasAllowedListOk returns a tuple with the HasAllowedList field value if set, zero value otherwise
+// GetHasAllowedListOk returns a tuple with the HasAllowedList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetHasAllowedListOk() (bool, bool) {
+func (o *Attribute) GetHasAllowedListOk() (*bool, bool) {
 	if o == nil || o.HasAllowedList == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.HasAllowedList, true
+	return o.HasAllowedList, true
 }
 
 // HasHasAllowedList returns a boolean if a field has been set.
@@ -261,14 +374,13 @@ func (o *Attribute) GetRestrictedBySuggestions() bool {
 	return *o.RestrictedBySuggestions
 }
 
-// GetRestrictedBySuggestionsOk returns a tuple with the RestrictedBySuggestions field value if set, zero value otherwise
+// GetRestrictedBySuggestionsOk returns a tuple with the RestrictedBySuggestions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetRestrictedBySuggestionsOk() (bool, bool) {
+func (o *Attribute) GetRestrictedBySuggestionsOk() (*bool, bool) {
 	if o == nil || o.RestrictedBySuggestions == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.RestrictedBySuggestions, true
+	return o.RestrictedBySuggestions, true
 }
 
 // HasRestrictedBySuggestions returns a boolean if a field has been set.
@@ -295,28 +407,36 @@ func (o *Attribute) GetEditable() bool {
 	return o.Editable
 }
 
+// GetEditableOk returns a tuple with the Editable field value
+// and a boolean to check if the value has been set.
+func (o *Attribute) GetEditableOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Editable, true
+}
+
 // SetEditable sets field value
 func (o *Attribute) SetEditable(v bool) {
 	o.Editable = v
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *Attribute) GetSubscribedApplicationsIds() []int32 {
+func (o *Attribute) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *Attribute) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -328,28 +448,27 @@ func (o *Attribute) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *Attribute) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *Attribute) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
 // GetSubscribedCatalogsIds returns the SubscribedCatalogsIds field value if set, zero value otherwise.
-func (o *Attribute) GetSubscribedCatalogsIds() []int32 {
+func (o *Attribute) GetSubscribedCatalogsIds() []int64 {
 	if o == nil || o.SubscribedCatalogsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedCatalogsIds
 }
 
-// GetSubscribedCatalogsIdsOk returns a tuple with the SubscribedCatalogsIds field value if set, zero value otherwise
+// GetSubscribedCatalogsIdsOk returns a tuple with the SubscribedCatalogsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetSubscribedCatalogsIdsOk() ([]int32, bool) {
+func (o *Attribute) GetSubscribedCatalogsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedCatalogsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedCatalogsIds, true
+	return o.SubscribedCatalogsIds, true
 }
 
 // HasSubscribedCatalogsIds returns a boolean if a field has been set.
@@ -361,8 +480,8 @@ func (o *Attribute) HasSubscribedCatalogsIds() bool {
 	return false
 }
 
-// SetSubscribedCatalogsIds gets a reference to the given []int32 and assigns it to the SubscribedCatalogsIds field.
-func (o *Attribute) SetSubscribedCatalogsIds(v []int32) {
+// SetSubscribedCatalogsIds gets a reference to the given []int64 and assigns it to the SubscribedCatalogsIds field.
+func (o *Attribute) SetSubscribedCatalogsIds(v []int64) {
 	o.SubscribedCatalogsIds = &v
 }
 
@@ -375,14 +494,13 @@ func (o *Attribute) GetAllowedSubscriptions() []string {
 	return *o.AllowedSubscriptions
 }
 
-// GetAllowedSubscriptionsOk returns a tuple with the AllowedSubscriptions field value if set, zero value otherwise
+// GetAllowedSubscriptionsOk returns a tuple with the AllowedSubscriptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetAllowedSubscriptionsOk() ([]string, bool) {
+func (o *Attribute) GetAllowedSubscriptionsOk() (*[]string, bool) {
 	if o == nil || o.AllowedSubscriptions == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.AllowedSubscriptions, true
+	return o.AllowedSubscriptions, true
 }
 
 // HasAllowedSubscriptions returns a boolean if a field has been set.
@@ -400,22 +518,21 @@ func (o *Attribute) SetAllowedSubscriptions(v []string) {
 }
 
 // GetEventTypeId returns the EventTypeId field value if set, zero value otherwise.
-func (o *Attribute) GetEventTypeId() int32 {
+func (o *Attribute) GetEventTypeId() int64 {
 	if o == nil || o.EventTypeId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EventTypeId
 }
 
-// GetEventTypeIdOk returns a tuple with the EventTypeId field value if set, zero value otherwise
+// GetEventTypeIdOk returns a tuple with the EventTypeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Attribute) GetEventTypeIdOk() (int32, bool) {
+func (o *Attribute) GetEventTypeIdOk() (*int64, bool) {
 	if o == nil || o.EventTypeId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EventTypeId, true
+	return o.EventTypeId, true
 }
 
 // HasEventTypeId returns a boolean if a field has been set.
@@ -427,30 +544,99 @@ func (o *Attribute) HasEventTypeId() bool {
 	return false
 }
 
-// SetEventTypeId gets a reference to the given int32 and assigns it to the EventTypeId field.
-func (o *Attribute) SetEventTypeId(v int32) {
+// SetEventTypeId gets a reference to the given int64 and assigns it to the EventTypeId field.
+func (o *Attribute) SetEventTypeId(v int64) {
 	o.EventTypeId = &v
 }
 
+func (o Attribute) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["entity"] = o.Entity
+	}
+	if o.EventType != nil {
+		toSerialize["eventType"] = o.EventType
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["suggestions"] = o.Suggestions
+	}
+	if o.HasAllowedList != nil {
+		toSerialize["hasAllowedList"] = o.HasAllowedList
+	}
+	if o.RestrictedBySuggestions != nil {
+		toSerialize["restrictedBySuggestions"] = o.RestrictedBySuggestions
+	}
+	if true {
+		toSerialize["editable"] = o.Editable
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if o.SubscribedCatalogsIds != nil {
+		toSerialize["subscribedCatalogsIds"] = o.SubscribedCatalogsIds
+	}
+	if o.AllowedSubscriptions != nil {
+		toSerialize["allowedSubscriptions"] = o.AllowedSubscriptions
+	}
+	if o.EventTypeId != nil {
+		toSerialize["eventTypeId"] = o.EventTypeId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAttribute struct {
-	Value        Attribute
-	ExplicitNull bool
+	value *Attribute
+	isSet bool
+}
+
+func (v NullableAttribute) Get() *Attribute {
+	return v.value
+}
+
+func (v *NullableAttribute) Set(val *Attribute) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAttribute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAttribute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAttribute(val *Attribute) *NullableAttribute {
+	return &NullableAttribute{value: val, isSet: true}
 }
 
 func (v NullableAttribute) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAttribute) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

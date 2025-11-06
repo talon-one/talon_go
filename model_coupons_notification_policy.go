@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,7 +23,34 @@ type CouponsNotificationPolicy struct {
 	// Indicates whether to include all generated coupons. If `false`, only the `batchId` of the generated coupons is included.
 	IncludeData *bool `json:"includeData,omitempty"`
 	// The required size of each batch of data. This value applies only when `batchingEnabled` is `true`.
-	BatchSize *int32 `json:"batchSize,omitempty"`
+	BatchSize *int64 `json:"batchSize,omitempty"`
+}
+
+// NewCouponsNotificationPolicy instantiates a new CouponsNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCouponsNotificationPolicy(name string, scopes []string) *CouponsNotificationPolicy {
+	this := CouponsNotificationPolicy{}
+	this.Name = name
+	this.Scopes = scopes
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
+}
+
+// NewCouponsNotificationPolicyWithDefaults instantiates a new CouponsNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponsNotificationPolicyWithDefaults() *CouponsNotificationPolicy {
+	this := CouponsNotificationPolicy{}
+	var batchingEnabled bool = true
+	this.BatchingEnabled = &batchingEnabled
+	var batchSize int64 = 1000
+	this.BatchSize = &batchSize
+	return &this
 }
 
 // GetName returns the Name field value
@@ -35,6 +61,15 @@ func (o *CouponsNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CouponsNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -52,6 +87,15 @@ func (o *CouponsNotificationPolicy) GetScopes() []string {
 	return o.Scopes
 }
 
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *CouponsNotificationPolicy) GetScopesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scopes, true
+}
+
 // SetScopes sets field value
 func (o *CouponsNotificationPolicy) SetScopes(v []string) {
 	o.Scopes = v
@@ -66,14 +110,13 @@ func (o *CouponsNotificationPolicy) GetBatchingEnabled() bool {
 	return *o.BatchingEnabled
 }
 
-// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, zero value otherwise
+// GetBatchingEnabledOk returns a tuple with the BatchingEnabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponsNotificationPolicy) GetBatchingEnabledOk() (bool, bool) {
+func (o *CouponsNotificationPolicy) GetBatchingEnabledOk() (*bool, bool) {
 	if o == nil || o.BatchingEnabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchingEnabled, true
+	return o.BatchingEnabled, true
 }
 
 // HasBatchingEnabled returns a boolean if a field has been set.
@@ -99,14 +142,13 @@ func (o *CouponsNotificationPolicy) GetIncludeData() bool {
 	return *o.IncludeData
 }
 
-// GetIncludeDataOk returns a tuple with the IncludeData field value if set, zero value otherwise
+// GetIncludeDataOk returns a tuple with the IncludeData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponsNotificationPolicy) GetIncludeDataOk() (bool, bool) {
+func (o *CouponsNotificationPolicy) GetIncludeDataOk() (*bool, bool) {
 	if o == nil || o.IncludeData == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IncludeData, true
+	return o.IncludeData, true
 }
 
 // HasIncludeData returns a boolean if a field has been set.
@@ -124,22 +166,21 @@ func (o *CouponsNotificationPolicy) SetIncludeData(v bool) {
 }
 
 // GetBatchSize returns the BatchSize field value if set, zero value otherwise.
-func (o *CouponsNotificationPolicy) GetBatchSize() int32 {
+func (o *CouponsNotificationPolicy) GetBatchSize() int64 {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BatchSize
 }
 
-// GetBatchSizeOk returns a tuple with the BatchSize field value if set, zero value otherwise
+// GetBatchSizeOk returns a tuple with the BatchSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponsNotificationPolicy) GetBatchSizeOk() (int32, bool) {
+func (o *CouponsNotificationPolicy) GetBatchSizeOk() (*int64, bool) {
 	if o == nil || o.BatchSize == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchSize, true
+	return o.BatchSize, true
 }
 
 // HasBatchSize returns a boolean if a field has been set.
@@ -151,30 +192,63 @@ func (o *CouponsNotificationPolicy) HasBatchSize() bool {
 	return false
 }
 
-// SetBatchSize gets a reference to the given int32 and assigns it to the BatchSize field.
-func (o *CouponsNotificationPolicy) SetBatchSize(v int32) {
+// SetBatchSize gets a reference to the given int64 and assigns it to the BatchSize field.
+func (o *CouponsNotificationPolicy) SetBatchSize(v int64) {
 	o.BatchSize = &v
 }
 
+func (o CouponsNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["scopes"] = o.Scopes
+	}
+	if o.BatchingEnabled != nil {
+		toSerialize["batchingEnabled"] = o.BatchingEnabled
+	}
+	if o.IncludeData != nil {
+		toSerialize["includeData"] = o.IncludeData
+	}
+	if o.BatchSize != nil {
+		toSerialize["batchSize"] = o.BatchSize
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponsNotificationPolicy struct {
-	Value        CouponsNotificationPolicy
-	ExplicitNull bool
+	value *CouponsNotificationPolicy
+	isSet bool
+}
+
+func (v NullableCouponsNotificationPolicy) Get() *CouponsNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableCouponsNotificationPolicy) Set(val *CouponsNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponsNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponsNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCouponsNotificationPolicy(val *CouponsNotificationPolicy) *NullableCouponsNotificationPolicy {
+	return &NullableCouponsNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableCouponsNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponsNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

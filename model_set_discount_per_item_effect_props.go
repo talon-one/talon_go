@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -33,13 +32,33 @@ type SetDiscountPerItemEffectProps struct {
 	// The original total discount to give if this effect is a result of a prorated discount.
 	DesiredTotalDiscount *float32 `json:"desiredTotalDiscount,omitempty"`
 	// The position of the bundle in a list of item bundles created from the same bundle definition.
-	BundleIndex *int32 `json:"bundleIndex,omitempty"`
+	BundleIndex *int64 `json:"bundleIndex,omitempty"`
 	// The name of the bundle definition.
 	BundleName *string `json:"bundleName,omitempty"`
 	// The index of the targeted bundle item on which the applied discount is based.
 	TargetedItemPosition *float32 `json:"targetedItemPosition,omitempty"`
 	// The sub-position of the targeted bundle item on which the applied discount is based.
 	TargetedItemSubPosition *float32 `json:"targetedItemSubPosition,omitempty"`
+}
+
+// NewSetDiscountPerItemEffectProps instantiates a new SetDiscountPerItemEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSetDiscountPerItemEffectProps(name string, value float32, position float32) *SetDiscountPerItemEffectProps {
+	this := SetDiscountPerItemEffectProps{}
+	this.Name = name
+	this.Value = value
+	this.Position = position
+	return &this
+}
+
+// NewSetDiscountPerItemEffectPropsWithDefaults instantiates a new SetDiscountPerItemEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSetDiscountPerItemEffectPropsWithDefaults() *SetDiscountPerItemEffectProps {
+	this := SetDiscountPerItemEffectProps{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -50,6 +69,15 @@ func (o *SetDiscountPerItemEffectProps) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerItemEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -67,6 +95,15 @@ func (o *SetDiscountPerItemEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerItemEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *SetDiscountPerItemEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -80,6 +117,15 @@ func (o *SetDiscountPerItemEffectProps) GetPosition() float32 {
 	}
 
 	return o.Position
+}
+
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountPerItemEffectProps) GetPositionOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Position, true
 }
 
 // SetPosition sets field value
@@ -96,14 +142,13 @@ func (o *SetDiscountPerItemEffectProps) GetSubPosition() float32 {
 	return *o.SubPosition
 }
 
-// GetSubPositionOk returns a tuple with the SubPosition field value if set, zero value otherwise
+// GetSubPositionOk returns a tuple with the SubPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetSubPositionOk() (float32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetSubPositionOk() (*float32, bool) {
 	if o == nil || o.SubPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubPosition, true
+	return o.SubPosition, true
 }
 
 // HasSubPosition returns a boolean if a field has been set.
@@ -129,14 +174,13 @@ func (o *SetDiscountPerItemEffectProps) GetDesiredValue() float32 {
 	return *o.DesiredValue
 }
 
-// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, zero value otherwise
+// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetDesiredValueOk() (float32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetDesiredValueOk() (*float32, bool) {
 	if o == nil || o.DesiredValue == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DesiredValue, true
+	return o.DesiredValue, true
 }
 
 // HasDesiredValue returns a boolean if a field has been set.
@@ -162,14 +206,13 @@ func (o *SetDiscountPerItemEffectProps) GetScope() string {
 	return *o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetScopeOk() (string, bool) {
+func (o *SetDiscountPerItemEffectProps) GetScopeOk() (*string, bool) {
 	if o == nil || o.Scope == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Scope, true
+	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -195,14 +238,13 @@ func (o *SetDiscountPerItemEffectProps) GetTotalDiscount() float32 {
 	return *o.TotalDiscount
 }
 
-// GetTotalDiscountOk returns a tuple with the TotalDiscount field value if set, zero value otherwise
+// GetTotalDiscountOk returns a tuple with the TotalDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetTotalDiscountOk() (float32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetTotalDiscountOk() (*float32, bool) {
 	if o == nil || o.TotalDiscount == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalDiscount, true
+	return o.TotalDiscount, true
 }
 
 // HasTotalDiscount returns a boolean if a field has been set.
@@ -228,14 +270,13 @@ func (o *SetDiscountPerItemEffectProps) GetDesiredTotalDiscount() float32 {
 	return *o.DesiredTotalDiscount
 }
 
-// GetDesiredTotalDiscountOk returns a tuple with the DesiredTotalDiscount field value if set, zero value otherwise
+// GetDesiredTotalDiscountOk returns a tuple with the DesiredTotalDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetDesiredTotalDiscountOk() (float32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetDesiredTotalDiscountOk() (*float32, bool) {
 	if o == nil || o.DesiredTotalDiscount == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DesiredTotalDiscount, true
+	return o.DesiredTotalDiscount, true
 }
 
 // HasDesiredTotalDiscount returns a boolean if a field has been set.
@@ -253,22 +294,21 @@ func (o *SetDiscountPerItemEffectProps) SetDesiredTotalDiscount(v float32) {
 }
 
 // GetBundleIndex returns the BundleIndex field value if set, zero value otherwise.
-func (o *SetDiscountPerItemEffectProps) GetBundleIndex() int32 {
+func (o *SetDiscountPerItemEffectProps) GetBundleIndex() int64 {
 	if o == nil || o.BundleIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.BundleIndex
 }
 
-// GetBundleIndexOk returns a tuple with the BundleIndex field value if set, zero value otherwise
+// GetBundleIndexOk returns a tuple with the BundleIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetBundleIndexOk() (int32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetBundleIndexOk() (*int64, bool) {
 	if o == nil || o.BundleIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.BundleIndex, true
+	return o.BundleIndex, true
 }
 
 // HasBundleIndex returns a boolean if a field has been set.
@@ -280,8 +320,8 @@ func (o *SetDiscountPerItemEffectProps) HasBundleIndex() bool {
 	return false
 }
 
-// SetBundleIndex gets a reference to the given int32 and assigns it to the BundleIndex field.
-func (o *SetDiscountPerItemEffectProps) SetBundleIndex(v int32) {
+// SetBundleIndex gets a reference to the given int64 and assigns it to the BundleIndex field.
+func (o *SetDiscountPerItemEffectProps) SetBundleIndex(v int64) {
 	o.BundleIndex = &v
 }
 
@@ -294,14 +334,13 @@ func (o *SetDiscountPerItemEffectProps) GetBundleName() string {
 	return *o.BundleName
 }
 
-// GetBundleNameOk returns a tuple with the BundleName field value if set, zero value otherwise
+// GetBundleNameOk returns a tuple with the BundleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetBundleNameOk() (string, bool) {
+func (o *SetDiscountPerItemEffectProps) GetBundleNameOk() (*string, bool) {
 	if o == nil || o.BundleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BundleName, true
+	return o.BundleName, true
 }
 
 // HasBundleName returns a boolean if a field has been set.
@@ -327,14 +366,13 @@ func (o *SetDiscountPerItemEffectProps) GetTargetedItemPosition() float32 {
 	return *o.TargetedItemPosition
 }
 
-// GetTargetedItemPositionOk returns a tuple with the TargetedItemPosition field value if set, zero value otherwise
+// GetTargetedItemPositionOk returns a tuple with the TargetedItemPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetTargetedItemPositionOk() (float32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetTargetedItemPositionOk() (*float32, bool) {
 	if o == nil || o.TargetedItemPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TargetedItemPosition, true
+	return o.TargetedItemPosition, true
 }
 
 // HasTargetedItemPosition returns a boolean if a field has been set.
@@ -360,14 +398,13 @@ func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPosition() float32 {
 	return *o.TargetedItemSubPosition
 }
 
-// GetTargetedItemSubPositionOk returns a tuple with the TargetedItemSubPosition field value if set, zero value otherwise
+// GetTargetedItemSubPositionOk returns a tuple with the TargetedItemSubPosition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPositionOk() (float32, bool) {
+func (o *SetDiscountPerItemEffectProps) GetTargetedItemSubPositionOk() (*float32, bool) {
 	if o == nil || o.TargetedItemSubPosition == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TargetedItemSubPosition, true
+	return o.TargetedItemSubPosition, true
 }
 
 // HasTargetedItemSubPosition returns a boolean if a field has been set.
@@ -384,25 +421,79 @@ func (o *SetDiscountPerItemEffectProps) SetTargetedItemSubPosition(v float32) {
 	o.TargetedItemSubPosition = &v
 }
 
+func (o SetDiscountPerItemEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["position"] = o.Position
+	}
+	if o.SubPosition != nil {
+		toSerialize["subPosition"] = o.SubPosition
+	}
+	if o.DesiredValue != nil {
+		toSerialize["desiredValue"] = o.DesiredValue
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	if o.TotalDiscount != nil {
+		toSerialize["totalDiscount"] = o.TotalDiscount
+	}
+	if o.DesiredTotalDiscount != nil {
+		toSerialize["desiredTotalDiscount"] = o.DesiredTotalDiscount
+	}
+	if o.BundleIndex != nil {
+		toSerialize["bundleIndex"] = o.BundleIndex
+	}
+	if o.BundleName != nil {
+		toSerialize["bundleName"] = o.BundleName
+	}
+	if o.TargetedItemPosition != nil {
+		toSerialize["targetedItemPosition"] = o.TargetedItemPosition
+	}
+	if o.TargetedItemSubPosition != nil {
+		toSerialize["targetedItemSubPosition"] = o.TargetedItemSubPosition
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSetDiscountPerItemEffectProps struct {
-	Value        SetDiscountPerItemEffectProps
-	ExplicitNull bool
+	value *SetDiscountPerItemEffectProps
+	isSet bool
+}
+
+func (v NullableSetDiscountPerItemEffectProps) Get() *SetDiscountPerItemEffectProps {
+	return v.value
+}
+
+func (v *NullableSetDiscountPerItemEffectProps) Set(val *SetDiscountPerItemEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSetDiscountPerItemEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSetDiscountPerItemEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSetDiscountPerItemEffectProps(val *SetDiscountPerItemEffectProps) *NullableSetDiscountPerItemEffectProps {
+	return &NullableSetDiscountPerItemEffectProps{value: val, isSet: true}
 }
 
 func (v NullableSetDiscountPerItemEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSetDiscountPerItemEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

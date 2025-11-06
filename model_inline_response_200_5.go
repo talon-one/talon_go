@@ -10,14 +10,32 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // InlineResponse2005 struct for InlineResponse2005
 type InlineResponse2005 struct {
 	HasMore bool                                  `json:"hasMore"`
-	Data    []CardLedgerPointsEntryIntegrationApi `json:"data"`
+	Data    []CardLedgerPointsEntryIntegrationAPI `json:"data"`
+}
+
+// NewInlineResponse2005 instantiates a new InlineResponse2005 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInlineResponse2005(hasMore bool, data []CardLedgerPointsEntryIntegrationAPI) *InlineResponse2005 {
+	this := InlineResponse2005{}
+	this.HasMore = hasMore
+	this.Data = data
+	return &this
+}
+
+// NewInlineResponse2005WithDefaults instantiates a new InlineResponse2005 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInlineResponse2005WithDefaults() *InlineResponse2005 {
+	this := InlineResponse2005{}
+	return &this
 }
 
 // GetHasMore returns the HasMore field value
@@ -30,45 +48,87 @@ func (o *InlineResponse2005) GetHasMore() bool {
 	return o.HasMore
 }
 
+// GetHasMoreOk returns a tuple with the HasMore field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse2005) GetHasMoreOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.HasMore, true
+}
+
 // SetHasMore sets field value
 func (o *InlineResponse2005) SetHasMore(v bool) {
 	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2005) GetData() []CardLedgerPointsEntryIntegrationApi {
+func (o *InlineResponse2005) GetData() []CardLedgerPointsEntryIntegrationAPI {
 	if o == nil {
-		var ret []CardLedgerPointsEntryIntegrationApi
+		var ret []CardLedgerPointsEntryIntegrationAPI
 		return ret
 	}
 
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse2005) GetDataOk() (*[]CardLedgerPointsEntryIntegrationAPI, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
-func (o *InlineResponse2005) SetData(v []CardLedgerPointsEntryIntegrationApi) {
+func (o *InlineResponse2005) SetData(v []CardLedgerPointsEntryIntegrationAPI) {
 	o.Data = v
 }
 
+func (o InlineResponse2005) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["hasMore"] = o.HasMore
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInlineResponse2005 struct {
-	Value        InlineResponse2005
-	ExplicitNull bool
+	value *InlineResponse2005
+	isSet bool
+}
+
+func (v NullableInlineResponse2005) Get() *InlineResponse2005 {
+	return v.value
+}
+
+func (v *NullableInlineResponse2005) Set(val *InlineResponse2005) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInlineResponse2005) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInlineResponse2005) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInlineResponse2005(val *InlineResponse2005) *NullableInlineResponse2005 {
+	return &NullableInlineResponse2005{value: val, isSet: true}
 }
 
 func (v NullableInlineResponse2005) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInlineResponse2005) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

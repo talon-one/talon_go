@@ -10,64 +10,111 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // OutgoingIntegrationConfiguration struct for OutgoingIntegrationConfiguration
 type OutgoingIntegrationConfiguration struct {
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The ID of the account to which this configuration belongs.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The outgoing integration type ID.
-	TypeId int32 `json:"typeId"`
+	TypeId int64 `json:"typeId"`
 	// The outgoing integration policy specific to each integration type.
 	Policy map[string]interface{} `json:"policy"`
 }
 
+// NewOutgoingIntegrationConfiguration instantiates a new OutgoingIntegrationConfiguration object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOutgoingIntegrationConfiguration(id int64, accountId int64, typeId int64, policy map[string]interface{}) *OutgoingIntegrationConfiguration {
+	this := OutgoingIntegrationConfiguration{}
+	this.Id = id
+	this.AccountId = accountId
+	this.TypeId = typeId
+	this.Policy = policy
+	return &this
+}
+
+// NewOutgoingIntegrationConfigurationWithDefaults instantiates a new OutgoingIntegrationConfiguration object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationConfigurationWithDefaults() *OutgoingIntegrationConfiguration {
+	this := OutgoingIntegrationConfiguration{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *OutgoingIntegrationConfiguration) GetId() int32 {
+func (o *OutgoingIntegrationConfiguration) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationConfiguration) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *OutgoingIntegrationConfiguration) SetId(v int32) {
+func (o *OutgoingIntegrationConfiguration) SetId(v int64) {
 	o.Id = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *OutgoingIntegrationConfiguration) GetAccountId() int32 {
+func (o *OutgoingIntegrationConfiguration) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationConfiguration) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *OutgoingIntegrationConfiguration) SetAccountId(v int32) {
+func (o *OutgoingIntegrationConfiguration) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetTypeId returns the TypeId field value
-func (o *OutgoingIntegrationConfiguration) GetTypeId() int32 {
+func (o *OutgoingIntegrationConfiguration) GetTypeId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TypeId
 }
 
+// GetTypeIdOk returns a tuple with the TypeId field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationConfiguration) GetTypeIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TypeId, true
+}
+
 // SetTypeId sets field value
-func (o *OutgoingIntegrationConfiguration) SetTypeId(v int32) {
+func (o *OutgoingIntegrationConfiguration) SetTypeId(v int64) {
 	o.TypeId = v
 }
 
@@ -81,30 +128,69 @@ func (o *OutgoingIntegrationConfiguration) GetPolicy() map[string]interface{} {
 	return o.Policy
 }
 
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationConfiguration) GetPolicyOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Policy, true
+}
+
 // SetPolicy sets field value
 func (o *OutgoingIntegrationConfiguration) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
 }
 
+func (o OutgoingIntegrationConfiguration) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["typeId"] = o.TypeId
+	}
+	if true {
+		toSerialize["policy"] = o.Policy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationConfiguration struct {
-	Value        OutgoingIntegrationConfiguration
-	ExplicitNull bool
+	value *OutgoingIntegrationConfiguration
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationConfiguration) Get() *OutgoingIntegrationConfiguration {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationConfiguration) Set(val *OutgoingIntegrationConfiguration) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationConfiguration) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationConfiguration) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOutgoingIntegrationConfiguration(val *OutgoingIntegrationConfiguration) *NullableOutgoingIntegrationConfiguration {
+	return &NullableOutgoingIntegrationConfiguration{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationConfiguration) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationConfiguration) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

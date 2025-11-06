@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignActivationRequest struct for CampaignActivationRequest
 type CampaignActivationRequest struct {
 	// The list of IDs of the users who will receive the activation request.
-	UserIds []int32 `json:"userIds"`
+	UserIds []int64 `json:"userIds"`
+}
+
+// NewCampaignActivationRequest instantiates a new CampaignActivationRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignActivationRequest(userIds []int64) *CampaignActivationRequest {
+	this := CampaignActivationRequest{}
+	this.UserIds = userIds
+	return &this
+}
+
+// NewCampaignActivationRequestWithDefaults instantiates a new CampaignActivationRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignActivationRequestWithDefaults() *CampaignActivationRequest {
+	this := CampaignActivationRequest{}
+	return &this
 }
 
 // GetUserIds returns the UserIds field value
-func (o *CampaignActivationRequest) GetUserIds() []int32 {
+func (o *CampaignActivationRequest) GetUserIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.UserIds
 }
 
+// GetUserIdsOk returns a tuple with the UserIds field value
+// and a boolean to check if the value has been set.
+func (o *CampaignActivationRequest) GetUserIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserIds, true
+}
+
 // SetUserIds sets field value
-func (o *CampaignActivationRequest) SetUserIds(v []int32) {
+func (o *CampaignActivationRequest) SetUserIds(v []int64) {
 	o.UserIds = v
 }
 
+func (o CampaignActivationRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["userIds"] = o.UserIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignActivationRequest struct {
-	Value        CampaignActivationRequest
-	ExplicitNull bool
+	value *CampaignActivationRequest
+	isSet bool
+}
+
+func (v NullableCampaignActivationRequest) Get() *CampaignActivationRequest {
+	return v.value
+}
+
+func (v *NullableCampaignActivationRequest) Set(val *CampaignActivationRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignActivationRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignActivationRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignActivationRequest(val *CampaignActivationRequest) *NullableCampaignActivationRequest {
+	return &NullableCampaignActivationRequest{value: val, isSet: true}
 }
 
 func (v NullableCampaignActivationRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignActivationRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

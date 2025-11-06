@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -31,9 +30,33 @@ type TalangAttribute struct {
 	// Indicate the kind of the attribute.
 	Kind string `json:"kind"`
 	// The number of campaigns that refer to the attribute.
-	CampaignsCount int32 `json:"campaignsCount"`
+	CampaignsCount int64 `json:"campaignsCount"`
 	// Examples of values that can be assigned to the attribute.
 	ExampleValue *[]string `json:"exampleValue,omitempty"`
+}
+
+// NewTalangAttribute instantiates a new TalangAttribute object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTalangAttribute(name string, type_ string, visible bool, kind string, campaignsCount int64) *TalangAttribute {
+	this := TalangAttribute{}
+	this.Name = name
+	this.Type = type_
+	this.Visible = visible
+	this.Kind = kind
+	this.CampaignsCount = campaignsCount
+	return &this
+}
+
+// NewTalangAttributeWithDefaults instantiates a new TalangAttribute object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTalangAttributeWithDefaults() *TalangAttribute {
+	this := TalangAttribute{}
+	var visible bool = true
+	this.Visible = visible
+	return &this
 }
 
 // GetEntity returns the Entity field value if set, zero value otherwise.
@@ -45,14 +68,13 @@ func (o *TalangAttribute) GetEntity() string {
 	return *o.Entity
 }
 
-// GetEntityOk returns a tuple with the Entity field value if set, zero value otherwise
+// GetEntityOk returns a tuple with the Entity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TalangAttribute) GetEntityOk() (string, bool) {
+func (o *TalangAttribute) GetEntityOk() (*string, bool) {
 	if o == nil || o.Entity == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Entity, true
+	return o.Entity, true
 }
 
 // HasEntity returns a boolean if a field has been set.
@@ -79,6 +101,15 @@ func (o *TalangAttribute) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TalangAttribute) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *TalangAttribute) SetName(v string) {
 	o.Name = v
@@ -93,14 +124,13 @@ func (o *TalangAttribute) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TalangAttribute) GetTitleOk() (string, bool) {
+func (o *TalangAttribute) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -127,6 +157,15 @@ func (o *TalangAttribute) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *TalangAttribute) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *TalangAttribute) SetType(v string) {
 	o.Type = v
@@ -141,14 +180,13 @@ func (o *TalangAttribute) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TalangAttribute) GetDescriptionOk() (string, bool) {
+func (o *TalangAttribute) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -175,6 +213,15 @@ func (o *TalangAttribute) GetVisible() bool {
 	return o.Visible
 }
 
+// GetVisibleOk returns a tuple with the Visible field value
+// and a boolean to check if the value has been set.
+func (o *TalangAttribute) GetVisibleOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Visible, true
+}
+
 // SetVisible sets field value
 func (o *TalangAttribute) SetVisible(v bool) {
 	o.Visible = v
@@ -190,23 +237,41 @@ func (o *TalangAttribute) GetKind() string {
 	return o.Kind
 }
 
+// GetKindOk returns a tuple with the Kind field value
+// and a boolean to check if the value has been set.
+func (o *TalangAttribute) GetKindOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Kind, true
+}
+
 // SetKind sets field value
 func (o *TalangAttribute) SetKind(v string) {
 	o.Kind = v
 }
 
 // GetCampaignsCount returns the CampaignsCount field value
-func (o *TalangAttribute) GetCampaignsCount() int32 {
+func (o *TalangAttribute) GetCampaignsCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignsCount
 }
 
+// GetCampaignsCountOk returns a tuple with the CampaignsCount field value
+// and a boolean to check if the value has been set.
+func (o *TalangAttribute) GetCampaignsCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignsCount, true
+}
+
 // SetCampaignsCount sets field value
-func (o *TalangAttribute) SetCampaignsCount(v int32) {
+func (o *TalangAttribute) SetCampaignsCount(v int64) {
 	o.CampaignsCount = v
 }
 
@@ -219,14 +284,13 @@ func (o *TalangAttribute) GetExampleValue() []string {
 	return *o.ExampleValue
 }
 
-// GetExampleValueOk returns a tuple with the ExampleValue field value if set, zero value otherwise
+// GetExampleValueOk returns a tuple with the ExampleValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TalangAttribute) GetExampleValueOk() ([]string, bool) {
+func (o *TalangAttribute) GetExampleValueOk() (*[]string, bool) {
 	if o == nil || o.ExampleValue == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ExampleValue, true
+	return o.ExampleValue, true
 }
 
 // HasExampleValue returns a boolean if a field has been set.
@@ -243,25 +307,70 @@ func (o *TalangAttribute) SetExampleValue(v []string) {
 	o.ExampleValue = &v
 }
 
+func (o TalangAttribute) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Entity != nil {
+		toSerialize["entity"] = o.Entity
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["visible"] = o.Visible
+	}
+	if true {
+		toSerialize["kind"] = o.Kind
+	}
+	if true {
+		toSerialize["campaignsCount"] = o.CampaignsCount
+	}
+	if o.ExampleValue != nil {
+		toSerialize["exampleValue"] = o.ExampleValue
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTalangAttribute struct {
-	Value        TalangAttribute
-	ExplicitNull bool
+	value *TalangAttribute
+	isSet bool
+}
+
+func (v NullableTalangAttribute) Get() *TalangAttribute {
+	return v.value
+}
+
+func (v *NullableTalangAttribute) Set(val *TalangAttribute) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTalangAttribute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTalangAttribute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTalangAttribute(val *TalangAttribute) *NullableTalangAttribute {
+	return &NullableTalangAttribute{value: val, isSet: true}
 }
 
 func (v NullableTalangAttribute) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTalangAttribute) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

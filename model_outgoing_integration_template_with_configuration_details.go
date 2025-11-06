@@ -10,16 +10,15 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // OutgoingIntegrationTemplateWithConfigurationDetails struct for OutgoingIntegrationTemplateWithConfigurationDetails
 type OutgoingIntegrationTemplateWithConfigurationDetails struct {
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Unique ID of outgoing integration type.
-	IntegrationType int32 `json:"integrationType"`
+	IntegrationType int64 `json:"integrationType"`
 	// The title of the integration template.
 	Title string `json:"title"`
 	// The description of the specific outgoing integration template.
@@ -36,33 +35,77 @@ type OutgoingIntegrationTemplateWithConfigurationDetails struct {
 	Policy map[string]interface{} `json:"policy"`
 }
 
+// NewOutgoingIntegrationTemplateWithConfigurationDetails instantiates a new OutgoingIntegrationTemplateWithConfigurationDetails object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOutgoingIntegrationTemplateWithConfigurationDetails(id int64, integrationType int64, title string, description string, payload string, method string, relativeUrl string, headers []string, policy map[string]interface{}) *OutgoingIntegrationTemplateWithConfigurationDetails {
+	this := OutgoingIntegrationTemplateWithConfigurationDetails{}
+	this.Id = id
+	this.IntegrationType = integrationType
+	this.Title = title
+	this.Description = description
+	this.Payload = payload
+	this.Method = method
+	this.RelativeUrl = relativeUrl
+	this.Headers = headers
+	this.Policy = policy
+	return &this
+}
+
+// NewOutgoingIntegrationTemplateWithConfigurationDetailsWithDefaults instantiates a new OutgoingIntegrationTemplateWithConfigurationDetails object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationTemplateWithConfigurationDetailsWithDefaults() *OutgoingIntegrationTemplateWithConfigurationDetails {
+	this := OutgoingIntegrationTemplateWithConfigurationDetails{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetId() int32 {
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetId(v int32) {
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetId(v int64) {
 	o.Id = v
 }
 
 // GetIntegrationType returns the IntegrationType field value
-func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetIntegrationType() int32 {
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetIntegrationType() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.IntegrationType
 }
 
+// GetIntegrationTypeOk returns a tuple with the IntegrationType field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetIntegrationTypeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationType, true
+}
+
 // SetIntegrationType sets field value
-func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetIntegrationType(v int32) {
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetIntegrationType(v int64) {
 	o.IntegrationType = v
 }
 
@@ -74,6 +117,15 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetTitle() string 
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -91,6 +143,15 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetDescription() s
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetDescription(v string) {
 	o.Description = v
@@ -104,6 +165,15 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPayload() strin
 	}
 
 	return o.Payload
+}
+
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPayloadOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
 }
 
 // SetPayload sets field value
@@ -121,6 +191,15 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetMethod() string
 	return o.Method
 }
 
+// GetMethodOk returns a tuple with the Method field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetMethodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Method, true
+}
+
 // SetMethod sets field value
 func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetMethod(v string) {
 	o.Method = v
@@ -134,6 +213,15 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetRelativeUrl() s
 	}
 
 	return o.RelativeUrl
+}
+
+// GetRelativeUrlOk returns a tuple with the RelativeUrl field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetRelativeUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RelativeUrl, true
 }
 
 // SetRelativeUrl sets field value
@@ -151,6 +239,15 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetHeaders() []str
 	return o.Headers
 }
 
+// GetHeadersOk returns a tuple with the Headers field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetHeadersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Headers, true
+}
+
 // SetHeaders sets field value
 func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetHeaders(v []string) {
 	o.Headers = v
@@ -166,30 +263,84 @@ func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPolicy() map[st
 	return o.Policy
 }
 
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationTemplateWithConfigurationDetails) GetPolicyOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Policy, true
+}
+
 // SetPolicy sets field value
 func (o *OutgoingIntegrationTemplateWithConfigurationDetails) SetPolicy(v map[string]interface{}) {
 	o.Policy = v
 }
 
+func (o OutgoingIntegrationTemplateWithConfigurationDetails) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["integrationType"] = o.IntegrationType
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
+	}
+	if true {
+		toSerialize["method"] = o.Method
+	}
+	if true {
+		toSerialize["relativeUrl"] = o.RelativeUrl
+	}
+	if true {
+		toSerialize["headers"] = o.Headers
+	}
+	if true {
+		toSerialize["policy"] = o.Policy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationTemplateWithConfigurationDetails struct {
-	Value        OutgoingIntegrationTemplateWithConfigurationDetails
-	ExplicitNull bool
+	value *OutgoingIntegrationTemplateWithConfigurationDetails
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationTemplateWithConfigurationDetails) Get() *OutgoingIntegrationTemplateWithConfigurationDetails {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationTemplateWithConfigurationDetails) Set(val *OutgoingIntegrationTemplateWithConfigurationDetails) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationTemplateWithConfigurationDetails) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationTemplateWithConfigurationDetails) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOutgoingIntegrationTemplateWithConfigurationDetails(val *OutgoingIntegrationTemplateWithConfigurationDetails) *NullableOutgoingIntegrationTemplateWithConfigurationDetails {
+	return &NullableOutgoingIntegrationTemplateWithConfigurationDetails{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationTemplateWithConfigurationDetails) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationTemplateWithConfigurationDetails) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

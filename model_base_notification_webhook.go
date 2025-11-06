@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // BaseNotificationWebhook struct for BaseNotificationWebhook
 type BaseNotificationWebhook struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
@@ -31,18 +30,53 @@ type BaseNotificationWebhook struct {
 	Enabled *bool `json:"enabled,omitempty"`
 }
 
+// NewBaseNotificationWebhook instantiates a new BaseNotificationWebhook object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBaseNotificationWebhook(id int64, created time.Time, modified time.Time, url string, headers []string) *BaseNotificationWebhook {
+	this := BaseNotificationWebhook{}
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	this.Url = url
+	this.Headers = headers
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
+// NewBaseNotificationWebhookWithDefaults instantiates a new BaseNotificationWebhook object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBaseNotificationWebhookWithDefaults() *BaseNotificationWebhook {
+	this := BaseNotificationWebhook{}
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *BaseNotificationWebhook) GetId() int32 {
+func (o *BaseNotificationWebhook) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationWebhook) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *BaseNotificationWebhook) SetId(v int32) {
+func (o *BaseNotificationWebhook) SetId(v int64) {
 	o.Id = v
 }
 
@@ -54,6 +88,15 @@ func (o *BaseNotificationWebhook) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationWebhook) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -71,6 +114,15 @@ func (o *BaseNotificationWebhook) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationWebhook) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *BaseNotificationWebhook) SetModified(v time.Time) {
 	o.Modified = v
@@ -84,6 +136,15 @@ func (o *BaseNotificationWebhook) GetUrl() string {
 	}
 
 	return o.Url
+}
+
+// GetUrlOk returns a tuple with the Url field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationWebhook) GetUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Url, true
 }
 
 // SetUrl sets field value
@@ -101,6 +162,15 @@ func (o *BaseNotificationWebhook) GetHeaders() []string {
 	return o.Headers
 }
 
+// GetHeadersOk returns a tuple with the Headers field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotificationWebhook) GetHeadersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Headers, true
+}
+
 // SetHeaders sets field value
 func (o *BaseNotificationWebhook) SetHeaders(v []string) {
 	o.Headers = v
@@ -115,14 +185,13 @@ func (o *BaseNotificationWebhook) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseNotificationWebhook) GetEnabledOk() (bool, bool) {
+func (o *BaseNotificationWebhook) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -139,25 +208,61 @@ func (o *BaseNotificationWebhook) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+func (o BaseNotificationWebhook) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["url"] = o.Url
+	}
+	if true {
+		toSerialize["headers"] = o.Headers
+	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBaseNotificationWebhook struct {
-	Value        BaseNotificationWebhook
-	ExplicitNull bool
+	value *BaseNotificationWebhook
+	isSet bool
+}
+
+func (v NullableBaseNotificationWebhook) Get() *BaseNotificationWebhook {
+	return v.value
+}
+
+func (v *NullableBaseNotificationWebhook) Set(val *BaseNotificationWebhook) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBaseNotificationWebhook) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBaseNotificationWebhook) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBaseNotificationWebhook(val *BaseNotificationWebhook) *NullableBaseNotificationWebhook {
+	return &NullableBaseNotificationWebhook{value: val, isSet: true}
 }
 
 func (v NullableBaseNotificationWebhook) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBaseNotificationWebhook) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

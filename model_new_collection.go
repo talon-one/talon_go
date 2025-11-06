@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,9 +18,27 @@ type NewCollection struct {
 	// A short description of the purpose of this collection.
 	Description *string `json:"description,omitempty"`
 	// A list of the IDs of the Applications where this collection is enabled.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The name of this collection.
 	Name string `json:"name"`
+}
+
+// NewNewCollection instantiates a new NewCollection object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewCollection(name string) *NewCollection {
+	this := NewCollection{}
+	this.Name = name
+	return &this
+}
+
+// NewNewCollectionWithDefaults instantiates a new NewCollection object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCollectionWithDefaults() *NewCollection {
+	this := NewCollection{}
+	return &this
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -33,14 +50,13 @@ func (o *NewCollection) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCollection) GetDescriptionOk() (string, bool) {
+func (o *NewCollection) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -58,22 +74,21 @@ func (o *NewCollection) SetDescription(v string) {
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *NewCollection) GetSubscribedApplicationsIds() []int32 {
+func (o *NewCollection) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCollection) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *NewCollection) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -85,8 +100,8 @@ func (o *NewCollection) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *NewCollection) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *NewCollection) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
@@ -100,30 +115,66 @@ func (o *NewCollection) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewCollection) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *NewCollection) SetName(v string) {
 	o.Name = v
 }
 
+func (o NewCollection) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCollection struct {
-	Value        NewCollection
-	ExplicitNull bool
+	value *NewCollection
+	isSet bool
+}
+
+func (v NullableNewCollection) Get() *NewCollection {
+	return v.value
+}
+
+func (v *NullableNewCollection) Set(val *NewCollection) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCollection) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCollection) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewCollection(val *NewCollection) *NullableNewCollection {
+	return &NullableNewCollection{value: val, isSet: true}
 }
 
 func (v NullableNewCollection) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCollection) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

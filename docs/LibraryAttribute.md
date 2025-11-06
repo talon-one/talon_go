@@ -14,6 +14,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewLibraryAttribute
+
+`func NewLibraryAttribute(entity string, name string, title string, type_ string, description string, presets []string, suggestions []string, ) *LibraryAttribute`
+
+NewLibraryAttribute instantiates a new LibraryAttribute object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewLibraryAttributeWithDefaults
+
+`func NewLibraryAttributeWithDefaults() *LibraryAttribute`
+
+NewLibraryAttributeWithDefaults instantiates a new LibraryAttribute object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetEntity
 
 `func (o *LibraryAttribute) GetEntity() string`
@@ -22,22 +39,17 @@ GetEntity returns the Entity field if non-nil, zero value otherwise.
 
 ### GetEntityOk
 
-`func (o *LibraryAttribute) GetEntityOk() (string, bool)`
+`func (o *LibraryAttribute) GetEntityOk() (*string, bool)`
 
 GetEntityOk returns a tuple with the Entity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEntity
-
-`func (o *LibraryAttribute) HasEntity() bool`
-
-HasEntity returns a boolean if a field has been set.
 
 ### SetEntity
 
 `func (o *LibraryAttribute) SetEntity(v string)`
 
-SetEntity gets a reference to the given string and assigns it to the Entity field.
+SetEntity sets Entity field to given value.
+
 
 ### GetName
 
@@ -47,22 +59,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LibraryAttribute) GetNameOk() (string, bool)`
+`func (o *LibraryAttribute) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *LibraryAttribute) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *LibraryAttribute) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetTitle
 
@@ -72,22 +79,17 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *LibraryAttribute) GetTitleOk() (string, bool)`
+`func (o *LibraryAttribute) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *LibraryAttribute) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 ### SetTitle
 
 `func (o *LibraryAttribute) SetTitle(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetTitle sets Title field to given value.
+
 
 ### GetType
 
@@ -97,22 +99,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LibraryAttribute) GetTypeOk() (string, bool)`
+`func (o *LibraryAttribute) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *LibraryAttribute) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *LibraryAttribute) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetDescription
 
@@ -122,22 +119,17 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *LibraryAttribute) GetDescriptionOk() (string, bool)`
+`func (o *LibraryAttribute) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *LibraryAttribute) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### SetDescription
 
 `func (o *LibraryAttribute) SetDescription(v string)`
 
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetDescription sets Description field to given value.
+
 
 ### GetPresets
 
@@ -147,22 +139,17 @@ GetPresets returns the Presets field if non-nil, zero value otherwise.
 
 ### GetPresetsOk
 
-`func (o *LibraryAttribute) GetPresetsOk() ([]string, bool)`
+`func (o *LibraryAttribute) GetPresetsOk() (*[]string, bool)`
 
 GetPresetsOk returns a tuple with the Presets field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasPresets
-
-`func (o *LibraryAttribute) HasPresets() bool`
-
-HasPresets returns a boolean if a field has been set.
 
 ### SetPresets
 
 `func (o *LibraryAttribute) SetPresets(v []string)`
 
-SetPresets gets a reference to the given []string and assigns it to the Presets field.
+SetPresets sets Presets field to given value.
+
 
 ### GetSuggestions
 
@@ -172,22 +159,17 @@ GetSuggestions returns the Suggestions field if non-nil, zero value otherwise.
 
 ### GetSuggestionsOk
 
-`func (o *LibraryAttribute) GetSuggestionsOk() ([]string, bool)`
+`func (o *LibraryAttribute) GetSuggestionsOk() (*[]string, bool)`
 
 GetSuggestionsOk returns a tuple with the Suggestions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSuggestions
-
-`func (o *LibraryAttribute) HasSuggestions() bool`
-
-HasSuggestions returns a boolean if a field has been set.
 
 ### SetSuggestions
 
 `func (o *LibraryAttribute) SetSuggestions(v []string)`
 
-SetSuggestions gets a reference to the given []string and assigns it to the Suggestions field.
+SetSuggestions sets Suggestions field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

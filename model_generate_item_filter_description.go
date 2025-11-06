@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type GenerateItemFilterDescription struct {
 	// An array of item filter Talang expressions.
 	ItemFilter []map[string]interface{} `json:"itemFilter"`
+}
+
+// NewGenerateItemFilterDescription instantiates a new GenerateItemFilterDescription object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGenerateItemFilterDescription(itemFilter []map[string]interface{}) *GenerateItemFilterDescription {
+	this := GenerateItemFilterDescription{}
+	this.ItemFilter = itemFilter
+	return &this
+}
+
+// NewGenerateItemFilterDescriptionWithDefaults instantiates a new GenerateItemFilterDescription object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGenerateItemFilterDescriptionWithDefaults() *GenerateItemFilterDescription {
+	this := GenerateItemFilterDescription{}
+	return &this
 }
 
 // GetItemFilter returns the ItemFilter field value
@@ -30,30 +47,60 @@ func (o *GenerateItemFilterDescription) GetItemFilter() []map[string]interface{}
 	return o.ItemFilter
 }
 
+// GetItemFilterOk returns a tuple with the ItemFilter field value
+// and a boolean to check if the value has been set.
+func (o *GenerateItemFilterDescription) GetItemFilterOk() (*[]map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ItemFilter, true
+}
+
 // SetItemFilter sets field value
 func (o *GenerateItemFilterDescription) SetItemFilter(v []map[string]interface{}) {
 	o.ItemFilter = v
 }
 
+func (o GenerateItemFilterDescription) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["itemFilter"] = o.ItemFilter
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGenerateItemFilterDescription struct {
-	Value        GenerateItemFilterDescription
-	ExplicitNull bool
+	value *GenerateItemFilterDescription
+	isSet bool
+}
+
+func (v NullableGenerateItemFilterDescription) Get() *GenerateItemFilterDescription {
+	return v.value
+}
+
+func (v *NullableGenerateItemFilterDescription) Set(val *GenerateItemFilterDescription) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGenerateItemFilterDescription) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGenerateItemFilterDescription) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGenerateItemFilterDescription(val *GenerateItemFilterDescription) *NullableGenerateItemFilterDescription {
+	return &NullableGenerateItemFilterDescription{value: val, isSet: true}
 }
 
 func (v NullableGenerateItemFilterDescription) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGenerateItemFilterDescription) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

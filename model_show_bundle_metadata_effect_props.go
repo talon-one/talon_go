@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,26 @@ type ShowBundleMetadataEffectProps struct {
 	ItemsIndices []float32 `json:"itemsIndices"`
 }
 
+// NewShowBundleMetadataEffectProps instantiates a new ShowBundleMetadataEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewShowBundleMetadataEffectProps(description string, bundleAttributes []string, itemsIndices []float32) *ShowBundleMetadataEffectProps {
+	this := ShowBundleMetadataEffectProps{}
+	this.Description = description
+	this.BundleAttributes = bundleAttributes
+	this.ItemsIndices = itemsIndices
+	return &this
+}
+
+// NewShowBundleMetadataEffectPropsWithDefaults instantiates a new ShowBundleMetadataEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewShowBundleMetadataEffectPropsWithDefaults() *ShowBundleMetadataEffectProps {
+	this := ShowBundleMetadataEffectProps{}
+	return &this
+}
+
 // GetDescription returns the Description field value
 func (o *ShowBundleMetadataEffectProps) GetDescription() string {
 	if o == nil {
@@ -32,6 +51,15 @@ func (o *ShowBundleMetadataEffectProps) GetDescription() string {
 	}
 
 	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *ShowBundleMetadataEffectProps) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
 }
 
 // SetDescription sets field value
@@ -49,6 +77,15 @@ func (o *ShowBundleMetadataEffectProps) GetBundleAttributes() []string {
 	return o.BundleAttributes
 }
 
+// GetBundleAttributesOk returns a tuple with the BundleAttributes field value
+// and a boolean to check if the value has been set.
+func (o *ShowBundleMetadataEffectProps) GetBundleAttributesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BundleAttributes, true
+}
+
 // SetBundleAttributes sets field value
 func (o *ShowBundleMetadataEffectProps) SetBundleAttributes(v []string) {
 	o.BundleAttributes = v
@@ -64,30 +101,66 @@ func (o *ShowBundleMetadataEffectProps) GetItemsIndices() []float32 {
 	return o.ItemsIndices
 }
 
+// GetItemsIndicesOk returns a tuple with the ItemsIndices field value
+// and a boolean to check if the value has been set.
+func (o *ShowBundleMetadataEffectProps) GetItemsIndicesOk() (*[]float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ItemsIndices, true
+}
+
 // SetItemsIndices sets field value
 func (o *ShowBundleMetadataEffectProps) SetItemsIndices(v []float32) {
 	o.ItemsIndices = v
 }
 
+func (o ShowBundleMetadataEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["bundleAttributes"] = o.BundleAttributes
+	}
+	if true {
+		toSerialize["itemsIndices"] = o.ItemsIndices
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableShowBundleMetadataEffectProps struct {
-	Value        ShowBundleMetadataEffectProps
-	ExplicitNull bool
+	value *ShowBundleMetadataEffectProps
+	isSet bool
+}
+
+func (v NullableShowBundleMetadataEffectProps) Get() *ShowBundleMetadataEffectProps {
+	return v.value
+}
+
+func (v *NullableShowBundleMetadataEffectProps) Set(val *ShowBundleMetadataEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableShowBundleMetadataEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableShowBundleMetadataEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableShowBundleMetadataEffectProps(val *ShowBundleMetadataEffectProps) *NullableShowBundleMetadataEffectProps {
+	return &NullableShowBundleMetadataEffectProps{value: val, isSet: true}
 }
 
 func (v NullableShowBundleMetadataEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableShowBundleMetadataEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

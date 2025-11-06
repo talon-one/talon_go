@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // GenerateCampaignTags struct for GenerateCampaignTags
 type GenerateCampaignTags struct {
 	// ID of a ruleset.
-	RulesetID int32 `json:"rulesetID"`
+	RulesetID int64 `json:"rulesetID"`
+}
+
+// NewGenerateCampaignTags instantiates a new GenerateCampaignTags object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGenerateCampaignTags(rulesetID int64) *GenerateCampaignTags {
+	this := GenerateCampaignTags{}
+	this.RulesetID = rulesetID
+	return &this
+}
+
+// NewGenerateCampaignTagsWithDefaults instantiates a new GenerateCampaignTags object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGenerateCampaignTagsWithDefaults() *GenerateCampaignTags {
+	this := GenerateCampaignTags{}
+	return &this
 }
 
 // GetRulesetID returns the RulesetID field value
-func (o *GenerateCampaignTags) GetRulesetID() int32 {
+func (o *GenerateCampaignTags) GetRulesetID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RulesetID
 }
 
+// GetRulesetIDOk returns a tuple with the RulesetID field value
+// and a boolean to check if the value has been set.
+func (o *GenerateCampaignTags) GetRulesetIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RulesetID, true
+}
+
 // SetRulesetID sets field value
-func (o *GenerateCampaignTags) SetRulesetID(v int32) {
+func (o *GenerateCampaignTags) SetRulesetID(v int64) {
 	o.RulesetID = v
 }
 
+func (o GenerateCampaignTags) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["rulesetID"] = o.RulesetID
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGenerateCampaignTags struct {
-	Value        GenerateCampaignTags
-	ExplicitNull bool
+	value *GenerateCampaignTags
+	isSet bool
+}
+
+func (v NullableGenerateCampaignTags) Get() *GenerateCampaignTags {
+	return v.value
+}
+
+func (v *NullableGenerateCampaignTags) Set(val *GenerateCampaignTags) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGenerateCampaignTags) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGenerateCampaignTags) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGenerateCampaignTags(val *GenerateCampaignTags) *NullableGenerateCampaignTags {
+	return &NullableGenerateCampaignTags{value: val, isSet: true}
 }
 
 func (v NullableGenerateCampaignTags) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGenerateCampaignTags) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

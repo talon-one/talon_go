@@ -10,19 +10,20 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// LedgerPointsEntryIntegrationApi Loyalty profile points with start and expiry dates.
-type LedgerPointsEntryIntegrationApi struct {
+// LedgerPointsEntryIntegrationAPI Loyalty profile points with start and expiry dates.
+type LedgerPointsEntryIntegrationAPI struct {
 	// ID of the transaction that adds loyalty points.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
+	// Unique identifier of the transaction in the UUID format.
+	TransactionUUID string `json:"transactionUUID"`
 	// Date and time the loyalty points were added.
 	Created time.Time `json:"created"`
 	// ID of the loyalty program.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// ID of the customer session where points were added.
 	CustomerSessionId *string `json:"customerSessionId,omitempty"`
 	// Name or reason of the transaction that adds loyalty points.
@@ -37,23 +38,82 @@ type LedgerPointsEntryIntegrationApi struct {
 	Amount float32 `json:"amount"`
 }
 
+// NewLedgerPointsEntryIntegrationAPI instantiates a new LedgerPointsEntryIntegrationAPI object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLedgerPointsEntryIntegrationAPI(id int64, transactionUUID string, created time.Time, programId int64, name string, startDate string, expiryDate string, subledgerId string, amount float32) *LedgerPointsEntryIntegrationAPI {
+	this := LedgerPointsEntryIntegrationAPI{}
+	this.Id = id
+	this.TransactionUUID = transactionUUID
+	this.Created = created
+	this.ProgramId = programId
+	this.Name = name
+	this.StartDate = startDate
+	this.ExpiryDate = expiryDate
+	this.SubledgerId = subledgerId
+	this.Amount = amount
+	return &this
+}
+
+// NewLedgerPointsEntryIntegrationAPIWithDefaults instantiates a new LedgerPointsEntryIntegrationAPI object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLedgerPointsEntryIntegrationAPIWithDefaults() *LedgerPointsEntryIntegrationAPI {
+	this := LedgerPointsEntryIntegrationAPI{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *LedgerPointsEntryIntegrationApi) GetId() int32 {
+func (o *LedgerPointsEntryIntegrationAPI) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetId(v int32) {
+func (o *LedgerPointsEntryIntegrationAPI) SetId(v int64) {
 	o.Id = v
 }
 
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *LedgerPointsEntryIntegrationAPI) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
+// SetTransactionUUID sets field value
+func (o *LedgerPointsEntryIntegrationAPI) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
+}
+
 // GetCreated returns the Created field value
-func (o *LedgerPointsEntryIntegrationApi) GetCreated() time.Time {
+func (o *LedgerPointsEntryIntegrationAPI) GetCreated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -62,28 +122,46 @@ func (o *LedgerPointsEntryIntegrationApi) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetCreated(v time.Time) {
+func (o *LedgerPointsEntryIntegrationAPI) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetProgramId returns the ProgramId field value
-func (o *LedgerPointsEntryIntegrationApi) GetProgramId() int32 {
+func (o *LedgerPointsEntryIntegrationAPI) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetProgramId(v int32) {
+func (o *LedgerPointsEntryIntegrationAPI) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
 // GetCustomerSessionId returns the CustomerSessionId field value if set, zero value otherwise.
-func (o *LedgerPointsEntryIntegrationApi) GetCustomerSessionId() string {
+func (o *LedgerPointsEntryIntegrationAPI) GetCustomerSessionId() string {
 	if o == nil || o.CustomerSessionId == nil {
 		var ret string
 		return ret
@@ -91,18 +169,17 @@ func (o *LedgerPointsEntryIntegrationApi) GetCustomerSessionId() string {
 	return *o.CustomerSessionId
 }
 
-// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, zero value otherwise
+// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LedgerPointsEntryIntegrationApi) GetCustomerSessionIdOk() (string, bool) {
+func (o *LedgerPointsEntryIntegrationAPI) GetCustomerSessionIdOk() (*string, bool) {
 	if o == nil || o.CustomerSessionId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerSessionId, true
+	return o.CustomerSessionId, true
 }
 
 // HasCustomerSessionId returns a boolean if a field has been set.
-func (o *LedgerPointsEntryIntegrationApi) HasCustomerSessionId() bool {
+func (o *LedgerPointsEntryIntegrationAPI) HasCustomerSessionId() bool {
 	if o != nil && o.CustomerSessionId != nil {
 		return true
 	}
@@ -111,12 +188,12 @@ func (o *LedgerPointsEntryIntegrationApi) HasCustomerSessionId() bool {
 }
 
 // SetCustomerSessionId gets a reference to the given string and assigns it to the CustomerSessionId field.
-func (o *LedgerPointsEntryIntegrationApi) SetCustomerSessionId(v string) {
+func (o *LedgerPointsEntryIntegrationAPI) SetCustomerSessionId(v string) {
 	o.CustomerSessionId = &v
 }
 
 // GetName returns the Name field value
-func (o *LedgerPointsEntryIntegrationApi) GetName() string {
+func (o *LedgerPointsEntryIntegrationAPI) GetName() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -125,13 +202,22 @@ func (o *LedgerPointsEntryIntegrationApi) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetName(v string) {
+func (o *LedgerPointsEntryIntegrationAPI) SetName(v string) {
 	o.Name = v
 }
 
 // GetStartDate returns the StartDate field value
-func (o *LedgerPointsEntryIntegrationApi) GetStartDate() string {
+func (o *LedgerPointsEntryIntegrationAPI) GetStartDate() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -140,13 +226,22 @@ func (o *LedgerPointsEntryIntegrationApi) GetStartDate() string {
 	return o.StartDate
 }
 
+// GetStartDateOk returns a tuple with the StartDate field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetStartDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartDate, true
+}
+
 // SetStartDate sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetStartDate(v string) {
+func (o *LedgerPointsEntryIntegrationAPI) SetStartDate(v string) {
 	o.StartDate = v
 }
 
 // GetExpiryDate returns the ExpiryDate field value
-func (o *LedgerPointsEntryIntegrationApi) GetExpiryDate() string {
+func (o *LedgerPointsEntryIntegrationAPI) GetExpiryDate() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -155,13 +250,22 @@ func (o *LedgerPointsEntryIntegrationApi) GetExpiryDate() string {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetExpiryDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetExpiryDate(v string) {
+func (o *LedgerPointsEntryIntegrationAPI) SetExpiryDate(v string) {
 	o.ExpiryDate = v
 }
 
 // GetSubledgerId returns the SubledgerId field value
-func (o *LedgerPointsEntryIntegrationApi) GetSubledgerId() string {
+func (o *LedgerPointsEntryIntegrationAPI) GetSubledgerId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -170,13 +274,22 @@ func (o *LedgerPointsEntryIntegrationApi) GetSubledgerId() string {
 	return o.SubledgerId
 }
 
+// GetSubledgerIdOk returns a tuple with the SubledgerId field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetSubledgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubledgerId, true
+}
+
 // SetSubledgerId sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetSubledgerId(v string) {
+func (o *LedgerPointsEntryIntegrationAPI) SetSubledgerId(v string) {
 	o.SubledgerId = v
 }
 
 // GetAmount returns the Amount field value
-func (o *LedgerPointsEntryIntegrationApi) GetAmount() float32 {
+func (o *LedgerPointsEntryIntegrationAPI) GetAmount() float32 {
 	if o == nil {
 		var ret float32
 		return ret
@@ -185,30 +298,87 @@ func (o *LedgerPointsEntryIntegrationApi) GetAmount() float32 {
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *LedgerPointsEntryIntegrationAPI) GetAmountOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *LedgerPointsEntryIntegrationApi) SetAmount(v float32) {
+func (o *LedgerPointsEntryIntegrationAPI) SetAmount(v float32) {
 	o.Amount = v
 }
 
-type NullableLedgerPointsEntryIntegrationApi struct {
-	Value        LedgerPointsEntryIntegrationApi
-	ExplicitNull bool
+func (o LedgerPointsEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if o.CustomerSessionId != nil {
+		toSerialize["customerSessionId"] = o.CustomerSessionId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["subledgerId"] = o.SubledgerId
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableLedgerPointsEntryIntegrationApi) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableLedgerPointsEntryIntegrationAPI struct {
+	value *LedgerPointsEntryIntegrationAPI
+	isSet bool
 }
 
-func (v *NullableLedgerPointsEntryIntegrationApi) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableLedgerPointsEntryIntegrationAPI) Get() *LedgerPointsEntryIntegrationAPI {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableLedgerPointsEntryIntegrationAPI) Set(val *LedgerPointsEntryIntegrationAPI) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLedgerPointsEntryIntegrationAPI) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLedgerPointsEntryIntegrationAPI) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLedgerPointsEntryIntegrationAPI(val *LedgerPointsEntryIntegrationAPI) *NullableLedgerPointsEntryIntegrationAPI {
+	return &NullableLedgerPointsEntryIntegrationAPI{value: val, isSet: true}
+}
+
+func (v NullableLedgerPointsEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableLedgerPointsEntryIntegrationAPI) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

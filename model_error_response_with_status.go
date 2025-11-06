@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,9 +17,26 @@ import (
 type ErrorResponseWithStatus struct {
 	Message *string `json:"message,omitempty"`
 	// An array of individual problems encountered during the request.
-	Errors *[]ApiError `json:"errors,omitempty"`
+	Errors *[]APIError `json:"errors,omitempty"`
 	// The error code
-	StatusCode *int32 `json:"StatusCode,omitempty"`
+	StatusCode *int64 `json:"StatusCode,omitempty"`
+}
+
+// NewErrorResponseWithStatus instantiates a new ErrorResponseWithStatus object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewErrorResponseWithStatus() *ErrorResponseWithStatus {
+	this := ErrorResponseWithStatus{}
+	return &this
+}
+
+// NewErrorResponseWithStatusWithDefaults instantiates a new ErrorResponseWithStatus object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewErrorResponseWithStatusWithDefaults() *ErrorResponseWithStatus {
+	this := ErrorResponseWithStatus{}
+	return &this
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -32,14 +48,13 @@ func (o *ErrorResponseWithStatus) GetMessage() string {
 	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, zero value otherwise
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponseWithStatus) GetMessageOk() (string, bool) {
+func (o *ErrorResponseWithStatus) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
@@ -57,22 +72,21 @@ func (o *ErrorResponseWithStatus) SetMessage(v string) {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *ErrorResponseWithStatus) GetErrors() []ApiError {
+func (o *ErrorResponseWithStatus) GetErrors() []APIError {
 	if o == nil || o.Errors == nil {
-		var ret []ApiError
+		var ret []APIError
 		return ret
 	}
 	return *o.Errors
 }
 
-// GetErrorsOk returns a tuple with the Errors field value if set, zero value otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponseWithStatus) GetErrorsOk() ([]ApiError, bool) {
+func (o *ErrorResponseWithStatus) GetErrorsOk() (*[]APIError, bool) {
 	if o == nil || o.Errors == nil {
-		var ret []ApiError
-		return ret, false
+		return nil, false
 	}
-	return *o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -84,28 +98,27 @@ func (o *ErrorResponseWithStatus) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []ApiError and assigns it to the Errors field.
-func (o *ErrorResponseWithStatus) SetErrors(v []ApiError) {
+// SetErrors gets a reference to the given []APIError and assigns it to the Errors field.
+func (o *ErrorResponseWithStatus) SetErrors(v []APIError) {
 	o.Errors = &v
 }
 
 // GetStatusCode returns the StatusCode field value if set, zero value otherwise.
-func (o *ErrorResponseWithStatus) GetStatusCode() int32 {
+func (o *ErrorResponseWithStatus) GetStatusCode() int64 {
 	if o == nil || o.StatusCode == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StatusCode
 }
 
-// GetStatusCodeOk returns a tuple with the StatusCode field value if set, zero value otherwise
+// GetStatusCodeOk returns a tuple with the StatusCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorResponseWithStatus) GetStatusCodeOk() (int32, bool) {
+func (o *ErrorResponseWithStatus) GetStatusCodeOk() (*int64, bool) {
 	if o == nil || o.StatusCode == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.StatusCode, true
+	return o.StatusCode, true
 }
 
 // HasStatusCode returns a boolean if a field has been set.
@@ -117,30 +130,57 @@ func (o *ErrorResponseWithStatus) HasStatusCode() bool {
 	return false
 }
 
-// SetStatusCode gets a reference to the given int32 and assigns it to the StatusCode field.
-func (o *ErrorResponseWithStatus) SetStatusCode(v int32) {
+// SetStatusCode gets a reference to the given int64 and assigns it to the StatusCode field.
+func (o *ErrorResponseWithStatus) SetStatusCode(v int64) {
 	o.StatusCode = &v
 }
 
+func (o ErrorResponseWithStatus) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
+	}
+	if o.Errors != nil {
+		toSerialize["errors"] = o.Errors
+	}
+	if o.StatusCode != nil {
+		toSerialize["StatusCode"] = o.StatusCode
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableErrorResponseWithStatus struct {
-	Value        ErrorResponseWithStatus
-	ExplicitNull bool
+	value *ErrorResponseWithStatus
+	isSet bool
+}
+
+func (v NullableErrorResponseWithStatus) Get() *ErrorResponseWithStatus {
+	return v.value
+}
+
+func (v *NullableErrorResponseWithStatus) Set(val *ErrorResponseWithStatus) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableErrorResponseWithStatus) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableErrorResponseWithStatus) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableErrorResponseWithStatus(val *ErrorResponseWithStatus) *NullableErrorResponseWithStatus {
+	return &NullableErrorResponseWithStatus{value: val, isSet: true}
 }
 
 func (v NullableErrorResponseWithStatus) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableErrorResponseWithStatus) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

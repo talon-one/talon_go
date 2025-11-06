@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CollectionItem struct for CollectionItem
 type CollectionItem struct {
 	Item string `json:"item"`
+}
+
+// NewCollectionItem instantiates a new CollectionItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCollectionItem(item string) *CollectionItem {
+	this := CollectionItem{}
+	this.Item = item
+	return &this
+}
+
+// NewCollectionItemWithDefaults instantiates a new CollectionItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCollectionItemWithDefaults() *CollectionItem {
+	this := CollectionItem{}
+	return &this
 }
 
 // GetItem returns the Item field value
@@ -29,30 +46,60 @@ func (o *CollectionItem) GetItem() string {
 	return o.Item
 }
 
+// GetItemOk returns a tuple with the Item field value
+// and a boolean to check if the value has been set.
+func (o *CollectionItem) GetItemOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Item, true
+}
+
 // SetItem sets field value
 func (o *CollectionItem) SetItem(v string) {
 	o.Item = v
 }
 
+func (o CollectionItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["item"] = o.Item
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCollectionItem struct {
-	Value        CollectionItem
-	ExplicitNull bool
+	value *CollectionItem
+	isSet bool
+}
+
+func (v NullableCollectionItem) Get() *CollectionItem {
+	return v.value
+}
+
+func (v *NullableCollectionItem) Set(val *CollectionItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCollectionItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCollectionItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCollectionItem(val *CollectionItem) *NullableCollectionItem {
+	return &NullableCollectionItem{value: val, isSet: true}
 }
 
 func (v NullableCollectionItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCollectionItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

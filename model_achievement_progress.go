@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -29,6 +28,25 @@ type AchievementProgress struct {
 	EndDate *time.Time `json:"endDate,omitempty"`
 }
 
+// NewAchievementProgress instantiates a new AchievementProgress object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAchievementProgress(status string, progress float32) *AchievementProgress {
+	this := AchievementProgress{}
+	this.Status = status
+	this.Progress = progress
+	return &this
+}
+
+// NewAchievementProgressWithDefaults instantiates a new AchievementProgress object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAchievementProgressWithDefaults() *AchievementProgress {
+	this := AchievementProgress{}
+	return &this
+}
+
 // GetStatus returns the Status field value
 func (o *AchievementProgress) GetStatus() string {
 	if o == nil {
@@ -37,6 +55,15 @@ func (o *AchievementProgress) GetStatus() string {
 	}
 
 	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgress) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
 }
 
 // SetStatus sets field value
@@ -54,6 +81,15 @@ func (o *AchievementProgress) GetProgress() float32 {
 	return o.Progress
 }
 
+// GetProgressOk returns a tuple with the Progress field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgress) GetProgressOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Progress, true
+}
+
 // SetProgress sets field value
 func (o *AchievementProgress) SetProgress(v float32) {
 	o.Progress = v
@@ -68,14 +104,13 @@ func (o *AchievementProgress) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgress) GetStartDateOk() (time.Time, bool) {
+func (o *AchievementProgress) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -101,14 +136,13 @@ func (o *AchievementProgress) GetCompletionDate() time.Time {
 	return *o.CompletionDate
 }
 
-// GetCompletionDateOk returns a tuple with the CompletionDate field value if set, zero value otherwise
+// GetCompletionDateOk returns a tuple with the CompletionDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgress) GetCompletionDateOk() (time.Time, bool) {
+func (o *AchievementProgress) GetCompletionDateOk() (*time.Time, bool) {
 	if o == nil || o.CompletionDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CompletionDate, true
+	return o.CompletionDate, true
 }
 
 // HasCompletionDate returns a boolean if a field has been set.
@@ -134,14 +168,13 @@ func (o *AchievementProgress) GetEndDate() time.Time {
 	return *o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgress) GetEndDateOk() (time.Time, bool) {
+func (o *AchievementProgress) GetEndDateOk() (*time.Time, bool) {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndDate, true
+	return o.EndDate, true
 }
 
 // HasEndDate returns a boolean if a field has been set.
@@ -158,25 +191,58 @@ func (o *AchievementProgress) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
+func (o AchievementProgress) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["progress"] = o.Progress
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.CompletionDate != nil {
+		toSerialize["completionDate"] = o.CompletionDate
+	}
+	if o.EndDate != nil {
+		toSerialize["endDate"] = o.EndDate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAchievementProgress struct {
-	Value        AchievementProgress
-	ExplicitNull bool
+	value *AchievementProgress
+	isSet bool
+}
+
+func (v NullableAchievementProgress) Get() *AchievementProgress {
+	return v.value
+}
+
+func (v *NullableAchievementProgress) Set(val *AchievementProgress) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAchievementProgress) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAchievementProgress) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAchievementProgress(val *AchievementProgress) *NullableAchievementProgress {
+	return &NullableAchievementProgress{value: val, isSet: true}
 }
 
 func (v NullableAchievementProgress) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAchievementProgress) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

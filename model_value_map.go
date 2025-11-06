@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,25 +17,53 @@ import (
 // ValueMap struct for ValueMap
 type ValueMap struct {
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-	Id      int32      `json:"id"`
+	Id      int64      `json:"id"`
 	Created *time.Time `json:"created,omitempty"`
 	// The ID of the user who created the value map.
-	CreatedBy  *int32 `json:"createdBy,omitempty"`
-	CampaignId int32  `json:"campaignId"`
+	CreatedBy  *int64 `json:"createdBy,omitempty"`
+	CampaignId int64  `json:"campaignId"`
+}
+
+// NewValueMap instantiates a new ValueMap object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewValueMap(id int64, campaignId int64) *ValueMap {
+	this := ValueMap{}
+	this.Id = id
+	this.CampaignId = campaignId
+	return &this
+}
+
+// NewValueMapWithDefaults instantiates a new ValueMap object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewValueMapWithDefaults() *ValueMap {
+	this := ValueMap{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *ValueMap) GetId() int32 {
+func (o *ValueMap) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *ValueMap) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *ValueMap) SetId(v int32) {
+func (o *ValueMap) SetId(v int64) {
 	o.Id = v
 }
 
@@ -49,14 +76,13 @@ func (o *ValueMap) GetCreated() time.Time {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ValueMap) GetCreatedOk() (time.Time, bool) {
+func (o *ValueMap) GetCreatedOk() (*time.Time, bool) {
 	if o == nil || o.Created == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -74,22 +100,21 @@ func (o *ValueMap) SetCreated(v time.Time) {
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *ValueMap) GetCreatedBy() int32 {
+func (o *ValueMap) GetCreatedBy() int64 {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ValueMap) GetCreatedByOk() (int32, bool) {
+func (o *ValueMap) GetCreatedByOk() (*int64, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -101,45 +126,84 @@ func (o *ValueMap) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-func (o *ValueMap) SetCreatedBy(v int32) {
+// SetCreatedBy gets a reference to the given int64 and assigns it to the CreatedBy field.
+func (o *ValueMap) SetCreatedBy(v int64) {
 	o.CreatedBy = &v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *ValueMap) GetCampaignId() int32 {
+func (o *ValueMap) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *ValueMap) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *ValueMap) SetCampaignId(v int32) {
+func (o *ValueMap) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
+func (o ValueMap) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.CreatedBy != nil {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableValueMap struct {
-	Value        ValueMap
-	ExplicitNull bool
+	value *ValueMap
+	isSet bool
+}
+
+func (v NullableValueMap) Get() *ValueMap {
+	return v.value
+}
+
+func (v *NullableValueMap) Set(val *ValueMap) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableValueMap) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableValueMap) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableValueMap(val *ValueMap) *NullableValueMap {
+	return &NullableValueMap{value: val, isSet: true}
 }
 
 func (v NullableValueMap) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableValueMap) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

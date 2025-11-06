@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // AccountAdditionalCost struct for AccountAdditionalCost
 type AccountAdditionalCost struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The internal name used in API requests.
 	Name string `json:"name"`
 	// The human-readable name for the additional cost that will be shown in the Campaign Manager. Like `name`, the combination of entity and title must also be unique.
@@ -30,23 +29,59 @@ type AccountAdditionalCost struct {
 	// A description of this additional cost.
 	Description string `json:"description"`
 	// A list of the IDs of the applications that are subscribed to this additional cost.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The type of additional cost. Possible value: - `session`: Additional cost will be added per session. - `item`: Additional cost will be added per item. - `both`: Additional cost will be added per item and session.
 	Type *string `json:"type,omitempty"`
 }
 
+// NewAccountAdditionalCost instantiates a new AccountAdditionalCost object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAccountAdditionalCost(id int64, created time.Time, accountId int64, name string, title string, description string) *AccountAdditionalCost {
+	this := AccountAdditionalCost{}
+	this.Id = id
+	this.Created = created
+	this.AccountId = accountId
+	this.Name = name
+	this.Title = title
+	this.Description = description
+	var type_ string = "session"
+	this.Type = &type_
+	return &this
+}
+
+// NewAccountAdditionalCostWithDefaults instantiates a new AccountAdditionalCost object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountAdditionalCostWithDefaults() *AccountAdditionalCost {
+	this := AccountAdditionalCost{}
+	var type_ string = "session"
+	this.Type = &type_
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *AccountAdditionalCost) GetId() int32 {
+func (o *AccountAdditionalCost) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AccountAdditionalCost) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *AccountAdditionalCost) SetId(v int32) {
+func (o *AccountAdditionalCost) SetId(v int64) {
 	o.Id = v
 }
 
@@ -60,23 +95,41 @@ func (o *AccountAdditionalCost) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *AccountAdditionalCost) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *AccountAdditionalCost) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *AccountAdditionalCost) GetAccountId() int32 {
+func (o *AccountAdditionalCost) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *AccountAdditionalCost) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *AccountAdditionalCost) SetAccountId(v int32) {
+func (o *AccountAdditionalCost) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -88,6 +141,15 @@ func (o *AccountAdditionalCost) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AccountAdditionalCost) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -105,6 +167,15 @@ func (o *AccountAdditionalCost) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *AccountAdditionalCost) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *AccountAdditionalCost) SetTitle(v string) {
 	o.Title = v
@@ -120,28 +191,36 @@ func (o *AccountAdditionalCost) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *AccountAdditionalCost) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *AccountAdditionalCost) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *AccountAdditionalCost) GetSubscribedApplicationsIds() []int32 {
+func (o *AccountAdditionalCost) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountAdditionalCost) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *AccountAdditionalCost) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -153,8 +232,8 @@ func (o *AccountAdditionalCost) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *AccountAdditionalCost) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *AccountAdditionalCost) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
@@ -167,14 +246,13 @@ func (o *AccountAdditionalCost) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountAdditionalCost) GetTypeOk() (string, bool) {
+func (o *AccountAdditionalCost) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -191,25 +269,67 @@ func (o *AccountAdditionalCost) SetType(v string) {
 	o.Type = &v
 }
 
+func (o AccountAdditionalCost) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountAdditionalCost struct {
-	Value        AccountAdditionalCost
-	ExplicitNull bool
+	value *AccountAdditionalCost
+	isSet bool
+}
+
+func (v NullableAccountAdditionalCost) Get() *AccountAdditionalCost {
+	return v.value
+}
+
+func (v *NullableAccountAdditionalCost) Set(val *AccountAdditionalCost) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountAdditionalCost) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountAdditionalCost) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAccountAdditionalCost(val *AccountAdditionalCost) *NullableAccountAdditionalCost {
+	return &NullableAccountAdditionalCost{value: val, isSet: true}
 }
 
 func (v NullableAccountAdditionalCost) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountAdditionalCost) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

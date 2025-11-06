@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,25 @@ type IntegrationEvent struct {
 	Attributes map[string]interface{} `json:"attributes"`
 }
 
+// NewIntegrationEvent instantiates a new IntegrationEvent object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewIntegrationEvent(type_ string, attributes map[string]interface{}) *IntegrationEvent {
+	this := IntegrationEvent{}
+	this.Type = type_
+	this.Attributes = attributes
+	return &this
+}
+
+// NewIntegrationEventWithDefaults instantiates a new IntegrationEvent object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIntegrationEventWithDefaults() *IntegrationEvent {
+	this := IntegrationEvent{}
+	return &this
+}
+
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
 func (o *IntegrationEvent) GetProfileId() string {
 	if o == nil || o.ProfileId == nil {
@@ -35,14 +53,13 @@ func (o *IntegrationEvent) GetProfileId() string {
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationEvent) GetProfileIdOk() (string, bool) {
+func (o *IntegrationEvent) GetProfileIdOk() (*string, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -68,14 +85,13 @@ func (o *IntegrationEvent) GetStoreIntegrationId() string {
 	return *o.StoreIntegrationId
 }
 
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationEvent) GetStoreIntegrationIdOk() (string, bool) {
+func (o *IntegrationEvent) GetStoreIntegrationIdOk() (*string, bool) {
 	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreIntegrationId, true
+	return o.StoreIntegrationId, true
 }
 
 // HasStoreIntegrationId returns a boolean if a field has been set.
@@ -102,6 +118,15 @@ func (o *IntegrationEvent) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationEvent) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *IntegrationEvent) SetType(v string) {
 	o.Type = v
@@ -117,30 +142,69 @@ func (o *IntegrationEvent) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationEvent) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *IntegrationEvent) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
+func (o IntegrationEvent) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIntegrationEvent struct {
-	Value        IntegrationEvent
-	ExplicitNull bool
+	value *IntegrationEvent
+	isSet bool
+}
+
+func (v NullableIntegrationEvent) Get() *IntegrationEvent {
+	return v.value
+}
+
+func (v *NullableIntegrationEvent) Set(val *IntegrationEvent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIntegrationEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIntegrationEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIntegrationEvent(val *IntegrationEvent) *NullableIntegrationEvent {
+	return &NullableIntegrationEvent{value: val, isSet: true}
 }
 
 func (v NullableIntegrationEvent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIntegrationEvent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

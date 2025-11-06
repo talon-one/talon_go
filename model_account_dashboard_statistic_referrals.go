@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -23,6 +22,25 @@ type AccountDashboardStatisticReferrals struct {
 	Datetime time.Time `json:"datetime"`
 }
 
+// NewAccountDashboardStatisticReferrals instantiates a new AccountDashboardStatisticReferrals object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAccountDashboardStatisticReferrals(total float32, datetime time.Time) *AccountDashboardStatisticReferrals {
+	this := AccountDashboardStatisticReferrals{}
+	this.Total = total
+	this.Datetime = datetime
+	return &this
+}
+
+// NewAccountDashboardStatisticReferralsWithDefaults instantiates a new AccountDashboardStatisticReferrals object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountDashboardStatisticReferralsWithDefaults() *AccountDashboardStatisticReferrals {
+	this := AccountDashboardStatisticReferrals{}
+	return &this
+}
+
 // GetTotal returns the Total field value
 func (o *AccountDashboardStatisticReferrals) GetTotal() float32 {
 	if o == nil {
@@ -31,6 +49,15 @@ func (o *AccountDashboardStatisticReferrals) GetTotal() float32 {
 	}
 
 	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticReferrals) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
 }
 
 // SetTotal sets field value
@@ -48,30 +75,63 @@ func (o *AccountDashboardStatisticReferrals) GetDatetime() time.Time {
 	return o.Datetime
 }
 
+// GetDatetimeOk returns a tuple with the Datetime field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticReferrals) GetDatetimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Datetime, true
+}
+
 // SetDatetime sets field value
 func (o *AccountDashboardStatisticReferrals) SetDatetime(v time.Time) {
 	o.Datetime = v
 }
 
+func (o AccountDashboardStatisticReferrals) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["datetime"] = o.Datetime
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountDashboardStatisticReferrals struct {
-	Value        AccountDashboardStatisticReferrals
-	ExplicitNull bool
+	value *AccountDashboardStatisticReferrals
+	isSet bool
+}
+
+func (v NullableAccountDashboardStatisticReferrals) Get() *AccountDashboardStatisticReferrals {
+	return v.value
+}
+
+func (v *NullableAccountDashboardStatisticReferrals) Set(val *AccountDashboardStatisticReferrals) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountDashboardStatisticReferrals) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountDashboardStatisticReferrals) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAccountDashboardStatisticReferrals(val *AccountDashboardStatisticReferrals) *NullableAccountDashboardStatisticReferrals {
+	return &NullableAccountDashboardStatisticReferrals{value: val, isSet: true}
 }
 
 func (v NullableAccountDashboardStatisticReferrals) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountDashboardStatisticReferrals) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

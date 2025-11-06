@@ -10,67 +10,127 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // RoleAssign struct for RoleAssign
 type RoleAssign struct {
 	// An array of user IDs.
-	Users []int32 `json:"users"`
+	Users []int64 `json:"users"`
 	// An array of role IDs.
-	Roles []int32 `json:"roles"`
+	Roles []int64 `json:"roles"`
+}
+
+// NewRoleAssign instantiates a new RoleAssign object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoleAssign(users []int64, roles []int64) *RoleAssign {
+	this := RoleAssign{}
+	this.Users = users
+	this.Roles = roles
+	return &this
+}
+
+// NewRoleAssignWithDefaults instantiates a new RoleAssign object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleAssignWithDefaults() *RoleAssign {
+	this := RoleAssign{}
+	return &this
 }
 
 // GetUsers returns the Users field value
-func (o *RoleAssign) GetUsers() []int32 {
+func (o *RoleAssign) GetUsers() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.Users
 }
 
+// GetUsersOk returns a tuple with the Users field value
+// and a boolean to check if the value has been set.
+func (o *RoleAssign) GetUsersOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Users, true
+}
+
 // SetUsers sets field value
-func (o *RoleAssign) SetUsers(v []int32) {
+func (o *RoleAssign) SetUsers(v []int64) {
 	o.Users = v
 }
 
 // GetRoles returns the Roles field value
-func (o *RoleAssign) GetRoles() []int32 {
+func (o *RoleAssign) GetRoles() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.Roles
 }
 
+// GetRolesOk returns a tuple with the Roles field value
+// and a boolean to check if the value has been set.
+func (o *RoleAssign) GetRolesOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Roles, true
+}
+
 // SetRoles sets field value
-func (o *RoleAssign) SetRoles(v []int32) {
+func (o *RoleAssign) SetRoles(v []int64) {
 	o.Roles = v
 }
 
+func (o RoleAssign) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["users"] = o.Users
+	}
+	if true {
+		toSerialize["roles"] = o.Roles
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleAssign struct {
-	Value        RoleAssign
-	ExplicitNull bool
+	value *RoleAssign
+	isSet bool
+}
+
+func (v NullableRoleAssign) Get() *RoleAssign {
+	return v.value
+}
+
+func (v *NullableRoleAssign) Set(val *RoleAssign) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleAssign) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleAssign) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoleAssign(val *RoleAssign) *NullableRoleAssign {
+	return &NullableRoleAssign{value: val, isSet: true}
 }
 
 func (v NullableRoleAssign) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleAssign) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,13 +17,13 @@ import (
 // Campaign struct for Campaign
 type Campaign struct {
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The ID of the user associated with this entity.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// A user-facing name for this campaign.
 	Name string `json:"name"`
 	// A detailed description of the campaign.
@@ -38,7 +37,7 @@ type Campaign struct {
 	// A disabled or archived campaign is not evaluated for rules or coupons.
 	State string `json:"state"`
 	// [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.
-	ActiveRulesetId *int32 `json:"activeRulesetId,omitempty"`
+	ActiveRulesetId *int64 `json:"activeRulesetId,omitempty"`
 	// A list of tags for the campaign.
 	Tags []string `json:"tags"`
 	// The features enabled in this campaign.
@@ -48,43 +47,43 @@ type Campaign struct {
 	// The set of [budget limits](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets) for this campaign.
 	Limits []LimitConfig `json:"limits"`
 	// The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/managing-campaign-groups) this campaign belongs to.
-	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
+	CampaignGroups *[]int64 `json:"campaignGroups,omitempty"`
 	// The campaign type. Possible type values:   - `cartItem`: Type of campaign that can apply effects only to cart items.   - `advanced`: Type of campaign that can apply effects to customer sessions and cart items.
 	Type string `json:"type"`
 	// A list of store IDs that you want to link to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.
-	LinkedStoreIds *[]int32 `json:"linkedStoreIds,omitempty"`
+	LinkedStoreIds *[]int64 `json:"linkedStoreIds,omitempty"`
 	// A list of all the budgets that are defined by this campaign and their usage.  **Note:** Budgets that are not defined do not appear in this list and their usage is not counted until they are defined.
 	Budgets *[]CampaignBudget `json:"budgets,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Number of coupons redeemed in the campaign.
-	CouponRedemptionCount *int32 `json:"couponRedemptionCount,omitempty"`
+	CouponRedemptionCount *int64 `json:"couponRedemptionCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Number of referral codes redeemed in the campaign.
-	ReferralRedemptionCount *int32 `json:"referralRedemptionCount,omitempty"`
+	ReferralRedemptionCount *int64 `json:"referralRedemptionCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total amount of discounts redeemed in the campaign.
 	DiscountCount *float32 `json:"discountCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of times discounts were redeemed in this campaign.
-	DiscountEffectCount *int32 `json:"discountEffectCount,omitempty"`
+	DiscountEffectCount *int64 `json:"discountEffectCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of coupons created by rules in this campaign.
-	CouponCreationCount *int32 `json:"couponCreationCount,omitempty"`
+	CouponCreationCount *int64 `json:"couponCreationCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of custom effects triggered by rules in this campaign.
-	CustomEffectCount *int32 `json:"customEffectCount,omitempty"`
+	CustomEffectCount *int64 `json:"customEffectCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of referrals created by rules in this campaign.
-	ReferralCreationCount *int32 `json:"referralCreationCount,omitempty"`
+	ReferralCreationCount *int64 `json:"referralCreationCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of times the [add free item effect](https://docs.talon.one/docs/dev/integration-api/api-effects#addfreeitem) can be triggered in this campaign.
-	AddFreeItemEffectCount *int32 `json:"addFreeItemEffectCount,omitempty"`
+	AddFreeItemEffectCount *int64 `json:"addFreeItemEffectCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of giveaways awarded by rules in this campaign.
-	AwardedGiveawaysCount *int32 `json:"awardedGiveawaysCount,omitempty"`
+	AwardedGiveawaysCount *int64 `json:"awardedGiveawaysCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points created by rules in this campaign.
 	CreatedLoyaltyPointsCount *float32 `json:"createdLoyaltyPointsCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point creation effects triggered by rules in this campaign.
-	CreatedLoyaltyPointsEffectCount *int32 `json:"createdLoyaltyPointsEffectCount,omitempty"`
+	CreatedLoyaltyPointsEffectCount *int64 `json:"createdLoyaltyPointsEffectCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty points redeemed by rules in this campaign.
 	RedeemedLoyaltyPointsCount *float32 `json:"redeemedLoyaltyPointsCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of loyalty point redemption effects triggered by rules in this campaign.
-	RedeemedLoyaltyPointsEffectCount *int32 `json:"redeemedLoyaltyPointsEffectCount,omitempty"`
+	RedeemedLoyaltyPointsEffectCount *int64 `json:"redeemedLoyaltyPointsEffectCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of webhooks triggered by rules in this campaign.
-	CallApiEffectCount *int32 `json:"callApiEffectCount,omitempty"`
+	CallApiEffectCount *int64 `json:"callApiEffectCount,omitempty"`
 	// This property is **deprecated**. The count should be available under *budgets* property. Total number of reserve coupon effects triggered by rules in this campaign.
-	ReservecouponEffectCount *int32 `json:"reservecouponEffectCount,omitempty"`
+	ReservecouponEffectCount *int64 `json:"reservecouponEffectCount,omitempty"`
 	// Timestamp of the most recent event received by this campaign.
 	LastActivity *time.Time `json:"lastActivity,omitempty"`
 	// Timestamp of the most recent update to the campaign's property. Updates to external entities used in this campaign are **not** registered by this property, such as collection or coupon updates.
@@ -94,41 +93,88 @@ type Campaign struct {
 	// Name of the user who last updated this campaign if available.
 	UpdatedBy *string `json:"updatedBy,omitempty"`
 	// The ID of the Campaign Template this Campaign was created from.
-	TemplateId *int32 `json:"templateId,omitempty"`
+	TemplateId *int64 `json:"templateId,omitempty"`
 	// The campaign state displayed in the Campaign Manager.
 	FrontendState string `json:"frontendState"`
 	// Indicates whether the linked stores were imported via a CSV file.
 	StoresImported bool `json:"storesImported"`
 	// A list of value map IDs for the campaign.
-	ValueMapsIds *[]int32 `json:"valueMapsIds,omitempty"`
+	ValueMapsIds *[]int64 `json:"valueMapsIds,omitempty"`
 	// The campaign revision state displayed in the Campaign Manager.
 	RevisionFrontendState *string `json:"revisionFrontendState,omitempty"`
 	// ID of the revision that was last activated on this campaign.
-	ActiveRevisionId *int32 `json:"activeRevisionId,omitempty"`
+	ActiveRevisionId *int64 `json:"activeRevisionId,omitempty"`
 	// ID of the revision version that is active on the campaign.
-	ActiveRevisionVersionId *int32 `json:"activeRevisionVersionId,omitempty"`
+	ActiveRevisionVersionId *int64 `json:"activeRevisionVersionId,omitempty"`
 	// Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.
-	Version *int32 `json:"version,omitempty"`
+	Version *int64 `json:"version,omitempty"`
 	// ID of the revision currently being modified for the campaign.
-	CurrentRevisionId *int32 `json:"currentRevisionId,omitempty"`
+	CurrentRevisionId *int64 `json:"currentRevisionId,omitempty"`
 	// ID of the latest version applied on the current revision.
-	CurrentRevisionVersionId *int32 `json:"currentRevisionVersionId,omitempty"`
+	CurrentRevisionVersionId *int64 `json:"currentRevisionVersionId,omitempty"`
 	// Flag for determining whether we use current revision when sending requests with staging API key.
 	StageRevision *bool `json:"stageRevision,omitempty"`
 }
 
+// NewCampaign instantiates a new Campaign object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaign(id int64, created time.Time, applicationId int64, userId int64, name string, description string, state string, tags []string, features []string, limits []LimitConfig, type_ string, frontendState string, storesImported bool) *Campaign {
+	this := Campaign{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.UserId = userId
+	this.Name = name
+	this.Description = description
+	this.State = state
+	this.Tags = tags
+	this.Features = features
+	this.Limits = limits
+	this.Type = type_
+	this.FrontendState = frontendState
+	this.StoresImported = storesImported
+	var stageRevision bool = false
+	this.StageRevision = &stageRevision
+	return &this
+}
+
+// NewCampaignWithDefaults instantiates a new Campaign object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignWithDefaults() *Campaign {
+	this := Campaign{}
+	var state string = "enabled"
+	this.State = state
+	var type_ string = "advanced"
+	this.Type = type_
+	var stageRevision bool = false
+	this.StageRevision = &stageRevision
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Campaign) GetId() int32 {
+func (o *Campaign) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Campaign) SetId(v int32) {
+func (o *Campaign) SetId(v int64) {
 	o.Id = v
 }
 
@@ -142,38 +188,65 @@ func (o *Campaign) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Campaign) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *Campaign) GetApplicationId() int32 {
+func (o *Campaign) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *Campaign) SetApplicationId(v int32) {
+func (o *Campaign) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetUserId returns the UserId field value
-func (o *Campaign) GetUserId() int32 {
+func (o *Campaign) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *Campaign) SetUserId(v int32) {
+func (o *Campaign) SetUserId(v int64) {
 	o.UserId = v
 }
 
@@ -185,6 +258,15 @@ func (o *Campaign) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -202,6 +284,15 @@ func (o *Campaign) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *Campaign) SetDescription(v string) {
 	o.Description = v
@@ -216,14 +307,13 @@ func (o *Campaign) GetStartTime() time.Time {
 	return *o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetStartTimeOk() (time.Time, bool) {
+func (o *Campaign) GetStartTimeOk() (*time.Time, bool) {
 	if o == nil || o.StartTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartTime, true
+	return o.StartTime, true
 }
 
 // HasStartTime returns a boolean if a field has been set.
@@ -249,14 +339,13 @@ func (o *Campaign) GetEndTime() time.Time {
 	return *o.EndTime
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetEndTimeOk() (time.Time, bool) {
+func (o *Campaign) GetEndTimeOk() (*time.Time, bool) {
 	if o == nil || o.EndTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndTime, true
+	return o.EndTime, true
 }
 
 // HasEndTime returns a boolean if a field has been set.
@@ -282,14 +371,13 @@ func (o *Campaign) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *Campaign) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -316,28 +404,36 @@ func (o *Campaign) GetState() string {
 	return o.State
 }
 
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
 // SetState sets field value
 func (o *Campaign) SetState(v string) {
 	o.State = v
 }
 
 // GetActiveRulesetId returns the ActiveRulesetId field value if set, zero value otherwise.
-func (o *Campaign) GetActiveRulesetId() int32 {
+func (o *Campaign) GetActiveRulesetId() int64 {
 	if o == nil || o.ActiveRulesetId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveRulesetId
 }
 
-// GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field value if set, zero value otherwise
+// GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetActiveRulesetIdOk() (int32, bool) {
+func (o *Campaign) GetActiveRulesetIdOk() (*int64, bool) {
 	if o == nil || o.ActiveRulesetId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveRulesetId, true
+	return o.ActiveRulesetId, true
 }
 
 // HasActiveRulesetId returns a boolean if a field has been set.
@@ -349,8 +445,8 @@ func (o *Campaign) HasActiveRulesetId() bool {
 	return false
 }
 
-// SetActiveRulesetId gets a reference to the given int32 and assigns it to the ActiveRulesetId field.
-func (o *Campaign) SetActiveRulesetId(v int32) {
+// SetActiveRulesetId gets a reference to the given int64 and assigns it to the ActiveRulesetId field.
+func (o *Campaign) SetActiveRulesetId(v int64) {
 	o.ActiveRulesetId = &v
 }
 
@@ -362,6 +458,15 @@ func (o *Campaign) GetTags() []string {
 	}
 
 	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetTagsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Tags, true
 }
 
 // SetTags sets field value
@@ -379,6 +484,15 @@ func (o *Campaign) GetFeatures() []string {
 	return o.Features
 }
 
+// GetFeaturesOk returns a tuple with the Features field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetFeaturesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Features, true
+}
+
 // SetFeatures sets field value
 func (o *Campaign) SetFeatures(v []string) {
 	o.Features = v
@@ -393,14 +507,13 @@ func (o *Campaign) GetCouponSettings() CodeGeneratorSettings {
 	return *o.CouponSettings
 }
 
-// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, zero value otherwise
+// GetCouponSettingsOk returns a tuple with the CouponSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCouponSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *Campaign) GetCouponSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.CouponSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponSettings, true
+	return o.CouponSettings, true
 }
 
 // HasCouponSettings returns a boolean if a field has been set.
@@ -426,14 +539,13 @@ func (o *Campaign) GetReferralSettings() CodeGeneratorSettings {
 	return *o.ReferralSettings
 }
 
-// GetReferralSettingsOk returns a tuple with the ReferralSettings field value if set, zero value otherwise
+// GetReferralSettingsOk returns a tuple with the ReferralSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetReferralSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *Campaign) GetReferralSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.ReferralSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralSettings, true
+	return o.ReferralSettings, true
 }
 
 // HasReferralSettings returns a boolean if a field has been set.
@@ -460,28 +572,36 @@ func (o *Campaign) GetLimits() []LimitConfig {
 	return o.Limits
 }
 
+// GetLimitsOk returns a tuple with the Limits field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetLimitsOk() (*[]LimitConfig, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limits, true
+}
+
 // SetLimits sets field value
 func (o *Campaign) SetLimits(v []LimitConfig) {
 	o.Limits = v
 }
 
 // GetCampaignGroups returns the CampaignGroups field value if set, zero value otherwise.
-func (o *Campaign) GetCampaignGroups() []int32 {
+func (o *Campaign) GetCampaignGroups() []int64 {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignGroups
 }
 
-// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, zero value otherwise
+// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCampaignGroupsOk() ([]int32, bool) {
+func (o *Campaign) GetCampaignGroupsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignGroups, true
+	return o.CampaignGroups, true
 }
 
 // HasCampaignGroups returns a boolean if a field has been set.
@@ -493,8 +613,8 @@ func (o *Campaign) HasCampaignGroups() bool {
 	return false
 }
 
-// SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
-func (o *Campaign) SetCampaignGroups(v []int32) {
+// SetCampaignGroups gets a reference to the given []int64 and assigns it to the CampaignGroups field.
+func (o *Campaign) SetCampaignGroups(v []int64) {
 	o.CampaignGroups = &v
 }
 
@@ -508,28 +628,36 @@ func (o *Campaign) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *Campaign) SetType(v string) {
 	o.Type = v
 }
 
 // GetLinkedStoreIds returns the LinkedStoreIds field value if set, zero value otherwise.
-func (o *Campaign) GetLinkedStoreIds() []int32 {
+func (o *Campaign) GetLinkedStoreIds() []int64 {
 	if o == nil || o.LinkedStoreIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.LinkedStoreIds
 }
 
-// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, zero value otherwise
+// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetLinkedStoreIdsOk() ([]int32, bool) {
+func (o *Campaign) GetLinkedStoreIdsOk() (*[]int64, bool) {
 	if o == nil || o.LinkedStoreIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.LinkedStoreIds, true
+	return o.LinkedStoreIds, true
 }
 
 // HasLinkedStoreIds returns a boolean if a field has been set.
@@ -541,8 +669,8 @@ func (o *Campaign) HasLinkedStoreIds() bool {
 	return false
 }
 
-// SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
-func (o *Campaign) SetLinkedStoreIds(v []int32) {
+// SetLinkedStoreIds gets a reference to the given []int64 and assigns it to the LinkedStoreIds field.
+func (o *Campaign) SetLinkedStoreIds(v []int64) {
 	o.LinkedStoreIds = &v
 }
 
@@ -555,14 +683,13 @@ func (o *Campaign) GetBudgets() []CampaignBudget {
 	return *o.Budgets
 }
 
-// GetBudgetsOk returns a tuple with the Budgets field value if set, zero value otherwise
+// GetBudgetsOk returns a tuple with the Budgets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetBudgetsOk() ([]CampaignBudget, bool) {
+func (o *Campaign) GetBudgetsOk() (*[]CampaignBudget, bool) {
 	if o == nil || o.Budgets == nil {
-		var ret []CampaignBudget
-		return ret, false
+		return nil, false
 	}
-	return *o.Budgets, true
+	return o.Budgets, true
 }
 
 // HasBudgets returns a boolean if a field has been set.
@@ -580,22 +707,21 @@ func (o *Campaign) SetBudgets(v []CampaignBudget) {
 }
 
 // GetCouponRedemptionCount returns the CouponRedemptionCount field value if set, zero value otherwise.
-func (o *Campaign) GetCouponRedemptionCount() int32 {
+func (o *Campaign) GetCouponRedemptionCount() int64 {
 	if o == nil || o.CouponRedemptionCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CouponRedemptionCount
 }
 
-// GetCouponRedemptionCountOk returns a tuple with the CouponRedemptionCount field value if set, zero value otherwise
+// GetCouponRedemptionCountOk returns a tuple with the CouponRedemptionCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCouponRedemptionCountOk() (int32, bool) {
+func (o *Campaign) GetCouponRedemptionCountOk() (*int64, bool) {
 	if o == nil || o.CouponRedemptionCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponRedemptionCount, true
+	return o.CouponRedemptionCount, true
 }
 
 // HasCouponRedemptionCount returns a boolean if a field has been set.
@@ -607,28 +733,27 @@ func (o *Campaign) HasCouponRedemptionCount() bool {
 	return false
 }
 
-// SetCouponRedemptionCount gets a reference to the given int32 and assigns it to the CouponRedemptionCount field.
-func (o *Campaign) SetCouponRedemptionCount(v int32) {
+// SetCouponRedemptionCount gets a reference to the given int64 and assigns it to the CouponRedemptionCount field.
+func (o *Campaign) SetCouponRedemptionCount(v int64) {
 	o.CouponRedemptionCount = &v
 }
 
 // GetReferralRedemptionCount returns the ReferralRedemptionCount field value if set, zero value otherwise.
-func (o *Campaign) GetReferralRedemptionCount() int32 {
+func (o *Campaign) GetReferralRedemptionCount() int64 {
 	if o == nil || o.ReferralRedemptionCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferralRedemptionCount
 }
 
-// GetReferralRedemptionCountOk returns a tuple with the ReferralRedemptionCount field value if set, zero value otherwise
+// GetReferralRedemptionCountOk returns a tuple with the ReferralRedemptionCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetReferralRedemptionCountOk() (int32, bool) {
+func (o *Campaign) GetReferralRedemptionCountOk() (*int64, bool) {
 	if o == nil || o.ReferralRedemptionCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralRedemptionCount, true
+	return o.ReferralRedemptionCount, true
 }
 
 // HasReferralRedemptionCount returns a boolean if a field has been set.
@@ -640,8 +765,8 @@ func (o *Campaign) HasReferralRedemptionCount() bool {
 	return false
 }
 
-// SetReferralRedemptionCount gets a reference to the given int32 and assigns it to the ReferralRedemptionCount field.
-func (o *Campaign) SetReferralRedemptionCount(v int32) {
+// SetReferralRedemptionCount gets a reference to the given int64 and assigns it to the ReferralRedemptionCount field.
+func (o *Campaign) SetReferralRedemptionCount(v int64) {
 	o.ReferralRedemptionCount = &v
 }
 
@@ -654,14 +779,13 @@ func (o *Campaign) GetDiscountCount() float32 {
 	return *o.DiscountCount
 }
 
-// GetDiscountCountOk returns a tuple with the DiscountCount field value if set, zero value otherwise
+// GetDiscountCountOk returns a tuple with the DiscountCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetDiscountCountOk() (float32, bool) {
+func (o *Campaign) GetDiscountCountOk() (*float32, bool) {
 	if o == nil || o.DiscountCount == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountCount, true
+	return o.DiscountCount, true
 }
 
 // HasDiscountCount returns a boolean if a field has been set.
@@ -679,22 +803,21 @@ func (o *Campaign) SetDiscountCount(v float32) {
 }
 
 // GetDiscountEffectCount returns the DiscountEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetDiscountEffectCount() int32 {
+func (o *Campaign) GetDiscountEffectCount() int64 {
 	if o == nil || o.DiscountEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DiscountEffectCount
 }
 
-// GetDiscountEffectCountOk returns a tuple with the DiscountEffectCount field value if set, zero value otherwise
+// GetDiscountEffectCountOk returns a tuple with the DiscountEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetDiscountEffectCountOk() (int32, bool) {
+func (o *Campaign) GetDiscountEffectCountOk() (*int64, bool) {
 	if o == nil || o.DiscountEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountEffectCount, true
+	return o.DiscountEffectCount, true
 }
 
 // HasDiscountEffectCount returns a boolean if a field has been set.
@@ -706,28 +829,27 @@ func (o *Campaign) HasDiscountEffectCount() bool {
 	return false
 }
 
-// SetDiscountEffectCount gets a reference to the given int32 and assigns it to the DiscountEffectCount field.
-func (o *Campaign) SetDiscountEffectCount(v int32) {
+// SetDiscountEffectCount gets a reference to the given int64 and assigns it to the DiscountEffectCount field.
+func (o *Campaign) SetDiscountEffectCount(v int64) {
 	o.DiscountEffectCount = &v
 }
 
 // GetCouponCreationCount returns the CouponCreationCount field value if set, zero value otherwise.
-func (o *Campaign) GetCouponCreationCount() int32 {
+func (o *Campaign) GetCouponCreationCount() int64 {
 	if o == nil || o.CouponCreationCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CouponCreationCount
 }
 
-// GetCouponCreationCountOk returns a tuple with the CouponCreationCount field value if set, zero value otherwise
+// GetCouponCreationCountOk returns a tuple with the CouponCreationCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCouponCreationCountOk() (int32, bool) {
+func (o *Campaign) GetCouponCreationCountOk() (*int64, bool) {
 	if o == nil || o.CouponCreationCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponCreationCount, true
+	return o.CouponCreationCount, true
 }
 
 // HasCouponCreationCount returns a boolean if a field has been set.
@@ -739,28 +861,27 @@ func (o *Campaign) HasCouponCreationCount() bool {
 	return false
 }
 
-// SetCouponCreationCount gets a reference to the given int32 and assigns it to the CouponCreationCount field.
-func (o *Campaign) SetCouponCreationCount(v int32) {
+// SetCouponCreationCount gets a reference to the given int64 and assigns it to the CouponCreationCount field.
+func (o *Campaign) SetCouponCreationCount(v int64) {
 	o.CouponCreationCount = &v
 }
 
 // GetCustomEffectCount returns the CustomEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetCustomEffectCount() int32 {
+func (o *Campaign) GetCustomEffectCount() int64 {
 	if o == nil || o.CustomEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CustomEffectCount
 }
 
-// GetCustomEffectCountOk returns a tuple with the CustomEffectCount field value if set, zero value otherwise
+// GetCustomEffectCountOk returns a tuple with the CustomEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCustomEffectCountOk() (int32, bool) {
+func (o *Campaign) GetCustomEffectCountOk() (*int64, bool) {
 	if o == nil || o.CustomEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomEffectCount, true
+	return o.CustomEffectCount, true
 }
 
 // HasCustomEffectCount returns a boolean if a field has been set.
@@ -772,28 +893,27 @@ func (o *Campaign) HasCustomEffectCount() bool {
 	return false
 }
 
-// SetCustomEffectCount gets a reference to the given int32 and assigns it to the CustomEffectCount field.
-func (o *Campaign) SetCustomEffectCount(v int32) {
+// SetCustomEffectCount gets a reference to the given int64 and assigns it to the CustomEffectCount field.
+func (o *Campaign) SetCustomEffectCount(v int64) {
 	o.CustomEffectCount = &v
 }
 
 // GetReferralCreationCount returns the ReferralCreationCount field value if set, zero value otherwise.
-func (o *Campaign) GetReferralCreationCount() int32 {
+func (o *Campaign) GetReferralCreationCount() int64 {
 	if o == nil || o.ReferralCreationCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferralCreationCount
 }
 
-// GetReferralCreationCountOk returns a tuple with the ReferralCreationCount field value if set, zero value otherwise
+// GetReferralCreationCountOk returns a tuple with the ReferralCreationCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetReferralCreationCountOk() (int32, bool) {
+func (o *Campaign) GetReferralCreationCountOk() (*int64, bool) {
 	if o == nil || o.ReferralCreationCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralCreationCount, true
+	return o.ReferralCreationCount, true
 }
 
 // HasReferralCreationCount returns a boolean if a field has been set.
@@ -805,28 +925,27 @@ func (o *Campaign) HasReferralCreationCount() bool {
 	return false
 }
 
-// SetReferralCreationCount gets a reference to the given int32 and assigns it to the ReferralCreationCount field.
-func (o *Campaign) SetReferralCreationCount(v int32) {
+// SetReferralCreationCount gets a reference to the given int64 and assigns it to the ReferralCreationCount field.
+func (o *Campaign) SetReferralCreationCount(v int64) {
 	o.ReferralCreationCount = &v
 }
 
 // GetAddFreeItemEffectCount returns the AddFreeItemEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetAddFreeItemEffectCount() int32 {
+func (o *Campaign) GetAddFreeItemEffectCount() int64 {
 	if o == nil || o.AddFreeItemEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AddFreeItemEffectCount
 }
 
-// GetAddFreeItemEffectCountOk returns a tuple with the AddFreeItemEffectCount field value if set, zero value otherwise
+// GetAddFreeItemEffectCountOk returns a tuple with the AddFreeItemEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetAddFreeItemEffectCountOk() (int32, bool) {
+func (o *Campaign) GetAddFreeItemEffectCountOk() (*int64, bool) {
 	if o == nil || o.AddFreeItemEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AddFreeItemEffectCount, true
+	return o.AddFreeItemEffectCount, true
 }
 
 // HasAddFreeItemEffectCount returns a boolean if a field has been set.
@@ -838,28 +957,27 @@ func (o *Campaign) HasAddFreeItemEffectCount() bool {
 	return false
 }
 
-// SetAddFreeItemEffectCount gets a reference to the given int32 and assigns it to the AddFreeItemEffectCount field.
-func (o *Campaign) SetAddFreeItemEffectCount(v int32) {
+// SetAddFreeItemEffectCount gets a reference to the given int64 and assigns it to the AddFreeItemEffectCount field.
+func (o *Campaign) SetAddFreeItemEffectCount(v int64) {
 	o.AddFreeItemEffectCount = &v
 }
 
 // GetAwardedGiveawaysCount returns the AwardedGiveawaysCount field value if set, zero value otherwise.
-func (o *Campaign) GetAwardedGiveawaysCount() int32 {
+func (o *Campaign) GetAwardedGiveawaysCount() int64 {
 	if o == nil || o.AwardedGiveawaysCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AwardedGiveawaysCount
 }
 
-// GetAwardedGiveawaysCountOk returns a tuple with the AwardedGiveawaysCount field value if set, zero value otherwise
+// GetAwardedGiveawaysCountOk returns a tuple with the AwardedGiveawaysCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetAwardedGiveawaysCountOk() (int32, bool) {
+func (o *Campaign) GetAwardedGiveawaysCountOk() (*int64, bool) {
 	if o == nil || o.AwardedGiveawaysCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AwardedGiveawaysCount, true
+	return o.AwardedGiveawaysCount, true
 }
 
 // HasAwardedGiveawaysCount returns a boolean if a field has been set.
@@ -871,8 +989,8 @@ func (o *Campaign) HasAwardedGiveawaysCount() bool {
 	return false
 }
 
-// SetAwardedGiveawaysCount gets a reference to the given int32 and assigns it to the AwardedGiveawaysCount field.
-func (o *Campaign) SetAwardedGiveawaysCount(v int32) {
+// SetAwardedGiveawaysCount gets a reference to the given int64 and assigns it to the AwardedGiveawaysCount field.
+func (o *Campaign) SetAwardedGiveawaysCount(v int64) {
 	o.AwardedGiveawaysCount = &v
 }
 
@@ -885,14 +1003,13 @@ func (o *Campaign) GetCreatedLoyaltyPointsCount() float32 {
 	return *o.CreatedLoyaltyPointsCount
 }
 
-// GetCreatedLoyaltyPointsCountOk returns a tuple with the CreatedLoyaltyPointsCount field value if set, zero value otherwise
+// GetCreatedLoyaltyPointsCountOk returns a tuple with the CreatedLoyaltyPointsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCreatedLoyaltyPointsCountOk() (float32, bool) {
+func (o *Campaign) GetCreatedLoyaltyPointsCountOk() (*float32, bool) {
 	if o == nil || o.CreatedLoyaltyPointsCount == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedLoyaltyPointsCount, true
+	return o.CreatedLoyaltyPointsCount, true
 }
 
 // HasCreatedLoyaltyPointsCount returns a boolean if a field has been set.
@@ -910,22 +1027,21 @@ func (o *Campaign) SetCreatedLoyaltyPointsCount(v float32) {
 }
 
 // GetCreatedLoyaltyPointsEffectCount returns the CreatedLoyaltyPointsEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetCreatedLoyaltyPointsEffectCount() int32 {
+func (o *Campaign) GetCreatedLoyaltyPointsEffectCount() int64 {
 	if o == nil || o.CreatedLoyaltyPointsEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedLoyaltyPointsEffectCount
 }
 
-// GetCreatedLoyaltyPointsEffectCountOk returns a tuple with the CreatedLoyaltyPointsEffectCount field value if set, zero value otherwise
+// GetCreatedLoyaltyPointsEffectCountOk returns a tuple with the CreatedLoyaltyPointsEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCreatedLoyaltyPointsEffectCountOk() (int32, bool) {
+func (o *Campaign) GetCreatedLoyaltyPointsEffectCountOk() (*int64, bool) {
 	if o == nil || o.CreatedLoyaltyPointsEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedLoyaltyPointsEffectCount, true
+	return o.CreatedLoyaltyPointsEffectCount, true
 }
 
 // HasCreatedLoyaltyPointsEffectCount returns a boolean if a field has been set.
@@ -937,8 +1053,8 @@ func (o *Campaign) HasCreatedLoyaltyPointsEffectCount() bool {
 	return false
 }
 
-// SetCreatedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the CreatedLoyaltyPointsEffectCount field.
-func (o *Campaign) SetCreatedLoyaltyPointsEffectCount(v int32) {
+// SetCreatedLoyaltyPointsEffectCount gets a reference to the given int64 and assigns it to the CreatedLoyaltyPointsEffectCount field.
+func (o *Campaign) SetCreatedLoyaltyPointsEffectCount(v int64) {
 	o.CreatedLoyaltyPointsEffectCount = &v
 }
 
@@ -951,14 +1067,13 @@ func (o *Campaign) GetRedeemedLoyaltyPointsCount() float32 {
 	return *o.RedeemedLoyaltyPointsCount
 }
 
-// GetRedeemedLoyaltyPointsCountOk returns a tuple with the RedeemedLoyaltyPointsCount field value if set, zero value otherwise
+// GetRedeemedLoyaltyPointsCountOk returns a tuple with the RedeemedLoyaltyPointsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetRedeemedLoyaltyPointsCountOk() (float32, bool) {
+func (o *Campaign) GetRedeemedLoyaltyPointsCountOk() (*float32, bool) {
 	if o == nil || o.RedeemedLoyaltyPointsCount == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.RedeemedLoyaltyPointsCount, true
+	return o.RedeemedLoyaltyPointsCount, true
 }
 
 // HasRedeemedLoyaltyPointsCount returns a boolean if a field has been set.
@@ -976,22 +1091,21 @@ func (o *Campaign) SetRedeemedLoyaltyPointsCount(v float32) {
 }
 
 // GetRedeemedLoyaltyPointsEffectCount returns the RedeemedLoyaltyPointsEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetRedeemedLoyaltyPointsEffectCount() int32 {
+func (o *Campaign) GetRedeemedLoyaltyPointsEffectCount() int64 {
 	if o == nil || o.RedeemedLoyaltyPointsEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RedeemedLoyaltyPointsEffectCount
 }
 
-// GetRedeemedLoyaltyPointsEffectCountOk returns a tuple with the RedeemedLoyaltyPointsEffectCount field value if set, zero value otherwise
+// GetRedeemedLoyaltyPointsEffectCountOk returns a tuple with the RedeemedLoyaltyPointsEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetRedeemedLoyaltyPointsEffectCountOk() (int32, bool) {
+func (o *Campaign) GetRedeemedLoyaltyPointsEffectCountOk() (*int64, bool) {
 	if o == nil || o.RedeemedLoyaltyPointsEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.RedeemedLoyaltyPointsEffectCount, true
+	return o.RedeemedLoyaltyPointsEffectCount, true
 }
 
 // HasRedeemedLoyaltyPointsEffectCount returns a boolean if a field has been set.
@@ -1003,28 +1117,27 @@ func (o *Campaign) HasRedeemedLoyaltyPointsEffectCount() bool {
 	return false
 }
 
-// SetRedeemedLoyaltyPointsEffectCount gets a reference to the given int32 and assigns it to the RedeemedLoyaltyPointsEffectCount field.
-func (o *Campaign) SetRedeemedLoyaltyPointsEffectCount(v int32) {
+// SetRedeemedLoyaltyPointsEffectCount gets a reference to the given int64 and assigns it to the RedeemedLoyaltyPointsEffectCount field.
+func (o *Campaign) SetRedeemedLoyaltyPointsEffectCount(v int64) {
 	o.RedeemedLoyaltyPointsEffectCount = &v
 }
 
 // GetCallApiEffectCount returns the CallApiEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetCallApiEffectCount() int32 {
+func (o *Campaign) GetCallApiEffectCount() int64 {
 	if o == nil || o.CallApiEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CallApiEffectCount
 }
 
-// GetCallApiEffectCountOk returns a tuple with the CallApiEffectCount field value if set, zero value otherwise
+// GetCallApiEffectCountOk returns a tuple with the CallApiEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCallApiEffectCountOk() (int32, bool) {
+func (o *Campaign) GetCallApiEffectCountOk() (*int64, bool) {
 	if o == nil || o.CallApiEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CallApiEffectCount, true
+	return o.CallApiEffectCount, true
 }
 
 // HasCallApiEffectCount returns a boolean if a field has been set.
@@ -1036,28 +1149,27 @@ func (o *Campaign) HasCallApiEffectCount() bool {
 	return false
 }
 
-// SetCallApiEffectCount gets a reference to the given int32 and assigns it to the CallApiEffectCount field.
-func (o *Campaign) SetCallApiEffectCount(v int32) {
+// SetCallApiEffectCount gets a reference to the given int64 and assigns it to the CallApiEffectCount field.
+func (o *Campaign) SetCallApiEffectCount(v int64) {
 	o.CallApiEffectCount = &v
 }
 
 // GetReservecouponEffectCount returns the ReservecouponEffectCount field value if set, zero value otherwise.
-func (o *Campaign) GetReservecouponEffectCount() int32 {
+func (o *Campaign) GetReservecouponEffectCount() int64 {
 	if o == nil || o.ReservecouponEffectCount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservecouponEffectCount
 }
 
-// GetReservecouponEffectCountOk returns a tuple with the ReservecouponEffectCount field value if set, zero value otherwise
+// GetReservecouponEffectCountOk returns a tuple with the ReservecouponEffectCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetReservecouponEffectCountOk() (int32, bool) {
+func (o *Campaign) GetReservecouponEffectCountOk() (*int64, bool) {
 	if o == nil || o.ReservecouponEffectCount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservecouponEffectCount, true
+	return o.ReservecouponEffectCount, true
 }
 
 // HasReservecouponEffectCount returns a boolean if a field has been set.
@@ -1069,8 +1181,8 @@ func (o *Campaign) HasReservecouponEffectCount() bool {
 	return false
 }
 
-// SetReservecouponEffectCount gets a reference to the given int32 and assigns it to the ReservecouponEffectCount field.
-func (o *Campaign) SetReservecouponEffectCount(v int32) {
+// SetReservecouponEffectCount gets a reference to the given int64 and assigns it to the ReservecouponEffectCount field.
+func (o *Campaign) SetReservecouponEffectCount(v int64) {
 	o.ReservecouponEffectCount = &v
 }
 
@@ -1083,14 +1195,13 @@ func (o *Campaign) GetLastActivity() time.Time {
 	return *o.LastActivity
 }
 
-// GetLastActivityOk returns a tuple with the LastActivity field value if set, zero value otherwise
+// GetLastActivityOk returns a tuple with the LastActivity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetLastActivityOk() (time.Time, bool) {
+func (o *Campaign) GetLastActivityOk() (*time.Time, bool) {
 	if o == nil || o.LastActivity == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastActivity, true
+	return o.LastActivity, true
 }
 
 // HasLastActivity returns a boolean if a field has been set.
@@ -1116,14 +1227,13 @@ func (o *Campaign) GetUpdated() time.Time {
 	return *o.Updated
 }
 
-// GetUpdatedOk returns a tuple with the Updated field value if set, zero value otherwise
+// GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetUpdatedOk() (time.Time, bool) {
+func (o *Campaign) GetUpdatedOk() (*time.Time, bool) {
 	if o == nil || o.Updated == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Updated, true
+	return o.Updated, true
 }
 
 // HasUpdated returns a boolean if a field has been set.
@@ -1149,14 +1259,13 @@ func (o *Campaign) GetCreatedBy() string {
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCreatedByOk() (string, bool) {
+func (o *Campaign) GetCreatedByOk() (*string, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -1182,14 +1291,13 @@ func (o *Campaign) GetUpdatedBy() string {
 	return *o.UpdatedBy
 }
 
-// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, zero value otherwise
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetUpdatedByOk() (string, bool) {
+func (o *Campaign) GetUpdatedByOk() (*string, bool) {
 	if o == nil || o.UpdatedBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.UpdatedBy, true
+	return o.UpdatedBy, true
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
@@ -1207,22 +1315,21 @@ func (o *Campaign) SetUpdatedBy(v string) {
 }
 
 // GetTemplateId returns the TemplateId field value if set, zero value otherwise.
-func (o *Campaign) GetTemplateId() int32 {
+func (o *Campaign) GetTemplateId() int64 {
 	if o == nil || o.TemplateId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TemplateId
 }
 
-// GetTemplateIdOk returns a tuple with the TemplateId field value if set, zero value otherwise
+// GetTemplateIdOk returns a tuple with the TemplateId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetTemplateIdOk() (int32, bool) {
+func (o *Campaign) GetTemplateIdOk() (*int64, bool) {
 	if o == nil || o.TemplateId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.TemplateId, true
+	return o.TemplateId, true
 }
 
 // HasTemplateId returns a boolean if a field has been set.
@@ -1234,8 +1341,8 @@ func (o *Campaign) HasTemplateId() bool {
 	return false
 }
 
-// SetTemplateId gets a reference to the given int32 and assigns it to the TemplateId field.
-func (o *Campaign) SetTemplateId(v int32) {
+// SetTemplateId gets a reference to the given int64 and assigns it to the TemplateId field.
+func (o *Campaign) SetTemplateId(v int64) {
 	o.TemplateId = &v
 }
 
@@ -1247,6 +1354,15 @@ func (o *Campaign) GetFrontendState() string {
 	}
 
 	return o.FrontendState
+}
+
+// GetFrontendStateOk returns a tuple with the FrontendState field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetFrontendStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FrontendState, true
 }
 
 // SetFrontendState sets field value
@@ -1264,28 +1380,36 @@ func (o *Campaign) GetStoresImported() bool {
 	return o.StoresImported
 }
 
+// GetStoresImportedOk returns a tuple with the StoresImported field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetStoresImportedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StoresImported, true
+}
+
 // SetStoresImported sets field value
 func (o *Campaign) SetStoresImported(v bool) {
 	o.StoresImported = v
 }
 
 // GetValueMapsIds returns the ValueMapsIds field value if set, zero value otherwise.
-func (o *Campaign) GetValueMapsIds() []int32 {
+func (o *Campaign) GetValueMapsIds() []int64 {
 	if o == nil || o.ValueMapsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.ValueMapsIds
 }
 
-// GetValueMapsIdsOk returns a tuple with the ValueMapsIds field value if set, zero value otherwise
+// GetValueMapsIdsOk returns a tuple with the ValueMapsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetValueMapsIdsOk() ([]int32, bool) {
+func (o *Campaign) GetValueMapsIdsOk() (*[]int64, bool) {
 	if o == nil || o.ValueMapsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ValueMapsIds, true
+	return o.ValueMapsIds, true
 }
 
 // HasValueMapsIds returns a boolean if a field has been set.
@@ -1297,8 +1421,8 @@ func (o *Campaign) HasValueMapsIds() bool {
 	return false
 }
 
-// SetValueMapsIds gets a reference to the given []int32 and assigns it to the ValueMapsIds field.
-func (o *Campaign) SetValueMapsIds(v []int32) {
+// SetValueMapsIds gets a reference to the given []int64 and assigns it to the ValueMapsIds field.
+func (o *Campaign) SetValueMapsIds(v []int64) {
 	o.ValueMapsIds = &v
 }
 
@@ -1311,14 +1435,13 @@ func (o *Campaign) GetRevisionFrontendState() string {
 	return *o.RevisionFrontendState
 }
 
-// GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field value if set, zero value otherwise
+// GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetRevisionFrontendStateOk() (string, bool) {
+func (o *Campaign) GetRevisionFrontendStateOk() (*string, bool) {
 	if o == nil || o.RevisionFrontendState == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RevisionFrontendState, true
+	return o.RevisionFrontendState, true
 }
 
 // HasRevisionFrontendState returns a boolean if a field has been set.
@@ -1336,22 +1459,21 @@ func (o *Campaign) SetRevisionFrontendState(v string) {
 }
 
 // GetActiveRevisionId returns the ActiveRevisionId field value if set, zero value otherwise.
-func (o *Campaign) GetActiveRevisionId() int32 {
+func (o *Campaign) GetActiveRevisionId() int64 {
 	if o == nil || o.ActiveRevisionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveRevisionId
 }
 
-// GetActiveRevisionIdOk returns a tuple with the ActiveRevisionId field value if set, zero value otherwise
+// GetActiveRevisionIdOk returns a tuple with the ActiveRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetActiveRevisionIdOk() (int32, bool) {
+func (o *Campaign) GetActiveRevisionIdOk() (*int64, bool) {
 	if o == nil || o.ActiveRevisionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveRevisionId, true
+	return o.ActiveRevisionId, true
 }
 
 // HasActiveRevisionId returns a boolean if a field has been set.
@@ -1363,28 +1485,27 @@ func (o *Campaign) HasActiveRevisionId() bool {
 	return false
 }
 
-// SetActiveRevisionId gets a reference to the given int32 and assigns it to the ActiveRevisionId field.
-func (o *Campaign) SetActiveRevisionId(v int32) {
+// SetActiveRevisionId gets a reference to the given int64 and assigns it to the ActiveRevisionId field.
+func (o *Campaign) SetActiveRevisionId(v int64) {
 	o.ActiveRevisionId = &v
 }
 
 // GetActiveRevisionVersionId returns the ActiveRevisionVersionId field value if set, zero value otherwise.
-func (o *Campaign) GetActiveRevisionVersionId() int32 {
+func (o *Campaign) GetActiveRevisionVersionId() int64 {
 	if o == nil || o.ActiveRevisionVersionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveRevisionVersionId
 }
 
-// GetActiveRevisionVersionIdOk returns a tuple with the ActiveRevisionVersionId field value if set, zero value otherwise
+// GetActiveRevisionVersionIdOk returns a tuple with the ActiveRevisionVersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetActiveRevisionVersionIdOk() (int32, bool) {
+func (o *Campaign) GetActiveRevisionVersionIdOk() (*int64, bool) {
 	if o == nil || o.ActiveRevisionVersionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveRevisionVersionId, true
+	return o.ActiveRevisionVersionId, true
 }
 
 // HasActiveRevisionVersionId returns a boolean if a field has been set.
@@ -1396,28 +1517,27 @@ func (o *Campaign) HasActiveRevisionVersionId() bool {
 	return false
 }
 
-// SetActiveRevisionVersionId gets a reference to the given int32 and assigns it to the ActiveRevisionVersionId field.
-func (o *Campaign) SetActiveRevisionVersionId(v int32) {
+// SetActiveRevisionVersionId gets a reference to the given int64 and assigns it to the ActiveRevisionVersionId field.
+func (o *Campaign) SetActiveRevisionVersionId(v int64) {
 	o.ActiveRevisionVersionId = &v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *Campaign) GetVersion() int32 {
+func (o *Campaign) GetVersion() int64 {
 	if o == nil || o.Version == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, zero value otherwise
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetVersionOk() (int32, bool) {
+func (o *Campaign) GetVersionOk() (*int64, bool) {
 	if o == nil || o.Version == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Version, true
+	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
@@ -1429,28 +1549,27 @@ func (o *Campaign) HasVersion() bool {
 	return false
 }
 
-// SetVersion gets a reference to the given int32 and assigns it to the Version field.
-func (o *Campaign) SetVersion(v int32) {
+// SetVersion gets a reference to the given int64 and assigns it to the Version field.
+func (o *Campaign) SetVersion(v int64) {
 	o.Version = &v
 }
 
 // GetCurrentRevisionId returns the CurrentRevisionId field value if set, zero value otherwise.
-func (o *Campaign) GetCurrentRevisionId() int32 {
+func (o *Campaign) GetCurrentRevisionId() int64 {
 	if o == nil || o.CurrentRevisionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentRevisionId
 }
 
-// GetCurrentRevisionIdOk returns a tuple with the CurrentRevisionId field value if set, zero value otherwise
+// GetCurrentRevisionIdOk returns a tuple with the CurrentRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCurrentRevisionIdOk() (int32, bool) {
+func (o *Campaign) GetCurrentRevisionIdOk() (*int64, bool) {
 	if o == nil || o.CurrentRevisionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentRevisionId, true
+	return o.CurrentRevisionId, true
 }
 
 // HasCurrentRevisionId returns a boolean if a field has been set.
@@ -1462,28 +1581,27 @@ func (o *Campaign) HasCurrentRevisionId() bool {
 	return false
 }
 
-// SetCurrentRevisionId gets a reference to the given int32 and assigns it to the CurrentRevisionId field.
-func (o *Campaign) SetCurrentRevisionId(v int32) {
+// SetCurrentRevisionId gets a reference to the given int64 and assigns it to the CurrentRevisionId field.
+func (o *Campaign) SetCurrentRevisionId(v int64) {
 	o.CurrentRevisionId = &v
 }
 
 // GetCurrentRevisionVersionId returns the CurrentRevisionVersionId field value if set, zero value otherwise.
-func (o *Campaign) GetCurrentRevisionVersionId() int32 {
+func (o *Campaign) GetCurrentRevisionVersionId() int64 {
 	if o == nil || o.CurrentRevisionVersionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentRevisionVersionId
 }
 
-// GetCurrentRevisionVersionIdOk returns a tuple with the CurrentRevisionVersionId field value if set, zero value otherwise
+// GetCurrentRevisionVersionIdOk returns a tuple with the CurrentRevisionVersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetCurrentRevisionVersionIdOk() (int32, bool) {
+func (o *Campaign) GetCurrentRevisionVersionIdOk() (*int64, bool) {
 	if o == nil || o.CurrentRevisionVersionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentRevisionVersionId, true
+	return o.CurrentRevisionVersionId, true
 }
 
 // HasCurrentRevisionVersionId returns a boolean if a field has been set.
@@ -1495,8 +1613,8 @@ func (o *Campaign) HasCurrentRevisionVersionId() bool {
 	return false
 }
 
-// SetCurrentRevisionVersionId gets a reference to the given int32 and assigns it to the CurrentRevisionVersionId field.
-func (o *Campaign) SetCurrentRevisionVersionId(v int32) {
+// SetCurrentRevisionVersionId gets a reference to the given int64 and assigns it to the CurrentRevisionVersionId field.
+func (o *Campaign) SetCurrentRevisionVersionId(v int64) {
 	o.CurrentRevisionVersionId = &v
 }
 
@@ -1509,14 +1627,13 @@ func (o *Campaign) GetStageRevision() bool {
 	return *o.StageRevision
 }
 
-// GetStageRevisionOk returns a tuple with the StageRevision field value if set, zero value otherwise
+// GetStageRevisionOk returns a tuple with the StageRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Campaign) GetStageRevisionOk() (bool, bool) {
+func (o *Campaign) GetStageRevisionOk() (*bool, bool) {
 	if o == nil || o.StageRevision == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.StageRevision, true
+	return o.StageRevision, true
 }
 
 // HasStageRevision returns a boolean if a field has been set.
@@ -1533,25 +1650,193 @@ func (o *Campaign) SetStageRevision(v bool) {
 	o.StageRevision = &v
 }
 
+func (o Campaign) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.StartTime != nil {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if o.EndTime != nil {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if o.ActiveRulesetId != nil {
+		toSerialize["activeRulesetId"] = o.ActiveRulesetId
+	}
+	if true {
+		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["features"] = o.Features
+	}
+	if o.CouponSettings != nil {
+		toSerialize["couponSettings"] = o.CouponSettings
+	}
+	if o.ReferralSettings != nil {
+		toSerialize["referralSettings"] = o.ReferralSettings
+	}
+	if true {
+		toSerialize["limits"] = o.Limits
+	}
+	if o.CampaignGroups != nil {
+		toSerialize["campaignGroups"] = o.CampaignGroups
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.LinkedStoreIds != nil {
+		toSerialize["linkedStoreIds"] = o.LinkedStoreIds
+	}
+	if o.Budgets != nil {
+		toSerialize["budgets"] = o.Budgets
+	}
+	if o.CouponRedemptionCount != nil {
+		toSerialize["couponRedemptionCount"] = o.CouponRedemptionCount
+	}
+	if o.ReferralRedemptionCount != nil {
+		toSerialize["referralRedemptionCount"] = o.ReferralRedemptionCount
+	}
+	if o.DiscountCount != nil {
+		toSerialize["discountCount"] = o.DiscountCount
+	}
+	if o.DiscountEffectCount != nil {
+		toSerialize["discountEffectCount"] = o.DiscountEffectCount
+	}
+	if o.CouponCreationCount != nil {
+		toSerialize["couponCreationCount"] = o.CouponCreationCount
+	}
+	if o.CustomEffectCount != nil {
+		toSerialize["customEffectCount"] = o.CustomEffectCount
+	}
+	if o.ReferralCreationCount != nil {
+		toSerialize["referralCreationCount"] = o.ReferralCreationCount
+	}
+	if o.AddFreeItemEffectCount != nil {
+		toSerialize["addFreeItemEffectCount"] = o.AddFreeItemEffectCount
+	}
+	if o.AwardedGiveawaysCount != nil {
+		toSerialize["awardedGiveawaysCount"] = o.AwardedGiveawaysCount
+	}
+	if o.CreatedLoyaltyPointsCount != nil {
+		toSerialize["createdLoyaltyPointsCount"] = o.CreatedLoyaltyPointsCount
+	}
+	if o.CreatedLoyaltyPointsEffectCount != nil {
+		toSerialize["createdLoyaltyPointsEffectCount"] = o.CreatedLoyaltyPointsEffectCount
+	}
+	if o.RedeemedLoyaltyPointsCount != nil {
+		toSerialize["redeemedLoyaltyPointsCount"] = o.RedeemedLoyaltyPointsCount
+	}
+	if o.RedeemedLoyaltyPointsEffectCount != nil {
+		toSerialize["redeemedLoyaltyPointsEffectCount"] = o.RedeemedLoyaltyPointsEffectCount
+	}
+	if o.CallApiEffectCount != nil {
+		toSerialize["callApiEffectCount"] = o.CallApiEffectCount
+	}
+	if o.ReservecouponEffectCount != nil {
+		toSerialize["reservecouponEffectCount"] = o.ReservecouponEffectCount
+	}
+	if o.LastActivity != nil {
+		toSerialize["lastActivity"] = o.LastActivity
+	}
+	if o.Updated != nil {
+		toSerialize["updated"] = o.Updated
+	}
+	if o.CreatedBy != nil {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.UpdatedBy != nil {
+		toSerialize["updatedBy"] = o.UpdatedBy
+	}
+	if o.TemplateId != nil {
+		toSerialize["templateId"] = o.TemplateId
+	}
+	if true {
+		toSerialize["frontendState"] = o.FrontendState
+	}
+	if true {
+		toSerialize["storesImported"] = o.StoresImported
+	}
+	if o.ValueMapsIds != nil {
+		toSerialize["valueMapsIds"] = o.ValueMapsIds
+	}
+	if o.RevisionFrontendState != nil {
+		toSerialize["revisionFrontendState"] = o.RevisionFrontendState
+	}
+	if o.ActiveRevisionId != nil {
+		toSerialize["activeRevisionId"] = o.ActiveRevisionId
+	}
+	if o.ActiveRevisionVersionId != nil {
+		toSerialize["activeRevisionVersionId"] = o.ActiveRevisionVersionId
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
+	if o.CurrentRevisionId != nil {
+		toSerialize["currentRevisionId"] = o.CurrentRevisionId
+	}
+	if o.CurrentRevisionVersionId != nil {
+		toSerialize["currentRevisionVersionId"] = o.CurrentRevisionVersionId
+	}
+	if o.StageRevision != nil {
+		toSerialize["stageRevision"] = o.StageRevision
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaign struct {
-	Value        Campaign
-	ExplicitNull bool
+	value *Campaign
+	isSet bool
+}
+
+func (v NullableCampaign) Get() *Campaign {
+	return v.value
+}
+
+func (v *NullableCampaign) Set(val *Campaign) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaign) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaign) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaign(val *Campaign) *NullableCampaign {
+	return &NullableCampaign{value: val, isSet: true}
 }
 
 func (v NullableCampaign) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaign) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

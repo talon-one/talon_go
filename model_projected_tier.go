@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,24 @@ type ProjectedTier struct {
 	ProjectedTierName *string `json:"projectedTierName,omitempty"`
 }
 
+// NewProjectedTier instantiates a new ProjectedTier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewProjectedTier(projectedActivePoints float32) *ProjectedTier {
+	this := ProjectedTier{}
+	this.ProjectedActivePoints = projectedActivePoints
+	return &this
+}
+
+// NewProjectedTierWithDefaults instantiates a new ProjectedTier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProjectedTierWithDefaults() *ProjectedTier {
+	this := ProjectedTier{}
+	return &this
+}
+
 // GetProjectedActivePoints returns the ProjectedActivePoints field value
 func (o *ProjectedTier) GetProjectedActivePoints() float32 {
 	if o == nil {
@@ -32,6 +49,15 @@ func (o *ProjectedTier) GetProjectedActivePoints() float32 {
 	}
 
 	return o.ProjectedActivePoints
+}
+
+// GetProjectedActivePointsOk returns a tuple with the ProjectedActivePoints field value
+// and a boolean to check if the value has been set.
+func (o *ProjectedTier) GetProjectedActivePointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProjectedActivePoints, true
 }
 
 // SetProjectedActivePoints sets field value
@@ -48,14 +74,13 @@ func (o *ProjectedTier) GetStayInTierPoints() float32 {
 	return *o.StayInTierPoints
 }
 
-// GetStayInTierPointsOk returns a tuple with the StayInTierPoints field value if set, zero value otherwise
+// GetStayInTierPointsOk returns a tuple with the StayInTierPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectedTier) GetStayInTierPointsOk() (float32, bool) {
+func (o *ProjectedTier) GetStayInTierPointsOk() (*float32, bool) {
 	if o == nil || o.StayInTierPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.StayInTierPoints, true
+	return o.StayInTierPoints, true
 }
 
 // HasStayInTierPoints returns a boolean if a field has been set.
@@ -81,14 +106,13 @@ func (o *ProjectedTier) GetProjectedTierName() string {
 	return *o.ProjectedTierName
 }
 
-// GetProjectedTierNameOk returns a tuple with the ProjectedTierName field value if set, zero value otherwise
+// GetProjectedTierNameOk returns a tuple with the ProjectedTierName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectedTier) GetProjectedTierNameOk() (string, bool) {
+func (o *ProjectedTier) GetProjectedTierNameOk() (*string, bool) {
 	if o == nil || o.ProjectedTierName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProjectedTierName, true
+	return o.ProjectedTierName, true
 }
 
 // HasProjectedTierName returns a boolean if a field has been set.
@@ -105,25 +129,52 @@ func (o *ProjectedTier) SetProjectedTierName(v string) {
 	o.ProjectedTierName = &v
 }
 
+func (o ProjectedTier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["projectedActivePoints"] = o.ProjectedActivePoints
+	}
+	if o.StayInTierPoints != nil {
+		toSerialize["stayInTierPoints"] = o.StayInTierPoints
+	}
+	if o.ProjectedTierName != nil {
+		toSerialize["projectedTierName"] = o.ProjectedTierName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableProjectedTier struct {
-	Value        ProjectedTier
-	ExplicitNull bool
+	value *ProjectedTier
+	isSet bool
+}
+
+func (v NullableProjectedTier) Get() *ProjectedTier {
+	return v.value
+}
+
+func (v *NullableProjectedTier) Set(val *ProjectedTier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProjectedTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProjectedTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProjectedTier(val *ProjectedTier) *NullableProjectedTier {
+	return &NullableProjectedTier{value: val, isSet: true}
 }
 
 func (v NullableProjectedTier) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableProjectedTier) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

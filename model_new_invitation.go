@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,9 +22,27 @@ type NewInvitation struct {
 	// Indicates whether the user is an `admin`.
 	IsAdmin *bool `json:"isAdmin,omitempty"`
 	// A list of the IDs of the roles assigned to the user.
-	Roles *[]int32 `json:"roles,omitempty"`
+	Roles *[]int64 `json:"roles,omitempty"`
 	// Indicates the access level of the user.
 	Acl *string `json:"acl,omitempty"`
+}
+
+// NewNewInvitation instantiates a new NewInvitation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewInvitation(email string) *NewInvitation {
+	this := NewInvitation{}
+	this.Email = email
+	return &this
+}
+
+// NewNewInvitationWithDefaults instantiates a new NewInvitation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewInvitationWithDefaults() *NewInvitation {
+	this := NewInvitation{}
+	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -37,14 +54,13 @@ func (o *NewInvitation) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewInvitation) GetNameOk() (string, bool) {
+func (o *NewInvitation) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -71,6 +87,15 @@ func (o *NewInvitation) GetEmail() string {
 	return o.Email
 }
 
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *NewInvitation) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
 // SetEmail sets field value
 func (o *NewInvitation) SetEmail(v string) {
 	o.Email = v
@@ -85,14 +110,13 @@ func (o *NewInvitation) GetIsAdmin() bool {
 	return *o.IsAdmin
 }
 
-// GetIsAdminOk returns a tuple with the IsAdmin field value if set, zero value otherwise
+// GetIsAdminOk returns a tuple with the IsAdmin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewInvitation) GetIsAdminOk() (bool, bool) {
+func (o *NewInvitation) GetIsAdminOk() (*bool, bool) {
 	if o == nil || o.IsAdmin == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsAdmin, true
+	return o.IsAdmin, true
 }
 
 // HasIsAdmin returns a boolean if a field has been set.
@@ -110,22 +134,21 @@ func (o *NewInvitation) SetIsAdmin(v bool) {
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
-func (o *NewInvitation) GetRoles() []int32 {
+func (o *NewInvitation) GetRoles() []int64 {
 	if o == nil || o.Roles == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Roles
 }
 
-// GetRolesOk returns a tuple with the Roles field value if set, zero value otherwise
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewInvitation) GetRolesOk() ([]int32, bool) {
+func (o *NewInvitation) GetRolesOk() (*[]int64, bool) {
 	if o == nil || o.Roles == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Roles, true
+	return o.Roles, true
 }
 
 // HasRoles returns a boolean if a field has been set.
@@ -137,8 +160,8 @@ func (o *NewInvitation) HasRoles() bool {
 	return false
 }
 
-// SetRoles gets a reference to the given []int32 and assigns it to the Roles field.
-func (o *NewInvitation) SetRoles(v []int32) {
+// SetRoles gets a reference to the given []int64 and assigns it to the Roles field.
+func (o *NewInvitation) SetRoles(v []int64) {
 	o.Roles = &v
 }
 
@@ -151,14 +174,13 @@ func (o *NewInvitation) GetAcl() string {
 	return *o.Acl
 }
 
-// GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
+// GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewInvitation) GetAclOk() (string, bool) {
+func (o *NewInvitation) GetAclOk() (*string, bool) {
 	if o == nil || o.Acl == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Acl, true
+	return o.Acl, true
 }
 
 // HasAcl returns a boolean if a field has been set.
@@ -175,25 +197,58 @@ func (o *NewInvitation) SetAcl(v string) {
 	o.Acl = &v
 }
 
+func (o NewInvitation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	if o.IsAdmin != nil {
+		toSerialize["isAdmin"] = o.IsAdmin
+	}
+	if o.Roles != nil {
+		toSerialize["roles"] = o.Roles
+	}
+	if o.Acl != nil {
+		toSerialize["acl"] = o.Acl
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewInvitation struct {
-	Value        NewInvitation
-	ExplicitNull bool
+	value *NewInvitation
+	isSet bool
+}
+
+func (v NullableNewInvitation) Get() *NewInvitation {
+	return v.value
+}
+
+func (v *NullableNewInvitation) Set(val *NewInvitation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewInvitation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewInvitation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewInvitation(val *NewInvitation) *NullableNewInvitation {
+	return &NullableNewInvitation{value: val, isSet: true}
 }
 
 func (v NullableNewInvitation) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewInvitation) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

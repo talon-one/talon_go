@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // Account struct for Account
 type Account struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
@@ -35,37 +34,74 @@ type Account struct {
 	// The point in time at which your current plan expires.
 	PlanExpires *time.Time `json:"planExpires,omitempty"`
 	// The maximum number of Applications covered by your plan.
-	ApplicationLimit *int32 `json:"applicationLimit,omitempty"`
+	ApplicationLimit *int64 `json:"applicationLimit,omitempty"`
 	// The maximum number of Campaign Manager Users covered by your plan.
-	UserLimit *int32 `json:"userLimit,omitempty"`
+	UserLimit *int64 `json:"userLimit,omitempty"`
 	// The maximum number of Campaigns covered by your plan.
-	CampaignLimit *int32 `json:"campaignLimit,omitempty"`
+	CampaignLimit *int64 `json:"campaignLimit,omitempty"`
 	// The maximum number of Integration API calls covered by your plan per billing period.
-	ApiLimit *int32 `json:"apiLimit,omitempty"`
+	ApiLimit *int64 `json:"apiLimit,omitempty"`
 	// The current number of Applications in your account.
-	ApplicationCount int32 `json:"applicationCount"`
+	ApplicationCount int64 `json:"applicationCount"`
 	// The current number of Campaign Manager Users in your account.
-	UserCount int32 `json:"userCount"`
+	UserCount int64 `json:"userCount"`
 	// The current number of active Campaigns in your account.
-	CampaignsActiveCount int32 `json:"campaignsActiveCount"`
+	CampaignsActiveCount int64 `json:"campaignsActiveCount"`
 	// The current number of inactive Campaigns in your account.
-	CampaignsInactiveCount int32 `json:"campaignsInactiveCount"`
+	CampaignsInactiveCount int64 `json:"campaignsInactiveCount"`
 	// Arbitrary properties associated with this campaign.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
+// NewAccount instantiates a new Account object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAccount(id int64, created time.Time, modified time.Time, companyName string, domainName string, state string, billingEmail string, applicationCount int64, userCount int64, campaignsActiveCount int64, campaignsInactiveCount int64) *Account {
+	this := Account{}
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	this.CompanyName = companyName
+	this.DomainName = domainName
+	this.State = state
+	this.BillingEmail = billingEmail
+	this.ApplicationCount = applicationCount
+	this.UserCount = userCount
+	this.CampaignsActiveCount = campaignsActiveCount
+	this.CampaignsInactiveCount = campaignsInactiveCount
+	return &this
+}
+
+// NewAccountWithDefaults instantiates a new Account object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountWithDefaults() *Account {
+	this := Account{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Account) GetId() int32 {
+func (o *Account) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Account) SetId(v int32) {
+func (o *Account) SetId(v int64) {
 	o.Id = v
 }
 
@@ -77,6 +113,15 @@ func (o *Account) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -94,6 +139,15 @@ func (o *Account) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *Account) SetModified(v time.Time) {
 	o.Modified = v
@@ -107,6 +161,15 @@ func (o *Account) GetCompanyName() string {
 	}
 
 	return o.CompanyName
+}
+
+// GetCompanyNameOk returns a tuple with the CompanyName field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetCompanyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CompanyName, true
 }
 
 // SetCompanyName sets field value
@@ -124,6 +187,15 @@ func (o *Account) GetDomainName() string {
 	return o.DomainName
 }
 
+// GetDomainNameOk returns a tuple with the DomainName field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetDomainNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DomainName, true
+}
+
 // SetDomainName sets field value
 func (o *Account) SetDomainName(v string) {
 	o.DomainName = v
@@ -137,6 +209,15 @@ func (o *Account) GetState() string {
 	}
 
 	return o.State
+}
+
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
 }
 
 // SetState sets field value
@@ -154,6 +235,15 @@ func (o *Account) GetBillingEmail() string {
 	return o.BillingEmail
 }
 
+// GetBillingEmailOk returns a tuple with the BillingEmail field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetBillingEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BillingEmail, true
+}
+
 // SetBillingEmail sets field value
 func (o *Account) SetBillingEmail(v string) {
 	o.BillingEmail = v
@@ -168,14 +258,13 @@ func (o *Account) GetPlanName() string {
 	return *o.PlanName
 }
 
-// GetPlanNameOk returns a tuple with the PlanName field value if set, zero value otherwise
+// GetPlanNameOk returns a tuple with the PlanName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetPlanNameOk() (string, bool) {
+func (o *Account) GetPlanNameOk() (*string, bool) {
 	if o == nil || o.PlanName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PlanName, true
+	return o.PlanName, true
 }
 
 // HasPlanName returns a boolean if a field has been set.
@@ -201,14 +290,13 @@ func (o *Account) GetPlanExpires() time.Time {
 	return *o.PlanExpires
 }
 
-// GetPlanExpiresOk returns a tuple with the PlanExpires field value if set, zero value otherwise
+// GetPlanExpiresOk returns a tuple with the PlanExpires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetPlanExpiresOk() (time.Time, bool) {
+func (o *Account) GetPlanExpiresOk() (*time.Time, bool) {
 	if o == nil || o.PlanExpires == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.PlanExpires, true
+	return o.PlanExpires, true
 }
 
 // HasPlanExpires returns a boolean if a field has been set.
@@ -226,22 +314,21 @@ func (o *Account) SetPlanExpires(v time.Time) {
 }
 
 // GetApplicationLimit returns the ApplicationLimit field value if set, zero value otherwise.
-func (o *Account) GetApplicationLimit() int32 {
+func (o *Account) GetApplicationLimit() int64 {
 	if o == nil || o.ApplicationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationLimit
 }
 
-// GetApplicationLimitOk returns a tuple with the ApplicationLimit field value if set, zero value otherwise
+// GetApplicationLimitOk returns a tuple with the ApplicationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetApplicationLimitOk() (int32, bool) {
+func (o *Account) GetApplicationLimitOk() (*int64, bool) {
 	if o == nil || o.ApplicationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationLimit, true
+	return o.ApplicationLimit, true
 }
 
 // HasApplicationLimit returns a boolean if a field has been set.
@@ -253,28 +340,27 @@ func (o *Account) HasApplicationLimit() bool {
 	return false
 }
 
-// SetApplicationLimit gets a reference to the given int32 and assigns it to the ApplicationLimit field.
-func (o *Account) SetApplicationLimit(v int32) {
+// SetApplicationLimit gets a reference to the given int64 and assigns it to the ApplicationLimit field.
+func (o *Account) SetApplicationLimit(v int64) {
 	o.ApplicationLimit = &v
 }
 
 // GetUserLimit returns the UserLimit field value if set, zero value otherwise.
-func (o *Account) GetUserLimit() int32 {
+func (o *Account) GetUserLimit() int64 {
 	if o == nil || o.UserLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UserLimit
 }
 
-// GetUserLimitOk returns a tuple with the UserLimit field value if set, zero value otherwise
+// GetUserLimitOk returns a tuple with the UserLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetUserLimitOk() (int32, bool) {
+func (o *Account) GetUserLimitOk() (*int64, bool) {
 	if o == nil || o.UserLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UserLimit, true
+	return o.UserLimit, true
 }
 
 // HasUserLimit returns a boolean if a field has been set.
@@ -286,28 +372,27 @@ func (o *Account) HasUserLimit() bool {
 	return false
 }
 
-// SetUserLimit gets a reference to the given int32 and assigns it to the UserLimit field.
-func (o *Account) SetUserLimit(v int32) {
+// SetUserLimit gets a reference to the given int64 and assigns it to the UserLimit field.
+func (o *Account) SetUserLimit(v int64) {
 	o.UserLimit = &v
 }
 
 // GetCampaignLimit returns the CampaignLimit field value if set, zero value otherwise.
-func (o *Account) GetCampaignLimit() int32 {
+func (o *Account) GetCampaignLimit() int64 {
 	if o == nil || o.CampaignLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignLimit
 }
 
-// GetCampaignLimitOk returns a tuple with the CampaignLimit field value if set, zero value otherwise
+// GetCampaignLimitOk returns a tuple with the CampaignLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetCampaignLimitOk() (int32, bool) {
+func (o *Account) GetCampaignLimitOk() (*int64, bool) {
 	if o == nil || o.CampaignLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignLimit, true
+	return o.CampaignLimit, true
 }
 
 // HasCampaignLimit returns a boolean if a field has been set.
@@ -319,28 +404,27 @@ func (o *Account) HasCampaignLimit() bool {
 	return false
 }
 
-// SetCampaignLimit gets a reference to the given int32 and assigns it to the CampaignLimit field.
-func (o *Account) SetCampaignLimit(v int32) {
+// SetCampaignLimit gets a reference to the given int64 and assigns it to the CampaignLimit field.
+func (o *Account) SetCampaignLimit(v int64) {
 	o.CampaignLimit = &v
 }
 
 // GetApiLimit returns the ApiLimit field value if set, zero value otherwise.
-func (o *Account) GetApiLimit() int32 {
+func (o *Account) GetApiLimit() int64 {
 	if o == nil || o.ApiLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApiLimit
 }
 
-// GetApiLimitOk returns a tuple with the ApiLimit field value if set, zero value otherwise
+// GetApiLimitOk returns a tuple with the ApiLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetApiLimitOk() (int32, bool) {
+func (o *Account) GetApiLimitOk() (*int64, bool) {
 	if o == nil || o.ApiLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApiLimit, true
+	return o.ApiLimit, true
 }
 
 // HasApiLimit returns a boolean if a field has been set.
@@ -352,68 +436,104 @@ func (o *Account) HasApiLimit() bool {
 	return false
 }
 
-// SetApiLimit gets a reference to the given int32 and assigns it to the ApiLimit field.
-func (o *Account) SetApiLimit(v int32) {
+// SetApiLimit gets a reference to the given int64 and assigns it to the ApiLimit field.
+func (o *Account) SetApiLimit(v int64) {
 	o.ApiLimit = &v
 }
 
 // GetApplicationCount returns the ApplicationCount field value
-func (o *Account) GetApplicationCount() int32 {
+func (o *Account) GetApplicationCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationCount
 }
 
+// GetApplicationCountOk returns a tuple with the ApplicationCount field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetApplicationCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationCount, true
+}
+
 // SetApplicationCount sets field value
-func (o *Account) SetApplicationCount(v int32) {
+func (o *Account) SetApplicationCount(v int64) {
 	o.ApplicationCount = v
 }
 
 // GetUserCount returns the UserCount field value
-func (o *Account) GetUserCount() int32 {
+func (o *Account) GetUserCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserCount
 }
 
+// GetUserCountOk returns a tuple with the UserCount field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetUserCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserCount, true
+}
+
 // SetUserCount sets field value
-func (o *Account) SetUserCount(v int32) {
+func (o *Account) SetUserCount(v int64) {
 	o.UserCount = v
 }
 
 // GetCampaignsActiveCount returns the CampaignsActiveCount field value
-func (o *Account) GetCampaignsActiveCount() int32 {
+func (o *Account) GetCampaignsActiveCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignsActiveCount
 }
 
+// GetCampaignsActiveCountOk returns a tuple with the CampaignsActiveCount field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetCampaignsActiveCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignsActiveCount, true
+}
+
 // SetCampaignsActiveCount sets field value
-func (o *Account) SetCampaignsActiveCount(v int32) {
+func (o *Account) SetCampaignsActiveCount(v int64) {
 	o.CampaignsActiveCount = v
 }
 
 // GetCampaignsInactiveCount returns the CampaignsInactiveCount field value
-func (o *Account) GetCampaignsInactiveCount() int32 {
+func (o *Account) GetCampaignsInactiveCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignsInactiveCount
 }
 
+// GetCampaignsInactiveCountOk returns a tuple with the CampaignsInactiveCount field value
+// and a boolean to check if the value has been set.
+func (o *Account) GetCampaignsInactiveCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignsInactiveCount, true
+}
+
 // SetCampaignsInactiveCount sets field value
-func (o *Account) SetCampaignsInactiveCount(v int32) {
+func (o *Account) SetCampaignsInactiveCount(v int64) {
 	o.CampaignsInactiveCount = v
 }
 
@@ -426,14 +546,13 @@ func (o *Account) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Account) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *Account) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -450,25 +569,97 @@ func (o *Account) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o Account) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["companyName"] = o.CompanyName
+	}
+	if true {
+		toSerialize["domainName"] = o.DomainName
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if true {
+		toSerialize["billingEmail"] = o.BillingEmail
+	}
+	if o.PlanName != nil {
+		toSerialize["planName"] = o.PlanName
+	}
+	if o.PlanExpires != nil {
+		toSerialize["planExpires"] = o.PlanExpires
+	}
+	if o.ApplicationLimit != nil {
+		toSerialize["applicationLimit"] = o.ApplicationLimit
+	}
+	if o.UserLimit != nil {
+		toSerialize["userLimit"] = o.UserLimit
+	}
+	if o.CampaignLimit != nil {
+		toSerialize["campaignLimit"] = o.CampaignLimit
+	}
+	if o.ApiLimit != nil {
+		toSerialize["apiLimit"] = o.ApiLimit
+	}
+	if true {
+		toSerialize["applicationCount"] = o.ApplicationCount
+	}
+	if true {
+		toSerialize["userCount"] = o.UserCount
+	}
+	if true {
+		toSerialize["campaignsActiveCount"] = o.CampaignsActiveCount
+	}
+	if true {
+		toSerialize["campaignsInactiveCount"] = o.CampaignsInactiveCount
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccount struct {
-	Value        Account
-	ExplicitNull bool
+	value *Account
+	isSet bool
+}
+
+func (v NullableAccount) Get() *Account {
+	return v.value
+}
+
+func (v *NullableAccount) Set(val *Account) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccount) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAccount(val *Account) *NullableAccount {
+	return &NullableAccount{value: val, isSet: true}
 }
 
 func (v NullableAccount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

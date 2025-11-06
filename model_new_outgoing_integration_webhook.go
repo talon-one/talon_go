@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,7 +20,26 @@ type NewOutgoingIntegrationWebhook struct {
 	// A description of the webhook.
 	Description *string `json:"description,omitempty"`
 	// IDs of the Applications to which a webhook must be linked.
-	ApplicationIds []int32 `json:"applicationIds"`
+	ApplicationIds []int64 `json:"applicationIds"`
+}
+
+// NewNewOutgoingIntegrationWebhook instantiates a new NewOutgoingIntegrationWebhook object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewOutgoingIntegrationWebhook(title string, applicationIds []int64) *NewOutgoingIntegrationWebhook {
+	this := NewOutgoingIntegrationWebhook{}
+	this.Title = title
+	this.ApplicationIds = applicationIds
+	return &this
+}
+
+// NewNewOutgoingIntegrationWebhookWithDefaults instantiates a new NewOutgoingIntegrationWebhook object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewOutgoingIntegrationWebhookWithDefaults() *NewOutgoingIntegrationWebhook {
+	this := NewOutgoingIntegrationWebhook{}
+	return &this
 }
 
 // GetTitle returns the Title field value
@@ -32,6 +50,15 @@ func (o *NewOutgoingIntegrationWebhook) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *NewOutgoingIntegrationWebhook) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -48,14 +75,13 @@ func (o *NewOutgoingIntegrationWebhook) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewOutgoingIntegrationWebhook) GetDescriptionOk() (string, bool) {
+func (o *NewOutgoingIntegrationWebhook) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -73,39 +99,75 @@ func (o *NewOutgoingIntegrationWebhook) SetDescription(v string) {
 }
 
 // GetApplicationIds returns the ApplicationIds field value
-func (o *NewOutgoingIntegrationWebhook) GetApplicationIds() []int32 {
+func (o *NewOutgoingIntegrationWebhook) GetApplicationIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.ApplicationIds
 }
 
+// GetApplicationIdsOk returns a tuple with the ApplicationIds field value
+// and a boolean to check if the value has been set.
+func (o *NewOutgoingIntegrationWebhook) GetApplicationIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationIds, true
+}
+
 // SetApplicationIds sets field value
-func (o *NewOutgoingIntegrationWebhook) SetApplicationIds(v []int32) {
+func (o *NewOutgoingIntegrationWebhook) SetApplicationIds(v []int64) {
 	o.ApplicationIds = v
 }
 
+func (o NewOutgoingIntegrationWebhook) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["applicationIds"] = o.ApplicationIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewOutgoingIntegrationWebhook struct {
-	Value        NewOutgoingIntegrationWebhook
-	ExplicitNull bool
+	value *NewOutgoingIntegrationWebhook
+	isSet bool
+}
+
+func (v NullableNewOutgoingIntegrationWebhook) Get() *NewOutgoingIntegrationWebhook {
+	return v.value
+}
+
+func (v *NullableNewOutgoingIntegrationWebhook) Set(val *NewOutgoingIntegrationWebhook) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewOutgoingIntegrationWebhook) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewOutgoingIntegrationWebhook) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewOutgoingIntegrationWebhook(val *NewOutgoingIntegrationWebhook) *NullableNewOutgoingIntegrationWebhook {
+	return &NullableNewOutgoingIntegrationWebhook{value: val, isSet: true}
 }
 
 func (v NullableNewOutgoingIntegrationWebhook) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewOutgoingIntegrationWebhook) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

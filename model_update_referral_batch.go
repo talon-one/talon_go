@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -26,7 +25,25 @@ type UpdateReferralBatch struct {
 	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
-	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	UsageLimit *int64 `json:"usageLimit,omitempty"`
+}
+
+// NewUpdateReferralBatch instantiates a new UpdateReferralBatch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateReferralBatch(batchID string) *UpdateReferralBatch {
+	this := UpdateReferralBatch{}
+	this.BatchID = batchID
+	return &this
+}
+
+// NewUpdateReferralBatchWithDefaults instantiates a new UpdateReferralBatch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateReferralBatchWithDefaults() *UpdateReferralBatch {
+	this := UpdateReferralBatch{}
+	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -38,14 +55,13 @@ func (o *UpdateReferralBatch) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferralBatch) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *UpdateReferralBatch) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -72,6 +88,15 @@ func (o *UpdateReferralBatch) GetBatchID() string {
 	return o.BatchID
 }
 
+// GetBatchIDOk returns a tuple with the BatchID field value
+// and a boolean to check if the value has been set.
+func (o *UpdateReferralBatch) GetBatchIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BatchID, true
+}
+
 // SetBatchID sets field value
 func (o *UpdateReferralBatch) SetBatchID(v string) {
 	o.BatchID = v
@@ -86,14 +111,13 @@ func (o *UpdateReferralBatch) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferralBatch) GetStartDateOk() (time.Time, bool) {
+func (o *UpdateReferralBatch) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -119,14 +143,13 @@ func (o *UpdateReferralBatch) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferralBatch) GetExpiryDateOk() (time.Time, bool) {
+func (o *UpdateReferralBatch) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -144,22 +167,21 @@ func (o *UpdateReferralBatch) SetExpiryDate(v time.Time) {
 }
 
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
-func (o *UpdateReferralBatch) GetUsageLimit() int32 {
+func (o *UpdateReferralBatch) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsageLimit
 }
 
-// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferralBatch) GetUsageLimitOk() (int32, bool) {
+func (o *UpdateReferralBatch) GetUsageLimitOk() (*int64, bool) {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsageLimit, true
+	return o.UsageLimit, true
 }
 
 // HasUsageLimit returns a boolean if a field has been set.
@@ -171,30 +193,63 @@ func (o *UpdateReferralBatch) HasUsageLimit() bool {
 	return false
 }
 
-// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
-func (o *UpdateReferralBatch) SetUsageLimit(v int32) {
+// SetUsageLimit gets a reference to the given int64 and assigns it to the UsageLimit field.
+func (o *UpdateReferralBatch) SetUsageLimit(v int64) {
 	o.UsageLimit = &v
 }
 
+func (o UpdateReferralBatch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["batchID"] = o.BatchID
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.UsageLimit != nil {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateReferralBatch struct {
-	Value        UpdateReferralBatch
-	ExplicitNull bool
+	value *UpdateReferralBatch
+	isSet bool
+}
+
+func (v NullableUpdateReferralBatch) Get() *UpdateReferralBatch {
+	return v.value
+}
+
+func (v *NullableUpdateReferralBatch) Set(val *UpdateReferralBatch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateReferralBatch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateReferralBatch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateReferralBatch(val *UpdateReferralBatch) *NullableUpdateReferralBatch {
+	return &NullableUpdateReferralBatch{value: val, isSet: true}
 }
 
 func (v NullableUpdateReferralBatch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateReferralBatch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

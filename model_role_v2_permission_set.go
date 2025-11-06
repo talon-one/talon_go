@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type RoleV2PermissionSet struct {
 	LogicalOperations []string `json:"logicalOperations"`
 }
 
+// NewRoleV2PermissionSet instantiates a new RoleV2PermissionSet object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRoleV2PermissionSet(name string, logicalOperations []string) *RoleV2PermissionSet {
+	this := RoleV2PermissionSet{}
+	this.Name = name
+	this.LogicalOperations = logicalOperations
+	return &this
+}
+
+// NewRoleV2PermissionSetWithDefaults instantiates a new RoleV2PermissionSet object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleV2PermissionSetWithDefaults() *RoleV2PermissionSet {
+	this := RoleV2PermissionSet{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *RoleV2PermissionSet) GetName() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *RoleV2PermissionSet) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *RoleV2PermissionSet) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -47,30 +74,63 @@ func (o *RoleV2PermissionSet) GetLogicalOperations() []string {
 	return o.LogicalOperations
 }
 
+// GetLogicalOperationsOk returns a tuple with the LogicalOperations field value
+// and a boolean to check if the value has been set.
+func (o *RoleV2PermissionSet) GetLogicalOperationsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LogicalOperations, true
+}
+
 // SetLogicalOperations sets field value
 func (o *RoleV2PermissionSet) SetLogicalOperations(v []string) {
 	o.LogicalOperations = v
 }
 
+func (o RoleV2PermissionSet) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["logicalOperations"] = o.LogicalOperations
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleV2PermissionSet struct {
-	Value        RoleV2PermissionSet
-	ExplicitNull bool
+	value *RoleV2PermissionSet
+	isSet bool
+}
+
+func (v NullableRoleV2PermissionSet) Get() *RoleV2PermissionSet {
+	return v.value
+}
+
+func (v *NullableRoleV2PermissionSet) Set(val *RoleV2PermissionSet) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleV2PermissionSet) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleV2PermissionSet) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRoleV2PermissionSet(val *RoleV2PermissionSet) *NullableRoleV2PermissionSet {
+	return &NullableRoleV2PermissionSet{value: val, isSet: true}
 }
 
 func (v NullableRoleV2PermissionSet) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleV2PermissionSet) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

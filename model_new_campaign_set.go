@@ -10,46 +10,83 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewCampaignSet struct for NewCampaignSet
 type NewCampaignSet struct {
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// Version of the campaign set.
-	Version int32                 `json:"version"`
+	Version int64                 `json:"version"`
 	Set     CampaignSetBranchNode `json:"set"`
 }
 
+// NewNewCampaignSet instantiates a new NewCampaignSet object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewCampaignSet(applicationId int64, version int64, set CampaignSetBranchNode) *NewCampaignSet {
+	this := NewCampaignSet{}
+	this.ApplicationId = applicationId
+	this.Version = version
+	this.Set = set
+	return &this
+}
+
+// NewNewCampaignSetWithDefaults instantiates a new NewCampaignSet object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCampaignSetWithDefaults() *NewCampaignSet {
+	this := NewCampaignSet{}
+	return &this
+}
+
 // GetApplicationId returns the ApplicationId field value
-func (o *NewCampaignSet) GetApplicationId() int32 {
+func (o *NewCampaignSet) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *NewCampaignSet) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *NewCampaignSet) SetApplicationId(v int32) {
+func (o *NewCampaignSet) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetVersion returns the Version field value
-func (o *NewCampaignSet) GetVersion() int32 {
+func (o *NewCampaignSet) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Version
 }
 
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *NewCampaignSet) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
 // SetVersion sets field value
-func (o *NewCampaignSet) SetVersion(v int32) {
+func (o *NewCampaignSet) SetVersion(v int64) {
 	o.Version = v
 }
 
@@ -63,30 +100,66 @@ func (o *NewCampaignSet) GetSet() CampaignSetBranchNode {
 	return o.Set
 }
 
+// GetSetOk returns a tuple with the Set field value
+// and a boolean to check if the value has been set.
+func (o *NewCampaignSet) GetSetOk() (*CampaignSetBranchNode, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Set, true
+}
+
 // SetSet sets field value
 func (o *NewCampaignSet) SetSet(v CampaignSetBranchNode) {
 	o.Set = v
 }
 
+func (o NewCampaignSet) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["set"] = o.Set
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCampaignSet struct {
-	Value        NewCampaignSet
-	ExplicitNull bool
+	value *NewCampaignSet
+	isSet bool
+}
+
+func (v NullableNewCampaignSet) Get() *NewCampaignSet {
+	return v.value
+}
+
+func (v *NullableNewCampaignSet) Set(val *NewCampaignSet) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCampaignSet) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCampaignSet) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewCampaignSet(val *NewCampaignSet) *NullableNewCampaignSet {
+	return &NullableNewCampaignSet{value: val, isSet: true}
 }
 
 func (v NullableNewCampaignSet) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCampaignSet) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

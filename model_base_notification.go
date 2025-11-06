@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,9 +21,34 @@ type BaseNotification struct {
 	Enabled *bool                   `json:"enabled,omitempty"`
 	Webhook BaseNotificationWebhook `json:"webhook"`
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The notification type.
 	Type string `json:"type"`
+}
+
+// NewBaseNotification instantiates a new BaseNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBaseNotification(policy map[string]interface{}, webhook BaseNotificationWebhook, id int64, type_ string) *BaseNotification {
+	this := BaseNotification{}
+	this.Policy = policy
+	var enabled bool = true
+	this.Enabled = &enabled
+	this.Webhook = webhook
+	this.Id = id
+	this.Type = type_
+	return &this
+}
+
+// NewBaseNotificationWithDefaults instantiates a new BaseNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBaseNotificationWithDefaults() *BaseNotification {
+	this := BaseNotification{}
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
 }
 
 // GetPolicy returns the Policy field value
@@ -35,6 +59,15 @@ func (o *BaseNotification) GetPolicy() map[string]interface{} {
 	}
 
 	return o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotification) GetPolicyOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Policy, true
 }
 
 // SetPolicy sets field value
@@ -51,14 +84,13 @@ func (o *BaseNotification) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseNotification) GetEnabledOk() (bool, bool) {
+func (o *BaseNotification) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -85,23 +117,41 @@ func (o *BaseNotification) GetWebhook() BaseNotificationWebhook {
 	return o.Webhook
 }
 
+// GetWebhookOk returns a tuple with the Webhook field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotification) GetWebhookOk() (*BaseNotificationWebhook, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Webhook, true
+}
+
 // SetWebhook sets field value
 func (o *BaseNotification) SetWebhook(v BaseNotificationWebhook) {
 	o.Webhook = v
 }
 
 // GetId returns the Id field value
-func (o *BaseNotification) GetId() int32 {
+func (o *BaseNotification) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotification) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *BaseNotification) SetId(v int32) {
+func (o *BaseNotification) SetId(v int64) {
 	o.Id = v
 }
 
@@ -115,30 +165,72 @@ func (o *BaseNotification) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *BaseNotification) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *BaseNotification) SetType(v string) {
 	o.Type = v
 }
 
+func (o BaseNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["policy"] = o.Policy
+	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["webhook"] = o.Webhook
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBaseNotification struct {
-	Value        BaseNotification
-	ExplicitNull bool
+	value *BaseNotification
+	isSet bool
+}
+
+func (v NullableBaseNotification) Get() *BaseNotification {
+	return v.value
+}
+
+func (v *NullableBaseNotification) Set(val *BaseNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBaseNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBaseNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBaseNotification(val *BaseNotification) *NullableBaseNotification {
+	return &NullableBaseNotification{value: val, isSet: true}
 }
 
 func (v NullableBaseNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBaseNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

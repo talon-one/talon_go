@@ -10,67 +10,129 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // GetIntegrationCouponRequest struct for GetIntegrationCouponRequest
 type GetIntegrationCouponRequest struct {
 	// A list of IDs of the campaigns to get coupons from.
-	CampaignIds []int32 `json:"campaignIds"`
+	CampaignIds []int64 `json:"campaignIds"`
 	// The maximum number of coupons included in the response.
-	Limit int32 `json:"limit"`
+	Limit int64 `json:"limit"`
+}
+
+// NewGetIntegrationCouponRequest instantiates a new GetIntegrationCouponRequest object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewGetIntegrationCouponRequest(campaignIds []int64, limit int64) *GetIntegrationCouponRequest {
+	this := GetIntegrationCouponRequest{}
+	this.CampaignIds = campaignIds
+	this.Limit = limit
+	return &this
+}
+
+// NewGetIntegrationCouponRequestWithDefaults instantiates a new GetIntegrationCouponRequest object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetIntegrationCouponRequestWithDefaults() *GetIntegrationCouponRequest {
+	this := GetIntegrationCouponRequest{}
+	var limit int64 = 10
+	this.Limit = limit
+	return &this
 }
 
 // GetCampaignIds returns the CampaignIds field value
-func (o *GetIntegrationCouponRequest) GetCampaignIds() []int32 {
+func (o *GetIntegrationCouponRequest) GetCampaignIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.CampaignIds
 }
 
+// GetCampaignIdsOk returns a tuple with the CampaignIds field value
+// and a boolean to check if the value has been set.
+func (o *GetIntegrationCouponRequest) GetCampaignIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignIds, true
+}
+
 // SetCampaignIds sets field value
-func (o *GetIntegrationCouponRequest) SetCampaignIds(v []int32) {
+func (o *GetIntegrationCouponRequest) SetCampaignIds(v []int64) {
 	o.CampaignIds = v
 }
 
 // GetLimit returns the Limit field value
-func (o *GetIntegrationCouponRequest) GetLimit() int32 {
+func (o *GetIntegrationCouponRequest) GetLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *GetIntegrationCouponRequest) GetLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
-func (o *GetIntegrationCouponRequest) SetLimit(v int32) {
+func (o *GetIntegrationCouponRequest) SetLimit(v int64) {
 	o.Limit = v
 }
 
+func (o GetIntegrationCouponRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignIds"] = o.CampaignIds
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGetIntegrationCouponRequest struct {
-	Value        GetIntegrationCouponRequest
-	ExplicitNull bool
+	value *GetIntegrationCouponRequest
+	isSet bool
+}
+
+func (v NullableGetIntegrationCouponRequest) Get() *GetIntegrationCouponRequest {
+	return v.value
+}
+
+func (v *NullableGetIntegrationCouponRequest) Set(val *GetIntegrationCouponRequest) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGetIntegrationCouponRequest) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGetIntegrationCouponRequest) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableGetIntegrationCouponRequest(val *GetIntegrationCouponRequest) *NullableGetIntegrationCouponRequest {
+	return &NullableGetIntegrationCouponRequest{value: val, isSet: true}
 }
 
 func (v NullableGetIntegrationCouponRequest) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGetIntegrationCouponRequest) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

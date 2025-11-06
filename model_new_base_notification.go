@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,6 +22,29 @@ type NewBaseNotification struct {
 	Webhook NewNotificationWebhook `json:"webhook"`
 }
 
+// NewNewBaseNotification instantiates a new NewBaseNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewBaseNotification(policy map[string]interface{}, webhook NewNotificationWebhook) *NewBaseNotification {
+	this := NewBaseNotification{}
+	this.Policy = policy
+	var enabled bool = true
+	this.Enabled = &enabled
+	this.Webhook = webhook
+	return &this
+}
+
+// NewNewBaseNotificationWithDefaults instantiates a new NewBaseNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewBaseNotificationWithDefaults() *NewBaseNotification {
+	this := NewBaseNotification{}
+	var enabled bool = true
+	this.Enabled = &enabled
+	return &this
+}
+
 // GetPolicy returns the Policy field value
 func (o *NewBaseNotification) GetPolicy() map[string]interface{} {
 	if o == nil {
@@ -31,6 +53,15 @@ func (o *NewBaseNotification) GetPolicy() map[string]interface{} {
 	}
 
 	return o.Policy
+}
+
+// GetPolicyOk returns a tuple with the Policy field value
+// and a boolean to check if the value has been set.
+func (o *NewBaseNotification) GetPolicyOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Policy, true
 }
 
 // SetPolicy sets field value
@@ -47,14 +78,13 @@ func (o *NewBaseNotification) GetEnabled() bool {
 	return *o.Enabled
 }
 
-// GetEnabledOk returns a tuple with the Enabled field value if set, zero value otherwise
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewBaseNotification) GetEnabledOk() (bool, bool) {
+func (o *NewBaseNotification) GetEnabledOk() (*bool, bool) {
 	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Enabled, true
+	return o.Enabled, true
 }
 
 // HasEnabled returns a boolean if a field has been set.
@@ -81,30 +111,66 @@ func (o *NewBaseNotification) GetWebhook() NewNotificationWebhook {
 	return o.Webhook
 }
 
+// GetWebhookOk returns a tuple with the Webhook field value
+// and a boolean to check if the value has been set.
+func (o *NewBaseNotification) GetWebhookOk() (*NewNotificationWebhook, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Webhook, true
+}
+
 // SetWebhook sets field value
 func (o *NewBaseNotification) SetWebhook(v NewNotificationWebhook) {
 	o.Webhook = v
 }
 
+func (o NewBaseNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["policy"] = o.Policy
+	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["webhook"] = o.Webhook
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewBaseNotification struct {
-	Value        NewBaseNotification
-	ExplicitNull bool
+	value *NewBaseNotification
+	isSet bool
+}
+
+func (v NullableNewBaseNotification) Get() *NewBaseNotification {
+	return v.value
+}
+
+func (v *NullableNewBaseNotification) Set(val *NewBaseNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewBaseNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewBaseNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewBaseNotification(val *NewBaseNotification) *NullableNewBaseNotification {
+	return &NullableNewBaseNotification{value: val, isSet: true}
 }
 
 func (v NullableNewBaseNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewBaseNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type TransferLoyaltyCard struct {
 	BlockReason *string `json:"blockReason,omitempty"`
 }
 
+// NewTransferLoyaltyCard instantiates a new TransferLoyaltyCard object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTransferLoyaltyCard(newCardIdentifier string) *TransferLoyaltyCard {
+	this := TransferLoyaltyCard{}
+	this.NewCardIdentifier = newCardIdentifier
+	return &this
+}
+
+// NewTransferLoyaltyCardWithDefaults instantiates a new TransferLoyaltyCard object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTransferLoyaltyCardWithDefaults() *TransferLoyaltyCard {
+	this := TransferLoyaltyCard{}
+	return &this
+}
+
 // GetNewCardIdentifier returns the NewCardIdentifier field value
 func (o *TransferLoyaltyCard) GetNewCardIdentifier() string {
 	if o == nil {
@@ -30,6 +47,15 @@ func (o *TransferLoyaltyCard) GetNewCardIdentifier() string {
 	}
 
 	return o.NewCardIdentifier
+}
+
+// GetNewCardIdentifierOk returns a tuple with the NewCardIdentifier field value
+// and a boolean to check if the value has been set.
+func (o *TransferLoyaltyCard) GetNewCardIdentifierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NewCardIdentifier, true
 }
 
 // SetNewCardIdentifier sets field value
@@ -46,14 +72,13 @@ func (o *TransferLoyaltyCard) GetBlockReason() string {
 	return *o.BlockReason
 }
 
-// GetBlockReasonOk returns a tuple with the BlockReason field value if set, zero value otherwise
+// GetBlockReasonOk returns a tuple with the BlockReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TransferLoyaltyCard) GetBlockReasonOk() (string, bool) {
+func (o *TransferLoyaltyCard) GetBlockReasonOk() (*string, bool) {
 	if o == nil || o.BlockReason == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BlockReason, true
+	return o.BlockReason, true
 }
 
 // HasBlockReason returns a boolean if a field has been set.
@@ -70,25 +95,49 @@ func (o *TransferLoyaltyCard) SetBlockReason(v string) {
 	o.BlockReason = &v
 }
 
+func (o TransferLoyaltyCard) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["newCardIdentifier"] = o.NewCardIdentifier
+	}
+	if o.BlockReason != nil {
+		toSerialize["blockReason"] = o.BlockReason
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTransferLoyaltyCard struct {
-	Value        TransferLoyaltyCard
-	ExplicitNull bool
+	value *TransferLoyaltyCard
+	isSet bool
+}
+
+func (v NullableTransferLoyaltyCard) Get() *TransferLoyaltyCard {
+	return v.value
+}
+
+func (v *NullableTransferLoyaltyCard) Set(val *TransferLoyaltyCard) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTransferLoyaltyCard) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTransferLoyaltyCard) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTransferLoyaltyCard(val *TransferLoyaltyCard) *NullableTransferLoyaltyCard {
+	return &NullableTransferLoyaltyCard{value: val, isSet: true}
 }
 
 func (v NullableTransferLoyaltyCard) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTransferLoyaltyCard) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

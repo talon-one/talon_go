@@ -10,25 +10,41 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// UpdateApplicationCif struct for UpdateApplicationCif
-type UpdateApplicationCif struct {
+// UpdateApplicationCIF struct for UpdateApplicationCIF
+type UpdateApplicationCIF struct {
 	// A short description of the Application cart item filter.
 	Description *string `json:"description,omitempty"`
 	// The ID of the expression that the Application cart item filter uses.
-	ActiveExpressionId *int32 `json:"activeExpressionId,omitempty"`
+	ActiveExpressionId *int64 `json:"activeExpressionId,omitempty"`
 	// The ID of the user who last updated the Application cart item filter.
-	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int64 `json:"modifiedBy,omitempty"`
 	// Timestamp of the most recent update to the Application cart item filter.
 	Modified *time.Time `json:"modified,omitempty"`
 }
 
+// NewUpdateApplicationCIF instantiates a new UpdateApplicationCIF object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateApplicationCIF() *UpdateApplicationCIF {
+	this := UpdateApplicationCIF{}
+	return &this
+}
+
+// NewUpdateApplicationCIFWithDefaults instantiates a new UpdateApplicationCIF object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateApplicationCIFWithDefaults() *UpdateApplicationCIF {
+	this := UpdateApplicationCIF{}
+	return &this
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
-func (o *UpdateApplicationCif) GetDescription() string {
+func (o *UpdateApplicationCIF) GetDescription() string {
 	if o == nil || o.Description == nil {
 		var ret string
 		return ret
@@ -36,18 +52,17 @@ func (o *UpdateApplicationCif) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateApplicationCif) GetDescriptionOk() (string, bool) {
+func (o *UpdateApplicationCIF) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
-func (o *UpdateApplicationCif) HasDescription() bool {
+func (o *UpdateApplicationCIF) HasDescription() bool {
 	if o != nil && o.Description != nil {
 		return true
 	}
@@ -56,31 +71,30 @@ func (o *UpdateApplicationCif) HasDescription() bool {
 }
 
 // SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *UpdateApplicationCif) SetDescription(v string) {
+func (o *UpdateApplicationCIF) SetDescription(v string) {
 	o.Description = &v
 }
 
 // GetActiveExpressionId returns the ActiveExpressionId field value if set, zero value otherwise.
-func (o *UpdateApplicationCif) GetActiveExpressionId() int32 {
+func (o *UpdateApplicationCIF) GetActiveExpressionId() int64 {
 	if o == nil || o.ActiveExpressionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveExpressionId
 }
 
-// GetActiveExpressionIdOk returns a tuple with the ActiveExpressionId field value if set, zero value otherwise
+// GetActiveExpressionIdOk returns a tuple with the ActiveExpressionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateApplicationCif) GetActiveExpressionIdOk() (int32, bool) {
+func (o *UpdateApplicationCIF) GetActiveExpressionIdOk() (*int64, bool) {
 	if o == nil || o.ActiveExpressionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveExpressionId, true
+	return o.ActiveExpressionId, true
 }
 
 // HasActiveExpressionId returns a boolean if a field has been set.
-func (o *UpdateApplicationCif) HasActiveExpressionId() bool {
+func (o *UpdateApplicationCIF) HasActiveExpressionId() bool {
 	if o != nil && o.ActiveExpressionId != nil {
 		return true
 	}
@@ -88,32 +102,31 @@ func (o *UpdateApplicationCif) HasActiveExpressionId() bool {
 	return false
 }
 
-// SetActiveExpressionId gets a reference to the given int32 and assigns it to the ActiveExpressionId field.
-func (o *UpdateApplicationCif) SetActiveExpressionId(v int32) {
+// SetActiveExpressionId gets a reference to the given int64 and assigns it to the ActiveExpressionId field.
+func (o *UpdateApplicationCIF) SetActiveExpressionId(v int64) {
 	o.ActiveExpressionId = &v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *UpdateApplicationCif) GetModifiedBy() int32 {
+func (o *UpdateApplicationCIF) GetModifiedBy() int64 {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ModifiedBy
 }
 
-// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, zero value otherwise
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateApplicationCif) GetModifiedByOk() (int32, bool) {
+func (o *UpdateApplicationCIF) GetModifiedByOk() (*int64, bool) {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedBy, true
+	return o.ModifiedBy, true
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
-func (o *UpdateApplicationCif) HasModifiedBy() bool {
+func (o *UpdateApplicationCIF) HasModifiedBy() bool {
 	if o != nil && o.ModifiedBy != nil {
 		return true
 	}
@@ -121,13 +134,13 @@ func (o *UpdateApplicationCif) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
-func (o *UpdateApplicationCif) SetModifiedBy(v int32) {
+// SetModifiedBy gets a reference to the given int64 and assigns it to the ModifiedBy field.
+func (o *UpdateApplicationCIF) SetModifiedBy(v int64) {
 	o.ModifiedBy = &v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *UpdateApplicationCif) GetModified() time.Time {
+func (o *UpdateApplicationCIF) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
 		var ret time.Time
 		return ret
@@ -135,18 +148,17 @@ func (o *UpdateApplicationCif) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateApplicationCif) GetModifiedOk() (time.Time, bool) {
+func (o *UpdateApplicationCIF) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
-func (o *UpdateApplicationCif) HasModified() bool {
+func (o *UpdateApplicationCIF) HasModified() bool {
 	if o != nil && o.Modified != nil {
 		return true
 	}
@@ -155,29 +167,59 @@ func (o *UpdateApplicationCif) HasModified() bool {
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *UpdateApplicationCif) SetModified(v time.Time) {
+func (o *UpdateApplicationCIF) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
-type NullableUpdateApplicationCif struct {
-	Value        UpdateApplicationCif
-	ExplicitNull bool
+func (o UpdateApplicationCIF) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.ActiveExpressionId != nil {
+		toSerialize["activeExpressionId"] = o.ActiveExpressionId
+	}
+	if o.ModifiedBy != nil {
+		toSerialize["modifiedBy"] = o.ModifiedBy
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableUpdateApplicationCif) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableUpdateApplicationCIF struct {
+	value *UpdateApplicationCIF
+	isSet bool
 }
 
-func (v *NullableUpdateApplicationCif) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableUpdateApplicationCIF) Get() *UpdateApplicationCIF {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableUpdateApplicationCIF) Set(val *UpdateApplicationCIF) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateApplicationCIF) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateApplicationCIF) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateApplicationCIF(val *UpdateApplicationCIF) *NullableUpdateApplicationCIF {
+	return &NullableUpdateApplicationCIF{value: val, isSet: true}
+}
+
+func (v NullableUpdateApplicationCIF) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableUpdateApplicationCIF) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

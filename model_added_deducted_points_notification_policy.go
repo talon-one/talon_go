@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type AddedDeductedPointsNotificationPolicy struct {
 	Scopes []string `json:"scopes"`
 }
 
+// NewAddedDeductedPointsNotificationPolicy instantiates a new AddedDeductedPointsNotificationPolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAddedDeductedPointsNotificationPolicy(name string, scopes []string) *AddedDeductedPointsNotificationPolicy {
+	this := AddedDeductedPointsNotificationPolicy{}
+	this.Name = name
+	this.Scopes = scopes
+	return &this
+}
+
+// NewAddedDeductedPointsNotificationPolicyWithDefaults instantiates a new AddedDeductedPointsNotificationPolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddedDeductedPointsNotificationPolicyWithDefaults() *AddedDeductedPointsNotificationPolicy {
+	this := AddedDeductedPointsNotificationPolicy{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *AddedDeductedPointsNotificationPolicy) GetName() string {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *AddedDeductedPointsNotificationPolicy) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotificationPolicy) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -46,30 +73,63 @@ func (o *AddedDeductedPointsNotificationPolicy) GetScopes() []string {
 	return o.Scopes
 }
 
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotificationPolicy) GetScopesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Scopes, true
+}
+
 // SetScopes sets field value
 func (o *AddedDeductedPointsNotificationPolicy) SetScopes(v []string) {
 	o.Scopes = v
 }
 
+func (o AddedDeductedPointsNotificationPolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["scopes"] = o.Scopes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddedDeductedPointsNotificationPolicy struct {
-	Value        AddedDeductedPointsNotificationPolicy
-	ExplicitNull bool
+	value *AddedDeductedPointsNotificationPolicy
+	isSet bool
+}
+
+func (v NullableAddedDeductedPointsNotificationPolicy) Get() *AddedDeductedPointsNotificationPolicy {
+	return v.value
+}
+
+func (v *NullableAddedDeductedPointsNotificationPolicy) Set(val *AddedDeductedPointsNotificationPolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddedDeductedPointsNotificationPolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddedDeductedPointsNotificationPolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAddedDeductedPointsNotificationPolicy(val *AddedDeductedPointsNotificationPolicy) *NullableAddedDeductedPointsNotificationPolicy {
+	return &NullableAddedDeductedPointsNotificationPolicy{value: val, isSet: true}
 }
 
 func (v NullableAddedDeductedPointsNotificationPolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddedDeductedPointsNotificationPolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // LoyaltyCardBatchResponse struct for LoyaltyCardBatchResponse
 type LoyaltyCardBatchResponse struct {
 	// Number of loyalty cards in the batch.
-	NumberOfCardsGenerated int32 `json:"numberOfCardsGenerated"`
+	NumberOfCardsGenerated int64 `json:"numberOfCardsGenerated"`
 	// ID of the loyalty card batch.
 	BatchId string `json:"batchId"`
 }
 
+// NewLoyaltyCardBatchResponse instantiates a new LoyaltyCardBatchResponse object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyCardBatchResponse(numberOfCardsGenerated int64, batchId string) *LoyaltyCardBatchResponse {
+	this := LoyaltyCardBatchResponse{}
+	this.NumberOfCardsGenerated = numberOfCardsGenerated
+	this.BatchId = batchId
+	return &this
+}
+
+// NewLoyaltyCardBatchResponseWithDefaults instantiates a new LoyaltyCardBatchResponse object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyCardBatchResponseWithDefaults() *LoyaltyCardBatchResponse {
+	this := LoyaltyCardBatchResponse{}
+	return &this
+}
+
 // GetNumberOfCardsGenerated returns the NumberOfCardsGenerated field value
-func (o *LoyaltyCardBatchResponse) GetNumberOfCardsGenerated() int32 {
+func (o *LoyaltyCardBatchResponse) GetNumberOfCardsGenerated() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.NumberOfCardsGenerated
 }
 
+// GetNumberOfCardsGeneratedOk returns a tuple with the NumberOfCardsGenerated field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardBatchResponse) GetNumberOfCardsGeneratedOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NumberOfCardsGenerated, true
+}
+
 // SetNumberOfCardsGenerated sets field value
-func (o *LoyaltyCardBatchResponse) SetNumberOfCardsGenerated(v int32) {
+func (o *LoyaltyCardBatchResponse) SetNumberOfCardsGenerated(v int64) {
 	o.NumberOfCardsGenerated = v
 }
 
@@ -47,30 +74,63 @@ func (o *LoyaltyCardBatchResponse) GetBatchId() string {
 	return o.BatchId
 }
 
+// GetBatchIdOk returns a tuple with the BatchId field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardBatchResponse) GetBatchIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BatchId, true
+}
+
 // SetBatchId sets field value
 func (o *LoyaltyCardBatchResponse) SetBatchId(v string) {
 	o.BatchId = v
 }
 
+func (o LoyaltyCardBatchResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["numberOfCardsGenerated"] = o.NumberOfCardsGenerated
+	}
+	if true {
+		toSerialize["batchId"] = o.BatchId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyCardBatchResponse struct {
-	Value        LoyaltyCardBatchResponse
-	ExplicitNull bool
+	value *LoyaltyCardBatchResponse
+	isSet bool
+}
+
+func (v NullableLoyaltyCardBatchResponse) Get() *LoyaltyCardBatchResponse {
+	return v.value
+}
+
+func (v *NullableLoyaltyCardBatchResponse) Set(val *LoyaltyCardBatchResponse) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyCardBatchResponse) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyCardBatchResponse) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyCardBatchResponse(val *LoyaltyCardBatchResponse) *NullableLoyaltyCardBatchResponse {
+	return &NullableLoyaltyCardBatchResponse{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyCardBatchResponse) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyCardBatchResponse) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

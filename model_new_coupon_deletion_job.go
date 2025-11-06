@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewCouponDeletionJob struct for NewCouponDeletionJob
 type NewCouponDeletionJob struct {
 	Filters CouponDeletionFilters `json:"filters"`
+}
+
+// NewNewCouponDeletionJob instantiates a new NewCouponDeletionJob object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewCouponDeletionJob(filters CouponDeletionFilters) *NewCouponDeletionJob {
+	this := NewCouponDeletionJob{}
+	this.Filters = filters
+	return &this
+}
+
+// NewNewCouponDeletionJobWithDefaults instantiates a new NewCouponDeletionJob object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCouponDeletionJobWithDefaults() *NewCouponDeletionJob {
+	this := NewCouponDeletionJob{}
+	return &this
 }
 
 // GetFilters returns the Filters field value
@@ -29,30 +46,60 @@ func (o *NewCouponDeletionJob) GetFilters() CouponDeletionFilters {
 	return o.Filters
 }
 
+// GetFiltersOk returns a tuple with the Filters field value
+// and a boolean to check if the value has been set.
+func (o *NewCouponDeletionJob) GetFiltersOk() (*CouponDeletionFilters, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filters, true
+}
+
 // SetFilters sets field value
 func (o *NewCouponDeletionJob) SetFilters(v CouponDeletionFilters) {
 	o.Filters = v
 }
 
+func (o NewCouponDeletionJob) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["filters"] = o.Filters
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCouponDeletionJob struct {
-	Value        NewCouponDeletionJob
-	ExplicitNull bool
+	value *NewCouponDeletionJob
+	isSet bool
+}
+
+func (v NullableNewCouponDeletionJob) Get() *NewCouponDeletionJob {
+	return v.value
+}
+
+func (v *NullableNewCouponDeletionJob) Set(val *NewCouponDeletionJob) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCouponDeletionJob) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCouponDeletionJob) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewCouponDeletionJob(val *NewCouponDeletionJob) *NullableNewCouponDeletionJob {
+	return &NullableNewCouponDeletionJob{value: val, isSet: true}
 }
 
 func (v NullableNewCouponDeletionJob) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCouponDeletionJob) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

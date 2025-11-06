@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,7 +20,7 @@ type CreateTemplateCampaign struct {
 	// A detailed description of the campaign.
 	Description *string `json:"description,omitempty"`
 	// The ID of the Campaign Template which will be used in order to create the Campaign.
-	TemplateId int32 `json:"templateId"`
+	TemplateId int64 `json:"templateId"`
 	// Custom Campaign Attributes. If the Campaign Template defines the same values, they will be overridden.
 	CampaignAttributesOverrides *map[string]interface{} `json:"campaignAttributesOverrides,omitempty"`
 	// Actual values to replace the template placeholder values in the Ruleset bindings. Values for all Template Parameters must be provided.
@@ -29,13 +28,32 @@ type CreateTemplateCampaign struct {
 	// Limits for this Campaign. If the Campaign Template or Application define default values for the same limits, they will be overridden.
 	LimitOverrides *[]LimitConfig `json:"limitOverrides,omitempty"`
 	// The IDs of the [campaign groups](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this campaign belongs to.
-	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
+	CampaignGroups *[]int64 `json:"campaignGroups,omitempty"`
 	// A list of tags for the campaign. If the campaign template has tags, they will be overridden by this list.
 	Tags *[]string `json:"tags,omitempty"`
 	// The ID of the campaign evaluation group the campaign belongs to.
-	EvaluationGroupId *int32 `json:"evaluationGroupId,omitempty"`
+	EvaluationGroupId *int64 `json:"evaluationGroupId,omitempty"`
 	// A list of store IDs that are linked to the campaign.  **Note:** Campaigns with linked store IDs will only be evaluated when there is a [customer session update](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2) that references a linked store.
-	LinkedStoreIds *[]int32 `json:"linkedStoreIds,omitempty"`
+	LinkedStoreIds *[]int64 `json:"linkedStoreIds,omitempty"`
+}
+
+// NewCreateTemplateCampaign instantiates a new CreateTemplateCampaign object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateTemplateCampaign(name string, templateId int64) *CreateTemplateCampaign {
+	this := CreateTemplateCampaign{}
+	this.Name = name
+	this.TemplateId = templateId
+	return &this
+}
+
+// NewCreateTemplateCampaignWithDefaults instantiates a new CreateTemplateCampaign object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateTemplateCampaignWithDefaults() *CreateTemplateCampaign {
+	this := CreateTemplateCampaign{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -46,6 +64,15 @@ func (o *CreateTemplateCampaign) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateTemplateCampaign) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -62,14 +89,13 @@ func (o *CreateTemplateCampaign) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetDescriptionOk() (string, bool) {
+func (o *CreateTemplateCampaign) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -87,17 +113,26 @@ func (o *CreateTemplateCampaign) SetDescription(v string) {
 }
 
 // GetTemplateId returns the TemplateId field value
-func (o *CreateTemplateCampaign) GetTemplateId() int32 {
+func (o *CreateTemplateCampaign) GetTemplateId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TemplateId
 }
 
+// GetTemplateIdOk returns a tuple with the TemplateId field value
+// and a boolean to check if the value has been set.
+func (o *CreateTemplateCampaign) GetTemplateIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TemplateId, true
+}
+
 // SetTemplateId sets field value
-func (o *CreateTemplateCampaign) SetTemplateId(v int32) {
+func (o *CreateTemplateCampaign) SetTemplateId(v int64) {
 	o.TemplateId = v
 }
 
@@ -110,14 +145,13 @@ func (o *CreateTemplateCampaign) GetCampaignAttributesOverrides() map[string]int
 	return *o.CampaignAttributesOverrides
 }
 
-// GetCampaignAttributesOverridesOk returns a tuple with the CampaignAttributesOverrides field value if set, zero value otherwise
+// GetCampaignAttributesOverridesOk returns a tuple with the CampaignAttributesOverrides field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetCampaignAttributesOverridesOk() (map[string]interface{}, bool) {
+func (o *CreateTemplateCampaign) GetCampaignAttributesOverridesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.CampaignAttributesOverrides == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignAttributesOverrides, true
+	return o.CampaignAttributesOverrides, true
 }
 
 // HasCampaignAttributesOverrides returns a boolean if a field has been set.
@@ -143,14 +177,13 @@ func (o *CreateTemplateCampaign) GetTemplateParamValues() []Binding {
 	return *o.TemplateParamValues
 }
 
-// GetTemplateParamValuesOk returns a tuple with the TemplateParamValues field value if set, zero value otherwise
+// GetTemplateParamValuesOk returns a tuple with the TemplateParamValues field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetTemplateParamValuesOk() ([]Binding, bool) {
+func (o *CreateTemplateCampaign) GetTemplateParamValuesOk() (*[]Binding, bool) {
 	if o == nil || o.TemplateParamValues == nil {
-		var ret []Binding
-		return ret, false
+		return nil, false
 	}
-	return *o.TemplateParamValues, true
+	return o.TemplateParamValues, true
 }
 
 // HasTemplateParamValues returns a boolean if a field has been set.
@@ -176,14 +209,13 @@ func (o *CreateTemplateCampaign) GetLimitOverrides() []LimitConfig {
 	return *o.LimitOverrides
 }
 
-// GetLimitOverridesOk returns a tuple with the LimitOverrides field value if set, zero value otherwise
+// GetLimitOverridesOk returns a tuple with the LimitOverrides field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetLimitOverridesOk() ([]LimitConfig, bool) {
+func (o *CreateTemplateCampaign) GetLimitOverridesOk() (*[]LimitConfig, bool) {
 	if o == nil || o.LimitOverrides == nil {
-		var ret []LimitConfig
-		return ret, false
+		return nil, false
 	}
-	return *o.LimitOverrides, true
+	return o.LimitOverrides, true
 }
 
 // HasLimitOverrides returns a boolean if a field has been set.
@@ -201,22 +233,21 @@ func (o *CreateTemplateCampaign) SetLimitOverrides(v []LimitConfig) {
 }
 
 // GetCampaignGroups returns the CampaignGroups field value if set, zero value otherwise.
-func (o *CreateTemplateCampaign) GetCampaignGroups() []int32 {
+func (o *CreateTemplateCampaign) GetCampaignGroups() []int64 {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignGroups
 }
 
-// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, zero value otherwise
+// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetCampaignGroupsOk() ([]int32, bool) {
+func (o *CreateTemplateCampaign) GetCampaignGroupsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignGroups, true
+	return o.CampaignGroups, true
 }
 
 // HasCampaignGroups returns a boolean if a field has been set.
@@ -228,8 +259,8 @@ func (o *CreateTemplateCampaign) HasCampaignGroups() bool {
 	return false
 }
 
-// SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
-func (o *CreateTemplateCampaign) SetCampaignGroups(v []int32) {
+// SetCampaignGroups gets a reference to the given []int64 and assigns it to the CampaignGroups field.
+func (o *CreateTemplateCampaign) SetCampaignGroups(v []int64) {
 	o.CampaignGroups = &v
 }
 
@@ -242,14 +273,13 @@ func (o *CreateTemplateCampaign) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetTagsOk() ([]string, bool) {
+func (o *CreateTemplateCampaign) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -267,22 +297,21 @@ func (o *CreateTemplateCampaign) SetTags(v []string) {
 }
 
 // GetEvaluationGroupId returns the EvaluationGroupId field value if set, zero value otherwise.
-func (o *CreateTemplateCampaign) GetEvaluationGroupId() int32 {
+func (o *CreateTemplateCampaign) GetEvaluationGroupId() int64 {
 	if o == nil || o.EvaluationGroupId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EvaluationGroupId
 }
 
-// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, zero value otherwise
+// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetEvaluationGroupIdOk() (int32, bool) {
+func (o *CreateTemplateCampaign) GetEvaluationGroupIdOk() (*int64, bool) {
 	if o == nil || o.EvaluationGroupId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluationGroupId, true
+	return o.EvaluationGroupId, true
 }
 
 // HasEvaluationGroupId returns a boolean if a field has been set.
@@ -294,28 +323,27 @@ func (o *CreateTemplateCampaign) HasEvaluationGroupId() bool {
 	return false
 }
 
-// SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
-func (o *CreateTemplateCampaign) SetEvaluationGroupId(v int32) {
+// SetEvaluationGroupId gets a reference to the given int64 and assigns it to the EvaluationGroupId field.
+func (o *CreateTemplateCampaign) SetEvaluationGroupId(v int64) {
 	o.EvaluationGroupId = &v
 }
 
 // GetLinkedStoreIds returns the LinkedStoreIds field value if set, zero value otherwise.
-func (o *CreateTemplateCampaign) GetLinkedStoreIds() []int32 {
+func (o *CreateTemplateCampaign) GetLinkedStoreIds() []int64 {
 	if o == nil || o.LinkedStoreIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.LinkedStoreIds
 }
 
-// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, zero value otherwise
+// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateTemplateCampaign) GetLinkedStoreIdsOk() ([]int32, bool) {
+func (o *CreateTemplateCampaign) GetLinkedStoreIdsOk() (*[]int64, bool) {
 	if o == nil || o.LinkedStoreIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.LinkedStoreIds, true
+	return o.LinkedStoreIds, true
 }
 
 // HasLinkedStoreIds returns a boolean if a field has been set.
@@ -327,30 +355,78 @@ func (o *CreateTemplateCampaign) HasLinkedStoreIds() bool {
 	return false
 }
 
-// SetLinkedStoreIds gets a reference to the given []int32 and assigns it to the LinkedStoreIds field.
-func (o *CreateTemplateCampaign) SetLinkedStoreIds(v []int32) {
+// SetLinkedStoreIds gets a reference to the given []int64 and assigns it to the LinkedStoreIds field.
+func (o *CreateTemplateCampaign) SetLinkedStoreIds(v []int64) {
 	o.LinkedStoreIds = &v
 }
 
+func (o CreateTemplateCampaign) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["templateId"] = o.TemplateId
+	}
+	if o.CampaignAttributesOverrides != nil {
+		toSerialize["campaignAttributesOverrides"] = o.CampaignAttributesOverrides
+	}
+	if o.TemplateParamValues != nil {
+		toSerialize["templateParamValues"] = o.TemplateParamValues
+	}
+	if o.LimitOverrides != nil {
+		toSerialize["limitOverrides"] = o.LimitOverrides
+	}
+	if o.CampaignGroups != nil {
+		toSerialize["campaignGroups"] = o.CampaignGroups
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.EvaluationGroupId != nil {
+		toSerialize["evaluationGroupId"] = o.EvaluationGroupId
+	}
+	if o.LinkedStoreIds != nil {
+		toSerialize["linkedStoreIds"] = o.LinkedStoreIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCreateTemplateCampaign struct {
-	Value        CreateTemplateCampaign
-	ExplicitNull bool
+	value *CreateTemplateCampaign
+	isSet bool
+}
+
+func (v NullableCreateTemplateCampaign) Get() *CreateTemplateCampaign {
+	return v.value
+}
+
+func (v *NullableCreateTemplateCampaign) Set(val *CreateTemplateCampaign) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateTemplateCampaign) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateTemplateCampaign) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateTemplateCampaign(val *CreateTemplateCampaign) *NullableCreateTemplateCampaign {
+	return &NullableCreateTemplateCampaign{value: val, isSet: true}
 }
 
 func (v NullableCreateTemplateCampaign) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCreateTemplateCampaign) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,14 +10,32 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewAppWideCouponDeletionJob struct for NewAppWideCouponDeletionJob
 type NewAppWideCouponDeletionJob struct {
 	Filters     CouponDeletionFilters `json:"filters"`
-	Campaignids []int32               `json:"campaignids"`
+	Campaignids []int64               `json:"campaignids"`
+}
+
+// NewNewAppWideCouponDeletionJob instantiates a new NewAppWideCouponDeletionJob object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewAppWideCouponDeletionJob(filters CouponDeletionFilters, campaignids []int64) *NewAppWideCouponDeletionJob {
+	this := NewAppWideCouponDeletionJob{}
+	this.Filters = filters
+	this.Campaignids = campaignids
+	return &this
+}
+
+// NewNewAppWideCouponDeletionJobWithDefaults instantiates a new NewAppWideCouponDeletionJob object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewAppWideCouponDeletionJobWithDefaults() *NewAppWideCouponDeletionJob {
+	this := NewAppWideCouponDeletionJob{}
+	return &this
 }
 
 // GetFilters returns the Filters field value
@@ -30,45 +48,87 @@ func (o *NewAppWideCouponDeletionJob) GetFilters() CouponDeletionFilters {
 	return o.Filters
 }
 
+// GetFiltersOk returns a tuple with the Filters field value
+// and a boolean to check if the value has been set.
+func (o *NewAppWideCouponDeletionJob) GetFiltersOk() (*CouponDeletionFilters, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filters, true
+}
+
 // SetFilters sets field value
 func (o *NewAppWideCouponDeletionJob) SetFilters(v CouponDeletionFilters) {
 	o.Filters = v
 }
 
 // GetCampaignids returns the Campaignids field value
-func (o *NewAppWideCouponDeletionJob) GetCampaignids() []int32 {
+func (o *NewAppWideCouponDeletionJob) GetCampaignids() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.Campaignids
 }
 
+// GetCampaignidsOk returns a tuple with the Campaignids field value
+// and a boolean to check if the value has been set.
+func (o *NewAppWideCouponDeletionJob) GetCampaignidsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Campaignids, true
+}
+
 // SetCampaignids sets field value
-func (o *NewAppWideCouponDeletionJob) SetCampaignids(v []int32) {
+func (o *NewAppWideCouponDeletionJob) SetCampaignids(v []int64) {
 	o.Campaignids = v
 }
 
+func (o NewAppWideCouponDeletionJob) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["filters"] = o.Filters
+	}
+	if true {
+		toSerialize["campaignids"] = o.Campaignids
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewAppWideCouponDeletionJob struct {
-	Value        NewAppWideCouponDeletionJob
-	ExplicitNull bool
+	value *NewAppWideCouponDeletionJob
+	isSet bool
+}
+
+func (v NullableNewAppWideCouponDeletionJob) Get() *NewAppWideCouponDeletionJob {
+	return v.value
+}
+
+func (v *NullableNewAppWideCouponDeletionJob) Set(val *NewAppWideCouponDeletionJob) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewAppWideCouponDeletionJob) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewAppWideCouponDeletionJob) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewAppWideCouponDeletionJob(val *NewAppWideCouponDeletionJob) *NullableNewAppWideCouponDeletionJob {
+	return &NullableNewAppWideCouponDeletionJob{value: val, isSet: true}
 }
 
 func (v NullableNewAppWideCouponDeletionJob) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewAppWideCouponDeletionJob) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

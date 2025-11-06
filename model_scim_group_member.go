@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,23 @@ type ScimGroupMember struct {
 	Display *string `json:"display,omitempty"`
 }
 
+// NewScimGroupMember instantiates a new ScimGroupMember object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewScimGroupMember() *ScimGroupMember {
+	this := ScimGroupMember{}
+	return &this
+}
+
+// NewScimGroupMemberWithDefaults instantiates a new ScimGroupMember object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimGroupMemberWithDefaults() *ScimGroupMember {
+	this := ScimGroupMember{}
+	return &this
+}
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ScimGroupMember) GetValue() string {
 	if o == nil || o.Value == nil {
@@ -31,14 +47,13 @@ func (o *ScimGroupMember) GetValue() string {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimGroupMember) GetValueOk() (string, bool) {
+func (o *ScimGroupMember) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -64,14 +79,13 @@ func (o *ScimGroupMember) GetDisplay() string {
 	return *o.Display
 }
 
-// GetDisplayOk returns a tuple with the Display field value if set, zero value otherwise
+// GetDisplayOk returns a tuple with the Display field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScimGroupMember) GetDisplayOk() (string, bool) {
+func (o *ScimGroupMember) GetDisplayOk() (*string, bool) {
 	if o == nil || o.Display == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Display, true
+	return o.Display, true
 }
 
 // HasDisplay returns a boolean if a field has been set.
@@ -88,25 +102,49 @@ func (o *ScimGroupMember) SetDisplay(v string) {
 	o.Display = &v
 }
 
+func (o ScimGroupMember) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	if o.Display != nil {
+		toSerialize["display"] = o.Display
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableScimGroupMember struct {
-	Value        ScimGroupMember
-	ExplicitNull bool
+	value *ScimGroupMember
+	isSet bool
+}
+
+func (v NullableScimGroupMember) Get() *ScimGroupMember {
+	return v.value
+}
+
+func (v *NullableScimGroupMember) Set(val *ScimGroupMember) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableScimGroupMember) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableScimGroupMember) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableScimGroupMember(val *ScimGroupMember) *NullableScimGroupMember {
+	return &NullableScimGroupMember{value: val, isSet: true}
 }
 
 func (v NullableScimGroupMember) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableScimGroupMember) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,31 +17,63 @@ import (
 // Import struct for Import
 type Import struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The ID of the user associated with this entity.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// The name of the entity that was imported.
 	Entity string `json:"entity"`
 	// The number of values that were imported.
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
+}
+
+// NewImport instantiates a new Import object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewImport(id int64, created time.Time, accountId int64, userId int64, entity string, amount int64) *Import {
+	this := Import{}
+	this.Id = id
+	this.Created = created
+	this.AccountId = accountId
+	this.UserId = userId
+	this.Entity = entity
+	this.Amount = amount
+	return &this
+}
+
+// NewImportWithDefaults instantiates a new Import object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewImportWithDefaults() *Import {
+	this := Import{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Import) GetId() int32 {
+func (o *Import) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Import) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Import) SetId(v int32) {
+func (o *Import) SetId(v int64) {
 	o.Id = v
 }
 
@@ -56,38 +87,65 @@ func (o *Import) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Import) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Import) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Import) GetAccountId() int32 {
+func (o *Import) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Import) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Import) SetAccountId(v int32) {
+func (o *Import) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetUserId returns the UserId field value
-func (o *Import) GetUserId() int32 {
+func (o *Import) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *Import) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *Import) SetUserId(v int32) {
+func (o *Import) SetUserId(v int64) {
 	o.UserId = v
 }
 
@@ -101,45 +159,99 @@ func (o *Import) GetEntity() string {
 	return o.Entity
 }
 
+// GetEntityOk returns a tuple with the Entity field value
+// and a boolean to check if the value has been set.
+func (o *Import) GetEntityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entity, true
+}
+
 // SetEntity sets field value
 func (o *Import) SetEntity(v string) {
 	o.Entity = v
 }
 
 // GetAmount returns the Amount field value
-func (o *Import) GetAmount() int32 {
+func (o *Import) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *Import) GetAmountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *Import) SetAmount(v int32) {
+func (o *Import) SetAmount(v int64) {
 	o.Amount = v
 }
 
+func (o Import) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if true {
+		toSerialize["entity"] = o.Entity
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableImport struct {
-	Value        Import
-	ExplicitNull bool
+	value *Import
+	isSet bool
+}
+
+func (v NullableImport) Get() *Import {
+	return v.value
+}
+
+func (v *NullableImport) Set(val *Import) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableImport) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableImport) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableImport(val *Import) *NullableImport {
+	return &NullableImport{value: val, isSet: true}
 }
 
 func (v NullableImport) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableImport) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

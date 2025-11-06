@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -23,9 +22,31 @@ type ProductUnitAnalyticsDataPoint struct {
 	EndTime   time.Time                   `json:"endTime"`
 	UnitsSold AnalyticsDataPointWithTrend `json:"unitsSold"`
 	// The ID of the product.
-	ProductId int32 `json:"productId"`
+	ProductId int64 `json:"productId"`
 	// The name of the product.
 	ProductName string `json:"productName"`
+}
+
+// NewProductUnitAnalyticsDataPoint instantiates a new ProductUnitAnalyticsDataPoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewProductUnitAnalyticsDataPoint(startTime time.Time, endTime time.Time, unitsSold AnalyticsDataPointWithTrend, productId int64, productName string) *ProductUnitAnalyticsDataPoint {
+	this := ProductUnitAnalyticsDataPoint{}
+	this.StartTime = startTime
+	this.EndTime = endTime
+	this.UnitsSold = unitsSold
+	this.ProductId = productId
+	this.ProductName = productName
+	return &this
+}
+
+// NewProductUnitAnalyticsDataPointWithDefaults instantiates a new ProductUnitAnalyticsDataPoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProductUnitAnalyticsDataPointWithDefaults() *ProductUnitAnalyticsDataPoint {
+	this := ProductUnitAnalyticsDataPoint{}
+	return &this
 }
 
 // GetStartTime returns the StartTime field value
@@ -36,6 +57,15 @@ func (o *ProductUnitAnalyticsDataPoint) GetStartTime() time.Time {
 	}
 
 	return o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value
+// and a boolean to check if the value has been set.
+func (o *ProductUnitAnalyticsDataPoint) GetStartTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartTime, true
 }
 
 // SetStartTime sets field value
@@ -53,6 +83,15 @@ func (o *ProductUnitAnalyticsDataPoint) GetEndTime() time.Time {
 	return o.EndTime
 }
 
+// GetEndTimeOk returns a tuple with the EndTime field value
+// and a boolean to check if the value has been set.
+func (o *ProductUnitAnalyticsDataPoint) GetEndTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndTime, true
+}
+
 // SetEndTime sets field value
 func (o *ProductUnitAnalyticsDataPoint) SetEndTime(v time.Time) {
 	o.EndTime = v
@@ -68,23 +107,41 @@ func (o *ProductUnitAnalyticsDataPoint) GetUnitsSold() AnalyticsDataPointWithTre
 	return o.UnitsSold
 }
 
+// GetUnitsSoldOk returns a tuple with the UnitsSold field value
+// and a boolean to check if the value has been set.
+func (o *ProductUnitAnalyticsDataPoint) GetUnitsSoldOk() (*AnalyticsDataPointWithTrend, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UnitsSold, true
+}
+
 // SetUnitsSold sets field value
 func (o *ProductUnitAnalyticsDataPoint) SetUnitsSold(v AnalyticsDataPointWithTrend) {
 	o.UnitsSold = v
 }
 
 // GetProductId returns the ProductId field value
-func (o *ProductUnitAnalyticsDataPoint) GetProductId() int32 {
+func (o *ProductUnitAnalyticsDataPoint) GetProductId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProductId
 }
 
+// GetProductIdOk returns a tuple with the ProductId field value
+// and a boolean to check if the value has been set.
+func (o *ProductUnitAnalyticsDataPoint) GetProductIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProductId, true
+}
+
 // SetProductId sets field value
-func (o *ProductUnitAnalyticsDataPoint) SetProductId(v int32) {
+func (o *ProductUnitAnalyticsDataPoint) SetProductId(v int64) {
 	o.ProductId = v
 }
 
@@ -98,30 +155,72 @@ func (o *ProductUnitAnalyticsDataPoint) GetProductName() string {
 	return o.ProductName
 }
 
+// GetProductNameOk returns a tuple with the ProductName field value
+// and a boolean to check if the value has been set.
+func (o *ProductUnitAnalyticsDataPoint) GetProductNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProductName, true
+}
+
 // SetProductName sets field value
 func (o *ProductUnitAnalyticsDataPoint) SetProductName(v string) {
 	o.ProductName = v
 }
 
+func (o ProductUnitAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if true {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if true {
+		toSerialize["unitsSold"] = o.UnitsSold
+	}
+	if true {
+		toSerialize["productId"] = o.ProductId
+	}
+	if true {
+		toSerialize["productName"] = o.ProductName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableProductUnitAnalyticsDataPoint struct {
-	Value        ProductUnitAnalyticsDataPoint
-	ExplicitNull bool
+	value *ProductUnitAnalyticsDataPoint
+	isSet bool
+}
+
+func (v NullableProductUnitAnalyticsDataPoint) Get() *ProductUnitAnalyticsDataPoint {
+	return v.value
+}
+
+func (v *NullableProductUnitAnalyticsDataPoint) Set(val *ProductUnitAnalyticsDataPoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProductUnitAnalyticsDataPoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProductUnitAnalyticsDataPoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableProductUnitAnalyticsDataPoint(val *ProductUnitAnalyticsDataPoint) *NullableProductUnitAnalyticsDataPoint {
+	return &NullableProductUnitAnalyticsDataPoint{value: val, isSet: true}
 }
 
 func (v NullableProductUnitAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableProductUnitAnalyticsDataPoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

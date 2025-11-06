@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,26 @@ type ReserveCouponEffectProps struct {
 	IsNewReservation bool `json:"isNewReservation"`
 }
 
+// NewReserveCouponEffectProps instantiates a new ReserveCouponEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewReserveCouponEffectProps(couponValue string, profileIntegrationId string, isNewReservation bool) *ReserveCouponEffectProps {
+	this := ReserveCouponEffectProps{}
+	this.CouponValue = couponValue
+	this.ProfileIntegrationId = profileIntegrationId
+	this.IsNewReservation = isNewReservation
+	return &this
+}
+
+// NewReserveCouponEffectPropsWithDefaults instantiates a new ReserveCouponEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewReserveCouponEffectPropsWithDefaults() *ReserveCouponEffectProps {
+	this := ReserveCouponEffectProps{}
+	return &this
+}
+
 // GetCouponValue returns the CouponValue field value
 func (o *ReserveCouponEffectProps) GetCouponValue() string {
 	if o == nil {
@@ -32,6 +51,15 @@ func (o *ReserveCouponEffectProps) GetCouponValue() string {
 	}
 
 	return o.CouponValue
+}
+
+// GetCouponValueOk returns a tuple with the CouponValue field value
+// and a boolean to check if the value has been set.
+func (o *ReserveCouponEffectProps) GetCouponValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CouponValue, true
 }
 
 // SetCouponValue sets field value
@@ -49,6 +77,15 @@ func (o *ReserveCouponEffectProps) GetProfileIntegrationId() string {
 	return o.ProfileIntegrationId
 }
 
+// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *ReserveCouponEffectProps) GetProfileIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileIntegrationId, true
+}
+
 // SetProfileIntegrationId sets field value
 func (o *ReserveCouponEffectProps) SetProfileIntegrationId(v string) {
 	o.ProfileIntegrationId = v
@@ -64,30 +101,66 @@ func (o *ReserveCouponEffectProps) GetIsNewReservation() bool {
 	return o.IsNewReservation
 }
 
+// GetIsNewReservationOk returns a tuple with the IsNewReservation field value
+// and a boolean to check if the value has been set.
+func (o *ReserveCouponEffectProps) GetIsNewReservationOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsNewReservation, true
+}
+
 // SetIsNewReservation sets field value
 func (o *ReserveCouponEffectProps) SetIsNewReservation(v bool) {
 	o.IsNewReservation = v
 }
 
+func (o ReserveCouponEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["couponValue"] = o.CouponValue
+	}
+	if true {
+		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
+	}
+	if true {
+		toSerialize["isNewReservation"] = o.IsNewReservation
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableReserveCouponEffectProps struct {
-	Value        ReserveCouponEffectProps
-	ExplicitNull bool
+	value *ReserveCouponEffectProps
+	isSet bool
+}
+
+func (v NullableReserveCouponEffectProps) Get() *ReserveCouponEffectProps {
+	return v.value
+}
+
+func (v *NullableReserveCouponEffectProps) Set(val *ReserveCouponEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableReserveCouponEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableReserveCouponEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableReserveCouponEffectProps(val *ReserveCouponEffectProps) *NullableReserveCouponEffectProps {
+	return &NullableReserveCouponEffectProps{value: val, isSet: true}
 }
 
 func (v NullableReserveCouponEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableReserveCouponEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

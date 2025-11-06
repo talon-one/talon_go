@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // InventoryReferral struct for InventoryReferral
 type InventoryReferral struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// Timestamp at which point the referral code becomes valid.
@@ -26,9 +25,9 @@ type InventoryReferral struct {
 	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
-	UsageLimit int32 `json:"usageLimit"`
+	UsageLimit int64 `json:"usageLimit"`
 	// ID of the campaign from which the referral received the referral code.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The Integration ID of the Advocate's Profile.
 	AdvocateProfileIntegrationId string `json:"advocateProfileIntegrationId"`
 	// An optional Integration ID of the Friend's Profile.
@@ -36,29 +35,63 @@ type InventoryReferral struct {
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// The ID of the Import which created this referral.
-	ImportId *int32 `json:"importId,omitempty"`
+	ImportId *int64 `json:"importId,omitempty"`
 	// The referral code.
 	Code string `json:"code"`
 	// The number of times this referral code has been successfully used.
-	UsageCounter int32 `json:"usageCounter"`
+	UsageCounter int64 `json:"usageCounter"`
 	// The ID of the batch the referrals belong to.
 	BatchId *string `json:"batchId,omitempty"`
 	// An array of referred customers.
 	ReferredCustomers []string `json:"referredCustomers"`
 }
 
+// NewInventoryReferral instantiates a new InventoryReferral object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInventoryReferral(id int64, created time.Time, usageLimit int64, campaignId int64, advocateProfileIntegrationId string, code string, usageCounter int64, referredCustomers []string) *InventoryReferral {
+	this := InventoryReferral{}
+	this.Id = id
+	this.Created = created
+	this.UsageLimit = usageLimit
+	this.CampaignId = campaignId
+	this.AdvocateProfileIntegrationId = advocateProfileIntegrationId
+	this.Code = code
+	this.UsageCounter = usageCounter
+	this.ReferredCustomers = referredCustomers
+	return &this
+}
+
+// NewInventoryReferralWithDefaults instantiates a new InventoryReferral object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInventoryReferralWithDefaults() *InventoryReferral {
+	this := InventoryReferral{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *InventoryReferral) GetId() int32 {
+func (o *InventoryReferral) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *InventoryReferral) SetId(v int32) {
+func (o *InventoryReferral) SetId(v int64) {
 	o.Id = v
 }
 
@@ -70,6 +103,15 @@ func (o *InventoryReferral) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -86,14 +128,13 @@ func (o *InventoryReferral) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryReferral) GetStartDateOk() (time.Time, bool) {
+func (o *InventoryReferral) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -119,14 +160,13 @@ func (o *InventoryReferral) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryReferral) GetExpiryDateOk() (time.Time, bool) {
+func (o *InventoryReferral) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -144,32 +184,50 @@ func (o *InventoryReferral) SetExpiryDate(v time.Time) {
 }
 
 // GetUsageLimit returns the UsageLimit field value
-func (o *InventoryReferral) GetUsageLimit() int32 {
+func (o *InventoryReferral) GetUsageLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageLimit
 }
 
+// GetUsageLimitOk returns a tuple with the UsageLimit field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetUsageLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageLimit, true
+}
+
 // SetUsageLimit sets field value
-func (o *InventoryReferral) SetUsageLimit(v int32) {
+func (o *InventoryReferral) SetUsageLimit(v int64) {
 	o.UsageLimit = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *InventoryReferral) GetCampaignId() int32 {
+func (o *InventoryReferral) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *InventoryReferral) SetCampaignId(v int32) {
+func (o *InventoryReferral) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -181,6 +239,15 @@ func (o *InventoryReferral) GetAdvocateProfileIntegrationId() string {
 	}
 
 	return o.AdvocateProfileIntegrationId
+}
+
+// GetAdvocateProfileIntegrationIdOk returns a tuple with the AdvocateProfileIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetAdvocateProfileIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdvocateProfileIntegrationId, true
 }
 
 // SetAdvocateProfileIntegrationId sets field value
@@ -197,14 +264,13 @@ func (o *InventoryReferral) GetFriendProfileIntegrationId() string {
 	return *o.FriendProfileIntegrationId
 }
 
-// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, zero value otherwise
+// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryReferral) GetFriendProfileIntegrationIdOk() (string, bool) {
+func (o *InventoryReferral) GetFriendProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.FriendProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FriendProfileIntegrationId, true
+	return o.FriendProfileIntegrationId, true
 }
 
 // HasFriendProfileIntegrationId returns a boolean if a field has been set.
@@ -230,14 +296,13 @@ func (o *InventoryReferral) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryReferral) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *InventoryReferral) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -255,22 +320,21 @@ func (o *InventoryReferral) SetAttributes(v map[string]interface{}) {
 }
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
-func (o *InventoryReferral) GetImportId() int32 {
+func (o *InventoryReferral) GetImportId() int64 {
 	if o == nil || o.ImportId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ImportId
 }
 
-// GetImportIdOk returns a tuple with the ImportId field value if set, zero value otherwise
+// GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryReferral) GetImportIdOk() (int32, bool) {
+func (o *InventoryReferral) GetImportIdOk() (*int64, bool) {
 	if o == nil || o.ImportId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ImportId, true
+	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
@@ -282,8 +346,8 @@ func (o *InventoryReferral) HasImportId() bool {
 	return false
 }
 
-// SetImportId gets a reference to the given int32 and assigns it to the ImportId field.
-func (o *InventoryReferral) SetImportId(v int32) {
+// SetImportId gets a reference to the given int64 and assigns it to the ImportId field.
+func (o *InventoryReferral) SetImportId(v int64) {
 	o.ImportId = &v
 }
 
@@ -297,23 +361,41 @@ func (o *InventoryReferral) GetCode() string {
 	return o.Code
 }
 
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
 // SetCode sets field value
 func (o *InventoryReferral) SetCode(v string) {
 	o.Code = v
 }
 
 // GetUsageCounter returns the UsageCounter field value
-func (o *InventoryReferral) GetUsageCounter() int32 {
+func (o *InventoryReferral) GetUsageCounter() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageCounter
 }
 
+// GetUsageCounterOk returns a tuple with the UsageCounter field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetUsageCounterOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageCounter, true
+}
+
 // SetUsageCounter sets field value
-func (o *InventoryReferral) SetUsageCounter(v int32) {
+func (o *InventoryReferral) SetUsageCounter(v int64) {
 	o.UsageCounter = v
 }
 
@@ -326,14 +408,13 @@ func (o *InventoryReferral) GetBatchId() string {
 	return *o.BatchId
 }
 
-// GetBatchIdOk returns a tuple with the BatchId field value if set, zero value otherwise
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InventoryReferral) GetBatchIdOk() (string, bool) {
+func (o *InventoryReferral) GetBatchIdOk() (*string, bool) {
 	if o == nil || o.BatchId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchId, true
+	return o.BatchId, true
 }
 
 // HasBatchId returns a boolean if a field has been set.
@@ -360,30 +441,99 @@ func (o *InventoryReferral) GetReferredCustomers() []string {
 	return o.ReferredCustomers
 }
 
+// GetReferredCustomersOk returns a tuple with the ReferredCustomers field value
+// and a boolean to check if the value has been set.
+func (o *InventoryReferral) GetReferredCustomersOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferredCustomers, true
+}
+
 // SetReferredCustomers sets field value
 func (o *InventoryReferral) SetReferredCustomers(v []string) {
 	o.ReferredCustomers = v
 }
 
+func (o InventoryReferral) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["advocateProfileIntegrationId"] = o.AdvocateProfileIntegrationId
+	}
+	if o.FriendProfileIntegrationId != nil {
+		toSerialize["friendProfileIntegrationId"] = o.FriendProfileIntegrationId
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.ImportId != nil {
+		toSerialize["importId"] = o.ImportId
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	if true {
+		toSerialize["usageCounter"] = o.UsageCounter
+	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
+	}
+	if true {
+		toSerialize["referredCustomers"] = o.ReferredCustomers
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInventoryReferral struct {
-	Value        InventoryReferral
-	ExplicitNull bool
+	value *InventoryReferral
+	isSet bool
+}
+
+func (v NullableInventoryReferral) Get() *InventoryReferral {
+	return v.value
+}
+
+func (v *NullableInventoryReferral) Set(val *InventoryReferral) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInventoryReferral) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInventoryReferral) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInventoryReferral(val *InventoryReferral) *NullableInventoryReferral {
+	return &NullableInventoryReferral{value: val, isSet: true}
 }
 
 func (v NullableInventoryReferral) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInventoryReferral) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

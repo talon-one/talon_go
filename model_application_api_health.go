@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -23,6 +22,25 @@ type ApplicationApiHealth struct {
 	LastUsed time.Time `json:"lastUsed"`
 }
 
+// NewApplicationApiHealth instantiates a new ApplicationApiHealth object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationApiHealth(summary string, lastUsed time.Time) *ApplicationApiHealth {
+	this := ApplicationApiHealth{}
+	this.Summary = summary
+	this.LastUsed = lastUsed
+	return &this
+}
+
+// NewApplicationApiHealthWithDefaults instantiates a new ApplicationApiHealth object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationApiHealthWithDefaults() *ApplicationApiHealth {
+	this := ApplicationApiHealth{}
+	return &this
+}
+
 // GetSummary returns the Summary field value
 func (o *ApplicationApiHealth) GetSummary() string {
 	if o == nil {
@@ -31,6 +49,15 @@ func (o *ApplicationApiHealth) GetSummary() string {
 	}
 
 	return o.Summary
+}
+
+// GetSummaryOk returns a tuple with the Summary field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationApiHealth) GetSummaryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Summary, true
 }
 
 // SetSummary sets field value
@@ -48,30 +75,63 @@ func (o *ApplicationApiHealth) GetLastUsed() time.Time {
 	return o.LastUsed
 }
 
+// GetLastUsedOk returns a tuple with the LastUsed field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationApiHealth) GetLastUsedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastUsed, true
+}
+
 // SetLastUsed sets field value
 func (o *ApplicationApiHealth) SetLastUsed(v time.Time) {
 	o.LastUsed = v
 }
 
+func (o ApplicationApiHealth) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["summary"] = o.Summary
+	}
+	if true {
+		toSerialize["lastUsed"] = o.LastUsed
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationApiHealth struct {
-	Value        ApplicationApiHealth
-	ExplicitNull bool
+	value *ApplicationApiHealth
+	isSet bool
+}
+
+func (v NullableApplicationApiHealth) Get() *ApplicationApiHealth {
+	return v.value
+}
+
+func (v *NullableApplicationApiHealth) Set(val *ApplicationApiHealth) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationApiHealth) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationApiHealth) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationApiHealth(val *ApplicationApiHealth) *NullableApplicationApiHealth {
+	return &NullableApplicationApiHealth{value: val, isSet: true}
 }
 
 func (v NullableApplicationApiHealth) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationApiHealth) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

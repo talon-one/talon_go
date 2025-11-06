@@ -10,39 +10,70 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// AnalyticsSku struct for AnalyticsSku
-type AnalyticsSku struct {
-	// The ID of the SKU linked to the application.
-	Id int32 `json:"id"`
-	// The SKU linked to the application.
+// AnalyticsSKU struct for AnalyticsSKU
+type AnalyticsSKU struct {
+	// The ID of the SKU linked to the Application.
+	Id int64 `json:"id"`
+	// The SKU linked to the Application.
 	Sku string `json:"sku"`
 	// Values in UTC for the date the SKU linked to the product was last updated.
-	LastUpdated *time.Time                   `json:"lastUpdated,omitempty"`
-	UnitsSold   *AnalyticsDataPointWithTrend `json:"unitsSold,omitempty"`
+	LastUpdated *time.Time `json:"lastUpdated,omitempty"`
+	// The ID of the catalog that contains the SKU.
+	CatalogId *int64 `json:"catalogId,omitempty"`
+	// The ID of the product that the SKU belongs to.
+	ProductId *int64                       `json:"productId,omitempty"`
+	UnitsSold *AnalyticsDataPointWithTrend `json:"unitsSold,omitempty"`
+}
+
+// NewAnalyticsSKU instantiates a new AnalyticsSKU object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAnalyticsSKU(id int64, sku string) *AnalyticsSKU {
+	this := AnalyticsSKU{}
+	this.Id = id
+	this.Sku = sku
+	return &this
+}
+
+// NewAnalyticsSKUWithDefaults instantiates a new AnalyticsSKU object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAnalyticsSKUWithDefaults() *AnalyticsSKU {
+	this := AnalyticsSKU{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *AnalyticsSku) GetId() int32 {
+func (o *AnalyticsSKU) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsSKU) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *AnalyticsSku) SetId(v int32) {
+func (o *AnalyticsSKU) SetId(v int64) {
 	o.Id = v
 }
 
 // GetSku returns the Sku field value
-func (o *AnalyticsSku) GetSku() string {
+func (o *AnalyticsSKU) GetSku() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -51,13 +82,22 @@ func (o *AnalyticsSku) GetSku() string {
 	return o.Sku
 }
 
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsSKU) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
+}
+
 // SetSku sets field value
-func (o *AnalyticsSku) SetSku(v string) {
+func (o *AnalyticsSKU) SetSku(v string) {
 	o.Sku = v
 }
 
 // GetLastUpdated returns the LastUpdated field value if set, zero value otherwise.
-func (o *AnalyticsSku) GetLastUpdated() time.Time {
+func (o *AnalyticsSKU) GetLastUpdated() time.Time {
 	if o == nil || o.LastUpdated == nil {
 		var ret time.Time
 		return ret
@@ -65,18 +105,17 @@ func (o *AnalyticsSku) GetLastUpdated() time.Time {
 	return *o.LastUpdated
 }
 
-// GetLastUpdatedOk returns a tuple with the LastUpdated field value if set, zero value otherwise
+// GetLastUpdatedOk returns a tuple with the LastUpdated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AnalyticsSku) GetLastUpdatedOk() (time.Time, bool) {
+func (o *AnalyticsSKU) GetLastUpdatedOk() (*time.Time, bool) {
 	if o == nil || o.LastUpdated == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastUpdated, true
+	return o.LastUpdated, true
 }
 
 // HasLastUpdated returns a boolean if a field has been set.
-func (o *AnalyticsSku) HasLastUpdated() bool {
+func (o *AnalyticsSKU) HasLastUpdated() bool {
 	if o != nil && o.LastUpdated != nil {
 		return true
 	}
@@ -85,12 +124,76 @@ func (o *AnalyticsSku) HasLastUpdated() bool {
 }
 
 // SetLastUpdated gets a reference to the given time.Time and assigns it to the LastUpdated field.
-func (o *AnalyticsSku) SetLastUpdated(v time.Time) {
+func (o *AnalyticsSKU) SetLastUpdated(v time.Time) {
 	o.LastUpdated = &v
 }
 
+// GetCatalogId returns the CatalogId field value if set, zero value otherwise.
+func (o *AnalyticsSKU) GetCatalogId() int64 {
+	if o == nil || o.CatalogId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CatalogId
+}
+
+// GetCatalogIdOk returns a tuple with the CatalogId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AnalyticsSKU) GetCatalogIdOk() (*int64, bool) {
+	if o == nil || o.CatalogId == nil {
+		return nil, false
+	}
+	return o.CatalogId, true
+}
+
+// HasCatalogId returns a boolean if a field has been set.
+func (o *AnalyticsSKU) HasCatalogId() bool {
+	if o != nil && o.CatalogId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCatalogId gets a reference to the given int64 and assigns it to the CatalogId field.
+func (o *AnalyticsSKU) SetCatalogId(v int64) {
+	o.CatalogId = &v
+}
+
+// GetProductId returns the ProductId field value if set, zero value otherwise.
+func (o *AnalyticsSKU) GetProductId() int64 {
+	if o == nil || o.ProductId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ProductId
+}
+
+// GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AnalyticsSKU) GetProductIdOk() (*int64, bool) {
+	if o == nil || o.ProductId == nil {
+		return nil, false
+	}
+	return o.ProductId, true
+}
+
+// HasProductId returns a boolean if a field has been set.
+func (o *AnalyticsSKU) HasProductId() bool {
+	if o != nil && o.ProductId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProductId gets a reference to the given int64 and assigns it to the ProductId field.
+func (o *AnalyticsSKU) SetProductId(v int64) {
+	o.ProductId = &v
+}
+
 // GetUnitsSold returns the UnitsSold field value if set, zero value otherwise.
-func (o *AnalyticsSku) GetUnitsSold() AnalyticsDataPointWithTrend {
+func (o *AnalyticsSKU) GetUnitsSold() AnalyticsDataPointWithTrend {
 	if o == nil || o.UnitsSold == nil {
 		var ret AnalyticsDataPointWithTrend
 		return ret
@@ -98,18 +201,17 @@ func (o *AnalyticsSku) GetUnitsSold() AnalyticsDataPointWithTrend {
 	return *o.UnitsSold
 }
 
-// GetUnitsSoldOk returns a tuple with the UnitsSold field value if set, zero value otherwise
+// GetUnitsSoldOk returns a tuple with the UnitsSold field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AnalyticsSku) GetUnitsSoldOk() (AnalyticsDataPointWithTrend, bool) {
+func (o *AnalyticsSKU) GetUnitsSoldOk() (*AnalyticsDataPointWithTrend, bool) {
 	if o == nil || o.UnitsSold == nil {
-		var ret AnalyticsDataPointWithTrend
-		return ret, false
+		return nil, false
 	}
-	return *o.UnitsSold, true
+	return o.UnitsSold, true
 }
 
 // HasUnitsSold returns a boolean if a field has been set.
-func (o *AnalyticsSku) HasUnitsSold() bool {
+func (o *AnalyticsSKU) HasUnitsSold() bool {
 	if o != nil && o.UnitsSold != nil {
 		return true
 	}
@@ -118,29 +220,65 @@ func (o *AnalyticsSku) HasUnitsSold() bool {
 }
 
 // SetUnitsSold gets a reference to the given AnalyticsDataPointWithTrend and assigns it to the UnitsSold field.
-func (o *AnalyticsSku) SetUnitsSold(v AnalyticsDataPointWithTrend) {
+func (o *AnalyticsSKU) SetUnitsSold(v AnalyticsDataPointWithTrend) {
 	o.UnitsSold = &v
 }
 
-type NullableAnalyticsSku struct {
-	Value        AnalyticsSku
-	ExplicitNull bool
+func (o AnalyticsSKU) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if o.LastUpdated != nil {
+		toSerialize["lastUpdated"] = o.LastUpdated
+	}
+	if o.CatalogId != nil {
+		toSerialize["catalogId"] = o.CatalogId
+	}
+	if o.ProductId != nil {
+		toSerialize["productId"] = o.ProductId
+	}
+	if o.UnitsSold != nil {
+		toSerialize["unitsSold"] = o.UnitsSold
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableAnalyticsSku) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableAnalyticsSKU struct {
+	value *AnalyticsSKU
+	isSet bool
 }
 
-func (v *NullableAnalyticsSku) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableAnalyticsSKU) Get() *AnalyticsSKU {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableAnalyticsSKU) Set(val *AnalyticsSKU) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAnalyticsSKU) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAnalyticsSKU) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAnalyticsSKU(val *AnalyticsSKU) *NullableAnalyticsSKU {
+	return &NullableAnalyticsSKU{value: val, isSet: true}
+}
+
+func (v NullableAnalyticsSKU) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAnalyticsSKU) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

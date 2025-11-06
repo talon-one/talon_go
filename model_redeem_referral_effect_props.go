@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // RedeemReferralEffectProps This effect is **deprecated**. The properties specific to the \"redeemReferral\" effect. This gets triggered whenever the referral code is valid, and a rule was triggered that contains a \"redeem referral\" effect.
 type RedeemReferralEffectProps struct {
 	// The id of the referral code that was redeemed.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The referral code that was redeemed.
 	Value string `json:"value"`
 }
 
+// NewRedeemReferralEffectProps instantiates a new RedeemReferralEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRedeemReferralEffectProps(id int64, value string) *RedeemReferralEffectProps {
+	this := RedeemReferralEffectProps{}
+	this.Id = id
+	this.Value = value
+	return &this
+}
+
+// NewRedeemReferralEffectPropsWithDefaults instantiates a new RedeemReferralEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRedeemReferralEffectPropsWithDefaults() *RedeemReferralEffectProps {
+	this := RedeemReferralEffectProps{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *RedeemReferralEffectProps) GetId() int32 {
+func (o *RedeemReferralEffectProps) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *RedeemReferralEffectProps) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *RedeemReferralEffectProps) SetId(v int32) {
+func (o *RedeemReferralEffectProps) SetId(v int64) {
 	o.Id = v
 }
 
@@ -47,30 +74,63 @@ func (o *RedeemReferralEffectProps) GetValue() string {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *RedeemReferralEffectProps) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *RedeemReferralEffectProps) SetValue(v string) {
 	o.Value = v
 }
 
+func (o RedeemReferralEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRedeemReferralEffectProps struct {
-	Value        RedeemReferralEffectProps
-	ExplicitNull bool
+	value *RedeemReferralEffectProps
+	isSet bool
+}
+
+func (v NullableRedeemReferralEffectProps) Get() *RedeemReferralEffectProps {
+	return v.value
+}
+
+func (v *NullableRedeemReferralEffectProps) Set(val *RedeemReferralEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRedeemReferralEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRedeemReferralEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRedeemReferralEffectProps(val *RedeemReferralEffectProps) *NullableRedeemReferralEffectProps {
+	return &NullableRedeemReferralEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRedeemReferralEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRedeemReferralEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

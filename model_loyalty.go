@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type Loyalty struct {
 	Programs map[string]LoyaltyProgramLedgers `json:"programs"`
 }
 
+// NewLoyalty instantiates a new Loyalty object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyalty(programs map[string]LoyaltyProgramLedgers) *Loyalty {
+	this := Loyalty{}
+	this.Programs = programs
+	return &this
+}
+
+// NewLoyaltyWithDefaults instantiates a new Loyalty object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyWithDefaults() *Loyalty {
+	this := Loyalty{}
+	return &this
+}
+
 // GetCards returns the Cards field value if set, zero value otherwise.
 func (o *Loyalty) GetCards() []LoyaltyCard {
 	if o == nil || o.Cards == nil {
@@ -31,14 +48,13 @@ func (o *Loyalty) GetCards() []LoyaltyCard {
 	return *o.Cards
 }
 
-// GetCardsOk returns a tuple with the Cards field value if set, zero value otherwise
+// GetCardsOk returns a tuple with the Cards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Loyalty) GetCardsOk() ([]LoyaltyCard, bool) {
+func (o *Loyalty) GetCardsOk() (*[]LoyaltyCard, bool) {
 	if o == nil || o.Cards == nil {
-		var ret []LoyaltyCard
-		return ret, false
+		return nil, false
 	}
-	return *o.Cards, true
+	return o.Cards, true
 }
 
 // HasCards returns a boolean if a field has been set.
@@ -65,30 +81,63 @@ func (o *Loyalty) GetPrograms() map[string]LoyaltyProgramLedgers {
 	return o.Programs
 }
 
+// GetProgramsOk returns a tuple with the Programs field value
+// and a boolean to check if the value has been set.
+func (o *Loyalty) GetProgramsOk() (*map[string]LoyaltyProgramLedgers, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Programs, true
+}
+
 // SetPrograms sets field value
 func (o *Loyalty) SetPrograms(v map[string]LoyaltyProgramLedgers) {
 	o.Programs = v
 }
 
+func (o Loyalty) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Cards != nil {
+		toSerialize["cards"] = o.Cards
+	}
+	if true {
+		toSerialize["programs"] = o.Programs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyalty struct {
-	Value        Loyalty
-	ExplicitNull bool
+	value *Loyalty
+	isSet bool
+}
+
+func (v NullableLoyalty) Get() *Loyalty {
+	return v.value
+}
+
+func (v *NullableLoyalty) Set(val *Loyalty) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyalty) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyalty) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyalty(val *Loyalty) *NullableLoyalty {
+	return &NullableLoyalty{value: val, isSet: true}
 }
 
 func (v NullableLoyalty) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyalty) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

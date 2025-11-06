@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -24,7 +23,27 @@ type CreateManagementKey struct {
 	// The list of endpoints that can be accessed with the key
 	Endpoints []Endpoint `json:"endpoints"`
 	// A list of Application IDs that you can access with the management key. An empty or missing list means the management key can be used for all Applications in the account.
-	AllowedApplicationIds *[]int32 `json:"allowedApplicationIds,omitempty"`
+	AllowedApplicationIds *[]int64 `json:"allowedApplicationIds,omitempty"`
+}
+
+// NewCreateManagementKey instantiates a new CreateManagementKey object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCreateManagementKey(name string, expiryDate time.Time, endpoints []Endpoint) *CreateManagementKey {
+	this := CreateManagementKey{}
+	this.Name = name
+	this.ExpiryDate = expiryDate
+	this.Endpoints = endpoints
+	return &this
+}
+
+// NewCreateManagementKeyWithDefaults instantiates a new CreateManagementKey object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCreateManagementKeyWithDefaults() *CreateManagementKey {
+	this := CreateManagementKey{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -35,6 +54,15 @@ func (o *CreateManagementKey) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CreateManagementKey) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -52,6 +80,15 @@ func (o *CreateManagementKey) GetExpiryDate() time.Time {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *CreateManagementKey) GetExpiryDateOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
 func (o *CreateManagementKey) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = v
@@ -67,28 +104,36 @@ func (o *CreateManagementKey) GetEndpoints() []Endpoint {
 	return o.Endpoints
 }
 
+// GetEndpointsOk returns a tuple with the Endpoints field value
+// and a boolean to check if the value has been set.
+func (o *CreateManagementKey) GetEndpointsOk() (*[]Endpoint, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Endpoints, true
+}
+
 // SetEndpoints sets field value
 func (o *CreateManagementKey) SetEndpoints(v []Endpoint) {
 	o.Endpoints = v
 }
 
 // GetAllowedApplicationIds returns the AllowedApplicationIds field value if set, zero value otherwise.
-func (o *CreateManagementKey) GetAllowedApplicationIds() []int32 {
+func (o *CreateManagementKey) GetAllowedApplicationIds() []int64 {
 	if o == nil || o.AllowedApplicationIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.AllowedApplicationIds
 }
 
-// GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field value if set, zero value otherwise
+// GetAllowedApplicationIdsOk returns a tuple with the AllowedApplicationIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateManagementKey) GetAllowedApplicationIdsOk() ([]int32, bool) {
+func (o *CreateManagementKey) GetAllowedApplicationIdsOk() (*[]int64, bool) {
 	if o == nil || o.AllowedApplicationIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AllowedApplicationIds, true
+	return o.AllowedApplicationIds, true
 }
 
 // HasAllowedApplicationIds returns a boolean if a field has been set.
@@ -100,30 +145,60 @@ func (o *CreateManagementKey) HasAllowedApplicationIds() bool {
 	return false
 }
 
-// SetAllowedApplicationIds gets a reference to the given []int32 and assigns it to the AllowedApplicationIds field.
-func (o *CreateManagementKey) SetAllowedApplicationIds(v []int32) {
+// SetAllowedApplicationIds gets a reference to the given []int64 and assigns it to the AllowedApplicationIds field.
+func (o *CreateManagementKey) SetAllowedApplicationIds(v []int64) {
 	o.AllowedApplicationIds = &v
 }
 
+func (o CreateManagementKey) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["endpoints"] = o.Endpoints
+	}
+	if o.AllowedApplicationIds != nil {
+		toSerialize["allowedApplicationIds"] = o.AllowedApplicationIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCreateManagementKey struct {
-	Value        CreateManagementKey
-	ExplicitNull bool
+	value *CreateManagementKey
+	isSet bool
+}
+
+func (v NullableCreateManagementKey) Get() *CreateManagementKey {
+	return v.value
+}
+
+func (v *NullableCreateManagementKey) Set(val *CreateManagementKey) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCreateManagementKey) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCreateManagementKey) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCreateManagementKey(val *CreateManagementKey) *NullableCreateManagementKey {
+	return &NullableCreateManagementKey{value: val, isSet: true}
 }
 
 func (v NullableCreateManagementKey) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCreateManagementKey) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

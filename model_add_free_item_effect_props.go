@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,7 +20,26 @@ type AddFreeItemEffectProps struct {
 	// The name / description of the effect
 	Name string `json:"name"`
 	// The original quantity in case a partial reward was applied.
-	DesiredQuantity *int32 `json:"desiredQuantity,omitempty"`
+	DesiredQuantity *int64 `json:"desiredQuantity,omitempty"`
+}
+
+// NewAddFreeItemEffectProps instantiates a new AddFreeItemEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAddFreeItemEffectProps(sku string, name string) *AddFreeItemEffectProps {
+	this := AddFreeItemEffectProps{}
+	this.Sku = sku
+	this.Name = name
+	return &this
+}
+
+// NewAddFreeItemEffectPropsWithDefaults instantiates a new AddFreeItemEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddFreeItemEffectPropsWithDefaults() *AddFreeItemEffectProps {
+	this := AddFreeItemEffectProps{}
+	return &this
 }
 
 // GetSku returns the Sku field value
@@ -32,6 +50,15 @@ func (o *AddFreeItemEffectProps) GetSku() string {
 	}
 
 	return o.Sku
+}
+
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *AddFreeItemEffectProps) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
 }
 
 // SetSku sets field value
@@ -49,28 +76,36 @@ func (o *AddFreeItemEffectProps) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AddFreeItemEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *AddFreeItemEffectProps) SetName(v string) {
 	o.Name = v
 }
 
 // GetDesiredQuantity returns the DesiredQuantity field value if set, zero value otherwise.
-func (o *AddFreeItemEffectProps) GetDesiredQuantity() int32 {
+func (o *AddFreeItemEffectProps) GetDesiredQuantity() int64 {
 	if o == nil || o.DesiredQuantity == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DesiredQuantity
 }
 
-// GetDesiredQuantityOk returns a tuple with the DesiredQuantity field value if set, zero value otherwise
+// GetDesiredQuantityOk returns a tuple with the DesiredQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddFreeItemEffectProps) GetDesiredQuantityOk() (int32, bool) {
+func (o *AddFreeItemEffectProps) GetDesiredQuantityOk() (*int64, bool) {
 	if o == nil || o.DesiredQuantity == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DesiredQuantity, true
+	return o.DesiredQuantity, true
 }
 
 // HasDesiredQuantity returns a boolean if a field has been set.
@@ -82,30 +117,57 @@ func (o *AddFreeItemEffectProps) HasDesiredQuantity() bool {
 	return false
 }
 
-// SetDesiredQuantity gets a reference to the given int32 and assigns it to the DesiredQuantity field.
-func (o *AddFreeItemEffectProps) SetDesiredQuantity(v int32) {
+// SetDesiredQuantity gets a reference to the given int64 and assigns it to the DesiredQuantity field.
+func (o *AddFreeItemEffectProps) SetDesiredQuantity(v int64) {
 	o.DesiredQuantity = &v
 }
 
+func (o AddFreeItemEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.DesiredQuantity != nil {
+		toSerialize["desiredQuantity"] = o.DesiredQuantity
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddFreeItemEffectProps struct {
-	Value        AddFreeItemEffectProps
-	ExplicitNull bool
+	value *AddFreeItemEffectProps
+	isSet bool
+}
+
+func (v NullableAddFreeItemEffectProps) Get() *AddFreeItemEffectProps {
+	return v.value
+}
+
+func (v *NullableAddFreeItemEffectProps) Set(val *AddFreeItemEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddFreeItemEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddFreeItemEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAddFreeItemEffectProps(val *AddFreeItemEffectProps) *NullableAddFreeItemEffectProps {
+	return &NullableAddFreeItemEffectProps{value: val, isSet: true}
 }
 
 func (v NullableAddFreeItemEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddFreeItemEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

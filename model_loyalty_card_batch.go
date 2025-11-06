@@ -10,14 +10,13 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // LoyaltyCardBatch struct for LoyaltyCardBatch
 type LoyaltyCardBatch struct {
 	// Number of loyalty cards in the batch.
-	NumberOfCards int32 `json:"numberOfCards"`
+	NumberOfCards int64 `json:"numberOfCards"`
 	// ID of the loyalty card batch.
 	BatchId *string `json:"batchId,omitempty"`
 	// Status of the loyalty cards in the batch.
@@ -25,18 +24,49 @@ type LoyaltyCardBatch struct {
 	CardCodeSettings *CodeGeneratorSettings `json:"cardCodeSettings,omitempty"`
 }
 
+// NewLoyaltyCardBatch instantiates a new LoyaltyCardBatch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyCardBatch(numberOfCards int64) *LoyaltyCardBatch {
+	this := LoyaltyCardBatch{}
+	this.NumberOfCards = numberOfCards
+	var status string = "active"
+	this.Status = &status
+	return &this
+}
+
+// NewLoyaltyCardBatchWithDefaults instantiates a new LoyaltyCardBatch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyCardBatchWithDefaults() *LoyaltyCardBatch {
+	this := LoyaltyCardBatch{}
+	var status string = "active"
+	this.Status = &status
+	return &this
+}
+
 // GetNumberOfCards returns the NumberOfCards field value
-func (o *LoyaltyCardBatch) GetNumberOfCards() int32 {
+func (o *LoyaltyCardBatch) GetNumberOfCards() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.NumberOfCards
 }
 
+// GetNumberOfCardsOk returns a tuple with the NumberOfCards field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardBatch) GetNumberOfCardsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NumberOfCards, true
+}
+
 // SetNumberOfCards sets field value
-func (o *LoyaltyCardBatch) SetNumberOfCards(v int32) {
+func (o *LoyaltyCardBatch) SetNumberOfCards(v int64) {
 	o.NumberOfCards = v
 }
 
@@ -49,14 +79,13 @@ func (o *LoyaltyCardBatch) GetBatchId() string {
 	return *o.BatchId
 }
 
-// GetBatchIdOk returns a tuple with the BatchId field value if set, zero value otherwise
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCardBatch) GetBatchIdOk() (string, bool) {
+func (o *LoyaltyCardBatch) GetBatchIdOk() (*string, bool) {
 	if o == nil || o.BatchId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BatchId, true
+	return o.BatchId, true
 }
 
 // HasBatchId returns a boolean if a field has been set.
@@ -82,14 +111,13 @@ func (o *LoyaltyCardBatch) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCardBatch) GetStatusOk() (string, bool) {
+func (o *LoyaltyCardBatch) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -115,14 +143,13 @@ func (o *LoyaltyCardBatch) GetCardCodeSettings() CodeGeneratorSettings {
 	return *o.CardCodeSettings
 }
 
-// GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field value if set, zero value otherwise
+// GetCardCodeSettingsOk returns a tuple with the CardCodeSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyCardBatch) GetCardCodeSettingsOk() (CodeGeneratorSettings, bool) {
+func (o *LoyaltyCardBatch) GetCardCodeSettingsOk() (*CodeGeneratorSettings, bool) {
 	if o == nil || o.CardCodeSettings == nil {
-		var ret CodeGeneratorSettings
-		return ret, false
+		return nil, false
 	}
-	return *o.CardCodeSettings, true
+	return o.CardCodeSettings, true
 }
 
 // HasCardCodeSettings returns a boolean if a field has been set.
@@ -139,25 +166,55 @@ func (o *LoyaltyCardBatch) SetCardCodeSettings(v CodeGeneratorSettings) {
 	o.CardCodeSettings = &v
 }
 
+func (o LoyaltyCardBatch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["numberOfCards"] = o.NumberOfCards
+	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.CardCodeSettings != nil {
+		toSerialize["cardCodeSettings"] = o.CardCodeSettings
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyCardBatch struct {
-	Value        LoyaltyCardBatch
-	ExplicitNull bool
+	value *LoyaltyCardBatch
+	isSet bool
+}
+
+func (v NullableLoyaltyCardBatch) Get() *LoyaltyCardBatch {
+	return v.value
+}
+
+func (v *NullableLoyaltyCardBatch) Set(val *LoyaltyCardBatch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyCardBatch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyCardBatch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyCardBatch(val *LoyaltyCardBatch) *NullableLoyaltyCardBatch {
+	return &NullableLoyaltyCardBatch{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyCardBatch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyCardBatch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

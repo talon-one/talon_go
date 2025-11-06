@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,26 @@ type OktaEventTarget struct {
 	DisplayName string `json:"displayName"`
 }
 
+// NewOktaEventTarget instantiates a new OktaEventTarget object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOktaEventTarget(type_ string, alternateId string, displayName string) *OktaEventTarget {
+	this := OktaEventTarget{}
+	this.Type = type_
+	this.AlternateId = alternateId
+	this.DisplayName = displayName
+	return &this
+}
+
+// NewOktaEventTargetWithDefaults instantiates a new OktaEventTarget object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOktaEventTargetWithDefaults() *OktaEventTarget {
+	this := OktaEventTarget{}
+	return &this
+}
+
 // GetType returns the Type field value
 func (o *OktaEventTarget) GetType() string {
 	if o == nil {
@@ -32,6 +51,15 @@ func (o *OktaEventTarget) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *OktaEventTarget) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -49,6 +77,15 @@ func (o *OktaEventTarget) GetAlternateId() string {
 	return o.AlternateId
 }
 
+// GetAlternateIdOk returns a tuple with the AlternateId field value
+// and a boolean to check if the value has been set.
+func (o *OktaEventTarget) GetAlternateIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AlternateId, true
+}
+
 // SetAlternateId sets field value
 func (o *OktaEventTarget) SetAlternateId(v string) {
 	o.AlternateId = v
@@ -64,30 +101,66 @@ func (o *OktaEventTarget) GetDisplayName() string {
 	return o.DisplayName
 }
 
+// GetDisplayNameOk returns a tuple with the DisplayName field value
+// and a boolean to check if the value has been set.
+func (o *OktaEventTarget) GetDisplayNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DisplayName, true
+}
+
 // SetDisplayName sets field value
 func (o *OktaEventTarget) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
+func (o OktaEventTarget) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["alternateId"] = o.AlternateId
+	}
+	if true {
+		toSerialize["displayName"] = o.DisplayName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOktaEventTarget struct {
-	Value        OktaEventTarget
-	ExplicitNull bool
+	value *OktaEventTarget
+	isSet bool
+}
+
+func (v NullableOktaEventTarget) Get() *OktaEventTarget {
+	return v.value
+}
+
+func (v *NullableOktaEventTarget) Set(val *OktaEventTarget) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOktaEventTarget) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOktaEventTarget) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOktaEventTarget(val *OktaEventTarget) *NullableOktaEventTarget {
+	return &NullableOktaEventTarget{value: val, isSet: true}
 }
 
 func (v NullableOktaEventTarget) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOktaEventTarget) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

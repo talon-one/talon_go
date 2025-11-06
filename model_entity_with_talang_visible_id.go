@@ -10,36 +10,63 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
 
-// EntityWithTalangVisibleId struct for EntityWithTalangVisibleId
-type EntityWithTalangVisibleId struct {
+// EntityWithTalangVisibleID struct for EntityWithTalangVisibleID
+type EntityWithTalangVisibleID struct {
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The exact moment this entity was created.
 	Created time.Time `json:"created"`
 }
 
+// NewEntityWithTalangVisibleID instantiates a new EntityWithTalangVisibleID object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEntityWithTalangVisibleID(id int64, created time.Time) *EntityWithTalangVisibleID {
+	this := EntityWithTalangVisibleID{}
+	this.Id = id
+	this.Created = created
+	return &this
+}
+
+// NewEntityWithTalangVisibleIDWithDefaults instantiates a new EntityWithTalangVisibleID object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEntityWithTalangVisibleIDWithDefaults() *EntityWithTalangVisibleID {
+	this := EntityWithTalangVisibleID{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *EntityWithTalangVisibleId) GetId() int32 {
+func (o *EntityWithTalangVisibleID) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *EntityWithTalangVisibleID) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *EntityWithTalangVisibleId) SetId(v int32) {
+func (o *EntityWithTalangVisibleID) SetId(v int64) {
 	o.Id = v
 }
 
 // GetCreated returns the Created field value
-func (o *EntityWithTalangVisibleId) GetCreated() time.Time {
+func (o *EntityWithTalangVisibleID) GetCreated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -48,30 +75,63 @@ func (o *EntityWithTalangVisibleId) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *EntityWithTalangVisibleID) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
-func (o *EntityWithTalangVisibleId) SetCreated(v time.Time) {
+func (o *EntityWithTalangVisibleID) SetCreated(v time.Time) {
 	o.Created = v
 }
 
-type NullableEntityWithTalangVisibleId struct {
-	Value        EntityWithTalangVisibleId
-	ExplicitNull bool
+func (o EntityWithTalangVisibleID) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableEntityWithTalangVisibleId) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableEntityWithTalangVisibleID struct {
+	value *EntityWithTalangVisibleID
+	isSet bool
 }
 
-func (v *NullableEntityWithTalangVisibleId) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableEntityWithTalangVisibleID) Get() *EntityWithTalangVisibleID {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableEntityWithTalangVisibleID) Set(val *EntityWithTalangVisibleID) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEntityWithTalangVisibleID) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEntityWithTalangVisibleID) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEntityWithTalangVisibleID(val *EntityWithTalangVisibleID) *NullableEntityWithTalangVisibleID {
+	return &NullableEntityWithTalangVisibleID{value: val, isSet: true}
+}
+
+func (v NullableEntityWithTalangVisibleID) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableEntityWithTalangVisibleID) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

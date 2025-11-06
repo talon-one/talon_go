@@ -8,6 +8,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewReopenSessionResponse
+
+`func NewReopenSessionResponse(effects []Effect, ) *ReopenSessionResponse`
+
+NewReopenSessionResponse instantiates a new ReopenSessionResponse object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewReopenSessionResponseWithDefaults
+
+`func NewReopenSessionResponseWithDefaults() *ReopenSessionResponse`
+
+NewReopenSessionResponseWithDefaults instantiates a new ReopenSessionResponse object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetEffects
 
 `func (o *ReopenSessionResponse) GetEffects() []Effect`
@@ -16,22 +33,17 @@ GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *ReopenSessionResponse) GetEffectsOk() ([]Effect, bool)`
+`func (o *ReopenSessionResponse) GetEffectsOk() (*[]Effect, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEffects
-
-`func (o *ReopenSessionResponse) HasEffects() bool`
-
-HasEffects returns a boolean if a field has been set.
 
 ### SetEffects
 
 `func (o *ReopenSessionResponse) SetEffects(v []Effect)`
 
-SetEffects gets a reference to the given []Effect and assigns it to the Effects field.
+SetEffects sets Effects field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

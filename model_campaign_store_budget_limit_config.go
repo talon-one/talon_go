@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,6 +27,27 @@ type CampaignStoreBudgetLimitConfig struct {
 	Imported bool `json:"imported"`
 }
 
+// NewCampaignStoreBudgetLimitConfig instantiates a new CampaignStoreBudgetLimitConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignStoreBudgetLimitConfig(action string, limit float32, entities []string, imported bool) *CampaignStoreBudgetLimitConfig {
+	this := CampaignStoreBudgetLimitConfig{}
+	this.Action = action
+	this.Limit = limit
+	this.Entities = entities
+	this.Imported = imported
+	return &this
+}
+
+// NewCampaignStoreBudgetLimitConfigWithDefaults instantiates a new CampaignStoreBudgetLimitConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignStoreBudgetLimitConfigWithDefaults() *CampaignStoreBudgetLimitConfig {
+	this := CampaignStoreBudgetLimitConfig{}
+	return &this
+}
+
 // GetAction returns the Action field value
 func (o *CampaignStoreBudgetLimitConfig) GetAction() string {
 	if o == nil {
@@ -36,6 +56,15 @@ func (o *CampaignStoreBudgetLimitConfig) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *CampaignStoreBudgetLimitConfig) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -53,6 +82,15 @@ func (o *CampaignStoreBudgetLimitConfig) GetLimit() float32 {
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *CampaignStoreBudgetLimitConfig) GetLimitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
 func (o *CampaignStoreBudgetLimitConfig) SetLimit(v float32) {
 	o.Limit = v
@@ -67,14 +105,13 @@ func (o *CampaignStoreBudgetLimitConfig) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignStoreBudgetLimitConfig) GetPeriodOk() (string, bool) {
+func (o *CampaignStoreBudgetLimitConfig) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -101,6 +138,15 @@ func (o *CampaignStoreBudgetLimitConfig) GetEntities() []string {
 	return o.Entities
 }
 
+// GetEntitiesOk returns a tuple with the Entities field value
+// and a boolean to check if the value has been set.
+func (o *CampaignStoreBudgetLimitConfig) GetEntitiesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entities, true
+}
+
 // SetEntities sets field value
 func (o *CampaignStoreBudgetLimitConfig) SetEntities(v []string) {
 	o.Entities = v
@@ -116,30 +162,72 @@ func (o *CampaignStoreBudgetLimitConfig) GetImported() bool {
 	return o.Imported
 }
 
+// GetImportedOk returns a tuple with the Imported field value
+// and a boolean to check if the value has been set.
+func (o *CampaignStoreBudgetLimitConfig) GetImportedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Imported, true
+}
+
 // SetImported sets field value
 func (o *CampaignStoreBudgetLimitConfig) SetImported(v bool) {
 	o.Imported = v
 }
 
+func (o CampaignStoreBudgetLimitConfig) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	if true {
+		toSerialize["entities"] = o.Entities
+	}
+	if true {
+		toSerialize["imported"] = o.Imported
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignStoreBudgetLimitConfig struct {
-	Value        CampaignStoreBudgetLimitConfig
-	ExplicitNull bool
+	value *CampaignStoreBudgetLimitConfig
+	isSet bool
+}
+
+func (v NullableCampaignStoreBudgetLimitConfig) Get() *CampaignStoreBudgetLimitConfig {
+	return v.value
+}
+
+func (v *NullableCampaignStoreBudgetLimitConfig) Set(val *CampaignStoreBudgetLimitConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignStoreBudgetLimitConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignStoreBudgetLimitConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignStoreBudgetLimitConfig(val *CampaignStoreBudgetLimitConfig) *NullableCampaignStoreBudgetLimitConfig {
+	return &NullableCampaignStoreBudgetLimitConfig{value: val, isSet: true}
 }
 
 func (v NullableCampaignStoreBudgetLimitConfig) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignStoreBudgetLimitConfig) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

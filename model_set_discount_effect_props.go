@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,25 @@ type SetDiscountEffectProps struct {
 	DesiredValue *float32 `json:"desiredValue,omitempty"`
 }
 
+// NewSetDiscountEffectProps instantiates a new SetDiscountEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSetDiscountEffectProps(name string, value float32) *SetDiscountEffectProps {
+	this := SetDiscountEffectProps{}
+	this.Name = name
+	this.Value = value
+	return &this
+}
+
+// NewSetDiscountEffectPropsWithDefaults instantiates a new SetDiscountEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSetDiscountEffectPropsWithDefaults() *SetDiscountEffectProps {
+	this := SetDiscountEffectProps{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *SetDiscountEffectProps) GetName() string {
 	if o == nil {
@@ -34,6 +52,15 @@ func (o *SetDiscountEffectProps) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountEffectProps) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -51,6 +78,15 @@ func (o *SetDiscountEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *SetDiscountEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *SetDiscountEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -65,14 +101,13 @@ func (o *SetDiscountEffectProps) GetScope() string {
 	return *o.Scope
 }
 
-// GetScopeOk returns a tuple with the Scope field value if set, zero value otherwise
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountEffectProps) GetScopeOk() (string, bool) {
+func (o *SetDiscountEffectProps) GetScopeOk() (*string, bool) {
 	if o == nil || o.Scope == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Scope, true
+	return o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -98,14 +133,13 @@ func (o *SetDiscountEffectProps) GetDesiredValue() float32 {
 	return *o.DesiredValue
 }
 
-// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, zero value otherwise
+// GetDesiredValueOk returns a tuple with the DesiredValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDiscountEffectProps) GetDesiredValueOk() (float32, bool) {
+func (o *SetDiscountEffectProps) GetDesiredValueOk() (*float32, bool) {
 	if o == nil || o.DesiredValue == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DesiredValue, true
+	return o.DesiredValue, true
 }
 
 // HasDesiredValue returns a boolean if a field has been set.
@@ -122,25 +156,55 @@ func (o *SetDiscountEffectProps) SetDesiredValue(v float32) {
 	o.DesiredValue = &v
 }
 
+func (o SetDiscountEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
+	if o.DesiredValue != nil {
+		toSerialize["desiredValue"] = o.DesiredValue
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSetDiscountEffectProps struct {
-	Value        SetDiscountEffectProps
-	ExplicitNull bool
+	value *SetDiscountEffectProps
+	isSet bool
+}
+
+func (v NullableSetDiscountEffectProps) Get() *SetDiscountEffectProps {
+	return v.value
+}
+
+func (v *NullableSetDiscountEffectProps) Set(val *SetDiscountEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSetDiscountEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSetDiscountEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSetDiscountEffectProps(val *SetDiscountEffectProps) *NullableSetDiscountEffectProps {
+	return &NullableSetDiscountEffectProps{value: val, isSet: true}
 }
 
 func (v NullableSetDiscountEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSetDiscountEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

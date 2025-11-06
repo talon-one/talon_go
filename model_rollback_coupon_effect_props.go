@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type RollbackCouponEffectProps struct {
 	// The coupon code whose usage has been rolled back.
 	Value string `json:"value"`
+}
+
+// NewRollbackCouponEffectProps instantiates a new RollbackCouponEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRollbackCouponEffectProps(value string) *RollbackCouponEffectProps {
+	this := RollbackCouponEffectProps{}
+	this.Value = value
+	return &this
+}
+
+// NewRollbackCouponEffectPropsWithDefaults instantiates a new RollbackCouponEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRollbackCouponEffectPropsWithDefaults() *RollbackCouponEffectProps {
+	this := RollbackCouponEffectProps{}
+	return &this
 }
 
 // GetValue returns the Value field value
@@ -30,30 +47,60 @@ func (o *RollbackCouponEffectProps) GetValue() string {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *RollbackCouponEffectProps) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *RollbackCouponEffectProps) SetValue(v string) {
 	o.Value = v
 }
 
+func (o RollbackCouponEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRollbackCouponEffectProps struct {
-	Value        RollbackCouponEffectProps
-	ExplicitNull bool
+	value *RollbackCouponEffectProps
+	isSet bool
+}
+
+func (v NullableRollbackCouponEffectProps) Get() *RollbackCouponEffectProps {
+	return v.value
+}
+
+func (v *NullableRollbackCouponEffectProps) Set(val *RollbackCouponEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRollbackCouponEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRollbackCouponEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRollbackCouponEffectProps(val *RollbackCouponEffectProps) *NullableRollbackCouponEffectProps {
+	return &NullableRollbackCouponEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRollbackCouponEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRollbackCouponEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

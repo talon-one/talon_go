@@ -10,36 +10,66 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AwardGiveawayEffectProps The properties specific to the \"awardGiveaway\" effect. This effect contains information on the giveaway item, and which profile it was awarded to.
 type AwardGiveawayEffectProps struct {
 	// The ID of the giveaways pool the code was taken from.
-	PoolId int32 `json:"poolId"`
+	PoolId int64 `json:"poolId"`
 	// The name of the giveaways pool the code was taken from.
 	PoolName string `json:"poolName"`
 	// The integration ID of the profile that was awarded the giveaway.
 	RecipientIntegrationId string `json:"recipientIntegrationId"`
 	// The internal ID for the giveaway that was awarded.
-	GiveawayId int32 `json:"giveawayId"`
+	GiveawayId int64 `json:"giveawayId"`
 	// The giveaway code that was awarded.
 	Code string `json:"code"`
 }
 
+// NewAwardGiveawayEffectProps instantiates a new AwardGiveawayEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAwardGiveawayEffectProps(poolId int64, poolName string, recipientIntegrationId string, giveawayId int64, code string) *AwardGiveawayEffectProps {
+	this := AwardGiveawayEffectProps{}
+	this.PoolId = poolId
+	this.PoolName = poolName
+	this.RecipientIntegrationId = recipientIntegrationId
+	this.GiveawayId = giveawayId
+	this.Code = code
+	return &this
+}
+
+// NewAwardGiveawayEffectPropsWithDefaults instantiates a new AwardGiveawayEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAwardGiveawayEffectPropsWithDefaults() *AwardGiveawayEffectProps {
+	this := AwardGiveawayEffectProps{}
+	return &this
+}
+
 // GetPoolId returns the PoolId field value
-func (o *AwardGiveawayEffectProps) GetPoolId() int32 {
+func (o *AwardGiveawayEffectProps) GetPoolId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.PoolId
 }
 
+// GetPoolIdOk returns a tuple with the PoolId field value
+// and a boolean to check if the value has been set.
+func (o *AwardGiveawayEffectProps) GetPoolIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PoolId, true
+}
+
 // SetPoolId sets field value
-func (o *AwardGiveawayEffectProps) SetPoolId(v int32) {
+func (o *AwardGiveawayEffectProps) SetPoolId(v int64) {
 	o.PoolId = v
 }
 
@@ -51,6 +81,15 @@ func (o *AwardGiveawayEffectProps) GetPoolName() string {
 	}
 
 	return o.PoolName
+}
+
+// GetPoolNameOk returns a tuple with the PoolName field value
+// and a boolean to check if the value has been set.
+func (o *AwardGiveawayEffectProps) GetPoolNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PoolName, true
 }
 
 // SetPoolName sets field value
@@ -68,23 +107,41 @@ func (o *AwardGiveawayEffectProps) GetRecipientIntegrationId() string {
 	return o.RecipientIntegrationId
 }
 
+// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *AwardGiveawayEffectProps) GetRecipientIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RecipientIntegrationId, true
+}
+
 // SetRecipientIntegrationId sets field value
 func (o *AwardGiveawayEffectProps) SetRecipientIntegrationId(v string) {
 	o.RecipientIntegrationId = v
 }
 
 // GetGiveawayId returns the GiveawayId field value
-func (o *AwardGiveawayEffectProps) GetGiveawayId() int32 {
+func (o *AwardGiveawayEffectProps) GetGiveawayId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.GiveawayId
 }
 
+// GetGiveawayIdOk returns a tuple with the GiveawayId field value
+// and a boolean to check if the value has been set.
+func (o *AwardGiveawayEffectProps) GetGiveawayIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GiveawayId, true
+}
+
 // SetGiveawayId sets field value
-func (o *AwardGiveawayEffectProps) SetGiveawayId(v int32) {
+func (o *AwardGiveawayEffectProps) SetGiveawayId(v int64) {
 	o.GiveawayId = v
 }
 
@@ -98,30 +155,72 @@ func (o *AwardGiveawayEffectProps) GetCode() string {
 	return o.Code
 }
 
+// GetCodeOk returns a tuple with the Code field value
+// and a boolean to check if the value has been set.
+func (o *AwardGiveawayEffectProps) GetCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Code, true
+}
+
 // SetCode sets field value
 func (o *AwardGiveawayEffectProps) SetCode(v string) {
 	o.Code = v
 }
 
+func (o AwardGiveawayEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["poolId"] = o.PoolId
+	}
+	if true {
+		toSerialize["poolName"] = o.PoolName
+	}
+	if true {
+		toSerialize["recipientIntegrationId"] = o.RecipientIntegrationId
+	}
+	if true {
+		toSerialize["giveawayId"] = o.GiveawayId
+	}
+	if true {
+		toSerialize["code"] = o.Code
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAwardGiveawayEffectProps struct {
-	Value        AwardGiveawayEffectProps
-	ExplicitNull bool
+	value *AwardGiveawayEffectProps
+	isSet bool
+}
+
+func (v NullableAwardGiveawayEffectProps) Get() *AwardGiveawayEffectProps {
+	return v.value
+}
+
+func (v *NullableAwardGiveawayEffectProps) Set(val *AwardGiveawayEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAwardGiveawayEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAwardGiveawayEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAwardGiveawayEffectProps(val *AwardGiveawayEffectProps) *NullableAwardGiveawayEffectProps {
+	return &NullableAwardGiveawayEffectProps{value: val, isSet: true}
 }
 
 func (v NullableAwardGiveawayEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAwardGiveawayEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

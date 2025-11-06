@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewAccount struct for NewAccount
 type NewAccount struct {
 	CompanyName string `json:"companyName"`
+}
+
+// NewNewAccount instantiates a new NewAccount object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewAccount(companyName string) *NewAccount {
+	this := NewAccount{}
+	this.CompanyName = companyName
+	return &this
+}
+
+// NewNewAccountWithDefaults instantiates a new NewAccount object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewAccountWithDefaults() *NewAccount {
+	this := NewAccount{}
+	return &this
 }
 
 // GetCompanyName returns the CompanyName field value
@@ -29,30 +46,60 @@ func (o *NewAccount) GetCompanyName() string {
 	return o.CompanyName
 }
 
+// GetCompanyNameOk returns a tuple with the CompanyName field value
+// and a boolean to check if the value has been set.
+func (o *NewAccount) GetCompanyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CompanyName, true
+}
+
 // SetCompanyName sets field value
 func (o *NewAccount) SetCompanyName(v string) {
 	o.CompanyName = v
 }
 
+func (o NewAccount) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["companyName"] = o.CompanyName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewAccount struct {
-	Value        NewAccount
-	ExplicitNull bool
+	value *NewAccount
+	isSet bool
+}
+
+func (v NullableNewAccount) Get() *NewAccount {
+	return v.value
+}
+
+func (v *NullableNewAccount) Set(val *NewAccount) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewAccount) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewAccount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewAccount(val *NewAccount) *NullableNewAccount {
+	return &NullableNewAccount{value: val, isSet: true}
 }
 
 func (v NullableNewAccount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewAccount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

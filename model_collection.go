@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,43 +17,75 @@ import (
 // Collection struct for Collection
 type Collection struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
 	// A short description of the purpose of this collection.
 	Description *string `json:"description,omitempty"`
 	// A list of the IDs of the Applications where this collection is enabled.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The name of this collection.
 	Name string `json:"name"`
 	// ID of the user who last updated this effect if available.
-	ModifiedBy *int32 `json:"modifiedBy,omitempty"`
+	ModifiedBy *int64 `json:"modifiedBy,omitempty"`
 	// ID of the user who created this effect.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
 	// The ID of the Application that owns this entity.
-	ApplicationId *int32 `json:"applicationId,omitempty"`
+	ApplicationId *int64 `json:"applicationId,omitempty"`
 	// The ID of the campaign that owns this entity.
-	CampaignId *int32 `json:"campaignId,omitempty"`
+	CampaignId *int64 `json:"campaignId,omitempty"`
 	// The content of the collection.
 	Payload *[]string `json:"payload,omitempty"`
 }
 
+// NewCollection instantiates a new Collection object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCollection(id int64, created time.Time, accountId int64, modified time.Time, name string, createdBy int64) *Collection {
+	this := Collection{}
+	this.Id = id
+	this.Created = created
+	this.AccountId = accountId
+	this.Modified = modified
+	this.Name = name
+	this.CreatedBy = createdBy
+	return &this
+}
+
+// NewCollectionWithDefaults instantiates a new Collection object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCollectionWithDefaults() *Collection {
+	this := Collection{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Collection) GetId() int32 {
+func (o *Collection) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Collection) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Collection) SetId(v int32) {
+func (o *Collection) SetId(v int64) {
 	o.Id = v
 }
 
@@ -68,23 +99,41 @@ func (o *Collection) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Collection) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Collection) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Collection) GetAccountId() int32 {
+func (o *Collection) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Collection) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Collection) SetAccountId(v int32) {
+func (o *Collection) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -96,6 +145,15 @@ func (o *Collection) GetModified() time.Time {
 	}
 
 	return o.Modified
+}
+
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *Collection) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
 }
 
 // SetModified sets field value
@@ -112,14 +170,13 @@ func (o *Collection) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Collection) GetDescriptionOk() (string, bool) {
+func (o *Collection) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -137,22 +194,21 @@ func (o *Collection) SetDescription(v string) {
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *Collection) GetSubscribedApplicationsIds() []int32 {
+func (o *Collection) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Collection) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *Collection) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -164,8 +220,8 @@ func (o *Collection) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *Collection) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *Collection) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
@@ -179,28 +235,36 @@ func (o *Collection) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Collection) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *Collection) SetName(v string) {
 	o.Name = v
 }
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
-func (o *Collection) GetModifiedBy() int32 {
+func (o *Collection) GetModifiedBy() int64 {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ModifiedBy
 }
 
-// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, zero value otherwise
+// GetModifiedByOk returns a tuple with the ModifiedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Collection) GetModifiedByOk() (int32, bool) {
+func (o *Collection) GetModifiedByOk() (*int64, bool) {
 	if o == nil || o.ModifiedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ModifiedBy, true
+	return o.ModifiedBy, true
 }
 
 // HasModifiedBy returns a boolean if a field has been set.
@@ -212,43 +276,51 @@ func (o *Collection) HasModifiedBy() bool {
 	return false
 }
 
-// SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
-func (o *Collection) SetModifiedBy(v int32) {
+// SetModifiedBy gets a reference to the given int64 and assigns it to the ModifiedBy field.
+func (o *Collection) SetModifiedBy(v int64) {
 	o.ModifiedBy = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *Collection) GetCreatedBy() int32 {
+func (o *Collection) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *Collection) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *Collection) SetCreatedBy(v int32) {
+func (o *Collection) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
-func (o *Collection) GetApplicationId() int32 {
+func (o *Collection) GetApplicationId() int64 {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationId
 }
 
-// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, zero value otherwise
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Collection) GetApplicationIdOk() (int32, bool) {
+func (o *Collection) GetApplicationIdOk() (*int64, bool) {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationId, true
+	return o.ApplicationId, true
 }
 
 // HasApplicationId returns a boolean if a field has been set.
@@ -260,28 +332,27 @@ func (o *Collection) HasApplicationId() bool {
 	return false
 }
 
-// SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
-func (o *Collection) SetApplicationId(v int32) {
+// SetApplicationId gets a reference to the given int64 and assigns it to the ApplicationId field.
+func (o *Collection) SetApplicationId(v int64) {
 	o.ApplicationId = &v
 }
 
 // GetCampaignId returns the CampaignId field value if set, zero value otherwise.
-func (o *Collection) GetCampaignId() int32 {
+func (o *Collection) GetCampaignId() int64 {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Collection) GetCampaignIdOk() (int32, bool) {
+func (o *Collection) GetCampaignIdOk() (*int64, bool) {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignId, true
+	return o.CampaignId, true
 }
 
 // HasCampaignId returns a boolean if a field has been set.
@@ -293,8 +364,8 @@ func (o *Collection) HasCampaignId() bool {
 	return false
 }
 
-// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-func (o *Collection) SetCampaignId(v int32) {
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *Collection) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
@@ -307,14 +378,13 @@ func (o *Collection) GetPayload() []string {
 	return *o.Payload
 }
 
-// GetPayloadOk returns a tuple with the Payload field value if set, zero value otherwise
+// GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Collection) GetPayloadOk() ([]string, bool) {
+func (o *Collection) GetPayloadOk() (*[]string, bool) {
 	if o == nil || o.Payload == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Payload, true
+	return o.Payload, true
 }
 
 // HasPayload returns a boolean if a field has been set.
@@ -331,25 +401,79 @@ func (o *Collection) SetPayload(v []string) {
 	o.Payload = &v
 }
 
+func (o Collection) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.ModifiedBy != nil {
+		toSerialize["modifiedBy"] = o.ModifiedBy
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.ApplicationId != nil {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if o.Payload != nil {
+		toSerialize["payload"] = o.Payload
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCollection struct {
-	Value        Collection
-	ExplicitNull bool
+	value *Collection
+	isSet bool
+}
+
+func (v NullableCollection) Get() *Collection {
+	return v.value
+}
+
+func (v *NullableCollection) Set(val *Collection) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCollection) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCollection) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCollection(val *Collection) *NullableCollection {
+	return &NullableCollection{value: val, isSet: true}
 }
 
 func (v NullableCollection) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCollection) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

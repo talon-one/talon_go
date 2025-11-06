@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,17 +18,38 @@ type CampaignVersions struct {
 	// The campaign revision state displayed in the Campaign Manager.
 	RevisionFrontendState *string `json:"revisionFrontendState,omitempty"`
 	// ID of the revision that was last activated on this campaign.
-	ActiveRevisionId *int32 `json:"activeRevisionId,omitempty"`
+	ActiveRevisionId *int64 `json:"activeRevisionId,omitempty"`
 	// ID of the revision version that is active on the campaign.
-	ActiveRevisionVersionId *int32 `json:"activeRevisionVersionId,omitempty"`
+	ActiveRevisionVersionId *int64 `json:"activeRevisionVersionId,omitempty"`
 	// Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.
-	Version *int32 `json:"version,omitempty"`
+	Version *int64 `json:"version,omitempty"`
 	// ID of the revision currently being modified for the campaign.
-	CurrentRevisionId *int32 `json:"currentRevisionId,omitempty"`
+	CurrentRevisionId *int64 `json:"currentRevisionId,omitempty"`
 	// ID of the latest version applied on the current revision.
-	CurrentRevisionVersionId *int32 `json:"currentRevisionVersionId,omitempty"`
+	CurrentRevisionVersionId *int64 `json:"currentRevisionVersionId,omitempty"`
 	// Flag for determining whether we use current revision when sending requests with staging API key.
 	StageRevision *bool `json:"stageRevision,omitempty"`
+}
+
+// NewCampaignVersions instantiates a new CampaignVersions object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignVersions() *CampaignVersions {
+	this := CampaignVersions{}
+	var stageRevision bool = false
+	this.StageRevision = &stageRevision
+	return &this
+}
+
+// NewCampaignVersionsWithDefaults instantiates a new CampaignVersions object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignVersionsWithDefaults() *CampaignVersions {
+	this := CampaignVersions{}
+	var stageRevision bool = false
+	this.StageRevision = &stageRevision
+	return &this
 }
 
 // GetRevisionFrontendState returns the RevisionFrontendState field value if set, zero value otherwise.
@@ -41,14 +61,13 @@ func (o *CampaignVersions) GetRevisionFrontendState() string {
 	return *o.RevisionFrontendState
 }
 
-// GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field value if set, zero value otherwise
+// GetRevisionFrontendStateOk returns a tuple with the RevisionFrontendState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetRevisionFrontendStateOk() (string, bool) {
+func (o *CampaignVersions) GetRevisionFrontendStateOk() (*string, bool) {
 	if o == nil || o.RevisionFrontendState == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RevisionFrontendState, true
+	return o.RevisionFrontendState, true
 }
 
 // HasRevisionFrontendState returns a boolean if a field has been set.
@@ -66,22 +85,21 @@ func (o *CampaignVersions) SetRevisionFrontendState(v string) {
 }
 
 // GetActiveRevisionId returns the ActiveRevisionId field value if set, zero value otherwise.
-func (o *CampaignVersions) GetActiveRevisionId() int32 {
+func (o *CampaignVersions) GetActiveRevisionId() int64 {
 	if o == nil || o.ActiveRevisionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveRevisionId
 }
 
-// GetActiveRevisionIdOk returns a tuple with the ActiveRevisionId field value if set, zero value otherwise
+// GetActiveRevisionIdOk returns a tuple with the ActiveRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetActiveRevisionIdOk() (int32, bool) {
+func (o *CampaignVersions) GetActiveRevisionIdOk() (*int64, bool) {
 	if o == nil || o.ActiveRevisionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveRevisionId, true
+	return o.ActiveRevisionId, true
 }
 
 // HasActiveRevisionId returns a boolean if a field has been set.
@@ -93,28 +111,27 @@ func (o *CampaignVersions) HasActiveRevisionId() bool {
 	return false
 }
 
-// SetActiveRevisionId gets a reference to the given int32 and assigns it to the ActiveRevisionId field.
-func (o *CampaignVersions) SetActiveRevisionId(v int32) {
+// SetActiveRevisionId gets a reference to the given int64 and assigns it to the ActiveRevisionId field.
+func (o *CampaignVersions) SetActiveRevisionId(v int64) {
 	o.ActiveRevisionId = &v
 }
 
 // GetActiveRevisionVersionId returns the ActiveRevisionVersionId field value if set, zero value otherwise.
-func (o *CampaignVersions) GetActiveRevisionVersionId() int32 {
+func (o *CampaignVersions) GetActiveRevisionVersionId() int64 {
 	if o == nil || o.ActiveRevisionVersionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ActiveRevisionVersionId
 }
 
-// GetActiveRevisionVersionIdOk returns a tuple with the ActiveRevisionVersionId field value if set, zero value otherwise
+// GetActiveRevisionVersionIdOk returns a tuple with the ActiveRevisionVersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetActiveRevisionVersionIdOk() (int32, bool) {
+func (o *CampaignVersions) GetActiveRevisionVersionIdOk() (*int64, bool) {
 	if o == nil || o.ActiveRevisionVersionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActiveRevisionVersionId, true
+	return o.ActiveRevisionVersionId, true
 }
 
 // HasActiveRevisionVersionId returns a boolean if a field has been set.
@@ -126,28 +143,27 @@ func (o *CampaignVersions) HasActiveRevisionVersionId() bool {
 	return false
 }
 
-// SetActiveRevisionVersionId gets a reference to the given int32 and assigns it to the ActiveRevisionVersionId field.
-func (o *CampaignVersions) SetActiveRevisionVersionId(v int32) {
+// SetActiveRevisionVersionId gets a reference to the given int64 and assigns it to the ActiveRevisionVersionId field.
+func (o *CampaignVersions) SetActiveRevisionVersionId(v int64) {
 	o.ActiveRevisionVersionId = &v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
-func (o *CampaignVersions) GetVersion() int32 {
+func (o *CampaignVersions) GetVersion() int64 {
 	if o == nil || o.Version == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, zero value otherwise
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetVersionOk() (int32, bool) {
+func (o *CampaignVersions) GetVersionOk() (*int64, bool) {
 	if o == nil || o.Version == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Version, true
+	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
@@ -159,28 +175,27 @@ func (o *CampaignVersions) HasVersion() bool {
 	return false
 }
 
-// SetVersion gets a reference to the given int32 and assigns it to the Version field.
-func (o *CampaignVersions) SetVersion(v int32) {
+// SetVersion gets a reference to the given int64 and assigns it to the Version field.
+func (o *CampaignVersions) SetVersion(v int64) {
 	o.Version = &v
 }
 
 // GetCurrentRevisionId returns the CurrentRevisionId field value if set, zero value otherwise.
-func (o *CampaignVersions) GetCurrentRevisionId() int32 {
+func (o *CampaignVersions) GetCurrentRevisionId() int64 {
 	if o == nil || o.CurrentRevisionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentRevisionId
 }
 
-// GetCurrentRevisionIdOk returns a tuple with the CurrentRevisionId field value if set, zero value otherwise
+// GetCurrentRevisionIdOk returns a tuple with the CurrentRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetCurrentRevisionIdOk() (int32, bool) {
+func (o *CampaignVersions) GetCurrentRevisionIdOk() (*int64, bool) {
 	if o == nil || o.CurrentRevisionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentRevisionId, true
+	return o.CurrentRevisionId, true
 }
 
 // HasCurrentRevisionId returns a boolean if a field has been set.
@@ -192,28 +207,27 @@ func (o *CampaignVersions) HasCurrentRevisionId() bool {
 	return false
 }
 
-// SetCurrentRevisionId gets a reference to the given int32 and assigns it to the CurrentRevisionId field.
-func (o *CampaignVersions) SetCurrentRevisionId(v int32) {
+// SetCurrentRevisionId gets a reference to the given int64 and assigns it to the CurrentRevisionId field.
+func (o *CampaignVersions) SetCurrentRevisionId(v int64) {
 	o.CurrentRevisionId = &v
 }
 
 // GetCurrentRevisionVersionId returns the CurrentRevisionVersionId field value if set, zero value otherwise.
-func (o *CampaignVersions) GetCurrentRevisionVersionId() int32 {
+func (o *CampaignVersions) GetCurrentRevisionVersionId() int64 {
 	if o == nil || o.CurrentRevisionVersionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CurrentRevisionVersionId
 }
 
-// GetCurrentRevisionVersionIdOk returns a tuple with the CurrentRevisionVersionId field value if set, zero value otherwise
+// GetCurrentRevisionVersionIdOk returns a tuple with the CurrentRevisionVersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetCurrentRevisionVersionIdOk() (int32, bool) {
+func (o *CampaignVersions) GetCurrentRevisionVersionIdOk() (*int64, bool) {
 	if o == nil || o.CurrentRevisionVersionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentRevisionVersionId, true
+	return o.CurrentRevisionVersionId, true
 }
 
 // HasCurrentRevisionVersionId returns a boolean if a field has been set.
@@ -225,8 +239,8 @@ func (o *CampaignVersions) HasCurrentRevisionVersionId() bool {
 	return false
 }
 
-// SetCurrentRevisionVersionId gets a reference to the given int32 and assigns it to the CurrentRevisionVersionId field.
-func (o *CampaignVersions) SetCurrentRevisionVersionId(v int32) {
+// SetCurrentRevisionVersionId gets a reference to the given int64 and assigns it to the CurrentRevisionVersionId field.
+func (o *CampaignVersions) SetCurrentRevisionVersionId(v int64) {
 	o.CurrentRevisionVersionId = &v
 }
 
@@ -239,14 +253,13 @@ func (o *CampaignVersions) GetStageRevision() bool {
 	return *o.StageRevision
 }
 
-// GetStageRevisionOk returns a tuple with the StageRevision field value if set, zero value otherwise
+// GetStageRevisionOk returns a tuple with the StageRevision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignVersions) GetStageRevisionOk() (bool, bool) {
+func (o *CampaignVersions) GetStageRevisionOk() (*bool, bool) {
 	if o == nil || o.StageRevision == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.StageRevision, true
+	return o.StageRevision, true
 }
 
 // HasStageRevision returns a boolean if a field has been set.
@@ -263,25 +276,64 @@ func (o *CampaignVersions) SetStageRevision(v bool) {
 	o.StageRevision = &v
 }
 
+func (o CampaignVersions) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.RevisionFrontendState != nil {
+		toSerialize["revisionFrontendState"] = o.RevisionFrontendState
+	}
+	if o.ActiveRevisionId != nil {
+		toSerialize["activeRevisionId"] = o.ActiveRevisionId
+	}
+	if o.ActiveRevisionVersionId != nil {
+		toSerialize["activeRevisionVersionId"] = o.ActiveRevisionVersionId
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
+	if o.CurrentRevisionId != nil {
+		toSerialize["currentRevisionId"] = o.CurrentRevisionId
+	}
+	if o.CurrentRevisionVersionId != nil {
+		toSerialize["currentRevisionVersionId"] = o.CurrentRevisionVersionId
+	}
+	if o.StageRevision != nil {
+		toSerialize["stageRevision"] = o.StageRevision
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignVersions struct {
-	Value        CampaignVersions
-	ExplicitNull bool
+	value *CampaignVersions
+	isSet bool
+}
+
+func (v NullableCampaignVersions) Get() *CampaignVersions {
+	return v.value
+}
+
+func (v *NullableCampaignVersions) Set(val *CampaignVersions) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignVersions) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignVersions) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignVersions(val *CampaignVersions) *NullableCampaignVersions {
+	return &NullableCampaignVersions{value: val, isSet: true}
 }
 
 func (v NullableCampaignVersions) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignVersions) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

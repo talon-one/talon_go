@@ -10,18 +10,34 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// AudienceIntegrationId struct for AudienceIntegrationId
-type AudienceIntegrationId struct {
+// AudienceIntegrationID struct for AudienceIntegrationID
+type AudienceIntegrationID struct {
 	// The ID of this audience in the third-party integration.
 	IntegrationId *string `json:"integrationId,omitempty"`
 }
 
+// NewAudienceIntegrationID instantiates a new AudienceIntegrationID object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAudienceIntegrationID() *AudienceIntegrationID {
+	this := AudienceIntegrationID{}
+	return &this
+}
+
+// NewAudienceIntegrationIDWithDefaults instantiates a new AudienceIntegrationID object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAudienceIntegrationIDWithDefaults() *AudienceIntegrationID {
+	this := AudienceIntegrationID{}
+	return &this
+}
+
 // GetIntegrationId returns the IntegrationId field value if set, zero value otherwise.
-func (o *AudienceIntegrationId) GetIntegrationId() string {
+func (o *AudienceIntegrationID) GetIntegrationId() string {
 	if o == nil || o.IntegrationId == nil {
 		var ret string
 		return ret
@@ -29,18 +45,17 @@ func (o *AudienceIntegrationId) GetIntegrationId() string {
 	return *o.IntegrationId
 }
 
-// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, zero value otherwise
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AudienceIntegrationId) GetIntegrationIdOk() (string, bool) {
+func (o *AudienceIntegrationID) GetIntegrationIdOk() (*string, bool) {
 	if o == nil || o.IntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.IntegrationId, true
+	return o.IntegrationId, true
 }
 
 // HasIntegrationId returns a boolean if a field has been set.
-func (o *AudienceIntegrationId) HasIntegrationId() bool {
+func (o *AudienceIntegrationID) HasIntegrationId() bool {
 	if o != nil && o.IntegrationId != nil {
 		return true
 	}
@@ -49,29 +64,50 @@ func (o *AudienceIntegrationId) HasIntegrationId() bool {
 }
 
 // SetIntegrationId gets a reference to the given string and assigns it to the IntegrationId field.
-func (o *AudienceIntegrationId) SetIntegrationId(v string) {
+func (o *AudienceIntegrationID) SetIntegrationId(v string) {
 	o.IntegrationId = &v
 }
 
-type NullableAudienceIntegrationId struct {
-	Value        AudienceIntegrationId
-	ExplicitNull bool
+func (o AudienceIntegrationID) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.IntegrationId != nil {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableAudienceIntegrationId) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableAudienceIntegrationID struct {
+	value *AudienceIntegrationID
+	isSet bool
 }
 
-func (v *NullableAudienceIntegrationId) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableAudienceIntegrationID) Get() *AudienceIntegrationID {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableAudienceIntegrationID) Set(val *AudienceIntegrationID) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAudienceIntegrationID) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAudienceIntegrationID) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAudienceIntegrationID(val *AudienceIntegrationID) *NullableAudienceIntegrationID {
+	return &NullableAudienceIntegrationID{value: val, isSet: true}
+}
+
+func (v NullableAudienceIntegrationID) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableAudienceIntegrationID) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

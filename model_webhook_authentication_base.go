@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,26 @@ type WebhookAuthenticationBase struct {
 	Data map[string]interface{} `json:"data"`
 }
 
+// NewWebhookAuthenticationBase instantiates a new WebhookAuthenticationBase object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewWebhookAuthenticationBase(name string, type_ string, data map[string]interface{}) *WebhookAuthenticationBase {
+	this := WebhookAuthenticationBase{}
+	this.Name = name
+	this.Type = type_
+	this.Data = data
+	return &this
+}
+
+// NewWebhookAuthenticationBaseWithDefaults instantiates a new WebhookAuthenticationBase object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWebhookAuthenticationBaseWithDefaults() *WebhookAuthenticationBase {
+	this := WebhookAuthenticationBase{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *WebhookAuthenticationBase) GetName() string {
 	if o == nil {
@@ -30,6 +49,15 @@ func (o *WebhookAuthenticationBase) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthenticationBase) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -47,6 +75,15 @@ func (o *WebhookAuthenticationBase) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthenticationBase) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *WebhookAuthenticationBase) SetType(v string) {
 	o.Type = v
@@ -62,30 +99,66 @@ func (o *WebhookAuthenticationBase) GetData() map[string]interface{} {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *WebhookAuthenticationBase) GetDataOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *WebhookAuthenticationBase) SetData(v map[string]interface{}) {
 	o.Data = v
 }
 
+func (o WebhookAuthenticationBase) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableWebhookAuthenticationBase struct {
-	Value        WebhookAuthenticationBase
-	ExplicitNull bool
+	value *WebhookAuthenticationBase
+	isSet bool
+}
+
+func (v NullableWebhookAuthenticationBase) Get() *WebhookAuthenticationBase {
+	return v.value
+}
+
+func (v *NullableWebhookAuthenticationBase) Set(val *WebhookAuthenticationBase) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWebhookAuthenticationBase) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWebhookAuthenticationBase) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableWebhookAuthenticationBase(val *WebhookAuthenticationBase) *NullableWebhookAuthenticationBase {
+	return &NullableWebhookAuthenticationBase{value: val, isSet: true}
 }
 
 func (v NullableWebhookAuthenticationBase) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableWebhookAuthenticationBase) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

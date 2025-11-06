@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,13 +17,13 @@ import (
 // Change struct for Change
 type Change struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the user associated with this entity.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// ID of application associated with change.
-	ApplicationId *int32 `json:"applicationId,omitempty"`
+	ApplicationId *int64 `json:"applicationId,omitempty"`
 	// API endpoint on which the change was initiated.
 	Entity string `json:"entity"`
 	// Resource before the change occurred.
@@ -32,21 +31,51 @@ type Change struct {
 	// Resource after the change occurred.
 	New *map[string]interface{} `json:"new,omitempty"`
 	// ID of management key used to perform changes.
-	ManagementKeyId *int32 `json:"managementKeyId,omitempty"`
+	ManagementKeyId *int64 `json:"managementKeyId,omitempty"`
+}
+
+// NewChange instantiates a new Change object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewChange(id int64, created time.Time, userId int64, entity string) *Change {
+	this := Change{}
+	this.Id = id
+	this.Created = created
+	this.UserId = userId
+	this.Entity = entity
+	return &this
+}
+
+// NewChangeWithDefaults instantiates a new Change object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewChangeWithDefaults() *Change {
+	this := Change{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Change) GetId() int32 {
+func (o *Change) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Change) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Change) SetId(v int32) {
+func (o *Change) SetId(v int64) {
 	o.Id = v
 }
 
@@ -60,43 +89,60 @@ func (o *Change) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Change) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Change) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetUserId returns the UserId field value
-func (o *Change) GetUserId() int32 {
+func (o *Change) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *Change) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *Change) SetUserId(v int32) {
+func (o *Change) SetUserId(v int64) {
 	o.UserId = v
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
-func (o *Change) GetApplicationId() int32 {
+func (o *Change) GetApplicationId() int64 {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationId
 }
 
-// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, zero value otherwise
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Change) GetApplicationIdOk() (int32, bool) {
+func (o *Change) GetApplicationIdOk() (*int64, bool) {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationId, true
+	return o.ApplicationId, true
 }
 
 // HasApplicationId returns a boolean if a field has been set.
@@ -108,8 +154,8 @@ func (o *Change) HasApplicationId() bool {
 	return false
 }
 
-// SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
-func (o *Change) SetApplicationId(v int32) {
+// SetApplicationId gets a reference to the given int64 and assigns it to the ApplicationId field.
+func (o *Change) SetApplicationId(v int64) {
 	o.ApplicationId = &v
 }
 
@@ -121,6 +167,15 @@ func (o *Change) GetEntity() string {
 	}
 
 	return o.Entity
+}
+
+// GetEntityOk returns a tuple with the Entity field value
+// and a boolean to check if the value has been set.
+func (o *Change) GetEntityOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entity, true
 }
 
 // SetEntity sets field value
@@ -137,14 +192,13 @@ func (o *Change) GetOld() map[string]interface{} {
 	return *o.Old
 }
 
-// GetOldOk returns a tuple with the Old field value if set, zero value otherwise
+// GetOldOk returns a tuple with the Old field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Change) GetOldOk() (map[string]interface{}, bool) {
+func (o *Change) GetOldOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Old == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Old, true
+	return o.Old, true
 }
 
 // HasOld returns a boolean if a field has been set.
@@ -170,14 +224,13 @@ func (o *Change) GetNew() map[string]interface{} {
 	return *o.New
 }
 
-// GetNewOk returns a tuple with the New field value if set, zero value otherwise
+// GetNewOk returns a tuple with the New field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Change) GetNewOk() (map[string]interface{}, bool) {
+func (o *Change) GetNewOk() (*map[string]interface{}, bool) {
 	if o == nil || o.New == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.New, true
+	return o.New, true
 }
 
 // HasNew returns a boolean if a field has been set.
@@ -195,22 +248,21 @@ func (o *Change) SetNew(v map[string]interface{}) {
 }
 
 // GetManagementKeyId returns the ManagementKeyId field value if set, zero value otherwise.
-func (o *Change) GetManagementKeyId() int32 {
+func (o *Change) GetManagementKeyId() int64 {
 	if o == nil || o.ManagementKeyId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ManagementKeyId
 }
 
-// GetManagementKeyIdOk returns a tuple with the ManagementKeyId field value if set, zero value otherwise
+// GetManagementKeyIdOk returns a tuple with the ManagementKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Change) GetManagementKeyIdOk() (int32, bool) {
+func (o *Change) GetManagementKeyIdOk() (*int64, bool) {
 	if o == nil || o.ManagementKeyId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ManagementKeyId, true
+	return o.ManagementKeyId, true
 }
 
 // HasManagementKeyId returns a boolean if a field has been set.
@@ -222,30 +274,72 @@ func (o *Change) HasManagementKeyId() bool {
 	return false
 }
 
-// SetManagementKeyId gets a reference to the given int32 and assigns it to the ManagementKeyId field.
-func (o *Change) SetManagementKeyId(v int32) {
+// SetManagementKeyId gets a reference to the given int64 and assigns it to the ManagementKeyId field.
+func (o *Change) SetManagementKeyId(v int64) {
 	o.ManagementKeyId = &v
 }
 
+func (o Change) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.ApplicationId != nil {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["entity"] = o.Entity
+	}
+	if o.Old != nil {
+		toSerialize["old"] = o.Old
+	}
+	if o.New != nil {
+		toSerialize["new"] = o.New
+	}
+	if o.ManagementKeyId != nil {
+		toSerialize["managementKeyId"] = o.ManagementKeyId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableChange struct {
-	Value        Change
-	ExplicitNull bool
+	value *Change
+	isSet bool
+}
+
+func (v NullableChange) Get() *Change {
+	return v.value
+}
+
+func (v *NullableChange) Set(val *Change) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableChange) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableChange) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableChange(val *Change) *NullableChange {
+	return &NullableChange{value: val, isSet: true}
 }
 
 func (v NullableChange) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableChange) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

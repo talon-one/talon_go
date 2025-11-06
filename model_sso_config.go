@@ -10,20 +10,37 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
-// SsoConfig struct for SsoConfig
-type SsoConfig struct {
+// SSOConfig struct for SSOConfig
+type SSOConfig struct {
 	// An indication of whether single sign-on is enforced for the account. When enforced, users cannot use their email and password to sign in to Talon.One. It is not possible to change this to `false` after it is set to `true`.
 	Enforced bool `json:"enforced"`
 	// Assertion Consumer Service (ACS) URL for setting up a new SAML connection with an identity provider like Okta or Microsoft Entra ID.
 	NewAcsUrl *string `json:"newAcsUrl,omitempty"`
 }
 
+// NewSSOConfig instantiates a new SSOConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSSOConfig(enforced bool) *SSOConfig {
+	this := SSOConfig{}
+	this.Enforced = enforced
+	return &this
+}
+
+// NewSSOConfigWithDefaults instantiates a new SSOConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSSOConfigWithDefaults() *SSOConfig {
+	this := SSOConfig{}
+	return &this
+}
+
 // GetEnforced returns the Enforced field value
-func (o *SsoConfig) GetEnforced() bool {
+func (o *SSOConfig) GetEnforced() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -32,13 +49,22 @@ func (o *SsoConfig) GetEnforced() bool {
 	return o.Enforced
 }
 
+// GetEnforcedOk returns a tuple with the Enforced field value
+// and a boolean to check if the value has been set.
+func (o *SSOConfig) GetEnforcedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enforced, true
+}
+
 // SetEnforced sets field value
-func (o *SsoConfig) SetEnforced(v bool) {
+func (o *SSOConfig) SetEnforced(v bool) {
 	o.Enforced = v
 }
 
 // GetNewAcsUrl returns the NewAcsUrl field value if set, zero value otherwise.
-func (o *SsoConfig) GetNewAcsUrl() string {
+func (o *SSOConfig) GetNewAcsUrl() string {
 	if o == nil || o.NewAcsUrl == nil {
 		var ret string
 		return ret
@@ -46,18 +72,17 @@ func (o *SsoConfig) GetNewAcsUrl() string {
 	return *o.NewAcsUrl
 }
 
-// GetNewAcsUrlOk returns a tuple with the NewAcsUrl field value if set, zero value otherwise
+// GetNewAcsUrlOk returns a tuple with the NewAcsUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SsoConfig) GetNewAcsUrlOk() (string, bool) {
+func (o *SSOConfig) GetNewAcsUrlOk() (*string, bool) {
 	if o == nil || o.NewAcsUrl == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NewAcsUrl, true
+	return o.NewAcsUrl, true
 }
 
 // HasNewAcsUrl returns a boolean if a field has been set.
-func (o *SsoConfig) HasNewAcsUrl() bool {
+func (o *SSOConfig) HasNewAcsUrl() bool {
 	if o != nil && o.NewAcsUrl != nil {
 		return true
 	}
@@ -66,29 +91,53 @@ func (o *SsoConfig) HasNewAcsUrl() bool {
 }
 
 // SetNewAcsUrl gets a reference to the given string and assigns it to the NewAcsUrl field.
-func (o *SsoConfig) SetNewAcsUrl(v string) {
+func (o *SSOConfig) SetNewAcsUrl(v string) {
 	o.NewAcsUrl = &v
 }
 
-type NullableSsoConfig struct {
-	Value        SsoConfig
-	ExplicitNull bool
+func (o SSOConfig) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["enforced"] = o.Enforced
+	}
+	if o.NewAcsUrl != nil {
+		toSerialize["newAcsUrl"] = o.NewAcsUrl
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableSsoConfig) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableSSOConfig struct {
+	value *SSOConfig
+	isSet bool
 }
 
-func (v *NullableSsoConfig) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableSSOConfig) Get() *SSOConfig {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableSSOConfig) Set(val *SSOConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSSOConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSSOConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSSOConfig(val *SSOConfig) *NullableSSOConfig {
+	return &NullableSSOConfig{value: val, isSet: true}
+}
+
+func (v NullableSSOConfig) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableSSOConfig) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

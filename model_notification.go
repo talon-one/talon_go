@@ -10,32 +10,60 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // Notification struct for Notification
 type Notification struct {
 	// id of the notification.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// name of the notification.
 	Name string `json:"name"`
 	// description of the notification.
 	Description string `json:"description"`
 }
 
+// NewNotification instantiates a new Notification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNotification(id int64, name string, description string) *Notification {
+	this := Notification{}
+	this.Id = id
+	this.Name = name
+	this.Description = description
+	return &this
+}
+
+// NewNotificationWithDefaults instantiates a new Notification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNotificationWithDefaults() *Notification {
+	this := Notification{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Notification) GetId() int32 {
+func (o *Notification) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Notification) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Notification) SetId(v int32) {
+func (o *Notification) SetId(v int64) {
 	o.Id = v
 }
 
@@ -47,6 +75,15 @@ func (o *Notification) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Notification) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -64,30 +101,66 @@ func (o *Notification) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *Notification) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *Notification) SetDescription(v string) {
 	o.Description = v
 }
 
+func (o Notification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNotification struct {
-	Value        Notification
-	ExplicitNull bool
+	value *Notification
+	isSet bool
+}
+
+func (v NullableNotification) Get() *Notification {
+	return v.value
+}
+
+func (v *NullableNotification) Set(val *Notification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNotification(val *Notification) *NullableNotification {
+	return &NullableNotification{value: val, isSet: true}
 }
 
 func (v NullableNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

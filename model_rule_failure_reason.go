@@ -10,54 +10,84 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // RuleFailureReason Details about why a rule failed.
 type RuleFailureReason struct {
 	// The ID of the campaign that contains the rule that failed.
-	CampaignID int32 `json:"campaignID"`
+	CampaignID int64 `json:"campaignID"`
 	// The name of the campaign that contains the rule that failed.
 	CampaignName string `json:"campaignName"`
 	// The ID of the ruleset that contains the rule that failed.
-	RulesetID int32 `json:"rulesetID"`
+	RulesetID int64 `json:"rulesetID"`
 	// The ID of the coupon that was being evaluated at the time of the rule failure.
-	CouponID *int32 `json:"couponID,omitempty"`
+	CouponID *int64 `json:"couponID,omitempty"`
 	// The code of the coupon that was being evaluated at the time of the rule failure.
 	CouponValue *string `json:"couponValue,omitempty"`
 	// The ID of the referral that was being evaluated at the time of the rule failure.
-	ReferralID *int32 `json:"referralID,omitempty"`
+	ReferralID *int64 `json:"referralID,omitempty"`
 	// The code of the referral that was being evaluated at the time of the rule failure.
 	ReferralValue *string `json:"referralValue,omitempty"`
 	// The index of the rule that failed within the ruleset.
-	RuleIndex int32 `json:"ruleIndex"`
+	RuleIndex int64 `json:"ruleIndex"`
 	// The name of the rule that failed within the ruleset.
 	RuleName string `json:"ruleName"`
 	// The index of the condition that failed.
-	ConditionIndex *int32 `json:"conditionIndex,omitempty"`
+	ConditionIndex *int64 `json:"conditionIndex,omitempty"`
 	// The index of the effect that failed.
-	EffectIndex *int32 `json:"effectIndex,omitempty"`
+	EffectIndex *int64 `json:"effectIndex,omitempty"`
 	// More details about the failure.
 	Details *string `json:"details,omitempty"`
 	// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-	EvaluationGroupID *int32 `json:"evaluationGroupID,omitempty"`
+	EvaluationGroupID *int64 `json:"evaluationGroupID,omitempty"`
 	// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-
 	EvaluationGroupMode *string `json:"evaluationGroupMode,omitempty"`
 }
 
+// NewRuleFailureReason instantiates a new RuleFailureReason object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRuleFailureReason(campaignID int64, campaignName string, rulesetID int64, ruleIndex int64, ruleName string) *RuleFailureReason {
+	this := RuleFailureReason{}
+	this.CampaignID = campaignID
+	this.CampaignName = campaignName
+	this.RulesetID = rulesetID
+	this.RuleIndex = ruleIndex
+	this.RuleName = ruleName
+	return &this
+}
+
+// NewRuleFailureReasonWithDefaults instantiates a new RuleFailureReason object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRuleFailureReasonWithDefaults() *RuleFailureReason {
+	this := RuleFailureReason{}
+	return &this
+}
+
 // GetCampaignID returns the CampaignID field value
-func (o *RuleFailureReason) GetCampaignID() int32 {
+func (o *RuleFailureReason) GetCampaignID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignID
 }
 
+// GetCampaignIDOk returns a tuple with the CampaignID field value
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetCampaignIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignID, true
+}
+
 // SetCampaignID sets field value
-func (o *RuleFailureReason) SetCampaignID(v int32) {
+func (o *RuleFailureReason) SetCampaignID(v int64) {
 	o.CampaignID = v
 }
 
@@ -71,43 +101,60 @@ func (o *RuleFailureReason) GetCampaignName() string {
 	return o.CampaignName
 }
 
+// GetCampaignNameOk returns a tuple with the CampaignName field value
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetCampaignNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignName, true
+}
+
 // SetCampaignName sets field value
 func (o *RuleFailureReason) SetCampaignName(v string) {
 	o.CampaignName = v
 }
 
 // GetRulesetID returns the RulesetID field value
-func (o *RuleFailureReason) GetRulesetID() int32 {
+func (o *RuleFailureReason) GetRulesetID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RulesetID
 }
 
+// GetRulesetIDOk returns a tuple with the RulesetID field value
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetRulesetIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RulesetID, true
+}
+
 // SetRulesetID sets field value
-func (o *RuleFailureReason) SetRulesetID(v int32) {
+func (o *RuleFailureReason) SetRulesetID(v int64) {
 	o.RulesetID = v
 }
 
 // GetCouponID returns the CouponID field value if set, zero value otherwise.
-func (o *RuleFailureReason) GetCouponID() int32 {
+func (o *RuleFailureReason) GetCouponID() int64 {
 	if o == nil || o.CouponID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CouponID
 }
 
-// GetCouponIDOk returns a tuple with the CouponID field value if set, zero value otherwise
+// GetCouponIDOk returns a tuple with the CouponID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetCouponIDOk() (int32, bool) {
+func (o *RuleFailureReason) GetCouponIDOk() (*int64, bool) {
 	if o == nil || o.CouponID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponID, true
+	return o.CouponID, true
 }
 
 // HasCouponID returns a boolean if a field has been set.
@@ -119,8 +166,8 @@ func (o *RuleFailureReason) HasCouponID() bool {
 	return false
 }
 
-// SetCouponID gets a reference to the given int32 and assigns it to the CouponID field.
-func (o *RuleFailureReason) SetCouponID(v int32) {
+// SetCouponID gets a reference to the given int64 and assigns it to the CouponID field.
+func (o *RuleFailureReason) SetCouponID(v int64) {
 	o.CouponID = &v
 }
 
@@ -133,14 +180,13 @@ func (o *RuleFailureReason) GetCouponValue() string {
 	return *o.CouponValue
 }
 
-// GetCouponValueOk returns a tuple with the CouponValue field value if set, zero value otherwise
+// GetCouponValueOk returns a tuple with the CouponValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetCouponValueOk() (string, bool) {
+func (o *RuleFailureReason) GetCouponValueOk() (*string, bool) {
 	if o == nil || o.CouponValue == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponValue, true
+	return o.CouponValue, true
 }
 
 // HasCouponValue returns a boolean if a field has been set.
@@ -158,22 +204,21 @@ func (o *RuleFailureReason) SetCouponValue(v string) {
 }
 
 // GetReferralID returns the ReferralID field value if set, zero value otherwise.
-func (o *RuleFailureReason) GetReferralID() int32 {
+func (o *RuleFailureReason) GetReferralID() int64 {
 	if o == nil || o.ReferralID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReferralID
 }
 
-// GetReferralIDOk returns a tuple with the ReferralID field value if set, zero value otherwise
+// GetReferralIDOk returns a tuple with the ReferralID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetReferralIDOk() (int32, bool) {
+func (o *RuleFailureReason) GetReferralIDOk() (*int64, bool) {
 	if o == nil || o.ReferralID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralID, true
+	return o.ReferralID, true
 }
 
 // HasReferralID returns a boolean if a field has been set.
@@ -185,8 +230,8 @@ func (o *RuleFailureReason) HasReferralID() bool {
 	return false
 }
 
-// SetReferralID gets a reference to the given int32 and assigns it to the ReferralID field.
-func (o *RuleFailureReason) SetReferralID(v int32) {
+// SetReferralID gets a reference to the given int64 and assigns it to the ReferralID field.
+func (o *RuleFailureReason) SetReferralID(v int64) {
 	o.ReferralID = &v
 }
 
@@ -199,14 +244,13 @@ func (o *RuleFailureReason) GetReferralValue() string {
 	return *o.ReferralValue
 }
 
-// GetReferralValueOk returns a tuple with the ReferralValue field value if set, zero value otherwise
+// GetReferralValueOk returns a tuple with the ReferralValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetReferralValueOk() (string, bool) {
+func (o *RuleFailureReason) GetReferralValueOk() (*string, bool) {
 	if o == nil || o.ReferralValue == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralValue, true
+	return o.ReferralValue, true
 }
 
 // HasReferralValue returns a boolean if a field has been set.
@@ -224,17 +268,26 @@ func (o *RuleFailureReason) SetReferralValue(v string) {
 }
 
 // GetRuleIndex returns the RuleIndex field value
-func (o *RuleFailureReason) GetRuleIndex() int32 {
+func (o *RuleFailureReason) GetRuleIndex() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RuleIndex
 }
 
+// GetRuleIndexOk returns a tuple with the RuleIndex field value
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetRuleIndexOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleIndex, true
+}
+
 // SetRuleIndex sets field value
-func (o *RuleFailureReason) SetRuleIndex(v int32) {
+func (o *RuleFailureReason) SetRuleIndex(v int64) {
 	o.RuleIndex = v
 }
 
@@ -248,28 +301,36 @@ func (o *RuleFailureReason) GetRuleName() string {
 	return o.RuleName
 }
 
+// GetRuleNameOk returns a tuple with the RuleName field value
+// and a boolean to check if the value has been set.
+func (o *RuleFailureReason) GetRuleNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleName, true
+}
+
 // SetRuleName sets field value
 func (o *RuleFailureReason) SetRuleName(v string) {
 	o.RuleName = v
 }
 
 // GetConditionIndex returns the ConditionIndex field value if set, zero value otherwise.
-func (o *RuleFailureReason) GetConditionIndex() int32 {
+func (o *RuleFailureReason) GetConditionIndex() int64 {
 	if o == nil || o.ConditionIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ConditionIndex
 }
 
-// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, zero value otherwise
+// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetConditionIndexOk() (int32, bool) {
+func (o *RuleFailureReason) GetConditionIndexOk() (*int64, bool) {
 	if o == nil || o.ConditionIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ConditionIndex, true
+	return o.ConditionIndex, true
 }
 
 // HasConditionIndex returns a boolean if a field has been set.
@@ -281,28 +342,27 @@ func (o *RuleFailureReason) HasConditionIndex() bool {
 	return false
 }
 
-// SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
-func (o *RuleFailureReason) SetConditionIndex(v int32) {
+// SetConditionIndex gets a reference to the given int64 and assigns it to the ConditionIndex field.
+func (o *RuleFailureReason) SetConditionIndex(v int64) {
 	o.ConditionIndex = &v
 }
 
 // GetEffectIndex returns the EffectIndex field value if set, zero value otherwise.
-func (o *RuleFailureReason) GetEffectIndex() int32 {
+func (o *RuleFailureReason) GetEffectIndex() int64 {
 	if o == nil || o.EffectIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EffectIndex
 }
 
-// GetEffectIndexOk returns a tuple with the EffectIndex field value if set, zero value otherwise
+// GetEffectIndexOk returns a tuple with the EffectIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetEffectIndexOk() (int32, bool) {
+func (o *RuleFailureReason) GetEffectIndexOk() (*int64, bool) {
 	if o == nil || o.EffectIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EffectIndex, true
+	return o.EffectIndex, true
 }
 
 // HasEffectIndex returns a boolean if a field has been set.
@@ -314,8 +374,8 @@ func (o *RuleFailureReason) HasEffectIndex() bool {
 	return false
 }
 
-// SetEffectIndex gets a reference to the given int32 and assigns it to the EffectIndex field.
-func (o *RuleFailureReason) SetEffectIndex(v int32) {
+// SetEffectIndex gets a reference to the given int64 and assigns it to the EffectIndex field.
+func (o *RuleFailureReason) SetEffectIndex(v int64) {
 	o.EffectIndex = &v
 }
 
@@ -328,14 +388,13 @@ func (o *RuleFailureReason) GetDetails() string {
 	return *o.Details
 }
 
-// GetDetailsOk returns a tuple with the Details field value if set, zero value otherwise
+// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetDetailsOk() (string, bool) {
+func (o *RuleFailureReason) GetDetailsOk() (*string, bool) {
 	if o == nil || o.Details == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Details, true
+	return o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
@@ -353,22 +412,21 @@ func (o *RuleFailureReason) SetDetails(v string) {
 }
 
 // GetEvaluationGroupID returns the EvaluationGroupID field value if set, zero value otherwise.
-func (o *RuleFailureReason) GetEvaluationGroupID() int32 {
+func (o *RuleFailureReason) GetEvaluationGroupID() int64 {
 	if o == nil || o.EvaluationGroupID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EvaluationGroupID
 }
 
-// GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field value if set, zero value otherwise
+// GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetEvaluationGroupIDOk() (int32, bool) {
+func (o *RuleFailureReason) GetEvaluationGroupIDOk() (*int64, bool) {
 	if o == nil || o.EvaluationGroupID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluationGroupID, true
+	return o.EvaluationGroupID, true
 }
 
 // HasEvaluationGroupID returns a boolean if a field has been set.
@@ -380,8 +438,8 @@ func (o *RuleFailureReason) HasEvaluationGroupID() bool {
 	return false
 }
 
-// SetEvaluationGroupID gets a reference to the given int32 and assigns it to the EvaluationGroupID field.
-func (o *RuleFailureReason) SetEvaluationGroupID(v int32) {
+// SetEvaluationGroupID gets a reference to the given int64 and assigns it to the EvaluationGroupID field.
+func (o *RuleFailureReason) SetEvaluationGroupID(v int64) {
 	o.EvaluationGroupID = &v
 }
 
@@ -394,14 +452,13 @@ func (o *RuleFailureReason) GetEvaluationGroupMode() string {
 	return *o.EvaluationGroupMode
 }
 
-// GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field value if set, zero value otherwise
+// GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleFailureReason) GetEvaluationGroupModeOk() (string, bool) {
+func (o *RuleFailureReason) GetEvaluationGroupModeOk() (*string, bool) {
 	if o == nil || o.EvaluationGroupMode == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluationGroupMode, true
+	return o.EvaluationGroupMode, true
 }
 
 // HasEvaluationGroupMode returns a boolean if a field has been set.
@@ -418,25 +475,85 @@ func (o *RuleFailureReason) SetEvaluationGroupMode(v string) {
 	o.EvaluationGroupMode = &v
 }
 
+func (o RuleFailureReason) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignID"] = o.CampaignID
+	}
+	if true {
+		toSerialize["campaignName"] = o.CampaignName
+	}
+	if true {
+		toSerialize["rulesetID"] = o.RulesetID
+	}
+	if o.CouponID != nil {
+		toSerialize["couponID"] = o.CouponID
+	}
+	if o.CouponValue != nil {
+		toSerialize["couponValue"] = o.CouponValue
+	}
+	if o.ReferralID != nil {
+		toSerialize["referralID"] = o.ReferralID
+	}
+	if o.ReferralValue != nil {
+		toSerialize["referralValue"] = o.ReferralValue
+	}
+	if true {
+		toSerialize["ruleIndex"] = o.RuleIndex
+	}
+	if true {
+		toSerialize["ruleName"] = o.RuleName
+	}
+	if o.ConditionIndex != nil {
+		toSerialize["conditionIndex"] = o.ConditionIndex
+	}
+	if o.EffectIndex != nil {
+		toSerialize["effectIndex"] = o.EffectIndex
+	}
+	if o.Details != nil {
+		toSerialize["details"] = o.Details
+	}
+	if o.EvaluationGroupID != nil {
+		toSerialize["evaluationGroupID"] = o.EvaluationGroupID
+	}
+	if o.EvaluationGroupMode != nil {
+		toSerialize["evaluationGroupMode"] = o.EvaluationGroupMode
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRuleFailureReason struct {
-	Value        RuleFailureReason
-	ExplicitNull bool
+	value *RuleFailureReason
+	isSet bool
+}
+
+func (v NullableRuleFailureReason) Get() *RuleFailureReason {
+	return v.value
+}
+
+func (v *NullableRuleFailureReason) Set(val *RuleFailureReason) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRuleFailureReason) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRuleFailureReason) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRuleFailureReason(val *RuleFailureReason) *NullableRuleFailureReason {
+	return &NullableRuleFailureReason{value: val, isSet: true}
 }
 
 func (v NullableRuleFailureReason) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRuleFailureReason) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

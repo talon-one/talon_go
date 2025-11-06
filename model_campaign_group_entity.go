@@ -10,33 +10,48 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignGroupEntity struct for CampaignGroupEntity
 type CampaignGroupEntity struct {
 	// The IDs of the campaign groups that own this entity.
-	CampaignGroups *[]int32 `json:"campaignGroups,omitempty"`
+	CampaignGroups *[]int64 `json:"campaignGroups,omitempty"`
+}
+
+// NewCampaignGroupEntity instantiates a new CampaignGroupEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignGroupEntity() *CampaignGroupEntity {
+	this := CampaignGroupEntity{}
+	return &this
+}
+
+// NewCampaignGroupEntityWithDefaults instantiates a new CampaignGroupEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignGroupEntityWithDefaults() *CampaignGroupEntity {
+	this := CampaignGroupEntity{}
+	return &this
 }
 
 // GetCampaignGroups returns the CampaignGroups field value if set, zero value otherwise.
-func (o *CampaignGroupEntity) GetCampaignGroups() []int32 {
+func (o *CampaignGroupEntity) GetCampaignGroups() []int64 {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignGroups
 }
 
-// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, zero value otherwise
+// GetCampaignGroupsOk returns a tuple with the CampaignGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignGroupEntity) GetCampaignGroupsOk() ([]int32, bool) {
+func (o *CampaignGroupEntity) GetCampaignGroupsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignGroups == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignGroups, true
+	return o.CampaignGroups, true
 }
 
 // HasCampaignGroups returns a boolean if a field has been set.
@@ -48,30 +63,51 @@ func (o *CampaignGroupEntity) HasCampaignGroups() bool {
 	return false
 }
 
-// SetCampaignGroups gets a reference to the given []int32 and assigns it to the CampaignGroups field.
-func (o *CampaignGroupEntity) SetCampaignGroups(v []int32) {
+// SetCampaignGroups gets a reference to the given []int64 and assigns it to the CampaignGroups field.
+func (o *CampaignGroupEntity) SetCampaignGroups(v []int64) {
 	o.CampaignGroups = &v
 }
 
+func (o CampaignGroupEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CampaignGroups != nil {
+		toSerialize["campaignGroups"] = o.CampaignGroups
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignGroupEntity struct {
-	Value        CampaignGroupEntity
-	ExplicitNull bool
+	value *CampaignGroupEntity
+	isSet bool
+}
+
+func (v NullableCampaignGroupEntity) Get() *CampaignGroupEntity {
+	return v.value
+}
+
+func (v *NullableCampaignGroupEntity) Set(val *CampaignGroupEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignGroupEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignGroupEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignGroupEntity(val *CampaignGroupEntity) *NullableCampaignGroupEntity {
+	return &NullableCampaignGroupEntity{value: val, isSet: true}
 }
 
 func (v NullableCampaignGroupEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignGroupEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

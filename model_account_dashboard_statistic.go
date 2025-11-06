@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -27,6 +26,24 @@ type AccountDashboardStatistic struct {
 	Campaigns AccountDashboardStatisticCampaigns    `json:"campaigns"`
 }
 
+// NewAccountDashboardStatistic instantiates a new AccountDashboardStatistic object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAccountDashboardStatistic(campaigns AccountDashboardStatisticCampaigns) *AccountDashboardStatistic {
+	this := AccountDashboardStatistic{}
+	this.Campaigns = campaigns
+	return &this
+}
+
+// NewAccountDashboardStatisticWithDefaults instantiates a new AccountDashboardStatistic object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountDashboardStatisticWithDefaults() *AccountDashboardStatistic {
+	this := AccountDashboardStatistic{}
+	return &this
+}
+
 // GetRevenue returns the Revenue field value if set, zero value otherwise.
 func (o *AccountDashboardStatistic) GetRevenue() []AccountDashboardStatisticRevenue {
 	if o == nil || o.Revenue == nil {
@@ -36,14 +53,13 @@ func (o *AccountDashboardStatistic) GetRevenue() []AccountDashboardStatisticReve
 	return *o.Revenue
 }
 
-// GetRevenueOk returns a tuple with the Revenue field value if set, zero value otherwise
+// GetRevenueOk returns a tuple with the Revenue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountDashboardStatistic) GetRevenueOk() ([]AccountDashboardStatisticRevenue, bool) {
+func (o *AccountDashboardStatistic) GetRevenueOk() (*[]AccountDashboardStatisticRevenue, bool) {
 	if o == nil || o.Revenue == nil {
-		var ret []AccountDashboardStatisticRevenue
-		return ret, false
+		return nil, false
 	}
-	return *o.Revenue, true
+	return o.Revenue, true
 }
 
 // HasRevenue returns a boolean if a field has been set.
@@ -69,14 +85,13 @@ func (o *AccountDashboardStatistic) GetDiscounts() []AccountDashboardStatisticDi
 	return *o.Discounts
 }
 
-// GetDiscountsOk returns a tuple with the Discounts field value if set, zero value otherwise
+// GetDiscountsOk returns a tuple with the Discounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountDashboardStatistic) GetDiscountsOk() ([]AccountDashboardStatisticDiscount, bool) {
+func (o *AccountDashboardStatistic) GetDiscountsOk() (*[]AccountDashboardStatisticDiscount, bool) {
 	if o == nil || o.Discounts == nil {
-		var ret []AccountDashboardStatisticDiscount
-		return ret, false
+		return nil, false
 	}
-	return *o.Discounts, true
+	return o.Discounts, true
 }
 
 // HasDiscounts returns a boolean if a field has been set.
@@ -102,14 +117,13 @@ func (o *AccountDashboardStatistic) GetLoyaltyPoints() []AccountDashboardStatist
 	return *o.LoyaltyPoints
 }
 
-// GetLoyaltyPointsOk returns a tuple with the LoyaltyPoints field value if set, zero value otherwise
+// GetLoyaltyPointsOk returns a tuple with the LoyaltyPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountDashboardStatistic) GetLoyaltyPointsOk() ([]AccountDashboardStatisticLoyaltyPoints, bool) {
+func (o *AccountDashboardStatistic) GetLoyaltyPointsOk() (*[]AccountDashboardStatisticLoyaltyPoints, bool) {
 	if o == nil || o.LoyaltyPoints == nil {
-		var ret []AccountDashboardStatisticLoyaltyPoints
-		return ret, false
+		return nil, false
 	}
-	return *o.LoyaltyPoints, true
+	return o.LoyaltyPoints, true
 }
 
 // HasLoyaltyPoints returns a boolean if a field has been set.
@@ -135,14 +149,13 @@ func (o *AccountDashboardStatistic) GetReferrals() []AccountDashboardStatisticRe
 	return *o.Referrals
 }
 
-// GetReferralsOk returns a tuple with the Referrals field value if set, zero value otherwise
+// GetReferralsOk returns a tuple with the Referrals field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AccountDashboardStatistic) GetReferralsOk() ([]AccountDashboardStatisticReferrals, bool) {
+func (o *AccountDashboardStatistic) GetReferralsOk() (*[]AccountDashboardStatisticReferrals, bool) {
 	if o == nil || o.Referrals == nil {
-		var ret []AccountDashboardStatisticReferrals
-		return ret, false
+		return nil, false
 	}
-	return *o.Referrals, true
+	return o.Referrals, true
 }
 
 // HasReferrals returns a boolean if a field has been set.
@@ -169,30 +182,72 @@ func (o *AccountDashboardStatistic) GetCampaigns() AccountDashboardStatisticCamp
 	return o.Campaigns
 }
 
+// GetCampaignsOk returns a tuple with the Campaigns field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatistic) GetCampaignsOk() (*AccountDashboardStatisticCampaigns, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Campaigns, true
+}
+
 // SetCampaigns sets field value
 func (o *AccountDashboardStatistic) SetCampaigns(v AccountDashboardStatisticCampaigns) {
 	o.Campaigns = v
 }
 
+func (o AccountDashboardStatistic) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Revenue != nil {
+		toSerialize["revenue"] = o.Revenue
+	}
+	if o.Discounts != nil {
+		toSerialize["discounts"] = o.Discounts
+	}
+	if o.LoyaltyPoints != nil {
+		toSerialize["loyaltyPoints"] = o.LoyaltyPoints
+	}
+	if o.Referrals != nil {
+		toSerialize["referrals"] = o.Referrals
+	}
+	if true {
+		toSerialize["campaigns"] = o.Campaigns
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountDashboardStatistic struct {
-	Value        AccountDashboardStatistic
-	ExplicitNull bool
+	value *AccountDashboardStatistic
+	isSet bool
+}
+
+func (v NullableAccountDashboardStatistic) Get() *AccountDashboardStatistic {
+	return v.value
+}
+
+func (v *NullableAccountDashboardStatistic) Set(val *AccountDashboardStatistic) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountDashboardStatistic) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountDashboardStatistic) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAccountDashboardStatistic(val *AccountDashboardStatistic) *NullableAccountDashboardStatistic {
+	return &NullableAccountDashboardStatistic{value: val, isSet: true}
 }
 
 func (v NullableAccountDashboardStatistic) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountDashboardStatistic) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

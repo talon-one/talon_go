@@ -10,14 +10,13 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // BaseSamlConnection struct for BaseSamlConnection
 type BaseSamlConnection struct {
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// ID of the SAML service.
 	Name string `json:"name"`
 	// Determines if this SAML connection active.
@@ -34,18 +33,49 @@ type BaseSamlConnection struct {
 	AudienceURI *string `json:"audienceURI,omitempty"`
 }
 
+// NewBaseSamlConnection instantiates a new BaseSamlConnection object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBaseSamlConnection(accountId int64, name string, enabled bool, issuer string, signOnURL string) *BaseSamlConnection {
+	this := BaseSamlConnection{}
+	this.AccountId = accountId
+	this.Name = name
+	this.Enabled = enabled
+	this.Issuer = issuer
+	this.SignOnURL = signOnURL
+	return &this
+}
+
+// NewBaseSamlConnectionWithDefaults instantiates a new BaseSamlConnection object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBaseSamlConnectionWithDefaults() *BaseSamlConnection {
+	this := BaseSamlConnection{}
+	return &this
+}
+
 // GetAccountId returns the AccountId field value
-func (o *BaseSamlConnection) GetAccountId() int32 {
+func (o *BaseSamlConnection) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *BaseSamlConnection) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *BaseSamlConnection) SetAccountId(v int32) {
+func (o *BaseSamlConnection) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -57,6 +87,15 @@ func (o *BaseSamlConnection) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *BaseSamlConnection) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -74,6 +113,15 @@ func (o *BaseSamlConnection) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *BaseSamlConnection) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *BaseSamlConnection) SetEnabled(v bool) {
 	o.Enabled = v
@@ -87,6 +135,15 @@ func (o *BaseSamlConnection) GetIssuer() string {
 	}
 
 	return o.Issuer
+}
+
+// GetIssuerOk returns a tuple with the Issuer field value
+// and a boolean to check if the value has been set.
+func (o *BaseSamlConnection) GetIssuerOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Issuer, true
 }
 
 // SetIssuer sets field value
@@ -104,6 +161,15 @@ func (o *BaseSamlConnection) GetSignOnURL() string {
 	return o.SignOnURL
 }
 
+// GetSignOnURLOk returns a tuple with the SignOnURL field value
+// and a boolean to check if the value has been set.
+func (o *BaseSamlConnection) GetSignOnURLOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SignOnURL, true
+}
+
 // SetSignOnURL sets field value
 func (o *BaseSamlConnection) SetSignOnURL(v string) {
 	o.SignOnURL = v
@@ -118,14 +184,13 @@ func (o *BaseSamlConnection) GetSignOutURL() string {
 	return *o.SignOutURL
 }
 
-// GetSignOutURLOk returns a tuple with the SignOutURL field value if set, zero value otherwise
+// GetSignOutURLOk returns a tuple with the SignOutURL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSamlConnection) GetSignOutURLOk() (string, bool) {
+func (o *BaseSamlConnection) GetSignOutURLOk() (*string, bool) {
 	if o == nil || o.SignOutURL == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SignOutURL, true
+	return o.SignOutURL, true
 }
 
 // HasSignOutURL returns a boolean if a field has been set.
@@ -151,14 +216,13 @@ func (o *BaseSamlConnection) GetMetadataURL() string {
 	return *o.MetadataURL
 }
 
-// GetMetadataURLOk returns a tuple with the MetadataURL field value if set, zero value otherwise
+// GetMetadataURLOk returns a tuple with the MetadataURL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSamlConnection) GetMetadataURLOk() (string, bool) {
+func (o *BaseSamlConnection) GetMetadataURLOk() (*string, bool) {
 	if o == nil || o.MetadataURL == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.MetadataURL, true
+	return o.MetadataURL, true
 }
 
 // HasMetadataURL returns a boolean if a field has been set.
@@ -184,14 +248,13 @@ func (o *BaseSamlConnection) GetAudienceURI() string {
 	return *o.AudienceURI
 }
 
-// GetAudienceURIOk returns a tuple with the AudienceURI field value if set, zero value otherwise
+// GetAudienceURIOk returns a tuple with the AudienceURI field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BaseSamlConnection) GetAudienceURIOk() (string, bool) {
+func (o *BaseSamlConnection) GetAudienceURIOk() (*string, bool) {
 	if o == nil || o.AudienceURI == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceURI, true
+	return o.AudienceURI, true
 }
 
 // HasAudienceURI returns a boolean if a field has been set.
@@ -208,25 +271,67 @@ func (o *BaseSamlConnection) SetAudienceURI(v string) {
 	o.AudienceURI = &v
 }
 
+func (o BaseSamlConnection) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["issuer"] = o.Issuer
+	}
+	if true {
+		toSerialize["signOnURL"] = o.SignOnURL
+	}
+	if o.SignOutURL != nil {
+		toSerialize["signOutURL"] = o.SignOutURL
+	}
+	if o.MetadataURL != nil {
+		toSerialize["metadataURL"] = o.MetadataURL
+	}
+	if o.AudienceURI != nil {
+		toSerialize["audienceURI"] = o.AudienceURI
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBaseSamlConnection struct {
-	Value        BaseSamlConnection
-	ExplicitNull bool
+	value *BaseSamlConnection
+	isSet bool
+}
+
+func (v NullableBaseSamlConnection) Get() *BaseSamlConnection {
+	return v.value
+}
+
+func (v *NullableBaseSamlConnection) Set(val *BaseSamlConnection) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBaseSamlConnection) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBaseSamlConnection) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBaseSamlConnection(val *BaseSamlConnection) *NullableBaseSamlConnection {
+	return &NullableBaseSamlConnection{value: val, isSet: true}
 }
 
 func (v NullableBaseSamlConnection) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBaseSamlConnection) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type UpdateAudience struct {
 	// The human-friendly display name for this audience.
 	Name string `json:"name"`
+}
+
+// NewUpdateAudience instantiates a new UpdateAudience object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewUpdateAudience(name string) *UpdateAudience {
+	this := UpdateAudience{}
+	this.Name = name
+	return &this
+}
+
+// NewUpdateAudienceWithDefaults instantiates a new UpdateAudience object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateAudienceWithDefaults() *UpdateAudience {
+	this := UpdateAudience{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -30,30 +47,60 @@ func (o *UpdateAudience) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *UpdateAudience) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *UpdateAudience) SetName(v string) {
 	o.Name = v
 }
 
+func (o UpdateAudience) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateAudience struct {
-	Value        UpdateAudience
-	ExplicitNull bool
+	value *UpdateAudience
+	isSet bool
+}
+
+func (v NullableUpdateAudience) Get() *UpdateAudience {
+	return v.value
+}
+
+func (v *NullableUpdateAudience) Set(val *UpdateAudience) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateAudience) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateAudience) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableUpdateAudience(val *UpdateAudience) *NullableUpdateAudience {
+	return &NullableUpdateAudience{value: val, isSet: true}
 }
 
 func (v NullableUpdateAudience) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateAudience) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

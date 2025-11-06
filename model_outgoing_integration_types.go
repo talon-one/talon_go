@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type OutgoingIntegrationTypes struct {
 	// List of outgoing integrations.
 	Data *[]OutgoingIntegrationType `json:"data,omitempty"`
+}
+
+// NewOutgoingIntegrationTypes instantiates a new OutgoingIntegrationTypes object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOutgoingIntegrationTypes() *OutgoingIntegrationTypes {
+	this := OutgoingIntegrationTypes{}
+	return &this
+}
+
+// NewOutgoingIntegrationTypesWithDefaults instantiates a new OutgoingIntegrationTypes object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationTypesWithDefaults() *OutgoingIntegrationTypes {
+	this := OutgoingIntegrationTypes{}
+	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *OutgoingIntegrationTypes) GetData() []OutgoingIntegrationType {
 	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, zero value otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutgoingIntegrationTypes) GetDataOk() ([]OutgoingIntegrationType, bool) {
+func (o *OutgoingIntegrationTypes) GetDataOk() (*[]OutgoingIntegrationType, bool) {
 	if o == nil || o.Data == nil {
-		var ret []OutgoingIntegrationType
-		return ret, false
+		return nil, false
 	}
-	return *o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *OutgoingIntegrationTypes) SetData(v []OutgoingIntegrationType) {
 	o.Data = &v
 }
 
+func (o OutgoingIntegrationTypes) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationTypes struct {
-	Value        OutgoingIntegrationTypes
-	ExplicitNull bool
+	value *OutgoingIntegrationTypes
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationTypes) Get() *OutgoingIntegrationTypes {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationTypes) Set(val *OutgoingIntegrationTypes) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationTypes) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationTypes) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOutgoingIntegrationTypes(val *OutgoingIntegrationTypes) *NullableOutgoingIntegrationTypes {
+	return &NullableOutgoingIntegrationTypes{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationTypes) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationTypes) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

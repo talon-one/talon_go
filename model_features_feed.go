@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type FeaturesFeed struct {
 	Title   *string `json:"title,omitempty"`
 	PubDate *string `json:"pubDate,omitempty"`
+}
+
+// NewFeaturesFeed instantiates a new FeaturesFeed object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewFeaturesFeed() *FeaturesFeed {
+	this := FeaturesFeed{}
+	return &this
+}
+
+// NewFeaturesFeedWithDefaults instantiates a new FeaturesFeed object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewFeaturesFeedWithDefaults() *FeaturesFeed {
+	this := FeaturesFeed{}
+	return &this
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *FeaturesFeed) GetTitle() string {
 	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value if set, zero value otherwise
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FeaturesFeed) GetTitleOk() (string, bool) {
+func (o *FeaturesFeed) GetTitleOk() (*string, bool) {
 	if o == nil || o.Title == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
@@ -62,14 +77,13 @@ func (o *FeaturesFeed) GetPubDate() string {
 	return *o.PubDate
 }
 
-// GetPubDateOk returns a tuple with the PubDate field value if set, zero value otherwise
+// GetPubDateOk returns a tuple with the PubDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FeaturesFeed) GetPubDateOk() (string, bool) {
+func (o *FeaturesFeed) GetPubDateOk() (*string, bool) {
 	if o == nil || o.PubDate == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.PubDate, true
+	return o.PubDate, true
 }
 
 // HasPubDate returns a boolean if a field has been set.
@@ -86,25 +100,49 @@ func (o *FeaturesFeed) SetPubDate(v string) {
 	o.PubDate = &v
 }
 
+func (o FeaturesFeed) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Title != nil {
+		toSerialize["title"] = o.Title
+	}
+	if o.PubDate != nil {
+		toSerialize["pubDate"] = o.PubDate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableFeaturesFeed struct {
-	Value        FeaturesFeed
-	ExplicitNull bool
+	value *FeaturesFeed
+	isSet bool
+}
+
+func (v NullableFeaturesFeed) Get() *FeaturesFeed {
+	return v.value
+}
+
+func (v *NullableFeaturesFeed) Set(val *FeaturesFeed) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFeaturesFeed) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFeaturesFeed) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableFeaturesFeed(val *FeaturesFeed) *NullableFeaturesFeed {
+	return &NullableFeaturesFeed{value: val, isSet: true}
 }
 
 func (v NullableFeaturesFeed) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableFeaturesFeed) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,6 +27,26 @@ type TrackEventV2Response struct {
 	CreatedReferrals []Referral `json:"createdReferrals"`
 }
 
+// NewTrackEventV2Response instantiates a new TrackEventV2Response object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTrackEventV2Response(effects []Effect, createdCoupons []Coupon, createdReferrals []Referral) *TrackEventV2Response {
+	this := TrackEventV2Response{}
+	this.Effects = effects
+	this.CreatedCoupons = createdCoupons
+	this.CreatedReferrals = createdReferrals
+	return &this
+}
+
+// NewTrackEventV2ResponseWithDefaults instantiates a new TrackEventV2Response object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTrackEventV2ResponseWithDefaults() *TrackEventV2Response {
+	this := TrackEventV2Response{}
+	return &this
+}
+
 // GetCustomerProfile returns the CustomerProfile field value if set, zero value otherwise.
 func (o *TrackEventV2Response) GetCustomerProfile() CustomerProfile {
 	if o == nil || o.CustomerProfile == nil {
@@ -37,14 +56,13 @@ func (o *TrackEventV2Response) GetCustomerProfile() CustomerProfile {
 	return *o.CustomerProfile
 }
 
-// GetCustomerProfileOk returns a tuple with the CustomerProfile field value if set, zero value otherwise
+// GetCustomerProfileOk returns a tuple with the CustomerProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrackEventV2Response) GetCustomerProfileOk() (CustomerProfile, bool) {
+func (o *TrackEventV2Response) GetCustomerProfileOk() (*CustomerProfile, bool) {
 	if o == nil || o.CustomerProfile == nil {
-		var ret CustomerProfile
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerProfile, true
+	return o.CustomerProfile, true
 }
 
 // HasCustomerProfile returns a boolean if a field has been set.
@@ -70,14 +88,13 @@ func (o *TrackEventV2Response) GetEvent() Event {
 	return *o.Event
 }
 
-// GetEventOk returns a tuple with the Event field value if set, zero value otherwise
+// GetEventOk returns a tuple with the Event field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrackEventV2Response) GetEventOk() (Event, bool) {
+func (o *TrackEventV2Response) GetEventOk() (*Event, bool) {
 	if o == nil || o.Event == nil {
-		var ret Event
-		return ret, false
+		return nil, false
 	}
-	return *o.Event, true
+	return o.Event, true
 }
 
 // HasEvent returns a boolean if a field has been set.
@@ -103,14 +120,13 @@ func (o *TrackEventV2Response) GetLoyalty() Loyalty {
 	return *o.Loyalty
 }
 
-// GetLoyaltyOk returns a tuple with the Loyalty field value if set, zero value otherwise
+// GetLoyaltyOk returns a tuple with the Loyalty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrackEventV2Response) GetLoyaltyOk() (Loyalty, bool) {
+func (o *TrackEventV2Response) GetLoyaltyOk() (*Loyalty, bool) {
 	if o == nil || o.Loyalty == nil {
-		var ret Loyalty
-		return ret, false
+		return nil, false
 	}
-	return *o.Loyalty, true
+	return o.Loyalty, true
 }
 
 // HasLoyalty returns a boolean if a field has been set.
@@ -136,14 +152,13 @@ func (o *TrackEventV2Response) GetTriggeredCampaigns() []Campaign {
 	return *o.TriggeredCampaigns
 }
 
-// GetTriggeredCampaignsOk returns a tuple with the TriggeredCampaigns field value if set, zero value otherwise
+// GetTriggeredCampaignsOk returns a tuple with the TriggeredCampaigns field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrackEventV2Response) GetTriggeredCampaignsOk() ([]Campaign, bool) {
+func (o *TrackEventV2Response) GetTriggeredCampaignsOk() (*[]Campaign, bool) {
 	if o == nil || o.TriggeredCampaigns == nil {
-		var ret []Campaign
-		return ret, false
+		return nil, false
 	}
-	return *o.TriggeredCampaigns, true
+	return o.TriggeredCampaigns, true
 }
 
 // HasTriggeredCampaigns returns a boolean if a field has been set.
@@ -169,14 +184,13 @@ func (o *TrackEventV2Response) GetRuleFailureReasons() []RuleFailureReason {
 	return *o.RuleFailureReasons
 }
 
-// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, zero value otherwise
+// GetRuleFailureReasonsOk returns a tuple with the RuleFailureReasons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrackEventV2Response) GetRuleFailureReasonsOk() ([]RuleFailureReason, bool) {
+func (o *TrackEventV2Response) GetRuleFailureReasonsOk() (*[]RuleFailureReason, bool) {
 	if o == nil || o.RuleFailureReasons == nil {
-		var ret []RuleFailureReason
-		return ret, false
+		return nil, false
 	}
-	return *o.RuleFailureReasons, true
+	return o.RuleFailureReasons, true
 }
 
 // HasRuleFailureReasons returns a boolean if a field has been set.
@@ -202,14 +216,13 @@ func (o *TrackEventV2Response) GetAwardedGiveaways() []Giveaway {
 	return *o.AwardedGiveaways
 }
 
-// GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field value if set, zero value otherwise
+// GetAwardedGiveawaysOk returns a tuple with the AwardedGiveaways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TrackEventV2Response) GetAwardedGiveawaysOk() ([]Giveaway, bool) {
+func (o *TrackEventV2Response) GetAwardedGiveawaysOk() (*[]Giveaway, bool) {
 	if o == nil || o.AwardedGiveaways == nil {
-		var ret []Giveaway
-		return ret, false
+		return nil, false
 	}
-	return *o.AwardedGiveaways, true
+	return o.AwardedGiveaways, true
 }
 
 // HasAwardedGiveaways returns a boolean if a field has been set.
@@ -236,6 +249,15 @@ func (o *TrackEventV2Response) GetEffects() []Effect {
 	return o.Effects
 }
 
+// GetEffectsOk returns a tuple with the Effects field value
+// and a boolean to check if the value has been set.
+func (o *TrackEventV2Response) GetEffectsOk() (*[]Effect, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Effects, true
+}
+
 // SetEffects sets field value
 func (o *TrackEventV2Response) SetEffects(v []Effect) {
 	o.Effects = v
@@ -249,6 +271,15 @@ func (o *TrackEventV2Response) GetCreatedCoupons() []Coupon {
 	}
 
 	return o.CreatedCoupons
+}
+
+// GetCreatedCouponsOk returns a tuple with the CreatedCoupons field value
+// and a boolean to check if the value has been set.
+func (o *TrackEventV2Response) GetCreatedCouponsOk() (*[]Coupon, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedCoupons, true
 }
 
 // SetCreatedCoupons sets field value
@@ -266,30 +297,84 @@ func (o *TrackEventV2Response) GetCreatedReferrals() []Referral {
 	return o.CreatedReferrals
 }
 
+// GetCreatedReferralsOk returns a tuple with the CreatedReferrals field value
+// and a boolean to check if the value has been set.
+func (o *TrackEventV2Response) GetCreatedReferralsOk() (*[]Referral, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedReferrals, true
+}
+
 // SetCreatedReferrals sets field value
 func (o *TrackEventV2Response) SetCreatedReferrals(v []Referral) {
 	o.CreatedReferrals = v
 }
 
+func (o TrackEventV2Response) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CustomerProfile != nil {
+		toSerialize["customerProfile"] = o.CustomerProfile
+	}
+	if o.Event != nil {
+		toSerialize["event"] = o.Event
+	}
+	if o.Loyalty != nil {
+		toSerialize["loyalty"] = o.Loyalty
+	}
+	if o.TriggeredCampaigns != nil {
+		toSerialize["triggeredCampaigns"] = o.TriggeredCampaigns
+	}
+	if o.RuleFailureReasons != nil {
+		toSerialize["ruleFailureReasons"] = o.RuleFailureReasons
+	}
+	if o.AwardedGiveaways != nil {
+		toSerialize["awardedGiveaways"] = o.AwardedGiveaways
+	}
+	if true {
+		toSerialize["effects"] = o.Effects
+	}
+	if true {
+		toSerialize["createdCoupons"] = o.CreatedCoupons
+	}
+	if true {
+		toSerialize["createdReferrals"] = o.CreatedReferrals
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTrackEventV2Response struct {
-	Value        TrackEventV2Response
-	ExplicitNull bool
+	value *TrackEventV2Response
+	isSet bool
+}
+
+func (v NullableTrackEventV2Response) Get() *TrackEventV2Response {
+	return v.value
+}
+
+func (v *NullableTrackEventV2Response) Set(val *TrackEventV2Response) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTrackEventV2Response) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTrackEventV2Response) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTrackEventV2Response(val *TrackEventV2Response) *NullableTrackEventV2Response {
+	return &NullableTrackEventV2Response{value: val, isSet: true}
 }
 
 func (v NullableTrackEventV2Response) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTrackEventV2Response) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

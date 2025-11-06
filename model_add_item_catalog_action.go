@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -27,6 +26,28 @@ type AddItemCatalogAction struct {
 	ReplaceIfExists *bool `json:"replaceIfExists,omitempty"`
 }
 
+// NewAddItemCatalogAction instantiates a new AddItemCatalogAction object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAddItemCatalogAction(sku string) *AddItemCatalogAction {
+	this := AddItemCatalogAction{}
+	this.Sku = sku
+	var replaceIfExists bool = false
+	this.ReplaceIfExists = &replaceIfExists
+	return &this
+}
+
+// NewAddItemCatalogActionWithDefaults instantiates a new AddItemCatalogAction object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAddItemCatalogActionWithDefaults() *AddItemCatalogAction {
+	this := AddItemCatalogAction{}
+	var replaceIfExists bool = false
+	this.ReplaceIfExists = &replaceIfExists
+	return &this
+}
+
 // GetSku returns the Sku field value
 func (o *AddItemCatalogAction) GetSku() string {
 	if o == nil {
@@ -35,6 +56,15 @@ func (o *AddItemCatalogAction) GetSku() string {
 	}
 
 	return o.Sku
+}
+
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *AddItemCatalogAction) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
 }
 
 // SetSku sets field value
@@ -51,14 +81,13 @@ func (o *AddItemCatalogAction) GetPrice() float32 {
 	return *o.Price
 }
 
-// GetPriceOk returns a tuple with the Price field value if set, zero value otherwise
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddItemCatalogAction) GetPriceOk() (float32, bool) {
+func (o *AddItemCatalogAction) GetPriceOk() (*float32, bool) {
 	if o == nil || o.Price == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Price, true
+	return o.Price, true
 }
 
 // HasPrice returns a boolean if a field has been set.
@@ -84,14 +113,13 @@ func (o *AddItemCatalogAction) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddItemCatalogAction) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *AddItemCatalogAction) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -117,14 +145,13 @@ func (o *AddItemCatalogAction) GetProduct() Product {
 	return *o.Product
 }
 
-// GetProductOk returns a tuple with the Product field value if set, zero value otherwise
+// GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddItemCatalogAction) GetProductOk() (Product, bool) {
+func (o *AddItemCatalogAction) GetProductOk() (*Product, bool) {
 	if o == nil || o.Product == nil {
-		var ret Product
-		return ret, false
+		return nil, false
 	}
-	return *o.Product, true
+	return o.Product, true
 }
 
 // HasProduct returns a boolean if a field has been set.
@@ -150,14 +177,13 @@ func (o *AddItemCatalogAction) GetReplaceIfExists() bool {
 	return *o.ReplaceIfExists
 }
 
-// GetReplaceIfExistsOk returns a tuple with the ReplaceIfExists field value if set, zero value otherwise
+// GetReplaceIfExistsOk returns a tuple with the ReplaceIfExists field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AddItemCatalogAction) GetReplaceIfExistsOk() (bool, bool) {
+func (o *AddItemCatalogAction) GetReplaceIfExistsOk() (*bool, bool) {
 	if o == nil || o.ReplaceIfExists == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.ReplaceIfExists, true
+	return o.ReplaceIfExists, true
 }
 
 // HasReplaceIfExists returns a boolean if a field has been set.
@@ -174,25 +200,58 @@ func (o *AddItemCatalogAction) SetReplaceIfExists(v bool) {
 	o.ReplaceIfExists = &v
 }
 
+func (o AddItemCatalogAction) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if o.Price != nil {
+		toSerialize["price"] = o.Price
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Product != nil {
+		toSerialize["product"] = o.Product
+	}
+	if o.ReplaceIfExists != nil {
+		toSerialize["replaceIfExists"] = o.ReplaceIfExists
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAddItemCatalogAction struct {
-	Value        AddItemCatalogAction
-	ExplicitNull bool
+	value *AddItemCatalogAction
+	isSet bool
+}
+
+func (v NullableAddItemCatalogAction) Get() *AddItemCatalogAction {
+	return v.value
+}
+
+func (v *NullableAddItemCatalogAction) Set(val *AddItemCatalogAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAddItemCatalogAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAddItemCatalogAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAddItemCatalogAction(val *AddItemCatalogAction) *NullableAddItemCatalogAction {
+	return &NullableAddItemCatalogAction{value: val, isSet: true}
 }
 
 func (v NullableAddItemCatalogAction) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAddItemCatalogAction) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

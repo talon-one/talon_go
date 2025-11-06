@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,25 @@ import (
 type SkuUnitAnalytics struct {
 	Data   []SkuUnitAnalyticsDataPoint `json:"data"`
 	Totals ProductUnitAnalyticsTotals  `json:"totals"`
+}
+
+// NewSkuUnitAnalytics instantiates a new SkuUnitAnalytics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewSkuUnitAnalytics(data []SkuUnitAnalyticsDataPoint, totals ProductUnitAnalyticsTotals) *SkuUnitAnalytics {
+	this := SkuUnitAnalytics{}
+	this.Data = data
+	this.Totals = totals
+	return &this
+}
+
+// NewSkuUnitAnalyticsWithDefaults instantiates a new SkuUnitAnalytics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSkuUnitAnalyticsWithDefaults() *SkuUnitAnalytics {
+	this := SkuUnitAnalytics{}
+	return &this
 }
 
 // GetData returns the Data field value
@@ -28,6 +46,15 @@ func (o *SkuUnitAnalytics) GetData() []SkuUnitAnalyticsDataPoint {
 	}
 
 	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *SkuUnitAnalytics) GetDataOk() (*[]SkuUnitAnalyticsDataPoint, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
 }
 
 // SetData sets field value
@@ -45,30 +72,63 @@ func (o *SkuUnitAnalytics) GetTotals() ProductUnitAnalyticsTotals {
 	return o.Totals
 }
 
+// GetTotalsOk returns a tuple with the Totals field value
+// and a boolean to check if the value has been set.
+func (o *SkuUnitAnalytics) GetTotalsOk() (*ProductUnitAnalyticsTotals, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Totals, true
+}
+
 // SetTotals sets field value
 func (o *SkuUnitAnalytics) SetTotals(v ProductUnitAnalyticsTotals) {
 	o.Totals = v
 }
 
+func (o SkuUnitAnalytics) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	if true {
+		toSerialize["totals"] = o.Totals
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSkuUnitAnalytics struct {
-	Value        SkuUnitAnalytics
-	ExplicitNull bool
+	value *SkuUnitAnalytics
+	isSet bool
+}
+
+func (v NullableSkuUnitAnalytics) Get() *SkuUnitAnalytics {
+	return v.value
+}
+
+func (v *NullableSkuUnitAnalytics) Set(val *SkuUnitAnalytics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSkuUnitAnalytics) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSkuUnitAnalytics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableSkuUnitAnalytics(val *SkuUnitAnalytics) *NullableSkuUnitAnalytics {
+	return &NullableSkuUnitAnalytics{value: val, isSet: true}
 }
 
 func (v NullableSkuUnitAnalytics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSkuUnitAnalytics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ExpiringCouponsNotificationTrigger struct for ExpiringCouponsNotificationTrigger
 type ExpiringCouponsNotificationTrigger struct {
 	// The amount of period.
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
 	// Notification period indicated by a letter; \"w\" means week, \"d\" means day.
 	Period string `json:"period"`
 }
 
+// NewExpiringCouponsNotificationTrigger instantiates a new ExpiringCouponsNotificationTrigger object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewExpiringCouponsNotificationTrigger(amount int64, period string) *ExpiringCouponsNotificationTrigger {
+	this := ExpiringCouponsNotificationTrigger{}
+	this.Amount = amount
+	this.Period = period
+	return &this
+}
+
+// NewExpiringCouponsNotificationTriggerWithDefaults instantiates a new ExpiringCouponsNotificationTrigger object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewExpiringCouponsNotificationTriggerWithDefaults() *ExpiringCouponsNotificationTrigger {
+	this := ExpiringCouponsNotificationTrigger{}
+	return &this
+}
+
 // GetAmount returns the Amount field value
-func (o *ExpiringCouponsNotificationTrigger) GetAmount() int32 {
+func (o *ExpiringCouponsNotificationTrigger) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *ExpiringCouponsNotificationTrigger) GetAmountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *ExpiringCouponsNotificationTrigger) SetAmount(v int32) {
+func (o *ExpiringCouponsNotificationTrigger) SetAmount(v int64) {
 	o.Amount = v
 }
 
@@ -47,30 +74,63 @@ func (o *ExpiringCouponsNotificationTrigger) GetPeriod() string {
 	return o.Period
 }
 
+// GetPeriodOk returns a tuple with the Period field value
+// and a boolean to check if the value has been set.
+func (o *ExpiringCouponsNotificationTrigger) GetPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Period, true
+}
+
 // SetPeriod sets field value
 func (o *ExpiringCouponsNotificationTrigger) SetPeriod(v string) {
 	o.Period = v
 }
 
+func (o ExpiringCouponsNotificationTrigger) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["period"] = o.Period
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableExpiringCouponsNotificationTrigger struct {
-	Value        ExpiringCouponsNotificationTrigger
-	ExplicitNull bool
+	value *ExpiringCouponsNotificationTrigger
+	isSet bool
+}
+
+func (v NullableExpiringCouponsNotificationTrigger) Get() *ExpiringCouponsNotificationTrigger {
+	return v.value
+}
+
+func (v *NullableExpiringCouponsNotificationTrigger) Set(val *ExpiringCouponsNotificationTrigger) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableExpiringCouponsNotificationTrigger) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableExpiringCouponsNotificationTrigger) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableExpiringCouponsNotificationTrigger(val *ExpiringCouponsNotificationTrigger) *NullableExpiringCouponsNotificationTrigger {
+	return &NullableExpiringCouponsNotificationTrigger{value: val, isSet: true}
 }
 
 func (v NullableExpiringCouponsNotificationTrigger) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableExpiringCouponsNotificationTrigger) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

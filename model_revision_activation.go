@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,6 +17,23 @@ import (
 // RevisionActivation struct for RevisionActivation
 type RevisionActivation struct {
 	ActivateAt *time.Time `json:"activateAt,omitempty"`
+}
+
+// NewRevisionActivation instantiates a new RevisionActivation object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRevisionActivation() *RevisionActivation {
+	this := RevisionActivation{}
+	return &this
+}
+
+// NewRevisionActivationWithDefaults instantiates a new RevisionActivation object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRevisionActivationWithDefaults() *RevisionActivation {
+	this := RevisionActivation{}
+	return &this
 }
 
 // GetActivateAt returns the ActivateAt field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *RevisionActivation) GetActivateAt() time.Time {
 	return *o.ActivateAt
 }
 
-// GetActivateAtOk returns a tuple with the ActivateAt field value if set, zero value otherwise
+// GetActivateAtOk returns a tuple with the ActivateAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RevisionActivation) GetActivateAtOk() (time.Time, bool) {
+func (o *RevisionActivation) GetActivateAtOk() (*time.Time, bool) {
 	if o == nil || o.ActivateAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivateAt, true
+	return o.ActivateAt, true
 }
 
 // HasActivateAt returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *RevisionActivation) SetActivateAt(v time.Time) {
 	o.ActivateAt = &v
 }
 
+func (o RevisionActivation) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ActivateAt != nil {
+		toSerialize["activateAt"] = o.ActivateAt
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRevisionActivation struct {
-	Value        RevisionActivation
-	ExplicitNull bool
+	value *RevisionActivation
+	isSet bool
+}
+
+func (v NullableRevisionActivation) Get() *RevisionActivation {
+	return v.value
+}
+
+func (v *NullableRevisionActivation) Set(val *RevisionActivation) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRevisionActivation) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRevisionActivation) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRevisionActivation(val *RevisionActivation) *NullableRevisionActivation {
+	return &NullableRevisionActivation{value: val, isSet: true}
 }
 
 func (v NullableRevisionActivation) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRevisionActivation) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

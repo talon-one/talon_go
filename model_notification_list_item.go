@@ -10,34 +10,63 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NotificationListItem struct for NotificationListItem
 type NotificationListItem struct {
 	// The ID of the notification.
-	NotificationId int32 `json:"notificationId"`
+	NotificationId int64 `json:"notificationId"`
 	// The name of the notification.
 	NotificationName string `json:"notificationName"`
 	// The ID of the entity to which this notification belongs. For example, in case of a loyalty notification, this value is the ID of the loyalty program.
-	EntityId int32 `json:"entityId"`
+	EntityId int64 `json:"entityId"`
 	// Indicates whether the notification is activated.
 	Enabled bool `json:"enabled"`
 }
 
+// NewNotificationListItem instantiates a new NotificationListItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNotificationListItem(notificationId int64, notificationName string, entityId int64, enabled bool) *NotificationListItem {
+	this := NotificationListItem{}
+	this.NotificationId = notificationId
+	this.NotificationName = notificationName
+	this.EntityId = entityId
+	this.Enabled = enabled
+	return &this
+}
+
+// NewNotificationListItemWithDefaults instantiates a new NotificationListItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNotificationListItemWithDefaults() *NotificationListItem {
+	this := NotificationListItem{}
+	return &this
+}
+
 // GetNotificationId returns the NotificationId field value
-func (o *NotificationListItem) GetNotificationId() int32 {
+func (o *NotificationListItem) GetNotificationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.NotificationId
 }
 
+// GetNotificationIdOk returns a tuple with the NotificationId field value
+// and a boolean to check if the value has been set.
+func (o *NotificationListItem) GetNotificationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotificationId, true
+}
+
 // SetNotificationId sets field value
-func (o *NotificationListItem) SetNotificationId(v int32) {
+func (o *NotificationListItem) SetNotificationId(v int64) {
 	o.NotificationId = v
 }
 
@@ -51,23 +80,41 @@ func (o *NotificationListItem) GetNotificationName() string {
 	return o.NotificationName
 }
 
+// GetNotificationNameOk returns a tuple with the NotificationName field value
+// and a boolean to check if the value has been set.
+func (o *NotificationListItem) GetNotificationNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotificationName, true
+}
+
 // SetNotificationName sets field value
 func (o *NotificationListItem) SetNotificationName(v string) {
 	o.NotificationName = v
 }
 
 // GetEntityId returns the EntityId field value
-func (o *NotificationListItem) GetEntityId() int32 {
+func (o *NotificationListItem) GetEntityId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.EntityId
 }
 
+// GetEntityIdOk returns a tuple with the EntityId field value
+// and a boolean to check if the value has been set.
+func (o *NotificationListItem) GetEntityIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EntityId, true
+}
+
 // SetEntityId sets field value
-func (o *NotificationListItem) SetEntityId(v int32) {
+func (o *NotificationListItem) SetEntityId(v int64) {
 	o.EntityId = v
 }
 
@@ -81,30 +128,69 @@ func (o *NotificationListItem) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *NotificationListItem) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *NotificationListItem) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+func (o NotificationListItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["notificationId"] = o.NotificationId
+	}
+	if true {
+		toSerialize["notificationName"] = o.NotificationName
+	}
+	if true {
+		toSerialize["entityId"] = o.EntityId
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNotificationListItem struct {
-	Value        NotificationListItem
-	ExplicitNull bool
+	value *NotificationListItem
+	isSet bool
+}
+
+func (v NullableNotificationListItem) Get() *NotificationListItem {
+	return v.value
+}
+
+func (v *NullableNotificationListItem) Set(val *NotificationListItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNotificationListItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNotificationListItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNotificationListItem(val *NotificationListItem) *NullableNotificationListItem {
+	return &NullableNotificationListItem{value: val, isSet: true}
 }
 
 func (v NullableNotificationListItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNotificationListItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,65 +10,125 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // InlineResponse20040 struct for InlineResponse20040
 type InlineResponse20040 struct {
-	TotalResultSize int32                       `json:"totalResultSize"`
-	Data            []WebhookActivationLogEntry `json:"data"`
+	TotalResultSize int64       `json:"totalResultSize"`
+	Data            []EventType `json:"data"`
+}
+
+// NewInlineResponse20040 instantiates a new InlineResponse20040 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInlineResponse20040(totalResultSize int64, data []EventType) *InlineResponse20040 {
+	this := InlineResponse20040{}
+	this.TotalResultSize = totalResultSize
+	this.Data = data
+	return &this
+}
+
+// NewInlineResponse20040WithDefaults instantiates a new InlineResponse20040 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInlineResponse20040WithDefaults() *InlineResponse20040 {
+	this := InlineResponse20040{}
+	return &this
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20040) GetTotalResultSize() int32 {
+func (o *InlineResponse20040) GetTotalResultSize() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalResultSize
 }
 
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20040) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalResultSize, true
+}
+
 // SetTotalResultSize sets field value
-func (o *InlineResponse20040) SetTotalResultSize(v int32) {
+func (o *InlineResponse20040) SetTotalResultSize(v int64) {
 	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20040) GetData() []WebhookActivationLogEntry {
+func (o *InlineResponse20040) GetData() []EventType {
 	if o == nil {
-		var ret []WebhookActivationLogEntry
+		var ret []EventType
 		return ret
 	}
 
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20040) GetDataOk() (*[]EventType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
-func (o *InlineResponse20040) SetData(v []WebhookActivationLogEntry) {
+func (o *InlineResponse20040) SetData(v []EventType) {
 	o.Data = v
 }
 
+func (o InlineResponse20040) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["totalResultSize"] = o.TotalResultSize
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInlineResponse20040 struct {
-	Value        InlineResponse20040
-	ExplicitNull bool
+	value *InlineResponse20040
+	isSet bool
+}
+
+func (v NullableInlineResponse20040) Get() *InlineResponse20040 {
+	return v.value
+}
+
+func (v *NullableInlineResponse20040) Set(val *InlineResponse20040) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInlineResponse20040) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInlineResponse20040) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInlineResponse20040(val *InlineResponse20040) *NullableInlineResponse20040 {
+	return &NullableInlineResponse20040{value: val, isSet: true}
 }
 
 func (v NullableInlineResponse20040) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInlineResponse20040) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

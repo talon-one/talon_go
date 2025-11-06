@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,37 +17,70 @@ import (
 // PriceType struct for PriceType
 type PriceType struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this price type.
-	AccountId *int32 `json:"accountId,omitempty"`
+	AccountId *int64 `json:"accountId,omitempty"`
 	// The API name of the price type. This is an immutable value.
 	Name string `json:"name"`
-	// The title of the price type.
+	// The name displayed in the Campaign Manager for the price type.
 	Title string `json:"title"`
-	// The description of the price type.
+	// A description of the price type.
 	Description *string `json:"description,omitempty"`
 	// The date and time when the price type was last modified.
 	Modified time.Time `json:"modified"`
 	// A list of the IDs of the catalogs that are subscribed to this price type.
-	SubscribedCatalogsIds []int32 `json:"subscribedCatalogsIds"`
-	// A list of the IDs of the audiences that are targeted by this price type.
-	TargetedAudiencesIds []int32 `json:"targetedAudiencesIds"`
+	SubscribedCatalogsIds []int64 `json:"subscribedCatalogsIds"`
+	// A list of the IDs of the audiences targeted by this price type.
+	TargetedAudiencesIds []int64 `json:"targetedAudiencesIds"`
+}
+
+// NewPriceType instantiates a new PriceType object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewPriceType(id int64, created time.Time, name string, title string, modified time.Time, subscribedCatalogsIds []int64, targetedAudiencesIds []int64) *PriceType {
+	this := PriceType{}
+	this.Id = id
+	this.Created = created
+	this.Name = name
+	this.Title = title
+	this.Modified = modified
+	this.SubscribedCatalogsIds = subscribedCatalogsIds
+	this.TargetedAudiencesIds = targetedAudiencesIds
+	return &this
+}
+
+// NewPriceTypeWithDefaults instantiates a new PriceType object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewPriceTypeWithDefaults() *PriceType {
+	this := PriceType{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *PriceType) GetId() int32 {
+func (o *PriceType) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *PriceType) SetId(v int32) {
+func (o *PriceType) SetId(v int64) {
 	o.Id = v
 }
 
@@ -62,28 +94,36 @@ func (o *PriceType) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *PriceType) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *PriceType) GetAccountId() int32 {
+func (o *PriceType) GetAccountId() int64 {
 	if o == nil || o.AccountId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AccountId
 }
 
-// GetAccountIdOk returns a tuple with the AccountId field value if set, zero value otherwise
+// GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PriceType) GetAccountIdOk() (int32, bool) {
+func (o *PriceType) GetAccountIdOk() (*int64, bool) {
 	if o == nil || o.AccountId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AccountId, true
+	return o.AccountId, true
 }
 
 // HasAccountId returns a boolean if a field has been set.
@@ -95,8 +135,8 @@ func (o *PriceType) HasAccountId() bool {
 	return false
 }
 
-// SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
-func (o *PriceType) SetAccountId(v int32) {
+// SetAccountId gets a reference to the given int64 and assigns it to the AccountId field.
+func (o *PriceType) SetAccountId(v int64) {
 	o.AccountId = &v
 }
 
@@ -108,6 +148,15 @@ func (o *PriceType) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -125,6 +174,15 @@ func (o *PriceType) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *PriceType) SetTitle(v string) {
 	o.Title = v
@@ -139,14 +197,13 @@ func (o *PriceType) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PriceType) GetDescriptionOk() (string, bool) {
+func (o *PriceType) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -173,60 +230,132 @@ func (o *PriceType) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *PriceType) SetModified(v time.Time) {
 	o.Modified = v
 }
 
 // GetSubscribedCatalogsIds returns the SubscribedCatalogsIds field value
-func (o *PriceType) GetSubscribedCatalogsIds() []int32 {
+func (o *PriceType) GetSubscribedCatalogsIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.SubscribedCatalogsIds
 }
 
+// GetSubscribedCatalogsIdsOk returns a tuple with the SubscribedCatalogsIds field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetSubscribedCatalogsIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubscribedCatalogsIds, true
+}
+
 // SetSubscribedCatalogsIds sets field value
-func (o *PriceType) SetSubscribedCatalogsIds(v []int32) {
+func (o *PriceType) SetSubscribedCatalogsIds(v []int64) {
 	o.SubscribedCatalogsIds = v
 }
 
 // GetTargetedAudiencesIds returns the TargetedAudiencesIds field value
-func (o *PriceType) GetTargetedAudiencesIds() []int32 {
+func (o *PriceType) GetTargetedAudiencesIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.TargetedAudiencesIds
 }
 
+// GetTargetedAudiencesIdsOk returns a tuple with the TargetedAudiencesIds field value
+// and a boolean to check if the value has been set.
+func (o *PriceType) GetTargetedAudiencesIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TargetedAudiencesIds, true
+}
+
 // SetTargetedAudiencesIds sets field value
-func (o *PriceType) SetTargetedAudiencesIds(v []int32) {
+func (o *PriceType) SetTargetedAudiencesIds(v []int64) {
 	o.TargetedAudiencesIds = v
 }
 
+func (o PriceType) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if o.AccountId != nil {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["subscribedCatalogsIds"] = o.SubscribedCatalogsIds
+	}
+	if true {
+		toSerialize["targetedAudiencesIds"] = o.TargetedAudiencesIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullablePriceType struct {
-	Value        PriceType
-	ExplicitNull bool
+	value *PriceType
+	isSet bool
+}
+
+func (v NullablePriceType) Get() *PriceType {
+	return v.value
+}
+
+func (v *NullablePriceType) Set(val *PriceType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullablePriceType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullablePriceType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullablePriceType(val *PriceType) *NullablePriceType {
+	return &NullablePriceType{value: val, isSet: true}
 }
 
 func (v NullablePriceType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullablePriceType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

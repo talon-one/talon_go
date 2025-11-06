@@ -10,65 +10,125 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // InlineResponse20041 struct for InlineResponse20041
 type InlineResponse20041 struct {
-	TotalResultSize int32             `json:"totalResultSize"`
-	Data            []WebhookLogEntry `json:"data"`
+	TotalResultSize int64  `json:"totalResultSize"`
+	Data            []User `json:"data"`
+}
+
+// NewInlineResponse20041 instantiates a new InlineResponse20041 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewInlineResponse20041(totalResultSize int64, data []User) *InlineResponse20041 {
+	this := InlineResponse20041{}
+	this.TotalResultSize = totalResultSize
+	this.Data = data
+	return &this
+}
+
+// NewInlineResponse20041WithDefaults instantiates a new InlineResponse20041 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInlineResponse20041WithDefaults() *InlineResponse20041 {
+	this := InlineResponse20041{}
+	return &this
 }
 
 // GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20041) GetTotalResultSize() int32 {
+func (o *InlineResponse20041) GetTotalResultSize() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalResultSize
 }
 
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20041) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalResultSize, true
+}
+
 // SetTotalResultSize sets field value
-func (o *InlineResponse20041) SetTotalResultSize(v int32) {
+func (o *InlineResponse20041) SetTotalResultSize(v int64) {
 	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20041) GetData() []WebhookLogEntry {
+func (o *InlineResponse20041) GetData() []User {
 	if o == nil {
-		var ret []WebhookLogEntry
+		var ret []User
 		return ret
 	}
 
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20041) GetDataOk() (*[]User, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
-func (o *InlineResponse20041) SetData(v []WebhookLogEntry) {
+func (o *InlineResponse20041) SetData(v []User) {
 	o.Data = v
 }
 
+func (o InlineResponse20041) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["totalResultSize"] = o.TotalResultSize
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInlineResponse20041 struct {
-	Value        InlineResponse20041
-	ExplicitNull bool
+	value *InlineResponse20041
+	isSet bool
+}
+
+func (v NullableInlineResponse20041) Get() *InlineResponse20041 {
+	return v.value
+}
+
+func (v *NullableInlineResponse20041) Set(val *InlineResponse20041) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInlineResponse20041) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInlineResponse20041) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableInlineResponse20041(val *InlineResponse20041) *NullableInlineResponse20041 {
+	return &NullableInlineResponse20041{value: val, isSet: true}
 }
 
 func (v NullableInlineResponse20041) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInlineResponse20041) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,6 +27,23 @@ type LoyaltyBalance struct {
 	NegativePoints *float32 `json:"negativePoints,omitempty"`
 }
 
+// NewLoyaltyBalance instantiates a new LoyaltyBalance object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyBalance() *LoyaltyBalance {
+	this := LoyaltyBalance{}
+	return &this
+}
+
+// NewLoyaltyBalanceWithDefaults instantiates a new LoyaltyBalance object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyBalanceWithDefaults() *LoyaltyBalance {
+	this := LoyaltyBalance{}
+	return &this
+}
+
 // GetActivePoints returns the ActivePoints field value if set, zero value otherwise.
 func (o *LoyaltyBalance) GetActivePoints() float32 {
 	if o == nil || o.ActivePoints == nil {
@@ -37,14 +53,13 @@ func (o *LoyaltyBalance) GetActivePoints() float32 {
 	return *o.ActivePoints
 }
 
-// GetActivePointsOk returns a tuple with the ActivePoints field value if set, zero value otherwise
+// GetActivePointsOk returns a tuple with the ActivePoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalance) GetActivePointsOk() (float32, bool) {
+func (o *LoyaltyBalance) GetActivePointsOk() (*float32, bool) {
 	if o == nil || o.ActivePoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivePoints, true
+	return o.ActivePoints, true
 }
 
 // HasActivePoints returns a boolean if a field has been set.
@@ -70,14 +85,13 @@ func (o *LoyaltyBalance) GetPendingPoints() float32 {
 	return *o.PendingPoints
 }
 
-// GetPendingPointsOk returns a tuple with the PendingPoints field value if set, zero value otherwise
+// GetPendingPointsOk returns a tuple with the PendingPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalance) GetPendingPointsOk() (float32, bool) {
+func (o *LoyaltyBalance) GetPendingPointsOk() (*float32, bool) {
 	if o == nil || o.PendingPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.PendingPoints, true
+	return o.PendingPoints, true
 }
 
 // HasPendingPoints returns a boolean if a field has been set.
@@ -103,14 +117,13 @@ func (o *LoyaltyBalance) GetSpentPoints() float32 {
 	return *o.SpentPoints
 }
 
-// GetSpentPointsOk returns a tuple with the SpentPoints field value if set, zero value otherwise
+// GetSpentPointsOk returns a tuple with the SpentPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalance) GetSpentPointsOk() (float32, bool) {
+func (o *LoyaltyBalance) GetSpentPointsOk() (*float32, bool) {
 	if o == nil || o.SpentPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.SpentPoints, true
+	return o.SpentPoints, true
 }
 
 // HasSpentPoints returns a boolean if a field has been set.
@@ -136,14 +149,13 @@ func (o *LoyaltyBalance) GetExpiredPoints() float32 {
 	return *o.ExpiredPoints
 }
 
-// GetExpiredPointsOk returns a tuple with the ExpiredPoints field value if set, zero value otherwise
+// GetExpiredPointsOk returns a tuple with the ExpiredPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalance) GetExpiredPointsOk() (float32, bool) {
+func (o *LoyaltyBalance) GetExpiredPointsOk() (*float32, bool) {
 	if o == nil || o.ExpiredPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiredPoints, true
+	return o.ExpiredPoints, true
 }
 
 // HasExpiredPoints returns a boolean if a field has been set.
@@ -169,14 +181,13 @@ func (o *LoyaltyBalance) GetNegativePoints() float32 {
 	return *o.NegativePoints
 }
 
-// GetNegativePointsOk returns a tuple with the NegativePoints field value if set, zero value otherwise
+// GetNegativePointsOk returns a tuple with the NegativePoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalance) GetNegativePointsOk() (float32, bool) {
+func (o *LoyaltyBalance) GetNegativePointsOk() (*float32, bool) {
 	if o == nil || o.NegativePoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.NegativePoints, true
+	return o.NegativePoints, true
 }
 
 // HasNegativePoints returns a boolean if a field has been set.
@@ -193,25 +204,58 @@ func (o *LoyaltyBalance) SetNegativePoints(v float32) {
 	o.NegativePoints = &v
 }
 
+func (o LoyaltyBalance) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ActivePoints != nil {
+		toSerialize["activePoints"] = o.ActivePoints
+	}
+	if o.PendingPoints != nil {
+		toSerialize["pendingPoints"] = o.PendingPoints
+	}
+	if o.SpentPoints != nil {
+		toSerialize["spentPoints"] = o.SpentPoints
+	}
+	if o.ExpiredPoints != nil {
+		toSerialize["expiredPoints"] = o.ExpiredPoints
+	}
+	if o.NegativePoints != nil {
+		toSerialize["negativePoints"] = o.NegativePoints
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyBalance struct {
-	Value        LoyaltyBalance
-	ExplicitNull bool
+	value *LoyaltyBalance
+	isSet bool
+}
+
+func (v NullableLoyaltyBalance) Get() *LoyaltyBalance {
+	return v.value
+}
+
+func (v *NullableLoyaltyBalance) Set(val *LoyaltyBalance) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyBalance) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyBalance) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyBalance(val *LoyaltyBalance) *NullableLoyaltyBalance {
+	return &NullableLoyaltyBalance{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyBalance) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyBalance) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

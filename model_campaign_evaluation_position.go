@@ -10,32 +10,60 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignEvaluationPosition The campaign position within the evaluation tree.
 type CampaignEvaluationPosition struct {
 	// The ID of the campaign evaluation group the campaign belongs to.
-	GroupId int32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// The name of the campaign evaluation group the campaign belongs to.
 	GroupName string `json:"groupName"`
 	// The position of the campaign node in its parent group.
-	Position int32 `json:"position"`
+	Position int64 `json:"position"`
+}
+
+// NewCampaignEvaluationPosition instantiates a new CampaignEvaluationPosition object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignEvaluationPosition(groupId int64, groupName string, position int64) *CampaignEvaluationPosition {
+	this := CampaignEvaluationPosition{}
+	this.GroupId = groupId
+	this.GroupName = groupName
+	this.Position = position
+	return &this
+}
+
+// NewCampaignEvaluationPositionWithDefaults instantiates a new CampaignEvaluationPosition object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignEvaluationPositionWithDefaults() *CampaignEvaluationPosition {
+	this := CampaignEvaluationPosition{}
+	return &this
 }
 
 // GetGroupId returns the GroupId field value
-func (o *CampaignEvaluationPosition) GetGroupId() int32 {
+func (o *CampaignEvaluationPosition) GetGroupId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.GroupId
 }
 
+// GetGroupIdOk returns a tuple with the GroupId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationPosition) GetGroupIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GroupId, true
+}
+
 // SetGroupId sets field value
-func (o *CampaignEvaluationPosition) SetGroupId(v int32) {
+func (o *CampaignEvaluationPosition) SetGroupId(v int64) {
 	o.GroupId = v
 }
 
@@ -49,45 +77,90 @@ func (o *CampaignEvaluationPosition) GetGroupName() string {
 	return o.GroupName
 }
 
+// GetGroupNameOk returns a tuple with the GroupName field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationPosition) GetGroupNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GroupName, true
+}
+
 // SetGroupName sets field value
 func (o *CampaignEvaluationPosition) SetGroupName(v string) {
 	o.GroupName = v
 }
 
 // GetPosition returns the Position field value
-func (o *CampaignEvaluationPosition) GetPosition() int32 {
+func (o *CampaignEvaluationPosition) GetPosition() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Position
 }
 
+// GetPositionOk returns a tuple with the Position field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationPosition) GetPositionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Position, true
+}
+
 // SetPosition sets field value
-func (o *CampaignEvaluationPosition) SetPosition(v int32) {
+func (o *CampaignEvaluationPosition) SetPosition(v int64) {
 	o.Position = v
 }
 
+func (o CampaignEvaluationPosition) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["groupId"] = o.GroupId
+	}
+	if true {
+		toSerialize["groupName"] = o.GroupName
+	}
+	if true {
+		toSerialize["position"] = o.Position
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignEvaluationPosition struct {
-	Value        CampaignEvaluationPosition
-	ExplicitNull bool
+	value *CampaignEvaluationPosition
+	isSet bool
+}
+
+func (v NullableCampaignEvaluationPosition) Get() *CampaignEvaluationPosition {
+	return v.value
+}
+
+func (v *NullableCampaignEvaluationPosition) Set(val *CampaignEvaluationPosition) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignEvaluationPosition) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignEvaluationPosition) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignEvaluationPosition(val *CampaignEvaluationPosition) *NullableCampaignEvaluationPosition {
+	return &NullableCampaignEvaluationPosition{value: val, isSet: true}
 }
 
 func (v NullableCampaignEvaluationPosition) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignEvaluationPosition) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

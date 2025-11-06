@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,9 +17,9 @@ import (
 // Audience struct for Audience
 type Audience struct {
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The human-friendly display name for this audience.
@@ -39,33 +38,72 @@ type Audience struct {
 	LastUpdate *time.Time `json:"lastUpdate,omitempty"`
 }
 
+// NewAudience instantiates a new Audience object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewAudience(accountId int64, id int64, created time.Time, name string) *Audience {
+	this := Audience{}
+	this.AccountId = accountId
+	this.Id = id
+	this.Created = created
+	this.Name = name
+	return &this
+}
+
+// NewAudienceWithDefaults instantiates a new Audience object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAudienceWithDefaults() *Audience {
+	this := Audience{}
+	return &this
+}
+
 // GetAccountId returns the AccountId field value
-func (o *Audience) GetAccountId() int32 {
+func (o *Audience) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Audience) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Audience) SetAccountId(v int32) {
+func (o *Audience) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetId returns the Id field value
-func (o *Audience) GetId() int32 {
+func (o *Audience) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Audience) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Audience) SetId(v int32) {
+func (o *Audience) SetId(v int64) {
 	o.Id = v
 }
 
@@ -77,6 +115,15 @@ func (o *Audience) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Audience) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -94,6 +141,15 @@ func (o *Audience) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Audience) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *Audience) SetName(v string) {
 	o.Name = v
@@ -108,14 +164,13 @@ func (o *Audience) GetSandbox() bool {
 	return *o.Sandbox
 }
 
-// GetSandboxOk returns a tuple with the Sandbox field value if set, zero value otherwise
+// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Audience) GetSandboxOk() (bool, bool) {
+func (o *Audience) GetSandboxOk() (*bool, bool) {
 	if o == nil || o.Sandbox == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Sandbox, true
+	return o.Sandbox, true
 }
 
 // HasSandbox returns a boolean if a field has been set.
@@ -141,14 +196,13 @@ func (o *Audience) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Audience) GetDescriptionOk() (string, bool) {
+func (o *Audience) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -174,14 +228,13 @@ func (o *Audience) GetIntegration() string {
 	return *o.Integration
 }
 
-// GetIntegrationOk returns a tuple with the Integration field value if set, zero value otherwise
+// GetIntegrationOk returns a tuple with the Integration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Audience) GetIntegrationOk() (string, bool) {
+func (o *Audience) GetIntegrationOk() (*string, bool) {
 	if o == nil || o.Integration == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Integration, true
+	return o.Integration, true
 }
 
 // HasIntegration returns a boolean if a field has been set.
@@ -207,14 +260,13 @@ func (o *Audience) GetIntegrationId() string {
 	return *o.IntegrationId
 }
 
-// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, zero value otherwise
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Audience) GetIntegrationIdOk() (string, bool) {
+func (o *Audience) GetIntegrationIdOk() (*string, bool) {
 	if o == nil || o.IntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.IntegrationId, true
+	return o.IntegrationId, true
 }
 
 // HasIntegrationId returns a boolean if a field has been set.
@@ -240,14 +292,13 @@ func (o *Audience) GetCreatedIn3rdParty() bool {
 	return *o.CreatedIn3rdParty
 }
 
-// GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field value if set, zero value otherwise
+// GetCreatedIn3rdPartyOk returns a tuple with the CreatedIn3rdParty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Audience) GetCreatedIn3rdPartyOk() (bool, bool) {
+func (o *Audience) GetCreatedIn3rdPartyOk() (*bool, bool) {
 	if o == nil || o.CreatedIn3rdParty == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedIn3rdParty, true
+	return o.CreatedIn3rdParty, true
 }
 
 // HasCreatedIn3rdParty returns a boolean if a field has been set.
@@ -273,14 +324,13 @@ func (o *Audience) GetLastUpdate() time.Time {
 	return *o.LastUpdate
 }
 
-// GetLastUpdateOk returns a tuple with the LastUpdate field value if set, zero value otherwise
+// GetLastUpdateOk returns a tuple with the LastUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Audience) GetLastUpdateOk() (time.Time, bool) {
+func (o *Audience) GetLastUpdateOk() (*time.Time, bool) {
 	if o == nil || o.LastUpdate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.LastUpdate, true
+	return o.LastUpdate, true
 }
 
 // HasLastUpdate returns a boolean if a field has been set.
@@ -297,25 +347,73 @@ func (o *Audience) SetLastUpdate(v time.Time) {
 	o.LastUpdate = &v
 }
 
+func (o Audience) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Sandbox != nil {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Integration != nil {
+		toSerialize["integration"] = o.Integration
+	}
+	if o.IntegrationId != nil {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if o.CreatedIn3rdParty != nil {
+		toSerialize["createdIn3rdParty"] = o.CreatedIn3rdParty
+	}
+	if o.LastUpdate != nil {
+		toSerialize["lastUpdate"] = o.LastUpdate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAudience struct {
-	Value        Audience
-	ExplicitNull bool
+	value *Audience
+	isSet bool
+}
+
+func (v NullableAudience) Get() *Audience {
+	return v.value
+}
+
+func (v *NullableAudience) Set(val *Audience) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAudience) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAudience) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableAudience(val *Audience) *NullableAudience {
+	return &NullableAudience{value: val, isSet: true}
 }
 
 func (v NullableAudience) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAudience) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

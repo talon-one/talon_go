@@ -10,28 +10,55 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // BulkApplicationNotification struct for BulkApplicationNotification
 type BulkApplicationNotification struct {
-	TotalResultSize int32                     `json:"totalResultSize"`
+	TotalResultSize int64                     `json:"totalResultSize"`
 	Data            []ApplicationNotification `json:"data"`
 }
 
+// NewBulkApplicationNotification instantiates a new BulkApplicationNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBulkApplicationNotification(totalResultSize int64, data []ApplicationNotification) *BulkApplicationNotification {
+	this := BulkApplicationNotification{}
+	this.TotalResultSize = totalResultSize
+	this.Data = data
+	return &this
+}
+
+// NewBulkApplicationNotificationWithDefaults instantiates a new BulkApplicationNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBulkApplicationNotificationWithDefaults() *BulkApplicationNotification {
+	this := BulkApplicationNotification{}
+	return &this
+}
+
 // GetTotalResultSize returns the TotalResultSize field value
-func (o *BulkApplicationNotification) GetTotalResultSize() int32 {
+func (o *BulkApplicationNotification) GetTotalResultSize() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalResultSize
 }
 
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// and a boolean to check if the value has been set.
+func (o *BulkApplicationNotification) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalResultSize, true
+}
+
 // SetTotalResultSize sets field value
-func (o *BulkApplicationNotification) SetTotalResultSize(v int32) {
+func (o *BulkApplicationNotification) SetTotalResultSize(v int64) {
 	o.TotalResultSize = v
 }
 
@@ -45,30 +72,63 @@ func (o *BulkApplicationNotification) GetData() []ApplicationNotification {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *BulkApplicationNotification) GetDataOk() (*[]ApplicationNotification, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *BulkApplicationNotification) SetData(v []ApplicationNotification) {
 	o.Data = v
 }
 
+func (o BulkApplicationNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["totalResultSize"] = o.TotalResultSize
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBulkApplicationNotification struct {
-	Value        BulkApplicationNotification
-	ExplicitNull bool
+	value *BulkApplicationNotification
+	isSet bool
+}
+
+func (v NullableBulkApplicationNotification) Get() *BulkApplicationNotification {
+	return v.value
+}
+
+func (v *NullableBulkApplicationNotification) Set(val *BulkApplicationNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBulkApplicationNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBulkApplicationNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBulkApplicationNotification(val *BulkApplicationNotification) *NullableBulkApplicationNotification {
+	return &NullableBulkApplicationNotification{value: val, isSet: true}
 }
 
 func (v NullableBulkApplicationNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBulkApplicationNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

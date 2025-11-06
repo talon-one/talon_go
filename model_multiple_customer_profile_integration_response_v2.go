@@ -10,13 +10,29 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MultipleCustomerProfileIntegrationResponseV2 struct for MultipleCustomerProfileIntegrationResponseV2
 type MultipleCustomerProfileIntegrationResponseV2 struct {
 	IntegrationStates *[]CustomerProfileUpdateV2Response `json:"integrationStates,omitempty"`
+}
+
+// NewMultipleCustomerProfileIntegrationResponseV2 instantiates a new MultipleCustomerProfileIntegrationResponseV2 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewMultipleCustomerProfileIntegrationResponseV2() *MultipleCustomerProfileIntegrationResponseV2 {
+	this := MultipleCustomerProfileIntegrationResponseV2{}
+	return &this
+}
+
+// NewMultipleCustomerProfileIntegrationResponseV2WithDefaults instantiates a new MultipleCustomerProfileIntegrationResponseV2 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMultipleCustomerProfileIntegrationResponseV2WithDefaults() *MultipleCustomerProfileIntegrationResponseV2 {
+	this := MultipleCustomerProfileIntegrationResponseV2{}
+	return &this
 }
 
 // GetIntegrationStates returns the IntegrationStates field value if set, zero value otherwise.
@@ -28,14 +44,13 @@ func (o *MultipleCustomerProfileIntegrationResponseV2) GetIntegrationStates() []
 	return *o.IntegrationStates
 }
 
-// GetIntegrationStatesOk returns a tuple with the IntegrationStates field value if set, zero value otherwise
+// GetIntegrationStatesOk returns a tuple with the IntegrationStates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MultipleCustomerProfileIntegrationResponseV2) GetIntegrationStatesOk() ([]CustomerProfileUpdateV2Response, bool) {
+func (o *MultipleCustomerProfileIntegrationResponseV2) GetIntegrationStatesOk() (*[]CustomerProfileUpdateV2Response, bool) {
 	if o == nil || o.IntegrationStates == nil {
-		var ret []CustomerProfileUpdateV2Response
-		return ret, false
+		return nil, false
 	}
-	return *o.IntegrationStates, true
+	return o.IntegrationStates, true
 }
 
 // HasIntegrationStates returns a boolean if a field has been set.
@@ -52,25 +67,46 @@ func (o *MultipleCustomerProfileIntegrationResponseV2) SetIntegrationStates(v []
 	o.IntegrationStates = &v
 }
 
+func (o MultipleCustomerProfileIntegrationResponseV2) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.IntegrationStates != nil {
+		toSerialize["integrationStates"] = o.IntegrationStates
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMultipleCustomerProfileIntegrationResponseV2 struct {
-	Value        MultipleCustomerProfileIntegrationResponseV2
-	ExplicitNull bool
+	value *MultipleCustomerProfileIntegrationResponseV2
+	isSet bool
+}
+
+func (v NullableMultipleCustomerProfileIntegrationResponseV2) Get() *MultipleCustomerProfileIntegrationResponseV2 {
+	return v.value
+}
+
+func (v *NullableMultipleCustomerProfileIntegrationResponseV2) Set(val *MultipleCustomerProfileIntegrationResponseV2) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMultipleCustomerProfileIntegrationResponseV2) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMultipleCustomerProfileIntegrationResponseV2) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableMultipleCustomerProfileIntegrationResponseV2(val *MultipleCustomerProfileIntegrationResponseV2) *NullableMultipleCustomerProfileIntegrationResponseV2 {
+	return &NullableMultipleCustomerProfileIntegrationResponseV2{value: val, isSet: true}
 }
 
 func (v NullableMultipleCustomerProfileIntegrationResponseV2) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMultipleCustomerProfileIntegrationResponseV2) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

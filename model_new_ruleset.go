@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,6 +27,25 @@ type NewRuleset struct {
 	Activate *bool `json:"activate,omitempty"`
 }
 
+// NewNewRuleset instantiates a new NewRuleset object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewRuleset(rules []Rule, bindings []Binding) *NewRuleset {
+	this := NewRuleset{}
+	this.Rules = rules
+	this.Bindings = bindings
+	return &this
+}
+
+// NewNewRulesetWithDefaults instantiates a new NewRuleset object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewRulesetWithDefaults() *NewRuleset {
+	this := NewRuleset{}
+	return &this
+}
+
 // GetRules returns the Rules field value
 func (o *NewRuleset) GetRules() []Rule {
 	if o == nil {
@@ -36,6 +54,15 @@ func (o *NewRuleset) GetRules() []Rule {
 	}
 
 	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value
+// and a boolean to check if the value has been set.
+func (o *NewRuleset) GetRulesOk() (*[]Rule, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Rules, true
 }
 
 // SetRules sets field value
@@ -52,14 +79,13 @@ func (o *NewRuleset) GetStrikethroughRules() []Rule {
 	return *o.StrikethroughRules
 }
 
-// GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field value if set, zero value otherwise
+// GetStrikethroughRulesOk returns a tuple with the StrikethroughRules field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewRuleset) GetStrikethroughRulesOk() ([]Rule, bool) {
+func (o *NewRuleset) GetStrikethroughRulesOk() (*[]Rule, bool) {
 	if o == nil || o.StrikethroughRules == nil {
-		var ret []Rule
-		return ret, false
+		return nil, false
 	}
-	return *o.StrikethroughRules, true
+	return o.StrikethroughRules, true
 }
 
 // HasStrikethroughRules returns a boolean if a field has been set.
@@ -86,6 +112,15 @@ func (o *NewRuleset) GetBindings() []Binding {
 	return o.Bindings
 }
 
+// GetBindingsOk returns a tuple with the Bindings field value
+// and a boolean to check if the value has been set.
+func (o *NewRuleset) GetBindingsOk() (*[]Binding, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Bindings, true
+}
+
 // SetBindings sets field value
 func (o *NewRuleset) SetBindings(v []Binding) {
 	o.Bindings = v
@@ -100,14 +135,13 @@ func (o *NewRuleset) GetRbVersion() string {
 	return *o.RbVersion
 }
 
-// GetRbVersionOk returns a tuple with the RbVersion field value if set, zero value otherwise
+// GetRbVersionOk returns a tuple with the RbVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewRuleset) GetRbVersionOk() (string, bool) {
+func (o *NewRuleset) GetRbVersionOk() (*string, bool) {
 	if o == nil || o.RbVersion == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RbVersion, true
+	return o.RbVersion, true
 }
 
 // HasRbVersion returns a boolean if a field has been set.
@@ -133,14 +167,13 @@ func (o *NewRuleset) GetActivate() bool {
 	return *o.Activate
 }
 
-// GetActivateOk returns a tuple with the Activate field value if set, zero value otherwise
+// GetActivateOk returns a tuple with the Activate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewRuleset) GetActivateOk() (bool, bool) {
+func (o *NewRuleset) GetActivateOk() (*bool, bool) {
 	if o == nil || o.Activate == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Activate, true
+	return o.Activate, true
 }
 
 // HasActivate returns a boolean if a field has been set.
@@ -157,25 +190,58 @@ func (o *NewRuleset) SetActivate(v bool) {
 	o.Activate = &v
 }
 
+func (o NewRuleset) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["rules"] = o.Rules
+	}
+	if o.StrikethroughRules != nil {
+		toSerialize["strikethroughRules"] = o.StrikethroughRules
+	}
+	if true {
+		toSerialize["bindings"] = o.Bindings
+	}
+	if o.RbVersion != nil {
+		toSerialize["rbVersion"] = o.RbVersion
+	}
+	if o.Activate != nil {
+		toSerialize["activate"] = o.Activate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewRuleset struct {
-	Value        NewRuleset
-	ExplicitNull bool
+	value *NewRuleset
+	isSet bool
+}
+
+func (v NullableNewRuleset) Get() *NewRuleset {
+	return v.value
+}
+
+func (v *NullableNewRuleset) Set(val *NewRuleset) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewRuleset) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewRuleset) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewRuleset(val *NewRuleset) *NullableNewRuleset {
+	return &NullableNewRuleset{value: val, isSet: true}
 }
 
 func (v NullableNewRuleset) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewRuleset) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

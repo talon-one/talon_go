@@ -10,8 +10,26 @@ Name | Type | Description | Notes
 **CalculatedAt** | Pointer to [**time.Time**](time.Time.md) | The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided. | [optional] 
 **EffectiveFrom** | Pointer to [**time.Time**](time.Time.md) | The date and time from which the price adjustment is effective. | [optional] 
 **EffectiveUntil** | Pointer to [**time.Time**](time.Time.md) | The date and time until which the price adjustment is effective. | [optional] 
+**ContextId** | Pointer to **string** | Identifier of the context of this price adjustment (e.g. summer sale). | [optional] 
 
 ## Methods
+
+### NewNewPriceAdjustment
+
+`func NewNewPriceAdjustment(priceType string, referenceId string, ) *NewPriceAdjustment`
+
+NewNewPriceAdjustment instantiates a new NewPriceAdjustment object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewPriceAdjustmentWithDefaults
+
+`func NewNewPriceAdjustmentWithDefaults() *NewPriceAdjustment`
+
+NewNewPriceAdjustmentWithDefaults instantiates a new NewPriceAdjustment object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetPriceType
 
@@ -21,35 +39,36 @@ GetPriceType returns the PriceType field if non-nil, zero value otherwise.
 
 ### GetPriceTypeOk
 
-`func (o *NewPriceAdjustment) GetPriceTypeOk() (string, bool)`
+`func (o *NewPriceAdjustment) GetPriceTypeOk() (*string, bool)`
 
 GetPriceTypeOk returns a tuple with the PriceType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasPriceType
-
-`func (o *NewPriceAdjustment) HasPriceType() bool`
-
-HasPriceType returns a boolean if a field has been set.
 
 ### SetPriceType
 
 `func (o *NewPriceAdjustment) SetPriceType(v string)`
 
-SetPriceType gets a reference to the given string and assigns it to the PriceType field.
+SetPriceType sets PriceType field to given value.
+
 
 ### GetPrice
 
-`func (o *NewPriceAdjustment) GetPrice() NullableFloat32`
+`func (o *NewPriceAdjustment) GetPrice() float32`
 
 GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *NewPriceAdjustment) GetPriceOk() (NullableFloat32, bool)`
+`func (o *NewPriceAdjustment) GetPriceOk() (*float32, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPrice
+
+`func (o *NewPriceAdjustment) SetPrice(v float32)`
+
+SetPrice sets Price field to given value.
 
 ### HasPrice
 
@@ -57,19 +76,16 @@ and a boolean to check if the value has been set.
 
 HasPrice returns a boolean if a field has been set.
 
-### SetPrice
+### SetPriceNil
 
-`func (o *NewPriceAdjustment) SetPrice(v NullableFloat32)`
+`func (o *NewPriceAdjustment) SetPriceNil(b bool)`
 
-SetPrice gets a reference to the given NullableFloat32 and assigns it to the Price field.
+ SetPriceNil sets the value for Price to be an explicit nil
 
-### SetPriceExplicitNull
+### UnsetPrice
+`func (o *NewPriceAdjustment) UnsetPrice()`
 
-`func (o *NewPriceAdjustment) SetPriceExplicitNull(b bool)`
-
-SetPriceExplicitNull (un)sets Price to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Price value is set to nil even if false is passed
+UnsetPrice ensures that no value is present for Price, not even an explicit nil
 ### GetReferenceId
 
 `func (o *NewPriceAdjustment) GetReferenceId() string`
@@ -78,22 +94,17 @@ GetReferenceId returns the ReferenceId field if non-nil, zero value otherwise.
 
 ### GetReferenceIdOk
 
-`func (o *NewPriceAdjustment) GetReferenceIdOk() (string, bool)`
+`func (o *NewPriceAdjustment) GetReferenceIdOk() (*string, bool)`
 
 GetReferenceIdOk returns a tuple with the ReferenceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasReferenceId
-
-`func (o *NewPriceAdjustment) HasReferenceId() bool`
-
-HasReferenceId returns a boolean if a field has been set.
 
 ### SetReferenceId
 
 `func (o *NewPriceAdjustment) SetReferenceId(v string)`
 
-SetReferenceId gets a reference to the given string and assigns it to the ReferenceId field.
+SetReferenceId sets ReferenceId field to given value.
+
 
 ### GetCalculatedAt
 
@@ -103,22 +114,22 @@ GetCalculatedAt returns the CalculatedAt field if non-nil, zero value otherwise.
 
 ### GetCalculatedAtOk
 
-`func (o *NewPriceAdjustment) GetCalculatedAtOk() (time.Time, bool)`
+`func (o *NewPriceAdjustment) GetCalculatedAtOk() (*time.Time, bool)`
 
 GetCalculatedAtOk returns a tuple with the CalculatedAt field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCalculatedAt
+
+`func (o *NewPriceAdjustment) SetCalculatedAt(v time.Time)`
+
+SetCalculatedAt sets CalculatedAt field to given value.
 
 ### HasCalculatedAt
 
 `func (o *NewPriceAdjustment) HasCalculatedAt() bool`
 
 HasCalculatedAt returns a boolean if a field has been set.
-
-### SetCalculatedAt
-
-`func (o *NewPriceAdjustment) SetCalculatedAt(v time.Time)`
-
-SetCalculatedAt gets a reference to the given time.Time and assigns it to the CalculatedAt field.
 
 ### GetEffectiveFrom
 
@@ -128,22 +139,22 @@ GetEffectiveFrom returns the EffectiveFrom field if non-nil, zero value otherwis
 
 ### GetEffectiveFromOk
 
-`func (o *NewPriceAdjustment) GetEffectiveFromOk() (time.Time, bool)`
+`func (o *NewPriceAdjustment) GetEffectiveFromOk() (*time.Time, bool)`
 
 GetEffectiveFromOk returns a tuple with the EffectiveFrom field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEffectiveFrom
+
+`func (o *NewPriceAdjustment) SetEffectiveFrom(v time.Time)`
+
+SetEffectiveFrom sets EffectiveFrom field to given value.
 
 ### HasEffectiveFrom
 
 `func (o *NewPriceAdjustment) HasEffectiveFrom() bool`
 
 HasEffectiveFrom returns a boolean if a field has been set.
-
-### SetEffectiveFrom
-
-`func (o *NewPriceAdjustment) SetEffectiveFrom(v time.Time)`
-
-SetEffectiveFrom gets a reference to the given time.Time and assigns it to the EffectiveFrom field.
 
 ### GetEffectiveUntil
 
@@ -153,10 +164,16 @@ GetEffectiveUntil returns the EffectiveUntil field if non-nil, zero value otherw
 
 ### GetEffectiveUntilOk
 
-`func (o *NewPriceAdjustment) GetEffectiveUntilOk() (time.Time, bool)`
+`func (o *NewPriceAdjustment) GetEffectiveUntilOk() (*time.Time, bool)`
 
 GetEffectiveUntilOk returns a tuple with the EffectiveUntil field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEffectiveUntil
+
+`func (o *NewPriceAdjustment) SetEffectiveUntil(v time.Time)`
+
+SetEffectiveUntil sets EffectiveUntil field to given value.
 
 ### HasEffectiveUntil
 
@@ -164,11 +181,30 @@ and a boolean to check if the value has been set.
 
 HasEffectiveUntil returns a boolean if a field has been set.
 
-### SetEffectiveUntil
+### GetContextId
 
-`func (o *NewPriceAdjustment) SetEffectiveUntil(v time.Time)`
+`func (o *NewPriceAdjustment) GetContextId() string`
 
-SetEffectiveUntil gets a reference to the given time.Time and assigns it to the EffectiveUntil field.
+GetContextId returns the ContextId field if non-nil, zero value otherwise.
+
+### GetContextIdOk
+
+`func (o *NewPriceAdjustment) GetContextIdOk() (*string, bool)`
+
+GetContextIdOk returns a tuple with the ContextId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetContextId
+
+`func (o *NewPriceAdjustment) SetContextId(v string)`
+
+SetContextId sets ContextId field to given value.
+
+### HasContextId
+
+`func (o *NewPriceAdjustment) HasContextId() bool`
+
+HasContextId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

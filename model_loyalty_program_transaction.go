@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,13 @@ import (
 // LoyaltyProgramTransaction struct for LoyaltyProgramTransaction
 type LoyaltyProgramTransaction struct {
 	// ID of the loyalty ledger transaction.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
+	// Unique identifier of the transaction in the UUID format.
+	TransactionUUID string `json:"transactionUUID"`
 	// ID of the loyalty program.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// ID of the campaign.
-	CampaignId *int32 `json:"campaignId,omitempty"`
+	CampaignId *int64 `json:"campaignId,omitempty"`
 	// Date and time the loyalty transaction occurred.
 	Created time.Time `json:"created"`
 	// Type of transaction. Possible values:   - `addition`: Signifies added points.   - `subtraction`: Signifies deducted points.
@@ -44,65 +45,133 @@ type LoyaltyProgramTransaction struct {
 	// ID of the customer session where the transaction occurred.
 	CustomerSessionId *string `json:"customerSessionId,omitempty"`
 	// ID of the import where the transaction occurred.
-	ImportId *int32 `json:"importId,omitempty"`
+	ImportId *int64 `json:"importId,omitempty"`
 	// ID of the user who manually added or deducted points. Applies only to manual transactions.
-	UserId *int32 `json:"userId,omitempty"`
+	UserId *int64 `json:"userId,omitempty"`
 	// The email of the Campaign Manager account that manually added or deducted points. Applies only to manual transactions.
 	UserEmail *string `json:"userEmail,omitempty"`
 	// ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
-	RulesetId *int32 `json:"rulesetId,omitempty"`
+	RulesetId *int64 `json:"rulesetId,omitempty"`
 	// Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
 	RuleName *string                  `json:"ruleName,omitempty"`
 	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
 }
 
+// NewLoyaltyProgramTransaction instantiates a new LoyaltyProgramTransaction object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewLoyaltyProgramTransaction(id int64, transactionUUID string, programId int64, created time.Time, type_ string, amount float32, name string, startDate string, expiryDate string, subledgerId string) *LoyaltyProgramTransaction {
+	this := LoyaltyProgramTransaction{}
+	this.Id = id
+	this.TransactionUUID = transactionUUID
+	this.ProgramId = programId
+	this.Created = created
+	this.Type = type_
+	this.Amount = amount
+	this.Name = name
+	this.StartDate = startDate
+	this.ExpiryDate = expiryDate
+	this.SubledgerId = subledgerId
+	return &this
+}
+
+// NewLoyaltyProgramTransactionWithDefaults instantiates a new LoyaltyProgramTransaction object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyProgramTransactionWithDefaults() *LoyaltyProgramTransaction {
+	this := LoyaltyProgramTransaction{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *LoyaltyProgramTransaction) GetId() int32 {
+func (o *LoyaltyProgramTransaction) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *LoyaltyProgramTransaction) SetId(v int32) {
+func (o *LoyaltyProgramTransaction) SetId(v int64) {
 	o.Id = v
 }
 
-// GetProgramId returns the ProgramId field value
-func (o *LoyaltyProgramTransaction) GetProgramId() int32 {
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *LoyaltyProgramTransaction) GetTransactionUUID() string {
 	if o == nil {
-		var ret int32
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
+// SetTransactionUUID sets field value
+func (o *LoyaltyProgramTransaction) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
+}
+
+// GetProgramId returns the ProgramId field value
+func (o *LoyaltyProgramTransaction) GetProgramId() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *LoyaltyProgramTransaction) SetProgramId(v int32) {
+func (o *LoyaltyProgramTransaction) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
 // GetCampaignId returns the CampaignId field value if set, zero value otherwise.
-func (o *LoyaltyProgramTransaction) GetCampaignId() int32 {
+func (o *LoyaltyProgramTransaction) GetCampaignId() int64 {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetCampaignIdOk() (int32, bool) {
+func (o *LoyaltyProgramTransaction) GetCampaignIdOk() (*int64, bool) {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignId, true
+	return o.CampaignId, true
 }
 
 // HasCampaignId returns a boolean if a field has been set.
@@ -114,8 +183,8 @@ func (o *LoyaltyProgramTransaction) HasCampaignId() bool {
 	return false
 }
 
-// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-func (o *LoyaltyProgramTransaction) SetCampaignId(v int32) {
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *LoyaltyProgramTransaction) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
@@ -127,6 +196,15 @@ func (o *LoyaltyProgramTransaction) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -144,6 +222,15 @@ func (o *LoyaltyProgramTransaction) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *LoyaltyProgramTransaction) SetType(v string) {
 	o.Type = v
@@ -157,6 +244,15 @@ func (o *LoyaltyProgramTransaction) GetAmount() float32 {
 	}
 
 	return o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetAmountOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
 }
 
 // SetAmount sets field value
@@ -174,6 +270,15 @@ func (o *LoyaltyProgramTransaction) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *LoyaltyProgramTransaction) SetName(v string) {
 	o.Name = v
@@ -187,6 +292,15 @@ func (o *LoyaltyProgramTransaction) GetStartDate() string {
 	}
 
 	return o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetStartDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartDate, true
 }
 
 // SetStartDate sets field value
@@ -204,6 +318,15 @@ func (o *LoyaltyProgramTransaction) GetExpiryDate() string {
 	return o.ExpiryDate
 }
 
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetExpiryDateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiryDate, true
+}
+
 // SetExpiryDate sets field value
 func (o *LoyaltyProgramTransaction) SetExpiryDate(v string) {
 	o.ExpiryDate = v
@@ -218,14 +341,13 @@ func (o *LoyaltyProgramTransaction) GetCustomerProfileId() string {
 	return *o.CustomerProfileId
 }
 
-// GetCustomerProfileIdOk returns a tuple with the CustomerProfileId field value if set, zero value otherwise
+// GetCustomerProfileIdOk returns a tuple with the CustomerProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetCustomerProfileIdOk() (string, bool) {
+func (o *LoyaltyProgramTransaction) GetCustomerProfileIdOk() (*string, bool) {
 	if o == nil || o.CustomerProfileId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerProfileId, true
+	return o.CustomerProfileId, true
 }
 
 // HasCustomerProfileId returns a boolean if a field has been set.
@@ -251,14 +373,13 @@ func (o *LoyaltyProgramTransaction) GetCardIdentifier() string {
 	return *o.CardIdentifier
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, zero value otherwise
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetCardIdentifierOk() (string, bool) {
+func (o *LoyaltyProgramTransaction) GetCardIdentifierOk() (*string, bool) {
 	if o == nil || o.CardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CardIdentifier, true
+	return o.CardIdentifier, true
 }
 
 // HasCardIdentifier returns a boolean if a field has been set.
@@ -285,6 +406,15 @@ func (o *LoyaltyProgramTransaction) GetSubledgerId() string {
 	return o.SubledgerId
 }
 
+// GetSubledgerIdOk returns a tuple with the SubledgerId field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyProgramTransaction) GetSubledgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubledgerId, true
+}
+
 // SetSubledgerId sets field value
 func (o *LoyaltyProgramTransaction) SetSubledgerId(v string) {
 	o.SubledgerId = v
@@ -299,14 +429,13 @@ func (o *LoyaltyProgramTransaction) GetCustomerSessionId() string {
 	return *o.CustomerSessionId
 }
 
-// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, zero value otherwise
+// GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetCustomerSessionIdOk() (string, bool) {
+func (o *LoyaltyProgramTransaction) GetCustomerSessionIdOk() (*string, bool) {
 	if o == nil || o.CustomerSessionId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerSessionId, true
+	return o.CustomerSessionId, true
 }
 
 // HasCustomerSessionId returns a boolean if a field has been set.
@@ -324,22 +453,21 @@ func (o *LoyaltyProgramTransaction) SetCustomerSessionId(v string) {
 }
 
 // GetImportId returns the ImportId field value if set, zero value otherwise.
-func (o *LoyaltyProgramTransaction) GetImportId() int32 {
+func (o *LoyaltyProgramTransaction) GetImportId() int64 {
 	if o == nil || o.ImportId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ImportId
 }
 
-// GetImportIdOk returns a tuple with the ImportId field value if set, zero value otherwise
+// GetImportIdOk returns a tuple with the ImportId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetImportIdOk() (int32, bool) {
+func (o *LoyaltyProgramTransaction) GetImportIdOk() (*int64, bool) {
 	if o == nil || o.ImportId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ImportId, true
+	return o.ImportId, true
 }
 
 // HasImportId returns a boolean if a field has been set.
@@ -351,28 +479,27 @@ func (o *LoyaltyProgramTransaction) HasImportId() bool {
 	return false
 }
 
-// SetImportId gets a reference to the given int32 and assigns it to the ImportId field.
-func (o *LoyaltyProgramTransaction) SetImportId(v int32) {
+// SetImportId gets a reference to the given int64 and assigns it to the ImportId field.
+func (o *LoyaltyProgramTransaction) SetImportId(v int64) {
 	o.ImportId = &v
 }
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
-func (o *LoyaltyProgramTransaction) GetUserId() int32 {
+func (o *LoyaltyProgramTransaction) GetUserId() int64 {
 	if o == nil || o.UserId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value if set, zero value otherwise
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetUserIdOk() (int32, bool) {
+func (o *LoyaltyProgramTransaction) GetUserIdOk() (*int64, bool) {
 	if o == nil || o.UserId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UserId, true
+	return o.UserId, true
 }
 
 // HasUserId returns a boolean if a field has been set.
@@ -384,8 +511,8 @@ func (o *LoyaltyProgramTransaction) HasUserId() bool {
 	return false
 }
 
-// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
-func (o *LoyaltyProgramTransaction) SetUserId(v int32) {
+// SetUserId gets a reference to the given int64 and assigns it to the UserId field.
+func (o *LoyaltyProgramTransaction) SetUserId(v int64) {
 	o.UserId = &v
 }
 
@@ -398,14 +525,13 @@ func (o *LoyaltyProgramTransaction) GetUserEmail() string {
 	return *o.UserEmail
 }
 
-// GetUserEmailOk returns a tuple with the UserEmail field value if set, zero value otherwise
+// GetUserEmailOk returns a tuple with the UserEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetUserEmailOk() (string, bool) {
+func (o *LoyaltyProgramTransaction) GetUserEmailOk() (*string, bool) {
 	if o == nil || o.UserEmail == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.UserEmail, true
+	return o.UserEmail, true
 }
 
 // HasUserEmail returns a boolean if a field has been set.
@@ -423,22 +549,21 @@ func (o *LoyaltyProgramTransaction) SetUserEmail(v string) {
 }
 
 // GetRulesetId returns the RulesetId field value if set, zero value otherwise.
-func (o *LoyaltyProgramTransaction) GetRulesetId() int32 {
+func (o *LoyaltyProgramTransaction) GetRulesetId() int64 {
 	if o == nil || o.RulesetId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RulesetId
 }
 
-// GetRulesetIdOk returns a tuple with the RulesetId field value if set, zero value otherwise
+// GetRulesetIdOk returns a tuple with the RulesetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetRulesetIdOk() (int32, bool) {
+func (o *LoyaltyProgramTransaction) GetRulesetIdOk() (*int64, bool) {
 	if o == nil || o.RulesetId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.RulesetId, true
+	return o.RulesetId, true
 }
 
 // HasRulesetId returns a boolean if a field has been set.
@@ -450,8 +575,8 @@ func (o *LoyaltyProgramTransaction) HasRulesetId() bool {
 	return false
 }
 
-// SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
-func (o *LoyaltyProgramTransaction) SetRulesetId(v int32) {
+// SetRulesetId gets a reference to the given int64 and assigns it to the RulesetId field.
+func (o *LoyaltyProgramTransaction) SetRulesetId(v int64) {
 	o.RulesetId = &v
 }
 
@@ -464,14 +589,13 @@ func (o *LoyaltyProgramTransaction) GetRuleName() string {
 	return *o.RuleName
 }
 
-// GetRuleNameOk returns a tuple with the RuleName field value if set, zero value otherwise
+// GetRuleNameOk returns a tuple with the RuleName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetRuleNameOk() (string, bool) {
+func (o *LoyaltyProgramTransaction) GetRuleNameOk() (*string, bool) {
 	if o == nil || o.RuleName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RuleName, true
+	return o.RuleName, true
 }
 
 // HasRuleName returns a boolean if a field has been set.
@@ -497,14 +621,13 @@ func (o *LoyaltyProgramTransaction) GetFlags() LoyaltyLedgerEntryFlags {
 	return *o.Flags
 }
 
-// GetFlagsOk returns a tuple with the Flags field value if set, zero value otherwise
+// GetFlagsOk returns a tuple with the Flags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyProgramTransaction) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool) {
+func (o *LoyaltyProgramTransaction) GetFlagsOk() (*LoyaltyLedgerEntryFlags, bool) {
 	if o == nil || o.Flags == nil {
-		var ret LoyaltyLedgerEntryFlags
-		return ret, false
+		return nil, false
 	}
-	return *o.Flags, true
+	return o.Flags, true
 }
 
 // HasFlags returns a boolean if a field has been set.
@@ -521,25 +644,103 @@ func (o *LoyaltyProgramTransaction) SetFlags(v LoyaltyLedgerEntryFlags) {
 	o.Flags = &v
 }
 
+func (o LoyaltyProgramTransaction) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if true {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.CustomerProfileId != nil {
+		toSerialize["customerProfileId"] = o.CustomerProfileId
+	}
+	if o.CardIdentifier != nil {
+		toSerialize["cardIdentifier"] = o.CardIdentifier
+	}
+	if true {
+		toSerialize["subledgerId"] = o.SubledgerId
+	}
+	if o.CustomerSessionId != nil {
+		toSerialize["customerSessionId"] = o.CustomerSessionId
+	}
+	if o.ImportId != nil {
+		toSerialize["importId"] = o.ImportId
+	}
+	if o.UserId != nil {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.UserEmail != nil {
+		toSerialize["userEmail"] = o.UserEmail
+	}
+	if o.RulesetId != nil {
+		toSerialize["rulesetId"] = o.RulesetId
+	}
+	if o.RuleName != nil {
+		toSerialize["ruleName"] = o.RuleName
+	}
+	if o.Flags != nil {
+		toSerialize["flags"] = o.Flags
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyProgramTransaction struct {
-	Value        LoyaltyProgramTransaction
-	ExplicitNull bool
+	value *LoyaltyProgramTransaction
+	isSet bool
+}
+
+func (v NullableLoyaltyProgramTransaction) Get() *LoyaltyProgramTransaction {
+	return v.value
+}
+
+func (v *NullableLoyaltyProgramTransaction) Set(val *LoyaltyProgramTransaction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyProgramTransaction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyProgramTransaction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableLoyaltyProgramTransaction(val *LoyaltyProgramTransaction) *NullableLoyaltyProgramTransaction {
+	return &NullableLoyaltyProgramTransaction{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyProgramTransaction) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyProgramTransaction) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

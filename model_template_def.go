@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // TemplateDef struct for TemplateDef
 type TemplateDef struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// Campaigner-friendly name for the template that will be shown in the rule editor.
 	Title string `json:"title"`
 	// A short description of the template that will be shown in the rule editor.
@@ -41,18 +40,58 @@ type TemplateDef struct {
 	Name string `json:"name"`
 }
 
+// NewTemplateDef instantiates a new TemplateDef object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewTemplateDef(id int64, created time.Time, applicationId int64, title string, description string, help string, category string, expr []map[string]interface{}, args []TemplateArgDef, name string) *TemplateDef {
+	this := TemplateDef{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.Title = title
+	this.Description = description
+	this.Help = help
+	this.Category = category
+	this.Expr = expr
+	this.Args = args
+	var expose bool = false
+	this.Expose = &expose
+	this.Name = name
+	return &this
+}
+
+// NewTemplateDefWithDefaults instantiates a new TemplateDef object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTemplateDefWithDefaults() *TemplateDef {
+	this := TemplateDef{}
+	var expose bool = false
+	this.Expose = &expose
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *TemplateDef) GetId() int32 {
+func (o *TemplateDef) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *TemplateDef) SetId(v int32) {
+func (o *TemplateDef) SetId(v int64) {
 	o.Id = v
 }
 
@@ -66,23 +105,41 @@ func (o *TemplateDef) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *TemplateDef) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *TemplateDef) GetApplicationId() int32 {
+func (o *TemplateDef) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *TemplateDef) SetApplicationId(v int32) {
+func (o *TemplateDef) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -94,6 +151,15 @@ func (o *TemplateDef) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -111,6 +177,15 @@ func (o *TemplateDef) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *TemplateDef) SetDescription(v string) {
 	o.Description = v
@@ -124,6 +199,15 @@ func (o *TemplateDef) GetHelp() string {
 	}
 
 	return o.Help
+}
+
+// GetHelpOk returns a tuple with the Help field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetHelpOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Help, true
 }
 
 // SetHelp sets field value
@@ -141,6 +225,15 @@ func (o *TemplateDef) GetCategory() string {
 	return o.Category
 }
 
+// GetCategoryOk returns a tuple with the Category field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetCategoryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Category, true
+}
+
 // SetCategory sets field value
 func (o *TemplateDef) SetCategory(v string) {
 	o.Category = v
@@ -154,6 +247,15 @@ func (o *TemplateDef) GetExpr() []interface{} {
 	}
 
 	return o.Expr
+}
+
+// GetExprOk returns a tuple with the Expr field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetExprOk() (*[]map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Expr, true
 }
 
 // SetExpr sets field value
@@ -171,6 +273,15 @@ func (o *TemplateDef) GetArgs() []TemplateArgDef {
 	return o.Args
 }
 
+// GetArgsOk returns a tuple with the Args field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetArgsOk() (*[]TemplateArgDef, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Args, true
+}
+
 // SetArgs sets field value
 func (o *TemplateDef) SetArgs(v []TemplateArgDef) {
 	o.Args = v
@@ -185,14 +296,13 @@ func (o *TemplateDef) GetExpose() bool {
 	return *o.Expose
 }
 
-// GetExposeOk returns a tuple with the Expose field value if set, zero value otherwise
+// GetExposeOk returns a tuple with the Expose field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateDef) GetExposeOk() (bool, bool) {
+func (o *TemplateDef) GetExposeOk() (*bool, bool) {
 	if o == nil || o.Expose == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.Expose, true
+	return o.Expose, true
 }
 
 // HasExpose returns a boolean if a field has been set.
@@ -219,30 +329,90 @@ func (o *TemplateDef) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *TemplateDef) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *TemplateDef) SetName(v string) {
 	o.Name = v
 }
 
+func (o TemplateDef) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["help"] = o.Help
+	}
+	if true {
+		toSerialize["category"] = o.Category
+	}
+	if true {
+		toSerialize["expr"] = o.Expr
+	}
+	if true {
+		toSerialize["args"] = o.Args
+	}
+	if o.Expose != nil {
+		toSerialize["expose"] = o.Expose
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTemplateDef struct {
-	Value        TemplateDef
-	ExplicitNull bool
+	value *TemplateDef
+	isSet bool
+}
+
+func (v NullableTemplateDef) Get() *TemplateDef {
+	return v.value
+}
+
+func (v *NullableTemplateDef) Set(val *TemplateDef) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTemplateDef) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTemplateDef) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableTemplateDef(val *TemplateDef) *NullableTemplateDef {
+	return &NullableTemplateDef{value: val, isSet: true}
 }
 
 func (v NullableTemplateDef) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTemplateDef) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

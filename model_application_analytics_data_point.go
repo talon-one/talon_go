@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -31,6 +30,25 @@ type ApplicationAnalyticsDataPoint struct {
 	CouponsCount *float32 `json:"couponsCount,omitempty"`
 }
 
+// NewApplicationAnalyticsDataPoint instantiates a new ApplicationAnalyticsDataPoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewApplicationAnalyticsDataPoint(startTime time.Time, endTime time.Time) *ApplicationAnalyticsDataPoint {
+	this := ApplicationAnalyticsDataPoint{}
+	this.StartTime = startTime
+	this.EndTime = endTime
+	return &this
+}
+
+// NewApplicationAnalyticsDataPointWithDefaults instantiates a new ApplicationAnalyticsDataPoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationAnalyticsDataPointWithDefaults() *ApplicationAnalyticsDataPoint {
+	this := ApplicationAnalyticsDataPoint{}
+	return &this
+}
+
 // GetStartTime returns the StartTime field value
 func (o *ApplicationAnalyticsDataPoint) GetStartTime() time.Time {
 	if o == nil {
@@ -39,6 +57,15 @@ func (o *ApplicationAnalyticsDataPoint) GetStartTime() time.Time {
 	}
 
 	return o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationAnalyticsDataPoint) GetStartTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartTime, true
 }
 
 // SetStartTime sets field value
@@ -56,6 +83,15 @@ func (o *ApplicationAnalyticsDataPoint) GetEndTime() time.Time {
 	return o.EndTime
 }
 
+// GetEndTimeOk returns a tuple with the EndTime field value
+// and a boolean to check if the value has been set.
+func (o *ApplicationAnalyticsDataPoint) GetEndTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndTime, true
+}
+
 // SetEndTime sets field value
 func (o *ApplicationAnalyticsDataPoint) SetEndTime(v time.Time) {
 	o.EndTime = v
@@ -70,14 +106,13 @@ func (o *ApplicationAnalyticsDataPoint) GetTotalRevenue() AnalyticsDataPoint {
 	return *o.TotalRevenue
 }
 
-// GetTotalRevenueOk returns a tuple with the TotalRevenue field value if set, zero value otherwise
+// GetTotalRevenueOk returns a tuple with the TotalRevenue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetTotalRevenueOk() (AnalyticsDataPoint, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetTotalRevenueOk() (*AnalyticsDataPoint, bool) {
 	if o == nil || o.TotalRevenue == nil {
-		var ret AnalyticsDataPoint
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalRevenue, true
+	return o.TotalRevenue, true
 }
 
 // HasTotalRevenue returns a boolean if a field has been set.
@@ -103,14 +138,13 @@ func (o *ApplicationAnalyticsDataPoint) GetSessionsCount() AnalyticsDataPoint {
 	return *o.SessionsCount
 }
 
-// GetSessionsCountOk returns a tuple with the SessionsCount field value if set, zero value otherwise
+// GetSessionsCountOk returns a tuple with the SessionsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetSessionsCountOk() (AnalyticsDataPoint, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetSessionsCountOk() (*AnalyticsDataPoint, bool) {
 	if o == nil || o.SessionsCount == nil {
-		var ret AnalyticsDataPoint
-		return ret, false
+		return nil, false
 	}
-	return *o.SessionsCount, true
+	return o.SessionsCount, true
 }
 
 // HasSessionsCount returns a boolean if a field has been set.
@@ -136,14 +170,13 @@ func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSession() AnalyticsDataPoi
 	return *o.AvgItemsPerSession
 }
 
-// GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field value if set, zero value otherwise
+// GetAvgItemsPerSessionOk returns a tuple with the AvgItemsPerSession field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSessionOk() (AnalyticsDataPoint, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetAvgItemsPerSessionOk() (*AnalyticsDataPoint, bool) {
 	if o == nil || o.AvgItemsPerSession == nil {
-		var ret AnalyticsDataPoint
-		return ret, false
+		return nil, false
 	}
-	return *o.AvgItemsPerSession, true
+	return o.AvgItemsPerSession, true
 }
 
 // HasAvgItemsPerSession returns a boolean if a field has been set.
@@ -169,14 +202,13 @@ func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValue() AnalyticsDataPoint 
 	return *o.AvgSessionValue
 }
 
-// GetAvgSessionValueOk returns a tuple with the AvgSessionValue field value if set, zero value otherwise
+// GetAvgSessionValueOk returns a tuple with the AvgSessionValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValueOk() (AnalyticsDataPoint, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetAvgSessionValueOk() (*AnalyticsDataPoint, bool) {
 	if o == nil || o.AvgSessionValue == nil {
-		var ret AnalyticsDataPoint
-		return ret, false
+		return nil, false
 	}
-	return *o.AvgSessionValue, true
+	return o.AvgSessionValue, true
 }
 
 // HasAvgSessionValue returns a boolean if a field has been set.
@@ -202,14 +234,13 @@ func (o *ApplicationAnalyticsDataPoint) GetTotalDiscounts() float32 {
 	return *o.TotalDiscounts
 }
 
-// GetTotalDiscountsOk returns a tuple with the TotalDiscounts field value if set, zero value otherwise
+// GetTotalDiscountsOk returns a tuple with the TotalDiscounts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetTotalDiscountsOk() (float32, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetTotalDiscountsOk() (*float32, bool) {
 	if o == nil || o.TotalDiscounts == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.TotalDiscounts, true
+	return o.TotalDiscounts, true
 }
 
 // HasTotalDiscounts returns a boolean if a field has been set.
@@ -235,14 +266,13 @@ func (o *ApplicationAnalyticsDataPoint) GetCouponsCount() float32 {
 	return *o.CouponsCount
 }
 
-// GetCouponsCountOk returns a tuple with the CouponsCount field value if set, zero value otherwise
+// GetCouponsCountOk returns a tuple with the CouponsCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationAnalyticsDataPoint) GetCouponsCountOk() (float32, bool) {
+func (o *ApplicationAnalyticsDataPoint) GetCouponsCountOk() (*float32, bool) {
 	if o == nil || o.CouponsCount == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.CouponsCount, true
+	return o.CouponsCount, true
 }
 
 // HasCouponsCount returns a boolean if a field has been set.
@@ -259,25 +289,67 @@ func (o *ApplicationAnalyticsDataPoint) SetCouponsCount(v float32) {
 	o.CouponsCount = &v
 }
 
+func (o ApplicationAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if true {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if o.TotalRevenue != nil {
+		toSerialize["totalRevenue"] = o.TotalRevenue
+	}
+	if o.SessionsCount != nil {
+		toSerialize["sessionsCount"] = o.SessionsCount
+	}
+	if o.AvgItemsPerSession != nil {
+		toSerialize["avgItemsPerSession"] = o.AvgItemsPerSession
+	}
+	if o.AvgSessionValue != nil {
+		toSerialize["avgSessionValue"] = o.AvgSessionValue
+	}
+	if o.TotalDiscounts != nil {
+		toSerialize["totalDiscounts"] = o.TotalDiscounts
+	}
+	if o.CouponsCount != nil {
+		toSerialize["couponsCount"] = o.CouponsCount
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationAnalyticsDataPoint struct {
-	Value        ApplicationAnalyticsDataPoint
-	ExplicitNull bool
+	value *ApplicationAnalyticsDataPoint
+	isSet bool
+}
+
+func (v NullableApplicationAnalyticsDataPoint) Get() *ApplicationAnalyticsDataPoint {
+	return v.value
+}
+
+func (v *NullableApplicationAnalyticsDataPoint) Set(val *ApplicationAnalyticsDataPoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationAnalyticsDataPoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationAnalyticsDataPoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableApplicationAnalyticsDataPoint(val *ApplicationAnalyticsDataPoint) *NullableApplicationAnalyticsDataPoint {
+	return &NullableApplicationAnalyticsDataPoint{value: val, isSet: true}
 }
 
 func (v NullableApplicationAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationAnalyticsDataPoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

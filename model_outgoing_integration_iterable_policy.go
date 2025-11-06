@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type OutgoingIntegrationIterablePolicy struct {
 	ApiKey string `json:"apiKey"`
 }
 
+// NewOutgoingIntegrationIterablePolicy instantiates a new OutgoingIntegrationIterablePolicy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewOutgoingIntegrationIterablePolicy(baseUrl string, apiKey string) *OutgoingIntegrationIterablePolicy {
+	this := OutgoingIntegrationIterablePolicy{}
+	this.BaseUrl = baseUrl
+	this.ApiKey = apiKey
+	return &this
+}
+
+// NewOutgoingIntegrationIterablePolicyWithDefaults instantiates a new OutgoingIntegrationIterablePolicy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationIterablePolicyWithDefaults() *OutgoingIntegrationIterablePolicy {
+	this := OutgoingIntegrationIterablePolicy{}
+	return &this
+}
+
 // GetBaseUrl returns the BaseUrl field value
 func (o *OutgoingIntegrationIterablePolicy) GetBaseUrl() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *OutgoingIntegrationIterablePolicy) GetBaseUrl() string {
 	}
 
 	return o.BaseUrl
+}
+
+// GetBaseUrlOk returns a tuple with the BaseUrl field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationIterablePolicy) GetBaseUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BaseUrl, true
 }
 
 // SetBaseUrl sets field value
@@ -47,30 +74,63 @@ func (o *OutgoingIntegrationIterablePolicy) GetApiKey() string {
 	return o.ApiKey
 }
 
+// GetApiKeyOk returns a tuple with the ApiKey field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationIterablePolicy) GetApiKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiKey, true
+}
+
 // SetApiKey sets field value
 func (o *OutgoingIntegrationIterablePolicy) SetApiKey(v string) {
 	o.ApiKey = v
 }
 
+func (o OutgoingIntegrationIterablePolicy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["baseUrl"] = o.BaseUrl
+	}
+	if true {
+		toSerialize["apiKey"] = o.ApiKey
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationIterablePolicy struct {
-	Value        OutgoingIntegrationIterablePolicy
-	ExplicitNull bool
+	value *OutgoingIntegrationIterablePolicy
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationIterablePolicy) Get() *OutgoingIntegrationIterablePolicy {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationIterablePolicy) Set(val *OutgoingIntegrationIterablePolicy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationIterablePolicy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationIterablePolicy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableOutgoingIntegrationIterablePolicy(val *OutgoingIntegrationIterablePolicy) *NullableOutgoingIntegrationIterablePolicy {
+	return &NullableOutgoingIntegrationIterablePolicy{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationIterablePolicy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationIterablePolicy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

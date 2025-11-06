@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,37 +17,69 @@ import (
 // Role struct for Role
 type Role struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The ID of the [Campaign Group](https://docs.talon.one/docs/product/account/account-settings/managing-campaign-groups) this role was created for.
-	CampaignGroupID *int32 `json:"campaignGroupID,omitempty"`
+	CampaignGroupID *int64 `json:"campaignGroupID,omitempty"`
 	// Name of the role.
 	Name string `json:"name"`
 	// Description of the role.
 	Description *string `json:"description,omitempty"`
 	// A list of user identifiers assigned to this role.
-	Members *[]int32 `json:"members,omitempty"`
+	Members *[]int64 `json:"members,omitempty"`
 	// The `Access Control List` json defining the role of the user. This represents the access control on the user level.
 	Acl map[string]interface{} `json:"acl"`
 }
 
+// NewRole instantiates a new Role object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRole(id int64, created time.Time, modified time.Time, accountId int64, name string, acl map[string]interface{}) *Role {
+	this := Role{}
+	this.Id = id
+	this.Created = created
+	this.Modified = modified
+	this.AccountId = accountId
+	this.Name = name
+	this.Acl = acl
+	return &this
+}
+
+// NewRoleWithDefaults instantiates a new Role object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleWithDefaults() *Role {
+	this := Role{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Role) GetId() int32 {
+func (o *Role) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Role) SetId(v int32) {
+func (o *Role) SetId(v int64) {
 	o.Id = v
 }
 
@@ -60,6 +91,15 @@ func (o *Role) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -77,43 +117,60 @@ func (o *Role) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *Role) SetModified(v time.Time) {
 	o.Modified = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Role) GetAccountId() int32 {
+func (o *Role) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Role) SetAccountId(v int32) {
+func (o *Role) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
 // GetCampaignGroupID returns the CampaignGroupID field value if set, zero value otherwise.
-func (o *Role) GetCampaignGroupID() int32 {
+func (o *Role) GetCampaignGroupID() int64 {
 	if o == nil || o.CampaignGroupID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignGroupID
 }
 
-// GetCampaignGroupIDOk returns a tuple with the CampaignGroupID field value if set, zero value otherwise
+// GetCampaignGroupIDOk returns a tuple with the CampaignGroupID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetCampaignGroupIDOk() (int32, bool) {
+func (o *Role) GetCampaignGroupIDOk() (*int64, bool) {
 	if o == nil || o.CampaignGroupID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignGroupID, true
+	return o.CampaignGroupID, true
 }
 
 // HasCampaignGroupID returns a boolean if a field has been set.
@@ -125,8 +182,8 @@ func (o *Role) HasCampaignGroupID() bool {
 	return false
 }
 
-// SetCampaignGroupID gets a reference to the given int32 and assigns it to the CampaignGroupID field.
-func (o *Role) SetCampaignGroupID(v int32) {
+// SetCampaignGroupID gets a reference to the given int64 and assigns it to the CampaignGroupID field.
+func (o *Role) SetCampaignGroupID(v int64) {
 	o.CampaignGroupID = &v
 }
 
@@ -138,6 +195,15 @@ func (o *Role) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -154,14 +220,13 @@ func (o *Role) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetDescriptionOk() (string, bool) {
+func (o *Role) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -179,22 +244,21 @@ func (o *Role) SetDescription(v string) {
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *Role) GetMembers() []int32 {
+func (o *Role) GetMembers() []int64 {
 	if o == nil || o.Members == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Members
 }
 
-// GetMembersOk returns a tuple with the Members field value if set, zero value otherwise
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Role) GetMembersOk() ([]int32, bool) {
+func (o *Role) GetMembersOk() (*[]int64, bool) {
 	if o == nil || o.Members == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Members, true
+	return o.Members, true
 }
 
 // HasMembers returns a boolean if a field has been set.
@@ -206,8 +270,8 @@ func (o *Role) HasMembers() bool {
 	return false
 }
 
-// SetMembers gets a reference to the given []int32 and assigns it to the Members field.
-func (o *Role) SetMembers(v []int32) {
+// SetMembers gets a reference to the given []int64 and assigns it to the Members field.
+func (o *Role) SetMembers(v []int64) {
 	o.Members = &v
 }
 
@@ -221,30 +285,84 @@ func (o *Role) GetAcl() map[string]interface{} {
 	return o.Acl
 }
 
+// GetAclOk returns a tuple with the Acl field value
+// and a boolean to check if the value has been set.
+func (o *Role) GetAclOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Acl, true
+}
+
 // SetAcl sets field value
 func (o *Role) SetAcl(v map[string]interface{}) {
 	o.Acl = v
 }
 
+func (o Role) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if o.CampaignGroupID != nil {
+		toSerialize["campaignGroupID"] = o.CampaignGroupID
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Members != nil {
+		toSerialize["members"] = o.Members
+	}
+	if true {
+		toSerialize["acl"] = o.Acl
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRole struct {
-	Value        Role
-	ExplicitNull bool
+	value *Role
+	isSet bool
+}
+
+func (v NullableRole) Get() *Role {
+	return v.value
+}
+
+func (v *NullableRole) Set(val *Role) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRole) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRole) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRole(val *Role) *NullableRole {
+	return &NullableRole{value: val, isSet: true}
 }
 
 func (v NullableRole) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRole) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

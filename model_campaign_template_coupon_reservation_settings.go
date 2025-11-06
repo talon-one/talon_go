@@ -10,35 +10,54 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignTemplateCouponReservationSettings struct for CampaignTemplateCouponReservationSettings
 type CampaignTemplateCouponReservationSettings struct {
 	// The number of reservations that can be made with this coupon code.
-	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
+	ReservationLimit *int64 `json:"reservationLimit,omitempty"`
 	// An indication of whether the code can be redeemed only if it has been reserved first.
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
 }
 
+// NewCampaignTemplateCouponReservationSettings instantiates a new CampaignTemplateCouponReservationSettings object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignTemplateCouponReservationSettings() *CampaignTemplateCouponReservationSettings {
+	this := CampaignTemplateCouponReservationSettings{}
+	var isReservationMandatory bool = false
+	this.IsReservationMandatory = &isReservationMandatory
+	return &this
+}
+
+// NewCampaignTemplateCouponReservationSettingsWithDefaults instantiates a new CampaignTemplateCouponReservationSettings object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignTemplateCouponReservationSettingsWithDefaults() *CampaignTemplateCouponReservationSettings {
+	this := CampaignTemplateCouponReservationSettings{}
+	var isReservationMandatory bool = false
+	this.IsReservationMandatory = &isReservationMandatory
+	return &this
+}
+
 // GetReservationLimit returns the ReservationLimit field value if set, zero value otherwise.
-func (o *CampaignTemplateCouponReservationSettings) GetReservationLimit() int32 {
+func (o *CampaignTemplateCouponReservationSettings) GetReservationLimit() int64 {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservationLimit
 }
 
-// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, zero value otherwise
+// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignTemplateCouponReservationSettings) GetReservationLimitOk() (int32, bool) {
+func (o *CampaignTemplateCouponReservationSettings) GetReservationLimitOk() (*int64, bool) {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationLimit, true
+	return o.ReservationLimit, true
 }
 
 // HasReservationLimit returns a boolean if a field has been set.
@@ -50,8 +69,8 @@ func (o *CampaignTemplateCouponReservationSettings) HasReservationLimit() bool {
 	return false
 }
 
-// SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
-func (o *CampaignTemplateCouponReservationSettings) SetReservationLimit(v int32) {
+// SetReservationLimit gets a reference to the given int64 and assigns it to the ReservationLimit field.
+func (o *CampaignTemplateCouponReservationSettings) SetReservationLimit(v int64) {
 	o.ReservationLimit = &v
 }
 
@@ -64,14 +83,13 @@ func (o *CampaignTemplateCouponReservationSettings) GetIsReservationMandatory() 
 	return *o.IsReservationMandatory
 }
 
-// GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field value if set, zero value otherwise
+// GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignTemplateCouponReservationSettings) GetIsReservationMandatoryOk() (bool, bool) {
+func (o *CampaignTemplateCouponReservationSettings) GetIsReservationMandatoryOk() (*bool, bool) {
 	if o == nil || o.IsReservationMandatory == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsReservationMandatory, true
+	return o.IsReservationMandatory, true
 }
 
 // HasIsReservationMandatory returns a boolean if a field has been set.
@@ -88,25 +106,49 @@ func (o *CampaignTemplateCouponReservationSettings) SetIsReservationMandatory(v 
 	o.IsReservationMandatory = &v
 }
 
+func (o CampaignTemplateCouponReservationSettings) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ReservationLimit != nil {
+		toSerialize["reservationLimit"] = o.ReservationLimit
+	}
+	if o.IsReservationMandatory != nil {
+		toSerialize["isReservationMandatory"] = o.IsReservationMandatory
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignTemplateCouponReservationSettings struct {
-	Value        CampaignTemplateCouponReservationSettings
-	ExplicitNull bool
+	value *CampaignTemplateCouponReservationSettings
+	isSet bool
+}
+
+func (v NullableCampaignTemplateCouponReservationSettings) Get() *CampaignTemplateCouponReservationSettings {
+	return v.value
+}
+
+func (v *NullableCampaignTemplateCouponReservationSettings) Set(val *CampaignTemplateCouponReservationSettings) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignTemplateCouponReservationSettings) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignTemplateCouponReservationSettings) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignTemplateCouponReservationSettings(val *CampaignTemplateCouponReservationSettings) *NullableCampaignTemplateCouponReservationSettings {
+	return &NullableCampaignTemplateCouponReservationSettings{value: val, isSet: true}
 }
 
 func (v NullableCampaignTemplateCouponReservationSettings) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignTemplateCouponReservationSettings) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -9,42 +9,55 @@
 
 package talon
 
-import (
-	"bytes"
-	"encoding/json"
-)
+import "encoding/json"
 
-// NewApplicationCifExpression struct for NewApplicationCifExpression
-type NewApplicationCifExpression struct {
+// NewApplicationCIFExpression struct for NewApplicationCIFExpression
+type NewApplicationCIFExpression struct {
 	// The ID of the Application cart item filter.
-	CartItemFilterId *int32 `json:"cartItemFilterId,omitempty"`
+	CartItemFilterId *int64 `json:"cartItemFilterId,omitempty"`
 	// The ID of the user who created the Application cart item filter.
-	CreatedBy *int32 `json:"createdBy,omitempty"`
+	CreatedBy *int64 `json:"createdBy,omitempty"`
 	// Arbitrary additional JSON data associated with the Application cart item filter.
 	Expression []interface{} `json:"expression,omitempty"`
 }
 
+// NewNewApplicationCIFExpression instantiates a new NewApplicationCIFExpression object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewApplicationCIFExpression() *NewApplicationCIFExpression {
+	this := NewApplicationCIFExpression{}
+	return &this
+}
+
+// NewNewApplicationCIFExpressionWithDefaults instantiates a new NewApplicationCIFExpression object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewApplicationCIFExpressionWithDefaults() *NewApplicationCIFExpression {
+	this := NewApplicationCIFExpression{}
+	return &this
+}
+
 // GetCartItemFilterId returns the CartItemFilterId field value if set, zero value otherwise.
-func (o *NewApplicationCifExpression) GetCartItemFilterId() int32 {
+func (o *NewApplicationCIFExpression) GetCartItemFilterId() int64 {
 	if o == nil || o.CartItemFilterId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CartItemFilterId
 }
 
-// GetCartItemFilterIdOk returns a tuple with the CartItemFilterId field value if set, zero value otherwise
+// GetCartItemFilterIdOk returns a tuple with the CartItemFilterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCifExpression) GetCartItemFilterIdOk() (int32, bool) {
+func (o *NewApplicationCIFExpression) GetCartItemFilterIdOk() (*int64, bool) {
 	if o == nil || o.CartItemFilterId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItemFilterId, true
+	return o.CartItemFilterId, true
 }
 
 // HasCartItemFilterId returns a boolean if a field has been set.
-func (o *NewApplicationCifExpression) HasCartItemFilterId() bool {
+func (o *NewApplicationCIFExpression) HasCartItemFilterId() bool {
 	if o != nil && o.CartItemFilterId != nil {
 		return true
 	}
@@ -52,32 +65,31 @@ func (o *NewApplicationCifExpression) HasCartItemFilterId() bool {
 	return false
 }
 
-// SetCartItemFilterId gets a reference to the given int32 and assigns it to the CartItemFilterId field.
-func (o *NewApplicationCifExpression) SetCartItemFilterId(v int32) {
+// SetCartItemFilterId gets a reference to the given int64 and assigns it to the CartItemFilterId field.
+func (o *NewApplicationCIFExpression) SetCartItemFilterId(v int64) {
 	o.CartItemFilterId = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *NewApplicationCifExpression) GetCreatedBy() int32 {
+func (o *NewApplicationCIFExpression) GetCreatedBy() int64 {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCifExpression) GetCreatedByOk() (int32, bool) {
+func (o *NewApplicationCIFExpression) GetCreatedByOk() (*int64, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
-func (o *NewApplicationCifExpression) HasCreatedBy() bool {
+func (o *NewApplicationCIFExpression) HasCreatedBy() bool {
 	if o != nil && o.CreatedBy != nil {
 		return true
 	}
@@ -85,13 +97,13 @@ func (o *NewApplicationCifExpression) HasCreatedBy() bool {
 	return false
 }
 
-// SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-func (o *NewApplicationCifExpression) SetCreatedBy(v int32) {
+// SetCreatedBy gets a reference to the given int64 and assigns it to the CreatedBy field.
+func (o *NewApplicationCIFExpression) SetCreatedBy(v int64) {
 	o.CreatedBy = &v
 }
 
 // GetExpression returns the Expression field value if set, zero value otherwise.
-func (o *NewApplicationCifExpression) GetExpression() []interface{} {
+func (o *NewApplicationCIFExpression) GetExpression() []interface{} {
 	if o == nil || o.Expression == nil {
 		var ret []interface{}
 		return ret
@@ -99,18 +111,17 @@ func (o *NewApplicationCifExpression) GetExpression() []interface{} {
 	return o.Expression
 }
 
-// GetExpressionOk returns a tuple with the Expression field value if set, zero value otherwise
+// GetExpressionOk returns a tuple with the Expression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewApplicationCifExpression) GetExpressionOk() ([]interface{}, bool) {
+func (o *NewApplicationCIFExpression) GetExpressionOk() (*[]map[string]interface{}, bool) {
 	if o == nil || o.Expression == nil {
-		var ret []interface{}
-		return ret, false
+		return nil, false
 	}
 	return o.Expression, true
 }
 
 // HasExpression returns a boolean if a field has been set.
-func (o *NewApplicationCifExpression) HasExpression() bool {
+func (o *NewApplicationCIFExpression) HasExpression() bool {
 	if o != nil && o.Expression != nil {
 		return true
 	}
@@ -119,29 +130,56 @@ func (o *NewApplicationCifExpression) HasExpression() bool {
 }
 
 // SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
-func (o *NewApplicationCifExpression) SetExpression(v []interface{}) {
+func (o *NewApplicationCIFExpression) SetExpression(v []interface{}) {
 	o.Expression = v
 }
 
-type NullableNewApplicationCifExpression struct {
-	Value        NewApplicationCifExpression
-	ExplicitNull bool
+func (o NewApplicationCIFExpression) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.CartItemFilterId != nil {
+		toSerialize["cartItemFilterId"] = o.CartItemFilterId
+	}
+	if o.CreatedBy != nil {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.Expression != nil {
+		toSerialize["expression"] = o.Expression
+	}
+	return json.Marshal(toSerialize)
 }
 
-func (v NullableNewApplicationCifExpression) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+type NullableNewApplicationCIFExpression struct {
+	value *NewApplicationCIFExpression
+	isSet bool
 }
 
-func (v *NullableNewApplicationCifExpression) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
+func (v NullableNewApplicationCIFExpression) Get() *NewApplicationCIFExpression {
+	return v.value
+}
 
-	return json.Unmarshal(src, &v.Value)
+func (v *NullableNewApplicationCIFExpression) Set(val *NewApplicationCIFExpression) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewApplicationCIFExpression) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewApplicationCIFExpression) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewApplicationCIFExpression(val *NewApplicationCIFExpression) *NullableNewApplicationCIFExpression {
+	return &NullableNewApplicationCIFExpression{value: val, isSet: true}
+}
+
+func (v NullableNewApplicationCIFExpression) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *NullableNewApplicationCIFExpression) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

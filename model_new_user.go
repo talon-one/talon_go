@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,6 +24,26 @@ type NewUser struct {
 	InviteToken string  `json:"inviteToken"`
 }
 
+// NewNewUser instantiates a new NewUser object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewNewUser(email string, password string, inviteToken string) *NewUser {
+	this := NewUser{}
+	this.Email = email
+	this.Password = password
+	this.InviteToken = inviteToken
+	return &this
+}
+
+// NewNewUserWithDefaults instantiates a new NewUser object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewUserWithDefaults() *NewUser {
+	this := NewUser{}
+	return &this
+}
+
 // GetEmail returns the Email field value
 func (o *NewUser) GetEmail() string {
 	if o == nil {
@@ -33,6 +52,15 @@ func (o *NewUser) GetEmail() string {
 	}
 
 	return o.Email
+}
+
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *NewUser) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
 }
 
 // SetEmail sets field value
@@ -50,6 +78,15 @@ func (o *NewUser) GetPassword() string {
 	return o.Password
 }
 
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *NewUser) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
+}
+
 // SetPassword sets field value
 func (o *NewUser) SetPassword(v string) {
 	o.Password = v
@@ -64,14 +101,13 @@ func (o *NewUser) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewUser) GetNameOk() (string, bool) {
+func (o *NewUser) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -98,30 +134,69 @@ func (o *NewUser) GetInviteToken() string {
 	return o.InviteToken
 }
 
+// GetInviteTokenOk returns a tuple with the InviteToken field value
+// and a boolean to check if the value has been set.
+func (o *NewUser) GetInviteTokenOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InviteToken, true
+}
+
 // SetInviteToken sets field value
 func (o *NewUser) SetInviteToken(v string) {
 	o.InviteToken = v
 }
 
+func (o NewUser) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	if true {
+		toSerialize["password"] = o.Password
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["inviteToken"] = o.InviteToken
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewUser struct {
-	Value        NewUser
-	ExplicitNull bool
+	value *NewUser
+	isSet bool
+}
+
+func (v NullableNewUser) Get() *NewUser {
+	return v.value
+}
+
+func (v *NullableNewUser) Set(val *NewUser) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewUser) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewUser) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableNewUser(val *NewUser) *NullableNewUser {
+	return &NullableNewUser{value: val, isSet: true}
 }
 
 func (v NullableNewUser) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewUser) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

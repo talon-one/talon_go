@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,7 +19,7 @@ type CampaignCopy struct {
 	// Name of the copied campaign (Defaults to \"Copy of original campaign name\").
 	Name *string `json:"name,omitempty"`
 	// Application IDs of the applications to which a campaign should be copied to.
-	ApplicationIds []int32 `json:"applicationIds"`
+	ApplicationIds []int64 `json:"applicationIds"`
 	// A detailed description of the campaign.
 	Description *string `json:"description,omitempty"`
 	// Timestamp when the campaign will become active.
@@ -30,7 +29,25 @@ type CampaignCopy struct {
 	// A list of tags for the campaign.
 	Tags *[]string `json:"tags,omitempty"`
 	// The ID of the campaign evaluation group the campaign belongs to.
-	EvaluationGroupId *int32 `json:"evaluationGroupId,omitempty"`
+	EvaluationGroupId *int64 `json:"evaluationGroupId,omitempty"`
+}
+
+// NewCampaignCopy instantiates a new CampaignCopy object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewCampaignCopy(applicationIds []int64) *CampaignCopy {
+	this := CampaignCopy{}
+	this.ApplicationIds = applicationIds
+	return &this
+}
+
+// NewCampaignCopyWithDefaults instantiates a new CampaignCopy object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignCopyWithDefaults() *CampaignCopy {
+	this := CampaignCopy{}
+	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -42,14 +59,13 @@ func (o *CampaignCopy) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignCopy) GetNameOk() (string, bool) {
+func (o *CampaignCopy) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -67,17 +83,26 @@ func (o *CampaignCopy) SetName(v string) {
 }
 
 // GetApplicationIds returns the ApplicationIds field value
-func (o *CampaignCopy) GetApplicationIds() []int32 {
+func (o *CampaignCopy) GetApplicationIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.ApplicationIds
 }
 
+// GetApplicationIdsOk returns a tuple with the ApplicationIds field value
+// and a boolean to check if the value has been set.
+func (o *CampaignCopy) GetApplicationIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationIds, true
+}
+
 // SetApplicationIds sets field value
-func (o *CampaignCopy) SetApplicationIds(v []int32) {
+func (o *CampaignCopy) SetApplicationIds(v []int64) {
 	o.ApplicationIds = v
 }
 
@@ -90,14 +115,13 @@ func (o *CampaignCopy) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignCopy) GetDescriptionOk() (string, bool) {
+func (o *CampaignCopy) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -123,14 +147,13 @@ func (o *CampaignCopy) GetStartTime() time.Time {
 	return *o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignCopy) GetStartTimeOk() (time.Time, bool) {
+func (o *CampaignCopy) GetStartTimeOk() (*time.Time, bool) {
 	if o == nil || o.StartTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartTime, true
+	return o.StartTime, true
 }
 
 // HasStartTime returns a boolean if a field has been set.
@@ -156,14 +179,13 @@ func (o *CampaignCopy) GetEndTime() time.Time {
 	return *o.EndTime
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignCopy) GetEndTimeOk() (time.Time, bool) {
+func (o *CampaignCopy) GetEndTimeOk() (*time.Time, bool) {
 	if o == nil || o.EndTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndTime, true
+	return o.EndTime, true
 }
 
 // HasEndTime returns a boolean if a field has been set.
@@ -189,14 +211,13 @@ func (o *CampaignCopy) GetTags() []string {
 	return *o.Tags
 }
 
-// GetTagsOk returns a tuple with the Tags field value if set, zero value otherwise
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignCopy) GetTagsOk() ([]string, bool) {
+func (o *CampaignCopy) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Tags, true
+	return o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -214,22 +235,21 @@ func (o *CampaignCopy) SetTags(v []string) {
 }
 
 // GetEvaluationGroupId returns the EvaluationGroupId field value if set, zero value otherwise.
-func (o *CampaignCopy) GetEvaluationGroupId() int32 {
+func (o *CampaignCopy) GetEvaluationGroupId() int64 {
 	if o == nil || o.EvaluationGroupId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EvaluationGroupId
 }
 
-// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, zero value otherwise
+// GetEvaluationGroupIdOk returns a tuple with the EvaluationGroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignCopy) GetEvaluationGroupIdOk() (int32, bool) {
+func (o *CampaignCopy) GetEvaluationGroupIdOk() (*int64, bool) {
 	if o == nil || o.EvaluationGroupId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluationGroupId, true
+	return o.EvaluationGroupId, true
 }
 
 // HasEvaluationGroupId returns a boolean if a field has been set.
@@ -241,30 +261,69 @@ func (o *CampaignCopy) HasEvaluationGroupId() bool {
 	return false
 }
 
-// SetEvaluationGroupId gets a reference to the given int32 and assigns it to the EvaluationGroupId field.
-func (o *CampaignCopy) SetEvaluationGroupId(v int32) {
+// SetEvaluationGroupId gets a reference to the given int64 and assigns it to the EvaluationGroupId field.
+func (o *CampaignCopy) SetEvaluationGroupId(v int64) {
 	o.EvaluationGroupId = &v
 }
 
+func (o CampaignCopy) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["applicationIds"] = o.ApplicationIds
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.StartTime != nil {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if o.EndTime != nil {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
+	if o.EvaluationGroupId != nil {
+		toSerialize["evaluationGroupId"] = o.EvaluationGroupId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignCopy struct {
-	Value        CampaignCopy
-	ExplicitNull bool
+	value *CampaignCopy
+	isSet bool
+}
+
+func (v NullableCampaignCopy) Get() *CampaignCopy {
+	return v.value
+}
+
+func (v *NullableCampaignCopy) Set(val *CampaignCopy) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignCopy) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignCopy) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableCampaignCopy(val *CampaignCopy) *NullableCampaignCopy {
+	return &NullableCampaignCopy{value: val, isSet: true}
 }
 
 func (v NullableCampaignCopy) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignCopy) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

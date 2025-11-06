@@ -10,32 +10,60 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ItemAttribute struct for ItemAttribute
 type ItemAttribute struct {
 	// The ID of the attribute of the item.
-	Attributeid int32 `json:"attributeid"`
+	Attributeid int64 `json:"attributeid"`
 	// The name of the attribute.
 	Name string `json:"name"`
 	// The value of the attribute.
 	Value map[string]interface{} `json:"value"`
 }
 
+// NewItemAttribute instantiates a new ItemAttribute object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewItemAttribute(attributeid int64, name string, value map[string]interface{}) *ItemAttribute {
+	this := ItemAttribute{}
+	this.Attributeid = attributeid
+	this.Name = name
+	this.Value = value
+	return &this
+}
+
+// NewItemAttributeWithDefaults instantiates a new ItemAttribute object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewItemAttributeWithDefaults() *ItemAttribute {
+	this := ItemAttribute{}
+	return &this
+}
+
 // GetAttributeid returns the Attributeid field value
-func (o *ItemAttribute) GetAttributeid() int32 {
+func (o *ItemAttribute) GetAttributeid() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Attributeid
 }
 
+// GetAttributeidOk returns a tuple with the Attributeid field value
+// and a boolean to check if the value has been set.
+func (o *ItemAttribute) GetAttributeidOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributeid, true
+}
+
 // SetAttributeid sets field value
-func (o *ItemAttribute) SetAttributeid(v int32) {
+func (o *ItemAttribute) SetAttributeid(v int64) {
 	o.Attributeid = v
 }
 
@@ -47,6 +75,15 @@ func (o *ItemAttribute) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *ItemAttribute) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -64,30 +101,66 @@ func (o *ItemAttribute) GetValue() map[string]interface{} {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *ItemAttribute) GetValueOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *ItemAttribute) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
+func (o ItemAttribute) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["attributeid"] = o.Attributeid
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableItemAttribute struct {
-	Value        ItemAttribute
-	ExplicitNull bool
+	value *ItemAttribute
+	isSet bool
+}
+
+func (v NullableItemAttribute) Get() *ItemAttribute {
+	return v.value
+}
+
+func (v *NullableItemAttribute) Set(val *ItemAttribute) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableItemAttribute) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableItemAttribute) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableItemAttribute(val *ItemAttribute) *NullableItemAttribute {
+	return &NullableItemAttribute{value: val, isSet: true}
 }
 
 func (v NullableItemAttribute) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableItemAttribute) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

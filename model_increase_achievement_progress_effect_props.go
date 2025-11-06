@@ -10,18 +10,17 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // IncreaseAchievementProgressEffectProps The properties specific to the \"increaseAchievementProgress\" effect. This gets triggered whenever a validated rule contained an \"increase customer progress\" effect.
 type IncreaseAchievementProgressEffectProps struct {
 	// The internal ID of the achievement.
-	AchievementId int32 `json:"achievementId"`
+	AchievementId int64 `json:"achievementId"`
 	// The name of the achievement.
 	AchievementName string `json:"achievementName"`
 	// The internal ID of the achievement progress tracker.
-	ProgressTrackerId *int32 `json:"progressTrackerId,omitempty"`
+	ProgressTrackerId *int64 `json:"progressTrackerId,omitempty"`
 	// The value by which the customer's current progress in the achievement is increased.
 	Delta float32 `json:"delta"`
 	// The current progress of the customer in the achievement.
@@ -32,18 +31,50 @@ type IncreaseAchievementProgressEffectProps struct {
 	IsJustCompleted bool `json:"isJustCompleted"`
 }
 
+// NewIncreaseAchievementProgressEffectProps instantiates a new IncreaseAchievementProgressEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewIncreaseAchievementProgressEffectProps(achievementId int64, achievementName string, delta float32, value float32, target float32, isJustCompleted bool) *IncreaseAchievementProgressEffectProps {
+	this := IncreaseAchievementProgressEffectProps{}
+	this.AchievementId = achievementId
+	this.AchievementName = achievementName
+	this.Delta = delta
+	this.Value = value
+	this.Target = target
+	this.IsJustCompleted = isJustCompleted
+	return &this
+}
+
+// NewIncreaseAchievementProgressEffectPropsWithDefaults instantiates a new IncreaseAchievementProgressEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewIncreaseAchievementProgressEffectPropsWithDefaults() *IncreaseAchievementProgressEffectProps {
+	this := IncreaseAchievementProgressEffectProps{}
+	return &this
+}
+
 // GetAchievementId returns the AchievementId field value
-func (o *IncreaseAchievementProgressEffectProps) GetAchievementId() int32 {
+func (o *IncreaseAchievementProgressEffectProps) GetAchievementId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AchievementId
 }
 
+// GetAchievementIdOk returns a tuple with the AchievementId field value
+// and a boolean to check if the value has been set.
+func (o *IncreaseAchievementProgressEffectProps) GetAchievementIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementId, true
+}
+
 // SetAchievementId sets field value
-func (o *IncreaseAchievementProgressEffectProps) SetAchievementId(v int32) {
+func (o *IncreaseAchievementProgressEffectProps) SetAchievementId(v int64) {
 	o.AchievementId = v
 }
 
@@ -57,28 +88,36 @@ func (o *IncreaseAchievementProgressEffectProps) GetAchievementName() string {
 	return o.AchievementName
 }
 
+// GetAchievementNameOk returns a tuple with the AchievementName field value
+// and a boolean to check if the value has been set.
+func (o *IncreaseAchievementProgressEffectProps) GetAchievementNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementName, true
+}
+
 // SetAchievementName sets field value
 func (o *IncreaseAchievementProgressEffectProps) SetAchievementName(v string) {
 	o.AchievementName = v
 }
 
 // GetProgressTrackerId returns the ProgressTrackerId field value if set, zero value otherwise.
-func (o *IncreaseAchievementProgressEffectProps) GetProgressTrackerId() int32 {
+func (o *IncreaseAchievementProgressEffectProps) GetProgressTrackerId() int64 {
 	if o == nil || o.ProgressTrackerId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProgressTrackerId
 }
 
-// GetProgressTrackerIdOk returns a tuple with the ProgressTrackerId field value if set, zero value otherwise
+// GetProgressTrackerIdOk returns a tuple with the ProgressTrackerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncreaseAchievementProgressEffectProps) GetProgressTrackerIdOk() (int32, bool) {
+func (o *IncreaseAchievementProgressEffectProps) GetProgressTrackerIdOk() (*int64, bool) {
 	if o == nil || o.ProgressTrackerId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProgressTrackerId, true
+	return o.ProgressTrackerId, true
 }
 
 // HasProgressTrackerId returns a boolean if a field has been set.
@@ -90,8 +129,8 @@ func (o *IncreaseAchievementProgressEffectProps) HasProgressTrackerId() bool {
 	return false
 }
 
-// SetProgressTrackerId gets a reference to the given int32 and assigns it to the ProgressTrackerId field.
-func (o *IncreaseAchievementProgressEffectProps) SetProgressTrackerId(v int32) {
+// SetProgressTrackerId gets a reference to the given int64 and assigns it to the ProgressTrackerId field.
+func (o *IncreaseAchievementProgressEffectProps) SetProgressTrackerId(v int64) {
 	o.ProgressTrackerId = &v
 }
 
@@ -103,6 +142,15 @@ func (o *IncreaseAchievementProgressEffectProps) GetDelta() float32 {
 	}
 
 	return o.Delta
+}
+
+// GetDeltaOk returns a tuple with the Delta field value
+// and a boolean to check if the value has been set.
+func (o *IncreaseAchievementProgressEffectProps) GetDeltaOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Delta, true
 }
 
 // SetDelta sets field value
@@ -120,6 +168,15 @@ func (o *IncreaseAchievementProgressEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *IncreaseAchievementProgressEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *IncreaseAchievementProgressEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -133,6 +190,15 @@ func (o *IncreaseAchievementProgressEffectProps) GetTarget() float32 {
 	}
 
 	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *IncreaseAchievementProgressEffectProps) GetTargetOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
 }
 
 // SetTarget sets field value
@@ -150,30 +216,78 @@ func (o *IncreaseAchievementProgressEffectProps) GetIsJustCompleted() bool {
 	return o.IsJustCompleted
 }
 
+// GetIsJustCompletedOk returns a tuple with the IsJustCompleted field value
+// and a boolean to check if the value has been set.
+func (o *IncreaseAchievementProgressEffectProps) GetIsJustCompletedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IsJustCompleted, true
+}
+
 // SetIsJustCompleted sets field value
 func (o *IncreaseAchievementProgressEffectProps) SetIsJustCompleted(v bool) {
 	o.IsJustCompleted = v
 }
 
+func (o IncreaseAchievementProgressEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["achievementId"] = o.AchievementId
+	}
+	if true {
+		toSerialize["achievementName"] = o.AchievementName
+	}
+	if o.ProgressTrackerId != nil {
+		toSerialize["progressTrackerId"] = o.ProgressTrackerId
+	}
+	if true {
+		toSerialize["delta"] = o.Delta
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if true {
+		toSerialize["isJustCompleted"] = o.IsJustCompleted
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableIncreaseAchievementProgressEffectProps struct {
-	Value        IncreaseAchievementProgressEffectProps
-	ExplicitNull bool
+	value *IncreaseAchievementProgressEffectProps
+	isSet bool
+}
+
+func (v NullableIncreaseAchievementProgressEffectProps) Get() *IncreaseAchievementProgressEffectProps {
+	return v.value
+}
+
+func (v *NullableIncreaseAchievementProgressEffectProps) Set(val *IncreaseAchievementProgressEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableIncreaseAchievementProgressEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableIncreaseAchievementProgressEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableIncreaseAchievementProgressEffectProps(val *IncreaseAchievementProgressEffectProps) *NullableIncreaseAchievementProgressEffectProps {
+	return &NullableIncreaseAchievementProgressEffectProps{value: val, isSet: true}
 }
 
 func (v NullableIncreaseAchievementProgressEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableIncreaseAchievementProgressEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

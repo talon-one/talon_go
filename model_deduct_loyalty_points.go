@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,7 +22,25 @@ type DeductLoyaltyPoints struct {
 	// ID of the subledger the points are deducted from.
 	SubledgerId *string `json:"subledgerId,omitempty"`
 	// ID of the Application that is connected to the loyalty program.
-	ApplicationId *int32 `json:"applicationId,omitempty"`
+	ApplicationId *int64 `json:"applicationId,omitempty"`
+}
+
+// NewDeductLoyaltyPoints instantiates a new DeductLoyaltyPoints object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewDeductLoyaltyPoints(points float32) *DeductLoyaltyPoints {
+	this := DeductLoyaltyPoints{}
+	this.Points = points
+	return &this
+}
+
+// NewDeductLoyaltyPointsWithDefaults instantiates a new DeductLoyaltyPoints object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeductLoyaltyPointsWithDefaults() *DeductLoyaltyPoints {
+	this := DeductLoyaltyPoints{}
+	return &this
 }
 
 // GetPoints returns the Points field value
@@ -34,6 +51,15 @@ func (o *DeductLoyaltyPoints) GetPoints() float32 {
 	}
 
 	return o.Points
+}
+
+// GetPointsOk returns a tuple with the Points field value
+// and a boolean to check if the value has been set.
+func (o *DeductLoyaltyPoints) GetPointsOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Points, true
 }
 
 // SetPoints sets field value
@@ -50,14 +76,13 @@ func (o *DeductLoyaltyPoints) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeductLoyaltyPoints) GetNameOk() (string, bool) {
+func (o *DeductLoyaltyPoints) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -83,14 +108,13 @@ func (o *DeductLoyaltyPoints) GetSubledgerId() string {
 	return *o.SubledgerId
 }
 
-// GetSubledgerIdOk returns a tuple with the SubledgerId field value if set, zero value otherwise
+// GetSubledgerIdOk returns a tuple with the SubledgerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeductLoyaltyPoints) GetSubledgerIdOk() (string, bool) {
+func (o *DeductLoyaltyPoints) GetSubledgerIdOk() (*string, bool) {
 	if o == nil || o.SubledgerId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SubledgerId, true
+	return o.SubledgerId, true
 }
 
 // HasSubledgerId returns a boolean if a field has been set.
@@ -108,22 +132,21 @@ func (o *DeductLoyaltyPoints) SetSubledgerId(v string) {
 }
 
 // GetApplicationId returns the ApplicationId field value if set, zero value otherwise.
-func (o *DeductLoyaltyPoints) GetApplicationId() int32 {
+func (o *DeductLoyaltyPoints) GetApplicationId() int64 {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ApplicationId
 }
 
-// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, zero value otherwise
+// GetApplicationIdOk returns a tuple with the ApplicationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeductLoyaltyPoints) GetApplicationIdOk() (int32, bool) {
+func (o *DeductLoyaltyPoints) GetApplicationIdOk() (*int64, bool) {
 	if o == nil || o.ApplicationId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationId, true
+	return o.ApplicationId, true
 }
 
 // HasApplicationId returns a boolean if a field has been set.
@@ -135,30 +158,60 @@ func (o *DeductLoyaltyPoints) HasApplicationId() bool {
 	return false
 }
 
-// SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
-func (o *DeductLoyaltyPoints) SetApplicationId(v int32) {
+// SetApplicationId gets a reference to the given int64 and assigns it to the ApplicationId field.
+func (o *DeductLoyaltyPoints) SetApplicationId(v int64) {
 	o.ApplicationId = &v
 }
 
+func (o DeductLoyaltyPoints) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["points"] = o.Points
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.SubledgerId != nil {
+		toSerialize["subledgerId"] = o.SubledgerId
+	}
+	if o.ApplicationId != nil {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableDeductLoyaltyPoints struct {
-	Value        DeductLoyaltyPoints
-	ExplicitNull bool
+	value *DeductLoyaltyPoints
+	isSet bool
+}
+
+func (v NullableDeductLoyaltyPoints) Get() *DeductLoyaltyPoints {
+	return v.value
+}
+
+func (v *NullableDeductLoyaltyPoints) Set(val *DeductLoyaltyPoints) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableDeductLoyaltyPoints) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableDeductLoyaltyPoints) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableDeductLoyaltyPoints(val *DeductLoyaltyPoints) *NullableDeductLoyaltyPoints {
+	return &NullableDeductLoyaltyPoints{value: val, isSet: true}
 }
 
 func (v NullableDeductLoyaltyPoints) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableDeductLoyaltyPoints) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,11 +20,29 @@ type EventV2 struct {
 	// The integration ID of the store. You choose this ID when you create a store.
 	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
-	EvaluableCampaignIds *[]int32 `json:"evaluableCampaignIds,omitempty"`
+	EvaluableCampaignIds *[]int64 `json:"evaluableCampaignIds,omitempty"`
 	// A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type `event` in the Campaign Manager.
 	Type string `json:"type"`
 	// Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+}
+
+// NewEventV2 instantiates a new EventV2 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewEventV2(type_ string) *EventV2 {
+	this := EventV2{}
+	this.Type = type_
+	return &this
+}
+
+// NewEventV2WithDefaults instantiates a new EventV2 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEventV2WithDefaults() *EventV2 {
+	this := EventV2{}
+	return &this
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
@@ -37,14 +54,13 @@ func (o *EventV2) GetProfileId() string {
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventV2) GetProfileIdOk() (string, bool) {
+func (o *EventV2) GetProfileIdOk() (*string, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -70,14 +86,13 @@ func (o *EventV2) GetStoreIntegrationId() string {
 	return *o.StoreIntegrationId
 }
 
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventV2) GetStoreIntegrationIdOk() (string, bool) {
+func (o *EventV2) GetStoreIntegrationIdOk() (*string, bool) {
 	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreIntegrationId, true
+	return o.StoreIntegrationId, true
 }
 
 // HasStoreIntegrationId returns a boolean if a field has been set.
@@ -95,22 +110,21 @@ func (o *EventV2) SetStoreIntegrationId(v string) {
 }
 
 // GetEvaluableCampaignIds returns the EvaluableCampaignIds field value if set, zero value otherwise.
-func (o *EventV2) GetEvaluableCampaignIds() []int32 {
+func (o *EventV2) GetEvaluableCampaignIds() []int64 {
 	if o == nil || o.EvaluableCampaignIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.EvaluableCampaignIds
 }
 
-// GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field value if set, zero value otherwise
+// GetEvaluableCampaignIdsOk returns a tuple with the EvaluableCampaignIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventV2) GetEvaluableCampaignIdsOk() ([]int32, bool) {
+func (o *EventV2) GetEvaluableCampaignIdsOk() (*[]int64, bool) {
 	if o == nil || o.EvaluableCampaignIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluableCampaignIds, true
+	return o.EvaluableCampaignIds, true
 }
 
 // HasEvaluableCampaignIds returns a boolean if a field has been set.
@@ -122,8 +136,8 @@ func (o *EventV2) HasEvaluableCampaignIds() bool {
 	return false
 }
 
-// SetEvaluableCampaignIds gets a reference to the given []int32 and assigns it to the EvaluableCampaignIds field.
-func (o *EventV2) SetEvaluableCampaignIds(v []int32) {
+// SetEvaluableCampaignIds gets a reference to the given []int64 and assigns it to the EvaluableCampaignIds field.
+func (o *EventV2) SetEvaluableCampaignIds(v []int64) {
 	o.EvaluableCampaignIds = &v
 }
 
@@ -135,6 +149,15 @@ func (o *EventV2) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *EventV2) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -151,14 +174,13 @@ func (o *EventV2) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *EventV2) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *EventV2) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -175,25 +197,58 @@ func (o *EventV2) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o EventV2) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
+	}
+	if o.EvaluableCampaignIds != nil {
+		toSerialize["evaluableCampaignIds"] = o.EvaluableCampaignIds
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEventV2 struct {
-	Value        EventV2
-	ExplicitNull bool
+	value *EventV2
+	isSet bool
+}
+
+func (v NullableEventV2) Get() *EventV2 {
+	return v.value
+}
+
+func (v *NullableEventV2) Set(val *EventV2) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEventV2) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEventV2) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableEventV2(val *EventV2) *NullableEventV2 {
+	return &NullableEventV2{value: val, isSet: true}
 }
 
 func (v NullableEventV2) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEventV2) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

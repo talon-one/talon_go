@@ -9,10 +9,7 @@
 
 package talon
 
-import (
-	"bytes"
-	"encoding/json"
-)
+import "encoding/json"
 
 // Binding struct for Binding
 type Binding struct {
@@ -29,9 +26,28 @@ type Binding struct {
 	// The maximum value allowed for this placeholder.
 	MaxValue *float32 `json:"maxValue,omitempty"`
 	// Id of the attribute attached to the placeholder.
-	AttributeId *int32 `json:"attributeId,omitempty"`
+	AttributeId *int64 `json:"attributeId,omitempty"`
 	// Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.
 	Description *string `json:"description,omitempty"`
+}
+
+// NewBinding instantiates a new Binding object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewBinding(name string, expression []map[string]interface{}) *Binding {
+	this := Binding{}
+	this.Name = name
+	this.Expression = expression
+	return &this
+}
+
+// NewBindingWithDefaults instantiates a new Binding object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBindingWithDefaults() *Binding {
+	this := Binding{}
+	return &this
 }
 
 // GetName returns the Name field value
@@ -42,6 +58,15 @@ func (o *Binding) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Binding) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -58,14 +83,13 @@ func (o *Binding) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Binding) GetTypeOk() (string, bool) {
+func (o *Binding) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -92,6 +116,15 @@ func (o *Binding) GetExpression() []interface{} {
 	return o.Expression
 }
 
+// GetExpressionOk returns a tuple with the Expression field value
+// and a boolean to check if the value has been set.
+func (o *Binding) GetExpressionOk() (*[]map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Expression, true
+}
+
 // SetExpression sets field value
 func (o *Binding) SetExpression(v []interface{}) {
 	o.Expression = v
@@ -106,14 +139,13 @@ func (o *Binding) GetValueType() string {
 	return *o.ValueType
 }
 
-// GetValueTypeOk returns a tuple with the ValueType field value if set, zero value otherwise
+// GetValueTypeOk returns a tuple with the ValueType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Binding) GetValueTypeOk() (string, bool) {
+func (o *Binding) GetValueTypeOk() (*string, bool) {
 	if o == nil || o.ValueType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ValueType, true
+	return o.ValueType, true
 }
 
 // HasValueType returns a boolean if a field has been set.
@@ -139,14 +171,13 @@ func (o *Binding) GetMinValue() float32 {
 	return *o.MinValue
 }
 
-// GetMinValueOk returns a tuple with the MinValue field value if set, zero value otherwise
+// GetMinValueOk returns a tuple with the MinValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Binding) GetMinValueOk() (float32, bool) {
+func (o *Binding) GetMinValueOk() (*float32, bool) {
 	if o == nil || o.MinValue == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.MinValue, true
+	return o.MinValue, true
 }
 
 // HasMinValue returns a boolean if a field has been set.
@@ -172,14 +203,13 @@ func (o *Binding) GetMaxValue() float32 {
 	return *o.MaxValue
 }
 
-// GetMaxValueOk returns a tuple with the MaxValue field value if set, zero value otherwise
+// GetMaxValueOk returns a tuple with the MaxValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Binding) GetMaxValueOk() (float32, bool) {
+func (o *Binding) GetMaxValueOk() (*float32, bool) {
 	if o == nil || o.MaxValue == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.MaxValue, true
+	return o.MaxValue, true
 }
 
 // HasMaxValue returns a boolean if a field has been set.
@@ -197,22 +227,21 @@ func (o *Binding) SetMaxValue(v float32) {
 }
 
 // GetAttributeId returns the AttributeId field value if set, zero value otherwise.
-func (o *Binding) GetAttributeId() int32 {
+func (o *Binding) GetAttributeId() int64 {
 	if o == nil || o.AttributeId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AttributeId
 }
 
-// GetAttributeIdOk returns a tuple with the AttributeId field value if set, zero value otherwise
+// GetAttributeIdOk returns a tuple with the AttributeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Binding) GetAttributeIdOk() (int32, bool) {
+func (o *Binding) GetAttributeIdOk() (*int64, bool) {
 	if o == nil || o.AttributeId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AttributeId, true
+	return o.AttributeId, true
 }
 
 // HasAttributeId returns a boolean if a field has been set.
@@ -224,8 +253,8 @@ func (o *Binding) HasAttributeId() bool {
 	return false
 }
 
-// SetAttributeId gets a reference to the given int32 and assigns it to the AttributeId field.
-func (o *Binding) SetAttributeId(v int32) {
+// SetAttributeId gets a reference to the given int64 and assigns it to the AttributeId field.
+func (o *Binding) SetAttributeId(v int64) {
 	o.AttributeId = &v
 }
 
@@ -238,14 +267,13 @@ func (o *Binding) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Binding) GetDescriptionOk() (string, bool) {
+func (o *Binding) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -262,25 +290,67 @@ func (o *Binding) SetDescription(v string) {
 	o.Description = &v
 }
 
+func (o Binding) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["expression"] = o.Expression
+	}
+	if o.ValueType != nil {
+		toSerialize["valueType"] = o.ValueType
+	}
+	if o.MinValue != nil {
+		toSerialize["minValue"] = o.MinValue
+	}
+	if o.MaxValue != nil {
+		toSerialize["maxValue"] = o.MaxValue
+	}
+	if o.AttributeId != nil {
+		toSerialize["attributeId"] = o.AttributeId
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBinding struct {
-	Value        Binding
-	ExplicitNull bool
+	value *Binding
+	isSet bool
+}
+
+func (v NullableBinding) Get() *Binding {
+	return v.value
+}
+
+func (v *NullableBinding) Set(val *Binding) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBinding) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBinding) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableBinding(val *Binding) *NullableBinding {
+	return &NullableBinding{value: val, isSet: true}
 }
 
 func (v NullableBinding) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBinding) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

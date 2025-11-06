@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type ChangeProfilePassword struct {
 	NewPassword string `json:"newPassword"`
 }
 
+// NewChangeProfilePassword instantiates a new ChangeProfilePassword object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewChangeProfilePassword(password string, newPassword string) *ChangeProfilePassword {
+	this := ChangeProfilePassword{}
+	this.Password = password
+	this.NewPassword = newPassword
+	return &this
+}
+
+// NewChangeProfilePasswordWithDefaults instantiates a new ChangeProfilePassword object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewChangeProfilePasswordWithDefaults() *ChangeProfilePassword {
+	this := ChangeProfilePassword{}
+	return &this
+}
+
 // GetPassword returns the Password field value
 func (o *ChangeProfilePassword) GetPassword() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *ChangeProfilePassword) GetPassword() string {
 	}
 
 	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *ChangeProfilePassword) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
 }
 
 // SetPassword sets field value
@@ -47,30 +74,63 @@ func (o *ChangeProfilePassword) GetNewPassword() string {
 	return o.NewPassword
 }
 
+// GetNewPasswordOk returns a tuple with the NewPassword field value
+// and a boolean to check if the value has been set.
+func (o *ChangeProfilePassword) GetNewPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NewPassword, true
+}
+
 // SetNewPassword sets field value
 func (o *ChangeProfilePassword) SetNewPassword(v string) {
 	o.NewPassword = v
 }
 
+func (o ChangeProfilePassword) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["password"] = o.Password
+	}
+	if true {
+		toSerialize["newPassword"] = o.NewPassword
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableChangeProfilePassword struct {
-	Value        ChangeProfilePassword
-	ExplicitNull bool
+	value *ChangeProfilePassword
+	isSet bool
+}
+
+func (v NullableChangeProfilePassword) Get() *ChangeProfilePassword {
+	return v.value
+}
+
+func (v *NullableChangeProfilePassword) Set(val *ChangeProfilePassword) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableChangeProfilePassword) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableChangeProfilePassword) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableChangeProfilePassword(val *ChangeProfilePassword) *NullableChangeProfilePassword {
+	return &NullableChangeProfilePassword{value: val, isSet: true}
 }
 
 func (v NullableChangeProfilePassword) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableChangeProfilePassword) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

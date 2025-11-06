@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // RollbackDeductedLoyaltyPointsEffectProps The properties specific to the \"rollbackDeductedLoyaltyPoints\" effect. This effect is triggered whenever a previously closed session is cancelled and a deductLoyaltyPoints effect was revoked.
 type RollbackDeductedLoyaltyPointsEffectProps struct {
 	// The ID of the loyalty program where these points were reimbursed.
-	ProgramId int32 `json:"programId"`
+	ProgramId int64 `json:"programId"`
 	// The ID of the subledger within the loyalty program where these points were reimbursed.
 	SubLedgerId string `json:"subLedgerId"`
 	// The amount of reimbursed points that were added.
@@ -35,18 +34,49 @@ type RollbackDeductedLoyaltyPointsEffectProps struct {
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`
 }
 
+// NewRollbackDeductedLoyaltyPointsEffectProps instantiates a new RollbackDeductedLoyaltyPointsEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func NewRollbackDeductedLoyaltyPointsEffectProps(programId int64, subLedgerId string, value float32, recipientIntegrationId string, transactionUUID string) *RollbackDeductedLoyaltyPointsEffectProps {
+	this := RollbackDeductedLoyaltyPointsEffectProps{}
+	this.ProgramId = programId
+	this.SubLedgerId = subLedgerId
+	this.Value = value
+	this.RecipientIntegrationId = recipientIntegrationId
+	this.TransactionUUID = transactionUUID
+	return &this
+}
+
+// NewRollbackDeductedLoyaltyPointsEffectPropsWithDefaults instantiates a new RollbackDeductedLoyaltyPointsEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRollbackDeductedLoyaltyPointsEffectPropsWithDefaults() *RollbackDeductedLoyaltyPointsEffectProps {
+	this := RollbackDeductedLoyaltyPointsEffectProps{}
+	return &this
+}
+
 // GetProgramId returns the ProgramId field value
-func (o *RollbackDeductedLoyaltyPointsEffectProps) GetProgramId() int32 {
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ProgramId
 }
 
+// GetProgramIdOk returns a tuple with the ProgramId field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProgramId, true
+}
+
 // SetProgramId sets field value
-func (o *RollbackDeductedLoyaltyPointsEffectProps) SetProgramId(v int32) {
+func (o *RollbackDeductedLoyaltyPointsEffectProps) SetProgramId(v int64) {
 	o.ProgramId = v
 }
 
@@ -58,6 +88,15 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetSubLedgerId() string {
 	}
 
 	return o.SubLedgerId
+}
+
+// GetSubLedgerIdOk returns a tuple with the SubLedgerId field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetSubLedgerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubLedgerId, true
 }
 
 // SetSubLedgerId sets field value
@@ -75,6 +114,15 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetValue() float32 {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *RollbackDeductedLoyaltyPointsEffectProps) SetValue(v float32) {
 	o.Value = v
@@ -88,6 +136,15 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetRecipientIntegrationId() s
 	}
 
 	return o.RecipientIntegrationId
+}
+
+// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetRecipientIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RecipientIntegrationId, true
 }
 
 // SetRecipientIntegrationId sets field value
@@ -104,14 +161,13 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDeductedLoyaltyPointsEffectProps) GetStartDateOk() (time.Time, bool) {
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -137,14 +193,13 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDateOk() (time.Time, bool) {
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -171,6 +226,15 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetTransactionUUID() string {
 	return o.TransactionUUID
 }
 
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
 // SetTransactionUUID sets field value
 func (o *RollbackDeductedLoyaltyPointsEffectProps) SetTransactionUUID(v string) {
 	o.TransactionUUID = v
@@ -185,14 +249,13 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifier() string {
 	return *o.CardIdentifier
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, zero value otherwise
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifierOk() (string, bool) {
+func (o *RollbackDeductedLoyaltyPointsEffectProps) GetCardIdentifierOk() (*string, bool) {
 	if o == nil || o.CardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CardIdentifier, true
+	return o.CardIdentifier, true
 }
 
 // HasCardIdentifier returns a boolean if a field has been set.
@@ -209,25 +272,67 @@ func (o *RollbackDeductedLoyaltyPointsEffectProps) SetCardIdentifier(v string) {
 	o.CardIdentifier = &v
 }
 
+func (o RollbackDeductedLoyaltyPointsEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["programId"] = o.ProgramId
+	}
+	if true {
+		toSerialize["subLedgerId"] = o.SubLedgerId
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["recipientIntegrationId"] = o.RecipientIntegrationId
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["transactionUUID"] = o.TransactionUUID
+	}
+	if o.CardIdentifier != nil {
+		toSerialize["cardIdentifier"] = o.CardIdentifier
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRollbackDeductedLoyaltyPointsEffectProps struct {
-	Value        RollbackDeductedLoyaltyPointsEffectProps
-	ExplicitNull bool
+	value *RollbackDeductedLoyaltyPointsEffectProps
+	isSet bool
+}
+
+func (v NullableRollbackDeductedLoyaltyPointsEffectProps) Get() *RollbackDeductedLoyaltyPointsEffectProps {
+	return v.value
+}
+
+func (v *NullableRollbackDeductedLoyaltyPointsEffectProps) Set(val *RollbackDeductedLoyaltyPointsEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRollbackDeductedLoyaltyPointsEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRollbackDeductedLoyaltyPointsEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullableRollbackDeductedLoyaltyPointsEffectProps(val *RollbackDeductedLoyaltyPointsEffectProps) *NullableRollbackDeductedLoyaltyPointsEffectProps {
+	return &NullableRollbackDeductedLoyaltyPointsEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRollbackDeductedLoyaltyPointsEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRollbackDeductedLoyaltyPointsEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
