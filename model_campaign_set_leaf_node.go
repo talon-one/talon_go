@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,26 @@ type CampaignSetLeafNode struct {
 	// Indicates the node type.
 	Type string `json:"type"`
 	// ID of the campaign
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
+}
+
+// NewCampaignSetLeafNode instantiates a new CampaignSetLeafNode object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignSetLeafNode(type_ string, campaignId int64) *CampaignSetLeafNode {
+	this := CampaignSetLeafNode{}
+	this.Type = type_
+	this.CampaignId = campaignId
+	return &this
+}
+
+// NewCampaignSetLeafNodeWithDefaults instantiates a new CampaignSetLeafNode object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignSetLeafNodeWithDefaults() *CampaignSetLeafNode {
+	this := CampaignSetLeafNode{}
+	return &this
 }
 
 // GetType returns the Type field value
@@ -32,45 +50,87 @@ func (o *CampaignSetLeafNode) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetLeafNode) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *CampaignSetLeafNode) SetType(v string) {
 	o.Type = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *CampaignSetLeafNode) GetCampaignId() int32 {
+func (o *CampaignSetLeafNode) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetLeafNode) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *CampaignSetLeafNode) SetCampaignId(v int32) {
+func (o *CampaignSetLeafNode) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
+func (o CampaignSetLeafNode) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignSetLeafNode struct {
-	Value        CampaignSetLeafNode
-	ExplicitNull bool
+	value *CampaignSetLeafNode
+	isSet bool
+}
+
+func (v NullableCampaignSetLeafNode) Get() *CampaignSetLeafNode {
+	return v.value
+}
+
+func (v *NullableCampaignSetLeafNode) Set(val *CampaignSetLeafNode) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignSetLeafNode) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignSetLeafNode) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignSetLeafNode(val *CampaignSetLeafNode) *NullableCampaignSetLeafNode {
+	return &NullableCampaignSetLeafNode{value: val, isSet: true}
 }
 
 func (v NullableCampaignSetLeafNode) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignSetLeafNode) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

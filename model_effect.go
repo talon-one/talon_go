@@ -10,88 +10,136 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // Effect A generic effect that is fired by a triggered campaign. The props property will contain information specific to the specific effect type.
 type Effect struct {
 	// The ID of the campaign that triggered this effect.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The ID of the ruleset that was active in the campaign when this effect was triggered.
-	RulesetId int32 `json:"rulesetId"`
+	RulesetId int64 `json:"rulesetId"`
 	// The position of the rule that triggered this effect within the ruleset.
-	RuleIndex int32 `json:"ruleIndex"`
+	RuleIndex int64 `json:"ruleIndex"`
 	// The name of the rule that triggered this effect.
 	RuleName string `json:"ruleName"`
 	// The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
 	EffectType string `json:"effectType"`
 	// The ID of the coupon that was being evaluated when this effect was triggered.
-	TriggeredByCoupon *int32 `json:"triggeredByCoupon,omitempty"`
+	TriggeredByCoupon *int64 `json:"triggeredByCoupon,omitempty"`
 	// The ID of the catalog item that was being evaluated when this effect was triggered.
-	TriggeredForCatalogItem *int32 `json:"triggeredForCatalogItem,omitempty"`
+	TriggeredForCatalogItem *int64 `json:"triggeredForCatalogItem,omitempty"`
 	// The index of the condition that was triggered.
-	ConditionIndex *int32 `json:"conditionIndex,omitempty"`
+	ConditionIndex *int64 `json:"conditionIndex,omitempty"`
 	// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
-	EvaluationGroupID *int32 `json:"evaluationGroupID,omitempty"`
+	EvaluationGroupID *int64 `json:"evaluationGroupID,omitempty"`
 	// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
 	EvaluationGroupMode *string `json:"evaluationGroupMode,omitempty"`
 	// The revision ID of the campaign that was used when triggering the effect.
-	CampaignRevisionId *int32 `json:"campaignRevisionId,omitempty"`
+	CampaignRevisionId *int64 `json:"campaignRevisionId,omitempty"`
 	// The revision version ID of the campaign that was used when triggering the effect.
-	CampaignRevisionVersionId *int32 `json:"campaignRevisionVersionId,omitempty"`
+	CampaignRevisionVersionId *int64 `json:"campaignRevisionVersionId,omitempty"`
 	// The selected price type for the SKU targeted by this effect.
 	SelectedPriceType *string `json:"selectedPriceType,omitempty"`
 	// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
 	SelectedPrice *float32 `json:"selectedPrice,omitempty"`
 	// The reference identifier of the selected price adjustment for this SKU. This is only returned if the `selectedPrice` resulted from a price adjustment.
-	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
-	// The properties of the effect. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
-	Props map[string]interface{} `json:"props"`
+	AdjustmentReferenceId *string                `json:"adjustmentReferenceId,omitempty"`
+	Props                 map[string]interface{} `json:"props"`
+}
+
+// NewEffect instantiates a new Effect object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildEffect(campaignId int64, rulesetId int64, ruleIndex int64, ruleName string, effectType string, props map[string]interface{}) *Effect {
+	this := Effect{}
+	this.CampaignId = campaignId
+	this.RulesetId = rulesetId
+	this.RuleIndex = ruleIndex
+	this.RuleName = ruleName
+	this.EffectType = effectType
+	this.Props = props
+	return &this
+}
+
+// NewEffectWithDefaults instantiates a new Effect object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEffectWithDefaults() *Effect {
+	this := Effect{}
+	return &this
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *Effect) GetCampaignId() int32 {
+func (o *Effect) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *Effect) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *Effect) SetCampaignId(v int32) {
+func (o *Effect) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
 // GetRulesetId returns the RulesetId field value
-func (o *Effect) GetRulesetId() int32 {
+func (o *Effect) GetRulesetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RulesetId
 }
 
+// GetRulesetIdOk returns a tuple with the RulesetId field value
+// and a boolean to check if the value has been set.
+func (o *Effect) GetRulesetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RulesetId, true
+}
+
 // SetRulesetId sets field value
-func (o *Effect) SetRulesetId(v int32) {
+func (o *Effect) SetRulesetId(v int64) {
 	o.RulesetId = v
 }
 
 // GetRuleIndex returns the RuleIndex field value
-func (o *Effect) GetRuleIndex() int32 {
+func (o *Effect) GetRuleIndex() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RuleIndex
 }
 
+// GetRuleIndexOk returns a tuple with the RuleIndex field value
+// and a boolean to check if the value has been set.
+func (o *Effect) GetRuleIndexOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleIndex, true
+}
+
 // SetRuleIndex sets field value
-func (o *Effect) SetRuleIndex(v int32) {
+func (o *Effect) SetRuleIndex(v int64) {
 	o.RuleIndex = v
 }
 
@@ -103,6 +151,15 @@ func (o *Effect) GetRuleName() string {
 	}
 
 	return o.RuleName
+}
+
+// GetRuleNameOk returns a tuple with the RuleName field value
+// and a boolean to check if the value has been set.
+func (o *Effect) GetRuleNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleName, true
 }
 
 // SetRuleName sets field value
@@ -120,28 +177,36 @@ func (o *Effect) GetEffectType() string {
 	return o.EffectType
 }
 
+// GetEffectTypeOk returns a tuple with the EffectType field value
+// and a boolean to check if the value has been set.
+func (o *Effect) GetEffectTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EffectType, true
+}
+
 // SetEffectType sets field value
 func (o *Effect) SetEffectType(v string) {
 	o.EffectType = v
 }
 
 // GetTriggeredByCoupon returns the TriggeredByCoupon field value if set, zero value otherwise.
-func (o *Effect) GetTriggeredByCoupon() int32 {
+func (o *Effect) GetTriggeredByCoupon() int64 {
 	if o == nil || o.TriggeredByCoupon == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TriggeredByCoupon
 }
 
-// GetTriggeredByCouponOk returns a tuple with the TriggeredByCoupon field value if set, zero value otherwise
+// GetTriggeredByCouponOk returns a tuple with the TriggeredByCoupon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetTriggeredByCouponOk() (int32, bool) {
+func (o *Effect) GetTriggeredByCouponOk() (*int64, bool) {
 	if o == nil || o.TriggeredByCoupon == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.TriggeredByCoupon, true
+	return o.TriggeredByCoupon, true
 }
 
 // HasTriggeredByCoupon returns a boolean if a field has been set.
@@ -153,28 +218,27 @@ func (o *Effect) HasTriggeredByCoupon() bool {
 	return false
 }
 
-// SetTriggeredByCoupon gets a reference to the given int32 and assigns it to the TriggeredByCoupon field.
-func (o *Effect) SetTriggeredByCoupon(v int32) {
+// SetTriggeredByCoupon gets a reference to the given int64 and assigns it to the TriggeredByCoupon field.
+func (o *Effect) SetTriggeredByCoupon(v int64) {
 	o.TriggeredByCoupon = &v
 }
 
 // GetTriggeredForCatalogItem returns the TriggeredForCatalogItem field value if set, zero value otherwise.
-func (o *Effect) GetTriggeredForCatalogItem() int32 {
+func (o *Effect) GetTriggeredForCatalogItem() int64 {
 	if o == nil || o.TriggeredForCatalogItem == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.TriggeredForCatalogItem
 }
 
-// GetTriggeredForCatalogItemOk returns a tuple with the TriggeredForCatalogItem field value if set, zero value otherwise
+// GetTriggeredForCatalogItemOk returns a tuple with the TriggeredForCatalogItem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetTriggeredForCatalogItemOk() (int32, bool) {
+func (o *Effect) GetTriggeredForCatalogItemOk() (*int64, bool) {
 	if o == nil || o.TriggeredForCatalogItem == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.TriggeredForCatalogItem, true
+	return o.TriggeredForCatalogItem, true
 }
 
 // HasTriggeredForCatalogItem returns a boolean if a field has been set.
@@ -186,28 +250,27 @@ func (o *Effect) HasTriggeredForCatalogItem() bool {
 	return false
 }
 
-// SetTriggeredForCatalogItem gets a reference to the given int32 and assigns it to the TriggeredForCatalogItem field.
-func (o *Effect) SetTriggeredForCatalogItem(v int32) {
+// SetTriggeredForCatalogItem gets a reference to the given int64 and assigns it to the TriggeredForCatalogItem field.
+func (o *Effect) SetTriggeredForCatalogItem(v int64) {
 	o.TriggeredForCatalogItem = &v
 }
 
 // GetConditionIndex returns the ConditionIndex field value if set, zero value otherwise.
-func (o *Effect) GetConditionIndex() int32 {
+func (o *Effect) GetConditionIndex() int64 {
 	if o == nil || o.ConditionIndex == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ConditionIndex
 }
 
-// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, zero value otherwise
+// GetConditionIndexOk returns a tuple with the ConditionIndex field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetConditionIndexOk() (int32, bool) {
+func (o *Effect) GetConditionIndexOk() (*int64, bool) {
 	if o == nil || o.ConditionIndex == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ConditionIndex, true
+	return o.ConditionIndex, true
 }
 
 // HasConditionIndex returns a boolean if a field has been set.
@@ -219,28 +282,27 @@ func (o *Effect) HasConditionIndex() bool {
 	return false
 }
 
-// SetConditionIndex gets a reference to the given int32 and assigns it to the ConditionIndex field.
-func (o *Effect) SetConditionIndex(v int32) {
+// SetConditionIndex gets a reference to the given int64 and assigns it to the ConditionIndex field.
+func (o *Effect) SetConditionIndex(v int64) {
 	o.ConditionIndex = &v
 }
 
 // GetEvaluationGroupID returns the EvaluationGroupID field value if set, zero value otherwise.
-func (o *Effect) GetEvaluationGroupID() int32 {
+func (o *Effect) GetEvaluationGroupID() int64 {
 	if o == nil || o.EvaluationGroupID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.EvaluationGroupID
 }
 
-// GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field value if set, zero value otherwise
+// GetEvaluationGroupIDOk returns a tuple with the EvaluationGroupID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetEvaluationGroupIDOk() (int32, bool) {
+func (o *Effect) GetEvaluationGroupIDOk() (*int64, bool) {
 	if o == nil || o.EvaluationGroupID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluationGroupID, true
+	return o.EvaluationGroupID, true
 }
 
 // HasEvaluationGroupID returns a boolean if a field has been set.
@@ -252,8 +314,8 @@ func (o *Effect) HasEvaluationGroupID() bool {
 	return false
 }
 
-// SetEvaluationGroupID gets a reference to the given int32 and assigns it to the EvaluationGroupID field.
-func (o *Effect) SetEvaluationGroupID(v int32) {
+// SetEvaluationGroupID gets a reference to the given int64 and assigns it to the EvaluationGroupID field.
+func (o *Effect) SetEvaluationGroupID(v int64) {
 	o.EvaluationGroupID = &v
 }
 
@@ -266,14 +328,13 @@ func (o *Effect) GetEvaluationGroupMode() string {
 	return *o.EvaluationGroupMode
 }
 
-// GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field value if set, zero value otherwise
+// GetEvaluationGroupModeOk returns a tuple with the EvaluationGroupMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetEvaluationGroupModeOk() (string, bool) {
+func (o *Effect) GetEvaluationGroupModeOk() (*string, bool) {
 	if o == nil || o.EvaluationGroupMode == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.EvaluationGroupMode, true
+	return o.EvaluationGroupMode, true
 }
 
 // HasEvaluationGroupMode returns a boolean if a field has been set.
@@ -291,22 +352,21 @@ func (o *Effect) SetEvaluationGroupMode(v string) {
 }
 
 // GetCampaignRevisionId returns the CampaignRevisionId field value if set, zero value otherwise.
-func (o *Effect) GetCampaignRevisionId() int32 {
+func (o *Effect) GetCampaignRevisionId() int64 {
 	if o == nil || o.CampaignRevisionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignRevisionId
 }
 
-// GetCampaignRevisionIdOk returns a tuple with the CampaignRevisionId field value if set, zero value otherwise
+// GetCampaignRevisionIdOk returns a tuple with the CampaignRevisionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetCampaignRevisionIdOk() (int32, bool) {
+func (o *Effect) GetCampaignRevisionIdOk() (*int64, bool) {
 	if o == nil || o.CampaignRevisionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignRevisionId, true
+	return o.CampaignRevisionId, true
 }
 
 // HasCampaignRevisionId returns a boolean if a field has been set.
@@ -318,28 +378,27 @@ func (o *Effect) HasCampaignRevisionId() bool {
 	return false
 }
 
-// SetCampaignRevisionId gets a reference to the given int32 and assigns it to the CampaignRevisionId field.
-func (o *Effect) SetCampaignRevisionId(v int32) {
+// SetCampaignRevisionId gets a reference to the given int64 and assigns it to the CampaignRevisionId field.
+func (o *Effect) SetCampaignRevisionId(v int64) {
 	o.CampaignRevisionId = &v
 }
 
 // GetCampaignRevisionVersionId returns the CampaignRevisionVersionId field value if set, zero value otherwise.
-func (o *Effect) GetCampaignRevisionVersionId() int32 {
+func (o *Effect) GetCampaignRevisionVersionId() int64 {
 	if o == nil || o.CampaignRevisionVersionId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignRevisionVersionId
 }
 
-// GetCampaignRevisionVersionIdOk returns a tuple with the CampaignRevisionVersionId field value if set, zero value otherwise
+// GetCampaignRevisionVersionIdOk returns a tuple with the CampaignRevisionVersionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetCampaignRevisionVersionIdOk() (int32, bool) {
+func (o *Effect) GetCampaignRevisionVersionIdOk() (*int64, bool) {
 	if o == nil || o.CampaignRevisionVersionId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignRevisionVersionId, true
+	return o.CampaignRevisionVersionId, true
 }
 
 // HasCampaignRevisionVersionId returns a boolean if a field has been set.
@@ -351,8 +410,8 @@ func (o *Effect) HasCampaignRevisionVersionId() bool {
 	return false
 }
 
-// SetCampaignRevisionVersionId gets a reference to the given int32 and assigns it to the CampaignRevisionVersionId field.
-func (o *Effect) SetCampaignRevisionVersionId(v int32) {
+// SetCampaignRevisionVersionId gets a reference to the given int64 and assigns it to the CampaignRevisionVersionId field.
+func (o *Effect) SetCampaignRevisionVersionId(v int64) {
 	o.CampaignRevisionVersionId = &v
 }
 
@@ -365,14 +424,13 @@ func (o *Effect) GetSelectedPriceType() string {
 	return *o.SelectedPriceType
 }
 
-// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, zero value otherwise
+// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetSelectedPriceTypeOk() (string, bool) {
+func (o *Effect) GetSelectedPriceTypeOk() (*string, bool) {
 	if o == nil || o.SelectedPriceType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SelectedPriceType, true
+	return o.SelectedPriceType, true
 }
 
 // HasSelectedPriceType returns a boolean if a field has been set.
@@ -398,14 +456,13 @@ func (o *Effect) GetSelectedPrice() float32 {
 	return *o.SelectedPrice
 }
 
-// GetSelectedPriceOk returns a tuple with the SelectedPrice field value if set, zero value otherwise
+// GetSelectedPriceOk returns a tuple with the SelectedPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetSelectedPriceOk() (float32, bool) {
+func (o *Effect) GetSelectedPriceOk() (*float32, bool) {
 	if o == nil || o.SelectedPrice == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.SelectedPrice, true
+	return o.SelectedPrice, true
 }
 
 // HasSelectedPrice returns a boolean if a field has been set.
@@ -431,14 +488,13 @@ func (o *Effect) GetAdjustmentReferenceId() string {
 	return *o.AdjustmentReferenceId
 }
 
-// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, zero value otherwise
+// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Effect) GetAdjustmentReferenceIdOk() (string, bool) {
+func (o *Effect) GetAdjustmentReferenceIdOk() (*string, bool) {
 	if o == nil || o.AdjustmentReferenceId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AdjustmentReferenceId, true
+	return o.AdjustmentReferenceId, true
 }
 
 // HasAdjustmentReferenceId returns a boolean if a field has been set.
@@ -465,30 +521,105 @@ func (o *Effect) GetProps() map[string]interface{} {
 	return o.Props
 }
 
+// GetPropsOk returns a tuple with the Props field value
+// and a boolean to check if the value has been set.
+func (o *Effect) GetPropsOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Props, true
+}
+
 // SetProps sets field value
 func (o *Effect) SetProps(v map[string]interface{}) {
 	o.Props = v
 }
 
+func (o Effect) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["rulesetId"] = o.RulesetId
+	}
+	if true {
+		toSerialize["ruleIndex"] = o.RuleIndex
+	}
+	if true {
+		toSerialize["ruleName"] = o.RuleName
+	}
+	if true {
+		toSerialize["effectType"] = o.EffectType
+	}
+	if o.TriggeredByCoupon != nil {
+		toSerialize["triggeredByCoupon"] = o.TriggeredByCoupon
+	}
+	if o.TriggeredForCatalogItem != nil {
+		toSerialize["triggeredForCatalogItem"] = o.TriggeredForCatalogItem
+	}
+	if o.ConditionIndex != nil {
+		toSerialize["conditionIndex"] = o.ConditionIndex
+	}
+	if o.EvaluationGroupID != nil {
+		toSerialize["evaluationGroupID"] = o.EvaluationGroupID
+	}
+	if o.EvaluationGroupMode != nil {
+		toSerialize["evaluationGroupMode"] = o.EvaluationGroupMode
+	}
+	if o.CampaignRevisionId != nil {
+		toSerialize["campaignRevisionId"] = o.CampaignRevisionId
+	}
+	if o.CampaignRevisionVersionId != nil {
+		toSerialize["campaignRevisionVersionId"] = o.CampaignRevisionVersionId
+	}
+	if o.SelectedPriceType != nil {
+		toSerialize["selectedPriceType"] = o.SelectedPriceType
+	}
+	if o.SelectedPrice != nil {
+		toSerialize["selectedPrice"] = o.SelectedPrice
+	}
+	if o.AdjustmentReferenceId != nil {
+		toSerialize["adjustmentReferenceId"] = o.AdjustmentReferenceId
+	}
+	if true {
+		toSerialize["props"] = o.Props
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEffect struct {
-	Value        Effect
-	ExplicitNull bool
+	value *Effect
+	isSet bool
+}
+
+func (v NullableEffect) Get() *Effect {
+	return v.value
+}
+
+func (v *NullableEffect) Set(val *Effect) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEffect) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEffect) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableEffect(val *Effect) *NullableEffect {
+	return &NullableEffect{value: val, isSet: true}
 }
 
 func (v NullableEffect) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEffect) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

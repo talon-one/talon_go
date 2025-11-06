@@ -10,14 +10,13 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // OutgoingIntegrationType struct for OutgoingIntegrationType
 type OutgoingIntegrationType struct {
 	// Unique ID for this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Name of the outgoing integration.
 	Name string `json:"name"`
 	// Description of the outgoing integration.
@@ -28,18 +27,46 @@ type OutgoingIntegrationType struct {
 	DocumentationLink *string `json:"documentationLink,omitempty"`
 }
 
+// NewOutgoingIntegrationType instantiates a new OutgoingIntegrationType object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildOutgoingIntegrationType(id int64, name string) *OutgoingIntegrationType {
+	this := OutgoingIntegrationType{}
+	this.Id = id
+	this.Name = name
+	return &this
+}
+
+// NewOutgoingIntegrationTypeWithDefaults instantiates a new OutgoingIntegrationType object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationTypeWithDefaults() *OutgoingIntegrationType {
+	this := OutgoingIntegrationType{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *OutgoingIntegrationType) GetId() int32 {
+func (o *OutgoingIntegrationType) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationType) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *OutgoingIntegrationType) SetId(v int32) {
+func (o *OutgoingIntegrationType) SetId(v int64) {
 	o.Id = v
 }
 
@@ -51,6 +78,15 @@ func (o *OutgoingIntegrationType) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *OutgoingIntegrationType) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -67,14 +103,13 @@ func (o *OutgoingIntegrationType) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutgoingIntegrationType) GetDescriptionOk() (string, bool) {
+func (o *OutgoingIntegrationType) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -100,14 +135,13 @@ func (o *OutgoingIntegrationType) GetCategory() string {
 	return *o.Category
 }
 
-// GetCategoryOk returns a tuple with the Category field value if set, zero value otherwise
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutgoingIntegrationType) GetCategoryOk() (string, bool) {
+func (o *OutgoingIntegrationType) GetCategoryOk() (*string, bool) {
 	if o == nil || o.Category == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Category, true
+	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
@@ -133,14 +167,13 @@ func (o *OutgoingIntegrationType) GetDocumentationLink() string {
 	return *o.DocumentationLink
 }
 
-// GetDocumentationLinkOk returns a tuple with the DocumentationLink field value if set, zero value otherwise
+// GetDocumentationLinkOk returns a tuple with the DocumentationLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutgoingIntegrationType) GetDocumentationLinkOk() (string, bool) {
+func (o *OutgoingIntegrationType) GetDocumentationLinkOk() (*string, bool) {
 	if o == nil || o.DocumentationLink == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.DocumentationLink, true
+	return o.DocumentationLink, true
 }
 
 // HasDocumentationLink returns a boolean if a field has been set.
@@ -157,25 +190,58 @@ func (o *OutgoingIntegrationType) SetDocumentationLink(v string) {
 	o.DocumentationLink = &v
 }
 
+func (o OutgoingIntegrationType) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Category != nil {
+		toSerialize["category"] = o.Category
+	}
+	if o.DocumentationLink != nil {
+		toSerialize["documentationLink"] = o.DocumentationLink
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationType struct {
-	Value        OutgoingIntegrationType
-	ExplicitNull bool
+	value *OutgoingIntegrationType
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationType) Get() *OutgoingIntegrationType {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationType) Set(val *OutgoingIntegrationType) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationType) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationType) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableOutgoingIntegrationType(val *OutgoingIntegrationType) *NullableOutgoingIntegrationType {
+	return &NullableOutgoingIntegrationType{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationType) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationType) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

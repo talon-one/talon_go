@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -19,6 +18,24 @@ import (
 type MutableEntity struct {
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
+}
+
+// NewMutableEntity instantiates a new MutableEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMutableEntity(modified time.Time) *MutableEntity {
+	this := MutableEntity{}
+	this.Modified = modified
+	return &this
+}
+
+// NewMutableEntityWithDefaults instantiates a new MutableEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMutableEntityWithDefaults() *MutableEntity {
+	this := MutableEntity{}
+	return &this
 }
 
 // GetModified returns the Modified field value
@@ -31,30 +48,60 @@ func (o *MutableEntity) GetModified() time.Time {
 	return o.Modified
 }
 
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *MutableEntity) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
+}
+
 // SetModified sets field value
 func (o *MutableEntity) SetModified(v time.Time) {
 	o.Modified = v
 }
 
+func (o MutableEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMutableEntity struct {
-	Value        MutableEntity
-	ExplicitNull bool
+	value *MutableEntity
+	isSet bool
+}
+
+func (v NullableMutableEntity) Get() *MutableEntity {
+	return v.value
+}
+
+func (v *NullableMutableEntity) Set(val *MutableEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMutableEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMutableEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMutableEntity(val *MutableEntity) *NullableMutableEntity {
+	return &NullableMutableEntity{value: val, isSet: true}
 }
 
 func (v NullableMutableEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMutableEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

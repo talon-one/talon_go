@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewCampaignStoreBudgetStoreLimit struct for NewCampaignStoreBudgetStoreLimit
 type NewCampaignStoreBudgetStoreLimit struct {
 	// The ID of the store. You can get this ID with the [List stores](#tag/Stores/operation/listStores) endpoint.
-	StoreId int32 `json:"storeId"`
+	StoreId int64 `json:"storeId"`
 	// The value to set for the limit.
 	Limit float32 `json:"limit"`
 }
 
+// NewNewCampaignStoreBudgetStoreLimit instantiates a new NewCampaignStoreBudgetStoreLimit object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewCampaignStoreBudgetStoreLimit(storeId int64, limit float32) *NewCampaignStoreBudgetStoreLimit {
+	this := NewCampaignStoreBudgetStoreLimit{}
+	this.StoreId = storeId
+	this.Limit = limit
+	return &this
+}
+
+// NewNewCampaignStoreBudgetStoreLimitWithDefaults instantiates a new NewCampaignStoreBudgetStoreLimit object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCampaignStoreBudgetStoreLimitWithDefaults() *NewCampaignStoreBudgetStoreLimit {
+	this := NewCampaignStoreBudgetStoreLimit{}
+	return &this
+}
+
 // GetStoreId returns the StoreId field value
-func (o *NewCampaignStoreBudgetStoreLimit) GetStoreId() int32 {
+func (o *NewCampaignStoreBudgetStoreLimit) GetStoreId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.StoreId
 }
 
+// GetStoreIdOk returns a tuple with the StoreId field value
+// and a boolean to check if the value has been set.
+func (o *NewCampaignStoreBudgetStoreLimit) GetStoreIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StoreId, true
+}
+
 // SetStoreId sets field value
-func (o *NewCampaignStoreBudgetStoreLimit) SetStoreId(v int32) {
+func (o *NewCampaignStoreBudgetStoreLimit) SetStoreId(v int64) {
 	o.StoreId = v
 }
 
@@ -47,30 +74,63 @@ func (o *NewCampaignStoreBudgetStoreLimit) GetLimit() float32 {
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *NewCampaignStoreBudgetStoreLimit) GetLimitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
 func (o *NewCampaignStoreBudgetStoreLimit) SetLimit(v float32) {
 	o.Limit = v
 }
 
+func (o NewCampaignStoreBudgetStoreLimit) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["storeId"] = o.StoreId
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCampaignStoreBudgetStoreLimit struct {
-	Value        NewCampaignStoreBudgetStoreLimit
-	ExplicitNull bool
+	value *NewCampaignStoreBudgetStoreLimit
+	isSet bool
+}
+
+func (v NullableNewCampaignStoreBudgetStoreLimit) Get() *NewCampaignStoreBudgetStoreLimit {
+	return v.value
+}
+
+func (v *NullableNewCampaignStoreBudgetStoreLimit) Set(val *NewCampaignStoreBudgetStoreLimit) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCampaignStoreBudgetStoreLimit) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCampaignStoreBudgetStoreLimit) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewCampaignStoreBudgetStoreLimit(val *NewCampaignStoreBudgetStoreLimit) *NullableNewCampaignStoreBudgetStoreLimit {
+	return &NullableNewCampaignStoreBudgetStoreLimit{value: val, isSet: true}
 }
 
 func (v NullableNewCampaignStoreBudgetStoreLimit) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCampaignStoreBudgetStoreLimit) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

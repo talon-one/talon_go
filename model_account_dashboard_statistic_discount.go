@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -25,6 +24,26 @@ type AccountDashboardStatisticDiscount struct {
 	Datetime time.Time `json:"datetime"`
 }
 
+// NewAccountDashboardStatisticDiscount instantiates a new AccountDashboardStatisticDiscount object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountDashboardStatisticDiscount(total float32, average float32, datetime time.Time) *AccountDashboardStatisticDiscount {
+	this := AccountDashboardStatisticDiscount{}
+	this.Total = total
+	this.Average = average
+	this.Datetime = datetime
+	return &this
+}
+
+// NewAccountDashboardStatisticDiscountWithDefaults instantiates a new AccountDashboardStatisticDiscount object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountDashboardStatisticDiscountWithDefaults() *AccountDashboardStatisticDiscount {
+	this := AccountDashboardStatisticDiscount{}
+	return &this
+}
+
 // GetTotal returns the Total field value
 func (o *AccountDashboardStatisticDiscount) GetTotal() float32 {
 	if o == nil {
@@ -33,6 +52,15 @@ func (o *AccountDashboardStatisticDiscount) GetTotal() float32 {
 	}
 
 	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticDiscount) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
 }
 
 // SetTotal sets field value
@@ -50,6 +78,15 @@ func (o *AccountDashboardStatisticDiscount) GetAverage() float32 {
 	return o.Average
 }
 
+// GetAverageOk returns a tuple with the Average field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticDiscount) GetAverageOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Average, true
+}
+
 // SetAverage sets field value
 func (o *AccountDashboardStatisticDiscount) SetAverage(v float32) {
 	o.Average = v
@@ -65,30 +102,66 @@ func (o *AccountDashboardStatisticDiscount) GetDatetime() time.Time {
 	return o.Datetime
 }
 
+// GetDatetimeOk returns a tuple with the Datetime field value
+// and a boolean to check if the value has been set.
+func (o *AccountDashboardStatisticDiscount) GetDatetimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Datetime, true
+}
+
 // SetDatetime sets field value
 func (o *AccountDashboardStatisticDiscount) SetDatetime(v time.Time) {
 	o.Datetime = v
 }
 
+func (o AccountDashboardStatisticDiscount) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["average"] = o.Average
+	}
+	if true {
+		toSerialize["datetime"] = o.Datetime
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountDashboardStatisticDiscount struct {
-	Value        AccountDashboardStatisticDiscount
-	ExplicitNull bool
+	value *AccountDashboardStatisticDiscount
+	isSet bool
+}
+
+func (v NullableAccountDashboardStatisticDiscount) Get() *AccountDashboardStatisticDiscount {
+	return v.value
+}
+
+func (v *NullableAccountDashboardStatisticDiscount) Set(val *AccountDashboardStatisticDiscount) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountDashboardStatisticDiscount) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountDashboardStatisticDiscount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountDashboardStatisticDiscount(val *AccountDashboardStatisticDiscount) *NullableAccountDashboardStatisticDiscount {
+	return &NullableAccountDashboardStatisticDiscount{value: val, isSet: true}
 }
 
 func (v NullableAccountDashboardStatisticDiscount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountDashboardStatisticDiscount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

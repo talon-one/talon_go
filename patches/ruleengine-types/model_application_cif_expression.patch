@@ -1,0 +1,8 @@
+@@
+var model identifier
+var fnName identifier
+@@
+-func (o *model) fnName() (*[]map[string]interface{}, bool) {
++func (o *model) fnName() ([]interface{}, bool) {
+	...
+}

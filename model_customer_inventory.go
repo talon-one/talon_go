@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,6 +24,23 @@ type CustomerInventory struct {
 	Achievements *[]AchievementProgressWithDefinition `json:"achievements,omitempty"`
 }
 
+// NewCustomerInventory instantiates a new CustomerInventory object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerInventory() *CustomerInventory {
+	this := CustomerInventory{}
+	return &this
+}
+
+// NewCustomerInventoryWithDefaults instantiates a new CustomerInventory object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerInventoryWithDefaults() *CustomerInventory {
+	this := CustomerInventory{}
+	return &this
+}
+
 // GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *CustomerInventory) GetProfile() CustomerProfile {
 	if o == nil || o.Profile == nil {
@@ -34,14 +50,13 @@ func (o *CustomerInventory) GetProfile() CustomerProfile {
 	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value if set, zero value otherwise
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetProfileOk() (CustomerProfile, bool) {
+func (o *CustomerInventory) GetProfileOk() (*CustomerProfile, bool) {
 	if o == nil || o.Profile == nil {
-		var ret CustomerProfile
-		return ret, false
+		return nil, false
 	}
-	return *o.Profile, true
+	return o.Profile, true
 }
 
 // HasProfile returns a boolean if a field has been set.
@@ -67,14 +82,13 @@ func (o *CustomerInventory) GetLoyalty() Loyalty {
 	return *o.Loyalty
 }
 
-// GetLoyaltyOk returns a tuple with the Loyalty field value if set, zero value otherwise
+// GetLoyaltyOk returns a tuple with the Loyalty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetLoyaltyOk() (Loyalty, bool) {
+func (o *CustomerInventory) GetLoyaltyOk() (*Loyalty, bool) {
 	if o == nil || o.Loyalty == nil {
-		var ret Loyalty
-		return ret, false
+		return nil, false
 	}
-	return *o.Loyalty, true
+	return o.Loyalty, true
 }
 
 // HasLoyalty returns a boolean if a field has been set.
@@ -100,14 +114,13 @@ func (o *CustomerInventory) GetReferrals() []InventoryReferral {
 	return *o.Referrals
 }
 
-// GetReferralsOk returns a tuple with the Referrals field value if set, zero value otherwise
+// GetReferralsOk returns a tuple with the Referrals field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetReferralsOk() ([]InventoryReferral, bool) {
+func (o *CustomerInventory) GetReferralsOk() (*[]InventoryReferral, bool) {
 	if o == nil || o.Referrals == nil {
-		var ret []InventoryReferral
-		return ret, false
+		return nil, false
 	}
-	return *o.Referrals, true
+	return o.Referrals, true
 }
 
 // HasReferrals returns a boolean if a field has been set.
@@ -133,14 +146,13 @@ func (o *CustomerInventory) GetCoupons() []InventoryCoupon {
 	return *o.Coupons
 }
 
-// GetCouponsOk returns a tuple with the Coupons field value if set, zero value otherwise
+// GetCouponsOk returns a tuple with the Coupons field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetCouponsOk() ([]InventoryCoupon, bool) {
+func (o *CustomerInventory) GetCouponsOk() (*[]InventoryCoupon, bool) {
 	if o == nil || o.Coupons == nil {
-		var ret []InventoryCoupon
-		return ret, false
+		return nil, false
 	}
-	return *o.Coupons, true
+	return o.Coupons, true
 }
 
 // HasCoupons returns a boolean if a field has been set.
@@ -166,14 +178,13 @@ func (o *CustomerInventory) GetGiveaways() []Giveaway {
 	return *o.Giveaways
 }
 
-// GetGiveawaysOk returns a tuple with the Giveaways field value if set, zero value otherwise
+// GetGiveawaysOk returns a tuple with the Giveaways field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetGiveawaysOk() ([]Giveaway, bool) {
+func (o *CustomerInventory) GetGiveawaysOk() (*[]Giveaway, bool) {
 	if o == nil || o.Giveaways == nil {
-		var ret []Giveaway
-		return ret, false
+		return nil, false
 	}
-	return *o.Giveaways, true
+	return o.Giveaways, true
 }
 
 // HasGiveaways returns a boolean if a field has been set.
@@ -199,14 +210,13 @@ func (o *CustomerInventory) GetAchievements() []AchievementProgressWithDefinitio
 	return *o.Achievements
 }
 
-// GetAchievementsOk returns a tuple with the Achievements field value if set, zero value otherwise
+// GetAchievementsOk returns a tuple with the Achievements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerInventory) GetAchievementsOk() ([]AchievementProgressWithDefinition, bool) {
+func (o *CustomerInventory) GetAchievementsOk() (*[]AchievementProgressWithDefinition, bool) {
 	if o == nil || o.Achievements == nil {
-		var ret []AchievementProgressWithDefinition
-		return ret, false
+		return nil, false
 	}
-	return *o.Achievements, true
+	return o.Achievements, true
 }
 
 // HasAchievements returns a boolean if a field has been set.
@@ -223,25 +233,61 @@ func (o *CustomerInventory) SetAchievements(v []AchievementProgressWithDefinitio
 	o.Achievements = &v
 }
 
+func (o CustomerInventory) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Profile != nil {
+		toSerialize["profile"] = o.Profile
+	}
+	if o.Loyalty != nil {
+		toSerialize["loyalty"] = o.Loyalty
+	}
+	if o.Referrals != nil {
+		toSerialize["referrals"] = o.Referrals
+	}
+	if o.Coupons != nil {
+		toSerialize["coupons"] = o.Coupons
+	}
+	if o.Giveaways != nil {
+		toSerialize["giveaways"] = o.Giveaways
+	}
+	if o.Achievements != nil {
+		toSerialize["achievements"] = o.Achievements
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerInventory struct {
-	Value        CustomerInventory
-	ExplicitNull bool
+	value *CustomerInventory
+	isSet bool
+}
+
+func (v NullableCustomerInventory) Get() *CustomerInventory {
+	return v.value
+}
+
+func (v *NullableCustomerInventory) Set(val *CustomerInventory) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerInventory) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerInventory) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerInventory(val *CustomerInventory) *NullableCustomerInventory {
+	return &NullableCustomerInventory{value: val, isSet: true}
 }
 
 func (v NullableCustomerInventory) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerInventory) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

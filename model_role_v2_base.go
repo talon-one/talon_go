@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,7 +21,24 @@ type RoleV2Base struct {
 	Description *string            `json:"description,omitempty"`
 	Permissions *RoleV2Permissions `json:"permissions,omitempty"`
 	// A list of user IDs the role is assigned to.
-	Members *[]int32 `json:"members,omitempty"`
+	Members *[]int64 `json:"members,omitempty"`
+}
+
+// NewRoleV2Base instantiates a new RoleV2Base object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRoleV2Base() *RoleV2Base {
+	this := RoleV2Base{}
+	return &this
+}
+
+// NewRoleV2BaseWithDefaults instantiates a new RoleV2Base object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRoleV2BaseWithDefaults() *RoleV2Base {
+	this := RoleV2Base{}
+	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -34,14 +50,13 @@ func (o *RoleV2Base) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Base) GetNameOk() (string, bool) {
+func (o *RoleV2Base) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -67,14 +82,13 @@ func (o *RoleV2Base) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Base) GetDescriptionOk() (string, bool) {
+func (o *RoleV2Base) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -100,14 +114,13 @@ func (o *RoleV2Base) GetPermissions() RoleV2Permissions {
 	return *o.Permissions
 }
 
-// GetPermissionsOk returns a tuple with the Permissions field value if set, zero value otherwise
+// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Base) GetPermissionsOk() (RoleV2Permissions, bool) {
+func (o *RoleV2Base) GetPermissionsOk() (*RoleV2Permissions, bool) {
 	if o == nil || o.Permissions == nil {
-		var ret RoleV2Permissions
-		return ret, false
+		return nil, false
 	}
-	return *o.Permissions, true
+	return o.Permissions, true
 }
 
 // HasPermissions returns a boolean if a field has been set.
@@ -125,22 +138,21 @@ func (o *RoleV2Base) SetPermissions(v RoleV2Permissions) {
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *RoleV2Base) GetMembers() []int32 {
+func (o *RoleV2Base) GetMembers() []int64 {
 	if o == nil || o.Members == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Members
 }
 
-// GetMembersOk returns a tuple with the Members field value if set, zero value otherwise
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RoleV2Base) GetMembersOk() ([]int32, bool) {
+func (o *RoleV2Base) GetMembersOk() (*[]int64, bool) {
 	if o == nil || o.Members == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Members, true
+	return o.Members, true
 }
 
 // HasMembers returns a boolean if a field has been set.
@@ -152,30 +164,60 @@ func (o *RoleV2Base) HasMembers() bool {
 	return false
 }
 
-// SetMembers gets a reference to the given []int32 and assigns it to the Members field.
-func (o *RoleV2Base) SetMembers(v []int32) {
+// SetMembers gets a reference to the given []int64 and assigns it to the Members field.
+func (o *RoleV2Base) SetMembers(v []int64) {
 	o.Members = &v
 }
 
+func (o RoleV2Base) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Permissions != nil {
+		toSerialize["permissions"] = o.Permissions
+	}
+	if o.Members != nil {
+		toSerialize["members"] = o.Members
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRoleV2Base struct {
-	Value        RoleV2Base
-	ExplicitNull bool
+	value *RoleV2Base
+	isSet bool
+}
+
+func (v NullableRoleV2Base) Get() *RoleV2Base {
+	return v.value
+}
+
+func (v *NullableRoleV2Base) Set(val *RoleV2Base) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRoleV2Base) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRoleV2Base) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRoleV2Base(val *RoleV2Base) *NullableRoleV2Base {
+	return &NullableRoleV2Base{value: val, isSet: true}
 }
 
 func (v NullableRoleV2Base) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRoleV2Base) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

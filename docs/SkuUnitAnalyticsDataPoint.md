@@ -11,6 +11,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewSkuUnitAnalyticsDataPoint
+
+`func NewSkuUnitAnalyticsDataPoint(startTime time.Time, endTime time.Time, unitsSold AnalyticsDataPointWithTrend, sku string, ) *SkuUnitAnalyticsDataPoint`
+
+NewSkuUnitAnalyticsDataPoint instantiates a new SkuUnitAnalyticsDataPoint object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewSkuUnitAnalyticsDataPointWithDefaults
+
+`func NewSkuUnitAnalyticsDataPointWithDefaults() *SkuUnitAnalyticsDataPoint`
+
+NewSkuUnitAnalyticsDataPointWithDefaults instantiates a new SkuUnitAnalyticsDataPoint object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetStartTime
 
 `func (o *SkuUnitAnalyticsDataPoint) GetStartTime() time.Time`
@@ -19,22 +36,17 @@ GetStartTime returns the StartTime field if non-nil, zero value otherwise.
 
 ### GetStartTimeOk
 
-`func (o *SkuUnitAnalyticsDataPoint) GetStartTimeOk() (time.Time, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetStartTimeOk() (*time.Time, bool)`
 
 GetStartTimeOk returns a tuple with the StartTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasStartTime
-
-`func (o *SkuUnitAnalyticsDataPoint) HasStartTime() bool`
-
-HasStartTime returns a boolean if a field has been set.
 
 ### SetStartTime
 
 `func (o *SkuUnitAnalyticsDataPoint) SetStartTime(v time.Time)`
 
-SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
+SetStartTime sets StartTime field to given value.
+
 
 ### GetEndTime
 
@@ -44,22 +56,17 @@ GetEndTime returns the EndTime field if non-nil, zero value otherwise.
 
 ### GetEndTimeOk
 
-`func (o *SkuUnitAnalyticsDataPoint) GetEndTimeOk() (time.Time, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetEndTimeOk() (*time.Time, bool)`
 
 GetEndTimeOk returns a tuple with the EndTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEndTime
-
-`func (o *SkuUnitAnalyticsDataPoint) HasEndTime() bool`
-
-HasEndTime returns a boolean if a field has been set.
 
 ### SetEndTime
 
 `func (o *SkuUnitAnalyticsDataPoint) SetEndTime(v time.Time)`
 
-SetEndTime gets a reference to the given time.Time and assigns it to the EndTime field.
+SetEndTime sets EndTime field to given value.
+
 
 ### GetUnitsSold
 
@@ -69,22 +76,17 @@ GetUnitsSold returns the UnitsSold field if non-nil, zero value otherwise.
 
 ### GetUnitsSoldOk
 
-`func (o *SkuUnitAnalyticsDataPoint) GetUnitsSoldOk() (AnalyticsDataPointWithTrend, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetUnitsSoldOk() (*AnalyticsDataPointWithTrend, bool)`
 
 GetUnitsSoldOk returns a tuple with the UnitsSold field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasUnitsSold
-
-`func (o *SkuUnitAnalyticsDataPoint) HasUnitsSold() bool`
-
-HasUnitsSold returns a boolean if a field has been set.
 
 ### SetUnitsSold
 
 `func (o *SkuUnitAnalyticsDataPoint) SetUnitsSold(v AnalyticsDataPointWithTrend)`
 
-SetUnitsSold gets a reference to the given AnalyticsDataPointWithTrend and assigns it to the UnitsSold field.
+SetUnitsSold sets UnitsSold field to given value.
+
 
 ### GetSku
 
@@ -94,22 +96,17 @@ GetSku returns the Sku field if non-nil, zero value otherwise.
 
 ### GetSkuOk
 
-`func (o *SkuUnitAnalyticsDataPoint) GetSkuOk() (string, bool)`
+`func (o *SkuUnitAnalyticsDataPoint) GetSkuOk() (*string, bool)`
 
 GetSkuOk returns a tuple with the Sku field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSku
-
-`func (o *SkuUnitAnalyticsDataPoint) HasSku() bool`
-
-HasSku returns a boolean if a field has been set.
 
 ### SetSku
 
 `func (o *SkuUnitAnalyticsDataPoint) SetSku(v string)`
 
-SetSku gets a reference to the given string and assigns it to the Sku field.
+SetSku sets Sku field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

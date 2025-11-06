@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,11 +21,11 @@ type CartItem struct {
 	// Stock keeping unit of item.
 	Sku string `json:"sku"`
 	// Number of units of this item. Due to [cart item flattening](https://docs.talon.one/docs/product/rules/understanding-cart-item-flattening), if you provide a quantity greater than 1, the item will be split in as many items as the provided quantity. This will impact the number of **per-item** effects triggered from your campaigns.
-	Quantity int32 `json:"quantity"`
+	Quantity int64 `json:"quantity"`
 	// Number of returned items, calculated internally based on returns of this item.
-	ReturnedQuantity *int32 `json:"returnedQuantity,omitempty"`
+	ReturnedQuantity *int64 `json:"returnedQuantity,omitempty"`
 	// Remaining quantity of the item, calculated internally based on returns of this item.
-	RemainingQuantity *int32 `json:"remainingQuantity,omitempty"`
+	RemainingQuantity *int64 `json:"remainingQuantity,omitempty"`
 	// Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.
 	Price *float32 `json:"price,omitempty"`
 	// Type, group or model of the item.
@@ -47,7 +46,7 @@ type CartItem struct {
 	// Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
 	// The catalog item ID.
-	CatalogItemID *int32 `json:"catalogItemID,omitempty"`
+	CatalogItemID *int64 `json:"catalogItemID,omitempty"`
 	// The selected price type for this cart item (e.g. the price for members only).
 	SelectedPriceType *string `json:"selectedPriceType,omitempty"`
 	// The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment.
@@ -60,6 +59,25 @@ type CartItem struct {
 	Prices *map[string]PriceDetail `json:"prices,omitempty"`
 }
 
+// NewCartItem instantiates a new CartItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCartItem(sku string, quantity int64) *CartItem {
+	this := CartItem{}
+	this.Sku = sku
+	this.Quantity = quantity
+	return &this
+}
+
+// NewCartItemWithDefaults instantiates a new CartItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCartItemWithDefaults() *CartItem {
+	this := CartItem{}
+	return &this
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CartItem) GetName() string {
 	if o == nil || o.Name == nil {
@@ -69,14 +87,13 @@ func (o *CartItem) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetNameOk() (string, bool) {
+func (o *CartItem) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -103,43 +120,60 @@ func (o *CartItem) GetSku() string {
 	return o.Sku
 }
 
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
+}
+
 // SetSku sets field value
 func (o *CartItem) SetSku(v string) {
 	o.Sku = v
 }
 
 // GetQuantity returns the Quantity field value
-func (o *CartItem) GetQuantity() int32 {
+func (o *CartItem) GetQuantity() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Quantity
 }
 
+// GetQuantityOk returns a tuple with the Quantity field value
+// and a boolean to check if the value has been set.
+func (o *CartItem) GetQuantityOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Quantity, true
+}
+
 // SetQuantity sets field value
-func (o *CartItem) SetQuantity(v int32) {
+func (o *CartItem) SetQuantity(v int64) {
 	o.Quantity = v
 }
 
 // GetReturnedQuantity returns the ReturnedQuantity field value if set, zero value otherwise.
-func (o *CartItem) GetReturnedQuantity() int32 {
+func (o *CartItem) GetReturnedQuantity() int64 {
 	if o == nil || o.ReturnedQuantity == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReturnedQuantity
 }
 
-// GetReturnedQuantityOk returns a tuple with the ReturnedQuantity field value if set, zero value otherwise
+// GetReturnedQuantityOk returns a tuple with the ReturnedQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetReturnedQuantityOk() (int32, bool) {
+func (o *CartItem) GetReturnedQuantityOk() (*int64, bool) {
 	if o == nil || o.ReturnedQuantity == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReturnedQuantity, true
+	return o.ReturnedQuantity, true
 }
 
 // HasReturnedQuantity returns a boolean if a field has been set.
@@ -151,28 +185,27 @@ func (o *CartItem) HasReturnedQuantity() bool {
 	return false
 }
 
-// SetReturnedQuantity gets a reference to the given int32 and assigns it to the ReturnedQuantity field.
-func (o *CartItem) SetReturnedQuantity(v int32) {
+// SetReturnedQuantity gets a reference to the given int64 and assigns it to the ReturnedQuantity field.
+func (o *CartItem) SetReturnedQuantity(v int64) {
 	o.ReturnedQuantity = &v
 }
 
 // GetRemainingQuantity returns the RemainingQuantity field value if set, zero value otherwise.
-func (o *CartItem) GetRemainingQuantity() int32 {
+func (o *CartItem) GetRemainingQuantity() int64 {
 	if o == nil || o.RemainingQuantity == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.RemainingQuantity
 }
 
-// GetRemainingQuantityOk returns a tuple with the RemainingQuantity field value if set, zero value otherwise
+// GetRemainingQuantityOk returns a tuple with the RemainingQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetRemainingQuantityOk() (int32, bool) {
+func (o *CartItem) GetRemainingQuantityOk() (*int64, bool) {
 	if o == nil || o.RemainingQuantity == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.RemainingQuantity, true
+	return o.RemainingQuantity, true
 }
 
 // HasRemainingQuantity returns a boolean if a field has been set.
@@ -184,8 +217,8 @@ func (o *CartItem) HasRemainingQuantity() bool {
 	return false
 }
 
-// SetRemainingQuantity gets a reference to the given int32 and assigns it to the RemainingQuantity field.
-func (o *CartItem) SetRemainingQuantity(v int32) {
+// SetRemainingQuantity gets a reference to the given int64 and assigns it to the RemainingQuantity field.
+func (o *CartItem) SetRemainingQuantity(v int64) {
 	o.RemainingQuantity = &v
 }
 
@@ -198,14 +231,13 @@ func (o *CartItem) GetPrice() float32 {
 	return *o.Price
 }
 
-// GetPriceOk returns a tuple with the Price field value if set, zero value otherwise
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetPriceOk() (float32, bool) {
+func (o *CartItem) GetPriceOk() (*float32, bool) {
 	if o == nil || o.Price == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Price, true
+	return o.Price, true
 }
 
 // HasPrice returns a boolean if a field has been set.
@@ -231,14 +263,13 @@ func (o *CartItem) GetCategory() string {
 	return *o.Category
 }
 
-// GetCategoryOk returns a tuple with the Category field value if set, zero value otherwise
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetCategoryOk() (string, bool) {
+func (o *CartItem) GetCategoryOk() (*string, bool) {
 	if o == nil || o.Category == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Category, true
+	return o.Category, true
 }
 
 // HasCategory returns a boolean if a field has been set.
@@ -264,14 +295,13 @@ func (o *CartItem) GetProduct() Product {
 	return *o.Product
 }
 
-// GetProductOk returns a tuple with the Product field value if set, zero value otherwise
+// GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetProductOk() (Product, bool) {
+func (o *CartItem) GetProductOk() (*Product, bool) {
 	if o == nil || o.Product == nil {
-		var ret Product
-		return ret, false
+		return nil, false
 	}
-	return *o.Product, true
+	return o.Product, true
 }
 
 // HasProduct returns a boolean if a field has been set.
@@ -297,14 +327,13 @@ func (o *CartItem) GetWeight() float32 {
 	return *o.Weight
 }
 
-// GetWeightOk returns a tuple with the Weight field value if set, zero value otherwise
+// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetWeightOk() (float32, bool) {
+func (o *CartItem) GetWeightOk() (*float32, bool) {
 	if o == nil || o.Weight == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Weight, true
+	return o.Weight, true
 }
 
 // HasWeight returns a boolean if a field has been set.
@@ -330,14 +359,13 @@ func (o *CartItem) GetHeight() float32 {
 	return *o.Height
 }
 
-// GetHeightOk returns a tuple with the Height field value if set, zero value otherwise
+// GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetHeightOk() (float32, bool) {
+func (o *CartItem) GetHeightOk() (*float32, bool) {
 	if o == nil || o.Height == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Height, true
+	return o.Height, true
 }
 
 // HasHeight returns a boolean if a field has been set.
@@ -363,14 +391,13 @@ func (o *CartItem) GetWidth() float32 {
 	return *o.Width
 }
 
-// GetWidthOk returns a tuple with the Width field value if set, zero value otherwise
+// GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetWidthOk() (float32, bool) {
+func (o *CartItem) GetWidthOk() (*float32, bool) {
 	if o == nil || o.Width == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Width, true
+	return o.Width, true
 }
 
 // HasWidth returns a boolean if a field has been set.
@@ -396,14 +423,13 @@ func (o *CartItem) GetLength() float32 {
 	return *o.Length
 }
 
-// GetLengthOk returns a tuple with the Length field value if set, zero value otherwise
+// GetLengthOk returns a tuple with the Length field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetLengthOk() (float32, bool) {
+func (o *CartItem) GetLengthOk() (*float32, bool) {
 	if o == nil || o.Length == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Length, true
+	return o.Length, true
 }
 
 // HasLength returns a boolean if a field has been set.
@@ -429,14 +455,13 @@ func (o *CartItem) GetPosition() float32 {
 	return *o.Position
 }
 
-// GetPositionOk returns a tuple with the Position field value if set, zero value otherwise
+// GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetPositionOk() (float32, bool) {
+func (o *CartItem) GetPositionOk() (*float32, bool) {
 	if o == nil || o.Position == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Position, true
+	return o.Position, true
 }
 
 // HasPosition returns a boolean if a field has been set.
@@ -462,14 +487,13 @@ func (o *CartItem) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *CartItem) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -495,14 +519,13 @@ func (o *CartItem) GetAdditionalCosts() map[string]AdditionalCost {
 	return *o.AdditionalCosts
 }
 
-// GetAdditionalCostsOk returns a tuple with the AdditionalCosts field value if set, zero value otherwise
+// GetAdditionalCostsOk returns a tuple with the AdditionalCosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetAdditionalCostsOk() (map[string]AdditionalCost, bool) {
+func (o *CartItem) GetAdditionalCostsOk() (*map[string]AdditionalCost, bool) {
 	if o == nil || o.AdditionalCosts == nil {
-		var ret map[string]AdditionalCost
-		return ret, false
+		return nil, false
 	}
-	return *o.AdditionalCosts, true
+	return o.AdditionalCosts, true
 }
 
 // HasAdditionalCosts returns a boolean if a field has been set.
@@ -520,22 +543,21 @@ func (o *CartItem) SetAdditionalCosts(v map[string]AdditionalCost) {
 }
 
 // GetCatalogItemID returns the CatalogItemID field value if set, zero value otherwise.
-func (o *CartItem) GetCatalogItemID() int32 {
+func (o *CartItem) GetCatalogItemID() int64 {
 	if o == nil || o.CatalogItemID == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CatalogItemID
 }
 
-// GetCatalogItemIDOk returns a tuple with the CatalogItemID field value if set, zero value otherwise
+// GetCatalogItemIDOk returns a tuple with the CatalogItemID field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetCatalogItemIDOk() (int32, bool) {
+func (o *CartItem) GetCatalogItemIDOk() (*int64, bool) {
 	if o == nil || o.CatalogItemID == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CatalogItemID, true
+	return o.CatalogItemID, true
 }
 
 // HasCatalogItemID returns a boolean if a field has been set.
@@ -547,8 +569,8 @@ func (o *CartItem) HasCatalogItemID() bool {
 	return false
 }
 
-// SetCatalogItemID gets a reference to the given int32 and assigns it to the CatalogItemID field.
-func (o *CartItem) SetCatalogItemID(v int32) {
+// SetCatalogItemID gets a reference to the given int64 and assigns it to the CatalogItemID field.
+func (o *CartItem) SetCatalogItemID(v int64) {
 	o.CatalogItemID = &v
 }
 
@@ -561,14 +583,13 @@ func (o *CartItem) GetSelectedPriceType() string {
 	return *o.SelectedPriceType
 }
 
-// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, zero value otherwise
+// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetSelectedPriceTypeOk() (string, bool) {
+func (o *CartItem) GetSelectedPriceTypeOk() (*string, bool) {
 	if o == nil || o.SelectedPriceType == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.SelectedPriceType, true
+	return o.SelectedPriceType, true
 }
 
 // HasSelectedPriceType returns a boolean if a field has been set.
@@ -594,14 +615,13 @@ func (o *CartItem) GetAdjustmentReferenceId() string {
 	return *o.AdjustmentReferenceId
 }
 
-// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, zero value otherwise
+// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetAdjustmentReferenceIdOk() (string, bool) {
+func (o *CartItem) GetAdjustmentReferenceIdOk() (*string, bool) {
 	if o == nil || o.AdjustmentReferenceId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AdjustmentReferenceId, true
+	return o.AdjustmentReferenceId, true
 }
 
 // HasAdjustmentReferenceId returns a boolean if a field has been set.
@@ -627,14 +647,13 @@ func (o *CartItem) GetAdjustmentEffectiveFrom() time.Time {
 	return *o.AdjustmentEffectiveFrom
 }
 
-// GetAdjustmentEffectiveFromOk returns a tuple with the AdjustmentEffectiveFrom field value if set, zero value otherwise
+// GetAdjustmentEffectiveFromOk returns a tuple with the AdjustmentEffectiveFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetAdjustmentEffectiveFromOk() (time.Time, bool) {
+func (o *CartItem) GetAdjustmentEffectiveFromOk() (*time.Time, bool) {
 	if o == nil || o.AdjustmentEffectiveFrom == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.AdjustmentEffectiveFrom, true
+	return o.AdjustmentEffectiveFrom, true
 }
 
 // HasAdjustmentEffectiveFrom returns a boolean if a field has been set.
@@ -660,14 +679,13 @@ func (o *CartItem) GetAdjustmentEffectiveUntil() time.Time {
 	return *o.AdjustmentEffectiveUntil
 }
 
-// GetAdjustmentEffectiveUntilOk returns a tuple with the AdjustmentEffectiveUntil field value if set, zero value otherwise
+// GetAdjustmentEffectiveUntilOk returns a tuple with the AdjustmentEffectiveUntil field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetAdjustmentEffectiveUntilOk() (time.Time, bool) {
+func (o *CartItem) GetAdjustmentEffectiveUntilOk() (*time.Time, bool) {
 	if o == nil || o.AdjustmentEffectiveUntil == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.AdjustmentEffectiveUntil, true
+	return o.AdjustmentEffectiveUntil, true
 }
 
 // HasAdjustmentEffectiveUntil returns a boolean if a field has been set.
@@ -693,14 +711,13 @@ func (o *CartItem) GetPrices() map[string]PriceDetail {
 	return *o.Prices
 }
 
-// GetPricesOk returns a tuple with the Prices field value if set, zero value otherwise
+// GetPricesOk returns a tuple with the Prices field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CartItem) GetPricesOk() (map[string]PriceDetail, bool) {
+func (o *CartItem) GetPricesOk() (*map[string]PriceDetail, bool) {
 	if o == nil || o.Prices == nil {
-		var ret map[string]PriceDetail
-		return ret, false
+		return nil, false
 	}
-	return *o.Prices, true
+	return o.Prices, true
 }
 
 // HasPrices returns a boolean if a field has been set.
@@ -717,25 +734,106 @@ func (o *CartItem) SetPrices(v map[string]PriceDetail) {
 	o.Prices = &v
 }
 
+func (o CartItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if true {
+		toSerialize["quantity"] = o.Quantity
+	}
+	if o.ReturnedQuantity != nil {
+		toSerialize["returnedQuantity"] = o.ReturnedQuantity
+	}
+	if o.RemainingQuantity != nil {
+		toSerialize["remainingQuantity"] = o.RemainingQuantity
+	}
+	if o.Price != nil {
+		toSerialize["price"] = o.Price
+	}
+	if o.Category != nil {
+		toSerialize["category"] = o.Category
+	}
+	if o.Product != nil {
+		toSerialize["product"] = o.Product
+	}
+	if o.Weight != nil {
+		toSerialize["weight"] = o.Weight
+	}
+	if o.Height != nil {
+		toSerialize["height"] = o.Height
+	}
+	if o.Width != nil {
+		toSerialize["width"] = o.Width
+	}
+	if o.Length != nil {
+		toSerialize["length"] = o.Length
+	}
+	if o.Position != nil {
+		toSerialize["position"] = o.Position
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.AdditionalCosts != nil {
+		toSerialize["additionalCosts"] = o.AdditionalCosts
+	}
+	if o.CatalogItemID != nil {
+		toSerialize["catalogItemID"] = o.CatalogItemID
+	}
+	if o.SelectedPriceType != nil {
+		toSerialize["selectedPriceType"] = o.SelectedPriceType
+	}
+	if o.AdjustmentReferenceId != nil {
+		toSerialize["adjustmentReferenceId"] = o.AdjustmentReferenceId
+	}
+	if o.AdjustmentEffectiveFrom != nil {
+		toSerialize["adjustmentEffectiveFrom"] = o.AdjustmentEffectiveFrom
+	}
+	if o.AdjustmentEffectiveUntil != nil {
+		toSerialize["adjustmentEffectiveUntil"] = o.AdjustmentEffectiveUntil
+	}
+	if o.Prices != nil {
+		toSerialize["prices"] = o.Prices
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCartItem struct {
-	Value        CartItem
-	ExplicitNull bool
+	value *CartItem
+	isSet bool
+}
+
+func (v NullableCartItem) Get() *CartItem {
+	return v.value
+}
+
+func (v *NullableCartItem) Set(val *CartItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCartItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCartItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCartItem(val *CartItem) *NullableCartItem {
+	return &NullableCartItem{value: val, isSet: true}
 }
 
 func (v NullableCartItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCartItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

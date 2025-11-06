@@ -10,44 +10,81 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ReferralRejectionReason Holds a reference to the campaign, the referral and the reason for which that referral was rejected. Should only be present when there is a 'rejectReferral' effect.
 type ReferralRejectionReason struct {
-	CampaignId int32  `json:"campaignId"`
-	ReferralId int32  `json:"referralId"`
+	CampaignId int64  `json:"campaignId"`
+	ReferralId int64  `json:"referralId"`
 	Reason     string `json:"reason"`
 }
 
+// NewReferralRejectionReason instantiates a new ReferralRejectionReason object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildReferralRejectionReason(campaignId int64, referralId int64, reason string) *ReferralRejectionReason {
+	this := ReferralRejectionReason{}
+	this.CampaignId = campaignId
+	this.ReferralId = referralId
+	this.Reason = reason
+	return &this
+}
+
+// NewReferralRejectionReasonWithDefaults instantiates a new ReferralRejectionReason object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewReferralRejectionReasonWithDefaults() *ReferralRejectionReason {
+	this := ReferralRejectionReason{}
+	return &this
+}
+
 // GetCampaignId returns the CampaignId field value
-func (o *ReferralRejectionReason) GetCampaignId() int32 {
+func (o *ReferralRejectionReason) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *ReferralRejectionReason) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *ReferralRejectionReason) SetCampaignId(v int32) {
+func (o *ReferralRejectionReason) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
 // GetReferralId returns the ReferralId field value
-func (o *ReferralRejectionReason) GetReferralId() int32 {
+func (o *ReferralRejectionReason) GetReferralId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ReferralId
 }
 
+// GetReferralIdOk returns a tuple with the ReferralId field value
+// and a boolean to check if the value has been set.
+func (o *ReferralRejectionReason) GetReferralIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferralId, true
+}
+
 // SetReferralId sets field value
-func (o *ReferralRejectionReason) SetReferralId(v int32) {
+func (o *ReferralRejectionReason) SetReferralId(v int64) {
 	o.ReferralId = v
 }
 
@@ -61,30 +98,66 @@ func (o *ReferralRejectionReason) GetReason() string {
 	return o.Reason
 }
 
+// GetReasonOk returns a tuple with the Reason field value
+// and a boolean to check if the value has been set.
+func (o *ReferralRejectionReason) GetReasonOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Reason, true
+}
+
 // SetReason sets field value
 func (o *ReferralRejectionReason) SetReason(v string) {
 	o.Reason = v
 }
 
+func (o ReferralRejectionReason) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["referralId"] = o.ReferralId
+	}
+	if true {
+		toSerialize["reason"] = o.Reason
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableReferralRejectionReason struct {
-	Value        ReferralRejectionReason
-	ExplicitNull bool
+	value *ReferralRejectionReason
+	isSet bool
+}
+
+func (v NullableReferralRejectionReason) Get() *ReferralRejectionReason {
+	return v.value
+}
+
+func (v *NullableReferralRejectionReason) Set(val *ReferralRejectionReason) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableReferralRejectionReason) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableReferralRejectionReason) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableReferralRejectionReason(val *ReferralRejectionReason) *NullableReferralRejectionReason {
+	return &NullableReferralRejectionReason{value: val, isSet: true}
 }
 
 func (v NullableReferralRejectionReason) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableReferralRejectionReason) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

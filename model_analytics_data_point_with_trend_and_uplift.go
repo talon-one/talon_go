@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,26 @@ type AnalyticsDataPointWithTrendAndUplift struct {
 	Trend  float32 `json:"trend"`
 }
 
+// NewAnalyticsDataPointWithTrendAndUplift instantiates a new AnalyticsDataPointWithTrendAndUplift object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAnalyticsDataPointWithTrendAndUplift(value float32, uplift float32, trend float32) *AnalyticsDataPointWithTrendAndUplift {
+	this := AnalyticsDataPointWithTrendAndUplift{}
+	this.Value = value
+	this.Uplift = uplift
+	this.Trend = trend
+	return &this
+}
+
+// NewAnalyticsDataPointWithTrendAndUpliftWithDefaults instantiates a new AnalyticsDataPointWithTrendAndUplift object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAnalyticsDataPointWithTrendAndUpliftWithDefaults() *AnalyticsDataPointWithTrendAndUplift {
+	this := AnalyticsDataPointWithTrendAndUplift{}
+	return &this
+}
+
 // GetValue returns the Value field value
 func (o *AnalyticsDataPointWithTrendAndUplift) GetValue() float32 {
 	if o == nil {
@@ -29,6 +48,15 @@ func (o *AnalyticsDataPointWithTrendAndUplift) GetValue() float32 {
 	}
 
 	return o.Value
+}
+
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsDataPointWithTrendAndUplift) GetValueOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
 }
 
 // SetValue sets field value
@@ -46,6 +74,15 @@ func (o *AnalyticsDataPointWithTrendAndUplift) GetUplift() float32 {
 	return o.Uplift
 }
 
+// GetUpliftOk returns a tuple with the Uplift field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsDataPointWithTrendAndUplift) GetUpliftOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Uplift, true
+}
+
 // SetUplift sets field value
 func (o *AnalyticsDataPointWithTrendAndUplift) SetUplift(v float32) {
 	o.Uplift = v
@@ -61,30 +98,66 @@ func (o *AnalyticsDataPointWithTrendAndUplift) GetTrend() float32 {
 	return o.Trend
 }
 
+// GetTrendOk returns a tuple with the Trend field value
+// and a boolean to check if the value has been set.
+func (o *AnalyticsDataPointWithTrendAndUplift) GetTrendOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Trend, true
+}
+
 // SetTrend sets field value
 func (o *AnalyticsDataPointWithTrendAndUplift) SetTrend(v float32) {
 	o.Trend = v
 }
 
+func (o AnalyticsDataPointWithTrendAndUplift) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if true {
+		toSerialize["uplift"] = o.Uplift
+	}
+	if true {
+		toSerialize["trend"] = o.Trend
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAnalyticsDataPointWithTrendAndUplift struct {
-	Value        AnalyticsDataPointWithTrendAndUplift
-	ExplicitNull bool
+	value *AnalyticsDataPointWithTrendAndUplift
+	isSet bool
+}
+
+func (v NullableAnalyticsDataPointWithTrendAndUplift) Get() *AnalyticsDataPointWithTrendAndUplift {
+	return v.value
+}
+
+func (v *NullableAnalyticsDataPointWithTrendAndUplift) Set(val *AnalyticsDataPointWithTrendAndUplift) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAnalyticsDataPointWithTrendAndUplift) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAnalyticsDataPointWithTrendAndUplift) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAnalyticsDataPointWithTrendAndUplift(val *AnalyticsDataPointWithTrendAndUplift) *NullableAnalyticsDataPointWithTrendAndUplift {
+	return &NullableAnalyticsDataPointWithTrendAndUplift{value: val, isSet: true}
 }
 
 func (v NullableAnalyticsDataPointWithTrendAndUplift) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAnalyticsDataPointWithTrendAndUplift) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

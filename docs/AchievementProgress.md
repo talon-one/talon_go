@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewAchievementProgress
+
+`func NewAchievementProgress(status string, progress float32, ) *AchievementProgress`
+
+NewAchievementProgress instantiates a new AchievementProgress object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewAchievementProgressWithDefaults
+
+`func NewAchievementProgressWithDefaults() *AchievementProgress`
+
+NewAchievementProgressWithDefaults instantiates a new AchievementProgress object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetStatus
 
 `func (o *AchievementProgress) GetStatus() string`
@@ -20,22 +37,17 @@ GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *AchievementProgress) GetStatusOk() (string, bool)`
+`func (o *AchievementProgress) GetStatusOk() (*string, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasStatus
-
-`func (o *AchievementProgress) HasStatus() bool`
-
-HasStatus returns a boolean if a field has been set.
 
 ### SetStatus
 
 `func (o *AchievementProgress) SetStatus(v string)`
 
-SetStatus gets a reference to the given string and assigns it to the Status field.
+SetStatus sets Status field to given value.
+
 
 ### GetProgress
 
@@ -45,22 +57,17 @@ GetProgress returns the Progress field if non-nil, zero value otherwise.
 
 ### GetProgressOk
 
-`func (o *AchievementProgress) GetProgressOk() (float32, bool)`
+`func (o *AchievementProgress) GetProgressOk() (*float32, bool)`
 
 GetProgressOk returns a tuple with the Progress field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasProgress
-
-`func (o *AchievementProgress) HasProgress() bool`
-
-HasProgress returns a boolean if a field has been set.
 
 ### SetProgress
 
 `func (o *AchievementProgress) SetProgress(v float32)`
 
-SetProgress gets a reference to the given float32 and assigns it to the Progress field.
+SetProgress sets Progress field to given value.
+
 
 ### GetStartDate
 
@@ -70,22 +77,22 @@ GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *AchievementProgress) GetStartDateOk() (time.Time, bool)`
+`func (o *AchievementProgress) GetStartDateOk() (*time.Time, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *AchievementProgress) SetStartDate(v time.Time)`
+
+SetStartDate sets StartDate field to given value.
 
 ### HasStartDate
 
 `func (o *AchievementProgress) HasStartDate() bool`
 
 HasStartDate returns a boolean if a field has been set.
-
-### SetStartDate
-
-`func (o *AchievementProgress) SetStartDate(v time.Time)`
-
-SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
 
 ### GetCompletionDate
 
@@ -95,22 +102,22 @@ GetCompletionDate returns the CompletionDate field if non-nil, zero value otherw
 
 ### GetCompletionDateOk
 
-`func (o *AchievementProgress) GetCompletionDateOk() (time.Time, bool)`
+`func (o *AchievementProgress) GetCompletionDateOk() (*time.Time, bool)`
 
 GetCompletionDateOk returns a tuple with the CompletionDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCompletionDate
+
+`func (o *AchievementProgress) SetCompletionDate(v time.Time)`
+
+SetCompletionDate sets CompletionDate field to given value.
 
 ### HasCompletionDate
 
 `func (o *AchievementProgress) HasCompletionDate() bool`
 
 HasCompletionDate returns a boolean if a field has been set.
-
-### SetCompletionDate
-
-`func (o *AchievementProgress) SetCompletionDate(v time.Time)`
-
-SetCompletionDate gets a reference to the given time.Time and assigns it to the CompletionDate field.
 
 ### GetEndDate
 
@@ -120,22 +127,22 @@ GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *AchievementProgress) GetEndDateOk() (time.Time, bool)`
+`func (o *AchievementProgress) GetEndDateOk() (*time.Time, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *AchievementProgress) SetEndDate(v time.Time)`
+
+SetEndDate sets EndDate field to given value.
 
 ### HasEndDate
 
 `func (o *AchievementProgress) HasEndDate() bool`
 
 HasEndDate returns a boolean if a field has been set.
-
-### SetEndDate
-
-`func (o *AchievementProgress) SetEndDate(v time.Time)`
-
-SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,42 +4,54 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal ID of this entity. | 
+**Id** | Pointer to **int64** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**AccountId** | Pointer to **int32** | The ID of the account that owns this price type. | [optional] 
+**AccountId** | Pointer to **int64** | The ID of the account that owns this price type. | [optional] 
 **Name** | Pointer to **string** | The API name of the price type. This is an immutable value. | 
-**Title** | Pointer to **string** | The title of the price type. | 
-**Description** | Pointer to **string** | The description of the price type. | [optional] 
+**Title** | Pointer to **string** | The name displayed in the Campaign Manager for the price type. | 
+**Description** | Pointer to **string** | A description of the price type. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | The date and time when the price type was last modified. | 
-**SubscribedCatalogsIds** | Pointer to **[]int32** | A list of the IDs of the catalogs that are subscribed to this price type. | 
-**TargetedAudiencesIds** | Pointer to **[]int32** | A list of the IDs of the audiences that are targeted by this price type. | 
+**SubscribedCatalogsIds** | Pointer to **[]int64** | A list of the IDs of the catalogs that are subscribed to this price type. | 
+**TargetedAudiencesIds** | Pointer to **[]int64** | A list of the IDs of the audiences targeted by this price type. | 
 
 ## Methods
 
+### NewPriceType
+
+`func NewPriceType(id int64, created time.Time, name string, title string, modified time.Time, subscribedCatalogsIds []int64, targetedAudiencesIds []int64, ) *PriceType`
+
+NewPriceType instantiates a new PriceType object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewPriceTypeWithDefaults
+
+`func NewPriceTypeWithDefaults() *PriceType`
+
+NewPriceTypeWithDefaults instantiates a new PriceType object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetId
 
-`func (o *PriceType) GetId() int32`
+`func (o *PriceType) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *PriceType) GetIdOk() (int32, bool)`
+`func (o *PriceType) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
-
-`func (o *PriceType) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### SetId
 
-`func (o *PriceType) SetId(v int32)`
+`func (o *PriceType) SetId(v int64)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetId sets Id field to given value.
+
 
 ### GetCreated
 
@@ -49,47 +61,42 @@ GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *PriceType) GetCreatedOk() (time.Time, bool)`
+`func (o *PriceType) GetCreatedOk() (*time.Time, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *PriceType) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
 
 ### SetCreated
 
 `func (o *PriceType) SetCreated(v time.Time)`
 
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+SetCreated sets Created field to given value.
+
 
 ### GetAccountId
 
-`func (o *PriceType) GetAccountId() int32`
+`func (o *PriceType) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *PriceType) GetAccountIdOk() (int32, bool)`
+`func (o *PriceType) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAccountId
+
+`func (o *PriceType) SetAccountId(v int64)`
+
+SetAccountId sets AccountId field to given value.
 
 ### HasAccountId
 
 `func (o *PriceType) HasAccountId() bool`
 
 HasAccountId returns a boolean if a field has been set.
-
-### SetAccountId
-
-`func (o *PriceType) SetAccountId(v int32)`
-
-SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
 
 ### GetName
 
@@ -99,22 +106,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *PriceType) GetNameOk() (string, bool)`
+`func (o *PriceType) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *PriceType) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *PriceType) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetTitle
 
@@ -124,22 +126,17 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *PriceType) GetTitleOk() (string, bool)`
+`func (o *PriceType) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *PriceType) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 ### SetTitle
 
 `func (o *PriceType) SetTitle(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetTitle sets Title field to given value.
+
 
 ### GetDescription
 
@@ -149,22 +146,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *PriceType) GetDescriptionOk() (string, bool)`
+`func (o *PriceType) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *PriceType) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *PriceType) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *PriceType) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetModified
 
@@ -174,72 +171,57 @@ GetModified returns the Modified field if non-nil, zero value otherwise.
 
 ### GetModifiedOk
 
-`func (o *PriceType) GetModifiedOk() (time.Time, bool)`
+`func (o *PriceType) GetModifiedOk() (*time.Time, bool)`
 
 GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasModified
-
-`func (o *PriceType) HasModified() bool`
-
-HasModified returns a boolean if a field has been set.
 
 ### SetModified
 
 `func (o *PriceType) SetModified(v time.Time)`
 
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+SetModified sets Modified field to given value.
+
 
 ### GetSubscribedCatalogsIds
 
-`func (o *PriceType) GetSubscribedCatalogsIds() []int32`
+`func (o *PriceType) GetSubscribedCatalogsIds() []int64`
 
 GetSubscribedCatalogsIds returns the SubscribedCatalogsIds field if non-nil, zero value otherwise.
 
 ### GetSubscribedCatalogsIdsOk
 
-`func (o *PriceType) GetSubscribedCatalogsIdsOk() ([]int32, bool)`
+`func (o *PriceType) GetSubscribedCatalogsIdsOk() (*[]int64, bool)`
 
 GetSubscribedCatalogsIdsOk returns a tuple with the SubscribedCatalogsIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasSubscribedCatalogsIds
-
-`func (o *PriceType) HasSubscribedCatalogsIds() bool`
-
-HasSubscribedCatalogsIds returns a boolean if a field has been set.
-
 ### SetSubscribedCatalogsIds
 
-`func (o *PriceType) SetSubscribedCatalogsIds(v []int32)`
+`func (o *PriceType) SetSubscribedCatalogsIds(v []int64)`
 
-SetSubscribedCatalogsIds gets a reference to the given []int32 and assigns it to the SubscribedCatalogsIds field.
+SetSubscribedCatalogsIds sets SubscribedCatalogsIds field to given value.
+
 
 ### GetTargetedAudiencesIds
 
-`func (o *PriceType) GetTargetedAudiencesIds() []int32`
+`func (o *PriceType) GetTargetedAudiencesIds() []int64`
 
 GetTargetedAudiencesIds returns the TargetedAudiencesIds field if non-nil, zero value otherwise.
 
 ### GetTargetedAudiencesIdsOk
 
-`func (o *PriceType) GetTargetedAudiencesIdsOk() ([]int32, bool)`
+`func (o *PriceType) GetTargetedAudiencesIdsOk() (*[]int64, bool)`
 
 GetTargetedAudiencesIdsOk returns a tuple with the TargetedAudiencesIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTargetedAudiencesIds
-
-`func (o *PriceType) HasTargetedAudiencesIds() bool`
-
-HasTargetedAudiencesIds returns a boolean if a field has been set.
-
 ### SetTargetedAudiencesIds
 
-`func (o *PriceType) SetTargetedAudiencesIds(v []int32)`
+`func (o *PriceType) SetTargetedAudiencesIds(v []int64)`
 
-SetTargetedAudiencesIds gets a reference to the given []int32 and assigns it to the TargetedAudiencesIds field.
+SetTargetedAudiencesIds sets TargetedAudiencesIds field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

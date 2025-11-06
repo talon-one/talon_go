@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewPatchItemCatalogAction
+
+`func NewPatchItemCatalogAction(sku string, ) *PatchItemCatalogAction`
+
+NewPatchItemCatalogAction instantiates a new PatchItemCatalogAction object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewPatchItemCatalogActionWithDefaults
+
+`func NewPatchItemCatalogActionWithDefaults() *PatchItemCatalogAction`
+
+NewPatchItemCatalogActionWithDefaults instantiates a new PatchItemCatalogAction object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetSku
 
 `func (o *PatchItemCatalogAction) GetSku() string`
@@ -20,22 +37,17 @@ GetSku returns the Sku field if non-nil, zero value otherwise.
 
 ### GetSkuOk
 
-`func (o *PatchItemCatalogAction) GetSkuOk() (string, bool)`
+`func (o *PatchItemCatalogAction) GetSkuOk() (*string, bool)`
 
 GetSkuOk returns a tuple with the Sku field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSku
-
-`func (o *PatchItemCatalogAction) HasSku() bool`
-
-HasSku returns a boolean if a field has been set.
 
 ### SetSku
 
 `func (o *PatchItemCatalogAction) SetSku(v string)`
 
-SetSku gets a reference to the given string and assigns it to the Sku field.
+SetSku sets Sku field to given value.
+
 
 ### GetPrice
 
@@ -45,22 +57,22 @@ GetPrice returns the Price field if non-nil, zero value otherwise.
 
 ### GetPriceOk
 
-`func (o *PatchItemCatalogAction) GetPriceOk() (float32, bool)`
+`func (o *PatchItemCatalogAction) GetPriceOk() (*float32, bool)`
 
 GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPrice
+
+`func (o *PatchItemCatalogAction) SetPrice(v float32)`
+
+SetPrice sets Price field to given value.
 
 ### HasPrice
 
 `func (o *PatchItemCatalogAction) HasPrice() bool`
 
 HasPrice returns a boolean if a field has been set.
-
-### SetPrice
-
-`func (o *PatchItemCatalogAction) SetPrice(v float32)`
-
-SetPrice gets a reference to the given float32 and assigns it to the Price field.
 
 ### GetAttributes
 
@@ -70,22 +82,22 @@ GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *PatchItemCatalogAction) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *PatchItemCatalogAction) GetAttributesOk() (*map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *PatchItemCatalogAction) SetAttributes(v map[string]interface{})`
+
+SetAttributes sets Attributes field to given value.
 
 ### HasAttributes
 
 `func (o *PatchItemCatalogAction) HasAttributes() bool`
 
 HasAttributes returns a boolean if a field has been set.
-
-### SetAttributes
-
-`func (o *PatchItemCatalogAction) SetAttributes(v map[string]interface{})`
-
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetProduct
 
@@ -95,22 +107,22 @@ GetProduct returns the Product field if non-nil, zero value otherwise.
 
 ### GetProductOk
 
-`func (o *PatchItemCatalogAction) GetProductOk() (Product, bool)`
+`func (o *PatchItemCatalogAction) GetProductOk() (*Product, bool)`
 
 GetProductOk returns a tuple with the Product field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProduct
+
+`func (o *PatchItemCatalogAction) SetProduct(v Product)`
+
+SetProduct sets Product field to given value.
 
 ### HasProduct
 
 `func (o *PatchItemCatalogAction) HasProduct() bool`
 
 HasProduct returns a boolean if a field has been set.
-
-### SetProduct
-
-`func (o *PatchItemCatalogAction) SetProduct(v Product)`
-
-SetProduct gets a reference to the given Product and assigns it to the Product field.
 
 ### GetCreateIfNotExists
 
@@ -120,22 +132,22 @@ GetCreateIfNotExists returns the CreateIfNotExists field if non-nil, zero value 
 
 ### GetCreateIfNotExistsOk
 
-`func (o *PatchItemCatalogAction) GetCreateIfNotExistsOk() (bool, bool)`
+`func (o *PatchItemCatalogAction) GetCreateIfNotExistsOk() (*bool, bool)`
 
 GetCreateIfNotExistsOk returns a tuple with the CreateIfNotExists field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreateIfNotExists
+
+`func (o *PatchItemCatalogAction) SetCreateIfNotExists(v bool)`
+
+SetCreateIfNotExists sets CreateIfNotExists field to given value.
 
 ### HasCreateIfNotExists
 
 `func (o *PatchItemCatalogAction) HasCreateIfNotExists() bool`
 
 HasCreateIfNotExists returns a boolean if a field has been set.
-
-### SetCreateIfNotExists
-
-`func (o *PatchItemCatalogAction) SetCreateIfNotExists(v bool)`
-
-SetCreateIfNotExists gets a reference to the given bool and assigns it to the CreateIfNotExists field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

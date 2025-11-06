@@ -1,0 +1,26 @@
+@@
+@@
+func (o *GenerateRuleTitleRule) GetEffects() [][]interface{} {
+	if o == nil || o.Effects == nil {
+-		var ret []interface{}
++		var ret [][]interface{}
+		return ret
+	}
+	return o.Effects
+}
+
+@@
+var model identifier
+@@
+-func (o *model) GetEffectsOk() (*[]map[string]interface{}, bool) {
++func (o *model) GetEffectsOk() ([][]interface{}, bool) {
+	...
+}
+
+@@
+var model identifier
+@@
+-func (o *model) GetConditionOk() (*[]map[string]interface{}, bool) {
++func (o *model) GetConditionOk() ([]interface{}, bool) {
+	...
+}

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,25 @@ type SamlConnectionInternal struct {
 	MetadataDocument string `json:"metadataDocument"`
 }
 
+// NewSamlConnectionInternal instantiates a new SamlConnectionInternal object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildSamlConnectionInternal(name string, metadataDocument string) *SamlConnectionInternal {
+	this := SamlConnectionInternal{}
+	this.Name = name
+	this.MetadataDocument = metadataDocument
+	return &this
+}
+
+// NewSamlConnectionInternalWithDefaults instantiates a new SamlConnectionInternal object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSamlConnectionInternalWithDefaults() *SamlConnectionInternal {
+	this := SamlConnectionInternal{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *SamlConnectionInternal) GetName() string {
 	if o == nil {
@@ -30,6 +48,15 @@ func (o *SamlConnectionInternal) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SamlConnectionInternal) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -47,30 +74,63 @@ func (o *SamlConnectionInternal) GetMetadataDocument() string {
 	return o.MetadataDocument
 }
 
+// GetMetadataDocumentOk returns a tuple with the MetadataDocument field value
+// and a boolean to check if the value has been set.
+func (o *SamlConnectionInternal) GetMetadataDocumentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MetadataDocument, true
+}
+
 // SetMetadataDocument sets field value
 func (o *SamlConnectionInternal) SetMetadataDocument(v string) {
 	o.MetadataDocument = v
 }
 
+func (o SamlConnectionInternal) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["metadataDocument"] = o.MetadataDocument
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSamlConnectionInternal struct {
-	Value        SamlConnectionInternal
-	ExplicitNull bool
+	value *SamlConnectionInternal
+	isSet bool
+}
+
+func (v NullableSamlConnectionInternal) Get() *SamlConnectionInternal {
+	return v.value
+}
+
+func (v *NullableSamlConnectionInternal) Set(val *SamlConnectionInternal) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSamlConnectionInternal) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSamlConnectionInternal) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableSamlConnectionInternal(val *SamlConnectionInternal) *NullableSamlConnectionInternal {
+	return &NullableSamlConnectionInternal{value: val, isSet: true}
 }
 
 func (v NullableSamlConnectionInternal) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSamlConnectionInternal) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

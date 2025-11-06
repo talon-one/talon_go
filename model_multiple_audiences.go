@@ -10,29 +10,56 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MultipleAudiences struct for MultipleAudiences
 type MultipleAudiences struct {
 	// The ID of the account that owns this entity.
-	AccountId int32                   `json:"accountId"`
+	AccountId int64                   `json:"accountId"`
 	Audiences []MultipleAudiencesItem `json:"audiences"`
 }
 
+// NewMultipleAudiences instantiates a new MultipleAudiences object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMultipleAudiences(accountId int64, audiences []MultipleAudiencesItem) *MultipleAudiences {
+	this := MultipleAudiences{}
+	this.AccountId = accountId
+	this.Audiences = audiences
+	return &this
+}
+
+// NewMultipleAudiencesWithDefaults instantiates a new MultipleAudiences object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMultipleAudiencesWithDefaults() *MultipleAudiences {
+	this := MultipleAudiences{}
+	return &this
+}
+
 // GetAccountId returns the AccountId field value
-func (o *MultipleAudiences) GetAccountId() int32 {
+func (o *MultipleAudiences) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiences) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *MultipleAudiences) SetAccountId(v int32) {
+func (o *MultipleAudiences) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -46,30 +73,63 @@ func (o *MultipleAudiences) GetAudiences() []MultipleAudiencesItem {
 	return o.Audiences
 }
 
+// GetAudiencesOk returns a tuple with the Audiences field value
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiences) GetAudiencesOk() (*[]MultipleAudiencesItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Audiences, true
+}
+
 // SetAudiences sets field value
 func (o *MultipleAudiences) SetAudiences(v []MultipleAudiencesItem) {
 	o.Audiences = v
 }
 
+func (o MultipleAudiences) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["audiences"] = o.Audiences
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMultipleAudiences struct {
-	Value        MultipleAudiences
-	ExplicitNull bool
+	value *MultipleAudiences
+	isSet bool
+}
+
+func (v NullableMultipleAudiences) Get() *MultipleAudiences {
+	return v.value
+}
+
+func (v *NullableMultipleAudiences) Set(val *MultipleAudiences) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMultipleAudiences) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMultipleAudiences) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMultipleAudiences(val *MultipleAudiences) *NullableMultipleAudiences {
+	return &NullableMultipleAudiences{value: val, isSet: true}
 }
 
 func (v NullableMultipleAudiences) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMultipleAudiences) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

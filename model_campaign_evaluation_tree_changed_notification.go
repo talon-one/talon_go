@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignEvaluationTreeChangedNotification Notification about an Application whose campaign evaluation tree changed.
 type CampaignEvaluationTreeChangedNotification struct {
 	// The ID of the Application whose campaign evaluation tree changed.
-	ApplicationId     int32        `json:"applicationId"`
+	ApplicationId     int64        `json:"applicationId"`
 	OldEvaluationTree *CampaignSet `json:"oldEvaluationTree,omitempty"`
 	EvaluationTree    CampaignSet  `json:"evaluationTree"`
 }
 
+// NewCampaignEvaluationTreeChangedNotification instantiates a new CampaignEvaluationTreeChangedNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignEvaluationTreeChangedNotification(applicationId int64, evaluationTree CampaignSet) *CampaignEvaluationTreeChangedNotification {
+	this := CampaignEvaluationTreeChangedNotification{}
+	this.ApplicationId = applicationId
+	this.EvaluationTree = evaluationTree
+	return &this
+}
+
+// NewCampaignEvaluationTreeChangedNotificationWithDefaults instantiates a new CampaignEvaluationTreeChangedNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignEvaluationTreeChangedNotificationWithDefaults() *CampaignEvaluationTreeChangedNotification {
+	this := CampaignEvaluationTreeChangedNotification{}
+	return &this
+}
+
 // GetApplicationId returns the ApplicationId field value
-func (o *CampaignEvaluationTreeChangedNotification) GetApplicationId() int32 {
+func (o *CampaignEvaluationTreeChangedNotification) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationTreeChangedNotification) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *CampaignEvaluationTreeChangedNotification) SetApplicationId(v int32) {
+func (o *CampaignEvaluationTreeChangedNotification) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -46,14 +73,13 @@ func (o *CampaignEvaluationTreeChangedNotification) GetOldEvaluationTree() Campa
 	return *o.OldEvaluationTree
 }
 
-// GetOldEvaluationTreeOk returns a tuple with the OldEvaluationTree field value if set, zero value otherwise
+// GetOldEvaluationTreeOk returns a tuple with the OldEvaluationTree field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignEvaluationTreeChangedNotification) GetOldEvaluationTreeOk() (CampaignSet, bool) {
+func (o *CampaignEvaluationTreeChangedNotification) GetOldEvaluationTreeOk() (*CampaignSet, bool) {
 	if o == nil || o.OldEvaluationTree == nil {
-		var ret CampaignSet
-		return ret, false
+		return nil, false
 	}
-	return *o.OldEvaluationTree, true
+	return o.OldEvaluationTree, true
 }
 
 // HasOldEvaluationTree returns a boolean if a field has been set.
@@ -80,30 +106,66 @@ func (o *CampaignEvaluationTreeChangedNotification) GetEvaluationTree() Campaign
 	return o.EvaluationTree
 }
 
+// GetEvaluationTreeOk returns a tuple with the EvaluationTree field value
+// and a boolean to check if the value has been set.
+func (o *CampaignEvaluationTreeChangedNotification) GetEvaluationTreeOk() (*CampaignSet, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EvaluationTree, true
+}
+
 // SetEvaluationTree sets field value
 func (o *CampaignEvaluationTreeChangedNotification) SetEvaluationTree(v CampaignSet) {
 	o.EvaluationTree = v
 }
 
+func (o CampaignEvaluationTreeChangedNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if o.OldEvaluationTree != nil {
+		toSerialize["oldEvaluationTree"] = o.OldEvaluationTree
+	}
+	if true {
+		toSerialize["evaluationTree"] = o.EvaluationTree
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignEvaluationTreeChangedNotification struct {
-	Value        CampaignEvaluationTreeChangedNotification
-	ExplicitNull bool
+	value *CampaignEvaluationTreeChangedNotification
+	isSet bool
+}
+
+func (v NullableCampaignEvaluationTreeChangedNotification) Get() *CampaignEvaluationTreeChangedNotification {
+	return v.value
+}
+
+func (v *NullableCampaignEvaluationTreeChangedNotification) Set(val *CampaignEvaluationTreeChangedNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignEvaluationTreeChangedNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignEvaluationTreeChangedNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignEvaluationTreeChangedNotification(val *CampaignEvaluationTreeChangedNotification) *NullableCampaignEvaluationTreeChangedNotification {
+	return &NullableCampaignEvaluationTreeChangedNotification{value: val, isSet: true}
 }
 
 func (v NullableCampaignEvaluationTreeChangedNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignEvaluationTreeChangedNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

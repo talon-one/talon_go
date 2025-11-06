@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -34,6 +33,23 @@ type LoyaltyBalanceWithTier struct {
 	NextTierName *string `json:"nextTierName,omitempty"`
 }
 
+// NewLoyaltyBalanceWithTier instantiates a new LoyaltyBalanceWithTier object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyBalanceWithTier() *LoyaltyBalanceWithTier {
+	this := LoyaltyBalanceWithTier{}
+	return &this
+}
+
+// NewLoyaltyBalanceWithTierWithDefaults instantiates a new LoyaltyBalanceWithTier object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyBalanceWithTierWithDefaults() *LoyaltyBalanceWithTier {
+	this := LoyaltyBalanceWithTier{}
+	return &this
+}
+
 // GetActivePoints returns the ActivePoints field value if set, zero value otherwise.
 func (o *LoyaltyBalanceWithTier) GetActivePoints() float32 {
 	if o == nil || o.ActivePoints == nil {
@@ -43,14 +59,13 @@ func (o *LoyaltyBalanceWithTier) GetActivePoints() float32 {
 	return *o.ActivePoints
 }
 
-// GetActivePointsOk returns a tuple with the ActivePoints field value if set, zero value otherwise
+// GetActivePointsOk returns a tuple with the ActivePoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetActivePointsOk() (float32, bool) {
+func (o *LoyaltyBalanceWithTier) GetActivePointsOk() (*float32, bool) {
 	if o == nil || o.ActivePoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivePoints, true
+	return o.ActivePoints, true
 }
 
 // HasActivePoints returns a boolean if a field has been set.
@@ -76,14 +91,13 @@ func (o *LoyaltyBalanceWithTier) GetPendingPoints() float32 {
 	return *o.PendingPoints
 }
 
-// GetPendingPointsOk returns a tuple with the PendingPoints field value if set, zero value otherwise
+// GetPendingPointsOk returns a tuple with the PendingPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetPendingPointsOk() (float32, bool) {
+func (o *LoyaltyBalanceWithTier) GetPendingPointsOk() (*float32, bool) {
 	if o == nil || o.PendingPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.PendingPoints, true
+	return o.PendingPoints, true
 }
 
 // HasPendingPoints returns a boolean if a field has been set.
@@ -109,14 +123,13 @@ func (o *LoyaltyBalanceWithTier) GetSpentPoints() float32 {
 	return *o.SpentPoints
 }
 
-// GetSpentPointsOk returns a tuple with the SpentPoints field value if set, zero value otherwise
+// GetSpentPointsOk returns a tuple with the SpentPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetSpentPointsOk() (float32, bool) {
+func (o *LoyaltyBalanceWithTier) GetSpentPointsOk() (*float32, bool) {
 	if o == nil || o.SpentPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.SpentPoints, true
+	return o.SpentPoints, true
 }
 
 // HasSpentPoints returns a boolean if a field has been set.
@@ -142,14 +155,13 @@ func (o *LoyaltyBalanceWithTier) GetExpiredPoints() float32 {
 	return *o.ExpiredPoints
 }
 
-// GetExpiredPointsOk returns a tuple with the ExpiredPoints field value if set, zero value otherwise
+// GetExpiredPointsOk returns a tuple with the ExpiredPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetExpiredPointsOk() (float32, bool) {
+func (o *LoyaltyBalanceWithTier) GetExpiredPointsOk() (*float32, bool) {
 	if o == nil || o.ExpiredPoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiredPoints, true
+	return o.ExpiredPoints, true
 }
 
 // HasExpiredPoints returns a boolean if a field has been set.
@@ -175,14 +187,13 @@ func (o *LoyaltyBalanceWithTier) GetNegativePoints() float32 {
 	return *o.NegativePoints
 }
 
-// GetNegativePointsOk returns a tuple with the NegativePoints field value if set, zero value otherwise
+// GetNegativePointsOk returns a tuple with the NegativePoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetNegativePointsOk() (float32, bool) {
+func (o *LoyaltyBalanceWithTier) GetNegativePointsOk() (*float32, bool) {
 	if o == nil || o.NegativePoints == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.NegativePoints, true
+	return o.NegativePoints, true
 }
 
 // HasNegativePoints returns a boolean if a field has been set.
@@ -208,14 +219,13 @@ func (o *LoyaltyBalanceWithTier) GetCurrentTier() Tier {
 	return *o.CurrentTier
 }
 
-// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, zero value otherwise
+// GetCurrentTierOk returns a tuple with the CurrentTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetCurrentTierOk() (Tier, bool) {
+func (o *LoyaltyBalanceWithTier) GetCurrentTierOk() (*Tier, bool) {
 	if o == nil || o.CurrentTier == nil {
-		var ret Tier
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentTier, true
+	return o.CurrentTier, true
 }
 
 // HasCurrentTier returns a boolean if a field has been set.
@@ -241,14 +251,13 @@ func (o *LoyaltyBalanceWithTier) GetProjectedTier() ProjectedTier {
 	return *o.ProjectedTier
 }
 
-// GetProjectedTierOk returns a tuple with the ProjectedTier field value if set, zero value otherwise
+// GetProjectedTierOk returns a tuple with the ProjectedTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetProjectedTierOk() (ProjectedTier, bool) {
+func (o *LoyaltyBalanceWithTier) GetProjectedTierOk() (*ProjectedTier, bool) {
 	if o == nil || o.ProjectedTier == nil {
-		var ret ProjectedTier
-		return ret, false
+		return nil, false
 	}
-	return *o.ProjectedTier, true
+	return o.ProjectedTier, true
 }
 
 // HasProjectedTier returns a boolean if a field has been set.
@@ -274,14 +283,13 @@ func (o *LoyaltyBalanceWithTier) GetPointsToNextTier() float32 {
 	return *o.PointsToNextTier
 }
 
-// GetPointsToNextTierOk returns a tuple with the PointsToNextTier field value if set, zero value otherwise
+// GetPointsToNextTierOk returns a tuple with the PointsToNextTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetPointsToNextTierOk() (float32, bool) {
+func (o *LoyaltyBalanceWithTier) GetPointsToNextTierOk() (*float32, bool) {
 	if o == nil || o.PointsToNextTier == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.PointsToNextTier, true
+	return o.PointsToNextTier, true
 }
 
 // HasPointsToNextTier returns a boolean if a field has been set.
@@ -307,14 +315,13 @@ func (o *LoyaltyBalanceWithTier) GetNextTierName() string {
 	return *o.NextTierName
 }
 
-// GetNextTierNameOk returns a tuple with the NextTierName field value if set, zero value otherwise
+// GetNextTierNameOk returns a tuple with the NextTierName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyBalanceWithTier) GetNextTierNameOk() (string, bool) {
+func (o *LoyaltyBalanceWithTier) GetNextTierNameOk() (*string, bool) {
 	if o == nil || o.NextTierName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NextTierName, true
+	return o.NextTierName, true
 }
 
 // HasNextTierName returns a boolean if a field has been set.
@@ -331,25 +338,70 @@ func (o *LoyaltyBalanceWithTier) SetNextTierName(v string) {
 	o.NextTierName = &v
 }
 
+func (o LoyaltyBalanceWithTier) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ActivePoints != nil {
+		toSerialize["activePoints"] = o.ActivePoints
+	}
+	if o.PendingPoints != nil {
+		toSerialize["pendingPoints"] = o.PendingPoints
+	}
+	if o.SpentPoints != nil {
+		toSerialize["spentPoints"] = o.SpentPoints
+	}
+	if o.ExpiredPoints != nil {
+		toSerialize["expiredPoints"] = o.ExpiredPoints
+	}
+	if o.NegativePoints != nil {
+		toSerialize["negativePoints"] = o.NegativePoints
+	}
+	if o.CurrentTier != nil {
+		toSerialize["currentTier"] = o.CurrentTier
+	}
+	if o.ProjectedTier != nil {
+		toSerialize["projectedTier"] = o.ProjectedTier
+	}
+	if o.PointsToNextTier != nil {
+		toSerialize["pointsToNextTier"] = o.PointsToNextTier
+	}
+	if o.NextTierName != nil {
+		toSerialize["nextTierName"] = o.NextTierName
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyBalanceWithTier struct {
-	Value        LoyaltyBalanceWithTier
-	ExplicitNull bool
+	value *LoyaltyBalanceWithTier
+	isSet bool
+}
+
+func (v NullableLoyaltyBalanceWithTier) Get() *LoyaltyBalanceWithTier {
+	return v.value
+}
+
+func (v *NullableLoyaltyBalanceWithTier) Set(val *LoyaltyBalanceWithTier) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyBalanceWithTier) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyBalanceWithTier) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyBalanceWithTier(val *LoyaltyBalanceWithTier) *NullableLoyaltyBalanceWithTier {
+	return &NullableLoyaltyBalanceWithTier{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyBalanceWithTier) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyBalanceWithTier) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

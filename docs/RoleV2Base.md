@@ -7,9 +7,26 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of the role. | [optional] 
 **Description** | Pointer to **string** | Description of the role. | [optional] 
 **Permissions** | Pointer to [**RoleV2Permissions**](RoleV2Permissions.md) |  | [optional] 
-**Members** | Pointer to **[]int32** | A list of user IDs the role is assigned to. | [optional] 
+**Members** | Pointer to **[]int64** | A list of user IDs the role is assigned to. | [optional] 
 
 ## Methods
+
+### NewRoleV2Base
+
+`func NewRoleV2Base() *RoleV2Base`
+
+NewRoleV2Base instantiates a new RoleV2Base object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewRoleV2BaseWithDefaults
+
+`func NewRoleV2BaseWithDefaults() *RoleV2Base`
+
+NewRoleV2BaseWithDefaults instantiates a new RoleV2Base object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetName
 
@@ -19,22 +36,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *RoleV2Base) GetNameOk() (string, bool)`
+`func (o *RoleV2Base) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *RoleV2Base) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *RoleV2Base) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *RoleV2Base) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
 
 ### GetDescription
 
@@ -44,22 +61,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *RoleV2Base) GetDescriptionOk() (string, bool)`
+`func (o *RoleV2Base) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *RoleV2Base) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *RoleV2Base) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *RoleV2Base) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetPermissions
 
@@ -69,10 +86,16 @@ GetPermissions returns the Permissions field if non-nil, zero value otherwise.
 
 ### GetPermissionsOk
 
-`func (o *RoleV2Base) GetPermissionsOk() (RoleV2Permissions, bool)`
+`func (o *RoleV2Base) GetPermissionsOk() (*RoleV2Permissions, bool)`
 
 GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPermissions
+
+`func (o *RoleV2Base) SetPermissions(v RoleV2Permissions)`
+
+SetPermissions sets Permissions field to given value.
 
 ### HasPermissions
 
@@ -80,36 +103,30 @@ and a boolean to check if the value has been set.
 
 HasPermissions returns a boolean if a field has been set.
 
-### SetPermissions
-
-`func (o *RoleV2Base) SetPermissions(v RoleV2Permissions)`
-
-SetPermissions gets a reference to the given RoleV2Permissions and assigns it to the Permissions field.
-
 ### GetMembers
 
-`func (o *RoleV2Base) GetMembers() []int32`
+`func (o *RoleV2Base) GetMembers() []int64`
 
 GetMembers returns the Members field if non-nil, zero value otherwise.
 
 ### GetMembersOk
 
-`func (o *RoleV2Base) GetMembersOk() ([]int32, bool)`
+`func (o *RoleV2Base) GetMembersOk() (*[]int64, bool)`
 
 GetMembersOk returns a tuple with the Members field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetMembers
+
+`func (o *RoleV2Base) SetMembers(v []int64)`
+
+SetMembers sets Members field to given value.
 
 ### HasMembers
 
 `func (o *RoleV2Base) HasMembers() bool`
 
 HasMembers returns a boolean if a field has been set.
-
-### SetMembers
-
-`func (o *RoleV2Base) SetMembers(v []int32)`
-
-SetMembers gets a reference to the given []int32 and assigns it to the Members field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

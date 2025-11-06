@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // AchievementStatusEntry struct for AchievementStatusEntry
 type AchievementStatusEntry struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The internal name of the achievement used in API requests.  **Note**: The name should start with a letter. This cannot be changed after the achievement has been created.
@@ -40,25 +39,59 @@ type AchievementStatusEntry struct {
 	FixedStartDate *time.Time `json:"fixedStartDate,omitempty"`
 	// The achievement's end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string.
 	EndDate *time.Time `json:"endDate,omitempty"`
+	// When `true`, customer progress can be rolled back in completed achievements.
+	AllowRollbackAfterCompletion *bool `json:"allowRollbackAfterCompletion,omitempty"`
 	// The ID of the campaign the achievement belongs to.
-	CampaignId *int32 `json:"campaignId,omitempty"`
+	CampaignId *int64 `json:"campaignId,omitempty"`
 	// The status of the achievement.
 	Status          *string              `json:"status,omitempty"`
 	CurrentProgress *AchievementProgress `json:"currentProgress,omitempty"`
 }
 
+// NewAchievementStatusEntry instantiates a new AchievementStatusEntry object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAchievementStatusEntry(id int64, created time.Time, name string, title string, description string, target float32) *AchievementStatusEntry {
+	this := AchievementStatusEntry{}
+	this.Id = id
+	this.Created = created
+	this.Name = name
+	this.Title = title
+	this.Description = description
+	this.Target = target
+	return &this
+}
+
+// NewAchievementStatusEntryWithDefaults instantiates a new AchievementStatusEntry object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAchievementStatusEntryWithDefaults() *AchievementStatusEntry {
+	this := AchievementStatusEntry{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *AchievementStatusEntry) GetId() int32 {
+func (o *AchievementStatusEntry) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *AchievementStatusEntry) SetId(v int32) {
+func (o *AchievementStatusEntry) SetId(v int64) {
 	o.Id = v
 }
 
@@ -70,6 +103,15 @@ func (o *AchievementStatusEntry) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -87,6 +129,15 @@ func (o *AchievementStatusEntry) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *AchievementStatusEntry) SetName(v string) {
 	o.Name = v
@@ -100,6 +151,15 @@ func (o *AchievementStatusEntry) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -117,6 +177,15 @@ func (o *AchievementStatusEntry) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *AchievementStatusEntry) SetDescription(v string) {
 	o.Description = v
@@ -130,6 +199,15 @@ func (o *AchievementStatusEntry) GetTarget() float32 {
 	}
 
 	return o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetTargetOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
 }
 
 // SetTarget sets field value
@@ -146,14 +224,13 @@ func (o *AchievementStatusEntry) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetPeriodOk() (string, bool) {
+func (o *AchievementStatusEntry) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -179,14 +256,13 @@ func (o *AchievementStatusEntry) GetPeriodEndOverride() TimePoint {
 	return *o.PeriodEndOverride
 }
 
-// GetPeriodEndOverrideOk returns a tuple with the PeriodEndOverride field value if set, zero value otherwise
+// GetPeriodEndOverrideOk returns a tuple with the PeriodEndOverride field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetPeriodEndOverrideOk() (TimePoint, bool) {
+func (o *AchievementStatusEntry) GetPeriodEndOverrideOk() (*TimePoint, bool) {
 	if o == nil || o.PeriodEndOverride == nil {
-		var ret TimePoint
-		return ret, false
+		return nil, false
 	}
-	return *o.PeriodEndOverride, true
+	return o.PeriodEndOverride, true
 }
 
 // HasPeriodEndOverride returns a boolean if a field has been set.
@@ -212,14 +288,13 @@ func (o *AchievementStatusEntry) GetRecurrencePolicy() string {
 	return *o.RecurrencePolicy
 }
 
-// GetRecurrencePolicyOk returns a tuple with the RecurrencePolicy field value if set, zero value otherwise
+// GetRecurrencePolicyOk returns a tuple with the RecurrencePolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetRecurrencePolicyOk() (string, bool) {
+func (o *AchievementStatusEntry) GetRecurrencePolicyOk() (*string, bool) {
 	if o == nil || o.RecurrencePolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.RecurrencePolicy, true
+	return o.RecurrencePolicy, true
 }
 
 // HasRecurrencePolicy returns a boolean if a field has been set.
@@ -245,14 +320,13 @@ func (o *AchievementStatusEntry) GetActivationPolicy() string {
 	return *o.ActivationPolicy
 }
 
-// GetActivationPolicyOk returns a tuple with the ActivationPolicy field value if set, zero value otherwise
+// GetActivationPolicyOk returns a tuple with the ActivationPolicy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetActivationPolicyOk() (string, bool) {
+func (o *AchievementStatusEntry) GetActivationPolicyOk() (*string, bool) {
 	if o == nil || o.ActivationPolicy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivationPolicy, true
+	return o.ActivationPolicy, true
 }
 
 // HasActivationPolicy returns a boolean if a field has been set.
@@ -278,14 +352,13 @@ func (o *AchievementStatusEntry) GetFixedStartDate() time.Time {
 	return *o.FixedStartDate
 }
 
-// GetFixedStartDateOk returns a tuple with the FixedStartDate field value if set, zero value otherwise
+// GetFixedStartDateOk returns a tuple with the FixedStartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetFixedStartDateOk() (time.Time, bool) {
+func (o *AchievementStatusEntry) GetFixedStartDateOk() (*time.Time, bool) {
 	if o == nil || o.FixedStartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.FixedStartDate, true
+	return o.FixedStartDate, true
 }
 
 // HasFixedStartDate returns a boolean if a field has been set.
@@ -311,14 +384,13 @@ func (o *AchievementStatusEntry) GetEndDate() time.Time {
 	return *o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetEndDateOk() (time.Time, bool) {
+func (o *AchievementStatusEntry) GetEndDateOk() (*time.Time, bool) {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndDate, true
+	return o.EndDate, true
 }
 
 // HasEndDate returns a boolean if a field has been set.
@@ -335,23 +407,54 @@ func (o *AchievementStatusEntry) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
+// GetAllowRollbackAfterCompletion returns the AllowRollbackAfterCompletion field value if set, zero value otherwise.
+func (o *AchievementStatusEntry) GetAllowRollbackAfterCompletion() bool {
+	if o == nil || o.AllowRollbackAfterCompletion == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AllowRollbackAfterCompletion
+}
+
+// GetAllowRollbackAfterCompletionOk returns a tuple with the AllowRollbackAfterCompletion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetAllowRollbackAfterCompletionOk() (*bool, bool) {
+	if o == nil || o.AllowRollbackAfterCompletion == nil {
+		return nil, false
+	}
+	return o.AllowRollbackAfterCompletion, true
+}
+
+// HasAllowRollbackAfterCompletion returns a boolean if a field has been set.
+func (o *AchievementStatusEntry) HasAllowRollbackAfterCompletion() bool {
+	if o != nil && o.AllowRollbackAfterCompletion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAllowRollbackAfterCompletion gets a reference to the given bool and assigns it to the AllowRollbackAfterCompletion field.
+func (o *AchievementStatusEntry) SetAllowRollbackAfterCompletion(v bool) {
+	o.AllowRollbackAfterCompletion = &v
+}
+
 // GetCampaignId returns the CampaignId field value if set, zero value otherwise.
-func (o *AchievementStatusEntry) GetCampaignId() int32 {
+func (o *AchievementStatusEntry) GetCampaignId() int64 {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value if set, zero value otherwise
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetCampaignIdOk() (int32, bool) {
+func (o *AchievementStatusEntry) GetCampaignIdOk() (*int64, bool) {
 	if o == nil || o.CampaignId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignId, true
+	return o.CampaignId, true
 }
 
 // HasCampaignId returns a boolean if a field has been set.
@@ -363,8 +466,8 @@ func (o *AchievementStatusEntry) HasCampaignId() bool {
 	return false
 }
 
-// SetCampaignId gets a reference to the given int32 and assigns it to the CampaignId field.
-func (o *AchievementStatusEntry) SetCampaignId(v int32) {
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *AchievementStatusEntry) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
@@ -377,14 +480,13 @@ func (o *AchievementStatusEntry) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetStatusOk() (string, bool) {
+func (o *AchievementStatusEntry) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -410,14 +512,13 @@ func (o *AchievementStatusEntry) GetCurrentProgress() AchievementProgress {
 	return *o.CurrentProgress
 }
 
-// GetCurrentProgressOk returns a tuple with the CurrentProgress field value if set, zero value otherwise
+// GetCurrentProgressOk returns a tuple with the CurrentProgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementStatusEntry) GetCurrentProgressOk() (AchievementProgress, bool) {
+func (o *AchievementStatusEntry) GetCurrentProgressOk() (*AchievementProgress, bool) {
 	if o == nil || o.CurrentProgress == nil {
-		var ret AchievementProgress
-		return ret, false
+		return nil, false
 	}
-	return *o.CurrentProgress, true
+	return o.CurrentProgress, true
 }
 
 // HasCurrentProgress returns a boolean if a field has been set.
@@ -434,25 +535,91 @@ func (o *AchievementStatusEntry) SetCurrentProgress(v AchievementProgress) {
 	o.CurrentProgress = &v
 }
 
+func (o AchievementStatusEntry) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	if o.PeriodEndOverride != nil {
+		toSerialize["periodEndOverride"] = o.PeriodEndOverride
+	}
+	if o.RecurrencePolicy != nil {
+		toSerialize["recurrencePolicy"] = o.RecurrencePolicy
+	}
+	if o.ActivationPolicy != nil {
+		toSerialize["activationPolicy"] = o.ActivationPolicy
+	}
+	if o.FixedStartDate != nil {
+		toSerialize["fixedStartDate"] = o.FixedStartDate
+	}
+	if o.EndDate != nil {
+		toSerialize["endDate"] = o.EndDate
+	}
+	if o.AllowRollbackAfterCompletion != nil {
+		toSerialize["allowRollbackAfterCompletion"] = o.AllowRollbackAfterCompletion
+	}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.CurrentProgress != nil {
+		toSerialize["currentProgress"] = o.CurrentProgress
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAchievementStatusEntry struct {
-	Value        AchievementStatusEntry
-	ExplicitNull bool
+	value *AchievementStatusEntry
+	isSet bool
+}
+
+func (v NullableAchievementStatusEntry) Get() *AchievementStatusEntry {
+	return v.value
+}
+
+func (v *NullableAchievementStatusEntry) Set(val *AchievementStatusEntry) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAchievementStatusEntry) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAchievementStatusEntry) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAchievementStatusEntry(val *AchievementStatusEntry) *NullableAchievementStatusEntry {
+	return &NullableAchievementStatusEntry{value: val, isSet: true}
 }
 
 func (v NullableAchievementStatusEntry) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAchievementStatusEntry) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

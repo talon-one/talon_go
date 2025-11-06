@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -26,6 +25,27 @@ type SkuUnitAnalyticsDataPoint struct {
 	Sku string `json:"sku"`
 }
 
+// NewSkuUnitAnalyticsDataPoint instantiates a new SkuUnitAnalyticsDataPoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildSkuUnitAnalyticsDataPoint(startTime time.Time, endTime time.Time, unitsSold AnalyticsDataPointWithTrend, sku string) *SkuUnitAnalyticsDataPoint {
+	this := SkuUnitAnalyticsDataPoint{}
+	this.StartTime = startTime
+	this.EndTime = endTime
+	this.UnitsSold = unitsSold
+	this.Sku = sku
+	return &this
+}
+
+// NewSkuUnitAnalyticsDataPointWithDefaults instantiates a new SkuUnitAnalyticsDataPoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSkuUnitAnalyticsDataPointWithDefaults() *SkuUnitAnalyticsDataPoint {
+	this := SkuUnitAnalyticsDataPoint{}
+	return &this
+}
+
 // GetStartTime returns the StartTime field value
 func (o *SkuUnitAnalyticsDataPoint) GetStartTime() time.Time {
 	if o == nil {
@@ -34,6 +54,15 @@ func (o *SkuUnitAnalyticsDataPoint) GetStartTime() time.Time {
 	}
 
 	return o.StartTime
+}
+
+// GetStartTimeOk returns a tuple with the StartTime field value
+// and a boolean to check if the value has been set.
+func (o *SkuUnitAnalyticsDataPoint) GetStartTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.StartTime, true
 }
 
 // SetStartTime sets field value
@@ -51,6 +80,15 @@ func (o *SkuUnitAnalyticsDataPoint) GetEndTime() time.Time {
 	return o.EndTime
 }
 
+// GetEndTimeOk returns a tuple with the EndTime field value
+// and a boolean to check if the value has been set.
+func (o *SkuUnitAnalyticsDataPoint) GetEndTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EndTime, true
+}
+
 // SetEndTime sets field value
 func (o *SkuUnitAnalyticsDataPoint) SetEndTime(v time.Time) {
 	o.EndTime = v
@@ -64,6 +102,15 @@ func (o *SkuUnitAnalyticsDataPoint) GetUnitsSold() AnalyticsDataPointWithTrend {
 	}
 
 	return o.UnitsSold
+}
+
+// GetUnitsSoldOk returns a tuple with the UnitsSold field value
+// and a boolean to check if the value has been set.
+func (o *SkuUnitAnalyticsDataPoint) GetUnitsSoldOk() (*AnalyticsDataPointWithTrend, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UnitsSold, true
 }
 
 // SetUnitsSold sets field value
@@ -81,30 +128,69 @@ func (o *SkuUnitAnalyticsDataPoint) GetSku() string {
 	return o.Sku
 }
 
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *SkuUnitAnalyticsDataPoint) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
+}
+
 // SetSku sets field value
 func (o *SkuUnitAnalyticsDataPoint) SetSku(v string) {
 	o.Sku = v
 }
 
+func (o SkuUnitAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if true {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if true {
+		toSerialize["unitsSold"] = o.UnitsSold
+	}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSkuUnitAnalyticsDataPoint struct {
-	Value        SkuUnitAnalyticsDataPoint
-	ExplicitNull bool
+	value *SkuUnitAnalyticsDataPoint
+	isSet bool
+}
+
+func (v NullableSkuUnitAnalyticsDataPoint) Get() *SkuUnitAnalyticsDataPoint {
+	return v.value
+}
+
+func (v *NullableSkuUnitAnalyticsDataPoint) Set(val *SkuUnitAnalyticsDataPoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSkuUnitAnalyticsDataPoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSkuUnitAnalyticsDataPoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableSkuUnitAnalyticsDataPoint(val *SkuUnitAnalyticsDataPoint) *NullableSkuUnitAnalyticsDataPoint {
+	return &NullableSkuUnitAnalyticsDataPoint{value: val, isSet: true}
 }
 
 func (v NullableSkuUnitAnalyticsDataPoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSkuUnitAnalyticsDataPoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

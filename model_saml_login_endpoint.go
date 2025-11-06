@@ -10,32 +10,60 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // SamlLoginEndpoint struct for SamlLoginEndpoint
 type SamlLoginEndpoint struct {
 	// ID of the SAML login endpoint.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// ID of the SAML service.
 	Name string `json:"name"`
 	// The single sign-on URL.
 	LoginURL string `json:"loginURL"`
 }
 
+// NewSamlLoginEndpoint instantiates a new SamlLoginEndpoint object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildSamlLoginEndpoint(id int64, name string, loginURL string) *SamlLoginEndpoint {
+	this := SamlLoginEndpoint{}
+	this.Id = id
+	this.Name = name
+	this.LoginURL = loginURL
+	return &this
+}
+
+// NewSamlLoginEndpointWithDefaults instantiates a new SamlLoginEndpoint object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSamlLoginEndpointWithDefaults() *SamlLoginEndpoint {
+	this := SamlLoginEndpoint{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *SamlLoginEndpoint) GetId() int32 {
+func (o *SamlLoginEndpoint) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *SamlLoginEndpoint) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *SamlLoginEndpoint) SetId(v int32) {
+func (o *SamlLoginEndpoint) SetId(v int64) {
 	o.Id = v
 }
 
@@ -47,6 +75,15 @@ func (o *SamlLoginEndpoint) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SamlLoginEndpoint) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -64,30 +101,66 @@ func (o *SamlLoginEndpoint) GetLoginURL() string {
 	return o.LoginURL
 }
 
+// GetLoginURLOk returns a tuple with the LoginURL field value
+// and a boolean to check if the value has been set.
+func (o *SamlLoginEndpoint) GetLoginURLOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoginURL, true
+}
+
 // SetLoginURL sets field value
 func (o *SamlLoginEndpoint) SetLoginURL(v string) {
 	o.LoginURL = v
 }
 
+func (o SamlLoginEndpoint) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["loginURL"] = o.LoginURL
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSamlLoginEndpoint struct {
-	Value        SamlLoginEndpoint
-	ExplicitNull bool
+	value *SamlLoginEndpoint
+	isSet bool
+}
+
+func (v NullableSamlLoginEndpoint) Get() *SamlLoginEndpoint {
+	return v.value
+}
+
+func (v *NullableSamlLoginEndpoint) Set(val *SamlLoginEndpoint) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSamlLoginEndpoint) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSamlLoginEndpoint) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableSamlLoginEndpoint(val *SamlLoginEndpoint) *NullableSamlLoginEndpoint {
+	return &NullableSamlLoginEndpoint{value: val, isSet: true}
 }
 
 func (v NullableSamlLoginEndpoint) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSamlLoginEndpoint) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

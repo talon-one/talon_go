@@ -18,6 +18,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewNewRevisionVersion
+
+`func NewNewRevisionVersion() *NewRevisionVersion`
+
+NewNewRevisionVersion instantiates a new NewRevisionVersion object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewRevisionVersionWithDefaults
+
+`func NewNewRevisionVersionWithDefaults() *NewRevisionVersion`
+
+NewNewRevisionVersionWithDefaults instantiates a new NewRevisionVersion object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetName
 
 `func (o *NewRevisionVersion) GetName() string`
@@ -26,10 +43,16 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *NewRevisionVersion) GetNameOk() (string, bool)`
+`func (o *NewRevisionVersion) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *NewRevisionVersion) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
@@ -37,24 +60,24 @@ and a boolean to check if the value has been set.
 
 HasName returns a boolean if a field has been set.
 
-### SetName
-
-`func (o *NewRevisionVersion) SetName(v string)`
-
-SetName gets a reference to the given string and assigns it to the Name field.
-
 ### GetStartTime
 
-`func (o *NewRevisionVersion) GetStartTime() NullableTime`
+`func (o *NewRevisionVersion) GetStartTime() time.Time`
 
 GetStartTime returns the StartTime field if non-nil, zero value otherwise.
 
 ### GetStartTimeOk
 
-`func (o *NewRevisionVersion) GetStartTimeOk() (NullableTime, bool)`
+`func (o *NewRevisionVersion) GetStartTimeOk() (*time.Time, bool)`
 
 GetStartTimeOk returns a tuple with the StartTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStartTime
+
+`func (o *NewRevisionVersion) SetStartTime(v time.Time)`
+
+SetStartTime sets StartTime field to given value.
 
 ### HasStartTime
 
@@ -62,31 +85,34 @@ and a boolean to check if the value has been set.
 
 HasStartTime returns a boolean if a field has been set.
 
-### SetStartTime
+### SetStartTimeNil
 
-`func (o *NewRevisionVersion) SetStartTime(v NullableTime)`
+`func (o *NewRevisionVersion) SetStartTimeNil(b bool)`
 
-SetStartTime gets a reference to the given NullableTime and assigns it to the StartTime field.
+ SetStartTimeNil sets the value for StartTime to be an explicit nil
 
-### SetStartTimeExplicitNull
+### UnsetStartTime
+`func (o *NewRevisionVersion) UnsetStartTime()`
 
-`func (o *NewRevisionVersion) SetStartTimeExplicitNull(b bool)`
-
-SetStartTimeExplicitNull (un)sets StartTime to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The StartTime value is set to nil even if false is passed
+UnsetStartTime ensures that no value is present for StartTime, not even an explicit nil
 ### GetEndTime
 
-`func (o *NewRevisionVersion) GetEndTime() NullableTime`
+`func (o *NewRevisionVersion) GetEndTime() time.Time`
 
 GetEndTime returns the EndTime field if non-nil, zero value otherwise.
 
 ### GetEndTimeOk
 
-`func (o *NewRevisionVersion) GetEndTimeOk() (NullableTime, bool)`
+`func (o *NewRevisionVersion) GetEndTimeOk() (*time.Time, bool)`
 
 GetEndTimeOk returns a tuple with the EndTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEndTime
+
+`func (o *NewRevisionVersion) SetEndTime(v time.Time)`
+
+SetEndTime sets EndTime field to given value.
 
 ### HasEndTime
 
@@ -94,19 +120,16 @@ and a boolean to check if the value has been set.
 
 HasEndTime returns a boolean if a field has been set.
 
-### SetEndTime
+### SetEndTimeNil
 
-`func (o *NewRevisionVersion) SetEndTime(v NullableTime)`
+`func (o *NewRevisionVersion) SetEndTimeNil(b bool)`
 
-SetEndTime gets a reference to the given NullableTime and assigns it to the EndTime field.
+ SetEndTimeNil sets the value for EndTime to be an explicit nil
 
-### SetEndTimeExplicitNull
+### UnsetEndTime
+`func (o *NewRevisionVersion) UnsetEndTime()`
 
-`func (o *NewRevisionVersion) SetEndTimeExplicitNull(b bool)`
-
-SetEndTimeExplicitNull (un)sets EndTime to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The EndTime value is set to nil even if false is passed
+UnsetEndTime ensures that no value is present for EndTime, not even an explicit nil
 ### GetAttributes
 
 `func (o *NewRevisionVersion) GetAttributes() map[string]interface{}`
@@ -115,10 +138,16 @@ GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewRevisionVersion) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewRevisionVersion) GetAttributesOk() (*map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *NewRevisionVersion) SetAttributes(v map[string]interface{})`
+
+SetAttributes sets Attributes field to given value.
 
 ### HasAttributes
 
@@ -126,24 +155,24 @@ and a boolean to check if the value has been set.
 
 HasAttributes returns a boolean if a field has been set.
 
-### SetAttributes
-
-`func (o *NewRevisionVersion) SetAttributes(v map[string]interface{})`
-
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
-
 ### GetDescription
 
-`func (o *NewRevisionVersion) GetDescription() NullableString`
+`func (o *NewRevisionVersion) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *NewRevisionVersion) GetDescriptionOk() (NullableString, bool)`
+`func (o *NewRevisionVersion) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *NewRevisionVersion) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
@@ -151,31 +180,34 @@ and a boolean to check if the value has been set.
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescription
+### SetDescriptionNil
 
-`func (o *NewRevisionVersion) SetDescription(v NullableString)`
+`func (o *NewRevisionVersion) SetDescriptionNil(b bool)`
 
-SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+ SetDescriptionNil sets the value for Description to be an explicit nil
 
-### SetDescriptionExplicitNull
+### UnsetDescription
+`func (o *NewRevisionVersion) UnsetDescription()`
 
-`func (o *NewRevisionVersion) SetDescriptionExplicitNull(b bool)`
-
-SetDescriptionExplicitNull (un)sets Description to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The Description value is set to nil even if false is passed
+UnsetDescription ensures that no value is present for Description, not even an explicit nil
 ### GetActiveRulesetId
 
-`func (o *NewRevisionVersion) GetActiveRulesetId() NullableInt32`
+`func (o *NewRevisionVersion) GetActiveRulesetId() int32`
 
 GetActiveRulesetId returns the ActiveRulesetId field if non-nil, zero value otherwise.
 
 ### GetActiveRulesetIdOk
 
-`func (o *NewRevisionVersion) GetActiveRulesetIdOk() (NullableInt32, bool)`
+`func (o *NewRevisionVersion) GetActiveRulesetIdOk() (*int32, bool)`
 
 GetActiveRulesetIdOk returns a tuple with the ActiveRulesetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetActiveRulesetId
+
+`func (o *NewRevisionVersion) SetActiveRulesetId(v int32)`
+
+SetActiveRulesetId sets ActiveRulesetId field to given value.
 
 ### HasActiveRulesetId
 
@@ -183,19 +215,16 @@ and a boolean to check if the value has been set.
 
 HasActiveRulesetId returns a boolean if a field has been set.
 
-### SetActiveRulesetId
+### SetActiveRulesetIdNil
 
-`func (o *NewRevisionVersion) SetActiveRulesetId(v NullableInt32)`
+`func (o *NewRevisionVersion) SetActiveRulesetIdNil(b bool)`
 
-SetActiveRulesetId gets a reference to the given NullableInt32 and assigns it to the ActiveRulesetId field.
+ SetActiveRulesetIdNil sets the value for ActiveRulesetId to be an explicit nil
 
-### SetActiveRulesetIdExplicitNull
+### UnsetActiveRulesetId
+`func (o *NewRevisionVersion) UnsetActiveRulesetId()`
 
-`func (o *NewRevisionVersion) SetActiveRulesetIdExplicitNull(b bool)`
-
-SetActiveRulesetIdExplicitNull (un)sets ActiveRulesetId to be considered as explicit "null" value
-when serializing to JSON (pass true as argument to set this, false to unset)
-The ActiveRulesetId value is set to nil even if false is passed
+UnsetActiveRulesetId ensures that no value is present for ActiveRulesetId, not even an explicit nil
 ### GetTags
 
 `func (o *NewRevisionVersion) GetTags() []string`
@@ -204,22 +233,22 @@ GetTags returns the Tags field if non-nil, zero value otherwise.
 
 ### GetTagsOk
 
-`func (o *NewRevisionVersion) GetTagsOk() ([]string, bool)`
+`func (o *NewRevisionVersion) GetTagsOk() (*[]string, bool)`
 
 GetTagsOk returns a tuple with the Tags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetTags
+
+`func (o *NewRevisionVersion) SetTags(v []string)`
+
+SetTags sets Tags field to given value.
 
 ### HasTags
 
 `func (o *NewRevisionVersion) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
-
-### SetTags
-
-`func (o *NewRevisionVersion) SetTags(v []string)`
-
-SetTags gets a reference to the given []string and assigns it to the Tags field.
 
 ### GetCouponSettings
 
@@ -229,22 +258,22 @@ GetCouponSettings returns the CouponSettings field if non-nil, zero value otherw
 
 ### GetCouponSettingsOk
 
-`func (o *NewRevisionVersion) GetCouponSettingsOk() (CodeGeneratorSettings, bool)`
+`func (o *NewRevisionVersion) GetCouponSettingsOk() (*CodeGeneratorSettings, bool)`
 
 GetCouponSettingsOk returns a tuple with the CouponSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCouponSettings
+
+`func (o *NewRevisionVersion) SetCouponSettings(v CodeGeneratorSettings)`
+
+SetCouponSettings sets CouponSettings field to given value.
 
 ### HasCouponSettings
 
 `func (o *NewRevisionVersion) HasCouponSettings() bool`
 
 HasCouponSettings returns a boolean if a field has been set.
-
-### SetCouponSettings
-
-`func (o *NewRevisionVersion) SetCouponSettings(v CodeGeneratorSettings)`
-
-SetCouponSettings gets a reference to the given CodeGeneratorSettings and assigns it to the CouponSettings field.
 
 ### GetReferralSettings
 
@@ -254,22 +283,22 @@ GetReferralSettings returns the ReferralSettings field if non-nil, zero value ot
 
 ### GetReferralSettingsOk
 
-`func (o *NewRevisionVersion) GetReferralSettingsOk() (CodeGeneratorSettings, bool)`
+`func (o *NewRevisionVersion) GetReferralSettingsOk() (*CodeGeneratorSettings, bool)`
 
 GetReferralSettingsOk returns a tuple with the ReferralSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetReferralSettings
+
+`func (o *NewRevisionVersion) SetReferralSettings(v CodeGeneratorSettings)`
+
+SetReferralSettings sets ReferralSettings field to given value.
 
 ### HasReferralSettings
 
 `func (o *NewRevisionVersion) HasReferralSettings() bool`
 
 HasReferralSettings returns a boolean if a field has been set.
-
-### SetReferralSettings
-
-`func (o *NewRevisionVersion) SetReferralSettings(v CodeGeneratorSettings)`
-
-SetReferralSettings gets a reference to the given CodeGeneratorSettings and assigns it to the ReferralSettings field.
 
 ### GetLimits
 
@@ -279,22 +308,22 @@ GetLimits returns the Limits field if non-nil, zero value otherwise.
 
 ### GetLimitsOk
 
-`func (o *NewRevisionVersion) GetLimitsOk() ([]LimitConfig, bool)`
+`func (o *NewRevisionVersion) GetLimitsOk() (*[]LimitConfig, bool)`
 
 GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLimits
+
+`func (o *NewRevisionVersion) SetLimits(v []LimitConfig)`
+
+SetLimits sets Limits field to given value.
 
 ### HasLimits
 
 `func (o *NewRevisionVersion) HasLimits() bool`
 
 HasLimits returns a boolean if a field has been set.
-
-### SetLimits
-
-`func (o *NewRevisionVersion) SetLimits(v []LimitConfig)`
-
-SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
 
 ### GetFeatures
 
@@ -304,22 +333,22 @@ GetFeatures returns the Features field if non-nil, zero value otherwise.
 
 ### GetFeaturesOk
 
-`func (o *NewRevisionVersion) GetFeaturesOk() ([]string, bool)`
+`func (o *NewRevisionVersion) GetFeaturesOk() (*[]string, bool)`
 
 GetFeaturesOk returns a tuple with the Features field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetFeatures
+
+`func (o *NewRevisionVersion) SetFeatures(v []string)`
+
+SetFeatures sets Features field to given value.
 
 ### HasFeatures
 
 `func (o *NewRevisionVersion) HasFeatures() bool`
 
 HasFeatures returns a boolean if a field has been set.
-
-### SetFeatures
-
-`func (o *NewRevisionVersion) SetFeatures(v []string)`
-
-SetFeatures gets a reference to the given []string and assigns it to the Features field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

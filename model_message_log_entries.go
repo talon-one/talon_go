@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type MessageLogEntries struct {
 	Data []MessageLogEntry `json:"data"`
 }
 
+// NewMessageLogEntries instantiates a new MessageLogEntries object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMessageLogEntries(data []MessageLogEntry) *MessageLogEntries {
+	this := MessageLogEntries{}
+	this.Data = data
+	return &this
+}
+
+// NewMessageLogEntriesWithDefaults instantiates a new MessageLogEntries object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMessageLogEntriesWithDefaults() *MessageLogEntries {
+	this := MessageLogEntries{}
+	return &this
+}
+
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
 func (o *MessageLogEntries) GetNextCursor() string {
 	if o == nil || o.NextCursor == nil {
@@ -31,14 +48,13 @@ func (o *MessageLogEntries) GetNextCursor() string {
 	return *o.NextCursor
 }
 
-// GetNextCursorOk returns a tuple with the NextCursor field value if set, zero value otherwise
+// GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MessageLogEntries) GetNextCursorOk() (string, bool) {
+func (o *MessageLogEntries) GetNextCursorOk() (*string, bool) {
 	if o == nil || o.NextCursor == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.NextCursor, true
+	return o.NextCursor, true
 }
 
 // HasNextCursor returns a boolean if a field has been set.
@@ -65,30 +81,63 @@ func (o *MessageLogEntries) GetData() []MessageLogEntry {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *MessageLogEntries) GetDataOk() (*[]MessageLogEntry, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *MessageLogEntries) SetData(v []MessageLogEntry) {
 	o.Data = v
 }
 
+func (o MessageLogEntries) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.NextCursor != nil {
+		toSerialize["nextCursor"] = o.NextCursor
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMessageLogEntries struct {
-	Value        MessageLogEntries
-	ExplicitNull bool
+	value *MessageLogEntries
+	isSet bool
+}
+
+func (v NullableMessageLogEntries) Get() *MessageLogEntries {
+	return v.value
+}
+
+func (v *NullableMessageLogEntries) Set(val *MessageLogEntries) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMessageLogEntries) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMessageLogEntries) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMessageLogEntries(val *MessageLogEntries) *NullableMessageLogEntries {
+	return &NullableMessageLogEntries{value: val, isSet: true}
 }
 
 func (v NullableMessageLogEntries) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMessageLogEntries) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

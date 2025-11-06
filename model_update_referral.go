@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -24,9 +23,26 @@ type UpdateReferral struct {
 	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. This can be set to 0 for no limit, but any campaign usage limits will still apply.
-	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	UsageLimit *int64 `json:"usageLimit,omitempty"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
+}
+
+// NewUpdateReferral instantiates a new UpdateReferral object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateReferral() *UpdateReferral {
+	this := UpdateReferral{}
+	return &this
+}
+
+// NewUpdateReferralWithDefaults instantiates a new UpdateReferral object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateReferralWithDefaults() *UpdateReferral {
+	this := UpdateReferral{}
+	return &this
 }
 
 // GetFriendProfileIntegrationId returns the FriendProfileIntegrationId field value if set, zero value otherwise.
@@ -38,14 +54,13 @@ func (o *UpdateReferral) GetFriendProfileIntegrationId() string {
 	return *o.FriendProfileIntegrationId
 }
 
-// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, zero value otherwise
+// GetFriendProfileIntegrationIdOk returns a tuple with the FriendProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferral) GetFriendProfileIntegrationIdOk() (string, bool) {
+func (o *UpdateReferral) GetFriendProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.FriendProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.FriendProfileIntegrationId, true
+	return o.FriendProfileIntegrationId, true
 }
 
 // HasFriendProfileIntegrationId returns a boolean if a field has been set.
@@ -71,14 +86,13 @@ func (o *UpdateReferral) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferral) GetStartDateOk() (time.Time, bool) {
+func (o *UpdateReferral) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -104,14 +118,13 @@ func (o *UpdateReferral) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferral) GetExpiryDateOk() (time.Time, bool) {
+func (o *UpdateReferral) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -129,22 +142,21 @@ func (o *UpdateReferral) SetExpiryDate(v time.Time) {
 }
 
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
-func (o *UpdateReferral) GetUsageLimit() int32 {
+func (o *UpdateReferral) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsageLimit
 }
 
-// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferral) GetUsageLimitOk() (int32, bool) {
+func (o *UpdateReferral) GetUsageLimitOk() (*int64, bool) {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsageLimit, true
+	return o.UsageLimit, true
 }
 
 // HasUsageLimit returns a boolean if a field has been set.
@@ -156,8 +168,8 @@ func (o *UpdateReferral) HasUsageLimit() bool {
 	return false
 }
 
-// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
-func (o *UpdateReferral) SetUsageLimit(v int32) {
+// SetUsageLimit gets a reference to the given int64 and assigns it to the UsageLimit field.
+func (o *UpdateReferral) SetUsageLimit(v int64) {
 	o.UsageLimit = &v
 }
 
@@ -170,14 +182,13 @@ func (o *UpdateReferral) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateReferral) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *UpdateReferral) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -194,25 +205,58 @@ func (o *UpdateReferral) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o UpdateReferral) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.FriendProfileIntegrationId != nil {
+		toSerialize["friendProfileIntegrationId"] = o.FriendProfileIntegrationId
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.UsageLimit != nil {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateReferral struct {
-	Value        UpdateReferral
-	ExplicitNull bool
+	value *UpdateReferral
+	isSet bool
+}
+
+func (v NullableUpdateReferral) Get() *UpdateReferral {
+	return v.value
+}
+
+func (v *NullableUpdateReferral) Set(val *UpdateReferral) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateReferral) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateReferral) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateReferral(val *UpdateReferral) *NullableUpdateReferral {
+	return &NullableUpdateReferral{value: val, isSet: true}
 }
 
 func (v NullableUpdateReferral) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateReferral) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

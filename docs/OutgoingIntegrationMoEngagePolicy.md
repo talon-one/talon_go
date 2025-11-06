@@ -11,6 +11,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewOutgoingIntegrationMoEngagePolicy
+
+`func NewOutgoingIntegrationMoEngagePolicy(baseUrl string, appId string, dataApiId string, dataApiKey string, ) *OutgoingIntegrationMoEngagePolicy`
+
+NewOutgoingIntegrationMoEngagePolicy instantiates a new OutgoingIntegrationMoEngagePolicy object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewOutgoingIntegrationMoEngagePolicyWithDefaults
+
+`func NewOutgoingIntegrationMoEngagePolicyWithDefaults() *OutgoingIntegrationMoEngagePolicy`
+
+NewOutgoingIntegrationMoEngagePolicyWithDefaults instantiates a new OutgoingIntegrationMoEngagePolicy object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetBaseUrl
 
 `func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrl() string`
@@ -19,22 +36,17 @@ GetBaseUrl returns the BaseUrl field if non-nil, zero value otherwise.
 
 ### GetBaseUrlOk
 
-`func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrlOk() (string, bool)`
+`func (o *OutgoingIntegrationMoEngagePolicy) GetBaseUrlOk() (*string, bool)`
 
 GetBaseUrlOk returns a tuple with the BaseUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasBaseUrl
-
-`func (o *OutgoingIntegrationMoEngagePolicy) HasBaseUrl() bool`
-
-HasBaseUrl returns a boolean if a field has been set.
 
 ### SetBaseUrl
 
 `func (o *OutgoingIntegrationMoEngagePolicy) SetBaseUrl(v string)`
 
-SetBaseUrl gets a reference to the given string and assigns it to the BaseUrl field.
+SetBaseUrl sets BaseUrl field to given value.
+
 
 ### GetAppId
 
@@ -44,22 +56,17 @@ GetAppId returns the AppId field if non-nil, zero value otherwise.
 
 ### GetAppIdOk
 
-`func (o *OutgoingIntegrationMoEngagePolicy) GetAppIdOk() (string, bool)`
+`func (o *OutgoingIntegrationMoEngagePolicy) GetAppIdOk() (*string, bool)`
 
 GetAppIdOk returns a tuple with the AppId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAppId
-
-`func (o *OutgoingIntegrationMoEngagePolicy) HasAppId() bool`
-
-HasAppId returns a boolean if a field has been set.
 
 ### SetAppId
 
 `func (o *OutgoingIntegrationMoEngagePolicy) SetAppId(v string)`
 
-SetAppId gets a reference to the given string and assigns it to the AppId field.
+SetAppId sets AppId field to given value.
+
 
 ### GetDataApiId
 
@@ -69,22 +76,17 @@ GetDataApiId returns the DataApiId field if non-nil, zero value otherwise.
 
 ### GetDataApiIdOk
 
-`func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiIdOk() (string, bool)`
+`func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiIdOk() (*string, bool)`
 
 GetDataApiIdOk returns a tuple with the DataApiId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDataApiId
-
-`func (o *OutgoingIntegrationMoEngagePolicy) HasDataApiId() bool`
-
-HasDataApiId returns a boolean if a field has been set.
 
 ### SetDataApiId
 
 `func (o *OutgoingIntegrationMoEngagePolicy) SetDataApiId(v string)`
 
-SetDataApiId gets a reference to the given string and assigns it to the DataApiId field.
+SetDataApiId sets DataApiId field to given value.
+
 
 ### GetDataApiKey
 
@@ -94,22 +96,17 @@ GetDataApiKey returns the DataApiKey field if non-nil, zero value otherwise.
 
 ### GetDataApiKeyOk
 
-`func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiKeyOk() (string, bool)`
+`func (o *OutgoingIntegrationMoEngagePolicy) GetDataApiKeyOk() (*string, bool)`
 
 GetDataApiKeyOk returns a tuple with the DataApiKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDataApiKey
-
-`func (o *OutgoingIntegrationMoEngagePolicy) HasDataApiKey() bool`
-
-HasDataApiKey returns a boolean if a field has been set.
 
 ### SetDataApiKey
 
 `func (o *OutgoingIntegrationMoEngagePolicy) SetDataApiKey(v string)`
 
-SetDataApiKey gets a reference to the given string and assigns it to the DataApiKey field.
+SetDataApiKey sets DataApiKey field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

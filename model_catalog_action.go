@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type CatalogAction struct {
 	Payload map[string]interface{} `json:"payload"`
 }
 
+// NewCatalogAction instantiates a new CatalogAction object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCatalogAction(type_ string, payload map[string]interface{}) *CatalogAction {
+	this := CatalogAction{}
+	this.Type = type_
+	this.Payload = payload
+	return &this
+}
+
+// NewCatalogActionWithDefaults instantiates a new CatalogAction object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCatalogActionWithDefaults() *CatalogAction {
+	this := CatalogAction{}
+	return &this
+}
+
 // GetType returns the Type field value
 func (o *CatalogAction) GetType() string {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *CatalogAction) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CatalogAction) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -46,30 +73,63 @@ func (o *CatalogAction) GetPayload() map[string]interface{} {
 	return o.Payload
 }
 
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *CatalogAction) GetPayloadOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
+}
+
 // SetPayload sets field value
 func (o *CatalogAction) SetPayload(v map[string]interface{}) {
 	o.Payload = v
 }
 
+func (o CatalogAction) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCatalogAction struct {
-	Value        CatalogAction
-	ExplicitNull bool
+	value *CatalogAction
+	isSet bool
+}
+
+func (v NullableCatalogAction) Get() *CatalogAction {
+	return v.value
+}
+
+func (v *NullableCatalogAction) Set(val *CatalogAction) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCatalogAction) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCatalogAction) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCatalogAction(val *CatalogAction) *NullableCatalogAction {
+	return &NullableCatalogAction{value: val, isSet: true}
 }
 
 func (v NullableCatalogAction) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCatalogAction) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

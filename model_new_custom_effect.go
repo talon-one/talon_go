@@ -10,14 +10,13 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewCustomEffect struct for NewCustomEffect
 type NewCustomEffect struct {
 	// The IDs of the Applications that are related to this entity.
-	ApplicationIds []int32 `json:"applicationIds"`
+	ApplicationIds []int64 `json:"applicationIds"`
 	// Indicates if this effect is per item or not.
 	IsPerItem *bool `json:"isPerItem,omitempty"`
 	// The name of this effect.
@@ -34,18 +33,49 @@ type NewCustomEffect struct {
 	Params *[]TemplateArgDef `json:"params,omitempty"`
 }
 
+// NewNewCustomEffect instantiates a new NewCustomEffect object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewCustomEffect(applicationIds []int64, name string, title string, payload string, enabled bool) *NewCustomEffect {
+	this := NewCustomEffect{}
+	this.ApplicationIds = applicationIds
+	this.Name = name
+	this.Title = title
+	this.Payload = payload
+	this.Enabled = enabled
+	return &this
+}
+
+// NewNewCustomEffectWithDefaults instantiates a new NewCustomEffect object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCustomEffectWithDefaults() *NewCustomEffect {
+	this := NewCustomEffect{}
+	return &this
+}
+
 // GetApplicationIds returns the ApplicationIds field value
-func (o *NewCustomEffect) GetApplicationIds() []int32 {
+func (o *NewCustomEffect) GetApplicationIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.ApplicationIds
 }
 
+// GetApplicationIdsOk returns a tuple with the ApplicationIds field value
+// and a boolean to check if the value has been set.
+func (o *NewCustomEffect) GetApplicationIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationIds, true
+}
+
 // SetApplicationIds sets field value
-func (o *NewCustomEffect) SetApplicationIds(v []int32) {
+func (o *NewCustomEffect) SetApplicationIds(v []int64) {
 	o.ApplicationIds = v
 }
 
@@ -58,14 +88,13 @@ func (o *NewCustomEffect) GetIsPerItem() bool {
 	return *o.IsPerItem
 }
 
-// GetIsPerItemOk returns a tuple with the IsPerItem field value if set, zero value otherwise
+// GetIsPerItemOk returns a tuple with the IsPerItem field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomEffect) GetIsPerItemOk() (bool, bool) {
+func (o *NewCustomEffect) GetIsPerItemOk() (*bool, bool) {
 	if o == nil || o.IsPerItem == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.IsPerItem, true
+	return o.IsPerItem, true
 }
 
 // HasIsPerItem returns a boolean if a field has been set.
@@ -92,6 +121,15 @@ func (o *NewCustomEffect) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewCustomEffect) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *NewCustomEffect) SetName(v string) {
 	o.Name = v
@@ -105,6 +143,15 @@ func (o *NewCustomEffect) GetTitle() string {
 	}
 
 	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *NewCustomEffect) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
 }
 
 // SetTitle sets field value
@@ -122,6 +169,15 @@ func (o *NewCustomEffect) GetPayload() string {
 	return o.Payload
 }
 
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *NewCustomEffect) GetPayloadOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
+}
+
 // SetPayload sets field value
 func (o *NewCustomEffect) SetPayload(v string) {
 	o.Payload = v
@@ -136,14 +192,13 @@ func (o *NewCustomEffect) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomEffect) GetDescriptionOk() (string, bool) {
+func (o *NewCustomEffect) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -170,6 +225,15 @@ func (o *NewCustomEffect) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *NewCustomEffect) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *NewCustomEffect) SetEnabled(v bool) {
 	o.Enabled = v
@@ -184,14 +248,13 @@ func (o *NewCustomEffect) GetParams() []TemplateArgDef {
 	return *o.Params
 }
 
-// GetParamsOk returns a tuple with the Params field value if set, zero value otherwise
+// GetParamsOk returns a tuple with the Params field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomEffect) GetParamsOk() ([]TemplateArgDef, bool) {
+func (o *NewCustomEffect) GetParamsOk() (*[]TemplateArgDef, bool) {
 	if o == nil || o.Params == nil {
-		var ret []TemplateArgDef
-		return ret, false
+		return nil, false
 	}
-	return *o.Params, true
+	return o.Params, true
 }
 
 // HasParams returns a boolean if a field has been set.
@@ -208,25 +271,67 @@ func (o *NewCustomEffect) SetParams(v []TemplateArgDef) {
 	o.Params = &v
 }
 
+func (o NewCustomEffect) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationIds"] = o.ApplicationIds
+	}
+	if o.IsPerItem != nil {
+		toSerialize["isPerItem"] = o.IsPerItem
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if o.Params != nil {
+		toSerialize["params"] = o.Params
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCustomEffect struct {
-	Value        NewCustomEffect
-	ExplicitNull bool
+	value *NewCustomEffect
+	isSet bool
+}
+
+func (v NullableNewCustomEffect) Get() *NewCustomEffect {
+	return v.value
+}
+
+func (v *NullableNewCustomEffect) Set(val *NewCustomEffect) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCustomEffect) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCustomEffect) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewCustomEffect(val *NewCustomEffect) *NullableNewCustomEffect {
+	return &NullableNewCustomEffect{value: val, isSet: true}
 }
 
 func (v NullableNewCustomEffect) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCustomEffect) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

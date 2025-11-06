@@ -10,32 +10,60 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // WillAwardGiveawayEffectProps The properties specific to the \"awardGiveaway\" effect when the session is not closed yet. This effect replaces \"awardGiveaway\" only when updating a session with any state other than \"closed\". This is to ensure no giveaway codes are leaked when they are still not guaranteed to be awarded.
 type WillAwardGiveawayEffectProps struct {
 	// The ID of the giveaways pool the code will be taken from.
-	PoolId int32 `json:"poolId"`
+	PoolId int64 `json:"poolId"`
 	// The name of the giveaways pool the code will be taken from.
 	PoolName string `json:"poolName"`
 	// The integration ID of the profile that will be awarded the giveaway.
 	RecipientIntegrationId string `json:"recipientIntegrationId"`
 }
 
+// NewWillAwardGiveawayEffectProps instantiates a new WillAwardGiveawayEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildWillAwardGiveawayEffectProps(poolId int64, poolName string, recipientIntegrationId string) *WillAwardGiveawayEffectProps {
+	this := WillAwardGiveawayEffectProps{}
+	this.PoolId = poolId
+	this.PoolName = poolName
+	this.RecipientIntegrationId = recipientIntegrationId
+	return &this
+}
+
+// NewWillAwardGiveawayEffectPropsWithDefaults instantiates a new WillAwardGiveawayEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewWillAwardGiveawayEffectPropsWithDefaults() *WillAwardGiveawayEffectProps {
+	this := WillAwardGiveawayEffectProps{}
+	return &this
+}
+
 // GetPoolId returns the PoolId field value
-func (o *WillAwardGiveawayEffectProps) GetPoolId() int32 {
+func (o *WillAwardGiveawayEffectProps) GetPoolId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.PoolId
 }
 
+// GetPoolIdOk returns a tuple with the PoolId field value
+// and a boolean to check if the value has been set.
+func (o *WillAwardGiveawayEffectProps) GetPoolIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PoolId, true
+}
+
 // SetPoolId sets field value
-func (o *WillAwardGiveawayEffectProps) SetPoolId(v int32) {
+func (o *WillAwardGiveawayEffectProps) SetPoolId(v int64) {
 	o.PoolId = v
 }
 
@@ -47,6 +75,15 @@ func (o *WillAwardGiveawayEffectProps) GetPoolName() string {
 	}
 
 	return o.PoolName
+}
+
+// GetPoolNameOk returns a tuple with the PoolName field value
+// and a boolean to check if the value has been set.
+func (o *WillAwardGiveawayEffectProps) GetPoolNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PoolName, true
 }
 
 // SetPoolName sets field value
@@ -64,30 +101,66 @@ func (o *WillAwardGiveawayEffectProps) GetRecipientIntegrationId() string {
 	return o.RecipientIntegrationId
 }
 
+// GetRecipientIntegrationIdOk returns a tuple with the RecipientIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *WillAwardGiveawayEffectProps) GetRecipientIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RecipientIntegrationId, true
+}
+
 // SetRecipientIntegrationId sets field value
 func (o *WillAwardGiveawayEffectProps) SetRecipientIntegrationId(v string) {
 	o.RecipientIntegrationId = v
 }
 
+func (o WillAwardGiveawayEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["poolId"] = o.PoolId
+	}
+	if true {
+		toSerialize["poolName"] = o.PoolName
+	}
+	if true {
+		toSerialize["recipientIntegrationId"] = o.RecipientIntegrationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableWillAwardGiveawayEffectProps struct {
-	Value        WillAwardGiveawayEffectProps
-	ExplicitNull bool
+	value *WillAwardGiveawayEffectProps
+	isSet bool
+}
+
+func (v NullableWillAwardGiveawayEffectProps) Get() *WillAwardGiveawayEffectProps {
+	return v.value
+}
+
+func (v *NullableWillAwardGiveawayEffectProps) Set(val *WillAwardGiveawayEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableWillAwardGiveawayEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableWillAwardGiveawayEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableWillAwardGiveawayEffectProps(val *WillAwardGiveawayEffectProps) *NullableWillAwardGiveawayEffectProps {
+	return &NullableWillAwardGiveawayEffectProps{value: val, isSet: true}
 }
 
 func (v NullableWillAwardGiveawayEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableWillAwardGiveawayEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

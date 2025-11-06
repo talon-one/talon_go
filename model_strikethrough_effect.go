@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // StrikethroughEffect The effect produced for the catalog item.
 type StrikethroughEffect struct {
 	// The ID of the campaign that effect belongs to.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The ID of the ruleset containing the rule that triggered this effect.
-	RulesetId int32 `json:"rulesetId"`
+	RulesetId int64 `json:"rulesetId"`
 	// The position of the rule that triggered this effect within the ruleset.
-	RuleIndex int32 `json:"ruleIndex"`
+	RuleIndex int64 `json:"ruleIndex"`
 	// The name of the rule that triggered this effect.
 	RuleName string `json:"ruleName"`
 	// The type of this effect.
@@ -32,50 +31,108 @@ type StrikethroughEffect struct {
 	StartTime *time.Time `json:"startTime,omitempty"`
 	// The end of the time frame where the effect is active in UTC.
 	EndTime *time.Time `json:"endTime,omitempty"`
+	// The selected price type for this cart item (e.g. the price for members only).
+	SelectedPriceType *string `json:"selectedPriceType,omitempty"`
+	// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
+	SelectedPrice *float32 `json:"selectedPrice,omitempty"`
+	// The reference identifier of the selected price adjustment for this cart item.
+	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
+	// A list of entities (e.g. audiences) targeted by this effect.
+	Targets *[]map[string]interface{} `json:"targets,omitempty"`
+}
+
+// NewStrikethroughEffect instantiates a new StrikethroughEffect object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildStrikethroughEffect(campaignId int64, rulesetId int64, ruleIndex int64, ruleName string, type_ string, props map[string]interface{}) *StrikethroughEffect {
+	this := StrikethroughEffect{}
+	this.CampaignId = campaignId
+	this.RulesetId = rulesetId
+	this.RuleIndex = ruleIndex
+	this.RuleName = ruleName
+	this.Type = type_
+	this.Props = props
+	return &this
+}
+
+// NewStrikethroughEffectWithDefaults instantiates a new StrikethroughEffect object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughEffectWithDefaults() *StrikethroughEffect {
+	this := StrikethroughEffect{}
+	return &this
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *StrikethroughEffect) GetCampaignId() int32 {
+func (o *StrikethroughEffect) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *StrikethroughEffect) SetCampaignId(v int32) {
+func (o *StrikethroughEffect) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
 // GetRulesetId returns the RulesetId field value
-func (o *StrikethroughEffect) GetRulesetId() int32 {
+func (o *StrikethroughEffect) GetRulesetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RulesetId
 }
 
+// GetRulesetIdOk returns a tuple with the RulesetId field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetRulesetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RulesetId, true
+}
+
 // SetRulesetId sets field value
-func (o *StrikethroughEffect) SetRulesetId(v int32) {
+func (o *StrikethroughEffect) SetRulesetId(v int64) {
 	o.RulesetId = v
 }
 
 // GetRuleIndex returns the RuleIndex field value
-func (o *StrikethroughEffect) GetRuleIndex() int32 {
+func (o *StrikethroughEffect) GetRuleIndex() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.RuleIndex
 }
 
+// GetRuleIndexOk returns a tuple with the RuleIndex field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetRuleIndexOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleIndex, true
+}
+
 // SetRuleIndex sets field value
-func (o *StrikethroughEffect) SetRuleIndex(v int32) {
+func (o *StrikethroughEffect) SetRuleIndex(v int64) {
 	o.RuleIndex = v
 }
 
@@ -87,6 +144,15 @@ func (o *StrikethroughEffect) GetRuleName() string {
 	}
 
 	return o.RuleName
+}
+
+// GetRuleNameOk returns a tuple with the RuleName field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetRuleNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuleName, true
 }
 
 // SetRuleName sets field value
@@ -104,6 +170,15 @@ func (o *StrikethroughEffect) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *StrikethroughEffect) SetType(v string) {
 	o.Type = v
@@ -117,6 +192,15 @@ func (o *StrikethroughEffect) GetProps() map[string]interface{} {
 	}
 
 	return o.Props
+}
+
+// GetPropsOk returns a tuple with the Props field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetPropsOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Props, true
 }
 
 // SetProps sets field value
@@ -133,14 +217,13 @@ func (o *StrikethroughEffect) GetStartTime() time.Time {
 	return *o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value if set, zero value otherwise
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughEffect) GetStartTimeOk() (time.Time, bool) {
+func (o *StrikethroughEffect) GetStartTimeOk() (*time.Time, bool) {
 	if o == nil || o.StartTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartTime, true
+	return o.StartTime, true
 }
 
 // HasStartTime returns a boolean if a field has been set.
@@ -166,14 +249,13 @@ func (o *StrikethroughEffect) GetEndTime() time.Time {
 	return *o.EndTime
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value if set, zero value otherwise
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughEffect) GetEndTimeOk() (time.Time, bool) {
+func (o *StrikethroughEffect) GetEndTimeOk() (*time.Time, bool) {
 	if o == nil || o.EndTime == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndTime, true
+	return o.EndTime, true
 }
 
 // HasEndTime returns a boolean if a field has been set.
@@ -190,25 +272,207 @@ func (o *StrikethroughEffect) SetEndTime(v time.Time) {
 	o.EndTime = &v
 }
 
+// GetSelectedPriceType returns the SelectedPriceType field value if set, zero value otherwise.
+func (o *StrikethroughEffect) GetSelectedPriceType() string {
+	if o == nil || o.SelectedPriceType == nil {
+		var ret string
+		return ret
+	}
+	return *o.SelectedPriceType
+}
+
+// GetSelectedPriceTypeOk returns a tuple with the SelectedPriceType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetSelectedPriceTypeOk() (*string, bool) {
+	if o == nil || o.SelectedPriceType == nil {
+		return nil, false
+	}
+	return o.SelectedPriceType, true
+}
+
+// HasSelectedPriceType returns a boolean if a field has been set.
+func (o *StrikethroughEffect) HasSelectedPriceType() bool {
+	if o != nil && o.SelectedPriceType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectedPriceType gets a reference to the given string and assigns it to the SelectedPriceType field.
+func (o *StrikethroughEffect) SetSelectedPriceType(v string) {
+	o.SelectedPriceType = &v
+}
+
+// GetSelectedPrice returns the SelectedPrice field value if set, zero value otherwise.
+func (o *StrikethroughEffect) GetSelectedPrice() float32 {
+	if o == nil || o.SelectedPrice == nil {
+		var ret float32
+		return ret
+	}
+	return *o.SelectedPrice
+}
+
+// GetSelectedPriceOk returns a tuple with the SelectedPrice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetSelectedPriceOk() (*float32, bool) {
+	if o == nil || o.SelectedPrice == nil {
+		return nil, false
+	}
+	return o.SelectedPrice, true
+}
+
+// HasSelectedPrice returns a boolean if a field has been set.
+func (o *StrikethroughEffect) HasSelectedPrice() bool {
+	if o != nil && o.SelectedPrice != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelectedPrice gets a reference to the given float32 and assigns it to the SelectedPrice field.
+func (o *StrikethroughEffect) SetSelectedPrice(v float32) {
+	o.SelectedPrice = &v
+}
+
+// GetAdjustmentReferenceId returns the AdjustmentReferenceId field value if set, zero value otherwise.
+func (o *StrikethroughEffect) GetAdjustmentReferenceId() string {
+	if o == nil || o.AdjustmentReferenceId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdjustmentReferenceId
+}
+
+// GetAdjustmentReferenceIdOk returns a tuple with the AdjustmentReferenceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetAdjustmentReferenceIdOk() (*string, bool) {
+	if o == nil || o.AdjustmentReferenceId == nil {
+		return nil, false
+	}
+	return o.AdjustmentReferenceId, true
+}
+
+// HasAdjustmentReferenceId returns a boolean if a field has been set.
+func (o *StrikethroughEffect) HasAdjustmentReferenceId() bool {
+	if o != nil && o.AdjustmentReferenceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdjustmentReferenceId gets a reference to the given string and assigns it to the AdjustmentReferenceId field.
+func (o *StrikethroughEffect) SetAdjustmentReferenceId(v string) {
+	o.AdjustmentReferenceId = &v
+}
+
+// GetTargets returns the Targets field value if set, zero value otherwise.
+func (o *StrikethroughEffect) GetTargets() []map[string]interface{} {
+	if o == nil || o.Targets == nil {
+		var ret []map[string]interface{}
+		return ret
+	}
+	return *o.Targets
+}
+
+// GetTargetsOk returns a tuple with the Targets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *StrikethroughEffect) GetTargetsOk() (*[]map[string]interface{}, bool) {
+	if o == nil || o.Targets == nil {
+		return nil, false
+	}
+	return o.Targets, true
+}
+
+// HasTargets returns a boolean if a field has been set.
+func (o *StrikethroughEffect) HasTargets() bool {
+	if o != nil && o.Targets != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTargets gets a reference to the given []map[string]interface{} and assigns it to the Targets field.
+func (o *StrikethroughEffect) SetTargets(v []map[string]interface{}) {
+	o.Targets = &v
+}
+
+func (o StrikethroughEffect) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["rulesetId"] = o.RulesetId
+	}
+	if true {
+		toSerialize["ruleIndex"] = o.RuleIndex
+	}
+	if true {
+		toSerialize["ruleName"] = o.RuleName
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["props"] = o.Props
+	}
+	if o.StartTime != nil {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if o.EndTime != nil {
+		toSerialize["endTime"] = o.EndTime
+	}
+	if o.SelectedPriceType != nil {
+		toSerialize["selectedPriceType"] = o.SelectedPriceType
+	}
+	if o.SelectedPrice != nil {
+		toSerialize["selectedPrice"] = o.SelectedPrice
+	}
+	if o.AdjustmentReferenceId != nil {
+		toSerialize["adjustmentReferenceId"] = o.AdjustmentReferenceId
+	}
+	if o.Targets != nil {
+		toSerialize["targets"] = o.Targets
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughEffect struct {
-	Value        StrikethroughEffect
-	ExplicitNull bool
+	value *StrikethroughEffect
+	isSet bool
+}
+
+func (v NullableStrikethroughEffect) Get() *StrikethroughEffect {
+	return v.value
+}
+
+func (v *NullableStrikethroughEffect) Set(val *StrikethroughEffect) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughEffect) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughEffect) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableStrikethroughEffect(val *StrikethroughEffect) *NullableStrikethroughEffect {
+	return &NullableStrikethroughEffect{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughEffect) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughEffect) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

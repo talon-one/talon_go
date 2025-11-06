@@ -23,6 +23,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewNewApplication
+
+`func NewNewApplication(name string, timezone string, currency string, ) *NewApplication`
+
+NewNewApplication instantiates a new NewApplication object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewApplicationWithDefaults
+
+`func NewNewApplicationWithDefaults() *NewApplication`
+
+NewNewApplicationWithDefaults instantiates a new NewApplication object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetName
 
 `func (o *NewApplication) GetName() string`
@@ -31,22 +48,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *NewApplication) GetNameOk() (string, bool)`
+`func (o *NewApplication) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *NewApplication) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *NewApplication) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetDescription
 
@@ -56,22 +68,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *NewApplication) GetDescriptionOk() (string, bool)`
+`func (o *NewApplication) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *NewApplication) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *NewApplication) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *NewApplication) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetTimezone
 
@@ -81,22 +93,17 @@ GetTimezone returns the Timezone field if non-nil, zero value otherwise.
 
 ### GetTimezoneOk
 
-`func (o *NewApplication) GetTimezoneOk() (string, bool)`
+`func (o *NewApplication) GetTimezoneOk() (*string, bool)`
 
 GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTimezone
-
-`func (o *NewApplication) HasTimezone() bool`
-
-HasTimezone returns a boolean if a field has been set.
 
 ### SetTimezone
 
 `func (o *NewApplication) SetTimezone(v string)`
 
-SetTimezone gets a reference to the given string and assigns it to the Timezone field.
+SetTimezone sets Timezone field to given value.
+
 
 ### GetCurrency
 
@@ -106,22 +113,17 @@ GetCurrency returns the Currency field if non-nil, zero value otherwise.
 
 ### GetCurrencyOk
 
-`func (o *NewApplication) GetCurrencyOk() (string, bool)`
+`func (o *NewApplication) GetCurrencyOk() (*string, bool)`
 
 GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCurrency
-
-`func (o *NewApplication) HasCurrency() bool`
-
-HasCurrency returns a boolean if a field has been set.
 
 ### SetCurrency
 
 `func (o *NewApplication) SetCurrency(v string)`
 
-SetCurrency gets a reference to the given string and assigns it to the Currency field.
+SetCurrency sets Currency field to given value.
+
 
 ### GetCaseSensitivity
 
@@ -131,22 +133,22 @@ GetCaseSensitivity returns the CaseSensitivity field if non-nil, zero value othe
 
 ### GetCaseSensitivityOk
 
-`func (o *NewApplication) GetCaseSensitivityOk() (string, bool)`
+`func (o *NewApplication) GetCaseSensitivityOk() (*string, bool)`
 
 GetCaseSensitivityOk returns a tuple with the CaseSensitivity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCaseSensitivity
+
+`func (o *NewApplication) SetCaseSensitivity(v string)`
+
+SetCaseSensitivity sets CaseSensitivity field to given value.
 
 ### HasCaseSensitivity
 
 `func (o *NewApplication) HasCaseSensitivity() bool`
 
 HasCaseSensitivity returns a boolean if a field has been set.
-
-### SetCaseSensitivity
-
-`func (o *NewApplication) SetCaseSensitivity(v string)`
-
-SetCaseSensitivity gets a reference to the given string and assigns it to the CaseSensitivity field.
 
 ### GetAttributes
 
@@ -156,22 +158,22 @@ GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *NewApplication) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *NewApplication) GetAttributesOk() (*map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAttributes
+
+`func (o *NewApplication) SetAttributes(v map[string]interface{})`
+
+SetAttributes sets Attributes field to given value.
 
 ### HasAttributes
 
 `func (o *NewApplication) HasAttributes() bool`
 
 HasAttributes returns a boolean if a field has been set.
-
-### SetAttributes
-
-`func (o *NewApplication) SetAttributes(v map[string]interface{})`
-
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
 
 ### GetLimits
 
@@ -181,22 +183,22 @@ GetLimits returns the Limits field if non-nil, zero value otherwise.
 
 ### GetLimitsOk
 
-`func (o *NewApplication) GetLimitsOk() ([]LimitConfig, bool)`
+`func (o *NewApplication) GetLimitsOk() (*[]LimitConfig, bool)`
 
 GetLimitsOk returns a tuple with the Limits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLimits
+
+`func (o *NewApplication) SetLimits(v []LimitConfig)`
+
+SetLimits sets Limits field to given value.
 
 ### HasLimits
 
 `func (o *NewApplication) HasLimits() bool`
 
 HasLimits returns a boolean if a field has been set.
-
-### SetLimits
-
-`func (o *NewApplication) SetLimits(v []LimitConfig)`
-
-SetLimits gets a reference to the given []LimitConfig and assigns it to the Limits field.
 
 ### GetDefaultDiscountScope
 
@@ -206,22 +208,22 @@ GetDefaultDiscountScope returns the DefaultDiscountScope field if non-nil, zero 
 
 ### GetDefaultDiscountScopeOk
 
-`func (o *NewApplication) GetDefaultDiscountScopeOk() (string, bool)`
+`func (o *NewApplication) GetDefaultDiscountScopeOk() (*string, bool)`
 
 GetDefaultDiscountScopeOk returns a tuple with the DefaultDiscountScope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDefaultDiscountScope
+
+`func (o *NewApplication) SetDefaultDiscountScope(v string)`
+
+SetDefaultDiscountScope sets DefaultDiscountScope field to given value.
 
 ### HasDefaultDiscountScope
 
 `func (o *NewApplication) HasDefaultDiscountScope() bool`
 
 HasDefaultDiscountScope returns a boolean if a field has been set.
-
-### SetDefaultDiscountScope
-
-`func (o *NewApplication) SetDefaultDiscountScope(v string)`
-
-SetDefaultDiscountScope gets a reference to the given string and assigns it to the DefaultDiscountScope field.
 
 ### GetEnableCascadingDiscounts
 
@@ -231,22 +233,22 @@ GetEnableCascadingDiscounts returns the EnableCascadingDiscounts field if non-ni
 
 ### GetEnableCascadingDiscountsOk
 
-`func (o *NewApplication) GetEnableCascadingDiscountsOk() (bool, bool)`
+`func (o *NewApplication) GetEnableCascadingDiscountsOk() (*bool, bool)`
 
 GetEnableCascadingDiscountsOk returns a tuple with the EnableCascadingDiscounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEnableCascadingDiscounts
+
+`func (o *NewApplication) SetEnableCascadingDiscounts(v bool)`
+
+SetEnableCascadingDiscounts sets EnableCascadingDiscounts field to given value.
 
 ### HasEnableCascadingDiscounts
 
 `func (o *NewApplication) HasEnableCascadingDiscounts() bool`
 
 HasEnableCascadingDiscounts returns a boolean if a field has been set.
-
-### SetEnableCascadingDiscounts
-
-`func (o *NewApplication) SetEnableCascadingDiscounts(v bool)`
-
-SetEnableCascadingDiscounts gets a reference to the given bool and assigns it to the EnableCascadingDiscounts field.
 
 ### GetEnableFlattenedCartItems
 
@@ -256,22 +258,22 @@ GetEnableFlattenedCartItems returns the EnableFlattenedCartItems field if non-ni
 
 ### GetEnableFlattenedCartItemsOk
 
-`func (o *NewApplication) GetEnableFlattenedCartItemsOk() (bool, bool)`
+`func (o *NewApplication) GetEnableFlattenedCartItemsOk() (*bool, bool)`
 
 GetEnableFlattenedCartItemsOk returns a tuple with the EnableFlattenedCartItems field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEnableFlattenedCartItems
+
+`func (o *NewApplication) SetEnableFlattenedCartItems(v bool)`
+
+SetEnableFlattenedCartItems sets EnableFlattenedCartItems field to given value.
 
 ### HasEnableFlattenedCartItems
 
 `func (o *NewApplication) HasEnableFlattenedCartItems() bool`
 
 HasEnableFlattenedCartItems returns a boolean if a field has been set.
-
-### SetEnableFlattenedCartItems
-
-`func (o *NewApplication) SetEnableFlattenedCartItems(v bool)`
-
-SetEnableFlattenedCartItems gets a reference to the given bool and assigns it to the EnableFlattenedCartItems field.
 
 ### GetAttributesSettings
 
@@ -281,22 +283,22 @@ GetAttributesSettings returns the AttributesSettings field if non-nil, zero valu
 
 ### GetAttributesSettingsOk
 
-`func (o *NewApplication) GetAttributesSettingsOk() (AttributesSettings, bool)`
+`func (o *NewApplication) GetAttributesSettingsOk() (*AttributesSettings, bool)`
 
 GetAttributesSettingsOk returns a tuple with the AttributesSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAttributesSettings
+
+`func (o *NewApplication) SetAttributesSettings(v AttributesSettings)`
+
+SetAttributesSettings sets AttributesSettings field to given value.
 
 ### HasAttributesSettings
 
 `func (o *NewApplication) HasAttributesSettings() bool`
 
 HasAttributesSettings returns a boolean if a field has been set.
-
-### SetAttributesSettings
-
-`func (o *NewApplication) SetAttributesSettings(v AttributesSettings)`
-
-SetAttributesSettings gets a reference to the given AttributesSettings and assigns it to the AttributesSettings field.
 
 ### GetSandbox
 
@@ -306,22 +308,22 @@ GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
 
 ### GetSandboxOk
 
-`func (o *NewApplication) GetSandboxOk() (bool, bool)`
+`func (o *NewApplication) GetSandboxOk() (*bool, bool)`
 
 GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSandbox
+
+`func (o *NewApplication) SetSandbox(v bool)`
+
+SetSandbox sets Sandbox field to given value.
 
 ### HasSandbox
 
 `func (o *NewApplication) HasSandbox() bool`
 
 HasSandbox returns a boolean if a field has been set.
-
-### SetSandbox
-
-`func (o *NewApplication) SetSandbox(v bool)`
-
-SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
 
 ### GetEnablePartialDiscounts
 
@@ -331,22 +333,22 @@ GetEnablePartialDiscounts returns the EnablePartialDiscounts field if non-nil, z
 
 ### GetEnablePartialDiscountsOk
 
-`func (o *NewApplication) GetEnablePartialDiscountsOk() (bool, bool)`
+`func (o *NewApplication) GetEnablePartialDiscountsOk() (*bool, bool)`
 
 GetEnablePartialDiscountsOk returns a tuple with the EnablePartialDiscounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEnablePartialDiscounts
+
+`func (o *NewApplication) SetEnablePartialDiscounts(v bool)`
+
+SetEnablePartialDiscounts sets EnablePartialDiscounts field to given value.
 
 ### HasEnablePartialDiscounts
 
 `func (o *NewApplication) HasEnablePartialDiscounts() bool`
 
 HasEnablePartialDiscounts returns a boolean if a field has been set.
-
-### SetEnablePartialDiscounts
-
-`func (o *NewApplication) SetEnablePartialDiscounts(v bool)`
-
-SetEnablePartialDiscounts gets a reference to the given bool and assigns it to the EnablePartialDiscounts field.
 
 ### GetDefaultDiscountAdditionalCostPerItemScope
 
@@ -356,22 +358,22 @@ GetDefaultDiscountAdditionalCostPerItemScope returns the DefaultDiscountAddition
 
 ### GetDefaultDiscountAdditionalCostPerItemScopeOk
 
-`func (o *NewApplication) GetDefaultDiscountAdditionalCostPerItemScopeOk() (string, bool)`
+`func (o *NewApplication) GetDefaultDiscountAdditionalCostPerItemScopeOk() (*string, bool)`
 
 GetDefaultDiscountAdditionalCostPerItemScopeOk returns a tuple with the DefaultDiscountAdditionalCostPerItemScope field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDefaultDiscountAdditionalCostPerItemScope
+
+`func (o *NewApplication) SetDefaultDiscountAdditionalCostPerItemScope(v string)`
+
+SetDefaultDiscountAdditionalCostPerItemScope sets DefaultDiscountAdditionalCostPerItemScope field to given value.
 
 ### HasDefaultDiscountAdditionalCostPerItemScope
 
 `func (o *NewApplication) HasDefaultDiscountAdditionalCostPerItemScope() bool`
 
 HasDefaultDiscountAdditionalCostPerItemScope returns a boolean if a field has been set.
-
-### SetDefaultDiscountAdditionalCostPerItemScope
-
-`func (o *NewApplication) SetDefaultDiscountAdditionalCostPerItemScope(v string)`
-
-SetDefaultDiscountAdditionalCostPerItemScope gets a reference to the given string and assigns it to the DefaultDiscountAdditionalCostPerItemScope field.
 
 ### GetKey
 
@@ -381,22 +383,22 @@ GetKey returns the Key field if non-nil, zero value otherwise.
 
 ### GetKeyOk
 
-`func (o *NewApplication) GetKeyOk() (string, bool)`
+`func (o *NewApplication) GetKeyOk() (*string, bool)`
 
 GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetKey
+
+`func (o *NewApplication) SetKey(v string)`
+
+SetKey sets Key field to given value.
 
 ### HasKey
 
 `func (o *NewApplication) HasKey() bool`
 
 HasKey returns a boolean if a field has been set.
-
-### SetKey
-
-`func (o *NewApplication) SetKey(v string)`
-
-SetKey gets a reference to the given string and assigns it to the Key field.
 
 ### GetEnableCampaignStateManagement
 
@@ -406,22 +408,22 @@ GetEnableCampaignStateManagement returns the EnableCampaignStateManagement field
 
 ### GetEnableCampaignStateManagementOk
 
-`func (o *NewApplication) GetEnableCampaignStateManagementOk() (bool, bool)`
+`func (o *NewApplication) GetEnableCampaignStateManagementOk() (*bool, bool)`
 
 GetEnableCampaignStateManagementOk returns a tuple with the EnableCampaignStateManagement field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEnableCampaignStateManagement
+
+`func (o *NewApplication) SetEnableCampaignStateManagement(v bool)`
+
+SetEnableCampaignStateManagement sets EnableCampaignStateManagement field to given value.
 
 ### HasEnableCampaignStateManagement
 
 `func (o *NewApplication) HasEnableCampaignStateManagement() bool`
 
 HasEnableCampaignStateManagement returns a boolean if a field has been set.
-
-### SetEnableCampaignStateManagement
-
-`func (o *NewApplication) SetEnableCampaignStateManagement(v bool)`
-
-SetEnableCampaignStateManagement gets a reference to the given bool and assigns it to the EnableCampaignStateManagement field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

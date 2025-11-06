@@ -9,12 +9,30 @@ Name | Type | Description | Notes
 **TotalPendingPoints** | Pointer to **float32** | Total of pending points for this loyalty program. | 
 **TotalSpentPoints** | Pointer to **float32** | Total of spent points for this loyalty program. | 
 **TotalExpiredPoints** | Pointer to **float32** | Total of expired points for this loyalty program. | 
+**TotalNegativePoints** | Pointer to **float32** | Total of negative points for this loyalty program. | 
 **TotalMembers** | Pointer to **float32** | Number of loyalty program members. | 
 **NewMembers** | Pointer to **float32** | Number of members who joined on this day. | 
 **SpentPoints** | Pointer to [**LoyaltyDashboardPointsBreakdown**](LoyaltyDashboardPointsBreakdown.md) |  | 
 **EarnedPoints** | Pointer to [**LoyaltyDashboardPointsBreakdown**](LoyaltyDashboardPointsBreakdown.md) |  | 
 
 ## Methods
+
+### NewLoyaltyDashboardData
+
+`func NewLoyaltyDashboardData(date time.Time, totalActivePoints float32, totalPendingPoints float32, totalSpentPoints float32, totalExpiredPoints float32, totalNegativePoints float32, totalMembers float32, newMembers float32, spentPoints LoyaltyDashboardPointsBreakdown, earnedPoints LoyaltyDashboardPointsBreakdown, ) *LoyaltyDashboardData`
+
+NewLoyaltyDashboardData instantiates a new LoyaltyDashboardData object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewLoyaltyDashboardDataWithDefaults
+
+`func NewLoyaltyDashboardDataWithDefaults() *LoyaltyDashboardData`
+
+NewLoyaltyDashboardDataWithDefaults instantiates a new LoyaltyDashboardData object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetDate
 
@@ -24,22 +42,17 @@ GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *LoyaltyDashboardData) GetDateOk() (time.Time, bool)`
+`func (o *LoyaltyDashboardData) GetDateOk() (*time.Time, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDate
-
-`func (o *LoyaltyDashboardData) HasDate() bool`
-
-HasDate returns a boolean if a field has been set.
 
 ### SetDate
 
 `func (o *LoyaltyDashboardData) SetDate(v time.Time)`
 
-SetDate gets a reference to the given time.Time and assigns it to the Date field.
+SetDate sets Date field to given value.
+
 
 ### GetTotalActivePoints
 
@@ -49,22 +62,17 @@ GetTotalActivePoints returns the TotalActivePoints field if non-nil, zero value 
 
 ### GetTotalActivePointsOk
 
-`func (o *LoyaltyDashboardData) GetTotalActivePointsOk() (float32, bool)`
+`func (o *LoyaltyDashboardData) GetTotalActivePointsOk() (*float32, bool)`
 
 GetTotalActivePointsOk returns a tuple with the TotalActivePoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTotalActivePoints
-
-`func (o *LoyaltyDashboardData) HasTotalActivePoints() bool`
-
-HasTotalActivePoints returns a boolean if a field has been set.
 
 ### SetTotalActivePoints
 
 `func (o *LoyaltyDashboardData) SetTotalActivePoints(v float32)`
 
-SetTotalActivePoints gets a reference to the given float32 and assigns it to the TotalActivePoints field.
+SetTotalActivePoints sets TotalActivePoints field to given value.
+
 
 ### GetTotalPendingPoints
 
@@ -74,22 +82,17 @@ GetTotalPendingPoints returns the TotalPendingPoints field if non-nil, zero valu
 
 ### GetTotalPendingPointsOk
 
-`func (o *LoyaltyDashboardData) GetTotalPendingPointsOk() (float32, bool)`
+`func (o *LoyaltyDashboardData) GetTotalPendingPointsOk() (*float32, bool)`
 
 GetTotalPendingPointsOk returns a tuple with the TotalPendingPoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTotalPendingPoints
-
-`func (o *LoyaltyDashboardData) HasTotalPendingPoints() bool`
-
-HasTotalPendingPoints returns a boolean if a field has been set.
 
 ### SetTotalPendingPoints
 
 `func (o *LoyaltyDashboardData) SetTotalPendingPoints(v float32)`
 
-SetTotalPendingPoints gets a reference to the given float32 and assigns it to the TotalPendingPoints field.
+SetTotalPendingPoints sets TotalPendingPoints field to given value.
+
 
 ### GetTotalSpentPoints
 
@@ -99,22 +102,17 @@ GetTotalSpentPoints returns the TotalSpentPoints field if non-nil, zero value ot
 
 ### GetTotalSpentPointsOk
 
-`func (o *LoyaltyDashboardData) GetTotalSpentPointsOk() (float32, bool)`
+`func (o *LoyaltyDashboardData) GetTotalSpentPointsOk() (*float32, bool)`
 
 GetTotalSpentPointsOk returns a tuple with the TotalSpentPoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTotalSpentPoints
-
-`func (o *LoyaltyDashboardData) HasTotalSpentPoints() bool`
-
-HasTotalSpentPoints returns a boolean if a field has been set.
 
 ### SetTotalSpentPoints
 
 `func (o *LoyaltyDashboardData) SetTotalSpentPoints(v float32)`
 
-SetTotalSpentPoints gets a reference to the given float32 and assigns it to the TotalSpentPoints field.
+SetTotalSpentPoints sets TotalSpentPoints field to given value.
+
 
 ### GetTotalExpiredPoints
 
@@ -124,22 +122,37 @@ GetTotalExpiredPoints returns the TotalExpiredPoints field if non-nil, zero valu
 
 ### GetTotalExpiredPointsOk
 
-`func (o *LoyaltyDashboardData) GetTotalExpiredPointsOk() (float32, bool)`
+`func (o *LoyaltyDashboardData) GetTotalExpiredPointsOk() (*float32, bool)`
 
 GetTotalExpiredPointsOk returns a tuple with the TotalExpiredPoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTotalExpiredPoints
-
-`func (o *LoyaltyDashboardData) HasTotalExpiredPoints() bool`
-
-HasTotalExpiredPoints returns a boolean if a field has been set.
 
 ### SetTotalExpiredPoints
 
 `func (o *LoyaltyDashboardData) SetTotalExpiredPoints(v float32)`
 
-SetTotalExpiredPoints gets a reference to the given float32 and assigns it to the TotalExpiredPoints field.
+SetTotalExpiredPoints sets TotalExpiredPoints field to given value.
+
+
+### GetTotalNegativePoints
+
+`func (o *LoyaltyDashboardData) GetTotalNegativePoints() float32`
+
+GetTotalNegativePoints returns the TotalNegativePoints field if non-nil, zero value otherwise.
+
+### GetTotalNegativePointsOk
+
+`func (o *LoyaltyDashboardData) GetTotalNegativePointsOk() (*float32, bool)`
+
+GetTotalNegativePointsOk returns a tuple with the TotalNegativePoints field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalNegativePoints
+
+`func (o *LoyaltyDashboardData) SetTotalNegativePoints(v float32)`
+
+SetTotalNegativePoints sets TotalNegativePoints field to given value.
+
 
 ### GetTotalMembers
 
@@ -149,22 +162,17 @@ GetTotalMembers returns the TotalMembers field if non-nil, zero value otherwise.
 
 ### GetTotalMembersOk
 
-`func (o *LoyaltyDashboardData) GetTotalMembersOk() (float32, bool)`
+`func (o *LoyaltyDashboardData) GetTotalMembersOk() (*float32, bool)`
 
 GetTotalMembersOk returns a tuple with the TotalMembers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTotalMembers
-
-`func (o *LoyaltyDashboardData) HasTotalMembers() bool`
-
-HasTotalMembers returns a boolean if a field has been set.
 
 ### SetTotalMembers
 
 `func (o *LoyaltyDashboardData) SetTotalMembers(v float32)`
 
-SetTotalMembers gets a reference to the given float32 and assigns it to the TotalMembers field.
+SetTotalMembers sets TotalMembers field to given value.
+
 
 ### GetNewMembers
 
@@ -174,22 +182,17 @@ GetNewMembers returns the NewMembers field if non-nil, zero value otherwise.
 
 ### GetNewMembersOk
 
-`func (o *LoyaltyDashboardData) GetNewMembersOk() (float32, bool)`
+`func (o *LoyaltyDashboardData) GetNewMembersOk() (*float32, bool)`
 
 GetNewMembersOk returns a tuple with the NewMembers field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasNewMembers
-
-`func (o *LoyaltyDashboardData) HasNewMembers() bool`
-
-HasNewMembers returns a boolean if a field has been set.
 
 ### SetNewMembers
 
 `func (o *LoyaltyDashboardData) SetNewMembers(v float32)`
 
-SetNewMembers gets a reference to the given float32 and assigns it to the NewMembers field.
+SetNewMembers sets NewMembers field to given value.
+
 
 ### GetSpentPoints
 
@@ -199,22 +202,17 @@ GetSpentPoints returns the SpentPoints field if non-nil, zero value otherwise.
 
 ### GetSpentPointsOk
 
-`func (o *LoyaltyDashboardData) GetSpentPointsOk() (LoyaltyDashboardPointsBreakdown, bool)`
+`func (o *LoyaltyDashboardData) GetSpentPointsOk() (*LoyaltyDashboardPointsBreakdown, bool)`
 
 GetSpentPointsOk returns a tuple with the SpentPoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSpentPoints
-
-`func (o *LoyaltyDashboardData) HasSpentPoints() bool`
-
-HasSpentPoints returns a boolean if a field has been set.
 
 ### SetSpentPoints
 
 `func (o *LoyaltyDashboardData) SetSpentPoints(v LoyaltyDashboardPointsBreakdown)`
 
-SetSpentPoints gets a reference to the given LoyaltyDashboardPointsBreakdown and assigns it to the SpentPoints field.
+SetSpentPoints sets SpentPoints field to given value.
+
 
 ### GetEarnedPoints
 
@@ -224,22 +222,17 @@ GetEarnedPoints returns the EarnedPoints field if non-nil, zero value otherwise.
 
 ### GetEarnedPointsOk
 
-`func (o *LoyaltyDashboardData) GetEarnedPointsOk() (LoyaltyDashboardPointsBreakdown, bool)`
+`func (o *LoyaltyDashboardData) GetEarnedPointsOk() (*LoyaltyDashboardPointsBreakdown, bool)`
 
 GetEarnedPointsOk returns a tuple with the EarnedPoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEarnedPoints
-
-`func (o *LoyaltyDashboardData) HasEarnedPoints() bool`
-
-HasEarnedPoints returns a boolean if a field has been set.
 
 ### SetEarnedPoints
 
 `func (o *LoyaltyDashboardData) SetEarnedPoints(v LoyaltyDashboardPointsBreakdown)`
 
-SetEarnedPoints gets a reference to the given LoyaltyDashboardPointsBreakdown and assigns it to the EarnedPoints field.
+SetEarnedPoints sets EarnedPoints field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,39 +10,54 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // RemoveFromAudienceEffectProps The properties specific to the \"removeFromAudience\" effect. This gets triggered whenever a validated rule contains a \"removeFromAudience\" effect.
 type RemoveFromAudienceEffectProps struct {
 	// The internal ID of the audience.
-	AudienceId *int32 `json:"audienceId,omitempty"`
+	AudienceId *int64 `json:"audienceId,omitempty"`
 	// The name of the audience.
 	AudienceName *string `json:"audienceName,omitempty"`
 	// The ID of the customer profile in the third-party integration platform.
 	ProfileIntegrationId *string `json:"profileIntegrationId,omitempty"`
 	// The internal ID of the customer profile.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
+}
+
+// NewRemoveFromAudienceEffectProps instantiates a new RemoveFromAudienceEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildRemoveFromAudienceEffectProps() *RemoveFromAudienceEffectProps {
+	this := RemoveFromAudienceEffectProps{}
+	return &this
+}
+
+// NewRemoveFromAudienceEffectPropsWithDefaults instantiates a new RemoveFromAudienceEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewRemoveFromAudienceEffectPropsWithDefaults() *RemoveFromAudienceEffectProps {
+	this := RemoveFromAudienceEffectProps{}
+	return &this
 }
 
 // GetAudienceId returns the AudienceId field value if set, zero value otherwise.
-func (o *RemoveFromAudienceEffectProps) GetAudienceId() int32 {
+func (o *RemoveFromAudienceEffectProps) GetAudienceId() int64 {
 	if o == nil || o.AudienceId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.AudienceId
 }
 
-// GetAudienceIdOk returns a tuple with the AudienceId field value if set, zero value otherwise
+// GetAudienceIdOk returns a tuple with the AudienceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemoveFromAudienceEffectProps) GetAudienceIdOk() (int32, bool) {
+func (o *RemoveFromAudienceEffectProps) GetAudienceIdOk() (*int64, bool) {
 	if o == nil || o.AudienceId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceId, true
+	return o.AudienceId, true
 }
 
 // HasAudienceId returns a boolean if a field has been set.
@@ -54,8 +69,8 @@ func (o *RemoveFromAudienceEffectProps) HasAudienceId() bool {
 	return false
 }
 
-// SetAudienceId gets a reference to the given int32 and assigns it to the AudienceId field.
-func (o *RemoveFromAudienceEffectProps) SetAudienceId(v int32) {
+// SetAudienceId gets a reference to the given int64 and assigns it to the AudienceId field.
+func (o *RemoveFromAudienceEffectProps) SetAudienceId(v int64) {
 	o.AudienceId = &v
 }
 
@@ -68,14 +83,13 @@ func (o *RemoveFromAudienceEffectProps) GetAudienceName() string {
 	return *o.AudienceName
 }
 
-// GetAudienceNameOk returns a tuple with the AudienceName field value if set, zero value otherwise
+// GetAudienceNameOk returns a tuple with the AudienceName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemoveFromAudienceEffectProps) GetAudienceNameOk() (string, bool) {
+func (o *RemoveFromAudienceEffectProps) GetAudienceNameOk() (*string, bool) {
 	if o == nil || o.AudienceName == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.AudienceName, true
+	return o.AudienceName, true
 }
 
 // HasAudienceName returns a boolean if a field has been set.
@@ -101,14 +115,13 @@ func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationId() string {
 	return *o.ProfileIntegrationId
 }
 
-// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, zero value otherwise
+// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationIdOk() (string, bool) {
+func (o *RemoveFromAudienceEffectProps) GetProfileIntegrationIdOk() (*string, bool) {
 	if o == nil || o.ProfileIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileIntegrationId, true
+	return o.ProfileIntegrationId, true
 }
 
 // HasProfileIntegrationId returns a boolean if a field has been set.
@@ -126,22 +139,21 @@ func (o *RemoveFromAudienceEffectProps) SetProfileIntegrationId(v string) {
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *RemoveFromAudienceEffectProps) GetProfileId() int32 {
+func (o *RemoveFromAudienceEffectProps) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RemoveFromAudienceEffectProps) GetProfileIdOk() (int32, bool) {
+func (o *RemoveFromAudienceEffectProps) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -153,30 +165,60 @@ func (o *RemoveFromAudienceEffectProps) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *RemoveFromAudienceEffectProps) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *RemoveFromAudienceEffectProps) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
+func (o RemoveFromAudienceEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.AudienceId != nil {
+		toSerialize["audienceId"] = o.AudienceId
+	}
+	if o.AudienceName != nil {
+		toSerialize["audienceName"] = o.AudienceName
+	}
+	if o.ProfileIntegrationId != nil {
+		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
+	}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableRemoveFromAudienceEffectProps struct {
-	Value        RemoveFromAudienceEffectProps
-	ExplicitNull bool
+	value *RemoveFromAudienceEffectProps
+	isSet bool
+}
+
+func (v NullableRemoveFromAudienceEffectProps) Get() *RemoveFromAudienceEffectProps {
+	return v.value
+}
+
+func (v *NullableRemoveFromAudienceEffectProps) Set(val *RemoveFromAudienceEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableRemoveFromAudienceEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableRemoveFromAudienceEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableRemoveFromAudienceEffectProps(val *RemoveFromAudienceEffectProps) *NullableRemoveFromAudienceEffectProps {
+	return &NullableRemoveFromAudienceEffectProps{value: val, isSet: true}
 }
 
 func (v NullableRemoveFromAudienceEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableRemoveFromAudienceEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

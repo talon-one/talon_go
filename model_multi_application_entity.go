@@ -10,50 +10,97 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // MultiApplicationEntity struct for MultiApplicationEntity
 type MultiApplicationEntity struct {
 	// The IDs of the Applications that are related to this entity.
-	ApplicationIds []int32 `json:"applicationIds"`
+	ApplicationIds []int64 `json:"applicationIds"`
+}
+
+// NewMultiApplicationEntity instantiates a new MultiApplicationEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildMultiApplicationEntity(applicationIds []int64) *MultiApplicationEntity {
+	this := MultiApplicationEntity{}
+	this.ApplicationIds = applicationIds
+	return &this
+}
+
+// NewMultiApplicationEntityWithDefaults instantiates a new MultiApplicationEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewMultiApplicationEntityWithDefaults() *MultiApplicationEntity {
+	this := MultiApplicationEntity{}
+	return &this
 }
 
 // GetApplicationIds returns the ApplicationIds field value
-func (o *MultiApplicationEntity) GetApplicationIds() []int32 {
+func (o *MultiApplicationEntity) GetApplicationIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.ApplicationIds
 }
 
+// GetApplicationIdsOk returns a tuple with the ApplicationIds field value
+// and a boolean to check if the value has been set.
+func (o *MultiApplicationEntity) GetApplicationIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationIds, true
+}
+
 // SetApplicationIds sets field value
-func (o *MultiApplicationEntity) SetApplicationIds(v []int32) {
+func (o *MultiApplicationEntity) SetApplicationIds(v []int64) {
 	o.ApplicationIds = v
 }
 
+func (o MultiApplicationEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationIds"] = o.ApplicationIds
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableMultiApplicationEntity struct {
-	Value        MultiApplicationEntity
-	ExplicitNull bool
+	value *MultiApplicationEntity
+	isSet bool
+}
+
+func (v NullableMultiApplicationEntity) Get() *MultiApplicationEntity {
+	return v.value
+}
+
+func (v *NullableMultiApplicationEntity) Set(val *MultiApplicationEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableMultiApplicationEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableMultiApplicationEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableMultiApplicationEntity(val *MultiApplicationEntity) *NullableMultiApplicationEntity {
+	return &NullableMultiApplicationEntity{value: val, isSet: true}
 }
 
 func (v NullableMultiApplicationEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableMultiApplicationEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

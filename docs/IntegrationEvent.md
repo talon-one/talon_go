@@ -11,6 +11,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewIntegrationEvent
+
+`func NewIntegrationEvent(type_ string, attributes map[string]interface{}, ) *IntegrationEvent`
+
+NewIntegrationEvent instantiates a new IntegrationEvent object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewIntegrationEventWithDefaults
+
+`func NewIntegrationEventWithDefaults() *IntegrationEvent`
+
+NewIntegrationEventWithDefaults instantiates a new IntegrationEvent object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetProfileId
 
 `func (o *IntegrationEvent) GetProfileId() string`
@@ -19,22 +36,22 @@ GetProfileId returns the ProfileId field if non-nil, zero value otherwise.
 
 ### GetProfileIdOk
 
-`func (o *IntegrationEvent) GetProfileIdOk() (string, bool)`
+`func (o *IntegrationEvent) GetProfileIdOk() (*string, bool)`
 
 GetProfileIdOk returns a tuple with the ProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProfileId
+
+`func (o *IntegrationEvent) SetProfileId(v string)`
+
+SetProfileId sets ProfileId field to given value.
 
 ### HasProfileId
 
 `func (o *IntegrationEvent) HasProfileId() bool`
 
 HasProfileId returns a boolean if a field has been set.
-
-### SetProfileId
-
-`func (o *IntegrationEvent) SetProfileId(v string)`
-
-SetProfileId gets a reference to the given string and assigns it to the ProfileId field.
 
 ### GetStoreIntegrationId
 
@@ -44,22 +61,22 @@ GetStoreIntegrationId returns the StoreIntegrationId field if non-nil, zero valu
 
 ### GetStoreIntegrationIdOk
 
-`func (o *IntegrationEvent) GetStoreIntegrationIdOk() (string, bool)`
+`func (o *IntegrationEvent) GetStoreIntegrationIdOk() (*string, bool)`
 
 GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetStoreIntegrationId
+
+`func (o *IntegrationEvent) SetStoreIntegrationId(v string)`
+
+SetStoreIntegrationId sets StoreIntegrationId field to given value.
 
 ### HasStoreIntegrationId
 
 `func (o *IntegrationEvent) HasStoreIntegrationId() bool`
 
 HasStoreIntegrationId returns a boolean if a field has been set.
-
-### SetStoreIntegrationId
-
-`func (o *IntegrationEvent) SetStoreIntegrationId(v string)`
-
-SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
 
 ### GetType
 
@@ -69,22 +86,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *IntegrationEvent) GetTypeOk() (string, bool)`
+`func (o *IntegrationEvent) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *IntegrationEvent) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *IntegrationEvent) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetAttributes
 
@@ -94,22 +106,17 @@ GetAttributes returns the Attributes field if non-nil, zero value otherwise.
 
 ### GetAttributesOk
 
-`func (o *IntegrationEvent) GetAttributesOk() (map[string]interface{}, bool)`
+`func (o *IntegrationEvent) GetAttributesOk() (*map[string]interface{}, bool)`
 
 GetAttributesOk returns a tuple with the Attributes field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAttributes
-
-`func (o *IntegrationEvent) HasAttributes() bool`
-
-HasAttributes returns a boolean if a field has been set.
 
 ### SetAttributes
 
 `func (o *IntegrationEvent) SetAttributes(v map[string]interface{})`
 
-SetAttributes gets a reference to the given map[string]interface{} and assigns it to the Attributes field.
+SetAttributes sets Attributes field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

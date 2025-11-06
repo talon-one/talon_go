@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,24 @@ type LoyaltyLedger struct {
 	SubLedgers *map[string]LoyaltySubLedger `json:"subLedgers,omitempty"`
 }
 
+// NewLoyaltyLedger instantiates a new LoyaltyLedger object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyLedger(ledger LoyaltySubLedger) *LoyaltyLedger {
+	this := LoyaltyLedger{}
+	this.Ledger = ledger
+	return &this
+}
+
+// NewLoyaltyLedgerWithDefaults instantiates a new LoyaltyLedger object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyLedgerWithDefaults() *LoyaltyLedger {
+	this := LoyaltyLedger{}
+	return &this
+}
+
 // GetLedger returns the Ledger field value
 func (o *LoyaltyLedger) GetLedger() LoyaltySubLedger {
 	if o == nil {
@@ -29,6 +46,15 @@ func (o *LoyaltyLedger) GetLedger() LoyaltySubLedger {
 	}
 
 	return o.Ledger
+}
+
+// GetLedgerOk returns a tuple with the Ledger field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyLedger) GetLedgerOk() (*LoyaltySubLedger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Ledger, true
 }
 
 // SetLedger sets field value
@@ -45,14 +71,13 @@ func (o *LoyaltyLedger) GetSubLedgers() map[string]LoyaltySubLedger {
 	return *o.SubLedgers
 }
 
-// GetSubLedgersOk returns a tuple with the SubLedgers field value if set, zero value otherwise
+// GetSubLedgersOk returns a tuple with the SubLedgers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyLedger) GetSubLedgersOk() (map[string]LoyaltySubLedger, bool) {
+func (o *LoyaltyLedger) GetSubLedgersOk() (*map[string]LoyaltySubLedger, bool) {
 	if o == nil || o.SubLedgers == nil {
-		var ret map[string]LoyaltySubLedger
-		return ret, false
+		return nil, false
 	}
-	return *o.SubLedgers, true
+	return o.SubLedgers, true
 }
 
 // HasSubLedgers returns a boolean if a field has been set.
@@ -69,25 +94,49 @@ func (o *LoyaltyLedger) SetSubLedgers(v map[string]LoyaltySubLedger) {
 	o.SubLedgers = &v
 }
 
+func (o LoyaltyLedger) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["ledger"] = o.Ledger
+	}
+	if o.SubLedgers != nil {
+		toSerialize["subLedgers"] = o.SubLedgers
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyLedger struct {
-	Value        LoyaltyLedger
-	ExplicitNull bool
+	value *LoyaltyLedger
+	isSet bool
+}
+
+func (v NullableLoyaltyLedger) Get() *LoyaltyLedger {
+	return v.value
+}
+
+func (v *NullableLoyaltyLedger) Set(val *LoyaltyLedger) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyLedger) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyLedger) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyLedger(val *LoyaltyLedger) *NullableLoyaltyLedger {
+	return &NullableLoyaltyLedger{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyLedger) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyLedger) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

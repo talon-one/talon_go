@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,329 +17,537 @@ import (
 // AccountAnalytics struct for AccountAnalytics
 type AccountAnalytics struct {
 	// Total number of applications in the account.
-	Applications int32 `json:"applications"`
+	Applications int64 `json:"applications"`
 	// Total number of live applications in the account.
-	LiveApplications int32 `json:"liveApplications"`
+	LiveApplications int64 `json:"liveApplications"`
 	// Total number of sandbox applications in the account.
-	SandboxApplications int32 `json:"sandboxApplications"`
+	SandboxApplications int64 `json:"sandboxApplications"`
 	// Total number of campaigns in the account.
-	Campaigns int32 `json:"campaigns"`
+	Campaigns int64 `json:"campaigns"`
 	// Total number of active campaigns in the account.
-	ActiveCampaigns int32 `json:"activeCampaigns"`
+	ActiveCampaigns int64 `json:"activeCampaigns"`
 	// Total number of active campaigns in live applications in the account.
-	LiveActiveCampaigns int32 `json:"liveActiveCampaigns"`
+	LiveActiveCampaigns int64 `json:"liveActiveCampaigns"`
 	// Total number of coupons in the account.
-	Coupons int32 `json:"coupons"`
+	Coupons int64 `json:"coupons"`
 	// Total number of active coupons in the account.
-	ActiveCoupons int32 `json:"activeCoupons"`
+	ActiveCoupons int64 `json:"activeCoupons"`
 	// Total number of expired coupons in the account.
-	ExpiredCoupons int32 `json:"expiredCoupons"`
+	ExpiredCoupons int64 `json:"expiredCoupons"`
 	// Total number of referral codes in the account.
-	ReferralCodes int32 `json:"referralCodes"`
+	ReferralCodes int64 `json:"referralCodes"`
 	// Total number of active referral codes in the account.
-	ActiveReferralCodes int32 `json:"activeReferralCodes"`
+	ActiveReferralCodes int64 `json:"activeReferralCodes"`
 	// Total number of expired referral codes in the account.
-	ExpiredReferralCodes int32 `json:"expiredReferralCodes"`
+	ExpiredReferralCodes int64 `json:"expiredReferralCodes"`
 	// Total number of active rules in the account.
-	ActiveRules int32 `json:"activeRules"`
+	ActiveRules int64 `json:"activeRules"`
 	// Total number of users in the account.
-	Users int32 `json:"users"`
+	Users int64 `json:"users"`
 	// Total number of roles in the account.
-	Roles int32 `json:"roles"`
+	Roles int64 `json:"roles"`
 	// Total number of custom attributes in the account.
-	CustomAttributes int32 `json:"customAttributes"`
+	CustomAttributes int64 `json:"customAttributes"`
 	// Total number of webhooks in the account.
-	Webhooks int32 `json:"webhooks"`
+	Webhooks int64 `json:"webhooks"`
 	// Total number of all loyalty programs in the account.
-	LoyaltyPrograms int32 `json:"loyaltyPrograms"`
+	LoyaltyPrograms int64 `json:"loyaltyPrograms"`
 	// Total number of live loyalty programs in the account.
-	LiveLoyaltyPrograms int32 `json:"liveLoyaltyPrograms"`
+	LiveLoyaltyPrograms int64 `json:"liveLoyaltyPrograms"`
 	// The point in time when the analytics numbers were updated last.
 	LastUpdatedAt time.Time `json:"lastUpdatedAt"`
 }
 
+// NewAccountAnalytics instantiates a new AccountAnalytics object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountAnalytics(applications int64, liveApplications int64, sandboxApplications int64, campaigns int64, activeCampaigns int64, liveActiveCampaigns int64, coupons int64, activeCoupons int64, expiredCoupons int64, referralCodes int64, activeReferralCodes int64, expiredReferralCodes int64, activeRules int64, users int64, roles int64, customAttributes int64, webhooks int64, loyaltyPrograms int64, liveLoyaltyPrograms int64, lastUpdatedAt time.Time) *AccountAnalytics {
+	this := AccountAnalytics{}
+	this.Applications = applications
+	this.LiveApplications = liveApplications
+	this.SandboxApplications = sandboxApplications
+	this.Campaigns = campaigns
+	this.ActiveCampaigns = activeCampaigns
+	this.LiveActiveCampaigns = liveActiveCampaigns
+	this.Coupons = coupons
+	this.ActiveCoupons = activeCoupons
+	this.ExpiredCoupons = expiredCoupons
+	this.ReferralCodes = referralCodes
+	this.ActiveReferralCodes = activeReferralCodes
+	this.ExpiredReferralCodes = expiredReferralCodes
+	this.ActiveRules = activeRules
+	this.Users = users
+	this.Roles = roles
+	this.CustomAttributes = customAttributes
+	this.Webhooks = webhooks
+	this.LoyaltyPrograms = loyaltyPrograms
+	this.LiveLoyaltyPrograms = liveLoyaltyPrograms
+	this.LastUpdatedAt = lastUpdatedAt
+	return &this
+}
+
+// NewAccountAnalyticsWithDefaults instantiates a new AccountAnalytics object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountAnalyticsWithDefaults() *AccountAnalytics {
+	this := AccountAnalytics{}
+	return &this
+}
+
 // GetApplications returns the Applications field value
-func (o *AccountAnalytics) GetApplications() int32 {
+func (o *AccountAnalytics) GetApplications() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Applications
 }
 
+// GetApplicationsOk returns a tuple with the Applications field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetApplicationsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Applications, true
+}
+
 // SetApplications sets field value
-func (o *AccountAnalytics) SetApplications(v int32) {
+func (o *AccountAnalytics) SetApplications(v int64) {
 	o.Applications = v
 }
 
 // GetLiveApplications returns the LiveApplications field value
-func (o *AccountAnalytics) GetLiveApplications() int32 {
+func (o *AccountAnalytics) GetLiveApplications() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LiveApplications
 }
 
+// GetLiveApplicationsOk returns a tuple with the LiveApplications field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetLiveApplicationsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LiveApplications, true
+}
+
 // SetLiveApplications sets field value
-func (o *AccountAnalytics) SetLiveApplications(v int32) {
+func (o *AccountAnalytics) SetLiveApplications(v int64) {
 	o.LiveApplications = v
 }
 
 // GetSandboxApplications returns the SandboxApplications field value
-func (o *AccountAnalytics) GetSandboxApplications() int32 {
+func (o *AccountAnalytics) GetSandboxApplications() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.SandboxApplications
 }
 
+// GetSandboxApplicationsOk returns a tuple with the SandboxApplications field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetSandboxApplicationsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SandboxApplications, true
+}
+
 // SetSandboxApplications sets field value
-func (o *AccountAnalytics) SetSandboxApplications(v int32) {
+func (o *AccountAnalytics) SetSandboxApplications(v int64) {
 	o.SandboxApplications = v
 }
 
 // GetCampaigns returns the Campaigns field value
-func (o *AccountAnalytics) GetCampaigns() int32 {
+func (o *AccountAnalytics) GetCampaigns() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Campaigns
 }
 
+// GetCampaignsOk returns a tuple with the Campaigns field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetCampaignsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Campaigns, true
+}
+
 // SetCampaigns sets field value
-func (o *AccountAnalytics) SetCampaigns(v int32) {
+func (o *AccountAnalytics) SetCampaigns(v int64) {
 	o.Campaigns = v
 }
 
 // GetActiveCampaigns returns the ActiveCampaigns field value
-func (o *AccountAnalytics) GetActiveCampaigns() int32 {
+func (o *AccountAnalytics) GetActiveCampaigns() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ActiveCampaigns
 }
 
+// GetActiveCampaignsOk returns a tuple with the ActiveCampaigns field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetActiveCampaignsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActiveCampaigns, true
+}
+
 // SetActiveCampaigns sets field value
-func (o *AccountAnalytics) SetActiveCampaigns(v int32) {
+func (o *AccountAnalytics) SetActiveCampaigns(v int64) {
 	o.ActiveCampaigns = v
 }
 
 // GetLiveActiveCampaigns returns the LiveActiveCampaigns field value
-func (o *AccountAnalytics) GetLiveActiveCampaigns() int32 {
+func (o *AccountAnalytics) GetLiveActiveCampaigns() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LiveActiveCampaigns
 }
 
+// GetLiveActiveCampaignsOk returns a tuple with the LiveActiveCampaigns field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetLiveActiveCampaignsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LiveActiveCampaigns, true
+}
+
 // SetLiveActiveCampaigns sets field value
-func (o *AccountAnalytics) SetLiveActiveCampaigns(v int32) {
+func (o *AccountAnalytics) SetLiveActiveCampaigns(v int64) {
 	o.LiveActiveCampaigns = v
 }
 
 // GetCoupons returns the Coupons field value
-func (o *AccountAnalytics) GetCoupons() int32 {
+func (o *AccountAnalytics) GetCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Coupons
 }
 
+// GetCouponsOk returns a tuple with the Coupons field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Coupons, true
+}
+
 // SetCoupons sets field value
-func (o *AccountAnalytics) SetCoupons(v int32) {
+func (o *AccountAnalytics) SetCoupons(v int64) {
 	o.Coupons = v
 }
 
 // GetActiveCoupons returns the ActiveCoupons field value
-func (o *AccountAnalytics) GetActiveCoupons() int32 {
+func (o *AccountAnalytics) GetActiveCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ActiveCoupons
 }
 
+// GetActiveCouponsOk returns a tuple with the ActiveCoupons field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetActiveCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActiveCoupons, true
+}
+
 // SetActiveCoupons sets field value
-func (o *AccountAnalytics) SetActiveCoupons(v int32) {
+func (o *AccountAnalytics) SetActiveCoupons(v int64) {
 	o.ActiveCoupons = v
 }
 
 // GetExpiredCoupons returns the ExpiredCoupons field value
-func (o *AccountAnalytics) GetExpiredCoupons() int32 {
+func (o *AccountAnalytics) GetExpiredCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ExpiredCoupons
 }
 
+// GetExpiredCouponsOk returns a tuple with the ExpiredCoupons field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetExpiredCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiredCoupons, true
+}
+
 // SetExpiredCoupons sets field value
-func (o *AccountAnalytics) SetExpiredCoupons(v int32) {
+func (o *AccountAnalytics) SetExpiredCoupons(v int64) {
 	o.ExpiredCoupons = v
 }
 
 // GetReferralCodes returns the ReferralCodes field value
-func (o *AccountAnalytics) GetReferralCodes() int32 {
+func (o *AccountAnalytics) GetReferralCodes() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ReferralCodes
 }
 
+// GetReferralCodesOk returns a tuple with the ReferralCodes field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetReferralCodesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferralCodes, true
+}
+
 // SetReferralCodes sets field value
-func (o *AccountAnalytics) SetReferralCodes(v int32) {
+func (o *AccountAnalytics) SetReferralCodes(v int64) {
 	o.ReferralCodes = v
 }
 
 // GetActiveReferralCodes returns the ActiveReferralCodes field value
-func (o *AccountAnalytics) GetActiveReferralCodes() int32 {
+func (o *AccountAnalytics) GetActiveReferralCodes() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ActiveReferralCodes
 }
 
+// GetActiveReferralCodesOk returns a tuple with the ActiveReferralCodes field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetActiveReferralCodesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActiveReferralCodes, true
+}
+
 // SetActiveReferralCodes sets field value
-func (o *AccountAnalytics) SetActiveReferralCodes(v int32) {
+func (o *AccountAnalytics) SetActiveReferralCodes(v int64) {
 	o.ActiveReferralCodes = v
 }
 
 // GetExpiredReferralCodes returns the ExpiredReferralCodes field value
-func (o *AccountAnalytics) GetExpiredReferralCodes() int32 {
+func (o *AccountAnalytics) GetExpiredReferralCodes() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ExpiredReferralCodes
 }
 
+// GetExpiredReferralCodesOk returns a tuple with the ExpiredReferralCodes field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetExpiredReferralCodesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ExpiredReferralCodes, true
+}
+
 // SetExpiredReferralCodes sets field value
-func (o *AccountAnalytics) SetExpiredReferralCodes(v int32) {
+func (o *AccountAnalytics) SetExpiredReferralCodes(v int64) {
 	o.ExpiredReferralCodes = v
 }
 
 // GetActiveRules returns the ActiveRules field value
-func (o *AccountAnalytics) GetActiveRules() int32 {
+func (o *AccountAnalytics) GetActiveRules() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ActiveRules
 }
 
+// GetActiveRulesOk returns a tuple with the ActiveRules field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetActiveRulesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActiveRules, true
+}
+
 // SetActiveRules sets field value
-func (o *AccountAnalytics) SetActiveRules(v int32) {
+func (o *AccountAnalytics) SetActiveRules(v int64) {
 	o.ActiveRules = v
 }
 
 // GetUsers returns the Users field value
-func (o *AccountAnalytics) GetUsers() int32 {
+func (o *AccountAnalytics) GetUsers() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Users
 }
 
+// GetUsersOk returns a tuple with the Users field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetUsersOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Users, true
+}
+
 // SetUsers sets field value
-func (o *AccountAnalytics) SetUsers(v int32) {
+func (o *AccountAnalytics) SetUsers(v int64) {
 	o.Users = v
 }
 
 // GetRoles returns the Roles field value
-func (o *AccountAnalytics) GetRoles() int32 {
+func (o *AccountAnalytics) GetRoles() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Roles
 }
 
+// GetRolesOk returns a tuple with the Roles field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetRolesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Roles, true
+}
+
 // SetRoles sets field value
-func (o *AccountAnalytics) SetRoles(v int32) {
+func (o *AccountAnalytics) SetRoles(v int64) {
 	o.Roles = v
 }
 
 // GetCustomAttributes returns the CustomAttributes field value
-func (o *AccountAnalytics) GetCustomAttributes() int32 {
+func (o *AccountAnalytics) GetCustomAttributes() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CustomAttributes
 }
 
+// GetCustomAttributesOk returns a tuple with the CustomAttributes field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetCustomAttributesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CustomAttributes, true
+}
+
 // SetCustomAttributes sets field value
-func (o *AccountAnalytics) SetCustomAttributes(v int32) {
+func (o *AccountAnalytics) SetCustomAttributes(v int64) {
 	o.CustomAttributes = v
 }
 
 // GetWebhooks returns the Webhooks field value
-func (o *AccountAnalytics) GetWebhooks() int32 {
+func (o *AccountAnalytics) GetWebhooks() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Webhooks
 }
 
+// GetWebhooksOk returns a tuple with the Webhooks field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetWebhooksOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Webhooks, true
+}
+
 // SetWebhooks sets field value
-func (o *AccountAnalytics) SetWebhooks(v int32) {
+func (o *AccountAnalytics) SetWebhooks(v int64) {
 	o.Webhooks = v
 }
 
 // GetLoyaltyPrograms returns the LoyaltyPrograms field value
-func (o *AccountAnalytics) GetLoyaltyPrograms() int32 {
+func (o *AccountAnalytics) GetLoyaltyPrograms() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LoyaltyPrograms
 }
 
+// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetLoyaltyProgramsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoyaltyPrograms, true
+}
+
 // SetLoyaltyPrograms sets field value
-func (o *AccountAnalytics) SetLoyaltyPrograms(v int32) {
+func (o *AccountAnalytics) SetLoyaltyPrograms(v int64) {
 	o.LoyaltyPrograms = v
 }
 
 // GetLiveLoyaltyPrograms returns the LiveLoyaltyPrograms field value
-func (o *AccountAnalytics) GetLiveLoyaltyPrograms() int32 {
+func (o *AccountAnalytics) GetLiveLoyaltyPrograms() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LiveLoyaltyPrograms
 }
 
+// GetLiveLoyaltyProgramsOk returns a tuple with the LiveLoyaltyPrograms field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetLiveLoyaltyProgramsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LiveLoyaltyPrograms, true
+}
+
 // SetLiveLoyaltyPrograms sets field value
-func (o *AccountAnalytics) SetLiveLoyaltyPrograms(v int32) {
+func (o *AccountAnalytics) SetLiveLoyaltyPrograms(v int64) {
 	o.LiveLoyaltyPrograms = v
 }
 
@@ -354,30 +561,117 @@ func (o *AccountAnalytics) GetLastUpdatedAt() time.Time {
 	return o.LastUpdatedAt
 }
 
+// GetLastUpdatedAtOk returns a tuple with the LastUpdatedAt field value
+// and a boolean to check if the value has been set.
+func (o *AccountAnalytics) GetLastUpdatedAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LastUpdatedAt, true
+}
+
 // SetLastUpdatedAt sets field value
 func (o *AccountAnalytics) SetLastUpdatedAt(v time.Time) {
 	o.LastUpdatedAt = v
 }
 
+func (o AccountAnalytics) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applications"] = o.Applications
+	}
+	if true {
+		toSerialize["liveApplications"] = o.LiveApplications
+	}
+	if true {
+		toSerialize["sandboxApplications"] = o.SandboxApplications
+	}
+	if true {
+		toSerialize["campaigns"] = o.Campaigns
+	}
+	if true {
+		toSerialize["activeCampaigns"] = o.ActiveCampaigns
+	}
+	if true {
+		toSerialize["liveActiveCampaigns"] = o.LiveActiveCampaigns
+	}
+	if true {
+		toSerialize["coupons"] = o.Coupons
+	}
+	if true {
+		toSerialize["activeCoupons"] = o.ActiveCoupons
+	}
+	if true {
+		toSerialize["expiredCoupons"] = o.ExpiredCoupons
+	}
+	if true {
+		toSerialize["referralCodes"] = o.ReferralCodes
+	}
+	if true {
+		toSerialize["activeReferralCodes"] = o.ActiveReferralCodes
+	}
+	if true {
+		toSerialize["expiredReferralCodes"] = o.ExpiredReferralCodes
+	}
+	if true {
+		toSerialize["activeRules"] = o.ActiveRules
+	}
+	if true {
+		toSerialize["users"] = o.Users
+	}
+	if true {
+		toSerialize["roles"] = o.Roles
+	}
+	if true {
+		toSerialize["customAttributes"] = o.CustomAttributes
+	}
+	if true {
+		toSerialize["webhooks"] = o.Webhooks
+	}
+	if true {
+		toSerialize["loyaltyPrograms"] = o.LoyaltyPrograms
+	}
+	if true {
+		toSerialize["liveLoyaltyPrograms"] = o.LiveLoyaltyPrograms
+	}
+	if true {
+		toSerialize["lastUpdatedAt"] = o.LastUpdatedAt
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountAnalytics struct {
-	Value        AccountAnalytics
-	ExplicitNull bool
+	value *AccountAnalytics
+	isSet bool
+}
+
+func (v NullableAccountAnalytics) Get() *AccountAnalytics {
+	return v.value
+}
+
+func (v *NullableAccountAnalytics) Set(val *AccountAnalytics) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountAnalytics) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountAnalytics) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountAnalytics(val *AccountAnalytics) *NullableAccountAnalytics {
+	return &NullableAccountAnalytics{value: val, isSet: true}
 }
 
 func (v NullableAccountAnalytics) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountAnalytics) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

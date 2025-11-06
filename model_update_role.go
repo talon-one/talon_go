@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,7 +22,24 @@ type UpdateRole struct {
 	// The `Access Control List` json defining the role of the user. This represents the access control on the user level.
 	Acl *string `json:"acl,omitempty"`
 	// An array of user identifiers.
-	Members *[]int32 `json:"members,omitempty"`
+	Members *[]int64 `json:"members,omitempty"`
+}
+
+// NewUpdateRole instantiates a new UpdateRole object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateRole() *UpdateRole {
+	this := UpdateRole{}
+	return &this
+}
+
+// NewUpdateRoleWithDefaults instantiates a new UpdateRole object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateRoleWithDefaults() *UpdateRole {
+	this := UpdateRole{}
+	return &this
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -35,14 +51,13 @@ func (o *UpdateRole) GetName() string {
 	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, zero value otherwise
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateRole) GetNameOk() (string, bool) {
+func (o *UpdateRole) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -68,14 +83,13 @@ func (o *UpdateRole) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateRole) GetDescriptionOk() (string, bool) {
+func (o *UpdateRole) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -101,14 +115,13 @@ func (o *UpdateRole) GetAcl() string {
 	return *o.Acl
 }
 
-// GetAclOk returns a tuple with the Acl field value if set, zero value otherwise
+// GetAclOk returns a tuple with the Acl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateRole) GetAclOk() (string, bool) {
+func (o *UpdateRole) GetAclOk() (*string, bool) {
 	if o == nil || o.Acl == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Acl, true
+	return o.Acl, true
 }
 
 // HasAcl returns a boolean if a field has been set.
@@ -126,22 +139,21 @@ func (o *UpdateRole) SetAcl(v string) {
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
-func (o *UpdateRole) GetMembers() []int32 {
+func (o *UpdateRole) GetMembers() []int64 {
 	if o == nil || o.Members == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.Members
 }
 
-// GetMembersOk returns a tuple with the Members field value if set, zero value otherwise
+// GetMembersOk returns a tuple with the Members field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateRole) GetMembersOk() ([]int32, bool) {
+func (o *UpdateRole) GetMembersOk() (*[]int64, bool) {
 	if o == nil || o.Members == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.Members, true
+	return o.Members, true
 }
 
 // HasMembers returns a boolean if a field has been set.
@@ -153,30 +165,60 @@ func (o *UpdateRole) HasMembers() bool {
 	return false
 }
 
-// SetMembers gets a reference to the given []int32 and assigns it to the Members field.
-func (o *UpdateRole) SetMembers(v []int32) {
+// SetMembers gets a reference to the given []int64 and assigns it to the Members field.
+func (o *UpdateRole) SetMembers(v []int64) {
 	o.Members = &v
 }
 
+func (o UpdateRole) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Acl != nil {
+		toSerialize["acl"] = o.Acl
+	}
+	if o.Members != nil {
+		toSerialize["members"] = o.Members
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateRole struct {
-	Value        UpdateRole
-	ExplicitNull bool
+	value *UpdateRole
+	isSet bool
+}
+
+func (v NullableUpdateRole) Get() *UpdateRole {
+	return v.value
+}
+
+func (v *NullableUpdateRole) Set(val *UpdateRole) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateRole) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateRole) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateRole(val *UpdateRole) *NullableUpdateRole {
+	return &NullableUpdateRole{value: val, isSet: true}
 }
 
 func (v NullableUpdateRole) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateRole) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

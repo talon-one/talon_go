@@ -10,65 +10,168 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // InlineResponse20045 struct for InlineResponse20045
 type InlineResponse20045 struct {
-	TotalResultSize int32    `json:"totalResultSize"`
-	Data            []Export `json:"data"`
+	HasMore         *bool   `json:"hasMore,omitempty"`
+	TotalResultSize *int64  `json:"totalResultSize,omitempty"`
+	Data            []Store `json:"data"`
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20045) GetTotalResultSize() int32 {
-	if o == nil {
-		var ret int32
+// NewInlineResponse20045 instantiates a new InlineResponse20045 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildInlineResponse20045(data []Store) *InlineResponse20045 {
+	this := InlineResponse20045{}
+	this.Data = data
+	return &this
+}
+
+// NewInlineResponse20045WithDefaults instantiates a new InlineResponse20045 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInlineResponse20045WithDefaults() *InlineResponse20045 {
+	this := InlineResponse20045{}
+	return &this
+}
+
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
+func (o *InlineResponse20045) GetHasMore() bool {
+	if o == nil || o.HasMore == nil {
+		var ret bool
 		return ret
 	}
-
-	return o.TotalResultSize
+	return *o.HasMore
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20045) SetTotalResultSize(v int32) {
-	o.TotalResultSize = v
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20045) GetHasMoreOk() (*bool, bool) {
+	if o == nil || o.HasMore == nil {
+		return nil, false
+	}
+	return o.HasMore, true
+}
+
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20045) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+func (o *InlineResponse20045) SetHasMore(v bool) {
+	o.HasMore = &v
+}
+
+// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
+func (o *InlineResponse20045) GetTotalResultSize() int64 {
+	if o == nil || o.TotalResultSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TotalResultSize
+}
+
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20045) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil || o.TotalResultSize == nil {
+		return nil, false
+	}
+	return o.TotalResultSize, true
+}
+
+// HasTotalResultSize returns a boolean if a field has been set.
+func (o *InlineResponse20045) HasTotalResultSize() bool {
+	if o != nil && o.TotalResultSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
+func (o *InlineResponse20045) SetTotalResultSize(v int64) {
+	o.TotalResultSize = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20045) GetData() []Export {
+func (o *InlineResponse20045) GetData() []Store {
 	if o == nil {
-		var ret []Export
+		var ret []Store
 		return ret
 	}
 
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20045) GetDataOk() (*[]Store, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
-func (o *InlineResponse20045) SetData(v []Export) {
+func (o *InlineResponse20045) SetData(v []Store) {
 	o.Data = v
 }
 
+func (o InlineResponse20045) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.HasMore != nil {
+		toSerialize["hasMore"] = o.HasMore
+	}
+	if o.TotalResultSize != nil {
+		toSerialize["totalResultSize"] = o.TotalResultSize
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInlineResponse20045 struct {
-	Value        InlineResponse20045
-	ExplicitNull bool
+	value *InlineResponse20045
+	isSet bool
+}
+
+func (v NullableInlineResponse20045) Get() *InlineResponse20045 {
+	return v.value
+}
+
+func (v *NullableInlineResponse20045) Set(val *InlineResponse20045) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInlineResponse20045) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInlineResponse20045) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableInlineResponse20045(val *InlineResponse20045) *NullableInlineResponse20045 {
+	return &NullableInlineResponse20045{value: val, isSet: true}
 }
 
 func (v NullableInlineResponse20045) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInlineResponse20045) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

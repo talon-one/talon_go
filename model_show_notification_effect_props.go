@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,26 @@ type ShowNotificationEffectProps struct {
 	Body string `json:"body"`
 }
 
+// NewShowNotificationEffectProps instantiates a new ShowNotificationEffectProps object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildShowNotificationEffectProps(notificationType string, title string, body string) *ShowNotificationEffectProps {
+	this := ShowNotificationEffectProps{}
+	this.NotificationType = notificationType
+	this.Title = title
+	this.Body = body
+	return &this
+}
+
+// NewShowNotificationEffectPropsWithDefaults instantiates a new ShowNotificationEffectProps object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewShowNotificationEffectPropsWithDefaults() *ShowNotificationEffectProps {
+	this := ShowNotificationEffectProps{}
+	return &this
+}
+
 // GetNotificationType returns the NotificationType field value
 func (o *ShowNotificationEffectProps) GetNotificationType() string {
 	if o == nil {
@@ -32,6 +51,15 @@ func (o *ShowNotificationEffectProps) GetNotificationType() string {
 	}
 
 	return o.NotificationType
+}
+
+// GetNotificationTypeOk returns a tuple with the NotificationType field value
+// and a boolean to check if the value has been set.
+func (o *ShowNotificationEffectProps) GetNotificationTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotificationType, true
 }
 
 // SetNotificationType sets field value
@@ -49,6 +77,15 @@ func (o *ShowNotificationEffectProps) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ShowNotificationEffectProps) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *ShowNotificationEffectProps) SetTitle(v string) {
 	o.Title = v
@@ -64,30 +101,66 @@ func (o *ShowNotificationEffectProps) GetBody() string {
 	return o.Body
 }
 
+// GetBodyOk returns a tuple with the Body field value
+// and a boolean to check if the value has been set.
+func (o *ShowNotificationEffectProps) GetBodyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Body, true
+}
+
 // SetBody sets field value
 func (o *ShowNotificationEffectProps) SetBody(v string) {
 	o.Body = v
 }
 
+func (o ShowNotificationEffectProps) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["notificationType"] = o.NotificationType
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["body"] = o.Body
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableShowNotificationEffectProps struct {
-	Value        ShowNotificationEffectProps
-	ExplicitNull bool
+	value *ShowNotificationEffectProps
+	isSet bool
+}
+
+func (v NullableShowNotificationEffectProps) Get() *ShowNotificationEffectProps {
+	return v.value
+}
+
+func (v *NullableShowNotificationEffectProps) Set(val *ShowNotificationEffectProps) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableShowNotificationEffectProps) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableShowNotificationEffectProps) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableShowNotificationEffectProps(val *ShowNotificationEffectProps) *NullableShowNotificationEffectProps {
+	return &NullableShowNotificationEffectProps{value: val, isSet: true}
 }
 
 func (v NullableShowNotificationEffectProps) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableShowNotificationEffectProps) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

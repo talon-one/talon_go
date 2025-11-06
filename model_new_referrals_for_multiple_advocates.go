@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,9 +21,9 @@ type NewReferralsForMultipleAdvocates struct {
 	// Expiration date of the referral code. Referral never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The number of times a referral code can be used. `0` means no limit but any campaign usage limits will still apply.
-	UsageLimit int32 `json:"usageLimit"`
+	UsageLimit int64 `json:"usageLimit"`
 	// The ID of the campaign from which the referral received the referral code.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// An array containing all the respective advocate profiles.
 	AdvocateProfileIntegrationIds []string `json:"advocateProfileIntegrationIds"`
 	// Arbitrary properties associated with this referral code.
@@ -33,6 +32,26 @@ type NewReferralsForMultipleAdvocates struct {
 	ValidCharacters *[]string `json:"validCharacters,omitempty"`
 	// The pattern used to generate referrals. The character `#` is a placeholder and is replaced by a random character from the `validCharacters` set.
 	ReferralPattern *string `json:"referralPattern,omitempty"`
+}
+
+// NewNewReferralsForMultipleAdvocates instantiates a new NewReferralsForMultipleAdvocates object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewReferralsForMultipleAdvocates(usageLimit int64, campaignId int64, advocateProfileIntegrationIds []string) *NewReferralsForMultipleAdvocates {
+	this := NewReferralsForMultipleAdvocates{}
+	this.UsageLimit = usageLimit
+	this.CampaignId = campaignId
+	this.AdvocateProfileIntegrationIds = advocateProfileIntegrationIds
+	return &this
+}
+
+// NewNewReferralsForMultipleAdvocatesWithDefaults instantiates a new NewReferralsForMultipleAdvocates object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewReferralsForMultipleAdvocatesWithDefaults() *NewReferralsForMultipleAdvocates {
+	this := NewReferralsForMultipleAdvocates{}
+	return &this
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
@@ -44,14 +63,13 @@ func (o *NewReferralsForMultipleAdvocates) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferralsForMultipleAdvocates) GetStartDateOk() (time.Time, bool) {
+func (o *NewReferralsForMultipleAdvocates) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -77,14 +95,13 @@ func (o *NewReferralsForMultipleAdvocates) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferralsForMultipleAdvocates) GetExpiryDateOk() (time.Time, bool) {
+func (o *NewReferralsForMultipleAdvocates) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -102,32 +119,50 @@ func (o *NewReferralsForMultipleAdvocates) SetExpiryDate(v time.Time) {
 }
 
 // GetUsageLimit returns the UsageLimit field value
-func (o *NewReferralsForMultipleAdvocates) GetUsageLimit() int32 {
+func (o *NewReferralsForMultipleAdvocates) GetUsageLimit() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UsageLimit
 }
 
+// GetUsageLimitOk returns a tuple with the UsageLimit field value
+// and a boolean to check if the value has been set.
+func (o *NewReferralsForMultipleAdvocates) GetUsageLimitOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UsageLimit, true
+}
+
 // SetUsageLimit sets field value
-func (o *NewReferralsForMultipleAdvocates) SetUsageLimit(v int32) {
+func (o *NewReferralsForMultipleAdvocates) SetUsageLimit(v int64) {
 	o.UsageLimit = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *NewReferralsForMultipleAdvocates) GetCampaignId() int32 {
+func (o *NewReferralsForMultipleAdvocates) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *NewReferralsForMultipleAdvocates) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *NewReferralsForMultipleAdvocates) SetCampaignId(v int32) {
+func (o *NewReferralsForMultipleAdvocates) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -139,6 +174,15 @@ func (o *NewReferralsForMultipleAdvocates) GetAdvocateProfileIntegrationIds() []
 	}
 
 	return o.AdvocateProfileIntegrationIds
+}
+
+// GetAdvocateProfileIntegrationIdsOk returns a tuple with the AdvocateProfileIntegrationIds field value
+// and a boolean to check if the value has been set.
+func (o *NewReferralsForMultipleAdvocates) GetAdvocateProfileIntegrationIdsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AdvocateProfileIntegrationIds, true
 }
 
 // SetAdvocateProfileIntegrationIds sets field value
@@ -155,14 +199,13 @@ func (o *NewReferralsForMultipleAdvocates) GetAttributes() map[string]interface{
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferralsForMultipleAdvocates) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *NewReferralsForMultipleAdvocates) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -188,14 +231,13 @@ func (o *NewReferralsForMultipleAdvocates) GetValidCharacters() []string {
 	return *o.ValidCharacters
 }
 
-// GetValidCharactersOk returns a tuple with the ValidCharacters field value if set, zero value otherwise
+// GetValidCharactersOk returns a tuple with the ValidCharacters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferralsForMultipleAdvocates) GetValidCharactersOk() ([]string, bool) {
+func (o *NewReferralsForMultipleAdvocates) GetValidCharactersOk() (*[]string, bool) {
 	if o == nil || o.ValidCharacters == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidCharacters, true
+	return o.ValidCharacters, true
 }
 
 // HasValidCharacters returns a boolean if a field has been set.
@@ -221,14 +263,13 @@ func (o *NewReferralsForMultipleAdvocates) GetReferralPattern() string {
 	return *o.ReferralPattern
 }
 
-// GetReferralPatternOk returns a tuple with the ReferralPattern field value if set, zero value otherwise
+// GetReferralPatternOk returns a tuple with the ReferralPattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewReferralsForMultipleAdvocates) GetReferralPatternOk() (string, bool) {
+func (o *NewReferralsForMultipleAdvocates) GetReferralPatternOk() (*string, bool) {
 	if o == nil || o.ReferralPattern == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ReferralPattern, true
+	return o.ReferralPattern, true
 }
 
 // HasReferralPattern returns a boolean if a field has been set.
@@ -245,25 +286,67 @@ func (o *NewReferralsForMultipleAdvocates) SetReferralPattern(v string) {
 	o.ReferralPattern = &v
 }
 
+func (o NewReferralsForMultipleAdvocates) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["advocateProfileIntegrationIds"] = o.AdvocateProfileIntegrationIds
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.ValidCharacters != nil {
+		toSerialize["validCharacters"] = o.ValidCharacters
+	}
+	if o.ReferralPattern != nil {
+		toSerialize["referralPattern"] = o.ReferralPattern
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewReferralsForMultipleAdvocates struct {
-	Value        NewReferralsForMultipleAdvocates
-	ExplicitNull bool
+	value *NewReferralsForMultipleAdvocates
+	isSet bool
+}
+
+func (v NullableNewReferralsForMultipleAdvocates) Get() *NewReferralsForMultipleAdvocates {
+	return v.value
+}
+
+func (v *NullableNewReferralsForMultipleAdvocates) Set(val *NewReferralsForMultipleAdvocates) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewReferralsForMultipleAdvocates) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewReferralsForMultipleAdvocates) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewReferralsForMultipleAdvocates(val *NewReferralsForMultipleAdvocates) *NullableNewReferralsForMultipleAdvocates {
+	return &NullableNewReferralsForMultipleAdvocates{value: val, isSet: true}
 }
 
 func (v NullableNewReferralsForMultipleAdvocates) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewReferralsForMultipleAdvocates) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

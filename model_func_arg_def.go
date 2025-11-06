@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type FuncArgDef struct {
 	Description *string `json:"description,omitempty"`
 }
 
+// NewFuncArgDef instantiates a new FuncArgDef object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildFuncArgDef(type_ string) *FuncArgDef {
+	this := FuncArgDef{}
+	this.Type = type_
+	return &this
+}
+
+// NewFuncArgDefWithDefaults instantiates a new FuncArgDef object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewFuncArgDefWithDefaults() *FuncArgDef {
+	this := FuncArgDef{}
+	return &this
+}
+
 // GetType returns the Type field value
 func (o *FuncArgDef) GetType() string {
 	if o == nil {
@@ -30,6 +47,15 @@ func (o *FuncArgDef) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *FuncArgDef) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -46,14 +72,13 @@ func (o *FuncArgDef) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FuncArgDef) GetDescriptionOk() (string, bool) {
+func (o *FuncArgDef) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -70,25 +95,49 @@ func (o *FuncArgDef) SetDescription(v string) {
 	o.Description = &v
 }
 
+func (o FuncArgDef) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableFuncArgDef struct {
-	Value        FuncArgDef
-	ExplicitNull bool
+	value *FuncArgDef
+	isSet bool
+}
+
+func (v NullableFuncArgDef) Get() *FuncArgDef {
+	return v.value
+}
+
+func (v *NullableFuncArgDef) Set(val *FuncArgDef) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFuncArgDef) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFuncArgDef) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableFuncArgDef(val *FuncArgDef) *NullableFuncArgDef {
+	return &NullableFuncArgDef{value: val, isSet: true}
 }
 
 func (v NullableFuncArgDef) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableFuncArgDef) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

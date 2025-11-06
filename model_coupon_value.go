@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type CouponValue struct {
 	// The coupon code.
 	Value *string `json:"value,omitempty"`
+}
+
+// NewCouponValue instantiates a new CouponValue object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCouponValue() *CouponValue {
+	this := CouponValue{}
+	return &this
+}
+
+// NewCouponValueWithDefaults instantiates a new CouponValue object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponValueWithDefaults() *CouponValue {
+	this := CouponValue{}
+	return &this
 }
 
 // GetValue returns the Value field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *CouponValue) GetValue() string {
 	return *o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value if set, zero value otherwise
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponValue) GetValueOk() (string, bool) {
+func (o *CouponValue) GetValueOk() (*string, bool) {
 	if o == nil || o.Value == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *CouponValue) SetValue(v string) {
 	o.Value = &v
 }
 
+func (o CouponValue) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponValue struct {
-	Value        CouponValue
-	ExplicitNull bool
+	value *CouponValue
+	isSet bool
+}
+
+func (v NullableCouponValue) Get() *CouponValue {
+	return v.value
+}
+
+func (v *NullableCouponValue) Set(val *CouponValue) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponValue) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponValue) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCouponValue(val *CouponValue) *NullableCouponValue {
+	return &NullableCouponValue{value: val, isSet: true}
 }
 
 func (v NullableCouponValue) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponValue) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // Environment struct for Environment
 type Environment struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The slots defined for this application.
 	Slots []SlotDef `json:"slots"`
 	// The functions defined for this application.
@@ -46,23 +45,56 @@ type Environment struct {
 	// The account-level collections that the application is subscribed to.
 	Collections *[]Collection `json:"collections,omitempty"`
 	// The cart item filters belonging to the Application.
-	ApplicationCartItemFilters *[]ApplicationCif `json:"applicationCartItemFilters,omitempty"`
+	ApplicationCartItemFilters *[]ApplicationCIF `json:"applicationCartItemFilters,omitempty"`
 	// The price types that this Application can use.
 	PriceTypes *[]PriceType `json:"priceTypes,omitempty"`
 }
 
+// NewEnvironment instantiates a new Environment object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildEnvironment(id int64, created time.Time, applicationId int64, slots []SlotDef, functions []FunctionDef, templates []TemplateDef, variables string) *Environment {
+	this := Environment{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.Slots = slots
+	this.Functions = functions
+	this.Templates = templates
+	this.Variables = variables
+	return &this
+}
+
+// NewEnvironmentWithDefaults instantiates a new Environment object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewEnvironmentWithDefaults() *Environment {
+	this := Environment{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *Environment) GetId() int32 {
+func (o *Environment) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Environment) SetId(v int32) {
+func (o *Environment) SetId(v int64) {
 	o.Id = v
 }
 
@@ -76,23 +108,41 @@ func (o *Environment) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Environment) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *Environment) GetApplicationId() int32 {
+func (o *Environment) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *Environment) SetApplicationId(v int32) {
+func (o *Environment) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -104,6 +154,15 @@ func (o *Environment) GetSlots() []SlotDef {
 	}
 
 	return o.Slots
+}
+
+// GetSlotsOk returns a tuple with the Slots field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetSlotsOk() (*[]SlotDef, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Slots, true
 }
 
 // SetSlots sets field value
@@ -121,6 +180,15 @@ func (o *Environment) GetFunctions() []FunctionDef {
 	return o.Functions
 }
 
+// GetFunctionsOk returns a tuple with the Functions field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetFunctionsOk() (*[]FunctionDef, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Functions, true
+}
+
 // SetFunctions sets field value
 func (o *Environment) SetFunctions(v []FunctionDef) {
 	o.Functions = v
@@ -134,6 +202,15 @@ func (o *Environment) GetTemplates() []TemplateDef {
 	}
 
 	return o.Templates
+}
+
+// GetTemplatesOk returns a tuple with the Templates field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetTemplatesOk() (*[]TemplateDef, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Templates, true
 }
 
 // SetTemplates sets field value
@@ -151,6 +228,15 @@ func (o *Environment) GetVariables() string {
 	return o.Variables
 }
 
+// GetVariablesOk returns a tuple with the Variables field value
+// and a boolean to check if the value has been set.
+func (o *Environment) GetVariablesOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Variables, true
+}
+
 // SetVariables sets field value
 func (o *Environment) SetVariables(v string) {
 	o.Variables = v
@@ -165,14 +251,13 @@ func (o *Environment) GetGiveawaysPools() []GiveawaysPool {
 	return *o.GiveawaysPools
 }
 
-// GetGiveawaysPoolsOk returns a tuple with the GiveawaysPools field value if set, zero value otherwise
+// GetGiveawaysPoolsOk returns a tuple with the GiveawaysPools field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetGiveawaysPoolsOk() ([]GiveawaysPool, bool) {
+func (o *Environment) GetGiveawaysPoolsOk() (*[]GiveawaysPool, bool) {
 	if o == nil || o.GiveawaysPools == nil {
-		var ret []GiveawaysPool
-		return ret, false
+		return nil, false
 	}
-	return *o.GiveawaysPools, true
+	return o.GiveawaysPools, true
 }
 
 // HasGiveawaysPools returns a boolean if a field has been set.
@@ -198,14 +283,13 @@ func (o *Environment) GetLoyaltyPrograms() []LoyaltyProgram {
 	return *o.LoyaltyPrograms
 }
 
-// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value if set, zero value otherwise
+// GetLoyaltyProgramsOk returns a tuple with the LoyaltyPrograms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetLoyaltyProgramsOk() ([]LoyaltyProgram, bool) {
+func (o *Environment) GetLoyaltyProgramsOk() (*[]LoyaltyProgram, bool) {
 	if o == nil || o.LoyaltyPrograms == nil {
-		var ret []LoyaltyProgram
-		return ret, false
+		return nil, false
 	}
-	return *o.LoyaltyPrograms, true
+	return o.LoyaltyPrograms, true
 }
 
 // HasLoyaltyPrograms returns a boolean if a field has been set.
@@ -231,14 +315,13 @@ func (o *Environment) GetAchievements() []Achievement {
 	return *o.Achievements
 }
 
-// GetAchievementsOk returns a tuple with the Achievements field value if set, zero value otherwise
+// GetAchievementsOk returns a tuple with the Achievements field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetAchievementsOk() ([]Achievement, bool) {
+func (o *Environment) GetAchievementsOk() (*[]Achievement, bool) {
 	if o == nil || o.Achievements == nil {
-		var ret []Achievement
-		return ret, false
+		return nil, false
 	}
-	return *o.Achievements, true
+	return o.Achievements, true
 }
 
 // HasAchievements returns a boolean if a field has been set.
@@ -264,14 +347,13 @@ func (o *Environment) GetAttributes() []Attribute {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetAttributesOk() ([]Attribute, bool) {
+func (o *Environment) GetAttributesOk() (*[]Attribute, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret []Attribute
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -297,14 +379,13 @@ func (o *Environment) GetAdditionalCosts() []AccountAdditionalCost {
 	return *o.AdditionalCosts
 }
 
-// GetAdditionalCostsOk returns a tuple with the AdditionalCosts field value if set, zero value otherwise
+// GetAdditionalCostsOk returns a tuple with the AdditionalCosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetAdditionalCostsOk() ([]AccountAdditionalCost, bool) {
+func (o *Environment) GetAdditionalCostsOk() (*[]AccountAdditionalCost, bool) {
 	if o == nil || o.AdditionalCosts == nil {
-		var ret []AccountAdditionalCost
-		return ret, false
+		return nil, false
 	}
-	return *o.AdditionalCosts, true
+	return o.AdditionalCosts, true
 }
 
 // HasAdditionalCosts returns a boolean if a field has been set.
@@ -330,14 +411,13 @@ func (o *Environment) GetAudiences() []Audience {
 	return *o.Audiences
 }
 
-// GetAudiencesOk returns a tuple with the Audiences field value if set, zero value otherwise
+// GetAudiencesOk returns a tuple with the Audiences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetAudiencesOk() ([]Audience, bool) {
+func (o *Environment) GetAudiencesOk() (*[]Audience, bool) {
 	if o == nil || o.Audiences == nil {
-		var ret []Audience
-		return ret, false
+		return nil, false
 	}
-	return *o.Audiences, true
+	return o.Audiences, true
 }
 
 // HasAudiences returns a boolean if a field has been set.
@@ -363,14 +443,13 @@ func (o *Environment) GetCollections() []Collection {
 	return *o.Collections
 }
 
-// GetCollectionsOk returns a tuple with the Collections field value if set, zero value otherwise
+// GetCollectionsOk returns a tuple with the Collections field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetCollectionsOk() ([]Collection, bool) {
+func (o *Environment) GetCollectionsOk() (*[]Collection, bool) {
 	if o == nil || o.Collections == nil {
-		var ret []Collection
-		return ret, false
+		return nil, false
 	}
-	return *o.Collections, true
+	return o.Collections, true
 }
 
 // HasCollections returns a boolean if a field has been set.
@@ -388,22 +467,21 @@ func (o *Environment) SetCollections(v []Collection) {
 }
 
 // GetApplicationCartItemFilters returns the ApplicationCartItemFilters field value if set, zero value otherwise.
-func (o *Environment) GetApplicationCartItemFilters() []ApplicationCif {
+func (o *Environment) GetApplicationCartItemFilters() []ApplicationCIF {
 	if o == nil || o.ApplicationCartItemFilters == nil {
-		var ret []ApplicationCif
+		var ret []ApplicationCIF
 		return ret
 	}
 	return *o.ApplicationCartItemFilters
 }
 
-// GetApplicationCartItemFiltersOk returns a tuple with the ApplicationCartItemFilters field value if set, zero value otherwise
+// GetApplicationCartItemFiltersOk returns a tuple with the ApplicationCartItemFilters field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetApplicationCartItemFiltersOk() ([]ApplicationCif, bool) {
+func (o *Environment) GetApplicationCartItemFiltersOk() (*[]ApplicationCIF, bool) {
 	if o == nil || o.ApplicationCartItemFilters == nil {
-		var ret []ApplicationCif
-		return ret, false
+		return nil, false
 	}
-	return *o.ApplicationCartItemFilters, true
+	return o.ApplicationCartItemFilters, true
 }
 
 // HasApplicationCartItemFilters returns a boolean if a field has been set.
@@ -415,8 +493,8 @@ func (o *Environment) HasApplicationCartItemFilters() bool {
 	return false
 }
 
-// SetApplicationCartItemFilters gets a reference to the given []ApplicationCif and assigns it to the ApplicationCartItemFilters field.
-func (o *Environment) SetApplicationCartItemFilters(v []ApplicationCif) {
+// SetApplicationCartItemFilters gets a reference to the given []ApplicationCIF and assigns it to the ApplicationCartItemFilters field.
+func (o *Environment) SetApplicationCartItemFilters(v []ApplicationCIF) {
 	o.ApplicationCartItemFilters = &v
 }
 
@@ -429,14 +507,13 @@ func (o *Environment) GetPriceTypes() []PriceType {
 	return *o.PriceTypes
 }
 
-// GetPriceTypesOk returns a tuple with the PriceTypes field value if set, zero value otherwise
+// GetPriceTypesOk returns a tuple with the PriceTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Environment) GetPriceTypesOk() ([]PriceType, bool) {
+func (o *Environment) GetPriceTypesOk() (*[]PriceType, bool) {
 	if o == nil || o.PriceTypes == nil {
-		var ret []PriceType
-		return ret, false
+		return nil, false
 	}
-	return *o.PriceTypes, true
+	return o.PriceTypes, true
 }
 
 // HasPriceTypes returns a boolean if a field has been set.
@@ -453,25 +530,91 @@ func (o *Environment) SetPriceTypes(v []PriceType) {
 	o.PriceTypes = &v
 }
 
+func (o Environment) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["slots"] = o.Slots
+	}
+	if true {
+		toSerialize["functions"] = o.Functions
+	}
+	if true {
+		toSerialize["templates"] = o.Templates
+	}
+	if true {
+		toSerialize["variables"] = o.Variables
+	}
+	if o.GiveawaysPools != nil {
+		toSerialize["giveawaysPools"] = o.GiveawaysPools
+	}
+	if o.LoyaltyPrograms != nil {
+		toSerialize["loyaltyPrograms"] = o.LoyaltyPrograms
+	}
+	if o.Achievements != nil {
+		toSerialize["achievements"] = o.Achievements
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.AdditionalCosts != nil {
+		toSerialize["additionalCosts"] = o.AdditionalCosts
+	}
+	if o.Audiences != nil {
+		toSerialize["audiences"] = o.Audiences
+	}
+	if o.Collections != nil {
+		toSerialize["collections"] = o.Collections
+	}
+	if o.ApplicationCartItemFilters != nil {
+		toSerialize["applicationCartItemFilters"] = o.ApplicationCartItemFilters
+	}
+	if o.PriceTypes != nil {
+		toSerialize["priceTypes"] = o.PriceTypes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableEnvironment struct {
-	Value        Environment
-	ExplicitNull bool
+	value *Environment
+	isSet bool
+}
+
+func (v NullableEnvironment) Get() *Environment {
+	return v.value
+}
+
+func (v *NullableEnvironment) Set(val *Environment) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableEnvironment) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableEnvironment) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableEnvironment(val *Environment) *NullableEnvironment {
+	return &NullableEnvironment{value: val, isSet: true}
 }
 
 func (v NullableEnvironment) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableEnvironment) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

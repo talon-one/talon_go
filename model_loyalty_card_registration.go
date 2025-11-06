@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type LoyaltyCardRegistration struct {
 	// The integrationId of the customer profile.
 	IntegrationId string `json:"integrationId"`
+}
+
+// NewLoyaltyCardRegistration instantiates a new LoyaltyCardRegistration object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyCardRegistration(integrationId string) *LoyaltyCardRegistration {
+	this := LoyaltyCardRegistration{}
+	this.IntegrationId = integrationId
+	return &this
+}
+
+// NewLoyaltyCardRegistrationWithDefaults instantiates a new LoyaltyCardRegistration object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyCardRegistrationWithDefaults() *LoyaltyCardRegistration {
+	this := LoyaltyCardRegistration{}
+	return &this
 }
 
 // GetIntegrationId returns the IntegrationId field value
@@ -30,30 +47,60 @@ func (o *LoyaltyCardRegistration) GetIntegrationId() string {
 	return o.IntegrationId
 }
 
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyCardRegistration) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
+}
+
 // SetIntegrationId sets field value
 func (o *LoyaltyCardRegistration) SetIntegrationId(v string) {
 	o.IntegrationId = v
 }
 
+func (o LoyaltyCardRegistration) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyCardRegistration struct {
-	Value        LoyaltyCardRegistration
-	ExplicitNull bool
+	value *LoyaltyCardRegistration
+	isSet bool
+}
+
+func (v NullableLoyaltyCardRegistration) Get() *LoyaltyCardRegistration {
+	return v.value
+}
+
+func (v *NullableLoyaltyCardRegistration) Set(val *LoyaltyCardRegistration) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyCardRegistration) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyCardRegistration) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyCardRegistration(val *LoyaltyCardRegistration) *NullableLoyaltyCardRegistration {
+	return &NullableLoyaltyCardRegistration{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyCardRegistration) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyCardRegistration) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

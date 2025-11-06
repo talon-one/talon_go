@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,41 +17,77 @@ import (
 // CouponDeletionJob struct for CouponDeletionJob
 type CouponDeletionJob struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The ID of the account that owns this entity.
-	AccountId int32                 `json:"accountId"`
+	AccountId int64                 `json:"accountId"`
 	Filters   CouponDeletionFilters `json:"filters"`
 	// The current status of this request. Possible values: - `not_ready` - `pending` - `completed` - `failed`
 	Status string `json:"status"`
 	// The number of coupon codes that were already deleted for this request.
-	DeletedAmount *int32 `json:"deletedAmount,omitempty"`
+	DeletedAmount *int64 `json:"deletedAmount,omitempty"`
 	// The number of times this job failed.
-	FailCount int32 `json:"failCount"`
+	FailCount int64 `json:"failCount"`
 	// An array of individual problems encountered during the request.
 	Errors []string `json:"errors"`
 	// ID of the user who created this effect.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
 	// Indicates whether the user that created this job was notified of its final state.
 	Communicated bool     `json:"communicated"`
-	CampaignIDs  *[]int32 `json:"campaignIDs,omitempty"`
+	CampaignIDs  *[]int64 `json:"campaignIDs,omitempty"`
+}
+
+// NewCouponDeletionJob instantiates a new CouponDeletionJob object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCouponDeletionJob(id int64, created time.Time, applicationId int64, accountId int64, filters CouponDeletionFilters, status string, failCount int64, errors []string, createdBy int64, communicated bool) *CouponDeletionJob {
+	this := CouponDeletionJob{}
+	this.Id = id
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.AccountId = accountId
+	this.Filters = filters
+	this.Status = status
+	this.FailCount = failCount
+	this.Errors = errors
+	this.CreatedBy = createdBy
+	this.Communicated = communicated
+	return &this
+}
+
+// NewCouponDeletionJobWithDefaults instantiates a new CouponDeletionJob object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponDeletionJobWithDefaults() *CouponDeletionJob {
+	this := CouponDeletionJob{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *CouponDeletionJob) GetId() int32 {
+func (o *CouponDeletionJob) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *CouponDeletionJob) SetId(v int32) {
+func (o *CouponDeletionJob) SetId(v int64) {
 	o.Id = v
 }
 
@@ -66,38 +101,65 @@ func (o *CouponDeletionJob) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *CouponDeletionJob) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *CouponDeletionJob) GetApplicationId() int32 {
+func (o *CouponDeletionJob) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *CouponDeletionJob) SetApplicationId(v int32) {
+func (o *CouponDeletionJob) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *CouponDeletionJob) GetAccountId() int32 {
+func (o *CouponDeletionJob) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *CouponDeletionJob) SetAccountId(v int32) {
+func (o *CouponDeletionJob) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -109,6 +171,15 @@ func (o *CouponDeletionJob) GetFilters() CouponDeletionFilters {
 	}
 
 	return o.Filters
+}
+
+// GetFiltersOk returns a tuple with the Filters field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetFiltersOk() (*CouponDeletionFilters, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Filters, true
 }
 
 // SetFilters sets field value
@@ -126,28 +197,36 @@ func (o *CouponDeletionJob) GetStatus() string {
 	return o.Status
 }
 
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
 // SetStatus sets field value
 func (o *CouponDeletionJob) SetStatus(v string) {
 	o.Status = v
 }
 
 // GetDeletedAmount returns the DeletedAmount field value if set, zero value otherwise.
-func (o *CouponDeletionJob) GetDeletedAmount() int32 {
+func (o *CouponDeletionJob) GetDeletedAmount() int64 {
 	if o == nil || o.DeletedAmount == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.DeletedAmount
 }
 
-// GetDeletedAmountOk returns a tuple with the DeletedAmount field value if set, zero value otherwise
+// GetDeletedAmountOk returns a tuple with the DeletedAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionJob) GetDeletedAmountOk() (int32, bool) {
+func (o *CouponDeletionJob) GetDeletedAmountOk() (*int64, bool) {
 	if o == nil || o.DeletedAmount == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.DeletedAmount, true
+	return o.DeletedAmount, true
 }
 
 // HasDeletedAmount returns a boolean if a field has been set.
@@ -159,23 +238,32 @@ func (o *CouponDeletionJob) HasDeletedAmount() bool {
 	return false
 }
 
-// SetDeletedAmount gets a reference to the given int32 and assigns it to the DeletedAmount field.
-func (o *CouponDeletionJob) SetDeletedAmount(v int32) {
+// SetDeletedAmount gets a reference to the given int64 and assigns it to the DeletedAmount field.
+func (o *CouponDeletionJob) SetDeletedAmount(v int64) {
 	o.DeletedAmount = &v
 }
 
 // GetFailCount returns the FailCount field value
-func (o *CouponDeletionJob) GetFailCount() int32 {
+func (o *CouponDeletionJob) GetFailCount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.FailCount
 }
 
+// GetFailCountOk returns a tuple with the FailCount field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetFailCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FailCount, true
+}
+
 // SetFailCount sets field value
-func (o *CouponDeletionJob) SetFailCount(v int32) {
+func (o *CouponDeletionJob) SetFailCount(v int64) {
 	o.FailCount = v
 }
 
@@ -189,23 +277,41 @@ func (o *CouponDeletionJob) GetErrors() []string {
 	return o.Errors
 }
 
+// GetErrorsOk returns a tuple with the Errors field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetErrorsOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Errors, true
+}
+
 // SetErrors sets field value
 func (o *CouponDeletionJob) SetErrors(v []string) {
 	o.Errors = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *CouponDeletionJob) GetCreatedBy() int32 {
+func (o *CouponDeletionJob) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *CouponDeletionJob) SetCreatedBy(v int32) {
+func (o *CouponDeletionJob) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
@@ -219,28 +325,36 @@ func (o *CouponDeletionJob) GetCommunicated() bool {
 	return o.Communicated
 }
 
+// GetCommunicatedOk returns a tuple with the Communicated field value
+// and a boolean to check if the value has been set.
+func (o *CouponDeletionJob) GetCommunicatedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Communicated, true
+}
+
 // SetCommunicated sets field value
 func (o *CouponDeletionJob) SetCommunicated(v bool) {
 	o.Communicated = v
 }
 
 // GetCampaignIDs returns the CampaignIDs field value if set, zero value otherwise.
-func (o *CouponDeletionJob) GetCampaignIDs() []int32 {
+func (o *CouponDeletionJob) GetCampaignIDs() []int64 {
 	if o == nil || o.CampaignIDs == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.CampaignIDs
 }
 
-// GetCampaignIDsOk returns a tuple with the CampaignIDs field value if set, zero value otherwise
+// GetCampaignIDsOk returns a tuple with the CampaignIDs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponDeletionJob) GetCampaignIDsOk() ([]int32, bool) {
+func (o *CouponDeletionJob) GetCampaignIDsOk() (*[]int64, bool) {
 	if o == nil || o.CampaignIDs == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.CampaignIDs, true
+	return o.CampaignIDs, true
 }
 
 // HasCampaignIDs returns a boolean if a field has been set.
@@ -252,30 +366,84 @@ func (o *CouponDeletionJob) HasCampaignIDs() bool {
 	return false
 }
 
-// SetCampaignIDs gets a reference to the given []int32 and assigns it to the CampaignIDs field.
-func (o *CouponDeletionJob) SetCampaignIDs(v []int32) {
+// SetCampaignIDs gets a reference to the given []int64 and assigns it to the CampaignIDs field.
+func (o *CouponDeletionJob) SetCampaignIDs(v []int64) {
 	o.CampaignIDs = &v
 }
 
+func (o CouponDeletionJob) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["filters"] = o.Filters
+	}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.DeletedAmount != nil {
+		toSerialize["deletedAmount"] = o.DeletedAmount
+	}
+	if true {
+		toSerialize["failCount"] = o.FailCount
+	}
+	if true {
+		toSerialize["errors"] = o.Errors
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if true {
+		toSerialize["communicated"] = o.Communicated
+	}
+	if o.CampaignIDs != nil {
+		toSerialize["campaignIDs"] = o.CampaignIDs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponDeletionJob struct {
-	Value        CouponDeletionJob
-	ExplicitNull bool
+	value *CouponDeletionJob
+	isSet bool
+}
+
+func (v NullableCouponDeletionJob) Get() *CouponDeletionJob {
+	return v.value
+}
+
+func (v *NullableCouponDeletionJob) Set(val *CouponDeletionJob) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponDeletionJob) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponDeletionJob) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCouponDeletionJob(val *CouponDeletionJob) *NullableCouponDeletionJob {
+	return &NullableCouponDeletionJob{value: val, isSet: true}
 }
 
 func (v NullableCouponDeletionJob) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponDeletionJob) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

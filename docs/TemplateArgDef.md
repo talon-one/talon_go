@@ -9,10 +9,27 @@ Name | Type | Description | Notes
 **Title** | Pointer to **string** | A campaigner friendly name for the argument, this will be shown in the rule editor. | 
 **Ui** | Pointer to [**map[string]interface{}**](.md) | Arbitrary metadata that may be used to render an input for this argument. | 
 **Key** | Pointer to **string** | The identifier for the associated value within the JSON object. | [optional] 
-**PicklistID** | Pointer to **int32** | ID of the picklist linked to a template. | [optional] 
+**PicklistID** | Pointer to **int64** | ID of the picklist linked to a template. | [optional] 
 **RestrictedByPicklist** | Pointer to **bool** | Whether or not this attribute&#39;s value is restricted by picklist (&#x60;picklist&#x60; property) | [optional] 
 
 ## Methods
+
+### NewTemplateArgDef
+
+`func NewTemplateArgDef(type_ string, title string, ui map[string]interface{}, ) *TemplateArgDef`
+
+NewTemplateArgDef instantiates a new TemplateArgDef object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewTemplateArgDefWithDefaults
+
+`func NewTemplateArgDefWithDefaults() *TemplateArgDef`
+
+NewTemplateArgDefWithDefaults instantiates a new TemplateArgDef object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetType
 
@@ -22,22 +39,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *TemplateArgDef) GetTypeOk() (string, bool)`
+`func (o *TemplateArgDef) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *TemplateArgDef) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *TemplateArgDef) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetDescription
 
@@ -47,22 +59,22 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *TemplateArgDef) GetDescriptionOk() (string, bool)`
+`func (o *TemplateArgDef) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDescription
+
+`func (o *TemplateArgDef) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
 
 ### HasDescription
 
 `func (o *TemplateArgDef) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### SetDescription
-
-`func (o *TemplateArgDef) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
 
 ### GetTitle
 
@@ -72,22 +84,17 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *TemplateArgDef) GetTitleOk() (string, bool)`
+`func (o *TemplateArgDef) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *TemplateArgDef) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 ### SetTitle
 
 `func (o *TemplateArgDef) SetTitle(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetTitle sets Title field to given value.
+
 
 ### GetUi
 
@@ -97,22 +104,17 @@ GetUi returns the Ui field if non-nil, zero value otherwise.
 
 ### GetUiOk
 
-`func (o *TemplateArgDef) GetUiOk() (map[string]interface{}, bool)`
+`func (o *TemplateArgDef) GetUiOk() (*map[string]interface{}, bool)`
 
 GetUiOk returns a tuple with the Ui field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasUi
-
-`func (o *TemplateArgDef) HasUi() bool`
-
-HasUi returns a boolean if a field has been set.
 
 ### SetUi
 
 `func (o *TemplateArgDef) SetUi(v map[string]interface{})`
 
-SetUi gets a reference to the given map[string]interface{} and assigns it to the Ui field.
+SetUi sets Ui field to given value.
+
 
 ### GetKey
 
@@ -122,10 +124,16 @@ GetKey returns the Key field if non-nil, zero value otherwise.
 
 ### GetKeyOk
 
-`func (o *TemplateArgDef) GetKeyOk() (string, bool)`
+`func (o *TemplateArgDef) GetKeyOk() (*string, bool)`
 
 GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetKey
+
+`func (o *TemplateArgDef) SetKey(v string)`
+
+SetKey sets Key field to given value.
 
 ### HasKey
 
@@ -133,36 +141,30 @@ and a boolean to check if the value has been set.
 
 HasKey returns a boolean if a field has been set.
 
-### SetKey
-
-`func (o *TemplateArgDef) SetKey(v string)`
-
-SetKey gets a reference to the given string and assigns it to the Key field.
-
 ### GetPicklistID
 
-`func (o *TemplateArgDef) GetPicklistID() int32`
+`func (o *TemplateArgDef) GetPicklistID() int64`
 
 GetPicklistID returns the PicklistID field if non-nil, zero value otherwise.
 
 ### GetPicklistIDOk
 
-`func (o *TemplateArgDef) GetPicklistIDOk() (int32, bool)`
+`func (o *TemplateArgDef) GetPicklistIDOk() (*int64, bool)`
 
 GetPicklistIDOk returns a tuple with the PicklistID field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetPicklistID
+
+`func (o *TemplateArgDef) SetPicklistID(v int64)`
+
+SetPicklistID sets PicklistID field to given value.
 
 ### HasPicklistID
 
 `func (o *TemplateArgDef) HasPicklistID() bool`
 
 HasPicklistID returns a boolean if a field has been set.
-
-### SetPicklistID
-
-`func (o *TemplateArgDef) SetPicklistID(v int32)`
-
-SetPicklistID gets a reference to the given int32 and assigns it to the PicklistID field.
 
 ### GetRestrictedByPicklist
 
@@ -172,22 +174,22 @@ GetRestrictedByPicklist returns the RestrictedByPicklist field if non-nil, zero 
 
 ### GetRestrictedByPicklistOk
 
-`func (o *TemplateArgDef) GetRestrictedByPicklistOk() (bool, bool)`
+`func (o *TemplateArgDef) GetRestrictedByPicklistOk() (*bool, bool)`
 
 GetRestrictedByPicklistOk returns a tuple with the RestrictedByPicklist field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRestrictedByPicklist
+
+`func (o *TemplateArgDef) SetRestrictedByPicklist(v bool)`
+
+SetRestrictedByPicklist sets RestrictedByPicklist field to given value.
 
 ### HasRestrictedByPicklist
 
 `func (o *TemplateArgDef) HasRestrictedByPicklist() bool`
 
 HasRestrictedByPicklist returns a boolean if a field has been set.
-
-### SetRestrictedByPicklist
-
-`func (o *TemplateArgDef) SetRestrictedByPicklist(v bool)`
-
-SetRestrictedByPicklist gets a reference to the given bool and assigns it to the RestrictedByPicklist field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

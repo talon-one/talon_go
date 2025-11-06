@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -27,6 +26,25 @@ type FeatureFlag struct {
 	Modified *time.Time `json:"modified,omitempty"`
 }
 
+// NewFeatureFlag instantiates a new FeatureFlag object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildFeatureFlag(name string, value string) *FeatureFlag {
+	this := FeatureFlag{}
+	this.Name = name
+	this.Value = value
+	return &this
+}
+
+// NewFeatureFlagWithDefaults instantiates a new FeatureFlag object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewFeatureFlagWithDefaults() *FeatureFlag {
+	this := FeatureFlag{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *FeatureFlag) GetName() string {
 	if o == nil {
@@ -35,6 +53,15 @@ func (o *FeatureFlag) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *FeatureFlag) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -52,6 +79,15 @@ func (o *FeatureFlag) GetValue() string {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *FeatureFlag) GetValueOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *FeatureFlag) SetValue(v string) {
 	o.Value = v
@@ -66,14 +102,13 @@ func (o *FeatureFlag) GetCreated() time.Time {
 	return *o.Created
 }
 
-// GetCreatedOk returns a tuple with the Created field value if set, zero value otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FeatureFlag) GetCreatedOk() (time.Time, bool) {
+func (o *FeatureFlag) GetCreatedOk() (*time.Time, bool) {
 	if o == nil || o.Created == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Created, true
+	return o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
@@ -99,14 +134,13 @@ func (o *FeatureFlag) GetModified() time.Time {
 	return *o.Modified
 }
 
-// GetModifiedOk returns a tuple with the Modified field value if set, zero value otherwise
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FeatureFlag) GetModifiedOk() (time.Time, bool) {
+func (o *FeatureFlag) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || o.Modified == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Modified, true
+	return o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
@@ -123,25 +157,55 @@ func (o *FeatureFlag) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+func (o FeatureFlag) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableFeatureFlag struct {
-	Value        FeatureFlag
-	ExplicitNull bool
+	value *FeatureFlag
+	isSet bool
+}
+
+func (v NullableFeatureFlag) Get() *FeatureFlag {
+	return v.value
+}
+
+func (v *NullableFeatureFlag) Set(val *FeatureFlag) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableFeatureFlag) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableFeatureFlag) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableFeatureFlag(val *FeatureFlag) *NullableFeatureFlag {
+	return &NullableFeatureFlag{value: val, isSet: true}
 }
 
 func (v NullableFeatureFlag) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableFeatureFlag) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

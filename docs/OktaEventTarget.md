@@ -10,6 +10,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewOktaEventTarget
+
+`func NewOktaEventTarget(type_ string, alternateId string, displayName string, ) *OktaEventTarget`
+
+NewOktaEventTarget instantiates a new OktaEventTarget object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewOktaEventTargetWithDefaults
+
+`func NewOktaEventTargetWithDefaults() *OktaEventTarget`
+
+NewOktaEventTargetWithDefaults instantiates a new OktaEventTarget object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetType
 
 `func (o *OktaEventTarget) GetType() string`
@@ -18,22 +35,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *OktaEventTarget) GetTypeOk() (string, bool)`
+`func (o *OktaEventTarget) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *OktaEventTarget) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *OktaEventTarget) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetAlternateId
 
@@ -43,22 +55,17 @@ GetAlternateId returns the AlternateId field if non-nil, zero value otherwise.
 
 ### GetAlternateIdOk
 
-`func (o *OktaEventTarget) GetAlternateIdOk() (string, bool)`
+`func (o *OktaEventTarget) GetAlternateIdOk() (*string, bool)`
 
 GetAlternateIdOk returns a tuple with the AlternateId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasAlternateId
-
-`func (o *OktaEventTarget) HasAlternateId() bool`
-
-HasAlternateId returns a boolean if a field has been set.
 
 ### SetAlternateId
 
 `func (o *OktaEventTarget) SetAlternateId(v string)`
 
-SetAlternateId gets a reference to the given string and assigns it to the AlternateId field.
+SetAlternateId sets AlternateId field to given value.
+
 
 ### GetDisplayName
 
@@ -68,22 +75,17 @@ GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
 
 ### GetDisplayNameOk
 
-`func (o *OktaEventTarget) GetDisplayNameOk() (string, bool)`
+`func (o *OktaEventTarget) GetDisplayNameOk() (*string, bool)`
 
 GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDisplayName
-
-`func (o *OktaEventTarget) HasDisplayName() bool`
-
-HasDisplayName returns a boolean if a field has been set.
 
 ### SetDisplayName
 
 `func (o *OktaEventTarget) SetDisplayName(v string)`
 
-SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+SetDisplayName sets DisplayName field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // TierWillDowngradeNotificationTrigger struct for TierWillDowngradeNotificationTrigger
 type TierWillDowngradeNotificationTrigger struct {
 	// The amount of period.
-	Amount int32 `json:"amount"`
+	Amount int64 `json:"amount"`
 	// Notification period indicated by a letter; \"w\" means week, \"d\" means day.
 	Period string `json:"period"`
 }
 
+// NewTierWillDowngradeNotificationTrigger instantiates a new TierWillDowngradeNotificationTrigger object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildTierWillDowngradeNotificationTrigger(amount int64, period string) *TierWillDowngradeNotificationTrigger {
+	this := TierWillDowngradeNotificationTrigger{}
+	this.Amount = amount
+	this.Period = period
+	return &this
+}
+
+// NewTierWillDowngradeNotificationTriggerWithDefaults instantiates a new TierWillDowngradeNotificationTrigger object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTierWillDowngradeNotificationTriggerWithDefaults() *TierWillDowngradeNotificationTrigger {
+	this := TierWillDowngradeNotificationTrigger{}
+	return &this
+}
+
 // GetAmount returns the Amount field value
-func (o *TierWillDowngradeNotificationTrigger) GetAmount() int32 {
+func (o *TierWillDowngradeNotificationTrigger) GetAmount() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Amount
 }
 
+// GetAmountOk returns a tuple with the Amount field value
+// and a boolean to check if the value has been set.
+func (o *TierWillDowngradeNotificationTrigger) GetAmountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Amount, true
+}
+
 // SetAmount sets field value
-func (o *TierWillDowngradeNotificationTrigger) SetAmount(v int32) {
+func (o *TierWillDowngradeNotificationTrigger) SetAmount(v int64) {
 	o.Amount = v
 }
 
@@ -47,30 +74,63 @@ func (o *TierWillDowngradeNotificationTrigger) GetPeriod() string {
 	return o.Period
 }
 
+// GetPeriodOk returns a tuple with the Period field value
+// and a boolean to check if the value has been set.
+func (o *TierWillDowngradeNotificationTrigger) GetPeriodOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Period, true
+}
+
 // SetPeriod sets field value
 func (o *TierWillDowngradeNotificationTrigger) SetPeriod(v string) {
 	o.Period = v
 }
 
+func (o TierWillDowngradeNotificationTrigger) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["amount"] = o.Amount
+	}
+	if true {
+		toSerialize["period"] = o.Period
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTierWillDowngradeNotificationTrigger struct {
-	Value        TierWillDowngradeNotificationTrigger
-	ExplicitNull bool
+	value *TierWillDowngradeNotificationTrigger
+	isSet bool
+}
+
+func (v NullableTierWillDowngradeNotificationTrigger) Get() *TierWillDowngradeNotificationTrigger {
+	return v.value
+}
+
+func (v *NullableTierWillDowngradeNotificationTrigger) Set(val *TierWillDowngradeNotificationTrigger) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTierWillDowngradeNotificationTrigger) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTierWillDowngradeNotificationTrigger) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableTierWillDowngradeNotificationTrigger(val *TierWillDowngradeNotificationTrigger) *NullableTierWillDowngradeNotificationTrigger {
+	return &NullableTierWillDowngradeNotificationTrigger{value: val, isSet: true}
 }
 
 func (v NullableTierWillDowngradeNotificationTrigger) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTierWillDowngradeNotificationTrigger) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,23 @@ import (
 type OutgoingIntegrationTemplates struct {
 	// The list of templates for a given outgoing integration type.
 	Data *[]OutgoingIntegrationTemplate `json:"data,omitempty"`
+}
+
+// NewOutgoingIntegrationTemplates instantiates a new OutgoingIntegrationTemplates object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildOutgoingIntegrationTemplates() *OutgoingIntegrationTemplates {
+	this := OutgoingIntegrationTemplates{}
+	return &this
+}
+
+// NewOutgoingIntegrationTemplatesWithDefaults instantiates a new OutgoingIntegrationTemplates object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOutgoingIntegrationTemplatesWithDefaults() *OutgoingIntegrationTemplates {
+	this := OutgoingIntegrationTemplates{}
+	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
@@ -29,14 +45,13 @@ func (o *OutgoingIntegrationTemplates) GetData() []OutgoingIntegrationTemplate {
 	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, zero value otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutgoingIntegrationTemplates) GetDataOk() ([]OutgoingIntegrationTemplate, bool) {
+func (o *OutgoingIntegrationTemplates) GetDataOk() (*[]OutgoingIntegrationTemplate, bool) {
 	if o == nil || o.Data == nil {
-		var ret []OutgoingIntegrationTemplate
-		return ret, false
+		return nil, false
 	}
-	return *o.Data, true
+	return o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -53,25 +68,46 @@ func (o *OutgoingIntegrationTemplates) SetData(v []OutgoingIntegrationTemplate) 
 	o.Data = &v
 }
 
+func (o OutgoingIntegrationTemplates) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOutgoingIntegrationTemplates struct {
-	Value        OutgoingIntegrationTemplates
-	ExplicitNull bool
+	value *OutgoingIntegrationTemplates
+	isSet bool
+}
+
+func (v NullableOutgoingIntegrationTemplates) Get() *OutgoingIntegrationTemplates {
+	return v.value
+}
+
+func (v *NullableOutgoingIntegrationTemplates) Set(val *OutgoingIntegrationTemplates) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOutgoingIntegrationTemplates) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOutgoingIntegrationTemplates) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableOutgoingIntegrationTemplates(val *OutgoingIntegrationTemplates) *NullableOutgoingIntegrationTemplates {
+	return &NullableOutgoingIntegrationTemplates{value: val, isSet: true}
 }
 
 func (v NullableOutgoingIntegrationTemplates) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOutgoingIntegrationTemplates) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

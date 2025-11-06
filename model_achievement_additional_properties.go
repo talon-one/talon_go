@@ -10,16 +10,15 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AchievementAdditionalProperties struct for AchievementAdditionalProperties
 type AchievementAdditionalProperties struct {
 	// The ID of the campaign the achievement belongs to.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// ID of the user that created this achievement.
-	UserId int32 `json:"userId"`
+	UserId int64 `json:"userId"`
 	// Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.
 	CreatedBy *string `json:"createdBy,omitempty"`
 	// Indicates if a customer has made progress in the achievement.
@@ -28,33 +27,70 @@ type AchievementAdditionalProperties struct {
 	Status *string `json:"status,omitempty"`
 }
 
+// NewAchievementAdditionalProperties instantiates a new AchievementAdditionalProperties object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAchievementAdditionalProperties(campaignId int64, userId int64) *AchievementAdditionalProperties {
+	this := AchievementAdditionalProperties{}
+	this.CampaignId = campaignId
+	this.UserId = userId
+	return &this
+}
+
+// NewAchievementAdditionalPropertiesWithDefaults instantiates a new AchievementAdditionalProperties object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAchievementAdditionalPropertiesWithDefaults() *AchievementAdditionalProperties {
+	this := AchievementAdditionalProperties{}
+	return &this
+}
+
 // GetCampaignId returns the CampaignId field value
-func (o *AchievementAdditionalProperties) GetCampaignId() int32 {
+func (o *AchievementAdditionalProperties) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *AchievementAdditionalProperties) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *AchievementAdditionalProperties) SetCampaignId(v int32) {
+func (o *AchievementAdditionalProperties) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
 // GetUserId returns the UserId field value
-func (o *AchievementAdditionalProperties) GetUserId() int32 {
+func (o *AchievementAdditionalProperties) GetUserId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.UserId
 }
 
+// GetUserIdOk returns a tuple with the UserId field value
+// and a boolean to check if the value has been set.
+func (o *AchievementAdditionalProperties) GetUserIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UserId, true
+}
+
 // SetUserId sets field value
-func (o *AchievementAdditionalProperties) SetUserId(v int32) {
+func (o *AchievementAdditionalProperties) SetUserId(v int64) {
 	o.UserId = v
 }
 
@@ -67,14 +103,13 @@ func (o *AchievementAdditionalProperties) GetCreatedBy() string {
 	return *o.CreatedBy
 }
 
-// GetCreatedByOk returns a tuple with the CreatedBy field value if set, zero value otherwise
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementAdditionalProperties) GetCreatedByOk() (string, bool) {
+func (o *AchievementAdditionalProperties) GetCreatedByOk() (*string, bool) {
 	if o == nil || o.CreatedBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CreatedBy, true
+	return o.CreatedBy, true
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
@@ -100,14 +135,13 @@ func (o *AchievementAdditionalProperties) GetHasProgress() bool {
 	return *o.HasProgress
 }
 
-// GetHasProgressOk returns a tuple with the HasProgress field value if set, zero value otherwise
+// GetHasProgressOk returns a tuple with the HasProgress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementAdditionalProperties) GetHasProgressOk() (bool, bool) {
+func (o *AchievementAdditionalProperties) GetHasProgressOk() (*bool, bool) {
 	if o == nil || o.HasProgress == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.HasProgress, true
+	return o.HasProgress, true
 }
 
 // HasHasProgress returns a boolean if a field has been set.
@@ -133,14 +167,13 @@ func (o *AchievementAdditionalProperties) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementAdditionalProperties) GetStatusOk() (string, bool) {
+func (o *AchievementAdditionalProperties) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -157,25 +190,58 @@ func (o *AchievementAdditionalProperties) SetStatus(v string) {
 	o.Status = &v
 }
 
+func (o AchievementAdditionalProperties) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["userId"] = o.UserId
+	}
+	if o.CreatedBy != nil {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	if o.HasProgress != nil {
+		toSerialize["hasProgress"] = o.HasProgress
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAchievementAdditionalProperties struct {
-	Value        AchievementAdditionalProperties
-	ExplicitNull bool
+	value *AchievementAdditionalProperties
+	isSet bool
+}
+
+func (v NullableAchievementAdditionalProperties) Get() *AchievementAdditionalProperties {
+	return v.value
+}
+
+func (v *NullableAchievementAdditionalProperties) Set(val *AchievementAdditionalProperties) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAchievementAdditionalProperties) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAchievementAdditionalProperties) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAchievementAdditionalProperties(val *AchievementAdditionalProperties) *NullableAchievementAdditionalProperties {
+	return &NullableAchievementAdditionalProperties{value: val, isSet: true}
 }
 
 func (v NullableAchievementAdditionalProperties) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAchievementAdditionalProperties) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

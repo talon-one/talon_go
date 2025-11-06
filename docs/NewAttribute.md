@@ -14,11 +14,28 @@ Name | Type | Description | Notes
 **HasAllowedList** | Pointer to **bool** | Whether or not this attribute has an allowed list of values associated with it. | [optional] [default to false]
 **RestrictedBySuggestions** | Pointer to **bool** | Whether or not this attribute&#39;s value is restricted by suggestions (&#x60;suggestions&#x60; property) or by an allowed list of value (&#x60;hasAllowedList&#x60; property).  | [optional] [default to false]
 **Editable** | Pointer to **bool** | Whether or not this attribute can be edited. | 
-**SubscribedApplicationsIds** | Pointer to **[]int32** | A list of the IDs of the applications where this attribute is available. | [optional] 
-**SubscribedCatalogsIds** | Pointer to **[]int32** | A list of the IDs of the catalogs where this attribute is available. | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int64** | A list of the IDs of the applications where this attribute is available. | [optional] 
+**SubscribedCatalogsIds** | Pointer to **[]int64** | A list of the IDs of the catalogs where this attribute is available. | [optional] 
 **AllowedSubscriptions** | Pointer to **[]string** | A list of allowed subscription types for this attribute.  **Note:** This only applies to attributes associated with the &#x60;CartItem&#x60; entity.  | [optional] 
 
 ## Methods
+
+### NewNewAttribute
+
+`func NewNewAttribute(entity string, name string, title string, type_ string, description string, suggestions []string, editable bool, ) *NewAttribute`
+
+NewNewAttribute instantiates a new NewAttribute object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewAttributeWithDefaults
+
+`func NewNewAttributeWithDefaults() *NewAttribute`
+
+NewNewAttributeWithDefaults instantiates a new NewAttribute object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
 
 ### GetEntity
 
@@ -28,22 +45,17 @@ GetEntity returns the Entity field if non-nil, zero value otherwise.
 
 ### GetEntityOk
 
-`func (o *NewAttribute) GetEntityOk() (string, bool)`
+`func (o *NewAttribute) GetEntityOk() (*string, bool)`
 
 GetEntityOk returns a tuple with the Entity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEntity
-
-`func (o *NewAttribute) HasEntity() bool`
-
-HasEntity returns a boolean if a field has been set.
 
 ### SetEntity
 
 `func (o *NewAttribute) SetEntity(v string)`
 
-SetEntity gets a reference to the given string and assigns it to the Entity field.
+SetEntity sets Entity field to given value.
+
 
 ### GetEventType
 
@@ -53,22 +65,22 @@ GetEventType returns the EventType field if non-nil, zero value otherwise.
 
 ### GetEventTypeOk
 
-`func (o *NewAttribute) GetEventTypeOk() (string, bool)`
+`func (o *NewAttribute) GetEventTypeOk() (*string, bool)`
 
 GetEventTypeOk returns a tuple with the EventType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetEventType
+
+`func (o *NewAttribute) SetEventType(v string)`
+
+SetEventType sets EventType field to given value.
 
 ### HasEventType
 
 `func (o *NewAttribute) HasEventType() bool`
 
 HasEventType returns a boolean if a field has been set.
-
-### SetEventType
-
-`func (o *NewAttribute) SetEventType(v string)`
-
-SetEventType gets a reference to the given string and assigns it to the EventType field.
 
 ### GetName
 
@@ -78,22 +90,17 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *NewAttribute) GetNameOk() (string, bool)`
+`func (o *NewAttribute) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasName
-
-`func (o *NewAttribute) HasName() bool`
-
-HasName returns a boolean if a field has been set.
 
 ### SetName
 
 `func (o *NewAttribute) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetTitle
 
@@ -103,22 +110,17 @@ GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *NewAttribute) GetTitleOk() (string, bool)`
+`func (o *NewAttribute) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasTitle
-
-`func (o *NewAttribute) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
 
 ### SetTitle
 
 `func (o *NewAttribute) SetTitle(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetTitle sets Title field to given value.
+
 
 ### GetType
 
@@ -128,22 +130,17 @@ GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *NewAttribute) GetTypeOk() (string, bool)`
+`func (o *NewAttribute) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasType
-
-`func (o *NewAttribute) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 ### SetType
 
 `func (o *NewAttribute) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetDescription
 
@@ -153,22 +150,17 @@ GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *NewAttribute) GetDescriptionOk() (string, bool)`
+`func (o *NewAttribute) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasDescription
-
-`func (o *NewAttribute) HasDescription() bool`
-
-HasDescription returns a boolean if a field has been set.
 
 ### SetDescription
 
 `func (o *NewAttribute) SetDescription(v string)`
 
-SetDescription gets a reference to the given string and assigns it to the Description field.
+SetDescription sets Description field to given value.
+
 
 ### GetSuggestions
 
@@ -178,22 +170,17 @@ GetSuggestions returns the Suggestions field if non-nil, zero value otherwise.
 
 ### GetSuggestionsOk
 
-`func (o *NewAttribute) GetSuggestionsOk() ([]string, bool)`
+`func (o *NewAttribute) GetSuggestionsOk() (*[]string, bool)`
 
 GetSuggestionsOk returns a tuple with the Suggestions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSuggestions
-
-`func (o *NewAttribute) HasSuggestions() bool`
-
-HasSuggestions returns a boolean if a field has been set.
 
 ### SetSuggestions
 
 `func (o *NewAttribute) SetSuggestions(v []string)`
 
-SetSuggestions gets a reference to the given []string and assigns it to the Suggestions field.
+SetSuggestions sets Suggestions field to given value.
+
 
 ### GetHasAllowedList
 
@@ -203,22 +190,22 @@ GetHasAllowedList returns the HasAllowedList field if non-nil, zero value otherw
 
 ### GetHasAllowedListOk
 
-`func (o *NewAttribute) GetHasAllowedListOk() (bool, bool)`
+`func (o *NewAttribute) GetHasAllowedListOk() (*bool, bool)`
 
 GetHasAllowedListOk returns a tuple with the HasAllowedList field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetHasAllowedList
+
+`func (o *NewAttribute) SetHasAllowedList(v bool)`
+
+SetHasAllowedList sets HasAllowedList field to given value.
 
 ### HasHasAllowedList
 
 `func (o *NewAttribute) HasHasAllowedList() bool`
 
 HasHasAllowedList returns a boolean if a field has been set.
-
-### SetHasAllowedList
-
-`func (o *NewAttribute) SetHasAllowedList(v bool)`
-
-SetHasAllowedList gets a reference to the given bool and assigns it to the HasAllowedList field.
 
 ### GetRestrictedBySuggestions
 
@@ -228,22 +215,22 @@ GetRestrictedBySuggestions returns the RestrictedBySuggestions field if non-nil,
 
 ### GetRestrictedBySuggestionsOk
 
-`func (o *NewAttribute) GetRestrictedBySuggestionsOk() (bool, bool)`
+`func (o *NewAttribute) GetRestrictedBySuggestionsOk() (*bool, bool)`
 
 GetRestrictedBySuggestionsOk returns a tuple with the RestrictedBySuggestions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRestrictedBySuggestions
+
+`func (o *NewAttribute) SetRestrictedBySuggestions(v bool)`
+
+SetRestrictedBySuggestions sets RestrictedBySuggestions field to given value.
 
 ### HasRestrictedBySuggestions
 
 `func (o *NewAttribute) HasRestrictedBySuggestions() bool`
 
 HasRestrictedBySuggestions returns a boolean if a field has been set.
-
-### SetRestrictedBySuggestions
-
-`func (o *NewAttribute) SetRestrictedBySuggestions(v bool)`
-
-SetRestrictedBySuggestions gets a reference to the given bool and assigns it to the RestrictedBySuggestions field.
 
 ### GetEditable
 
@@ -253,35 +240,36 @@ GetEditable returns the Editable field if non-nil, zero value otherwise.
 
 ### GetEditableOk
 
-`func (o *NewAttribute) GetEditableOk() (bool, bool)`
+`func (o *NewAttribute) GetEditableOk() (*bool, bool)`
 
 GetEditableOk returns a tuple with the Editable field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEditable
-
-`func (o *NewAttribute) HasEditable() bool`
-
-HasEditable returns a boolean if a field has been set.
 
 ### SetEditable
 
 `func (o *NewAttribute) SetEditable(v bool)`
 
-SetEditable gets a reference to the given bool and assigns it to the Editable field.
+SetEditable sets Editable field to given value.
+
 
 ### GetSubscribedApplicationsIds
 
-`func (o *NewAttribute) GetSubscribedApplicationsIds() []int32`
+`func (o *NewAttribute) GetSubscribedApplicationsIds() []int64`
 
 GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field if non-nil, zero value otherwise.
 
 ### GetSubscribedApplicationsIdsOk
 
-`func (o *NewAttribute) GetSubscribedApplicationsIdsOk() ([]int32, bool)`
+`func (o *NewAttribute) GetSubscribedApplicationsIdsOk() (*[]int64, bool)`
 
 GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSubscribedApplicationsIds
+
+`func (o *NewAttribute) SetSubscribedApplicationsIds(v []int64)`
+
+SetSubscribedApplicationsIds sets SubscribedApplicationsIds field to given value.
 
 ### HasSubscribedApplicationsIds
 
@@ -289,36 +277,30 @@ and a boolean to check if the value has been set.
 
 HasSubscribedApplicationsIds returns a boolean if a field has been set.
 
-### SetSubscribedApplicationsIds
-
-`func (o *NewAttribute) SetSubscribedApplicationsIds(v []int32)`
-
-SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-
 ### GetSubscribedCatalogsIds
 
-`func (o *NewAttribute) GetSubscribedCatalogsIds() []int32`
+`func (o *NewAttribute) GetSubscribedCatalogsIds() []int64`
 
 GetSubscribedCatalogsIds returns the SubscribedCatalogsIds field if non-nil, zero value otherwise.
 
 ### GetSubscribedCatalogsIdsOk
 
-`func (o *NewAttribute) GetSubscribedCatalogsIdsOk() ([]int32, bool)`
+`func (o *NewAttribute) GetSubscribedCatalogsIdsOk() (*[]int64, bool)`
 
 GetSubscribedCatalogsIdsOk returns a tuple with the SubscribedCatalogsIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetSubscribedCatalogsIds
+
+`func (o *NewAttribute) SetSubscribedCatalogsIds(v []int64)`
+
+SetSubscribedCatalogsIds sets SubscribedCatalogsIds field to given value.
 
 ### HasSubscribedCatalogsIds
 
 `func (o *NewAttribute) HasSubscribedCatalogsIds() bool`
 
 HasSubscribedCatalogsIds returns a boolean if a field has been set.
-
-### SetSubscribedCatalogsIds
-
-`func (o *NewAttribute) SetSubscribedCatalogsIds(v []int32)`
-
-SetSubscribedCatalogsIds gets a reference to the given []int32 and assigns it to the SubscribedCatalogsIds field.
 
 ### GetAllowedSubscriptions
 
@@ -328,22 +310,22 @@ GetAllowedSubscriptions returns the AllowedSubscriptions field if non-nil, zero 
 
 ### GetAllowedSubscriptionsOk
 
-`func (o *NewAttribute) GetAllowedSubscriptionsOk() ([]string, bool)`
+`func (o *NewAttribute) GetAllowedSubscriptionsOk() (*[]string, bool)`
 
 GetAllowedSubscriptionsOk returns a tuple with the AllowedSubscriptions field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetAllowedSubscriptions
+
+`func (o *NewAttribute) SetAllowedSubscriptions(v []string)`
+
+SetAllowedSubscriptions sets AllowedSubscriptions field to given value.
 
 ### HasAllowedSubscriptions
 
 `func (o *NewAttribute) HasAllowedSubscriptions() bool`
 
 HasAllowedSubscriptions returns a boolean if a field has been set.
-
-### SetAllowedSubscriptions
-
-`func (o *NewAttribute) SetAllowedSubscriptions(v []string)`
-
-SetAllowedSubscriptions gets a reference to the given []string and assigns it to the AllowedSubscriptions field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

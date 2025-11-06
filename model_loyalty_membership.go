@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,7 +19,25 @@ type LoyaltyMembership struct {
 	// The moment in which the loyalty program was joined.
 	Joined *time.Time `json:"joined,omitempty"`
 	// The ID of the loyalty program belonging to this entity.
-	LoyaltyProgramId int32 `json:"loyaltyProgramId"`
+	LoyaltyProgramId int64 `json:"loyaltyProgramId"`
+}
+
+// NewLoyaltyMembership instantiates a new LoyaltyMembership object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildLoyaltyMembership(loyaltyProgramId int64) *LoyaltyMembership {
+	this := LoyaltyMembership{}
+	this.LoyaltyProgramId = loyaltyProgramId
+	return &this
+}
+
+// NewLoyaltyMembershipWithDefaults instantiates a new LoyaltyMembership object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLoyaltyMembershipWithDefaults() *LoyaltyMembership {
+	this := LoyaltyMembership{}
+	return &this
 }
 
 // GetJoined returns the Joined field value if set, zero value otherwise.
@@ -32,14 +49,13 @@ func (o *LoyaltyMembership) GetJoined() time.Time {
 	return *o.Joined
 }
 
-// GetJoinedOk returns a tuple with the Joined field value if set, zero value otherwise
+// GetJoinedOk returns a tuple with the Joined field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LoyaltyMembership) GetJoinedOk() (time.Time, bool) {
+func (o *LoyaltyMembership) GetJoinedOk() (*time.Time, bool) {
 	if o == nil || o.Joined == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.Joined, true
+	return o.Joined, true
 }
 
 // HasJoined returns a boolean if a field has been set.
@@ -57,39 +73,72 @@ func (o *LoyaltyMembership) SetJoined(v time.Time) {
 }
 
 // GetLoyaltyProgramId returns the LoyaltyProgramId field value
-func (o *LoyaltyMembership) GetLoyaltyProgramId() int32 {
+func (o *LoyaltyMembership) GetLoyaltyProgramId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LoyaltyProgramId
 }
 
+// GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field value
+// and a boolean to check if the value has been set.
+func (o *LoyaltyMembership) GetLoyaltyProgramIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoyaltyProgramId, true
+}
+
 // SetLoyaltyProgramId sets field value
-func (o *LoyaltyMembership) SetLoyaltyProgramId(v int32) {
+func (o *LoyaltyMembership) SetLoyaltyProgramId(v int64) {
 	o.LoyaltyProgramId = v
 }
 
+func (o LoyaltyMembership) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Joined != nil {
+		toSerialize["joined"] = o.Joined
+	}
+	if true {
+		toSerialize["loyaltyProgramId"] = o.LoyaltyProgramId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableLoyaltyMembership struct {
-	Value        LoyaltyMembership
-	ExplicitNull bool
+	value *LoyaltyMembership
+	isSet bool
+}
+
+func (v NullableLoyaltyMembership) Get() *LoyaltyMembership {
+	return v.value
+}
+
+func (v *NullableLoyaltyMembership) Set(val *LoyaltyMembership) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableLoyaltyMembership) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableLoyaltyMembership) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableLoyaltyMembership(val *LoyaltyMembership) *NullableLoyaltyMembership {
+	return &NullableLoyaltyMembership{value: val, isSet: true}
 }
 
 func (v NullableLoyaltyMembership) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableLoyaltyMembership) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

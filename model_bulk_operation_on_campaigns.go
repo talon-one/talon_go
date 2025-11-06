@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -20,9 +19,28 @@ type BulkOperationOnCampaigns struct {
 	// The operation to perform on the specified campaign IDs.
 	Operation string `json:"operation"`
 	// The list of campaign IDs on which the operation will be performed.
-	CampaignIds []int32 `json:"campaignIds"`
+	CampaignIds []int64 `json:"campaignIds"`
 	// Timestamp when the revisions are finalized after the `activate_revision` operation. The current time is used when left blank.  **Note:** It must be an RFC3339 timestamp string.
 	ActivateAt *time.Time `json:"activateAt,omitempty"`
+}
+
+// NewBulkOperationOnCampaigns instantiates a new BulkOperationOnCampaigns object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildBulkOperationOnCampaigns(operation string, campaignIds []int64) *BulkOperationOnCampaigns {
+	this := BulkOperationOnCampaigns{}
+	this.Operation = operation
+	this.CampaignIds = campaignIds
+	return &this
+}
+
+// NewBulkOperationOnCampaignsWithDefaults instantiates a new BulkOperationOnCampaigns object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBulkOperationOnCampaignsWithDefaults() *BulkOperationOnCampaigns {
+	this := BulkOperationOnCampaigns{}
+	return &this
 }
 
 // GetOperation returns the Operation field value
@@ -35,23 +53,41 @@ func (o *BulkOperationOnCampaigns) GetOperation() string {
 	return o.Operation
 }
 
+// GetOperationOk returns a tuple with the Operation field value
+// and a boolean to check if the value has been set.
+func (o *BulkOperationOnCampaigns) GetOperationOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Operation, true
+}
+
 // SetOperation sets field value
 func (o *BulkOperationOnCampaigns) SetOperation(v string) {
 	o.Operation = v
 }
 
 // GetCampaignIds returns the CampaignIds field value
-func (o *BulkOperationOnCampaigns) GetCampaignIds() []int32 {
+func (o *BulkOperationOnCampaigns) GetCampaignIds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.CampaignIds
 }
 
+// GetCampaignIdsOk returns a tuple with the CampaignIds field value
+// and a boolean to check if the value has been set.
+func (o *BulkOperationOnCampaigns) GetCampaignIdsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignIds, true
+}
+
 // SetCampaignIds sets field value
-func (o *BulkOperationOnCampaigns) SetCampaignIds(v []int32) {
+func (o *BulkOperationOnCampaigns) SetCampaignIds(v []int64) {
 	o.CampaignIds = v
 }
 
@@ -64,14 +100,13 @@ func (o *BulkOperationOnCampaigns) GetActivateAt() time.Time {
 	return *o.ActivateAt
 }
 
-// GetActivateAtOk returns a tuple with the ActivateAt field value if set, zero value otherwise
+// GetActivateAtOk returns a tuple with the ActivateAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BulkOperationOnCampaigns) GetActivateAtOk() (time.Time, bool) {
+func (o *BulkOperationOnCampaigns) GetActivateAtOk() (*time.Time, bool) {
 	if o == nil || o.ActivateAt == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ActivateAt, true
+	return o.ActivateAt, true
 }
 
 // HasActivateAt returns a boolean if a field has been set.
@@ -88,25 +123,52 @@ func (o *BulkOperationOnCampaigns) SetActivateAt(v time.Time) {
 	o.ActivateAt = &v
 }
 
+func (o BulkOperationOnCampaigns) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["operation"] = o.Operation
+	}
+	if true {
+		toSerialize["campaignIds"] = o.CampaignIds
+	}
+	if o.ActivateAt != nil {
+		toSerialize["activateAt"] = o.ActivateAt
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableBulkOperationOnCampaigns struct {
-	Value        BulkOperationOnCampaigns
-	ExplicitNull bool
+	value *BulkOperationOnCampaigns
+	isSet bool
+}
+
+func (v NullableBulkOperationOnCampaigns) Get() *BulkOperationOnCampaigns {
+	return v.value
+}
+
+func (v *NullableBulkOperationOnCampaigns) Set(val *BulkOperationOnCampaigns) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableBulkOperationOnCampaigns) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableBulkOperationOnCampaigns) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableBulkOperationOnCampaigns(val *BulkOperationOnCampaigns) *NullableBulkOperationOnCampaigns {
+	return &NullableBulkOperationOnCampaigns{value: val, isSet: true}
 }
 
 func (v NullableBulkOperationOnCampaigns) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableBulkOperationOnCampaigns) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

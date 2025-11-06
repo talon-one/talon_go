@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -28,7 +27,7 @@ type AchievementProgressWithDefinition struct {
 	// Timestamp at which point the achievement ends and resets for the customer.
 	EndDate *time.Time `json:"endDate,omitempty"`
 	// The internal ID of the achievement.
-	AchievementId int32 `json:"achievementId"`
+	AchievementId int64 `json:"achievementId"`
 	// The internal name of the achievement used in API requests.
 	Name string `json:"name"`
 	// The display name of the achievement in the Campaign Manager.
@@ -36,7 +35,7 @@ type AchievementProgressWithDefinition struct {
 	// The description of the achievement in the Campaign Manager.
 	Description string `json:"description"`
 	// The ID of the campaign the achievement belongs to.
-	CampaignId int32 `json:"campaignId"`
+	CampaignId int64 `json:"campaignId"`
 	// The required number of actions or the transactional milestone to complete the achievement.
 	Target *float32 `json:"target,omitempty"`
 	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again. - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
@@ -47,6 +46,34 @@ type AchievementProgressWithDefinition struct {
 	AchievementFixedStartDate *time.Time `json:"achievementFixedStartDate,omitempty"`
 	// The achievement's end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It is an RFC3339 timestamp string.
 	AchievementEndDate *time.Time `json:"achievementEndDate,omitempty"`
+	// When `true`, customer progress can be rolled back in completed achievements.
+	AchievementAllowRollbackAfterCompletion *bool `json:"achievementAllowRollbackAfterCompletion,omitempty"`
+}
+
+// NewAchievementProgressWithDefinition instantiates a new AchievementProgressWithDefinition object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAchievementProgressWithDefinition(status string, progress float32, achievementId int64, name string, title string, description string, campaignId int64, achievementRecurrencePolicy string, achievementActivationPolicy string) *AchievementProgressWithDefinition {
+	this := AchievementProgressWithDefinition{}
+	this.Status = status
+	this.Progress = progress
+	this.AchievementId = achievementId
+	this.Name = name
+	this.Title = title
+	this.Description = description
+	this.CampaignId = campaignId
+	this.AchievementRecurrencePolicy = achievementRecurrencePolicy
+	this.AchievementActivationPolicy = achievementActivationPolicy
+	return &this
+}
+
+// NewAchievementProgressWithDefinitionWithDefaults instantiates a new AchievementProgressWithDefinition object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAchievementProgressWithDefinitionWithDefaults() *AchievementProgressWithDefinition {
+	this := AchievementProgressWithDefinition{}
+	return &this
 }
 
 // GetStatus returns the Status field value
@@ -57,6 +84,15 @@ func (o *AchievementProgressWithDefinition) GetStatus() string {
 	}
 
 	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
 }
 
 // SetStatus sets field value
@@ -74,6 +110,15 @@ func (o *AchievementProgressWithDefinition) GetProgress() float32 {
 	return o.Progress
 }
 
+// GetProgressOk returns a tuple with the Progress field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetProgressOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Progress, true
+}
+
 // SetProgress sets field value
 func (o *AchievementProgressWithDefinition) SetProgress(v float32) {
 	o.Progress = v
@@ -88,14 +133,13 @@ func (o *AchievementProgressWithDefinition) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgressWithDefinition) GetStartDateOk() (time.Time, bool) {
+func (o *AchievementProgressWithDefinition) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -121,14 +165,13 @@ func (o *AchievementProgressWithDefinition) GetCompletionDate() time.Time {
 	return *o.CompletionDate
 }
 
-// GetCompletionDateOk returns a tuple with the CompletionDate field value if set, zero value otherwise
+// GetCompletionDateOk returns a tuple with the CompletionDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgressWithDefinition) GetCompletionDateOk() (time.Time, bool) {
+func (o *AchievementProgressWithDefinition) GetCompletionDateOk() (*time.Time, bool) {
 	if o == nil || o.CompletionDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.CompletionDate, true
+	return o.CompletionDate, true
 }
 
 // HasCompletionDate returns a boolean if a field has been set.
@@ -154,14 +197,13 @@ func (o *AchievementProgressWithDefinition) GetEndDate() time.Time {
 	return *o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value if set, zero value otherwise
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgressWithDefinition) GetEndDateOk() (time.Time, bool) {
+func (o *AchievementProgressWithDefinition) GetEndDateOk() (*time.Time, bool) {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.EndDate, true
+	return o.EndDate, true
 }
 
 // HasEndDate returns a boolean if a field has been set.
@@ -179,17 +221,26 @@ func (o *AchievementProgressWithDefinition) SetEndDate(v time.Time) {
 }
 
 // GetAchievementId returns the AchievementId field value
-func (o *AchievementProgressWithDefinition) GetAchievementId() int32 {
+func (o *AchievementProgressWithDefinition) GetAchievementId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AchievementId
 }
 
+// GetAchievementIdOk returns a tuple with the AchievementId field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetAchievementIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementId, true
+}
+
 // SetAchievementId sets field value
-func (o *AchievementProgressWithDefinition) SetAchievementId(v int32) {
+func (o *AchievementProgressWithDefinition) SetAchievementId(v int64) {
 	o.AchievementId = v
 }
 
@@ -201,6 +252,15 @@ func (o *AchievementProgressWithDefinition) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -218,6 +278,15 @@ func (o *AchievementProgressWithDefinition) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *AchievementProgressWithDefinition) SetTitle(v string) {
 	o.Title = v
@@ -233,23 +302,41 @@ func (o *AchievementProgressWithDefinition) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *AchievementProgressWithDefinition) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetCampaignId returns the CampaignId field value
-func (o *AchievementProgressWithDefinition) GetCampaignId() int32 {
+func (o *AchievementProgressWithDefinition) GetCampaignId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CampaignId
 }
 
+// GetCampaignIdOk returns a tuple with the CampaignId field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetCampaignIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignId, true
+}
+
 // SetCampaignId sets field value
-func (o *AchievementProgressWithDefinition) SetCampaignId(v int32) {
+func (o *AchievementProgressWithDefinition) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
@@ -262,14 +349,13 @@ func (o *AchievementProgressWithDefinition) GetTarget() float32 {
 	return *o.Target
 }
 
-// GetTargetOk returns a tuple with the Target field value if set, zero value otherwise
+// GetTargetOk returns a tuple with the Target field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgressWithDefinition) GetTargetOk() (float32, bool) {
+func (o *AchievementProgressWithDefinition) GetTargetOk() (*float32, bool) {
 	if o == nil || o.Target == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Target, true
+	return o.Target, true
 }
 
 // HasTarget returns a boolean if a field has been set.
@@ -296,6 +382,15 @@ func (o *AchievementProgressWithDefinition) GetAchievementRecurrencePolicy() str
 	return o.AchievementRecurrencePolicy
 }
 
+// GetAchievementRecurrencePolicyOk returns a tuple with the AchievementRecurrencePolicy field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetAchievementRecurrencePolicyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementRecurrencePolicy, true
+}
+
 // SetAchievementRecurrencePolicy sets field value
 func (o *AchievementProgressWithDefinition) SetAchievementRecurrencePolicy(v string) {
 	o.AchievementRecurrencePolicy = v
@@ -309,6 +404,15 @@ func (o *AchievementProgressWithDefinition) GetAchievementActivationPolicy() str
 	}
 
 	return o.AchievementActivationPolicy
+}
+
+// GetAchievementActivationPolicyOk returns a tuple with the AchievementActivationPolicy field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetAchievementActivationPolicyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AchievementActivationPolicy, true
 }
 
 // SetAchievementActivationPolicy sets field value
@@ -325,14 +429,13 @@ func (o *AchievementProgressWithDefinition) GetAchievementFixedStartDate() time.
 	return *o.AchievementFixedStartDate
 }
 
-// GetAchievementFixedStartDateOk returns a tuple with the AchievementFixedStartDate field value if set, zero value otherwise
+// GetAchievementFixedStartDateOk returns a tuple with the AchievementFixedStartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgressWithDefinition) GetAchievementFixedStartDateOk() (time.Time, bool) {
+func (o *AchievementProgressWithDefinition) GetAchievementFixedStartDateOk() (*time.Time, bool) {
 	if o == nil || o.AchievementFixedStartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.AchievementFixedStartDate, true
+	return o.AchievementFixedStartDate, true
 }
 
 // HasAchievementFixedStartDate returns a boolean if a field has been set.
@@ -358,14 +461,13 @@ func (o *AchievementProgressWithDefinition) GetAchievementEndDate() time.Time {
 	return *o.AchievementEndDate
 }
 
-// GetAchievementEndDateOk returns a tuple with the AchievementEndDate field value if set, zero value otherwise
+// GetAchievementEndDateOk returns a tuple with the AchievementEndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AchievementProgressWithDefinition) GetAchievementEndDateOk() (time.Time, bool) {
+func (o *AchievementProgressWithDefinition) GetAchievementEndDateOk() (*time.Time, bool) {
 	if o == nil || o.AchievementEndDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.AchievementEndDate, true
+	return o.AchievementEndDate, true
 }
 
 // HasAchievementEndDate returns a boolean if a field has been set.
@@ -382,25 +484,123 @@ func (o *AchievementProgressWithDefinition) SetAchievementEndDate(v time.Time) {
 	o.AchievementEndDate = &v
 }
 
+// GetAchievementAllowRollbackAfterCompletion returns the AchievementAllowRollbackAfterCompletion field value if set, zero value otherwise.
+func (o *AchievementProgressWithDefinition) GetAchievementAllowRollbackAfterCompletion() bool {
+	if o == nil || o.AchievementAllowRollbackAfterCompletion == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AchievementAllowRollbackAfterCompletion
+}
+
+// GetAchievementAllowRollbackAfterCompletionOk returns a tuple with the AchievementAllowRollbackAfterCompletion field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetAchievementAllowRollbackAfterCompletionOk() (*bool, bool) {
+	if o == nil || o.AchievementAllowRollbackAfterCompletion == nil {
+		return nil, false
+	}
+	return o.AchievementAllowRollbackAfterCompletion, true
+}
+
+// HasAchievementAllowRollbackAfterCompletion returns a boolean if a field has been set.
+func (o *AchievementProgressWithDefinition) HasAchievementAllowRollbackAfterCompletion() bool {
+	if o != nil && o.AchievementAllowRollbackAfterCompletion != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAchievementAllowRollbackAfterCompletion gets a reference to the given bool and assigns it to the AchievementAllowRollbackAfterCompletion field.
+func (o *AchievementProgressWithDefinition) SetAchievementAllowRollbackAfterCompletion(v bool) {
+	o.AchievementAllowRollbackAfterCompletion = &v
+}
+
+func (o AchievementProgressWithDefinition) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["progress"] = o.Progress
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.CompletionDate != nil {
+		toSerialize["completionDate"] = o.CompletionDate
+	}
+	if o.EndDate != nil {
+		toSerialize["endDate"] = o.EndDate
+	}
+	if true {
+		toSerialize["achievementId"] = o.AchievementId
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if o.Target != nil {
+		toSerialize["target"] = o.Target
+	}
+	if true {
+		toSerialize["achievementRecurrencePolicy"] = o.AchievementRecurrencePolicy
+	}
+	if true {
+		toSerialize["achievementActivationPolicy"] = o.AchievementActivationPolicy
+	}
+	if o.AchievementFixedStartDate != nil {
+		toSerialize["achievementFixedStartDate"] = o.AchievementFixedStartDate
+	}
+	if o.AchievementEndDate != nil {
+		toSerialize["achievementEndDate"] = o.AchievementEndDate
+	}
+	if o.AchievementAllowRollbackAfterCompletion != nil {
+		toSerialize["achievementAllowRollbackAfterCompletion"] = o.AchievementAllowRollbackAfterCompletion
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAchievementProgressWithDefinition struct {
-	Value        AchievementProgressWithDefinition
-	ExplicitNull bool
+	value *AchievementProgressWithDefinition
+	isSet bool
+}
+
+func (v NullableAchievementProgressWithDefinition) Get() *AchievementProgressWithDefinition {
+	return v.value
+}
+
+func (v *NullableAchievementProgressWithDefinition) Set(val *AchievementProgressWithDefinition) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAchievementProgressWithDefinition) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAchievementProgressWithDefinition) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAchievementProgressWithDefinition(val *AchievementProgressWithDefinition) *NullableAchievementProgressWithDefinition {
+	return &NullableAchievementProgressWithDefinition{value: val, isSet: true}
 }
 
 func (v NullableAchievementProgressWithDefinition) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAchievementProgressWithDefinition) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

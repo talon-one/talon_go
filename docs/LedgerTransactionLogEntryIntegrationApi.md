@@ -1,349 +1,342 @@
-# LedgerTransactionLogEntryIntegrationApi
+# LedgerTransactionLogEntryIntegrationAPI
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**TransactionUUID** | Pointer to **string** | Unique identifier of the transaction in the UUID format. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Date and time the loyalty transaction occurred. | 
-**ProgramId** | Pointer to **int32** | ID of the loyalty program. | 
+**ProgramId** | Pointer to **int64** | ID of the loyalty program. | 
 **CustomerSessionId** | Pointer to **string** | ID of the customer session where the transaction occurred. | [optional] 
 **Type** | Pointer to **string** | Type of transaction. Possible values:   - &#x60;addition&#x60;: Signifies added points.   - &#x60;subtraction&#x60;: Signifies deducted points.  | 
 **Name** | Pointer to **string** | Name or reason of the loyalty ledger transaction. | 
-**StartDate** | Pointer to **string** | When points become active. Possible values:   - &#x60;immediate&#x60;: Points are immediately active.   - a timestamp value: Points become active at a given date and time.  | 
+**StartDate** | Pointer to **string** | When points become active. Possible values:   - &#x60;immediate&#x60;: Points are immediately active.   - &#x60;on_action&#x60;: Points become active based on the customer&#39;s action.   - a timestamp value: Points become active at a given date and time.  | 
 **ExpiryDate** | Pointer to **string** | Date when points expire. Possible values are:   - &#x60;unlimited&#x60;: Points have no expiration date.   - &#x60;timestamp value&#x60;: Points expire on the given date.  | 
 **SubledgerId** | Pointer to **string** | ID of the subledger. | 
 **Amount** | Pointer to **float32** | Amount of loyalty points added or deducted in the transaction. | 
-**Id** | Pointer to **int32** | ID of the loyalty ledger transaction. | 
-**RulesetId** | Pointer to **int32** | The ID of the ruleset containing the rule that triggered this effect. | [optional] 
+**Id** | Pointer to **int64** | ID of the loyalty ledger transaction. | 
+**RulesetId** | Pointer to **int64** | The ID of the ruleset containing the rule that triggered this effect. | [optional] 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | [optional] 
 **Flags** | Pointer to [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) |  | [optional] 
 
 ## Methods
 
+### NewLedgerTransactionLogEntryIntegrationAPI
+
+`func NewLedgerTransactionLogEntryIntegrationAPI(transactionUUID string, created time.Time, programId int64, type_ string, name string, startDate string, expiryDate string, subledgerId string, amount float32, id int64, ) *LedgerTransactionLogEntryIntegrationAPI`
+
+NewLedgerTransactionLogEntryIntegrationAPI instantiates a new LedgerTransactionLogEntryIntegrationAPI object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewLedgerTransactionLogEntryIntegrationAPIWithDefaults
+
+`func NewLedgerTransactionLogEntryIntegrationAPIWithDefaults() *LedgerTransactionLogEntryIntegrationAPI`
+
+NewLedgerTransactionLogEntryIntegrationAPIWithDefaults instantiates a new LedgerTransactionLogEntryIntegrationAPI object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetTransactionUUID
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetTransactionUUID() string`
+
+GetTransactionUUID returns the TransactionUUID field if non-nil, zero value otherwise.
+
+### GetTransactionUUIDOk
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetTransactionUUIDOk() (*string, bool)`
+
+GetTransactionUUIDOk returns a tuple with the TransactionUUID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTransactionUUID
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetTransactionUUID(v string)`
+
+SetTransactionUUID sets TransactionUUID field to given value.
+
+
 ### GetCreated
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetCreated() time.Time`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetCreated() time.Time`
 
 GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetCreatedOk() (time.Time, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetCreatedOk() (*time.Time, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCreated
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
-
 ### SetCreated
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetCreated(v time.Time)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetCreated(v time.Time)`
 
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+SetCreated sets Created field to given value.
+
 
 ### GetProgramId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetProgramId() int32`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetProgramId() int64`
 
 GetProgramId returns the ProgramId field if non-nil, zero value otherwise.
 
 ### GetProgramIdOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetProgramIdOk() (int32, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetProgramIdOk() (*int64, bool)`
 
 GetProgramIdOk returns a tuple with the ProgramId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasProgramId
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasProgramId() bool`
-
-HasProgramId returns a boolean if a field has been set.
-
 ### SetProgramId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetProgramId(v int32)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetProgramId(v int64)`
 
-SetProgramId gets a reference to the given int32 and assigns it to the ProgramId field.
+SetProgramId sets ProgramId field to given value.
+
 
 ### GetCustomerSessionId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetCustomerSessionId() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetCustomerSessionId() string`
 
 GetCustomerSessionId returns the CustomerSessionId field if non-nil, zero value otherwise.
 
 ### GetCustomerSessionIdOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetCustomerSessionIdOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetCustomerSessionIdOk() (*string, bool)`
 
 GetCustomerSessionIdOk returns a tuple with the CustomerSessionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetCustomerSessionId
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetCustomerSessionId(v string)`
+
+SetCustomerSessionId sets CustomerSessionId field to given value.
+
 ### HasCustomerSessionId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasCustomerSessionId() bool`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) HasCustomerSessionId() bool`
 
 HasCustomerSessionId returns a boolean if a field has been set.
 
-### SetCustomerSessionId
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetCustomerSessionId(v string)`
-
-SetCustomerSessionId gets a reference to the given string and assigns it to the CustomerSessionId field.
-
 ### GetType
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetType() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetType() string`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetTypeOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetTypeOk() (*string, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasType
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasType() bool`
-
-HasType returns a boolean if a field has been set.
-
 ### SetType
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetType(v string)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetType(v string)`
 
-SetType gets a reference to the given string and assigns it to the Type field.
+SetType sets Type field to given value.
+
 
 ### GetName
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetName() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetNameOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
 ### SetName
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetName(v string)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetStartDate
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetStartDate() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetStartDate() string`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetStartDateOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetStartDateOk() (*string, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasStartDate
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasStartDate() bool`
-
-HasStartDate returns a boolean if a field has been set.
-
 ### SetStartDate
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetStartDate(v string)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetStartDate(v string)`
 
-SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+SetStartDate sets StartDate field to given value.
+
 
 ### GetExpiryDate
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetExpiryDate() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetExpiryDate() string`
 
 GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
 
 ### GetExpiryDateOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetExpiryDateOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetExpiryDateOk() (*string, bool)`
 
 GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpiryDate
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasExpiryDate() bool`
-
-HasExpiryDate returns a boolean if a field has been set.
-
 ### SetExpiryDate
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetExpiryDate(v string)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetExpiryDate(v string)`
 
-SetExpiryDate gets a reference to the given string and assigns it to the ExpiryDate field.
+SetExpiryDate sets ExpiryDate field to given value.
+
 
 ### GetSubledgerId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetSubledgerId() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetSubledgerId() string`
 
 GetSubledgerId returns the SubledgerId field if non-nil, zero value otherwise.
 
 ### GetSubledgerIdOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetSubledgerIdOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetSubledgerIdOk() (*string, bool)`
 
 GetSubledgerIdOk returns a tuple with the SubledgerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasSubledgerId
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasSubledgerId() bool`
-
-HasSubledgerId returns a boolean if a field has been set.
-
 ### SetSubledgerId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetSubledgerId(v string)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetSubledgerId(v string)`
 
-SetSubledgerId gets a reference to the given string and assigns it to the SubledgerId field.
+SetSubledgerId sets SubledgerId field to given value.
+
 
 ### GetAmount
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetAmount() float32`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetAmount() float32`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetAmountOk() (float32, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetAmountOk() (*float32, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAmount
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasAmount() bool`
-
-HasAmount returns a boolean if a field has been set.
-
 ### SetAmount
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetAmount(v float32)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetAmount(v float32)`
 
-SetAmount gets a reference to the given float32 and assigns it to the Amount field.
+SetAmount sets Amount field to given value.
+
 
 ### GetId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetId() int32`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetIdOk() (int32, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### SetId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetId(v int32)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetId(v int64)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetId sets Id field to given value.
+
 
 ### GetRulesetId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetRulesetId() int32`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetRulesetId() int64`
 
 GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
 
 ### GetRulesetIdOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetRulesetIdOk() (int32, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetRulesetIdOk() (*int64, bool)`
 
 GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetRulesetId
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetRulesetId(v int64)`
+
+SetRulesetId sets RulesetId field to given value.
+
 ### HasRulesetId
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasRulesetId() bool`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) HasRulesetId() bool`
 
 HasRulesetId returns a boolean if a field has been set.
 
-### SetRulesetId
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetRulesetId(v int32)`
-
-SetRulesetId gets a reference to the given int32 and assigns it to the RulesetId field.
-
 ### GetRuleName
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetRuleName() string`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetRuleName() string`
 
 GetRuleName returns the RuleName field if non-nil, zero value otherwise.
 
 ### GetRuleNameOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetRuleNameOk() (string, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetRuleNameOk() (*string, bool)`
 
 GetRuleNameOk returns a tuple with the RuleName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetRuleName
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetRuleName(v string)`
+
+SetRuleName sets RuleName field to given value.
+
 ### HasRuleName
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasRuleName() bool`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) HasRuleName() bool`
 
 HasRuleName returns a boolean if a field has been set.
 
-### SetRuleName
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetRuleName(v string)`
-
-SetRuleName gets a reference to the given string and assigns it to the RuleName field.
-
 ### GetFlags
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetFlags() LoyaltyLedgerEntryFlags`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetFlags() LoyaltyLedgerEntryFlags`
 
 GetFlags returns the Flags field if non-nil, zero value otherwise.
 
 ### GetFlagsOk
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) GetFlagsOk() (LoyaltyLedgerEntryFlags, bool)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) GetFlagsOk() (*LoyaltyLedgerEntryFlags, bool)`
 
 GetFlagsOk returns a tuple with the Flags field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasFlags
-
-`func (o *LedgerTransactionLogEntryIntegrationApi) HasFlags() bool`
-
-HasFlags returns a boolean if a field has been set.
-
 ### SetFlags
 
-`func (o *LedgerTransactionLogEntryIntegrationApi) SetFlags(v LoyaltyLedgerEntryFlags)`
+`func (o *LedgerTransactionLogEntryIntegrationAPI) SetFlags(v LoyaltyLedgerEntryFlags)`
 
-SetFlags gets a reference to the given LoyaltyLedgerEntryFlags and assigns it to the Flags field.
+SetFlags sets Flags field to given value.
+
+### HasFlags
+
+`func (o *LedgerTransactionLogEntryIntegrationAPI) HasFlags() bool`
+
+HasFlags returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

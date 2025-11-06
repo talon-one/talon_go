@@ -1,4 +1,4 @@
-# TwoFaConfig
+# TwoFAConfig
 
 ## Properties
 
@@ -9,55 +9,67 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewTwoFAConfig
+
+`func NewTwoFAConfig(enabled bool, ) *TwoFAConfig`
+
+NewTwoFAConfig instantiates a new TwoFAConfig object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewTwoFAConfigWithDefaults
+
+`func NewTwoFAConfigWithDefaults() *TwoFAConfig`
+
+NewTwoFAConfigWithDefaults instantiates a new TwoFAConfig object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetEnabled
 
-`func (o *TwoFaConfig) GetEnabled() bool`
+`func (o *TwoFAConfig) GetEnabled() bool`
 
 GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
 ### GetEnabledOk
 
-`func (o *TwoFaConfig) GetEnabledOk() (bool, bool)`
+`func (o *TwoFAConfig) GetEnabledOk() (*bool, bool)`
 
 GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEnabled
-
-`func (o *TwoFaConfig) HasEnabled() bool`
-
-HasEnabled returns a boolean if a field has been set.
-
 ### SetEnabled
 
-`func (o *TwoFaConfig) SetEnabled(v bool)`
+`func (o *TwoFAConfig) SetEnabled(v bool)`
 
-SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+SetEnabled sets Enabled field to given value.
+
 
 ### GetRequireEverySignIn
 
-`func (o *TwoFaConfig) GetRequireEverySignIn() bool`
+`func (o *TwoFAConfig) GetRequireEverySignIn() bool`
 
 GetRequireEverySignIn returns the RequireEverySignIn field if non-nil, zero value otherwise.
 
 ### GetRequireEverySignInOk
 
-`func (o *TwoFaConfig) GetRequireEverySignInOk() (bool, bool)`
+`func (o *TwoFAConfig) GetRequireEverySignInOk() (*bool, bool)`
 
 GetRequireEverySignInOk returns a tuple with the RequireEverySignIn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRequireEverySignIn
-
-`func (o *TwoFaConfig) HasRequireEverySignIn() bool`
-
-HasRequireEverySignIn returns a boolean if a field has been set.
-
 ### SetRequireEverySignIn
 
-`func (o *TwoFaConfig) SetRequireEverySignIn(v bool)`
+`func (o *TwoFAConfig) SetRequireEverySignIn(v bool)`
 
-SetRequireEverySignIn gets a reference to the given bool and assigns it to the RequireEverySignIn field.
+SetRequireEverySignIn sets RequireEverySignIn field to given value.
+
+### HasRequireEverySignIn
+
+`func (o *TwoFAConfig) HasRequireEverySignIn() bool`
+
+HasRequireEverySignIn returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

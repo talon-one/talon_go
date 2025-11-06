@@ -10,200 +10,333 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AccountLimits struct for AccountLimits
 type AccountLimits struct {
 	// Total number of allowed live applications in the account.
-	LiveApplications int32 `json:"liveApplications"`
+	LiveApplications int64 `json:"liveApplications"`
 	// Total number of allowed sandbox applications in the account.
-	SandboxApplications int32 `json:"sandboxApplications"`
+	SandboxApplications int64 `json:"sandboxApplications"`
 	// Total number of allowed active campaigns in live applications in the account.
-	ActiveCampaigns int32 `json:"activeCampaigns"`
+	ActiveCampaigns int64 `json:"activeCampaigns"`
 	// Total number of allowed coupons in the account.
-	Coupons int32 `json:"coupons"`
+	Coupons int64 `json:"coupons"`
 	// Total number of allowed referral codes in the account.
-	ReferralCodes int32 `json:"referralCodes"`
+	ReferralCodes int64 `json:"referralCodes"`
 	// Total number of allowed active rulesets in the account.
-	ActiveRules int32 `json:"activeRules"`
+	ActiveRules int64 `json:"activeRules"`
 	// Total number of allowed live loyalty programs in the account.
-	LiveLoyaltyPrograms int32 `json:"liveLoyaltyPrograms"`
+	LiveLoyaltyPrograms int64 `json:"liveLoyaltyPrograms"`
 	// Total number of allowed sandbox loyalty programs in the account.
-	SandboxLoyaltyPrograms int32 `json:"sandboxLoyaltyPrograms"`
+	SandboxLoyaltyPrograms int64 `json:"sandboxLoyaltyPrograms"`
 	// Total number of allowed webhooks in the account.
-	Webhooks int32 `json:"webhooks"`
+	Webhooks int64 `json:"webhooks"`
 	// Total number of allowed users in the account.
-	Users int32 `json:"users"`
+	Users int64 `json:"users"`
 	// Allowed volume of API requests to the account.
-	ApiVolume int32 `json:"apiVolume"`
+	ApiVolume int64 `json:"apiVolume"`
 	// Array of promotion types that are employed in the account.
 	PromotionTypes []string `json:"promotionTypes"`
+	// The price for a secondary deployment according to contractual agreements.
+	SecondaryDeploymentPrice int64 `json:"SecondaryDeploymentPrice"`
+	// The currency of the contract.
+	CurrencyCode string `json:"currencyCode"`
+}
+
+// NewAccountLimits instantiates a new AccountLimits object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAccountLimits(liveApplications int64, sandboxApplications int64, activeCampaigns int64, coupons int64, referralCodes int64, activeRules int64, liveLoyaltyPrograms int64, sandboxLoyaltyPrograms int64, webhooks int64, users int64, apiVolume int64, promotionTypes []string, secondaryDeploymentPrice int64, currencyCode string) *AccountLimits {
+	this := AccountLimits{}
+	this.LiveApplications = liveApplications
+	this.SandboxApplications = sandboxApplications
+	this.ActiveCampaigns = activeCampaigns
+	this.Coupons = coupons
+	this.ReferralCodes = referralCodes
+	this.ActiveRules = activeRules
+	this.LiveLoyaltyPrograms = liveLoyaltyPrograms
+	this.SandboxLoyaltyPrograms = sandboxLoyaltyPrograms
+	this.Webhooks = webhooks
+	this.Users = users
+	this.ApiVolume = apiVolume
+	this.PromotionTypes = promotionTypes
+	this.SecondaryDeploymentPrice = secondaryDeploymentPrice
+	this.CurrencyCode = currencyCode
+	return &this
+}
+
+// NewAccountLimitsWithDefaults instantiates a new AccountLimits object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAccountLimitsWithDefaults() *AccountLimits {
+	this := AccountLimits{}
+	return &this
 }
 
 // GetLiveApplications returns the LiveApplications field value
-func (o *AccountLimits) GetLiveApplications() int32 {
+func (o *AccountLimits) GetLiveApplications() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LiveApplications
 }
 
+// GetLiveApplicationsOk returns a tuple with the LiveApplications field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetLiveApplicationsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LiveApplications, true
+}
+
 // SetLiveApplications sets field value
-func (o *AccountLimits) SetLiveApplications(v int32) {
+func (o *AccountLimits) SetLiveApplications(v int64) {
 	o.LiveApplications = v
 }
 
 // GetSandboxApplications returns the SandboxApplications field value
-func (o *AccountLimits) GetSandboxApplications() int32 {
+func (o *AccountLimits) GetSandboxApplications() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.SandboxApplications
 }
 
+// GetSandboxApplicationsOk returns a tuple with the SandboxApplications field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetSandboxApplicationsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SandboxApplications, true
+}
+
 // SetSandboxApplications sets field value
-func (o *AccountLimits) SetSandboxApplications(v int32) {
+func (o *AccountLimits) SetSandboxApplications(v int64) {
 	o.SandboxApplications = v
 }
 
 // GetActiveCampaigns returns the ActiveCampaigns field value
-func (o *AccountLimits) GetActiveCampaigns() int32 {
+func (o *AccountLimits) GetActiveCampaigns() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ActiveCampaigns
 }
 
+// GetActiveCampaignsOk returns a tuple with the ActiveCampaigns field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetActiveCampaignsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActiveCampaigns, true
+}
+
 // SetActiveCampaigns sets field value
-func (o *AccountLimits) SetActiveCampaigns(v int32) {
+func (o *AccountLimits) SetActiveCampaigns(v int64) {
 	o.ActiveCampaigns = v
 }
 
 // GetCoupons returns the Coupons field value
-func (o *AccountLimits) GetCoupons() int32 {
+func (o *AccountLimits) GetCoupons() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Coupons
 }
 
+// GetCouponsOk returns a tuple with the Coupons field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetCouponsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Coupons, true
+}
+
 // SetCoupons sets field value
-func (o *AccountLimits) SetCoupons(v int32) {
+func (o *AccountLimits) SetCoupons(v int64) {
 	o.Coupons = v
 }
 
 // GetReferralCodes returns the ReferralCodes field value
-func (o *AccountLimits) GetReferralCodes() int32 {
+func (o *AccountLimits) GetReferralCodes() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ReferralCodes
 }
 
+// GetReferralCodesOk returns a tuple with the ReferralCodes field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetReferralCodesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferralCodes, true
+}
+
 // SetReferralCodes sets field value
-func (o *AccountLimits) SetReferralCodes(v int32) {
+func (o *AccountLimits) SetReferralCodes(v int64) {
 	o.ReferralCodes = v
 }
 
 // GetActiveRules returns the ActiveRules field value
-func (o *AccountLimits) GetActiveRules() int32 {
+func (o *AccountLimits) GetActiveRules() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ActiveRules
 }
 
+// GetActiveRulesOk returns a tuple with the ActiveRules field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetActiveRulesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ActiveRules, true
+}
+
 // SetActiveRules sets field value
-func (o *AccountLimits) SetActiveRules(v int32) {
+func (o *AccountLimits) SetActiveRules(v int64) {
 	o.ActiveRules = v
 }
 
 // GetLiveLoyaltyPrograms returns the LiveLoyaltyPrograms field value
-func (o *AccountLimits) GetLiveLoyaltyPrograms() int32 {
+func (o *AccountLimits) GetLiveLoyaltyPrograms() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.LiveLoyaltyPrograms
 }
 
+// GetLiveLoyaltyProgramsOk returns a tuple with the LiveLoyaltyPrograms field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetLiveLoyaltyProgramsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LiveLoyaltyPrograms, true
+}
+
 // SetLiveLoyaltyPrograms sets field value
-func (o *AccountLimits) SetLiveLoyaltyPrograms(v int32) {
+func (o *AccountLimits) SetLiveLoyaltyPrograms(v int64) {
 	o.LiveLoyaltyPrograms = v
 }
 
 // GetSandboxLoyaltyPrograms returns the SandboxLoyaltyPrograms field value
-func (o *AccountLimits) GetSandboxLoyaltyPrograms() int32 {
+func (o *AccountLimits) GetSandboxLoyaltyPrograms() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.SandboxLoyaltyPrograms
 }
 
+// GetSandboxLoyaltyProgramsOk returns a tuple with the SandboxLoyaltyPrograms field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetSandboxLoyaltyProgramsOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SandboxLoyaltyPrograms, true
+}
+
 // SetSandboxLoyaltyPrograms sets field value
-func (o *AccountLimits) SetSandboxLoyaltyPrograms(v int32) {
+func (o *AccountLimits) SetSandboxLoyaltyPrograms(v int64) {
 	o.SandboxLoyaltyPrograms = v
 }
 
 // GetWebhooks returns the Webhooks field value
-func (o *AccountLimits) GetWebhooks() int32 {
+func (o *AccountLimits) GetWebhooks() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Webhooks
 }
 
+// GetWebhooksOk returns a tuple with the Webhooks field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetWebhooksOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Webhooks, true
+}
+
 // SetWebhooks sets field value
-func (o *AccountLimits) SetWebhooks(v int32) {
+func (o *AccountLimits) SetWebhooks(v int64) {
 	o.Webhooks = v
 }
 
 // GetUsers returns the Users field value
-func (o *AccountLimits) GetUsers() int32 {
+func (o *AccountLimits) GetUsers() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Users
 }
 
+// GetUsersOk returns a tuple with the Users field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetUsersOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Users, true
+}
+
 // SetUsers sets field value
-func (o *AccountLimits) SetUsers(v int32) {
+func (o *AccountLimits) SetUsers(v int64) {
 	o.Users = v
 }
 
 // GetApiVolume returns the ApiVolume field value
-func (o *AccountLimits) GetApiVolume() int32 {
+func (o *AccountLimits) GetApiVolume() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApiVolume
 }
 
+// GetApiVolumeOk returns a tuple with the ApiVolume field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetApiVolumeOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApiVolume, true
+}
+
 // SetApiVolume sets field value
-func (o *AccountLimits) SetApiVolume(v int32) {
+func (o *AccountLimits) SetApiVolume(v int64) {
 	o.ApiVolume = v
 }
 
@@ -217,30 +350,147 @@ func (o *AccountLimits) GetPromotionTypes() []string {
 	return o.PromotionTypes
 }
 
+// GetPromotionTypesOk returns a tuple with the PromotionTypes field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetPromotionTypesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PromotionTypes, true
+}
+
 // SetPromotionTypes sets field value
 func (o *AccountLimits) SetPromotionTypes(v []string) {
 	o.PromotionTypes = v
 }
 
+// GetSecondaryDeploymentPrice returns the SecondaryDeploymentPrice field value
+func (o *AccountLimits) GetSecondaryDeploymentPrice() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.SecondaryDeploymentPrice
+}
+
+// GetSecondaryDeploymentPriceOk returns a tuple with the SecondaryDeploymentPrice field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetSecondaryDeploymentPriceOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SecondaryDeploymentPrice, true
+}
+
+// SetSecondaryDeploymentPrice sets field value
+func (o *AccountLimits) SetSecondaryDeploymentPrice(v int64) {
+	o.SecondaryDeploymentPrice = v
+}
+
+// GetCurrencyCode returns the CurrencyCode field value
+func (o *AccountLimits) GetCurrencyCode() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CurrencyCode
+}
+
+// GetCurrencyCodeOk returns a tuple with the CurrencyCode field value
+// and a boolean to check if the value has been set.
+func (o *AccountLimits) GetCurrencyCodeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrencyCode, true
+}
+
+// SetCurrencyCode sets field value
+func (o *AccountLimits) SetCurrencyCode(v string) {
+	o.CurrencyCode = v
+}
+
+func (o AccountLimits) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["liveApplications"] = o.LiveApplications
+	}
+	if true {
+		toSerialize["sandboxApplications"] = o.SandboxApplications
+	}
+	if true {
+		toSerialize["activeCampaigns"] = o.ActiveCampaigns
+	}
+	if true {
+		toSerialize["coupons"] = o.Coupons
+	}
+	if true {
+		toSerialize["referralCodes"] = o.ReferralCodes
+	}
+	if true {
+		toSerialize["activeRules"] = o.ActiveRules
+	}
+	if true {
+		toSerialize["liveLoyaltyPrograms"] = o.LiveLoyaltyPrograms
+	}
+	if true {
+		toSerialize["sandboxLoyaltyPrograms"] = o.SandboxLoyaltyPrograms
+	}
+	if true {
+		toSerialize["webhooks"] = o.Webhooks
+	}
+	if true {
+		toSerialize["users"] = o.Users
+	}
+	if true {
+		toSerialize["apiVolume"] = o.ApiVolume
+	}
+	if true {
+		toSerialize["promotionTypes"] = o.PromotionTypes
+	}
+	if true {
+		toSerialize["SecondaryDeploymentPrice"] = o.SecondaryDeploymentPrice
+	}
+	if true {
+		toSerialize["currencyCode"] = o.CurrencyCode
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAccountLimits struct {
-	Value        AccountLimits
-	ExplicitNull bool
+	value *AccountLimits
+	isSet bool
+}
+
+func (v NullableAccountLimits) Get() *AccountLimits {
+	return v.value
+}
+
+func (v *NullableAccountLimits) Set(val *AccountLimits) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAccountLimits) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAccountLimits) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAccountLimits(val *AccountLimits) *NullableAccountLimits {
+	return &NullableAccountLimits{value: val, isSet: true}
 }
 
 func (v NullableAccountLimits) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAccountLimits) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

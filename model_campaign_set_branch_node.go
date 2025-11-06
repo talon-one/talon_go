@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,7 +24,7 @@ type CampaignSetBranchNode struct {
 	// Child elements of this set.
 	Elements []CampaignSetNode `json:"elements"`
 	// The ID of the campaign set.
-	GroupId int32 `json:"groupId"`
+	GroupId int64 `json:"groupId"`
 	// An indicator of whether the campaign set is locked for modification.
 	Locked bool `json:"locked"`
 	// A description of the campaign set.
@@ -36,6 +35,31 @@ type CampaignSetBranchNode struct {
 	EvaluationScope string `json:"evaluationScope"`
 }
 
+// NewCampaignSetBranchNode instantiates a new CampaignSetBranchNode object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignSetBranchNode(type_ string, name string, operator string, elements []CampaignSetNode, groupId int64, locked bool, evaluationMode string, evaluationScope string) *CampaignSetBranchNode {
+	this := CampaignSetBranchNode{}
+	this.Type = type_
+	this.Name = name
+	this.Operator = operator
+	this.Elements = elements
+	this.GroupId = groupId
+	this.Locked = locked
+	this.EvaluationMode = evaluationMode
+	this.EvaluationScope = evaluationScope
+	return &this
+}
+
+// NewCampaignSetBranchNodeWithDefaults instantiates a new CampaignSetBranchNode object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignSetBranchNodeWithDefaults() *CampaignSetBranchNode {
+	this := CampaignSetBranchNode{}
+	return &this
+}
+
 // GetType returns the Type field value
 func (o *CampaignSetBranchNode) GetType() string {
 	if o == nil {
@@ -44,6 +68,15 @@ func (o *CampaignSetBranchNode) GetType() string {
 	}
 
 	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
 }
 
 // SetType sets field value
@@ -61,6 +94,15 @@ func (o *CampaignSetBranchNode) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *CampaignSetBranchNode) SetName(v string) {
 	o.Name = v
@@ -74,6 +116,15 @@ func (o *CampaignSetBranchNode) GetOperator() string {
 	}
 
 	return o.Operator
+}
+
+// GetOperatorOk returns a tuple with the Operator field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetOperatorOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Operator, true
 }
 
 // SetOperator sets field value
@@ -91,23 +142,41 @@ func (o *CampaignSetBranchNode) GetElements() []CampaignSetNode {
 	return o.Elements
 }
 
+// GetElementsOk returns a tuple with the Elements field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetElementsOk() (*[]CampaignSetNode, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Elements, true
+}
+
 // SetElements sets field value
 func (o *CampaignSetBranchNode) SetElements(v []CampaignSetNode) {
 	o.Elements = v
 }
 
 // GetGroupId returns the GroupId field value
-func (o *CampaignSetBranchNode) GetGroupId() int32 {
+func (o *CampaignSetBranchNode) GetGroupId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.GroupId
 }
 
+// GetGroupIdOk returns a tuple with the GroupId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetGroupIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.GroupId, true
+}
+
 // SetGroupId sets field value
-func (o *CampaignSetBranchNode) SetGroupId(v int32) {
+func (o *CampaignSetBranchNode) SetGroupId(v int64) {
 	o.GroupId = v
 }
 
@@ -119,6 +188,15 @@ func (o *CampaignSetBranchNode) GetLocked() bool {
 	}
 
 	return o.Locked
+}
+
+// GetLockedOk returns a tuple with the Locked field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetLockedOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Locked, true
 }
 
 // SetLocked sets field value
@@ -135,14 +213,13 @@ func (o *CampaignSetBranchNode) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignSetBranchNode) GetDescriptionOk() (string, bool) {
+func (o *CampaignSetBranchNode) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -169,6 +246,15 @@ func (o *CampaignSetBranchNode) GetEvaluationMode() string {
 	return o.EvaluationMode
 }
 
+// GetEvaluationModeOk returns a tuple with the EvaluationMode field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetEvaluationModeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EvaluationMode, true
+}
+
 // SetEvaluationMode sets field value
 func (o *CampaignSetBranchNode) SetEvaluationMode(v string) {
 	o.EvaluationMode = v
@@ -184,30 +270,84 @@ func (o *CampaignSetBranchNode) GetEvaluationScope() string {
 	return o.EvaluationScope
 }
 
+// GetEvaluationScopeOk returns a tuple with the EvaluationScope field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSetBranchNode) GetEvaluationScopeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EvaluationScope, true
+}
+
 // SetEvaluationScope sets field value
 func (o *CampaignSetBranchNode) SetEvaluationScope(v string) {
 	o.EvaluationScope = v
 }
 
+func (o CampaignSetBranchNode) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["operator"] = o.Operator
+	}
+	if true {
+		toSerialize["elements"] = o.Elements
+	}
+	if true {
+		toSerialize["groupId"] = o.GroupId
+	}
+	if true {
+		toSerialize["locked"] = o.Locked
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["evaluationMode"] = o.EvaluationMode
+	}
+	if true {
+		toSerialize["evaluationScope"] = o.EvaluationScope
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignSetBranchNode struct {
-	Value        CampaignSetBranchNode
-	ExplicitNull bool
+	value *CampaignSetBranchNode
+	isSet bool
+}
+
+func (v NullableCampaignSetBranchNode) Get() *CampaignSetBranchNode {
+	return v.value
+}
+
+func (v *NullableCampaignSetBranchNode) Set(val *CampaignSetBranchNode) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignSetBranchNode) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignSetBranchNode) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignSetBranchNode(val *CampaignSetBranchNode) *NullableCampaignSetBranchNode {
+	return &NullableCampaignSetBranchNode{value: val, isSet: true}
 }
 
 func (v NullableCampaignSetBranchNode) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignSetBranchNode) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

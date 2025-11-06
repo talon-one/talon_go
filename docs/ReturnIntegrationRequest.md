@@ -9,6 +9,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewReturnIntegrationRequest
+
+`func NewReturnIntegrationRequest(return_ NewReturn, ) *ReturnIntegrationRequest`
+
+NewReturnIntegrationRequest instantiates a new ReturnIntegrationRequest object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewReturnIntegrationRequestWithDefaults
+
+`func NewReturnIntegrationRequestWithDefaults() *ReturnIntegrationRequest`
+
+NewReturnIntegrationRequestWithDefaults instantiates a new ReturnIntegrationRequest object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetReturn
 
 `func (o *ReturnIntegrationRequest) GetReturn() NewReturn`
@@ -17,22 +34,17 @@ GetReturn returns the Return field if non-nil, zero value otherwise.
 
 ### GetReturnOk
 
-`func (o *ReturnIntegrationRequest) GetReturnOk() (NewReturn, bool)`
+`func (o *ReturnIntegrationRequest) GetReturnOk() (*NewReturn, bool)`
 
 GetReturnOk returns a tuple with the Return field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasReturn
-
-`func (o *ReturnIntegrationRequest) HasReturn() bool`
-
-HasReturn returns a boolean if a field has been set.
 
 ### SetReturn
 
 `func (o *ReturnIntegrationRequest) SetReturn(v NewReturn)`
 
-SetReturn gets a reference to the given NewReturn and assigns it to the Return field.
+SetReturn sets Return field to given value.
+
 
 ### GetResponseContent
 
@@ -42,22 +54,22 @@ GetResponseContent returns the ResponseContent field if non-nil, zero value othe
 
 ### GetResponseContentOk
 
-`func (o *ReturnIntegrationRequest) GetResponseContentOk() ([]string, bool)`
+`func (o *ReturnIntegrationRequest) GetResponseContentOk() (*[]string, bool)`
 
 GetResponseContentOk returns a tuple with the ResponseContent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetResponseContent
+
+`func (o *ReturnIntegrationRequest) SetResponseContent(v []string)`
+
+SetResponseContent sets ResponseContent field to given value.
 
 ### HasResponseContent
 
 `func (o *ReturnIntegrationRequest) HasResponseContent() bool`
 
 HasResponseContent returns a boolean if a field has been set.
-
-### SetResponseContent
-
-`func (o *ReturnIntegrationRequest) SetResponseContent(v []string)`
-
-SetResponseContent gets a reference to the given []string and assigns it to the ResponseContent field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

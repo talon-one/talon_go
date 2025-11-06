@@ -10,13 +10,30 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // NewPasswordEmail struct for NewPasswordEmail
 type NewPasswordEmail struct {
 	Email string `json:"email"`
+}
+
+// NewNewPasswordEmail instantiates a new NewPasswordEmail object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewPasswordEmail(email string) *NewPasswordEmail {
+	this := NewPasswordEmail{}
+	this.Email = email
+	return &this
+}
+
+// NewNewPasswordEmailWithDefaults instantiates a new NewPasswordEmail object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewPasswordEmailWithDefaults() *NewPasswordEmail {
+	this := NewPasswordEmail{}
+	return &this
 }
 
 // GetEmail returns the Email field value
@@ -29,30 +46,60 @@ func (o *NewPasswordEmail) GetEmail() string {
 	return o.Email
 }
 
+// GetEmailOk returns a tuple with the Email field value
+// and a boolean to check if the value has been set.
+func (o *NewPasswordEmail) GetEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Email, true
+}
+
 // SetEmail sets field value
 func (o *NewPasswordEmail) SetEmail(v string) {
 	o.Email = v
 }
 
+func (o NewPasswordEmail) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["email"] = o.Email
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewPasswordEmail struct {
-	Value        NewPasswordEmail
-	ExplicitNull bool
+	value *NewPasswordEmail
+	isSet bool
+}
+
+func (v NullableNewPasswordEmail) Get() *NewPasswordEmail {
+	return v.value
+}
+
+func (v *NullableNewPasswordEmail) Set(val *NewPasswordEmail) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewPasswordEmail) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewPasswordEmail) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewPasswordEmail(val *NewPasswordEmail) *NullableNewPasswordEmail {
+	return &NullableNewPasswordEmail{value: val, isSet: true}
 }
 
 func (v NullableNewPasswordEmail) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewPasswordEmail) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

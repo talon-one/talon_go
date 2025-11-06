@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type CampaignSearch struct {
 	// Properties to match against a campaign. All provided attributes will be exactly matched against campaign attributes.
 	Attributes map[string]interface{} `json:"attributes"`
+}
+
+// NewCampaignSearch instantiates a new CampaignSearch object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignSearch(attributes map[string]interface{}) *CampaignSearch {
+	this := CampaignSearch{}
+	this.Attributes = attributes
+	return &this
+}
+
+// NewCampaignSearchWithDefaults instantiates a new CampaignSearch object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignSearchWithDefaults() *CampaignSearch {
+	this := CampaignSearch{}
+	return &this
 }
 
 // GetAttributes returns the Attributes field value
@@ -30,30 +47,60 @@ func (o *CampaignSearch) GetAttributes() map[string]interface{} {
 	return o.Attributes
 }
 
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSearch) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
 // SetAttributes sets field value
 func (o *CampaignSearch) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
 
+func (o CampaignSearch) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignSearch struct {
-	Value        CampaignSearch
-	ExplicitNull bool
+	value *CampaignSearch
+	isSet bool
+}
+
+func (v NullableCampaignSearch) Get() *CampaignSearch {
+	return v.value
+}
+
+func (v *NullableCampaignSearch) Set(val *CampaignSearch) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignSearch) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignSearch) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignSearch(val *CampaignSearch) *NullableCampaignSearch {
+	return &NullableCampaignSearch{value: val, isSet: true}
 }
 
 func (v NullableCampaignSearch) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignSearch) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

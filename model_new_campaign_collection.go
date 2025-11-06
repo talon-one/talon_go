@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type NewCampaignCollection struct {
 	Name string `json:"name"`
 }
 
+// NewNewCampaignCollection instantiates a new NewCampaignCollection object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewCampaignCollection(name string) *NewCampaignCollection {
+	this := NewCampaignCollection{}
+	this.Name = name
+	return &this
+}
+
+// NewNewCampaignCollectionWithDefaults instantiates a new NewCampaignCollection object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCampaignCollectionWithDefaults() *NewCampaignCollection {
+	this := NewCampaignCollection{}
+	return &this
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *NewCampaignCollection) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -31,14 +48,13 @@ func (o *NewCampaignCollection) GetDescription() string {
 	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, zero value otherwise
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCampaignCollection) GetDescriptionOk() (string, bool) {
+func (o *NewCampaignCollection) GetDescriptionOk() (*string, bool) {
 	if o == nil || o.Description == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Description, true
+	return o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
@@ -65,30 +81,63 @@ func (o *NewCampaignCollection) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewCampaignCollection) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *NewCampaignCollection) SetName(v string) {
 	o.Name = v
 }
 
+func (o NewCampaignCollection) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCampaignCollection struct {
-	Value        NewCampaignCollection
-	ExplicitNull bool
+	value *NewCampaignCollection
+	isSet bool
+}
+
+func (v NullableNewCampaignCollection) Get() *NewCampaignCollection {
+	return v.value
+}
+
+func (v *NullableNewCampaignCollection) Set(val *NewCampaignCollection) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCampaignCollection) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCampaignCollection) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewCampaignCollection(val *NewCampaignCollection) *NullableNewCampaignCollection {
+	return &NullableNewCampaignCollection{value: val, isSet: true}
 }
 
 func (v NullableNewCampaignCollection) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCampaignCollection) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

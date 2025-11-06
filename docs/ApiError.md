@@ -1,4 +1,4 @@
-# ApiError
+# APIError
 
 ## Properties
 
@@ -10,80 +10,87 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewAPIError
+
+`func NewAPIError(title string, source ErrorSource, ) *APIError`
+
+NewAPIError instantiates a new APIError object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewAPIErrorWithDefaults
+
+`func NewAPIErrorWithDefaults() *APIError`
+
+NewAPIErrorWithDefaults instantiates a new APIError object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetTitle
 
-`func (o *ApiError) GetTitle() string`
+`func (o *APIError) GetTitle() string`
 
 GetTitle returns the Title field if non-nil, zero value otherwise.
 
 ### GetTitleOk
 
-`func (o *ApiError) GetTitleOk() (string, bool)`
+`func (o *APIError) GetTitleOk() (*string, bool)`
 
 GetTitleOk returns a tuple with the Title field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasTitle
-
-`func (o *ApiError) HasTitle() bool`
-
-HasTitle returns a boolean if a field has been set.
-
 ### SetTitle
 
-`func (o *ApiError) SetTitle(v string)`
+`func (o *APIError) SetTitle(v string)`
 
-SetTitle gets a reference to the given string and assigns it to the Title field.
+SetTitle sets Title field to given value.
+
 
 ### GetDetails
 
-`func (o *ApiError) GetDetails() string`
+`func (o *APIError) GetDetails() string`
 
 GetDetails returns the Details field if non-nil, zero value otherwise.
 
 ### GetDetailsOk
 
-`func (o *ApiError) GetDetailsOk() (string, bool)`
+`func (o *APIError) GetDetailsOk() (*string, bool)`
 
 GetDetailsOk returns a tuple with the Details field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetDetails
+
+`func (o *APIError) SetDetails(v string)`
+
+SetDetails sets Details field to given value.
+
 ### HasDetails
 
-`func (o *ApiError) HasDetails() bool`
+`func (o *APIError) HasDetails() bool`
 
 HasDetails returns a boolean if a field has been set.
 
-### SetDetails
-
-`func (o *ApiError) SetDetails(v string)`
-
-SetDetails gets a reference to the given string and assigns it to the Details field.
-
 ### GetSource
 
-`func (o *ApiError) GetSource() ErrorSource`
+`func (o *APIError) GetSource() ErrorSource`
 
 GetSource returns the Source field if non-nil, zero value otherwise.
 
 ### GetSourceOk
 
-`func (o *ApiError) GetSourceOk() (ErrorSource, bool)`
+`func (o *APIError) GetSourceOk() (*ErrorSource, bool)`
 
 GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasSource
-
-`func (o *ApiError) HasSource() bool`
-
-HasSource returns a boolean if a field has been set.
-
 ### SetSource
 
-`func (o *ApiError) SetSource(v ErrorSource)`
+`func (o *APIError) SetSource(v ErrorSource)`
 
-SetSource gets a reference to the given ErrorSource and assigns it to the Source field.
+SetSource sets Source field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

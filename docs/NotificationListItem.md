@@ -4,37 +4,49 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NotificationId** | Pointer to **int32** | The ID of the notification. | 
+**NotificationId** | Pointer to **int64** | The ID of the notification. | 
 **NotificationName** | Pointer to **string** | The name of the notification. | 
-**EntityId** | Pointer to **int32** | The ID of the entity to which this notification belongs. For example, in case of a loyalty notification, this value is the ID of the loyalty program.  | 
+**EntityId** | Pointer to **int64** | The ID of the entity to which this notification belongs. For example, in case of a loyalty notification, this value is the ID of the loyalty program.  | 
 **Enabled** | Pointer to **bool** | Indicates whether the notification is activated. | 
 
 ## Methods
 
+### NewNotificationListItem
+
+`func NewNotificationListItem(notificationId int64, notificationName string, entityId int64, enabled bool, ) *NotificationListItem`
+
+NewNotificationListItem instantiates a new NotificationListItem object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNotificationListItemWithDefaults
+
+`func NewNotificationListItemWithDefaults() *NotificationListItem`
+
+NewNotificationListItemWithDefaults instantiates a new NotificationListItem object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetNotificationId
 
-`func (o *NotificationListItem) GetNotificationId() int32`
+`func (o *NotificationListItem) GetNotificationId() int64`
 
 GetNotificationId returns the NotificationId field if non-nil, zero value otherwise.
 
 ### GetNotificationIdOk
 
-`func (o *NotificationListItem) GetNotificationIdOk() (int32, bool)`
+`func (o *NotificationListItem) GetNotificationIdOk() (*int64, bool)`
 
 GetNotificationIdOk returns a tuple with the NotificationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasNotificationId
-
-`func (o *NotificationListItem) HasNotificationId() bool`
-
-HasNotificationId returns a boolean if a field has been set.
-
 ### SetNotificationId
 
-`func (o *NotificationListItem) SetNotificationId(v int32)`
+`func (o *NotificationListItem) SetNotificationId(v int64)`
 
-SetNotificationId gets a reference to the given int32 and assigns it to the NotificationId field.
+SetNotificationId sets NotificationId field to given value.
+
 
 ### GetNotificationName
 
@@ -44,47 +56,37 @@ GetNotificationName returns the NotificationName field if non-nil, zero value ot
 
 ### GetNotificationNameOk
 
-`func (o *NotificationListItem) GetNotificationNameOk() (string, bool)`
+`func (o *NotificationListItem) GetNotificationNameOk() (*string, bool)`
 
 GetNotificationNameOk returns a tuple with the NotificationName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasNotificationName
-
-`func (o *NotificationListItem) HasNotificationName() bool`
-
-HasNotificationName returns a boolean if a field has been set.
 
 ### SetNotificationName
 
 `func (o *NotificationListItem) SetNotificationName(v string)`
 
-SetNotificationName gets a reference to the given string and assigns it to the NotificationName field.
+SetNotificationName sets NotificationName field to given value.
+
 
 ### GetEntityId
 
-`func (o *NotificationListItem) GetEntityId() int32`
+`func (o *NotificationListItem) GetEntityId() int64`
 
 GetEntityId returns the EntityId field if non-nil, zero value otherwise.
 
 ### GetEntityIdOk
 
-`func (o *NotificationListItem) GetEntityIdOk() (int32, bool)`
+`func (o *NotificationListItem) GetEntityIdOk() (*int64, bool)`
 
 GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEntityId
-
-`func (o *NotificationListItem) HasEntityId() bool`
-
-HasEntityId returns a boolean if a field has been set.
-
 ### SetEntityId
 
-`func (o *NotificationListItem) SetEntityId(v int32)`
+`func (o *NotificationListItem) SetEntityId(v int64)`
 
-SetEntityId gets a reference to the given int32 and assigns it to the EntityId field.
+SetEntityId sets EntityId field to given value.
+
 
 ### GetEnabled
 
@@ -94,22 +96,17 @@ GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
 ### GetEnabledOk
 
-`func (o *NotificationListItem) GetEnabledOk() (bool, bool)`
+`func (o *NotificationListItem) GetEnabledOk() (*bool, bool)`
 
 GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasEnabled
-
-`func (o *NotificationListItem) HasEnabled() bool`
-
-HasEnabled returns a boolean if a field has been set.
 
 ### SetEnabled
 
 `func (o *NotificationListItem) SetEnabled(v bool)`
 
-SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+SetEnabled sets Enabled field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

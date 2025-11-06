@@ -11,6 +11,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewScimBaseUser
+
+`func NewScimBaseUser() *ScimBaseUser`
+
+NewScimBaseUser instantiates a new ScimBaseUser object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewScimBaseUserWithDefaults
+
+`func NewScimBaseUserWithDefaults() *ScimBaseUser`
+
+NewScimBaseUserWithDefaults instantiates a new ScimBaseUser object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetActive
 
 `func (o *ScimBaseUser) GetActive() bool`
@@ -19,22 +36,22 @@ GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### GetActiveOk
 
-`func (o *ScimBaseUser) GetActiveOk() (bool, bool)`
+`func (o *ScimBaseUser) GetActiveOk() (*bool, bool)`
 
 GetActiveOk returns a tuple with the Active field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetActive
+
+`func (o *ScimBaseUser) SetActive(v bool)`
+
+SetActive sets Active field to given value.
 
 ### HasActive
 
 `func (o *ScimBaseUser) HasActive() bool`
 
 HasActive returns a boolean if a field has been set.
-
-### SetActive
-
-`func (o *ScimBaseUser) SetActive(v bool)`
-
-SetActive gets a reference to the given bool and assigns it to the Active field.
 
 ### GetDisplayName
 
@@ -44,22 +61,22 @@ GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
 
 ### GetDisplayNameOk
 
-`func (o *ScimBaseUser) GetDisplayNameOk() (string, bool)`
+`func (o *ScimBaseUser) GetDisplayNameOk() (*string, bool)`
 
 GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *ScimBaseUser) SetDisplayName(v string)`
+
+SetDisplayName sets DisplayName field to given value.
 
 ### HasDisplayName
 
 `func (o *ScimBaseUser) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
-
-### SetDisplayName
-
-`func (o *ScimBaseUser) SetDisplayName(v string)`
-
-SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 
 ### GetUserName
 
@@ -69,22 +86,22 @@ GetUserName returns the UserName field if non-nil, zero value otherwise.
 
 ### GetUserNameOk
 
-`func (o *ScimBaseUser) GetUserNameOk() (string, bool)`
+`func (o *ScimBaseUser) GetUserNameOk() (*string, bool)`
 
 GetUserNameOk returns a tuple with the UserName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetUserName
+
+`func (o *ScimBaseUser) SetUserName(v string)`
+
+SetUserName sets UserName field to given value.
 
 ### HasUserName
 
 `func (o *ScimBaseUser) HasUserName() bool`
 
 HasUserName returns a boolean if a field has been set.
-
-### SetUserName
-
-`func (o *ScimBaseUser) SetUserName(v string)`
-
-SetUserName gets a reference to the given string and assigns it to the UserName field.
 
 ### GetName
 
@@ -94,22 +111,22 @@ GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *ScimBaseUser) GetNameOk() (ScimBaseUserName, bool)`
+`func (o *ScimBaseUser) GetNameOk() (*ScimBaseUserName, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *ScimBaseUser) SetName(v ScimBaseUserName)`
+
+SetName sets Name field to given value.
 
 ### HasName
 
 `func (o *ScimBaseUser) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### SetName
-
-`func (o *ScimBaseUser) SetName(v ScimBaseUserName)`
-
-SetName gets a reference to the given ScimBaseUserName and assigns it to the Name field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

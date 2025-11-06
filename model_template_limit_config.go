@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -26,6 +25,26 @@ type TemplateLimitConfig struct {
 	Entities []string `json:"entities"`
 }
 
+// NewTemplateLimitConfig instantiates a new TemplateLimitConfig object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildTemplateLimitConfig(action string, limit float32, entities []string) *TemplateLimitConfig {
+	this := TemplateLimitConfig{}
+	this.Action = action
+	this.Limit = limit
+	this.Entities = entities
+	return &this
+}
+
+// NewTemplateLimitConfigWithDefaults instantiates a new TemplateLimitConfig object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewTemplateLimitConfigWithDefaults() *TemplateLimitConfig {
+	this := TemplateLimitConfig{}
+	return &this
+}
+
 // GetAction returns the Action field value
 func (o *TemplateLimitConfig) GetAction() string {
 	if o == nil {
@@ -34,6 +53,15 @@ func (o *TemplateLimitConfig) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *TemplateLimitConfig) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -51,6 +79,15 @@ func (o *TemplateLimitConfig) GetLimit() float32 {
 	return o.Limit
 }
 
+// GetLimitOk returns a tuple with the Limit field value
+// and a boolean to check if the value has been set.
+func (o *TemplateLimitConfig) GetLimitOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Limit, true
+}
+
 // SetLimit sets field value
 func (o *TemplateLimitConfig) SetLimit(v float32) {
 	o.Limit = v
@@ -65,14 +102,13 @@ func (o *TemplateLimitConfig) GetPeriod() string {
 	return *o.Period
 }
 
-// GetPeriodOk returns a tuple with the Period field value if set, zero value otherwise
+// GetPeriodOk returns a tuple with the Period field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TemplateLimitConfig) GetPeriodOk() (string, bool) {
+func (o *TemplateLimitConfig) GetPeriodOk() (*string, bool) {
 	if o == nil || o.Period == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Period, true
+	return o.Period, true
 }
 
 // HasPeriod returns a boolean if a field has been set.
@@ -99,30 +135,69 @@ func (o *TemplateLimitConfig) GetEntities() []string {
 	return o.Entities
 }
 
+// GetEntitiesOk returns a tuple with the Entities field value
+// and a boolean to check if the value has been set.
+func (o *TemplateLimitConfig) GetEntitiesOk() (*[]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Entities, true
+}
+
 // SetEntities sets field value
 func (o *TemplateLimitConfig) SetEntities(v []string) {
 	o.Entities = v
 }
 
+func (o TemplateLimitConfig) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if true {
+		toSerialize["limit"] = o.Limit
+	}
+	if o.Period != nil {
+		toSerialize["period"] = o.Period
+	}
+	if true {
+		toSerialize["entities"] = o.Entities
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableTemplateLimitConfig struct {
-	Value        TemplateLimitConfig
-	ExplicitNull bool
+	value *TemplateLimitConfig
+	isSet bool
+}
+
+func (v NullableTemplateLimitConfig) Get() *TemplateLimitConfig {
+	return v.value
+}
+
+func (v *NullableTemplateLimitConfig) Set(val *TemplateLimitConfig) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableTemplateLimitConfig) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableTemplateLimitConfig) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableTemplateLimitConfig(val *TemplateLimitConfig) *NullableTemplateLimitConfig {
+	return &NullableTemplateLimitConfig{value: val, isSet: true}
 }
 
 func (v NullableTemplateLimitConfig) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableTemplateLimitConfig) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -4,86 +4,93 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
-**Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
-**Collection** | Pointer to [**CollectionWithoutPayload**](CollectionWithoutPayload.md) |  | 
+**NotificationType** | Pointer to **string** | The type of the notification | 
+**TotalResultSize** | Pointer to **int64** | The total size of the result set. | 
+**Data** | Pointer to [**[]CampaignCollectionEditedNotificationItem**](CampaignCollectionEditedNotificationItem.md) | A list of campaign notification data. | [optional] 
 
 ## Methods
 
-### GetCampaign
+### NewCampaignCollectionEditedNotification
 
-`func (o *CampaignCollectionEditedNotification) GetCampaign() Campaign`
+`func NewCampaignCollectionEditedNotification(notificationType string, totalResultSize int64, ) *CampaignCollectionEditedNotification`
 
-GetCampaign returns the Campaign field if non-nil, zero value otherwise.
+NewCampaignCollectionEditedNotification instantiates a new CampaignCollectionEditedNotification object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
 
-### GetCampaignOk
+### NewCampaignCollectionEditedNotificationWithDefaults
 
-`func (o *CampaignCollectionEditedNotification) GetCampaignOk() (Campaign, bool)`
+`func NewCampaignCollectionEditedNotificationWithDefaults() *CampaignCollectionEditedNotification`
 
-GetCampaignOk returns a tuple with the Campaign field if it's non-nil, zero value otherwise
+NewCampaignCollectionEditedNotificationWithDefaults instantiates a new CampaignCollectionEditedNotification object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetNotificationType
+
+`func (o *CampaignCollectionEditedNotification) GetNotificationType() string`
+
+GetNotificationType returns the NotificationType field if non-nil, zero value otherwise.
+
+### GetNotificationTypeOk
+
+`func (o *CampaignCollectionEditedNotification) GetNotificationTypeOk() (*string, bool)`
+
+GetNotificationTypeOk returns a tuple with the NotificationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCampaign
+### SetNotificationType
 
-`func (o *CampaignCollectionEditedNotification) HasCampaign() bool`
+`func (o *CampaignCollectionEditedNotification) SetNotificationType(v string)`
 
-HasCampaign returns a boolean if a field has been set.
+SetNotificationType sets NotificationType field to given value.
 
-### SetCampaign
 
-`func (o *CampaignCollectionEditedNotification) SetCampaign(v Campaign)`
+### GetTotalResultSize
 
-SetCampaign gets a reference to the given Campaign and assigns it to the Campaign field.
+`func (o *CampaignCollectionEditedNotification) GetTotalResultSize() int64`
 
-### GetRuleset
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-`func (o *CampaignCollectionEditedNotification) GetRuleset() Ruleset`
+### GetTotalResultSizeOk
 
-GetRuleset returns the Ruleset field if non-nil, zero value otherwise.
+`func (o *CampaignCollectionEditedNotification) GetTotalResultSizeOk() (*int64, bool)`
 
-### GetRulesetOk
-
-`func (o *CampaignCollectionEditedNotification) GetRulesetOk() (Ruleset, bool)`
-
-GetRulesetOk returns a tuple with the Ruleset field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasRuleset
+### SetTotalResultSize
 
-`func (o *CampaignCollectionEditedNotification) HasRuleset() bool`
+`func (o *CampaignCollectionEditedNotification) SetTotalResultSize(v int64)`
 
-HasRuleset returns a boolean if a field has been set.
+SetTotalResultSize sets TotalResultSize field to given value.
 
-### SetRuleset
 
-`func (o *CampaignCollectionEditedNotification) SetRuleset(v Ruleset)`
+### GetData
 
-SetRuleset gets a reference to the given Ruleset and assigns it to the Ruleset field.
+`func (o *CampaignCollectionEditedNotification) GetData() []CampaignCollectionEditedNotificationItem`
 
-### GetCollection
+GetData returns the Data field if non-nil, zero value otherwise.
 
-`func (o *CampaignCollectionEditedNotification) GetCollection() CollectionWithoutPayload`
+### GetDataOk
 
-GetCollection returns the Collection field if non-nil, zero value otherwise.
+`func (o *CampaignCollectionEditedNotification) GetDataOk() (*[]CampaignCollectionEditedNotificationItem, bool)`
 
-### GetCollectionOk
-
-`func (o *CampaignCollectionEditedNotification) GetCollectionOk() (CollectionWithoutPayload, bool)`
-
-GetCollectionOk returns a tuple with the Collection field if it's non-nil, zero value otherwise
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasCollection
+### SetData
 
-`func (o *CampaignCollectionEditedNotification) HasCollection() bool`
+`func (o *CampaignCollectionEditedNotification) SetData(v []CampaignCollectionEditedNotificationItem)`
 
-HasCollection returns a boolean if a field has been set.
+SetData sets Data field to given value.
 
-### SetCollection
+### HasData
 
-`func (o *CampaignCollectionEditedNotification) SetCollection(v CollectionWithoutPayload)`
+`func (o *CampaignCollectionEditedNotification) HasData() bool`
 
-SetCollection gets a reference to the given CollectionWithoutPayload and assigns it to the Collection field.
+HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

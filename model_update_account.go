@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -29,6 +28,25 @@ type UpdateAccount struct {
 	PlanExpires *time.Time `json:"planExpires,omitempty"`
 }
 
+// NewUpdateAccount instantiates a new UpdateAccount object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateAccount(companyName string, billingEmail string) *UpdateAccount {
+	this := UpdateAccount{}
+	this.CompanyName = companyName
+	this.BillingEmail = billingEmail
+	return &this
+}
+
+// NewUpdateAccountWithDefaults instantiates a new UpdateAccount object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateAccountWithDefaults() *UpdateAccount {
+	this := UpdateAccount{}
+	return &this
+}
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *UpdateAccount) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -38,14 +56,13 @@ func (o *UpdateAccount) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *UpdateAccount) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -72,6 +89,15 @@ func (o *UpdateAccount) GetCompanyName() string {
 	return o.CompanyName
 }
 
+// GetCompanyNameOk returns a tuple with the CompanyName field value
+// and a boolean to check if the value has been set.
+func (o *UpdateAccount) GetCompanyNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CompanyName, true
+}
+
 // SetCompanyName sets field value
 func (o *UpdateAccount) SetCompanyName(v string) {
 	o.CompanyName = v
@@ -85,6 +111,15 @@ func (o *UpdateAccount) GetBillingEmail() string {
 	}
 
 	return o.BillingEmail
+}
+
+// GetBillingEmailOk returns a tuple with the BillingEmail field value
+// and a boolean to check if the value has been set.
+func (o *UpdateAccount) GetBillingEmailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BillingEmail, true
 }
 
 // SetBillingEmail sets field value
@@ -101,14 +136,13 @@ func (o *UpdateAccount) GetState() string {
 	return *o.State
 }
 
-// GetStateOk returns a tuple with the State field value if set, zero value otherwise
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetStateOk() (string, bool) {
+func (o *UpdateAccount) GetStateOk() (*string, bool) {
 	if o == nil || o.State == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.State, true
+	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
@@ -134,14 +168,13 @@ func (o *UpdateAccount) GetPlanExpires() time.Time {
 	return *o.PlanExpires
 }
 
-// GetPlanExpiresOk returns a tuple with the PlanExpires field value if set, zero value otherwise
+// GetPlanExpiresOk returns a tuple with the PlanExpires field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateAccount) GetPlanExpiresOk() (time.Time, bool) {
+func (o *UpdateAccount) GetPlanExpiresOk() (*time.Time, bool) {
 	if o == nil || o.PlanExpires == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.PlanExpires, true
+	return o.PlanExpires, true
 }
 
 // HasPlanExpires returns a boolean if a field has been set.
@@ -158,25 +191,58 @@ func (o *UpdateAccount) SetPlanExpires(v time.Time) {
 	o.PlanExpires = &v
 }
 
+func (o UpdateAccount) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["companyName"] = o.CompanyName
+	}
+	if true {
+		toSerialize["billingEmail"] = o.BillingEmail
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.PlanExpires != nil {
+		toSerialize["planExpires"] = o.PlanExpires
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateAccount struct {
-	Value        UpdateAccount
-	ExplicitNull bool
+	value *UpdateAccount
+	isSet bool
+}
+
+func (v NullableUpdateAccount) Get() *UpdateAccount {
+	return v.value
+}
+
+func (v *NullableUpdateAccount) Set(val *UpdateAccount) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateAccount) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateAccount) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateAccount(val *UpdateAccount) *NullableUpdateAccount {
+	return &NullableUpdateAccount{value: val, isSet: true}
 }
 
 func (v NullableUpdateAccount) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateAccount) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

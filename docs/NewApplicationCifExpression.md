@@ -1,89 +1,106 @@
-# NewApplicationCifExpression
+# NewApplicationCIFExpression
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CartItemFilterId** | Pointer to **int32** | The ID of the Application cart item filter. | [optional] 
-**CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
-**Expression** | Pointer to [**[]interface{}**]([]interface{}.md) | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
+**CartItemFilterId** | Pointer to **int64** | The ID of the Application cart item filter. | [optional] 
+**CreatedBy** | Pointer to **int64** | The ID of the user who created the Application cart item filter. | [optional] 
+**Expression** | Pointer to **[]map[string]interface{}** | Arbitrary additional JSON data associated with the Application cart item filter. | [optional] 
 
 ## Methods
 
+### NewNewApplicationCIFExpression
+
+`func NewNewApplicationCIFExpression() *NewApplicationCIFExpression`
+
+NewNewApplicationCIFExpression instantiates a new NewApplicationCIFExpression object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewApplicationCIFExpressionWithDefaults
+
+`func NewNewApplicationCIFExpressionWithDefaults() *NewApplicationCIFExpression`
+
+NewNewApplicationCIFExpressionWithDefaults instantiates a new NewApplicationCIFExpression object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetCartItemFilterId
 
-`func (o *NewApplicationCifExpression) GetCartItemFilterId() int32`
+`func (o *NewApplicationCIFExpression) GetCartItemFilterId() int64`
 
 GetCartItemFilterId returns the CartItemFilterId field if non-nil, zero value otherwise.
 
 ### GetCartItemFilterIdOk
 
-`func (o *NewApplicationCifExpression) GetCartItemFilterIdOk() (int32, bool)`
+`func (o *NewApplicationCIFExpression) GetCartItemFilterIdOk() (*int64, bool)`
 
 GetCartItemFilterIdOk returns a tuple with the CartItemFilterId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetCartItemFilterId
+
+`func (o *NewApplicationCIFExpression) SetCartItemFilterId(v int64)`
+
+SetCartItemFilterId sets CartItemFilterId field to given value.
+
 ### HasCartItemFilterId
 
-`func (o *NewApplicationCifExpression) HasCartItemFilterId() bool`
+`func (o *NewApplicationCIFExpression) HasCartItemFilterId() bool`
 
 HasCartItemFilterId returns a boolean if a field has been set.
 
-### SetCartItemFilterId
-
-`func (o *NewApplicationCifExpression) SetCartItemFilterId(v int32)`
-
-SetCartItemFilterId gets a reference to the given int32 and assigns it to the CartItemFilterId field.
-
 ### GetCreatedBy
 
-`func (o *NewApplicationCifExpression) GetCreatedBy() int32`
+`func (o *NewApplicationCIFExpression) GetCreatedBy() int64`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *NewApplicationCifExpression) GetCreatedByOk() (int32, bool)`
+`func (o *NewApplicationCIFExpression) GetCreatedByOk() (*int64, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetCreatedBy
+
+`func (o *NewApplicationCIFExpression) SetCreatedBy(v int64)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
 ### HasCreatedBy
 
-`func (o *NewApplicationCifExpression) HasCreatedBy() bool`
+`func (o *NewApplicationCIFExpression) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedBy
-
-`func (o *NewApplicationCifExpression) SetCreatedBy(v int32)`
-
-SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-
 ### GetExpression
 
-`func (o *NewApplicationCifExpression) GetExpression() []interface{}`
+`func (o *NewApplicationCIFExpression) GetExpression() []interface{}`
 
 GetExpression returns the Expression field if non-nil, zero value otherwise.
 
 ### GetExpressionOk
 
-`func (o *NewApplicationCifExpression) GetExpressionOk() ([]interface{}, bool)`
+`func (o *NewApplicationCIFExpression) GetExpressionOk() (*[]map[string]interface{}, bool)`
 
 GetExpressionOk returns a tuple with the Expression field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasExpression
-
-`func (o *NewApplicationCifExpression) HasExpression() bool`
-
-HasExpression returns a boolean if a field has been set.
-
 ### SetExpression
 
-`func (o *NewApplicationCifExpression) SetExpression(v []interface{})`
+`func (o *NewApplicationCIFExpression) SetExpression(v []interface{})`
 
-SetExpression gets a reference to the given []map[string]interface{} and assigns it to the Expression field.
+SetExpression sets Expression field to given value.
+
+### HasExpression
+
+`func (o *NewApplicationCIFExpression) HasExpression() bool`
+
+HasExpression returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

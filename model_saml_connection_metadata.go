@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -25,6 +24,27 @@ type SamlConnectionMetadata struct {
 	MetadataDocument string `json:"metadataDocument"`
 }
 
+// NewSamlConnectionMetadata instantiates a new SamlConnectionMetadata object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildSamlConnectionMetadata(name string, enabled bool, accountId float32, metadataDocument string) *SamlConnectionMetadata {
+	this := SamlConnectionMetadata{}
+	this.Name = name
+	this.Enabled = enabled
+	this.AccountId = accountId
+	this.MetadataDocument = metadataDocument
+	return &this
+}
+
+// NewSamlConnectionMetadataWithDefaults instantiates a new SamlConnectionMetadata object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewSamlConnectionMetadataWithDefaults() *SamlConnectionMetadata {
+	this := SamlConnectionMetadata{}
+	return &this
+}
+
 // GetName returns the Name field value
 func (o *SamlConnectionMetadata) GetName() string {
 	if o == nil {
@@ -33,6 +53,15 @@ func (o *SamlConnectionMetadata) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SamlConnectionMetadata) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -50,6 +79,15 @@ func (o *SamlConnectionMetadata) GetEnabled() bool {
 	return o.Enabled
 }
 
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *SamlConnectionMetadata) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
 // SetEnabled sets field value
 func (o *SamlConnectionMetadata) SetEnabled(v bool) {
 	o.Enabled = v
@@ -63,6 +101,15 @@ func (o *SamlConnectionMetadata) GetAccountId() float32 {
 	}
 
 	return o.AccountId
+}
+
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *SamlConnectionMetadata) GetAccountIdOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
 }
 
 // SetAccountId sets field value
@@ -80,30 +127,69 @@ func (o *SamlConnectionMetadata) GetMetadataDocument() string {
 	return o.MetadataDocument
 }
 
+// GetMetadataDocumentOk returns a tuple with the MetadataDocument field value
+// and a boolean to check if the value has been set.
+func (o *SamlConnectionMetadata) GetMetadataDocumentOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.MetadataDocument, true
+}
+
 // SetMetadataDocument sets field value
 func (o *SamlConnectionMetadata) SetMetadataDocument(v string) {
 	o.MetadataDocument = v
 }
 
+func (o SamlConnectionMetadata) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["enabled"] = o.Enabled
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["metadataDocument"] = o.MetadataDocument
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableSamlConnectionMetadata struct {
-	Value        SamlConnectionMetadata
-	ExplicitNull bool
+	value *SamlConnectionMetadata
+	isSet bool
+}
+
+func (v NullableSamlConnectionMetadata) Get() *SamlConnectionMetadata {
+	return v.value
+}
+
+func (v *NullableSamlConnectionMetadata) Set(val *SamlConnectionMetadata) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableSamlConnectionMetadata) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableSamlConnectionMetadata) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableSamlConnectionMetadata(val *SamlConnectionMetadata) *NullableSamlConnectionMetadata {
+	return &NullableSamlConnectionMetadata{value: val, isSet: true}
 }
 
 func (v NullableSamlConnectionMetadata) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableSamlConnectionMetadata) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

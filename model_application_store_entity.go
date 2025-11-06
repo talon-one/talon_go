@@ -10,33 +10,48 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ApplicationStoreEntity struct for ApplicationStoreEntity
 type ApplicationStoreEntity struct {
 	// The ID of the store.
-	StoreId *int32 `json:"storeId,omitempty"`
+	StoreId *int64 `json:"storeId,omitempty"`
+}
+
+// NewApplicationStoreEntity instantiates a new ApplicationStoreEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildApplicationStoreEntity() *ApplicationStoreEntity {
+	this := ApplicationStoreEntity{}
+	return &this
+}
+
+// NewApplicationStoreEntityWithDefaults instantiates a new ApplicationStoreEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationStoreEntityWithDefaults() *ApplicationStoreEntity {
+	this := ApplicationStoreEntity{}
+	return &this
 }
 
 // GetStoreId returns the StoreId field value if set, zero value otherwise.
-func (o *ApplicationStoreEntity) GetStoreId() int32 {
+func (o *ApplicationStoreEntity) GetStoreId() int64 {
 	if o == nil || o.StoreId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.StoreId
 }
 
-// GetStoreIdOk returns a tuple with the StoreId field value if set, zero value otherwise
+// GetStoreIdOk returns a tuple with the StoreId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationStoreEntity) GetStoreIdOk() (int32, bool) {
+func (o *ApplicationStoreEntity) GetStoreIdOk() (*int64, bool) {
 	if o == nil || o.StoreId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreId, true
+	return o.StoreId, true
 }
 
 // HasStoreId returns a boolean if a field has been set.
@@ -48,30 +63,51 @@ func (o *ApplicationStoreEntity) HasStoreId() bool {
 	return false
 }
 
-// SetStoreId gets a reference to the given int32 and assigns it to the StoreId field.
-func (o *ApplicationStoreEntity) SetStoreId(v int32) {
+// SetStoreId gets a reference to the given int64 and assigns it to the StoreId field.
+func (o *ApplicationStoreEntity) SetStoreId(v int64) {
 	o.StoreId = &v
 }
 
+func (o ApplicationStoreEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.StoreId != nil {
+		toSerialize["storeId"] = o.StoreId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationStoreEntity struct {
-	Value        ApplicationStoreEntity
-	ExplicitNull bool
+	value *ApplicationStoreEntity
+	isSet bool
+}
+
+func (v NullableApplicationStoreEntity) Get() *ApplicationStoreEntity {
+	return v.value
+}
+
+func (v *NullableApplicationStoreEntity) Set(val *ApplicationStoreEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationStoreEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationStoreEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableApplicationStoreEntity(val *ApplicationStoreEntity) *NullableApplicationStoreEntity {
+	return &NullableApplicationStoreEntity{value: val, isSet: true}
 }
 
 func (v NullableApplicationStoreEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationStoreEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

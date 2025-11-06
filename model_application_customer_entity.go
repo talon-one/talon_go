@@ -10,33 +10,48 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ApplicationCustomerEntity struct for ApplicationCustomerEntity
 type ApplicationCustomerEntity struct {
 	// The globally unique Talon.One ID of the customer that created this entity.
-	ProfileId *int32 `json:"profileId,omitempty"`
+	ProfileId *int64 `json:"profileId,omitempty"`
+}
+
+// NewApplicationCustomerEntity instantiates a new ApplicationCustomerEntity object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildApplicationCustomerEntity() *ApplicationCustomerEntity {
+	this := ApplicationCustomerEntity{}
+	return &this
+}
+
+// NewApplicationCustomerEntityWithDefaults instantiates a new ApplicationCustomerEntity object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewApplicationCustomerEntityWithDefaults() *ApplicationCustomerEntity {
+	this := ApplicationCustomerEntity{}
+	return &this
 }
 
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
-func (o *ApplicationCustomerEntity) GetProfileId() int32 {
+func (o *ApplicationCustomerEntity) GetProfileId() int64 {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ApplicationCustomerEntity) GetProfileIdOk() (int32, bool) {
+func (o *ApplicationCustomerEntity) GetProfileIdOk() (*int64, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -48,30 +63,51 @@ func (o *ApplicationCustomerEntity) HasProfileId() bool {
 	return false
 }
 
-// SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
-func (o *ApplicationCustomerEntity) SetProfileId(v int32) {
+// SetProfileId gets a reference to the given int64 and assigns it to the ProfileId field.
+func (o *ApplicationCustomerEntity) SetProfileId(v int64) {
 	o.ProfileId = &v
 }
 
+func (o ApplicationCustomerEntity) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableApplicationCustomerEntity struct {
-	Value        ApplicationCustomerEntity
-	ExplicitNull bool
+	value *ApplicationCustomerEntity
+	isSet bool
+}
+
+func (v NullableApplicationCustomerEntity) Get() *ApplicationCustomerEntity {
+	return v.value
+}
+
+func (v *NullableApplicationCustomerEntity) Set(val *ApplicationCustomerEntity) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableApplicationCustomerEntity) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableApplicationCustomerEntity) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableApplicationCustomerEntity(val *ApplicationCustomerEntity) *NullableApplicationCustomerEntity {
+	return &NullableApplicationCustomerEntity{value: val, isSet: true}
 }
 
 func (v NullableApplicationCustomerEntity) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableApplicationCustomerEntity) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

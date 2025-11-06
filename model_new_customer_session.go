@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -34,6 +33,27 @@ type NewCustomerSession struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 }
 
+// NewNewCustomerSession instantiates a new NewCustomerSession object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewCustomerSession() *NewCustomerSession {
+	this := NewCustomerSession{}
+	var state string = "open"
+	this.State = &state
+	return &this
+}
+
+// NewNewCustomerSessionWithDefaults instantiates a new NewCustomerSession object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewCustomerSessionWithDefaults() *NewCustomerSession {
+	this := NewCustomerSession{}
+	var state string = "open"
+	this.State = &state
+	return &this
+}
+
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
 func (o *NewCustomerSession) GetProfileId() string {
 	if o == nil || o.ProfileId == nil {
@@ -43,14 +63,13 @@ func (o *NewCustomerSession) GetProfileId() string {
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetProfileIdOk() (string, bool) {
+func (o *NewCustomerSession) GetProfileIdOk() (*string, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -76,14 +95,13 @@ func (o *NewCustomerSession) GetCoupon() string {
 	return *o.Coupon
 }
 
-// GetCouponOk returns a tuple with the Coupon field value if set, zero value otherwise
+// GetCouponOk returns a tuple with the Coupon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetCouponOk() (string, bool) {
+func (o *NewCustomerSession) GetCouponOk() (*string, bool) {
 	if o == nil || o.Coupon == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Coupon, true
+	return o.Coupon, true
 }
 
 // HasCoupon returns a boolean if a field has been set.
@@ -109,14 +127,13 @@ func (o *NewCustomerSession) GetReferral() string {
 	return *o.Referral
 }
 
-// GetReferralOk returns a tuple with the Referral field value if set, zero value otherwise
+// GetReferralOk returns a tuple with the Referral field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetReferralOk() (string, bool) {
+func (o *NewCustomerSession) GetReferralOk() (*string, bool) {
 	if o == nil || o.Referral == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Referral, true
+	return o.Referral, true
 }
 
 // HasReferral returns a boolean if a field has been set.
@@ -142,14 +159,13 @@ func (o *NewCustomerSession) GetState() string {
 	return *o.State
 }
 
-// GetStateOk returns a tuple with the State field value if set, zero value otherwise
+// GetStateOk returns a tuple with the State field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetStateOk() (string, bool) {
+func (o *NewCustomerSession) GetStateOk() (*string, bool) {
 	if o == nil || o.State == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.State, true
+	return o.State, true
 }
 
 // HasState returns a boolean if a field has been set.
@@ -175,14 +191,13 @@ func (o *NewCustomerSession) GetCartItems() []CartItem {
 	return *o.CartItems
 }
 
-// GetCartItemsOk returns a tuple with the CartItems field value if set, zero value otherwise
+// GetCartItemsOk returns a tuple with the CartItems field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetCartItemsOk() ([]CartItem, bool) {
+func (o *NewCustomerSession) GetCartItemsOk() (*[]CartItem, bool) {
 	if o == nil || o.CartItems == nil {
-		var ret []CartItem
-		return ret, false
+		return nil, false
 	}
-	return *o.CartItems, true
+	return o.CartItems, true
 }
 
 // HasCartItems returns a boolean if a field has been set.
@@ -208,14 +223,13 @@ func (o *NewCustomerSession) GetIdentifiers() []string {
 	return *o.Identifiers
 }
 
-// GetIdentifiersOk returns a tuple with the Identifiers field value if set, zero value otherwise
+// GetIdentifiersOk returns a tuple with the Identifiers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetIdentifiersOk() ([]string, bool) {
+func (o *NewCustomerSession) GetIdentifiersOk() (*[]string, bool) {
 	if o == nil || o.Identifiers == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Identifiers, true
+	return o.Identifiers, true
 }
 
 // HasIdentifiers returns a boolean if a field has been set.
@@ -241,14 +255,13 @@ func (o *NewCustomerSession) GetTotal() float32 {
 	return *o.Total
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, zero value otherwise
+// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetTotalOk() (float32, bool) {
+func (o *NewCustomerSession) GetTotalOk() (*float32, bool) {
 	if o == nil || o.Total == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Total, true
+	return o.Total, true
 }
 
 // HasTotal returns a boolean if a field has been set.
@@ -274,14 +287,13 @@ func (o *NewCustomerSession) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewCustomerSession) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *NewCustomerSession) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -298,25 +310,67 @@ func (o *NewCustomerSession) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
+func (o NewCustomerSession) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.Coupon != nil {
+		toSerialize["coupon"] = o.Coupon
+	}
+	if o.Referral != nil {
+		toSerialize["referral"] = o.Referral
+	}
+	if o.State != nil {
+		toSerialize["state"] = o.State
+	}
+	if o.CartItems != nil {
+		toSerialize["cartItems"] = o.CartItems
+	}
+	if o.Identifiers != nil {
+		toSerialize["identifiers"] = o.Identifiers
+	}
+	if o.Total != nil {
+		toSerialize["total"] = o.Total
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewCustomerSession struct {
-	Value        NewCustomerSession
-	ExplicitNull bool
+	value *NewCustomerSession
+	isSet bool
+}
+
+func (v NullableNewCustomerSession) Get() *NewCustomerSession {
+	return v.value
+}
+
+func (v *NullableNewCustomerSession) Set(val *NewCustomerSession) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewCustomerSession) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewCustomerSession) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewCustomerSession(val *NewCustomerSession) *NullableNewCustomerSession {
+	return &NullableNewCustomerSession{value: val, isSet: true}
 }
 
 func (v NullableNewCustomerSession) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewCustomerSession) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

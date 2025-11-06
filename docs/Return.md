@@ -4,44 +4,56 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int32** | The internal ID of this entity. | 
+**Id** | Pointer to **int64** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
-**ApplicationId** | Pointer to **int32** | The ID of the Application that owns this entity. | 
-**AccountId** | Pointer to **int32** | The ID of the account that owns this entity. | 
+**ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
+**AccountId** | Pointer to **int64** | The ID of the account that owns this entity. | 
 **ReturnedCartItems** | Pointer to [**[]ReturnedCartItem**](ReturnedCartItem.md) | List of cart items to be returned. | 
-**EventId** | Pointer to **int32** | The event ID of that was generated for this return. | 
-**SessionId** | Pointer to **int32** | The internal ID of the session this return was requested on. | 
+**EventId** | Pointer to **int64** | The event ID of that was generated for this return. | 
+**SessionId** | Pointer to **int64** | The internal ID of the session this return was requested on. | 
 **SessionIntegrationId** | Pointer to **string** | The integration ID of the session this return was requested on. | 
-**ProfileId** | Pointer to **int32** | The internal ID of the profile this return was requested on. | [optional] 
+**ProfileId** | Pointer to **int64** | The internal ID of the profile this return was requested on. | [optional] 
 **ProfileIntegrationId** | Pointer to **string** | The integration ID of the profile this return was requested on. | [optional] 
-**CreatedBy** | Pointer to **int32** | ID of the user who requested this return. | [optional] 
+**CreatedBy** | Pointer to **int64** | ID of the user who requested this return. | [optional] 
 
 ## Methods
 
+### NewReturn
+
+`func NewReturn(id int64, created time.Time, applicationId int64, accountId int64, returnedCartItems []ReturnedCartItem, eventId int64, sessionId int64, sessionIntegrationId string, ) *Return`
+
+NewReturn instantiates a new Return object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewReturnWithDefaults
+
+`func NewReturnWithDefaults() *Return`
+
+NewReturnWithDefaults instantiates a new Return object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetId
 
-`func (o *Return) GetId() int32`
+`func (o *Return) GetId() int64`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### GetIdOk
 
-`func (o *Return) GetIdOk() (int32, bool)`
+`func (o *Return) GetIdOk() (*int64, bool)`
 
 GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasId
-
-`func (o *Return) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
 ### SetId
 
-`func (o *Return) SetId(v int32)`
+`func (o *Return) SetId(v int64)`
 
-SetId gets a reference to the given int32 and assigns it to the Id field.
+SetId sets Id field to given value.
+
 
 ### GetCreated
 
@@ -51,72 +63,57 @@ GetCreated returns the Created field if non-nil, zero value otherwise.
 
 ### GetCreatedOk
 
-`func (o *Return) GetCreatedOk() (time.Time, bool)`
+`func (o *Return) GetCreatedOk() (*time.Time, bool)`
 
 GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCreated
-
-`func (o *Return) HasCreated() bool`
-
-HasCreated returns a boolean if a field has been set.
 
 ### SetCreated
 
 `func (o *Return) SetCreated(v time.Time)`
 
-SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+SetCreated sets Created field to given value.
+
 
 ### GetApplicationId
 
-`func (o *Return) GetApplicationId() int32`
+`func (o *Return) GetApplicationId() int64`
 
 GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
 
 ### GetApplicationIdOk
 
-`func (o *Return) GetApplicationIdOk() (int32, bool)`
+`func (o *Return) GetApplicationIdOk() (*int64, bool)`
 
 GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasApplicationId
-
-`func (o *Return) HasApplicationId() bool`
-
-HasApplicationId returns a boolean if a field has been set.
-
 ### SetApplicationId
 
-`func (o *Return) SetApplicationId(v int32)`
+`func (o *Return) SetApplicationId(v int64)`
 
-SetApplicationId gets a reference to the given int32 and assigns it to the ApplicationId field.
+SetApplicationId sets ApplicationId field to given value.
+
 
 ### GetAccountId
 
-`func (o *Return) GetAccountId() int32`
+`func (o *Return) GetAccountId() int64`
 
 GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 
 ### GetAccountIdOk
 
-`func (o *Return) GetAccountIdOk() (int32, bool)`
+`func (o *Return) GetAccountIdOk() (*int64, bool)`
 
 GetAccountIdOk returns a tuple with the AccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasAccountId
-
-`func (o *Return) HasAccountId() bool`
-
-HasAccountId returns a boolean if a field has been set.
-
 ### SetAccountId
 
-`func (o *Return) SetAccountId(v int32)`
+`func (o *Return) SetAccountId(v int64)`
 
-SetAccountId gets a reference to the given int32 and assigns it to the AccountId field.
+SetAccountId sets AccountId field to given value.
+
 
 ### GetReturnedCartItems
 
@@ -126,72 +123,57 @@ GetReturnedCartItems returns the ReturnedCartItems field if non-nil, zero value 
 
 ### GetReturnedCartItemsOk
 
-`func (o *Return) GetReturnedCartItemsOk() ([]ReturnedCartItem, bool)`
+`func (o *Return) GetReturnedCartItemsOk() (*[]ReturnedCartItem, bool)`
 
 GetReturnedCartItemsOk returns a tuple with the ReturnedCartItems field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasReturnedCartItems
-
-`func (o *Return) HasReturnedCartItems() bool`
-
-HasReturnedCartItems returns a boolean if a field has been set.
 
 ### SetReturnedCartItems
 
 `func (o *Return) SetReturnedCartItems(v []ReturnedCartItem)`
 
-SetReturnedCartItems gets a reference to the given []ReturnedCartItem and assigns it to the ReturnedCartItems field.
+SetReturnedCartItems sets ReturnedCartItems field to given value.
+
 
 ### GetEventId
 
-`func (o *Return) GetEventId() int32`
+`func (o *Return) GetEventId() int64`
 
 GetEventId returns the EventId field if non-nil, zero value otherwise.
 
 ### GetEventIdOk
 
-`func (o *Return) GetEventIdOk() (int32, bool)`
+`func (o *Return) GetEventIdOk() (*int64, bool)`
 
 GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasEventId
-
-`func (o *Return) HasEventId() bool`
-
-HasEventId returns a boolean if a field has been set.
-
 ### SetEventId
 
-`func (o *Return) SetEventId(v int32)`
+`func (o *Return) SetEventId(v int64)`
 
-SetEventId gets a reference to the given int32 and assigns it to the EventId field.
+SetEventId sets EventId field to given value.
+
 
 ### GetSessionId
 
-`func (o *Return) GetSessionId() int32`
+`func (o *Return) GetSessionId() int64`
 
 GetSessionId returns the SessionId field if non-nil, zero value otherwise.
 
 ### GetSessionIdOk
 
-`func (o *Return) GetSessionIdOk() (int32, bool)`
+`func (o *Return) GetSessionIdOk() (*int64, bool)`
 
 GetSessionIdOk returns a tuple with the SessionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasSessionId
-
-`func (o *Return) HasSessionId() bool`
-
-HasSessionId returns a boolean if a field has been set.
-
 ### SetSessionId
 
-`func (o *Return) SetSessionId(v int32)`
+`func (o *Return) SetSessionId(v int64)`
 
-SetSessionId gets a reference to the given int32 and assigns it to the SessionId field.
+SetSessionId sets SessionId field to given value.
+
 
 ### GetSessionIntegrationId
 
@@ -201,47 +183,42 @@ GetSessionIntegrationId returns the SessionIntegrationId field if non-nil, zero 
 
 ### GetSessionIntegrationIdOk
 
-`func (o *Return) GetSessionIntegrationIdOk() (string, bool)`
+`func (o *Return) GetSessionIntegrationIdOk() (*string, bool)`
 
 GetSessionIntegrationIdOk returns a tuple with the SessionIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasSessionIntegrationId
-
-`func (o *Return) HasSessionIntegrationId() bool`
-
-HasSessionIntegrationId returns a boolean if a field has been set.
 
 ### SetSessionIntegrationId
 
 `func (o *Return) SetSessionIntegrationId(v string)`
 
-SetSessionIntegrationId gets a reference to the given string and assigns it to the SessionIntegrationId field.
+SetSessionIntegrationId sets SessionIntegrationId field to given value.
+
 
 ### GetProfileId
 
-`func (o *Return) GetProfileId() int32`
+`func (o *Return) GetProfileId() int64`
 
 GetProfileId returns the ProfileId field if non-nil, zero value otherwise.
 
 ### GetProfileIdOk
 
-`func (o *Return) GetProfileIdOk() (int32, bool)`
+`func (o *Return) GetProfileIdOk() (*int64, bool)`
 
 GetProfileIdOk returns a tuple with the ProfileId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProfileId
+
+`func (o *Return) SetProfileId(v int64)`
+
+SetProfileId sets ProfileId field to given value.
 
 ### HasProfileId
 
 `func (o *Return) HasProfileId() bool`
 
 HasProfileId returns a boolean if a field has been set.
-
-### SetProfileId
-
-`func (o *Return) SetProfileId(v int32)`
-
-SetProfileId gets a reference to the given int32 and assigns it to the ProfileId field.
 
 ### GetProfileIntegrationId
 
@@ -251,10 +228,16 @@ GetProfileIntegrationId returns the ProfileIntegrationId field if non-nil, zero 
 
 ### GetProfileIntegrationIdOk
 
-`func (o *Return) GetProfileIntegrationIdOk() (string, bool)`
+`func (o *Return) GetProfileIntegrationIdOk() (*string, bool)`
 
 GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetProfileIntegrationId
+
+`func (o *Return) SetProfileIntegrationId(v string)`
+
+SetProfileIntegrationId sets ProfileIntegrationId field to given value.
 
 ### HasProfileIntegrationId
 
@@ -262,36 +245,30 @@ and a boolean to check if the value has been set.
 
 HasProfileIntegrationId returns a boolean if a field has been set.
 
-### SetProfileIntegrationId
-
-`func (o *Return) SetProfileIntegrationId(v string)`
-
-SetProfileIntegrationId gets a reference to the given string and assigns it to the ProfileIntegrationId field.
-
 ### GetCreatedBy
 
-`func (o *Return) GetCreatedBy() int32`
+`func (o *Return) GetCreatedBy() int64`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *Return) GetCreatedByOk() (int32, bool)`
+`func (o *Return) GetCreatedByOk() (*int64, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *Return) SetCreatedBy(v int64)`
+
+SetCreatedBy sets CreatedBy field to given value.
 
 ### HasCreatedBy
 
 `func (o *Return) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
-
-### SetCreatedBy
-
-`func (o *Return) SetCreatedBy(v int32)`
-
-SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

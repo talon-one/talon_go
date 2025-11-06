@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,11 +17,11 @@ import (
 // Catalog struct for Catalog
 type Catalog struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
-	AccountId int32 `json:"accountId"`
+	AccountId int64 `json:"accountId"`
 	// The time this entity was last modified.
 	Modified time.Time `json:"modified"`
 	// The cart item catalog name.
@@ -30,25 +29,59 @@ type Catalog struct {
 	// A description of this cart item catalog.
 	Description string `json:"description"`
 	// A list of the IDs of the applications that are subscribed to this catalog.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The current version of this catalog.
-	Version int32 `json:"version"`
+	Version int64 `json:"version"`
 	// The ID of user who created this catalog.
-	CreatedBy int32 `json:"createdBy"`
+	CreatedBy int64 `json:"createdBy"`
+}
+
+// NewCatalog instantiates a new Catalog object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCatalog(id int64, created time.Time, accountId int64, modified time.Time, name string, description string, version int64, createdBy int64) *Catalog {
+	this := Catalog{}
+	this.Id = id
+	this.Created = created
+	this.AccountId = accountId
+	this.Modified = modified
+	this.Name = name
+	this.Description = description
+	this.Version = version
+	this.CreatedBy = createdBy
+	return &this
+}
+
+// NewCatalogWithDefaults instantiates a new Catalog object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCatalogWithDefaults() *Catalog {
+	this := Catalog{}
+	return &this
 }
 
 // GetId returns the Id field value
-func (o *Catalog) GetId() int32 {
+func (o *Catalog) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *Catalog) SetId(v int32) {
+func (o *Catalog) SetId(v int64) {
 	o.Id = v
 }
 
@@ -62,23 +95,41 @@ func (o *Catalog) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *Catalog) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetAccountId returns the AccountId field value
-func (o *Catalog) GetAccountId() int32 {
+func (o *Catalog) GetAccountId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AccountId
 }
 
+// GetAccountIdOk returns a tuple with the AccountId field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetAccountIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountId, true
+}
+
 // SetAccountId sets field value
-func (o *Catalog) SetAccountId(v int32) {
+func (o *Catalog) SetAccountId(v int64) {
 	o.AccountId = v
 }
 
@@ -90,6 +141,15 @@ func (o *Catalog) GetModified() time.Time {
 	}
 
 	return o.Modified
+}
+
+// GetModifiedOk returns a tuple with the Modified field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetModifiedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Modified, true
 }
 
 // SetModified sets field value
@@ -107,6 +167,15 @@ func (o *Catalog) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *Catalog) SetName(v string) {
 	o.Name = v
@@ -122,28 +191,36 @@ func (o *Catalog) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *Catalog) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *Catalog) GetSubscribedApplicationsIds() []int32 {
+func (o *Catalog) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Catalog) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *Catalog) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -155,60 +232,123 @@ func (o *Catalog) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *Catalog) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *Catalog) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
 // GetVersion returns the Version field value
-func (o *Catalog) GetVersion() int32 {
+func (o *Catalog) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Version
 }
 
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
 // SetVersion sets field value
-func (o *Catalog) SetVersion(v int32) {
+func (o *Catalog) SetVersion(v int64) {
 	o.Version = v
 }
 
 // GetCreatedBy returns the CreatedBy field value
-func (o *Catalog) GetCreatedBy() int32 {
+func (o *Catalog) GetCreatedBy() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CreatedBy
 }
 
+// GetCreatedByOk returns a tuple with the CreatedBy field value
+// and a boolean to check if the value has been set.
+func (o *Catalog) GetCreatedByOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedBy, true
+}
+
 // SetCreatedBy sets field value
-func (o *Catalog) SetCreatedBy(v int32) {
+func (o *Catalog) SetCreatedBy(v int64) {
 	o.CreatedBy = v
 }
 
+func (o Catalog) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["accountId"] = o.AccountId
+	}
+	if true {
+		toSerialize["modified"] = o.Modified
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["createdBy"] = o.CreatedBy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCatalog struct {
-	Value        Catalog
-	ExplicitNull bool
+	value *Catalog
+	isSet bool
+}
+
+func (v NullableCatalog) Get() *Catalog {
+	return v.value
+}
+
+func (v *NullableCatalog) Set(val *Catalog) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCatalog) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCatalog) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCatalog(val *Catalog) *NullableCatalog {
+	return &NullableCatalog{value: val, isSet: true}
 }
 
 func (v NullableCatalog) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCatalog) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

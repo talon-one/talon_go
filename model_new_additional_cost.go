@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -23,9 +22,33 @@ type NewAdditionalCost struct {
 	// A description of this additional cost.
 	Description string `json:"description"`
 	// A list of the IDs of the applications that are subscribed to this additional cost.
-	SubscribedApplicationsIds *[]int32 `json:"subscribedApplicationsIds,omitempty"`
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The type of additional cost. Possible value: - `session`: Additional cost will be added per session. - `item`: Additional cost will be added per item. - `both`: Additional cost will be added per item and session.
 	Type *string `json:"type,omitempty"`
+}
+
+// NewNewAdditionalCost instantiates a new NewAdditionalCost object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewAdditionalCost(name string, title string, description string) *NewAdditionalCost {
+	this := NewAdditionalCost{}
+	this.Name = name
+	this.Title = title
+	this.Description = description
+	var type_ string = "session"
+	this.Type = &type_
+	return &this
+}
+
+// NewNewAdditionalCostWithDefaults instantiates a new NewAdditionalCost object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewAdditionalCostWithDefaults() *NewAdditionalCost {
+	this := NewAdditionalCost{}
+	var type_ string = "session"
+	this.Type = &type_
+	return &this
 }
 
 // GetName returns the Name field value
@@ -36,6 +59,15 @@ func (o *NewAdditionalCost) GetName() string {
 	}
 
 	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *NewAdditionalCost) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
 }
 
 // SetName sets field value
@@ -53,6 +85,15 @@ func (o *NewAdditionalCost) GetTitle() string {
 	return o.Title
 }
 
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *NewAdditionalCost) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
 // SetTitle sets field value
 func (o *NewAdditionalCost) SetTitle(v string) {
 	o.Title = v
@@ -68,28 +109,36 @@ func (o *NewAdditionalCost) GetDescription() string {
 	return o.Description
 }
 
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *NewAdditionalCost) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
 // SetDescription sets field value
 func (o *NewAdditionalCost) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
-func (o *NewAdditionalCost) GetSubscribedApplicationsIds() []int32 {
+func (o *NewAdditionalCost) GetSubscribedApplicationsIds() []int64 {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.SubscribedApplicationsIds
 }
 
-// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, zero value otherwise
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewAdditionalCost) GetSubscribedApplicationsIdsOk() ([]int32, bool) {
+func (o *NewAdditionalCost) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
 	if o == nil || o.SubscribedApplicationsIds == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.SubscribedApplicationsIds, true
+	return o.SubscribedApplicationsIds, true
 }
 
 // HasSubscribedApplicationsIds returns a boolean if a field has been set.
@@ -101,8 +150,8 @@ func (o *NewAdditionalCost) HasSubscribedApplicationsIds() bool {
 	return false
 }
 
-// SetSubscribedApplicationsIds gets a reference to the given []int32 and assigns it to the SubscribedApplicationsIds field.
-func (o *NewAdditionalCost) SetSubscribedApplicationsIds(v []int32) {
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *NewAdditionalCost) SetSubscribedApplicationsIds(v []int64) {
 	o.SubscribedApplicationsIds = &v
 }
 
@@ -115,14 +164,13 @@ func (o *NewAdditionalCost) GetType() string {
 	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, zero value otherwise
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewAdditionalCost) GetTypeOk() (string, bool) {
+func (o *NewAdditionalCost) GetTypeOk() (*string, bool) {
 	if o == nil || o.Type == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
@@ -139,25 +187,58 @@ func (o *NewAdditionalCost) SetType(v string) {
 	o.Type = &v
 }
 
+func (o NewAdditionalCost) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["title"] = o.Title
+	}
+	if true {
+		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewAdditionalCost struct {
-	Value        NewAdditionalCost
-	ExplicitNull bool
+	value *NewAdditionalCost
+	isSet bool
+}
+
+func (v NullableNewAdditionalCost) Get() *NewAdditionalCost {
+	return v.value
+}
+
+func (v *NullableNewAdditionalCost) Set(val *NewAdditionalCost) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewAdditionalCost) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewAdditionalCost) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewAdditionalCost(val *NewAdditionalCost) *NullableNewAdditionalCost {
+	return &NullableNewAdditionalCost{value: val, isSet: true}
 }
 
 func (v NullableNewAdditionalCost) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewAdditionalCost) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

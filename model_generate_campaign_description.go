@@ -10,30 +10,84 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // GenerateCampaignDescription struct for GenerateCampaignDescription
 type GenerateCampaignDescription struct {
+	// ID of a campaign.
+	CampaignID int64 `json:"campaignID"`
 	// ID of a ruleset.
-	RulesetID int32 `json:"rulesetID"`
+	RulesetID int64 `json:"rulesetID"`
 	// Currency for the campaign.
 	Currency string `json:"currency"`
 }
 
-// GetRulesetID returns the RulesetID field value
-func (o *GenerateCampaignDescription) GetRulesetID() int32 {
+// NewGenerateCampaignDescription instantiates a new GenerateCampaignDescription object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildGenerateCampaignDescription(campaignID int64, rulesetID int64, currency string) *GenerateCampaignDescription {
+	this := GenerateCampaignDescription{}
+	this.CampaignID = campaignID
+	this.RulesetID = rulesetID
+	this.Currency = currency
+	return &this
+}
+
+// NewGenerateCampaignDescriptionWithDefaults instantiates a new GenerateCampaignDescription object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGenerateCampaignDescriptionWithDefaults() *GenerateCampaignDescription {
+	this := GenerateCampaignDescription{}
+	return &this
+}
+
+// GetCampaignID returns the CampaignID field value
+func (o *GenerateCampaignDescription) GetCampaignID() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
+		return ret
+	}
+
+	return o.CampaignID
+}
+
+// GetCampaignIDOk returns a tuple with the CampaignID field value
+// and a boolean to check if the value has been set.
+func (o *GenerateCampaignDescription) GetCampaignIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignID, true
+}
+
+// SetCampaignID sets field value
+func (o *GenerateCampaignDescription) SetCampaignID(v int64) {
+	o.CampaignID = v
+}
+
+// GetRulesetID returns the RulesetID field value
+func (o *GenerateCampaignDescription) GetRulesetID() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
 
 	return o.RulesetID
 }
 
+// GetRulesetIDOk returns a tuple with the RulesetID field value
+// and a boolean to check if the value has been set.
+func (o *GenerateCampaignDescription) GetRulesetIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RulesetID, true
+}
+
 // SetRulesetID sets field value
-func (o *GenerateCampaignDescription) SetRulesetID(v int32) {
+func (o *GenerateCampaignDescription) SetRulesetID(v int64) {
 	o.RulesetID = v
 }
 
@@ -47,30 +101,66 @@ func (o *GenerateCampaignDescription) GetCurrency() string {
 	return o.Currency
 }
 
+// GetCurrencyOk returns a tuple with the Currency field value
+// and a boolean to check if the value has been set.
+func (o *GenerateCampaignDescription) GetCurrencyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Currency, true
+}
+
 // SetCurrency sets field value
 func (o *GenerateCampaignDescription) SetCurrency(v string) {
 	o.Currency = v
 }
 
+func (o GenerateCampaignDescription) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["campaignID"] = o.CampaignID
+	}
+	if true {
+		toSerialize["rulesetID"] = o.RulesetID
+	}
+	if true {
+		toSerialize["currency"] = o.Currency
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGenerateCampaignDescription struct {
-	Value        GenerateCampaignDescription
-	ExplicitNull bool
+	value *GenerateCampaignDescription
+	isSet bool
+}
+
+func (v NullableGenerateCampaignDescription) Get() *GenerateCampaignDescription {
+	return v.value
+}
+
+func (v *NullableGenerateCampaignDescription) Set(val *GenerateCampaignDescription) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGenerateCampaignDescription) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGenerateCampaignDescription) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableGenerateCampaignDescription(val *GenerateCampaignDescription) *NullableGenerateCampaignDescription {
+	return &NullableGenerateCampaignDescription{value: val, isSet: true}
 }
 
 func (v NullableGenerateCampaignDescription) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGenerateCampaignDescription) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

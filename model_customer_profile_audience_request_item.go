@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,7 +20,27 @@ type CustomerProfileAudienceRequestItem struct {
 	// The ID of this customer profile in the third-party integration.
 	ProfileIntegrationId string `json:"profileIntegrationId"`
 	// The ID of the audience. You get it via the `id` property when [creating an audience](#operation/createAudienceV2).
-	AudienceId int32 `json:"audienceId"`
+	AudienceId int64 `json:"audienceId"`
+}
+
+// NewCustomerProfileAudienceRequestItem instantiates a new CustomerProfileAudienceRequestItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerProfileAudienceRequestItem(action string, profileIntegrationId string, audienceId int64) *CustomerProfileAudienceRequestItem {
+	this := CustomerProfileAudienceRequestItem{}
+	this.Action = action
+	this.ProfileIntegrationId = profileIntegrationId
+	this.AudienceId = audienceId
+	return &this
+}
+
+// NewCustomerProfileAudienceRequestItemWithDefaults instantiates a new CustomerProfileAudienceRequestItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileAudienceRequestItemWithDefaults() *CustomerProfileAudienceRequestItem {
+	this := CustomerProfileAudienceRequestItem{}
+	return &this
 }
 
 // GetAction returns the Action field value
@@ -32,6 +51,15 @@ func (o *CustomerProfileAudienceRequestItem) GetAction() string {
 	}
 
 	return o.Action
+}
+
+// GetActionOk returns a tuple with the Action field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileAudienceRequestItem) GetActionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Action, true
 }
 
 // SetAction sets field value
@@ -49,45 +77,90 @@ func (o *CustomerProfileAudienceRequestItem) GetProfileIntegrationId() string {
 	return o.ProfileIntegrationId
 }
 
+// GetProfileIntegrationIdOk returns a tuple with the ProfileIntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileAudienceRequestItem) GetProfileIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileIntegrationId, true
+}
+
 // SetProfileIntegrationId sets field value
 func (o *CustomerProfileAudienceRequestItem) SetProfileIntegrationId(v string) {
 	o.ProfileIntegrationId = v
 }
 
 // GetAudienceId returns the AudienceId field value
-func (o *CustomerProfileAudienceRequestItem) GetAudienceId() int32 {
+func (o *CustomerProfileAudienceRequestItem) GetAudienceId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.AudienceId
 }
 
+// GetAudienceIdOk returns a tuple with the AudienceId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileAudienceRequestItem) GetAudienceIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AudienceId, true
+}
+
 // SetAudienceId sets field value
-func (o *CustomerProfileAudienceRequestItem) SetAudienceId(v int32) {
+func (o *CustomerProfileAudienceRequestItem) SetAudienceId(v int64) {
 	o.AudienceId = v
 }
 
+func (o CustomerProfileAudienceRequestItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["action"] = o.Action
+	}
+	if true {
+		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
+	}
+	if true {
+		toSerialize["audienceId"] = o.AudienceId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileAudienceRequestItem struct {
-	Value        CustomerProfileAudienceRequestItem
-	ExplicitNull bool
+	value *CustomerProfileAudienceRequestItem
+	isSet bool
+}
+
+func (v NullableCustomerProfileAudienceRequestItem) Get() *CustomerProfileAudienceRequestItem {
+	return v.value
+}
+
+func (v *NullableCustomerProfileAudienceRequestItem) Set(val *CustomerProfileAudienceRequestItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileAudienceRequestItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileAudienceRequestItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerProfileAudienceRequestItem(val *CustomerProfileAudienceRequestItem) *NullableCustomerProfileAudienceRequestItem {
+	return &NullableCustomerProfileAudienceRequestItem{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileAudienceRequestItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileAudienceRequestItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

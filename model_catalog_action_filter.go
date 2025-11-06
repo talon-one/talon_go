@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,26 @@ type CatalogActionFilter struct {
 	Value map[string]interface{} `json:"value"`
 }
 
+// NewCatalogActionFilter instantiates a new CatalogActionFilter object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCatalogActionFilter(attr string, op string, value map[string]interface{}) *CatalogActionFilter {
+	this := CatalogActionFilter{}
+	this.Attr = attr
+	this.Op = op
+	this.Value = value
+	return &this
+}
+
+// NewCatalogActionFilterWithDefaults instantiates a new CatalogActionFilter object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCatalogActionFilterWithDefaults() *CatalogActionFilter {
+	this := CatalogActionFilter{}
+	return &this
+}
+
 // GetAttr returns the Attr field value
 func (o *CatalogActionFilter) GetAttr() string {
 	if o == nil {
@@ -32,6 +51,15 @@ func (o *CatalogActionFilter) GetAttr() string {
 	}
 
 	return o.Attr
+}
+
+// GetAttrOk returns a tuple with the Attr field value
+// and a boolean to check if the value has been set.
+func (o *CatalogActionFilter) GetAttrOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attr, true
 }
 
 // SetAttr sets field value
@@ -49,6 +77,15 @@ func (o *CatalogActionFilter) GetOp() string {
 	return o.Op
 }
 
+// GetOpOk returns a tuple with the Op field value
+// and a boolean to check if the value has been set.
+func (o *CatalogActionFilter) GetOpOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Op, true
+}
+
 // SetOp sets field value
 func (o *CatalogActionFilter) SetOp(v string) {
 	o.Op = v
@@ -64,30 +101,66 @@ func (o *CatalogActionFilter) GetValue() map[string]interface{} {
 	return o.Value
 }
 
+// GetValueOk returns a tuple with the Value field value
+// and a boolean to check if the value has been set.
+func (o *CatalogActionFilter) GetValueOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Value, true
+}
+
 // SetValue sets field value
 func (o *CatalogActionFilter) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
+func (o CatalogActionFilter) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["attr"] = o.Attr
+	}
+	if true {
+		toSerialize["op"] = o.Op
+	}
+	if true {
+		toSerialize["value"] = o.Value
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCatalogActionFilter struct {
-	Value        CatalogActionFilter
-	ExplicitNull bool
+	value *CatalogActionFilter
+	isSet bool
+}
+
+func (v NullableCatalogActionFilter) Get() *CatalogActionFilter {
+	return v.value
+}
+
+func (v *NullableCatalogActionFilter) Set(val *CatalogActionFilter) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCatalogActionFilter) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCatalogActionFilter) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCatalogActionFilter(val *CatalogActionFilter) *NullableCatalogActionFilter {
+	return &NullableCatalogActionFilter{value: val, isSet: true}
 }
 
 func (v NullableCatalogActionFilter) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCatalogActionFilter) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

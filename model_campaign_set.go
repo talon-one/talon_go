@@ -10,65 +10,112 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // CampaignSet struct for CampaignSet
 type CampaignSet struct {
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// Version of the campaign set.
-	Version int32                 `json:"version"`
+	Version int64                 `json:"version"`
 	Set     CampaignSetBranchNode `json:"set"`
 	// Name of the user who last updated this campaign set, if available.
 	UpdatedBy *string `json:"updatedBy,omitempty"`
 }
 
+// NewCampaignSet instantiates a new CampaignSet object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCampaignSet(applicationId int64, id int64, version int64, set CampaignSetBranchNode) *CampaignSet {
+	this := CampaignSet{}
+	this.ApplicationId = applicationId
+	this.Id = id
+	this.Version = version
+	this.Set = set
+	return &this
+}
+
+// NewCampaignSetWithDefaults instantiates a new CampaignSet object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCampaignSetWithDefaults() *CampaignSet {
+	this := CampaignSet{}
+	return &this
+}
+
 // GetApplicationId returns the ApplicationId field value
-func (o *CampaignSet) GetApplicationId() int32 {
+func (o *CampaignSet) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSet) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *CampaignSet) SetApplicationId(v int32) {
+func (o *CampaignSet) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetId returns the Id field value
-func (o *CampaignSet) GetId() int32 {
+func (o *CampaignSet) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSet) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *CampaignSet) SetId(v int32) {
+func (o *CampaignSet) SetId(v int64) {
 	o.Id = v
 }
 
 // GetVersion returns the Version field value
-func (o *CampaignSet) GetVersion() int32 {
+func (o *CampaignSet) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Version
 }
 
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSet) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
 // SetVersion sets field value
-func (o *CampaignSet) SetVersion(v int32) {
+func (o *CampaignSet) SetVersion(v int64) {
 	o.Version = v
 }
 
@@ -80,6 +127,15 @@ func (o *CampaignSet) GetSet() CampaignSetBranchNode {
 	}
 
 	return o.Set
+}
+
+// GetSetOk returns a tuple with the Set field value
+// and a boolean to check if the value has been set.
+func (o *CampaignSet) GetSetOk() (*CampaignSetBranchNode, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Set, true
 }
 
 // SetSet sets field value
@@ -96,14 +152,13 @@ func (o *CampaignSet) GetUpdatedBy() string {
 	return *o.UpdatedBy
 }
 
-// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, zero value otherwise
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CampaignSet) GetUpdatedByOk() (string, bool) {
+func (o *CampaignSet) GetUpdatedByOk() (*string, bool) {
 	if o == nil || o.UpdatedBy == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.UpdatedBy, true
+	return o.UpdatedBy, true
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
@@ -120,25 +175,58 @@ func (o *CampaignSet) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
+func (o CampaignSet) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if true {
+		toSerialize["set"] = o.Set
+	}
+	if o.UpdatedBy != nil {
+		toSerialize["updatedBy"] = o.UpdatedBy
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCampaignSet struct {
-	Value        CampaignSet
-	ExplicitNull bool
+	value *CampaignSet
+	isSet bool
+}
+
+func (v NullableCampaignSet) Get() *CampaignSet {
+	return v.value
+}
+
+func (v *NullableCampaignSet) Set(val *CampaignSet) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCampaignSet) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCampaignSet) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCampaignSet(val *CampaignSet) *NullableCampaignSet {
+	return &NullableCampaignSet{value: val, isSet: true}
 }
 
 func (v NullableCampaignSet) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCampaignSet) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

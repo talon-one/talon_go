@@ -10,30 +10,57 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // AudienceMembership struct for AudienceMembership
 type AudienceMembership struct {
 	// The ID of the audience belonging to this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The Name of the audience belonging to this entity.
 	Name string `json:"name"`
 }
 
+// NewAudienceMembership instantiates a new AudienceMembership object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildAudienceMembership(id int64, name string) *AudienceMembership {
+	this := AudienceMembership{}
+	this.Id = id
+	this.Name = name
+	return &this
+}
+
+// NewAudienceMembershipWithDefaults instantiates a new AudienceMembership object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewAudienceMembershipWithDefaults() *AudienceMembership {
+	this := AudienceMembership{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *AudienceMembership) GetId() int32 {
+func (o *AudienceMembership) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AudienceMembership) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *AudienceMembership) SetId(v int32) {
+func (o *AudienceMembership) SetId(v int64) {
 	o.Id = v
 }
 
@@ -47,30 +74,63 @@ func (o *AudienceMembership) GetName() string {
 	return o.Name
 }
 
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *AudienceMembership) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
 // SetName sets field value
 func (o *AudienceMembership) SetName(v string) {
 	o.Name = v
 }
 
+func (o AudienceMembership) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["name"] = o.Name
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableAudienceMembership struct {
-	Value        AudienceMembership
-	ExplicitNull bool
+	value *AudienceMembership
+	isSet bool
+}
+
+func (v NullableAudienceMembership) Get() *AudienceMembership {
+	return v.value
+}
+
+func (v *NullableAudienceMembership) Set(val *AudienceMembership) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableAudienceMembership) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableAudienceMembership) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableAudienceMembership(val *AudienceMembership) *NullableAudienceMembership {
+	return &NullableAudienceMembership{value: val, isSet: true}
 }
 
 func (v NullableAudienceMembership) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableAudienceMembership) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -21,6 +20,25 @@ type OktaEvent struct {
 	Target    []OktaEventTarget `json:"target"`
 }
 
+// NewOktaEvent instantiates a new OktaEvent object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildOktaEvent(eventType string, target []OktaEventTarget) *OktaEvent {
+	this := OktaEvent{}
+	this.EventType = eventType
+	this.Target = target
+	return &this
+}
+
+// NewOktaEventWithDefaults instantiates a new OktaEvent object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewOktaEventWithDefaults() *OktaEvent {
+	this := OktaEvent{}
+	return &this
+}
+
 // GetEventType returns the EventType field value
 func (o *OktaEvent) GetEventType() string {
 	if o == nil {
@@ -29,6 +47,15 @@ func (o *OktaEvent) GetEventType() string {
 	}
 
 	return o.EventType
+}
+
+// GetEventTypeOk returns a tuple with the EventType field value
+// and a boolean to check if the value has been set.
+func (o *OktaEvent) GetEventTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventType, true
 }
 
 // SetEventType sets field value
@@ -46,30 +73,63 @@ func (o *OktaEvent) GetTarget() []OktaEventTarget {
 	return o.Target
 }
 
+// GetTargetOk returns a tuple with the Target field value
+// and a boolean to check if the value has been set.
+func (o *OktaEvent) GetTargetOk() (*[]OktaEventTarget, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Target, true
+}
+
 // SetTarget sets field value
 func (o *OktaEvent) SetTarget(v []OktaEventTarget) {
 	o.Target = v
 }
 
+func (o OktaEvent) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["eventType"] = o.EventType
+	}
+	if true {
+		toSerialize["target"] = o.Target
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableOktaEvent struct {
-	Value        OktaEvent
-	ExplicitNull bool
+	value *OktaEvent
+	isSet bool
+}
+
+func (v NullableOktaEvent) Get() *OktaEvent {
+	return v.value
+}
+
+func (v *NullableOktaEvent) Set(val *OktaEvent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableOktaEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableOktaEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableOktaEvent(val *OktaEvent) *NullableOktaEvent {
+	return &NullableOktaEvent{value: val, isSet: true}
 }
 
 func (v NullableOktaEvent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableOktaEvent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

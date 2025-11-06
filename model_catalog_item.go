@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,7 +17,7 @@ import (
 // CatalogItem struct for CatalogItem
 type CatalogItem struct {
 	// The internal ID of this entity.
-	Id int32 `json:"id"`
+	Id int64 `json:"id"`
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The stock keeping unit of the item.
@@ -26,25 +25,56 @@ type CatalogItem struct {
 	// Price of the item.
 	Price *float32 `json:"price,omitempty"`
 	// The ID of the catalog the item belongs to.
-	Catalogid int32 `json:"catalogid"`
+	Catalogid int64 `json:"catalogid"`
 	// The version of the catalog item.
-	Version    int32            `json:"version"`
+	Version    int64            `json:"version"`
 	Attributes *[]ItemAttribute `json:"attributes,omitempty"`
 	Product    *Product         `json:"product,omitempty"`
 }
 
+// NewCatalogItem instantiates a new CatalogItem object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCatalogItem(id int64, created time.Time, sku string, catalogid int64, version int64) *CatalogItem {
+	this := CatalogItem{}
+	this.Id = id
+	this.Created = created
+	this.Sku = sku
+	this.Catalogid = catalogid
+	this.Version = version
+	return &this
+}
+
+// NewCatalogItemWithDefaults instantiates a new CatalogItem object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCatalogItemWithDefaults() *CatalogItem {
+	this := CatalogItem{}
+	return &this
+}
+
 // GetId returns the Id field value
-func (o *CatalogItem) GetId() int32 {
+func (o *CatalogItem) GetId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Id
 }
 
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CatalogItem) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
 // SetId sets field value
-func (o *CatalogItem) SetId(v int32) {
+func (o *CatalogItem) SetId(v int64) {
 	o.Id = v
 }
 
@@ -56,6 +86,15 @@ func (o *CatalogItem) GetCreated() time.Time {
 	}
 
 	return o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *CatalogItem) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
 }
 
 // SetCreated sets field value
@@ -73,6 +112,15 @@ func (o *CatalogItem) GetSku() string {
 	return o.Sku
 }
 
+// GetSkuOk returns a tuple with the Sku field value
+// and a boolean to check if the value has been set.
+func (o *CatalogItem) GetSkuOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sku, true
+}
+
 // SetSku sets field value
 func (o *CatalogItem) SetSku(v string) {
 	o.Sku = v
@@ -87,14 +135,13 @@ func (o *CatalogItem) GetPrice() float32 {
 	return *o.Price
 }
 
-// GetPriceOk returns a tuple with the Price field value if set, zero value otherwise
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogItem) GetPriceOk() (float32, bool) {
+func (o *CatalogItem) GetPriceOk() (*float32, bool) {
 	if o == nil || o.Price == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.Price, true
+	return o.Price, true
 }
 
 // HasPrice returns a boolean if a field has been set.
@@ -112,32 +159,50 @@ func (o *CatalogItem) SetPrice(v float32) {
 }
 
 // GetCatalogid returns the Catalogid field value
-func (o *CatalogItem) GetCatalogid() int32 {
+func (o *CatalogItem) GetCatalogid() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Catalogid
 }
 
+// GetCatalogidOk returns a tuple with the Catalogid field value
+// and a boolean to check if the value has been set.
+func (o *CatalogItem) GetCatalogidOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Catalogid, true
+}
+
 // SetCatalogid sets field value
-func (o *CatalogItem) SetCatalogid(v int32) {
+func (o *CatalogItem) SetCatalogid(v int64) {
 	o.Catalogid = v
 }
 
 // GetVersion returns the Version field value
-func (o *CatalogItem) GetVersion() int32 {
+func (o *CatalogItem) GetVersion() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.Version
 }
 
+// GetVersionOk returns a tuple with the Version field value
+// and a boolean to check if the value has been set.
+func (o *CatalogItem) GetVersionOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Version, true
+}
+
 // SetVersion sets field value
-func (o *CatalogItem) SetVersion(v int32) {
+func (o *CatalogItem) SetVersion(v int64) {
 	o.Version = v
 }
 
@@ -150,14 +215,13 @@ func (o *CatalogItem) GetAttributes() []ItemAttribute {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogItem) GetAttributesOk() ([]ItemAttribute, bool) {
+func (o *CatalogItem) GetAttributesOk() (*[]ItemAttribute, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret []ItemAttribute
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -183,14 +247,13 @@ func (o *CatalogItem) GetProduct() Product {
 	return *o.Product
 }
 
-// GetProductOk returns a tuple with the Product field value if set, zero value otherwise
+// GetProductOk returns a tuple with the Product field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CatalogItem) GetProductOk() (Product, bool) {
+func (o *CatalogItem) GetProductOk() (*Product, bool) {
 	if o == nil || o.Product == nil {
-		var ret Product
-		return ret, false
+		return nil, false
 	}
-	return *o.Product, true
+	return o.Product, true
 }
 
 // HasProduct returns a boolean if a field has been set.
@@ -207,25 +270,67 @@ func (o *CatalogItem) SetProduct(v Product) {
 	o.Product = &v
 }
 
+func (o CatalogItem) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["id"] = o.Id
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["sku"] = o.Sku
+	}
+	if o.Price != nil {
+		toSerialize["price"] = o.Price
+	}
+	if true {
+		toSerialize["catalogid"] = o.Catalogid
+	}
+	if true {
+		toSerialize["version"] = o.Version
+	}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Product != nil {
+		toSerialize["product"] = o.Product
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCatalogItem struct {
-	Value        CatalogItem
-	ExplicitNull bool
+	value *CatalogItem
+	isSet bool
+}
+
+func (v NullableCatalogItem) Get() *CatalogItem {
+	return v.value
+}
+
+func (v *NullableCatalogItem) Set(val *CatalogItem) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCatalogItem) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCatalogItem) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCatalogItem(val *CatalogItem) *NullableCatalogItem {
+	return &NullableCatalogItem{value: val, isSet: true}
 }
 
 func (v NullableCatalogItem) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCatalogItem) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

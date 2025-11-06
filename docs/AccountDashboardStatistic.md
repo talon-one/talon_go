@@ -12,6 +12,23 @@ Name | Type | Description | Notes
 
 ## Methods
 
+### NewAccountDashboardStatistic
+
+`func NewAccountDashboardStatistic(campaigns AccountDashboardStatisticCampaigns, ) *AccountDashboardStatistic`
+
+NewAccountDashboardStatistic instantiates a new AccountDashboardStatistic object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewAccountDashboardStatisticWithDefaults
+
+`func NewAccountDashboardStatisticWithDefaults() *AccountDashboardStatistic`
+
+NewAccountDashboardStatisticWithDefaults instantiates a new AccountDashboardStatistic object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetRevenue
 
 `func (o *AccountDashboardStatistic) GetRevenue() []AccountDashboardStatisticRevenue`
@@ -20,22 +37,22 @@ GetRevenue returns the Revenue field if non-nil, zero value otherwise.
 
 ### GetRevenueOk
 
-`func (o *AccountDashboardStatistic) GetRevenueOk() ([]AccountDashboardStatisticRevenue, bool)`
+`func (o *AccountDashboardStatistic) GetRevenueOk() (*[]AccountDashboardStatisticRevenue, bool)`
 
 GetRevenueOk returns a tuple with the Revenue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetRevenue
+
+`func (o *AccountDashboardStatistic) SetRevenue(v []AccountDashboardStatisticRevenue)`
+
+SetRevenue sets Revenue field to given value.
 
 ### HasRevenue
 
 `func (o *AccountDashboardStatistic) HasRevenue() bool`
 
 HasRevenue returns a boolean if a field has been set.
-
-### SetRevenue
-
-`func (o *AccountDashboardStatistic) SetRevenue(v []AccountDashboardStatisticRevenue)`
-
-SetRevenue gets a reference to the given []AccountDashboardStatisticRevenue and assigns it to the Revenue field.
 
 ### GetDiscounts
 
@@ -45,22 +62,22 @@ GetDiscounts returns the Discounts field if non-nil, zero value otherwise.
 
 ### GetDiscountsOk
 
-`func (o *AccountDashboardStatistic) GetDiscountsOk() ([]AccountDashboardStatisticDiscount, bool)`
+`func (o *AccountDashboardStatistic) GetDiscountsOk() (*[]AccountDashboardStatisticDiscount, bool)`
 
 GetDiscountsOk returns a tuple with the Discounts field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetDiscounts
+
+`func (o *AccountDashboardStatistic) SetDiscounts(v []AccountDashboardStatisticDiscount)`
+
+SetDiscounts sets Discounts field to given value.
 
 ### HasDiscounts
 
 `func (o *AccountDashboardStatistic) HasDiscounts() bool`
 
 HasDiscounts returns a boolean if a field has been set.
-
-### SetDiscounts
-
-`func (o *AccountDashboardStatistic) SetDiscounts(v []AccountDashboardStatisticDiscount)`
-
-SetDiscounts gets a reference to the given []AccountDashboardStatisticDiscount and assigns it to the Discounts field.
 
 ### GetLoyaltyPoints
 
@@ -70,22 +87,22 @@ GetLoyaltyPoints returns the LoyaltyPoints field if non-nil, zero value otherwis
 
 ### GetLoyaltyPointsOk
 
-`func (o *AccountDashboardStatistic) GetLoyaltyPointsOk() ([]AccountDashboardStatisticLoyaltyPoints, bool)`
+`func (o *AccountDashboardStatistic) GetLoyaltyPointsOk() (*[]AccountDashboardStatisticLoyaltyPoints, bool)`
 
 GetLoyaltyPointsOk returns a tuple with the LoyaltyPoints field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetLoyaltyPoints
+
+`func (o *AccountDashboardStatistic) SetLoyaltyPoints(v []AccountDashboardStatisticLoyaltyPoints)`
+
+SetLoyaltyPoints sets LoyaltyPoints field to given value.
 
 ### HasLoyaltyPoints
 
 `func (o *AccountDashboardStatistic) HasLoyaltyPoints() bool`
 
 HasLoyaltyPoints returns a boolean if a field has been set.
-
-### SetLoyaltyPoints
-
-`func (o *AccountDashboardStatistic) SetLoyaltyPoints(v []AccountDashboardStatisticLoyaltyPoints)`
-
-SetLoyaltyPoints gets a reference to the given []AccountDashboardStatisticLoyaltyPoints and assigns it to the LoyaltyPoints field.
 
 ### GetReferrals
 
@@ -95,22 +112,22 @@ GetReferrals returns the Referrals field if non-nil, zero value otherwise.
 
 ### GetReferralsOk
 
-`func (o *AccountDashboardStatistic) GetReferralsOk() ([]AccountDashboardStatisticReferrals, bool)`
+`func (o *AccountDashboardStatistic) GetReferralsOk() (*[]AccountDashboardStatisticReferrals, bool)`
 
 GetReferralsOk returns a tuple with the Referrals field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
+
+### SetReferrals
+
+`func (o *AccountDashboardStatistic) SetReferrals(v []AccountDashboardStatisticReferrals)`
+
+SetReferrals sets Referrals field to given value.
 
 ### HasReferrals
 
 `func (o *AccountDashboardStatistic) HasReferrals() bool`
 
 HasReferrals returns a boolean if a field has been set.
-
-### SetReferrals
-
-`func (o *AccountDashboardStatistic) SetReferrals(v []AccountDashboardStatisticReferrals)`
-
-SetReferrals gets a reference to the given []AccountDashboardStatisticReferrals and assigns it to the Referrals field.
 
 ### GetCampaigns
 
@@ -120,22 +137,17 @@ GetCampaigns returns the Campaigns field if non-nil, zero value otherwise.
 
 ### GetCampaignsOk
 
-`func (o *AccountDashboardStatistic) GetCampaignsOk() (AccountDashboardStatisticCampaigns, bool)`
+`func (o *AccountDashboardStatistic) GetCampaignsOk() (*AccountDashboardStatisticCampaigns, bool)`
 
 GetCampaignsOk returns a tuple with the Campaigns field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
-
-### HasCampaigns
-
-`func (o *AccountDashboardStatistic) HasCampaigns() bool`
-
-HasCampaigns returns a boolean if a field has been set.
 
 ### SetCampaigns
 
 `func (o *AccountDashboardStatistic) SetCampaigns(v AccountDashboardStatisticCampaigns)`
 
-SetCampaigns gets a reference to the given AccountDashboardStatisticCampaigns and assigns it to the Campaigns field.
+SetCampaigns sets Campaigns field to given value.
+
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

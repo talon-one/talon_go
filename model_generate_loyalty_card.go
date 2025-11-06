@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -24,6 +23,27 @@ type GenerateLoyaltyCard struct {
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`
 }
 
+// NewGenerateLoyaltyCard instantiates a new GenerateLoyaltyCard object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildGenerateLoyaltyCard() *GenerateLoyaltyCard {
+	this := GenerateLoyaltyCard{}
+	var status string = "active"
+	this.Status = &status
+	return &this
+}
+
+// NewGenerateLoyaltyCardWithDefaults instantiates a new GenerateLoyaltyCard object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGenerateLoyaltyCardWithDefaults() *GenerateLoyaltyCard {
+	this := GenerateLoyaltyCard{}
+	var status string = "active"
+	this.Status = &status
+	return &this
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GenerateLoyaltyCard) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -33,14 +53,13 @@ func (o *GenerateLoyaltyCard) GetStatus() string {
 	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, zero value otherwise
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateLoyaltyCard) GetStatusOk() (string, bool) {
+func (o *GenerateLoyaltyCard) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
@@ -66,14 +85,13 @@ func (o *GenerateLoyaltyCard) GetCustomerProfileIds() []string {
 	return *o.CustomerProfileIds
 }
 
-// GetCustomerProfileIdsOk returns a tuple with the CustomerProfileIds field value if set, zero value otherwise
+// GetCustomerProfileIdsOk returns a tuple with the CustomerProfileIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateLoyaltyCard) GetCustomerProfileIdsOk() ([]string, bool) {
+func (o *GenerateLoyaltyCard) GetCustomerProfileIdsOk() (*[]string, bool) {
 	if o == nil || o.CustomerProfileIds == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.CustomerProfileIds, true
+	return o.CustomerProfileIds, true
 }
 
 // HasCustomerProfileIds returns a boolean if a field has been set.
@@ -99,14 +117,13 @@ func (o *GenerateLoyaltyCard) GetCardIdentifier() string {
 	return *o.CardIdentifier
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, zero value otherwise
+// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenerateLoyaltyCard) GetCardIdentifierOk() (string, bool) {
+func (o *GenerateLoyaltyCard) GetCardIdentifierOk() (*string, bool) {
 	if o == nil || o.CardIdentifier == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.CardIdentifier, true
+	return o.CardIdentifier, true
 }
 
 // HasCardIdentifier returns a boolean if a field has been set.
@@ -123,25 +140,52 @@ func (o *GenerateLoyaltyCard) SetCardIdentifier(v string) {
 	o.CardIdentifier = &v
 }
 
+func (o GenerateLoyaltyCard) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.CustomerProfileIds != nil {
+		toSerialize["customerProfileIds"] = o.CustomerProfileIds
+	}
+	if o.CardIdentifier != nil {
+		toSerialize["cardIdentifier"] = o.CardIdentifier
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableGenerateLoyaltyCard struct {
-	Value        GenerateLoyaltyCard
-	ExplicitNull bool
+	value *GenerateLoyaltyCard
+	isSet bool
+}
+
+func (v NullableGenerateLoyaltyCard) Get() *GenerateLoyaltyCard {
+	return v.value
+}
+
+func (v *NullableGenerateLoyaltyCard) Set(val *GenerateLoyaltyCard) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableGenerateLoyaltyCard) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableGenerateLoyaltyCard) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableGenerateLoyaltyCard(val *GenerateLoyaltyCard) *NullableGenerateLoyaltyCard {
+	return &NullableGenerateLoyaltyCard{value: val, isSet: true}
 }
 
 func (v NullableGenerateLoyaltyCard) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableGenerateLoyaltyCard) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

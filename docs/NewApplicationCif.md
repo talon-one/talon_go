@@ -1,4 +1,4 @@
-# NewApplicationCif
+# NewApplicationCIF
 
 ## Properties
 
@@ -6,162 +6,174 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The name of the Application cart item filter used in API requests. | 
 **Description** | Pointer to **string** | A short description of the Application cart item filter. | [optional] 
-**ActiveExpressionId** | Pointer to **int32** | The ID of the expression that the Application cart item filter uses. | [optional] 
-**ModifiedBy** | Pointer to **int32** | The ID of the user who last updated the Application cart item filter. | [optional] 
-**CreatedBy** | Pointer to **int32** | The ID of the user who created the Application cart item filter. | [optional] 
+**ActiveExpressionId** | Pointer to **int64** | The ID of the expression that the Application cart item filter uses. | [optional] 
+**ModifiedBy** | Pointer to **int64** | The ID of the user who last updated the Application cart item filter. | [optional] 
+**CreatedBy** | Pointer to **int64** | The ID of the user who created the Application cart item filter. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update to the Application cart item filter. | [optional] 
 
 ## Methods
 
+### NewNewApplicationCIF
+
+`func NewNewApplicationCIF(name string, ) *NewApplicationCIF`
+
+NewNewApplicationCIF instantiates a new NewApplicationCIF object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewApplicationCIFWithDefaults
+
+`func NewNewApplicationCIFWithDefaults() *NewApplicationCIF`
+
+NewNewApplicationCIFWithDefaults instantiates a new NewApplicationCIF object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
 ### GetName
 
-`func (o *NewApplicationCif) GetName() string`
+`func (o *NewApplicationCIF) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### GetNameOk
 
-`func (o *NewApplicationCif) GetNameOk() (string, bool)`
+`func (o *NewApplicationCIF) GetNameOk() (*string, bool)`
 
 GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasName
-
-`func (o *NewApplicationCif) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
 ### SetName
 
-`func (o *NewApplicationCif) SetName(v string)`
+`func (o *NewApplicationCIF) SetName(v string)`
 
-SetName gets a reference to the given string and assigns it to the Name field.
+SetName sets Name field to given value.
+
 
 ### GetDescription
 
-`func (o *NewApplicationCif) GetDescription() string`
+`func (o *NewApplicationCIF) GetDescription() string`
 
 GetDescription returns the Description field if non-nil, zero value otherwise.
 
 ### GetDescriptionOk
 
-`func (o *NewApplicationCif) GetDescriptionOk() (string, bool)`
+`func (o *NewApplicationCIF) GetDescriptionOk() (*string, bool)`
 
 GetDescriptionOk returns a tuple with the Description field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetDescription
+
+`func (o *NewApplicationCIF) SetDescription(v string)`
+
+SetDescription sets Description field to given value.
+
 ### HasDescription
 
-`func (o *NewApplicationCif) HasDescription() bool`
+`func (o *NewApplicationCIF) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
 
-### SetDescription
-
-`func (o *NewApplicationCif) SetDescription(v string)`
-
-SetDescription gets a reference to the given string and assigns it to the Description field.
-
 ### GetActiveExpressionId
 
-`func (o *NewApplicationCif) GetActiveExpressionId() int32`
+`func (o *NewApplicationCIF) GetActiveExpressionId() int64`
 
 GetActiveExpressionId returns the ActiveExpressionId field if non-nil, zero value otherwise.
 
 ### GetActiveExpressionIdOk
 
-`func (o *NewApplicationCif) GetActiveExpressionIdOk() (int32, bool)`
+`func (o *NewApplicationCIF) GetActiveExpressionIdOk() (*int64, bool)`
 
 GetActiveExpressionIdOk returns a tuple with the ActiveExpressionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetActiveExpressionId
+
+`func (o *NewApplicationCIF) SetActiveExpressionId(v int64)`
+
+SetActiveExpressionId sets ActiveExpressionId field to given value.
+
 ### HasActiveExpressionId
 
-`func (o *NewApplicationCif) HasActiveExpressionId() bool`
+`func (o *NewApplicationCIF) HasActiveExpressionId() bool`
 
 HasActiveExpressionId returns a boolean if a field has been set.
 
-### SetActiveExpressionId
-
-`func (o *NewApplicationCif) SetActiveExpressionId(v int32)`
-
-SetActiveExpressionId gets a reference to the given int32 and assigns it to the ActiveExpressionId field.
-
 ### GetModifiedBy
 
-`func (o *NewApplicationCif) GetModifiedBy() int32`
+`func (o *NewApplicationCIF) GetModifiedBy() int64`
 
 GetModifiedBy returns the ModifiedBy field if non-nil, zero value otherwise.
 
 ### GetModifiedByOk
 
-`func (o *NewApplicationCif) GetModifiedByOk() (int32, bool)`
+`func (o *NewApplicationCIF) GetModifiedByOk() (*int64, bool)`
 
 GetModifiedByOk returns a tuple with the ModifiedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetModifiedBy
+
+`func (o *NewApplicationCIF) SetModifiedBy(v int64)`
+
+SetModifiedBy sets ModifiedBy field to given value.
+
 ### HasModifiedBy
 
-`func (o *NewApplicationCif) HasModifiedBy() bool`
+`func (o *NewApplicationCIF) HasModifiedBy() bool`
 
 HasModifiedBy returns a boolean if a field has been set.
 
-### SetModifiedBy
-
-`func (o *NewApplicationCif) SetModifiedBy(v int32)`
-
-SetModifiedBy gets a reference to the given int32 and assigns it to the ModifiedBy field.
-
 ### GetCreatedBy
 
-`func (o *NewApplicationCif) GetCreatedBy() int32`
+`func (o *NewApplicationCIF) GetCreatedBy() int64`
 
 GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
 
 ### GetCreatedByOk
 
-`func (o *NewApplicationCif) GetCreatedByOk() (int32, bool)`
+`func (o *NewApplicationCIF) GetCreatedByOk() (*int64, bool)`
 
 GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
+### SetCreatedBy
+
+`func (o *NewApplicationCIF) SetCreatedBy(v int64)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
 ### HasCreatedBy
 
-`func (o *NewApplicationCif) HasCreatedBy() bool`
+`func (o *NewApplicationCIF) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
 
-### SetCreatedBy
-
-`func (o *NewApplicationCif) SetCreatedBy(v int32)`
-
-SetCreatedBy gets a reference to the given int32 and assigns it to the CreatedBy field.
-
 ### GetModified
 
-`func (o *NewApplicationCif) GetModified() time.Time`
+`func (o *NewApplicationCIF) GetModified() time.Time`
 
 GetModified returns the Modified field if non-nil, zero value otherwise.
 
 ### GetModifiedOk
 
-`func (o *NewApplicationCif) GetModifiedOk() (time.Time, bool)`
+`func (o *NewApplicationCIF) GetModifiedOk() (*time.Time, bool)`
 
 GetModifiedOk returns a tuple with the Modified field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### HasModified
-
-`func (o *NewApplicationCif) HasModified() bool`
-
-HasModified returns a boolean if a field has been set.
-
 ### SetModified
 
-`func (o *NewApplicationCif) SetModified(v time.Time)`
+`func (o *NewApplicationCIF) SetModified(v time.Time)`
 
-SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+SetModified sets Modified field to given value.
+
+### HasModified
+
+`func (o *NewApplicationCIF) HasModified() bool`
+
+HasModified returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

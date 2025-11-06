@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -18,6 +17,24 @@ import (
 type InlineResponse20034 struct {
 	HasMore *bool             `json:"hasMore,omitempty"`
 	Data    []CustomerProfile `json:"data"`
+}
+
+// NewInlineResponse20034 instantiates a new InlineResponse20034 object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildInlineResponse20034(data []CustomerProfile) *InlineResponse20034 {
+	this := InlineResponse20034{}
+	this.Data = data
+	return &this
+}
+
+// NewInlineResponse20034WithDefaults instantiates a new InlineResponse20034 object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewInlineResponse20034WithDefaults() *InlineResponse20034 {
+	this := InlineResponse20034{}
+	return &this
 }
 
 // GetHasMore returns the HasMore field value if set, zero value otherwise.
@@ -29,14 +46,13 @@ func (o *InlineResponse20034) GetHasMore() bool {
 	return *o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, zero value otherwise
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20034) GetHasMoreOk() (bool, bool) {
+func (o *InlineResponse20034) GetHasMoreOk() (*bool, bool) {
 	if o == nil || o.HasMore == nil {
-		var ret bool
-		return ret, false
+		return nil, false
 	}
-	return *o.HasMore, true
+	return o.HasMore, true
 }
 
 // HasHasMore returns a boolean if a field has been set.
@@ -63,30 +79,63 @@ func (o *InlineResponse20034) GetData() []CustomerProfile {
 	return o.Data
 }
 
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20034) GetDataOk() (*[]CustomerProfile, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
 // SetData sets field value
 func (o *InlineResponse20034) SetData(v []CustomerProfile) {
 	o.Data = v
 }
 
+func (o InlineResponse20034) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.HasMore != nil {
+		toSerialize["hasMore"] = o.HasMore
+	}
+	if true {
+		toSerialize["data"] = o.Data
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableInlineResponse20034 struct {
-	Value        InlineResponse20034
-	ExplicitNull bool
+	value *InlineResponse20034
+	isSet bool
+}
+
+func (v NullableInlineResponse20034) Get() *InlineResponse20034 {
+	return v.value
+}
+
+func (v *NullableInlineResponse20034) Set(val *InlineResponse20034) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableInlineResponse20034) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableInlineResponse20034) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableInlineResponse20034(val *InlineResponse20034) *NullableInlineResponse20034 {
+	return &NullableInlineResponse20034{value: val, isSet: true}
 }
 
 func (v NullableInlineResponse20034) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableInlineResponse20034) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

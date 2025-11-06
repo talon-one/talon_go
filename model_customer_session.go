@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,7 +21,7 @@ type CustomerSession struct {
 	// The time this entity was created.
 	Created time.Time `json:"created"`
 	// The ID of the Application that owns this entity.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known `profileId`, we recommend you use a guest `profileId`.
 	ProfileId string `json:"profileId"`
 	// Any coupon code entered.
@@ -47,6 +46,38 @@ type CustomerSession struct {
 	Updated time.Time `json:"updated"`
 }
 
+// NewCustomerSession instantiates a new CustomerSession object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerSession(integrationId string, created time.Time, applicationId int64, profileId string, coupon string, referral string, state string, cartItems []CartItem, total float32, attributes map[string]interface{}, firstSession bool, discounts map[string]float32, updated time.Time) *CustomerSession {
+	this := CustomerSession{}
+	this.IntegrationId = integrationId
+	this.Created = created
+	this.ApplicationId = applicationId
+	this.ProfileId = profileId
+	this.Coupon = coupon
+	this.Referral = referral
+	this.State = state
+	this.CartItems = cartItems
+	this.Total = total
+	this.Attributes = attributes
+	this.FirstSession = firstSession
+	this.Discounts = discounts
+	this.Updated = updated
+	return &this
+}
+
+// NewCustomerSessionWithDefaults instantiates a new CustomerSession object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerSessionWithDefaults() *CustomerSession {
+	this := CustomerSession{}
+	var state string = "open"
+	this.State = state
+	return &this
+}
+
 // GetIntegrationId returns the IntegrationId field value
 func (o *CustomerSession) GetIntegrationId() string {
 	if o == nil {
@@ -55,6 +86,15 @@ func (o *CustomerSession) GetIntegrationId() string {
 	}
 
 	return o.IntegrationId
+}
+
+// GetIntegrationIdOk returns a tuple with the IntegrationId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetIntegrationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IntegrationId, true
 }
 
 // SetIntegrationId sets field value
@@ -72,23 +112,41 @@ func (o *CustomerSession) GetCreated() time.Time {
 	return o.Created
 }
 
+// GetCreatedOk returns a tuple with the Created field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetCreatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Created, true
+}
+
 // SetCreated sets field value
 func (o *CustomerSession) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *CustomerSession) GetApplicationId() int32 {
+func (o *CustomerSession) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *CustomerSession) SetApplicationId(v int32) {
+func (o *CustomerSession) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
@@ -100,6 +158,15 @@ func (o *CustomerSession) GetProfileId() string {
 	}
 
 	return o.ProfileId
+}
+
+// GetProfileIdOk returns a tuple with the ProfileId field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetProfileIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileId, true
 }
 
 // SetProfileId sets field value
@@ -117,6 +184,15 @@ func (o *CustomerSession) GetCoupon() string {
 	return o.Coupon
 }
 
+// GetCouponOk returns a tuple with the Coupon field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetCouponOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Coupon, true
+}
+
 // SetCoupon sets field value
 func (o *CustomerSession) SetCoupon(v string) {
 	o.Coupon = v
@@ -130,6 +206,15 @@ func (o *CustomerSession) GetReferral() string {
 	}
 
 	return o.Referral
+}
+
+// GetReferralOk returns a tuple with the Referral field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetReferralOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Referral, true
 }
 
 // SetReferral sets field value
@@ -147,6 +232,15 @@ func (o *CustomerSession) GetState() string {
 	return o.State
 }
 
+// GetStateOk returns a tuple with the State field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.State, true
+}
+
 // SetState sets field value
 func (o *CustomerSession) SetState(v string) {
 	o.State = v
@@ -160,6 +254,15 @@ func (o *CustomerSession) GetCartItems() []CartItem {
 	}
 
 	return o.CartItems
+}
+
+// GetCartItemsOk returns a tuple with the CartItems field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetCartItemsOk() (*[]CartItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CartItems, true
 }
 
 // SetCartItems sets field value
@@ -176,14 +279,13 @@ func (o *CustomerSession) GetIdentifiers() []string {
 	return *o.Identifiers
 }
 
-// GetIdentifiersOk returns a tuple with the Identifiers field value if set, zero value otherwise
+// GetIdentifiersOk returns a tuple with the Identifiers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerSession) GetIdentifiersOk() ([]string, bool) {
+func (o *CustomerSession) GetIdentifiersOk() (*[]string, bool) {
 	if o == nil || o.Identifiers == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.Identifiers, true
+	return o.Identifiers, true
 }
 
 // HasIdentifiers returns a boolean if a field has been set.
@@ -210,6 +312,15 @@ func (o *CustomerSession) GetTotal() float32 {
 	return o.Total
 }
 
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
 // SetTotal sets field value
 func (o *CustomerSession) SetTotal(v float32) {
 	o.Total = v
@@ -223,6 +334,15 @@ func (o *CustomerSession) GetAttributes() map[string]interface{} {
 	}
 
 	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
 }
 
 // SetAttributes sets field value
@@ -240,6 +360,15 @@ func (o *CustomerSession) GetFirstSession() bool {
 	return o.FirstSession
 }
 
+// GetFirstSessionOk returns a tuple with the FirstSession field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetFirstSessionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.FirstSession, true
+}
+
 // SetFirstSession sets field value
 func (o *CustomerSession) SetFirstSession(v bool) {
 	o.FirstSession = v
@@ -253,6 +382,15 @@ func (o *CustomerSession) GetDiscounts() map[string]float32 {
 	}
 
 	return o.Discounts
+}
+
+// GetDiscountsOk returns a tuple with the Discounts field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetDiscountsOk() (*map[string]float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Discounts, true
 }
 
 // SetDiscounts sets field value
@@ -270,30 +408,99 @@ func (o *CustomerSession) GetUpdated() time.Time {
 	return o.Updated
 }
 
+// GetUpdatedOk returns a tuple with the Updated field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetUpdatedOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Updated, true
+}
+
 // SetUpdated sets field value
 func (o *CustomerSession) SetUpdated(v time.Time) {
 	o.Updated = v
 }
 
+func (o CustomerSession) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["integrationId"] = o.IntegrationId
+	}
+	if true {
+		toSerialize["created"] = o.Created
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if true {
+		toSerialize["coupon"] = o.Coupon
+	}
+	if true {
+		toSerialize["referral"] = o.Referral
+	}
+	if true {
+		toSerialize["state"] = o.State
+	}
+	if true {
+		toSerialize["cartItems"] = o.CartItems
+	}
+	if o.Identifiers != nil {
+		toSerialize["identifiers"] = o.Identifiers
+	}
+	if true {
+		toSerialize["total"] = o.Total
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["firstSession"] = o.FirstSession
+	}
+	if true {
+		toSerialize["discounts"] = o.Discounts
+	}
+	if true {
+		toSerialize["updated"] = o.Updated
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerSession struct {
-	Value        CustomerSession
-	ExplicitNull bool
+	value *CustomerSession
+	isSet bool
+}
+
+func (v NullableCustomerSession) Get() *CustomerSession {
+	return v.value
+}
+
+func (v *NullableCustomerSession) Set(val *CustomerSession) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerSession) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerSession) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerSession(val *CustomerSession) *NullableCustomerSession {
+	return &NullableCustomerSession{value: val, isSet: true}
 }
 
 func (v NullableCustomerSession) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerSession) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -22,6 +21,24 @@ type UpdateLoyaltyCard struct {
 	BlockReason *string `json:"blockReason,omitempty"`
 }
 
+// NewUpdateLoyaltyCard instantiates a new UpdateLoyaltyCard object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildUpdateLoyaltyCard(status string) *UpdateLoyaltyCard {
+	this := UpdateLoyaltyCard{}
+	this.Status = status
+	return &this
+}
+
+// NewUpdateLoyaltyCardWithDefaults instantiates a new UpdateLoyaltyCard object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewUpdateLoyaltyCardWithDefaults() *UpdateLoyaltyCard {
+	this := UpdateLoyaltyCard{}
+	return &this
+}
+
 // GetStatus returns the Status field value
 func (o *UpdateLoyaltyCard) GetStatus() string {
 	if o == nil {
@@ -30,6 +47,15 @@ func (o *UpdateLoyaltyCard) GetStatus() string {
 	}
 
 	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *UpdateLoyaltyCard) GetStatusOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
 }
 
 // SetStatus sets field value
@@ -46,14 +72,13 @@ func (o *UpdateLoyaltyCard) GetBlockReason() string {
 	return *o.BlockReason
 }
 
-// GetBlockReasonOk returns a tuple with the BlockReason field value if set, zero value otherwise
+// GetBlockReasonOk returns a tuple with the BlockReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateLoyaltyCard) GetBlockReasonOk() (string, bool) {
+func (o *UpdateLoyaltyCard) GetBlockReasonOk() (*string, bool) {
 	if o == nil || o.BlockReason == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.BlockReason, true
+	return o.BlockReason, true
 }
 
 // HasBlockReason returns a boolean if a field has been set.
@@ -70,25 +95,49 @@ func (o *UpdateLoyaltyCard) SetBlockReason(v string) {
 	o.BlockReason = &v
 }
 
+func (o UpdateLoyaltyCard) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["status"] = o.Status
+	}
+	if o.BlockReason != nil {
+		toSerialize["blockReason"] = o.BlockReason
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableUpdateLoyaltyCard struct {
-	Value        UpdateLoyaltyCard
-	ExplicitNull bool
+	value *UpdateLoyaltyCard
+	isSet bool
+}
+
+func (v NullableUpdateLoyaltyCard) Get() *UpdateLoyaltyCard {
+	return v.value
+}
+
+func (v *NullableUpdateLoyaltyCard) Set(val *UpdateLoyaltyCard) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableUpdateLoyaltyCard) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableUpdateLoyaltyCard) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableUpdateLoyaltyCard(val *UpdateLoyaltyCard) *NullableUpdateLoyaltyCard {
+	return &NullableUpdateLoyaltyCard{value: val, isSet: true}
 }
 
 func (v NullableUpdateLoyaltyCard) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableUpdateLoyaltyCard) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -19,7 +18,24 @@ type CustomerProfileSearchQuery struct {
 	// Properties to match against a customer profile. All provided attributes will be exactly matched against profile attributes.
 	Attributes     *map[string]interface{} `json:"attributes,omitempty"`
 	IntegrationIDs *[]string               `json:"integrationIDs,omitempty"`
-	ProfileIDs     *[]int32                `json:"profileIDs,omitempty"`
+	ProfileIDs     *[]int64                `json:"profileIDs,omitempty"`
+}
+
+// NewCustomerProfileSearchQuery instantiates a new CustomerProfileSearchQuery object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCustomerProfileSearchQuery() *CustomerProfileSearchQuery {
+	this := CustomerProfileSearchQuery{}
+	return &this
+}
+
+// NewCustomerProfileSearchQueryWithDefaults instantiates a new CustomerProfileSearchQuery object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCustomerProfileSearchQueryWithDefaults() *CustomerProfileSearchQuery {
+	this := CustomerProfileSearchQuery{}
+	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
@@ -31,14 +47,13 @@ func (o *CustomerProfileSearchQuery) GetAttributes() map[string]interface{} {
 	return *o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, zero value otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileSearchQuery) GetAttributesOk() (map[string]interface{}, bool) {
+func (o *CustomerProfileSearchQuery) GetAttributesOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Attributes == nil {
-		var ret map[string]interface{}
-		return ret, false
+		return nil, false
 	}
-	return *o.Attributes, true
+	return o.Attributes, true
 }
 
 // HasAttributes returns a boolean if a field has been set.
@@ -64,14 +79,13 @@ func (o *CustomerProfileSearchQuery) GetIntegrationIDs() []string {
 	return *o.IntegrationIDs
 }
 
-// GetIntegrationIDsOk returns a tuple with the IntegrationIDs field value if set, zero value otherwise
+// GetIntegrationIDsOk returns a tuple with the IntegrationIDs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileSearchQuery) GetIntegrationIDsOk() ([]string, bool) {
+func (o *CustomerProfileSearchQuery) GetIntegrationIDsOk() (*[]string, bool) {
 	if o == nil || o.IntegrationIDs == nil {
-		var ret []string
-		return ret, false
+		return nil, false
 	}
-	return *o.IntegrationIDs, true
+	return o.IntegrationIDs, true
 }
 
 // HasIntegrationIDs returns a boolean if a field has been set.
@@ -89,22 +103,21 @@ func (o *CustomerProfileSearchQuery) SetIntegrationIDs(v []string) {
 }
 
 // GetProfileIDs returns the ProfileIDs field value if set, zero value otherwise.
-func (o *CustomerProfileSearchQuery) GetProfileIDs() []int32 {
+func (o *CustomerProfileSearchQuery) GetProfileIDs() []int64 {
 	if o == nil || o.ProfileIDs == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return *o.ProfileIDs
 }
 
-// GetProfileIDsOk returns a tuple with the ProfileIDs field value if set, zero value otherwise
+// GetProfileIDsOk returns a tuple with the ProfileIDs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CustomerProfileSearchQuery) GetProfileIDsOk() ([]int32, bool) {
+func (o *CustomerProfileSearchQuery) GetProfileIDsOk() (*[]int64, bool) {
 	if o == nil || o.ProfileIDs == nil {
-		var ret []int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileIDs, true
+	return o.ProfileIDs, true
 }
 
 // HasProfileIDs returns a boolean if a field has been set.
@@ -116,30 +129,57 @@ func (o *CustomerProfileSearchQuery) HasProfileIDs() bool {
 	return false
 }
 
-// SetProfileIDs gets a reference to the given []int32 and assigns it to the ProfileIDs field.
-func (o *CustomerProfileSearchQuery) SetProfileIDs(v []int32) {
+// SetProfileIDs gets a reference to the given []int64 and assigns it to the ProfileIDs field.
+func (o *CustomerProfileSearchQuery) SetProfileIDs(v []int64) {
 	o.ProfileIDs = &v
 }
 
+func (o CustomerProfileSearchQuery) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if o.IntegrationIDs != nil {
+		toSerialize["integrationIDs"] = o.IntegrationIDs
+	}
+	if o.ProfileIDs != nil {
+		toSerialize["profileIDs"] = o.ProfileIDs
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCustomerProfileSearchQuery struct {
-	Value        CustomerProfileSearchQuery
-	ExplicitNull bool
+	value *CustomerProfileSearchQuery
+	isSet bool
+}
+
+func (v NullableCustomerProfileSearchQuery) Get() *CustomerProfileSearchQuery {
+	return v.value
+}
+
+func (v *NullableCustomerProfileSearchQuery) Set(val *CustomerProfileSearchQuery) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCustomerProfileSearchQuery) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCustomerProfileSearchQuery) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCustomerProfileSearchQuery(val *CustomerProfileSearchQuery) *NullableCustomerProfileSearchQuery {
+	return &NullableCustomerProfileSearchQuery{value: val, isSet: true}
 }
 
 func (v NullableCustomerProfileSearchQuery) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCustomerProfileSearchQuery) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

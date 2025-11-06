@@ -10,67 +10,127 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
 // ProfileAudiencesChanges struct for ProfileAudiencesChanges
 type ProfileAudiencesChanges struct {
 	// The IDs of the audiences for the customer to join.
-	Adds []int32 `json:"adds"`
+	Adds []int64 `json:"adds"`
 	// The IDs of the audiences for the customer to leave.
-	Deletes []int32 `json:"deletes"`
+	Deletes []int64 `json:"deletes"`
+}
+
+// NewProfileAudiencesChanges instantiates a new ProfileAudiencesChanges object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildProfileAudiencesChanges(adds []int64, deletes []int64) *ProfileAudiencesChanges {
+	this := ProfileAudiencesChanges{}
+	this.Adds = adds
+	this.Deletes = deletes
+	return &this
+}
+
+// NewProfileAudiencesChangesWithDefaults instantiates a new ProfileAudiencesChanges object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewProfileAudiencesChangesWithDefaults() *ProfileAudiencesChanges {
+	this := ProfileAudiencesChanges{}
+	return &this
 }
 
 // GetAdds returns the Adds field value
-func (o *ProfileAudiencesChanges) GetAdds() []int32 {
+func (o *ProfileAudiencesChanges) GetAdds() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.Adds
 }
 
+// GetAddsOk returns a tuple with the Adds field value
+// and a boolean to check if the value has been set.
+func (o *ProfileAudiencesChanges) GetAddsOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Adds, true
+}
+
 // SetAdds sets field value
-func (o *ProfileAudiencesChanges) SetAdds(v []int32) {
+func (o *ProfileAudiencesChanges) SetAdds(v []int64) {
 	o.Adds = v
 }
 
 // GetDeletes returns the Deletes field value
-func (o *ProfileAudiencesChanges) GetDeletes() []int32 {
+func (o *ProfileAudiencesChanges) GetDeletes() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 
 	return o.Deletes
 }
 
+// GetDeletesOk returns a tuple with the Deletes field value
+// and a boolean to check if the value has been set.
+func (o *ProfileAudiencesChanges) GetDeletesOk() (*[]int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Deletes, true
+}
+
 // SetDeletes sets field value
-func (o *ProfileAudiencesChanges) SetDeletes(v []int32) {
+func (o *ProfileAudiencesChanges) SetDeletes(v []int64) {
 	o.Deletes = v
 }
 
+func (o ProfileAudiencesChanges) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["adds"] = o.Adds
+	}
+	if true {
+		toSerialize["deletes"] = o.Deletes
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableProfileAudiencesChanges struct {
-	Value        ProfileAudiencesChanges
-	ExplicitNull bool
+	value *ProfileAudiencesChanges
+	isSet bool
+}
+
+func (v NullableProfileAudiencesChanges) Get() *ProfileAudiencesChanges {
+	return v.value
+}
+
+func (v *NullableProfileAudiencesChanges) Set(val *ProfileAudiencesChanges) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableProfileAudiencesChanges) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableProfileAudiencesChanges) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableProfileAudiencesChanges(val *ProfileAudiencesChanges) *NullableProfileAudiencesChanges {
+	return &NullableProfileAudiencesChanges{value: val, isSet: true}
 }
 
 func (v NullableProfileAudiencesChanges) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableProfileAudiencesChanges) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

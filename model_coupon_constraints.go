@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -18,34 +17,50 @@ import (
 // CouponConstraints struct for CouponConstraints
 type CouponConstraints struct {
 	// The number of times the coupon code can be redeemed. `0` means unlimited redemptions but any campaign usage limits will still apply.
-	UsageLimit *int32 `json:"usageLimit,omitempty"`
+	UsageLimit *int64 `json:"usageLimit,omitempty"`
 	// The total discount value that the code can give. Typically used to represent a gift card value.
 	DiscountLimit *float32 `json:"discountLimit,omitempty"`
 	// The number of reservations that can be made with this coupon code.
-	ReservationLimit *int32 `json:"reservationLimit,omitempty"`
+	ReservationLimit *int64 `json:"reservationLimit,omitempty"`
 	// Timestamp at which point the coupon becomes valid.
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiration date of the coupon. Coupon never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 }
 
+// NewCouponConstraints instantiates a new CouponConstraints object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildCouponConstraints() *CouponConstraints {
+	this := CouponConstraints{}
+	return &this
+}
+
+// NewCouponConstraintsWithDefaults instantiates a new CouponConstraints object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCouponConstraintsWithDefaults() *CouponConstraints {
+	this := CouponConstraints{}
+	return &this
+}
+
 // GetUsageLimit returns the UsageLimit field value if set, zero value otherwise.
-func (o *CouponConstraints) GetUsageLimit() int32 {
+func (o *CouponConstraints) GetUsageLimit() int64 {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.UsageLimit
 }
 
-// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, zero value otherwise
+// GetUsageLimitOk returns a tuple with the UsageLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponConstraints) GetUsageLimitOk() (int32, bool) {
+func (o *CouponConstraints) GetUsageLimitOk() (*int64, bool) {
 	if o == nil || o.UsageLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.UsageLimit, true
+	return o.UsageLimit, true
 }
 
 // HasUsageLimit returns a boolean if a field has been set.
@@ -57,8 +72,8 @@ func (o *CouponConstraints) HasUsageLimit() bool {
 	return false
 }
 
-// SetUsageLimit gets a reference to the given int32 and assigns it to the UsageLimit field.
-func (o *CouponConstraints) SetUsageLimit(v int32) {
+// SetUsageLimit gets a reference to the given int64 and assigns it to the UsageLimit field.
+func (o *CouponConstraints) SetUsageLimit(v int64) {
 	o.UsageLimit = &v
 }
 
@@ -71,14 +86,13 @@ func (o *CouponConstraints) GetDiscountLimit() float32 {
 	return *o.DiscountLimit
 }
 
-// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, zero value otherwise
+// GetDiscountLimitOk returns a tuple with the DiscountLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponConstraints) GetDiscountLimitOk() (float32, bool) {
+func (o *CouponConstraints) GetDiscountLimitOk() (*float32, bool) {
 	if o == nil || o.DiscountLimit == nil {
-		var ret float32
-		return ret, false
+		return nil, false
 	}
-	return *o.DiscountLimit, true
+	return o.DiscountLimit, true
 }
 
 // HasDiscountLimit returns a boolean if a field has been set.
@@ -96,22 +110,21 @@ func (o *CouponConstraints) SetDiscountLimit(v float32) {
 }
 
 // GetReservationLimit returns the ReservationLimit field value if set, zero value otherwise.
-func (o *CouponConstraints) GetReservationLimit() int32 {
+func (o *CouponConstraints) GetReservationLimit() int64 {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.ReservationLimit
 }
 
-// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, zero value otherwise
+// GetReservationLimitOk returns a tuple with the ReservationLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponConstraints) GetReservationLimitOk() (int32, bool) {
+func (o *CouponConstraints) GetReservationLimitOk() (*int64, bool) {
 	if o == nil || o.ReservationLimit == nil {
-		var ret int32
-		return ret, false
+		return nil, false
 	}
-	return *o.ReservationLimit, true
+	return o.ReservationLimit, true
 }
 
 // HasReservationLimit returns a boolean if a field has been set.
@@ -123,8 +136,8 @@ func (o *CouponConstraints) HasReservationLimit() bool {
 	return false
 }
 
-// SetReservationLimit gets a reference to the given int32 and assigns it to the ReservationLimit field.
-func (o *CouponConstraints) SetReservationLimit(v int32) {
+// SetReservationLimit gets a reference to the given int64 and assigns it to the ReservationLimit field.
+func (o *CouponConstraints) SetReservationLimit(v int64) {
 	o.ReservationLimit = &v
 }
 
@@ -137,14 +150,13 @@ func (o *CouponConstraints) GetStartDate() time.Time {
 	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value if set, zero value otherwise
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponConstraints) GetStartDateOk() (time.Time, bool) {
+func (o *CouponConstraints) GetStartDateOk() (*time.Time, bool) {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.StartDate, true
+	return o.StartDate, true
 }
 
 // HasStartDate returns a boolean if a field has been set.
@@ -170,14 +182,13 @@ func (o *CouponConstraints) GetExpiryDate() time.Time {
 	return *o.ExpiryDate
 }
 
-// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, zero value otherwise
+// GetExpiryDateOk returns a tuple with the ExpiryDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CouponConstraints) GetExpiryDateOk() (time.Time, bool) {
+func (o *CouponConstraints) GetExpiryDateOk() (*time.Time, bool) {
 	if o == nil || o.ExpiryDate == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ExpiryDate, true
+	return o.ExpiryDate, true
 }
 
 // HasExpiryDate returns a boolean if a field has been set.
@@ -194,25 +205,58 @@ func (o *CouponConstraints) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
 }
 
+func (o CouponConstraints) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UsageLimit != nil {
+		toSerialize["usageLimit"] = o.UsageLimit
+	}
+	if o.DiscountLimit != nil {
+		toSerialize["discountLimit"] = o.DiscountLimit
+	}
+	if o.ReservationLimit != nil {
+		toSerialize["reservationLimit"] = o.ReservationLimit
+	}
+	if o.StartDate != nil {
+		toSerialize["startDate"] = o.StartDate
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableCouponConstraints struct {
-	Value        CouponConstraints
-	ExplicitNull bool
+	value *CouponConstraints
+	isSet bool
+}
+
+func (v NullableCouponConstraints) Get() *CouponConstraints {
+	return v.value
+}
+
+func (v *NullableCouponConstraints) Set(val *CouponConstraints) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableCouponConstraints) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableCouponConstraints) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableCouponConstraints(val *CouponConstraints) *NullableCouponConstraints {
+	return &NullableCouponConstraints{value: val, isSet: true}
 }
 
 func (v NullableCouponConstraints) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableCouponConstraints) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

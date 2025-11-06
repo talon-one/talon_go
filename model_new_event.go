@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 )
 
@@ -28,6 +27,26 @@ type NewEvent struct {
 	SessionId string `json:"sessionId"`
 }
 
+// NewNewEvent instantiates a new NewEvent object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildNewEvent(type_ string, attributes map[string]interface{}, sessionId string) *NewEvent {
+	this := NewEvent{}
+	this.Type = type_
+	this.Attributes = attributes
+	this.SessionId = sessionId
+	return &this
+}
+
+// NewNewEventWithDefaults instantiates a new NewEvent object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewNewEventWithDefaults() *NewEvent {
+	this := NewEvent{}
+	return &this
+}
+
 // GetProfileId returns the ProfileId field value if set, zero value otherwise.
 func (o *NewEvent) GetProfileId() string {
 	if o == nil || o.ProfileId == nil {
@@ -37,14 +56,13 @@ func (o *NewEvent) GetProfileId() string {
 	return *o.ProfileId
 }
 
-// GetProfileIdOk returns a tuple with the ProfileId field value if set, zero value otherwise
+// GetProfileIdOk returns a tuple with the ProfileId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewEvent) GetProfileIdOk() (string, bool) {
+func (o *NewEvent) GetProfileIdOk() (*string, bool) {
 	if o == nil || o.ProfileId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.ProfileId, true
+	return o.ProfileId, true
 }
 
 // HasProfileId returns a boolean if a field has been set.
@@ -70,14 +88,13 @@ func (o *NewEvent) GetStoreIntegrationId() string {
 	return *o.StoreIntegrationId
 }
 
-// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, zero value otherwise
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NewEvent) GetStoreIntegrationIdOk() (string, bool) {
+func (o *NewEvent) GetStoreIntegrationIdOk() (*string, bool) {
 	if o == nil || o.StoreIntegrationId == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.StoreIntegrationId, true
+	return o.StoreIntegrationId, true
 }
 
 // HasStoreIntegrationId returns a boolean if a field has been set.
@@ -104,6 +121,15 @@ func (o *NewEvent) GetType() string {
 	return o.Type
 }
 
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *NewEvent) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
 // SetType sets field value
 func (o *NewEvent) SetType(v string) {
 	o.Type = v
@@ -117,6 +143,15 @@ func (o *NewEvent) GetAttributes() map[string]interface{} {
 	}
 
 	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *NewEvent) GetAttributesOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
 }
 
 // SetAttributes sets field value
@@ -134,30 +169,72 @@ func (o *NewEvent) GetSessionId() string {
 	return o.SessionId
 }
 
+// GetSessionIdOk returns a tuple with the SessionId field value
+// and a boolean to check if the value has been set.
+func (o *NewEvent) GetSessionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionId, true
+}
+
 // SetSessionId sets field value
 func (o *NewEvent) SetSessionId(v string) {
 	o.SessionId = v
 }
 
+func (o NewEvent) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.ProfileId != nil {
+		toSerialize["profileId"] = o.ProfileId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
+	}
+	if true {
+		toSerialize["type"] = o.Type
+	}
+	if true {
+		toSerialize["attributes"] = o.Attributes
+	}
+	if true {
+		toSerialize["sessionId"] = o.SessionId
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableNewEvent struct {
-	Value        NewEvent
-	ExplicitNull bool
+	value *NewEvent
+	isSet bool
+}
+
+func (v NullableNewEvent) Get() *NewEvent {
+	return v.value
+}
+
+func (v *NullableNewEvent) Set(val *NewEvent) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableNewEvent) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableNewEvent) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableNewEvent(val *NewEvent) *NullableNewEvent {
+	return &NullableNewEvent{value: val, isSet: true}
 }
 
 func (v NullableNewEvent) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableNewEvent) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }

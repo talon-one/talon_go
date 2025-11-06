@@ -10,7 +10,6 @@
 package talon
 
 import (
-	"bytes"
 	"encoding/json"
 	"time"
 )
@@ -22,13 +21,38 @@ type StrikethroughLabelingNotification struct {
 	// Timestamp at which the strikethrough pricing update becomes valid. Set for **scheduled** strikethrough pricing updates (version: v2) only.
 	ValidFrom *time.Time `json:"validFrom,omitempty"`
 	// The ID of the Application to which the catalog items labels belongs.
-	ApplicationId int32 `json:"applicationId"`
+	ApplicationId int64 `json:"applicationId"`
 	// The batch number of the notification. Notifications might be sent in different batches.
-	CurrentBatch int32 `json:"currentBatch"`
+	CurrentBatch int64 `json:"currentBatch"`
 	// The total number of batches for the notification.
-	TotalBatches int32                      `json:"totalBatches"`
+	TotalBatches int64                      `json:"totalBatches"`
 	Trigger      StrikethroughTrigger       `json:"trigger"`
 	ChangedItems []StrikethroughChangedItem `json:"changedItems"`
+	// The type of the notification
+	NotificationType string `json:"NotificationType"`
+}
+
+// NewStrikethroughLabelingNotification instantiates a new StrikethroughLabelingNotification object
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed
+func BuildStrikethroughLabelingNotification(applicationId int64, currentBatch int64, totalBatches int64, trigger StrikethroughTrigger, changedItems []StrikethroughChangedItem, notificationType string) *StrikethroughLabelingNotification {
+	this := StrikethroughLabelingNotification{}
+	this.ApplicationId = applicationId
+	this.CurrentBatch = currentBatch
+	this.TotalBatches = totalBatches
+	this.Trigger = trigger
+	this.ChangedItems = changedItems
+	this.NotificationType = notificationType
+	return &this
+}
+
+// NewStrikethroughLabelingNotificationWithDefaults instantiates a new StrikethroughLabelingNotification object
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewStrikethroughLabelingNotificationWithDefaults() *StrikethroughLabelingNotification {
+	this := StrikethroughLabelingNotification{}
+	return &this
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
@@ -40,14 +64,13 @@ func (o *StrikethroughLabelingNotification) GetVersion() string {
 	return *o.Version
 }
 
-// GetVersionOk returns a tuple with the Version field value if set, zero value otherwise
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughLabelingNotification) GetVersionOk() (string, bool) {
+func (o *StrikethroughLabelingNotification) GetVersionOk() (*string, bool) {
 	if o == nil || o.Version == nil {
-		var ret string
-		return ret, false
+		return nil, false
 	}
-	return *o.Version, true
+	return o.Version, true
 }
 
 // HasVersion returns a boolean if a field has been set.
@@ -73,14 +96,13 @@ func (o *StrikethroughLabelingNotification) GetValidFrom() time.Time {
 	return *o.ValidFrom
 }
 
-// GetValidFromOk returns a tuple with the ValidFrom field value if set, zero value otherwise
+// GetValidFromOk returns a tuple with the ValidFrom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StrikethroughLabelingNotification) GetValidFromOk() (time.Time, bool) {
+func (o *StrikethroughLabelingNotification) GetValidFromOk() (*time.Time, bool) {
 	if o == nil || o.ValidFrom == nil {
-		var ret time.Time
-		return ret, false
+		return nil, false
 	}
-	return *o.ValidFrom, true
+	return o.ValidFrom, true
 }
 
 // HasValidFrom returns a boolean if a field has been set.
@@ -98,47 +120,74 @@ func (o *StrikethroughLabelingNotification) SetValidFrom(v time.Time) {
 }
 
 // GetApplicationId returns the ApplicationId field value
-func (o *StrikethroughLabelingNotification) GetApplicationId() int32 {
+func (o *StrikethroughLabelingNotification) GetApplicationId() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.ApplicationId
 }
 
+// GetApplicationIdOk returns a tuple with the ApplicationId field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetApplicationIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ApplicationId, true
+}
+
 // SetApplicationId sets field value
-func (o *StrikethroughLabelingNotification) SetApplicationId(v int32) {
+func (o *StrikethroughLabelingNotification) SetApplicationId(v int64) {
 	o.ApplicationId = v
 }
 
 // GetCurrentBatch returns the CurrentBatch field value
-func (o *StrikethroughLabelingNotification) GetCurrentBatch() int32 {
+func (o *StrikethroughLabelingNotification) GetCurrentBatch() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.CurrentBatch
 }
 
+// GetCurrentBatchOk returns a tuple with the CurrentBatch field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetCurrentBatchOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrentBatch, true
+}
+
 // SetCurrentBatch sets field value
-func (o *StrikethroughLabelingNotification) SetCurrentBatch(v int32) {
+func (o *StrikethroughLabelingNotification) SetCurrentBatch(v int64) {
 	o.CurrentBatch = v
 }
 
 // GetTotalBatches returns the TotalBatches field value
-func (o *StrikethroughLabelingNotification) GetTotalBatches() int32 {
+func (o *StrikethroughLabelingNotification) GetTotalBatches() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
 	return o.TotalBatches
 }
 
+// GetTotalBatchesOk returns a tuple with the TotalBatches field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetTotalBatchesOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TotalBatches, true
+}
+
 // SetTotalBatches sets field value
-func (o *StrikethroughLabelingNotification) SetTotalBatches(v int32) {
+func (o *StrikethroughLabelingNotification) SetTotalBatches(v int64) {
 	o.TotalBatches = v
 }
 
@@ -150,6 +199,15 @@ func (o *StrikethroughLabelingNotification) GetTrigger() StrikethroughTrigger {
 	}
 
 	return o.Trigger
+}
+
+// GetTriggerOk returns a tuple with the Trigger field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetTriggerOk() (*StrikethroughTrigger, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Trigger, true
 }
 
 // SetTrigger sets field value
@@ -167,30 +225,105 @@ func (o *StrikethroughLabelingNotification) GetChangedItems() []StrikethroughCha
 	return o.ChangedItems
 }
 
+// GetChangedItemsOk returns a tuple with the ChangedItems field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetChangedItemsOk() (*[]StrikethroughChangedItem, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ChangedItems, true
+}
+
 // SetChangedItems sets field value
 func (o *StrikethroughLabelingNotification) SetChangedItems(v []StrikethroughChangedItem) {
 	o.ChangedItems = v
 }
 
+// GetNotificationType returns the NotificationType field value
+func (o *StrikethroughLabelingNotification) GetNotificationType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NotificationType
+}
+
+// GetNotificationTypeOk returns a tuple with the NotificationType field value
+// and a boolean to check if the value has been set.
+func (o *StrikethroughLabelingNotification) GetNotificationTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotificationType, true
+}
+
+// SetNotificationType sets field value
+func (o *StrikethroughLabelingNotification) SetNotificationType(v string) {
+	o.NotificationType = v
+}
+
+func (o StrikethroughLabelingNotification) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
+	if o.ValidFrom != nil {
+		toSerialize["validFrom"] = o.ValidFrom
+	}
+	if true {
+		toSerialize["applicationId"] = o.ApplicationId
+	}
+	if true {
+		toSerialize["currentBatch"] = o.CurrentBatch
+	}
+	if true {
+		toSerialize["totalBatches"] = o.TotalBatches
+	}
+	if true {
+		toSerialize["trigger"] = o.Trigger
+	}
+	if true {
+		toSerialize["changedItems"] = o.ChangedItems
+	}
+	if true {
+		toSerialize["NotificationType"] = o.NotificationType
+	}
+	return json.Marshal(toSerialize)
+}
+
 type NullableStrikethroughLabelingNotification struct {
-	Value        StrikethroughLabelingNotification
-	ExplicitNull bool
+	value *StrikethroughLabelingNotification
+	isSet bool
+}
+
+func (v NullableStrikethroughLabelingNotification) Get() *StrikethroughLabelingNotification {
+	return v.value
+}
+
+func (v *NullableStrikethroughLabelingNotification) Set(val *StrikethroughLabelingNotification) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v NullableStrikethroughLabelingNotification) IsSet() bool {
+	return v.isSet
+}
+
+func (v *NullableStrikethroughLabelingNotification) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func BuildNullableStrikethroughLabelingNotification(val *StrikethroughLabelingNotification) *NullableStrikethroughLabelingNotification {
+	return &NullableStrikethroughLabelingNotification{value: val, isSet: true}
 }
 
 func (v NullableStrikethroughLabelingNotification) MarshalJSON() ([]byte, error) {
-	switch {
-	case v.ExplicitNull:
-		return []byte("null"), nil
-	default:
-		return json.Marshal(v.Value)
-	}
+	return json.Marshal(v.value)
 }
 
 func (v *NullableStrikethroughLabelingNotification) UnmarshalJSON(src []byte) error {
-	if bytes.Equal(src, []byte("null")) {
-		v.ExplicitNull = true
-		return nil
-	}
-
-	return json.Unmarshal(src, &v.Value)
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
 }
