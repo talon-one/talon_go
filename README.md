@@ -52,7 +52,7 @@ func main() {
 
     // Create integration authentication context using api key
     integrationAuthContext := context.WithValue(context.Background(), talon.ContextAPIKeys, map[string]talon.APIKey{
-        "Authorization": {
+        "api_key_v1": {
             Prefix: "ApiKey-v1",
             Key:    "fd1fd219b1e953a6b2700e8034de5bfc877462ae106127311ddd710978654312",
         },
@@ -180,7 +180,7 @@ func main() {
 
     // Create integration authentication context using the logged-in session
     managerAuthContext := context.WithValue(context.Background(), talon.ContextAPIKeys, map[string]talon.APIKey{
-        "Authorization": talon.APIKey{
+        "api_key_v1": talon.APIKey{
             Prefix: "ManagementKey-v1",
             Key:    "2f0dce055da01ae595005d7d79154bae7448d319d5fc7c5b2951fadd6ba1ea07",
         },
