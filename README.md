@@ -1,7 +1,9 @@
 # Talon.One Go SDK
 
 > [!NOTE]
-The next-gen version of this SDK is available [here](https://github.com/talon-one/talon-one-go-sdk).
+The next-generation version of this SDK is available [here](https://github.com/talon-one/talon-one-go-sdk).
+The new SDK offers significant improvements, including immediate feature parity with the latest Talon.One
+product releases, as well as enhanced security and reliability.
 
 This SDK supports all of the operations of Talon.One's Integration API and Management API.
 
