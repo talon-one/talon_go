@@ -1,5 +1,8 @@
 # Talon.One Go SDK
 
+> [!NOTE]
+The next-gen version of this SDK is available [here](https://github.com/talon-one/talon-one-go-sdk).
+
 This SDK supports all of the operations of Talon.One's Integration API and Management API.
 
 ## Installation
