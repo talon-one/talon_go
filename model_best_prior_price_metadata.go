@@ -15,17 +15,18 @@ import (
 
 // BestPriorPriceMetadata Auxiliary data for found price observation.
 type BestPriorPriceMetadata struct {
-	InfluencingCampaignIDs *[]int64 `json:"influencingCampaignIDs,omitempty"`
-	// Identifier related to the `referenceId` used during a `ADD_PRICE_ADJUSTMENT` action  using the [Sync cart item catalog endpoint](https://docs.talon.one/integration-api#tag/Catalogs/operation/syncCatalog).
-	AdjustmentReferenceID *string `json:"adjustmentReferenceID,omitempty"`
+	// Details about campaigns that influenced the final price.
+	InfluencingCampaignDetails []InfluencingCampaignDetails `json:"influencingCampaignDetails"`
+	AdjustmentDetails          *AdjustmentDetails           `json:"adjustmentDetails,omitempty"`
 }
 
 // NewBestPriorPriceMetadata instantiates a new BestPriorPriceMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildBestPriorPriceMetadata() *BestPriorPriceMetadata {
+func BuildBestPriorPriceMetadata(influencingCampaignDetails []InfluencingCampaignDetails) *BestPriorPriceMetadata {
 	this := BestPriorPriceMetadata{}
+	this.InfluencingCampaignDetails = influencingCampaignDetails
 	return &this
 }
 
@@ -37,77 +38,69 @@ func NewBestPriorPriceMetadataWithDefaults() *BestPriorPriceMetadata {
 	return &this
 }
 
-// GetInfluencingCampaignIDs returns the InfluencingCampaignIDs field value if set, zero value otherwise.
-func (o *BestPriorPriceMetadata) GetInfluencingCampaignIDs() []int64 {
-	if o == nil || o.InfluencingCampaignIDs == nil {
-		var ret []int64
+// GetInfluencingCampaignDetails returns the InfluencingCampaignDetails field value
+func (o *BestPriorPriceMetadata) GetInfluencingCampaignDetails() []InfluencingCampaignDetails {
+	if o == nil {
+		var ret []InfluencingCampaignDetails
 		return ret
 	}
-	return *o.InfluencingCampaignIDs
+
+	return o.InfluencingCampaignDetails
 }
 
-// GetInfluencingCampaignIDsOk returns a tuple with the InfluencingCampaignIDs field value if set, nil otherwise
+// GetInfluencingCampaignDetailsOk returns a tuple with the InfluencingCampaignDetails field value
 // and a boolean to check if the value has been set.
-func (o *BestPriorPriceMetadata) GetInfluencingCampaignIDsOk() (*[]int64, bool) {
-	if o == nil || o.InfluencingCampaignIDs == nil {
+func (o *BestPriorPriceMetadata) GetInfluencingCampaignDetailsOk() (*[]InfluencingCampaignDetails, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.InfluencingCampaignIDs, true
+	return &o.InfluencingCampaignDetails, true
 }
 
-// HasInfluencingCampaignIDs returns a boolean if a field has been set.
-func (o *BestPriorPriceMetadata) HasInfluencingCampaignIDs() bool {
-	if o != nil && o.InfluencingCampaignIDs != nil {
+// SetInfluencingCampaignDetails sets field value
+func (o *BestPriorPriceMetadata) SetInfluencingCampaignDetails(v []InfluencingCampaignDetails) {
+	o.InfluencingCampaignDetails = v
+}
+
+// GetAdjustmentDetails returns the AdjustmentDetails field value if set, zero value otherwise.
+func (o *BestPriorPriceMetadata) GetAdjustmentDetails() AdjustmentDetails {
+	if o == nil || o.AdjustmentDetails == nil {
+		var ret AdjustmentDetails
+		return ret
+	}
+	return *o.AdjustmentDetails
+}
+
+// GetAdjustmentDetailsOk returns a tuple with the AdjustmentDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BestPriorPriceMetadata) GetAdjustmentDetailsOk() (*AdjustmentDetails, bool) {
+	if o == nil || o.AdjustmentDetails == nil {
+		return nil, false
+	}
+	return o.AdjustmentDetails, true
+}
+
+// HasAdjustmentDetails returns a boolean if a field has been set.
+func (o *BestPriorPriceMetadata) HasAdjustmentDetails() bool {
+	if o != nil && o.AdjustmentDetails != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetInfluencingCampaignIDs gets a reference to the given []int64 and assigns it to the InfluencingCampaignIDs field.
-func (o *BestPriorPriceMetadata) SetInfluencingCampaignIDs(v []int64) {
-	o.InfluencingCampaignIDs = &v
-}
-
-// GetAdjustmentReferenceID returns the AdjustmentReferenceID field value if set, zero value otherwise.
-func (o *BestPriorPriceMetadata) GetAdjustmentReferenceID() string {
-	if o == nil || o.AdjustmentReferenceID == nil {
-		var ret string
-		return ret
-	}
-	return *o.AdjustmentReferenceID
-}
-
-// GetAdjustmentReferenceIDOk returns a tuple with the AdjustmentReferenceID field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *BestPriorPriceMetadata) GetAdjustmentReferenceIDOk() (*string, bool) {
-	if o == nil || o.AdjustmentReferenceID == nil {
-		return nil, false
-	}
-	return o.AdjustmentReferenceID, true
-}
-
-// HasAdjustmentReferenceID returns a boolean if a field has been set.
-func (o *BestPriorPriceMetadata) HasAdjustmentReferenceID() bool {
-	if o != nil && o.AdjustmentReferenceID != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAdjustmentReferenceID gets a reference to the given string and assigns it to the AdjustmentReferenceID field.
-func (o *BestPriorPriceMetadata) SetAdjustmentReferenceID(v string) {
-	o.AdjustmentReferenceID = &v
+// SetAdjustmentDetails gets a reference to the given AdjustmentDetails and assigns it to the AdjustmentDetails field.
+func (o *BestPriorPriceMetadata) SetAdjustmentDetails(v AdjustmentDetails) {
+	o.AdjustmentDetails = &v
 }
 
 func (o BestPriorPriceMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.InfluencingCampaignIDs != nil {
-		toSerialize["influencingCampaignIDs"] = o.InfluencingCampaignIDs
+	if true {
+		toSerialize["influencingCampaignDetails"] = o.InfluencingCampaignDetails
 	}
-	if o.AdjustmentReferenceID != nil {
-		toSerialize["adjustmentReferenceID"] = o.AdjustmentReferenceID
+	if o.AdjustmentDetails != nil {
+		toSerialize["adjustmentDetails"] = o.AdjustmentDetails
 	}
 	return json.Marshal(toSerialize)
 }

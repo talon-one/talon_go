@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
 **BundleIndex** | Pointer to **int64** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
 **BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
+**AwaitsActivation** | Pointer to **bool** | If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;.  | [optional] 
+**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, calculated relative to the  activation date.    **Note**: This value is returned only if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set.  | [optional] 
 
 ## Methods
 
@@ -357,6 +359,56 @@ SetBundleName sets BundleName field to given value.
 `func (o *AddLoyaltyPointsEffectProps) HasBundleName() bool`
 
 HasBundleName returns a boolean if a field has been set.
+
+### GetAwaitsActivation
+
+`func (o *AddLoyaltyPointsEffectProps) GetAwaitsActivation() bool`
+
+GetAwaitsActivation returns the AwaitsActivation field if non-nil, zero value otherwise.
+
+### GetAwaitsActivationOk
+
+`func (o *AddLoyaltyPointsEffectProps) GetAwaitsActivationOk() (*bool, bool)`
+
+GetAwaitsActivationOk returns a tuple with the AwaitsActivation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAwaitsActivation
+
+`func (o *AddLoyaltyPointsEffectProps) SetAwaitsActivation(v bool)`
+
+SetAwaitsActivation sets AwaitsActivation field to given value.
+
+### HasAwaitsActivation
+
+`func (o *AddLoyaltyPointsEffectProps) HasAwaitsActivation() bool`
+
+HasAwaitsActivation returns a boolean if a field has been set.
+
+### GetValidityDuration
+
+`func (o *AddLoyaltyPointsEffectProps) GetValidityDuration() string`
+
+GetValidityDuration returns the ValidityDuration field if non-nil, zero value otherwise.
+
+### GetValidityDurationOk
+
+`func (o *AddLoyaltyPointsEffectProps) GetValidityDurationOk() (*string, bool)`
+
+GetValidityDurationOk returns a tuple with the ValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidityDuration
+
+`func (o *AddLoyaltyPointsEffectProps) SetValidityDuration(v string)`
+
+SetValidityDuration sets ValidityDuration field to given value.
+
+### HasValidityDuration
+
+`func (o *AddLoyaltyPointsEffectProps) HasValidityDuration() bool`
+
+HasValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

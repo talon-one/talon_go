@@ -15,17 +15,19 @@ import (
 
 // InlineResponse20020 struct for InlineResponse20020
 type InlineResponse20020 struct {
-	HasMore         *bool                      `json:"hasMore,omitempty"`
-	TotalResultSize *int64                     `json:"totalResultSize,omitempty"`
-	Data            []CollectionWithoutPayload `json:"data"`
+	// true means there is more data in the source collection to request..
+	HasMore bool `json:"hasMore"`
+	// List of loyalty card transaction logs.
+	Data []CardLedgerTransactionLogEntry `json:"data"`
 }
 
 // NewInlineResponse20020 instantiates a new InlineResponse20020 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20020(data []CollectionWithoutPayload) *InlineResponse20020 {
+func BuildInlineResponse20020(hasMore bool, data []CardLedgerTransactionLogEntry) *InlineResponse20020 {
 	this := InlineResponse20020{}
+	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,74 +40,34 @@ func NewInlineResponse20020WithDefaults() *InlineResponse20020 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
+// GetHasMore returns the HasMore field value
 func (o *InlineResponse20020) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.HasMore
+
+	return o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
+// GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
 func (o *InlineResponse20020) GetHasMoreOk() (*bool, bool) {
-	if o == nil || o.HasMore == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.HasMore, true
+	return &o.HasMore, true
 }
 
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20020) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+// SetHasMore sets field value
 func (o *InlineResponse20020) SetHasMore(v bool) {
-	o.HasMore = &v
-}
-
-// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
-func (o *InlineResponse20020) GetTotalResultSize() int64 {
-	if o == nil || o.TotalResultSize == nil {
-		var ret int64
-		return ret
-	}
-	return *o.TotalResultSize
-}
-
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20020) GetTotalResultSizeOk() (*int64, bool) {
-	if o == nil || o.TotalResultSize == nil {
-		return nil, false
-	}
-	return o.TotalResultSize, true
-}
-
-// HasTotalResultSize returns a boolean if a field has been set.
-func (o *InlineResponse20020) HasTotalResultSize() bool {
-	if o != nil && o.TotalResultSize != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
-func (o *InlineResponse20020) SetTotalResultSize(v int64) {
-	o.TotalResultSize = &v
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20020) GetData() []CollectionWithoutPayload {
+func (o *InlineResponse20020) GetData() []CardLedgerTransactionLogEntry {
 	if o == nil {
-		var ret []CollectionWithoutPayload
+		var ret []CardLedgerTransactionLogEntry
 		return ret
 	}
 
@@ -114,7 +76,7 @@ func (o *InlineResponse20020) GetData() []CollectionWithoutPayload {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20020) GetDataOk() (*[]CollectionWithoutPayload, bool) {
+func (o *InlineResponse20020) GetDataOk() (*[]CardLedgerTransactionLogEntry, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,17 +84,14 @@ func (o *InlineResponse20020) GetDataOk() (*[]CollectionWithoutPayload, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20020) SetData(v []CollectionWithoutPayload) {
+func (o *InlineResponse20020) SetData(v []CardLedgerTransactionLogEntry) {
 	o.Data = v
 }
 
 func (o InlineResponse20020) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.HasMore != nil {
+	if true {
 		toSerialize["hasMore"] = o.HasMore
-	}
-	if o.TotalResultSize != nil {
-		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {
 		toSerialize["data"] = o.Data

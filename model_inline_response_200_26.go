@@ -15,16 +15,16 @@ import (
 
 // InlineResponse20026 struct for InlineResponse20026
 type InlineResponse20026 struct {
-	HasMore         *bool             `json:"hasMore,omitempty"`
-	TotalResultSize *int64            `json:"totalResultSize,omitempty"`
-	Data            []CustomerProfile `json:"data"`
+	HasMore         *bool                 `json:"hasMore,omitempty"`
+	TotalResultSize *int64                `json:"totalResultSize,omitempty"`
+	Data            []ApplicationCustomer `json:"data"`
 }
 
 // NewInlineResponse20026 instantiates a new InlineResponse20026 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20026(data []CustomerProfile) *InlineResponse20026 {
+func BuildInlineResponse20026(data []ApplicationCustomer) *InlineResponse20026 {
 	this := InlineResponse20026{}
 	this.Data = data
 	return &this
@@ -103,9 +103,9 @@ func (o *InlineResponse20026) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20026) GetData() []CustomerProfile {
+func (o *InlineResponse20026) GetData() []ApplicationCustomer {
 	if o == nil {
-		var ret []CustomerProfile
+		var ret []ApplicationCustomer
 		return ret
 	}
 
@@ -114,7 +114,7 @@ func (o *InlineResponse20026) GetData() []CustomerProfile {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20026) GetDataOk() (*[]CustomerProfile, bool) {
+func (o *InlineResponse20026) GetDataOk() (*[]ApplicationCustomer, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,7 +122,7 @@ func (o *InlineResponse20026) GetDataOk() (*[]CustomerProfile, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20026) SetData(v []CustomerProfile) {
+func (o *InlineResponse20026) SetData(v []ApplicationCustomer) {
 	o.Data = v
 }
 

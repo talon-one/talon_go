@@ -44,6 +44,8 @@ type CardLedgerTransactionLogEntryIntegrationAPI struct {
 	RulesetId *int64 `json:"rulesetId,omitempty"`
 	// The name of the rule that triggered this effect.
 	RuleName *string `json:"ruleName,omitempty"`
+	// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+	ValidityDuration *string `json:"validityDuration,omitempty"`
 }
 
 // NewCardLedgerTransactionLogEntryIntegrationAPI instantiates a new CardLedgerTransactionLogEntryIntegrationAPI object
@@ -434,6 +436,38 @@ func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetRuleName(v string) {
 	o.RuleName = &v
 }
 
+// GetValidityDuration returns the ValidityDuration field value if set, zero value otherwise.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetValidityDuration() string {
+	if o == nil || o.ValidityDuration == nil {
+		var ret string
+		return ret
+	}
+	return *o.ValidityDuration
+}
+
+// GetValidityDurationOk returns a tuple with the ValidityDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) GetValidityDurationOk() (*string, bool) {
+	if o == nil || o.ValidityDuration == nil {
+		return nil, false
+	}
+	return o.ValidityDuration, true
+}
+
+// HasValidityDuration returns a boolean if a field has been set.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) HasValidityDuration() bool {
+	if o != nil && o.ValidityDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValidityDuration gets a reference to the given string and assigns it to the ValidityDuration field.
+func (o *CardLedgerTransactionLogEntryIntegrationAPI) SetValidityDuration(v string) {
+	o.ValidityDuration = &v
+}
+
 func (o CardLedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -477,6 +511,9 @@ func (o CardLedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, erro
 	}
 	if o.RuleName != nil {
 		toSerialize["ruleName"] = o.RuleName
+	}
+	if o.ValidityDuration != nil {
+		toSerialize["validityDuration"] = o.ValidityDuration
 	}
 	return json.Marshal(toSerialize)
 }

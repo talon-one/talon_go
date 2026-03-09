@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **NumberOfCoupons** | Pointer to **int64** | The number of new coupon codes to generate for the campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons. | 
+**IsReservationMandatory** | Pointer to **bool** | An indication of whether the code can be redeemed only if it has been reserved first. | [optional] [default to false]
 **BatchId** | Pointer to **string** | The batch ID coupons created by this job will bear. | 
 **Status** | Pointer to **string** | The current status of this request. Possible values: - &#x60;pending verification&#x60; - &#x60;pending&#x60; - &#x60;completed&#x60; - &#x60;failed&#x60; - &#x60;coupon pattern full&#x60;  | 
 **CreatedAmount** | Pointer to **int64** | The number of coupon codes that were already created for this request. | 
@@ -330,6 +331,31 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
+
+### GetIsReservationMandatory
+
+`func (o *CouponCreationJob) GetIsReservationMandatory() bool`
+
+GetIsReservationMandatory returns the IsReservationMandatory field if non-nil, zero value otherwise.
+
+### GetIsReservationMandatoryOk
+
+`func (o *CouponCreationJob) GetIsReservationMandatoryOk() (*bool, bool)`
+
+GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsReservationMandatory
+
+`func (o *CouponCreationJob) SetIsReservationMandatory(v bool)`
+
+SetIsReservationMandatory sets IsReservationMandatory field to given value.
+
+### HasIsReservationMandatory
+
+`func (o *CouponCreationJob) HasIsReservationMandatory() bool`
+
+HasIsReservationMandatory returns a boolean if a field has been set.
 
 ### GetBatchId
 

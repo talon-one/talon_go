@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** | true means there is more data in the source collection to request.. | 
-**Data** | Pointer to [**[]CardLedgerTransactionLogEntry**](CardLedgerTransactionLogEntry.md) | List of loyalty card transaction logs. | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]LoyaltyCard**](LoyaltyCard.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20019
 
-`func NewInlineResponse20019(hasMore bool, data []CardLedgerTransactionLogEntry, ) *InlineResponse20019`
+`func NewInlineResponse20019(hasMore bool, data []LoyaltyCard, ) *InlineResponse20019`
 
 NewInlineResponse20019 instantiates a new InlineResponse20019 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20019) GetData() []CardLedgerTransactionLogEntry`
+`func (o *InlineResponse20019) GetData() []LoyaltyCard`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20019) GetDataOk() (*[]CardLedgerTransactionLogEntry, bool)`
+`func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyCard, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20019) SetData(v []CardLedgerTransactionLogEntry)`
+`func (o *InlineResponse20019) SetData(v []LoyaltyCard)`
 
 SetData sets Data field to given value.
 

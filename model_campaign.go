@@ -40,6 +40,8 @@ type Campaign struct {
 	ActiveRulesetId *int64 `json:"activeRulesetId,omitempty"`
 	// A list of tags for the campaign.
 	Tags []string `json:"tags"`
+	// Indicates whether this campaign should be reevaluated when a customer returns an item.
+	ReevaluateOnReturn bool `json:"reevaluateOnReturn"`
 	// The features enabled in this campaign.
 	Features         []string               `json:"features"`
 	CouponSettings   *CodeGeneratorSettings `json:"couponSettings,omitempty"`
@@ -100,6 +102,8 @@ type Campaign struct {
 	StoresImported bool `json:"storesImported"`
 	// A list of value map IDs for the campaign.
 	ValueMapsIds *[]int64 `json:"valueMapsIds,omitempty"`
+	// The ID of the Experiment this Campaign is part of.
+	ExperimentId *int64 `json:"experimentId,omitempty"`
 	// The campaign revision state displayed in the Campaign Manager.
 	RevisionFrontendState *string `json:"revisionFrontendState,omitempty"`
 	// ID of the revision that was last activated on this campaign.
@@ -120,7 +124,7 @@ type Campaign struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCampaign(id int64, created time.Time, applicationId int64, userId int64, name string, description string, state string, tags []string, features []string, limits []LimitConfig, type_ string, frontendState string, storesImported bool) *Campaign {
+func BuildCampaign(id int64, created time.Time, applicationId int64, userId int64, name string, description string, state string, tags []string, reevaluateOnReturn bool, features []string, limits []LimitConfig, type_ string, frontendState string, storesImported bool) *Campaign {
 	this := Campaign{}
 	this.Id = id
 	this.Created = created
@@ -130,6 +134,7 @@ func BuildCampaign(id int64, created time.Time, applicationId int64, userId int6
 	this.Description = description
 	this.State = state
 	this.Tags = tags
+	this.ReevaluateOnReturn = reevaluateOnReturn
 	this.Features = features
 	this.Limits = limits
 	this.Type = type_
@@ -472,6 +477,30 @@ func (o *Campaign) GetTagsOk() (*[]string, bool) {
 // SetTags sets field value
 func (o *Campaign) SetTags(v []string) {
 	o.Tags = v
+}
+
+// GetReevaluateOnReturn returns the ReevaluateOnReturn field value
+func (o *Campaign) GetReevaluateOnReturn() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ReevaluateOnReturn
+}
+
+// GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field value
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetReevaluateOnReturnOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReevaluateOnReturn, true
+}
+
+// SetReevaluateOnReturn sets field value
+func (o *Campaign) SetReevaluateOnReturn(v bool) {
+	o.ReevaluateOnReturn = v
 }
 
 // GetFeatures returns the Features field value
@@ -1426,6 +1455,38 @@ func (o *Campaign) SetValueMapsIds(v []int64) {
 	o.ValueMapsIds = &v
 }
 
+// GetExperimentId returns the ExperimentId field value if set, zero value otherwise.
+func (o *Campaign) GetExperimentId() int64 {
+	if o == nil || o.ExperimentId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ExperimentId
+}
+
+// GetExperimentIdOk returns a tuple with the ExperimentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Campaign) GetExperimentIdOk() (*int64, bool) {
+	if o == nil || o.ExperimentId == nil {
+		return nil, false
+	}
+	return o.ExperimentId, true
+}
+
+// HasExperimentId returns a boolean if a field has been set.
+func (o *Campaign) HasExperimentId() bool {
+	if o != nil && o.ExperimentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExperimentId gets a reference to the given int64 and assigns it to the ExperimentId field.
+func (o *Campaign) SetExperimentId(v int64) {
+	o.ExperimentId = &v
+}
+
 // GetRevisionFrontendState returns the RevisionFrontendState field value if set, zero value otherwise.
 func (o *Campaign) GetRevisionFrontendState() string {
 	if o == nil || o.RevisionFrontendState == nil {
@@ -1689,6 +1750,9 @@ func (o Campaign) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	if true {
+		toSerialize["reevaluateOnReturn"] = o.ReevaluateOnReturn
+	}
+	if true {
 		toSerialize["features"] = o.Features
 	}
 	if o.CouponSettings != nil {
@@ -1780,6 +1844,9 @@ func (o Campaign) MarshalJSON() ([]byte, error) {
 	}
 	if o.ValueMapsIds != nil {
 		toSerialize["valueMapsIds"] = o.ValueMapsIds
+	}
+	if o.ExperimentId != nil {
+		toSerialize["experimentId"] = o.ExperimentId
 	}
 	if o.RevisionFrontendState != nil {
 		toSerialize["revisionFrontendState"] = o.RevisionFrontendState

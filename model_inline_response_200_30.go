@@ -15,17 +15,16 @@ import (
 
 // InlineResponse20030 struct for InlineResponse20030
 type InlineResponse20030 struct {
-	HasMore bool               `json:"hasMore"`
-	Data    []ApplicationEvent `json:"data"`
+	HasMore *bool                `json:"hasMore,omitempty"`
+	Data    []ApplicationSession `json:"data"`
 }
 
 // NewInlineResponse20030 instantiates a new InlineResponse20030 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20030(hasMore bool, data []ApplicationEvent) *InlineResponse20030 {
+func BuildInlineResponse20030(data []ApplicationSession) *InlineResponse20030 {
 	this := InlineResponse20030{}
-	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,34 +37,42 @@ func NewInlineResponse20030WithDefaults() *InlineResponse20030 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
 func (o *InlineResponse20030) GetHasMore() bool {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.HasMore
+	return *o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InlineResponse20030) GetHasMoreOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return o.HasMore, true
 }
 
-// SetHasMore sets field value
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20030) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 func (o *InlineResponse20030) SetHasMore(v bool) {
-	o.HasMore = v
+	o.HasMore = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20030) GetData() []ApplicationEvent {
+func (o *InlineResponse20030) GetData() []ApplicationSession {
 	if o == nil {
-		var ret []ApplicationEvent
+		var ret []ApplicationSession
 		return ret
 	}
 
@@ -74,7 +81,7 @@ func (o *InlineResponse20030) GetData() []ApplicationEvent {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20030) GetDataOk() (*[]ApplicationEvent, bool) {
+func (o *InlineResponse20030) GetDataOk() (*[]ApplicationSession, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,13 +89,13 @@ func (o *InlineResponse20030) GetDataOk() (*[]ApplicationEvent, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20030) SetData(v []ApplicationEvent) {
+func (o *InlineResponse20030) SetData(v []ApplicationSession) {
 	o.Data = v
 }
 
 func (o InlineResponse20030) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.HasMore != nil {
 		toSerialize["hasMore"] = o.HasMore
 	}
 	if true {

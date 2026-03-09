@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**TotalResultSize** | Pointer to **int64** |  | [optional] 
-**Data** | Pointer to [**[]Audience**](Audience.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | 
+**Data** | Pointer to **[]string** |  | 
 
 ## Methods
 
 ### NewInlineResponse20032
 
-`func NewInlineResponse20032(data []Audience, ) *InlineResponse20032`
+`func NewInlineResponse20032(totalResultSize int64, data []string, ) *InlineResponse20032`
 
 NewInlineResponse20032 instantiates a new InlineResponse20032 object
 This constructor will assign default values to properties that have it defined,
@@ -26,31 +25,6 @@ will change when the set of required properties is changed
 NewInlineResponse20032WithDefaults instantiates a new InlineResponse20032 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetHasMore
-
-`func (o *InlineResponse20032) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse20032) GetHasMoreOk() (*bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse20032) SetHasMore(v bool)`
-
-SetHasMore sets HasMore field to given value.
-
-### HasHasMore
-
-`func (o *InlineResponse20032) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
 
 ### GetTotalResultSize
 
@@ -71,28 +45,23 @@ and a boolean to check if the value has been set.
 
 SetTotalResultSize sets TotalResultSize field to given value.
 
-### HasTotalResultSize
-
-`func (o *InlineResponse20032) HasTotalResultSize() bool`
-
-HasTotalResultSize returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20032) GetData() []Audience`
+`func (o *InlineResponse20032) GetData() []string`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20032) GetDataOk() (*[]Audience, bool)`
+`func (o *InlineResponse20032) GetDataOk() (*[]string, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20032) SetData(v []Audience)`
+`func (o *InlineResponse20032) SetData(v []string)`
 
 SetData sets Data field to given value.
 

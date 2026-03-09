@@ -16,14 +16,14 @@ import (
 // InlineResponse20022 struct for InlineResponse20022
 type InlineResponse20022 struct {
 	HasMore bool             `json:"hasMore"`
-	Data    []AccessLogEntry `json:"data"`
+	Data    []CollectionItem `json:"data"`
 }
 
 // NewInlineResponse20022 instantiates a new InlineResponse20022 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20022(hasMore bool, data []AccessLogEntry) *InlineResponse20022 {
+func BuildInlineResponse20022(hasMore bool, data []CollectionItem) *InlineResponse20022 {
 	this := InlineResponse20022{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20022) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20022) GetData() []AccessLogEntry {
+func (o *InlineResponse20022) GetData() []CollectionItem {
 	if o == nil {
-		var ret []AccessLogEntry
+		var ret []CollectionItem
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20022) GetData() []AccessLogEntry {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20022) GetDataOk() (*[]AccessLogEntry, bool) {
+func (o *InlineResponse20022) GetDataOk() (*[]CollectionItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20022) GetDataOk() (*[]AccessLogEntry, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20022) SetData(v []AccessLogEntry) {
+func (o *InlineResponse20022) SetData(v []CollectionItem) {
 	o.Data = v
 }
 

@@ -29,6 +29,8 @@ type NewCampaignTemplate struct {
 	State string `json:"state"`
 	// A list of tags for the campaign template.
 	Tags *[]string `json:"tags,omitempty"`
+	// Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
+	ReevaluateOnReturn *bool `json:"reevaluateOnReturn,omitempty"`
 	// A list of features for the campaign template.
 	Features                  *[]string                                  `json:"features,omitempty"`
 	CouponSettings            *CodeGeneratorSettings                     `json:"couponSettings,omitempty"`
@@ -260,6 +262,38 @@ func (o *NewCampaignTemplate) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *NewCampaignTemplate) SetTags(v []string) {
 	o.Tags = &v
+}
+
+// GetReevaluateOnReturn returns the ReevaluateOnReturn field value if set, zero value otherwise.
+func (o *NewCampaignTemplate) GetReevaluateOnReturn() bool {
+	if o == nil || o.ReevaluateOnReturn == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ReevaluateOnReturn
+}
+
+// GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCampaignTemplate) GetReevaluateOnReturnOk() (*bool, bool) {
+	if o == nil || o.ReevaluateOnReturn == nil {
+		return nil, false
+	}
+	return o.ReevaluateOnReturn, true
+}
+
+// HasReevaluateOnReturn returns a boolean if a field has been set.
+func (o *NewCampaignTemplate) HasReevaluateOnReturn() bool {
+	if o != nil && o.ReevaluateOnReturn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReevaluateOnReturn gets a reference to the given bool and assigns it to the ReevaluateOnReturn field.
+func (o *NewCampaignTemplate) SetReevaluateOnReturn(v bool) {
+	o.ReevaluateOnReturn = &v
 }
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
@@ -564,6 +598,9 @@ func (o NewCampaignTemplate) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.ReevaluateOnReturn != nil {
+		toSerialize["reevaluateOnReturn"] = o.ReevaluateOnReturn
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features

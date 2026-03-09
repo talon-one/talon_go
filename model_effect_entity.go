@@ -15,6 +15,8 @@ import (
 
 // EffectEntity Definition of all properties that are present on all effects, independent of their type.
 type EffectEntity struct {
+	// The ID of the experiment that campaign belongs to.
+	ExperimentId *int64 `json:"experimentId,omitempty"`
 	// The ID of the campaign that triggered this effect.
 	CampaignId int64 `json:"campaignId"`
 	// The ID of the ruleset that was active in the campaign when this effect was triggered.
@@ -67,6 +69,38 @@ func BuildEffectEntity(campaignId int64, rulesetId int64, ruleIndex int64, ruleN
 func NewEffectEntityWithDefaults() *EffectEntity {
 	this := EffectEntity{}
 	return &this
+}
+
+// GetExperimentId returns the ExperimentId field value if set, zero value otherwise.
+func (o *EffectEntity) GetExperimentId() int64 {
+	if o == nil || o.ExperimentId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ExperimentId
+}
+
+// GetExperimentIdOk returns a tuple with the ExperimentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetExperimentIdOk() (*int64, bool) {
+	if o == nil || o.ExperimentId == nil {
+		return nil, false
+	}
+	return o.ExperimentId, true
+}
+
+// HasExperimentId returns a boolean if a field has been set.
+func (o *EffectEntity) HasExperimentId() bool {
+	if o != nil && o.ExperimentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExperimentId gets a reference to the given int64 and assigns it to the ExperimentId field.
+func (o *EffectEntity) SetExperimentId(v int64) {
+	o.ExperimentId = &v
 }
 
 // GetCampaignId returns the CampaignId field value
@@ -511,6 +545,9 @@ func (o *EffectEntity) SetAdjustmentReferenceId(v string) {
 
 func (o EffectEntity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ExperimentId != nil {
+		toSerialize["experimentId"] = o.ExperimentId
+	}
 	if true {
 		toSerialize["campaignId"] = o.CampaignId
 	}

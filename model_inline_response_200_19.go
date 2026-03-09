@@ -15,17 +15,15 @@ import (
 
 // InlineResponse20019 struct for InlineResponse20019
 type InlineResponse20019 struct {
-	// true means there is more data in the source collection to request..
-	HasMore bool `json:"hasMore"`
-	// List of loyalty card transaction logs.
-	Data []CardLedgerTransactionLogEntry `json:"data"`
+	HasMore bool          `json:"hasMore"`
+	Data    []LoyaltyCard `json:"data"`
 }
 
 // NewInlineResponse20019 instantiates a new InlineResponse20019 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20019(hasMore bool, data []CardLedgerTransactionLogEntry) *InlineResponse20019 {
+func BuildInlineResponse20019(hasMore bool, data []LoyaltyCard) *InlineResponse20019 {
 	this := InlineResponse20019{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -65,9 +63,9 @@ func (o *InlineResponse20019) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20019) GetData() []CardLedgerTransactionLogEntry {
+func (o *InlineResponse20019) GetData() []LoyaltyCard {
 	if o == nil {
-		var ret []CardLedgerTransactionLogEntry
+		var ret []LoyaltyCard
 		return ret
 	}
 
@@ -76,7 +74,7 @@ func (o *InlineResponse20019) GetData() []CardLedgerTransactionLogEntry {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20019) GetDataOk() (*[]CardLedgerTransactionLogEntry, bool) {
+func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyCard, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +82,7 @@ func (o *InlineResponse20019) GetDataOk() (*[]CardLedgerTransactionLogEntry, boo
 }
 
 // SetData sets field value
-func (o *InlineResponse20019) SetData(v []CardLedgerTransactionLogEntry) {
+func (o *InlineResponse20019) SetData(v []LoyaltyCard) {
 	o.Data = v
 }
 

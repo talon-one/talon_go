@@ -16,51 +16,54 @@ import (
 
 // AddedDeductedPointsNotification struct for AddedDeductedPointsNotification
 type AddedDeductedPointsNotification struct {
-	// The integration ID of the customer profile to whom points were added or deducted.
-	ProfileIntegrationID string `json:"ProfileIntegrationID"`
-	// The ID of the loyalty program.
-	LoyaltyProgramID int64 `json:"LoyaltyProgramID"`
-	// The ID of the subledger within the loyalty program where these points were added.
-	SubledgerID string `json:"SubledgerID"`
-	// The amount of added or deducted loyalty points.
-	Amount float32 `json:"Amount"`
-	// The reason for the points addition or deduction.
-	Reason string `json:"Reason"`
-	// The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
-	TypeOfChange string `json:"TypeOfChange"`
 	// The name of the employee who added or deducted points.
 	EmployeeName string `json:"EmployeeName"`
-	// The ID of the employee who added or deducted points.
-	UserID int64 `json:"UserID"`
-	// The action (addition or deduction) made with loyalty points.
-	Operation string `json:"Operation"`
-	// The start date for loyalty points.
-	StartDate *time.Time `json:"StartDate,omitempty"`
-	// The expiration date for loyalty points.
-	ExpiryDate *time.Time `json:"ExpiryDate,omitempty"`
-	// The integration ID of the session through which the points were earned or lost.
-	SessionIntegrationID string `json:"SessionIntegrationID"`
+	// The ID of the loyalty program.
+	LoyaltyProgramID int64 `json:"LoyaltyProgramID"`
 	// The type of notification.
 	NotificationType string `json:"NotificationType"`
+	// The integration ID of the customer profile to whom points were added or deducted.
+	ProfileIntegrationID string `json:"ProfileIntegrationID"`
+	// The integration ID of the session through which the points were earned or lost.
+	SessionIntegrationID string `json:"SessionIntegrationID"`
+	// The ID of the subledger within the loyalty program where these points were added.
+	SubledgerID string `json:"SubledgerID"`
+	// The notification source, that is, it indicates whether the points were added or deducted via one of the following routes:  - [The Campaign Manager](/docs/product/getting-started)  - [Management API](/management-api#tag/Loyalty)  - [Rule Engine](/docs/product/applications/evaluation-order-for-rules-and-filters)
+	TypeOfChange string `json:"TypeOfChange"`
+	// The ID of the employee who added or deducted points.
+	UserID int64 `json:"UserID"`
+	// The amount of added or deducted loyalty points.
+	Amount float32 `json:"Amount"`
+	// The expiration date for loyalty points.
+	ExpiryDate *time.Time `json:"ExpiryDate,omitempty"`
+	// The action (addition or deduction) made with loyalty points.
+	Operation string `json:"Operation"`
+	// The reason for the points addition or deduction.
+	Reason string `json:"Reason"`
+	// The start date for loyalty points.
+	StartDate *time.Time `json:"StartDate,omitempty"`
+	// The identifier of the transaction in the loyalty ledger.
+	TransactionUUID string `json:"TransactionUUID"`
 }
 
 // NewAddedDeductedPointsNotification instantiates a new AddedDeductedPointsNotification object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildAddedDeductedPointsNotification(profileIntegrationID string, loyaltyProgramID int64, subledgerID string, amount float32, reason string, typeOfChange string, employeeName string, userID int64, operation string, sessionIntegrationID string, notificationType string) *AddedDeductedPointsNotification {
+func BuildAddedDeductedPointsNotification(employeeName string, loyaltyProgramID int64, notificationType string, profileIntegrationID string, sessionIntegrationID string, subledgerID string, typeOfChange string, userID int64, amount float32, operation string, reason string, transactionUUID string) *AddedDeductedPointsNotification {
 	this := AddedDeductedPointsNotification{}
-	this.ProfileIntegrationID = profileIntegrationID
-	this.LoyaltyProgramID = loyaltyProgramID
-	this.SubledgerID = subledgerID
-	this.Amount = amount
-	this.Reason = reason
-	this.TypeOfChange = typeOfChange
 	this.EmployeeName = employeeName
-	this.UserID = userID
-	this.Operation = operation
-	this.SessionIntegrationID = sessionIntegrationID
+	this.LoyaltyProgramID = loyaltyProgramID
 	this.NotificationType = notificationType
+	this.ProfileIntegrationID = profileIntegrationID
+	this.SessionIntegrationID = sessionIntegrationID
+	this.SubledgerID = subledgerID
+	this.TypeOfChange = typeOfChange
+	this.UserID = userID
+	this.Amount = amount
+	this.Operation = operation
+	this.Reason = reason
+	this.TransactionUUID = transactionUUID
 	return &this
 }
 
@@ -70,150 +73,6 @@ func BuildAddedDeductedPointsNotification(profileIntegrationID string, loyaltyPr
 func NewAddedDeductedPointsNotificationWithDefaults() *AddedDeductedPointsNotification {
 	this := AddedDeductedPointsNotification{}
 	return &this
-}
-
-// GetProfileIntegrationID returns the ProfileIntegrationID field value
-func (o *AddedDeductedPointsNotification) GetProfileIntegrationID() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ProfileIntegrationID
-}
-
-// GetProfileIntegrationIDOk returns a tuple with the ProfileIntegrationID field value
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetProfileIntegrationIDOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ProfileIntegrationID, true
-}
-
-// SetProfileIntegrationID sets field value
-func (o *AddedDeductedPointsNotification) SetProfileIntegrationID(v string) {
-	o.ProfileIntegrationID = v
-}
-
-// GetLoyaltyProgramID returns the LoyaltyProgramID field value
-func (o *AddedDeductedPointsNotification) GetLoyaltyProgramID() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.LoyaltyProgramID
-}
-
-// GetLoyaltyProgramIDOk returns a tuple with the LoyaltyProgramID field value
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetLoyaltyProgramIDOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.LoyaltyProgramID, true
-}
-
-// SetLoyaltyProgramID sets field value
-func (o *AddedDeductedPointsNotification) SetLoyaltyProgramID(v int64) {
-	o.LoyaltyProgramID = v
-}
-
-// GetSubledgerID returns the SubledgerID field value
-func (o *AddedDeductedPointsNotification) GetSubledgerID() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.SubledgerID
-}
-
-// GetSubledgerIDOk returns a tuple with the SubledgerID field value
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetSubledgerIDOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SubledgerID, true
-}
-
-// SetSubledgerID sets field value
-func (o *AddedDeductedPointsNotification) SetSubledgerID(v string) {
-	o.SubledgerID = v
-}
-
-// GetAmount returns the Amount field value
-func (o *AddedDeductedPointsNotification) GetAmount() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Amount
-}
-
-// GetAmountOk returns a tuple with the Amount field value
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetAmountOk() (*float32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Amount, true
-}
-
-// SetAmount sets field value
-func (o *AddedDeductedPointsNotification) SetAmount(v float32) {
-	o.Amount = v
-}
-
-// GetReason returns the Reason field value
-func (o *AddedDeductedPointsNotification) GetReason() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Reason
-}
-
-// GetReasonOk returns a tuple with the Reason field value
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetReasonOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Reason, true
-}
-
-// SetReason sets field value
-func (o *AddedDeductedPointsNotification) SetReason(v string) {
-	o.Reason = v
-}
-
-// GetTypeOfChange returns the TypeOfChange field value
-func (o *AddedDeductedPointsNotification) GetTypeOfChange() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.TypeOfChange
-}
-
-// GetTypeOfChangeOk returns a tuple with the TypeOfChange field value
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetTypeOfChangeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TypeOfChange, true
-}
-
-// SetTypeOfChange sets field value
-func (o *AddedDeductedPointsNotification) SetTypeOfChange(v string) {
-	o.TypeOfChange = v
 }
 
 // GetEmployeeName returns the EmployeeName field value
@@ -240,6 +99,150 @@ func (o *AddedDeductedPointsNotification) SetEmployeeName(v string) {
 	o.EmployeeName = v
 }
 
+// GetLoyaltyProgramID returns the LoyaltyProgramID field value
+func (o *AddedDeductedPointsNotification) GetLoyaltyProgramID() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.LoyaltyProgramID
+}
+
+// GetLoyaltyProgramIDOk returns a tuple with the LoyaltyProgramID field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetLoyaltyProgramIDOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoyaltyProgramID, true
+}
+
+// SetLoyaltyProgramID sets field value
+func (o *AddedDeductedPointsNotification) SetLoyaltyProgramID(v int64) {
+	o.LoyaltyProgramID = v
+}
+
+// GetNotificationType returns the NotificationType field value
+func (o *AddedDeductedPointsNotification) GetNotificationType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.NotificationType
+}
+
+// GetNotificationTypeOk returns a tuple with the NotificationType field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetNotificationTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NotificationType, true
+}
+
+// SetNotificationType sets field value
+func (o *AddedDeductedPointsNotification) SetNotificationType(v string) {
+	o.NotificationType = v
+}
+
+// GetProfileIntegrationID returns the ProfileIntegrationID field value
+func (o *AddedDeductedPointsNotification) GetProfileIntegrationID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ProfileIntegrationID
+}
+
+// GetProfileIntegrationIDOk returns a tuple with the ProfileIntegrationID field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetProfileIntegrationIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ProfileIntegrationID, true
+}
+
+// SetProfileIntegrationID sets field value
+func (o *AddedDeductedPointsNotification) SetProfileIntegrationID(v string) {
+	o.ProfileIntegrationID = v
+}
+
+// GetSessionIntegrationID returns the SessionIntegrationID field value
+func (o *AddedDeductedPointsNotification) GetSessionIntegrationID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SessionIntegrationID
+}
+
+// GetSessionIntegrationIDOk returns a tuple with the SessionIntegrationID field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetSessionIntegrationIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SessionIntegrationID, true
+}
+
+// SetSessionIntegrationID sets field value
+func (o *AddedDeductedPointsNotification) SetSessionIntegrationID(v string) {
+	o.SessionIntegrationID = v
+}
+
+// GetSubledgerID returns the SubledgerID field value
+func (o *AddedDeductedPointsNotification) GetSubledgerID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.SubledgerID
+}
+
+// GetSubledgerIDOk returns a tuple with the SubledgerID field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetSubledgerIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.SubledgerID, true
+}
+
+// SetSubledgerID sets field value
+func (o *AddedDeductedPointsNotification) SetSubledgerID(v string) {
+	o.SubledgerID = v
+}
+
+// GetTypeOfChange returns the TypeOfChange field value
+func (o *AddedDeductedPointsNotification) GetTypeOfChange() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TypeOfChange
+}
+
+// GetTypeOfChangeOk returns a tuple with the TypeOfChange field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetTypeOfChangeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TypeOfChange, true
+}
+
+// SetTypeOfChange sets field value
+func (o *AddedDeductedPointsNotification) SetTypeOfChange(v string) {
+	o.TypeOfChange = v
+}
+
 // GetUserID returns the UserID field value
 func (o *AddedDeductedPointsNotification) GetUserID() int64 {
 	if o == nil {
@@ -264,60 +267,28 @@ func (o *AddedDeductedPointsNotification) SetUserID(v int64) {
 	o.UserID = v
 }
 
-// GetOperation returns the Operation field value
-func (o *AddedDeductedPointsNotification) GetOperation() string {
+// GetAmount returns the Amount field value
+func (o *AddedDeductedPointsNotification) GetAmount() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
-	return o.Operation
+	return o.Amount
 }
 
-// GetOperationOk returns a tuple with the Operation field value
+// GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetOperationOk() (*string, bool) {
+func (o *AddedDeductedPointsNotification) GetAmountOk() (*float32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Operation, true
+	return &o.Amount, true
 }
 
-// SetOperation sets field value
-func (o *AddedDeductedPointsNotification) SetOperation(v string) {
-	o.Operation = v
-}
-
-// GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *AddedDeductedPointsNotification) GetStartDate() time.Time {
-	if o == nil || o.StartDate == nil {
-		var ret time.Time
-		return ret
-	}
-	return *o.StartDate
-}
-
-// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetStartDateOk() (*time.Time, bool) {
-	if o == nil || o.StartDate == nil {
-		return nil, false
-	}
-	return o.StartDate, true
-}
-
-// HasStartDate returns a boolean if a field has been set.
-func (o *AddedDeductedPointsNotification) HasStartDate() bool {
-	if o != nil && o.StartDate != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
-func (o *AddedDeductedPointsNotification) SetStartDate(v time.Time) {
-	o.StartDate = &v
+// SetAmount sets field value
+func (o *AddedDeductedPointsNotification) SetAmount(v float32) {
+	o.Amount = v
 }
 
 // GetExpiryDate returns the ExpiryDate field value if set, zero value otherwise.
@@ -352,94 +323,153 @@ func (o *AddedDeductedPointsNotification) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
 }
 
-// GetSessionIntegrationID returns the SessionIntegrationID field value
-func (o *AddedDeductedPointsNotification) GetSessionIntegrationID() string {
+// GetOperation returns the Operation field value
+func (o *AddedDeductedPointsNotification) GetOperation() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.SessionIntegrationID
+	return o.Operation
 }
 
-// GetSessionIntegrationIDOk returns a tuple with the SessionIntegrationID field value
+// GetOperationOk returns a tuple with the Operation field value
 // and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetSessionIntegrationIDOk() (*string, bool) {
+func (o *AddedDeductedPointsNotification) GetOperationOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SessionIntegrationID, true
+	return &o.Operation, true
 }
 
-// SetSessionIntegrationID sets field value
-func (o *AddedDeductedPointsNotification) SetSessionIntegrationID(v string) {
-	o.SessionIntegrationID = v
+// SetOperation sets field value
+func (o *AddedDeductedPointsNotification) SetOperation(v string) {
+	o.Operation = v
 }
 
-// GetNotificationType returns the NotificationType field value
-func (o *AddedDeductedPointsNotification) GetNotificationType() string {
+// GetReason returns the Reason field value
+func (o *AddedDeductedPointsNotification) GetReason() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.NotificationType
+	return o.Reason
 }
 
-// GetNotificationTypeOk returns a tuple with the NotificationType field value
+// GetReasonOk returns a tuple with the Reason field value
 // and a boolean to check if the value has been set.
-func (o *AddedDeductedPointsNotification) GetNotificationTypeOk() (*string, bool) {
+func (o *AddedDeductedPointsNotification) GetReasonOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.NotificationType, true
+	return &o.Reason, true
 }
 
-// SetNotificationType sets field value
-func (o *AddedDeductedPointsNotification) SetNotificationType(v string) {
-	o.NotificationType = v
+// SetReason sets field value
+func (o *AddedDeductedPointsNotification) SetReason(v string) {
+	o.Reason = v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *AddedDeductedPointsNotification) GetStartDate() time.Time {
+	if o == nil || o.StartDate == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetStartDateOk() (*time.Time, bool) {
+	if o == nil || o.StartDate == nil {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *AddedDeductedPointsNotification) HasStartDate() bool {
+	if o != nil && o.StartDate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
+func (o *AddedDeductedPointsNotification) SetStartDate(v time.Time) {
+	o.StartDate = &v
+}
+
+// GetTransactionUUID returns the TransactionUUID field value
+func (o *AddedDeductedPointsNotification) GetTransactionUUID() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.TransactionUUID
+}
+
+// GetTransactionUUIDOk returns a tuple with the TransactionUUID field value
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsNotification) GetTransactionUUIDOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TransactionUUID, true
+}
+
+// SetTransactionUUID sets field value
+func (o *AddedDeductedPointsNotification) SetTransactionUUID(v string) {
+	o.TransactionUUID = v
 }
 
 func (o AddedDeductedPointsNotification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["ProfileIntegrationID"] = o.ProfileIntegrationID
+		toSerialize["EmployeeName"] = o.EmployeeName
 	}
 	if true {
 		toSerialize["LoyaltyProgramID"] = o.LoyaltyProgramID
 	}
 	if true {
-		toSerialize["SubledgerID"] = o.SubledgerID
+		toSerialize["NotificationType"] = o.NotificationType
 	}
 	if true {
-		toSerialize["Amount"] = o.Amount
-	}
-	if true {
-		toSerialize["Reason"] = o.Reason
-	}
-	if true {
-		toSerialize["TypeOfChange"] = o.TypeOfChange
-	}
-	if true {
-		toSerialize["EmployeeName"] = o.EmployeeName
-	}
-	if true {
-		toSerialize["UserID"] = o.UserID
-	}
-	if true {
-		toSerialize["Operation"] = o.Operation
-	}
-	if o.StartDate != nil {
-		toSerialize["StartDate"] = o.StartDate
-	}
-	if o.ExpiryDate != nil {
-		toSerialize["ExpiryDate"] = o.ExpiryDate
+		toSerialize["ProfileIntegrationID"] = o.ProfileIntegrationID
 	}
 	if true {
 		toSerialize["SessionIntegrationID"] = o.SessionIntegrationID
 	}
 	if true {
-		toSerialize["NotificationType"] = o.NotificationType
+		toSerialize["SubledgerID"] = o.SubledgerID
+	}
+	if true {
+		toSerialize["TypeOfChange"] = o.TypeOfChange
+	}
+	if true {
+		toSerialize["UserID"] = o.UserID
+	}
+	if true {
+		toSerialize["Amount"] = o.Amount
+	}
+	if o.ExpiryDate != nil {
+		toSerialize["ExpiryDate"] = o.ExpiryDate
+	}
+	if true {
+		toSerialize["Operation"] = o.Operation
+	}
+	if true {
+		toSerialize["Reason"] = o.Reason
+	}
+	if o.StartDate != nil {
+		toSerialize["StartDate"] = o.StartDate
+	}
+	if true {
+		toSerialize["TransactionUUID"] = o.TransactionUUID
 	}
 	return json.Marshal(toSerialize)
 }

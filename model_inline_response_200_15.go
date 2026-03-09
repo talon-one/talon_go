@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20015 struct for InlineResponse20015
 type InlineResponse20015 struct {
-	TotalResultSize int64            `json:"totalResultSize"`
-	Data            []LoyaltyProgram `json:"data"`
+	TotalResultSize int64        `json:"totalResultSize"`
+	Data            []Experiment `json:"data"`
 }
 
 // NewInlineResponse20015 instantiates a new InlineResponse20015 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20015(totalResultSize int64, data []LoyaltyProgram) *InlineResponse20015 {
+func BuildInlineResponse20015(totalResultSize int64, data []Experiment) *InlineResponse20015 {
 	this := InlineResponse20015{}
 	this.TotalResultSize = totalResultSize
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20015) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20015) GetData() []LoyaltyProgram {
+func (o *InlineResponse20015) GetData() []Experiment {
 	if o == nil {
-		var ret []LoyaltyProgram
+		var ret []Experiment
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20015) GetData() []LoyaltyProgram {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20015) GetDataOk() (*[]LoyaltyProgram, bool) {
+func (o *InlineResponse20015) GetDataOk() (*[]Experiment, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20015) GetDataOk() (*[]LoyaltyProgram, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20015) SetData(v []LoyaltyProgram) {
+func (o *InlineResponse20015) SetData(v []Experiment) {
 	o.Data = v
 }
 

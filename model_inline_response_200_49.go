@@ -15,17 +15,16 @@ import (
 
 // InlineResponse20049 struct for InlineResponse20049
 type InlineResponse20049 struct {
-	HasMore bool                                `json:"hasMore"`
-	Data    []AchievementProgressWithDefinition `json:"data"`
+	HasMore *bool         `json:"hasMore,omitempty"`
+	Data    []Achievement `json:"data"`
 }
 
 // NewInlineResponse20049 instantiates a new InlineResponse20049 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20049(hasMore bool, data []AchievementProgressWithDefinition) *InlineResponse20049 {
+func BuildInlineResponse20049(data []Achievement) *InlineResponse20049 {
 	this := InlineResponse20049{}
-	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,34 +37,42 @@ func NewInlineResponse20049WithDefaults() *InlineResponse20049 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
 func (o *InlineResponse20049) GetHasMore() bool {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.HasMore
+	return *o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InlineResponse20049) GetHasMoreOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return o.HasMore, true
 }
 
-// SetHasMore sets field value
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20049) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 func (o *InlineResponse20049) SetHasMore(v bool) {
-	o.HasMore = v
+	o.HasMore = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20049) GetData() []AchievementProgressWithDefinition {
+func (o *InlineResponse20049) GetData() []Achievement {
 	if o == nil {
-		var ret []AchievementProgressWithDefinition
+		var ret []Achievement
 		return ret
 	}
 
@@ -74,7 +81,7 @@ func (o *InlineResponse20049) GetData() []AchievementProgressWithDefinition {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20049) GetDataOk() (*[]AchievementProgressWithDefinition, bool) {
+func (o *InlineResponse20049) GetDataOk() (*[]Achievement, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,13 +89,13 @@ func (o *InlineResponse20049) GetDataOk() (*[]AchievementProgressWithDefinition,
 }
 
 // SetData sets field value
-func (o *InlineResponse20049) SetData(v []AchievementProgressWithDefinition) {
+func (o *InlineResponse20049) SetData(v []Achievement) {
 	o.Data = v
 }
 
 func (o InlineResponse20049) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.HasMore != nil {
 		toSerialize["hasMore"] = o.HasMore
 	}
 	if true {

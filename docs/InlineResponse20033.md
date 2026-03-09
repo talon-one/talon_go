@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]AudienceAnalytics**](AudienceAnalytics.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | [optional] 
+**Data** | Pointer to [**[]Audience**](Audience.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20033
 
-`func NewInlineResponse20033(data []AudienceAnalytics, ) *InlineResponse20033`
+`func NewInlineResponse20033(data []Audience, ) *InlineResponse20033`
 
 NewInlineResponse20033 instantiates a new InlineResponse20033 object
 This constructor will assign default values to properties that have it defined,
@@ -51,22 +52,47 @@ SetHasMore sets HasMore field to given value.
 
 HasHasMore returns a boolean if a field has been set.
 
+### GetTotalResultSize
+
+`func (o *InlineResponse20033) GetTotalResultSize() int64`
+
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+
+### GetTotalResultSizeOk
+
+`func (o *InlineResponse20033) GetTotalResultSizeOk() (*int64, bool)`
+
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalResultSize
+
+`func (o *InlineResponse20033) SetTotalResultSize(v int64)`
+
+SetTotalResultSize sets TotalResultSize field to given value.
+
+### HasTotalResultSize
+
+`func (o *InlineResponse20033) HasTotalResultSize() bool`
+
+HasTotalResultSize returns a boolean if a field has been set.
+
 ### GetData
 
-`func (o *InlineResponse20033) GetData() []AudienceAnalytics`
+`func (o *InlineResponse20033) GetData() []Audience`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20033) GetDataOk() (*[]AudienceAnalytics, bool)`
+`func (o *InlineResponse20033) GetDataOk() (*[]Audience, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20033) SetData(v []AudienceAnalytics)`
+`func (o *InlineResponse20033) SetData(v []Audience)`
 
 SetData sets Data field to given value.
 

@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | Pointer to **int64** | The ID of the historical price. | 
 **Sku** | Pointer to **string** | sku | 
-**ObservedAt** | Pointer to [**time.Time**](time.Time.md) | The date and time when the best price was observed. | 
+**ObservedAt** | Pointer to [**time.Time**](time.Time.md) | The date and time when the price was observed. | 
 **ContextId** | Pointer to **string** | The context ID of the context active at the time of observation.  | 
 **Price** | Pointer to **float32** | Price of the item. | 
 **Metadata** | Pointer to [**BestPriorPriceMetadata**](BestPriorPriceMetadata.md) |  | 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewBestPriorPrice
 
-`func NewBestPriorPrice(sku string, observedAt time.Time, contextId string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}, ) *BestPriorPrice`
+`func NewBestPriorPrice(id int64, sku string, observedAt time.Time, contextId string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}, ) *BestPriorPrice`
 
 NewBestPriorPrice instantiates a new BestPriorPrice object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +30,26 @@ will change when the set of required properties is changed
 NewBestPriorPriceWithDefaults instantiates a new BestPriorPrice object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *BestPriorPrice) GetId() int64`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *BestPriorPrice) GetIdOk() (*int64, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *BestPriorPrice) SetId(v int64)`
+
+SetId sets Id field to given value.
+
 
 ### GetSku
 

@@ -40,6 +40,8 @@ type CustomerSessionV2 struct {
 	State string `json:"state"`
 	// The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
 	CartItems []CartItem `json:"cartItems"`
+	// The experiment variant allocations to add to this session.
+	ExperimentVariantAllocations *[]ExperimentVariantAllocation `json:"experimentVariantAllocations,omitempty"`
 	// Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).
 	AdditionalCosts *map[string]AdditionalCost `json:"additionalCosts,omitempty"`
 	// Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value.
@@ -48,6 +50,8 @@ type CustomerSessionV2 struct {
 	Attributes map[string]interface{} `json:"attributes"`
 	// Indicates whether this is the first session for the customer's profile. It's always `true` for anonymous sessions.
 	FirstSession bool `json:"firstSession"`
+	// The number of times the session was updated. When the session is created, this value is initialized to `1`.
+	UpdateCount int64 `json:"updateCount"`
 	// The total value of cart items and additional costs in the session, before any discounts are applied.
 	Total float32 `json:"total"`
 	// The total value of cart items, before any discounts are applied.
@@ -62,7 +66,7 @@ type CustomerSessionV2 struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, total float32, cartItemTotal float32, additionalCostTotal float32, updated time.Time) *CustomerSessionV2 {
+func BuildCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, updateCount int64, total float32, cartItemTotal float32, additionalCostTotal float32, updated time.Time) *CustomerSessionV2 {
 	this := CustomerSessionV2{}
 	this.Id = id
 	this.Created = created
@@ -73,6 +77,7 @@ func BuildCustomerSessionV2(id int64, created time.Time, integrationId string, a
 	this.CartItems = cartItems
 	this.Attributes = attributes
 	this.FirstSession = firstSession
+	this.UpdateCount = updateCount
 	this.Total = total
 	this.CartItemTotal = cartItemTotal
 	this.AdditionalCostTotal = additionalCostTotal
@@ -418,6 +423,38 @@ func (o *CustomerSessionV2) SetCartItems(v []CartItem) {
 	o.CartItems = v
 }
 
+// GetExperimentVariantAllocations returns the ExperimentVariantAllocations field value if set, zero value otherwise.
+func (o *CustomerSessionV2) GetExperimentVariantAllocations() []ExperimentVariantAllocation {
+	if o == nil || o.ExperimentVariantAllocations == nil {
+		var ret []ExperimentVariantAllocation
+		return ret
+	}
+	return *o.ExperimentVariantAllocations
+}
+
+// GetExperimentVariantAllocationsOk returns a tuple with the ExperimentVariantAllocations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerSessionV2) GetExperimentVariantAllocationsOk() (*[]ExperimentVariantAllocation, bool) {
+	if o == nil || o.ExperimentVariantAllocations == nil {
+		return nil, false
+	}
+	return o.ExperimentVariantAllocations, true
+}
+
+// HasExperimentVariantAllocations returns a boolean if a field has been set.
+func (o *CustomerSessionV2) HasExperimentVariantAllocations() bool {
+	if o != nil && o.ExperimentVariantAllocations != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExperimentVariantAllocations gets a reference to the given []ExperimentVariantAllocation and assigns it to the ExperimentVariantAllocations field.
+func (o *CustomerSessionV2) SetExperimentVariantAllocations(v []ExperimentVariantAllocation) {
+	o.ExperimentVariantAllocations = &v
+}
+
 // GetAdditionalCosts returns the AdditionalCosts field value if set, zero value otherwise.
 func (o *CustomerSessionV2) GetAdditionalCosts() map[string]AdditionalCost {
 	if o == nil || o.AdditionalCosts == nil {
@@ -528,6 +565,30 @@ func (o *CustomerSessionV2) GetFirstSessionOk() (*bool, bool) {
 // SetFirstSession sets field value
 func (o *CustomerSessionV2) SetFirstSession(v bool) {
 	o.FirstSession = v
+}
+
+// GetUpdateCount returns the UpdateCount field value
+func (o *CustomerSessionV2) GetUpdateCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.UpdateCount
+}
+
+// GetUpdateCountOk returns a tuple with the UpdateCount field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSessionV2) GetUpdateCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdateCount, true
+}
+
+// SetUpdateCount sets field value
+func (o *CustomerSessionV2) SetUpdateCount(v int64) {
+	o.UpdateCount = v
 }
 
 // GetTotal returns the Total field value
@@ -664,6 +725,9 @@ func (o CustomerSessionV2) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["cartItems"] = o.CartItems
 	}
+	if o.ExperimentVariantAllocations != nil {
+		toSerialize["experimentVariantAllocations"] = o.ExperimentVariantAllocations
+	}
 	if o.AdditionalCosts != nil {
 		toSerialize["additionalCosts"] = o.AdditionalCosts
 	}
@@ -675,6 +739,9 @@ func (o CustomerSessionV2) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["firstSession"] = o.FirstSession
+	}
+	if true {
+		toSerialize["updateCount"] = o.UpdateCount
 	}
 	if true {
 		toSerialize["total"] = o.Total

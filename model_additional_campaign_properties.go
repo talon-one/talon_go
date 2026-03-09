@@ -64,6 +64,8 @@ type AdditionalCampaignProperties struct {
 	StoresImported bool `json:"storesImported"`
 	// A list of value map IDs for the campaign.
 	ValueMapsIds *[]int64 `json:"valueMapsIds,omitempty"`
+	// The ID of the Experiment this Campaign is part of.
+	ExperimentId *int64 `json:"experimentId,omitempty"`
 }
 
 // NewAdditionalCampaignProperties instantiates a new AdditionalCampaignProperties object
@@ -837,6 +839,38 @@ func (o *AdditionalCampaignProperties) SetValueMapsIds(v []int64) {
 	o.ValueMapsIds = &v
 }
 
+// GetExperimentId returns the ExperimentId field value if set, zero value otherwise.
+func (o *AdditionalCampaignProperties) GetExperimentId() int64 {
+	if o == nil || o.ExperimentId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ExperimentId
+}
+
+// GetExperimentIdOk returns a tuple with the ExperimentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AdditionalCampaignProperties) GetExperimentIdOk() (*int64, bool) {
+	if o == nil || o.ExperimentId == nil {
+		return nil, false
+	}
+	return o.ExperimentId, true
+}
+
+// HasExperimentId returns a boolean if a field has been set.
+func (o *AdditionalCampaignProperties) HasExperimentId() bool {
+	if o != nil && o.ExperimentId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExperimentId gets a reference to the given int64 and assigns it to the ExperimentId field.
+func (o *AdditionalCampaignProperties) SetExperimentId(v int64) {
+	o.ExperimentId = &v
+}
+
 func (o AdditionalCampaignProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Budgets != nil {
@@ -910,6 +944,9 @@ func (o AdditionalCampaignProperties) MarshalJSON() ([]byte, error) {
 	}
 	if o.ValueMapsIds != nil {
 		toSerialize["valueMapsIds"] = o.ValueMapsIds
+	}
+	if o.ExperimentId != nil {
+		toSerialize["experimentId"] = o.ExperimentId
 	}
 	return json.Marshal(toSerialize)
 }

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]WebhookWithOutgoingIntegrationDetails**](WebhookWithOutgoingIntegrationDetails.md) |  | 
+**Data** | Pointer to [**[]AccountAdditionalCost**](AccountAdditionalCost.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20039
 
-`func NewInlineResponse20039(totalResultSize int64, data []WebhookWithOutgoingIntegrationDetails, ) *InlineResponse20039`
+`func NewInlineResponse20039(totalResultSize int64, data []AccountAdditionalCost, ) *InlineResponse20039`
 
 NewInlineResponse20039 instantiates a new InlineResponse20039 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20039) GetData() []WebhookWithOutgoingIntegrationDetails`
+`func (o *InlineResponse20039) GetData() []AccountAdditionalCost`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20039) GetDataOk() (*[]WebhookWithOutgoingIntegrationDetails, bool)`
+`func (o *InlineResponse20039) GetDataOk() (*[]AccountAdditionalCost, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20039) SetData(v []WebhookWithOutgoingIntegrationDetails)`
+`func (o *InlineResponse20039) SetData(v []AccountAdditionalCost)`
 
 SetData sets Data field to given value.
 

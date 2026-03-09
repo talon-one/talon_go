@@ -21,17 +21,19 @@ type BestPriorPriceRequest struct {
 	// The end date and time that defines the latest time for retrieving historical SKU prices.
 	TimeframeEndDate time.Time `json:"timeframeEndDate"`
 	// The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation.
-	Timeframe int32 `json:"timeframe"`
-	// Indicates whether the timeframe includes the start of the current sale. - When `false`, the timeframe includes the start date of the current sale. - When `true`, the timeframe striclty uses the number of days specified in `timeframe`.
-	StrictEndDate bool                         `json:"strictEndDate"`
-	Target        *BestPriorPriceRequestTarget `json:"target,omitempty"`
+	Timeframe string `json:"timeframe"`
+	// This property is **deprecated**. Use `timeframeEndDateType` instead.  Indicates whether the timeframe includes the start of the current sale. - When `false`, the timeframe includes the start date of the current sale. - When `true`, the timeframe strictly uses the number of days specified in `timeframe`.
+	StrictEndDate bool `json:"strictEndDate"`
+	// Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - `strict`: The timeframe ends at the `timeframeEndDate` value. - `price`: The timeframe ends at the start of the current `contextId` with the current price value. Identical price records are merged. If there is no `contextId` for the most recent price, the most recent timestamp for the price is used.  - `sale`:  The timeframe ends at the start of current `contextId` and takes the prices prior to the start of the `contextId` into account.
+	TimeframeEndDateType *string          `json:"timeframeEndDateType,omitempty"`
+	Target               *BestPriorTarget `json:"target,omitempty"`
 }
 
 // NewBestPriorPriceRequest instantiates a new BestPriorPriceRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildBestPriorPriceRequest(skus []string, timeframeEndDate time.Time, timeframe int32, strictEndDate bool) *BestPriorPriceRequest {
+func BuildBestPriorPriceRequest(skus []string, timeframeEndDate time.Time, timeframe string, strictEndDate bool) *BestPriorPriceRequest {
 	this := BestPriorPriceRequest{}
 	this.Skus = skus
 	this.TimeframeEndDate = timeframeEndDate
@@ -97,9 +99,9 @@ func (o *BestPriorPriceRequest) SetTimeframeEndDate(v time.Time) {
 }
 
 // GetTimeframe returns the Timeframe field value
-func (o *BestPriorPriceRequest) GetTimeframe() int32 {
+func (o *BestPriorPriceRequest) GetTimeframe() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 
@@ -108,7 +110,7 @@ func (o *BestPriorPriceRequest) GetTimeframe() int32 {
 
 // GetTimeframeOk returns a tuple with the Timeframe field value
 // and a boolean to check if the value has been set.
-func (o *BestPriorPriceRequest) GetTimeframeOk() (*int32, bool) {
+func (o *BestPriorPriceRequest) GetTimeframeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,7 +118,7 @@ func (o *BestPriorPriceRequest) GetTimeframeOk() (*int32, bool) {
 }
 
 // SetTimeframe sets field value
-func (o *BestPriorPriceRequest) SetTimeframe(v int32) {
+func (o *BestPriorPriceRequest) SetTimeframe(v string) {
 	o.Timeframe = v
 }
 
@@ -144,10 +146,42 @@ func (o *BestPriorPriceRequest) SetStrictEndDate(v bool) {
 	o.StrictEndDate = v
 }
 
+// GetTimeframeEndDateType returns the TimeframeEndDateType field value if set, zero value otherwise.
+func (o *BestPriorPriceRequest) GetTimeframeEndDateType() string {
+	if o == nil || o.TimeframeEndDateType == nil {
+		var ret string
+		return ret
+	}
+	return *o.TimeframeEndDateType
+}
+
+// GetTimeframeEndDateTypeOk returns a tuple with the TimeframeEndDateType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BestPriorPriceRequest) GetTimeframeEndDateTypeOk() (*string, bool) {
+	if o == nil || o.TimeframeEndDateType == nil {
+		return nil, false
+	}
+	return o.TimeframeEndDateType, true
+}
+
+// HasTimeframeEndDateType returns a boolean if a field has been set.
+func (o *BestPriorPriceRequest) HasTimeframeEndDateType() bool {
+	if o != nil && o.TimeframeEndDateType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeframeEndDateType gets a reference to the given string and assigns it to the TimeframeEndDateType field.
+func (o *BestPriorPriceRequest) SetTimeframeEndDateType(v string) {
+	o.TimeframeEndDateType = &v
+}
+
 // GetTarget returns the Target field value if set, zero value otherwise.
-func (o *BestPriorPriceRequest) GetTarget() BestPriorPriceRequestTarget {
+func (o *BestPriorPriceRequest) GetTarget() BestPriorTarget {
 	if o == nil || o.Target == nil {
-		var ret BestPriorPriceRequestTarget
+		var ret BestPriorTarget
 		return ret
 	}
 	return *o.Target
@@ -155,7 +189,7 @@ func (o *BestPriorPriceRequest) GetTarget() BestPriorPriceRequestTarget {
 
 // GetTargetOk returns a tuple with the Target field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BestPriorPriceRequest) GetTargetOk() (*BestPriorPriceRequestTarget, bool) {
+func (o *BestPriorPriceRequest) GetTargetOk() (*BestPriorTarget, bool) {
 	if o == nil || o.Target == nil {
 		return nil, false
 	}
@@ -171,8 +205,8 @@ func (o *BestPriorPriceRequest) HasTarget() bool {
 	return false
 }
 
-// SetTarget gets a reference to the given BestPriorPriceRequestTarget and assigns it to the Target field.
-func (o *BestPriorPriceRequest) SetTarget(v BestPriorPriceRequestTarget) {
+// SetTarget gets a reference to the given BestPriorTarget and assigns it to the Target field.
+func (o *BestPriorPriceRequest) SetTarget(v BestPriorTarget) {
 	o.Target = &v
 }
 
@@ -189,6 +223,9 @@ func (o BestPriorPriceRequest) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["strictEndDate"] = o.StrictEndDate
+	}
+	if o.TimeframeEndDateType != nil {
+		toSerialize["timeframeEndDateType"] = o.TimeframeEndDateType
 	}
 	if o.Target != nil {
 		toSerialize["target"] = o.Target

@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20039 struct for InlineResponse20039
 type InlineResponse20039 struct {
-	TotalResultSize int64                                   `json:"totalResultSize"`
-	Data            []WebhookWithOutgoingIntegrationDetails `json:"data"`
+	TotalResultSize int64                   `json:"totalResultSize"`
+	Data            []AccountAdditionalCost `json:"data"`
 }
 
 // NewInlineResponse20039 instantiates a new InlineResponse20039 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20039(totalResultSize int64, data []WebhookWithOutgoingIntegrationDetails) *InlineResponse20039 {
+func BuildInlineResponse20039(totalResultSize int64, data []AccountAdditionalCost) *InlineResponse20039 {
 	this := InlineResponse20039{}
 	this.TotalResultSize = totalResultSize
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20039) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20039) GetData() []WebhookWithOutgoingIntegrationDetails {
+func (o *InlineResponse20039) GetData() []AccountAdditionalCost {
 	if o == nil {
-		var ret []WebhookWithOutgoingIntegrationDetails
+		var ret []AccountAdditionalCost
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20039) GetData() []WebhookWithOutgoingIntegrationDetails 
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20039) GetDataOk() (*[]WebhookWithOutgoingIntegrationDetails, bool) {
+func (o *InlineResponse20039) GetDataOk() (*[]AccountAdditionalCost, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20039) GetDataOk() (*[]WebhookWithOutgoingIntegrationDeta
 }
 
 // SetData sets field value
-func (o *InlineResponse20039) SetData(v []WebhookWithOutgoingIntegrationDetails) {
+func (o *InlineResponse20039) SetData(v []AccountAdditionalCost) {
 	o.Data = v
 }
 

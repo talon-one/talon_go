@@ -35,15 +35,17 @@ type RevisionVersion struct {
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// A detailed description of the campaign.
 	Description NullableString `json:"description,omitempty"`
-	// The ID of the ruleset this campaign template will use.
+	// The ID of the ruleset this campaign will use.
 	ActiveRulesetId NullableInt32 `json:"activeRulesetId,omitempty"`
-	// A list of tags for the campaign template.
+	// A list of tags for the campaign.
 	Tags             *[]string              `json:"tags,omitempty"`
 	CouponSettings   *CodeGeneratorSettings `json:"couponSettings,omitempty"`
 	ReferralSettings *CodeGeneratorSettings `json:"referralSettings,omitempty"`
 	// The set of limits that will operate for this campaign version.
 	Limits *[]LimitConfig `json:"limits,omitempty"`
-	// A list of features for the campaign template.
+	// Indicates whether this campaign should be reevaluated when a customer returns an item.
+	ReevaluateOnReturn *bool `json:"reevaluateOnReturn,omitempty"`
+	// A list of features for the campaign.
 	Features *[]string `json:"features,omitempty"`
 }
 
@@ -628,6 +630,38 @@ func (o *RevisionVersion) SetLimits(v []LimitConfig) {
 	o.Limits = &v
 }
 
+// GetReevaluateOnReturn returns the ReevaluateOnReturn field value if set, zero value otherwise.
+func (o *RevisionVersion) GetReevaluateOnReturn() bool {
+	if o == nil || o.ReevaluateOnReturn == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ReevaluateOnReturn
+}
+
+// GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RevisionVersion) GetReevaluateOnReturnOk() (*bool, bool) {
+	if o == nil || o.ReevaluateOnReturn == nil {
+		return nil, false
+	}
+	return o.ReevaluateOnReturn, true
+}
+
+// HasReevaluateOnReturn returns a boolean if a field has been set.
+func (o *RevisionVersion) HasReevaluateOnReturn() bool {
+	if o != nil && o.ReevaluateOnReturn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReevaluateOnReturn gets a reference to the given bool and assigns it to the ReevaluateOnReturn field.
+func (o *RevisionVersion) SetReevaluateOnReturn(v bool) {
+	o.ReevaluateOnReturn = &v
+}
+
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *RevisionVersion) GetFeatures() []string {
 	if o == nil || o.Features == nil {
@@ -715,6 +749,9 @@ func (o RevisionVersion) MarshalJSON() ([]byte, error) {
 	}
 	if o.Limits != nil {
 		toSerialize["limits"] = o.Limits
+	}
+	if o.ReevaluateOnReturn != nil {
+		toSerialize["reevaluateOnReturn"] = o.ReevaluateOnReturn
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features

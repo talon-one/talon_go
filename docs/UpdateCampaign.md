@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [optional] [default to "enabled"]
 **ActiveRulesetId** | Pointer to **int64** | [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | 
+**ReevaluateOnReturn** | Pointer to **bool** | Indicates whether this campaign should be reevaluated when a customer returns an item. | [optional] 
 **Features** | Pointer to **[]string** | A list of features for the campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
@@ -229,6 +230,31 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
+
+### GetReevaluateOnReturn
+
+`func (o *UpdateCampaign) GetReevaluateOnReturn() bool`
+
+GetReevaluateOnReturn returns the ReevaluateOnReturn field if non-nil, zero value otherwise.
+
+### GetReevaluateOnReturnOk
+
+`func (o *UpdateCampaign) GetReevaluateOnReturnOk() (*bool, bool)`
+
+GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReevaluateOnReturn
+
+`func (o *UpdateCampaign) SetReevaluateOnReturn(v bool)`
+
+SetReevaluateOnReturn sets ReevaluateOnReturn field to given value.
+
+### HasReevaluateOnReturn
+
+`func (o *UpdateCampaign) HasReevaluateOnReturn() bool`
+
+HasReevaluateOnReturn returns a boolean if a field has been set.
 
 ### GetFeatures
 

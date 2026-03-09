@@ -17,12 +17,13 @@ Name | Type | Description | Notes
 **EndTime** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this campaign. | [optional] 
 **Description** | Pointer to **NullableString** | A detailed description of the campaign. | [optional] 
-**ActiveRulesetId** | Pointer to **NullableInt32** | The ID of the ruleset this campaign template will use. | [optional] 
-**Tags** | Pointer to **[]string** | A list of tags for the campaign template. | [optional] 
+**ActiveRulesetId** | Pointer to **NullableInt32** | The ID of the ruleset this campaign will use. | [optional] 
+**Tags** | Pointer to **[]string** | A list of tags for the campaign. | [optional] 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | The set of limits that will operate for this campaign version. | [optional] 
-**Features** | Pointer to **[]string** | A list of features for the campaign template. | [optional] 
+**ReevaluateOnReturn** | Pointer to **bool** | Indicates whether this campaign should be reevaluated when a customer returns an item. | [optional] 
+**Features** | Pointer to **[]string** | A list of features for the campaign. | [optional] 
 
 ## Methods
 
@@ -492,6 +493,31 @@ SetLimits sets Limits field to given value.
 `func (o *RevisionVersion) HasLimits() bool`
 
 HasLimits returns a boolean if a field has been set.
+
+### GetReevaluateOnReturn
+
+`func (o *RevisionVersion) GetReevaluateOnReturn() bool`
+
+GetReevaluateOnReturn returns the ReevaluateOnReturn field if non-nil, zero value otherwise.
+
+### GetReevaluateOnReturnOk
+
+`func (o *RevisionVersion) GetReevaluateOnReturnOk() (*bool, bool)`
+
+GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReevaluateOnReturn
+
+`func (o *RevisionVersion) SetReevaluateOnReturn(v bool)`
+
+SetReevaluateOnReturn sets ReevaluateOnReturn field to given value.
+
+### HasReevaluateOnReturn
+
+`func (o *RevisionVersion) HasReevaluateOnReturn() bool`
+
+HasReevaluateOnReturn returns a boolean if a field has been set.
 
 ### GetFeatures
 

@@ -40,6 +40,8 @@ type CustomerSession struct {
 	Attributes map[string]interface{} `json:"attributes"`
 	// Indicates whether this is the first session for the customer's profile. Will always be true for anonymous sessions.
 	FirstSession bool `json:"firstSession"`
+	// The number of times the session was updated. When the session is created, this value is initialized to `1`.
+	UpdateCount int64 `json:"updateCount"`
 	// A map of labelled discount values, values will be in the same currency as the application associated with the session.
 	Discounts map[string]float32 `json:"discounts"`
 	// Timestamp of the most recent event received on this session.
@@ -50,7 +52,7 @@ type CustomerSession struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCustomerSession(integrationId string, created time.Time, applicationId int64, profileId string, coupon string, referral string, state string, cartItems []CartItem, total float32, attributes map[string]interface{}, firstSession bool, discounts map[string]float32, updated time.Time) *CustomerSession {
+func BuildCustomerSession(integrationId string, created time.Time, applicationId int64, profileId string, coupon string, referral string, state string, cartItems []CartItem, total float32, attributes map[string]interface{}, firstSession bool, updateCount int64, discounts map[string]float32, updated time.Time) *CustomerSession {
 	this := CustomerSession{}
 	this.IntegrationId = integrationId
 	this.Created = created
@@ -63,6 +65,7 @@ func BuildCustomerSession(integrationId string, created time.Time, applicationId
 	this.Total = total
 	this.Attributes = attributes
 	this.FirstSession = firstSession
+	this.UpdateCount = updateCount
 	this.Discounts = discounts
 	this.Updated = updated
 	return &this
@@ -374,6 +377,30 @@ func (o *CustomerSession) SetFirstSession(v bool) {
 	o.FirstSession = v
 }
 
+// GetUpdateCount returns the UpdateCount field value
+func (o *CustomerSession) GetUpdateCount() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.UpdateCount
+}
+
+// GetUpdateCountOk returns a tuple with the UpdateCount field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSession) GetUpdateCountOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.UpdateCount, true
+}
+
+// SetUpdateCount sets field value
+func (o *CustomerSession) SetUpdateCount(v int64) {
+	o.UpdateCount = v
+}
+
 // GetDiscounts returns the Discounts field value
 func (o *CustomerSession) GetDiscounts() map[string]float32 {
 	if o == nil {
@@ -459,6 +486,9 @@ func (o CustomerSession) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["firstSession"] = o.FirstSession
+	}
+	if true {
+		toSerialize["updateCount"] = o.UpdateCount
 	}
 	if true {
 		toSerialize["discounts"] = o.Discounts

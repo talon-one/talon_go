@@ -20,6 +20,8 @@ type CampaignEditedNotificationItem struct {
 	Campaign    Campaign `json:"campaign"`
 	OldCampaign Campaign `json:"oldCampaign"`
 	Ruleset     *Ruleset `json:"ruleset,omitempty"`
+	// The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
+	Placeholders *[]PlaceholderDetails `json:"placeholders,omitempty"`
 }
 
 // NewCampaignEditedNotificationItem instantiates a new CampaignEditedNotificationItem object
@@ -146,6 +148,38 @@ func (o *CampaignEditedNotificationItem) SetRuleset(v Ruleset) {
 	o.Ruleset = &v
 }
 
+// GetPlaceholders returns the Placeholders field value if set, zero value otherwise.
+func (o *CampaignEditedNotificationItem) GetPlaceholders() []PlaceholderDetails {
+	if o == nil || o.Placeholders == nil {
+		var ret []PlaceholderDetails
+		return ret
+	}
+	return *o.Placeholders
+}
+
+// GetPlaceholdersOk returns a tuple with the Placeholders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignEditedNotificationItem) GetPlaceholdersOk() (*[]PlaceholderDetails, bool) {
+	if o == nil || o.Placeholders == nil {
+		return nil, false
+	}
+	return o.Placeholders, true
+}
+
+// HasPlaceholders returns a boolean if a field has been set.
+func (o *CampaignEditedNotificationItem) HasPlaceholders() bool {
+	if o != nil && o.Placeholders != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaceholders gets a reference to the given []PlaceholderDetails and assigns it to the Placeholders field.
+func (o *CampaignEditedNotificationItem) SetPlaceholders(v []PlaceholderDetails) {
+	o.Placeholders = &v
+}
+
 func (o CampaignEditedNotificationItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -159,6 +193,9 @@ func (o CampaignEditedNotificationItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Ruleset != nil {
 		toSerialize["ruleset"] = o.Ruleset
+	}
+	if o.Placeholders != nil {
+		toSerialize["placeholders"] = o.Placeholders
 	}
 	return json.Marshal(toSerialize)
 }

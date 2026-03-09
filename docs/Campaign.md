@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | A disabled or archived campaign is not evaluated for rules or coupons.  | [default to "enabled"]
 **ActiveRulesetId** | Pointer to **int64** | [ID of Ruleset](https://docs.talon.one/management-api#operation/getRulesets) this campaign applies on customer session evaluation.  | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | 
+**ReevaluateOnReturn** | Pointer to **bool** | Indicates whether this campaign should be reevaluated when a customer returns an item. | 
 **Features** | Pointer to **[]string** | The features enabled in this campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **ReferralSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
@@ -47,6 +48,7 @@ Name | Type | Description | Notes
 **FrontendState** | Pointer to **string** | The campaign state displayed in the Campaign Manager. | 
 **StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
 **ValueMapsIds** | Pointer to **[]int64** | A list of value map IDs for the campaign. | [optional] 
+**ExperimentId** | Pointer to **int64** | The ID of the Experiment this Campaign is part of. | [optional] 
 **RevisionFrontendState** | Pointer to **string** | The campaign revision state displayed in the Campaign Manager. | [optional] 
 **ActiveRevisionId** | Pointer to **int64** | ID of the revision that was last activated on this campaign.  | [optional] 
 **ActiveRevisionVersionId** | Pointer to **int64** | ID of the revision version that is active on the campaign.  | [optional] 
@@ -59,7 +61,7 @@ Name | Type | Description | Notes
 
 ### NewCampaign
 
-`func NewCampaign(id int64, created time.Time, applicationId int64, userId int64, name string, description string, state string, tags []string, features []string, limits []LimitConfig, type_ string, frontendState string, storesImported bool, ) *Campaign`
+`func NewCampaign(id int64, created time.Time, applicationId int64, userId int64, name string, description string, state string, tags []string, reevaluateOnReturn bool, features []string, limits []LimitConfig, type_ string, frontendState string, storesImported bool, ) *Campaign`
 
 NewCampaign instantiates a new Campaign object
 This constructor will assign default values to properties that have it defined,
@@ -332,6 +334,26 @@ and a boolean to check if the value has been set.
 `func (o *Campaign) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
+
+
+### GetReevaluateOnReturn
+
+`func (o *Campaign) GetReevaluateOnReturn() bool`
+
+GetReevaluateOnReturn returns the ReevaluateOnReturn field if non-nil, zero value otherwise.
+
+### GetReevaluateOnReturnOk
+
+`func (o *Campaign) GetReevaluateOnReturnOk() (*bool, bool)`
+
+GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReevaluateOnReturn
+
+`func (o *Campaign) SetReevaluateOnReturn(v bool)`
+
+SetReevaluateOnReturn sets ReevaluateOnReturn field to given value.
 
 
 ### GetFeatures
@@ -1083,6 +1105,31 @@ SetValueMapsIds sets ValueMapsIds field to given value.
 `func (o *Campaign) HasValueMapsIds() bool`
 
 HasValueMapsIds returns a boolean if a field has been set.
+
+### GetExperimentId
+
+`func (o *Campaign) GetExperimentId() int64`
+
+GetExperimentId returns the ExperimentId field if non-nil, zero value otherwise.
+
+### GetExperimentIdOk
+
+`func (o *Campaign) GetExperimentIdOk() (*int64, bool)`
+
+GetExperimentIdOk returns a tuple with the ExperimentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExperimentId
+
+`func (o *Campaign) SetExperimentId(v int64)`
+
+SetExperimentId sets ExperimentId field to given value.
+
+### HasExperimentId
+
+`func (o *Campaign) HasExperimentId() bool`
+
+HasExperimentId returns a boolean if a field has been set.
 
 ### GetRevisionFrontendState
 

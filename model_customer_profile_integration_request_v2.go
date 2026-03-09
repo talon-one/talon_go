@@ -18,10 +18,10 @@ type CustomerProfileIntegrationRequestV2 struct {
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// When using the `dry` query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.
-	EvaluableCampaignIds *[]int64                 `json:"evaluableCampaignIds,omitempty"`
-	AudiencesChanges     *ProfileAudiencesChanges `json:"audiencesChanges,omitempty"`
-	// Extends the response with the chosen data entities. Use this property to get as much data as you need in one _Update customer profile_ request instead of sending extra requests to other endpoints.
-	ResponseContent *[]string `json:"responseContent,omitempty"`
+	EvaluableCampaignIds *[]int64 `json:"evaluableCampaignIds,omitempty"`
+	// Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.
+	ResponseContent  *[]string                `json:"responseContent,omitempty"`
+	AudiencesChanges *ProfileAudiencesChanges `json:"audiencesChanges,omitempty"`
 }
 
 // NewCustomerProfileIntegrationRequestV2 instantiates a new CustomerProfileIntegrationRequestV2 object
@@ -105,38 +105,6 @@ func (o *CustomerProfileIntegrationRequestV2) SetEvaluableCampaignIds(v []int64)
 	o.EvaluableCampaignIds = &v
 }
 
-// GetAudiencesChanges returns the AudiencesChanges field value if set, zero value otherwise.
-func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChanges() ProfileAudiencesChanges {
-	if o == nil || o.AudiencesChanges == nil {
-		var ret ProfileAudiencesChanges
-		return ret
-	}
-	return *o.AudiencesChanges
-}
-
-// GetAudiencesChangesOk returns a tuple with the AudiencesChanges field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChangesOk() (*ProfileAudiencesChanges, bool) {
-	if o == nil || o.AudiencesChanges == nil {
-		return nil, false
-	}
-	return o.AudiencesChanges, true
-}
-
-// HasAudiencesChanges returns a boolean if a field has been set.
-func (o *CustomerProfileIntegrationRequestV2) HasAudiencesChanges() bool {
-	if o != nil && o.AudiencesChanges != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAudiencesChanges gets a reference to the given ProfileAudiencesChanges and assigns it to the AudiencesChanges field.
-func (o *CustomerProfileIntegrationRequestV2) SetAudiencesChanges(v ProfileAudiencesChanges) {
-	o.AudiencesChanges = &v
-}
-
 // GetResponseContent returns the ResponseContent field value if set, zero value otherwise.
 func (o *CustomerProfileIntegrationRequestV2) GetResponseContent() []string {
 	if o == nil || o.ResponseContent == nil {
@@ -169,6 +137,38 @@ func (o *CustomerProfileIntegrationRequestV2) SetResponseContent(v []string) {
 	o.ResponseContent = &v
 }
 
+// GetAudiencesChanges returns the AudiencesChanges field value if set, zero value otherwise.
+func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChanges() ProfileAudiencesChanges {
+	if o == nil || o.AudiencesChanges == nil {
+		var ret ProfileAudiencesChanges
+		return ret
+	}
+	return *o.AudiencesChanges
+}
+
+// GetAudiencesChangesOk returns a tuple with the AudiencesChanges field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerProfileIntegrationRequestV2) GetAudiencesChangesOk() (*ProfileAudiencesChanges, bool) {
+	if o == nil || o.AudiencesChanges == nil {
+		return nil, false
+	}
+	return o.AudiencesChanges, true
+}
+
+// HasAudiencesChanges returns a boolean if a field has been set.
+func (o *CustomerProfileIntegrationRequestV2) HasAudiencesChanges() bool {
+	if o != nil && o.AudiencesChanges != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudiencesChanges gets a reference to the given ProfileAudiencesChanges and assigns it to the AudiencesChanges field.
+func (o *CustomerProfileIntegrationRequestV2) SetAudiencesChanges(v ProfileAudiencesChanges) {
+	o.AudiencesChanges = &v
+}
+
 func (o CustomerProfileIntegrationRequestV2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Attributes != nil {
@@ -177,11 +177,11 @@ func (o CustomerProfileIntegrationRequestV2) MarshalJSON() ([]byte, error) {
 	if o.EvaluableCampaignIds != nil {
 		toSerialize["evaluableCampaignIds"] = o.EvaluableCampaignIds
 	}
-	if o.AudiencesChanges != nil {
-		toSerialize["audiencesChanges"] = o.AudiencesChanges
-	}
 	if o.ResponseContent != nil {
 		toSerialize["responseContent"] = o.ResponseContent
+	}
+	if o.AudiencesChanges != nil {
+		toSerialize["audiencesChanges"] = o.AudiencesChanges
 	}
 	return json.Marshal(toSerialize)
 }

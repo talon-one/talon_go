@@ -36,6 +36,8 @@ type LoyaltyLedgerEntry struct {
 	// Indicates if the entry belongs to the archived session.
 	Archived *bool                    `json:"archived,omitempty"`
 	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
+	// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+	ValidityDuration *string `json:"validityDuration,omitempty"`
 }
 
 // NewLoyaltyLedgerEntry instantiates a new LoyaltyLedgerEntry object
@@ -493,6 +495,38 @@ func (o *LoyaltyLedgerEntry) SetFlags(v LoyaltyLedgerEntryFlags) {
 	o.Flags = &v
 }
 
+// GetValidityDuration returns the ValidityDuration field value if set, zero value otherwise.
+func (o *LoyaltyLedgerEntry) GetValidityDuration() string {
+	if o == nil || o.ValidityDuration == nil {
+		var ret string
+		return ret
+	}
+	return *o.ValidityDuration
+}
+
+// GetValidityDurationOk returns a tuple with the ValidityDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyLedgerEntry) GetValidityDurationOk() (*string, bool) {
+	if o == nil || o.ValidityDuration == nil {
+		return nil, false
+	}
+	return o.ValidityDuration, true
+}
+
+// HasValidityDuration returns a boolean if a field has been set.
+func (o *LoyaltyLedgerEntry) HasValidityDuration() bool {
+	if o != nil && o.ValidityDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValidityDuration gets a reference to the given string and assigns it to the ValidityDuration field.
+func (o *LoyaltyLedgerEntry) SetValidityDuration(v string) {
+	o.ValidityDuration = &v
+}
+
 func (o LoyaltyLedgerEntry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -539,6 +573,9 @@ func (o LoyaltyLedgerEntry) MarshalJSON() ([]byte, error) {
 	}
 	if o.Flags != nil {
 		toSerialize["flags"] = o.Flags
+	}
+	if o.ValidityDuration != nil {
+		toSerialize["validityDuration"] = o.ValidityDuration
 	}
 	return json.Marshal(toSerialize)
 }

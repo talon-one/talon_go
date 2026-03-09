@@ -25,10 +25,10 @@ type IntegrationEventV2Request struct {
 	Type string `json:"type"`
 	// Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute).
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
-	// Identifier of the loyalty card used during this event.
-	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
-	// Optional list of requested information to be present on the response related to the tracking custom event.
+	// Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.
 	ResponseContent *[]string `json:"responseContent,omitempty"`
+	// Identifiers of the loyalty cards used during this event.
+	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
 }
 
 // NewIntegrationEventV2Request instantiates a new IntegrationEventV2Request object
@@ -201,38 +201,6 @@ func (o *IntegrationEventV2Request) SetAttributes(v map[string]interface{}) {
 	o.Attributes = &v
 }
 
-// GetLoyaltyCards returns the LoyaltyCards field value if set, zero value otherwise.
-func (o *IntegrationEventV2Request) GetLoyaltyCards() []string {
-	if o == nil || o.LoyaltyCards == nil {
-		var ret []string
-		return ret
-	}
-	return *o.LoyaltyCards
-}
-
-// GetLoyaltyCardsOk returns a tuple with the LoyaltyCards field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IntegrationEventV2Request) GetLoyaltyCardsOk() (*[]string, bool) {
-	if o == nil || o.LoyaltyCards == nil {
-		return nil, false
-	}
-	return o.LoyaltyCards, true
-}
-
-// HasLoyaltyCards returns a boolean if a field has been set.
-func (o *IntegrationEventV2Request) HasLoyaltyCards() bool {
-	if o != nil && o.LoyaltyCards != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLoyaltyCards gets a reference to the given []string and assigns it to the LoyaltyCards field.
-func (o *IntegrationEventV2Request) SetLoyaltyCards(v []string) {
-	o.LoyaltyCards = &v
-}
-
 // GetResponseContent returns the ResponseContent field value if set, zero value otherwise.
 func (o *IntegrationEventV2Request) GetResponseContent() []string {
 	if o == nil || o.ResponseContent == nil {
@@ -265,6 +233,38 @@ func (o *IntegrationEventV2Request) SetResponseContent(v []string) {
 	o.ResponseContent = &v
 }
 
+// GetLoyaltyCards returns the LoyaltyCards field value if set, zero value otherwise.
+func (o *IntegrationEventV2Request) GetLoyaltyCards() []string {
+	if o == nil || o.LoyaltyCards == nil {
+		var ret []string
+		return ret
+	}
+	return *o.LoyaltyCards
+}
+
+// GetLoyaltyCardsOk returns a tuple with the LoyaltyCards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationEventV2Request) GetLoyaltyCardsOk() (*[]string, bool) {
+	if o == nil || o.LoyaltyCards == nil {
+		return nil, false
+	}
+	return o.LoyaltyCards, true
+}
+
+// HasLoyaltyCards returns a boolean if a field has been set.
+func (o *IntegrationEventV2Request) HasLoyaltyCards() bool {
+	if o != nil && o.LoyaltyCards != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoyaltyCards gets a reference to the given []string and assigns it to the LoyaltyCards field.
+func (o *IntegrationEventV2Request) SetLoyaltyCards(v []string) {
+	o.LoyaltyCards = &v
+}
+
 func (o IntegrationEventV2Request) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ProfileId != nil {
@@ -282,11 +282,11 @@ func (o IntegrationEventV2Request) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if o.LoyaltyCards != nil {
-		toSerialize["loyaltyCards"] = o.LoyaltyCards
-	}
 	if o.ResponseContent != nil {
 		toSerialize["responseContent"] = o.ResponseContent
+	}
+	if o.LoyaltyCards != nil {
+		toSerialize["loyaltyCards"] = o.LoyaltyCards
 	}
 	return json.Marshal(toSerialize)
 }

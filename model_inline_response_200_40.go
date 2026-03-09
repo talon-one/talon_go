@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20040 struct for InlineResponse20040
 type InlineResponse20040 struct {
-	TotalResultSize int64       `json:"totalResultSize"`
-	Data            []EventType `json:"data"`
+	TotalResultSize int64                                   `json:"totalResultSize"`
+	Data            []WebhookWithOutgoingIntegrationDetails `json:"data"`
 }
 
 // NewInlineResponse20040 instantiates a new InlineResponse20040 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20040(totalResultSize int64, data []EventType) *InlineResponse20040 {
+func BuildInlineResponse20040(totalResultSize int64, data []WebhookWithOutgoingIntegrationDetails) *InlineResponse20040 {
 	this := InlineResponse20040{}
 	this.TotalResultSize = totalResultSize
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20040) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20040) GetData() []EventType {
+func (o *InlineResponse20040) GetData() []WebhookWithOutgoingIntegrationDetails {
 	if o == nil {
-		var ret []EventType
+		var ret []WebhookWithOutgoingIntegrationDetails
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20040) GetData() []EventType {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20040) GetDataOk() (*[]EventType, bool) {
+func (o *InlineResponse20040) GetDataOk() (*[]WebhookWithOutgoingIntegrationDetails, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20040) GetDataOk() (*[]EventType, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20040) SetData(v []EventType) {
+func (o *InlineResponse20040) SetData(v []WebhookWithOutgoingIntegrationDetails) {
 	o.Data = v
 }
 

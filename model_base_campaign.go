@@ -32,6 +32,8 @@ type BaseCampaign struct {
 	ActiveRulesetId *int64 `json:"activeRulesetId,omitempty"`
 	// A list of tags for the campaign.
 	Tags []string `json:"tags"`
+	// Indicates whether this campaign should be reevaluated when a customer returns an item.
+	ReevaluateOnReturn *bool `json:"reevaluateOnReturn,omitempty"`
 	// The features enabled in this campaign.
 	Features         []string               `json:"features"`
 	CouponSettings   *CodeGeneratorSettings `json:"couponSettings,omitempty"`
@@ -306,6 +308,38 @@ func (o *BaseCampaign) SetTags(v []string) {
 	o.Tags = v
 }
 
+// GetReevaluateOnReturn returns the ReevaluateOnReturn field value if set, zero value otherwise.
+func (o *BaseCampaign) GetReevaluateOnReturn() bool {
+	if o == nil || o.ReevaluateOnReturn == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ReevaluateOnReturn
+}
+
+// GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BaseCampaign) GetReevaluateOnReturnOk() (*bool, bool) {
+	if o == nil || o.ReevaluateOnReturn == nil {
+		return nil, false
+	}
+	return o.ReevaluateOnReturn, true
+}
+
+// HasReevaluateOnReturn returns a boolean if a field has been set.
+func (o *BaseCampaign) HasReevaluateOnReturn() bool {
+	if o != nil && o.ReevaluateOnReturn != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReevaluateOnReturn gets a reference to the given bool and assigns it to the ReevaluateOnReturn field.
+func (o *BaseCampaign) SetReevaluateOnReturn(v bool) {
+	o.ReevaluateOnReturn = &v
+}
+
 // GetFeatures returns the Features field value
 func (o *BaseCampaign) GetFeatures() []string {
 	if o == nil {
@@ -539,6 +573,9 @@ func (o BaseCampaign) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["tags"] = o.Tags
+	}
+	if o.ReevaluateOnReturn != nil {
+		toSerialize["reevaluateOnReturn"] = o.ReevaluateOnReturn
 	}
 	if true {
 		toSerialize["features"] = o.Features

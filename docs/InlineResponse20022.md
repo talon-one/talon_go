@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]AccessLogEntry**](AccessLogEntry.md) |  | 
+**Data** | Pointer to [**[]CollectionItem**](CollectionItem.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20022
 
-`func NewInlineResponse20022(hasMore bool, data []AccessLogEntry, ) *InlineResponse20022`
+`func NewInlineResponse20022(hasMore bool, data []CollectionItem, ) *InlineResponse20022`
 
 NewInlineResponse20022 instantiates a new InlineResponse20022 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20022) GetData() []AccessLogEntry`
+`func (o *InlineResponse20022) GetData() []CollectionItem`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20022) GetDataOk() (*[]AccessLogEntry, bool)`
+`func (o *InlineResponse20022) GetDataOk() (*[]CollectionItem, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20022) SetData(v []AccessLogEntry)`
+`func (o *InlineResponse20022) SetData(v []CollectionItem)`
 
 SetData sets Data field to given value.
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
 **TotalResultSize** | Pointer to **int64** |  | [optional] 
+**HasMore** | Pointer to **bool** |  | [optional] 
 **Data** | Pointer to [**[]ApplicationCustomer**](ApplicationCustomer.md) |  | 
 
 ## Methods
@@ -26,31 +26,6 @@ will change when the set of required properties is changed
 NewInlineResponse20025WithDefaults instantiates a new InlineResponse20025 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetHasMore
-
-`func (o *InlineResponse20025) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse20025) GetHasMoreOk() (*bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse20025) SetHasMore(v bool)`
-
-SetHasMore sets HasMore field to given value.
-
-### HasHasMore
-
-`func (o *InlineResponse20025) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
 
 ### GetTotalResultSize
 
@@ -76,6 +51,31 @@ SetTotalResultSize sets TotalResultSize field to given value.
 `func (o *InlineResponse20025) HasTotalResultSize() bool`
 
 HasTotalResultSize returns a boolean if a field has been set.
+
+### GetHasMore
+
+`func (o *InlineResponse20025) GetHasMore() bool`
+
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+
+### GetHasMoreOk
+
+`func (o *InlineResponse20025) GetHasMoreOk() (*bool, bool)`
+
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasMore
+
+`func (o *InlineResponse20025) SetHasMore(v bool)`
+
+SetHasMore sets HasMore field to given value.
+
+### HasHasMore
+
+`func (o *InlineResponse20025) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
 
 ### GetData
 

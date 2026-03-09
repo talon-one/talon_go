@@ -212,6 +212,7 @@ All URLs are relative to `https://yourbaseurl.talon.one`.
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*IntegrationApi* | [**ActivateLoyaltyPoints**](docs/IntegrationApi.md#activateloyaltypoints) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/activate_points | Activate loyalty points
 *IntegrationApi* | [**BestPriorPrice**](docs/IntegrationApi.md#bestpriorprice) | **Post** /v1/best_prior_price | Fetch best prior price
 *IntegrationApi* | [**CreateAudienceV2**](docs/IntegrationApi.md#createaudiencev2) | **Post** /v2/audiences | Create audience
 *IntegrationApi* | [**CreateCouponReservation**](docs/IntegrationApi.md#createcouponreservation) | **Post** /v1/coupon_reservations/{couponValue} | Create coupon reservation
@@ -221,6 +222,7 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**DeleteAudienceV2**](docs/IntegrationApi.md#deleteaudiencev2) | **Delete** /v2/audiences/{audienceId} | Delete audience
 *IntegrationApi* | [**DeleteCouponReservation**](docs/IntegrationApi.md#deletecouponreservation) | **Delete** /v1/coupon_reservations/{couponValue} | Delete coupon reservations
 *IntegrationApi* | [**DeleteCustomerData**](docs/IntegrationApi.md#deletecustomerdata) | **Delete** /v1/customer_data/{integrationId} | Delete customer&#39;s personal data
+*IntegrationApi* | [**DeleteLoyaltyTransactionsFromLedgers**](docs/IntegrationApi.md#deleteloyaltytransactionsfromledgers) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/delete_transactions | Delete customer&#39;s transactions from loyalty ledgers
 *IntegrationApi* | [**GenerateLoyaltyCard**](docs/IntegrationApi.md#generateloyaltycard) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/cards | Generate loyalty card
 *IntegrationApi* | [**GetCustomerAchievementHistory**](docs/IntegrationApi.md#getcustomerachievementhistory) | **Get** /v1/customer_profiles/{integrationId}/achievements/{achievementId} | List customer&#39;s achievement history
 *IntegrationApi* | [**GetCustomerAchievements**](docs/IntegrationApi.md#getcustomerachievements) | **Get** /v1/customer_profiles/{integrationId}/achievements | List customer&#39;s available achievements
@@ -234,10 +236,12 @@ Class | Method | HTTP request | Description
 *IntegrationApi* | [**GetLoyaltyProgramProfileTransactions**](docs/IntegrationApi.md#getloyaltyprogramprofiletransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/transactions | List customer&#39;s loyalty transactions
 *IntegrationApi* | [**GetReservedCustomers**](docs/IntegrationApi.md#getreservedcustomers) | **Get** /v1/coupon_reservations/customerprofiles/{couponValue} | List customers that have this coupon reserved
 *IntegrationApi* | [**LinkLoyaltyCardToProfile**](docs/IntegrationApi.md#linkloyaltycardtoprofile) | **Post** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/link_profile | Link customer profile to card
+*IntegrationApi* | [**PriceHistory**](docs/IntegrationApi.md#pricehistory) | **Post** /v1/best_prior_price_history | Get summary of price history
 *IntegrationApi* | [**ReopenCustomerSession**](docs/IntegrationApi.md#reopencustomersession) | **Put** /v2/customer_sessions/{customerSessionId}/reopen | Reopen customer session
 *IntegrationApi* | [**ReturnCartItems**](docs/IntegrationApi.md#returncartitems) | **Post** /v2/customer_sessions/{customerSessionId}/returns | Return cart items
 *IntegrationApi* | [**SyncCatalog**](docs/IntegrationApi.md#synccatalog) | **Put** /v1/catalogs/{catalogId}/sync | Sync cart item catalog
 *IntegrationApi* | [**TrackEventV2**](docs/IntegrationApi.md#trackeventv2) | **Post** /v2/events | Track event
+*IntegrationApi* | [**UnlinkLoyaltyCardFromProfile**](docs/IntegrationApi.md#unlinkloyaltycardfromprofile) | **Post** /v2/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/unlink_profile | Unlink customer profile from a loyalty card
 *IntegrationApi* | [**UpdateAudienceCustomersAttributes**](docs/IntegrationApi.md#updateaudiencecustomersattributes) | **Put** /v2/audience_customers/{audienceId}/attributes | Update profile attributes for all customers in audience
 *IntegrationApi* | [**UpdateAudienceV2**](docs/IntegrationApi.md#updateaudiencev2) | **Put** /v2/audiences/{audienceId} | Update audience name
 *IntegrationApi* | [**UpdateCustomerProfileAudiences**](docs/IntegrationApi.md#updatecustomerprofileaudiences) | **Post** /v2/customer_audiences | Update multiple customer profiles&#39; audiences
@@ -283,6 +287,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**DisconnectCampaignStores**](docs/ManagementApi.md#disconnectcampaignstores) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores
 *ManagementApi* | [**ExportAccountCollectionItems**](docs/ManagementApi.md#exportaccountcollectionitems) | **Get** /v1/collections/{collectionId}/export | Export account-level collection&#39;s items
 *ManagementApi* | [**ExportAchievements**](docs/ManagementApi.md#exportachievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
+*ManagementApi* | [**ExportApplicationCampaignAnalytics**](docs/ManagementApi.md#exportapplicationcampaignanalytics) | **Get** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign
 *ManagementApi* | [**ExportAudiencesMemberships**](docs/ManagementApi.md#exportaudiencesmemberships) | **Get** /v1/audiences/{audienceId}/memberships/export | Export audience members
 *ManagementApi* | [**ExportCampaignStoreBudgets**](docs/ManagementApi.md#exportcampaignstorebudgets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets
 *ManagementApi* | [**ExportCampaignStores**](docs/ManagementApi.md#exportcampaignstores) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores
@@ -296,9 +301,11 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**ExportLoyaltyCardBalances**](docs/ManagementApi.md#exportloyaltycardbalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_card_balances | Export all card transaction logs
 *ManagementApi* | [**ExportLoyaltyCardLedger**](docs/ManagementApi.md#exportloyaltycardledger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log | Export card&#39;s ledger log
 *ManagementApi* | [**ExportLoyaltyCards**](docs/ManagementApi.md#exportloyaltycards) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/export | Export loyalty cards
+*ManagementApi* | [**ExportLoyaltyJoinDates**](docs/ManagementApi.md#exportloyaltyjoindates) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_join_dates | Export customers&#39; loyalty program join dates
 *ManagementApi* | [**ExportLoyaltyLedger**](docs/ManagementApi.md#exportloyaltyledger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer&#39;s transaction logs
 *ManagementApi* | [**ExportPoolGiveaways**](docs/ManagementApi.md#exportpoolgiveaways) | **Get** /v1/giveaways/pools/{poolId}/export | Export giveaway codes of a giveaway pool
 *ManagementApi* | [**ExportReferrals**](docs/ManagementApi.md#exportreferrals) | **Get** /v1/applications/{applicationId}/export_referrals | Export referrals
+*ManagementApi* | [**GenerateCouponRejections**](docs/ManagementApi.md#generatecouponrejections) | **Get** /v1/coupon_rejections | Summarize coupon redemption failures in session
 *ManagementApi* | [**GetAccessLogsWithoutTotalCount**](docs/ManagementApi.md#getaccesslogswithouttotalcount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for Application
 *ManagementApi* | [**GetAccount**](docs/ManagementApi.md#getaccount) | **Get** /v1/accounts/{accountId} | Get account details
 *ManagementApi* | [**GetAccountAnalytics**](docs/ManagementApi.md#getaccountanalytics) | **Get** /v1/accounts/{accountId}/analytics | Get account analytics
@@ -342,12 +349,15 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**GetCustomersByAttributes**](docs/ManagementApi.md#getcustomersbyattributes) | **Post** /v1/customer_search/no_total | List customer profiles matching the given attributes
 *ManagementApi* | [**GetDashboardStatistics**](docs/ManagementApi.md#getdashboardstatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/dashboard | Get statistics for loyalty dashboard
 *ManagementApi* | [**GetEventTypes**](docs/ManagementApi.md#geteventtypes) | **Get** /v1/event_types | List event types
+*ManagementApi* | [**GetExperiment**](docs/ManagementApi.md#getexperiment) | **Get** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 *ManagementApi* | [**GetExports**](docs/ManagementApi.md#getexports) | **Get** /v1/exports | Get exports
 *ManagementApi* | [**GetLoyaltyCard**](docs/ManagementApi.md#getloyaltycard) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 *ManagementApi* | [**GetLoyaltyCardTransactionLogs**](docs/ManagementApi.md#getloyaltycardtransactionlogs) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card&#39;s transactions
 *ManagementApi* | [**GetLoyaltyCards**](docs/ManagementApi.md#getloyaltycards) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
+*ManagementApi* | [**GetLoyaltyLedgerBalances**](docs/ManagementApi.md#getloyaltyledgerbalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer&#39;s loyalty balances
 *ManagementApi* | [**GetLoyaltyPoints**](docs/ManagementApi.md#getloyaltypoints) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer&#39;s full loyalty ledger
 *ManagementApi* | [**GetLoyaltyProgram**](docs/ManagementApi.md#getloyaltyprogram) | **Get** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program
+*ManagementApi* | [**GetLoyaltyProgramProfileLedgerTransactions**](docs/ManagementApi.md#getloyaltyprogramprofileledgertransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer&#39;s loyalty transactions
 *ManagementApi* | [**GetLoyaltyProgramTransactions**](docs/ManagementApi.md#getloyaltyprogramtransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 *ManagementApi* | [**GetLoyaltyPrograms**](docs/ManagementApi.md#getloyaltyprograms) | **Get** /v1/loyalty_programs | List loyalty programs
 *ManagementApi* | [**GetLoyaltyStatistics**](docs/ManagementApi.md#getloyaltystatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
@@ -381,6 +391,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**ListCatalogItems**](docs/ManagementApi.md#listcatalogitems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
 *ManagementApi* | [**ListCollections**](docs/ManagementApi.md#listcollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 *ManagementApi* | [**ListCollectionsInApplication**](docs/ManagementApi.md#listcollectionsinapplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
+*ManagementApi* | [**ListExperiments**](docs/ManagementApi.md#listexperiments) | **Get** /v1/applications/{applicationId}/experiments | List experiments
 *ManagementApi* | [**ListStores**](docs/ManagementApi.md#liststores) | **Get** /v1/applications/{applicationId}/stores | List stores
 *ManagementApi* | [**OktaEventHandlerChallenge**](docs/ManagementApi.md#oktaeventhandlerchallenge) | **Get** /v1/provisioning/okta | Validate Okta API ownership
 *ManagementApi* | [**RemoveLoyaltyPoints**](docs/ManagementApi.md#removeloyaltypoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
@@ -412,7 +423,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**UpdateCollection**](docs/ManagementApi.md#updatecollection) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update campaign-level collection&#39;s description
 *ManagementApi* | [**UpdateCoupon**](docs/ManagementApi.md#updatecoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon
 *ManagementApi* | [**UpdateCouponBatch**](docs/ManagementApi.md#updatecouponbatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons
-*ManagementApi* | [**UpdateLoyaltyCard**](docs/ManagementApi.md#updateloyaltycard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status
+*ManagementApi* | [**UpdateLoyaltyCard**](docs/ManagementApi.md#updateloyaltycard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card
 *ManagementApi* | [**UpdateReferral**](docs/ManagementApi.md#updatereferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
 *ManagementApi* | [**UpdateRoleV2**](docs/ManagementApi.md#updaterolev2) | **Put** /v2/roles/{roleId} | Update role
 *ManagementApi* | [**UpdateStore**](docs/ManagementApi.md#updatestore) | **Put** /v1/applications/{applicationId}/stores/{storeId} | Update store
@@ -441,17 +452,22 @@ Class | Method | HTTP request | Description
 - [AchievementProgress](docs/AchievementProgress.md)
 - [AchievementProgressWithDefinition](docs/AchievementProgressWithDefinition.md)
 - [AchievementStatusEntry](docs/AchievementStatusEntry.md)
+- [ActivateLoyaltyPoints](docs/ActivateLoyaltyPoints.md)
+- [ActivateLoyaltyPointsResponse](docs/ActivateLoyaltyPointsResponse.md)
 - [AddFreeItemEffectProps](docs/AddFreeItemEffectProps.md)
 - [AddItemCatalogAction](docs/AddItemCatalogAction.md)
 - [AddLoyaltyPoints](docs/AddLoyaltyPoints.md)
 - [AddLoyaltyPointsEffectProps](docs/AddLoyaltyPointsEffectProps.md)
 - [AddPriceAdjustmentCatalogAction](docs/AddPriceAdjustmentCatalogAction.md)
 - [AddToAudienceEffectProps](docs/AddToAudienceEffectProps.md)
+- [AddedDeductedPointsBalancesAction](docs/AddedDeductedPointsBalancesAction.md)
+- [AddedDeductedPointsBalancesNotification](docs/AddedDeductedPointsBalancesNotification.md)
 - [AddedDeductedPointsBalancesNotificationPolicy](docs/AddedDeductedPointsBalancesNotificationPolicy.md)
 - [AddedDeductedPointsNotification](docs/AddedDeductedPointsNotification.md)
 - [AddedDeductedPointsNotificationPolicy](docs/AddedDeductedPointsNotificationPolicy.md)
 - [AdditionalCampaignProperties](docs/AdditionalCampaignProperties.md)
 - [AdditionalCost](docs/AdditionalCost.md)
+- [AdjustmentDetails](docs/AdjustmentDetails.md)
 - [AnalyticsDataPoint](docs/AnalyticsDataPoint.md)
 - [AnalyticsDataPointWithTrend](docs/AnalyticsDataPointWithTrend.md)
 - [AnalyticsDataPointWithTrendAndInfluencedRate](docs/AnalyticsDataPointWithTrendAndInfluencedRate.md)
@@ -499,8 +515,9 @@ Class | Method | HTTP request | Description
 - [BestPriorPrice](docs/BestPriorPrice.md)
 - [BestPriorPriceMetadata](docs/BestPriorPriceMetadata.md)
 - [BestPriorPriceRequest](docs/BestPriorPriceRequest.md)
-- [BestPriorPriceRequestTarget](docs/BestPriorPriceRequestTarget.md)
+- [BestPriorTarget](docs/BestPriorTarget.md)
 - [Binding](docs/Binding.md)
+- [Blueprint](docs/Blueprint.md)
 - [BulkApplicationNotification](docs/BulkApplicationNotification.md)
 - [BulkOperationOnCampaigns](docs/BulkOperationOnCampaigns.md)
 - [Campaign](docs/Campaign.md)
@@ -548,6 +565,7 @@ Class | Method | HTTP request | Description
 - [CampaignTemplateCouponReservationSettings](docs/CampaignTemplateCouponReservationSettings.md)
 - [CampaignTemplateParams](docs/CampaignTemplateParams.md)
 - [CampaignVersions](docs/CampaignVersions.md)
+- [CardAddedDeductedPointsBalancesNotification](docs/CardAddedDeductedPointsBalancesNotification.md)
 - [CardAddedDeductedPointsBalancesNotificationPolicy](docs/CardAddedDeductedPointsBalancesNotificationPolicy.md)
 - [CardAddedDeductedPointsNotification](docs/CardAddedDeductedPointsNotification.md)
 - [CardAddedDeductedPointsNotificationPolicy](docs/CardAddedDeductedPointsNotificationPolicy.md)
@@ -557,10 +575,12 @@ Class | Method | HTTP request | Description
 - [CardLedgerTransactionLogEntry](docs/CardLedgerTransactionLogEntry.md)
 - [CardLedgerTransactionLogEntryIntegrationAPI](docs/CardLedgerTransactionLogEntryIntegrationAPI.md)
 - [CartItem](docs/CartItem.md)
+- [CartItemFilterTemplate](docs/CartItemFilterTemplate.md)
 - [Catalog](docs/Catalog.md)
 - [CatalogAction](docs/CatalogAction.md)
 - [CatalogActionFilter](docs/CatalogActionFilter.md)
 - [CatalogItem](docs/CatalogItem.md)
+- [CatalogRule](docs/CatalogRule.md)
 - [CatalogSyncRequest](docs/CatalogSyncRequest.md)
 - [CatalogsStrikethroughNotificationPolicy](docs/CatalogsStrikethroughNotificationPolicy.md)
 - [Change](docs/Change.md)
@@ -577,11 +597,13 @@ Class | Method | HTTP request | Description
 - [CouponDeletionFilters](docs/CouponDeletionFilters.md)
 - [CouponDeletionJob](docs/CouponDeletionJob.md)
 - [CouponEntity](docs/CouponEntity.md)
+- [CouponFailureSummary](docs/CouponFailureSummary.md)
 - [CouponLimitConfigs](docs/CouponLimitConfigs.md)
 - [CouponRejectionReason](docs/CouponRejectionReason.md)
 - [CouponReservations](docs/CouponReservations.md)
 - [CouponSearch](docs/CouponSearch.md)
 - [CouponValue](docs/CouponValue.md)
+- [CouponWithApplication](docs/CouponWithApplication.md)
 - [CouponsNotificationData](docs/CouponsNotificationData.md)
 - [CouponsNotificationPolicy](docs/CouponsNotificationPolicy.md)
 - [CreateAchievement](docs/CreateAchievement.md)
@@ -608,6 +630,7 @@ Class | Method | HTTP request | Description
 - [DeductLoyaltyPoints](docs/DeductLoyaltyPoints.md)
 - [DeductLoyaltyPointsEffectProps](docs/DeductLoyaltyPointsEffectProps.md)
 - [DeleteCouponsData](docs/DeleteCouponsData.md)
+- [DeleteLoyaltyTransactionsRequest](docs/DeleteLoyaltyTransactionsRequest.md)
 - [DeleteUserRequest](docs/DeleteUserRequest.md)
 - [Effect](docs/Effect.md)
 - [EffectEntity](docs/EffectEntity.md)
@@ -622,9 +645,19 @@ Class | Method | HTTP request | Description
 - [ErrorSource](docs/ErrorSource.md)
 - [EvaluableCampaignIds](docs/EvaluableCampaignIds.md)
 - [Event](docs/Event.md)
+- [EventAttributesEntity](docs/EventAttributesEntity.md)
 - [EventType](docs/EventType.md)
 - [EventV2](docs/EventV2.md)
 - [EventV3](docs/EventV3.md)
+- [Experiment](docs/Experiment.md)
+- [ExperimentCampaignCopy](docs/ExperimentCampaignCopy.md)
+- [ExperimentCopy](docs/ExperimentCopy.md)
+- [ExperimentCopyExperiment](docs/ExperimentCopyExperiment.md)
+- [ExperimentResults](docs/ExperimentResults.md)
+- [ExperimentVariant](docs/ExperimentVariant.md)
+- [ExperimentVariantAllocation](docs/ExperimentVariantAllocation.md)
+- [ExperimentVariantResult](docs/ExperimentVariantResult.md)
+- [ExperimentVariantResultConfidence](docs/ExperimentVariantResultConfidence.md)
 - [ExpiringCardPointsData](docs/ExpiringCardPointsData.md)
 - [ExpiringCardPointsNotification](docs/ExpiringCardPointsNotification.md)
 - [ExpiringCouponsData](docs/ExpiringCouponsData.md)
@@ -644,6 +677,7 @@ Class | Method | HTTP request | Description
 - [FunctionDef](docs/FunctionDef.md)
 - [GenerateAuditLogSummary](docs/GenerateAuditLogSummary.md)
 - [GenerateCampaignDescription](docs/GenerateCampaignDescription.md)
+- [GenerateCampaignSummary](docs/GenerateCampaignSummary.md)
 - [GenerateCampaignTags](docs/GenerateCampaignTags.md)
 - [GenerateCouponFailureDetailedSummary](docs/GenerateCouponFailureDetailedSummary.md)
 - [GenerateCouponFailureSummary](docs/GenerateCouponFailureSummary.md)
@@ -656,10 +690,12 @@ Class | Method | HTTP request | Description
 - [Giveaway](docs/Giveaway.md)
 - [GiveawaysPool](docs/GiveawaysPool.md)
 - [HiddenConditionsEffects](docs/HiddenConditionsEffects.md)
+- [History](docs/History.md)
 - [IdentifiableEntity](docs/IdentifiableEntity.md)
 - [Import](docs/Import.md)
 - [ImportEntity](docs/ImportEntity.md)
 - [IncreaseAchievementProgressEffectProps](docs/IncreaseAchievementProgressEffectProps.md)
+- [InfluencingCampaignDetails](docs/InfluencingCampaignDetails.md)
 - [InlineResponse200](docs/InlineResponse200.md)
 - [InlineResponse2001](docs/InlineResponse2001.md)
 - [InlineResponse20010](docs/InlineResponse20010.md)
@@ -706,6 +742,8 @@ Class | Method | HTTP request | Description
 - [InlineResponse20048](docs/InlineResponse20048.md)
 - [InlineResponse20049](docs/InlineResponse20049.md)
 - [InlineResponse2005](docs/InlineResponse2005.md)
+- [InlineResponse20050](docs/InlineResponse20050.md)
+- [InlineResponse20051](docs/InlineResponse20051.md)
 - [InlineResponse2006](docs/InlineResponse2006.md)
 - [InlineResponse2007](docs/InlineResponse2007.md)
 - [InlineResponse2008](docs/InlineResponse2008.md)
@@ -718,18 +756,34 @@ Class | Method | HTTP request | Description
 - [IntegrationEntity](docs/IntegrationEntity.md)
 - [IntegrationEvent](docs/IntegrationEvent.md)
 - [IntegrationEventV2Request](docs/IntegrationEventV2Request.md)
+- [IntegrationEventV2Response](docs/IntegrationEventV2Response.md)
 - [IntegrationEventV3Request](docs/IntegrationEventV3Request.md)
 - [IntegrationEventV3Response](docs/IntegrationEventV3Response.md)
+- [IntegrationHubConfig](docs/IntegrationHubConfig.md)
+- [IntegrationHubEventPayloadCouponBasedNotifications](docs/IntegrationHubEventPayloadCouponBasedNotifications.md)
+- [IntegrationHubEventPayloadCouponBasedNotificationsLimits](docs/IntegrationHubEventPayloadCouponBasedNotificationsLimits.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedNotification.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction](docs/IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationAction.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierDowngradeNotification.md)
+- [IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification](docs/IntegrationHubEventPayloadLoyaltyProfileBasedTierUpgradeNotification.md)
+- [IntegrationHubEventRecord](docs/IntegrationHubEventRecord.md)
+- [IntegrationHubFlow](docs/IntegrationHubFlow.md)
+- [IntegrationHubFlowConfig](docs/IntegrationHubFlowConfig.md)
+- [IntegrationHubFlowConfigResponse](docs/IntegrationHubFlowConfigResponse.md)
+- [IntegrationHubFlowResponse](docs/IntegrationHubFlowResponse.md)
+- [IntegrationHubFlowWithConfig](docs/IntegrationHubFlowWithConfig.md)
+- [IntegrationHubPaginatedEventPayload](docs/IntegrationHubPaginatedEventPayload.md)
 - [IntegrationProfileEntity](docs/IntegrationProfileEntity.md)
 - [IntegrationProfileEntityV3](docs/IntegrationProfileEntityV3.md)
 - [IntegrationRequest](docs/IntegrationRequest.md)
+- [IntegrationResponse](docs/IntegrationResponse.md)
 - [IntegrationState](docs/IntegrationState.md)
 - [IntegrationStateV2](docs/IntegrationStateV2.md)
 - [IntegrationStoreEntity](docs/IntegrationStoreEntity.md)
 - [InventoryCoupon](docs/InventoryCoupon.md)
 - [InventoryReferral](docs/InventoryReferral.md)
 - [ItemAttribute](docs/ItemAttribute.md)
-- [JWT](docs/JWT.md)
 - [LabelTargetAudience](docs/LabelTargetAudience.md)
 - [LabelTargetNone](docs/LabelTargetNone.md)
 - [LedgerEntry](docs/LedgerEntry.md)
@@ -797,6 +851,7 @@ Class | Method | HTTP request | Description
 - [NewAttribute](docs/NewAttribute.md)
 - [NewAudience](docs/NewAudience.md)
 - [NewBaseNotification](docs/NewBaseNotification.md)
+- [NewBlueprint](docs/NewBlueprint.md)
 - [NewCampaign](docs/NewCampaign.md)
 - [NewCampaignCollection](docs/NewCampaignCollection.md)
 - [NewCampaignEvaluationGroup](docs/NewCampaignEvaluationGroup.md)
@@ -817,6 +872,9 @@ Class | Method | HTTP request | Description
 - [NewCustomerSessionV2](docs/NewCustomerSessionV2.md)
 - [NewEvent](docs/NewEvent.md)
 - [NewEventType](docs/NewEventType.md)
+- [NewExperiment](docs/NewExperiment.md)
+- [NewExperimentVariant](docs/NewExperimentVariant.md)
+- [NewExperimentVariantArray](docs/NewExperimentVariantArray.md)
 - [NewExternalInvitation](docs/NewExternalInvitation.md)
 - [NewGiveawaysPool](docs/NewGiveawaysPool.md)
 - [NewInternalAudience](docs/NewInternalAudience.md)
@@ -871,7 +929,10 @@ Class | Method | HTTP request | Description
 - [PendingActivePointsNotification](docs/PendingActivePointsNotification.md)
 - [PendingPointsNotificationPolicy](docs/PendingPointsNotificationPolicy.md)
 - [Picklist](docs/Picklist.md)
+- [PlaceholderDetails](docs/PlaceholderDetails.md)
 - [PriceDetail](docs/PriceDetail.md)
+- [PriceHistoryRequest](docs/PriceHistoryRequest.md)
+- [PriceHistoryResponse](docs/PriceHistoryResponse.md)
 - [PriceType](docs/PriceType.md)
 - [PriceTypeReferenceDetail](docs/PriceTypeReferenceDetail.md)
 - [PriceTypeReferences](docs/PriceTypeReferences.md)
@@ -882,6 +943,7 @@ Class | Method | HTTP request | Description
 - [ProductUnitAnalyticsTotals](docs/ProductUnitAnalyticsTotals.md)
 - [ProfileAudiencesChanges](docs/ProfileAudiencesChanges.md)
 - [ProjectedTier](docs/ProjectedTier.md)
+- [PromoteExperiment](docs/PromoteExperiment.md)
 - [RedeemReferralEffectProps](docs/RedeemReferralEffectProps.md)
 - [Referral](docs/Referral.md)
 - [ReferralConstraints](docs/ReferralConstraints.md)
@@ -894,6 +956,7 @@ Class | Method | HTTP request | Description
 - [RemoveManyItemsCatalogAction](docs/RemoveManyItemsCatalogAction.md)
 - [ReopenSessionResponse](docs/ReopenSessionResponse.md)
 - [ReserveCouponEffectProps](docs/ReserveCouponEffectProps.md)
+- [ResponseContentObject](docs/ResponseContentObject.md)
 - [Return](docs/Return.md)
 - [ReturnIntegrationRequest](docs/ReturnIntegrationRequest.md)
 - [ReturnedCartItem](docs/ReturnedCartItem.md)
@@ -909,6 +972,7 @@ Class | Method | HTTP request | Description
 - [RoleV2Base](docs/RoleV2Base.md)
 - [RoleV2PermissionSet](docs/RoleV2PermissionSet.md)
 - [RoleV2Permissions](docs/RoleV2Permissions.md)
+- [RoleV2Readonly](docs/RoleV2Readonly.md)
 - [RoleV2RolesGroup](docs/RoleV2RolesGroup.md)
 - [RollbackAddedLoyaltyPointsEffectProps](docs/RollbackAddedLoyaltyPointsEffectProps.md)
 - [RollbackCouponEffectProps](docs/RollbackCouponEffectProps.md)
@@ -964,6 +1028,7 @@ Class | Method | HTTP request | Description
 - [StrikethroughEffect](docs/StrikethroughEffect.md)
 - [StrikethroughLabelingNotification](docs/StrikethroughLabelingNotification.md)
 - [StrikethroughSetDiscountPerItemEffectProps](docs/StrikethroughSetDiscountPerItemEffectProps.md)
+- [StrikethroughSetDiscountPerItemMemberEffectProps](docs/StrikethroughSetDiscountPerItemMemberEffectProps.md)
 - [StrikethroughTrigger](docs/StrikethroughTrigger.md)
 - [SummaryCampaignStoreBudget](docs/SummaryCampaignStoreBudget.md)
 - [TalangAttribute](docs/TalangAttribute.md)
@@ -983,7 +1048,6 @@ Class | Method | HTTP request | Description
 - [TierWillDowngradeNotificationPolicy](docs/TierWillDowngradeNotificationPolicy.md)
 - [TierWillDowngradeNotificationTrigger](docs/TierWillDowngradeNotificationTrigger.md)
 - [TimePoint](docs/TimePoint.md)
-- [TrackEventV2Response](docs/TrackEventV2Response.md)
 - [TransferLoyaltyCard](docs/TransferLoyaltyCard.md)
 - [TriggerWebhookEffectProps](docs/TriggerWebhookEffectProps.md)
 - [TwoFAConfig](docs/TwoFAConfig.md)
@@ -994,6 +1058,7 @@ Class | Method | HTTP request | Description
 - [UpdateApplicationCIF](docs/UpdateApplicationCIF.md)
 - [UpdateAttributeEffectProps](docs/UpdateAttributeEffectProps.md)
 - [UpdateAudience](docs/UpdateAudience.md)
+- [UpdateBlueprint](docs/UpdateBlueprint.md)
 - [UpdateCampaign](docs/UpdateCampaign.md)
 - [UpdateCampaignCollection](docs/UpdateCampaignCollection.md)
 - [UpdateCampaignEvaluationGroup](docs/UpdateCampaignEvaluationGroup.md)
@@ -1004,7 +1069,12 @@ Class | Method | HTTP request | Description
 - [UpdateCoupon](docs/UpdateCoupon.md)
 - [UpdateCouponBatch](docs/UpdateCouponBatch.md)
 - [UpdateCouponsData](docs/UpdateCouponsData.md)
+- [UpdateExperiment](docs/UpdateExperiment.md)
+- [UpdateExperimentVariant](docs/UpdateExperimentVariant.md)
+- [UpdateExperimentVariantArray](docs/UpdateExperimentVariantArray.md)
+- [UpdateExperimentVariantName](docs/UpdateExperimentVariantName.md)
 - [UpdateLoyaltyCard](docs/UpdateLoyaltyCard.md)
+- [UpdateLoyaltyCardRequest](docs/UpdateLoyaltyCardRequest.md)
 - [UpdateLoyaltyProgram](docs/UpdateLoyaltyProgram.md)
 - [UpdateLoyaltyProgramTier](docs/UpdateLoyaltyProgramTier.md)
 - [UpdatePicklist](docs/UpdatePicklist.md)
@@ -1019,7 +1089,6 @@ Class | Method | HTTP request | Description
 - [ValueMap](docs/ValueMap.md)
 - [Webhook](docs/Webhook.md)
 - [WebhookAuthentication](docs/WebhookAuthentication.md)
-- [WebhookAuthenticationBase](docs/WebhookAuthenticationBase.md)
 - [WebhookAuthenticationDataBasic](docs/WebhookAuthenticationDataBasic.md)
 - [WebhookAuthenticationDataCustom](docs/WebhookAuthenticationDataCustom.md)
 - [WebhookAuthenticationWebhookRef](docs/WebhookAuthenticationWebhookRef.md)

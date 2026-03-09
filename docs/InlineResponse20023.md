@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]CampaignAnalytics**](CampaignAnalytics.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]AccessLogEntry**](AccessLogEntry.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20023
 
-`func NewInlineResponse20023(totalResultSize int64, data []CampaignAnalytics, ) *InlineResponse20023`
+`func NewInlineResponse20023(hasMore bool, data []AccessLogEntry, ) *InlineResponse20023`
 
 NewInlineResponse20023 instantiates a new InlineResponse20023 object
 This constructor will assign default values to properties that have it defined,
@@ -26,42 +26,42 @@ NewInlineResponse20023WithDefaults instantiates a new InlineResponse20023 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTotalResultSize
+### GetHasMore
 
-`func (o *InlineResponse20023) GetTotalResultSize() int64`
+`func (o *InlineResponse20023) GetHasMore() bool`
 
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
 
-### GetTotalResultSizeOk
+### GetHasMoreOk
 
-`func (o *InlineResponse20023) GetTotalResultSizeOk() (*int64, bool)`
+`func (o *InlineResponse20023) GetHasMoreOk() (*bool, bool)`
 
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotalResultSize
+### SetHasMore
 
-`func (o *InlineResponse20023) SetTotalResultSize(v int64)`
+`func (o *InlineResponse20023) SetHasMore(v bool)`
 
-SetTotalResultSize sets TotalResultSize field to given value.
+SetHasMore sets HasMore field to given value.
 
 
 ### GetData
 
-`func (o *InlineResponse20023) GetData() []CampaignAnalytics`
+`func (o *InlineResponse20023) GetData() []AccessLogEntry`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20023) GetDataOk() (*[]CampaignAnalytics, bool)`
+`func (o *InlineResponse20023) GetDataOk() (*[]AccessLogEntry, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20023) SetData(v []CampaignAnalytics)`
+`func (o *InlineResponse20023) SetData(v []AccessLogEntry)`
 
 SetData sets Data field to given value.
 

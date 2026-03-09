@@ -43,6 +43,7 @@ Method | HTTP request | Description
 [**DisconnectCampaignStores**](ManagementApi.md#DisconnectCampaignStores) | **Delete** /v1/applications/{applicationId}/campaigns/{campaignId}/stores | Disconnect stores
 [**ExportAccountCollectionItems**](ManagementApi.md#ExportAccountCollectionItems) | **Get** /v1/collections/{collectionId}/export | Export account-level collection&#39;s items
 [**ExportAchievements**](ManagementApi.md#ExportAchievements) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/achievements/{achievementId}/export | Export achievement customer data
+[**ExportApplicationCampaignAnalytics**](ManagementApi.md#ExportApplicationCampaignAnalytics) | **Get** /v1/applications/{applicationId}/campaign_analytics/export | Export Application analytics aggregated by campaign
 [**ExportAudiencesMemberships**](ManagementApi.md#ExportAudiencesMemberships) | **Get** /v1/audiences/{audienceId}/memberships/export | Export audience members
 [**ExportCampaignStoreBudgets**](ManagementApi.md#ExportCampaignStoreBudgets) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets/export | Export campaign store budgets
 [**ExportCampaignStores**](ManagementApi.md#ExportCampaignStores) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/export | Export stores
@@ -56,9 +57,11 @@ Method | HTTP request | Description
 [**ExportLoyaltyCardBalances**](ManagementApi.md#ExportLoyaltyCardBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_card_balances | Export all card transaction logs
 [**ExportLoyaltyCardLedger**](ManagementApi.md#ExportLoyaltyCardLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/export_log | Export card&#39;s ledger log
 [**ExportLoyaltyCards**](ManagementApi.md#ExportLoyaltyCards) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/export | Export loyalty cards
+[**ExportLoyaltyJoinDates**](ManagementApi.md#ExportLoyaltyJoinDates) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/export_join_dates | Export customers&#39; loyalty program join dates
 [**ExportLoyaltyLedger**](ManagementApi.md#ExportLoyaltyLedger) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/export_log | Export customer&#39;s transaction logs
 [**ExportPoolGiveaways**](ManagementApi.md#ExportPoolGiveaways) | **Get** /v1/giveaways/pools/{poolId}/export | Export giveaway codes of a giveaway pool
 [**ExportReferrals**](ManagementApi.md#ExportReferrals) | **Get** /v1/applications/{applicationId}/export_referrals | Export referrals
+[**GenerateCouponRejections**](ManagementApi.md#GenerateCouponRejections) | **Get** /v1/coupon_rejections | Summarize coupon redemption failures in session
 [**GetAccessLogsWithoutTotalCount**](ManagementApi.md#GetAccessLogsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/access_logs/no_total | Get access logs for Application
 [**GetAccount**](ManagementApi.md#GetAccount) | **Get** /v1/accounts/{accountId} | Get account details
 [**GetAccountAnalytics**](ManagementApi.md#GetAccountAnalytics) | **Get** /v1/accounts/{accountId}/analytics | Get account analytics
@@ -102,12 +105,15 @@ Method | HTTP request | Description
 [**GetCustomersByAttributes**](ManagementApi.md#GetCustomersByAttributes) | **Post** /v1/customer_search/no_total | List customer profiles matching the given attributes
 [**GetDashboardStatistics**](ManagementApi.md#GetDashboardStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/dashboard | Get statistics for loyalty dashboard
 [**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List event types
+[**GetExperiment**](ManagementApi.md#GetExperiment) | **Get** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 [**GetExports**](ManagementApi.md#GetExports) | **Get** /v1/exports | Get exports
 [**GetLoyaltyCard**](ManagementApi.md#GetLoyaltyCard) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 [**GetLoyaltyCardTransactionLogs**](ManagementApi.md#GetLoyaltyCardTransactionLogs) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card&#39;s transactions
 [**GetLoyaltyCards**](ManagementApi.md#GetLoyaltyCards) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
+[**GetLoyaltyLedgerBalances**](ManagementApi.md#GetLoyaltyLedgerBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_balances | Get customer&#39;s loyalty balances
 [**GetLoyaltyPoints**](ManagementApi.md#GetLoyaltyPoints) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId} | Get customer&#39;s full loyalty ledger
 [**GetLoyaltyProgram**](ManagementApi.md#GetLoyaltyProgram) | **Get** /v1/loyalty_programs/{loyaltyProgramId} | Get loyalty program
+[**GetLoyaltyProgramProfileLedgerTransactions**](ManagementApi.md#GetLoyaltyProgramProfileLedgerTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/ledger_transactions | List customer&#39;s loyalty transactions
 [**GetLoyaltyProgramTransactions**](ManagementApi.md#GetLoyaltyProgramTransactions) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/transactions | List loyalty program transactions
 [**GetLoyaltyPrograms**](ManagementApi.md#GetLoyaltyPrograms) | **Get** /v1/loyalty_programs | List loyalty programs
 [**GetLoyaltyStatistics**](ManagementApi.md#GetLoyaltyStatistics) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/statistics | Get loyalty program statistics
@@ -141,6 +147,7 @@ Method | HTTP request | Description
 [**ListCatalogItems**](ManagementApi.md#ListCatalogItems) | **Get** /v1/catalogs/{catalogId}/items | List items in a catalog
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
+[**ListExperiments**](ManagementApi.md#ListExperiments) | **Get** /v1/applications/{applicationId}/experiments | List experiments
 [**ListStores**](ManagementApi.md#ListStores) | **Get** /v1/applications/{applicationId}/stores | List stores
 [**OktaEventHandlerChallenge**](ManagementApi.md#OktaEventHandlerChallenge) | **Get** /v1/provisioning/okta | Validate Okta API ownership
 [**RemoveLoyaltyPoints**](ManagementApi.md#RemoveLoyaltyPoints) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/deduct_points | Deduct points from customer profile
@@ -172,7 +179,7 @@ Method | HTTP request | Description
 [**UpdateCollection**](ManagementApi.md#UpdateCollection) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Update campaign-level collection&#39;s description
 [**UpdateCoupon**](ManagementApi.md#UpdateCoupon) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/{couponId} | Update coupon
 [**UpdateCouponBatch**](ManagementApi.md#UpdateCouponBatch) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons | Update coupons
-[**UpdateLoyaltyCard**](ManagementApi.md#UpdateLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card status
+[**UpdateLoyaltyCard**](ManagementApi.md#UpdateLoyaltyCard) | **Put** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Update loyalty card
 [**UpdateReferral**](ManagementApi.md#UpdateReferral) | **Put** /v1/applications/{applicationId}/campaigns/{campaignId}/referrals/{referralId} | Update referral
 [**UpdateRoleV2**](ManagementApi.md#UpdateRoleV2) | **Put** /v2/roles/{roleId} | Update role
 [**UpdateStore**](ManagementApi.md#UpdateStore) | **Put** /v1/applications/{applicationId}/stores/{storeId} | Update store
@@ -1606,6 +1613,55 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ExportApplicationCampaignAnalytics
+
+> string ExportApplicationCampaignAnalytics(ctx, applicationId, rangeStart, rangeEnd, optional)
+
+Export Application analytics aggregated by campaign
+
+Download a CSV file containing analytics data aggregated by campaign for the campaigns of an Application.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The CSV file contains the following columns: - `campaign_id`: The ID of the campaign. This column also contains labels for the [total and influenced values](https://docs.talon.one/docs/product/campaigns/analytics/application-dashboard#understanding-the-analytics-data). - `start_date`: The start of the aggregation time frame in UTC. - `end_date`: The end of the aggregation time frame in UTC. - `revenue`: The total, pre-discount value of all items purchased in a customer session. - `sessions`: The number of all closed sessions. - `average_session_value`: The average customer session value, calculated by dividing the revenue value by the number of sessions. - `average_items_per_session`: The number of items from sessions divided by the number of sessions. - `coupons`: The number of times a coupon was successfully redeemed in sessions. - `discounts`: The total value of discounts given for cart items in sessions. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**rangeStart** | **time.Time**| Only return results from after this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+**rangeEnd** | **time.Time**| Only return results from before this timestamp.  **Note:** - This must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **optional** | ***ExportApplicationCampaignAnalyticsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ExportApplicationCampaignAnalyticsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **campaignIds** | [**optional.Interface of []string**](string.md)| Filter by one or more Campaign IDs, separated by a comma.  **Note:** If no campaigns are specified, data for all the campaigns in the Application is returned.  | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ExportAudiencesMemberships
 
 > string ExportAudiencesMemberships(ctx, audienceId)
@@ -2030,7 +2086,7 @@ Optional parameters are passed through a pointer to a ExportLoyaltyBalancesOpts 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **endDate** | **optional.**| Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **endDate** | **optional.**| Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file,  which shows the customer&#39;s tier at the time of export.  | 
 
 ### Return type
 
@@ -2175,6 +2231,40 @@ Name | Type | Description  | Notes
  **createdBefore** | **optional.**| Only return loyalty cards created before this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | 
  **createdAfter** | **optional.**| Only return loyalty cards created after this timestamp.  **Note:** - This must be an RFC3339 timestamp string.  | 
  **dateFormat** | **optional.**| Determines the format of dates in the export document. | 
+
+### Return type
+
+**string**
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/csv
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ExportLoyaltyJoinDates
+
+> string ExportLoyaltyJoinDates(ctx, loyaltyProgramId)
+
+Export customers' loyalty program join dates
+
+Download a CSV file containing the join dates of all customers in the loyalty program.  **Tip:** If the exported CSV file is too large to view, you can [split it into multiple files](https://www.makeuseof.com/tag/how-to-split-a-huge-csv-excel-workbook-into-seperate-files/).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `profileIntegrationID`: The integration ID of the customer profile. - `joinDate`: The customer's loyalty program join date in RFC3339 format. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **string**| The identifier of the loyalty program. | 
 
 ### Return type
 
@@ -2342,9 +2432,56 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GenerateCouponRejections
+
+> InlineResponse20051 GenerateCouponRejections(ctx, sessionIntegrationId, optional)
+
+Summarize coupon redemption failures in session
+
+Create a summary of the reasons for coupon redemption failures in a given customer session. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**sessionIntegrationId** | **string**| The integration ID of the session to summarize. | 
+ **optional** | ***GenerateCouponRejectionsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GenerateCouponRejectionsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **applicationId** | **optional.**| Filter results by Application ID. | 
+ **language** | **optional.**| The [ISO-639](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes) code of the language in which the summary will be generated.  | 
+ **couponCode** | **optional.**| The coupon code for which to get the rejection reason. | 
+
+### Return type
+
+[**InlineResponse20051**](InlineResponse20051.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20022 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
+> InlineResponse20023 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
 
 Get access logs for Application
 
@@ -2380,7 +2517,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**InlineResponse20023**](InlineResponse20023.md)
 
 ### Authorization
 
@@ -2570,7 +2707,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20038 GetAdditionalCosts(ctx, optional)
+> InlineResponse20039 GetAdditionalCosts(ctx, optional)
 
 List additional costs
 
@@ -2597,7 +2734,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20038**](InlineResponse20038.md)
+[**InlineResponse20039**](InlineResponse20039.md)
 
 ### Authorization
 
@@ -2718,7 +2855,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20035 GetApplicationCustomerFriends(ctx, applicationId, integrationId, optional)
+> InlineResponse20036 GetApplicationCustomerFriends(ctx, applicationId, integrationId, optional)
 
 List friends referred by customer profile
 
@@ -2750,7 +2887,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20035**](InlineResponse20035.md)
+[**InlineResponse20036**](InlineResponse20036.md)
 
 ### Authorization
 
@@ -2768,7 +2905,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20024 GetApplicationCustomers(ctx, applicationId, optional)
+> InlineResponse20025 GetApplicationCustomers(ctx, applicationId, optional)
 
 List application's customers
 
@@ -2798,7 +2935,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**InlineResponse20025**](InlineResponse20025.md)
 
 ### Authorization
 
@@ -2816,7 +2953,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20025 GetApplicationCustomersByAttributes(ctx, applicationId, body, optional)
+> InlineResponse20026 GetApplicationCustomersByAttributes(ctx, applicationId, body, optional)
 
 List application customers matching the given attributes
 
@@ -2847,7 +2984,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**InlineResponse20026**](InlineResponse20026.md)
 
 ### Authorization
 
@@ -2865,7 +3002,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20031 GetApplicationEventTypes(ctx, applicationId, optional)
+> InlineResponse20032 GetApplicationEventTypes(ctx, applicationId, optional)
 
 List Applications event types
 
@@ -2894,7 +3031,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20031**](InlineResponse20031.md)
+[**InlineResponse20032**](InlineResponse20032.md)
 
 ### Authorization
 
@@ -2912,7 +3049,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20030 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
+> InlineResponse20031 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
 
 List Applications events
 
@@ -2953,7 +3090,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**InlineResponse20031**](InlineResponse20031.md)
 
 ### Authorization
 
@@ -3006,7 +3143,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20029 GetApplicationSessions(ctx, applicationId, optional)
+> InlineResponse20030 GetApplicationSessions(ctx, applicationId, optional)
 
 List Application sessions
 
@@ -3032,18 +3169,19 @@ Name | Type | Description  | Notes
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
- **profile** | **optional.**| Profile integration ID filter for sessions. Must be exact match. | 
+ **partialMatch** | **optional.**| Enables partial matching for a single text search field. When enabled, the search term matches anywhere within the field value (case-insensitive). Minimum 3 characters required for partial matches; shorter inputs automatically fall back to exact match.  **Note:** Use with one of: &#x60;integrationId&#x60;, &#x60;profile&#x60;, &#x60;coupon&#x60;, &#x60;referral&#x60;, or &#x60;storeIntegrationId&#x60;. | [default to false]
+ **profile** | **optional.**| Filter by sessions with this profile integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | 
  **state** | **optional.**| Filter by sessions with this state. Must be exact match. | 
  **createdBefore** | **optional.**| Only return events created before this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Only return events created after this date. You can use any time zone setting. Talon.One will convert to UTC internally. | 
- **coupon** | **optional.**| Filter by sessions with this coupon. Must be exact match. | 
- **referral** | **optional.**| Filter by sessions with this referral. Must be exact match. | 
- **integrationId** | **optional.**| Filter by sessions with this integration ID. Must be exact match. | 
- **storeIntegrationId** | **optional.**| The integration ID of the store. You choose this ID when you create a store. | 
+ **coupon** | **optional.**| Filter by sessions with this coupon. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | 
+ **referral** | **optional.**| Filter by sessions with this referral. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | 
+ **integrationId** | **optional.**| Filter by sessions with this integration ID. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | 
+ **storeIntegrationId** | **optional.**| The integration ID of the store. You choose this ID when you create a store. By default, requires exact match. Use &#x60;partialMatch&#x3D;true&#x60; to search for partial matches (minimum 3 characters). | 
 
 ### Return type
 
-[**InlineResponse20029**](InlineResponse20029.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -3140,7 +3278,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20036 GetAttributes(ctx, optional)
+> InlineResponse20037 GetAttributes(ctx, optional)
 
 List custom attributes
 
@@ -3172,7 +3310,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20036**](InlineResponse20036.md)
+[**InlineResponse20037**](InlineResponse20037.md)
 
 ### Authorization
 
@@ -3190,7 +3328,7 @@ Name | Type | Description  | Notes
 
 ## GetAudienceMemberships
 
-> InlineResponse20034 GetAudienceMemberships(ctx, audienceId, optional)
+> InlineResponse20035 GetAudienceMemberships(ctx, audienceId, optional)
 
 List audience members
 
@@ -3220,7 +3358,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20034**](InlineResponse20034.md)
+[**InlineResponse20035**](InlineResponse20035.md)
 
 ### Authorization
 
@@ -3238,7 +3376,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20032 GetAudiences(ctx, optional)
+> InlineResponse20033 GetAudiences(ctx, optional)
 
 List audiences
 
@@ -3266,7 +3404,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**InlineResponse20033**](InlineResponse20033.md)
 
 ### Authorization
 
@@ -3284,7 +3422,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiencesAnalytics
 
-> InlineResponse20033 GetAudiencesAnalytics(ctx, audienceIds, optional)
+> InlineResponse20034 GetAudiencesAnalytics(ctx, audienceIds, optional)
 
 List audience analytics
 
@@ -3311,7 +3449,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20033**](InlineResponse20033.md)
+[**InlineResponse20034**](InlineResponse20034.md)
 
 ### Authorization
 
@@ -3364,7 +3502,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20023 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
+> InlineResponse20024 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
 
 Get analytics of campaigns
 
@@ -3397,7 +3535,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**InlineResponse20024**](InlineResponse20024.md)
 
 ### Authorization
 
@@ -3624,6 +3762,10 @@ Name | Type | Description  | Notes
  **tags** | **optional.**| Filter results performing case-insensitive matching against the tags of the campaign. When used in conjunction with the \&quot;name\&quot; query parameter, a logical OR will be performed to search both tags and name for the provided values  | 
  **createdBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **createdAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign creation timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **startBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **startAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign start time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **endBefore** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
+ **endAfter** | **optional.**| Filter results comparing the parameter value, expected to be an RFC3339 timestamp string, to the campaign end time timestamp. You can use any time zone setting. Talon.One will convert to UTC internally. | 
  **campaignGroupId** | **optional.**| Filter results to campaigns owned by the specified campaign access group ID. | 
  **templateId** | **optional.**| The ID of the campaign template this campaign was created from. | 
  **storeId** | **optional.**| Filter results to campaigns linked to the specified store ID. | 
@@ -3648,7 +3790,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20042 GetChanges(ctx, optional)
+> InlineResponse20043 GetChanges(ctx, optional)
 
 Get audit logs for an account
 
@@ -3683,7 +3825,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**InlineResponse20043**](InlineResponse20043.md)
 
 ### Authorization
 
@@ -3737,7 +3879,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20021 GetCollectionItems(ctx, collectionId, optional)
+> InlineResponse20022 GetCollectionItems(ctx, collectionId, optional)
 
 Get collection items
 
@@ -3765,7 +3907,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**InlineResponse20022**](InlineResponse20022.md)
 
 ### Authorization
 
@@ -3899,7 +4041,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20028 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
+> InlineResponse20029 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
 
 Get Activity Reports for Application Customers
 
@@ -3936,7 +4078,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+[**InlineResponse20029**](InlineResponse20029.md)
 
 ### Authorization
 
@@ -4037,7 +4179,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfileAchievementProgress
 
-> InlineResponse20049 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
+> InlineResponse20050 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
 
 List customer achievements
 
@@ -4069,7 +4211,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**InlineResponse20050**](InlineResponse20050.md)
 
 ### Authorization
 
@@ -4087,7 +4229,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20027 GetCustomerProfiles(ctx, optional)
+> InlineResponse20028 GetCustomerProfiles(ctx, optional)
 
 List customer profiles
 
@@ -4114,7 +4256,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20027**](InlineResponse20027.md)
+[**InlineResponse20028**](InlineResponse20028.md)
 
 ### Authorization
 
@@ -4132,7 +4274,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20026 GetCustomersByAttributes(ctx, body, optional)
+> InlineResponse20027 GetCustomersByAttributes(ctx, body, optional)
 
 List customer profiles matching the given attributes
 
@@ -4161,7 +4303,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20026**](InlineResponse20026.md)
+[**InlineResponse20027**](InlineResponse20027.md)
 
 ### Authorization
 
@@ -4179,7 +4321,7 @@ Name | Type | Description  | Notes
 
 ## GetDashboardStatistics
 
-> InlineResponse20016 GetDashboardStatistics(ctx, loyaltyProgramId, rangeStart, rangeEnd, optional)
+> InlineResponse20017 GetDashboardStatistics(ctx, loyaltyProgramId, rangeStart, rangeEnd, optional)
 
 Get statistics for loyalty dashboard
 
@@ -4210,7 +4352,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**InlineResponse20017**](InlineResponse20017.md)
 
 ### Authorization
 
@@ -4228,7 +4370,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20040 GetEventTypes(ctx, optional)
+> InlineResponse20041 GetEventTypes(ctx, optional)
 
 List event types
 
@@ -4257,7 +4399,42 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20040**](InlineResponse20040.md)
+[**InlineResponse20041**](InlineResponse20041.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetExperiment
+
+> Experiment GetExperiment(ctx, applicationId, experimentId)
+
+Get experiment in Application
+
+Retrieve the given experiment associated with the Application.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**experimentId** | **int64**| The ID of the experiment. | 
+
+### Return type
+
+[**Experiment**](Experiment.md)
 
 ### Authorization
 
@@ -4275,7 +4452,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20043 GetExports(ctx, optional)
+> InlineResponse20044 GetExports(ctx, optional)
 
 Get exports
 
@@ -4304,7 +4481,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**InlineResponse20044**](InlineResponse20044.md)
 
 ### Authorization
 
@@ -4357,7 +4534,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactionLogs
 
-> InlineResponse20019 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId, optional)
+> InlineResponse20020 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId, optional)
 
 List card's transactions
 
@@ -4392,7 +4569,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**InlineResponse20020**](InlineResponse20020.md)
 
 ### Authorization
 
@@ -4410,7 +4587,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCards
 
-> InlineResponse20018 GetLoyaltyCards(ctx, loyaltyProgramId, optional)
+> InlineResponse20019 GetLoyaltyCards(ctx, loyaltyProgramId, optional)
 
 List loyalty cards
 
@@ -4442,7 +4619,57 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**InlineResponse20019**](InlineResponse20019.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLoyaltyLedgerBalances
+
+> LoyaltyBalancesWithTiers GetLoyaltyLedgerBalances(ctx, loyaltyProgramId, integrationId, optional)
+
+Get customer's loyalty balances
+
+Retrieve loyalty ledger balances for the given Integration ID in the specified loyalty program. You can filter balances by date and subledger ID, and include tier-related information in the response.  **Note**: If no filtering options are applied, you retrieve all loyalty balances on the current date for the given integration ID.  Loyalty balances are calculated when Talon.One receives your request using the points stored in our database, so retrieving a large number of balances at once can impact performance.  For more information, see: - [Managing card-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/card-based/managing-loyalty-cards) - [Managing profile-based loyalty program data](https://docs.talon.one/docs/product/loyalty-programs/profile-based/managing-pb-lp-data) 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int64**| Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
+ **optional** | ***GetLoyaltyLedgerBalancesOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetLoyaltyLedgerBalancesOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **endDate** | **optional.**| Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **subledgerId** | **optional.**| The ID of the subledger used to filter the data. Leave this value empty (\&quot;\&quot;) to query the main ledger. | 
+ **includeTiers** | **optional.**| Indicates whether tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the current tier and the number of points required to move to next tier.  | [default to false]
+ **includeProjectedTier** | **optional.**| Indicates whether the customer&#39;s projected tier information is included in the response.  When set to &#x60;true&#x60;, the response includes information about the customer&#39;s active points and the name of the projected tier.  **Note** We recommend filtering by &#x60;subledgerId&#x60; for better performance.  | [default to false]
+
+### Return type
+
+[**LoyaltyBalancesWithTiers**](LoyaltyBalancesWithTiers.md)
 
 ### Authorization
 
@@ -4527,9 +4754,64 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetLoyaltyProgramProfileLedgerTransactions
+
+> InlineResponse2004 GetLoyaltyProgramProfileLedgerTransactions(ctx, loyaltyProgramId, integrationId, optional)
+
+List customer's loyalty transactions
+
+Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  **Note:** To retrieve all loyalty program transaction logs in a given loyalty program, use the [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**loyaltyProgramId** | **int64**| Identifier of the profile-based loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
+**integrationId** | **string**| The integration identifier for this customer profile. Must be: - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  Once set, you cannot update this identifier.  | 
+ **optional** | ***GetLoyaltyProgramProfileLedgerTransactionsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetLoyaltyProgramProfileLedgerTransactionsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **customerSessionIDs** | [**optional.Interface of []string**](string.md)| Filter the results by a list of customer session IDs.   To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?customerSessionIDs&#x3D;id1&amp;customerSessionIDs&#x3D;id2&#x60;.  The response contains only data associated with the specified sessions.  | 
+ **transactionUUIDs** | [**optional.Interface of []string**](string.md)| Filter the results by a list of transaction UUIDs.  To include multiple IDs, repeat the parameter for each one, for example,  &#x60;?transactionUUIDs&#x3D;uuid1&amp;transactionUUIDs&#x3D;uuid2&#x60;.  The response contains only data associated with the specified transactions.  | 
+ **subledgerId** | **optional.**| The ID of the subledger used to filter the data. Leave this value empty (\&quot;\&quot;) to query the main ledger. | 
+ **loyaltyTransactionType** | **optional.**| Filter results by loyalty transaction type: - &#x60;manual&#x60;: Loyalty transaction that was done manually. - &#x60;session&#x60;: Loyalty transaction that resulted from a customer session. - &#x60;import&#x60;: Loyalty transaction that was imported from a CSV file.  | 
+ **startDate** | **optional.**| Date and time from which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **endDate** | **optional.**| Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
+ **pageSize** | **optional.**| The number of items in the response. | [default to 50]
+ **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
+ **awaitsActivation** | **optional.**| If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | 
+
+### Return type
+
+[**InlineResponse2004**](InlineResponse2004.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetLoyaltyProgramTransactions
 
-> InlineResponse20017 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId, optional)
+> InlineResponse20018 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId, optional)
 
 List loyalty program transactions
 
@@ -4560,11 +4842,11 @@ Name | Type | Description  | Notes
  **endDate** | **optional.**| Date and time by which results are returned. Results are filtered by transaction creation date.  **Note:**  - It must be an RFC3339 timestamp string. - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **pageSize** | **optional.**| The number of items in the response. | [default to 50]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
- **awaitsActivation** | **optional.**| If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired. If &#x60;false&#x60;: Returns an error.  | 
+ **awaitsActivation** | **optional.**| If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | 
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**InlineResponse20018**](InlineResponse20018.md)
 
 ### Authorization
 
@@ -4582,7 +4864,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse20015 GetLoyaltyPrograms(ctx, )
+> InlineResponse20016 GetLoyaltyPrograms(ctx, )
 
 List loyalty programs
 
@@ -4594,7 +4876,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**InlineResponse20016**](InlineResponse20016.md)
 
 ### Authorization
 
@@ -4946,7 +5228,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20041 GetUsers(ctx, optional)
+> InlineResponse20042 GetUsers(ctx, optional)
 
 List users in account
 
@@ -4973,7 +5255,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**InlineResponse20042**](InlineResponse20042.md)
 
 ### Authorization
 
@@ -5025,7 +5307,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20039 GetWebhooks(ctx, optional)
+> InlineResponse20040 GetWebhooks(ctx, optional)
 
 List webhooks
 
@@ -5057,7 +5339,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20040**](InlineResponse20040.md)
 
 ### Authorization
 
@@ -5359,7 +5641,7 @@ Name | Type | Description  | Notes
 
 Import coupons
 
-Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
+Upload a CSV file containing the coupons that should be created. The file should be sent as multipart data.  The CSV file contains the following columns:  - `value` (required): The coupon code. Must be at least 3 characters long. We recommend using alphanumeric characters.   There is no maximum length but limiting the code to 30 characters   ensures it is fully readable in the Campaign Manager.   The code should be unique unless you set `skipDuplicates` to `true`.  - `expirydate`: The end date in RFC3339 of the code redemption period. - `startdate`: The start date in RFC3339 of the code redemption period. - `recipientintegrationid`: The integration ID of the recipient of the coupon.   Only the customer with this integration ID can redeem this code. Available only for personal codes. - `limitval`: The maximum number of redemptions of this code. For unlimited redemptions, use `0`. Defaults to `1` when not provided. - `discountlimit`: The total discount value that the code can give. This is typically used to represent a gift card value. - `attributes`: A JSON object describing _custom_ coupon attribute names and their values, enclosed with double quotation marks.    For example, if you created a [custom attribute](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes)   called `category` associated with the coupon entity, the object in the CSV file, when opened in a text editor, must be: `\"{\"category\": \"10_off\"}\"`.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** We recommend limiting your file size to 500MB.  **Example:**  ```text \"value\",\"expirydate\",\"startdate\",\"recipientintegrationid\",\"limitval\",\"attributes\",\"discountlimit\" COUP1,2018-07-01T04:00:00Z,2018-05-01T04:00:00Z,cust123,1,\"{\"\"Category\"\": \"\"10_off\"\"}\",2.4 ```  Once imported, you can find the `batchId` in the Campaign Manager or by using [List coupons](#tag/Coupons/operation/getCouponsWithoutTotalCount). 
 
 ### Required Parameters
 
@@ -5497,7 +5779,7 @@ Name | Type | Description  | Notes
 
 Import loyalty points
 
-Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
+Upload a CSV file containing the loyalty points you want to import into a given loyalty program. Send the file as multipart data.  Depending on the type of loyalty program, you can import points into a given customer profile or loyalty card.  The CSV file contains the following columns:  - `customerprofileid` (optional): For profile-based loyalty programs, the integration ID of the customer profile where the loyalty points are imported.    **Note**: If the customer profile does not exist, it will be created. The profile will not be visible in any Application   until a session or profile update is received for that profile. - `identifier` (optional): For card-based loyalty programs, the identifier of the loyalty card where the loyalty points are imported. - `amount`: The amount of points to award to the customer profile. - `startdate` (optional): The earliest date when the points can be redeemed. The points are `active` from this date until the expiration date.    This parameter accepts one of the following values:   - A timestamp string in RFC3339 format.   - `immediate`   - `on_action`      **Note**:   Empty or missing values default to `immediate`. - `expirydate` (optional): The latest date when the points can be redeemed. The points are `expired` after this date.    **Note**: It must be an RFC3339 timestamp string or string `unlimited`. Empty or missing values are considered `unlimited`.      If passed, `validityDuration` should be omitted. - `validityDuration` (optional): The duration for which the points remain active, relative to the    activation date.    The time format is an **integer** followed by one letter indicating the time unit.     Examples: `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.     Available units:     - `s`: seconds   - `m`: minutes   - `h`: hours   - `D`: days   - `W`: weeks   - `M`: months   - `Y`: years     You can round certain units up or down:    - `_D` for rounding down days only. Signifies the start of the day.   - `_U` for rounding up days, weeks, months and years. Signifies the end of   the day, week, month or year.    If passed, `expirydate` should be omitted. - `subledgerid` (optional): The ID of the subledger that should received the points. - `reason` (optional): The reason why these points are awarded.  You can use the time zone of your choice. It is converted to UTC internally by Talon.One.  **Note:** For existing customer profiles and loyalty cards, the imported points are added to any previous active or pending points, depending on the value provided for `startdate`. If `startdate` matches the current date, the imported points are _active_. If it is later, the points are _pending_ until the date provided for `startdate` is reached.  **Note:** We recommend limiting your file size to 500MB.  **Example for profile-based programs:**  ```text customerprofileid,amount,startdate,expirydate,subledgerid,reason URNGV8294NV,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ```  **Example for card-based programs:**  ```text identifier,amount,startdate,expirydate,subledgerid,reason summer-loyalty-card-0543,100,2009-11-10T23:00:00Z,2009-11-11T23:00:00Z,subledger1,appeasement ``` 
 
 ### Required Parameters
 
@@ -5665,7 +5947,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20020 ListAccountCollections(ctx, optional)
+> InlineResponse20021 ListAccountCollections(ctx, optional)
 
 List collections in account
 
@@ -5694,7 +5976,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**InlineResponse20021**](InlineResponse20021.md)
 
 ### Authorization
 
@@ -5712,7 +5994,7 @@ Name | Type | Description  | Notes
 
 ## ListAchievements
 
-> InlineResponse20048 ListAchievements(ctx, applicationId, campaignId, optional)
+> InlineResponse20049 ListAchievements(ctx, applicationId, campaignId, optional)
 
 List achievements
 
@@ -5743,7 +6025,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+[**InlineResponse20049**](InlineResponse20049.md)
 
 ### Authorization
 
@@ -5761,7 +6043,7 @@ Name | Type | Description  | Notes
 
 ## ListAllRolesV2
 
-> InlineResponse20044 ListAllRolesV2(ctx, )
+> InlineResponse20045 ListAllRolesV2(ctx, )
 
 List roles
 
@@ -5773,7 +6055,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**InlineResponse20045**](InlineResponse20045.md)
 
 ### Authorization
 
@@ -5791,7 +6073,7 @@ This endpoint does not need any parameter.
 
 ## ListCampaignStoreBudgetLimits
 
-> InlineResponse20046 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
+> InlineResponse20047 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
 
 List campaign store budget limits
 
@@ -5821,7 +6103,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**InlineResponse20047**](InlineResponse20047.md)
 
 ### Authorization
 
@@ -5839,7 +6121,7 @@ Name | Type | Description  | Notes
 
 ## ListCatalogItems
 
-> InlineResponse20037 ListCatalogItems(ctx, catalogId, optional)
+> InlineResponse20038 ListCatalogItems(ctx, catalogId, optional)
 
 List items in a catalog
 
@@ -5870,7 +6152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**InlineResponse20038**](InlineResponse20038.md)
 
 ### Authorization
 
@@ -5888,7 +6170,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20020 ListCollections(ctx, applicationId, campaignId, optional)
+> InlineResponse20021 ListCollections(ctx, applicationId, campaignId, optional)
 
 List collections in campaign
 
@@ -5921,7 +6203,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**InlineResponse20021**](InlineResponse20021.md)
 
 ### Authorization
 
@@ -5939,7 +6221,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20020 ListCollectionsInApplication(ctx, applicationId, optional)
+> InlineResponse20021 ListCollectionsInApplication(ctx, applicationId, optional)
 
 List collections in Application
 
@@ -5970,7 +6252,54 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**InlineResponse20021**](InlineResponse20021.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListExperiments
+
+> InlineResponse20015 ListExperiments(ctx, applicationId, optional)
+
+List experiments
+
+List all experiments of the specified Application that match your filter criteria.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+ **optional** | ***ListExperimentsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListExperimentsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
+ **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
+
+### Return type
+
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 
@@ -5988,7 +6317,7 @@ Name | Type | Description  | Notes
 
 ## ListStores
 
-> InlineResponse20045 ListStores(ctx, applicationId, optional)
+> InlineResponse20046 ListStores(ctx, applicationId, optional)
 
 List stores
 
@@ -6022,7 +6351,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20046**](InlineResponse20046.md)
 
 ### Authorization
 
@@ -6753,7 +7082,7 @@ Name | Type | Description  | Notes
 
 ## SummarizeCampaignStoreBudget
 
-> InlineResponse20047 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
+> InlineResponse20048 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
 
 Get summary of campaign store budgets
 
@@ -6770,7 +7099,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20047**](InlineResponse20047.md)
+[**InlineResponse20048**](InlineResponse20048.md)
 
 ### Authorization
 
@@ -7114,9 +7443,9 @@ Name | Type | Description  | Notes
 
 > LoyaltyCard UpdateLoyaltyCard(ctx, loyaltyProgramId, loyaltyCardId, body)
 
-Update loyalty card status
+Update loyalty card
 
-Update the status of the given loyalty card. A card can be _active_ or _inactive_.
+Update the details of a specific loyalty card. You can set the card's status to `active` or `inactive` through this endpoint. At least one of `status` or `attributes` must be provided. 
 
 ### Required Parameters
 
@@ -7126,7 +7455,7 @@ Name | Type | Description  | Notes
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **loyaltyProgramId** | **int64**| Identifier of the card-based loyalty program containing the loyalty card. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.  | 
 **loyaltyCardId** | **string**| Identifier of the loyalty card. You can get the identifier with the [List loyalty cards](https://docs.talon.one/management-api#tag/Loyalty-cards/operation/getLoyaltyCards) endpoint.  | 
-**body** | [**UpdateLoyaltyCard**](UpdateLoyaltyCard.md)| body | 
+**body** | [**UpdateLoyaltyCardRequest**](UpdateLoyaltyCardRequest.md)| body | 
 
 ### Return type
 

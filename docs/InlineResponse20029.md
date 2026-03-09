@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]ApplicationSession**](ApplicationSession.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]CustomerActivityReport**](CustomerActivityReport.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20029
 
-`func NewInlineResponse20029(data []ApplicationSession, ) *InlineResponse20029`
+`func NewInlineResponse20029(hasMore bool, data []CustomerActivityReport, ) *InlineResponse20029`
 
 NewInlineResponse20029 instantiates a new InlineResponse20029 object
 This constructor will assign default values to properties that have it defined,
@@ -45,28 +45,23 @@ and a boolean to check if the value has been set.
 
 SetHasMore sets HasMore field to given value.
 
-### HasHasMore
-
-`func (o *InlineResponse20029) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20029) GetData() []ApplicationSession`
+`func (o *InlineResponse20029) GetData() []CustomerActivityReport`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20029) GetDataOk() (*[]ApplicationSession, bool)`
+`func (o *InlineResponse20029) GetDataOk() (*[]CustomerActivityReport, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20029) SetData(v []ApplicationSession)`
+`func (o *InlineResponse20029) SetData(v []CustomerActivityReport)`
 
 SetData sets Data field to given value.
 

@@ -16,18 +16,19 @@ import (
 // ReturnedCartItem struct for ReturnedCartItem
 type ReturnedCartItem struct {
 	// The index of the cart item in the provided customer session's `cartItems` property.
-	Position int64 `json:"position"`
+	Position *int64 `json:"position,omitempty"`
 	// Number of cart items to return.
 	Quantity *int64 `json:"quantity,omitempty"`
+	// The SKU of the cart item in the provided customer session's `cartItems` property.
+	Sku *string `json:"sku,omitempty"`
 }
 
 // NewReturnedCartItem instantiates a new ReturnedCartItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildReturnedCartItem(position int64) *ReturnedCartItem {
+func BuildReturnedCartItem() *ReturnedCartItem {
 	this := ReturnedCartItem{}
-	this.Position = position
 	return &this
 }
 
@@ -39,28 +40,36 @@ func NewReturnedCartItemWithDefaults() *ReturnedCartItem {
 	return &this
 }
 
-// GetPosition returns the Position field value
+// GetPosition returns the Position field value if set, zero value otherwise.
 func (o *ReturnedCartItem) GetPosition() int64 {
-	if o == nil {
+	if o == nil || o.Position == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.Position
+	return *o.Position
 }
 
-// GetPositionOk returns a tuple with the Position field value
+// GetPositionOk returns a tuple with the Position field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ReturnedCartItem) GetPositionOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.Position == nil {
 		return nil, false
 	}
-	return &o.Position, true
+	return o.Position, true
 }
 
-// SetPosition sets field value
+// HasPosition returns a boolean if a field has been set.
+func (o *ReturnedCartItem) HasPosition() bool {
+	if o != nil && o.Position != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPosition gets a reference to the given int64 and assigns it to the Position field.
 func (o *ReturnedCartItem) SetPosition(v int64) {
-	o.Position = v
+	o.Position = &v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -95,13 +104,48 @@ func (o *ReturnedCartItem) SetQuantity(v int64) {
 	o.Quantity = &v
 }
 
+// GetSku returns the Sku field value if set, zero value otherwise.
+func (o *ReturnedCartItem) GetSku() string {
+	if o == nil || o.Sku == nil {
+		var ret string
+		return ret
+	}
+	return *o.Sku
+}
+
+// GetSkuOk returns a tuple with the Sku field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ReturnedCartItem) GetSkuOk() (*string, bool) {
+	if o == nil || o.Sku == nil {
+		return nil, false
+	}
+	return o.Sku, true
+}
+
+// HasSku returns a boolean if a field has been set.
+func (o *ReturnedCartItem) HasSku() bool {
+	if o != nil && o.Sku != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSku gets a reference to the given string and assigns it to the Sku field.
+func (o *ReturnedCartItem) SetSku(v string) {
+	o.Sku = &v
+}
+
 func (o ReturnedCartItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Position != nil {
 		toSerialize["position"] = o.Position
 	}
 	if o.Quantity != nil {
 		toSerialize["quantity"] = o.Quantity
+	}
+	if o.Sku != nil {
+		toSerialize["sku"] = o.Sku
 	}
 	return json.Marshal(toSerialize)
 }

@@ -28,6 +28,7 @@ Name | Type | Description | Notes
 **FrontendState** | Pointer to **string** | The campaign state displayed in the Campaign Manager. | 
 **StoresImported** | Pointer to **bool** | Indicates whether the linked stores were imported via a CSV file. | 
 **ValueMapsIds** | Pointer to **[]int64** | A list of value map IDs for the campaign. | [optional] 
+**ExperimentId** | Pointer to **int64** | The ID of the Experiment this Campaign is part of. | [optional] 
 
 ## Methods
 
@@ -637,6 +638,31 @@ SetValueMapsIds sets ValueMapsIds field to given value.
 `func (o *AdditionalCampaignProperties) HasValueMapsIds() bool`
 
 HasValueMapsIds returns a boolean if a field has been set.
+
+### GetExperimentId
+
+`func (o *AdditionalCampaignProperties) GetExperimentId() int64`
+
+GetExperimentId returns the ExperimentId field if non-nil, zero value otherwise.
+
+### GetExperimentIdOk
+
+`func (o *AdditionalCampaignProperties) GetExperimentIdOk() (*int64, bool)`
+
+GetExperimentIdOk returns a tuple with the ExperimentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExperimentId
+
+`func (o *AdditionalCampaignProperties) SetExperimentId(v int64)`
+
+SetExperimentId sets ExperimentId field to given value.
+
+### HasExperimentId
+
+`func (o *AdditionalCampaignProperties) HasExperimentId() bool`
+
+HasExperimentId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LoyaltyCard**](LoyaltyCard.md) |  | 
+**Data** | Pointer to [**[]LoyaltyProgramTransaction**](LoyaltyProgramTransaction.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20018
 
-`func NewInlineResponse20018(hasMore bool, data []LoyaltyCard, ) *InlineResponse20018`
+`func NewInlineResponse20018(hasMore bool, data []LoyaltyProgramTransaction, ) *InlineResponse20018`
 
 NewInlineResponse20018 instantiates a new InlineResponse20018 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20018) GetData() []LoyaltyCard`
+`func (o *InlineResponse20018) GetData() []LoyaltyProgramTransaction`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20018) GetDataOk() (*[]LoyaltyCard, bool)`
+`func (o *InlineResponse20018) GetDataOk() (*[]LoyaltyProgramTransaction, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20018) SetData(v []LoyaltyCard)`
+`func (o *InlineResponse20018) SetData(v []LoyaltyProgramTransaction)`
 
 SetData sets Data field to given value.
 

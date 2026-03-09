@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the role. | [optional] 
 **Permissions** | Pointer to [**RoleV2Permissions**](RoleV2Permissions.md) |  | [optional] 
 **Members** | Pointer to **[]int64** | A list of user IDs the role is assigned to. | [optional] 
+**IsReadonly** | Pointer to **bool** | Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The &#39;isReadonly&#39; property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role. | [optional] [default to false]
 
 ## Methods
 
@@ -211,6 +212,31 @@ SetMembers sets Members field to given value.
 `func (o *RoleV2) HasMembers() bool`
 
 HasMembers returns a boolean if a field has been set.
+
+### GetIsReadonly
+
+`func (o *RoleV2) GetIsReadonly() bool`
+
+GetIsReadonly returns the IsReadonly field if non-nil, zero value otherwise.
+
+### GetIsReadonlyOk
+
+`func (o *RoleV2) GetIsReadonlyOk() (*bool, bool)`
+
+GetIsReadonlyOk returns a tuple with the IsReadonly field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsReadonly
+
+`func (o *RoleV2) SetIsReadonly(v bool)`
+
+SetIsReadonly sets IsReadonly field to given value.
+
+### HasIsReadonly
+
+`func (o *RoleV2) HasIsReadonly() bool`
+
+HasIsReadonly returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ExperimentId** | Pointer to **int64** | The ID of the experiment that campaign belongs to. | [optional] 
 **CampaignId** | Pointer to **int64** | The ID of the campaign that triggered this effect. | 
 **RulesetId** | Pointer to **int64** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
 **RuleIndex** | Pointer to **int64** | The position of the rule that triggered this effect within the ruleset. | 
@@ -38,6 +39,31 @@ will change when the set of required properties is changed
 NewEffectEntityWithDefaults instantiates a new EffectEntity object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetExperimentId
+
+`func (o *EffectEntity) GetExperimentId() int64`
+
+GetExperimentId returns the ExperimentId field if non-nil, zero value otherwise.
+
+### GetExperimentIdOk
+
+`func (o *EffectEntity) GetExperimentIdOk() (*int64, bool)`
+
+GetExperimentIdOk returns a tuple with the ExperimentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExperimentId
+
+`func (o *EffectEntity) SetExperimentId(v int64)`
+
+SetExperimentId sets ExperimentId field to given value.
+
+### HasExperimentId
+
+`func (o *EffectEntity) HasExperimentId() bool`
+
+HasExperimentId returns a boolean if a field has been set.
 
 ### GetCampaignId
 

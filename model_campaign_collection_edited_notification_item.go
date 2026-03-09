@@ -16,10 +16,12 @@ import (
 // CampaignCollectionEditedNotificationItem A notification regarding a collection that was edited.
 type CampaignCollectionEditedNotificationItem struct {
 	// The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
-	Event      string                   `json:"Event"`
-	Campaign   Campaign                 `json:"campaign"`
-	Ruleset    *Ruleset                 `json:"ruleset,omitempty"`
-	Collection CollectionWithoutPayload `json:"collection"`
+	Event    string   `json:"Event"`
+	Campaign Campaign `json:"campaign"`
+	Ruleset  *Ruleset `json:"ruleset,omitempty"`
+	// The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
+	Placeholders *[]PlaceholderDetails    `json:"placeholders,omitempty"`
+	Collection   CollectionWithoutPayload `json:"collection"`
 }
 
 // NewCampaignCollectionEditedNotificationItem instantiates a new CampaignCollectionEditedNotificationItem object
@@ -122,6 +124,38 @@ func (o *CampaignCollectionEditedNotificationItem) SetRuleset(v Ruleset) {
 	o.Ruleset = &v
 }
 
+// GetPlaceholders returns the Placeholders field value if set, zero value otherwise.
+func (o *CampaignCollectionEditedNotificationItem) GetPlaceholders() []PlaceholderDetails {
+	if o == nil || o.Placeholders == nil {
+		var ret []PlaceholderDetails
+		return ret
+	}
+	return *o.Placeholders
+}
+
+// GetPlaceholdersOk returns a tuple with the Placeholders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignCollectionEditedNotificationItem) GetPlaceholdersOk() (*[]PlaceholderDetails, bool) {
+	if o == nil || o.Placeholders == nil {
+		return nil, false
+	}
+	return o.Placeholders, true
+}
+
+// HasPlaceholders returns a boolean if a field has been set.
+func (o *CampaignCollectionEditedNotificationItem) HasPlaceholders() bool {
+	if o != nil && o.Placeholders != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaceholders gets a reference to the given []PlaceholderDetails and assigns it to the Placeholders field.
+func (o *CampaignCollectionEditedNotificationItem) SetPlaceholders(v []PlaceholderDetails) {
+	o.Placeholders = &v
+}
+
 // GetCollection returns the Collection field value
 func (o *CampaignCollectionEditedNotificationItem) GetCollection() CollectionWithoutPayload {
 	if o == nil {
@@ -156,6 +190,9 @@ func (o CampaignCollectionEditedNotificationItem) MarshalJSON() ([]byte, error) 
 	}
 	if o.Ruleset != nil {
 		toSerialize["ruleset"] = o.Ruleset
+	}
+	if o.Placeholders != nil {
+		toSerialize["placeholders"] = o.Placeholders
 	}
 	if true {
 		toSerialize["collection"] = o.Collection

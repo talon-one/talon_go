@@ -40,6 +40,8 @@ type CampaignTemplate struct {
 	ActiveRulesetId *int64 `json:"activeRulesetId,omitempty"`
 	// A list of tags for the campaign template.
 	Tags *[]string `json:"tags,omitempty"`
+	// Indicates whether campaigns created from this template should be reevaluated when a customer returns an item.
+	ReevaluateOnReturn bool `json:"reevaluateOnReturn"`
 	// A list of features for the campaign template.
 	Features                  *[]string                                  `json:"features,omitempty"`
 	CouponSettings            *CodeGeneratorSettings                     `json:"couponSettings,omitempty"`
@@ -73,7 +75,7 @@ type CampaignTemplate struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCampaignTemplate(id int64, created time.Time, accountId int64, userId int64, name string, description string, instructions string, state string, applicationsIds []int64, campaignType string, validApplicationIds []int64) *CampaignTemplate {
+func BuildCampaignTemplate(id int64, created time.Time, accountId int64, userId int64, name string, description string, instructions string, state string, reevaluateOnReturn bool, applicationsIds []int64, campaignType string, validApplicationIds []int64) *CampaignTemplate {
 	this := CampaignTemplate{}
 	this.Id = id
 	this.Created = created
@@ -83,6 +85,7 @@ func BuildCampaignTemplate(id int64, created time.Time, accountId int64, userId 
 	this.Description = description
 	this.Instructions = instructions
 	this.State = state
+	this.ReevaluateOnReturn = reevaluateOnReturn
 	this.ApplicationsIds = applicationsIds
 	this.CampaignType = campaignType
 	this.ValidApplicationIds = validApplicationIds
@@ -421,6 +424,30 @@ func (o *CampaignTemplate) HasTags() bool {
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *CampaignTemplate) SetTags(v []string) {
 	o.Tags = &v
+}
+
+// GetReevaluateOnReturn returns the ReevaluateOnReturn field value
+func (o *CampaignTemplate) GetReevaluateOnReturn() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.ReevaluateOnReturn
+}
+
+// GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field value
+// and a boolean to check if the value has been set.
+func (o *CampaignTemplate) GetReevaluateOnReturnOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReevaluateOnReturn, true
+}
+
+// SetReevaluateOnReturn sets field value
+func (o *CampaignTemplate) SetReevaluateOnReturn(v bool) {
+	o.ReevaluateOnReturn = v
 }
 
 // GetFeatures returns the Features field value if set, zero value otherwise.
@@ -916,6 +943,9 @@ func (o CampaignTemplate) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+	if true {
+		toSerialize["reevaluateOnReturn"] = o.ReevaluateOnReturn
 	}
 	if o.Features != nil {
 		toSerialize["features"] = o.Features

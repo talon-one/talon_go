@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]CustomerProfile**](CustomerProfile.md) |  | 
+**Data** | Pointer to [**[]AudienceAnalytics**](AudienceAnalytics.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20034
 
-`func NewInlineResponse20034(data []CustomerProfile, ) *InlineResponse20034`
+`func NewInlineResponse20034(data []AudienceAnalytics, ) *InlineResponse20034`
 
 NewInlineResponse20034 instantiates a new InlineResponse20034 object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasHasMore returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20034) GetData() []CustomerProfile`
+`func (o *InlineResponse20034) GetData() []AudienceAnalytics`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20034) GetDataOk() (*[]CustomerProfile, bool)`
+`func (o *InlineResponse20034) GetDataOk() (*[]AudienceAnalytics, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20034) SetData(v []CustomerProfile)`
+`func (o *InlineResponse20034) SetData(v []AudienceAnalytics)`
 
 SetData sets Data field to given value.
 

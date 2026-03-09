@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]CollectionItem**](CollectionItem.md) |  | 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**TotalResultSize** | Pointer to **int64** |  | [optional] 
+**Data** | Pointer to [**[]CollectionWithoutPayload**](CollectionWithoutPayload.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20021
 
-`func NewInlineResponse20021(hasMore bool, data []CollectionItem, ) *InlineResponse20021`
+`func NewInlineResponse20021(data []CollectionWithoutPayload, ) *InlineResponse20021`
 
 NewInlineResponse20021 instantiates a new InlineResponse20021 object
 This constructor will assign default values to properties that have it defined,
@@ -45,23 +46,53 @@ and a boolean to check if the value has been set.
 
 SetHasMore sets HasMore field to given value.
 
+### HasHasMore
+
+`func (o *InlineResponse20021) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
+
+### GetTotalResultSize
+
+`func (o *InlineResponse20021) GetTotalResultSize() int64`
+
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+
+### GetTotalResultSizeOk
+
+`func (o *InlineResponse20021) GetTotalResultSizeOk() (*int64, bool)`
+
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalResultSize
+
+`func (o *InlineResponse20021) SetTotalResultSize(v int64)`
+
+SetTotalResultSize sets TotalResultSize field to given value.
+
+### HasTotalResultSize
+
+`func (o *InlineResponse20021) HasTotalResultSize() bool`
+
+HasTotalResultSize returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20021) GetData() []CollectionItem`
+`func (o *InlineResponse20021) GetData() []CollectionWithoutPayload`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20021) GetDataOk() (*[]CollectionItem, bool)`
+`func (o *InlineResponse20021) GetDataOk() (*[]CollectionWithoutPayload, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20021) SetData(v []CollectionItem)`
+`func (o *InlineResponse20021) SetData(v []CollectionWithoutPayload)`
 
 SetData sets Data field to given value.
 

@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | Only campaign templates in &#39;available&#39; state may be used to create campaigns. | 
 **ActiveRulesetId** | Pointer to **int64** | The ID of the ruleset this campaign template will use. | [optional] 
 **Tags** | Pointer to **[]string** | A list of tags for the campaign template. | [optional] 
+**ReevaluateOnReturn** | Pointer to **bool** | Indicates whether campaigns created from this template should be reevaluated when a customer returns an item. | [optional] 
 **Features** | Pointer to **[]string** | A list of features for the campaign template. | [optional] 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **CouponReservationSettings** | Pointer to [**CampaignTemplateCouponReservationSettings**](CampaignTemplateCouponReservationSettings.md) |  | [optional] 
@@ -221,6 +222,31 @@ SetTags sets Tags field to given value.
 `func (o *UpdateCampaignTemplate) HasTags() bool`
 
 HasTags returns a boolean if a field has been set.
+
+### GetReevaluateOnReturn
+
+`func (o *UpdateCampaignTemplate) GetReevaluateOnReturn() bool`
+
+GetReevaluateOnReturn returns the ReevaluateOnReturn field if non-nil, zero value otherwise.
+
+### GetReevaluateOnReturnOk
+
+`func (o *UpdateCampaignTemplate) GetReevaluateOnReturnOk() (*bool, bool)`
+
+GetReevaluateOnReturnOk returns a tuple with the ReevaluateOnReturn field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReevaluateOnReturn
+
+`func (o *UpdateCampaignTemplate) SetReevaluateOnReturn(v bool)`
+
+SetReevaluateOnReturn sets ReevaluateOnReturn field to given value.
+
+### HasReevaluateOnReturn
+
+`func (o *UpdateCampaignTemplate) HasReevaluateOnReturn() bool`
+
+HasReevaluateOnReturn returns a boolean if a field has been set.
 
 ### GetFeatures
 

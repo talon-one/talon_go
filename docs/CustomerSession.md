@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Total** | Pointer to **float32** | The total sum of the cart in one session. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | A key-value map of the sessions attributes. The potentially valid attributes are configured in your accounts developer settings.  | 
 **FirstSession** | Pointer to **bool** | Indicates whether this is the first session for the customer&#39;s profile. Will always be true for anonymous sessions. | 
+**UpdateCount** | Pointer to **int64** | The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;. | 
 **Discounts** | Pointer to **map[string]float32** | A map of labelled discount values, values will be in the same currency as the application associated with the session. | 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received on this session. | 
 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewCustomerSession
 
-`func NewCustomerSession(integrationId string, created time.Time, applicationId int64, profileId string, coupon string, referral string, state string, cartItems []CartItem, total float32, attributes map[string]interface{}, firstSession bool, discounts map[string]float32, updated time.Time, ) *CustomerSession`
+`func NewCustomerSession(integrationId string, created time.Time, applicationId int64, profileId string, coupon string, referral string, state string, cartItems []CartItem, total float32, attributes map[string]interface{}, firstSession bool, updateCount int64, discounts map[string]float32, updated time.Time, ) *CustomerSession`
 
 NewCustomerSession instantiates a new CustomerSession object
 This constructor will assign default values to properties that have it defined,
@@ -281,6 +282,26 @@ and a boolean to check if the value has been set.
 `func (o *CustomerSession) SetFirstSession(v bool)`
 
 SetFirstSession sets FirstSession field to given value.
+
+
+### GetUpdateCount
+
+`func (o *CustomerSession) GetUpdateCount() int64`
+
+GetUpdateCount returns the UpdateCount field if non-nil, zero value otherwise.
+
+### GetUpdateCountOk
+
+`func (o *CustomerSession) GetUpdateCountOk() (*int64, bool)`
+
+GetUpdateCountOk returns a tuple with the UpdateCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateCount
+
+`func (o *CustomerSession) SetUpdateCount(v int64)`
+
+SetUpdateCount sets UpdateCount field to given value.
 
 
 ### GetDiscounts

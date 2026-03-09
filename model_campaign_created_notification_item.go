@@ -16,9 +16,11 @@ import (
 // CampaignCreatedNotificationItem A notification regarding a campaign that was created.
 type CampaignCreatedNotificationItem struct {
 	// The type of the event. Can be one of the following: ['campaign_state_changed', 'campaign_ruleset_changed', 'campaign_edited', 'campaign_created', 'campaign_deleted']
-	Event              string                     `json:"Event"`
-	Campaign           Campaign                   `json:"campaign"`
-	Ruleset            *Ruleset                   `json:"ruleset,omitempty"`
+	Event    string   `json:"Event"`
+	Campaign Campaign `json:"campaign"`
+	Ruleset  *Ruleset `json:"ruleset,omitempty"`
+	// The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign.
+	Placeholders       *[]PlaceholderDetails      `json:"placeholders,omitempty"`
 	EvaluationPosition CampaignEvaluationPosition `json:"evaluationPosition"`
 }
 
@@ -122,6 +124,38 @@ func (o *CampaignCreatedNotificationItem) SetRuleset(v Ruleset) {
 	o.Ruleset = &v
 }
 
+// GetPlaceholders returns the Placeholders field value if set, zero value otherwise.
+func (o *CampaignCreatedNotificationItem) GetPlaceholders() []PlaceholderDetails {
+	if o == nil || o.Placeholders == nil {
+		var ret []PlaceholderDetails
+		return ret
+	}
+	return *o.Placeholders
+}
+
+// GetPlaceholdersOk returns a tuple with the Placeholders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CampaignCreatedNotificationItem) GetPlaceholdersOk() (*[]PlaceholderDetails, bool) {
+	if o == nil || o.Placeholders == nil {
+		return nil, false
+	}
+	return o.Placeholders, true
+}
+
+// HasPlaceholders returns a boolean if a field has been set.
+func (o *CampaignCreatedNotificationItem) HasPlaceholders() bool {
+	if o != nil && o.Placeholders != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPlaceholders gets a reference to the given []PlaceholderDetails and assigns it to the Placeholders field.
+func (o *CampaignCreatedNotificationItem) SetPlaceholders(v []PlaceholderDetails) {
+	o.Placeholders = &v
+}
+
 // GetEvaluationPosition returns the EvaluationPosition field value
 func (o *CampaignCreatedNotificationItem) GetEvaluationPosition() CampaignEvaluationPosition {
 	if o == nil {
@@ -156,6 +190,9 @@ func (o CampaignCreatedNotificationItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.Ruleset != nil {
 		toSerialize["ruleset"] = o.Ruleset
+	}
+	if o.Placeholders != nil {
+		toSerialize["placeholders"] = o.Placeholders
 	}
 	if true {
 		toSerialize["evaluationPosition"] = o.EvaluationPosition
