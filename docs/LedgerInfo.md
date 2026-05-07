@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **TentativeNegativeBalance** | Pointer to **float32** | The tentative negative balance after all additions and deductions from the current customer session are applied to &#x60;negativeBalance&#x60;. When the session is closed, the tentative effects are applied and &#x60;negativeBalance&#x60; is updated to this value.  **Note:** Tentative balances are specific to the current session and do not take into account other open sessions for the given customer.  | [optional] 
 **CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **PointsToNextTier** | Pointer to **float32** | Points required to move up a tier. | [optional] 
+**NextTierName** | Pointer to **string** | The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier.  | [optional] 
 
 ## Methods
 
@@ -258,6 +259,31 @@ SetPointsToNextTier sets PointsToNextTier field to given value.
 `func (o *LedgerInfo) HasPointsToNextTier() bool`
 
 HasPointsToNextTier returns a boolean if a field has been set.
+
+### GetNextTierName
+
+`func (o *LedgerInfo) GetNextTierName() string`
+
+GetNextTierName returns the NextTierName field if non-nil, zero value otherwise.
+
+### GetNextTierNameOk
+
+`func (o *LedgerInfo) GetNextTierNameOk() (*string, bool)`
+
+GetNextTierNameOk returns a tuple with the NextTierName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextTierName
+
+`func (o *LedgerInfo) SetNextTierName(v string)`
+
+SetNextTierName sets NextTierName field to given value.
+
+### HasNextTierName
+
+`func (o *LedgerInfo) HasNextTierName() bool`
+
+HasNextTierName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

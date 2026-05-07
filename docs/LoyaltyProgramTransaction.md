@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **StartDate** | Pointer to **string** | When points become active. Possible values:   - &#x60;immediate&#x60;: Points are immediately active.   - &#x60;on_action&#x60;: Points become active based on the customer&#39;s action.   - a timestamp value: Points become active at a given date and time.  | 
 **ExpiryDate** | Pointer to **string** | When points expire. Possible values:   - &#x60;unlimited&#x60;: Points have no expiration date.   - a timestamp value: Points expire at a given date and time.  | 
 **CustomerProfileId** | Pointer to **string** | Customer profile integration ID used in the loyalty program. | [optional] 
-**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 **SubledgerId** | Pointer to **string** | ID of the subledger. | 
 **CustomerSessionId** | Pointer to **string** | ID of the customer session where the transaction occurred. | [optional] 
 **ImportId** | Pointer to **int64** | ID of the import where the transaction occurred. | [optional] 
@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **RulesetId** | Pointer to **int64** | ID of the ruleset containing the rule that triggered the effect. Applies only for transactions that resulted from a customer session. | [optional] 
 **RuleName** | Pointer to **string** | Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session. | [optional] 
 **Flags** | Pointer to [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) |  | [optional] 
+**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set.  | [optional] 
 
 ## Methods
 
@@ -493,6 +494,31 @@ SetFlags sets Flags field to given value.
 `func (o *LoyaltyProgramTransaction) HasFlags() bool`
 
 HasFlags returns a boolean if a field has been set.
+
+### GetValidityDuration
+
+`func (o *LoyaltyProgramTransaction) GetValidityDuration() string`
+
+GetValidityDuration returns the ValidityDuration field if non-nil, zero value otherwise.
+
+### GetValidityDurationOk
+
+`func (o *LoyaltyProgramTransaction) GetValidityDurationOk() (*string, bool)`
+
+GetValidityDurationOk returns a tuple with the ValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidityDuration
+
+`func (o *LoyaltyProgramTransaction) SetValidityDuration(v string)`
+
+SetValidityDuration sets ValidityDuration field to given value.
+
+### HasValidityDuration
+
+`func (o *LoyaltyProgramTransaction) HasValidityDuration() bool`
+
+HasValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

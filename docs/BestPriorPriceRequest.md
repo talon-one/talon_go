@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Skus** | Pointer to **[]string** | List of product SKUs to check when determining the best prior price. | 
 **TimeframeEndDate** | Pointer to [**time.Time**](time.Time.md) | The end date and time that defines the latest time for retrieving historical SKU prices. | 
-**Timeframe** | Pointer to **int32** | The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation. | 
-**StrictEndDate** | Pointer to **bool** | Indicates whether the timeframe includes the start of the current sale. - When &#x60;false&#x60;, the timeframe includes the start date of the current sale. - When &#x60;true&#x60;, the timeframe striclty uses the number of days specified in &#x60;timeframe&#x60;.  | 
-**Target** | Pointer to [**BestPriorPriceRequestTarget**](BestPriorPriceRequest_target.md) |  | [optional] 
+**Timeframe** | Pointer to **string** | The number of days prior to the timeframeEndDate. Only prices within this look back period are considered for the best prior price evaluation. | 
+**TimeframeEndDateType** | Pointer to **string** | Sets the timeframe for retrieving historical pricing data. Can be one of the following values: - &#x60;strict&#x60;: The timeframe ends at the &#x60;timeframeEndDate&#x60; value. - &#x60;price&#x60;: The timeframe ends at the start of current price value and takes the prices prior to the start of the current price value into account. - &#x60;sale&#x60;:  The timeframe ends at the start of current &#x60;contextId&#x60; and takes the prices prior to the start of the &#x60;contextId&#x60; into account.  | 
+**Target** | Pointer to [**BestPriorTarget**](BestPriorTarget.md) |  | [optional] 
 
 ## Methods
 
 ### NewBestPriorPriceRequest
 
-`func NewBestPriorPriceRequest(skus []string, timeframeEndDate time.Time, timeframe int32, strictEndDate bool, ) *BestPriorPriceRequest`
+`func NewBestPriorPriceRequest(skus []string, timeframeEndDate time.Time, timeframe string, timeframeEndDateType string, ) *BestPriorPriceRequest`
 
 NewBestPriorPriceRequest instantiates a new BestPriorPriceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -71,60 +71,60 @@ SetTimeframeEndDate sets TimeframeEndDate field to given value.
 
 ### GetTimeframe
 
-`func (o *BestPriorPriceRequest) GetTimeframe() int32`
+`func (o *BestPriorPriceRequest) GetTimeframe() string`
 
 GetTimeframe returns the Timeframe field if non-nil, zero value otherwise.
 
 ### GetTimeframeOk
 
-`func (o *BestPriorPriceRequest) GetTimeframeOk() (*int32, bool)`
+`func (o *BestPriorPriceRequest) GetTimeframeOk() (*string, bool)`
 
 GetTimeframeOk returns a tuple with the Timeframe field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTimeframe
 
-`func (o *BestPriorPriceRequest) SetTimeframe(v int32)`
+`func (o *BestPriorPriceRequest) SetTimeframe(v string)`
 
 SetTimeframe sets Timeframe field to given value.
 
 
-### GetStrictEndDate
+### GetTimeframeEndDateType
 
-`func (o *BestPriorPriceRequest) GetStrictEndDate() bool`
+`func (o *BestPriorPriceRequest) GetTimeframeEndDateType() string`
 
-GetStrictEndDate returns the StrictEndDate field if non-nil, zero value otherwise.
+GetTimeframeEndDateType returns the TimeframeEndDateType field if non-nil, zero value otherwise.
 
-### GetStrictEndDateOk
+### GetTimeframeEndDateTypeOk
 
-`func (o *BestPriorPriceRequest) GetStrictEndDateOk() (*bool, bool)`
+`func (o *BestPriorPriceRequest) GetTimeframeEndDateTypeOk() (*string, bool)`
 
-GetStrictEndDateOk returns a tuple with the StrictEndDate field if it's non-nil, zero value otherwise
+GetTimeframeEndDateTypeOk returns a tuple with the TimeframeEndDateType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetStrictEndDate
+### SetTimeframeEndDateType
 
-`func (o *BestPriorPriceRequest) SetStrictEndDate(v bool)`
+`func (o *BestPriorPriceRequest) SetTimeframeEndDateType(v string)`
 
-SetStrictEndDate sets StrictEndDate field to given value.
+SetTimeframeEndDateType sets TimeframeEndDateType field to given value.
 
 
 ### GetTarget
 
-`func (o *BestPriorPriceRequest) GetTarget() BestPriorPriceRequestTarget`
+`func (o *BestPriorPriceRequest) GetTarget() BestPriorTarget`
 
 GetTarget returns the Target field if non-nil, zero value otherwise.
 
 ### GetTargetOk
 
-`func (o *BestPriorPriceRequest) GetTargetOk() (*BestPriorPriceRequestTarget, bool)`
+`func (o *BestPriorPriceRequest) GetTargetOk() (*BestPriorTarget, bool)`
 
 GetTargetOk returns a tuple with the Target field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTarget
 
-`func (o *BestPriorPriceRequest) SetTarget(v BestPriorPriceRequestTarget)`
+`func (o *BestPriorPriceRequest) SetTarget(v BestPriorTarget)`
 
 SetTarget sets Target field to given value.
 

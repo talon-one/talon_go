@@ -11,14 +11,14 @@ Name | Type | Description | Notes
 **ProgramTitle** | Pointer to **string** | The Campaign Manager-displayed name of the loyalty program that owns this entity. | [optional] 
 **Status** | Pointer to **string** | Status of the loyalty card. Can be &#x60;active&#x60; or &#x60;inactive&#x60;.  | 
 **BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
-**Identifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
+**Identifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | 
 **UsersPerCardLimit** | Pointer to **int64** | The max amount of customer profiles that can be linked to the card. 0 means unlimited.  | 
 **Profiles** | Pointer to [**[]LoyaltyCardProfileRegistration**](LoyaltyCardProfileRegistration.md) | Integration IDs of the customers profiles linked to the card. | [optional] 
 **Ledger** | Pointer to [**LedgerInfo**](LedgerInfo.md) |  | [optional] 
 **Subledgers** | Pointer to [**map[string]LedgerInfo**](LedgerInfo.md) | Displays point balances of the card in the subledgers of the loyalty program. | [optional] 
 **Modified** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent update of the loyalty card. | [optional] 
-**OldCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
-**NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**OldCardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
+**NewCardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 **BatchId** | Pointer to **string** | The ID of the batch in which the loyalty card was created. | [optional] 
 
 ## Methods

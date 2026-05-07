@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 **Event** | Pointer to **string** | The type of the event. Can be one of the following: [&#39;campaign_state_changed&#39;, &#39;campaign_ruleset_changed&#39;, &#39;campaign_edited&#39;, &#39;campaign_created&#39;, &#39;campaign_deleted&#39;]  | 
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
 **OldRuleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
+**OldPlaceholders** | Pointer to [**[]PlaceholderDetails**](PlaceholderDetails.md) | The previous details of the placeholders before the ruleset was changed. | [optional] 
 **Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
+**Placeholders** | Pointer to [**[]PlaceholderDetails**](PlaceholderDetails.md) | The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign. | [optional] 
 
 ## Methods
 
@@ -93,6 +95,31 @@ SetOldRuleset sets OldRuleset field to given value.
 
 HasOldRuleset returns a boolean if a field has been set.
 
+### GetOldPlaceholders
+
+`func (o *CampaignRulesetChangedNotificationItem) GetOldPlaceholders() []PlaceholderDetails`
+
+GetOldPlaceholders returns the OldPlaceholders field if non-nil, zero value otherwise.
+
+### GetOldPlaceholdersOk
+
+`func (o *CampaignRulesetChangedNotificationItem) GetOldPlaceholdersOk() (*[]PlaceholderDetails, bool)`
+
+GetOldPlaceholdersOk returns a tuple with the OldPlaceholders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOldPlaceholders
+
+`func (o *CampaignRulesetChangedNotificationItem) SetOldPlaceholders(v []PlaceholderDetails)`
+
+SetOldPlaceholders sets OldPlaceholders field to given value.
+
+### HasOldPlaceholders
+
+`func (o *CampaignRulesetChangedNotificationItem) HasOldPlaceholders() bool`
+
+HasOldPlaceholders returns a boolean if a field has been set.
+
 ### GetRuleset
 
 `func (o *CampaignRulesetChangedNotificationItem) GetRuleset() Ruleset`
@@ -117,6 +144,31 @@ SetRuleset sets Ruleset field to given value.
 `func (o *CampaignRulesetChangedNotificationItem) HasRuleset() bool`
 
 HasRuleset returns a boolean if a field has been set.
+
+### GetPlaceholders
+
+`func (o *CampaignRulesetChangedNotificationItem) GetPlaceholders() []PlaceholderDetails`
+
+GetPlaceholders returns the Placeholders field if non-nil, zero value otherwise.
+
+### GetPlaceholdersOk
+
+`func (o *CampaignRulesetChangedNotificationItem) GetPlaceholdersOk() (*[]PlaceholderDetails, bool)`
+
+GetPlaceholdersOk returns a tuple with the Placeholders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlaceholders
+
+`func (o *CampaignRulesetChangedNotificationItem) SetPlaceholders(v []PlaceholderDetails)`
+
+SetPlaceholders sets Placeholders field to given value.
+
+### HasPlaceholders
+
+`func (o *CampaignRulesetChangedNotificationItem) HasPlaceholders() bool`
+
+HasPlaceholders returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

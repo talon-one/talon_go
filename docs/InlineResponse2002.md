@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]AchievementProgress**](AchievementProgress.md) |  | 
+**Data** | Pointer to [**[]AchievementStatusEntry**](AchievementStatusEntry.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse2002
 
-`func NewInlineResponse2002(totalResultSize int64, data []AchievementProgress, ) *InlineResponse2002`
+`func NewInlineResponse2002(totalResultSize int64, data []AchievementStatusEntry, ) *InlineResponse2002`
 
 NewInlineResponse2002 instantiates a new InlineResponse2002 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse2002) GetData() []AchievementProgress`
+`func (o *InlineResponse2002) GetData() []AchievementStatusEntry`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2002) GetDataOk() (*[]AchievementProgress, bool)`
+`func (o *InlineResponse2002) GetDataOk() (*[]AchievementStatusEntry, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse2002) SetData(v []AchievementProgress)`
+`func (o *InlineResponse2002) SetData(v []AchievementStatusEntry)`
 
 SetData sets Data field to given value.
 

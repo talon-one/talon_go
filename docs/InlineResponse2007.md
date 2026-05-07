@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]Application**](Application.md) |  | 
+**HasMore** | Pointer to **bool** |  | 
+**Data** | Pointer to [**[]LedgerPointsEntryIntegrationAPI**](LedgerPointsEntryIntegrationAPI.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse2007
 
-`func NewInlineResponse2007(totalResultSize int64, data []Application, ) *InlineResponse2007`
+`func NewInlineResponse2007(hasMore bool, data []LedgerPointsEntryIntegrationAPI, ) *InlineResponse2007`
 
 NewInlineResponse2007 instantiates a new InlineResponse2007 object
 This constructor will assign default values to properties that have it defined,
@@ -26,42 +26,42 @@ NewInlineResponse2007WithDefaults instantiates a new InlineResponse2007 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetTotalResultSize
+### GetHasMore
 
-`func (o *InlineResponse2007) GetTotalResultSize() int64`
+`func (o *InlineResponse2007) GetHasMore() bool`
 
-GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
 
-### GetTotalResultSizeOk
+### GetHasMoreOk
 
-`func (o *InlineResponse2007) GetTotalResultSizeOk() (*int64, bool)`
+`func (o *InlineResponse2007) GetHasMoreOk() (*bool, bool)`
 
-GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotalResultSize
+### SetHasMore
 
-`func (o *InlineResponse2007) SetTotalResultSize(v int64)`
+`func (o *InlineResponse2007) SetHasMore(v bool)`
 
-SetTotalResultSize sets TotalResultSize field to given value.
+SetHasMore sets HasMore field to given value.
 
 
 ### GetData
 
-`func (o *InlineResponse2007) GetData() []Application`
+`func (o *InlineResponse2007) GetData() []LedgerPointsEntryIntegrationAPI`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2007) GetDataOk() (*[]Application, bool)`
+`func (o *InlineResponse2007) GetDataOk() (*[]LedgerPointsEntryIntegrationAPI, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse2007) SetData(v []Application)`
+`func (o *InlineResponse2007) SetData(v []LedgerPointsEntryIntegrationAPI)`
 
 SetData sets Data field to given value.
 

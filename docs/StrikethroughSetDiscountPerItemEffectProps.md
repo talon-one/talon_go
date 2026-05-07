@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | effect name. | 
 **Value** | Pointer to [**map[string]interface{}**](.md) | discount value. | 
+**ExcludedFromPriceHistory** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -65,6 +66,31 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
+
+### GetExcludedFromPriceHistory
+
+`func (o *StrikethroughSetDiscountPerItemEffectProps) GetExcludedFromPriceHistory() bool`
+
+GetExcludedFromPriceHistory returns the ExcludedFromPriceHistory field if non-nil, zero value otherwise.
+
+### GetExcludedFromPriceHistoryOk
+
+`func (o *StrikethroughSetDiscountPerItemEffectProps) GetExcludedFromPriceHistoryOk() (*bool, bool)`
+
+GetExcludedFromPriceHistoryOk returns a tuple with the ExcludedFromPriceHistory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedFromPriceHistory
+
+`func (o *StrikethroughSetDiscountPerItemEffectProps) SetExcludedFromPriceHistory(v bool)`
+
+SetExcludedFromPriceHistory sets ExcludedFromPriceHistory field to given value.
+
+### HasExcludedFromPriceHistory
+
+`func (o *StrikethroughSetDiscountPerItemEffectProps) HasExcludedFromPriceHistory() bool`
+
+HasExcludedFromPriceHistory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

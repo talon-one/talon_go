@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]Achievement**](Achievement.md) |  | 
+**Data** | Pointer to [**[]ApplicationCIF**](ApplicationCIF.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20048
 
-`func NewInlineResponse20048(data []Achievement, ) *InlineResponse20048`
+`func NewInlineResponse20048(data []ApplicationCIF, ) *InlineResponse20048`
 
 NewInlineResponse20048 instantiates a new InlineResponse20048 object
 This constructor will assign default values to properties that have it defined,
@@ -53,20 +53,20 @@ HasHasMore returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20048) GetData() []Achievement`
+`func (o *InlineResponse20048) GetData() []ApplicationCIF`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20048) GetDataOk() (*[]Achievement, bool)`
+`func (o *InlineResponse20048) GetDataOk() (*[]ApplicationCIF, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20048) SetData(v []Achievement)`
+`func (o *InlineResponse20048) SetData(v []ApplicationCIF)`
 
 SetData sets Data field to given value.
 

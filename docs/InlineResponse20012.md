@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]Referral**](Referral.md) |  | 
+**Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20012
 
-`func NewInlineResponse20012(hasMore bool, data []Referral, ) *InlineResponse20012`
+`func NewInlineResponse20012(hasMore bool, data []Coupon, ) *InlineResponse20012`
 
 NewInlineResponse20012 instantiates a new InlineResponse20012 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20012) GetData() []Referral`
+`func (o *InlineResponse20012) GetData() []Coupon`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20012) GetDataOk() (*[]Referral, bool)`
+`func (o *InlineResponse20012) GetDataOk() (*[]Coupon, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20012) SetData(v []Referral)`
+`func (o *InlineResponse20012) SetData(v []Coupon)`
 
 SetData sets Data field to given value.
 

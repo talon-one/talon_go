@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**Data** | Pointer to [**[]AudienceAnalytics**](AudienceAnalytics.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | 
+**Data** | Pointer to **[]string** |  | 
 
 ## Methods
 
 ### NewInlineResponse20033
 
-`func NewInlineResponse20033(data []AudienceAnalytics, ) *InlineResponse20033`
+`func NewInlineResponse20033(totalResultSize int64, data []string, ) *InlineResponse20033`
 
 NewInlineResponse20033 instantiates a new InlineResponse20033 object
 This constructor will assign default values to properties that have it defined,
@@ -26,47 +26,42 @@ NewInlineResponse20033WithDefaults instantiates a new InlineResponse20033 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHasMore
+### GetTotalResultSize
 
-`func (o *InlineResponse20033) GetHasMore() bool`
+`func (o *InlineResponse20033) GetTotalResultSize() int64`
 
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetHasMoreOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20033) GetHasMoreOk() (*bool, bool)`
+`func (o *InlineResponse20033) GetTotalResultSizeOk() (*int64, bool)`
 
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHasMore
+### SetTotalResultSize
 
-`func (o *InlineResponse20033) SetHasMore(v bool)`
+`func (o *InlineResponse20033) SetTotalResultSize(v int64)`
 
-SetHasMore sets HasMore field to given value.
+SetTotalResultSize sets TotalResultSize field to given value.
 
-### HasHasMore
-
-`func (o *InlineResponse20033) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20033) GetData() []AudienceAnalytics`
+`func (o *InlineResponse20033) GetData() []string`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20033) GetDataOk() (*[]AudienceAnalytics, bool)`
+`func (o *InlineResponse20033) GetDataOk() (*[]string, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20033) SetData(v []AudienceAnalytics)`
+`func (o *InlineResponse20033) SetData(v []string)`
 
 SetData sets Data field to given value.
 

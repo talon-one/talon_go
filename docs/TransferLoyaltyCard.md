@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NewCardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
+**NewCardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | 
 **BlockReason** | Pointer to **string** | Reason for transferring and blocking the loyalty card.  | [optional] 
 
 ## Methods

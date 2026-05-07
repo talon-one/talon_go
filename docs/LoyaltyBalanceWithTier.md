@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **CurrentTier** | Pointer to [**Tier**](Tier.md) |  | [optional] 
 **ProjectedTier** | Pointer to [**ProjectedTier**](ProjectedTier.md) |  | [optional] 
 **PointsToNextTier** | Pointer to **float32** | The number of points required to move up a tier. | [optional] 
-**NextTierName** | Pointer to **string** | The name of the tier consecutive to the current tier. | [optional] 
+**NextTierName** | Pointer to **string** | The name of the next higher tier level in the loyalty program.  **Note**: - Returns &#x60;null&#x60; if the customer has reached the highest available tier. - Returns the lowest level tier name if the customer is not currently assigned to any tier.  | [optional] 
 
 ## Methods
 

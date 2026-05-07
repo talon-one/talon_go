@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **UserID** | Pointer to **int64** | This is the ID of the user who created this entry, if the addition or subtraction was done manually. | [optional] 
 **Archived** | Pointer to **bool** | Indicates if the entry belongs to the archived session. | [optional] 
 **Flags** | Pointer to [**LoyaltyLedgerEntryFlags**](LoyaltyLedgerEntryFlags.md) |  | [optional] 
+**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which &#x60;awaitsActivation&#x60; is &#x60;true&#x60; and &#x60;expiryDate&#x60; is not set.  | [optional] 
 
 ## Methods
 
@@ -383,6 +384,31 @@ SetFlags sets Flags field to given value.
 `func (o *LoyaltyLedgerEntry) HasFlags() bool`
 
 HasFlags returns a boolean if a field has been set.
+
+### GetValidityDuration
+
+`func (o *LoyaltyLedgerEntry) GetValidityDuration() string`
+
+GetValidityDuration returns the ValidityDuration field if non-nil, zero value otherwise.
+
+### GetValidityDurationOk
+
+`func (o *LoyaltyLedgerEntry) GetValidityDurationOk() (*string, bool)`
+
+GetValidityDurationOk returns a tuple with the ValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidityDuration
+
+`func (o *LoyaltyLedgerEntry) SetValidityDuration(v string)`
+
+SetValidityDuration sets ValidityDuration field to given value.
+
+### HasValidityDuration
+
+`func (o *LoyaltyLedgerEntry) HasValidityDuration() bool`
+
+HasValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

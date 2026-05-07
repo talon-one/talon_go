@@ -27,7 +27,6 @@ Name | Type | Description | Notes
 **Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | 
 **CardBased** | Pointer to **bool** | Defines the type of loyalty program: - &#x60;true&#x60;: the program is a card-based. - &#x60;false&#x60;: the program is profile-based.  | [default to false]
 **CanUpdateTiers** | Pointer to **bool** | &#x60;True&#x60; if the tier definitions can be updated.  | [optional] [default to false]
-**CanUpdateJoinPolicy** | Pointer to **bool** | &#x60;True&#x60; if the program join policy can be updated.  | [optional] 
 **CanUpdateTierExpirationPolicy** | Pointer to **bool** | &#x60;True&#x60; if the tier expiration policy can be updated.  | [optional] 
 **CanUpgradeToAdvancedTiers** | Pointer to **bool** | &#x60;True&#x60; if the program can be upgraded to use the &#x60;tiersExpireIn&#x60; and &#x60;tiersDowngradePolicy&#x60; properties.  | [optional] [default to false]
 **CanUpdateSubledgers** | Pointer to **bool** | &#x60;True&#x60; if the &#x60;allowSubledger&#x60; property can be updated in the loyalty program.  | [optional] [default to false]
@@ -560,31 +559,6 @@ SetCanUpdateTiers sets CanUpdateTiers field to given value.
 `func (o *LoyaltyProgram) HasCanUpdateTiers() bool`
 
 HasCanUpdateTiers returns a boolean if a field has been set.
-
-### GetCanUpdateJoinPolicy
-
-`func (o *LoyaltyProgram) GetCanUpdateJoinPolicy() bool`
-
-GetCanUpdateJoinPolicy returns the CanUpdateJoinPolicy field if non-nil, zero value otherwise.
-
-### GetCanUpdateJoinPolicyOk
-
-`func (o *LoyaltyProgram) GetCanUpdateJoinPolicyOk() (*bool, bool)`
-
-GetCanUpdateJoinPolicyOk returns a tuple with the CanUpdateJoinPolicy field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCanUpdateJoinPolicy
-
-`func (o *LoyaltyProgram) SetCanUpdateJoinPolicy(v bool)`
-
-SetCanUpdateJoinPolicy sets CanUpdateJoinPolicy field to given value.
-
-### HasCanUpdateJoinPolicy
-
-`func (o *LoyaltyProgram) HasCanUpdateJoinPolicy() bool`
-
-HasCanUpdateJoinPolicy returns a boolean if a field has been set.
 
 ### GetCanUpdateTierExpirationPolicy
 

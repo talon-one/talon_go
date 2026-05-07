@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
+**TotalResultSize** | Pointer to **int64** |  | 
 **Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20011
 
-`func NewInlineResponse20011(hasMore bool, data []Coupon, ) *InlineResponse20011`
+`func NewInlineResponse20011(totalResultSize int64, data []Coupon, ) *InlineResponse20011`
 
 NewInlineResponse20011 instantiates a new InlineResponse20011 object
 This constructor will assign default values to properties that have it defined,
@@ -26,24 +26,24 @@ NewInlineResponse20011WithDefaults instantiates a new InlineResponse20011 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHasMore
+### GetTotalResultSize
 
-`func (o *InlineResponse20011) GetHasMore() bool`
+`func (o *InlineResponse20011) GetTotalResultSize() int64`
 
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetHasMoreOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20011) GetHasMoreOk() (*bool, bool)`
+`func (o *InlineResponse20011) GetTotalResultSizeOk() (*int64, bool)`
 
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHasMore
+### SetTotalResultSize
 
-`func (o *InlineResponse20011) SetHasMore(v bool)`
+`func (o *InlineResponse20011) SetTotalResultSize(v int64)`
 
-SetHasMore sets HasMore field to given value.
+SetTotalResultSize sets TotalResultSize field to given value.
 
 
 ### GetData
