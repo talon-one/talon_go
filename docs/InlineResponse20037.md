@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
 **TotalResultSize** | Pointer to **int64** |  | [optional] 
-**Data** | Pointer to [**[]CatalogItem**](CatalogItem.md) |  | 
+**Data** | Pointer to [**[]ApplicationReferee**](ApplicationReferee.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20037
 
-`func NewInlineResponse20037(data []CatalogItem, ) *InlineResponse20037`
+`func NewInlineResponse20037(data []ApplicationReferee, ) *InlineResponse20037`
 
 NewInlineResponse20037 instantiates a new InlineResponse20037 object
 This constructor will assign default values to properties that have it defined,
@@ -79,20 +79,20 @@ HasTotalResultSize returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20037) GetData() []CatalogItem`
+`func (o *InlineResponse20037) GetData() []ApplicationReferee`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20037) GetDataOk() (*[]CatalogItem, bool)`
+`func (o *InlineResponse20037) GetDataOk() (*[]ApplicationReferee, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20037) SetData(v []CatalogItem)`
+`func (o *InlineResponse20037) SetData(v []ApplicationReferee)`
 
 SetData sets Data field to given value.
 

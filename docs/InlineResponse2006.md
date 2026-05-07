@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LedgerPointsEntryIntegrationAPI**](LedgerPointsEntryIntegrationAPI.md) |  | 
+**Data** | Pointer to [**[]CardLedgerPointsEntryIntegrationAPI**](CardLedgerPointsEntryIntegrationAPI.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse2006
 
-`func NewInlineResponse2006(hasMore bool, data []LedgerPointsEntryIntegrationAPI, ) *InlineResponse2006`
+`func NewInlineResponse2006(hasMore bool, data []CardLedgerPointsEntryIntegrationAPI, ) *InlineResponse2006`
 
 NewInlineResponse2006 instantiates a new InlineResponse2006 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse2006) GetData() []LedgerPointsEntryIntegrationAPI`
+`func (o *InlineResponse2006) GetData() []CardLedgerPointsEntryIntegrationAPI`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2006) GetDataOk() (*[]LedgerPointsEntryIntegrationAPI, bool)`
+`func (o *InlineResponse2006) GetDataOk() (*[]CardLedgerPointsEntryIntegrationAPI, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse2006) SetData(v []LedgerPointsEntryIntegrationAPI)`
+`func (o *InlineResponse2006) SetData(v []CardLedgerPointsEntryIntegrationAPI)`
 
 SetData sets Data field to given value.
 

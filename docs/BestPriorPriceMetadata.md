@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InfluencingCampaignIDs** | Pointer to **[]int64** |  | [optional] 
-**AdjustmentReferenceID** | Pointer to **string** | Identifier related to the &#x60;referenceId&#x60; used during a &#x60;ADD_PRICE_ADJUSTMENT&#x60; action  using the [Sync cart item catalog endpoint](https://docs.talon.one/integration-api#tag/Catalogs/operation/syncCatalog). | [optional] 
+**InfluencingCampaignDetails** | Pointer to [**[]InfluencingCampaignDetails**](InfluencingCampaignDetails.md) | Details about campaigns that influenced the final price. | 
+**AdjustmentDetails** | Pointer to [**AdjustmentDetails**](AdjustmentDetails.md) |  | [optional] 
 
 ## Methods
 
 ### NewBestPriorPriceMetadata
 
-`func NewBestPriorPriceMetadata() *BestPriorPriceMetadata`
+`func NewBestPriorPriceMetadata(influencingCampaignDetails []InfluencingCampaignDetails, ) *BestPriorPriceMetadata`
 
 NewBestPriorPriceMetadata instantiates a new BestPriorPriceMetadata object
 This constructor will assign default values to properties that have it defined,
@@ -26,55 +26,50 @@ NewBestPriorPriceMetadataWithDefaults instantiates a new BestPriorPriceMetadata 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetInfluencingCampaignIDs
+### GetInfluencingCampaignDetails
 
-`func (o *BestPriorPriceMetadata) GetInfluencingCampaignIDs() []int64`
+`func (o *BestPriorPriceMetadata) GetInfluencingCampaignDetails() []InfluencingCampaignDetails`
 
-GetInfluencingCampaignIDs returns the InfluencingCampaignIDs field if non-nil, zero value otherwise.
+GetInfluencingCampaignDetails returns the InfluencingCampaignDetails field if non-nil, zero value otherwise.
 
-### GetInfluencingCampaignIDsOk
+### GetInfluencingCampaignDetailsOk
 
-`func (o *BestPriorPriceMetadata) GetInfluencingCampaignIDsOk() (*[]int64, bool)`
+`func (o *BestPriorPriceMetadata) GetInfluencingCampaignDetailsOk() (*[]InfluencingCampaignDetails, bool)`
 
-GetInfluencingCampaignIDsOk returns a tuple with the InfluencingCampaignIDs field if it's non-nil, zero value otherwise
+GetInfluencingCampaignDetailsOk returns a tuple with the InfluencingCampaignDetails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetInfluencingCampaignIDs
+### SetInfluencingCampaignDetails
 
-`func (o *BestPriorPriceMetadata) SetInfluencingCampaignIDs(v []int64)`
+`func (o *BestPriorPriceMetadata) SetInfluencingCampaignDetails(v []InfluencingCampaignDetails)`
 
-SetInfluencingCampaignIDs sets InfluencingCampaignIDs field to given value.
+SetInfluencingCampaignDetails sets InfluencingCampaignDetails field to given value.
 
-### HasInfluencingCampaignIDs
 
-`func (o *BestPriorPriceMetadata) HasInfluencingCampaignIDs() bool`
+### GetAdjustmentDetails
 
-HasInfluencingCampaignIDs returns a boolean if a field has been set.
+`func (o *BestPriorPriceMetadata) GetAdjustmentDetails() AdjustmentDetails`
 
-### GetAdjustmentReferenceID
+GetAdjustmentDetails returns the AdjustmentDetails field if non-nil, zero value otherwise.
 
-`func (o *BestPriorPriceMetadata) GetAdjustmentReferenceID() string`
+### GetAdjustmentDetailsOk
 
-GetAdjustmentReferenceID returns the AdjustmentReferenceID field if non-nil, zero value otherwise.
+`func (o *BestPriorPriceMetadata) GetAdjustmentDetailsOk() (*AdjustmentDetails, bool)`
 
-### GetAdjustmentReferenceIDOk
-
-`func (o *BestPriorPriceMetadata) GetAdjustmentReferenceIDOk() (*string, bool)`
-
-GetAdjustmentReferenceIDOk returns a tuple with the AdjustmentReferenceID field if it's non-nil, zero value otherwise
+GetAdjustmentDetailsOk returns a tuple with the AdjustmentDetails field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAdjustmentReferenceID
+### SetAdjustmentDetails
 
-`func (o *BestPriorPriceMetadata) SetAdjustmentReferenceID(v string)`
+`func (o *BestPriorPriceMetadata) SetAdjustmentDetails(v AdjustmentDetails)`
 
-SetAdjustmentReferenceID sets AdjustmentReferenceID field to given value.
+SetAdjustmentDetails sets AdjustmentDetails field to given value.
 
-### HasAdjustmentReferenceID
+### HasAdjustmentDetails
 
-`func (o *BestPriorPriceMetadata) HasAdjustmentReferenceID() bool`
+`func (o *BestPriorPriceMetadata) HasAdjustmentDetails() bool`
 
-HasAdjustmentReferenceID returns a boolean if a field has been set.
+HasAdjustmentDetails returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

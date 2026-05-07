@@ -16,10 +16,12 @@ Name | Type | Description | Notes
 **LoyaltyCards** | Pointer to **[]string** | Identifier of a loyalty card. | [optional] 
 **State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. Either:    - &#x60;closed&#x60; → &#x60;cancelled&#x60; (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - &#x60;closed&#x60; → &#x60;partially_returned&#x60; (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - &#x60;closed&#x60; → &#x60;open&#x60; (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  | [default to "open"]
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item&#39;s &#x60;quantity&#x60; **does not exceed 10.000** per request.  | 
+**ExperimentVariantAllocations** | Pointer to [**[]ExperimentVariantAllocation**](ExperimentVariantAllocation.md) | The experiment variant allocations to add to this session.  | [optional] 
 **AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  | [optional] 
 **Identifiers** | Pointer to **[]string** | Session custom identifiers that you can set limits on or use inside your rules.  For example, you can use IP addresses as identifiers to potentially identify devices and limit discounts abuse in case of customers creating multiple accounts. See the [tutorial](https://docs.talon.one/docs/dev/tutorials/using-identifiers).  **Important**: Ensure the session contains an identifier by the time you close it if: - You [create a unique identifier budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign. - Your campaign has [coupons](https://docs.talon.one/docs/product/campaigns/coupons/coupon-page-overview). - We recommend passing an anonymized (hashed) version of the identifier value.  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Use this property to set a value for the attributes of your choice. Attributes represent any information to attach to your session, like the shipping city.  You can use [built-in attributes](https://docs.talon.one/docs/dev/concepts/attributes#built-in-attributes) or [custom ones](https://docs.talon.one/docs/dev/concepts/attributes#custom-attributes). Custom attributes must be created in the Campaign Manager before you set them with this property.  | 
 **FirstSession** | Pointer to **bool** | Indicates whether this is the first session for the customer&#39;s profile. It&#39;s always &#x60;true&#x60; for anonymous sessions. | 
+**UpdateCount** | Pointer to **int64** | The number of times the session was updated. When the session is created, this value is initialized to &#x60;1&#x60;. | 
 **Total** | Pointer to **float32** | The total value of cart items and additional costs in the session, before any discounts are applied. | 
 **CartItemTotal** | Pointer to **float32** | The total value of cart items, before any discounts are applied. | 
 **AdditionalCostTotal** | Pointer to **float32** | The total value of additional costs, before any discounts are applied. | 
@@ -29,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewCustomerSessionV2
 
-`func NewCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, total float32, cartItemTotal float32, additionalCostTotal float32, updated time.Time, ) *CustomerSessionV2`
+`func NewCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, updateCount int64, total float32, cartItemTotal float32, additionalCostTotal float32, updated time.Time, ) *CustomerSessionV2`
 
 NewCustomerSessionV2 instantiates a new CustomerSessionV2 object
 This constructor will assign default values to properties that have it defined,
@@ -309,6 +311,31 @@ and a boolean to check if the value has been set.
 SetCartItems sets CartItems field to given value.
 
 
+### GetExperimentVariantAllocations
+
+`func (o *CustomerSessionV2) GetExperimentVariantAllocations() []ExperimentVariantAllocation`
+
+GetExperimentVariantAllocations returns the ExperimentVariantAllocations field if non-nil, zero value otherwise.
+
+### GetExperimentVariantAllocationsOk
+
+`func (o *CustomerSessionV2) GetExperimentVariantAllocationsOk() (*[]ExperimentVariantAllocation, bool)`
+
+GetExperimentVariantAllocationsOk returns a tuple with the ExperimentVariantAllocations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExperimentVariantAllocations
+
+`func (o *CustomerSessionV2) SetExperimentVariantAllocations(v []ExperimentVariantAllocation)`
+
+SetExperimentVariantAllocations sets ExperimentVariantAllocations field to given value.
+
+### HasExperimentVariantAllocations
+
+`func (o *CustomerSessionV2) HasExperimentVariantAllocations() bool`
+
+HasExperimentVariantAllocations returns a boolean if a field has been set.
+
 ### GetAdditionalCosts
 
 `func (o *CustomerSessionV2) GetAdditionalCosts() map[string]AdditionalCost`
@@ -397,6 +424,26 @@ and a boolean to check if the value has been set.
 `func (o *CustomerSessionV2) SetFirstSession(v bool)`
 
 SetFirstSession sets FirstSession field to given value.
+
+
+### GetUpdateCount
+
+`func (o *CustomerSessionV2) GetUpdateCount() int64`
+
+GetUpdateCount returns the UpdateCount field if non-nil, zero value otherwise.
+
+### GetUpdateCountOk
+
+`func (o *CustomerSessionV2) GetUpdateCountOk() (*int64, bool)`
+
+GetUpdateCountOk returns a tuple with the UpdateCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdateCount
+
+`func (o *CustomerSessionV2) SetUpdateCount(v int64)`
+
+SetUpdateCount sets UpdateCount field to given value.
 
 
 ### GetTotal

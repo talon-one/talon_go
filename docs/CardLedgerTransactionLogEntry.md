@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **TransactionUUID** | Pointer to **string** | Unique identifier of the transaction in the UUID format. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | Date and time the loyalty card transaction occurred. | 
 **ProgramId** | Pointer to **int64** | ID of the loyalty program. | 
-**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | 
+**CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | 
 **ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | [optional] 
 **SessionId** | Pointer to **int64** | The **internal** ID of the session.  | [optional] 
 **CustomerSessionId** | Pointer to **string** | ID of the customer session where the transaction occurred. | [optional] 

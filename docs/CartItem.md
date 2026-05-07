@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | Name of item. | [optional] 
 **Sku** | Pointer to **string** | Stock keeping unit of item. | 
 **Quantity** | Pointer to **int64** | Number of units of this item. Due to [cart item flattening](https://docs.talon.one/docs/product/rules/understanding-cart-item-flattening), if you provide a quantity greater than 1, the item will be split in as many items as the provided quantity. This will impact the number of **per-item** effects triggered from your campaigns.  | 
-**ReturnedQuantity** | Pointer to **int64** | Number of returned items, calculated internally based on returns of this item. | [optional] 
-**RemainingQuantity** | Pointer to **int64** | Remaining quantity of the item, calculated internally based on returns of this item. | [optional] 
+**ReturnedQuantity** | Pointer to **int64** | Number of returned items, calculated internally based on returns of this item. | [optional] [readonly] 
+**RemainingQuantity** | Pointer to **int64** | Remaining quantity of the item, calculated internally based on returns of this item. | [optional] [readonly] 
 **Price** | Pointer to **float32** | Price of the item in the currency defined by your Application. This field is required if this item is not part of a [catalog](https://docs.talon.one/docs/product/account/dev-tools/managing-cart-item-catalogs). If it is part of a catalog, setting a price here overrides the price from the catalog.  | [optional] 
 **Category** | Pointer to **string** | Type, group or model of the item. | [optional] 
 **Product** | Pointer to [**Product**](Product.md) |  | [optional] 
@@ -16,15 +16,15 @@ Name | Type | Description | Notes
 **Height** | Pointer to **float32** | Height of item in mm. | [optional] 
 **Width** | Pointer to **float32** | Width of item in mm. | [optional] 
 **Length** | Pointer to **float32** | Length of item in mm. | [optional] 
-**Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally). | [optional] 
+**Position** | Pointer to **float32** | Position of the Cart Item in the Cart (calculated internally). | [optional] [readonly] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Use this property to set a value for the attributes of your choice. [Attributes](https://docs.talon.one/docs/dev/concepts/attributes) represent any information to attach to this cart item.  Custom _cart item_ attributes must be created in the Campaign Manager before you set them with this property.  **Note:** Any previously defined attributes that you do not include in the array will be removed.  | [optional] 
 **AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this item, such as a shipping cost. They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  | [optional] 
-**CatalogItemID** | Pointer to **int64** | The catalog item ID. | [optional] 
-**SelectedPriceType** | Pointer to **string** | The selected price type for this cart item (e.g. the price for members only). | [optional] 
-**AdjustmentReferenceId** | Pointer to **string** | The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment. | [optional] 
-**AdjustmentEffectiveFrom** | Pointer to [**time.Time**](time.Time.md) | The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field. | [optional] 
-**AdjustmentEffectiveUntil** | Pointer to [**time.Time**](time.Time.md) | The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field. | [optional] 
-**Prices** | Pointer to [**map[string]PriceDetail**](PriceDetail.md) | A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the &#x60;priceType&#x60; names.  | [optional] 
+**CatalogItemID** | Pointer to **int64** | The catalog item ID. | [optional] [readonly] 
+**SelectedPriceType** | Pointer to **string** | The selected price type for this cart item (e.g. the price for members only). | [optional] [readonly] 
+**AdjustmentReferenceId** | Pointer to **string** | The reference ID of the selected price adjustment for this cart item. Only returned if the selected price resulted from a price adjustment. | [optional] [readonly] 
+**AdjustmentEffectiveFrom** | Pointer to [**time.Time**](time.Time.md) | The date and time from which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field. | [optional] [readonly] 
+**AdjustmentEffectiveUntil** | Pointer to [**time.Time**](time.Time.md) | The date and time until which the price adjustment is effective. Only returned if the selected price resulted from a price adjustment that contains this field. | [optional] [readonly] 
+**Prices** | Pointer to [**map[string]PriceDetail**](PriceDetail.md) | A map of keys and values representing the price types and related price adjustment details for this cart item. The keys correspond to the &#x60;priceType&#x60; names.  | [optional] [readonly] 
 
 ## Methods
 

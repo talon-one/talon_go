@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
 **TargetedItemPosition** | Pointer to **float32** | The index of the targeted bundle item on which the applied discount is based. | [optional] 
 **TargetedItemSubPosition** | Pointer to **float32** | The sub-position of the targeted bundle item on which the applied discount is based.  | [optional] 
+**ExcludedFromPriceHistory** | Pointer to **bool** | When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. | [optional] 
 
 ## Methods
 
@@ -320,6 +321,31 @@ SetTargetedItemSubPosition sets TargetedItemSubPosition field to given value.
 `func (o *SetDiscountPerItemEffectProps) HasTargetedItemSubPosition() bool`
 
 HasTargetedItemSubPosition returns a boolean if a field has been set.
+
+### GetExcludedFromPriceHistory
+
+`func (o *SetDiscountPerItemEffectProps) GetExcludedFromPriceHistory() bool`
+
+GetExcludedFromPriceHistory returns the ExcludedFromPriceHistory field if non-nil, zero value otherwise.
+
+### GetExcludedFromPriceHistoryOk
+
+`func (o *SetDiscountPerItemEffectProps) GetExcludedFromPriceHistoryOk() (*bool, bool)`
+
+GetExcludedFromPriceHistoryOk returns a tuple with the ExcludedFromPriceHistory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedFromPriceHistory
+
+`func (o *SetDiscountPerItemEffectProps) SetExcludedFromPriceHistory(v bool)`
+
+SetExcludedFromPriceHistory sets ExcludedFromPriceHistory field to given value.
+
+### HasExcludedFromPriceHistory
+
+`func (o *SetDiscountPerItemEffectProps) HasExcludedFromPriceHistory() bool`
+
+HasExcludedFromPriceHistory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Event** | Pointer to **string** | The type of the event. Can be one of the following: [&#39;campaign_state_changed&#39;, &#39;campaign_ruleset_changed&#39;, &#39;campaign_edited&#39;, &#39;campaign_created&#39;, &#39;campaign_deleted&#39;]  | 
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | 
 **Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
+**Placeholders** | Pointer to [**[]PlaceholderDetails**](PlaceholderDetails.md) | The current details of the [placeholders](https://docs.talon.one/docs/product/campaigns/templates/create-templates#use-placeholders) in the campaign. | [optional] 
 **EvaluationPosition** | Pointer to [**CampaignEvaluationPosition**](CampaignEvaluationPosition.md) |  | 
 
 ## Methods
@@ -92,6 +93,31 @@ SetRuleset sets Ruleset field to given value.
 `func (o *CampaignCreatedNotificationItem) HasRuleset() bool`
 
 HasRuleset returns a boolean if a field has been set.
+
+### GetPlaceholders
+
+`func (o *CampaignCreatedNotificationItem) GetPlaceholders() []PlaceholderDetails`
+
+GetPlaceholders returns the Placeholders field if non-nil, zero value otherwise.
+
+### GetPlaceholdersOk
+
+`func (o *CampaignCreatedNotificationItem) GetPlaceholdersOk() (*[]PlaceholderDetails, bool)`
+
+GetPlaceholdersOk returns a tuple with the Placeholders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlaceholders
+
+`func (o *CampaignCreatedNotificationItem) SetPlaceholders(v []PlaceholderDetails)`
+
+SetPlaceholders sets Placeholders field to given value.
+
+### HasPlaceholders
+
+`func (o *CampaignCreatedNotificationItem) HasPlaceholders() bool`
+
+HasPlaceholders returns a boolean if a field has been set.
 
 ### GetEvaluationPosition
 

@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]ListCampaignStoreBudgets**](ListCampaignStoreBudgets.md) |  | [optional] 
+**TotalResultSize** | Pointer to **int64** |  | 
+**Data** | Pointer to [**[]RoleV2**](RoleV2.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20046
 
-`func NewInlineResponse20046() *InlineResponse20046`
+`func NewInlineResponse20046(totalResultSize int64, data []RoleV2, ) *InlineResponse20046`
 
 NewInlineResponse20046 instantiates a new InlineResponse20046 object
 This constructor will assign default values to properties that have it defined,
@@ -25,30 +26,45 @@ NewInlineResponse20046WithDefaults instantiates a new InlineResponse20046 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetTotalResultSize
+
+`func (o *InlineResponse20046) GetTotalResultSize() int64`
+
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
+
+### GetTotalResultSizeOk
+
+`func (o *InlineResponse20046) GetTotalResultSizeOk() (*int64, bool)`
+
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalResultSize
+
+`func (o *InlineResponse20046) SetTotalResultSize(v int64)`
+
+SetTotalResultSize sets TotalResultSize field to given value.
+
+
 ### GetData
 
-`func (o *InlineResponse20046) GetData() []ListCampaignStoreBudgets`
+`func (o *InlineResponse20046) GetData() []RoleV2`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20046) GetDataOk() (*[]ListCampaignStoreBudgets, bool)`
+`func (o *InlineResponse20046) GetDataOk() (*[]RoleV2, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20046) SetData(v []ListCampaignStoreBudgets)`
+`func (o *InlineResponse20046) SetData(v []RoleV2)`
 
 SetData sets Data field to given value.
 
-### HasData
-
-`func (o *InlineResponse20046) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

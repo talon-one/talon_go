@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **LoyaltyProgramID** | Pointer to **int64** | The ID of the loyalty program. | 
 **AmountOfExpiringPoints** | Pointer to **float32** | The amount of loyalty points that will be expired soon. | 
 **SubledgerID** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
-**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card. | 
+**CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, &#x60;which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | 
 **UsersPerCardLimit** | Pointer to **int64** | The maximum number of customer profiles with which a card can be shared. This can be set to &#x60;0&#x60; for no limit.  | 
 **Profiles** | Pointer to **[]string** | The integration IDs of the customer profiles linked to the card. | 
 

@@ -1,0 +1,229 @@
+# NewMCPKey
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**Name** | Pointer to **string** | Name for the MCP key. | 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The date the MCP key expires. | 
+**Id** | Pointer to **int64** | ID of the MCP key. | 
+**CreatedBy** | Pointer to **int64** | ID of the user who created it. | 
+**AccountID** | Pointer to **int64** | ID of account the key is used for. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The date the MCP key was created. | 
+**Disabled** | Pointer to **bool** | The MCP key is disabled (this property is set to &#x60;true&#x60;) when the user who created the key is disabled or deleted. | [optional] 
+**LastUsed** | Pointer to [**time.Time**](time.Time.md) | The last time the MCP key was used. | [optional] 
+**Key** | Pointer to **string** | The generated MCP key. Only returned once on creation. | 
+
+## Methods
+
+### NewNewMCPKey
+
+`func NewNewMCPKey(name string, expiryDate time.Time, id int64, createdBy int64, accountID int64, created time.Time, key string, ) *NewMCPKey`
+
+NewNewMCPKey instantiates a new NewMCPKey object
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed
+
+### NewNewMCPKeyWithDefaults
+
+`func NewNewMCPKeyWithDefaults() *NewMCPKey`
+
+NewNewMCPKeyWithDefaults instantiates a new NewMCPKey object
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set
+
+### GetName
+
+`func (o *NewMCPKey) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *NewMCPKey) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *NewMCPKey) SetName(v string)`
+
+SetName sets Name field to given value.
+
+
+### GetExpiryDate
+
+`func (o *NewMCPKey) GetExpiryDate() time.Time`
+
+GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+
+### GetExpiryDateOk
+
+`func (o *NewMCPKey) GetExpiryDateOk() (*time.Time, bool)`
+
+GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpiryDate
+
+`func (o *NewMCPKey) SetExpiryDate(v time.Time)`
+
+SetExpiryDate sets ExpiryDate field to given value.
+
+
+### GetId
+
+`func (o *NewMCPKey) GetId() int64`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *NewMCPKey) GetIdOk() (*int64, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *NewMCPKey) SetId(v int64)`
+
+SetId sets Id field to given value.
+
+
+### GetCreatedBy
+
+`func (o *NewMCPKey) GetCreatedBy() int64`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *NewMCPKey) GetCreatedByOk() (*int64, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *NewMCPKey) SetCreatedBy(v int64)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+
+### GetAccountID
+
+`func (o *NewMCPKey) GetAccountID() int64`
+
+GetAccountID returns the AccountID field if non-nil, zero value otherwise.
+
+### GetAccountIDOk
+
+`func (o *NewMCPKey) GetAccountIDOk() (*int64, bool)`
+
+GetAccountIDOk returns a tuple with the AccountID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountID
+
+`func (o *NewMCPKey) SetAccountID(v int64)`
+
+SetAccountID sets AccountID field to given value.
+
+
+### GetCreated
+
+`func (o *NewMCPKey) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *NewMCPKey) GetCreatedOk() (*time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *NewMCPKey) SetCreated(v time.Time)`
+
+SetCreated sets Created field to given value.
+
+
+### GetDisabled
+
+`func (o *NewMCPKey) GetDisabled() bool`
+
+GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+
+### GetDisabledOk
+
+`func (o *NewMCPKey) GetDisabledOk() (*bool, bool)`
+
+GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabled
+
+`func (o *NewMCPKey) SetDisabled(v bool)`
+
+SetDisabled sets Disabled field to given value.
+
+### HasDisabled
+
+`func (o *NewMCPKey) HasDisabled() bool`
+
+HasDisabled returns a boolean if a field has been set.
+
+### GetLastUsed
+
+`func (o *NewMCPKey) GetLastUsed() time.Time`
+
+GetLastUsed returns the LastUsed field if non-nil, zero value otherwise.
+
+### GetLastUsedOk
+
+`func (o *NewMCPKey) GetLastUsedOk() (*time.Time, bool)`
+
+GetLastUsedOk returns a tuple with the LastUsed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastUsed
+
+`func (o *NewMCPKey) SetLastUsed(v time.Time)`
+
+SetLastUsed sets LastUsed field to given value.
+
+### HasLastUsed
+
+`func (o *NewMCPKey) HasLastUsed() bool`
+
+HasLastUsed returns a boolean if a field has been set.
+
+### GetKey
+
+`func (o *NewMCPKey) GetKey() string`
+
+GetKey returns the Key field if non-nil, zero value otherwise.
+
+### GetKeyOk
+
+`func (o *NewMCPKey) GetKeyOk() (*string, bool)`
+
+GetKeyOk returns a tuple with the Key field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetKey
+
+`func (o *NewMCPKey) SetKey(v string)`
+
+SetKey sets Key field to given value.
+
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

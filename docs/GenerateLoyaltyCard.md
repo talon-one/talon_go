@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Status** | Pointer to **string** | Status of the loyalty card. | [optional] [default to "active"]
 **CustomerProfileIds** | Pointer to **[]string** | Integration IDs of the customer profiles linked to the card. | [optional] 
-**CardIdentifier** | Pointer to **string** | The alphanumeric identifier of the loyalty card.  | [optional] 
+**CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 
 ## Methods
 

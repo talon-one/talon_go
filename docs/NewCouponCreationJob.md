@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **NumberOfCoupons** | Pointer to **int64** | The number of new coupon codes to generate for the campaign. | 
 **CouponSettings** | Pointer to [**CodeGeneratorSettings**](CodeGeneratorSettings.md) |  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with coupons. | 
+**IsReservationMandatory** | Pointer to **bool** | An indication of whether the code can be redeemed only if it has been reserved first. | [optional] [default to false]
 
 ## Methods
 
@@ -216,6 +217,31 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
+
+### GetIsReservationMandatory
+
+`func (o *NewCouponCreationJob) GetIsReservationMandatory() bool`
+
+GetIsReservationMandatory returns the IsReservationMandatory field if non-nil, zero value otherwise.
+
+### GetIsReservationMandatoryOk
+
+`func (o *NewCouponCreationJob) GetIsReservationMandatoryOk() (*bool, bool)`
+
+GetIsReservationMandatoryOk returns a tuple with the IsReservationMandatory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsReservationMandatory
+
+`func (o *NewCouponCreationJob) SetIsReservationMandatory(v bool)`
+
+SetIsReservationMandatory sets IsReservationMandatory field to given value.
+
+### HasIsReservationMandatory
+
+`func (o *NewCouponCreationJob) HasIsReservationMandatory() bool`
+
+HasIsReservationMandatory returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
