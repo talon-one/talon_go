@@ -13,19 +13,19 @@ import (
 	"encoding/json"
 )
 
-// DeductLoyaltyPointsEffectProps The properties specific to the \"deductLoyaltyPoints\" effect. This gets triggered whenever a validated rule contained a condition to only trigger when the given number of loyalty points could be deduced. These points are automatically stored and managed inside Talon.One.
+// DeductLoyaltyPointsEffectProps This effect is triggered when a customer redeems loyalty points. The points are deducted from their active point balance.  If the loyalty program is card-based, use the `cardIdentifier` property to identify the loyalty card from which these points are deducted.  The Rule Engine deducts points in this order:  - Points with the earliest expiry date are deducted first, regardless of when they were added. - Points with an unlimited expiry date are deducted last. - For points with an unlimited expiry date, the points awarded first are deducted first.  The points only persist when the session is closed.
 type DeductLoyaltyPointsEffectProps struct {
 	// The title of the rule that contained triggered this points deduction.
 	RuleTitle string `json:"ruleTitle"`
-	// The ID of the loyalty program where these points were added.
+	// The ID of the loyalty program from which these points were deducted.
 	ProgramId int64 `json:"programId"`
-	// The ID of the subledger within the loyalty program where these points were added.
+	// The ID of the subledger within the loyalty program from which these points were deducted.
 	SubLedgerId string `json:"subLedgerId"`
 	// The amount of points that were deducted.
 	Value float32 `json:"value"`
-	// The identifier of this deduction in the loyalty ledger.
+	// The identifier of this loyalty point transaction.
 	TransactionUUID string `json:"transactionUUID"`
-	// The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule.
+	// The reason of this loyalty points deduction.
 	Name string `json:"name"`
 	// The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
 	CardIdentifier *string `json:"cardIdentifier,omitempty"`

@@ -14,9 +14,7 @@ Name | Type | Description | Notes
 **FixedStartDate** | Pointer to [**time.Time**](time.Time.md) | The achievement&#39;s start date when &#x60;activationPolicy&#x60; is set to &#x60;fixed_schedule&#x60;.  **Note:** It must be an RFC3339 timestamp string.  | [optional] 
 **EndDate** | Pointer to [**time.Time**](time.Time.md) | The achievement&#39;s end date. If defined, customers cannot participate in the achievement after this date.  **Note:** It must be an RFC3339 timestamp string.  | [optional] 
 **AllowRollbackAfterCompletion** | Pointer to **bool** | When &#x60;true&#x60;, customer progress can be rolled back in completed achievements. | [optional] 
-**Sandbox** | Pointer to **bool** | Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type. | [optional] 
 **SubscribedApplications** | Pointer to **[]int64** | A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement. | [optional] 
-**Timezone** | Pointer to **string** | A string containing an IANA timezone descriptor. | [optional] 
 
 ## Methods
 
@@ -287,31 +285,6 @@ SetAllowRollbackAfterCompletion sets AllowRollbackAfterCompletion field to given
 
 HasAllowRollbackAfterCompletion returns a boolean if a field has been set.
 
-### GetSandbox
-
-`func (o *AchievementBaseV2) GetSandbox() bool`
-
-GetSandbox returns the Sandbox field if non-nil, zero value otherwise.
-
-### GetSandboxOk
-
-`func (o *AchievementBaseV2) GetSandboxOk() (*bool, bool)`
-
-GetSandboxOk returns a tuple with the Sandbox field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSandbox
-
-`func (o *AchievementBaseV2) SetSandbox(v bool)`
-
-SetSandbox sets Sandbox field to given value.
-
-### HasSandbox
-
-`func (o *AchievementBaseV2) HasSandbox() bool`
-
-HasSandbox returns a boolean if a field has been set.
-
 ### GetSubscribedApplications
 
 `func (o *AchievementBaseV2) GetSubscribedApplications() []int64`
@@ -336,31 +309,6 @@ SetSubscribedApplications sets SubscribedApplications field to given value.
 `func (o *AchievementBaseV2) HasSubscribedApplications() bool`
 
 HasSubscribedApplications returns a boolean if a field has been set.
-
-### GetTimezone
-
-`func (o *AchievementBaseV2) GetTimezone() string`
-
-GetTimezone returns the Timezone field if non-nil, zero value otherwise.
-
-### GetTimezoneOk
-
-`func (o *AchievementBaseV2) GetTimezoneOk() (*string, bool)`
-
-GetTimezoneOk returns a tuple with the Timezone field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetTimezone
-
-`func (o *AchievementBaseV2) SetTimezone(v string)`
-
-SetTimezone sets Timezone field to given value.
-
-### HasTimezone
-
-`func (o *AchievementBaseV2) HasTimezone() bool`
-
-HasTimezone returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

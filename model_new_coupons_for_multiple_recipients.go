@@ -26,6 +26,8 @@ type NewCouponsForMultipleRecipients struct {
 	StartDate *time.Time `json:"startDate,omitempty"`
 	// Expiration date of the coupon. Coupon never expires if this is omitted.
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
+	// The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.
+	BatchId *string `json:"batchId,omitempty"`
 	// Arbitrary properties associated with this item.
 	Attributes *map[string]interface{} `json:"attributes,omitempty"`
 	// The integration IDs for recipients.
@@ -207,6 +209,38 @@ func (o *NewCouponsForMultipleRecipients) SetExpiryDate(v time.Time) {
 	o.ExpiryDate = &v
 }
 
+// GetBatchId returns the BatchId field value if set, zero value otherwise.
+func (o *NewCouponsForMultipleRecipients) GetBatchId() string {
+	if o == nil || o.BatchId == nil {
+		var ret string
+		return ret
+	}
+	return *o.BatchId
+}
+
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCouponsForMultipleRecipients) GetBatchIdOk() (*string, bool) {
+	if o == nil || o.BatchId == nil {
+		return nil, false
+	}
+	return o.BatchId, true
+}
+
+// HasBatchId returns a boolean if a field has been set.
+func (o *NewCouponsForMultipleRecipients) HasBatchId() bool {
+	if o != nil && o.BatchId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchId gets a reference to the given string and assigns it to the BatchId field.
+func (o *NewCouponsForMultipleRecipients) SetBatchId(v string) {
+	o.BatchId = &v
+}
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *NewCouponsForMultipleRecipients) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -343,6 +377,9 @@ func (o NewCouponsForMultipleRecipients) MarshalJSON() ([]byte, error) {
 	}
 	if o.ExpiryDate != nil {
 		toSerialize["expiryDate"] = o.ExpiryDate
+	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
 	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes

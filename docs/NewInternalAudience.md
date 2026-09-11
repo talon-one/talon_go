@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The human-friendly display name for this audience. | 
 **Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
 **Description** | Pointer to **string** | A description of the audience. | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int64** | A list of the IDs of the Applications that are connected to this audience. | [optional] 
 
 ## Methods
 
@@ -96,6 +97,31 @@ SetDescription sets Description field to given value.
 `func (o *NewInternalAudience) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetSubscribedApplicationsIds
+
+`func (o *NewInternalAudience) GetSubscribedApplicationsIds() []int64`
+
+GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field if non-nil, zero value otherwise.
+
+### GetSubscribedApplicationsIdsOk
+
+`func (o *NewInternalAudience) GetSubscribedApplicationsIdsOk() (*[]int64, bool)`
+
+GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscribedApplicationsIds
+
+`func (o *NewInternalAudience) SetSubscribedApplicationsIds(v []int64)`
+
+SetSubscribedApplicationsIds sets SubscribedApplicationsIds field to given value.
+
+### HasSubscribedApplicationsIds
+
+`func (o *NewInternalAudience) HasSubscribedApplicationsIds() bool`
+
+HasSubscribedApplicationsIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

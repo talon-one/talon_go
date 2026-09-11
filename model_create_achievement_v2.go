@@ -36,10 +36,10 @@ type CreateAchievementV2 struct {
 	EndDate *time.Time `json:"endDate,omitempty"`
 	// When `true`, customer progress can be rolled back in completed achievements.
 	AllowRollbackAfterCompletion *bool `json:"allowRollbackAfterCompletion,omitempty"`
-	// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-	Sandbox bool `json:"sandbox"`
 	// A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
 	SubscribedApplications *[]int64 `json:"subscribedApplications,omitempty"`
+	// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
+	Sandbox bool `json:"sandbox"`
 	// A string containing an IANA timezone descriptor.
 	Timezone string `json:"timezone"`
 }
@@ -355,30 +355,6 @@ func (o *CreateAchievementV2) SetAllowRollbackAfterCompletion(v bool) {
 	o.AllowRollbackAfterCompletion = &v
 }
 
-// GetSandbox returns the Sandbox field value
-func (o *CreateAchievementV2) GetSandbox() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Sandbox
-}
-
-// GetSandboxOk returns a tuple with the Sandbox field value
-// and a boolean to check if the value has been set.
-func (o *CreateAchievementV2) GetSandboxOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Sandbox, true
-}
-
-// SetSandbox sets field value
-func (o *CreateAchievementV2) SetSandbox(v bool) {
-	o.Sandbox = v
-}
-
 // GetSubscribedApplications returns the SubscribedApplications field value if set, zero value otherwise.
 func (o *CreateAchievementV2) GetSubscribedApplications() []int64 {
 	if o == nil || o.SubscribedApplications == nil {
@@ -409,6 +385,30 @@ func (o *CreateAchievementV2) HasSubscribedApplications() bool {
 // SetSubscribedApplications gets a reference to the given []int64 and assigns it to the SubscribedApplications field.
 func (o *CreateAchievementV2) SetSubscribedApplications(v []int64) {
 	o.SubscribedApplications = &v
+}
+
+// GetSandbox returns the Sandbox field value
+func (o *CreateAchievementV2) GetSandbox() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Sandbox
+}
+
+// GetSandboxOk returns a tuple with the Sandbox field value
+// and a boolean to check if the value has been set.
+func (o *CreateAchievementV2) GetSandboxOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sandbox, true
+}
+
+// SetSandbox sets field value
+func (o *CreateAchievementV2) SetSandbox(v bool) {
+	o.Sandbox = v
 }
 
 // GetTimezone returns the Timezone field value
@@ -467,11 +467,11 @@ func (o CreateAchievementV2) MarshalJSON() ([]byte, error) {
 	if o.AllowRollbackAfterCompletion != nil {
 		toSerialize["allowRollbackAfterCompletion"] = o.AllowRollbackAfterCompletion
 	}
-	if true {
-		toSerialize["sandbox"] = o.Sandbox
-	}
 	if o.SubscribedApplications != nil {
 		toSerialize["subscribedApplications"] = o.SubscribedApplications
+	}
+	if true {
+		toSerialize["sandbox"] = o.Sandbox
 	}
 	if true {
 		toSerialize["timezone"] = o.Timezone

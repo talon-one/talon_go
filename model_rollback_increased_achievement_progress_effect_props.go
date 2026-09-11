@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// RollbackIncreasedAchievementProgressEffectProps The properties specific to the \"rollbackIncreasedAchievementProgress\" effect. This gets triggered whenever a closed session where the `increaseAchievementProgress` effect was triggered is cancelled. This is applicable only when the customer has not completed the achievement.
+// RollbackIncreasedAchievementProgressEffectProps This effect indicates that the customer's progress in an achievement was rolled back.  The Rule Engine triggers this effect when you cancel or [reopen a customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession) that previously validated the [Update customer progress](https://docs.talon.one/docs/product/rules/effects/use-effects#update-customer-progress) effect and triggered the [increaseAchievementProgress](https://docs.talon.one/docs/dev/integration-api/api-effects#increaseachievementprogress) API effect.  The effect is also triggered for completed achievements if the **Allow progress rollback for completed achievements** setting is enabled. You can enable this through the [Campaign Manager](https://docs.talon.one/docs/product/achievements/manage-achievements) or the [Management API](https://docs.talon.one/management-api#tag/Achievements/operation/createAchievement) by setting the `achievementAllowRollbackAfterCompletion` property to `true`. This setting only applies to one-time and recurring on expiration achievements.
 type RollbackIncreasedAchievementProgressEffectProps struct {
 	// The internal ID of the achievement.
 	AchievementId int64 `json:"achievementId"`
@@ -21,7 +21,7 @@ type RollbackIncreasedAchievementProgressEffectProps struct {
 	AchievementName string `json:"achievementName"`
 	// The internal ID of the achievement progress tracker.
 	ProgressTrackerId int64 `json:"progressTrackerId"`
-	// The value by which the customer's current progress in the achievement is decreased.
+	// The value by which the customer's current progress in the achievement has decreased.
 	DecreaseProgressBy float32 `json:"decreaseProgressBy"`
 	// The current progress of the customer in the achievement.
 	CurrentProgress float32 `json:"currentProgress"`

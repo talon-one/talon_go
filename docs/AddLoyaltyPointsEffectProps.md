@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name / description of this loyalty point addition. | 
+**Name** | Pointer to **string** | The reason of this loyalty point addition. | 
 **ProgramId** | Pointer to **int64** | The ID of the loyalty program where these points were added. | 
 **SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
 **Value** | Pointer to **float32** | The amount of points that were added. | 
-**DesiredValue** | Pointer to **float32** | The original amount of loyalty points to be awarded. | [optional] 
+**DesiredValue** | Pointer to **float32** | (Partial rewards enabled only) The amount of loyalty points to be awarded without considering budget limitations. | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were added. | 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which points will be valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which points will expire. | [optional] 
-**TransactionUUID** | Pointer to **string** | The identifier of this addition in the loyalty ledger. | 
-**CartItemPosition** | Pointer to **float32** | The index of the item in the cart items list on which the loyal points addition should be applied. | [optional] 
-**CartItemSubPosition** | Pointer to **float32** | For cart items with &#x60;quantity&#x60; &gt; 1, the sub position indicates to which item the loyalty points addition is applied.  | [optional] 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | The date after which the added points will be valid. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The date after which the added points will expire. | [optional] 
+**TransactionUUID** | Pointer to **string** | The identifier of this loyalty point transaction. | 
+**CartItemPosition** | Pointer to **float32** | (_Add points per cart item_ only.) The index of the item in the &#x60;cartItem&#x60; object for which these points were added. | [optional] 
+**CartItemSubPosition** | Pointer to **float32** | (_Add points per cart item_ ) The index of the item unit in its line item. | [optional] 
 **CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
-**BundleIndex** | Pointer to **int64** | The position of the bundle in a list of item bundles created from the same bundle definition. | [optional] 
-**BundleName** | Pointer to **string** | The name of the bundle definition. | [optional] 
-**AwaitsActivation** | Pointer to **bool** | If &#x60;true&#x60;, the loyalty points remain pending until a specific action is complete. The &#x60;startDate&#x60; parameter automatically sets to &#x60;on_action&#x60;.  | [optional] 
-**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, calculated relative to the  activation date.    **Note**: This value is returned only if &#x60;awaitsActivation&#x60; is &#x60;true&#x60;  and &#x60;expiryDate&#x60; is not set.  | [optional] 
+**BundleIndex** | Pointer to **int64** | _(With bundles only)_ The position of the specific bundle in the list of bundles created from the same bundle definition. | [optional] 
+**BundleName** | Pointer to **string** | _(With bundles only)_ The name of the bundle definition. | [optional] 
+**AwaitsActivation** | Pointer to **bool** | Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date. | [optional] 
+**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, calculated relative to their start date. | [optional] 
 
 ## Methods
 

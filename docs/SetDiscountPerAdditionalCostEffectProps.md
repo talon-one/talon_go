@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name / description of this discount | 
-**AdditionalCostId** | Pointer to **int64** | The ID of the additional cost. | 
-**AdditionalCost** | Pointer to **string** | The name of the additional cost. | 
-**Value** | Pointer to **float32** | The total monetary value of the discount. | 
-**DesiredValue** | Pointer to **float32** | The original value of the discount. | [optional] 
+**Name** | Pointer to **string** | The name of the discount. | 
+**AdditionalCostId** | Pointer to **int64** | The identifier of the additional cost. | 
+**AdditionalCost** | Pointer to **string** | The API name of the additional cost. | 
+**Value** | Pointer to **float32** | The monetary value of the discount to apply. | 
+**DesiredValue** | Pointer to **float32** | _(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations. | [optional] 
 
 ## Methods
 

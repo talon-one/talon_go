@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApplicationID** | Pointer to **int64** | ID of application the flow is registered for. | [optional] 
-**EventType** | Pointer to **string** | The event type we want to register a flow for. | 
+**ApplicationID** | Pointer to **int64** | ID of the application the flow is registered for. | [optional] 
+**LoyaltyProgramID** | Pointer to **int64** | ID of the loyalty program the flow is registered for. | [optional] 
+**EventType** | Pointer to [**IntegrationHubEventType**](IntegrationHubEventType.md) |  | 
 **IntegrationHubFlowUrl** | Pointer to **string** | The URL of the integration hub flow that we want to trigger for the event. | 
 **Config** | Pointer to [**IntegrationHubFlowConfig**](IntegrationHubFlowConfig.md) |  | 
 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewIntegrationHubFlowWithConfig
 
-`func NewIntegrationHubFlowWithConfig(eventType string, integrationHubFlowUrl string, config IntegrationHubFlowConfig, ) *IntegrationHubFlowWithConfig`
+`func NewIntegrationHubFlowWithConfig(eventType IntegrationHubEventType, integrationHubFlowUrl string, config IntegrationHubFlowConfig, ) *IntegrationHubFlowWithConfig`
 
 NewIntegrationHubFlowWithConfig instantiates a new IntegrationHubFlowWithConfig object
 This constructor will assign default values to properties that have it defined,
@@ -53,22 +54,47 @@ SetApplicationID sets ApplicationID field to given value.
 
 HasApplicationID returns a boolean if a field has been set.
 
+### GetLoyaltyProgramID
+
+`func (o *IntegrationHubFlowWithConfig) GetLoyaltyProgramID() int64`
+
+GetLoyaltyProgramID returns the LoyaltyProgramID field if non-nil, zero value otherwise.
+
+### GetLoyaltyProgramIDOk
+
+`func (o *IntegrationHubFlowWithConfig) GetLoyaltyProgramIDOk() (*int64, bool)`
+
+GetLoyaltyProgramIDOk returns a tuple with the LoyaltyProgramID field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoyaltyProgramID
+
+`func (o *IntegrationHubFlowWithConfig) SetLoyaltyProgramID(v int64)`
+
+SetLoyaltyProgramID sets LoyaltyProgramID field to given value.
+
+### HasLoyaltyProgramID
+
+`func (o *IntegrationHubFlowWithConfig) HasLoyaltyProgramID() bool`
+
+HasLoyaltyProgramID returns a boolean if a field has been set.
+
 ### GetEventType
 
-`func (o *IntegrationHubFlowWithConfig) GetEventType() string`
+`func (o *IntegrationHubFlowWithConfig) GetEventType() IntegrationHubEventType`
 
 GetEventType returns the EventType field if non-nil, zero value otherwise.
 
 ### GetEventTypeOk
 
-`func (o *IntegrationHubFlowWithConfig) GetEventTypeOk() (*string, bool)`
+`func (o *IntegrationHubFlowWithConfig) GetEventTypeOk() (*IntegrationHubEventType, bool)`
 
 GetEventTypeOk returns a tuple with the EventType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEventType
 
-`func (o *IntegrationHubFlowWithConfig) SetEventType(v string)`
+`func (o *IntegrationHubFlowWithConfig) SetEventType(v IntegrationHubEventType)`
 
 SetEventType sets EventType field to given value.
 

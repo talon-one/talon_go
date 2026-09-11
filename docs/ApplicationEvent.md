@@ -10,8 +10,9 @@ Name | Type | Description | Notes
 **ProfileId** | Pointer to **int64** | The globally unique Talon.One ID of the customer that created this entity. | [optional] 
 **StoreId** | Pointer to **int64** | The ID of the store. | [optional] 
 **StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
+**IntegrationId** | Pointer to **string** | The unique ID of the event. Only one event with this ID can be registered.  | [optional] 
 **SessionId** | Pointer to **int64** | The globally unique Talon.One ID of the session that contains this event. | [optional] 
-**Type** | Pointer to **string** | A string representing the event. Must not be a reserved event name. | 
+**Type** | Pointer to **string** | The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Additional JSON serialized data associated with the event. | 
 **Effects** | Pointer to [**[]Effect**](Effect.md) | An array containing the effects that were applied as a result of this event. | 
 **RuleFailureReasons** | Pointer to [**[]RuleFailureReason**](RuleFailureReason.md) | An array containing the rule failure reasons which happened during this event. | [optional] 
@@ -169,6 +170,31 @@ SetStoreIntegrationId sets StoreIntegrationId field to given value.
 `func (o *ApplicationEvent) HasStoreIntegrationId() bool`
 
 HasStoreIntegrationId returns a boolean if a field has been set.
+
+### GetIntegrationId
+
+`func (o *ApplicationEvent) GetIntegrationId() string`
+
+GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
+
+### GetIntegrationIdOk
+
+`func (o *ApplicationEvent) GetIntegrationIdOk() (*string, bool)`
+
+GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationId
+
+`func (o *ApplicationEvent) SetIntegrationId(v string)`
+
+SetIntegrationId sets IntegrationId field to given value.
+
+### HasIntegrationId
+
+`func (o *ApplicationEvent) HasIntegrationId() bool`
+
+HasIntegrationId returns a boolean if a field has been set.
 
 ### GetSessionId
 

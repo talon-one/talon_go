@@ -24,6 +24,8 @@ type LedgerTransactionLogEntryIntegrationAPI struct {
 	ProgramId int64 `json:"programId"`
 	// ID of the customer session where the transaction occurred.
 	CustomerSessionId *string `json:"customerSessionId,omitempty"`
+	// The integration ID of the store where the transaction occurred. Only set for transactions created by a customer session or event that referenced a store.
+	StoreIntegrationId *string `json:"storeIntegrationId,omitempty"`
 	// Type of transaction. Possible values:   - `addition`: Signifies added points.   - `subtraction`: Signifies deducted points.
 	Type string `json:"type"`
 	// Name or reason of the loyalty ledger transaction.
@@ -43,7 +45,7 @@ type LedgerTransactionLogEntryIntegrationAPI struct {
 	// The name of the rule that triggered this effect.
 	RuleName *string                  `json:"ruleName,omitempty"`
 	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
-	// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+	// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
 	ValidityDuration *string `json:"validityDuration,omitempty"`
 }
 
@@ -176,6 +178,38 @@ func (o *LedgerTransactionLogEntryIntegrationAPI) HasCustomerSessionId() bool {
 // SetCustomerSessionId gets a reference to the given string and assigns it to the CustomerSessionId field.
 func (o *LedgerTransactionLogEntryIntegrationAPI) SetCustomerSessionId(v string) {
 	o.CustomerSessionId = &v
+}
+
+// GetStoreIntegrationId returns the StoreIntegrationId field value if set, zero value otherwise.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetStoreIntegrationId() string {
+	if o == nil || o.StoreIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.StoreIntegrationId
+}
+
+// GetStoreIntegrationIdOk returns a tuple with the StoreIntegrationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) GetStoreIntegrationIdOk() (*string, bool) {
+	if o == nil || o.StoreIntegrationId == nil {
+		return nil, false
+	}
+	return o.StoreIntegrationId, true
+}
+
+// HasStoreIntegrationId returns a boolean if a field has been set.
+func (o *LedgerTransactionLogEntryIntegrationAPI) HasStoreIntegrationId() bool {
+	if o != nil && o.StoreIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStoreIntegrationId gets a reference to the given string and assigns it to the StoreIntegrationId field.
+func (o *LedgerTransactionLogEntryIntegrationAPI) SetStoreIntegrationId(v string) {
+	o.StoreIntegrationId = &v
 }
 
 // GetType returns the Type field value
@@ -487,6 +521,9 @@ func (o LedgerTransactionLogEntryIntegrationAPI) MarshalJSON() ([]byte, error) {
 	}
 	if o.CustomerSessionId != nil {
 		toSerialize["customerSessionId"] = o.CustomerSessionId
+	}
+	if o.StoreIntegrationId != nil {
+		toSerialize["storeIntegrationId"] = o.StoreIntegrationId
 	}
 	if true {
 		toSerialize["type"] = o.Type

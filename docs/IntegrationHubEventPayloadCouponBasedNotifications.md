@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**EventId** | Pointer to **int64** | The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed. | 
 **Id** | Pointer to **int64** |  | 
 **Created** | Pointer to [**time.Time**](time.Time.md) |  | 
 **CampaignId** | Pointer to **int64** |  | 
@@ -30,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewIntegrationHubEventPayloadCouponBasedNotifications
 
-`func NewIntegrationHubEventPayloadCouponBasedNotifications(id int64, created time.Time, campaignId int64, value string, usageLimit int64, usageCounter int64, publishedAt time.Time, sourceOfEvent string, employeeName string, ) *IntegrationHubEventPayloadCouponBasedNotifications`
+`func NewIntegrationHubEventPayloadCouponBasedNotifications(eventId int64, id int64, created time.Time, campaignId int64, value string, usageLimit int64, usageCounter int64, publishedAt time.Time, sourceOfEvent string, employeeName string, ) *IntegrationHubEventPayloadCouponBasedNotifications`
 
 NewIntegrationHubEventPayloadCouponBasedNotifications instantiates a new IntegrationHubEventPayloadCouponBasedNotifications object
 This constructor will assign default values to properties that have it defined,
@@ -44,6 +45,26 @@ will change when the set of required properties is changed
 NewIntegrationHubEventPayloadCouponBasedNotificationsWithDefaults instantiates a new IntegrationHubEventPayloadCouponBasedNotifications object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEventId
+
+`func (o *IntegrationHubEventPayloadCouponBasedNotifications) GetEventId() int64`
+
+GetEventId returns the EventId field if non-nil, zero value otherwise.
+
+### GetEventIdOk
+
+`func (o *IntegrationHubEventPayloadCouponBasedNotifications) GetEventIdOk() (*int64, bool)`
+
+GetEventIdOk returns a tuple with the EventId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEventId
+
+`func (o *IntegrationHubEventPayloadCouponBasedNotifications) SetEventId(v int64)`
+
+SetEventId sets EventId field to given value.
+
 
 ### GetId
 

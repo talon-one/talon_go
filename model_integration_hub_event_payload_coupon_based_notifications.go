@@ -16,6 +16,8 @@ import (
 
 // IntegrationHubEventPayloadCouponBasedNotifications struct for IntegrationHubEventPayloadCouponBasedNotifications
 type IntegrationHubEventPayloadCouponBasedNotifications struct {
+	// The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+	EventId                int64                                                       `json:"EventId"`
 	Id                     int64                                                       `json:"Id"`
 	Created                time.Time                                                   `json:"Created"`
 	CampaignId             int64                                                       `json:"CampaignId"`
@@ -44,8 +46,9 @@ type IntegrationHubEventPayloadCouponBasedNotifications struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildIntegrationHubEventPayloadCouponBasedNotifications(id int64, created time.Time, campaignId int64, value string, usageLimit int64, usageCounter int64, publishedAt time.Time, sourceOfEvent string, employeeName string) *IntegrationHubEventPayloadCouponBasedNotifications {
+func BuildIntegrationHubEventPayloadCouponBasedNotifications(eventId int64, id int64, created time.Time, campaignId int64, value string, usageLimit int64, usageCounter int64, publishedAt time.Time, sourceOfEvent string, employeeName string) *IntegrationHubEventPayloadCouponBasedNotifications {
 	this := IntegrationHubEventPayloadCouponBasedNotifications{}
+	this.EventId = eventId
 	this.Id = id
 	this.Created = created
 	this.CampaignId = campaignId
@@ -64,6 +67,30 @@ func BuildIntegrationHubEventPayloadCouponBasedNotifications(id int64, created t
 func NewIntegrationHubEventPayloadCouponBasedNotificationsWithDefaults() *IntegrationHubEventPayloadCouponBasedNotifications {
 	this := IntegrationHubEventPayloadCouponBasedNotifications{}
 	return &this
+}
+
+// GetEventId returns the EventId field value
+func (o *IntegrationHubEventPayloadCouponBasedNotifications) GetEventId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.EventId
+}
+
+// GetEventIdOk returns a tuple with the EventId field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventPayloadCouponBasedNotifications) GetEventIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventId, true
+}
+
+// SetEventId sets field value
+func (o *IntegrationHubEventPayloadCouponBasedNotifications) SetEventId(v int64) {
+	o.EventId = v
 }
 
 // GetId returns the Id field value
@@ -668,6 +695,9 @@ func (o *IntegrationHubEventPayloadCouponBasedNotifications) SetEmployeeName(v s
 
 func (o IntegrationHubEventPayloadCouponBasedNotifications) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if true {
+		toSerialize["EventId"] = o.EventId
+	}
 	if true {
 		toSerialize["Id"] = o.Id
 	}

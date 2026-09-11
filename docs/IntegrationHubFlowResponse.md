@@ -5,16 +5,20 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int64** | ID of the integration hub flow. | 
-**ApplicationID** | Pointer to **int64** | ID of application the flow is registered for. | [optional] 
+**IntegrationName** | Pointer to **string** | Name of the integration. | [optional] 
+**InstanceName** | Pointer to **string** | Name of the integration instance. | [optional] 
+**CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the flow was created. | 
+**DisabledUntil** | Pointer to [**NullableTime**](time.Time.md) | Timestamp until which the flow is disabled. Null when the flow is active. | [optional] 
+**ApplicationId** | Pointer to **int64** | ID of the application the flow is registered for. | [optional] 
+**LoyaltyProgramId** | Pointer to **int64** | ID of the loyalty program the flow is registered for. | [optional] 
 **EventType** | Pointer to **string** | The event type we want to register a flow for. | 
-**IntegrationHubFlowUrl** | Pointer to **string** | The URL of the integration hub flow that we want to trigger for the event. | 
 **Config** | Pointer to [**IntegrationHubFlowConfigResponse**](IntegrationHubFlowConfigResponse.md) |  | 
 
 ## Methods
 
 ### NewIntegrationHubFlowResponse
 
-`func NewIntegrationHubFlowResponse(id int64, eventType string, integrationHubFlowUrl string, config IntegrationHubFlowConfigResponse, ) *IntegrationHubFlowResponse`
+`func NewIntegrationHubFlowResponse(id int64, createdAt time.Time, eventType string, config IntegrationHubFlowConfigResponse, ) *IntegrationHubFlowResponse`
 
 NewIntegrationHubFlowResponse instantiates a new IntegrationHubFlowResponse object
 This constructor will assign default values to properties that have it defined,
@@ -49,30 +53,160 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
-### GetApplicationID
+### GetIntegrationName
 
-`func (o *IntegrationHubFlowResponse) GetApplicationID() int64`
+`func (o *IntegrationHubFlowResponse) GetIntegrationName() string`
 
-GetApplicationID returns the ApplicationID field if non-nil, zero value otherwise.
+GetIntegrationName returns the IntegrationName field if non-nil, zero value otherwise.
 
-### GetApplicationIDOk
+### GetIntegrationNameOk
 
-`func (o *IntegrationHubFlowResponse) GetApplicationIDOk() (*int64, bool)`
+`func (o *IntegrationHubFlowResponse) GetIntegrationNameOk() (*string, bool)`
 
-GetApplicationIDOk returns a tuple with the ApplicationID field if it's non-nil, zero value otherwise
+GetIntegrationNameOk returns a tuple with the IntegrationName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetApplicationID
+### SetIntegrationName
 
-`func (o *IntegrationHubFlowResponse) SetApplicationID(v int64)`
+`func (o *IntegrationHubFlowResponse) SetIntegrationName(v string)`
 
-SetApplicationID sets ApplicationID field to given value.
+SetIntegrationName sets IntegrationName field to given value.
 
-### HasApplicationID
+### HasIntegrationName
 
-`func (o *IntegrationHubFlowResponse) HasApplicationID() bool`
+`func (o *IntegrationHubFlowResponse) HasIntegrationName() bool`
 
-HasApplicationID returns a boolean if a field has been set.
+HasIntegrationName returns a boolean if a field has been set.
+
+### GetInstanceName
+
+`func (o *IntegrationHubFlowResponse) GetInstanceName() string`
+
+GetInstanceName returns the InstanceName field if non-nil, zero value otherwise.
+
+### GetInstanceNameOk
+
+`func (o *IntegrationHubFlowResponse) GetInstanceNameOk() (*string, bool)`
+
+GetInstanceNameOk returns a tuple with the InstanceName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceName
+
+`func (o *IntegrationHubFlowResponse) SetInstanceName(v string)`
+
+SetInstanceName sets InstanceName field to given value.
+
+### HasInstanceName
+
+`func (o *IntegrationHubFlowResponse) HasInstanceName() bool`
+
+HasInstanceName returns a boolean if a field has been set.
+
+### GetCreatedAt
+
+`func (o *IntegrationHubFlowResponse) GetCreatedAt() time.Time`
+
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+
+### GetCreatedAtOk
+
+`func (o *IntegrationHubFlowResponse) GetCreatedAtOk() (*time.Time, bool)`
+
+GetCreatedAtOk returns a tuple with the CreatedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedAt
+
+`func (o *IntegrationHubFlowResponse) SetCreatedAt(v time.Time)`
+
+SetCreatedAt sets CreatedAt field to given value.
+
+
+### GetDisabledUntil
+
+`func (o *IntegrationHubFlowResponse) GetDisabledUntil() time.Time`
+
+GetDisabledUntil returns the DisabledUntil field if non-nil, zero value otherwise.
+
+### GetDisabledUntilOk
+
+`func (o *IntegrationHubFlowResponse) GetDisabledUntilOk() (*time.Time, bool)`
+
+GetDisabledUntilOk returns a tuple with the DisabledUntil field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabledUntil
+
+`func (o *IntegrationHubFlowResponse) SetDisabledUntil(v time.Time)`
+
+SetDisabledUntil sets DisabledUntil field to given value.
+
+### HasDisabledUntil
+
+`func (o *IntegrationHubFlowResponse) HasDisabledUntil() bool`
+
+HasDisabledUntil returns a boolean if a field has been set.
+
+### SetDisabledUntilNil
+
+`func (o *IntegrationHubFlowResponse) SetDisabledUntilNil(b bool)`
+
+ SetDisabledUntilNil sets the value for DisabledUntil to be an explicit nil
+
+### UnsetDisabledUntil
+`func (o *IntegrationHubFlowResponse) UnsetDisabledUntil()`
+
+UnsetDisabledUntil ensures that no value is present for DisabledUntil, not even an explicit nil
+### GetApplicationId
+
+`func (o *IntegrationHubFlowResponse) GetApplicationId() int64`
+
+GetApplicationId returns the ApplicationId field if non-nil, zero value otherwise.
+
+### GetApplicationIdOk
+
+`func (o *IntegrationHubFlowResponse) GetApplicationIdOk() (*int64, bool)`
+
+GetApplicationIdOk returns a tuple with the ApplicationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetApplicationId
+
+`func (o *IntegrationHubFlowResponse) SetApplicationId(v int64)`
+
+SetApplicationId sets ApplicationId field to given value.
+
+### HasApplicationId
+
+`func (o *IntegrationHubFlowResponse) HasApplicationId() bool`
+
+HasApplicationId returns a boolean if a field has been set.
+
+### GetLoyaltyProgramId
+
+`func (o *IntegrationHubFlowResponse) GetLoyaltyProgramId() int64`
+
+GetLoyaltyProgramId returns the LoyaltyProgramId field if non-nil, zero value otherwise.
+
+### GetLoyaltyProgramIdOk
+
+`func (o *IntegrationHubFlowResponse) GetLoyaltyProgramIdOk() (*int64, bool)`
+
+GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoyaltyProgramId
+
+`func (o *IntegrationHubFlowResponse) SetLoyaltyProgramId(v int64)`
+
+SetLoyaltyProgramId sets LoyaltyProgramId field to given value.
+
+### HasLoyaltyProgramId
+
+`func (o *IntegrationHubFlowResponse) HasLoyaltyProgramId() bool`
+
+HasLoyaltyProgramId returns a boolean if a field has been set.
 
 ### GetEventType
 
@@ -92,26 +226,6 @@ and a boolean to check if the value has been set.
 `func (o *IntegrationHubFlowResponse) SetEventType(v string)`
 
 SetEventType sets EventType field to given value.
-
-
-### GetIntegrationHubFlowUrl
-
-`func (o *IntegrationHubFlowResponse) GetIntegrationHubFlowUrl() string`
-
-GetIntegrationHubFlowUrl returns the IntegrationHubFlowUrl field if non-nil, zero value otherwise.
-
-### GetIntegrationHubFlowUrlOk
-
-`func (o *IntegrationHubFlowResponse) GetIntegrationHubFlowUrlOk() (*string, bool)`
-
-GetIntegrationHubFlowUrlOk returns a tuple with the IntegrationHubFlowUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntegrationHubFlowUrl
-
-`func (o *IntegrationHubFlowResponse) SetIntegrationHubFlowUrl(v string)`
-
-SetIntegrationHubFlowUrl sets IntegrationHubFlowUrl field to given value.
 
 
 ### GetConfig

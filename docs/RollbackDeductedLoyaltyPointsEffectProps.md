@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProgramId** | Pointer to **int64** | The ID of the loyalty program where these points were reimbursed. | 
 **SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were reimbursed. | 
-**Value** | Pointer to **float32** | The amount of reimbursed points that were added. | 
+**Value** | Pointer to **float32** | The amount of points that were reimbursed. | 
 **RecipientIntegrationId** | Pointer to **string** | The user for whom these points were reimbursed. | 
-**StartDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will be valid. | [optional] 
-**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Date after which the reimbursed points will expire. | [optional] 
-**TransactionUUID** | Pointer to **string** | The identifier of &#39;addition&#39; entries added to the ledger as the &#x60;deductLoyaltyPoints&#x60; effect is rolled back. | 
+**StartDate** | Pointer to [**time.Time**](time.Time.md) | The date after which the reimbursed points will be valid. | [optional] 
+**ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The date after which the reimbursed points will expire. | [optional] 
+**TransactionUUID** | Pointer to **string** | The identifier of this loyalty point transaction. | 
 **CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 
 ## Methods

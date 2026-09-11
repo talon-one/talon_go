@@ -13,15 +13,15 @@ import (
 	"encoding/json"
 )
 
-// SetDiscountEffectProps The properties specific to the \"setDiscount\" effect. This gets triggered whenever a validated rule contained a \"set discount\" effect. This is a discount that should be applied on the scope of defined with it.
+// SetDiscountEffectProps This effect indicates that a discount should be set on the total shopping cart value of the current order with the given label and amount.  The discount should overwrite any existing discount with the same name. The most recent integration state update always returns the latest values for **all** effects, effectively overwriting any previous effects.  Enabling [partial discounts](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-discounts) allows a rule that would fail because of insufficient budget to pass. The rule still fails when the budget reaches `0`. Use the `desiredValue` property to identify the original value of the discount.
 type SetDiscountEffectProps struct {
-	// The name / description of this discount
+	// The name or description of this discount.
 	Name string `json:"name"`
-	// The total monetary value of the discount.
+	// The monetary value of the effective discount.
 	Value float32 `json:"value"`
-	// The scope which the discount was applied on, can be one of (cartItems,additionalCosts,sessionTotal).
+	// What the discount applies to. Possible values:  - `cartItems`: Discount on the price of the items. - `additionalCosts`: Discount on the [additional costs](https://docs.talon.one/docs/product/account/dev-tools/manage-additional-costs) of the items. - `sessionTotal`: Discount on the total value of the customer session.  **Note:** [Cascading discounts](https://docs.talon.one/docs/product/applications/manage-general-settings#cascading-discounts) must be enabled for this property to be returned.
 	Scope *string `json:"scope,omitempty"`
-	// The original value of the discount.
+	// _(Partial discounts enabled only)_ The monetary value of the discount to be applied without considering budget limitations.
 	DesiredValue *float32 `json:"desiredValue,omitempty"`
 }
 

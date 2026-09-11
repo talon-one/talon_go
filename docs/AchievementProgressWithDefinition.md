@@ -13,7 +13,9 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The internal name of the achievement used in API requests.  | 
 **Title** | Pointer to **string** | The display name of the achievement in the Campaign Manager. | 
 **Description** | Pointer to **string** | The description of the achievement in the Campaign Manager. | 
-**CampaignId** | Pointer to **int64** | The ID of the campaign the achievement belongs to. | 
+**CampaignId** | Pointer to **int64** | This property is **deprecated**. Use &#x60;campaignIds&#x60; (Integration API) or &#x60;referencedByCampaigns&#x60; (Management API) instead. This field contains the first campaign ID from the related &#x60;campaignIds&#x60;, and is omitted when &#x60;campaignIds&#x60; is empty. | [optional] 
+**CampaignIds** | Pointer to **[]int64** | The IDs of the campaigns that reference this achievement, in ascending order. | 
+**ReferencedByCampaigns** | Pointer to [**[]CampaignReference**](CampaignReference.md) | The campaigns that reference this achievement, in ascending order of their &#x60;id&#x60;. | 
 **Target** | Pointer to **float32** | The required number of actions or the transactional milestone to complete the achievement. | [optional] 
 **AchievementRecurrencePolicy** | Pointer to **string** | The policy that determines if and how the achievement recurs. - &#x60;no_recurrence&#x60;: The achievement can be completed only once. - &#x60;on_expiration&#x60;: The achievement resets after it expires and becomes available again. - &#x60;on_completion&#x60;: When the customer progress status reaches &#x60;completed&#x60;, the achievement resets and becomes available again.  | 
 **AchievementActivationPolicy** | Pointer to **string** | The policy that determines how the achievement starts, ends, or resets. - &#x60;user_action&#x60;: The achievement ends or resets relative to when the customer started the achievement. - &#x60;fixed_schedule&#x60;: The achievement starts, ends, or resets for all customers following a fixed schedule.  | 
@@ -25,7 +27,7 @@ Name | Type | Description | Notes
 
 ### NewAchievementProgressWithDefinition
 
-`func NewAchievementProgressWithDefinition(status string, progress float32, achievementId int64, name string, title string, description string, campaignId int64, achievementRecurrencePolicy string, achievementActivationPolicy string, ) *AchievementProgressWithDefinition`
+`func NewAchievementProgressWithDefinition(status string, progress float32, achievementId int64, name string, title string, description string, campaignIds []int64, referencedByCampaigns []CampaignReference, achievementRecurrencePolicy string, achievementActivationPolicy string, ) *AchievementProgressWithDefinition`
 
 NewAchievementProgressWithDefinition instantiates a new AchievementProgressWithDefinition object
 This constructor will assign default values to properties that have it defined,
@@ -253,6 +255,51 @@ and a boolean to check if the value has been set.
 `func (o *AchievementProgressWithDefinition) SetCampaignId(v int64)`
 
 SetCampaignId sets CampaignId field to given value.
+
+### HasCampaignId
+
+`func (o *AchievementProgressWithDefinition) HasCampaignId() bool`
+
+HasCampaignId returns a boolean if a field has been set.
+
+### GetCampaignIds
+
+`func (o *AchievementProgressWithDefinition) GetCampaignIds() []int64`
+
+GetCampaignIds returns the CampaignIds field if non-nil, zero value otherwise.
+
+### GetCampaignIdsOk
+
+`func (o *AchievementProgressWithDefinition) GetCampaignIdsOk() (*[]int64, bool)`
+
+GetCampaignIdsOk returns a tuple with the CampaignIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCampaignIds
+
+`func (o *AchievementProgressWithDefinition) SetCampaignIds(v []int64)`
+
+SetCampaignIds sets CampaignIds field to given value.
+
+
+### GetReferencedByCampaigns
+
+`func (o *AchievementProgressWithDefinition) GetReferencedByCampaigns() []CampaignReference`
+
+GetReferencedByCampaigns returns the ReferencedByCampaigns field if non-nil, zero value otherwise.
+
+### GetReferencedByCampaignsOk
+
+`func (o *AchievementProgressWithDefinition) GetReferencedByCampaignsOk() (*[]CampaignReference, bool)`
+
+GetReferencedByCampaignsOk returns a tuple with the ReferencedByCampaigns field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReferencedByCampaigns
+
+`func (o *AchievementProgressWithDefinition) SetReferencedByCampaigns(v []CampaignReference)`
+
+SetReferencedByCampaigns sets ReferencedByCampaigns field to given value.
 
 
 ### GetTarget

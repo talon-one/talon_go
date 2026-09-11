@@ -46,8 +46,10 @@ type Effect struct {
 	// The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied.
 	SelectedPrice *float32 `json:"selectedPrice,omitempty"`
 	// The reference identifier of the selected price adjustment for this SKU. This is only returned if the `selectedPrice` resulted from a price adjustment.
-	AdjustmentReferenceId *string                `json:"adjustmentReferenceId,omitempty"`
-	Props                 map[string]interface{} `json:"props"`
+	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
+	// The ID of the reward that was being evaluated when this effect was triggered.
+	RewardId *int64                 `json:"rewardId,omitempty"`
+	Props    map[string]interface{} `json:"props"`
 }
 
 // NewEffect instantiates a new Effect object
@@ -545,6 +547,38 @@ func (o *Effect) SetAdjustmentReferenceId(v string) {
 	o.AdjustmentReferenceId = &v
 }
 
+// GetRewardId returns the RewardId field value if set, zero value otherwise.
+func (o *Effect) GetRewardId() int64 {
+	if o == nil || o.RewardId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RewardId
+}
+
+// GetRewardIdOk returns a tuple with the RewardId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Effect) GetRewardIdOk() (*int64, bool) {
+	if o == nil || o.RewardId == nil {
+		return nil, false
+	}
+	return o.RewardId, true
+}
+
+// HasRewardId returns a boolean if a field has been set.
+func (o *Effect) HasRewardId() bool {
+	if o != nil && o.RewardId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardId gets a reference to the given int64 and assigns it to the RewardId field.
+func (o *Effect) SetRewardId(v int64) {
+	o.RewardId = &v
+}
+
 // GetProps returns the Props field value
 func (o *Effect) GetProps() map[string]interface{} {
 	if o == nil {
@@ -618,6 +652,9 @@ func (o Effect) MarshalJSON() ([]byte, error) {
 	}
 	if o.AdjustmentReferenceId != nil {
 		toSerialize["adjustmentReferenceId"] = o.AdjustmentReferenceId
+	}
+	if o.RewardId != nil {
+		toSerialize["rewardId"] = o.RewardId
 	}
 	if true {
 		toSerialize["props"] = o.Props

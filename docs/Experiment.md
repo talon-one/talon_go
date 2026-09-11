@@ -12,13 +12,15 @@ Name | Type | Description | Notes
 **Activated** | Pointer to [**time.Time**](time.Time.md) | The date and time the experiment was activated.  | [optional] 
 **State** | Pointer to **string** | A disabled experiment is not evaluated for rules or coupons.  | [default to "disabled"]
 **Variants** | Pointer to [**[]ExperimentVariant**](ExperimentVariant.md) |  | [optional] 
+**GoalType** | Pointer to **string** | The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used.  | 
+**GoalDescription** | Pointer to **string** | A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.  | [optional] 
 **Deletedat** | Pointer to [**time.Time**](time.Time.md) | The date and time the experiment was deleted.  | [optional] 
 
 ## Methods
 
 ### NewExperiment
 
-`func NewExperiment(id int64, created time.Time, applicationId int64, state string, ) *Experiment`
+`func NewExperiment(id int64, created time.Time, applicationId int64, state string, goalType string, ) *Experiment`
 
 NewExperiment instantiates a new Experiment object
 This constructor will assign default values to properties that have it defined,
@@ -212,6 +214,51 @@ SetVariants sets Variants field to given value.
 `func (o *Experiment) HasVariants() bool`
 
 HasVariants returns a boolean if a field has been set.
+
+### GetGoalType
+
+`func (o *Experiment) GetGoalType() string`
+
+GetGoalType returns the GoalType field if non-nil, zero value otherwise.
+
+### GetGoalTypeOk
+
+`func (o *Experiment) GetGoalTypeOk() (*string, bool)`
+
+GetGoalTypeOk returns a tuple with the GoalType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoalType
+
+`func (o *Experiment) SetGoalType(v string)`
+
+SetGoalType sets GoalType field to given value.
+
+
+### GetGoalDescription
+
+`func (o *Experiment) GetGoalDescription() string`
+
+GetGoalDescription returns the GoalDescription field if non-nil, zero value otherwise.
+
+### GetGoalDescriptionOk
+
+`func (o *Experiment) GetGoalDescriptionOk() (*string, bool)`
+
+GetGoalDescriptionOk returns a tuple with the GoalDescription field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGoalDescription
+
+`func (o *Experiment) SetGoalDescription(v string)`
+
+SetGoalDescription sets GoalDescription field to given value.
+
+### HasGoalDescription
+
+`func (o *Experiment) HasGoalDescription() bool`
+
+HasGoalDescription returns a boolean if a field has been set.
 
 ### GetDeletedat
 

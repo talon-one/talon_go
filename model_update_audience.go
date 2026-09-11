@@ -17,6 +17,8 @@ import (
 type UpdateAudience struct {
 	// The human-friendly display name for this audience.
 	Name string `json:"name"`
+	// A list of the IDs of the Applications that are connected to this audience.
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 }
 
 // NewUpdateAudience instantiates a new UpdateAudience object
@@ -61,10 +63,45 @@ func (o *UpdateAudience) SetName(v string) {
 	o.Name = v
 }
 
+// GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
+func (o *UpdateAudience) GetSubscribedApplicationsIds() []int64 {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.SubscribedApplicationsIds
+}
+
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateAudience) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		return nil, false
+	}
+	return o.SubscribedApplicationsIds, true
+}
+
+// HasSubscribedApplicationsIds returns a boolean if a field has been set.
+func (o *UpdateAudience) HasSubscribedApplicationsIds() bool {
+	if o != nil && o.SubscribedApplicationsIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *UpdateAudience) SetSubscribedApplicationsIds(v []int64) {
+	o.SubscribedApplicationsIds = &v
+}
+
 func (o UpdateAudience) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["name"] = o.Name
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
 	}
 	return json.Marshal(toSerialize)
 }

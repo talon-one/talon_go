@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to **string** | The type of sync action. | 
-**Payload** | Pointer to [**map[string]interface{}**](.md) |  | 
+**Type** | Pointer to **string** | The type of sync action. | [optional] 
+**Payload** | Pointer to [**map[string]interface{}**](.md) |  | [optional] 
 
 ## Methods
 
 ### NewCatalogAction
 
-`func NewCatalogAction(type_ string, payload map[string]interface{}, ) *CatalogAction`
+`func NewCatalogAction() *CatalogAction`
 
 NewCatalogAction instantiates a new CatalogAction object
 This constructor will assign default values to properties that have it defined,
@@ -45,6 +45,11 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
+
+`func (o *CatalogAction) HasType() bool`
+
+HasType returns a boolean if a field has been set.
 
 ### GetPayload
 
@@ -65,6 +70,11 @@ and a boolean to check if the value has been set.
 
 SetPayload sets Payload field to given value.
 
+### HasPayload
+
+`func (o *CatalogAction) HasPayload() bool`
+
+HasPayload returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

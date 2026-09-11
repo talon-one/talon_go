@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**LoyaltyProgramId** | Pointer to **int64** | Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint. | [optional] 
 **LoyaltyPointsLimit** | Pointer to **int64** | Maximum number of loyalty points a support user can award without approval. | [optional] 
 
 ## Methods
@@ -24,6 +25,31 @@ will change when the set of required properties is changed
 NewRolesV2ThresholdsWithDefaults instantiates a new RolesV2Thresholds object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetLoyaltyProgramId
+
+`func (o *RolesV2Thresholds) GetLoyaltyProgramId() int64`
+
+GetLoyaltyProgramId returns the LoyaltyProgramId field if non-nil, zero value otherwise.
+
+### GetLoyaltyProgramIdOk
+
+`func (o *RolesV2Thresholds) GetLoyaltyProgramIdOk() (*int64, bool)`
+
+GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoyaltyProgramId
+
+`func (o *RolesV2Thresholds) SetLoyaltyProgramId(v int64)`
+
+SetLoyaltyProgramId sets LoyaltyProgramId field to given value.
+
+### HasLoyaltyProgramId
+
+`func (o *RolesV2Thresholds) HasLoyaltyProgramId() bool`
+
+HasLoyaltyProgramId returns a boolean if a field has been set.
 
 ### GetLoyaltyPointsLimit
 

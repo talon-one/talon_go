@@ -22,6 +22,10 @@ type IntegrationHubFlowConfig struct {
 	MaxEventsPerMessage *int64 `json:"MaxEventsPerMessage,omitempty"`
 	// Maximum number of retries for a IntegrationHub event before it is ignored.
 	MaxRetries *int64 `json:"MaxRetries,omitempty"`
+	// Name of the Prismatic instance that registered this flow.
+	InstanceName *string `json:"InstanceName,omitempty"`
+	// Name of the Prismatic integration that registered this flow.
+	IntegrationName *string `json:"IntegrationName,omitempty"`
 }
 
 // NewIntegrationHubFlowConfig instantiates a new IntegrationHubFlowConfig object
@@ -174,6 +178,70 @@ func (o *IntegrationHubFlowConfig) SetMaxRetries(v int64) {
 	o.MaxRetries = &v
 }
 
+// GetInstanceName returns the InstanceName field value if set, zero value otherwise.
+func (o *IntegrationHubFlowConfig) GetInstanceName() string {
+	if o == nil || o.InstanceName == nil {
+		var ret string
+		return ret
+	}
+	return *o.InstanceName
+}
+
+// GetInstanceNameOk returns a tuple with the InstanceName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubFlowConfig) GetInstanceNameOk() (*string, bool) {
+	if o == nil || o.InstanceName == nil {
+		return nil, false
+	}
+	return o.InstanceName, true
+}
+
+// HasInstanceName returns a boolean if a field has been set.
+func (o *IntegrationHubFlowConfig) HasInstanceName() bool {
+	if o != nil && o.InstanceName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceName gets a reference to the given string and assigns it to the InstanceName field.
+func (o *IntegrationHubFlowConfig) SetInstanceName(v string) {
+	o.InstanceName = &v
+}
+
+// GetIntegrationName returns the IntegrationName field value if set, zero value otherwise.
+func (o *IntegrationHubFlowConfig) GetIntegrationName() string {
+	if o == nil || o.IntegrationName == nil {
+		var ret string
+		return ret
+	}
+	return *o.IntegrationName
+}
+
+// GetIntegrationNameOk returns a tuple with the IntegrationName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubFlowConfig) GetIntegrationNameOk() (*string, bool) {
+	if o == nil || o.IntegrationName == nil {
+		return nil, false
+	}
+	return o.IntegrationName, true
+}
+
+// HasIntegrationName returns a boolean if a field has been set.
+func (o *IntegrationHubFlowConfig) HasIntegrationName() bool {
+	if o != nil && o.IntegrationName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationName gets a reference to the given string and assigns it to the IntegrationName field.
+func (o *IntegrationHubFlowConfig) SetIntegrationName(v string) {
+	o.IntegrationName = &v
+}
+
 func (o IntegrationHubFlowConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -187,6 +255,12 @@ func (o IntegrationHubFlowConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.MaxRetries != nil {
 		toSerialize["MaxRetries"] = o.MaxRetries
+	}
+	if o.InstanceName != nil {
+		toSerialize["InstanceName"] = o.InstanceName
+	}
+	if o.IntegrationName != nil {
+		toSerialize["IntegrationName"] = o.IntegrationName
 	}
 	return json.Marshal(toSerialize)
 }

@@ -41,8 +41,10 @@ type AchievementStatusEntry struct {
 	EndDate *time.Time `json:"endDate,omitempty"`
 	// When `true`, customer progress can be rolled back in completed achievements.
 	AllowRollbackAfterCompletion *bool `json:"allowRollbackAfterCompletion,omitempty"`
-	// The ID of the campaign the achievement belongs to.
+	// This property is **deprecated**. Use `referencedByCampaigns` instead. This field contains the first campaign ID from the related `referencedByCampaigns`, and is omitted when `referencedByCampaigns` is empty.
 	CampaignId *int64 `json:"campaignId,omitempty"`
+	// The IDs of the campaigns that reference this achievement, in ascending order.
+	CampaignIds *[]int64 `json:"campaignIds,omitempty"`
 	// The status of the achievement.
 	Status          *string              `json:"status,omitempty"`
 	CurrentProgress *AchievementProgress `json:"currentProgress,omitempty"`
@@ -471,6 +473,38 @@ func (o *AchievementStatusEntry) SetCampaignId(v int64) {
 	o.CampaignId = &v
 }
 
+// GetCampaignIds returns the CampaignIds field value if set, zero value otherwise.
+func (o *AchievementStatusEntry) GetCampaignIds() []int64 {
+	if o == nil || o.CampaignIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.CampaignIds
+}
+
+// GetCampaignIdsOk returns a tuple with the CampaignIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementStatusEntry) GetCampaignIdsOk() (*[]int64, bool) {
+	if o == nil || o.CampaignIds == nil {
+		return nil, false
+	}
+	return o.CampaignIds, true
+}
+
+// HasCampaignIds returns a boolean if a field has been set.
+func (o *AchievementStatusEntry) HasCampaignIds() bool {
+	if o != nil && o.CampaignIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignIds gets a reference to the given []int64 and assigns it to the CampaignIds field.
+func (o *AchievementStatusEntry) SetCampaignIds(v []int64) {
+	o.CampaignIds = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AchievementStatusEntry) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -578,6 +612,9 @@ func (o AchievementStatusEntry) MarshalJSON() ([]byte, error) {
 	}
 	if o.CampaignId != nil {
 		toSerialize["campaignId"] = o.CampaignId
+	}
+	if o.CampaignIds != nil {
+		toSerialize["campaignIds"] = o.CampaignIds
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status

@@ -6,8 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **UserId** | Pointer to **int64** | The ID of the user that created this achievement. | 
 **CreatedBy** | Pointer to **string** | Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.  | [optional] 
+**PeriodEndOverride** | Pointer to [**TimePoint**](TimePoint.md) |  | [optional] 
 **HasProgress** | Pointer to **bool** | Indicates if a customer has made progress in the achievement. | [optional] 
-**Status** | Pointer to **string** | The status of the achievement. | [optional] 
+**Status** | Pointer to **string** | The status of the achievement.                                                                                               - &#x60;active&#x60;: The achievement is available to customers. - &#x60;scheduled&#x60;: The achievement has a &#x60;fixedStartDate&#x60; set in the future. - &#x60;expired&#x60;: The achievement&#39;s &#x60;endDate&#x60; is in the past.  | [optional] 
 
 ## Methods
 
@@ -72,6 +73,31 @@ SetCreatedBy sets CreatedBy field to given value.
 `func (o *AchievementAdditionalPropertiesV2) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
+
+### GetPeriodEndOverride
+
+`func (o *AchievementAdditionalPropertiesV2) GetPeriodEndOverride() TimePoint`
+
+GetPeriodEndOverride returns the PeriodEndOverride field if non-nil, zero value otherwise.
+
+### GetPeriodEndOverrideOk
+
+`func (o *AchievementAdditionalPropertiesV2) GetPeriodEndOverrideOk() (*TimePoint, bool)`
+
+GetPeriodEndOverrideOk returns a tuple with the PeriodEndOverride field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeriodEndOverride
+
+`func (o *AchievementAdditionalPropertiesV2) SetPeriodEndOverride(v TimePoint)`
+
+SetPeriodEndOverride sets PeriodEndOverride field to given value.
+
+### HasPeriodEndOverride
+
+`func (o *AchievementAdditionalPropertiesV2) HasPeriodEndOverride() bool`
+
+HasPeriodEndOverride returns a boolean if a field has been set.
 
 ### GetHasProgress
 

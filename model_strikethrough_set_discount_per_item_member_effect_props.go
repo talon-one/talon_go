@@ -15,9 +15,9 @@ import (
 
 // StrikethroughSetDiscountPerItemMemberEffectProps setDiscountPerItem member effect in strikethrough pricing payload.
 type StrikethroughSetDiscountPerItemMemberEffectProps struct {
-	// effect name.
+	// The effect name.
 	Name string `json:"name"`
-	// discount value.
+	// The discount value.
 	Value map[string]interface{} `json:"value"`
 }
 

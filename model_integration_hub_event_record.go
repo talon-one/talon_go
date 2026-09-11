@@ -16,29 +16,42 @@ import (
 
 // IntegrationHubEventRecord struct for IntegrationHubEventRecord
 type IntegrationHubEventRecord struct {
-	Id           int64                  `json:"Id"`
-	FlowId       int64                  `json:"FlowId"`
-	EventType    string                 `json:"EventType"`
-	EventData    map[string]interface{} `json:"EventData"`
-	PublishedAt  time.Time              `json:"PublishedAt"`
-	ProcessedAt  *time.Time             `json:"ProcessedAt,omitempty"`
-	ProcessAfter time.Time              `json:"ProcessAfter"`
-	Retry        int64                  `json:"Retry"`
+	// ID of the event record.
+	Id int64 `json:"id"`
+	// ID of the integration hub flow.
+	FlowId int64 `json:"flowId"`
+	// Name of the integration.
+	IntegrationName *string `json:"integrationName,omitempty"`
+	// Name of the integration instance.
+	InstanceName *string                 `json:"instanceName,omitempty"`
+	EventType    IntegrationHubEventType `json:"eventType"`
+	// Timestamp when the event was published.
+	PublishedAt time.Time `json:"publishedAt"`
+	// Timestamp when the event was processed.
+	ProcessedAt *time.Time `json:"processedAt,omitempty"`
+	// Timestamp when the event was delivered.
+	DeliveredAt *time.Time `json:"deliveredAt,omitempty"`
+	// Timestamp after which the event is scheduled to be processed.
+	ScheduledTo time.Time `json:"scheduledTo"`
+	// Number of delivery retries attempted.
+	Retry int64 `json:"retry"`
+	// The event payload as a formatted JSON string.
+	Payload string `json:"payload"`
 }
 
 // NewIntegrationHubEventRecord instantiates a new IntegrationHubEventRecord object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildIntegrationHubEventRecord(id int64, flowId int64, eventType string, eventData map[string]interface{}, publishedAt time.Time, processAfter time.Time, retry int64) *IntegrationHubEventRecord {
+func BuildIntegrationHubEventRecord(id int64, flowId int64, eventType IntegrationHubEventType, publishedAt time.Time, scheduledTo time.Time, retry int64, payload string) *IntegrationHubEventRecord {
 	this := IntegrationHubEventRecord{}
 	this.Id = id
 	this.FlowId = flowId
 	this.EventType = eventType
-	this.EventData = eventData
 	this.PublishedAt = publishedAt
-	this.ProcessAfter = processAfter
+	this.ScheduledTo = scheduledTo
 	this.Retry = retry
+	this.Payload = payload
 	return &this
 }
 
@@ -98,10 +111,74 @@ func (o *IntegrationHubEventRecord) SetFlowId(v int64) {
 	o.FlowId = v
 }
 
-// GetEventType returns the EventType field value
-func (o *IntegrationHubEventRecord) GetEventType() string {
-	if o == nil {
+// GetIntegrationName returns the IntegrationName field value if set, zero value otherwise.
+func (o *IntegrationHubEventRecord) GetIntegrationName() string {
+	if o == nil || o.IntegrationName == nil {
 		var ret string
+		return ret
+	}
+	return *o.IntegrationName
+}
+
+// GetIntegrationNameOk returns a tuple with the IntegrationName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventRecord) GetIntegrationNameOk() (*string, bool) {
+	if o == nil || o.IntegrationName == nil {
+		return nil, false
+	}
+	return o.IntegrationName, true
+}
+
+// HasIntegrationName returns a boolean if a field has been set.
+func (o *IntegrationHubEventRecord) HasIntegrationName() bool {
+	if o != nil && o.IntegrationName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationName gets a reference to the given string and assigns it to the IntegrationName field.
+func (o *IntegrationHubEventRecord) SetIntegrationName(v string) {
+	o.IntegrationName = &v
+}
+
+// GetInstanceName returns the InstanceName field value if set, zero value otherwise.
+func (o *IntegrationHubEventRecord) GetInstanceName() string {
+	if o == nil || o.InstanceName == nil {
+		var ret string
+		return ret
+	}
+	return *o.InstanceName
+}
+
+// GetInstanceNameOk returns a tuple with the InstanceName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventRecord) GetInstanceNameOk() (*string, bool) {
+	if o == nil || o.InstanceName == nil {
+		return nil, false
+	}
+	return o.InstanceName, true
+}
+
+// HasInstanceName returns a boolean if a field has been set.
+func (o *IntegrationHubEventRecord) HasInstanceName() bool {
+	if o != nil && o.InstanceName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInstanceName gets a reference to the given string and assigns it to the InstanceName field.
+func (o *IntegrationHubEventRecord) SetInstanceName(v string) {
+	o.InstanceName = &v
+}
+
+// GetEventType returns the EventType field value
+func (o *IntegrationHubEventRecord) GetEventType() IntegrationHubEventType {
+	if o == nil {
+		var ret IntegrationHubEventType
 		return ret
 	}
 
@@ -110,7 +187,7 @@ func (o *IntegrationHubEventRecord) GetEventType() string {
 
 // GetEventTypeOk returns a tuple with the EventType field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationHubEventRecord) GetEventTypeOk() (*string, bool) {
+func (o *IntegrationHubEventRecord) GetEventTypeOk() (*IntegrationHubEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,32 +195,8 @@ func (o *IntegrationHubEventRecord) GetEventTypeOk() (*string, bool) {
 }
 
 // SetEventType sets field value
-func (o *IntegrationHubEventRecord) SetEventType(v string) {
+func (o *IntegrationHubEventRecord) SetEventType(v IntegrationHubEventType) {
 	o.EventType = v
-}
-
-// GetEventData returns the EventData field value
-func (o *IntegrationHubEventRecord) GetEventData() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-
-	return o.EventData
-}
-
-// GetEventDataOk returns a tuple with the EventData field value
-// and a boolean to check if the value has been set.
-func (o *IntegrationHubEventRecord) GetEventDataOk() (*map[string]interface{}, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EventData, true
-}
-
-// SetEventData sets field value
-func (o *IntegrationHubEventRecord) SetEventData(v map[string]interface{}) {
-	o.EventData = v
 }
 
 // GetPublishedAt returns the PublishedAt field value
@@ -202,28 +255,60 @@ func (o *IntegrationHubEventRecord) SetProcessedAt(v time.Time) {
 	o.ProcessedAt = &v
 }
 
-// GetProcessAfter returns the ProcessAfter field value
-func (o *IntegrationHubEventRecord) GetProcessAfter() time.Time {
+// GetDeliveredAt returns the DeliveredAt field value if set, zero value otherwise.
+func (o *IntegrationHubEventRecord) GetDeliveredAt() time.Time {
+	if o == nil || o.DeliveredAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.DeliveredAt
+}
+
+// GetDeliveredAtOk returns a tuple with the DeliveredAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventRecord) GetDeliveredAtOk() (*time.Time, bool) {
+	if o == nil || o.DeliveredAt == nil {
+		return nil, false
+	}
+	return o.DeliveredAt, true
+}
+
+// HasDeliveredAt returns a boolean if a field has been set.
+func (o *IntegrationHubEventRecord) HasDeliveredAt() bool {
+	if o != nil && o.DeliveredAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveredAt gets a reference to the given time.Time and assigns it to the DeliveredAt field.
+func (o *IntegrationHubEventRecord) SetDeliveredAt(v time.Time) {
+	o.DeliveredAt = &v
+}
+
+// GetScheduledTo returns the ScheduledTo field value
+func (o *IntegrationHubEventRecord) GetScheduledTo() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
 	}
 
-	return o.ProcessAfter
+	return o.ScheduledTo
 }
 
-// GetProcessAfterOk returns a tuple with the ProcessAfter field value
+// GetScheduledToOk returns a tuple with the ScheduledTo field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationHubEventRecord) GetProcessAfterOk() (*time.Time, bool) {
+func (o *IntegrationHubEventRecord) GetScheduledToOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ProcessAfter, true
+	return &o.ScheduledTo, true
 }
 
-// SetProcessAfter sets field value
-func (o *IntegrationHubEventRecord) SetProcessAfter(v time.Time) {
-	o.ProcessAfter = v
+// SetScheduledTo sets field value
+func (o *IntegrationHubEventRecord) SetScheduledTo(v time.Time) {
+	o.ScheduledTo = v
 }
 
 // GetRetry returns the Retry field value
@@ -250,31 +335,64 @@ func (o *IntegrationHubEventRecord) SetRetry(v int64) {
 	o.Retry = v
 }
 
+// GetPayload returns the Payload field value
+func (o *IntegrationHubEventRecord) GetPayload() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Payload
+}
+
+// GetPayloadOk returns a tuple with the Payload field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventRecord) GetPayloadOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Payload, true
+}
+
+// SetPayload sets field value
+func (o *IntegrationHubEventRecord) SetPayload(v string) {
+	o.Payload = v
+}
+
 func (o IntegrationHubEventRecord) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["Id"] = o.Id
+		toSerialize["id"] = o.Id
 	}
 	if true {
-		toSerialize["FlowId"] = o.FlowId
+		toSerialize["flowId"] = o.FlowId
+	}
+	if o.IntegrationName != nil {
+		toSerialize["integrationName"] = o.IntegrationName
+	}
+	if o.InstanceName != nil {
+		toSerialize["instanceName"] = o.InstanceName
 	}
 	if true {
-		toSerialize["EventType"] = o.EventType
+		toSerialize["eventType"] = o.EventType
 	}
 	if true {
-		toSerialize["EventData"] = o.EventData
-	}
-	if true {
-		toSerialize["PublishedAt"] = o.PublishedAt
+		toSerialize["publishedAt"] = o.PublishedAt
 	}
 	if o.ProcessedAt != nil {
-		toSerialize["ProcessedAt"] = o.ProcessedAt
+		toSerialize["processedAt"] = o.ProcessedAt
+	}
+	if o.DeliveredAt != nil {
+		toSerialize["deliveredAt"] = o.DeliveredAt
 	}
 	if true {
-		toSerialize["ProcessAfter"] = o.ProcessAfter
+		toSerialize["scheduledTo"] = o.ScheduledTo
 	}
 	if true {
-		toSerialize["Retry"] = o.Retry
+		toSerialize["retry"] = o.Retry
+	}
+	if true {
+		toSerialize["payload"] = o.Payload
 	}
 	return json.Marshal(toSerialize)
 }

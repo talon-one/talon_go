@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **DefaultEvaluationGroupId** | Pointer to **int64** | The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign. | [optional] 
 **DefaultCartItemFilterId** | Pointer to **int64** | The ID of the default Cart-Item-Filter for this application. | [optional] 
 **EnableCampaignStateManagement** | Pointer to **bool** | Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.  | [optional] 
+**BestPriorPriceSettings** | Pointer to [**BestPriorPriceSettings**](BestPriorPriceSettings.md) |  | [optional] 
 
 ## Methods
 
@@ -450,6 +451,31 @@ SetEnableCampaignStateManagement sets EnableCampaignStateManagement field to giv
 `func (o *UpdateApplication) HasEnableCampaignStateManagement() bool`
 
 HasEnableCampaignStateManagement returns a boolean if a field has been set.
+
+### GetBestPriorPriceSettings
+
+`func (o *UpdateApplication) GetBestPriorPriceSettings() BestPriorPriceSettings`
+
+GetBestPriorPriceSettings returns the BestPriorPriceSettings field if non-nil, zero value otherwise.
+
+### GetBestPriorPriceSettingsOk
+
+`func (o *UpdateApplication) GetBestPriorPriceSettingsOk() (*BestPriorPriceSettings, bool)`
+
+GetBestPriorPriceSettingsOk returns a tuple with the BestPriorPriceSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBestPriorPriceSettings
+
+`func (o *UpdateApplication) SetBestPriorPriceSettings(v BestPriorPriceSettings)`
+
+SetBestPriorPriceSettings sets BestPriorPriceSettings field to given value.
+
+### HasBestPriorPriceSettings
+
+`func (o *UpdateApplication) HasBestPriorPriceSettings() bool`
+
+HasBestPriorPriceSettings returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

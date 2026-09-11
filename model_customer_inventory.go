@@ -22,6 +22,8 @@ type CustomerInventory struct {
 	Coupons      *[]InventoryCoupon                   `json:"coupons,omitempty"`
 	Giveaways    *[]Giveaway                          `json:"giveaways,omitempty"`
 	Achievements *[]AchievementProgressWithDefinition `json:"achievements,omitempty"`
+	// The customer rewards that are `unlocked` and not yet `used`.
+	Rewards *[]RewardWithUnlocks `json:"rewards,omitempty"`
 }
 
 // NewCustomerInventory instantiates a new CustomerInventory object
@@ -233,6 +235,38 @@ func (o *CustomerInventory) SetAchievements(v []AchievementProgressWithDefinitio
 	o.Achievements = &v
 }
 
+// GetRewards returns the Rewards field value if set, zero value otherwise.
+func (o *CustomerInventory) GetRewards() []RewardWithUnlocks {
+	if o == nil || o.Rewards == nil {
+		var ret []RewardWithUnlocks
+		return ret
+	}
+	return *o.Rewards
+}
+
+// GetRewardsOk returns a tuple with the Rewards field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerInventory) GetRewardsOk() (*[]RewardWithUnlocks, bool) {
+	if o == nil || o.Rewards == nil {
+		return nil, false
+	}
+	return o.Rewards, true
+}
+
+// HasRewards returns a boolean if a field has been set.
+func (o *CustomerInventory) HasRewards() bool {
+	if o != nil && o.Rewards != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewards gets a reference to the given []RewardWithUnlocks and assigns it to the Rewards field.
+func (o *CustomerInventory) SetRewards(v []RewardWithUnlocks) {
+	o.Rewards = &v
+}
+
 func (o CustomerInventory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Profile != nil {
@@ -252,6 +286,9 @@ func (o CustomerInventory) MarshalJSON() ([]byte, error) {
 	}
 	if o.Achievements != nil {
 		toSerialize["achievements"] = o.Achievements
+	}
+	if o.Rewards != nil {
+		toSerialize["rewards"] = o.Rewards
 	}
 	return json.Marshal(toSerialize)
 }

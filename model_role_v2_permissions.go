@@ -18,6 +18,8 @@ type RoleV2Permissions struct {
 	// List of grouped logical operations referenced by roles.
 	PermissionSets *[]RoleV2PermissionSet `json:"permissionSets,omitempty"`
 	Roles          *RoleV2RolesGroup      `json:"roles,omitempty"`
+	// Support user limits for actions that require admin approval within the given application.
+	Thresholds *[]RolesV2Thresholds `json:"thresholds,omitempty"`
 }
 
 // NewRoleV2Permissions instantiates a new RoleV2Permissions object
@@ -101,6 +103,38 @@ func (o *RoleV2Permissions) SetRoles(v RoleV2RolesGroup) {
 	o.Roles = &v
 }
 
+// GetThresholds returns the Thresholds field value if set, zero value otherwise.
+func (o *RoleV2Permissions) GetThresholds() []RolesV2Thresholds {
+	if o == nil || o.Thresholds == nil {
+		var ret []RolesV2Thresholds
+		return ret
+	}
+	return *o.Thresholds
+}
+
+// GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RoleV2Permissions) GetThresholdsOk() (*[]RolesV2Thresholds, bool) {
+	if o == nil || o.Thresholds == nil {
+		return nil, false
+	}
+	return o.Thresholds, true
+}
+
+// HasThresholds returns a boolean if a field has been set.
+func (o *RoleV2Permissions) HasThresholds() bool {
+	if o != nil && o.Thresholds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetThresholds gets a reference to the given []RolesV2Thresholds and assigns it to the Thresholds field.
+func (o *RoleV2Permissions) SetThresholds(v []RolesV2Thresholds) {
+	o.Thresholds = &v
+}
+
 func (o RoleV2Permissions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.PermissionSets != nil {
@@ -108,6 +142,9 @@ func (o RoleV2Permissions) MarshalJSON() ([]byte, error) {
 	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
+	}
+	if o.Thresholds != nil {
+		toSerialize["thresholds"] = o.Thresholds
 	}
 	return json.Marshal(toSerialize)
 }

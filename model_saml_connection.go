@@ -18,6 +18,8 @@ import (
 type SamlConnection struct {
 	// The location where the SAML assertion is sent with a HTTP POST.
 	AssertionConsumerServiceURL string `json:"assertionConsumerServiceURL"`
+	// The expiry date of the X.509 certificate.
+	CertificateExpiry *time.Time `json:"certificateExpiry,omitempty"`
 	// The ID of the account that owns this entity.
 	AccountId int64 `json:"accountId"`
 	// ID of the SAML service.
@@ -88,6 +90,38 @@ func (o *SamlConnection) GetAssertionConsumerServiceURLOk() (*string, bool) {
 // SetAssertionConsumerServiceURL sets field value
 func (o *SamlConnection) SetAssertionConsumerServiceURL(v string) {
 	o.AssertionConsumerServiceURL = v
+}
+
+// GetCertificateExpiry returns the CertificateExpiry field value if set, zero value otherwise.
+func (o *SamlConnection) GetCertificateExpiry() time.Time {
+	if o == nil || o.CertificateExpiry == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.CertificateExpiry
+}
+
+// GetCertificateExpiryOk returns a tuple with the CertificateExpiry field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SamlConnection) GetCertificateExpiryOk() (*time.Time, bool) {
+	if o == nil || o.CertificateExpiry == nil {
+		return nil, false
+	}
+	return o.CertificateExpiry, true
+}
+
+// HasCertificateExpiry returns a boolean if a field has been set.
+func (o *SamlConnection) HasCertificateExpiry() bool {
+	if o != nil && o.CertificateExpiry != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCertificateExpiry gets a reference to the given time.Time and assigns it to the CertificateExpiry field.
+func (o *SamlConnection) SetCertificateExpiry(v time.Time) {
+	o.CertificateExpiry = &v
 }
 
 // GetAccountId returns the AccountId field value
@@ -350,6 +384,9 @@ func (o SamlConnection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["assertionConsumerServiceURL"] = o.AssertionConsumerServiceURL
+	}
+	if o.CertificateExpiry != nil {
+		toSerialize["certificateExpiry"] = o.CertificateExpiry
 	}
 	if true {
 		toSerialize["accountId"] = o.AccountId

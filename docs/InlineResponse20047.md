@@ -4,15 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | [optional] 
-**TotalResultSize** | Pointer to **int64** |  | [optional] 
-**Data** | Pointer to [**[]Store**](Store.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | 
+**Data** | Pointer to [**[]RoleV2**](RoleV2.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20047
 
-`func NewInlineResponse20047(data []Store, ) *InlineResponse20047`
+`func NewInlineResponse20047(totalResultSize int64, data []RoleV2, ) *InlineResponse20047`
 
 NewInlineResponse20047 instantiates a new InlineResponse20047 object
 This constructor will assign default values to properties that have it defined,
@@ -26,31 +25,6 @@ will change when the set of required properties is changed
 NewInlineResponse20047WithDefaults instantiates a new InlineResponse20047 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetHasMore
-
-`func (o *InlineResponse20047) GetHasMore() bool`
-
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
-
-### GetHasMoreOk
-
-`func (o *InlineResponse20047) GetHasMoreOk() (*bool, bool)`
-
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetHasMore
-
-`func (o *InlineResponse20047) SetHasMore(v bool)`
-
-SetHasMore sets HasMore field to given value.
-
-### HasHasMore
-
-`func (o *InlineResponse20047) HasHasMore() bool`
-
-HasHasMore returns a boolean if a field has been set.
 
 ### GetTotalResultSize
 
@@ -71,28 +45,23 @@ and a boolean to check if the value has been set.
 
 SetTotalResultSize sets TotalResultSize field to given value.
 
-### HasTotalResultSize
-
-`func (o *InlineResponse20047) HasTotalResultSize() bool`
-
-HasTotalResultSize returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20047) GetData() []Store`
+`func (o *InlineResponse20047) GetData() []RoleV2`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20047) GetDataOk() (*[]Store, bool)`
+`func (o *InlineResponse20047) GetDataOk() (*[]RoleV2, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20047) SetData(v []Store)`
+`func (o *InlineResponse20047) SetData(v []RoleV2)`
 
 SetData sets Data field to given value.
 

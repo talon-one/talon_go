@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **int64** | Unique ID of Campaign. | 
 **ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
-**Name** | Pointer to **string** | A user-facing name for this campaign. | 
+**Id** | Pointer to **int64** | Unique ID of Campaign. | 
+**Name** | Pointer to **string** | The name of the campaign. | 
 **Description** | Pointer to **string** | A detailed description of the campaign. | [optional] 
 **StartTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 
@@ -14,12 +14,15 @@ Name | Type | Description | Notes
 **State** | Pointer to **string** | The state of the campaign.  | [default to "enabled"]
 **Tags** | Pointer to **[]string** | A list of tags for the campaign. | 
 **Features** | Pointer to **[]string** | The features enabled in this campaign. | 
+**Rules** | Pointer to [**[]RuleMetadata**](RuleMetadata.md) | A list of rules containing customer-facing details of the rewards defined in the campaign. | 
+**LinkedStoreIds** | Pointer to **[]int64** | A list of store IDs linked to this campaign. | [optional] 
+**LinkedAudienceIds** | Pointer to **[]int64** | A list of audience IDs linked to this campaign. | [optional] 
 
 ## Methods
 
 ### NewIntegrationCampaign
 
-`func NewIntegrationCampaign(id int64, applicationId int64, name string, state string, tags []string, features []string, ) *IntegrationCampaign`
+`func NewIntegrationCampaign(applicationId int64, id int64, name string, state string, tags []string, features []string, rules []RuleMetadata, ) *IntegrationCampaign`
 
 NewIntegrationCampaign instantiates a new IntegrationCampaign object
 This constructor will assign default values to properties that have it defined,
@@ -33,26 +36,6 @@ will change when the set of required properties is changed
 NewIntegrationCampaignWithDefaults instantiates a new IntegrationCampaign object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *IntegrationCampaign) GetId() int64`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *IntegrationCampaign) GetIdOk() (*int64, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *IntegrationCampaign) SetId(v int64)`
-
-SetId sets Id field to given value.
-
 
 ### GetApplicationId
 
@@ -72,6 +55,26 @@ and a boolean to check if the value has been set.
 `func (o *IntegrationCampaign) SetApplicationId(v int64)`
 
 SetApplicationId sets ApplicationId field to given value.
+
+
+### GetId
+
+`func (o *IntegrationCampaign) GetId() int64`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *IntegrationCampaign) GetIdOk() (*int64, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *IntegrationCampaign) SetId(v int64)`
+
+SetId sets Id field to given value.
 
 
 ### GetName
@@ -253,6 +256,76 @@ and a boolean to check if the value has been set.
 
 SetFeatures sets Features field to given value.
 
+
+### GetRules
+
+`func (o *IntegrationCampaign) GetRules() []RuleMetadata`
+
+GetRules returns the Rules field if non-nil, zero value otherwise.
+
+### GetRulesOk
+
+`func (o *IntegrationCampaign) GetRulesOk() (*[]RuleMetadata, bool)`
+
+GetRulesOk returns a tuple with the Rules field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRules
+
+`func (o *IntegrationCampaign) SetRules(v []RuleMetadata)`
+
+SetRules sets Rules field to given value.
+
+
+### GetLinkedStoreIds
+
+`func (o *IntegrationCampaign) GetLinkedStoreIds() []int64`
+
+GetLinkedStoreIds returns the LinkedStoreIds field if non-nil, zero value otherwise.
+
+### GetLinkedStoreIdsOk
+
+`func (o *IntegrationCampaign) GetLinkedStoreIdsOk() (*[]int64, bool)`
+
+GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkedStoreIds
+
+`func (o *IntegrationCampaign) SetLinkedStoreIds(v []int64)`
+
+SetLinkedStoreIds sets LinkedStoreIds field to given value.
+
+### HasLinkedStoreIds
+
+`func (o *IntegrationCampaign) HasLinkedStoreIds() bool`
+
+HasLinkedStoreIds returns a boolean if a field has been set.
+
+### GetLinkedAudienceIds
+
+`func (o *IntegrationCampaign) GetLinkedAudienceIds() []int64`
+
+GetLinkedAudienceIds returns the LinkedAudienceIds field if non-nil, zero value otherwise.
+
+### GetLinkedAudienceIdsOk
+
+`func (o *IntegrationCampaign) GetLinkedAudienceIdsOk() (*[]int64, bool)`
+
+GetLinkedAudienceIdsOk returns a tuple with the LinkedAudienceIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLinkedAudienceIds
+
+`func (o *IntegrationCampaign) SetLinkedAudienceIds(v []int64)`
+
+SetLinkedAudienceIds sets LinkedAudienceIds field to given value.
+
+### HasLinkedAudienceIds
+
+`func (o *IntegrationCampaign) HasLinkedAudienceIds() bool`
+
+HasLinkedAudienceIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

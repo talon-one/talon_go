@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// ShowBundleMetadataEffectProps This effect is **deprecated**. The properties specific to the \"ShowBundleMetadata\" effect. This effect contains information that allows you to associate the discounts from a rule in a bundle campaign with specific cart items. This way you can distinguish from \"normal\" discounts that were not the result of a product bundle.
+// ShowBundleMetadataEffectProps This effect is **deprecated**.  The `ShowBundleMetadata` effect contains information that allows you to associate the discounts from a rule in a bundle campaign with specific cart items. This way you can distinguish from \"normal\" discounts that were not the result of a product bundle.
 type ShowBundleMetadataEffectProps struct {
 	// Description of the product bundle.
 	Description string `json:"description"`

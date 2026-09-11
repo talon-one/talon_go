@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// RejectCouponEffectProps The properties specific to the \"rejectCoupon\" effect. This gets triggered whenever the coupon was rejected. See rejectionReason for more info on why.
+// RejectCouponEffectProps This effect indicates that the coupon code supplied couldn't be used.  You should handle this effect by informing their user the coupon code is invalid.
 type RejectCouponEffectProps struct {
 	// The coupon code that was rejected.
 	Value string `json:"value"`
-	// The reason why this coupon was rejected.
+	// The reason why the code was rejected.  - `CampaignLimitReached`: The campaign-wide coupon code redemption limit has been reached. - `CouponExpired`: The coupon is expired. - `CouponLimitReached`: The coupon redemption limit or a campaign budget was reached. - `CouponNotFound`: The coupon code is incorrect. - `CouponPartOfNotRunningCampaign`: The campaign the coupon belongs to is currently not active. The campaignId field contains the ID of that campaign. - `CouponRecipientDoesNotMatch`: The given coupon value does not match the recipient or the coupon is linked to a `recipientIntegrationID` but there is no profile in the session. - `CouponRejectedByCondition`: Other conditions failed in the rule or all conditions passed but the `Coupon code is valid` condition is not present. - `CouponStartDateInFuture`: The coupon isn't active yet. - `EffectCouldNotBeApplied`: One of the effects in the campaign wasn't applied because a limit for that effect was reached (most common use case will be `setDiscount` cannot be applied because a discount limit is reached). - `ProfileLimitReached`: The profile-specific coupon redemption limit has been reached. - `CouponPartOfNotTriggeredCampaign`: The campaign the coupon belongs to was not triggered during evaluation (an exclusive or stackable campaign). The `campaignId` field contains the ID of that campaign. - `CouponReservationRequired`: The coupon's `isReservationMandatory` property is `true`, but the profile does not have a reservation. - `ProfileRequired`: The coupon's `isReservationMandatory` property is `true` or a [campaign profile budget](https://docs.talon.one/docs/product/campaigns/settings/manage-campaign-budgets) was set, but no profile exists in the session.
 	RejectionReason string `json:"rejectionReason"`
 	// The index of the condition that caused the rejection of the coupon.
 	ConditionIndex *int64 `json:"conditionIndex,omitempty"`
@@ -25,7 +25,7 @@ type RejectCouponEffectProps struct {
 	EffectIndex *int64 `json:"effectIndex,omitempty"`
 	// More details about the failure.
 	Details *string `json:"details,omitempty"`
-	// The reason why the campaign was not applied.
+	// The reason why the campaign the coupon belongs to was excluded during [campaign evaluation](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation), when `rejectionReason` was `CouponPartOfNotTriggeredCampaign`. Its possible values are:  - `CampaignGaveLowerDiscount`: The required campaign and coupon conditions were met, but another campaign in a [Highest discount value](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation#set-campaign-evaluation-mode) group offered a higher discount value. - `CampaignIsNotFirst`: The campaign was not evaluated because another campaign in a [First campaign](https://docs.talon.one/docs/product/applications/manage-campaign-evaluation#set-campaign-evaluation-mode) group was picked and evaluated first. - `CampaignNotInEvaluationSet`: The campaign did not meet other evaluation requirements, for example, because the coupon is part of an archived campaign.
 	CampaignExclusionReason *string `json:"campaignExclusionReason,omitempty"`
 }
 

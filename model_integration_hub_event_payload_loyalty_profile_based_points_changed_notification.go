@@ -16,10 +16,18 @@ import (
 
 // IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification struct for IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
 type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification struct {
-	ProfileIntegrationID string                                                                          `json:"ProfileIntegrationID"`
-	LoyaltyProgramID     int64                                                                           `json:"LoyaltyProgramID"`
-	SubledgerID          string                                                                          `json:"SubledgerID"`
-	SourceOfEvent        string                                                                          `json:"SourceOfEvent"`
+	// The ID of the integration hub event. Return this value in the delivery-status callback to mark the event delivered or failed.
+	EventId              int64  `json:"EventId"`
+	ProfileIntegrationID string `json:"ProfileIntegrationID"`
+	LoyaltyProgramID     int64  `json:"LoyaltyProgramID"`
+	// The name of the loyalty program.
+	LoyaltyProgramName string `json:"LoyaltyProgramName"`
+	SubledgerID        string `json:"SubledgerID"`
+	SourceOfEvent      string `json:"SourceOfEvent"`
+	// The name of the customer's current tier.
+	CurrentTier string `json:"CurrentTier"`
+	// The integration ID of the session through which the points were earned or lost. Only set when the change results from a rule engine execution; empty otherwise.
+	SessionIntegrationID *string                                                                         `json:"SessionIntegrationID,omitempty"`
 	EmployeeName         *string                                                                         `json:"EmployeeName,omitempty"`
 	UserID               *int64                                                                          `json:"UserID,omitempty"`
 	CurrentPoints        float32                                                                         `json:"CurrentPoints"`
@@ -32,12 +40,15 @@ type IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification stru
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(profileIntegrationID string, loyaltyProgramID int64, subledgerID string, sourceOfEvent string, currentPoints float32, publishedAt time.Time) *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {
+func BuildIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification(eventId int64, profileIntegrationID string, loyaltyProgramID int64, loyaltyProgramName string, subledgerID string, sourceOfEvent string, currentTier string, currentPoints float32, publishedAt time.Time) *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {
 	this := IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification{}
+	this.EventId = eventId
 	this.ProfileIntegrationID = profileIntegrationID
 	this.LoyaltyProgramID = loyaltyProgramID
+	this.LoyaltyProgramName = loyaltyProgramName
 	this.SubledgerID = subledgerID
 	this.SourceOfEvent = sourceOfEvent
+	this.CurrentTier = currentTier
 	this.CurrentPoints = currentPoints
 	this.PublishedAt = publishedAt
 	return &this
@@ -49,6 +60,30 @@ func BuildIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification
 func NewIntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotificationWithDefaults() *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification {
 	this := IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification{}
 	return &this
+}
+
+// GetEventId returns the EventId field value
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetEventId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.EventId
+}
+
+// GetEventIdOk returns a tuple with the EventId field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetEventIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.EventId, true
+}
+
+// SetEventId sets field value
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) SetEventId(v int64) {
+	o.EventId = v
 }
 
 // GetProfileIntegrationID returns the ProfileIntegrationID field value
@@ -99,6 +134,30 @@ func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification)
 	o.LoyaltyProgramID = v
 }
 
+// GetLoyaltyProgramName returns the LoyaltyProgramName field value
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetLoyaltyProgramName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.LoyaltyProgramName
+}
+
+// GetLoyaltyProgramNameOk returns a tuple with the LoyaltyProgramName field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetLoyaltyProgramNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LoyaltyProgramName, true
+}
+
+// SetLoyaltyProgramName sets field value
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) SetLoyaltyProgramName(v string) {
+	o.LoyaltyProgramName = v
+}
+
 // GetSubledgerID returns the SubledgerID field value
 func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetSubledgerID() string {
 	if o == nil {
@@ -145,6 +204,62 @@ func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification)
 // SetSourceOfEvent sets field value
 func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) SetSourceOfEvent(v string) {
 	o.SourceOfEvent = v
+}
+
+// GetCurrentTier returns the CurrentTier field value
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetCurrentTier() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CurrentTier
+}
+
+// GetCurrentTierOk returns a tuple with the CurrentTier field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetCurrentTierOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CurrentTier, true
+}
+
+// SetCurrentTier sets field value
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) SetCurrentTier(v string) {
+	o.CurrentTier = v
+}
+
+// GetSessionIntegrationID returns the SessionIntegrationID field value if set, zero value otherwise.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetSessionIntegrationID() string {
+	if o == nil || o.SessionIntegrationID == nil {
+		var ret string
+		return ret
+	}
+	return *o.SessionIntegrationID
+}
+
+// GetSessionIntegrationIDOk returns a tuple with the SessionIntegrationID field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) GetSessionIntegrationIDOk() (*string, bool) {
+	if o == nil || o.SessionIntegrationID == nil {
+		return nil, false
+	}
+	return o.SessionIntegrationID, true
+}
+
+// HasSessionIntegrationID returns a boolean if a field has been set.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) HasSessionIntegrationID() bool {
+	if o != nil && o.SessionIntegrationID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionIntegrationID gets a reference to the given string and assigns it to the SessionIntegrationID field.
+func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) SetSessionIntegrationID(v string) {
+	o.SessionIntegrationID = &v
 }
 
 // GetEmployeeName returns the EmployeeName field value if set, zero value otherwise.
@@ -294,16 +409,28 @@ func (o *IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification)
 func (o IntegrationHubEventPayloadLoyaltyProfileBasedPointsChangedNotification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["EventId"] = o.EventId
+	}
+	if true {
 		toSerialize["ProfileIntegrationID"] = o.ProfileIntegrationID
 	}
 	if true {
 		toSerialize["LoyaltyProgramID"] = o.LoyaltyProgramID
 	}
 	if true {
+		toSerialize["LoyaltyProgramName"] = o.LoyaltyProgramName
+	}
+	if true {
 		toSerialize["SubledgerID"] = o.SubledgerID
 	}
 	if true {
 		toSerialize["SourceOfEvent"] = o.SourceOfEvent
+	}
+	if true {
+		toSerialize["CurrentTier"] = o.CurrentTier
+	}
+	if o.SessionIntegrationID != nil {
+		toSerialize["SessionIntegrationID"] = o.SessionIntegrationID
 	}
 	if o.EmployeeName != nil {
 		toSerialize["EmployeeName"] = o.EmployeeName

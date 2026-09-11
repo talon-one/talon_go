@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// TriggerWebhookEffectProps The properties specific to the \"triggerWebhook\" effect. This gets triggered whenever a validated rule contained a \"trigger webhook\" effect. This is communicated as an FYI and should usually not require action on your side.
+// TriggerWebhookEffectProps This effect is triggered when a rule containing a [webhook effect](https://docs.talon.one/docs/product/rules/effects/available-effects#webhooks) is validated. The details are shared with you for your information only. It usually doesn't require an action on your side.
 type TriggerWebhookEffectProps struct {
-	// The ID of the webhook that was triggered.
+	// The internal ID of the webhook.
 	WebhookId float32 `json:"webhookId"`
-	// The name of the webhook that was triggered.
+	// The name of the webhook.
 	WebhookName string `json:"webhookName"`
 }
 

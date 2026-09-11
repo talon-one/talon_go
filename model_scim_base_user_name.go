@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// ScimBaseUserName The components of the user’s real name.
+// ScimBaseUserName The components of the user's real name.
 type ScimBaseUserName struct {
 	// The full name, including all middle names, titles, and suffixes as appropriate, formatted for display.
 	Formatted *string `json:"formatted,omitempty"`

@@ -27,7 +27,9 @@ type NewCustomerSessionV2 struct {
 	ReferralCode *string `json:"referralCode,omitempty"`
 	// Identifier of a loyalty card.
 	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
-	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. Either:    - `closed` → `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - `closed` → `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - `closed` → `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
+	// The integration IDs of the unlocked rewards that can be used in this session.
+	RewardIntegrationIds *[]string `json:"rewardIntegrationIds,omitempty"`
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` -> `closed` 2. `open` -> `cancelled` 3. Either:    - `closed` -> `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - `closed` -> `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - `closed` -> `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. `partially_returned` -> `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 	State *string `json:"state,omitempty"`
 	// The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
 	CartItems *[]CartItem `json:"cartItems,omitempty"`
@@ -254,6 +256,38 @@ func (o *NewCustomerSessionV2) SetLoyaltyCards(v []string) {
 	o.LoyaltyCards = &v
 }
 
+// GetRewardIntegrationIds returns the RewardIntegrationIds field value if set, zero value otherwise.
+func (o *NewCustomerSessionV2) GetRewardIntegrationIds() []string {
+	if o == nil || o.RewardIntegrationIds == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RewardIntegrationIds
+}
+
+// GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCustomerSessionV2) GetRewardIntegrationIdsOk() (*[]string, bool) {
+	if o == nil || o.RewardIntegrationIds == nil {
+		return nil, false
+	}
+	return o.RewardIntegrationIds, true
+}
+
+// HasRewardIntegrationIds returns a boolean if a field has been set.
+func (o *NewCustomerSessionV2) HasRewardIntegrationIds() bool {
+	if o != nil && o.RewardIntegrationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardIntegrationIds gets a reference to the given []string and assigns it to the RewardIntegrationIds field.
+func (o *NewCustomerSessionV2) SetRewardIntegrationIds(v []string) {
+	o.RewardIntegrationIds = &v
+}
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *NewCustomerSessionV2) GetState() string {
 	if o == nil || o.State == nil {
@@ -465,6 +499,9 @@ func (o NewCustomerSessionV2) MarshalJSON() ([]byte, error) {
 	}
 	if o.LoyaltyCards != nil {
 		toSerialize["loyaltyCards"] = o.LoyaltyCards
+	}
+	if o.RewardIntegrationIds != nil {
+		toSerialize["rewardIntegrationIds"] = o.RewardIntegrationIds
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State

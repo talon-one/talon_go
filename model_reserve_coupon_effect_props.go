@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// ReserveCouponEffectProps The properties specific to the \"reserveCoupon\" effect. This gets triggered whenever a validated rule contained a \"reserve coupon\" effect. This reserves the coupon currently on scope to the profile on scope.
+// ReserveCouponEffectProps This effect indicates that the given coupon code was reserved for the given customer.  Talon.One provides soft and hard reservations. For more information, see [Reserve a coupon code](https://docs.talon.one/docs/product/rules/effects/use-effects#reserve-a-coupon-code).
 type ReserveCouponEffectProps struct {
-	// The value of the coupon currently on scope.
+	// The coupon code that was created.
 	CouponValue string `json:"couponValue"`
-	// The ID of this customer profile in the third-party integration.
+	// The integration identifier of the customer for whom this coupon was reserved.
 	ProfileIntegrationId string `json:"profileIntegrationId"`
 	// Indicates whether this is a new coupon reservation or not.
 	IsNewReservation bool `json:"isNewReservation"`

@@ -22,6 +22,8 @@ type MultipleAudiencesItem struct {
 	Created time.Time `json:"created"`
 	// The human-friendly display name for this audience.
 	Name string `json:"name"`
+	// A list of the IDs of the Applications that are connected to this audience.
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The ID of this audience in the third-party integration.
 	IntegrationId string `json:"integrationId"`
 	// Indicates whether the audience is new, updated or unmodified by the request.
@@ -122,6 +124,38 @@ func (o *MultipleAudiencesItem) SetName(v string) {
 	o.Name = v
 }
 
+// GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
+func (o *MultipleAudiencesItem) GetSubscribedApplicationsIds() []int64 {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.SubscribedApplicationsIds
+}
+
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MultipleAudiencesItem) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		return nil, false
+	}
+	return o.SubscribedApplicationsIds, true
+}
+
+// HasSubscribedApplicationsIds returns a boolean if a field has been set.
+func (o *MultipleAudiencesItem) HasSubscribedApplicationsIds() bool {
+	if o != nil && o.SubscribedApplicationsIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *MultipleAudiencesItem) SetSubscribedApplicationsIds(v []int64) {
+	o.SubscribedApplicationsIds = &v
+}
+
 // GetIntegrationId returns the IntegrationId field value
 func (o *MultipleAudiencesItem) GetIntegrationId() string {
 	if o == nil {
@@ -180,6 +214,9 @@ func (o MultipleAudiencesItem) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["name"] = o.Name
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
 	}
 	if true {
 		toSerialize["integrationId"] = o.IntegrationId

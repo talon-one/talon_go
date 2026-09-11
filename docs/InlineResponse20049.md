@@ -4,13 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Data** | Pointer to [**[]ListCampaignStoreBudgets**](ListCampaignStoreBudgets.md) |  | [optional] 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**Data** | Pointer to [**[]ApplicationCIF**](ApplicationCIF.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20049
 
-`func NewInlineResponse20049() *InlineResponse20049`
+`func NewInlineResponse20049(data []ApplicationCIF, ) *InlineResponse20049`
 
 NewInlineResponse20049 instantiates a new InlineResponse20049 object
 This constructor will assign default values to properties that have it defined,
@@ -25,30 +26,50 @@ NewInlineResponse20049WithDefaults instantiates a new InlineResponse20049 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetHasMore
+
+`func (o *InlineResponse20049) GetHasMore() bool`
+
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+
+### GetHasMoreOk
+
+`func (o *InlineResponse20049) GetHasMoreOk() (*bool, bool)`
+
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasMore
+
+`func (o *InlineResponse20049) SetHasMore(v bool)`
+
+SetHasMore sets HasMore field to given value.
+
+### HasHasMore
+
+`func (o *InlineResponse20049) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
+
 ### GetData
 
-`func (o *InlineResponse20049) GetData() []ListCampaignStoreBudgets`
+`func (o *InlineResponse20049) GetData() []ApplicationCIF`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20049) GetDataOk() (*[]ListCampaignStoreBudgets, bool)`
+`func (o *InlineResponse20049) GetDataOk() (*[]ApplicationCIF, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20049) SetData(v []ListCampaignStoreBudgets)`
+`func (o *InlineResponse20049) SetData(v []ApplicationCIF)`
 
 SetData sets Data field to given value.
 
-### HasData
-
-`func (o *InlineResponse20049) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

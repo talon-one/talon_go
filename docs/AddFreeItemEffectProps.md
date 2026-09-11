@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Sku** | Pointer to **string** | SKU of the item that needs to be added. | 
-**Name** | Pointer to **string** | The name / description of the effect | 
+**Name** | Pointer to **string** | Description of the effect. | 
 **DesiredQuantity** | Pointer to **int64** | The original quantity in case a partial reward was applied. | [optional] 
 
 ## Methods

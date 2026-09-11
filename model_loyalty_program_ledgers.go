@@ -25,7 +25,7 @@ type LoyaltyProgramLedgers struct {
 	// The date on which the customer joined the loyalty program in RFC3339.  **Note**: This is in the loyalty program's time zone.
 	JoinDate *time.Time `json:"joinDate,omitempty"`
 	Ledger   LedgerInfo `json:"ledger"`
-	// A map containing information about each loyalty subledger.
+	// A map containing information about each loyalty subledger. Subledgers for which all balances are zero are excluded from the response.
 	SubLedgers *map[string]LedgerInfo `json:"subLedgers,omitempty"`
 }
 

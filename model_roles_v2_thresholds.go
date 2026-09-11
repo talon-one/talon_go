@@ -15,6 +15,8 @@ import (
 
 // RolesV2Thresholds struct for RolesV2Thresholds
 type RolesV2Thresholds struct {
+	// Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
+	LoyaltyProgramId *int64 `json:"loyaltyProgramId,omitempty"`
 	// Maximum number of loyalty points a support user can award without approval.
 	LoyaltyPointsLimit *int64 `json:"loyaltyPointsLimit,omitempty"`
 }
@@ -34,6 +36,38 @@ func BuildRolesV2Thresholds() *RolesV2Thresholds {
 func NewRolesV2ThresholdsWithDefaults() *RolesV2Thresholds {
 	this := RolesV2Thresholds{}
 	return &this
+}
+
+// GetLoyaltyProgramId returns the LoyaltyProgramId field value if set, zero value otherwise.
+func (o *RolesV2Thresholds) GetLoyaltyProgramId() int64 {
+	if o == nil || o.LoyaltyProgramId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LoyaltyProgramId
+}
+
+// GetLoyaltyProgramIdOk returns a tuple with the LoyaltyProgramId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RolesV2Thresholds) GetLoyaltyProgramIdOk() (*int64, bool) {
+	if o == nil || o.LoyaltyProgramId == nil {
+		return nil, false
+	}
+	return o.LoyaltyProgramId, true
+}
+
+// HasLoyaltyProgramId returns a boolean if a field has been set.
+func (o *RolesV2Thresholds) HasLoyaltyProgramId() bool {
+	if o != nil && o.LoyaltyProgramId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoyaltyProgramId gets a reference to the given int64 and assigns it to the LoyaltyProgramId field.
+func (o *RolesV2Thresholds) SetLoyaltyProgramId(v int64) {
+	o.LoyaltyProgramId = &v
 }
 
 // GetLoyaltyPointsLimit returns the LoyaltyPointsLimit field value if set, zero value otherwise.
@@ -70,6 +104,9 @@ func (o *RolesV2Thresholds) SetLoyaltyPointsLimit(v int64) {
 
 func (o RolesV2Thresholds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.LoyaltyProgramId != nil {
+		toSerialize["loyaltyProgramId"] = o.LoyaltyProgramId
+	}
 	if o.LoyaltyPointsLimit != nil {
 		toSerialize["loyaltyPointsLimit"] = o.LoyaltyPointsLimit
 	}

@@ -30,6 +30,8 @@ type NewCoupons struct {
 	Limits *[]LimitConfig `json:"limits,omitempty"`
 	// The number of new coupon codes to generate for the campaign. Must be at least 1.
 	NumberOfCoupons int64 `json:"numberOfCoupons"`
+	// The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically.
+	BatchId *string `json:"batchId,omitempty"`
 	// **DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint.
 	UniquePrefix *string `json:"uniquePrefix,omitempty"`
 	// Arbitrary properties associated with this item.
@@ -44,6 +46,10 @@ type NewCoupons struct {
 	IsReservationMandatory *bool `json:"isReservationMandatory,omitempty"`
 	// An indication of whether the coupon is implicitly reserved for all customers.
 	ImplicitlyReserved *bool `json:"implicitlyReserved,omitempty"`
+	// The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed.
+	SupportRequestId *int64 `json:"supportRequestId,omitempty"`
+	// A note recorded when the linked support request is approved or rejected. Applied when `supportRequestId` is provided.
+	SupportRequestNote *string `json:"supportRequestNote,omitempty"`
 }
 
 // NewNewCoupons instantiates a new NewCoupons object
@@ -277,6 +283,38 @@ func (o *NewCoupons) SetNumberOfCoupons(v int64) {
 	o.NumberOfCoupons = v
 }
 
+// GetBatchId returns the BatchId field value if set, zero value otherwise.
+func (o *NewCoupons) GetBatchId() string {
+	if o == nil || o.BatchId == nil {
+		var ret string
+		return ret
+	}
+	return *o.BatchId
+}
+
+// GetBatchIdOk returns a tuple with the BatchId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCoupons) GetBatchIdOk() (*string, bool) {
+	if o == nil || o.BatchId == nil {
+		return nil, false
+	}
+	return o.BatchId, true
+}
+
+// HasBatchId returns a boolean if a field has been set.
+func (o *NewCoupons) HasBatchId() bool {
+	if o != nil && o.BatchId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBatchId gets a reference to the given string and assigns it to the BatchId field.
+func (o *NewCoupons) SetBatchId(v string) {
+	o.BatchId = &v
+}
+
 // GetUniquePrefix returns the UniquePrefix field value if set, zero value otherwise.
 func (o *NewCoupons) GetUniquePrefix() string {
 	if o == nil || o.UniquePrefix == nil {
@@ -501,6 +539,70 @@ func (o *NewCoupons) SetImplicitlyReserved(v bool) {
 	o.ImplicitlyReserved = &v
 }
 
+// GetSupportRequestId returns the SupportRequestId field value if set, zero value otherwise.
+func (o *NewCoupons) GetSupportRequestId() int64 {
+	if o == nil || o.SupportRequestId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SupportRequestId
+}
+
+// GetSupportRequestIdOk returns a tuple with the SupportRequestId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCoupons) GetSupportRequestIdOk() (*int64, bool) {
+	if o == nil || o.SupportRequestId == nil {
+		return nil, false
+	}
+	return o.SupportRequestId, true
+}
+
+// HasSupportRequestId returns a boolean if a field has been set.
+func (o *NewCoupons) HasSupportRequestId() bool {
+	if o != nil && o.SupportRequestId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSupportRequestId gets a reference to the given int64 and assigns it to the SupportRequestId field.
+func (o *NewCoupons) SetSupportRequestId(v int64) {
+	o.SupportRequestId = &v
+}
+
+// GetSupportRequestNote returns the SupportRequestNote field value if set, zero value otherwise.
+func (o *NewCoupons) GetSupportRequestNote() string {
+	if o == nil || o.SupportRequestNote == nil {
+		var ret string
+		return ret
+	}
+	return *o.SupportRequestNote
+}
+
+// GetSupportRequestNoteOk returns a tuple with the SupportRequestNote field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewCoupons) GetSupportRequestNoteOk() (*string, bool) {
+	if o == nil || o.SupportRequestNote == nil {
+		return nil, false
+	}
+	return o.SupportRequestNote, true
+}
+
+// HasSupportRequestNote returns a boolean if a field has been set.
+func (o *NewCoupons) HasSupportRequestNote() bool {
+	if o != nil && o.SupportRequestNote != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSupportRequestNote gets a reference to the given string and assigns it to the SupportRequestNote field.
+func (o *NewCoupons) SetSupportRequestNote(v string) {
+	o.SupportRequestNote = &v
+}
+
 func (o NewCoupons) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -524,6 +626,9 @@ func (o NewCoupons) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["numberOfCoupons"] = o.NumberOfCoupons
 	}
+	if o.BatchId != nil {
+		toSerialize["batchId"] = o.BatchId
+	}
 	if o.UniquePrefix != nil {
 		toSerialize["uniquePrefix"] = o.UniquePrefix
 	}
@@ -544,6 +649,12 @@ func (o NewCoupons) MarshalJSON() ([]byte, error) {
 	}
 	if o.ImplicitlyReserved != nil {
 		toSerialize["implicitlyReserved"] = o.ImplicitlyReserved
+	}
+	if o.SupportRequestId != nil {
+		toSerialize["supportRequestId"] = o.SupportRequestId
+	}
+	if o.SupportRequestNote != nil {
+		toSerialize["supportRequestNote"] = o.SupportRequestNote
 	}
 	return json.Marshal(toSerialize)
 }

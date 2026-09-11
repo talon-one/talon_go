@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// AddToAudienceEffectProps The properties specific to the \"addToAudience\" effect. This gets triggered whenever a validated rule contains an \"addToAudience\" effect.
+// AddToAudienceEffectProps This effect is triggered when a rule containing an [Update audience](https://docs.talon.one/docs/product/rules/effects/use-effects#update-an-audience) effect with **Add customer to an audience** selected is validated. It indicates that a customer was added to an audience and is returned when a customer session is opened, updated, or closed.
 type AddToAudienceEffectProps struct {
 	// The internal ID of the audience.
 	AudienceId *int64 `json:"audienceId,omitempty"`

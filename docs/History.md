@@ -6,16 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int64** | The ID of the historical price. | 
 **ObservedAt** | Pointer to [**time.Time**](time.Time.md) | The date and time when the price was observed. | 
-**ContextId** | Pointer to **string** | Identifier of the relevant context at the time the price was observed (e.g. summer sale).  | 
+**ContextIds** | Pointer to **[]string** | The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.  | 
 **Price** | Pointer to **float32** | Price of the item. | 
 **Metadata** | Pointer to [**BestPriorPriceMetadata**](BestPriorPriceMetadata.md) |  | 
 **Target** | Pointer to [**map[string]interface{}**](.md) |  | 
+**ExcludedAt** | Pointer to [**time.Time**](time.Time.md) | The date and time when the historical price ID was excluded. | [optional] 
+**ExclusionReason** | Pointer to **string** | The reason for excluding this historical price ID. | [optional] 
 
 ## Methods
 
 ### NewHistory
 
-`func NewHistory(id int64, observedAt time.Time, contextId string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}, ) *History`
+`func NewHistory(id int64, observedAt time.Time, contextIds []string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}, ) *History`
 
 NewHistory instantiates a new History object
 This constructor will assign default values to properties that have it defined,
@@ -70,24 +72,24 @@ and a boolean to check if the value has been set.
 SetObservedAt sets ObservedAt field to given value.
 
 
-### GetContextId
+### GetContextIds
 
-`func (o *History) GetContextId() string`
+`func (o *History) GetContextIds() []string`
 
-GetContextId returns the ContextId field if non-nil, zero value otherwise.
+GetContextIds returns the ContextIds field if non-nil, zero value otherwise.
 
-### GetContextIdOk
+### GetContextIdsOk
 
-`func (o *History) GetContextIdOk() (*string, bool)`
+`func (o *History) GetContextIdsOk() (*[]string, bool)`
 
-GetContextIdOk returns a tuple with the ContextId field if it's non-nil, zero value otherwise
+GetContextIdsOk returns a tuple with the ContextIds field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetContextId
+### SetContextIds
 
-`func (o *History) SetContextId(v string)`
+`func (o *History) SetContextIds(v []string)`
 
-SetContextId sets ContextId field to given value.
+SetContextIds sets ContextIds field to given value.
 
 
 ### GetPrice
@@ -149,6 +151,56 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
+
+### GetExcludedAt
+
+`func (o *History) GetExcludedAt() time.Time`
+
+GetExcludedAt returns the ExcludedAt field if non-nil, zero value otherwise.
+
+### GetExcludedAtOk
+
+`func (o *History) GetExcludedAtOk() (*time.Time, bool)`
+
+GetExcludedAtOk returns a tuple with the ExcludedAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExcludedAt
+
+`func (o *History) SetExcludedAt(v time.Time)`
+
+SetExcludedAt sets ExcludedAt field to given value.
+
+### HasExcludedAt
+
+`func (o *History) HasExcludedAt() bool`
+
+HasExcludedAt returns a boolean if a field has been set.
+
+### GetExclusionReason
+
+`func (o *History) GetExclusionReason() string`
+
+GetExclusionReason returns the ExclusionReason field if non-nil, zero value otherwise.
+
+### GetExclusionReasonOk
+
+`func (o *History) GetExclusionReasonOk() (*string, bool)`
+
+GetExclusionReasonOk returns a tuple with the ExclusionReason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExclusionReason
+
+`func (o *History) SetExclusionReason(v string)`
+
+SetExclusionReason sets ExclusionReason field to given value.
+
+### HasExclusionReason
+
+`func (o *History) HasExclusionReason() bool`
+
+HasExclusionReason returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -55,7 +55,7 @@ type LoyaltyProgramTransaction struct {
 	// Name of the rule that triggered the effect. Applies only for transactions that resulted from a customer session.
 	RuleName *string                  `json:"ruleName,omitempty"`
 	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
-	// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+	// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
 	ValidityDuration *string `json:"validityDuration,omitempty"`
 }
 

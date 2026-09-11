@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **WorkerCount** | Pointer to **int64** | Number of IntegrationHub workers to run in parallel for this flow (maximum 500). | [optional] [default to 10]
 **MaxEventsPerMessage** | Pointer to **int64** | Maximum number of events to send in a single message to IntegrationHub. | [optional] [default to 1000]
 **MaxRetries** | Pointer to **int64** | Maximum number of retries for a IntegrationHub event before it is ignored. | [optional] [default to 10]
+**InstanceName** | Pointer to **string** | Name of the Prismatic instance that registered this flow. | [optional] 
+**IntegrationName** | Pointer to **string** | Name of the Prismatic integration that registered this flow. | [optional] 
 
 ## Methods
 
@@ -122,6 +124,56 @@ SetMaxRetries sets MaxRetries field to given value.
 `func (o *IntegrationHubFlowConfig) HasMaxRetries() bool`
 
 HasMaxRetries returns a boolean if a field has been set.
+
+### GetInstanceName
+
+`func (o *IntegrationHubFlowConfig) GetInstanceName() string`
+
+GetInstanceName returns the InstanceName field if non-nil, zero value otherwise.
+
+### GetInstanceNameOk
+
+`func (o *IntegrationHubFlowConfig) GetInstanceNameOk() (*string, bool)`
+
+GetInstanceNameOk returns a tuple with the InstanceName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInstanceName
+
+`func (o *IntegrationHubFlowConfig) SetInstanceName(v string)`
+
+SetInstanceName sets InstanceName field to given value.
+
+### HasInstanceName
+
+`func (o *IntegrationHubFlowConfig) HasInstanceName() bool`
+
+HasInstanceName returns a boolean if a field has been set.
+
+### GetIntegrationName
+
+`func (o *IntegrationHubFlowConfig) GetIntegrationName() string`
+
+GetIntegrationName returns the IntegrationName field if non-nil, zero value otherwise.
+
+### GetIntegrationNameOk
+
+`func (o *IntegrationHubFlowConfig) GetIntegrationNameOk() (*string, bool)`
+
+GetIntegrationNameOk returns a tuple with the IntegrationName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationName
+
+`func (o *IntegrationHubFlowConfig) SetIntegrationName(v string)`
+
+SetIntegrationName sets IntegrationName field to given value.
+
+### HasIntegrationName
+
+`func (o *IntegrationHubFlowConfig) HasIntegrationName() bool`
+
+HasIntegrationName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

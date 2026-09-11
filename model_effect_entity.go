@@ -47,6 +47,8 @@ type EffectEntity struct {
 	SelectedPrice *float32 `json:"selectedPrice,omitempty"`
 	// The reference identifier of the selected price adjustment for this SKU. This is only returned if the `selectedPrice` resulted from a price adjustment.
 	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
+	// The ID of the reward that was being evaluated when this effect was triggered.
+	RewardId *int64 `json:"rewardId,omitempty"`
 }
 
 // NewEffectEntity instantiates a new EffectEntity object
@@ -543,6 +545,38 @@ func (o *EffectEntity) SetAdjustmentReferenceId(v string) {
 	o.AdjustmentReferenceId = &v
 }
 
+// GetRewardId returns the RewardId field value if set, zero value otherwise.
+func (o *EffectEntity) GetRewardId() int64 {
+	if o == nil || o.RewardId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RewardId
+}
+
+// GetRewardIdOk returns a tuple with the RewardId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetRewardIdOk() (*int64, bool) {
+	if o == nil || o.RewardId == nil {
+		return nil, false
+	}
+	return o.RewardId, true
+}
+
+// HasRewardId returns a boolean if a field has been set.
+func (o *EffectEntity) HasRewardId() bool {
+	if o != nil && o.RewardId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardId gets a reference to the given int64 and assigns it to the RewardId field.
+func (o *EffectEntity) SetRewardId(v int64) {
+	o.RewardId = &v
+}
+
 func (o EffectEntity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ExperimentId != nil {
@@ -592,6 +626,9 @@ func (o EffectEntity) MarshalJSON() ([]byte, error) {
 	}
 	if o.AdjustmentReferenceId != nil {
 		toSerialize["adjustmentReferenceId"] = o.AdjustmentReferenceId
+	}
+	if o.RewardId != nil {
+		toSerialize["rewardId"] = o.RewardId
 	}
 	return json.Marshal(toSerialize)
 }

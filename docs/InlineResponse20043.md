@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]User**](User.md) |  | 
+**Data** | Pointer to [**[]EventType**](EventType.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20043
 
-`func NewInlineResponse20043(totalResultSize int64, data []User, ) *InlineResponse20043`
+`func NewInlineResponse20043(totalResultSize int64, data []EventType, ) *InlineResponse20043`
 
 NewInlineResponse20043 instantiates a new InlineResponse20043 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20043) GetData() []User`
+`func (o *InlineResponse20043) GetData() []EventType`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20043) GetDataOk() (*[]User, bool)`
+`func (o *InlineResponse20043) GetDataOk() (*[]EventType, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20043) SetData(v []User)`
+`func (o *InlineResponse20043) SetData(v []EventType)`
 
 SetData sets Data field to given value.
 

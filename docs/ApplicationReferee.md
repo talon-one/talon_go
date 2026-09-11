@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
 **SessionId** | Pointer to **string** | Integration ID of the session in which the customer redeemed the referral. | 
+**AdvancedEventIntegrationId** | Pointer to **string** | The unique ID of the advanced event in which the customer redeemed the referral. Omitted when the referral was redeemed through a customer session rather than an advanced event. | [optional] 
 **AdvocateIntegrationId** | Pointer to **string** | Integration ID of the Advocate&#39;s Profile. | 
 **FriendIntegrationId** | Pointer to **string** | Integration ID of the Friend&#39;s Profile. | 
 **Code** | Pointer to **string** | Advocate&#39;s referral code. | 
@@ -69,6 +70,31 @@ and a boolean to check if the value has been set.
 
 SetSessionId sets SessionId field to given value.
 
+
+### GetAdvancedEventIntegrationId
+
+`func (o *ApplicationReferee) GetAdvancedEventIntegrationId() string`
+
+GetAdvancedEventIntegrationId returns the AdvancedEventIntegrationId field if non-nil, zero value otherwise.
+
+### GetAdvancedEventIntegrationIdOk
+
+`func (o *ApplicationReferee) GetAdvancedEventIntegrationIdOk() (*string, bool)`
+
+GetAdvancedEventIntegrationIdOk returns a tuple with the AdvancedEventIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdvancedEventIntegrationId
+
+`func (o *ApplicationReferee) SetAdvancedEventIntegrationId(v string)`
+
+SetAdvancedEventIntegrationId sets AdvancedEventIntegrationId field to given value.
+
+### HasAdvancedEventIntegrationId
+
+`func (o *ApplicationReferee) HasAdvancedEventIntegrationId() bool`
+
+HasAdvancedEventIntegrationId returns a boolean if a field has been set.
 
 ### GetAdvocateIntegrationId
 
