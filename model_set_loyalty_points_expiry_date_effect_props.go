@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-// SetLoyaltyPointsExpiryDateEffectProps The properties specific to the \"setLoyaltyPointsExpiryDate\" effect. This gets triggered when a validated rule contains the \"set expiry date\" effect. The current expiry date gets set to the date given in the effect.
+// SetLoyaltyPointsExpiryDateEffectProps This effect updates the expiry date of all active, pending, and unlimited point transactions to a specific date.
 type SetLoyaltyPointsExpiryDateEffectProps struct {
 	// ID of the loyalty program that contains these points.
 	ProgramId int64 `json:"programId"`

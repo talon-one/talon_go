@@ -15,7 +15,7 @@ import (
 
 // InlineResponse20050 struct for InlineResponse20050
 type InlineResponse20050 struct {
-	Data *[]SummaryCampaignStoreBudget `json:"data,omitempty"`
+	Data *[]ListCampaignStoreBudgets `json:"data,omitempty"`
 }
 
 // NewInlineResponse20050 instantiates a new InlineResponse20050 object
@@ -36,9 +36,9 @@ func NewInlineResponse20050WithDefaults() *InlineResponse20050 {
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *InlineResponse20050) GetData() []SummaryCampaignStoreBudget {
+func (o *InlineResponse20050) GetData() []ListCampaignStoreBudgets {
 	if o == nil || o.Data == nil {
-		var ret []SummaryCampaignStoreBudget
+		var ret []ListCampaignStoreBudgets
 		return ret
 	}
 	return *o.Data
@@ -46,7 +46,7 @@ func (o *InlineResponse20050) GetData() []SummaryCampaignStoreBudget {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20050) GetDataOk() (*[]SummaryCampaignStoreBudget, bool) {
+func (o *InlineResponse20050) GetDataOk() (*[]ListCampaignStoreBudgets, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -62,8 +62,8 @@ func (o *InlineResponse20050) HasData() bool {
 	return false
 }
 
-// SetData gets a reference to the given []SummaryCampaignStoreBudget and assigns it to the Data field.
-func (o *InlineResponse20050) SetData(v []SummaryCampaignStoreBudget) {
+// SetData gets a reference to the given []ListCampaignStoreBudgets and assigns it to the Data field.
+func (o *InlineResponse20050) SetData(v []ListCampaignStoreBudgets) {
 	o.Data = &v
 }
 

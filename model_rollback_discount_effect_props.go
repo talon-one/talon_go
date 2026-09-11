@@ -13,21 +13,21 @@ import (
 	"encoding/json"
 )
 
-// RollbackDiscountEffectProps The properties specific to the \"rollbackDiscount\" effect. This gets triggered whenever previously closed session is now cancelled or partially returned and a setDiscount effect was cancelled on our internal discount limit counters.
+// RollbackDiscountEffectProps This effect indicates that a discounted session, cart item, or additional cost has been cancelled or partially returned. This effect can only happen when you set the status of a session to `cancel` or the status changes to `partially_returned`.  If the session contains some cart items with _quantity > 1_, use the `cartItemSubPosition` property to identify the specific item unit in its line item. See the example below.
 type RollbackDiscountEffectProps struct {
-	// The name of the \"setDiscount\" effect that was rolled back.
+	// The name of the discount effect that was rolled back.
 	Name string `json:"name"`
-	// The value of the discount that was rolled back.
+	// The monetary value of the discount that was rolled back.
 	Value float32 `json:"value"`
-	// The index of the item in the cart items for which the discount was rolled back.
+	// The index of the item in the `cartItem` object whose discount was rolled back, or the unit containing the additional cost whose discount was rolled back.
 	CartItemPosition *float32 `json:"cartItemPosition,omitempty"`
-	// For cart items with `quantity` > 1, the subposition returns the index of the item unit in its line item.
+	// The index of the item unit in its line item for which the discount was rolled back.
 	CartItemSubPosition *float32 `json:"cartItemSubPosition,omitempty"`
-	// The ID of the additional cost that was rolled back.
+	// _Only when rolling back [setDiscountPerAdditionalCost](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcost) and [setDiscountPerAdditionalCostPerItem](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcostperitem)_ The ID of the additional cost to be discounted.
 	AdditionalCostId *int64 `json:"additionalCostId,omitempty"`
-	// The name of the additional cost that was rolled back.
+	// The API name of the additional cost whose discount was rolled back.
 	AdditionalCost *string `json:"additionalCost,omitempty"`
-	// The scope of the rolled back discount - For a discount per session, it can be one of `cartItems`, `additionalCosts` or `sessionTotal` - For a discount per item, it can be one of `price`, `additionalCosts` or `itemTotal`
+	// The scope of the rolled back discount.  - For a discount per session, it can be one of `cartItems`, `additionalCosts` or `sessionTotal` - For a discount per item, it can be one of `price`, `additionalCosts` or `itemTotal`
 	Scope *string `json:"scope,omitempty"`
 }
 

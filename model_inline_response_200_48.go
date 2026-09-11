@@ -15,15 +15,16 @@ import (
 
 // InlineResponse20048 struct for InlineResponse20048
 type InlineResponse20048 struct {
-	HasMore *bool            `json:"hasMore,omitempty"`
-	Data    []ApplicationCIF `json:"data"`
+	HasMore         *bool   `json:"hasMore,omitempty"`
+	TotalResultSize *int64  `json:"totalResultSize,omitempty"`
+	Data            []Store `json:"data"`
 }
 
 // NewInlineResponse20048 instantiates a new InlineResponse20048 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20048(data []ApplicationCIF) *InlineResponse20048 {
+func BuildInlineResponse20048(data []Store) *InlineResponse20048 {
 	this := InlineResponse20048{}
 	this.Data = data
 	return &this
@@ -69,10 +70,42 @@ func (o *InlineResponse20048) SetHasMore(v bool) {
 	o.HasMore = &v
 }
 
+// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
+func (o *InlineResponse20048) GetTotalResultSize() int64 {
+	if o == nil || o.TotalResultSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TotalResultSize
+}
+
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20048) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil || o.TotalResultSize == nil {
+		return nil, false
+	}
+	return o.TotalResultSize, true
+}
+
+// HasTotalResultSize returns a boolean if a field has been set.
+func (o *InlineResponse20048) HasTotalResultSize() bool {
+	if o != nil && o.TotalResultSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
+func (o *InlineResponse20048) SetTotalResultSize(v int64) {
+	o.TotalResultSize = &v
+}
+
 // GetData returns the Data field value
-func (o *InlineResponse20048) GetData() []ApplicationCIF {
+func (o *InlineResponse20048) GetData() []Store {
 	if o == nil {
-		var ret []ApplicationCIF
+		var ret []Store
 		return ret
 	}
 
@@ -81,7 +114,7 @@ func (o *InlineResponse20048) GetData() []ApplicationCIF {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20048) GetDataOk() (*[]ApplicationCIF, bool) {
+func (o *InlineResponse20048) GetDataOk() (*[]Store, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +122,7 @@ func (o *InlineResponse20048) GetDataOk() (*[]ApplicationCIF, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20048) SetData(v []ApplicationCIF) {
+func (o *InlineResponse20048) SetData(v []Store) {
 	o.Data = v
 }
 
@@ -97,6 +130,9 @@ func (o InlineResponse20048) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.HasMore != nil {
 		toSerialize["hasMore"] = o.HasMore
+	}
+	if o.TotalResultSize != nil {
+		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {
 		toSerialize["data"] = o.Data

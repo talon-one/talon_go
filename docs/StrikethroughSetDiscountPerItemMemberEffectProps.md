@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | effect name. | 
-**Value** | Pointer to [**map[string]interface{}**](.md) | discount value. | 
+**Name** | Pointer to **string** | The effect name. | 
+**Value** | Pointer to [**map[string]interface{}**](.md) | The discount value. | 
 
 ## Methods
 

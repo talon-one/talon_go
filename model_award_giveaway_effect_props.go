@@ -13,17 +13,17 @@ import (
 	"encoding/json"
 )
 
-// AwardGiveawayEffectProps The properties specific to the \"awardGiveaway\" effect. This effect contains information on the giveaway item, and which profile it was awarded to.
+// AwardGiveawayEffectProps This effect indicates the awarded giveaway item and to which profile the item was awarded. Learn more about [giveaways](https://docs.talon.one/docs/product/giveaways/overview).
 type AwardGiveawayEffectProps struct {
-	// The ID of the giveaways pool the code was taken from.
+	// The internal ID of the giveaway pool.
 	PoolId int64 `json:"poolId"`
-	// The name of the giveaways pool the code was taken from.
+	// The name of the giveaway pool.
 	PoolName string `json:"poolName"`
-	// The integration ID of the profile that was awarded the giveaway.
+	// The integration ID of the customer that receives the giveaway.
 	RecipientIntegrationId string `json:"recipientIntegrationId"`
-	// The internal ID for the giveaway that was awarded.
+	// The internal ID of the giveaway.
 	GiveawayId int64 `json:"giveawayId"`
-	// The giveaway code that was awarded.
+	// The giveaway code to be rewarded.
 	Code string `json:"code"`
 }
 

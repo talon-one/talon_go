@@ -36,12 +36,8 @@ type AchievementBaseV2 struct {
 	EndDate *time.Time `json:"endDate,omitempty"`
 	// When `true`, customer progress can be rolled back in completed achievements.
 	AllowRollbackAfterCompletion *bool `json:"allowRollbackAfterCompletion,omitempty"`
-	// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-	Sandbox *bool `json:"sandbox,omitempty"`
 	// A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
 	SubscribedApplications *[]int64 `json:"subscribedApplications,omitempty"`
-	// A string containing an IANA timezone descriptor.
-	Timezone *string `json:"timezone,omitempty"`
 }
 
 // NewAchievementBaseV2 instantiates a new AchievementBaseV2 object
@@ -381,38 +377,6 @@ func (o *AchievementBaseV2) SetAllowRollbackAfterCompletion(v bool) {
 	o.AllowRollbackAfterCompletion = &v
 }
 
-// GetSandbox returns the Sandbox field value if set, zero value otherwise.
-func (o *AchievementBaseV2) GetSandbox() bool {
-	if o == nil || o.Sandbox == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Sandbox
-}
-
-// GetSandboxOk returns a tuple with the Sandbox field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AchievementBaseV2) GetSandboxOk() (*bool, bool) {
-	if o == nil || o.Sandbox == nil {
-		return nil, false
-	}
-	return o.Sandbox, true
-}
-
-// HasSandbox returns a boolean if a field has been set.
-func (o *AchievementBaseV2) HasSandbox() bool {
-	if o != nil && o.Sandbox != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSandbox gets a reference to the given bool and assigns it to the Sandbox field.
-func (o *AchievementBaseV2) SetSandbox(v bool) {
-	o.Sandbox = &v
-}
-
 // GetSubscribedApplications returns the SubscribedApplications field value if set, zero value otherwise.
 func (o *AchievementBaseV2) GetSubscribedApplications() []int64 {
 	if o == nil || o.SubscribedApplications == nil {
@@ -443,38 +407,6 @@ func (o *AchievementBaseV2) HasSubscribedApplications() bool {
 // SetSubscribedApplications gets a reference to the given []int64 and assigns it to the SubscribedApplications field.
 func (o *AchievementBaseV2) SetSubscribedApplications(v []int64) {
 	o.SubscribedApplications = &v
-}
-
-// GetTimezone returns the Timezone field value if set, zero value otherwise.
-func (o *AchievementBaseV2) GetTimezone() string {
-	if o == nil || o.Timezone == nil {
-		var ret string
-		return ret
-	}
-	return *o.Timezone
-}
-
-// GetTimezoneOk returns a tuple with the Timezone field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AchievementBaseV2) GetTimezoneOk() (*string, bool) {
-	if o == nil || o.Timezone == nil {
-		return nil, false
-	}
-	return o.Timezone, true
-}
-
-// HasTimezone returns a boolean if a field has been set.
-func (o *AchievementBaseV2) HasTimezone() bool {
-	if o != nil && o.Timezone != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTimezone gets a reference to the given string and assigns it to the Timezone field.
-func (o *AchievementBaseV2) SetTimezone(v string) {
-	o.Timezone = &v
 }
 
 func (o AchievementBaseV2) MarshalJSON() ([]byte, error) {
@@ -509,14 +441,8 @@ func (o AchievementBaseV2) MarshalJSON() ([]byte, error) {
 	if o.AllowRollbackAfterCompletion != nil {
 		toSerialize["allowRollbackAfterCompletion"] = o.AllowRollbackAfterCompletion
 	}
-	if o.Sandbox != nil {
-		toSerialize["sandbox"] = o.Sandbox
-	}
 	if o.SubscribedApplications != nil {
 		toSerialize["subscribedApplications"] = o.SubscribedApplications
-	}
-	if o.Timezone != nil {
-		toSerialize["timezone"] = o.Timezone
 	}
 	return json.Marshal(toSerialize)
 }

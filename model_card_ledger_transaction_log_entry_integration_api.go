@@ -44,7 +44,7 @@ type CardLedgerTransactionLogEntryIntegrationAPI struct {
 	RulesetId *int64 `json:"rulesetId,omitempty"`
 	// The name of the rule that triggered this effect.
 	RuleName *string `json:"ruleName,omitempty"`
-	// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
+	// The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
 	ValidityDuration *string `json:"validityDuration,omitempty"`
 }
 

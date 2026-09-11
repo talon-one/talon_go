@@ -17,17 +17,17 @@ type Binding struct {
 	Name string `json:"name"`
 	// The kind of binding. Possible values are: - `bundle` - `cartItemFilter` - `subledgerBalance` - `templateParameter`
 	Type *string `json:"type,omitempty"`
-	// A Talang expression that will be evaluated and its result attached to the name of the binding.
+	// A Talang expression that is evaluated, and its result is bound to the name of the binding. The first element must be one of the functions or operators supported by Talang, followed by its arguments. The arguments can be strings, numbers, or nested expressions. For example: - `[\"list\", \"10014\", \"10015\"]` calls the `list` function to build a list of strings. - `[\"+\", 2, 0]` uses the `+` operator to add two numbers.
 	Expression []interface{} `json:"expression"`
-	// Can be one of the following: - `string` - `number` - `boolean`
+	// The data type of the value. One of the following: - `string` - `number` - `boolean`
 	ValueType *string `json:"valueType,omitempty"`
 	// The minimum value allowed for this placeholder.
 	MinValue *float32 `json:"minValue,omitempty"`
 	// The maximum value allowed for this placeholder.
 	MaxValue *float32 `json:"maxValue,omitempty"`
-	// Id of the attribute attached to the placeholder.
+	// Identifier of the attribute attached to the placeholder.
 	AttributeId *int64 `json:"attributeId,omitempty"`
-	// Describes the placeholder field and value in the template. This description can be used when creating campaigns from this template.
+	// Description of the placeholder field and its value in the template. This text can be shown when creating campaigns from this template.
 	Description *string `json:"description,omitempty"`
 }
 

@@ -47,7 +47,8 @@ type UpdateApplication struct {
 	// The ID of the default Cart-Item-Filter for this application.
 	DefaultCartItemFilterId *int64 `json:"defaultCartItemFilterId,omitempty"`
 	// Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.
-	EnableCampaignStateManagement *bool `json:"enableCampaignStateManagement,omitempty"`
+	EnableCampaignStateManagement *bool                   `json:"enableCampaignStateManagement,omitempty"`
+	BestPriorPriceSettings        *BestPriorPriceSettings `json:"bestPriorPriceSettings,omitempty"`
 }
 
 // NewUpdateApplication instantiates a new UpdateApplication object
@@ -590,6 +591,38 @@ func (o *UpdateApplication) SetEnableCampaignStateManagement(v bool) {
 	o.EnableCampaignStateManagement = &v
 }
 
+// GetBestPriorPriceSettings returns the BestPriorPriceSettings field value if set, zero value otherwise.
+func (o *UpdateApplication) GetBestPriorPriceSettings() BestPriorPriceSettings {
+	if o == nil || o.BestPriorPriceSettings == nil {
+		var ret BestPriorPriceSettings
+		return ret
+	}
+	return *o.BestPriorPriceSettings
+}
+
+// GetBestPriorPriceSettingsOk returns a tuple with the BestPriorPriceSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateApplication) GetBestPriorPriceSettingsOk() (*BestPriorPriceSettings, bool) {
+	if o == nil || o.BestPriorPriceSettings == nil {
+		return nil, false
+	}
+	return o.BestPriorPriceSettings, true
+}
+
+// HasBestPriorPriceSettings returns a boolean if a field has been set.
+func (o *UpdateApplication) HasBestPriorPriceSettings() bool {
+	if o != nil && o.BestPriorPriceSettings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBestPriorPriceSettings gets a reference to the given BestPriorPriceSettings and assigns it to the BestPriorPriceSettings field.
+func (o *UpdateApplication) SetBestPriorPriceSettings(v BestPriorPriceSettings) {
+	o.BestPriorPriceSettings = &v
+}
+
 func (o UpdateApplication) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -642,6 +675,9 @@ func (o UpdateApplication) MarshalJSON() ([]byte, error) {
 	}
 	if o.EnableCampaignStateManagement != nil {
 		toSerialize["enableCampaignStateManagement"] = o.EnableCampaignStateManagement
+	}
+	if o.BestPriorPriceSettings != nil {
+		toSerialize["bestPriorPriceSettings"] = o.BestPriorPriceSettings
 	}
 	return json.Marshal(toSerialize)
 }

@@ -15,10 +15,11 @@ import (
 
 // IntegrationHubFlow struct for IntegrationHubFlow
 type IntegrationHubFlow struct {
-	// ID of application the flow is registered for.
+	// ID of the application the flow is registered for.
 	ApplicationID *int64 `json:"ApplicationID,omitempty"`
-	// The event type we want to register a flow for.
-	EventType string `json:"EventType"`
+	// ID of the loyalty program the flow is registered for.
+	LoyaltyProgramID *int64                  `json:"LoyaltyProgramID,omitempty"`
+	EventType        IntegrationHubEventType `json:"EventType"`
 	// The URL of the integration hub flow that we want to trigger for the event.
 	IntegrationHubFlowUrl string `json:"IntegrationHubFlowUrl"`
 }
@@ -27,7 +28,7 @@ type IntegrationHubFlow struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildIntegrationHubFlow(eventType string, integrationHubFlowUrl string) *IntegrationHubFlow {
+func BuildIntegrationHubFlow(eventType IntegrationHubEventType, integrationHubFlowUrl string) *IntegrationHubFlow {
 	this := IntegrationHubFlow{}
 	this.EventType = eventType
 	this.IntegrationHubFlowUrl = integrationHubFlowUrl
@@ -74,10 +75,42 @@ func (o *IntegrationHubFlow) SetApplicationID(v int64) {
 	o.ApplicationID = &v
 }
 
+// GetLoyaltyProgramID returns the LoyaltyProgramID field value if set, zero value otherwise.
+func (o *IntegrationHubFlow) GetLoyaltyProgramID() int64 {
+	if o == nil || o.LoyaltyProgramID == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LoyaltyProgramID
+}
+
+// GetLoyaltyProgramIDOk returns a tuple with the LoyaltyProgramID field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationHubFlow) GetLoyaltyProgramIDOk() (*int64, bool) {
+	if o == nil || o.LoyaltyProgramID == nil {
+		return nil, false
+	}
+	return o.LoyaltyProgramID, true
+}
+
+// HasLoyaltyProgramID returns a boolean if a field has been set.
+func (o *IntegrationHubFlow) HasLoyaltyProgramID() bool {
+	if o != nil && o.LoyaltyProgramID != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoyaltyProgramID gets a reference to the given int64 and assigns it to the LoyaltyProgramID field.
+func (o *IntegrationHubFlow) SetLoyaltyProgramID(v int64) {
+	o.LoyaltyProgramID = &v
+}
+
 // GetEventType returns the EventType field value
-func (o *IntegrationHubFlow) GetEventType() string {
+func (o *IntegrationHubFlow) GetEventType() IntegrationHubEventType {
 	if o == nil {
-		var ret string
+		var ret IntegrationHubEventType
 		return ret
 	}
 
@@ -86,7 +119,7 @@ func (o *IntegrationHubFlow) GetEventType() string {
 
 // GetEventTypeOk returns a tuple with the EventType field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationHubFlow) GetEventTypeOk() (*string, bool) {
+func (o *IntegrationHubFlow) GetEventTypeOk() (*IntegrationHubEventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,7 +127,7 @@ func (o *IntegrationHubFlow) GetEventTypeOk() (*string, bool) {
 }
 
 // SetEventType sets field value
-func (o *IntegrationHubFlow) SetEventType(v string) {
+func (o *IntegrationHubFlow) SetEventType(v IntegrationHubEventType) {
 	o.EventType = v
 }
 
@@ -126,6 +159,9 @@ func (o IntegrationHubFlow) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ApplicationID != nil {
 		toSerialize["ApplicationID"] = o.ApplicationID
+	}
+	if o.LoyaltyProgramID != nil {
+		toSerialize["LoyaltyProgramID"] = o.LoyaltyProgramID
 	}
 	if true {
 		toSerialize["EventType"] = o.EventType

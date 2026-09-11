@@ -15,14 +15,15 @@ import (
 
 // InlineResponse20053 struct for InlineResponse20053
 type InlineResponse20053 struct {
-	Data []CouponFailureSummary `json:"data"`
+	HasMore *bool           `json:"hasMore,omitempty"`
+	Data    []AchievementV2 `json:"data"`
 }
 
 // NewInlineResponse20053 instantiates a new InlineResponse20053 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20053(data []CouponFailureSummary) *InlineResponse20053 {
+func BuildInlineResponse20053(data []AchievementV2) *InlineResponse20053 {
 	this := InlineResponse20053{}
 	this.Data = data
 	return &this
@@ -36,10 +37,42 @@ func NewInlineResponse20053WithDefaults() *InlineResponse20053 {
 	return &this
 }
 
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
+func (o *InlineResponse20053) GetHasMore() bool {
+	if o == nil || o.HasMore == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasMore
+}
+
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20053) GetHasMoreOk() (*bool, bool) {
+	if o == nil || o.HasMore == nil {
+		return nil, false
+	}
+	return o.HasMore, true
+}
+
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20053) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+func (o *InlineResponse20053) SetHasMore(v bool) {
+	o.HasMore = &v
+}
+
 // GetData returns the Data field value
-func (o *InlineResponse20053) GetData() []CouponFailureSummary {
+func (o *InlineResponse20053) GetData() []AchievementV2 {
 	if o == nil {
-		var ret []CouponFailureSummary
+		var ret []AchievementV2
 		return ret
 	}
 
@@ -48,7 +81,7 @@ func (o *InlineResponse20053) GetData() []CouponFailureSummary {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20053) GetDataOk() (*[]CouponFailureSummary, bool) {
+func (o *InlineResponse20053) GetDataOk() (*[]AchievementV2, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +89,15 @@ func (o *InlineResponse20053) GetDataOk() (*[]CouponFailureSummary, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20053) SetData(v []CouponFailureSummary) {
+func (o *InlineResponse20053) SetData(v []AchievementV2) {
 	o.Data = v
 }
 
 func (o InlineResponse20053) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.HasMore != nil {
+		toSerialize["hasMore"] = o.HasMore
+	}
 	if true {
 		toSerialize["data"] = o.Data
 	}

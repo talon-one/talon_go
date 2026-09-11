@@ -13,21 +13,21 @@ import (
 	"encoding/json"
 )
 
-// SetDiscountPerAdditionalCostPerItemEffectProps The properties specific to the \"setDiscountPerAdditionalCostPerItem\" effect. This gets triggered whenever a validated rule contained a \"set discount per additional cost per item\" effect. This is a discount that should be applied on a specific additional cost in a specific item.
+// SetDiscountPerAdditionalCostPerItemEffectProps This effect indicates that a discount of a specific additional cost within a specific item should be applied. It gets triggered whenever a rule containing a **Discount additional cost per item** effect is validated.  Use this effect when **all** items in the cart have an additional cost. If one of more items do not have an additional cost, the rule will fail.
 type SetDiscountPerAdditionalCostPerItemEffectProps struct {
-	// The name / description of this discount
+	// The description of this discount. `#number` is appended to the name. It is equal to the `position` property.
 	Name string `json:"name"`
-	// The ID of the additional cost.
+	// The identifier of the additional cost to be discounted.
 	AdditionalCostId int64 `json:"additionalCostId"`
-	// The total monetary value of the discount.
+	// The monetary value of the effective discount applied to the item's additional cost.
 	Value float32 `json:"value"`
-	// The index of the item in the cart item list containing the additional cost to be discounted.
+	// The index of the item in the `cartItem` object containing the additional cost that this discount applies to.
 	Position float32 `json:"position"`
-	// For cart items with `quantity` > 1, the sub position indicates which item the discount applies to.
+	// The index of the item unit in its line item.
 	SubPosition *float32 `json:"subPosition,omitempty"`
-	// The name of the additional cost.
+	// The API name of the additional cost to be discounted.
 	AdditionalCost string `json:"additionalCost"`
-	// Only with [partial discounts enabled](https://docs.talon.one/docs/product/campaigns/campaign-evaluation/#partial-discounts). Represents the monetary value of the discount to be applied to additional discount without considering budget limitations.
+	// _[(Partial discounts enabled only)](https://docs.talon.one/docs/product/applications/manage-general-settings#partial-discounts)_. The monetary value of the discount to be applied to the additional cost without considering budget limitations.
 	DesiredValue *float32 `json:"desiredValue,omitempty"`
 }
 

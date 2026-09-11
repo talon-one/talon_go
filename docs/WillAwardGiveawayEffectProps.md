@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PoolId** | Pointer to **int64** | The ID of the giveaways pool the code will be taken from. | 
-**PoolName** | Pointer to **string** | The name of the giveaways pool the code will be taken from. | 
-**RecipientIntegrationId** | Pointer to **string** | The integration ID of the profile that will be awarded the giveaway. | 
+**PoolId** | Pointer to **int64** | The internal ID of the giveaway pool. | 
+**PoolName** | Pointer to **string** | The name of the giveaway pool. | 
+**RecipientIntegrationId** | Pointer to **string** | The integration ID of the customer that receives the giveaway. | 
 
 ## Methods
 

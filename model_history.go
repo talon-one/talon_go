@@ -20,23 +20,27 @@ type History struct {
 	Id int64 `json:"id"`
 	// The date and time when the price was observed.
 	ObservedAt time.Time `json:"observedAt"`
-	// Identifier of the relevant context at the time the price was observed (e.g. summer sale).
-	ContextId string `json:"contextId"`
+	// The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+	ContextIds []string `json:"contextIds"`
 	// Price of the item.
 	Price    float32                `json:"price"`
 	Metadata BestPriorPriceMetadata `json:"metadata"`
 	Target   map[string]interface{} `json:"target"`
+	// The date and time when the historical price ID was excluded.
+	ExcludedAt *time.Time `json:"excludedAt,omitempty"`
+	// The reason for excluding this historical price ID.
+	ExclusionReason *string `json:"exclusionReason,omitempty"`
 }
 
 // NewHistory instantiates a new History object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildHistory(id int64, observedAt time.Time, contextId string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}) *History {
+func BuildHistory(id int64, observedAt time.Time, contextIds []string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}) *History {
 	this := History{}
 	this.Id = id
 	this.ObservedAt = observedAt
-	this.ContextId = contextId
+	this.ContextIds = contextIds
 	this.Price = price
 	this.Metadata = metadata
 	this.Target = target
@@ -99,28 +103,28 @@ func (o *History) SetObservedAt(v time.Time) {
 	o.ObservedAt = v
 }
 
-// GetContextId returns the ContextId field value
-func (o *History) GetContextId() string {
+// GetContextIds returns the ContextIds field value
+func (o *History) GetContextIds() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
-	return o.ContextId
+	return o.ContextIds
 }
 
-// GetContextIdOk returns a tuple with the ContextId field value
+// GetContextIdsOk returns a tuple with the ContextIds field value
 // and a boolean to check if the value has been set.
-func (o *History) GetContextIdOk() (*string, bool) {
+func (o *History) GetContextIdsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ContextId, true
+	return &o.ContextIds, true
 }
 
-// SetContextId sets field value
-func (o *History) SetContextId(v string) {
-	o.ContextId = v
+// SetContextIds sets field value
+func (o *History) SetContextIds(v []string) {
+	o.ContextIds = v
 }
 
 // GetPrice returns the Price field value
@@ -195,6 +199,70 @@ func (o *History) SetTarget(v map[string]interface{}) {
 	o.Target = v
 }
 
+// GetExcludedAt returns the ExcludedAt field value if set, zero value otherwise.
+func (o *History) GetExcludedAt() time.Time {
+	if o == nil || o.ExcludedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ExcludedAt
+}
+
+// GetExcludedAtOk returns a tuple with the ExcludedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *History) GetExcludedAtOk() (*time.Time, bool) {
+	if o == nil || o.ExcludedAt == nil {
+		return nil, false
+	}
+	return o.ExcludedAt, true
+}
+
+// HasExcludedAt returns a boolean if a field has been set.
+func (o *History) HasExcludedAt() bool {
+	if o != nil && o.ExcludedAt != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExcludedAt gets a reference to the given time.Time and assigns it to the ExcludedAt field.
+func (o *History) SetExcludedAt(v time.Time) {
+	o.ExcludedAt = &v
+}
+
+// GetExclusionReason returns the ExclusionReason field value if set, zero value otherwise.
+func (o *History) GetExclusionReason() string {
+	if o == nil || o.ExclusionReason == nil {
+		var ret string
+		return ret
+	}
+	return *o.ExclusionReason
+}
+
+// GetExclusionReasonOk returns a tuple with the ExclusionReason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *History) GetExclusionReasonOk() (*string, bool) {
+	if o == nil || o.ExclusionReason == nil {
+		return nil, false
+	}
+	return o.ExclusionReason, true
+}
+
+// HasExclusionReason returns a boolean if a field has been set.
+func (o *History) HasExclusionReason() bool {
+	if o != nil && o.ExclusionReason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetExclusionReason gets a reference to the given string and assigns it to the ExclusionReason field.
+func (o *History) SetExclusionReason(v string) {
+	o.ExclusionReason = &v
+}
+
 func (o History) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -204,7 +272,7 @@ func (o History) MarshalJSON() ([]byte, error) {
 		toSerialize["observedAt"] = o.ObservedAt
 	}
 	if true {
-		toSerialize["contextId"] = o.ContextId
+		toSerialize["contextIds"] = o.ContextIds
 	}
 	if true {
 		toSerialize["price"] = o.Price
@@ -214,6 +282,12 @@ func (o History) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["target"] = o.Target
+	}
+	if o.ExcludedAt != nil {
+		toSerialize["excludedAt"] = o.ExcludedAt
+	}
+	if o.ExclusionReason != nil {
+		toSerialize["exclusionReason"] = o.ExclusionReason
 	}
 	return json.Marshal(toSerialize)
 }

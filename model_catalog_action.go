@@ -13,21 +13,19 @@ import (
 	"encoding/json"
 )
 
-// CatalogAction Definition of all the properties that are needed for a single catalog sync action.
+// CatalogAction Definition of all the properties that are needed for a single catalog sync action. The `type` field selects the concrete action variant.
 type CatalogAction struct {
 	// The type of sync action.
-	Type    string                 `json:"type"`
-	Payload map[string]interface{} `json:"payload"`
+	Type    *string                 `json:"type,omitempty"`
+	Payload *map[string]interface{} `json:"payload,omitempty"`
 }
 
 // NewCatalogAction instantiates a new CatalogAction object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCatalogAction(type_ string, payload map[string]interface{}) *CatalogAction {
+func BuildCatalogAction() *CatalogAction {
 	this := CatalogAction{}
-	this.Type = type_
-	this.Payload = payload
 	return &this
 }
 
@@ -39,60 +37,76 @@ func NewCatalogActionWithDefaults() *CatalogAction {
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *CatalogAction) GetType() string {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogAction) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *CatalogAction) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given string and assigns it to the Type field.
 func (o *CatalogAction) SetType(v string) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetPayload returns the Payload field value
+// GetPayload returns the Payload field value if set, zero value otherwise.
 func (o *CatalogAction) GetPayload() map[string]interface{} {
-	if o == nil {
+	if o == nil || o.Payload == nil {
 		var ret map[string]interface{}
 		return ret
 	}
-
-	return o.Payload
+	return *o.Payload
 }
 
-// GetPayloadOk returns a tuple with the Payload field value
+// GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CatalogAction) GetPayloadOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || o.Payload == nil {
 		return nil, false
 	}
-	return &o.Payload, true
+	return o.Payload, true
 }
 
-// SetPayload sets field value
+// HasPayload returns a boolean if a field has been set.
+func (o *CatalogAction) HasPayload() bool {
+	if o != nil && o.Payload != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
 func (o *CatalogAction) SetPayload(v map[string]interface{}) {
-	o.Payload = v
+	o.Payload = &v
 }
 
 func (o CatalogAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
-	if true {
+	if o.Payload != nil {
 		toSerialize["payload"] = o.Payload
 	}
 	return json.Marshal(toSerialize)

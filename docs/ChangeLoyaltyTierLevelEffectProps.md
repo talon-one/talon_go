@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RuleTitle** | Pointer to **string** | The title of the rule that triggered the tier upgrade. | 
-**ProgramId** | Pointer to **int64** | The ID of the loyalty program where these points were added. | 
-**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
+**ProgramId** | Pointer to **int64** | The ID of the loyalty program where the points were added. | 
+**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where the points were added. | 
 **PreviousTierName** | Pointer to **string** | The name of the tier from which the user was upgraded. | [optional] 
 **NewTierName** | Pointer to **string** | The name of the tier to which the user has been upgraded. | 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | The expiration date of the new tier. | [optional] 

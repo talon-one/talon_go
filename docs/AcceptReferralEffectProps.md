@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Value** | Pointer to **string** | The referral code that was accepted. | 
+**Value** | Pointer to **string** | The referral code provided in the session. | 
 
 ## Methods
 

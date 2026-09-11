@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **CouponValue** | Pointer to **string** | The code of the coupon that was being evaluated at the time of the rule failure. | [optional] 
 **ReferralID** | Pointer to **int64** | The ID of the referral that was being evaluated at the time of the rule failure. | [optional] 
 **ReferralValue** | Pointer to **string** | The code of the referral that was being evaluated at the time of the rule failure. | [optional] 
+**RewardId** | Pointer to **int64** | The ID of the reward that was being evaluated at the time of the rule failure. | [optional] 
+**RewardIntegrationId** | Pointer to **string** | The integration ID of the reward that was being evaluated at the time of the rule failure. | [optional] 
 **RuleIndex** | Pointer to **int64** | The index of the rule that failed within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that failed within the ruleset. | 
 **ConditionIndex** | Pointer to **int64** | The index of the condition that failed. | [optional] 
@@ -197,6 +199,56 @@ SetReferralValue sets ReferralValue field to given value.
 `func (o *RuleFailureReason) HasReferralValue() bool`
 
 HasReferralValue returns a boolean if a field has been set.
+
+### GetRewardId
+
+`func (o *RuleFailureReason) GetRewardId() int64`
+
+GetRewardId returns the RewardId field if non-nil, zero value otherwise.
+
+### GetRewardIdOk
+
+`func (o *RuleFailureReason) GetRewardIdOk() (*int64, bool)`
+
+GetRewardIdOk returns a tuple with the RewardId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardId
+
+`func (o *RuleFailureReason) SetRewardId(v int64)`
+
+SetRewardId sets RewardId field to given value.
+
+### HasRewardId
+
+`func (o *RuleFailureReason) HasRewardId() bool`
+
+HasRewardId returns a boolean if a field has been set.
+
+### GetRewardIntegrationId
+
+`func (o *RuleFailureReason) GetRewardIntegrationId() string`
+
+GetRewardIntegrationId returns the RewardIntegrationId field if non-nil, zero value otherwise.
+
+### GetRewardIntegrationIdOk
+
+`func (o *RuleFailureReason) GetRewardIntegrationIdOk() (*string, bool)`
+
+GetRewardIntegrationIdOk returns a tuple with the RewardIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardIntegrationId
+
+`func (o *RuleFailureReason) SetRewardIntegrationId(v string)`
+
+SetRewardIntegrationId sets RewardIntegrationId field to given value.
+
+### HasRewardIntegrationId
+
+`func (o *RuleFailureReason) HasRewardIntegrationId() bool`
+
+HasRewardIntegrationId returns a boolean if a field has been set.
 
 ### GetRuleIndex
 

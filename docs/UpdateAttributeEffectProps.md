@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Path** | Pointer to **string** | The exact path of the attribute that was updated. | 
-**Value** | Pointer to [**map[string]interface{}**](.md) | The new value of this attribute. The value can be of the following types: - boolean - location - number - string - time - list of any of those types  | 
+**Path** | Pointer to **string** | The entity type and the attribute name. | 
+**Value** | Pointer to [**map[string]interface{}**](.md) | The new value of the attribute. | 
 
 ## Methods
 

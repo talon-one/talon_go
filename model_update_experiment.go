@@ -18,6 +18,10 @@ type UpdateExperiment struct {
 	// The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
 	IsVariantAssignmentExternal bool           `json:"isVariantAssignmentExternal"`
 	Campaign                    UpdateCampaign `json:"campaign"`
+	// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used. If omitted, the current value is preserved.
+	GoalType *string `json:"goalType,omitempty"`
+	// A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the current value is preserved.
+	GoalDescription *string `json:"goalDescription,omitempty"`
 }
 
 // NewUpdateExperiment instantiates a new UpdateExperiment object
@@ -87,6 +91,70 @@ func (o *UpdateExperiment) SetCampaign(v UpdateCampaign) {
 	o.Campaign = v
 }
 
+// GetGoalType returns the GoalType field value if set, zero value otherwise.
+func (o *UpdateExperiment) GetGoalType() string {
+	if o == nil || o.GoalType == nil {
+		var ret string
+		return ret
+	}
+	return *o.GoalType
+}
+
+// GetGoalTypeOk returns a tuple with the GoalType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateExperiment) GetGoalTypeOk() (*string, bool) {
+	if o == nil || o.GoalType == nil {
+		return nil, false
+	}
+	return o.GoalType, true
+}
+
+// HasGoalType returns a boolean if a field has been set.
+func (o *UpdateExperiment) HasGoalType() bool {
+	if o != nil && o.GoalType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGoalType gets a reference to the given string and assigns it to the GoalType field.
+func (o *UpdateExperiment) SetGoalType(v string) {
+	o.GoalType = &v
+}
+
+// GetGoalDescription returns the GoalDescription field value if set, zero value otherwise.
+func (o *UpdateExperiment) GetGoalDescription() string {
+	if o == nil || o.GoalDescription == nil {
+		var ret string
+		return ret
+	}
+	return *o.GoalDescription
+}
+
+// GetGoalDescriptionOk returns a tuple with the GoalDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateExperiment) GetGoalDescriptionOk() (*string, bool) {
+	if o == nil || o.GoalDescription == nil {
+		return nil, false
+	}
+	return o.GoalDescription, true
+}
+
+// HasGoalDescription returns a boolean if a field has been set.
+func (o *UpdateExperiment) HasGoalDescription() bool {
+	if o != nil && o.GoalDescription != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGoalDescription gets a reference to the given string and assigns it to the GoalDescription field.
+func (o *UpdateExperiment) SetGoalDescription(v string) {
+	o.GoalDescription = &v
+}
+
 func (o UpdateExperiment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -94,6 +162,12 @@ func (o UpdateExperiment) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["campaign"] = o.Campaign
+	}
+	if o.GoalType != nil {
+		toSerialize["goalType"] = o.GoalType
+	}
+	if o.GoalDescription != nil {
+		toSerialize["goalDescription"] = o.GoalDescription
 	}
 	return json.Marshal(toSerialize)
 }

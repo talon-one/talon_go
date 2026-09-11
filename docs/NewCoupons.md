@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted. | [optional] 
 **Limits** | Pointer to [**[]LimitConfig**](LimitConfig.md) | Limits configuration for a coupon. These limits will override the limits set from the campaign.  **Note:** Only usable when creating a single coupon which is not tied to a specific recipient. Only per-profile limits are allowed to be configured.  | [optional] 
 **NumberOfCoupons** | Pointer to **int64** | The number of new coupon codes to generate for the campaign. Must be at least 1. | 
+**BatchId** | Pointer to **string** | The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically. | [optional] 
 **UniquePrefix** | Pointer to **string** | **DEPRECATED** To create more than 20,000 coupons in one request, use [Create coupons asynchronously](https://docs.talon.one/management-api#tag/Coupons/operation/createCouponsAsync) endpoint.  | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 **RecipientIntegrationId** | Pointer to **string** | The integration ID for this coupon&#39;s beneficiary&#39;s profile. | [optional] 
@@ -18,6 +19,8 @@ Name | Type | Description | Notes
 **CouponPattern** | Pointer to **string** | The pattern used to generate coupon codes. The character &#x60;#&#x60; is a placeholder and is replaced by a random character from the &#x60;validCharacters&#x60; set.  | [optional] 
 **IsReservationMandatory** | Pointer to **bool** | An indication of whether the code can be redeemed only if it has been reserved first. | [optional] [default to false]
 **ImplicitlyReserved** | Pointer to **bool** | An indication of whether the coupon is implicitly reserved for all customers. | [optional] 
+**SupportRequestId** | Pointer to **int64** | The identifier of the support request to link to the coupon creation. The request must exist and not yet be processed. | [optional] 
+**SupportRequestNote** | Pointer to **string** | A note recorded when the linked support request is approved or rejected. Applied when &#x60;supportRequestId&#x60; is provided. | [optional] 
 
 ## Methods
 
@@ -203,6 +206,31 @@ and a boolean to check if the value has been set.
 SetNumberOfCoupons sets NumberOfCoupons field to given value.
 
 
+### GetBatchId
+
+`func (o *NewCoupons) GetBatchId() string`
+
+GetBatchId returns the BatchId field if non-nil, zero value otherwise.
+
+### GetBatchIdOk
+
+`func (o *NewCoupons) GetBatchIdOk() (*string, bool)`
+
+GetBatchIdOk returns a tuple with the BatchId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatchId
+
+`func (o *NewCoupons) SetBatchId(v string)`
+
+SetBatchId sets BatchId field to given value.
+
+### HasBatchId
+
+`func (o *NewCoupons) HasBatchId() bool`
+
+HasBatchId returns a boolean if a field has been set.
+
 ### GetUniquePrefix
 
 `func (o *NewCoupons) GetUniquePrefix() string`
@@ -377,6 +405,56 @@ SetImplicitlyReserved sets ImplicitlyReserved field to given value.
 `func (o *NewCoupons) HasImplicitlyReserved() bool`
 
 HasImplicitlyReserved returns a boolean if a field has been set.
+
+### GetSupportRequestId
+
+`func (o *NewCoupons) GetSupportRequestId() int64`
+
+GetSupportRequestId returns the SupportRequestId field if non-nil, zero value otherwise.
+
+### GetSupportRequestIdOk
+
+`func (o *NewCoupons) GetSupportRequestIdOk() (*int64, bool)`
+
+GetSupportRequestIdOk returns a tuple with the SupportRequestId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportRequestId
+
+`func (o *NewCoupons) SetSupportRequestId(v int64)`
+
+SetSupportRequestId sets SupportRequestId field to given value.
+
+### HasSupportRequestId
+
+`func (o *NewCoupons) HasSupportRequestId() bool`
+
+HasSupportRequestId returns a boolean if a field has been set.
+
+### GetSupportRequestNote
+
+`func (o *NewCoupons) GetSupportRequestNote() string`
+
+GetSupportRequestNote returns the SupportRequestNote field if non-nil, zero value otherwise.
+
+### GetSupportRequestNoteOk
+
+`func (o *NewCoupons) GetSupportRequestNoteOk() (*string, bool)`
+
+GetSupportRequestNoteOk returns a tuple with the SupportRequestNote field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSupportRequestNote
+
+`func (o *NewCoupons) SetSupportRequestNote(v string)`
+
+SetSupportRequestNote sets SupportRequestNote field to given value.
+
+### HasSupportRequestNote
+
+`func (o *NewCoupons) HasSupportRequestNote() bool`
+
+HasSupportRequestNote returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

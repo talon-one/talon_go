@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AssertionConsumerServiceURL** | Pointer to **string** | The location where the SAML assertion is sent with a HTTP POST. | 
+**CertificateExpiry** | Pointer to [**time.Time**](time.Time.md) | The expiry date of the X.509 certificate. | [optional] 
 **AccountId** | Pointer to **int64** | The ID of the account that owns this entity. | 
 **Name** | Pointer to **string** | ID of the SAML service. | 
 **Enabled** | Pointer to **bool** | Determines if this SAML connection active. | 
@@ -54,6 +55,31 @@ and a boolean to check if the value has been set.
 
 SetAssertionConsumerServiceURL sets AssertionConsumerServiceURL field to given value.
 
+
+### GetCertificateExpiry
+
+`func (o *SamlConnection) GetCertificateExpiry() time.Time`
+
+GetCertificateExpiry returns the CertificateExpiry field if non-nil, zero value otherwise.
+
+### GetCertificateExpiryOk
+
+`func (o *SamlConnection) GetCertificateExpiryOk() (*time.Time, bool)`
+
+GetCertificateExpiryOk returns a tuple with the CertificateExpiry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCertificateExpiry
+
+`func (o *SamlConnection) SetCertificateExpiry(v time.Time)`
+
+SetCertificateExpiry sets CertificateExpiry field to given value.
+
+### HasCertificateExpiry
+
+`func (o *SamlConnection) HasCertificateExpiry() bool`
+
+HasCertificateExpiry returns a boolean if a field has been set.
 
 ### GetAccountId
 

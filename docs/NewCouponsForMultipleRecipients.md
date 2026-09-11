@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ReservationLimit** | Pointer to **int64** | The number of reservations that can be made with this coupon code.  | [optional] 
 **StartDate** | Pointer to [**time.Time**](time.Time.md) | Timestamp at which point the coupon becomes valid. | [optional] 
 **ExpiryDate** | Pointer to [**time.Time**](time.Time.md) | Expiration date of the coupon. Coupon never expires if this is omitted. | [optional] 
+**BatchId** | Pointer to **string** | The batch ID that all coupons created by the request will bear. If omitted, a batch ID is generated automatically. | [optional] 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary properties associated with this item. | [optional] 
 **RecipientsIntegrationIds** | Pointer to **[]string** | The integration IDs for recipients. | 
 **ValidCharacters** | Pointer to **[]string** | List of characters used to generate the random parts of a code. By default, the list of characters is equivalent to the &#x60;[A-Z, 0-9]&#x60; regular expression.  | [optional] 
@@ -152,6 +153,31 @@ SetExpiryDate sets ExpiryDate field to given value.
 `func (o *NewCouponsForMultipleRecipients) HasExpiryDate() bool`
 
 HasExpiryDate returns a boolean if a field has been set.
+
+### GetBatchId
+
+`func (o *NewCouponsForMultipleRecipients) GetBatchId() string`
+
+GetBatchId returns the BatchId field if non-nil, zero value otherwise.
+
+### GetBatchIdOk
+
+`func (o *NewCouponsForMultipleRecipients) GetBatchIdOk() (*string, bool)`
+
+GetBatchIdOk returns a tuple with the BatchId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBatchId
+
+`func (o *NewCouponsForMultipleRecipients) SetBatchId(v string)`
+
+SetBatchId sets BatchId field to given value.
+
+### HasBatchId
+
+`func (o *NewCouponsForMultipleRecipients) HasBatchId() bool`
+
+HasBatchId returns a boolean if a field has been set.
 
 ### GetAttributes
 

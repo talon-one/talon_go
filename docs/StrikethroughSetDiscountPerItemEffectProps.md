@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | effect name. | 
-**Value** | Pointer to [**map[string]interface{}**](.md) | discount value. | 
-**ExcludedFromPriceHistory** | Pointer to **bool** |  | [optional] 
+**Name** | Pointer to **string** | The effect name. | 
+**Value** | Pointer to [**map[string]interface{}**](.md) | The discount value. | 
+**ExcludedFromPriceHistory** | Pointer to **bool** | When set to &#x60;true&#x60;, the applied discount is excluded from the item&#39;s price history. | [optional] 
 
 ## Methods
 

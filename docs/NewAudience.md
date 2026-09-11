@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | The human-friendly display name for this audience. | 
 **Sandbox** | Pointer to **bool** | Indicates if this is a live or sandbox Application. | [optional] 
 **Description** | Pointer to **string** | A description of the audience. | [optional] 
+**SubscribedApplicationsIds** | Pointer to **[]int64** | A list of the IDs of the Applications that are connected to this audience. | [optional] 
 **Integration** | Pointer to **string** | The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, &#x60;mParticle&#x60;, &#x60;Segment&#x60;, &#x60;Shopify&#x60;, &#x60;Braze&#x60;, or &#x60;Iterable&#x60;.  **Note:** If you do not integrate with any of these platforms, do not use this property.  | [optional] 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn&#39;t come from a 3rd party platform, do not use this property.  | [optional] 
 **CreatedIn3rdParty** | Pointer to **bool** | Determines if this audience is a 3rd party audience or not. | [optional] 
@@ -100,6 +101,31 @@ SetDescription sets Description field to given value.
 `func (o *NewAudience) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetSubscribedApplicationsIds
+
+`func (o *NewAudience) GetSubscribedApplicationsIds() []int64`
+
+GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field if non-nil, zero value otherwise.
+
+### GetSubscribedApplicationsIdsOk
+
+`func (o *NewAudience) GetSubscribedApplicationsIdsOk() (*[]int64, bool)`
+
+GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscribedApplicationsIds
+
+`func (o *NewAudience) SetSubscribedApplicationsIds(v []int64)`
+
+SetSubscribedApplicationsIds sets SubscribedApplicationsIds field to given value.
+
+### HasSubscribedApplicationsIds
+
+`func (o *NewAudience) HasSubscribedApplicationsIds() bool`
+
+HasSubscribedApplicationsIds returns a boolean if a field has been set.
 
 ### GetIntegration
 

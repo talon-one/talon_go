@@ -36,7 +36,9 @@ type CustomerSessionV2 struct {
 	ReferralCode *string `json:"referralCode,omitempty"`
 	// Identifier of a loyalty card.
 	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
-	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` → `closed` 2. `open` → `cancelled` 3. Either:    - `closed` → `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - `closed` → `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - `closed` → `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. `partially_returned` → `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
+	// The integration IDs of the unlocked rewards that can be used in this session.
+	RewardIntegrationIds *[]string `json:"rewardIntegrationIds,omitempty"`
+	// Indicates the current state of the session. Sessions can be created as `open` or `closed`. The state transitions are:  1. `open` -> `closed` 2. `open` -> `cancelled` 3. Either:    - `closed` -> `cancelled` (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - `closed` -> `partially_returned` (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - `closed` -> `open` (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. `partially_returned` -> `cancelled`  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).
 	State string `json:"state"`
 	// The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item's `quantity` **does not exceed 10.000** per request.
 	CartItems []CartItem `json:"cartItems"`
@@ -58,6 +60,8 @@ type CustomerSessionV2 struct {
 	CartItemTotal float32 `json:"cartItemTotal"`
 	// The total value of additional costs, before any discounts are applied.
 	AdditionalCostTotal float32 `json:"additionalCostTotal"`
+	// The total value of additional costs applied to individual items, before any discounts are applied.
+	CartItemAdditionalCostTotal float32 `json:"cartItemAdditionalCostTotal"`
 	// Timestamp of the most recent event received on this session.
 	Updated time.Time `json:"updated"`
 }
@@ -66,7 +70,7 @@ type CustomerSessionV2 struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, updateCount int64, total float32, cartItemTotal float32, additionalCostTotal float32, updated time.Time) *CustomerSessionV2 {
+func BuildCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, updateCount int64, total float32, cartItemTotal float32, additionalCostTotal float32, cartItemAdditionalCostTotal float32, updated time.Time) *CustomerSessionV2 {
 	this := CustomerSessionV2{}
 	this.Id = id
 	this.Created = created
@@ -81,6 +85,7 @@ func BuildCustomerSessionV2(id int64, created time.Time, integrationId string, a
 	this.Total = total
 	this.CartItemTotal = cartItemTotal
 	this.AdditionalCostTotal = additionalCostTotal
+	this.CartItemAdditionalCostTotal = cartItemAdditionalCostTotal
 	this.Updated = updated
 	return &this
 }
@@ -375,6 +380,38 @@ func (o *CustomerSessionV2) SetLoyaltyCards(v []string) {
 	o.LoyaltyCards = &v
 }
 
+// GetRewardIntegrationIds returns the RewardIntegrationIds field value if set, zero value otherwise.
+func (o *CustomerSessionV2) GetRewardIntegrationIds() []string {
+	if o == nil || o.RewardIntegrationIds == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RewardIntegrationIds
+}
+
+// GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CustomerSessionV2) GetRewardIntegrationIdsOk() (*[]string, bool) {
+	if o == nil || o.RewardIntegrationIds == nil {
+		return nil, false
+	}
+	return o.RewardIntegrationIds, true
+}
+
+// HasRewardIntegrationIds returns a boolean if a field has been set.
+func (o *CustomerSessionV2) HasRewardIntegrationIds() bool {
+	if o != nil && o.RewardIntegrationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardIntegrationIds gets a reference to the given []string and assigns it to the RewardIntegrationIds field.
+func (o *CustomerSessionV2) SetRewardIntegrationIds(v []string) {
+	o.RewardIntegrationIds = &v
+}
+
 // GetState returns the State field value
 func (o *CustomerSessionV2) GetState() string {
 	if o == nil {
@@ -663,6 +700,30 @@ func (o *CustomerSessionV2) SetAdditionalCostTotal(v float32) {
 	o.AdditionalCostTotal = v
 }
 
+// GetCartItemAdditionalCostTotal returns the CartItemAdditionalCostTotal field value
+func (o *CustomerSessionV2) GetCartItemAdditionalCostTotal() float32 {
+	if o == nil {
+		var ret float32
+		return ret
+	}
+
+	return o.CartItemAdditionalCostTotal
+}
+
+// GetCartItemAdditionalCostTotalOk returns a tuple with the CartItemAdditionalCostTotal field value
+// and a boolean to check if the value has been set.
+func (o *CustomerSessionV2) GetCartItemAdditionalCostTotalOk() (*float32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CartItemAdditionalCostTotal, true
+}
+
+// SetCartItemAdditionalCostTotal sets field value
+func (o *CustomerSessionV2) SetCartItemAdditionalCostTotal(v float32) {
+	o.CartItemAdditionalCostTotal = v
+}
+
 // GetUpdated returns the Updated field value
 func (o *CustomerSessionV2) GetUpdated() time.Time {
 	if o == nil {
@@ -719,6 +780,9 @@ func (o CustomerSessionV2) MarshalJSON() ([]byte, error) {
 	if o.LoyaltyCards != nil {
 		toSerialize["loyaltyCards"] = o.LoyaltyCards
 	}
+	if o.RewardIntegrationIds != nil {
+		toSerialize["rewardIntegrationIds"] = o.RewardIntegrationIds
+	}
 	if true {
 		toSerialize["state"] = o.State
 	}
@@ -751,6 +815,9 @@ func (o CustomerSessionV2) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["additionalCostTotal"] = o.AdditionalCostTotal
+	}
+	if true {
+		toSerialize["cartItemAdditionalCostTotal"] = o.CartItemAdditionalCostTotal
 	}
 	if true {
 		toSerialize["updated"] = o.Updated

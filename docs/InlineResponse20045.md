@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]Export**](Export.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | [optional] 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**Data** | Pointer to [**[]Change**](Change.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20045
 
-`func NewInlineResponse20045(totalResultSize int64, data []Export, ) *InlineResponse20045`
+`func NewInlineResponse20045(data []Change, ) *InlineResponse20045`
 
 NewInlineResponse20045 instantiates a new InlineResponse20045 object
 This constructor will assign default values to properties that have it defined,
@@ -45,23 +46,53 @@ and a boolean to check if the value has been set.
 
 SetTotalResultSize sets TotalResultSize field to given value.
 
+### HasTotalResultSize
+
+`func (o *InlineResponse20045) HasTotalResultSize() bool`
+
+HasTotalResultSize returns a boolean if a field has been set.
+
+### GetHasMore
+
+`func (o *InlineResponse20045) GetHasMore() bool`
+
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+
+### GetHasMoreOk
+
+`func (o *InlineResponse20045) GetHasMoreOk() (*bool, bool)`
+
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasMore
+
+`func (o *InlineResponse20045) SetHasMore(v bool)`
+
+SetHasMore sets HasMore field to given value.
+
+### HasHasMore
+
+`func (o *InlineResponse20045) HasHasMore() bool`
+
+HasHasMore returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20045) GetData() []Export`
+`func (o *InlineResponse20045) GetData() []Change`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20045) GetDataOk() (*[]Export, bool)`
+`func (o *InlineResponse20045) GetDataOk() (*[]Change, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20045) SetData(v []Export)`
+`func (o *InlineResponse20045) SetData(v []Change)`
 
 SetData sets Data field to given value.
 

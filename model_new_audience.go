@@ -22,6 +22,8 @@ type NewAudience struct {
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// A description of the audience.
 	Description *string `json:"description,omitempty"`
+	// A list of the IDs of the Applications that are connected to this audience.
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// The Talon.One-supported [3rd-party platform](https://docs.talon.one/docs/dev/technology-partners/overview) that this audience was created in.  For example, `mParticle`, `Segment`, `Shopify`, `Braze`, or `Iterable`.  **Note:** If you do not integrate with any of these platforms, do not use this property.
 	Integration *string `json:"integration,omitempty"`
 	// The ID of this audience in the third-party integration.  **Note:** To create an audience that doesn't come from a 3rd party platform, do not use this property.
@@ -136,6 +138,38 @@ func (o *NewAudience) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *NewAudience) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
+func (o *NewAudience) GetSubscribedApplicationsIds() []int64 {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.SubscribedApplicationsIds
+}
+
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewAudience) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		return nil, false
+	}
+	return o.SubscribedApplicationsIds, true
+}
+
+// HasSubscribedApplicationsIds returns a boolean if a field has been set.
+func (o *NewAudience) HasSubscribedApplicationsIds() bool {
+	if o != nil && o.SubscribedApplicationsIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *NewAudience) SetSubscribedApplicationsIds(v []int64) {
+	o.SubscribedApplicationsIds = &v
 }
 
 // GetIntegration returns the Integration field value if set, zero value otherwise.
@@ -276,6 +310,9 @@ func (o NewAudience) MarshalJSON() ([]byte, error) {
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
 	}
 	if o.Integration != nil {
 		toSerialize["integration"] = o.Integration

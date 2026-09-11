@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **DefaultEvaluationGroupId** | Pointer to **int64** | The ID of the default campaign evaluation group to which new campaigns will be added unless a different group is selected when creating the campaign. | [optional] 
 **DefaultCartItemFilterId** | Pointer to **int64** | The ID of the default Cart-Item-Filter for this application. | [optional] 
 **EnableCampaignStateManagement** | Pointer to **bool** | Indicates whether the campaign staging and revisions feature is enabled for the Application.  **Important:** After this feature is enabled, it cannot be disabled.  | [optional] 
+**BestPriorPriceSettings** | Pointer to [**BestPriorPriceSettings**](BestPriorPriceSettings.md) |  | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | An array containing all the loyalty programs to which this application is subscribed. | 
 
 ## Methods
@@ -535,6 +536,31 @@ SetEnableCampaignStateManagement sets EnableCampaignStateManagement field to giv
 `func (o *Application) HasEnableCampaignStateManagement() bool`
 
 HasEnableCampaignStateManagement returns a boolean if a field has been set.
+
+### GetBestPriorPriceSettings
+
+`func (o *Application) GetBestPriorPriceSettings() BestPriorPriceSettings`
+
+GetBestPriorPriceSettings returns the BestPriorPriceSettings field if non-nil, zero value otherwise.
+
+### GetBestPriorPriceSettingsOk
+
+`func (o *Application) GetBestPriorPriceSettingsOk() (*BestPriorPriceSettings, bool)`
+
+GetBestPriorPriceSettingsOk returns a tuple with the BestPriorPriceSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBestPriorPriceSettings
+
+`func (o *Application) SetBestPriorPriceSettings(v BestPriorPriceSettings)`
+
+SetBestPriorPriceSettings sets BestPriorPriceSettings field to given value.
+
+### HasBestPriorPriceSettings
+
+`func (o *Application) HasBestPriorPriceSettings() bool`
+
+HasBestPriorPriceSettings returns a boolean if a field has been set.
 
 ### GetLoyaltyPrograms
 

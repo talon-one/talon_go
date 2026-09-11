@@ -22,8 +22,8 @@ type BestPriorPrice struct {
 	Sku string `json:"sku"`
 	// The date and time when the price was observed.
 	ObservedAt time.Time `json:"observedAt"`
-	// The context ID of the context active at the time of observation.
-	ContextId string `json:"contextId"`
+	// The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+	ContextIds []string `json:"contextIds"`
 	// Price of the item.
 	Price    float32                `json:"price"`
 	Metadata BestPriorPriceMetadata `json:"metadata"`
@@ -34,12 +34,12 @@ type BestPriorPrice struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildBestPriorPrice(id int64, sku string, observedAt time.Time, contextId string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}) *BestPriorPrice {
+func BuildBestPriorPrice(id int64, sku string, observedAt time.Time, contextIds []string, price float32, metadata BestPriorPriceMetadata, target map[string]interface{}) *BestPriorPrice {
 	this := BestPriorPrice{}
 	this.Id = id
 	this.Sku = sku
 	this.ObservedAt = observedAt
-	this.ContextId = contextId
+	this.ContextIds = contextIds
 	this.Price = price
 	this.Metadata = metadata
 	this.Target = target
@@ -126,28 +126,28 @@ func (o *BestPriorPrice) SetObservedAt(v time.Time) {
 	o.ObservedAt = v
 }
 
-// GetContextId returns the ContextId field value
-func (o *BestPriorPrice) GetContextId() string {
+// GetContextIds returns the ContextIds field value
+func (o *BestPriorPrice) GetContextIds() []string {
 	if o == nil {
-		var ret string
+		var ret []string
 		return ret
 	}
 
-	return o.ContextId
+	return o.ContextIds
 }
 
-// GetContextIdOk returns a tuple with the ContextId field value
+// GetContextIdsOk returns a tuple with the ContextIds field value
 // and a boolean to check if the value has been set.
-func (o *BestPriorPrice) GetContextIdOk() (*string, bool) {
+func (o *BestPriorPrice) GetContextIdsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ContextId, true
+	return &o.ContextIds, true
 }
 
-// SetContextId sets field value
-func (o *BestPriorPrice) SetContextId(v string) {
-	o.ContextId = v
+// SetContextIds sets field value
+func (o *BestPriorPrice) SetContextIds(v []string) {
+	o.ContextIds = v
 }
 
 // GetPrice returns the Price field value
@@ -234,7 +234,7 @@ func (o BestPriorPrice) MarshalJSON() ([]byte, error) {
 		toSerialize["observedAt"] = o.ObservedAt
 	}
 	if true {
-		toSerialize["contextId"] = o.ContextId
+		toSerialize["contextIds"] = o.ContextIds
 	}
 	if true {
 		toSerialize["price"] = o.Price

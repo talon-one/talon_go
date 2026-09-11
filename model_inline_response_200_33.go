@@ -15,17 +15,17 @@ import (
 
 // InlineResponse20033 struct for InlineResponse20033
 type InlineResponse20033 struct {
-	TotalResultSize int64    `json:"totalResultSize"`
-	Data            []string `json:"data"`
+	HasMore bool               `json:"hasMore"`
+	Data    []ApplicationEvent `json:"data"`
 }
 
 // NewInlineResponse20033 instantiates a new InlineResponse20033 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20033(totalResultSize int64, data []string) *InlineResponse20033 {
+func BuildInlineResponse20033(hasMore bool, data []ApplicationEvent) *InlineResponse20033 {
 	this := InlineResponse20033{}
-	this.TotalResultSize = totalResultSize
+	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,34 @@ func NewInlineResponse20033WithDefaults() *InlineResponse20033 {
 	return &this
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse20033) GetTotalResultSize() int64 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse20033) GetHasMore() bool {
 	if o == nil {
-		var ret int64
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20033) GetTotalResultSizeOk() (*int64, bool) {
+func (o *InlineResponse20033) GetHasMoreOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TotalResultSize, true
+	return &o.HasMore, true
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse20033) SetTotalResultSize(v int64) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse20033) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20033) GetData() []string {
+func (o *InlineResponse20033) GetData() []ApplicationEvent {
 	if o == nil {
-		var ret []string
+		var ret []ApplicationEvent
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20033) GetData() []string {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20033) GetDataOk() (*[]string, bool) {
+func (o *InlineResponse20033) GetDataOk() (*[]ApplicationEvent, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +82,14 @@ func (o *InlineResponse20033) GetDataOk() (*[]string, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20033) SetData(v []string) {
+func (o *InlineResponse20033) SetData(v []ApplicationEvent) {
 	o.Data = v
 }
 
 func (o InlineResponse20033) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["totalResultSize"] = o.TotalResultSize
+		toSerialize["hasMore"] = o.HasMore
 	}
 	if true {
 		toSerialize["data"] = o.Data

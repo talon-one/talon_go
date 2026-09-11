@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **SelectedPriceType** | Pointer to **string** | The selected price type for the SKU targeted by this effect. | [optional] 
 **SelectedPrice** | Pointer to **float32** | The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied. | [optional] 
 **AdjustmentReferenceId** | Pointer to **string** | The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment. | [optional] 
+**RewardId** | Pointer to **int64** | The ID of the reward that was being evaluated when this effect was triggered. | [optional] 
 
 ## Methods
 
@@ -414,6 +415,31 @@ SetAdjustmentReferenceId sets AdjustmentReferenceId field to given value.
 `func (o *EffectEntity) HasAdjustmentReferenceId() bool`
 
 HasAdjustmentReferenceId returns a boolean if a field has been set.
+
+### GetRewardId
+
+`func (o *EffectEntity) GetRewardId() int64`
+
+GetRewardId returns the RewardId field if non-nil, zero value otherwise.
+
+### GetRewardIdOk
+
+`func (o *EffectEntity) GetRewardIdOk() (*int64, bool)`
+
+GetRewardIdOk returns a tuple with the RewardId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardId
+
+`func (o *EffectEntity) SetRewardId(v int64)`
+
+SetRewardId sets RewardId field to given value.
+
+### HasRewardId
+
+`func (o *EffectEntity) HasRewardId() bool`
+
+HasRewardId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

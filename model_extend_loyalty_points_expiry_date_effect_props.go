@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// ExtendLoyaltyPointsExpiryDateEffectProps The properties specific to the \"extendLoyaltyPointsExpiryDate\" effect. This gets triggered when a validated rule contains the \"extend expiry date\" effect. The current expiry date gets extended by the time frame given in the effect.
+// ExtendLoyaltyPointsExpiryDateEffectProps If loyalty points have an expiry date, this effect extends the expiry of all active and pending point transactions by a selected duration.
 type ExtendLoyaltyPointsExpiryDateEffectProps struct {
 	// ID of the loyalty program that contains these points.
 	ProgramId int64 `json:"programId"`
-	// API name of the loyalty program subledger that contains these points. added.
+	// API name of the loyalty program subledger that contains these points.
 	SubLedgerId string `json:"subLedgerId"`
 	// Time frame by which the expiry date extends.  The time format is either: - immediate, or - an **integer** followed by a letter indicating the time unit.  Examples: `immediate`, `30s`, `40m`, `1h`, `5D`, `7W`, `10M`, `15Y`.  Available units:  - `s`: seconds - `m`: minutes - `h`: hours - `D`: days - `W`: weeks - `M`: months - `Y`: years  You can round certain units up or down: - `_D` for rounding down days only. Signifies the start of the day. - `_U` for rounding up days, weeks, months and years. Signifies the end of the day, week, month or year.
 	ExtensionDuration string `json:"extensionDuration"`

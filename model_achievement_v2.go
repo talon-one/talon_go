@@ -40,27 +40,32 @@ type AchievementV2 struct {
 	EndDate *time.Time `json:"endDate,omitempty"`
 	// When `true`, customer progress can be rolled back in completed achievements.
 	AllowRollbackAfterCompletion *bool `json:"allowRollbackAfterCompletion,omitempty"`
-	// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
-	Sandbox bool `json:"sandbox"`
 	// A list containing the IDs of all applications that are subscribed to A list containing the IDs of all Applications that are connected to this achievement.
 	SubscribedApplications []int64 `json:"subscribedApplications"`
-	// A string containing an IANA timezone descriptor.
-	Timezone string `json:"timezone"`
 	// The ID of the user that created this achievement.
 	UserId int64 `json:"userId"`
 	// Name of the user that created the achievement.  **Note**: This is not available if the user has been deleted.
-	CreatedBy *string `json:"createdBy,omitempty"`
+	CreatedBy         *string    `json:"createdBy,omitempty"`
+	PeriodEndOverride *TimePoint `json:"periodEndOverride,omitempty"`
 	// Indicates if a customer has made progress in the achievement.
 	HasProgress *bool `json:"hasProgress,omitempty"`
-	// The status of the achievement.
+	// The status of the achievement.                                                                                               - `active`: The achievement is available to customers. - `scheduled`: The achievement has a `fixedStartDate` set in the future. - `expired`: The achievement's `endDate` is in the past.
 	Status *string `json:"status,omitempty"`
+	// Indicates if this achievement is a live or sandbox achievement. Achievements of a given type can only be connected to Applications of the same type.
+	Sandbox bool `json:"sandbox"`
+	// A string containing an IANA timezone descriptor.
+	Timezone string `json:"timezone"`
+	// This property is **deprecated**. Use `referencedByCampaigns` instead. This field contains the first campaign ID from the related `referencedByCampaigns`, and is omitted when `referencedByCampaigns` is empty.
+	CampaignId *int64 `json:"campaignId,omitempty"`
+	// The campaigns that reference this achievement. They are sorted in ascending order by their id.
+	ReferencedByCampaigns []CampaignReference `json:"referencedByCampaigns"`
 }
 
 // NewAchievementV2 instantiates a new AchievementV2 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildAchievementV2(id int64, created time.Time, name string, title string, description string, target float32, recurrencePolicy string, activationPolicy string, sandbox bool, subscribedApplications []int64, timezone string, userId int64) *AchievementV2 {
+func BuildAchievementV2(id int64, created time.Time, name string, title string, description string, target float32, recurrencePolicy string, activationPolicy string, subscribedApplications []int64, userId int64, sandbox bool, timezone string, referencedByCampaigns []CampaignReference) *AchievementV2 {
 	this := AchievementV2{}
 	this.Id = id
 	this.Created = created
@@ -70,10 +75,11 @@ func BuildAchievementV2(id int64, created time.Time, name string, title string, 
 	this.Target = target
 	this.RecurrencePolicy = recurrencePolicy
 	this.ActivationPolicy = activationPolicy
-	this.Sandbox = sandbox
 	this.SubscribedApplications = subscribedApplications
-	this.Timezone = timezone
 	this.UserId = userId
+	this.Sandbox = sandbox
+	this.Timezone = timezone
+	this.ReferencedByCampaigns = referencedByCampaigns
 	return &this
 }
 
@@ -405,30 +411,6 @@ func (o *AchievementV2) SetAllowRollbackAfterCompletion(v bool) {
 	o.AllowRollbackAfterCompletion = &v
 }
 
-// GetSandbox returns the Sandbox field value
-func (o *AchievementV2) GetSandbox() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Sandbox
-}
-
-// GetSandboxOk returns a tuple with the Sandbox field value
-// and a boolean to check if the value has been set.
-func (o *AchievementV2) GetSandboxOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Sandbox, true
-}
-
-// SetSandbox sets field value
-func (o *AchievementV2) SetSandbox(v bool) {
-	o.Sandbox = v
-}
-
 // GetSubscribedApplications returns the SubscribedApplications field value
 func (o *AchievementV2) GetSubscribedApplications() []int64 {
 	if o == nil {
@@ -451,30 +433,6 @@ func (o *AchievementV2) GetSubscribedApplicationsOk() (*[]int64, bool) {
 // SetSubscribedApplications sets field value
 func (o *AchievementV2) SetSubscribedApplications(v []int64) {
 	o.SubscribedApplications = v
-}
-
-// GetTimezone returns the Timezone field value
-func (o *AchievementV2) GetTimezone() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Timezone
-}
-
-// GetTimezoneOk returns a tuple with the Timezone field value
-// and a boolean to check if the value has been set.
-func (o *AchievementV2) GetTimezoneOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Timezone, true
-}
-
-// SetTimezone sets field value
-func (o *AchievementV2) SetTimezone(v string) {
-	o.Timezone = v
 }
 
 // GetUserId returns the UserId field value
@@ -531,6 +489,38 @@ func (o *AchievementV2) HasCreatedBy() bool {
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *AchievementV2) SetCreatedBy(v string) {
 	o.CreatedBy = &v
+}
+
+// GetPeriodEndOverride returns the PeriodEndOverride field value if set, zero value otherwise.
+func (o *AchievementV2) GetPeriodEndOverride() TimePoint {
+	if o == nil || o.PeriodEndOverride == nil {
+		var ret TimePoint
+		return ret
+	}
+	return *o.PeriodEndOverride
+}
+
+// GetPeriodEndOverrideOk returns a tuple with the PeriodEndOverride field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementV2) GetPeriodEndOverrideOk() (*TimePoint, bool) {
+	if o == nil || o.PeriodEndOverride == nil {
+		return nil, false
+	}
+	return o.PeriodEndOverride, true
+}
+
+// HasPeriodEndOverride returns a boolean if a field has been set.
+func (o *AchievementV2) HasPeriodEndOverride() bool {
+	if o != nil && o.PeriodEndOverride != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriodEndOverride gets a reference to the given TimePoint and assigns it to the PeriodEndOverride field.
+func (o *AchievementV2) SetPeriodEndOverride(v TimePoint) {
+	o.PeriodEndOverride = &v
 }
 
 // GetHasProgress returns the HasProgress field value if set, zero value otherwise.
@@ -597,6 +587,110 @@ func (o *AchievementV2) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetSandbox returns the Sandbox field value
+func (o *AchievementV2) GetSandbox() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Sandbox
+}
+
+// GetSandboxOk returns a tuple with the Sandbox field value
+// and a boolean to check if the value has been set.
+func (o *AchievementV2) GetSandboxOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Sandbox, true
+}
+
+// SetSandbox sets field value
+func (o *AchievementV2) SetSandbox(v bool) {
+	o.Sandbox = v
+}
+
+// GetTimezone returns the Timezone field value
+func (o *AchievementV2) GetTimezone() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Timezone
+}
+
+// GetTimezoneOk returns a tuple with the Timezone field value
+// and a boolean to check if the value has been set.
+func (o *AchievementV2) GetTimezoneOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Timezone, true
+}
+
+// SetTimezone sets field value
+func (o *AchievementV2) SetTimezone(v string) {
+	o.Timezone = v
+}
+
+// GetCampaignId returns the CampaignId field value if set, zero value otherwise.
+func (o *AchievementV2) GetCampaignId() int64 {
+	if o == nil || o.CampaignId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CampaignId
+}
+
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AchievementV2) GetCampaignIdOk() (*int64, bool) {
+	if o == nil || o.CampaignId == nil {
+		return nil, false
+	}
+	return o.CampaignId, true
+}
+
+// HasCampaignId returns a boolean if a field has been set.
+func (o *AchievementV2) HasCampaignId() bool {
+	if o != nil && o.CampaignId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *AchievementV2) SetCampaignId(v int64) {
+	o.CampaignId = &v
+}
+
+// GetReferencedByCampaigns returns the ReferencedByCampaigns field value
+func (o *AchievementV2) GetReferencedByCampaigns() []CampaignReference {
+	if o == nil {
+		var ret []CampaignReference
+		return ret
+	}
+
+	return o.ReferencedByCampaigns
+}
+
+// GetReferencedByCampaignsOk returns a tuple with the ReferencedByCampaigns field value
+// and a boolean to check if the value has been set.
+func (o *AchievementV2) GetReferencedByCampaignsOk() (*[]CampaignReference, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferencedByCampaigns, true
+}
+
+// SetReferencedByCampaigns sets field value
+func (o *AchievementV2) SetReferencedByCampaigns(v []CampaignReference) {
+	o.ReferencedByCampaigns = v
+}
+
 func (o AchievementV2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -636,13 +730,7 @@ func (o AchievementV2) MarshalJSON() ([]byte, error) {
 		toSerialize["allowRollbackAfterCompletion"] = o.AllowRollbackAfterCompletion
 	}
 	if true {
-		toSerialize["sandbox"] = o.Sandbox
-	}
-	if true {
 		toSerialize["subscribedApplications"] = o.SubscribedApplications
-	}
-	if true {
-		toSerialize["timezone"] = o.Timezone
 	}
 	if true {
 		toSerialize["userId"] = o.UserId
@@ -650,11 +738,26 @@ func (o AchievementV2) MarshalJSON() ([]byte, error) {
 	if o.CreatedBy != nil {
 		toSerialize["createdBy"] = o.CreatedBy
 	}
+	if o.PeriodEndOverride != nil {
+		toSerialize["periodEndOverride"] = o.PeriodEndOverride
+	}
 	if o.HasProgress != nil {
 		toSerialize["hasProgress"] = o.HasProgress
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+	if true {
+		toSerialize["sandbox"] = o.Sandbox
+	}
+	if true {
+		toSerialize["timezone"] = o.Timezone
+	}
+	if o.CampaignId != nil {
+		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["referencedByCampaigns"] = o.ReferencedByCampaigns
 	}
 	return json.Marshal(toSerialize)
 }

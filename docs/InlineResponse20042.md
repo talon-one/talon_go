@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]EventType**](EventType.md) |  | 
+**Data** | Pointer to [**[]WebhookWithOutgoingIntegrationDetails**](WebhookWithOutgoingIntegrationDetails.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20042
 
-`func NewInlineResponse20042(totalResultSize int64, data []EventType, ) *InlineResponse20042`
+`func NewInlineResponse20042(totalResultSize int64, data []WebhookWithOutgoingIntegrationDetails, ) *InlineResponse20042`
 
 NewInlineResponse20042 instantiates a new InlineResponse20042 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20042) GetData() []EventType`
+`func (o *InlineResponse20042) GetData() []WebhookWithOutgoingIntegrationDetails`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20042) GetDataOk() (*[]EventType, bool)`
+`func (o *InlineResponse20042) GetDataOk() (*[]WebhookWithOutgoingIntegrationDetails, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20042) SetData(v []EventType)`
+`func (o *InlineResponse20042) SetData(v []WebhookWithOutgoingIntegrationDetails)`
 
 SetData sets Data field to given value.
 

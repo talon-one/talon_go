@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | The human-friendly display name for this audience. | 
+**SubscribedApplicationsIds** | Pointer to **[]int64** | A list of the IDs of the Applications that are connected to this audience. | [optional] 
 **IntegrationId** | Pointer to **string** | The ID of this audience in the third-party integration. | [optional] 
 
 ## Methods
@@ -45,6 +46,31 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+
+### GetSubscribedApplicationsIds
+
+`func (o *NewMultipleAudiencesItem) GetSubscribedApplicationsIds() []int64`
+
+GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field if non-nil, zero value otherwise.
+
+### GetSubscribedApplicationsIdsOk
+
+`func (o *NewMultipleAudiencesItem) GetSubscribedApplicationsIdsOk() (*[]int64, bool)`
+
+GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscribedApplicationsIds
+
+`func (o *NewMultipleAudiencesItem) SetSubscribedApplicationsIds(v []int64)`
+
+SetSubscribedApplicationsIds sets SubscribedApplicationsIds field to given value.
+
+### HasSubscribedApplicationsIds
+
+`func (o *NewMultipleAudiencesItem) HasSubscribedApplicationsIds() bool`
+
+HasSubscribedApplicationsIds returns a boolean if a field has been set.
 
 ### GetIntegrationId
 

@@ -15,11 +15,12 @@ import (
 
 // StrikethroughSetDiscountPerItemEffectProps setDiscountPerItem effect in strikethrough pricing payload.
 type StrikethroughSetDiscountPerItemEffectProps struct {
-	// effect name.
+	// The effect name.
 	Name string `json:"name"`
-	// discount value.
-	Value                    map[string]interface{} `json:"value"`
-	ExcludedFromPriceHistory *bool                  `json:"excludedFromPriceHistory,omitempty"`
+	// The discount value.
+	Value map[string]interface{} `json:"value"`
+	// When set to `true`, the applied discount is excluded from the item's price history.
+	ExcludedFromPriceHistory *bool `json:"excludedFromPriceHistory,omitempty"`
 }
 
 // NewStrikethroughSetDiscountPerItemEffectProps instantiates a new StrikethroughSetDiscountPerItemEffectProps object

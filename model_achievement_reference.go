@@ -23,18 +23,24 @@ type AchievementReference struct {
 	ApplicationName string `json:"applicationName"`
 	// The ID of the campaign that references this achievement.
 	CampaignId int64 `json:"campaignId"`
+	// The name of the campaign that references this achievement.
+	CampaignName string `json:"campaignName"`
+	// The state of the campaign that references this achievement.
+	CampaignState string `json:"campaignState"`
 }
 
 // NewAchievementReference instantiates a new AchievementReference object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildAchievementReference(achievementId int64, applicationId int64, applicationName string, campaignId int64) *AchievementReference {
+func BuildAchievementReference(achievementId int64, applicationId int64, applicationName string, campaignId int64, campaignName string, campaignState string) *AchievementReference {
 	this := AchievementReference{}
 	this.AchievementId = achievementId
 	this.ApplicationId = applicationId
 	this.ApplicationName = applicationName
 	this.CampaignId = campaignId
+	this.CampaignName = campaignName
+	this.CampaignState = campaignState
 	return &this
 }
 
@@ -142,6 +148,54 @@ func (o *AchievementReference) SetCampaignId(v int64) {
 	o.CampaignId = v
 }
 
+// GetCampaignName returns the CampaignName field value
+func (o *AchievementReference) GetCampaignName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CampaignName
+}
+
+// GetCampaignNameOk returns a tuple with the CampaignName field value
+// and a boolean to check if the value has been set.
+func (o *AchievementReference) GetCampaignNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignName, true
+}
+
+// SetCampaignName sets field value
+func (o *AchievementReference) SetCampaignName(v string) {
+	o.CampaignName = v
+}
+
+// GetCampaignState returns the CampaignState field value
+func (o *AchievementReference) GetCampaignState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CampaignState
+}
+
+// GetCampaignStateOk returns a tuple with the CampaignState field value
+// and a boolean to check if the value has been set.
+func (o *AchievementReference) GetCampaignStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CampaignState, true
+}
+
+// SetCampaignState sets field value
+func (o *AchievementReference) SetCampaignState(v string) {
+	o.CampaignState = v
+}
+
 func (o AchievementReference) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -155,6 +209,12 @@ func (o AchievementReference) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["campaignName"] = o.CampaignName
+	}
+	if true {
+		toSerialize["campaignState"] = o.CampaignState
 	}
 	return json.Marshal(toSerialize)
 }

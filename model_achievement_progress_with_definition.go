@@ -34,8 +34,12 @@ type AchievementProgressWithDefinition struct {
 	Title string `json:"title"`
 	// The description of the achievement in the Campaign Manager.
 	Description string `json:"description"`
-	// The ID of the campaign the achievement belongs to.
-	CampaignId int64 `json:"campaignId"`
+	// This property is **deprecated**. Use `campaignIds` (Integration API) or `referencedByCampaigns` (Management API) instead. This field contains the first campaign ID from the related `campaignIds`, and is omitted when `campaignIds` is empty.
+	CampaignId *int64 `json:"campaignId,omitempty"`
+	// The IDs of the campaigns that reference this achievement, in ascending order.
+	CampaignIds []int64 `json:"campaignIds"`
+	// The campaigns that reference this achievement, in ascending order of their `id`.
+	ReferencedByCampaigns []CampaignReference `json:"referencedByCampaigns"`
 	// The required number of actions or the transactional milestone to complete the achievement.
 	Target *float32 `json:"target,omitempty"`
 	// The policy that determines if and how the achievement recurs. - `no_recurrence`: The achievement can be completed only once. - `on_expiration`: The achievement resets after it expires and becomes available again. - `on_completion`: When the customer progress status reaches `completed`, the achievement resets and becomes available again.
@@ -54,7 +58,7 @@ type AchievementProgressWithDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildAchievementProgressWithDefinition(status string, progress float32, achievementId int64, name string, title string, description string, campaignId int64, achievementRecurrencePolicy string, achievementActivationPolicy string) *AchievementProgressWithDefinition {
+func BuildAchievementProgressWithDefinition(status string, progress float32, achievementId int64, name string, title string, description string, campaignIds []int64, referencedByCampaigns []CampaignReference, achievementRecurrencePolicy string, achievementActivationPolicy string) *AchievementProgressWithDefinition {
 	this := AchievementProgressWithDefinition{}
 	this.Status = status
 	this.Progress = progress
@@ -62,7 +66,8 @@ func BuildAchievementProgressWithDefinition(status string, progress float32, ach
 	this.Name = name
 	this.Title = title
 	this.Description = description
-	this.CampaignId = campaignId
+	this.CampaignIds = campaignIds
+	this.ReferencedByCampaigns = referencedByCampaigns
 	this.AchievementRecurrencePolicy = achievementRecurrencePolicy
 	this.AchievementActivationPolicy = achievementActivationPolicy
 	return &this
@@ -316,28 +321,84 @@ func (o *AchievementProgressWithDefinition) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetCampaignId returns the CampaignId field value
+// GetCampaignId returns the CampaignId field value if set, zero value otherwise.
 func (o *AchievementProgressWithDefinition) GetCampaignId() int64 {
-	if o == nil {
+	if o == nil || o.CampaignId == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.CampaignId
+	return *o.CampaignId
 }
 
-// GetCampaignIdOk returns a tuple with the CampaignId field value
+// GetCampaignIdOk returns a tuple with the CampaignId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AchievementProgressWithDefinition) GetCampaignIdOk() (*int64, bool) {
+	if o == nil || o.CampaignId == nil {
+		return nil, false
+	}
+	return o.CampaignId, true
+}
+
+// HasCampaignId returns a boolean if a field has been set.
+func (o *AchievementProgressWithDefinition) HasCampaignId() bool {
+	if o != nil && o.CampaignId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCampaignId gets a reference to the given int64 and assigns it to the CampaignId field.
+func (o *AchievementProgressWithDefinition) SetCampaignId(v int64) {
+	o.CampaignId = &v
+}
+
+// GetCampaignIds returns the CampaignIds field value
+func (o *AchievementProgressWithDefinition) GetCampaignIds() []int64 {
+	if o == nil {
+		var ret []int64
+		return ret
+	}
+
+	return o.CampaignIds
+}
+
+// GetCampaignIdsOk returns a tuple with the CampaignIds field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetCampaignIdsOk() (*[]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.CampaignId, true
+	return &o.CampaignIds, true
 }
 
-// SetCampaignId sets field value
-func (o *AchievementProgressWithDefinition) SetCampaignId(v int64) {
-	o.CampaignId = v
+// SetCampaignIds sets field value
+func (o *AchievementProgressWithDefinition) SetCampaignIds(v []int64) {
+	o.CampaignIds = v
+}
+
+// GetReferencedByCampaigns returns the ReferencedByCampaigns field value
+func (o *AchievementProgressWithDefinition) GetReferencedByCampaigns() []CampaignReference {
+	if o == nil {
+		var ret []CampaignReference
+		return ret
+	}
+
+	return o.ReferencedByCampaigns
+}
+
+// GetReferencedByCampaignsOk returns a tuple with the ReferencedByCampaigns field value
+// and a boolean to check if the value has been set.
+func (o *AchievementProgressWithDefinition) GetReferencedByCampaignsOk() (*[]CampaignReference, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ReferencedByCampaigns, true
+}
+
+// SetReferencedByCampaigns sets field value
+func (o *AchievementProgressWithDefinition) SetReferencedByCampaigns(v []CampaignReference) {
+	o.ReferencedByCampaigns = v
 }
 
 // GetTarget returns the Target field value if set, zero value otherwise.
@@ -545,8 +606,14 @@ func (o AchievementProgressWithDefinition) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["description"] = o.Description
 	}
-	if true {
+	if o.CampaignId != nil {
 		toSerialize["campaignId"] = o.CampaignId
+	}
+	if true {
+		toSerialize["campaignIds"] = o.CampaignIds
+	}
+	if true {
+		toSerialize["referencedByCampaigns"] = o.ReferencedByCampaigns
 	}
 	if o.Target != nil {
 		toSerialize["target"] = o.Target

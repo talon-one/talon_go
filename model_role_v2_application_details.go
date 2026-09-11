@@ -22,8 +22,7 @@ type RoleV2ApplicationDetails struct {
 	// Name of the draft campaign-related permission set for the given Application.
 	DraftCampaign *string `json:"draftCampaign,omitempty"`
 	// Name of the tools-related permission set.
-	Tools      *string            `json:"tools,omitempty"`
-	Thresholds *RolesV2Thresholds `json:"thresholds,omitempty"`
+	Tools *string `json:"tools,omitempty"`
 }
 
 // NewRoleV2ApplicationDetails instantiates a new RoleV2ApplicationDetails object
@@ -171,38 +170,6 @@ func (o *RoleV2ApplicationDetails) SetTools(v string) {
 	o.Tools = &v
 }
 
-// GetThresholds returns the Thresholds field value if set, zero value otherwise.
-func (o *RoleV2ApplicationDetails) GetThresholds() RolesV2Thresholds {
-	if o == nil || o.Thresholds == nil {
-		var ret RolesV2Thresholds
-		return ret
-	}
-	return *o.Thresholds
-}
-
-// GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RoleV2ApplicationDetails) GetThresholdsOk() (*RolesV2Thresholds, bool) {
-	if o == nil || o.Thresholds == nil {
-		return nil, false
-	}
-	return o.Thresholds, true
-}
-
-// HasThresholds returns a boolean if a field has been set.
-func (o *RoleV2ApplicationDetails) HasThresholds() bool {
-	if o != nil && o.Thresholds != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetThresholds gets a reference to the given RolesV2Thresholds and assigns it to the Thresholds field.
-func (o *RoleV2ApplicationDetails) SetThresholds(v RolesV2Thresholds) {
-	o.Thresholds = &v
-}
-
 func (o RoleV2ApplicationDetails) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Application != nil {
@@ -216,9 +183,6 @@ func (o RoleV2ApplicationDetails) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tools != nil {
 		toSerialize["tools"] = o.Tools
-	}
-	if o.Thresholds != nil {
-		toSerialize["thresholds"] = o.Thresholds
 	}
 	return json.Marshal(toSerialize)
 }

@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **ProfileId** | Pointer to **string** | ID of the customer profile set by your integration layer.  **Note:** If the customer does not yet have a known &#x60;profileId&#x60;, we recommend you use a guest &#x60;profileId&#x60;.  | 
 **StoreIntegrationId** | Pointer to **string** | The integration ID of the store. You choose this ID when you create a store. | [optional] 
 **EvaluableCampaignIds** | Pointer to **[]int64** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
-**IntegrationId** | Pointer to **string** | The unique ID of the current event. Only one event with this ID could be activated, duplicated events are forbidden.  | 
-**Type** | Pointer to **string** | A string representing the event name. Must not be a reserved event name. You create this value when you [create an attribute](https://docs.talon.one/docs/dev/concepts/entities/events#creating-a-custom-event) of type &#x60;event&#x60; in the Campaign Manager.  | 
+**Type** | Pointer to **string** | The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute). | [optional] 
-**ConnectedSessionID** | Pointer to **string** | The ID of the session that happened in the past. | [optional] 
-**PreviousEventID** | Pointer to **string** | The unique identifier of the event that happened in the past. | [optional] 
+**IntegrationId** | Pointer to **string** | The unique ID of the event. Only one event with this ID can be registered.  | 
+**ConnectedSessionId** | Pointer to **string** | The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail. | [optional] 
+**ReferralCode** | Pointer to **string** | The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming.  | [optional] 
 **LoyaltyCards** | Pointer to **[]string** | Identifiers of the loyalty cards used during this event. | [optional] 
 **ResponseContent** | Pointer to **[]string** | Optional list of requested information to be present on the response related to the tracking custom event.  | [optional] 
 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewIntegrationEventV3Request
 
-`func NewIntegrationEventV3Request(profileId string, integrationId string, type_ string, ) *IntegrationEventV3Request`
+`func NewIntegrationEventV3Request(profileId string, type_ string, integrationId string, ) *IntegrationEventV3Request`
 
 NewIntegrationEventV3Request instantiates a new IntegrationEventV3Request object
 This constructor will assign default values to properties that have it defined,
@@ -104,26 +104,6 @@ SetEvaluableCampaignIds sets EvaluableCampaignIds field to given value.
 
 HasEvaluableCampaignIds returns a boolean if a field has been set.
 
-### GetIntegrationId
-
-`func (o *IntegrationEventV3Request) GetIntegrationId() string`
-
-GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
-
-### GetIntegrationIdOk
-
-`func (o *IntegrationEventV3Request) GetIntegrationIdOk() (*string, bool)`
-
-GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetIntegrationId
-
-`func (o *IntegrationEventV3Request) SetIntegrationId(v string)`
-
-SetIntegrationId sets IntegrationId field to given value.
-
-
 ### GetType
 
 `func (o *IntegrationEventV3Request) GetType() string`
@@ -169,55 +149,75 @@ SetAttributes sets Attributes field to given value.
 
 HasAttributes returns a boolean if a field has been set.
 
-### GetConnectedSessionID
+### GetIntegrationId
 
-`func (o *IntegrationEventV3Request) GetConnectedSessionID() string`
+`func (o *IntegrationEventV3Request) GetIntegrationId() string`
 
-GetConnectedSessionID returns the ConnectedSessionID field if non-nil, zero value otherwise.
+GetIntegrationId returns the IntegrationId field if non-nil, zero value otherwise.
 
-### GetConnectedSessionIDOk
+### GetIntegrationIdOk
 
-`func (o *IntegrationEventV3Request) GetConnectedSessionIDOk() (*string, bool)`
+`func (o *IntegrationEventV3Request) GetIntegrationIdOk() (*string, bool)`
 
-GetConnectedSessionIDOk returns a tuple with the ConnectedSessionID field if it's non-nil, zero value otherwise
+GetIntegrationIdOk returns a tuple with the IntegrationId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConnectedSessionID
+### SetIntegrationId
 
-`func (o *IntegrationEventV3Request) SetConnectedSessionID(v string)`
+`func (o *IntegrationEventV3Request) SetIntegrationId(v string)`
 
-SetConnectedSessionID sets ConnectedSessionID field to given value.
+SetIntegrationId sets IntegrationId field to given value.
 
-### HasConnectedSessionID
 
-`func (o *IntegrationEventV3Request) HasConnectedSessionID() bool`
+### GetConnectedSessionId
 
-HasConnectedSessionID returns a boolean if a field has been set.
+`func (o *IntegrationEventV3Request) GetConnectedSessionId() string`
 
-### GetPreviousEventID
+GetConnectedSessionId returns the ConnectedSessionId field if non-nil, zero value otherwise.
 
-`func (o *IntegrationEventV3Request) GetPreviousEventID() string`
+### GetConnectedSessionIdOk
 
-GetPreviousEventID returns the PreviousEventID field if non-nil, zero value otherwise.
+`func (o *IntegrationEventV3Request) GetConnectedSessionIdOk() (*string, bool)`
 
-### GetPreviousEventIDOk
-
-`func (o *IntegrationEventV3Request) GetPreviousEventIDOk() (*string, bool)`
-
-GetPreviousEventIDOk returns a tuple with the PreviousEventID field if it's non-nil, zero value otherwise
+GetConnectedSessionIdOk returns a tuple with the ConnectedSessionId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPreviousEventID
+### SetConnectedSessionId
 
-`func (o *IntegrationEventV3Request) SetPreviousEventID(v string)`
+`func (o *IntegrationEventV3Request) SetConnectedSessionId(v string)`
 
-SetPreviousEventID sets PreviousEventID field to given value.
+SetConnectedSessionId sets ConnectedSessionId field to given value.
 
-### HasPreviousEventID
+### HasConnectedSessionId
 
-`func (o *IntegrationEventV3Request) HasPreviousEventID() bool`
+`func (o *IntegrationEventV3Request) HasConnectedSessionId() bool`
 
-HasPreviousEventID returns a boolean if a field has been set.
+HasConnectedSessionId returns a boolean if a field has been set.
+
+### GetReferralCode
+
+`func (o *IntegrationEventV3Request) GetReferralCode() string`
+
+GetReferralCode returns the ReferralCode field if non-nil, zero value otherwise.
+
+### GetReferralCodeOk
+
+`func (o *IntegrationEventV3Request) GetReferralCodeOk() (*string, bool)`
+
+GetReferralCodeOk returns a tuple with the ReferralCode field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReferralCode
+
+`func (o *IntegrationEventV3Request) SetReferralCode(v string)`
+
+SetReferralCode sets ReferralCode field to given value.
+
+### HasReferralCode
+
+`func (o *IntegrationEventV3Request) HasReferralCode() bool`
+
+HasReferralCode returns a boolean if a field has been set.
 
 ### GetLoyaltyCards
 

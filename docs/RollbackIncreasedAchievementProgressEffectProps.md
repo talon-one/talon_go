@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **AchievementId** | Pointer to **int64** | The internal ID of the achievement. | 
 **AchievementName** | Pointer to **string** | The name of the achievement. | 
 **ProgressTrackerId** | Pointer to **int64** | The internal ID of the achievement progress tracker. | 
-**DecreaseProgressBy** | Pointer to **float32** | The value by which the customer&#39;s current progress in the achievement is decreased. | 
+**DecreaseProgressBy** | Pointer to **float32** | The value by which the customer&#39;s current progress in the achievement has decreased. | 
 **CurrentProgress** | Pointer to **float32** | The current progress of the customer in the achievement. | 
 **Target** | Pointer to **float32** | The target value to complete the achievement. | 
 

@@ -14,7 +14,8 @@ Name | Type | Description | Notes
 **CouponCodes** | Pointer to **[]string** | Any coupon codes entered.  **Important - for requests only**:  - If you [create a coupon budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a coupon code by the time you close it. - In requests where &#x60;dry&#x3D;false&#x60;, providing an empty array discards any previous coupons. To avoid this, omit the parameter entirely.  | [optional] 
 **ReferralCode** | Pointer to **string** | Any referral code entered.  **Important - for requests only**:  - If you [create a referral budget](https://docs.talon.one/docs/product/campaigns/settings/managing-campaign-budgets/#budget-types) for your campaign, ensure the session contains a referral code by the time you close it. - In requests where &#x60;dry&#x3D;false&#x60;, providing an empty value discards the previous referral code. To avoid this, omit the parameter entirely.  | [optional] 
 **LoyaltyCards** | Pointer to **[]string** | Identifier of a loyalty card. | [optional] 
-**State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; → &#x60;closed&#x60; 2. &#x60;open&#x60; → &#x60;cancelled&#x60; 3. Either:    - &#x60;closed&#x60; → &#x60;cancelled&#x60; (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - &#x60;closed&#x60; → &#x60;partially_returned&#x60; (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - &#x60;closed&#x60; → &#x60;open&#x60; (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. &#x60;partially_returned&#x60; → &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  | [default to "open"]
+**RewardIntegrationIds** | Pointer to **[]string** | The integration IDs of the unlocked rewards that can be used in this session.  | [optional] 
+**State** | Pointer to **string** | Indicates the current state of the session. Sessions can be created as &#x60;open&#x60; or &#x60;closed&#x60;. The state transitions are:  1. &#x60;open&#x60; -&gt; &#x60;closed&#x60; 2. &#x60;open&#x60; -&gt; &#x60;cancelled&#x60; 3. Either:    - &#x60;closed&#x60; -&gt; &#x60;cancelled&#x60; (**only** via [Update customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/updateCustomerSessionV2)) or    - &#x60;closed&#x60; -&gt; &#x60;partially_returned&#x60; (**only** via [Return cart items](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/returnCartItems))    - &#x60;closed&#x60; -&gt; &#x60;open&#x60; (**only** via [Reopen customer session](https://docs.talon.one/integration-api#tag/Customer-sessions/operation/reopenCustomerSession)) 4. &#x60;partially_returned&#x60; -&gt; &#x60;cancelled&#x60;  For more information, see [Customer session states](https://docs.talon.one/docs/dev/concepts/entities/customer-sessions).  | [default to "open"]
 **CartItems** | Pointer to [**[]CartItem**](CartItem.md) | The items to add to this session. **Do not exceed 1000 items** and ensure the sum of all cart item&#39;s &#x60;quantity&#x60; **does not exceed 10.000** per request.  | 
 **ExperimentVariantAllocations** | Pointer to [**[]ExperimentVariantAllocation**](ExperimentVariantAllocation.md) | The experiment variant allocations to add to this session.  | [optional] 
 **AdditionalCosts** | Pointer to [**map[string]AdditionalCost**](AdditionalCost.md) | Use this property to set a value for the additional costs of this session, such as a shipping cost.  They must be created in the Campaign Manager before you set them with this property. See [Managing additional costs](https://docs.talon.one/docs/product/account/dev-tools/managing-additional-costs).  | [optional] 
@@ -25,13 +26,14 @@ Name | Type | Description | Notes
 **Total** | Pointer to **float32** | The total value of cart items and additional costs in the session, before any discounts are applied. | 
 **CartItemTotal** | Pointer to **float32** | The total value of cart items, before any discounts are applied. | 
 **AdditionalCostTotal** | Pointer to **float32** | The total value of additional costs, before any discounts are applied. | 
+**CartItemAdditionalCostTotal** | Pointer to **float32** | The total value of additional costs applied to individual items, before any discounts are applied. | [readonly] 
 **Updated** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received on this session. | 
 
 ## Methods
 
 ### NewCustomerSessionV2
 
-`func NewCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, updateCount int64, total float32, cartItemTotal float32, additionalCostTotal float32, updated time.Time, ) *CustomerSessionV2`
+`func NewCustomerSessionV2(id int64, created time.Time, integrationId string, applicationId int64, profileId string, state string, cartItems []CartItem, attributes map[string]interface{}, firstSession bool, updateCount int64, total float32, cartItemTotal float32, additionalCostTotal float32, cartItemAdditionalCostTotal float32, updated time.Time, ) *CustomerSessionV2`
 
 NewCustomerSessionV2 instantiates a new CustomerSessionV2 object
 This constructor will assign default values to properties that have it defined,
@@ -271,6 +273,31 @@ SetLoyaltyCards sets LoyaltyCards field to given value.
 
 HasLoyaltyCards returns a boolean if a field has been set.
 
+### GetRewardIntegrationIds
+
+`func (o *CustomerSessionV2) GetRewardIntegrationIds() []string`
+
+GetRewardIntegrationIds returns the RewardIntegrationIds field if non-nil, zero value otherwise.
+
+### GetRewardIntegrationIdsOk
+
+`func (o *CustomerSessionV2) GetRewardIntegrationIdsOk() (*[]string, bool)`
+
+GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardIntegrationIds
+
+`func (o *CustomerSessionV2) SetRewardIntegrationIds(v []string)`
+
+SetRewardIntegrationIds sets RewardIntegrationIds field to given value.
+
+### HasRewardIntegrationIds
+
+`func (o *CustomerSessionV2) HasRewardIntegrationIds() bool`
+
+HasRewardIntegrationIds returns a boolean if a field has been set.
+
 ### GetState
 
 `func (o *CustomerSessionV2) GetState() string`
@@ -504,6 +531,26 @@ and a boolean to check if the value has been set.
 `func (o *CustomerSessionV2) SetAdditionalCostTotal(v float32)`
 
 SetAdditionalCostTotal sets AdditionalCostTotal field to given value.
+
+
+### GetCartItemAdditionalCostTotal
+
+`func (o *CustomerSessionV2) GetCartItemAdditionalCostTotal() float32`
+
+GetCartItemAdditionalCostTotal returns the CartItemAdditionalCostTotal field if non-nil, zero value otherwise.
+
+### GetCartItemAdditionalCostTotalOk
+
+`func (o *CustomerSessionV2) GetCartItemAdditionalCostTotalOk() (*float32, bool)`
+
+GetCartItemAdditionalCostTotalOk returns a tuple with the CartItemAdditionalCostTotal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCartItemAdditionalCostTotal
+
+`func (o *CustomerSessionV2) SetCartItemAdditionalCostTotal(v float32)`
+
+SetCartItemAdditionalCostTotal sets CartItemAdditionalCostTotal field to given value.
 
 
 ### GetUpdated

@@ -16,11 +16,11 @@ import (
 
 // IntegrationCampaign struct for IntegrationCampaign
 type IntegrationCampaign struct {
-	// Unique ID of Campaign.
-	Id int64 `json:"id"`
 	// The ID of the Application that owns this entity.
 	ApplicationId int64 `json:"applicationId"`
-	// A user-facing name for this campaign.
+	// Unique ID of Campaign.
+	Id int64 `json:"id"`
+	// The name of the campaign.
 	Name string `json:"name"`
 	// A detailed description of the campaign.
 	Description *string `json:"description,omitempty"`
@@ -36,20 +36,27 @@ type IntegrationCampaign struct {
 	Tags []string `json:"tags"`
 	// The features enabled in this campaign.
 	Features []string `json:"features"`
+	// A list of rules containing customer-facing details of the rewards defined in the campaign.
+	Rules []RuleMetadata `json:"rules"`
+	// A list of store IDs linked to this campaign.
+	LinkedStoreIds *[]int64 `json:"linkedStoreIds,omitempty"`
+	// A list of audience IDs linked to this campaign.
+	LinkedAudienceIds *[]int64 `json:"linkedAudienceIds,omitempty"`
 }
 
 // NewIntegrationCampaign instantiates a new IntegrationCampaign object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildIntegrationCampaign(id int64, applicationId int64, name string, state string, tags []string, features []string) *IntegrationCampaign {
+func BuildIntegrationCampaign(applicationId int64, id int64, name string, state string, tags []string, features []string, rules []RuleMetadata) *IntegrationCampaign {
 	this := IntegrationCampaign{}
-	this.Id = id
 	this.ApplicationId = applicationId
+	this.Id = id
 	this.Name = name
 	this.State = state
 	this.Tags = tags
 	this.Features = features
+	this.Rules = rules
 	return &this
 }
 
@@ -61,30 +68,6 @@ func NewIntegrationCampaignWithDefaults() *IntegrationCampaign {
 	var state string = "enabled"
 	this.State = state
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *IntegrationCampaign) GetId() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *IntegrationCampaign) GetIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *IntegrationCampaign) SetId(v int64) {
-	o.Id = v
 }
 
 // GetApplicationId returns the ApplicationId field value
@@ -109,6 +92,30 @@ func (o *IntegrationCampaign) GetApplicationIdOk() (*int64, bool) {
 // SetApplicationId sets field value
 func (o *IntegrationCampaign) SetApplicationId(v int64) {
 	o.ApplicationId = v
+}
+
+// GetId returns the Id field value
+func (o *IntegrationCampaign) GetId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCampaign) GetIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *IntegrationCampaign) SetId(v int64) {
+	o.Id = v
 }
 
 // GetName returns the Name field value
@@ -335,13 +342,101 @@ func (o *IntegrationCampaign) SetFeatures(v []string) {
 	o.Features = v
 }
 
+// GetRules returns the Rules field value
+func (o *IntegrationCampaign) GetRules() []RuleMetadata {
+	if o == nil {
+		var ret []RuleMetadata
+		return ret
+	}
+
+	return o.Rules
+}
+
+// GetRulesOk returns a tuple with the Rules field value
+// and a boolean to check if the value has been set.
+func (o *IntegrationCampaign) GetRulesOk() (*[]RuleMetadata, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Rules, true
+}
+
+// SetRules sets field value
+func (o *IntegrationCampaign) SetRules(v []RuleMetadata) {
+	o.Rules = v
+}
+
+// GetLinkedStoreIds returns the LinkedStoreIds field value if set, zero value otherwise.
+func (o *IntegrationCampaign) GetLinkedStoreIds() []int64 {
+	if o == nil || o.LinkedStoreIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.LinkedStoreIds
+}
+
+// GetLinkedStoreIdsOk returns a tuple with the LinkedStoreIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationCampaign) GetLinkedStoreIdsOk() (*[]int64, bool) {
+	if o == nil || o.LinkedStoreIds == nil {
+		return nil, false
+	}
+	return o.LinkedStoreIds, true
+}
+
+// HasLinkedStoreIds returns a boolean if a field has been set.
+func (o *IntegrationCampaign) HasLinkedStoreIds() bool {
+	if o != nil && o.LinkedStoreIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedStoreIds gets a reference to the given []int64 and assigns it to the LinkedStoreIds field.
+func (o *IntegrationCampaign) SetLinkedStoreIds(v []int64) {
+	o.LinkedStoreIds = &v
+}
+
+// GetLinkedAudienceIds returns the LinkedAudienceIds field value if set, zero value otherwise.
+func (o *IntegrationCampaign) GetLinkedAudienceIds() []int64 {
+	if o == nil || o.LinkedAudienceIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.LinkedAudienceIds
+}
+
+// GetLinkedAudienceIdsOk returns a tuple with the LinkedAudienceIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationCampaign) GetLinkedAudienceIdsOk() (*[]int64, bool) {
+	if o == nil || o.LinkedAudienceIds == nil {
+		return nil, false
+	}
+	return o.LinkedAudienceIds, true
+}
+
+// HasLinkedAudienceIds returns a boolean if a field has been set.
+func (o *IntegrationCampaign) HasLinkedAudienceIds() bool {
+	if o != nil && o.LinkedAudienceIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkedAudienceIds gets a reference to the given []int64 and assigns it to the LinkedAudienceIds field.
+func (o *IntegrationCampaign) SetLinkedAudienceIds(v []int64) {
+	o.LinkedAudienceIds = &v
+}
+
 func (o IntegrationCampaign) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["id"] = o.Id
+		toSerialize["applicationId"] = o.ApplicationId
 	}
 	if true {
-		toSerialize["applicationId"] = o.ApplicationId
+		toSerialize["id"] = o.Id
 	}
 	if true {
 		toSerialize["name"] = o.Name
@@ -366,6 +461,15 @@ func (o IntegrationCampaign) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["features"] = o.Features
+	}
+	if true {
+		toSerialize["rules"] = o.Rules
+	}
+	if o.LinkedStoreIds != nil {
+		toSerialize["linkedStoreIds"] = o.LinkedStoreIds
+	}
+	if o.LinkedAudienceIds != nil {
+		toSerialize["linkedAudienceIds"] = o.LinkedAudienceIds
 	}
 	return json.Marshal(toSerialize)
 }

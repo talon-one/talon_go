@@ -21,6 +21,8 @@ type NewInternalAudience struct {
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// A description of the audience.
 	Description *string `json:"description,omitempty"`
+	// A list of the IDs of the Applications that are connected to this audience.
+	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 }
 
 // NewNewInternalAudience instantiates a new NewInternalAudience object
@@ -129,6 +131,38 @@ func (o *NewInternalAudience) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetSubscribedApplicationsIds returns the SubscribedApplicationsIds field value if set, zero value otherwise.
+func (o *NewInternalAudience) GetSubscribedApplicationsIds() []int64 {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		var ret []int64
+		return ret
+	}
+	return *o.SubscribedApplicationsIds
+}
+
+// GetSubscribedApplicationsIdsOk returns a tuple with the SubscribedApplicationsIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewInternalAudience) GetSubscribedApplicationsIdsOk() (*[]int64, bool) {
+	if o == nil || o.SubscribedApplicationsIds == nil {
+		return nil, false
+	}
+	return o.SubscribedApplicationsIds, true
+}
+
+// HasSubscribedApplicationsIds returns a boolean if a field has been set.
+func (o *NewInternalAudience) HasSubscribedApplicationsIds() bool {
+	if o != nil && o.SubscribedApplicationsIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscribedApplicationsIds gets a reference to the given []int64 and assigns it to the SubscribedApplicationsIds field.
+func (o *NewInternalAudience) SetSubscribedApplicationsIds(v []int64) {
+	o.SubscribedApplicationsIds = &v
+}
+
 func (o NewInternalAudience) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -139,6 +173,9 @@ func (o NewInternalAudience) MarshalJSON() ([]byte, error) {
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
+	}
+	if o.SubscribedApplicationsIds != nil {
+		toSerialize["subscribedApplicationsIds"] = o.SubscribedApplicationsIds
 	}
 	return json.Marshal(toSerialize)
 }

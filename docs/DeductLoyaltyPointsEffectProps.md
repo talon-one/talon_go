@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RuleTitle** | Pointer to **string** | The title of the rule that contained triggered this points deduction. | 
-**ProgramId** | Pointer to **int64** | The ID of the loyalty program where these points were added. | 
-**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
+**ProgramId** | Pointer to **int64** | The ID of the loyalty program from which these points were deducted. | 
+**SubLedgerId** | Pointer to **string** | The ID of the subledger within the loyalty program from which these points were deducted. | 
 **Value** | Pointer to **float32** | The amount of points that were deducted. | 
-**TransactionUUID** | Pointer to **string** | The identifier of this deduction in the loyalty ledger. | 
-**Name** | Pointer to **string** | The name property gets one of the following two values. It can be the loyalty program name or it can represent a reason for the respective deduction of loyalty points. The latter is an optional value defined in a deduction rule.  | 
+**TransactionUUID** | Pointer to **string** | The identifier of this loyalty point transaction. | 
+**Name** | Pointer to **string** | The reason of this loyalty points deduction. | 
 **CardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 
 ## Methods

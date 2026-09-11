@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **string** | The name of the \&quot;setDiscount\&quot; effect that was rolled back. | 
-**Value** | Pointer to **float32** | The value of the discount that was rolled back. | 
-**CartItemPosition** | Pointer to **float32** | The index of the item in the cart items for which the discount was rolled back. | [optional] 
-**CartItemSubPosition** | Pointer to **float32** | For cart items with &#x60;quantity&#x60; &gt; 1, the subposition returns the index of the item unit in its line item.  | [optional] 
-**AdditionalCostId** | Pointer to **int64** | The ID of the additional cost that was rolled back. | [optional] 
-**AdditionalCost** | Pointer to **string** | The name of the additional cost that was rolled back. | [optional] 
-**Scope** | Pointer to **string** | The scope of the rolled back discount - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60;  | [optional] 
+**Name** | Pointer to **string** | The name of the discount effect that was rolled back. | 
+**Value** | Pointer to **float32** | The monetary value of the discount that was rolled back. | 
+**CartItemPosition** | Pointer to **float32** | The index of the item in the &#x60;cartItem&#x60; object whose discount was rolled back, or the unit containing the additional cost whose discount was rolled back. | [optional] 
+**CartItemSubPosition** | Pointer to **float32** | The index of the item unit in its line item for which the discount was rolled back. | [optional] 
+**AdditionalCostId** | Pointer to **int64** | _Only when rolling back [setDiscountPerAdditionalCost](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcost) and [setDiscountPerAdditionalCostPerItem](https://docs.talon.one/docs/dev/integration-api/api-effects#setdiscountperadditionalcostperitem)_ The ID of the additional cost to be discounted. | [optional] 
+**AdditionalCost** | Pointer to **string** | The API name of the additional cost whose discount was rolled back. | [optional] 
+**Scope** | Pointer to **string** | The scope of the rolled back discount.  - For a discount per session, it can be one of &#x60;cartItems&#x60;, &#x60;additionalCosts&#x60; or &#x60;sessionTotal&#x60; - For a discount per item, it can be one of &#x60;price&#x60;, &#x60;additionalCosts&#x60; or &#x60;itemTotal&#x60; | [optional] 
 
 ## Methods
 
