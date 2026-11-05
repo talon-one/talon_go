@@ -15,15 +15,20 @@ import (
 
 // InlineResponse20050 struct for InlineResponse20050
 type InlineResponse20050 struct {
-	Data *[]ListCampaignStoreBudgets `json:"data,omitempty"`
+	// The total number of roles returned.
+	TotalResultSize int64 `json:"totalResultSize"`
+	// The list of roles.
+	Data []RoleV2 `json:"data"`
 }
 
 // NewInlineResponse20050 instantiates a new InlineResponse20050 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20050() *InlineResponse20050 {
+func BuildInlineResponse20050(totalResultSize int64, data []RoleV2) *InlineResponse20050 {
 	this := InlineResponse20050{}
+	this.TotalResultSize = totalResultSize
+	this.Data = data
 	return &this
 }
 
@@ -35,41 +40,60 @@ func NewInlineResponse20050WithDefaults() *InlineResponse20050 {
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *InlineResponse20050) GetData() []ListCampaignStoreBudgets {
-	if o == nil || o.Data == nil {
-		var ret []ListCampaignStoreBudgets
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20050) GetTotalResultSize() int64 {
+	if o == nil {
+		var ret int64
 		return ret
 	}
-	return *o.Data
+
+	return o.TotalResultSize
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20050) GetDataOk() (*[]ListCampaignStoreBudgets, bool) {
-	if o == nil || o.Data == nil {
+func (o *InlineResponse20050) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.TotalResultSize, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *InlineResponse20050) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
+// SetTotalResultSize sets field value
+func (o *InlineResponse20050) SetTotalResultSize(v int64) {
+	o.TotalResultSize = v
+}
+
+// GetData returns the Data field value
+func (o *InlineResponse20050) GetData() []RoleV2 {
+	if o == nil {
+		var ret []RoleV2
+		return ret
 	}
 
-	return false
+	return o.Data
 }
 
-// SetData gets a reference to the given []ListCampaignStoreBudgets and assigns it to the Data field.
-func (o *InlineResponse20050) SetData(v []ListCampaignStoreBudgets) {
-	o.Data = &v
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20050) GetDataOk() (*[]RoleV2, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *InlineResponse20050) SetData(v []RoleV2) {
+	o.Data = v
 }
 
 func (o InlineResponse20050) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Data != nil {
+	if true {
+		toSerialize["totalResultSize"] = o.TotalResultSize
+	}
+	if true {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)

@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **NotificationType** | Pointer to **string** | The type of the notification | 
 **TotalResultSize** | Pointer to **int64** | The total size of the result set. | 
-**Data** | Pointer to [**[]ApplicationNotification**](ApplicationNotification.md) | The array of changes. | [optional] 
+**Data** | Pointer to [**[]ApplicationNotification**](ApplicationNotification.md) | The array of changes. | 
 
 ## Methods
 
 ### NewCampaignEvaluationTreeChangedMessage
 
-`func NewCampaignEvaluationTreeChangedMessage(notificationType string, totalResultSize int64, ) *CampaignEvaluationTreeChangedMessage`
+`func NewCampaignEvaluationTreeChangedMessage(notificationType string, totalResultSize int64, data []ApplicationNotification, ) *CampaignEvaluationTreeChangedMessage`
 
 NewCampaignEvaluationTreeChangedMessage instantiates a new CampaignEvaluationTreeChangedMessage object
 This constructor will assign default values to properties that have it defined,
@@ -86,11 +86,6 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
-### HasData
-
-`func (o *CampaignEvaluationTreeChangedMessage) HasData() bool`
-
-HasData returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

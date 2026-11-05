@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **ConnectedSessionId** | Pointer to **string** | The ID of the session to reference. The session must be in &#x60;closed&#x60; state. Otherwise, the API call will fail. | [optional] 
 **ReferralCode** | Pointer to **string** | The referral code submitted with the event. The endpoint does not validate the code, and submitting a code does not redeem it. Use the \&quot;Referral code is valid\&quot; condition in the Rule Builder to validate and redeem the code, or \&quot;Referral code is valid (without redemption)\&quot; to validate without redeeming.  | [optional] 
 **LoyaltyCards** | Pointer to **[]string** | Identifiers of the loyalty cards used during this event. | [optional] 
+**RewardIntegrationIds** | Pointer to **[]string** | The integration IDs of the unlocked rewards that can be used in this event.  | [optional] 
 **ResponseContent** | Pointer to **[]string** | Optional list of requested information to be present on the response related to the tracking custom event.  | [optional] 
 
 ## Methods
@@ -243,6 +244,31 @@ SetLoyaltyCards sets LoyaltyCards field to given value.
 `func (o *IntegrationEventV3Request) HasLoyaltyCards() bool`
 
 HasLoyaltyCards returns a boolean if a field has been set.
+
+### GetRewardIntegrationIds
+
+`func (o *IntegrationEventV3Request) GetRewardIntegrationIds() []string`
+
+GetRewardIntegrationIds returns the RewardIntegrationIds field if non-nil, zero value otherwise.
+
+### GetRewardIntegrationIdsOk
+
+`func (o *IntegrationEventV3Request) GetRewardIntegrationIdsOk() (*[]string, bool)`
+
+GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardIntegrationIds
+
+`func (o *IntegrationEventV3Request) SetRewardIntegrationIds(v []string)`
+
+SetRewardIntegrationIds sets RewardIntegrationIds field to given value.
+
+### HasRewardIntegrationIds
+
+`func (o *IntegrationEventV3Request) HasRewardIntegrationIds() bool`
+
+HasRewardIntegrationIds returns a boolean if a field has been set.
 
 ### GetResponseContent
 

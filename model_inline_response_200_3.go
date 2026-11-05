@@ -15,15 +15,15 @@ import (
 
 // InlineResponse2003 struct for InlineResponse2003
 type InlineResponse2003 struct {
-	TotalResultSize int64                 `json:"totalResultSize"`
-	Data            []AchievementProgress `json:"data"`
+	TotalResultSize int64                             `json:"totalResultSize"`
+	Data            []CustomerAchievementHistoryEntry `json:"data"`
 }
 
 // NewInlineResponse2003 instantiates a new InlineResponse2003 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse2003(totalResultSize int64, data []AchievementProgress) *InlineResponse2003 {
+func BuildInlineResponse2003(totalResultSize int64, data []CustomerAchievementHistoryEntry) *InlineResponse2003 {
 	this := InlineResponse2003{}
 	this.TotalResultSize = totalResultSize
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse2003) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2003) GetData() []AchievementProgress {
+func (o *InlineResponse2003) GetData() []CustomerAchievementHistoryEntry {
 	if o == nil {
-		var ret []AchievementProgress
+		var ret []CustomerAchievementHistoryEntry
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse2003) GetData() []AchievementProgress {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2003) GetDataOk() (*[]AchievementProgress, bool) {
+func (o *InlineResponse2003) GetDataOk() (*[]CustomerAchievementHistoryEntry, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse2003) GetDataOk() (*[]AchievementProgress, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse2003) SetData(v []AchievementProgress) {
+func (o *InlineResponse2003) SetData(v []CustomerAchievementHistoryEntry) {
 	o.Data = v
 }
 

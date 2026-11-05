@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int64** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**AccountId** | Pointer to **int64** |  | 
-**ApplicationId** | Pointer to **int64** |  | 
-**CampaignId** | Pointer to **int64** |  | 
-**Created** | Pointer to [**time.Time**](time.Time.md) |  | 
-**CreatedBy** | Pointer to **int64** |  | 
-**RevisionId** | Pointer to **int64** |  | 
-**Version** | Pointer to **int64** |  | 
+**AccountId** | Pointer to **int64** | The ID of the account that owns this entity. | 
+**ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
+**CampaignId** | Pointer to **int64** | The ID of the campaign that the revision was created from. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the revision was created. | 
+**CreatedBy** | Pointer to **int64** | The ID of the user who created this revision. | 
+**RevisionId** | Pointer to **int64** | The ID of the revision. | 
+**Version** | Pointer to **int64** | Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign.  | 
 **Name** | Pointer to **string** | A user-facing name for this campaign. | [optional] 
 **StartTime** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when the campaign will become active. | [optional] 
 **EndTime** | Pointer to [**NullableTime**](time.Time.md) | Timestamp when the campaign will become inactive. | [optional] 

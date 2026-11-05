@@ -16,6 +16,7 @@ import (
 
 // RevisionActivation struct for RevisionActivation
 type RevisionActivation struct {
+	// Timestamp when the revision will be activated.
 	ActivateAt *time.Time `json:"activateAt,omitempty"`
 }
 

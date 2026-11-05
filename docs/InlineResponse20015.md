@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]CampaignTemplate**](CampaignTemplate.md) |  | 
+**Data** | Pointer to [**[]Referral**](Referral.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20015
 
-`func NewInlineResponse20015(hasMore bool, data []CampaignTemplate, ) *InlineResponse20015`
+`func NewInlineResponse20015(hasMore bool, data []Referral, ) *InlineResponse20015`
 
 NewInlineResponse20015 instantiates a new InlineResponse20015 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20015) GetData() []CampaignTemplate`
+`func (o *InlineResponse20015) GetData() []Referral`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20015) GetDataOk() (*[]CampaignTemplate, bool)`
+`func (o *InlineResponse20015) GetDataOk() (*[]Referral, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20015) SetData(v []CampaignTemplate)`
+`func (o *InlineResponse20015) SetData(v []Referral)`
 
 SetData sets Data field to given value.
 

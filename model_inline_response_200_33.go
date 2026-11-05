@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20033 struct for InlineResponse20033
 type InlineResponse20033 struct {
-	HasMore bool               `json:"hasMore"`
-	Data    []ApplicationEvent `json:"data"`
+	HasMore bool                     `json:"hasMore"`
+	Data    []CustomerActivityReport `json:"data"`
 }
 
 // NewInlineResponse20033 instantiates a new InlineResponse20033 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20033(hasMore bool, data []ApplicationEvent) *InlineResponse20033 {
+func BuildInlineResponse20033(hasMore bool, data []CustomerActivityReport) *InlineResponse20033 {
 	this := InlineResponse20033{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20033) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20033) GetData() []ApplicationEvent {
+func (o *InlineResponse20033) GetData() []CustomerActivityReport {
 	if o == nil {
-		var ret []ApplicationEvent
+		var ret []CustomerActivityReport
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20033) GetData() []ApplicationEvent {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20033) GetDataOk() (*[]ApplicationEvent, bool) {
+func (o *InlineResponse20033) GetDataOk() (*[]CustomerActivityReport, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20033) GetDataOk() (*[]ApplicationEvent, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20033) SetData(v []ApplicationEvent) {
+func (o *InlineResponse20033) SetData(v []CustomerActivityReport) {
 	o.Data = v
 }
 

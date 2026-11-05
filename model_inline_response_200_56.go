@@ -15,18 +15,17 @@ import (
 
 // InlineResponse20056 struct for InlineResponse20056
 type InlineResponse20056 struct {
-	Catalog InlineResponse20056Catalog `json:"catalog"`
-	// The customer's loyalty balances for the specified loyalty program. Returned only when `loyaltyProgramId` is provided together with `profileIntegrationId` or `loyaltyCardId`.
-	Loyalty *map[string]LoyaltyBalances `json:"loyalty,omitempty"`
+	HasMore *bool           `json:"hasMore,omitempty"`
+	Data    []AchievementV2 `json:"data"`
 }
 
 // NewInlineResponse20056 instantiates a new InlineResponse20056 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20056(catalog InlineResponse20056Catalog) *InlineResponse20056 {
+func BuildInlineResponse20056(data []AchievementV2) *InlineResponse20056 {
 	this := InlineResponse20056{}
-	this.Catalog = catalog
+	this.Data = data
 	return &this
 }
 
@@ -38,69 +37,69 @@ func NewInlineResponse20056WithDefaults() *InlineResponse20056 {
 	return &this
 }
 
-// GetCatalog returns the Catalog field value
-func (o *InlineResponse20056) GetCatalog() InlineResponse20056Catalog {
-	if o == nil {
-		var ret InlineResponse20056Catalog
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
+func (o *InlineResponse20056) GetHasMore() bool {
+	if o == nil || o.HasMore == nil {
+		var ret bool
 		return ret
 	}
-
-	return o.Catalog
+	return *o.HasMore
 }
 
-// GetCatalogOk returns a tuple with the Catalog field value
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20056) GetCatalogOk() (*InlineResponse20056Catalog, bool) {
-	if o == nil {
+func (o *InlineResponse20056) GetHasMoreOk() (*bool, bool) {
+	if o == nil || o.HasMore == nil {
 		return nil, false
 	}
-	return &o.Catalog, true
+	return o.HasMore, true
 }
 
-// SetCatalog sets field value
-func (o *InlineResponse20056) SetCatalog(v InlineResponse20056Catalog) {
-	o.Catalog = v
-}
-
-// GetLoyalty returns the Loyalty field value if set, zero value otherwise.
-func (o *InlineResponse20056) GetLoyalty() map[string]LoyaltyBalances {
-	if o == nil || o.Loyalty == nil {
-		var ret map[string]LoyaltyBalances
-		return ret
-	}
-	return *o.Loyalty
-}
-
-// GetLoyaltyOk returns a tuple with the Loyalty field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20056) GetLoyaltyOk() (*map[string]LoyaltyBalances, bool) {
-	if o == nil || o.Loyalty == nil {
-		return nil, false
-	}
-	return o.Loyalty, true
-}
-
-// HasLoyalty returns a boolean if a field has been set.
-func (o *InlineResponse20056) HasLoyalty() bool {
-	if o != nil && o.Loyalty != nil {
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20056) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLoyalty gets a reference to the given map[string]LoyaltyBalances and assigns it to the Loyalty field.
-func (o *InlineResponse20056) SetLoyalty(v map[string]LoyaltyBalances) {
-	o.Loyalty = &v
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+func (o *InlineResponse20056) SetHasMore(v bool) {
+	o.HasMore = &v
+}
+
+// GetData returns the Data field value
+func (o *InlineResponse20056) GetData() []AchievementV2 {
+	if o == nil {
+		var ret []AchievementV2
+		return ret
+	}
+
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20056) GetDataOk() (*[]AchievementV2, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value
+func (o *InlineResponse20056) SetData(v []AchievementV2) {
+	o.Data = v
 }
 
 func (o InlineResponse20056) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["catalog"] = o.Catalog
+	if o.HasMore != nil {
+		toSerialize["hasMore"] = o.HasMore
 	}
-	if o.Loyalty != nil {
-		toSerialize["loyalty"] = o.Loyalty
+	if true {
+		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)
 }

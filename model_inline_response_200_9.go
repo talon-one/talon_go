@@ -15,17 +15,17 @@ import (
 
 // InlineResponse2009 struct for InlineResponse2009
 type InlineResponse2009 struct {
-	TotalResultSize int64      `json:"totalResultSize"`
-	Data            []Campaign `json:"data"`
+	HasMore bool                              `json:"hasMore"`
+	Data    []LedgerPointsEntryIntegrationAPI `json:"data"`
 }
 
 // NewInlineResponse2009 instantiates a new InlineResponse2009 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse2009(totalResultSize int64, data []Campaign) *InlineResponse2009 {
+func BuildInlineResponse2009(hasMore bool, data []LedgerPointsEntryIntegrationAPI) *InlineResponse2009 {
 	this := InlineResponse2009{}
-	this.TotalResultSize = totalResultSize
+	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,34 @@ func NewInlineResponse2009WithDefaults() *InlineResponse2009 {
 	return &this
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2009) GetTotalResultSize() int64 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse2009) GetHasMore() bool {
 	if o == nil {
-		var ret int64
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2009) GetTotalResultSizeOk() (*int64, bool) {
+func (o *InlineResponse2009) GetHasMoreOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TotalResultSize, true
+	return &o.HasMore, true
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2009) SetTotalResultSize(v int64) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse2009) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2009) GetData() []Campaign {
+func (o *InlineResponse2009) GetData() []LedgerPointsEntryIntegrationAPI {
 	if o == nil {
-		var ret []Campaign
+		var ret []LedgerPointsEntryIntegrationAPI
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse2009) GetData() []Campaign {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2009) GetDataOk() (*[]Campaign, bool) {
+func (o *InlineResponse2009) GetDataOk() (*[]LedgerPointsEntryIntegrationAPI, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +82,14 @@ func (o *InlineResponse2009) GetDataOk() (*[]Campaign, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse2009) SetData(v []Campaign) {
+func (o *InlineResponse2009) SetData(v []LedgerPointsEntryIntegrationAPI) {
 	o.Data = v
 }
 
 func (o InlineResponse2009) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["totalResultSize"] = o.TotalResultSize
+		toSerialize["hasMore"] = o.HasMore
 	}
 	if true {
 		toSerialize["data"] = o.Data

@@ -15,17 +15,15 @@ import (
 
 // InlineResponse20021 struct for InlineResponse20021
 type InlineResponse20021 struct {
-	// true means there is more data in the source collection to request..
-	HasMore bool `json:"hasMore"`
-	// List of loyalty card transaction logs.
-	Data []CardLedgerTransactionLogEntry `json:"data"`
+	HasMore bool                        `json:"hasMore"`
+	Data    []LoyaltyProgramTransaction `json:"data"`
 }
 
 // NewInlineResponse20021 instantiates a new InlineResponse20021 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20021(hasMore bool, data []CardLedgerTransactionLogEntry) *InlineResponse20021 {
+func BuildInlineResponse20021(hasMore bool, data []LoyaltyProgramTransaction) *InlineResponse20021 {
 	this := InlineResponse20021{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -65,9 +63,9 @@ func (o *InlineResponse20021) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20021) GetData() []CardLedgerTransactionLogEntry {
+func (o *InlineResponse20021) GetData() []LoyaltyProgramTransaction {
 	if o == nil {
-		var ret []CardLedgerTransactionLogEntry
+		var ret []LoyaltyProgramTransaction
 		return ret
 	}
 
@@ -76,7 +74,7 @@ func (o *InlineResponse20021) GetData() []CardLedgerTransactionLogEntry {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20021) GetDataOk() (*[]CardLedgerTransactionLogEntry, bool) {
+func (o *InlineResponse20021) GetDataOk() (*[]LoyaltyProgramTransaction, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +82,7 @@ func (o *InlineResponse20021) GetDataOk() (*[]CardLedgerTransactionLogEntry, boo
 }
 
 // SetData sets field value
-func (o *InlineResponse20021) SetData(v []CardLedgerTransactionLogEntry) {
+func (o *InlineResponse20021) SetData(v []LoyaltyProgramTransaction) {
 	o.Data = v
 }
 

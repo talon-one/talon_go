@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// RolesV2Thresholds struct for RolesV2Thresholds
+// RolesV2Thresholds Support user limits for actions that require admin approval within the given loyalty program.
 type RolesV2Thresholds struct {
 	// Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
 	LoyaltyProgramId *int64 `json:"loyaltyProgramId,omitempty"`

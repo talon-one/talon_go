@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **OldTier** | Pointer to **string** | The name of the customer&#39;s previous tier. | 
 **TierExpirationDate** | Pointer to [**time.Time**](time.Time.md) | The exact date and time the tier expires. | [optional] 
 **TimestampOfTierChange** | Pointer to [**time.Time**](time.Time.md) | The exact date and time the tier was changed. | 
+**Source** | Pointer to **string** | The source of the tier change, whether from a points change or boost.  | [optional] [default to "points"]
+**Reason** | Pointer to **string** | The reason for the tier change.  | [optional] 
 
 ## Methods
 
@@ -201,6 +203,56 @@ and a boolean to check if the value has been set.
 
 SetTimestampOfTierChange sets TimestampOfTierChange field to given value.
 
+
+### GetSource
+
+`func (o *TierDowngradeData) GetSource() string`
+
+GetSource returns the Source field if non-nil, zero value otherwise.
+
+### GetSourceOk
+
+`func (o *TierDowngradeData) GetSourceOk() (*string, bool)`
+
+GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSource
+
+`func (o *TierDowngradeData) SetSource(v string)`
+
+SetSource sets Source field to given value.
+
+### HasSource
+
+`func (o *TierDowngradeData) HasSource() bool`
+
+HasSource returns a boolean if a field has been set.
+
+### GetReason
+
+`func (o *TierDowngradeData) GetReason() string`
+
+GetReason returns the Reason field if non-nil, zero value otherwise.
+
+### GetReasonOk
+
+`func (o *TierDowngradeData) GetReasonOk() (*string, bool)`
+
+GetReasonOk returns a tuple with the Reason field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetReason
+
+`func (o *TierDowngradeData) SetReason(v string)`
+
+SetReason sets Reason field to given value.
+
+### HasReason
+
+`func (o *TierDowngradeData) HasReason() bool`
+
+HasReason returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

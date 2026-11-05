@@ -20,12 +20,10 @@ type AwardGiveawayBlock struct {
 	// Identifies the block variant and determines which additional properties are present in it.
 	Type string `json:"type"`
 	// Semantic labels attached to this block.
-	Tags         *[]string             `json:"tags,omitempty"`
-	GiveawayPool GiveawayPoolReference `json:"giveawayPool"`
+	Tags         *[]string                  `json:"tags,omitempty"`
+	GiveawayPool GiveawayPoolBlockReference `json:"giveawayPool"`
 	// The customer profile to award the giveaway to. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
 	Profile string `json:"profile"`
-	// Blocks evaluated when this block fails or returns false.
-	OnFailure *[]map[string]interface{} `json:"onFailure,omitempty"`
 	// Named error handlers evaluated when a specific error occurs.
 	OnError *map[string][]map[string]interface{} `json:"onError,omitempty"`
 }
@@ -34,7 +32,7 @@ type AwardGiveawayBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildAwardGiveawayBlock(type_ string, giveawayPool GiveawayPoolReference, profile string) *AwardGiveawayBlock {
+func BuildAwardGiveawayBlock(type_ string, giveawayPool GiveawayPoolBlockReference, profile string) *AwardGiveawayBlock {
 	this := AwardGiveawayBlock{}
 	this.Type = type_
 	this.GiveawayPool = giveawayPool
@@ -139,9 +137,9 @@ func (o *AwardGiveawayBlock) SetTags(v []string) {
 }
 
 // GetGiveawayPool returns the GiveawayPool field value
-func (o *AwardGiveawayBlock) GetGiveawayPool() GiveawayPoolReference {
+func (o *AwardGiveawayBlock) GetGiveawayPool() GiveawayPoolBlockReference {
 	if o == nil {
-		var ret GiveawayPoolReference
+		var ret GiveawayPoolBlockReference
 		return ret
 	}
 
@@ -150,7 +148,7 @@ func (o *AwardGiveawayBlock) GetGiveawayPool() GiveawayPoolReference {
 
 // GetGiveawayPoolOk returns a tuple with the GiveawayPool field value
 // and a boolean to check if the value has been set.
-func (o *AwardGiveawayBlock) GetGiveawayPoolOk() (*GiveawayPoolReference, bool) {
+func (o *AwardGiveawayBlock) GetGiveawayPoolOk() (*GiveawayPoolBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -158,7 +156,7 @@ func (o *AwardGiveawayBlock) GetGiveawayPoolOk() (*GiveawayPoolReference, bool) 
 }
 
 // SetGiveawayPool sets field value
-func (o *AwardGiveawayBlock) SetGiveawayPool(v GiveawayPoolReference) {
+func (o *AwardGiveawayBlock) SetGiveawayPool(v GiveawayPoolBlockReference) {
 	o.GiveawayPool = v
 }
 
@@ -184,38 +182,6 @@ func (o *AwardGiveawayBlock) GetProfileOk() (*string, bool) {
 // SetProfile sets field value
 func (o *AwardGiveawayBlock) SetProfile(v string) {
 	o.Profile = v
-}
-
-// GetOnFailure returns the OnFailure field value if set, zero value otherwise.
-func (o *AwardGiveawayBlock) GetOnFailure() []map[string]interface{} {
-	if o == nil || o.OnFailure == nil {
-		var ret []map[string]interface{}
-		return ret
-	}
-	return *o.OnFailure
-}
-
-// GetOnFailureOk returns a tuple with the OnFailure field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AwardGiveawayBlock) GetOnFailureOk() (*[]map[string]interface{}, bool) {
-	if o == nil || o.OnFailure == nil {
-		return nil, false
-	}
-	return o.OnFailure, true
-}
-
-// HasOnFailure returns a boolean if a field has been set.
-func (o *AwardGiveawayBlock) HasOnFailure() bool {
-	if o != nil && o.OnFailure != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOnFailure gets a reference to the given []map[string]interface{} and assigns it to the OnFailure field.
-func (o *AwardGiveawayBlock) SetOnFailure(v []map[string]interface{}) {
-	o.OnFailure = &v
 }
 
 // GetOnError returns the OnError field value if set, zero value otherwise.
@@ -266,9 +232,6 @@ func (o AwardGiveawayBlock) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["profile"] = o.Profile
-	}
-	if o.OnFailure != nil {
-		toSerialize["onFailure"] = o.OnFailure
 	}
 	if o.OnError != nil {
 		toSerialize["onError"] = o.OnError

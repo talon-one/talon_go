@@ -28,7 +28,7 @@ type NewPriceAdjustment struct {
 	EffectiveFrom *time.Time `json:"effectiveFrom,omitempty"`
 	// The date and time until which the price adjustment is effective.
 	EffectiveUntil *time.Time `json:"effectiveUntil,omitempty"`
-	// Identifier of the context of this price adjustment (e.g. summer sale).
+	// Identifier of the context of this price adjustment (the sales event, e.g. \"Summer Sale\").
 	ContextId *string `json:"contextId,omitempty"`
 }
 

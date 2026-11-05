@@ -29,6 +29,8 @@ type IntegrationEventV2Request struct {
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 	// Identifiers of the loyalty cards used during this event.
 	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
+	// The integration IDs of the unlocked rewards that can be used in this event.
+	RewardIntegrationIds *[]string `json:"rewardIntegrationIds,omitempty"`
 }
 
 // NewIntegrationEventV2Request instantiates a new IntegrationEventV2Request object
@@ -265,6 +267,38 @@ func (o *IntegrationEventV2Request) SetLoyaltyCards(v []string) {
 	o.LoyaltyCards = &v
 }
 
+// GetRewardIntegrationIds returns the RewardIntegrationIds field value if set, zero value otherwise.
+func (o *IntegrationEventV2Request) GetRewardIntegrationIds() []string {
+	if o == nil || o.RewardIntegrationIds == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RewardIntegrationIds
+}
+
+// GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationEventV2Request) GetRewardIntegrationIdsOk() (*[]string, bool) {
+	if o == nil || o.RewardIntegrationIds == nil {
+		return nil, false
+	}
+	return o.RewardIntegrationIds, true
+}
+
+// HasRewardIntegrationIds returns a boolean if a field has been set.
+func (o *IntegrationEventV2Request) HasRewardIntegrationIds() bool {
+	if o != nil && o.RewardIntegrationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardIntegrationIds gets a reference to the given []string and assigns it to the RewardIntegrationIds field.
+func (o *IntegrationEventV2Request) SetRewardIntegrationIds(v []string) {
+	o.RewardIntegrationIds = &v
+}
+
 func (o IntegrationEventV2Request) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ProfileId != nil {
@@ -287,6 +321,9 @@ func (o IntegrationEventV2Request) MarshalJSON() ([]byte, error) {
 	}
 	if o.LoyaltyCards != nil {
 		toSerialize["loyaltyCards"] = o.LoyaltyCards
+	}
+	if o.RewardIntegrationIds != nil {
+		toSerialize["rewardIntegrationIds"] = o.RewardIntegrationIds
 	}
 	return json.Marshal(toSerialize)
 }

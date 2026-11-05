@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **PromotionRules** | Pointer to [**[]RuleV2**](RuleV2.md) | Set of promotion rules. | 
 **StrikethroughRules** | Pointer to [**[]RuleV2**](RuleV2.md) | Set of strikethrough rules. | [optional] 
 **Selectors** | Pointer to [**[]Selector**](Selector.md) | Variable bindings of type selector. | [optional] [readonly] 
-**Bundles** | Pointer to [**[]Bundle**](Bundle.md) | Variable bindings of type bundle. | [optional] [readonly] 
-**Parameters** | Pointer to [**[]TemplateParameter**](TemplateParameter.md) | Variable bindings of type template parameter. | [optional] [readonly] 
+**Bundles** | Pointer to [**[]Bundle**](Bundle.md) | Variable bindings of type bundle. | [optional] 
+**Parameters** | Pointer to [**[]TemplateParameter**](TemplateParameter.md) | Variable bindings of type template parameter. | [optional] 
 
 ## Methods
 

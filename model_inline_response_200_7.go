@@ -15,15 +15,15 @@ import (
 
 // InlineResponse2007 struct for InlineResponse2007
 type InlineResponse2007 struct {
-	HasMore bool                              `json:"hasMore"`
-	Data    []LedgerPointsEntryIntegrationAPI `json:"data"`
+	HasMore bool                                     `json:"hasMore"`
+	Data    []LedgerTransactionLogEntryManagementAPI `json:"data"`
 }
 
 // NewInlineResponse2007 instantiates a new InlineResponse2007 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse2007(hasMore bool, data []LedgerPointsEntryIntegrationAPI) *InlineResponse2007 {
+func BuildInlineResponse2007(hasMore bool, data []LedgerTransactionLogEntryManagementAPI) *InlineResponse2007 {
 	this := InlineResponse2007{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse2007) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2007) GetData() []LedgerPointsEntryIntegrationAPI {
+func (o *InlineResponse2007) GetData() []LedgerTransactionLogEntryManagementAPI {
 	if o == nil {
-		var ret []LedgerPointsEntryIntegrationAPI
+		var ret []LedgerTransactionLogEntryManagementAPI
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse2007) GetData() []LedgerPointsEntryIntegrationAPI {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2007) GetDataOk() (*[]LedgerPointsEntryIntegrationAPI, bool) {
+func (o *InlineResponse2007) GetDataOk() (*[]LedgerTransactionLogEntryManagementAPI, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse2007) GetDataOk() (*[]LedgerPointsEntryIntegrationAPI, bo
 }
 
 // SetData sets field value
-func (o *InlineResponse2007) SetData(v []LedgerPointsEntryIntegrationAPI) {
+func (o *InlineResponse2007) SetData(v []LedgerTransactionLogEntryManagementAPI) {
 	o.Data = v
 }
 

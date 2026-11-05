@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LoyaltyProgramTransaction**](LoyaltyProgramTransaction.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | 
+**Data** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20019
 
-`func NewInlineResponse20019(hasMore bool, data []LoyaltyProgramTransaction, ) *InlineResponse20019`
+`func NewInlineResponse20019(totalResultSize int64, data []LoyaltyProgram, ) *InlineResponse20019`
 
 NewInlineResponse20019 instantiates a new InlineResponse20019 object
 This constructor will assign default values to properties that have it defined,
@@ -26,42 +26,42 @@ NewInlineResponse20019WithDefaults instantiates a new InlineResponse20019 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHasMore
+### GetTotalResultSize
 
-`func (o *InlineResponse20019) GetHasMore() bool`
+`func (o *InlineResponse20019) GetTotalResultSize() int64`
 
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetHasMoreOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20019) GetHasMoreOk() (*bool, bool)`
+`func (o *InlineResponse20019) GetTotalResultSizeOk() (*int64, bool)`
 
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHasMore
+### SetTotalResultSize
 
-`func (o *InlineResponse20019) SetHasMore(v bool)`
+`func (o *InlineResponse20019) SetTotalResultSize(v int64)`
 
-SetHasMore sets HasMore field to given value.
+SetTotalResultSize sets TotalResultSize field to given value.
 
 
 ### GetData
 
-`func (o *InlineResponse20019) GetData() []LoyaltyProgramTransaction`
+`func (o *InlineResponse20019) GetData() []LoyaltyProgram`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyProgramTransaction, bool)`
+`func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyProgram, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20019) SetData(v []LoyaltyProgramTransaction)`
+`func (o *InlineResponse20019) SetData(v []LoyaltyProgram)`
 
 SetData sets Data field to given value.
 

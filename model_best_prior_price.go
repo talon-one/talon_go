@@ -22,7 +22,7 @@ type BestPriorPrice struct {
 	Sku string `json:"sku"`
 	// The date and time when the price was observed.
 	ObservedAt time.Time `json:"observedAt"`
-	// The identifiers of the relevant context at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
+	// The identifiers of the relevant context (the sales events, e.g. \"Spring Sale\", \"Summer Sale\") at the time the price was observed. Includes the context IDs of any price adjustments and of the campaigns that influenced the final price.
 	ContextIds []string `json:"contextIds"`
 	// Price of the item.
 	Price    float32                `json:"price"`

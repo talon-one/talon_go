@@ -20,8 +20,8 @@ type TriggerCustomEffectBlock struct {
 	// Identifies the block variant and determines which additional properties are present in it.
 	Type string `json:"type"`
 	// Semantic labels attached to this block.
-	Tags         *[]string                            `json:"tags,omitempty"`
-	CustomEffect TriggerCustomEffectBlockCustomEffect `json:"customEffect"`
+	Tags         *[]string                  `json:"tags,omitempty"`
+	CustomEffect CustomEffectBlockReference `json:"customEffect"`
 	// The custom effect's parameters, in configured order. Each property name is the parameter's title, lowercased with spaces replaced by underscores (for example, `Order ID` becomes `order_id`); falls back to `param_0`, `param_1`, and so on if a title is blank or collides with another.
 	Params *map[string]interface{}        `json:"params,omitempty"`
 	Target TriggerCustomEffectBlockTarget `json:"target"`
@@ -33,7 +33,7 @@ type TriggerCustomEffectBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildTriggerCustomEffectBlock(type_ string, customEffect TriggerCustomEffectBlockCustomEffect, target TriggerCustomEffectBlockTarget) *TriggerCustomEffectBlock {
+func BuildTriggerCustomEffectBlock(type_ string, customEffect CustomEffectBlockReference, target TriggerCustomEffectBlockTarget) *TriggerCustomEffectBlock {
 	this := TriggerCustomEffectBlock{}
 	this.Type = type_
 	this.CustomEffect = customEffect
@@ -138,9 +138,9 @@ func (o *TriggerCustomEffectBlock) SetTags(v []string) {
 }
 
 // GetCustomEffect returns the CustomEffect field value
-func (o *TriggerCustomEffectBlock) GetCustomEffect() TriggerCustomEffectBlockCustomEffect {
+func (o *TriggerCustomEffectBlock) GetCustomEffect() CustomEffectBlockReference {
 	if o == nil {
-		var ret TriggerCustomEffectBlockCustomEffect
+		var ret CustomEffectBlockReference
 		return ret
 	}
 
@@ -149,7 +149,7 @@ func (o *TriggerCustomEffectBlock) GetCustomEffect() TriggerCustomEffectBlockCus
 
 // GetCustomEffectOk returns a tuple with the CustomEffect field value
 // and a boolean to check if the value has been set.
-func (o *TriggerCustomEffectBlock) GetCustomEffectOk() (*TriggerCustomEffectBlockCustomEffect, bool) {
+func (o *TriggerCustomEffectBlock) GetCustomEffectOk() (*CustomEffectBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *TriggerCustomEffectBlock) GetCustomEffectOk() (*TriggerCustomEffectBloc
 }
 
 // SetCustomEffect sets field value
-func (o *TriggerCustomEffectBlock) SetCustomEffect(v TriggerCustomEffectBlockCustomEffect) {
+func (o *TriggerCustomEffectBlock) SetCustomEffect(v CustomEffectBlockReference) {
 	o.CustomEffect = v
 }
 

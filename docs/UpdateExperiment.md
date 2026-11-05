@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsVariantAssignmentExternal** | Pointer to **bool** | The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.  | 
+**IsVariantAssignmentExternal** | Pointer to **bool** | Deprecated and ignored. The assignment type is set at experiment creation and cannot be changed. Use &#x60;assignmentType&#x60; when creating an experiment instead.  | [optional] 
 **Campaign** | Pointer to [**UpdateCampaign**](UpdateCampaign.md) |  | 
 **GoalType** | Pointer to **string** | The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used. If omitted, the current value is preserved.  | [optional] 
 **GoalDescription** | Pointer to **string** | A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal. If omitted, the current value is preserved.  | [optional] 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateExperiment
 
-`func NewUpdateExperiment(isVariantAssignmentExternal bool, campaign UpdateCampaign, ) *UpdateExperiment`
+`func NewUpdateExperiment(campaign UpdateCampaign, ) *UpdateExperiment`
 
 NewUpdateExperiment instantiates a new UpdateExperiment object
 This constructor will assign default values to properties that have it defined,
@@ -47,6 +47,11 @@ and a boolean to check if the value has been set.
 
 SetIsVariantAssignmentExternal sets IsVariantAssignmentExternal field to given value.
 
+### HasIsVariantAssignmentExternal
+
+`func (o *UpdateExperiment) HasIsVariantAssignmentExternal() bool`
+
+HasIsVariantAssignmentExternal returns a boolean if a field has been set.
 
 ### GetCampaign
 

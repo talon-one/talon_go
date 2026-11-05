@@ -9,15 +9,14 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **NotificationType** | Pointer to **string** | The type of notification to display. | 
 **Title** | Pointer to **string** | The notification heading shown to the customer. | 
-**Body** | Pointer to **string** | The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time. | [optional] 
-**OnFailure** | Pointer to **[]map[string]interface{}** | Blocks evaluated when this block fails or returns false. | [optional] 
+**Body** | Pointer to **string** | The notification body text. Supports template placeholders (e.g. \&quot;{{$Session.Total}}\&quot;) evaluated at rule execution time. | 
 **OnError** | Pointer to [**map[string][]map[string]interface{}**](array.md) | Named error handlers evaluated when a specific error occurs. | [optional] 
 
 ## Methods
 
 ### NewShowNotificationBlock
 
-`func NewShowNotificationBlock(type_ string, notificationType string, title string, ) *ShowNotificationBlock`
+`func NewShowNotificationBlock(type_ string, notificationType string, title string, body string, ) *ShowNotificationBlock`
 
 NewShowNotificationBlock instantiates a new ShowNotificationBlock object
 This constructor will assign default values to properties that have it defined,
@@ -161,36 +160,6 @@ and a boolean to check if the value has been set.
 
 SetBody sets Body field to given value.
 
-### HasBody
-
-`func (o *ShowNotificationBlock) HasBody() bool`
-
-HasBody returns a boolean if a field has been set.
-
-### GetOnFailure
-
-`func (o *ShowNotificationBlock) GetOnFailure() []map[string]interface{}`
-
-GetOnFailure returns the OnFailure field if non-nil, zero value otherwise.
-
-### GetOnFailureOk
-
-`func (o *ShowNotificationBlock) GetOnFailureOk() (*[]map[string]interface{}, bool)`
-
-GetOnFailureOk returns a tuple with the OnFailure field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnFailure
-
-`func (o *ShowNotificationBlock) SetOnFailure(v []map[string]interface{})`
-
-SetOnFailure sets OnFailure field to given value.
-
-### HasOnFailure
-
-`func (o *ShowNotificationBlock) HasOnFailure() bool`
-
-HasOnFailure returns a boolean if a field has been set.
 
 ### GetOnError
 

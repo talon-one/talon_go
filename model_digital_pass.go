@@ -19,7 +19,7 @@ type DigitalPass struct {
 	PassId string `json:"passId"`
 	// The ID of the digital pass template used to generate the pass.
 	PassTemplateId string `json:"passTemplateId"`
-	// The status of the digital pass.
+	// The status of the digital pass.  `created` indicates that the pass was generated and is ready to be added to a wallet.
 	Status string `json:"status"`
 	// The URL you can use to let the customer add the digital pass to their wallet.
 	PassUrl string `json:"passUrl"`

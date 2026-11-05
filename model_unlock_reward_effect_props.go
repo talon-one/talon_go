@@ -27,7 +27,7 @@ type UnlockRewardEffectProps struct {
 	// The time the reward was unlocked.
 	UnlockedAt time.Time `json:"unlockedAt"`
 	// The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
-	CardIdentifier *string `json:"cardIdentifier,omitempty"`
+	LoyaltyCardId *string `json:"loyaltyCardId,omitempty"`
 }
 
 // NewUnlockRewardEffectProps instantiates a new UnlockRewardEffectProps object
@@ -172,36 +172,36 @@ func (o *UnlockRewardEffectProps) SetUnlockedAt(v time.Time) {
 	o.UnlockedAt = v
 }
 
-// GetCardIdentifier returns the CardIdentifier field value if set, zero value otherwise.
-func (o *UnlockRewardEffectProps) GetCardIdentifier() string {
-	if o == nil || o.CardIdentifier == nil {
+// GetLoyaltyCardId returns the LoyaltyCardId field value if set, zero value otherwise.
+func (o *UnlockRewardEffectProps) GetLoyaltyCardId() string {
+	if o == nil || o.LoyaltyCardId == nil {
 		var ret string
 		return ret
 	}
-	return *o.CardIdentifier
+	return *o.LoyaltyCardId
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
+// GetLoyaltyCardIdOk returns a tuple with the LoyaltyCardId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UnlockRewardEffectProps) GetCardIdentifierOk() (*string, bool) {
-	if o == nil || o.CardIdentifier == nil {
+func (o *UnlockRewardEffectProps) GetLoyaltyCardIdOk() (*string, bool) {
+	if o == nil || o.LoyaltyCardId == nil {
 		return nil, false
 	}
-	return o.CardIdentifier, true
+	return o.LoyaltyCardId, true
 }
 
-// HasCardIdentifier returns a boolean if a field has been set.
-func (o *UnlockRewardEffectProps) HasCardIdentifier() bool {
-	if o != nil && o.CardIdentifier != nil {
+// HasLoyaltyCardId returns a boolean if a field has been set.
+func (o *UnlockRewardEffectProps) HasLoyaltyCardId() bool {
+	if o != nil && o.LoyaltyCardId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
-func (o *UnlockRewardEffectProps) SetCardIdentifier(v string) {
-	o.CardIdentifier = &v
+// SetLoyaltyCardId gets a reference to the given string and assigns it to the LoyaltyCardId field.
+func (o *UnlockRewardEffectProps) SetLoyaltyCardId(v string) {
+	o.LoyaltyCardId = &v
 }
 
 func (o UnlockRewardEffectProps) MarshalJSON() ([]byte, error) {
@@ -221,8 +221,8 @@ func (o UnlockRewardEffectProps) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["unlockedAt"] = o.UnlockedAt
 	}
-	if o.CardIdentifier != nil {
-		toSerialize["cardIdentifier"] = o.CardIdentifier
+	if o.LoyaltyCardId != nil {
+		toSerialize["loyaltyCardId"] = o.LoyaltyCardId
 	}
 	return json.Marshal(toSerialize)
 }

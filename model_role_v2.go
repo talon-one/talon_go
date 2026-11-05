@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-// RoleV2 struct for RoleV2
+// RoleV2 Represents a role with its associated permissions and members.
 type RoleV2 struct {
 	// The internal ID of this entity.
 	Id int64 `json:"id"`
@@ -31,7 +31,7 @@ type RoleV2 struct {
 	Permissions *RoleV2Permissions `json:"permissions,omitempty"`
 	// A list of user IDs the role is assigned to.
 	Members *[]int64 `json:"members,omitempty"`
-	// Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. The 'isReadonly' property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
+	// Identifies if the role is read-only. For read-only roles, you can only assign or unassign users. You cannot edit any other properties, such as the name, description, or permissions. This property cannot be set for new or existing roles. It is reserved for predefined roles, such as the Talon.One support role.
 	IsReadonly *bool `json:"isReadonly,omitempty"`
 }
 

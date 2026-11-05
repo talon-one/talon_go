@@ -15,17 +15,17 @@ import (
 
 // InlineResponse20043 struct for InlineResponse20043
 type InlineResponse20043 struct {
-	TotalResultSize int64       `json:"totalResultSize"`
-	Data            []EventType `json:"data"`
+	HasMore         *bool         `json:"hasMore,omitempty"`
+	TotalResultSize *int64        `json:"totalResultSize,omitempty"`
+	Data            []CatalogItem `json:"data"`
 }
 
 // NewInlineResponse20043 instantiates a new InlineResponse20043 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20043(totalResultSize int64, data []EventType) *InlineResponse20043 {
+func BuildInlineResponse20043(data []CatalogItem) *InlineResponse20043 {
 	this := InlineResponse20043{}
-	this.TotalResultSize = totalResultSize
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,74 @@ func NewInlineResponse20043WithDefaults() *InlineResponse20043 {
 	return &this
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
+func (o *InlineResponse20043) GetHasMore() bool {
+	if o == nil || o.HasMore == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasMore
+}
+
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse20043) GetHasMoreOk() (*bool, bool) {
+	if o == nil || o.HasMore == nil {
+		return nil, false
+	}
+	return o.HasMore, true
+}
+
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse20043) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+func (o *InlineResponse20043) SetHasMore(v bool) {
+	o.HasMore = &v
+}
+
+// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
 func (o *InlineResponse20043) GetTotalResultSize() int64 {
-	if o == nil {
+	if o == nil || o.TotalResultSize == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.TotalResultSize
+	return *o.TotalResultSize
 }
 
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InlineResponse20043) GetTotalResultSizeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil || o.TotalResultSize == nil {
 		return nil, false
 	}
-	return &o.TotalResultSize, true
+	return o.TotalResultSize, true
 }
 
-// SetTotalResultSize sets field value
+// HasTotalResultSize returns a boolean if a field has been set.
+func (o *InlineResponse20043) HasTotalResultSize() bool {
+	if o != nil && o.TotalResultSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
 func (o *InlineResponse20043) SetTotalResultSize(v int64) {
-	o.TotalResultSize = v
+	o.TotalResultSize = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20043) GetData() []EventType {
+func (o *InlineResponse20043) GetData() []CatalogItem {
 	if o == nil {
-		var ret []EventType
+		var ret []CatalogItem
 		return ret
 	}
 
@@ -74,7 +114,7 @@ func (o *InlineResponse20043) GetData() []EventType {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20043) GetDataOk() (*[]EventType, bool) {
+func (o *InlineResponse20043) GetDataOk() (*[]CatalogItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,13 +122,16 @@ func (o *InlineResponse20043) GetDataOk() (*[]EventType, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20043) SetData(v []EventType) {
+func (o *InlineResponse20043) SetData(v []CatalogItem) {
 	o.Data = v
 }
 
 func (o InlineResponse20043) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.HasMore != nil {
+		toSerialize["hasMore"] = o.HasMore
+	}
+	if o.TotalResultSize != nil {
 		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {

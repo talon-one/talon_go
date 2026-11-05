@@ -15,18 +15,15 @@ import (
 
 // InlineResponse20054 struct for InlineResponse20054
 type InlineResponse20054 struct {
-	HasMore bool                                `json:"hasMore"`
-	Data    []AchievementProgressWithDefinition `json:"data"`
+	Data *[]SummaryCampaignStoreBudget `json:"data,omitempty"`
 }
 
 // NewInlineResponse20054 instantiates a new InlineResponse20054 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20054(hasMore bool, data []AchievementProgressWithDefinition) *InlineResponse20054 {
+func BuildInlineResponse20054() *InlineResponse20054 {
 	this := InlineResponse20054{}
-	this.HasMore = hasMore
-	this.Data = data
 	return &this
 }
 
@@ -38,60 +35,41 @@ func NewInlineResponse20054WithDefaults() *InlineResponse20054 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20054) GetHasMore() bool {
-	if o == nil {
-		var ret bool
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *InlineResponse20054) GetData() []SummaryCampaignStoreBudget {
+	if o == nil || o.Data == nil {
+		var ret []SummaryCampaignStoreBudget
 		return ret
 	}
-
-	return o.HasMore
+	return *o.Data
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20054) GetHasMoreOk() (*bool, bool) {
-	if o == nil {
+func (o *InlineResponse20054) GetDataOk() (*[]SummaryCampaignStoreBudget, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return o.Data, true
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20054) SetHasMore(v bool) {
-	o.HasMore = v
-}
-
-// GetData returns the Data field value
-func (o *InlineResponse20054) GetData() []AchievementProgressWithDefinition {
-	if o == nil {
-		var ret []AchievementProgressWithDefinition
-		return ret
+// HasData returns a boolean if a field has been set.
+func (o *InlineResponse20054) HasData() bool {
+	if o != nil && o.Data != nil {
+		return true
 	}
 
-	return o.Data
+	return false
 }
 
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20054) GetDataOk() (*[]AchievementProgressWithDefinition, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value
-func (o *InlineResponse20054) SetData(v []AchievementProgressWithDefinition) {
-	o.Data = v
+// SetData gets a reference to the given []SummaryCampaignStoreBudget and assigns it to the Data field.
+func (o *InlineResponse20054) SetData(v []SummaryCampaignStoreBudget) {
+	o.Data = &v
 }
 
 func (o InlineResponse20054) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["hasMore"] = o.HasMore
-	}
-	if true {
+	if o.Data != nil {
 		toSerialize["data"] = o.Data
 	}
 	return json.Marshal(toSerialize)

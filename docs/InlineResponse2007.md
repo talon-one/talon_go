@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]LedgerPointsEntryIntegrationAPI**](LedgerPointsEntryIntegrationAPI.md) |  | 
+**Data** | Pointer to [**[]LedgerTransactionLogEntryManagementAPI**](LedgerTransactionLogEntryManagementAPI.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse2007
 
-`func NewInlineResponse2007(hasMore bool, data []LedgerPointsEntryIntegrationAPI, ) *InlineResponse2007`
+`func NewInlineResponse2007(hasMore bool, data []LedgerTransactionLogEntryManagementAPI, ) *InlineResponse2007`
 
 NewInlineResponse2007 instantiates a new InlineResponse2007 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse2007) GetData() []LedgerPointsEntryIntegrationAPI`
+`func (o *InlineResponse2007) GetData() []LedgerTransactionLogEntryManagementAPI`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse2007) GetDataOk() (*[]LedgerPointsEntryIntegrationAPI, bool)`
+`func (o *InlineResponse2007) GetDataOk() (*[]LedgerTransactionLogEntryManagementAPI, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse2007) SetData(v []LedgerPointsEntryIntegrationAPI)`
+`func (o *InlineResponse2007) SetData(v []LedgerTransactionLogEntryManagementAPI)`
 
 SetData sets Data field to given value.
 

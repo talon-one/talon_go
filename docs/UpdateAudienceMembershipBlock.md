@@ -9,13 +9,13 @@ Name | Type | Description | Notes
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **Operator** | Pointer to **string** | The action to perform. | 
 **Profile** | Pointer to **string** | The customer profile to add or remove from the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. | 
-**Audience** | Pointer to [**UpdateAudienceMembershipBlockAudience**](UpdateAudienceMembershipBlock_audience.md) |  | 
+**Audience** | Pointer to [**AudienceBlockReference**](AudienceBlockReference.md) |  | 
 
 ## Methods
 
 ### NewUpdateAudienceMembershipBlock
 
-`func NewUpdateAudienceMembershipBlock(type_ string, operator string, profile string, audience UpdateAudienceMembershipBlockAudience, ) *UpdateAudienceMembershipBlock`
+`func NewUpdateAudienceMembershipBlock(type_ string, operator string, profile string, audience AudienceBlockReference, ) *UpdateAudienceMembershipBlock`
 
 NewUpdateAudienceMembershipBlock instantiates a new UpdateAudienceMembershipBlock object
 This constructor will assign default values to properties that have it defined,
@@ -142,20 +142,20 @@ SetProfile sets Profile field to given value.
 
 ### GetAudience
 
-`func (o *UpdateAudienceMembershipBlock) GetAudience() UpdateAudienceMembershipBlockAudience`
+`func (o *UpdateAudienceMembershipBlock) GetAudience() AudienceBlockReference`
 
 GetAudience returns the Audience field if non-nil, zero value otherwise.
 
 ### GetAudienceOk
 
-`func (o *UpdateAudienceMembershipBlock) GetAudienceOk() (*UpdateAudienceMembershipBlockAudience, bool)`
+`func (o *UpdateAudienceMembershipBlock) GetAudienceOk() (*AudienceBlockReference, bool)`
 
 GetAudienceOk returns a tuple with the Audience field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAudience
 
-`func (o *UpdateAudienceMembershipBlock) SetAudience(v UpdateAudienceMembershipBlockAudience)`
+`func (o *UpdateAudienceMembershipBlock) SetAudience(v AudienceBlockReference)`
 
 SetAudience sets Audience field to given value.
 

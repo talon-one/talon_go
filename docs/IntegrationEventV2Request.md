@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Arbitrary additional JSON properties associated with the event. They must be created in the Campaign Manager before setting them with this property. See [creating custom attributes](https://docs.talon.one/docs/product/account/dev-tools/managing-attributes#creating-a-custom-attribute). | [optional] 
 **ResponseContent** | Pointer to **[]string** | Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.  | [optional] 
 **LoyaltyCards** | Pointer to **[]string** | Identifiers of the loyalty cards used during this event. | [optional] 
+**RewardIntegrationIds** | Pointer to **[]string** | The integration IDs of the unlocked rewards that can be used in this event.  | [optional] 
 
 ## Methods
 
@@ -200,6 +201,31 @@ SetLoyaltyCards sets LoyaltyCards field to given value.
 `func (o *IntegrationEventV2Request) HasLoyaltyCards() bool`
 
 HasLoyaltyCards returns a boolean if a field has been set.
+
+### GetRewardIntegrationIds
+
+`func (o *IntegrationEventV2Request) GetRewardIntegrationIds() []string`
+
+GetRewardIntegrationIds returns the RewardIntegrationIds field if non-nil, zero value otherwise.
+
+### GetRewardIntegrationIdsOk
+
+`func (o *IntegrationEventV2Request) GetRewardIntegrationIdsOk() (*[]string, bool)`
+
+GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardIntegrationIds
+
+`func (o *IntegrationEventV2Request) SetRewardIntegrationIds(v []string)`
+
+SetRewardIntegrationIds sets RewardIntegrationIds field to given value.
+
+### HasRewardIntegrationIds
+
+`func (o *IntegrationEventV2Request) HasRewardIntegrationIds() bool`
+
+HasRewardIntegrationIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

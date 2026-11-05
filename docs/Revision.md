@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **int64** | Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints. | 
-**ActivateAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**AccountId** | Pointer to **int64** |  | 
-**ApplicationId** | Pointer to **int64** |  | 
-**CampaignId** | Pointer to **int64** |  | 
-**Created** | Pointer to [**time.Time**](time.Time.md) |  | 
-**CreatedBy** | Pointer to **int64** |  | 
-**ActivatedAt** | Pointer to [**time.Time**](time.Time.md) |  | [optional] 
-**ActivatedBy** | Pointer to **int64** |  | [optional] 
+**ActivateAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the revision will be activated. | [optional] 
+**AccountId** | Pointer to **int64** | The ID of the account that owns this entity. | 
+**ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
+**CampaignId** | Pointer to **int64** | The ID of the campaign that the revision was created from. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the revision was created. | 
+**CreatedBy** | Pointer to **int64** | The ID of the user who created this revision. | 
+**ActivatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when this revision was activated. | [optional] 
+**ActivatedBy** | Pointer to **int64** | The ID of the user who activated this revision. | [optional] 
 **CurrentVersion** | Pointer to [**RevisionVersion**](RevisionVersion.md) |  | [optional] 
 
 ## Methods

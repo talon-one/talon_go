@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**CreateAdditionalCost**](ManagementApi.md#CreateAdditionalCost) | **Post** /v1/additional_costs | Create additional cost
 [**CreateAttribute**](ManagementApi.md#CreateAttribute) | **Post** /v1/attributes | Create custom attribute
 [**CreateBatchLoyaltyCards**](ManagementApi.md#CreateBatchLoyaltyCards) | **Post** /v1/loyalty_programs/{loyaltyProgramId}/cards/batch | Create loyalty cards
+[**CreateCampaign**](ManagementApi.md#CreateCampaign) | **Post** /v1/applications/{applicationId}/campaigns | Create campaign
 [**CreateCampaignFromTemplate**](ManagementApi.md#CreateCampaignFromTemplate) | **Post** /v1/applications/{applicationId}/create_campaign_from_template | Create campaign from campaign template
 [**CreateCampaignStoreBudget**](ManagementApi.md#CreateCampaignStoreBudget) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/stores/budgets | Create campaign store budget
 [**CreateCollection**](ManagementApi.md#CreateCollection) | **Post** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | Create campaign-level collection
@@ -105,6 +106,7 @@ Method | HTTP request | Description
 [**GetCollection**](ManagementApi.md#GetCollection) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections/{collectionId} | Get campaign-level collection
 [**GetCollectionItems**](ManagementApi.md#GetCollectionItems) | **Get** /v1/collections/{collectionId}/items | Get collection items
 [**GetCouponsWithoutTotalCount**](ManagementApi.md#GetCouponsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/coupons/no_total | List coupons
+[**GetCurrentRevision**](ManagementApi.md#GetCurrentRevision) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/revisions/current | Get current revision version
 [**GetCustomerActivityReport**](ManagementApi.md#GetCustomerActivityReport) | **Get** /v1/applications/{applicationId}/customer_activity_reports/{customerId} | Get customer&#39;s activity report
 [**GetCustomerActivityReportsWithoutTotalCount**](ManagementApi.md#GetCustomerActivityReportsWithoutTotalCount) | **Get** /v1/applications/{applicationId}/customer_activity_reports/no_total | Get Activity Reports for Application Customers
 [**GetCustomerAnalytics**](ManagementApi.md#GetCustomerAnalytics) | **Get** /v1/applications/{applicationId}/customers/{customerId}/analytics | Get customer&#39;s analytics report
@@ -116,6 +118,7 @@ Method | HTTP request | Description
 [**GetEventTypes**](ManagementApi.md#GetEventTypes) | **Get** /v1/event_types | List event types
 [**GetExperiment**](ManagementApi.md#GetExperiment) | **Get** /v1/applications/{applicationId}/experiments/{experimentId} | Get experiment in Application
 [**GetExports**](ManagementApi.md#GetExports) | **Get** /v1/exports | Get exports
+[**GetGiveawaysPool**](ManagementApi.md#GetGiveawaysPool) | **Get** /v1/giveaways/pools/{poolId} | Get giveaway pool
 [**GetLoyaltyCard**](ManagementApi.md#GetLoyaltyCard) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId} | Get loyalty card
 [**GetLoyaltyCardTransactionLogs**](ManagementApi.md#GetLoyaltyCardTransactionLogs) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards/{loyaltyCardId}/logs | List card&#39;s transactions (Management API)
 [**GetLoyaltyCards**](ManagementApi.md#GetLoyaltyCards) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/cards | List loyalty cards
@@ -161,6 +164,7 @@ Method | HTTP request | Description
 [**ListCollections**](ManagementApi.md#ListCollections) | **Get** /v1/applications/{applicationId}/campaigns/{campaignId}/collections | List collections in campaign
 [**ListCollectionsInApplication**](ManagementApi.md#ListCollectionsInApplication) | **Get** /v1/applications/{applicationId}/collections | List collections in Application
 [**ListExperiments**](ManagementApi.md#ListExperiments) | **Get** /v1/applications/{applicationId}/experiments | List experiments
+[**ListGiveawaysPool**](ManagementApi.md#ListGiveawaysPool) | **Get** /v1/giveaways/pools | List giveaway pools
 [**ListStores**](ManagementApi.md#ListStores) | **Get** /v1/applications/{applicationId}/stores | List stores
 [**OktaEventHandlerChallenge**](ManagementApi.md#OktaEventHandlerChallenge) | **Get** /v1/provisioning/okta | Validate Okta API ownership
 [**PriceHistory**](ManagementApi.md#PriceHistory) | **Post** /v1/applications/{applicationId}/price_history | Get summary of price history
@@ -310,7 +314,7 @@ Name | Type | Description  | Notes
 
 ## CopyCampaignToApplications
 
-> InlineResponse2009 CopyCampaignToApplications(ctx, applicationId, campaignId, body)
+> InlineResponse20011 CopyCampaignToApplications(ctx, applicationId, campaignId, body)
 
 Copy the campaign into the specified Application
 
@@ -328,7 +332,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -551,6 +555,41 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateCampaign
+
+> Campaign CreateCampaign(ctx, applicationId, body)
+
+Create campaign
+
+Create a campaign. A campaign is part of an Application and contains a set of rules. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**body** | [**NewCampaign**](NewCampaign.md)| body | 
+
+### Return type
+
+[**Campaign**](Campaign.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateCampaignFromTemplate
 
 > CreateTemplateCampaignResponse CreateCampaignFromTemplate(ctx, applicationId, body)
@@ -660,7 +699,7 @@ Name | Type | Description  | Notes
 
 ## CreateCoupons
 
-> InlineResponse20011 CreateCoupons(ctx, applicationId, campaignId, body, optional)
+> InlineResponse20013 CreateCoupons(ctx, applicationId, campaignId, body, optional)
 
 Create coupons
 
@@ -691,7 +730,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
@@ -781,7 +820,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponsForMultipleRecipients
 
-> InlineResponse20011 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId, body, optional)
+> InlineResponse20013 CreateCouponsForMultipleRecipients(ctx, applicationId, campaignId, body, optional)
 
 Create coupons for multiple recipients
 
@@ -812,7 +851,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20011**](InlineResponse20011.md)
+[**InlineResponse20013**](InlineResponse20013.md)
 
 ### Authorization
 
@@ -936,7 +975,7 @@ Name | Type | Description  | Notes
 
 Create ruleset (V2)
 
-Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only `group` and `passthrough` blocks are currently writable, with optional `onFailure` blocks. A payload containing any other block type is rejected. Each rule's `blocks` array may contain at most one block.
+Create a ruleset from promotion and strikethrough rules in the V2 JSON block format. A ruleset is a revision of all the rules of a campaign.  Only the first block of a rule can be a condition. Every other block must be an effect.
 
 ### Required Parameters
 
@@ -2202,7 +2241,7 @@ Name | Type | Description  | Notes
 
 Export triggered effects
 
-Download a CSV file containing the triggered effects that match the given attributes.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. 
+Download a CSV file containing the triggered effects that match the given attributes.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `applicationid`: The ID of the Application. - `campaignid`: The ID of the campaign. - `couponid`: The ID of the coupon, when applicable to the effect. - `created`: The timestamp of the effect. - `event_type`: The name of the event. See the [docs](https://docs.talon.one/docs/dev/concepts/entities/events). - `eventid`: The internal ID of the effect. - `name`: The effect name. See the [docs](https://docs.talon.one/docs/dev/integration-api/api-effects). - `profileintegrationid`: The ID of the customer profile, when applicable. - `props`: The [properties](https://docs.talon.one/docs/dev/integration-api/api-effects) of the effect. - `ruleindex`: The index of the rule. - `rulesetid`: The ID of the rule set. - `sessionid`: The internal ID of the session that triggered the effect. - `profileid`: The internal ID of the customer profile. - `sessionintegrationid`: The integration ID of the session. - `total_revenue`: The total revenue. - `store_integration_id`: The integration ID of the store. You choose this ID when you create a store. - `reward_id`: The ID of the reward whose rule generated this effect, when applicable. - `reward_integration_id`: The integration ID of the specific customer reward whose usage produced this effect, when applicable. 
 
 ### Required Parameters
 
@@ -2296,7 +2335,7 @@ Name | Type | Description  | Notes
 
 Export customer loyalty balances
 
-Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. 
+Download a CSV file containing the balance of each customer in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file contains the following columns:  - `loyaltyProgramID`: The ID of the loyalty program. - `loyaltySubledger`: The name of the subledger, when applicable. - `profileIntegrationID`: The integration ID of the customer profile. - `currentBalance`: The current point balance. - `pendingBalance`: The number of pending points. - `expiredBalance`: The number of expired points. - `spentBalance`: The number of spent points. - `currentTier`: The tier that the customer is in at the time of the export. - `negativeBalance`: The number of negative points. Only contains a value when requested via `balances` and the program uses negative points. 
 
 ### Required Parameters
 
@@ -2317,6 +2356,7 @@ Name | Type | Description  | Notes
 
  **endDate** | **optional.**| Used to return expired, active, and pending loyalty balances before this timestamp. You can enter any past, present, or future timestamp value.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered. &gt; - This parameter does not affect the &#x60;currentTier&#x60; field in the CSV file, which shows the customer&#39;s tier at the time of export.  | 
  **balances** | **optional.**| Filters which balance fields are included in the CSV export. &#x60;currentBalance&#x60; is always returned.  By default, all balance fields are included. When this parameter is provided, only the listed fields contain values and the rest are returned empty.  Accepted values: - &#x60;currentBalance&#x60; - &#x60;pendingBalance&#x60; - &#x60;expiredBalance&#x60; - &#x60;spentBalance&#x60; - &#x60;negativeBalance&#x60;  Multiple values must be provided as a comma-separated list.  | 
+ **subledgerIds** | [**optional.Interface of []string**](string.md)| Filters the results to specific subledgers.  **Note:** - When this parameter is not provided, the export includes all subledgers   and main ledger data for the specified loyalty program.  | 
 
 ### Return type
 
@@ -2388,7 +2428,7 @@ Name | Type | Description  | Notes
 
 Export card's ledger log
 
-Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files). 
+Download a CSV file containing a loyalty card ledger log of the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `cardidentifier`: The identifier of the loyalty card. - `applicationid`: The ID of the Application. - `sessionid`: The ID of the session. - `customersessionid`: The integration ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the points. - `expirydate`: The expiration date of the points. - `id`: The ID of the transaction. - `created`: The timestamp of the transaction creation. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. 
 
 ### Required Parameters
 
@@ -2521,7 +2561,7 @@ Name | Type | Description  | Notes
 
 Export customer's transaction logs
 
-Download a CSV file containing a customer's transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. 
+Download a CSV file containing a customer's transaction logs in the loyalty program.  > [!tip] If the exported CSV file is too large to view, you can > [split it into multiple files](https://www.google.com/search?q=split+CSV+into+multiple+files).  The generated file can contain the following columns:  - `customerprofileid`: The ID of the profile. - `customersessionid`: The ID of the customer session. - `rulesetid`: The ID of the rule set. - `rulename`: The name of the rule. - `programid`: The ID of the loyalty program. - `type`: The transaction type, such as `addition` or `subtraction`. - `name`: The reason for the transaction. - `subledgerid`: The ID of the subledger, when applicable. - `startdate`: The start date of the program. - `expirydate`: The expiration date of the program. - `id`: The ID of the transaction. - `created`: The timestamp of the creation of the loyalty program. - `amount`: The number of points in that transaction. - `archived`: Whether the session related to the transaction is archived. - `campaignid`: The ID of the campaign. - `flags`: The flags of the transaction, when applicable. The `createsNegativeBalance` flag indicates whether the transaction results in a negative balance. - `transactionUUID`: Unique identifier of the transaction in the UUID format. - `validityDuration`: The duration for which the points remain active, relative to the activation date. - `remainingAmount`: The current unused amount of points, when applicable to `addition` transactions. 
 
 ### Required Parameters
 
@@ -2665,7 +2705,7 @@ Name | Type | Description  | Notes
 
 ## GenerateCouponRejections
 
-> InlineResponse20055 GenerateCouponRejections(ctx, sessionIntegrationId, optional)
+> InlineResponse20058 GenerateCouponRejections(ctx, sessionIntegrationId, optional)
 
 Summarize coupon redemption failures in session
 
@@ -2694,7 +2734,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20055**](InlineResponse20055.md)
+[**InlineResponse20058**](InlineResponse20058.md)
 
 ### Authorization
 
@@ -2712,7 +2752,7 @@ Name | Type | Description  | Notes
 
 ## GetAccessLogsWithoutTotalCount
 
-> InlineResponse20024 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
+> InlineResponse20027 GetAccessLogsWithoutTotalCount(ctx, applicationId, rangeStart, rangeEnd, optional)
 
 Get access logs for Application
 
@@ -2748,7 +2788,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20024**](InlineResponse20024.md)
+[**InlineResponse20027**](InlineResponse20027.md)
 
 ### Authorization
 
@@ -2972,7 +3012,7 @@ Name | Type | Description  | Notes
 
 ## GetAdditionalCosts
 
-> InlineResponse20041 GetAdditionalCosts(ctx, optional)
+> InlineResponse20044 GetAdditionalCosts(ctx, optional)
 
 List additional costs
 
@@ -2999,7 +3039,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20041**](InlineResponse20041.md)
+[**InlineResponse20044**](InlineResponse20044.md)
 
 ### Authorization
 
@@ -3156,7 +3196,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomerFriends
 
-> InlineResponse20038 GetApplicationCustomerFriends(ctx, applicationId, integrationId, optional)
+> InlineResponse20041 GetApplicationCustomerFriends(ctx, applicationId, integrationId, optional)
 
 List friends referred by customer profile
 
@@ -3188,7 +3228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20038**](InlineResponse20038.md)
+[**InlineResponse20041**](InlineResponse20041.md)
 
 ### Authorization
 
@@ -3206,7 +3246,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomers
 
-> InlineResponse20026 GetApplicationCustomers(ctx, applicationId, optional)
+> InlineResponse20029 GetApplicationCustomers(ctx, applicationId, optional)
 
 List application's customers
 
@@ -3233,10 +3273,11 @@ Name | Type | Description  | Notes
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | 
+ **withLoyaltyMemberships** | **optional.**| When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. | 
 
 ### Return type
 
-[**InlineResponse20026**](InlineResponse20026.md)
+[**InlineResponse20029**](InlineResponse20029.md)
 
 ### Authorization
 
@@ -3254,7 +3295,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationCustomersByAttributes
 
-> InlineResponse20027 GetApplicationCustomersByAttributes(ctx, applicationId, body, optional)
+> InlineResponse20030 GetApplicationCustomersByAttributes(ctx, applicationId, body, optional)
 
 List application customers matching the given attributes
 
@@ -3282,10 +3323,11 @@ Name | Type | Description  | Notes
  **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | 
+ **withLoyaltyMemberships** | **optional.**| When set to &#x60;true&#x60;, the &#x60;loyaltyProgramJoinDates&#x60; property returns the dates on which each customer joined the profile-based loyalty programs they are part of. This might decrease performance on large data sets. | 
 
 ### Return type
 
-[**InlineResponse20027**](InlineResponse20027.md)
+[**InlineResponse20030**](InlineResponse20030.md)
 
 ### Authorization
 
@@ -3303,7 +3345,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventTypes
 
-> InlineResponse20034 GetApplicationEventTypes(ctx, applicationId, optional)
+> InlineResponse20037 GetApplicationEventTypes(ctx, applicationId, optional)
 
 List Applications event types
 
@@ -3332,7 +3374,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20034**](InlineResponse20034.md)
+[**InlineResponse20037**](InlineResponse20037.md)
 
 ### Authorization
 
@@ -3350,7 +3392,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationEventsWithoutTotalCount
 
-> InlineResponse20033 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
+> InlineResponse20036 GetApplicationEventsWithoutTotalCount(ctx, applicationId, optional)
 
 List Applications events
 
@@ -3391,7 +3433,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20033**](InlineResponse20033.md)
+[**InlineResponse20036**](InlineResponse20036.md)
 
 ### Authorization
 
@@ -3444,7 +3486,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessions
 
-> InlineResponse20031 GetApplicationSessions(ctx, applicationId, optional)
+> InlineResponse20034 GetApplicationSessions(ctx, applicationId, optional)
 
 List Application sessions
 
@@ -3482,7 +3524,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20031**](InlineResponse20031.md)
+[**InlineResponse20034**](InlineResponse20034.md)
 
 ### Authorization
 
@@ -3500,7 +3542,7 @@ Name | Type | Description  | Notes
 
 ## GetApplicationSessionsByCustomerAttributes
 
-> InlineResponse20032 GetApplicationSessionsByCustomerAttributes(ctx, applicationId, body, optional)
+> InlineResponse20035 GetApplicationSessionsByCustomerAttributes(ctx, applicationId, body, optional)
 
 List Application sessions matching the given customer attributes
 
@@ -3531,7 +3573,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20032**](InlineResponse20032.md)
+[**InlineResponse20035**](InlineResponse20035.md)
 
 ### Authorization
 
@@ -3549,7 +3591,7 @@ Name | Type | Description  | Notes
 
 ## GetApplications
 
-> InlineResponse2008 GetApplications(ctx, optional)
+> InlineResponse20010 GetApplications(ctx, optional)
 
 List Applications
 
@@ -3576,7 +3618,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2008**](InlineResponse2008.md)
+[**InlineResponse20010**](InlineResponse20010.md)
 
 ### Authorization
 
@@ -3628,7 +3670,7 @@ Name | Type | Description  | Notes
 
 ## GetAttributes
 
-> InlineResponse20039 GetAttributes(ctx, optional)
+> InlineResponse20042 GetAttributes(ctx, optional)
 
 List custom attributes
 
@@ -3661,7 +3703,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20039**](InlineResponse20039.md)
+[**InlineResponse20042**](InlineResponse20042.md)
 
 ### Authorization
 
@@ -3679,7 +3721,7 @@ Name | Type | Description  | Notes
 
 ## GetAudienceMemberships
 
-> InlineResponse20037 GetAudienceMemberships(ctx, audienceId, optional)
+> InlineResponse20040 GetAudienceMemberships(ctx, audienceId, optional)
 
 List audience members
 
@@ -3709,7 +3751,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20037**](InlineResponse20037.md)
+[**InlineResponse20040**](InlineResponse20040.md)
 
 ### Authorization
 
@@ -3727,7 +3769,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiences
 
-> InlineResponse20035 GetAudiences(ctx, optional)
+> InlineResponse20038 GetAudiences(ctx, optional)
 
 List audiences
 
@@ -3755,7 +3797,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20035**](InlineResponse20035.md)
+[**InlineResponse20038**](InlineResponse20038.md)
 
 ### Authorization
 
@@ -3773,7 +3815,7 @@ Name | Type | Description  | Notes
 
 ## GetAudiencesAnalytics
 
-> InlineResponse20036 GetAudiencesAnalytics(ctx, audienceIds, optional)
+> InlineResponse20039 GetAudiencesAnalytics(ctx, audienceIds, optional)
 
 List audience analytics
 
@@ -3800,7 +3842,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20036**](InlineResponse20036.md)
+[**InlineResponse20039**](InlineResponse20039.md)
 
 ### Authorization
 
@@ -3853,7 +3895,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignAnalytics
 
-> InlineResponse20025 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
+> InlineResponse20028 GetCampaignAnalytics(ctx, applicationId, campaignId, rangeStart, rangeEnd, optional)
 
 Get analytics of campaigns
 
@@ -3886,7 +3928,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20025**](InlineResponse20025.md)
+[**InlineResponse20028**](InlineResponse20028.md)
 
 ### Authorization
 
@@ -3904,7 +3946,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignByAttributes
 
-> InlineResponse2009 GetCampaignByAttributes(ctx, applicationId, body, optional)
+> InlineResponse20011 GetCampaignByAttributes(ctx, applicationId, body, optional)
 
 List campaigns that match the given attributes
 
@@ -3936,7 +3978,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -3988,7 +4030,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignGroups
 
-> InlineResponse20014 GetCampaignGroups(ctx, optional)
+> InlineResponse20016 GetCampaignGroups(ctx, optional)
 
 List campaign access groups
 
@@ -4015,7 +4057,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20014**](InlineResponse20014.md)
+[**InlineResponse20016**](InlineResponse20016.md)
 
 ### Authorization
 
@@ -4033,7 +4075,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaignTemplates
 
-> InlineResponse20015 GetCampaignTemplates(ctx, optional)
+> InlineResponse20017 GetCampaignTemplates(ctx, optional)
 
 List campaign templates
 
@@ -4064,7 +4106,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20015**](InlineResponse20015.md)
+[**InlineResponse20017**](InlineResponse20017.md)
 
 ### Authorization
 
@@ -4082,7 +4124,7 @@ Name | Type | Description  | Notes
 
 ## GetCampaigns
 
-> InlineResponse2009 GetCampaigns(ctx, applicationId, optional)
+> InlineResponse20011 GetCampaigns(ctx, applicationId, optional)
 
 List campaigns
 
@@ -4123,7 +4165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2009**](InlineResponse2009.md)
+[**InlineResponse20011**](InlineResponse20011.md)
 
 ### Authorization
 
@@ -4141,7 +4183,7 @@ Name | Type | Description  | Notes
 
 ## GetChanges
 
-> InlineResponse20045 GetChanges(ctx, optional)
+> InlineResponse20048 GetChanges(ctx, optional)
 
 Get audit logs for an account
 
@@ -4176,7 +4218,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20045**](InlineResponse20045.md)
+[**InlineResponse20048**](InlineResponse20048.md)
 
 ### Authorization
 
@@ -4230,7 +4272,7 @@ Name | Type | Description  | Notes
 
 ## GetCollectionItems
 
-> InlineResponse20023 GetCollectionItems(ctx, collectionId, optional)
+> InlineResponse20026 GetCollectionItems(ctx, collectionId, optional)
 
 Get collection items
 
@@ -4258,7 +4300,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20023**](InlineResponse20023.md)
+[**InlineResponse20026**](InlineResponse20026.md)
 
 ### Authorization
 
@@ -4276,7 +4318,7 @@ Name | Type | Description  | Notes
 
 ## GetCouponsWithoutTotalCount
 
-> InlineResponse20012 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse20014 GetCouponsWithoutTotalCount(ctx, applicationId, campaignId, optional)
 
 List coupons
 
@@ -4322,7 +4364,42 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse20014**](InlineResponse20014.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCurrentRevision
+
+> Revision GetCurrentRevision(ctx, applicationId, campaignId)
+
+Get current revision version
+
+Get the current revision version for the given campaign.  **Note:** The [Campaign staging and revisions](https://docs.talon.one/docs/product/applications/manage-general-settings#campaign-staging-and-revisions) feature must be enabled for your Application. For more information, see [Revise campaigns](https://docs.talon.one/docs/product/campaigns/revise-campaigns). 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**applicationId** | **int64**| The ID of the Application. It is displayed in your Talon.One deployment URL. | 
+**campaignId** | **int64**| The ID of the campaign. It is displayed in your Talon.One deployment URL. | 
+
+### Return type
+
+[**Revision**](Revision.md)
 
 ### Authorization
 
@@ -4392,7 +4469,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerActivityReportsWithoutTotalCount
 
-> InlineResponse20030 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
+> InlineResponse20033 GetCustomerActivityReportsWithoutTotalCount(ctx, rangeStart, rangeEnd, applicationId, optional)
 
 Get Activity Reports for Application Customers
 
@@ -4429,7 +4506,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20030**](InlineResponse20030.md)
+[**InlineResponse20033**](InlineResponse20033.md)
 
 ### Authorization
 
@@ -4530,7 +4607,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfileAchievementProgress
 
-> InlineResponse20054 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
+> InlineResponse20057 GetCustomerProfileAchievementProgress(ctx, applicationId, integrationId, optional)
 
 List customer achievements
 
@@ -4562,7 +4639,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20054**](InlineResponse20054.md)
+[**InlineResponse20057**](InlineResponse20057.md)
 
 ### Authorization
 
@@ -4580,7 +4657,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomerProfiles
 
-> InlineResponse20029 GetCustomerProfiles(ctx, optional)
+> InlineResponse20032 GetCustomerProfiles(ctx, optional)
 
 List customer profiles
 
@@ -4607,7 +4684,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20029**](InlineResponse20029.md)
+[**InlineResponse20032**](InlineResponse20032.md)
 
 ### Authorization
 
@@ -4625,7 +4702,7 @@ Name | Type | Description  | Notes
 
 ## GetCustomersByAttributes
 
-> InlineResponse20028 GetCustomersByAttributes(ctx, body, optional)
+> InlineResponse20031 GetCustomersByAttributes(ctx, body, optional)
 
 List customer profiles matching the given attributes
 
@@ -4654,7 +4731,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20028**](InlineResponse20028.md)
+[**InlineResponse20031**](InlineResponse20031.md)
 
 ### Authorization
 
@@ -4672,7 +4749,7 @@ Name | Type | Description  | Notes
 
 ## GetDashboardStatistics
 
-> InlineResponse20018 GetDashboardStatistics(ctx, loyaltyProgramId, rangeStart, rangeEnd, optional)
+> InlineResponse20020 GetDashboardStatistics(ctx, loyaltyProgramId, rangeStart, rangeEnd, optional)
 
 Get statistics for loyalty dashboard
 
@@ -4703,7 +4780,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20018**](InlineResponse20018.md)
+[**InlineResponse20020**](InlineResponse20020.md)
 
 ### Authorization
 
@@ -4721,7 +4798,7 @@ Name | Type | Description  | Notes
 
 ## GetEventTypes
 
-> InlineResponse20043 GetEventTypes(ctx, optional)
+> InlineResponse20046 GetEventTypes(ctx, optional)
 
 List event types
 
@@ -4750,7 +4827,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20043**](InlineResponse20043.md)
+[**InlineResponse20046**](InlineResponse20046.md)
 
 ### Authorization
 
@@ -4803,7 +4880,7 @@ Name | Type | Description  | Notes
 
 ## GetExports
 
-> InlineResponse20046 GetExports(ctx, optional)
+> InlineResponse20049 GetExports(ctx, optional)
 
 Get exports
 
@@ -4832,7 +4909,41 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20046**](InlineResponse20046.md)
+[**InlineResponse20049**](InlineResponse20049.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGiveawaysPool
+
+> GiveawaysPool GetGiveawaysPool(ctx, poolId)
+
+Get giveaway pool
+
+Retrieve the details of a specified giveaway pool.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**poolId** | **int64**| The ID of the pool. You can find it in the Campaign Manager, in the **Incentives** section. | 
+
+### Return type
+
+[**GiveawaysPool**](GiveawaysPool.md)
 
 ### Authorization
 
@@ -4885,7 +4996,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactionLogs
 
-> InlineResponse20021 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId, optional)
+> InlineResponse20023 GetLoyaltyCardTransactionLogs(ctx, loyaltyProgramId, loyaltyCardId, optional)
 
 List card's transactions (Management API)
 
@@ -4920,7 +5031,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20021**](InlineResponse20021.md)
+[**InlineResponse20023**](InlineResponse20023.md)
 
 ### Authorization
 
@@ -4938,7 +5049,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCards
 
-> InlineResponse20020 GetLoyaltyCards(ctx, loyaltyProgramId, optional)
+> InlineResponse20022 GetLoyaltyCards(ctx, loyaltyProgramId, optional)
 
 List loyalty cards
 
@@ -4970,7 +5081,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20020**](InlineResponse20020.md)
+[**InlineResponse20022**](InlineResponse20022.md)
 
 ### Authorization
 
@@ -5107,11 +5218,11 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramProfileLedgerTransactions
 
-> InlineResponse2005 GetLoyaltyProgramProfileLedgerTransactions(ctx, loyaltyProgramId, integrationId, optional)
+> InlineResponse2007 GetLoyaltyProgramProfileLedgerTransactions(ctx, loyaltyProgramId, integrationId, optional)
 
 List customer's loyalty transactions (Management API)
 
-Retrieve paginated results of loyalty transaction logs for the given Integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger). If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer's loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
+Retrieve paginated results of loyalty transaction logs for the given integration ID in the specified loyalty program.  You can filter transactions by date or by ledger (subledger or main ledger), and include the UUIDs of transactions referenced by deductions. If no filters are applied, the last 50 loyalty transactions for the given integration ID are returned.  > [!note] **Note** > - For most use cases, especially real-time integrations, use the Integration API endpoint: >   [List customer's loyalty transactions](https://docs.talon.one/integration-api#tag/Loyalty/operation/getLoyaltyProgramProfileTransactions). > - To retrieve all loyalty program transaction logs in a given loyalty program, use the >   [List loyalty program transactions](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyProgramTransactions) endpoint. 
 
 ### Required Parameters
 
@@ -5140,11 +5251,12 @@ Name | Type | Description  | Notes
  **endDate** | **optional.**| Date and time by which results are returned. Results are filtered by transaction creation date.  &gt; [!note] **Note** &gt; - This must be an RFC3339 timestamp string. &gt; - You can include a time component in your string, for example, &#x60;T23:59:59&#x60; to specify the end of the day. The time zone setting &gt;   considered is &#x60;UTC&#x60;. If you do not include a time component, a default time value of &#x60;T00:00:00&#x60; (midnight) in &#x60;UTC&#x60; is considered.  | 
  **pageSize** | **optional.**| The number of items in the response. | [default to 50]
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
+ **includeReferences** | **optional.**| Whether to include the UUIDs of transactions referenced by deductions.  **Note:** Enabling this can decrease query performance, especially when no date filter is applied to a large transaction history.  | [default to false]
  **awaitsActivation** | **optional.**| If &#x60;true&#x60;: Filters results to include only point transactions that have action-based activation and have not expired.  If &#x60;false&#x60;: Returns a &#x60;400&#x60; response.  | 
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2007**](InlineResponse2007.md)
 
 ### Authorization
 
@@ -5162,7 +5274,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramTransactions
 
-> InlineResponse20019 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId, optional)
+> InlineResponse20021 GetLoyaltyProgramTransactions(ctx, loyaltyProgramId, optional)
 
 List loyalty program transactions
 
@@ -5197,7 +5309,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20019**](InlineResponse20019.md)
+[**InlineResponse20021**](InlineResponse20021.md)
 
 ### Authorization
 
@@ -5215,7 +5327,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyPrograms
 
-> InlineResponse20017 GetLoyaltyPrograms(ctx, )
+> InlineResponse20019 GetLoyaltyPrograms(ctx, )
 
 List loyalty programs
 
@@ -5227,7 +5339,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20017**](InlineResponse20017.md)
+[**InlineResponse20019**](InlineResponse20019.md)
 
 ### Authorization
 
@@ -5337,7 +5449,7 @@ Name | Type | Description  | Notes
 
 ## GetReferralsWithoutTotalCount
 
-> InlineResponse20013 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId, optional)
+> InlineResponse20015 GetReferralsWithoutTotalCount(ctx, applicationId, campaignId, optional)
 
 List referrals
 
@@ -5374,7 +5486,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20013**](InlineResponse20013.md)
+[**InlineResponse20015**](InlineResponse20015.md)
 
 ### Authorization
 
@@ -5498,7 +5610,7 @@ Name | Type | Description  | Notes
 
 ## GetRulesets
 
-> InlineResponse20010 GetRulesets(ctx, applicationId, campaignId, optional)
+> InlineResponse20012 GetRulesets(ctx, applicationId, campaignId, optional)
 
 List campaign rulesets
 
@@ -5529,7 +5641,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20010**](InlineResponse20010.md)
+[**InlineResponse20012**](InlineResponse20012.md)
 
 ### Authorization
 
@@ -5616,7 +5728,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> InlineResponse20044 GetUsers(ctx, optional)
+> InlineResponse20047 GetUsers(ctx, optional)
 
 List users in account
 
@@ -5643,7 +5755,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20044**](InlineResponse20044.md)
+[**InlineResponse20047**](InlineResponse20047.md)
 
 ### Authorization
 
@@ -5695,7 +5807,7 @@ Name | Type | Description  | Notes
 
 ## GetWebhooks
 
-> InlineResponse20042 GetWebhooks(ctx, optional)
+> InlineResponse20045 GetWebhooks(ctx, optional)
 
 List webhooks
 
@@ -5727,7 +5839,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20042**](InlineResponse20042.md)
+[**InlineResponse20045**](InlineResponse20045.md)
 
 ### Authorization
 
@@ -5768,7 +5880,7 @@ Optional parameters are passed through a pointer to a ImportAccountCollectionOpt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -5813,7 +5925,7 @@ Optional parameters are passed through a pointer to a ImportAllowedListOpts stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -5858,7 +5970,7 @@ Optional parameters are passed through a pointer to a ImportAudiencesMemberships
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -5907,7 +6019,7 @@ Name | Type | Description  | Notes
 
  **action** | **optional.**| The action that this budget is limiting. | 
  **period** | **optional.**| The period to which the limit applies.  **Note**: For budgets with no period, set this to &#x60;overall&#x60;.  | 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -5954,7 +6066,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6003,7 +6115,7 @@ Name | Type | Description  | Notes
 
 
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6051,7 +6163,7 @@ Name | Type | Description  | Notes
 
 
  **skipDuplicates** | **optional.**| An indicator of whether to skip duplicate coupon values instead of causing an error. Duplicate values are ignored when &#x60;skipDuplicates&#x3D;true&#x60;.  | 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6096,7 +6208,7 @@ Optional parameters are passed through a pointer to a ImportLoyaltyCardsOpts str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6141,7 +6253,7 @@ Optional parameters are passed through a pointer to a ImportLoyaltyCustomersTier
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6167,7 +6279,7 @@ Name | Type | Description  | Notes
 
 Import join dates for a loyalty program
 
-Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `newjoindate`: The new join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,newjoindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
+Upload a CSV file containing customer profile IDs and their join dates for the specified loyalty program. Send the file as multipart data.  > [!important] This endpoint only works with profile-based loyalty programs.  The CSV file **must** contain the following columns:  - `customerprofileid`: The integration ID of the customer profile whose join   date you want to update. - `joindate`: The join date for the customer in RFC3339 format. You   can use the time zone of your choice. It is converted to UTC internally   by Talon.One.  **Note**: - Customer profiles must already exist. If a referenced profile does not exist, the import fails with a `400` error. - If a join date already exists for a profile, the uploaded date replaces it. - If a join date is in the future at the time of the import, the import fails with a `400` error.  > [!note] We recommend limiting your file size to 500 MB.  ## Example  ```csv customerprofileid,joindate customer1,2024-03-21T07:32:14Z customer2,2025-04-16T21:12:37Z customer3,2026-05-03T11:47:01Z ``` 
 
 ### Required Parameters
 
@@ -6186,7 +6298,7 @@ Optional parameters are passed through a pointer to a ImportLoyaltyJoinDatesOpts
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6232,7 +6344,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **notificationsEnabled** | **optional.**| Indicates whether the points import triggers notifications about its effects. For example, a notification is sent if the import upgrades a customer&#39;s tier or offsets their negative points balance.  This parameter is optional and defaults to &#x60;true&#x60;.  | 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6277,7 +6389,7 @@ Optional parameters are passed through a pointer to a ImportPoolGiveawaysOpts st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6324,7 +6436,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **upFile** | **optional.Interface of *os.File****optional.**| The CSV file containing the data that is being imported. | 
+ **upFile** | **optional.**| The CSV file containing the data that is being imported. | 
 
 ### Return type
 
@@ -6380,7 +6492,7 @@ Name | Type | Description  | Notes
 
 ## ListAccountCollections
 
-> InlineResponse20022 ListAccountCollections(ctx, optional)
+> InlineResponse20025 ListAccountCollections(ctx, optional)
 
 List collections in account
 
@@ -6409,7 +6521,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**InlineResponse20025**](InlineResponse20025.md)
 
 ### Authorization
 
@@ -6427,7 +6539,7 @@ Name | Type | Description  | Notes
 
 ## ListAchievements
 
-> InlineResponse20052 ListAchievements(ctx, applicationId, campaignId, optional)
+> InlineResponse20055 ListAchievements(ctx, applicationId, campaignId, optional)
 
 List achievements
 
@@ -6458,7 +6570,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20052**](InlineResponse20052.md)
+[**InlineResponse20055**](InlineResponse20055.md)
 
 ### Authorization
 
@@ -6476,7 +6588,7 @@ Name | Type | Description  | Notes
 
 ## ListAchievementsV2
 
-> InlineResponse20053 ListAchievementsV2(ctx, optional)
+> InlineResponse20056 ListAchievementsV2(ctx, optional)
 
 List achievements
 
@@ -6498,6 +6610,7 @@ Optional parameters are passed through a pointer to a ListAchievementsV2Opts str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pageSize** | **optional.**| The number of items in the response. | [default to 50]
+ **campaignId** | [**optional.Interface of []int64**](int64.md)| Filter results by one or more campaign IDs.  To include multiple IDs, repeat the parameter for each one, for example,&#x60;?campaignId&#x3D;123&amp;campaignId&#x3D;456&#x60;. The response contains only achievements associated with the specified campaigns.  | 
  **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
  **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
  **title** | **optional.**| Filter by the display name of the achievement. | 
@@ -6505,7 +6618,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20053**](InlineResponse20053.md)
+[**InlineResponse20056**](InlineResponse20056.md)
 
 ### Authorization
 
@@ -6523,11 +6636,11 @@ Name | Type | Description  | Notes
 
 ## ListAllRolesV2
 
-> InlineResponse20047 ListAllRolesV2(ctx, )
+> InlineResponse20050 ListAllRolesV2(ctx, )
 
 List roles
 
-List all roles.
+List the roles defined in the deployment.  The roles returned depend on the role of the user calling this endpoint: - If the user has an admin role, all roles defined in the deployment are returned. - If the user does not have an admin role, only the roles currently assigned to this user are returned.  If your identity provider provisions roles through SCIM, any admin roles it defines are not included in this list.  To view the details of a specific role, use the [Get role](https://docs.talon.one/management-api#tag/Roles/operation/getRoleV2) endpoint. 
 
 ### Required Parameters
 
@@ -6535,7 +6648,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**InlineResponse20047**](InlineResponse20047.md)
+[**InlineResponse20050**](InlineResponse20050.md)
 
 ### Authorization
 
@@ -6553,7 +6666,7 @@ This endpoint does not need any parameter.
 
 ## ListApplicationCartItemFilters
 
-> InlineResponse20049 ListApplicationCartItemFilters(ctx, applicationId, optional)
+> InlineResponse20052 ListApplicationCartItemFilters(ctx, applicationId, optional)
 
 List Application cart item filters
 
@@ -6582,7 +6695,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20049**](InlineResponse20049.md)
+[**InlineResponse20052**](InlineResponse20052.md)
 
 ### Authorization
 
@@ -6600,7 +6713,7 @@ Name | Type | Description  | Notes
 
 ## ListCampaignStoreBudgetLimits
 
-> InlineResponse20050 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
+> InlineResponse20053 ListCampaignStoreBudgetLimits(ctx, applicationId, campaignId, optional)
 
 List campaign store budget limits
 
@@ -6630,7 +6743,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20050**](InlineResponse20050.md)
+[**InlineResponse20053**](InlineResponse20053.md)
 
 ### Authorization
 
@@ -6648,7 +6761,7 @@ Name | Type | Description  | Notes
 
 ## ListCatalogItems
 
-> InlineResponse20040 ListCatalogItems(ctx, catalogId, optional)
+> InlineResponse20043 ListCatalogItems(ctx, catalogId, optional)
 
 List items in a catalog
 
@@ -6679,7 +6792,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20040**](InlineResponse20040.md)
+[**InlineResponse20043**](InlineResponse20043.md)
 
 ### Authorization
 
@@ -6697,7 +6810,7 @@ Name | Type | Description  | Notes
 
 ## ListCollections
 
-> InlineResponse20022 ListCollections(ctx, applicationId, campaignId, optional)
+> InlineResponse20025 ListCollections(ctx, applicationId, campaignId, optional)
 
 List collections in campaign
 
@@ -6730,7 +6843,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**InlineResponse20025**](InlineResponse20025.md)
 
 ### Authorization
 
@@ -6748,7 +6861,7 @@ Name | Type | Description  | Notes
 
 ## ListCollectionsInApplication
 
-> InlineResponse20022 ListCollectionsInApplication(ctx, applicationId, optional)
+> InlineResponse20025 ListCollectionsInApplication(ctx, applicationId, optional)
 
 List collections in Application
 
@@ -6779,7 +6892,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20022**](InlineResponse20022.md)
+[**InlineResponse20025**](InlineResponse20025.md)
 
 ### Authorization
 
@@ -6797,7 +6910,7 @@ Name | Type | Description  | Notes
 
 ## ListExperiments
 
-> InlineResponse20016 ListExperiments(ctx, applicationId, optional)
+> InlineResponse20018 ListExperiments(ctx, applicationId, optional)
 
 List experiments
 
@@ -6826,7 +6939,54 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20016**](InlineResponse20016.md)
+[**InlineResponse20018**](InlineResponse20018.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1), [management_key](../README.md#management_key), [manager_auth](../README.md#manager_auth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListGiveawaysPool
+
+> InlineResponse20024 ListGiveawaysPool(ctx, optional)
+
+List giveaway pools
+
+Retrieve all the giveaway pools for an account.
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **optional** | ***ListGiveawaysPoolOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a ListGiveawaysPoolOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
+ **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
+ **sort** | **optional.**| The field by which results should be sorted. By default, results are sorted in ascending order. To sort them in descending order, prefix the field name with &#x60;-&#x60;.  **Note:** You may not be able to use all fields for sorting. This is due to performance limitations.  | 
+ **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.  - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query. - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | 
+ **applicationIds** | **optional.**| Filter by one or more Application IDs, separated by a comma. | 
+
+### Return type
+
+[**InlineResponse20024**](InlineResponse20024.md)
 
 ### Authorization
 
@@ -6844,7 +7004,7 @@ Name | Type | Description  | Notes
 
 ## ListStores
 
-> InlineResponse20048 ListStores(ctx, applicationId, optional)
+> InlineResponse20051 ListStores(ctx, applicationId, optional)
 
 List stores
 
@@ -6878,7 +7038,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20048**](InlineResponse20048.md)
+[**InlineResponse20051**](InlineResponse20051.md)
 
 ### Authorization
 
@@ -7525,7 +7685,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedApplicationWideWithoutTotalCount
 
-> InlineResponse20012 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, body, optional)
+> InlineResponse20014 SearchCouponsAdvancedApplicationWideWithoutTotalCount(ctx, applicationId, body, optional)
 
 List coupons that match the given attributes (without total count)
 
@@ -7566,7 +7726,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 
@@ -7584,7 +7744,7 @@ Name | Type | Description  | Notes
 
 ## SearchCouponsAdvancedWithoutTotalCount
 
-> InlineResponse20012 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, body, optional)
+> InlineResponse20014 SearchCouponsAdvancedWithoutTotalCount(ctx, applicationId, campaignId, body, optional)
 
 List coupons that match the given attributes in campaign (without total count)
 
@@ -7626,7 +7786,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20012**](InlineResponse20012.md)
+[**InlineResponse20014**](InlineResponse20014.md)
 
 ### Authorization
 
@@ -7644,7 +7804,7 @@ Name | Type | Description  | Notes
 
 ## SummarizeCampaignStoreBudget
 
-> InlineResponse20051 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
+> InlineResponse20054 SummarizeCampaignStoreBudget(ctx, applicationId, campaignId)
 
 Get summary of campaign store budgets
 
@@ -7661,7 +7821,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse20051**](InlineResponse20051.md)
+[**InlineResponse20054**](InlineResponse20054.md)
 
 ### Authorization
 

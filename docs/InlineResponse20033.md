@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]ApplicationEvent**](ApplicationEvent.md) |  | 
+**Data** | Pointer to [**[]CustomerActivityReport**](CustomerActivityReport.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20033
 
-`func NewInlineResponse20033(hasMore bool, data []ApplicationEvent, ) *InlineResponse20033`
+`func NewInlineResponse20033(hasMore bool, data []CustomerActivityReport, ) *InlineResponse20033`
 
 NewInlineResponse20033 instantiates a new InlineResponse20033 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetHasMore sets HasMore field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20033) GetData() []ApplicationEvent`
+`func (o *InlineResponse20033) GetData() []CustomerActivityReport`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20033) GetDataOk() (*[]ApplicationEvent, bool)`
+`func (o *InlineResponse20033) GetDataOk() (*[]CustomerActivityReport, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20033) SetData(v []ApplicationEvent)`
+`func (o *InlineResponse20033) SetData(v []CustomerActivityReport)`
 
 SetData sets Data field to given value.
 

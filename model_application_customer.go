@@ -40,6 +40,8 @@ type ApplicationCustomer struct {
 	Sandbox *bool `json:"sandbox,omitempty"`
 	// The Integration ID of the Customer Profile that referred this Customer in the Application.
 	AdvocateIntegrationId *string `json:"advocateIntegrationId,omitempty"`
+	// The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the `withLoyaltyMemberships` query parameter is `true`.
+	LoyaltyProgramJoinDates *[]LoyaltyMembership `json:"loyaltyProgramJoinDates,omitempty"`
 }
 
 // NewApplicationCustomer instantiates a new ApplicationCustomer object
@@ -387,6 +389,38 @@ func (o *ApplicationCustomer) SetAdvocateIntegrationId(v string) {
 	o.AdvocateIntegrationId = &v
 }
 
+// GetLoyaltyProgramJoinDates returns the LoyaltyProgramJoinDates field value if set, zero value otherwise.
+func (o *ApplicationCustomer) GetLoyaltyProgramJoinDates() []LoyaltyMembership {
+	if o == nil || o.LoyaltyProgramJoinDates == nil {
+		var ret []LoyaltyMembership
+		return ret
+	}
+	return *o.LoyaltyProgramJoinDates
+}
+
+// GetLoyaltyProgramJoinDatesOk returns a tuple with the LoyaltyProgramJoinDates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ApplicationCustomer) GetLoyaltyProgramJoinDatesOk() (*[]LoyaltyMembership, bool) {
+	if o == nil || o.LoyaltyProgramJoinDates == nil {
+		return nil, false
+	}
+	return o.LoyaltyProgramJoinDates, true
+}
+
+// HasLoyaltyProgramJoinDates returns a boolean if a field has been set.
+func (o *ApplicationCustomer) HasLoyaltyProgramJoinDates() bool {
+	if o != nil && o.LoyaltyProgramJoinDates != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLoyaltyProgramJoinDates gets a reference to the given []LoyaltyMembership and assigns it to the LoyaltyProgramJoinDates field.
+func (o *ApplicationCustomer) SetLoyaltyProgramJoinDates(v []LoyaltyMembership) {
+	o.LoyaltyProgramJoinDates = &v
+}
+
 func (o ApplicationCustomer) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -424,6 +458,9 @@ func (o ApplicationCustomer) MarshalJSON() ([]byte, error) {
 	}
 	if o.AdvocateIntegrationId != nil {
 		toSerialize["advocateIntegrationId"] = o.AdvocateIntegrationId
+	}
+	if o.LoyaltyProgramJoinDates != nil {
+		toSerialize["loyaltyProgramJoinDates"] = o.LoyaltyProgramJoinDates
 	}
 	return json.Marshal(toSerialize)
 }

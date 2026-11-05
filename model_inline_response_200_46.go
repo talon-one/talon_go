@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20046 struct for InlineResponse20046
 type InlineResponse20046 struct {
-	TotalResultSize int64    `json:"totalResultSize"`
-	Data            []Export `json:"data"`
+	TotalResultSize int64       `json:"totalResultSize"`
+	Data            []EventType `json:"data"`
 }
 
 // NewInlineResponse20046 instantiates a new InlineResponse20046 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20046(totalResultSize int64, data []Export) *InlineResponse20046 {
+func BuildInlineResponse20046(totalResultSize int64, data []EventType) *InlineResponse20046 {
 	this := InlineResponse20046{}
 	this.TotalResultSize = totalResultSize
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20046) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20046) GetData() []Export {
+func (o *InlineResponse20046) GetData() []EventType {
 	if o == nil {
-		var ret []Export
+		var ret []EventType
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20046) GetData() []Export {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20046) GetDataOk() (*[]Export, bool) {
+func (o *InlineResponse20046) GetDataOk() (*[]EventType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20046) GetDataOk() (*[]Export, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20046) SetData(v []Export) {
+func (o *InlineResponse20046) SetData(v []EventType) {
 	o.Data = v
 }
 

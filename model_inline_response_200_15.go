@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20015 struct for InlineResponse20015
 type InlineResponse20015 struct {
-	HasMore bool               `json:"hasMore"`
-	Data    []CampaignTemplate `json:"data"`
+	HasMore bool       `json:"hasMore"`
+	Data    []Referral `json:"data"`
 }
 
 // NewInlineResponse20015 instantiates a new InlineResponse20015 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20015(hasMore bool, data []CampaignTemplate) *InlineResponse20015 {
+func BuildInlineResponse20015(hasMore bool, data []Referral) *InlineResponse20015 {
 	this := InlineResponse20015{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20015) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20015) GetData() []CampaignTemplate {
+func (o *InlineResponse20015) GetData() []Referral {
 	if o == nil {
-		var ret []CampaignTemplate
+		var ret []Referral
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20015) GetData() []CampaignTemplate {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20015) GetDataOk() (*[]CampaignTemplate, bool) {
+func (o *InlineResponse20015) GetDataOk() (*[]Referral, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20015) GetDataOk() (*[]CampaignTemplate, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20015) SetData(v []CampaignTemplate) {
+func (o *InlineResponse20015) SetData(v []Referral) {
 	o.Data = v
 }
 

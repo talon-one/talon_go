@@ -23,7 +23,7 @@ type NewDigitalPass struct {
 	ProfileId string `json:"profileId"`
 	// The identifier of the loyalty card the pass is issued for.  **Note**: Only applicable for card-based loyalty programs.
 	LoyaltyCardId *string `json:"loyaltyCardId,omitempty"`
-	// The wallet platform the pass is generated for.
+	// The wallet platform the pass is generated for. Possible values:  - `apple`: The digital pass is generated for Apple Wallet. - `google`: The digital pass is generated for Google Wallet.
 	Platform string `json:"platform"`
 	// A map of placeholder values that you provide to fill in the pass template. These values are not validated against the template.
 	Attributes *map[string]string `json:"attributes,omitempty"`

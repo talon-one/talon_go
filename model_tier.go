@@ -26,6 +26,10 @@ type Tier struct {
 	ExpiryDate *time.Time `json:"expiryDate,omitempty"`
 	// The policy that defines how customer tiers are downgraded in the loyalty program after tier reevaluation.  - `one_down`: If the customer doesn't have enough points to stay in the current tier, they are downgraded by one tier.  - `balance_based`: The customer's tier is reevaluated based on the amount of active points they have at the moment.
 	DowngradePolicy *string `json:"downgradePolicy,omitempty"`
+	// Indicates whether the customer's current tier was determined based on their points balance or a temporary boost.  - `points`: The tier reflects the customer's current point balance. - `boost`: A temporary tier boost is in effect where the customer is in a higher tier than their points-based tier. The boost expires after a set duration and the customer returns to their points-based tier.
+	Source *string `json:"source,omitempty"`
+	// The reason for the tier assignment.
+	Reason *string `json:"reason,omitempty"`
 }
 
 // NewTier instantiates a new Tier object
@@ -36,6 +40,8 @@ func BuildTier(id int64, name string) *Tier {
 	this := Tier{}
 	this.Id = id
 	this.Name = name
+	var source string = "points"
+	this.Source = &source
 	return &this
 }
 
@@ -44,6 +50,8 @@ func BuildTier(id int64, name string) *Tier {
 // but it doesn't guarantee that properties required by API are set
 func NewTierWithDefaults() *Tier {
 	this := Tier{}
+	var source string = "points"
+	this.Source = &source
 	return &this
 }
 
@@ -191,6 +199,70 @@ func (o *Tier) SetDowngradePolicy(v string) {
 	o.DowngradePolicy = &v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *Tier) GetSource() string {
+	if o == nil || o.Source == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Tier) GetSourceOk() (*string, bool) {
+	if o == nil || o.Source == nil {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *Tier) HasSource() bool {
+	if o != nil && o.Source != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *Tier) SetSource(v string) {
+	o.Source = &v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise.
+func (o *Tier) GetReason() string {
+	if o == nil || o.Reason == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Tier) GetReasonOk() (*string, bool) {
+	if o == nil || o.Reason == nil {
+		return nil, false
+	}
+	return o.Reason, true
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *Tier) HasReason() bool {
+	if o != nil && o.Reason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given string and assigns it to the Reason field.
+func (o *Tier) SetReason(v string) {
+	o.Reason = &v
+}
+
 func (o Tier) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -207,6 +279,12 @@ func (o Tier) MarshalJSON() ([]byte, error) {
 	}
 	if o.DowngradePolicy != nil {
 		toSerialize["downgradePolicy"] = o.DowngradePolicy
+	}
+	if o.Source != nil {
+		toSerialize["source"] = o.Source
+	}
+	if o.Reason != nil {
+		toSerialize["reason"] = o.Reason
 	}
 	return json.Marshal(toSerialize)
 }

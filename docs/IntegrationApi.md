@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**GetCustomerAchievementHistory**](IntegrationApi.md#GetCustomerAchievementHistory) | **Get** /v1/customer_profiles/{integrationId}/achievements/{achievementId} | List customer&#39;s achievement history
 [**GetCustomerAchievements**](IntegrationApi.md#GetCustomerAchievements) | **Get** /v1/customer_profiles/{integrationId}/achievements | List customer&#39;s available achievements
 [**GetCustomerInventory**](IntegrationApi.md#GetCustomerInventory) | **Get** /v1/customer_profiles/{integrationId}/inventory | List customer data
+[**GetCustomerRewards**](IntegrationApi.md#GetCustomerRewards) | **Get** /v1/customer_profiles/{integrationId}/rewards | List customer&#39;s rewards
 [**GetCustomerSession**](IntegrationApi.md#GetCustomerSession) | **Get** /v2/customer_sessions/{customerSessionId} | Get customer session
 [**GetEventV3**](IntegrationApi.md#GetEventV3) | **Get** /v3/events/{integrationId} | Get advanced event
 [**GetLoyaltyBalances**](IntegrationApi.md#GetLoyaltyBalances) | **Get** /v1/loyalty_programs/{loyaltyProgramId}/profile/{integrationId}/balances | Get customer&#39;s loyalty balances
@@ -153,7 +154,7 @@ Name | Type | Description  | Notes
 
 ## CreateCouponReservation
 
-> Coupon CreateCouponReservation(ctx, couponValue, body)
+> CouponWithReservations CreateCouponReservation(ctx, couponValue, body)
 
 Create coupon reservation
 
@@ -170,7 +171,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Coupon**](Coupon.md)
+[**CouponWithReservations**](CouponWithReservations.md)
 
 ### Authorization
 
@@ -625,6 +626,54 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCustomerRewards
+
+> InlineResponse2004 GetCustomerRewards(ctx, integrationId, optional)
+
+List customer's rewards
+
+List the rewards held by a given customer profile. This includes shared rewards unlocked with a loyalty card linked to the customer. 
+
+### Required Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**integrationId** | **string**| The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.  | 
+ **optional** | ***GetCustomerRewardsOpts** | optional parameters | nil if no parameters
+
+### Optional Parameters
+
+Optional parameters are passed through a pointer to a GetCustomerRewardsOpts struct
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **status** | [**optional.Interface of []string**](string.md)| Filter results by one or more customer reward statuses.  **Note:** If no status is specified, rewards of all statuses are returned.  | 
+ **pageSize** | **optional.**| The number of items in the response. | [default to 1000]
+ **skip** | **optional.**| The number of items to skip when paging through large result sets. | 
+ **withTotalResultSize** | **optional.**| When this flag is set, the result includes the total number of results for this query. This might decrease performance on large data sets.   - When &#x60;true&#x60;: &#x60;totalResultSize&#x60; contains the total number of results for this query.  - When &#x60;false&#x60;: Only &#x60;hasMore&#x60; is returned, and it is set to &#x60;true&#x60; when there are more results than shown on the page.  | 
+
+### Return type
+
+[**InlineResponse2004**](InlineResponse2004.md)
+
+### Authorization
+
+[api_key_v1](../README.md#api_key_v1)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCustomerSession
 
 > IntegrationCustomerSessionResponse GetCustomerSession(ctx, customerSessionId)
@@ -793,7 +842,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardPoints
 
-> InlineResponse2006 GetLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId, optional)
+> InlineResponse2008 GetLoyaltyCardPoints(ctx, loyaltyProgramId, loyaltyCardId, optional)
 
 List card's unused loyalty points
 
@@ -828,7 +877,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2006**](InlineResponse2006.md)
+[**InlineResponse2008**](InlineResponse2008.md)
 
 ### Authorization
 
@@ -846,7 +895,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyCardTransactions
 
-> InlineResponse2004 GetLoyaltyCardTransactions(ctx, loyaltyProgramId, loyaltyCardId, optional)
+> InlineResponse2005 GetLoyaltyCardTransactions(ctx, loyaltyProgramId, loyaltyCardId, optional)
 
 List card's transactions
 
@@ -883,7 +932,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2004**](InlineResponse2004.md)
+[**InlineResponse2005**](InlineResponse2005.md)
 
 ### Authorization
 
@@ -901,7 +950,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramProfilePoints
 
-> InlineResponse2007 GetLoyaltyProgramProfilePoints(ctx, loyaltyProgramId, integrationId, optional)
+> InlineResponse2009 GetLoyaltyProgramProfilePoints(ctx, loyaltyProgramId, integrationId, optional)
 
 List customer's unused loyalty points
 
@@ -936,7 +985,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2007**](InlineResponse2007.md)
+[**InlineResponse2009**](InlineResponse2009.md)
 
 ### Authorization
 
@@ -954,7 +1003,7 @@ Name | Type | Description  | Notes
 
 ## GetLoyaltyProgramProfileTransactions
 
-> InlineResponse2005 GetLoyaltyProgramProfileTransactions(ctx, loyaltyProgramId, integrationId, optional)
+> InlineResponse2006 GetLoyaltyProgramProfileTransactions(ctx, loyaltyProgramId, integrationId, optional)
 
 List customer's loyalty transactions
 
@@ -991,7 +1040,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse2005**](InlineResponse2005.md)
+[**InlineResponse2006**](InlineResponse2006.md)
 
 ### Authorization
 
@@ -1094,7 +1143,7 @@ Name | Type | Description  | Notes
 
 ## IntegrationRewardsCatalog
 
-> InlineResponse20056 IntegrationRewardsCatalog(ctx, optional)
+> InlineResponse20059 IntegrationRewardsCatalog(ctx, optional)
 
 List rewards in the catalog
 
@@ -1122,12 +1171,12 @@ Name | Type | Description  | Notes
  **includeFree** | **optional.**| Whether to include rewards that have no &#x60;pointsRequired&#x60;. These rewards are treated as free and available to all customers.  | [default to true]
  **loyaltyProgramId** | **optional.**| Return only rewards available in this loyalty program.  | 
  **subledgerId** | **optional.**| Return only rewards available in this subledger. Must be combined with &#x60;loyaltyProgramId&#x60;. To specify the main ledger, provide an empty string (\&quot;\&quot;).  | 
- **profileIntegrationId** | **optional.**| The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  | 
- **loyaltyCardId** | **optional.**| The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  **Note:** &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60; are mutually exclusive. Do not send both in the same request.  | 
+ **profileIntegrationId** | **optional.**| The integration ID of the customer profile whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The required points are then checked against the card&#39;s balance.  | 
+ **loyaltyCardId** | **optional.**| The identifier of the loyalty card whose loyalty balances to include in the response. Balances are returned only when &#x60;loyaltyProgramId&#x60; is also provided.  For a reward with &#x60;pointsRequired&#x60; configured for a card-based loyalty program, eligibility can be evaluated based on both &#x60;profileIntegrationId&#x60; and &#x60;loyaltyCardId&#x60;, if both are provided. The card must also be linked to that customer profile. - If &#x60;loyaltyCardId&#x60; is not provided, the reward returns the &#x60;CARD_REQUIRED&#x60; failure code, because there is no card balance to compare &#x60;pointsRequired&#x60; against. - If &#x60;profileIntegrationId&#x60; is not provided, the reward returns the &#x60;PROFILE_REQUIRED&#x60; failure code, because its eligibility cannot be evaluated without a customer profile.  | 
 
 ### Return type
 
-[**InlineResponse20056**](InlineResponse20056.md)
+[**InlineResponse20059**](InlineResponse20059.md)
 
 ### Authorization
 
@@ -1463,11 +1512,11 @@ Name | Type | Description  | Notes
 
 ## UnlockReward
 
-> IntegrationStateV2 UnlockReward(ctx, rewardId, body, optional)
+> IntegrationUnlockRewardResponse UnlockReward(ctx, rewardId, body, optional)
 
 Unlock a reward
 
-Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer's balance.  To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
+Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer's balance.  To unlock a reward with the points of a loyalty card, provide the card in `loyaltyCardId`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card. 
 
 ### Required Parameters
 
@@ -1492,7 +1541,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**IntegrationStateV2**](IntegrationStateV2.md)
+[**IntegrationUnlockRewardResponse**](IntegrationUnlockRewardResponse.md)
 
 ### Authorization
 

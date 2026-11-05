@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** | The internal ID of this entity. | 
 **Created** | Pointer to [**time.Time**](time.Time.md) | The time this entity was created. | 
 **ApplicationId** | Pointer to **int64** | The ID of the Application that owns this entity. | 
-**IsVariantAssignmentExternal** | Pointer to **bool** | The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.  | [optional] 
+**AssignmentType** | Pointer to **string** | Controls how customers are assigned to experiment variants. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are assigned based on audience membership.  | [optional] 
+**IsVariantAssignmentExternal** | Pointer to **bool** | Deprecated. Use &#x60;assignmentType&#x60; instead. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.  | [optional] 
 **Campaign** | Pointer to [**Campaign**](Campaign.md) |  | [optional] 
 **Activated** | Pointer to [**time.Time**](time.Time.md) | The date and time the experiment was activated.  | [optional] 
 **State** | Pointer to **string** | A disabled experiment is not evaluated for rules or coupons.  | [default to "disabled"]
@@ -94,6 +95,31 @@ and a boolean to check if the value has been set.
 
 SetApplicationId sets ApplicationId field to given value.
 
+
+### GetAssignmentType
+
+`func (o *Experiment) GetAssignmentType() string`
+
+GetAssignmentType returns the AssignmentType field if non-nil, zero value otherwise.
+
+### GetAssignmentTypeOk
+
+`func (o *Experiment) GetAssignmentTypeOk() (*string, bool)`
+
+GetAssignmentTypeOk returns a tuple with the AssignmentType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssignmentType
+
+`func (o *Experiment) SetAssignmentType(v string)`
+
+SetAssignmentType sets AssignmentType field to given value.
+
+### HasAssignmentType
+
+`func (o *Experiment) HasAssignmentType() bool`
+
+HasAssignmentType returns a boolean if a field has been set.
 
 ### GetIsVariantAssignmentExternal
 

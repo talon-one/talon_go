@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]LoyaltyDashboardData**](LoyaltyDashboardData.md) |  | 
+**Data** | Pointer to [**[]Experiment**](Experiment.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20018
 
-`func NewInlineResponse20018(totalResultSize int64, data []LoyaltyDashboardData, ) *InlineResponse20018`
+`func NewInlineResponse20018(totalResultSize int64, data []Experiment, ) *InlineResponse20018`
 
 NewInlineResponse20018 instantiates a new InlineResponse20018 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20018) GetData() []LoyaltyDashboardData`
+`func (o *InlineResponse20018) GetData() []Experiment`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20018) GetDataOk() (*[]LoyaltyDashboardData, bool)`
+`func (o *InlineResponse20018) GetDataOk() (*[]Experiment, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20018) SetData(v []LoyaltyDashboardData)`
+`func (o *InlineResponse20018) SetData(v []Experiment)`
 
 SetData sets Data field to given value.
 

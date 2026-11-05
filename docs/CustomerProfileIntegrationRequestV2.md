@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **EvaluableCampaignIds** | Pointer to **[]int64** | When using the &#x60;dry&#x60; query parameter, use this property to list the campaign to be evaluated by the Rule Engine.  These campaigns will be evaluated, even if they are disabled, allowing you to test specific campaigns before activating them.  | [optional] 
 **ResponseContent** | Pointer to **[]string** | Extends the response with the chosen data entities. Use this property to get as much data back as needed from one request instead of sending extra requests to other endpoints.  | [optional] 
 **AudiencesChanges** | Pointer to [**ProfileAudiencesChanges**](ProfileAudiencesChanges.md) |  | [optional] 
+**RewardIntegrationIds** | Pointer to **[]string** | The integration IDs of the unlocked rewards that can be used in this request.  | [optional] 
 
 ## Methods
 
@@ -127,6 +128,31 @@ SetAudiencesChanges sets AudiencesChanges field to given value.
 `func (o *CustomerProfileIntegrationRequestV2) HasAudiencesChanges() bool`
 
 HasAudiencesChanges returns a boolean if a field has been set.
+
+### GetRewardIntegrationIds
+
+`func (o *CustomerProfileIntegrationRequestV2) GetRewardIntegrationIds() []string`
+
+GetRewardIntegrationIds returns the RewardIntegrationIds field if non-nil, zero value otherwise.
+
+### GetRewardIntegrationIdsOk
+
+`func (o *CustomerProfileIntegrationRequestV2) GetRewardIntegrationIdsOk() (*[]string, bool)`
+
+GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardIntegrationIds
+
+`func (o *CustomerProfileIntegrationRequestV2) SetRewardIntegrationIds(v []string)`
+
+SetRewardIntegrationIds sets RewardIntegrationIds field to given value.
+
+### HasRewardIntegrationIds
+
+`func (o *CustomerProfileIntegrationRequestV2) HasRewardIntegrationIds() bool`
+
+HasRewardIntegrationIds returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

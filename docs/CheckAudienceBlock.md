@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **Operator** | Pointer to **string** | An indicator of how the block compares its elements. | 
-**Profile** | Pointer to **string** | The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. | 
-**Audience** | Pointer to [**CheckAudienceBlockAudience**](CheckAudienceBlock_audience.md) |  | 
+**Profile** | Pointer to **string** | The customer profile to check against the audience. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. Only applies to the &#x60;member&#x60; and &#x60;not(member)&#x60; operators; ignored for &#x60;justJoined&#x60; and &#x60;justLeft&#x60;. | [optional] 
+**Audience** | Pointer to [**AudienceBlockReference**](AudienceBlockReference.md) |  | 
 **OnFailure** | Pointer to **[]map[string]interface{}** | Promotion blocks evaluated when this block fails or returns false. | [optional] 
 
 ## Methods
 
 ### NewCheckAudienceBlock
 
-`func NewCheckAudienceBlock(type_ string, operator string, profile string, audience CheckAudienceBlockAudience, ) *CheckAudienceBlock`
+`func NewCheckAudienceBlock(type_ string, operator string, audience AudienceBlockReference, ) *CheckAudienceBlock`
 
 NewCheckAudienceBlock instantiates a new CheckAudienceBlock object
 This constructor will assign default values to properties that have it defined,
@@ -140,23 +140,28 @@ and a boolean to check if the value has been set.
 
 SetProfile sets Profile field to given value.
 
+### HasProfile
+
+`func (o *CheckAudienceBlock) HasProfile() bool`
+
+HasProfile returns a boolean if a field has been set.
 
 ### GetAudience
 
-`func (o *CheckAudienceBlock) GetAudience() CheckAudienceBlockAudience`
+`func (o *CheckAudienceBlock) GetAudience() AudienceBlockReference`
 
 GetAudience returns the Audience field if non-nil, zero value otherwise.
 
 ### GetAudienceOk
 
-`func (o *CheckAudienceBlock) GetAudienceOk() (*CheckAudienceBlockAudience, bool)`
+`func (o *CheckAudienceBlock) GetAudienceOk() (*AudienceBlockReference, bool)`
 
 GetAudienceOk returns a tuple with the Audience field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAudience
 
-`func (o *CheckAudienceBlock) SetAudience(v CheckAudienceBlockAudience)`
+`func (o *CheckAudienceBlock) SetAudience(v AudienceBlockReference)`
 
 SetAudience sets Audience field to given value.
 

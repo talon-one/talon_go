@@ -17,10 +17,12 @@ import (
 type NewExperimentVariant struct {
 	// The name of this variant.
 	Name string `json:"name"`
-	// The percentage split of this variant. The sum of all variant percentages must be 100.
+	// The percentage split of this variant. For `random` assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for `audience` and `external` assignment.
 	Weight    int64      `json:"weight"`
 	Ruleset   NewRuleset `json:"ruleset"`
 	IsPrimary bool       `json:"isPrimary"`
+	// The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
+	AudienceId *int64 `json:"audienceId,omitempty"`
 }
 
 // NewNewExperimentVariant instantiates a new NewExperimentVariant object
@@ -140,6 +142,38 @@ func (o *NewExperimentVariant) SetIsPrimary(v bool) {
 	o.IsPrimary = v
 }
 
+// GetAudienceId returns the AudienceId field value if set, zero value otherwise.
+func (o *NewExperimentVariant) GetAudienceId() int64 {
+	if o == nil || o.AudienceId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AudienceId
+}
+
+// GetAudienceIdOk returns a tuple with the AudienceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NewExperimentVariant) GetAudienceIdOk() (*int64, bool) {
+	if o == nil || o.AudienceId == nil {
+		return nil, false
+	}
+	return o.AudienceId, true
+}
+
+// HasAudienceId returns a boolean if a field has been set.
+func (o *NewExperimentVariant) HasAudienceId() bool {
+	if o != nil && o.AudienceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudienceId gets a reference to the given int64 and assigns it to the AudienceId field.
+func (o *NewExperimentVariant) SetAudienceId(v int64) {
+	o.AudienceId = &v
+}
+
 func (o NewExperimentVariant) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -153,6 +187,9 @@ func (o NewExperimentVariant) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["isPrimary"] = o.IsPrimary
+	}
+	if o.AudienceId != nil {
+		toSerialize["audienceId"] = o.AudienceId
 	}
 	return json.Marshal(toSerialize)
 }

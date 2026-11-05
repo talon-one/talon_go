@@ -22,8 +22,8 @@ type UpdateAttributeValueBlock struct {
 	// Semantic labels attached to this block.
 	Tags *[]string `json:"tags,omitempty"`
 	// The update operation applied to the attribute.
-	Operator  string                             `json:"operator"`
-	Attribute UpdateAttributeValueBlockAttribute `json:"attribute"`
+	Operator  string                  `json:"operator"`
+	Attribute AttributeBlockReference `json:"attribute"`
 	// The value of the attribute. Omitted when operator is set to `toggle`.
 	Value  *map[string]interface{}         `json:"value,omitempty"`
 	Target UpdateAttributeValueBlockTarget `json:"target"`
@@ -33,7 +33,7 @@ type UpdateAttributeValueBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildUpdateAttributeValueBlock(type_ string, operator string, attribute UpdateAttributeValueBlockAttribute, target UpdateAttributeValueBlockTarget) *UpdateAttributeValueBlock {
+func BuildUpdateAttributeValueBlock(type_ string, operator string, attribute AttributeBlockReference, target UpdateAttributeValueBlockTarget) *UpdateAttributeValueBlock {
 	this := UpdateAttributeValueBlock{}
 	this.Type = type_
 	this.Operator = operator
@@ -163,9 +163,9 @@ func (o *UpdateAttributeValueBlock) SetOperator(v string) {
 }
 
 // GetAttribute returns the Attribute field value
-func (o *UpdateAttributeValueBlock) GetAttribute() UpdateAttributeValueBlockAttribute {
+func (o *UpdateAttributeValueBlock) GetAttribute() AttributeBlockReference {
 	if o == nil {
-		var ret UpdateAttributeValueBlockAttribute
+		var ret AttributeBlockReference
 		return ret
 	}
 
@@ -174,7 +174,7 @@ func (o *UpdateAttributeValueBlock) GetAttribute() UpdateAttributeValueBlockAttr
 
 // GetAttributeOk returns a tuple with the Attribute field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAttributeValueBlock) GetAttributeOk() (*UpdateAttributeValueBlockAttribute, bool) {
+func (o *UpdateAttributeValueBlock) GetAttributeOk() (*AttributeBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -182,7 +182,7 @@ func (o *UpdateAttributeValueBlock) GetAttributeOk() (*UpdateAttributeValueBlock
 }
 
 // SetAttribute sets field value
-func (o *UpdateAttributeValueBlock) SetAttribute(v UpdateAttributeValueBlockAttribute) {
+func (o *UpdateAttributeValueBlock) SetAttribute(v AttributeBlockReference) {
 	o.Attribute = v
 }
 

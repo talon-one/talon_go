@@ -15,17 +15,17 @@ import (
 
 // InlineResponse2008 struct for InlineResponse2008
 type InlineResponse2008 struct {
-	TotalResultSize int64         `json:"totalResultSize"`
-	Data            []Application `json:"data"`
+	HasMore bool                                  `json:"hasMore"`
+	Data    []CardLedgerPointsEntryIntegrationAPI `json:"data"`
 }
 
 // NewInlineResponse2008 instantiates a new InlineResponse2008 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse2008(totalResultSize int64, data []Application) *InlineResponse2008 {
+func BuildInlineResponse2008(hasMore bool, data []CardLedgerPointsEntryIntegrationAPI) *InlineResponse2008 {
 	this := InlineResponse2008{}
-	this.TotalResultSize = totalResultSize
+	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,34 @@ func NewInlineResponse2008WithDefaults() *InlineResponse2008 {
 	return &this
 }
 
-// GetTotalResultSize returns the TotalResultSize field value
-func (o *InlineResponse2008) GetTotalResultSize() int64 {
+// GetHasMore returns the HasMore field value
+func (o *InlineResponse2008) GetHasMore() bool {
 	if o == nil {
-		var ret int64
+		var ret bool
 		return ret
 	}
 
-	return o.TotalResultSize
+	return o.HasMore
 }
 
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
+// GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2008) GetTotalResultSizeOk() (*int64, bool) {
+func (o *InlineResponse2008) GetHasMoreOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TotalResultSize, true
+	return &o.HasMore, true
 }
 
-// SetTotalResultSize sets field value
-func (o *InlineResponse2008) SetTotalResultSize(v int64) {
-	o.TotalResultSize = v
+// SetHasMore sets field value
+func (o *InlineResponse2008) SetHasMore(v bool) {
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2008) GetData() []Application {
+func (o *InlineResponse2008) GetData() []CardLedgerPointsEntryIntegrationAPI {
 	if o == nil {
-		var ret []Application
+		var ret []CardLedgerPointsEntryIntegrationAPI
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse2008) GetData() []Application {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2008) GetDataOk() (*[]Application, bool) {
+func (o *InlineResponse2008) GetDataOk() (*[]CardLedgerPointsEntryIntegrationAPI, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +82,14 @@ func (o *InlineResponse2008) GetDataOk() (*[]Application, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse2008) SetData(v []Application) {
+func (o *InlineResponse2008) SetData(v []CardLedgerPointsEntryIntegrationAPI) {
 	o.Data = v
 }
 
 func (o InlineResponse2008) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["totalResultSize"] = o.TotalResultSize
+		toSerialize["hasMore"] = o.HasMore
 	}
 	if true {
 		toSerialize["data"] = o.Data

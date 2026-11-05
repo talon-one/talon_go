@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// LabelTargetAudience Represents the targeted audience.
+// LabelTargetAudience Target type when a specific audience is selected.
 type LabelTargetAudience struct {
 	Type     string            `json:"type"`
 	Audience AudienceReference `json:"audience"`

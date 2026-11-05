@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]RoleV2**](RoleV2.md) |  | 
+**Data** | Pointer to [**[]User**](User.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20047
 
-`func NewInlineResponse20047(totalResultSize int64, data []RoleV2, ) *InlineResponse20047`
+`func NewInlineResponse20047(totalResultSize int64, data []User, ) *InlineResponse20047`
 
 NewInlineResponse20047 instantiates a new InlineResponse20047 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20047) GetData() []RoleV2`
+`func (o *InlineResponse20047) GetData() []User`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20047) GetDataOk() (*[]RoleV2, bool)`
+`func (o *InlineResponse20047) GetDataOk() (*[]User, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20047) SetData(v []RoleV2)`
+`func (o *InlineResponse20047) SetData(v []User)`
 
 SetData sets Data field to given value.
 

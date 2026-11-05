@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CustomerSession** | Pointer to [**CustomerSessionV2**](CustomerSessionV2.md) |  | [optional] 
-**Effects** | Pointer to [**[]Effect**](Effect.md) | The returned effects.  **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed.  | [optional] 
+**Effects** | Pointer to **[]map[string]interface{}** | The returned effects.  **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed.  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasCustomerSession returns a boolean if a field has been set.
 
 ### GetEffects
 
-`func (o *IntegrationCustomerSessionResponse) GetEffects() []Effect`
+`func (o *IntegrationCustomerSessionResponse) GetEffects() []map[string]interface{}`
 
 GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *IntegrationCustomerSessionResponse) GetEffectsOk() (*[]Effect, bool)`
+`func (o *IntegrationCustomerSessionResponse) GetEffectsOk() (*[]map[string]interface{}, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEffects
 
-`func (o *IntegrationCustomerSessionResponse) SetEffects(v []Effect)`
+`func (o *IntegrationCustomerSessionResponse) SetEffects(v []map[string]interface{})`
 
 SetEffects sets Effects field to given value.
 

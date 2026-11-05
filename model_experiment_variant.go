@@ -25,6 +25,8 @@ type ExperimentVariant struct {
 	Ruleset      *Ruleset  `json:"ruleset,omitempty"`
 	Weight       *int64    `json:"weight,omitempty"`
 	IsPrimary    bool      `json:"isPrimary"`
+	// The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
+	AudienceId *int64 `json:"audienceId,omitempty"`
 }
 
 // NewExperimentVariant instantiates a new ExperimentVariant object
@@ -240,6 +242,38 @@ func (o *ExperimentVariant) SetIsPrimary(v bool) {
 	o.IsPrimary = v
 }
 
+// GetAudienceId returns the AudienceId field value if set, zero value otherwise.
+func (o *ExperimentVariant) GetAudienceId() int64 {
+	if o == nil || o.AudienceId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AudienceId
+}
+
+// GetAudienceIdOk returns a tuple with the AudienceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ExperimentVariant) GetAudienceIdOk() (*int64, bool) {
+	if o == nil || o.AudienceId == nil {
+		return nil, false
+	}
+	return o.AudienceId, true
+}
+
+// HasAudienceId returns a boolean if a field has been set.
+func (o *ExperimentVariant) HasAudienceId() bool {
+	if o != nil && o.AudienceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudienceId gets a reference to the given int64 and assigns it to the AudienceId field.
+func (o *ExperimentVariant) SetAudienceId(v int64) {
+	o.AudienceId = &v
+}
+
 func (o ExperimentVariant) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -262,6 +296,9 @@ func (o ExperimentVariant) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["isPrimary"] = o.IsPrimary
+	}
+	if o.AudienceId != nil {
+		toSerialize["audienceId"] = o.AudienceId
 	}
 	return json.Marshal(toSerialize)
 }

@@ -20,7 +20,7 @@ type IntegrationUnlockRewardRequest struct {
 	// The integration ID of the customer profile unlocking the reward.
 	ProfileIntegrationId string `json:"profileIntegrationId"`
 	// The identifier of the loyalty card, which must match the regular expression `^[A-Za-z0-9._%+@-]+$`.
-	CardIdentifier *string `json:"cardIdentifier,omitempty"`
+	LoyaltyCardId *string `json:"loyaltyCardId,omitempty"`
 	// The ID of the loyalty program from which points will be deducted. Required when the reward has `pointsRequired` configured.
 	LoyaltyProgramId *int64 `json:"loyaltyProgramId,omitempty"`
 	// The ID of the subledger from which points will be deducted. Required when the reward has `pointsRequired` configured.  To specify the main ledger, provide an empty string (\"\").
@@ -96,36 +96,36 @@ func (o *IntegrationUnlockRewardRequest) SetProfileIntegrationId(v string) {
 	o.ProfileIntegrationId = v
 }
 
-// GetCardIdentifier returns the CardIdentifier field value if set, zero value otherwise.
-func (o *IntegrationUnlockRewardRequest) GetCardIdentifier() string {
-	if o == nil || o.CardIdentifier == nil {
+// GetLoyaltyCardId returns the LoyaltyCardId field value if set, zero value otherwise.
+func (o *IntegrationUnlockRewardRequest) GetLoyaltyCardId() string {
+	if o == nil || o.LoyaltyCardId == nil {
 		var ret string
 		return ret
 	}
-	return *o.CardIdentifier
+	return *o.LoyaltyCardId
 }
 
-// GetCardIdentifierOk returns a tuple with the CardIdentifier field value if set, nil otherwise
+// GetLoyaltyCardIdOk returns a tuple with the LoyaltyCardId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationUnlockRewardRequest) GetCardIdentifierOk() (*string, bool) {
-	if o == nil || o.CardIdentifier == nil {
+func (o *IntegrationUnlockRewardRequest) GetLoyaltyCardIdOk() (*string, bool) {
+	if o == nil || o.LoyaltyCardId == nil {
 		return nil, false
 	}
-	return o.CardIdentifier, true
+	return o.LoyaltyCardId, true
 }
 
-// HasCardIdentifier returns a boolean if a field has been set.
-func (o *IntegrationUnlockRewardRequest) HasCardIdentifier() bool {
-	if o != nil && o.CardIdentifier != nil {
+// HasLoyaltyCardId returns a boolean if a field has been set.
+func (o *IntegrationUnlockRewardRequest) HasLoyaltyCardId() bool {
+	if o != nil && o.LoyaltyCardId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCardIdentifier gets a reference to the given string and assigns it to the CardIdentifier field.
-func (o *IntegrationUnlockRewardRequest) SetCardIdentifier(v string) {
-	o.CardIdentifier = &v
+// SetLoyaltyCardId gets a reference to the given string and assigns it to the LoyaltyCardId field.
+func (o *IntegrationUnlockRewardRequest) SetLoyaltyCardId(v string) {
+	o.LoyaltyCardId = &v
 }
 
 // GetLoyaltyProgramId returns the LoyaltyProgramId field value if set, zero value otherwise.
@@ -232,8 +232,8 @@ func (o IntegrationUnlockRewardRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["profileIntegrationId"] = o.ProfileIntegrationId
 	}
-	if o.CardIdentifier != nil {
-		toSerialize["cardIdentifier"] = o.CardIdentifier
+	if o.LoyaltyCardId != nil {
+		toSerialize["loyaltyCardId"] = o.LoyaltyCardId
 	}
 	if o.LoyaltyProgramId != nil {
 		toSerialize["loyaltyProgramId"] = o.LoyaltyProgramId

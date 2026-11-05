@@ -32,6 +32,10 @@ type TierDowngradeData struct {
 	TierExpirationDate *time.Time `json:"TierExpirationDate,omitempty"`
 	// The exact date and time the tier was changed.
 	TimestampOfTierChange time.Time `json:"TimestampOfTierChange"`
+	// The source of the tier change, whether from a points change or boost.
+	Source *string `json:"Source,omitempty"`
+	// The reason for the tier change.
+	Reason *string `json:"Reason,omitempty"`
 }
 
 // NewTierDowngradeData instantiates a new TierDowngradeData object
@@ -46,6 +50,8 @@ func BuildTierDowngradeData(customerProfileID string, loyaltyProgramID int64, su
 	this.CurrentPoints = currentPoints
 	this.OldTier = oldTier
 	this.TimestampOfTierChange = timestampOfTierChange
+	var source string = "points"
+	this.Source = &source
 	return &this
 }
 
@@ -56,6 +62,8 @@ func NewTierDowngradeDataWithDefaults() *TierDowngradeData {
 	this := TierDowngradeData{}
 	var subledgerID string = ""
 	this.SubledgerID = subledgerID
+	var source string = "points"
+	this.Source = &source
 	return &this
 }
 
@@ -267,6 +275,70 @@ func (o *TierDowngradeData) SetTimestampOfTierChange(v time.Time) {
 	o.TimestampOfTierChange = v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *TierDowngradeData) GetSource() string {
+	if o == nil || o.Source == nil {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TierDowngradeData) GetSourceOk() (*string, bool) {
+	if o == nil || o.Source == nil {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *TierDowngradeData) HasSource() bool {
+	if o != nil && o.Source != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *TierDowngradeData) SetSource(v string) {
+	o.Source = &v
+}
+
+// GetReason returns the Reason field value if set, zero value otherwise.
+func (o *TierDowngradeData) GetReason() string {
+	if o == nil || o.Reason == nil {
+		var ret string
+		return ret
+	}
+	return *o.Reason
+}
+
+// GetReasonOk returns a tuple with the Reason field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TierDowngradeData) GetReasonOk() (*string, bool) {
+	if o == nil || o.Reason == nil {
+		return nil, false
+	}
+	return o.Reason, true
+}
+
+// HasReason returns a boolean if a field has been set.
+func (o *TierDowngradeData) HasReason() bool {
+	if o != nil && o.Reason != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetReason gets a reference to the given string and assigns it to the Reason field.
+func (o *TierDowngradeData) SetReason(v string) {
+	o.Reason = &v
+}
+
 func (o TierDowngradeData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -292,6 +364,12 @@ func (o TierDowngradeData) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["TimestampOfTierChange"] = o.TimestampOfTierChange
+	}
+	if o.Source != nil {
+		toSerialize["Source"] = o.Source
+	}
+	if o.Reason != nil {
+		toSerialize["Reason"] = o.Reason
 	}
 	return json.Marshal(toSerialize)
 }

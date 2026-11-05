@@ -15,17 +15,17 @@ import (
 
 // InlineResponse20019 struct for InlineResponse20019
 type InlineResponse20019 struct {
-	HasMore bool                        `json:"hasMore"`
-	Data    []LoyaltyProgramTransaction `json:"data"`
+	TotalResultSize int64            `json:"totalResultSize"`
+	Data            []LoyaltyProgram `json:"data"`
 }
 
 // NewInlineResponse20019 instantiates a new InlineResponse20019 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20019(hasMore bool, data []LoyaltyProgramTransaction) *InlineResponse20019 {
+func BuildInlineResponse20019(totalResultSize int64, data []LoyaltyProgram) *InlineResponse20019 {
 	this := InlineResponse20019{}
-	this.HasMore = hasMore
+	this.TotalResultSize = totalResultSize
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,34 @@ func NewInlineResponse20019WithDefaults() *InlineResponse20019 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20019) GetHasMore() bool {
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20019) GetTotalResultSize() int64 {
 	if o == nil {
-		var ret bool
+		var ret int64
 		return ret
 	}
 
-	return o.HasMore
+	return o.TotalResultSize
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20019) GetHasMoreOk() (*bool, bool) {
+func (o *InlineResponse20019) GetTotalResultSizeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return &o.TotalResultSize, true
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20019) SetHasMore(v bool) {
-	o.HasMore = v
+// SetTotalResultSize sets field value
+func (o *InlineResponse20019) SetTotalResultSize(v int64) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20019) GetData() []LoyaltyProgramTransaction {
+func (o *InlineResponse20019) GetData() []LoyaltyProgram {
 	if o == nil {
-		var ret []LoyaltyProgramTransaction
+		var ret []LoyaltyProgram
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20019) GetData() []LoyaltyProgramTransaction {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyProgramTransaction, bool) {
+func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyProgram, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +82,14 @@ func (o *InlineResponse20019) GetDataOk() (*[]LoyaltyProgramTransaction, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20019) SetData(v []LoyaltyProgramTransaction) {
+func (o *InlineResponse20019) SetData(v []LoyaltyProgram) {
 	o.Data = v
 }
 
 func (o InlineResponse20019) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["hasMore"] = o.HasMore
+		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {
 		toSerialize["data"] = o.Data

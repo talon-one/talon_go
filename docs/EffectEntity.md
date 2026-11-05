@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **RulesetId** | Pointer to **int64** | The ID of the ruleset that was active in the campaign when this effect was triggered. | 
 **RuleIndex** | Pointer to **int64** | The position of the rule that triggered this effect within the ruleset. | 
 **RuleName** | Pointer to **string** | The name of the rule that triggered this effect. | 
-**EffectType** | Pointer to **string** | The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
+**EffectType** | Pointer to **string** | See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects). | 
 **TriggeredByCoupon** | Pointer to **int64** | The ID of the coupon that was being evaluated when this effect was triggered. | [optional] 
 **TriggeredForCatalogItem** | Pointer to **int64** | The ID of the catalog item that was being evaluated when this effect was triggered. | [optional] 
 **ConditionIndex** | Pointer to **int64** | The index of the condition that was triggered. | [optional] 
@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **SelectedPrice** | Pointer to **float32** | The value of the selected price type to apply to the SKU targeted by this effect, before any discounts are applied. | [optional] 
 **AdjustmentReferenceId** | Pointer to **string** | The reference identifier of the selected price adjustment for this SKU. This is only returned if the &#x60;selectedPrice&#x60; resulted from a price adjustment. | [optional] 
 **RewardId** | Pointer to **int64** | The ID of the reward that was being evaluated when this effect was triggered. | [optional] 
+**RewardIntegrationId** | Pointer to **string** | The integration ID of the specific customer reward whose usage produced this effect. | [optional] 
 
 ## Methods
 
@@ -440,6 +441,31 @@ SetRewardId sets RewardId field to given value.
 `func (o *EffectEntity) HasRewardId() bool`
 
 HasRewardId returns a boolean if a field has been set.
+
+### GetRewardIntegrationId
+
+`func (o *EffectEntity) GetRewardIntegrationId() string`
+
+GetRewardIntegrationId returns the RewardIntegrationId field if non-nil, zero value otherwise.
+
+### GetRewardIntegrationIdOk
+
+`func (o *EffectEntity) GetRewardIntegrationIdOk() (*string, bool)`
+
+GetRewardIntegrationIdOk returns a tuple with the RewardIntegrationId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRewardIntegrationId
+
+`func (o *EffectEntity) SetRewardIntegrationId(v string)`
+
+SetRewardIntegrationId sets RewardIntegrationId field to given value.
+
+### HasRewardIntegrationId
+
+`func (o *EffectEntity) HasRewardIntegrationId() bool`
+
+HasRewardIntegrationId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
