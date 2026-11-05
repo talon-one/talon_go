@@ -15,11 +15,11 @@ import (
 
 // NewGiveawaysPool struct for NewGiveawaysPool
 type NewGiveawaysPool struct {
-	// The name of this giveaways pool.
+	// The name of this giveaway pool.
 	Name string `json:"name"`
-	// The description of this giveaways pool.
+	// The description of this giveaway pool.
 	Description *string `json:"description,omitempty"`
-	// A list of the IDs of the applications that this giveaways pool is enabled for.
+	// A list of the IDs of the Applications that this giveaway pool is enabled for.
 	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox bool `json:"sandbox"`

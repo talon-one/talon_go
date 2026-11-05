@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **CalculatedAt** | Pointer to [**time.Time**](time.Time.md) | The time at which this price was calculated. If provided, this is used to determine the most recent price adjustment to choose if price adjustments overlap. Defaults to internal creation time if not provided. | [optional] 
 **EffectiveFrom** | Pointer to [**time.Time**](time.Time.md) | The date and time from which the price adjustment is effective. | [optional] 
 **EffectiveUntil** | Pointer to [**time.Time**](time.Time.md) | The date and time until which the price adjustment is effective. | [optional] 
-**ContextId** | Pointer to **string** | Identifier of the context of this price adjustment (e.g. summer sale). | [optional] 
+**ContextId** | Pointer to **string** | Identifier of the context of this price adjustment (the sales event, e.g. \&quot;Summer Sale\&quot;). | [optional] 
 
 ## Methods
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | Pointer to **string** | An identifier derived from the bundle content. | 
+**Id** | Pointer to **string** | An identifier derived from the bundle content. | [optional] [readonly] 
 **Name** | Pointer to **string** | The name of the bundle. | 
 **Type** | Pointer to **string** | A binding of type &#x60;bundle&#x60;. | 
 **Sources** | Pointer to **[]string** | The selector sources of bundle items. Each source is expressed as a &#x60;{{$selectorName}}&#x60; reference. | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewBundle
 
-`func NewBundle(id string, name string, type_ string, sources []string, counts []int64, ) *Bundle`
+`func NewBundle(name string, type_ string, sources []string, counts []int64, ) *Bundle`
 
 NewBundle instantiates a new Bundle object
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,11 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
+### HasId
+
+`func (o *Bundle) HasId() bool`
+
+HasId returns a boolean if a field has been set.
 
 ### GetName
 

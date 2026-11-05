@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Ruleset** | Pointer to [**Ruleset**](Ruleset.md) |  | [optional] 
 **Weight** | Pointer to **int64** |  | [optional] 
 **IsPrimary** | Pointer to **bool** |  | 
+**AudienceId** | Pointer to **int64** | The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;.  | [optional] 
 
 ## Methods
 
@@ -185,6 +186,31 @@ and a boolean to check if the value has been set.
 
 SetIsPrimary sets IsPrimary field to given value.
 
+
+### GetAudienceId
+
+`func (o *ExperimentVariant) GetAudienceId() int64`
+
+GetAudienceId returns the AudienceId field if non-nil, zero value otherwise.
+
+### GetAudienceIdOk
+
+`func (o *ExperimentVariant) GetAudienceIdOk() (*int64, bool)`
+
+GetAudienceIdOk returns a tuple with the AudienceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAudienceId
+
+`func (o *ExperimentVariant) SetAudienceId(v int64)`
+
+SetAudienceId sets AudienceId field to given value.
+
+### HasAudienceId
+
+`func (o *ExperimentVariant) HasAudienceId() bool`
+
+HasAudienceId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

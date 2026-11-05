@@ -23,9 +23,9 @@ type CheckAudienceBlock struct {
 	Tags *[]string `json:"tags,omitempty"`
 	// An indicator of how the block compares its elements.
 	Operator string `json:"operator"`
-	// The customer profile to check against the audience. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program.
-	Profile  string                     `json:"profile"`
-	Audience CheckAudienceBlockAudience `json:"audience"`
+	// The customer profile to check against the audience. `Current` targets the customer in the current session; `Advocate` targets the person who invited their friend via referral program. Only applies to the `member` and `not(member)` operators; ignored for `justJoined` and `justLeft`.
+	Profile  *string                `json:"profile,omitempty"`
+	Audience AudienceBlockReference `json:"audience"`
 	// Promotion blocks evaluated when this block fails or returns false.
 	OnFailure *[]map[string]interface{} `json:"onFailure,omitempty"`
 }
@@ -34,11 +34,10 @@ type CheckAudienceBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCheckAudienceBlock(type_ string, operator string, profile string, audience CheckAudienceBlockAudience) *CheckAudienceBlock {
+func BuildCheckAudienceBlock(type_ string, operator string, audience AudienceBlockReference) *CheckAudienceBlock {
 	this := CheckAudienceBlock{}
 	this.Type = type_
 	this.Operator = operator
-	this.Profile = profile
 	this.Audience = audience
 	return &this
 }
@@ -163,34 +162,42 @@ func (o *CheckAudienceBlock) SetOperator(v string) {
 	o.Operator = v
 }
 
-// GetProfile returns the Profile field value
+// GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *CheckAudienceBlock) GetProfile() string {
-	if o == nil {
+	if o == nil || o.Profile == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Profile
+	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckAudienceBlock) GetProfileOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Profile == nil {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
-// SetProfile sets field value
+// HasProfile returns a boolean if a field has been set.
+func (o *CheckAudienceBlock) HasProfile() bool {
+	if o != nil && o.Profile != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given string and assigns it to the Profile field.
 func (o *CheckAudienceBlock) SetProfile(v string) {
-	o.Profile = v
+	o.Profile = &v
 }
 
 // GetAudience returns the Audience field value
-func (o *CheckAudienceBlock) GetAudience() CheckAudienceBlockAudience {
+func (o *CheckAudienceBlock) GetAudience() AudienceBlockReference {
 	if o == nil {
-		var ret CheckAudienceBlockAudience
+		var ret AudienceBlockReference
 		return ret
 	}
 
@@ -199,7 +206,7 @@ func (o *CheckAudienceBlock) GetAudience() CheckAudienceBlockAudience {
 
 // GetAudienceOk returns a tuple with the Audience field value
 // and a boolean to check if the value has been set.
-func (o *CheckAudienceBlock) GetAudienceOk() (*CheckAudienceBlockAudience, bool) {
+func (o *CheckAudienceBlock) GetAudienceOk() (*AudienceBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -207,7 +214,7 @@ func (o *CheckAudienceBlock) GetAudienceOk() (*CheckAudienceBlockAudience, bool)
 }
 
 // SetAudience sets field value
-func (o *CheckAudienceBlock) SetAudience(v CheckAudienceBlockAudience) {
+func (o *CheckAudienceBlock) SetAudience(v AudienceBlockReference) {
 	o.Audience = v
 }
 
@@ -257,7 +264,7 @@ func (o CheckAudienceBlock) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["operator"] = o.Operator
 	}
-	if true {
+	if o.Profile != nil {
 		toSerialize["profile"] = o.Profile
 	}
 	if true {

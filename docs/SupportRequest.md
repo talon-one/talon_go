@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **ApplicationId** | Pointer to **int64** | Identifier of the Application connected to the loyalty program or the campaign. It is displayed in your Talon.One deployment URL. | 
 **CampaignId** | Pointer to **int64** | Identifier of the campaign where the coupon or gift card is created. | [optional] 
 **LoyaltyProgramId** | Pointer to **int64** | Identifier of the loyalty program where the points are added or deducted. | [optional] 
-**SubledgerId** | Pointer to **int64** | Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically. | [optional] 
+**SubledgerId** | Pointer to **string** | ID of the subledger the points are added to or deducted from. Must be combined with &#x60;loyaltyProgramId&#x60;. The subledger must already exist in the given loyalty program. | [optional] 
 **CreatedByUser** | Pointer to **string** | Email address of the customer support agent who created the support request. | 
 **CreatedAt** | Pointer to [**time.Time**](time.Time.md) | Timestamp when the request was made. | 
 **CustomerProfileId** | Pointer to **string** | Integration ID of the customer profile linked to the support request. | 
@@ -132,20 +132,20 @@ HasLoyaltyProgramId returns a boolean if a field has been set.
 
 ### GetSubledgerId
 
-`func (o *SupportRequest) GetSubledgerId() int64`
+`func (o *SupportRequest) GetSubledgerId() string`
 
 GetSubledgerId returns the SubledgerId field if non-nil, zero value otherwise.
 
 ### GetSubledgerIdOk
 
-`func (o *SupportRequest) GetSubledgerIdOk() (*int64, bool)`
+`func (o *SupportRequest) GetSubledgerIdOk() (*string, bool)`
 
 GetSubledgerIdOk returns a tuple with the SubledgerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubledgerId
 
-`func (o *SupportRequest) SetSubledgerId(v int64)`
+`func (o *SupportRequest) SetSubledgerId(v string)`
 
 SetSubledgerId sets SubledgerId field to given value.
 

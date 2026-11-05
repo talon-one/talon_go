@@ -53,7 +53,7 @@ Name | Type | Description | Notes
 **RevisionFrontendState** | Pointer to **string** | The campaign revision state displayed in the Campaign Manager. | [optional] 
 **ActiveRevisionId** | Pointer to **int64** | ID of the revision that was last activated on this campaign.  | [optional] 
 **ActiveRevisionVersionId** | Pointer to **int64** | ID of the revision version that is active on the campaign.  | [optional] 
-**Version** | Pointer to **int64** | Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.  | [optional] 
+**Version** | Pointer to **int64** | Incrementing number representing how many revisions have been activated on this campaign. Starts from &#x60;0&#x60; for a new campaign.  | [optional] 
 **CurrentRevisionId** | Pointer to **int64** | ID of the revision currently being modified for the campaign.  | [optional] 
 **CurrentRevisionVersionId** | Pointer to **int64** | ID of the latest version applied on the current revision.  | [optional] 
 **StageRevision** | Pointer to **bool** | Flag for determining whether we use current revision when sending requests with staging API key.  | [optional] [default to false]

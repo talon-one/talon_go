@@ -17,7 +17,7 @@ import (
 type CheckCouponBlock struct {
 	// Unique identifier for this block.
 	Id *string `json:"id,omitempty"`
-	// Identifies the block variant and determines which additional properties are present in it.
+	// A block discriminator of type `checkCoupon`.
 	Type string `json:"type"`
 	// Semantic labels attached to this block.
 	Tags *[]string `json:"tags,omitempty"`

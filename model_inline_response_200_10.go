@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20010 struct for InlineResponse20010
 type InlineResponse20010 struct {
-	TotalResultSize int64     `json:"totalResultSize"`
-	Data            []Ruleset `json:"data"`
+	TotalResultSize int64         `json:"totalResultSize"`
+	Data            []Application `json:"data"`
 }
 
 // NewInlineResponse20010 instantiates a new InlineResponse20010 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20010(totalResultSize int64, data []Ruleset) *InlineResponse20010 {
+func BuildInlineResponse20010(totalResultSize int64, data []Application) *InlineResponse20010 {
 	this := InlineResponse20010{}
 	this.TotalResultSize = totalResultSize
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse20010) SetTotalResultSize(v int64) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20010) GetData() []Ruleset {
+func (o *InlineResponse20010) GetData() []Application {
 	if o == nil {
-		var ret []Ruleset
+		var ret []Application
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20010) GetData() []Ruleset {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20010) GetDataOk() (*[]Ruleset, bool) {
+func (o *InlineResponse20010) GetDataOk() (*[]Application, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse20010) GetDataOk() (*[]Ruleset, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20010) SetData(v []Ruleset) {
+func (o *InlineResponse20010) SetData(v []Application) {
 	o.Data = v
 }
 

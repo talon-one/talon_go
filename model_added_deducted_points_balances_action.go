@@ -28,6 +28,12 @@ type AddedDeductedPointsBalancesAction struct {
 	ExpiryDate *time.Time `json:"ExpiryDate,omitempty"`
 	// The identifier of the transaction in the loyalty ledger.
 	TransactionUUID string `json:"TransactionUUID"`
+	// The timestamp when the loyalty transaction occurred.
+	Created *time.Time `json:"Created,omitempty"`
+	// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+	AwaitsActivation *bool `json:"AwaitsActivation,omitempty"`
+	// The duration for which the points remain active, calculated relative to their start date.   **Note**: This only applies to points for which `AwaitsActivation` is `true` and `ExpiryDate` is not set.
+	ValidityDuration *string `json:"ValidityDuration,omitempty"`
 }
 
 // NewAddedDeductedPointsBalancesAction instantiates a new AddedDeductedPointsBalancesAction object
@@ -211,6 +217,102 @@ func (o *AddedDeductedPointsBalancesAction) SetTransactionUUID(v string) {
 	o.TransactionUUID = v
 }
 
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *AddedDeductedPointsBalancesAction) GetCreated() time.Time {
+	if o == nil || o.Created == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsBalancesAction) GetCreatedOk() (*time.Time, bool) {
+	if o == nil || o.Created == nil {
+		return nil, false
+	}
+	return o.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (o *AddedDeductedPointsBalancesAction) HasCreated() bool {
+	if o != nil && o.Created != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+func (o *AddedDeductedPointsBalancesAction) SetCreated(v time.Time) {
+	o.Created = &v
+}
+
+// GetAwaitsActivation returns the AwaitsActivation field value if set, zero value otherwise.
+func (o *AddedDeductedPointsBalancesAction) GetAwaitsActivation() bool {
+	if o == nil || o.AwaitsActivation == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AwaitsActivation
+}
+
+// GetAwaitsActivationOk returns a tuple with the AwaitsActivation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsBalancesAction) GetAwaitsActivationOk() (*bool, bool) {
+	if o == nil || o.AwaitsActivation == nil {
+		return nil, false
+	}
+	return o.AwaitsActivation, true
+}
+
+// HasAwaitsActivation returns a boolean if a field has been set.
+func (o *AddedDeductedPointsBalancesAction) HasAwaitsActivation() bool {
+	if o != nil && o.AwaitsActivation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAwaitsActivation gets a reference to the given bool and assigns it to the AwaitsActivation field.
+func (o *AddedDeductedPointsBalancesAction) SetAwaitsActivation(v bool) {
+	o.AwaitsActivation = &v
+}
+
+// GetValidityDuration returns the ValidityDuration field value if set, zero value otherwise.
+func (o *AddedDeductedPointsBalancesAction) GetValidityDuration() string {
+	if o == nil || o.ValidityDuration == nil {
+		var ret string
+		return ret
+	}
+	return *o.ValidityDuration
+}
+
+// GetValidityDurationOk returns a tuple with the ValidityDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AddedDeductedPointsBalancesAction) GetValidityDurationOk() (*string, bool) {
+	if o == nil || o.ValidityDuration == nil {
+		return nil, false
+	}
+	return o.ValidityDuration, true
+}
+
+// HasValidityDuration returns a boolean if a field has been set.
+func (o *AddedDeductedPointsBalancesAction) HasValidityDuration() bool {
+	if o != nil && o.ValidityDuration != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetValidityDuration gets a reference to the given string and assigns it to the ValidityDuration field.
+func (o *AddedDeductedPointsBalancesAction) SetValidityDuration(v string) {
+	o.ValidityDuration = &v
+}
+
 func (o AddedDeductedPointsBalancesAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -230,6 +332,15 @@ func (o AddedDeductedPointsBalancesAction) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["TransactionUUID"] = o.TransactionUUID
+	}
+	if o.Created != nil {
+		toSerialize["Created"] = o.Created
+	}
+	if o.AwaitsActivation != nil {
+		toSerialize["AwaitsActivation"] = o.AwaitsActivation
+	}
+	if o.ValidityDuration != nil {
+		toSerialize["ValidityDuration"] = o.ValidityDuration
 	}
 	return json.Marshal(toSerialize)
 }

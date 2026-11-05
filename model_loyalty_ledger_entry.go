@@ -38,6 +38,8 @@ type LoyaltyLedgerEntry struct {
 	Flags    *LoyaltyLedgerEntryFlags `json:"flags,omitempty"`
 	// The duration for which the points remain active, relative to the  activation date.  **Note**: This only applies to points for which `awaitsActivation` is `true` and `expiryDate` is not set.
 	ValidityDuration *string `json:"validityDuration,omitempty"`
+	// Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date.
+	AwaitsActivation *bool `json:"awaitsActivation,omitempty"`
 }
 
 // NewLoyaltyLedgerEntry instantiates a new LoyaltyLedgerEntry object
@@ -527,6 +529,38 @@ func (o *LoyaltyLedgerEntry) SetValidityDuration(v string) {
 	o.ValidityDuration = &v
 }
 
+// GetAwaitsActivation returns the AwaitsActivation field value if set, zero value otherwise.
+func (o *LoyaltyLedgerEntry) GetAwaitsActivation() bool {
+	if o == nil || o.AwaitsActivation == nil {
+		var ret bool
+		return ret
+	}
+	return *o.AwaitsActivation
+}
+
+// GetAwaitsActivationOk returns a tuple with the AwaitsActivation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LoyaltyLedgerEntry) GetAwaitsActivationOk() (*bool, bool) {
+	if o == nil || o.AwaitsActivation == nil {
+		return nil, false
+	}
+	return o.AwaitsActivation, true
+}
+
+// HasAwaitsActivation returns a boolean if a field has been set.
+func (o *LoyaltyLedgerEntry) HasAwaitsActivation() bool {
+	if o != nil && o.AwaitsActivation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAwaitsActivation gets a reference to the given bool and assigns it to the AwaitsActivation field.
+func (o *LoyaltyLedgerEntry) SetAwaitsActivation(v bool) {
+	o.AwaitsActivation = &v
+}
+
 func (o LoyaltyLedgerEntry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -576,6 +610,9 @@ func (o LoyaltyLedgerEntry) MarshalJSON() ([]byte, error) {
 	}
 	if o.ValidityDuration != nil {
 		toSerialize["validityDuration"] = o.ValidityDuration
+	}
+	if o.AwaitsActivation != nil {
+		toSerialize["awaitsActivation"] = o.AwaitsActivation
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,14 +14,14 @@ Name | Type | Description | Notes
 **SessionId** | Pointer to **int64** | The globally unique Talon.One ID of the session that contains this event. | [optional] 
 **Type** | Pointer to **string** | The name of the event. Must be a [custom event](https://docs.talon.one/docs/dev/concepts/entities/events#custom-events), not a built-in event. | 
 **Attributes** | Pointer to [**map[string]interface{}**](.md) | Additional JSON serialized data associated with the event. | 
-**Effects** | Pointer to [**[]Effect**](Effect.md) | An array containing the effects that were applied as a result of this event. | 
+**Effects** | Pointer to **[]map[string]interface{}** | An array containing the effects that were applied as a result of this event. | 
 **RuleFailureReasons** | Pointer to [**[]RuleFailureReason**](RuleFailureReason.md) | An array containing the rule failure reasons which happened during this event. | [optional] 
 
 ## Methods
 
 ### NewApplicationEvent
 
-`func NewApplicationEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects []Effect, ) *ApplicationEvent`
+`func NewApplicationEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects []map[string]interface{}, ) *ApplicationEvent`
 
 NewApplicationEvent instantiates a new ApplicationEvent object
 This constructor will assign default values to properties that have it defined,
@@ -263,20 +263,20 @@ SetAttributes sets Attributes field to given value.
 
 ### GetEffects
 
-`func (o *ApplicationEvent) GetEffects() []Effect`
+`func (o *ApplicationEvent) GetEffects() []map[string]interface{}`
 
 GetEffects returns the Effects field if non-nil, zero value otherwise.
 
 ### GetEffectsOk
 
-`func (o *ApplicationEvent) GetEffectsOk() (*[]Effect, bool)`
+`func (o *ApplicationEvent) GetEffectsOk() (*[]map[string]interface{}, bool)`
 
 GetEffectsOk returns a tuple with the Effects field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEffects
 
-`func (o *ApplicationEvent) SetEffects(v []Effect)`
+`func (o *ApplicationEvent) SetEffects(v []map[string]interface{})`
 
 SetEffects sets Effects field to given value.
 

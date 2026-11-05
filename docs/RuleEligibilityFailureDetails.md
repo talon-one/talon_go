@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **ReferralValue** | Pointer to **string** | The referral code that was being evaluated when the rule failed.  | [optional] 
 **ConditionIndex** | Pointer to **int64** | The index of the condition that caused the rule to fail. | [optional] 
 **EffectIndex** | Pointer to **int64** | The index of the effect that caused the rule to fail. | [optional] 
+**RuleIndex** | Pointer to **int64** | The index of the rule that failed within the ruleset. | [optional] 
+**RulesetId** | Pointer to **int64** | The ID of the ruleset containing the rule that failed. | [optional] 
 **Details** | Pointer to **string** | Additional details about the failure. | 
 
 ## Methods
@@ -201,6 +203,56 @@ SetEffectIndex sets EffectIndex field to given value.
 `func (o *RuleEligibilityFailureDetails) HasEffectIndex() bool`
 
 HasEffectIndex returns a boolean if a field has been set.
+
+### GetRuleIndex
+
+`func (o *RuleEligibilityFailureDetails) GetRuleIndex() int64`
+
+GetRuleIndex returns the RuleIndex field if non-nil, zero value otherwise.
+
+### GetRuleIndexOk
+
+`func (o *RuleEligibilityFailureDetails) GetRuleIndexOk() (*int64, bool)`
+
+GetRuleIndexOk returns a tuple with the RuleIndex field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRuleIndex
+
+`func (o *RuleEligibilityFailureDetails) SetRuleIndex(v int64)`
+
+SetRuleIndex sets RuleIndex field to given value.
+
+### HasRuleIndex
+
+`func (o *RuleEligibilityFailureDetails) HasRuleIndex() bool`
+
+HasRuleIndex returns a boolean if a field has been set.
+
+### GetRulesetId
+
+`func (o *RuleEligibilityFailureDetails) GetRulesetId() int64`
+
+GetRulesetId returns the RulesetId field if non-nil, zero value otherwise.
+
+### GetRulesetIdOk
+
+`func (o *RuleEligibilityFailureDetails) GetRulesetIdOk() (*int64, bool)`
+
+GetRulesetIdOk returns a tuple with the RulesetId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRulesetId
+
+`func (o *RuleEligibilityFailureDetails) SetRulesetId(v int64)`
+
+SetRulesetId sets RulesetId field to given value.
+
+### HasRulesetId
+
+`func (o *RuleEligibilityFailureDetails) HasRulesetId() bool`
+
+HasRulesetId returns a boolean if a field has been set.
 
 ### GetDetails
 

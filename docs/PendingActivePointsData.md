@@ -11,6 +11,9 @@ Name | Type | Description | Notes
 **ActiveOn** | Pointer to [**time.Time**](time.Time.md) | The date and time the loyalty points become active. | [optional] 
 **ExpireOn** | Pointer to [**time.Time**](time.Time.md) | The date and time the loyalty points expire. | [optional] 
 **SessionIntegrationID** | Pointer to **string** | The integration ID of the session through which the points were earned. | [optional] 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The timestamp when the loyalty transaction occurred. | [optional] 
+**AwaitsActivation** | Pointer to **bool** | Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date. | [optional] 
+**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpireOn&#x60; is not set.  | [optional] 
 
 ## Methods
 
@@ -185,6 +188,81 @@ SetSessionIntegrationID sets SessionIntegrationID field to given value.
 `func (o *PendingActivePointsData) HasSessionIntegrationID() bool`
 
 HasSessionIntegrationID returns a boolean if a field has been set.
+
+### GetCreated
+
+`func (o *PendingActivePointsData) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *PendingActivePointsData) GetCreatedOk() (*time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *PendingActivePointsData) SetCreated(v time.Time)`
+
+SetCreated sets Created field to given value.
+
+### HasCreated
+
+`func (o *PendingActivePointsData) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### GetAwaitsActivation
+
+`func (o *PendingActivePointsData) GetAwaitsActivation() bool`
+
+GetAwaitsActivation returns the AwaitsActivation field if non-nil, zero value otherwise.
+
+### GetAwaitsActivationOk
+
+`func (o *PendingActivePointsData) GetAwaitsActivationOk() (*bool, bool)`
+
+GetAwaitsActivationOk returns a tuple with the AwaitsActivation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAwaitsActivation
+
+`func (o *PendingActivePointsData) SetAwaitsActivation(v bool)`
+
+SetAwaitsActivation sets AwaitsActivation field to given value.
+
+### HasAwaitsActivation
+
+`func (o *PendingActivePointsData) HasAwaitsActivation() bool`
+
+HasAwaitsActivation returns a boolean if a field has been set.
+
+### GetValidityDuration
+
+`func (o *PendingActivePointsData) GetValidityDuration() string`
+
+GetValidityDuration returns the ValidityDuration field if non-nil, zero value otherwise.
+
+### GetValidityDurationOk
+
+`func (o *PendingActivePointsData) GetValidityDurationOk() (*string, bool)`
+
+GetValidityDurationOk returns a tuple with the ValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidityDuration
+
+`func (o *PendingActivePointsData) SetValidityDuration(v string)`
+
+SetValidityDuration sets ValidityDuration field to given value.
+
+### HasValidityDuration
+
+`func (o *PendingActivePointsData) HasValidityDuration() bool`
+
+HasValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

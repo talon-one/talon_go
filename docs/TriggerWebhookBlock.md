@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | Unique identifier for this block. | [optional] [readonly] 
 **Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
-**Webhook** | Pointer to [**TriggerWebhookBlockWebhook**](TriggerWebhookBlock_webhook.md) |  | 
+**Webhook** | Pointer to [**WebhookBlockReference**](WebhookBlockReference.md) |  | 
 **Params** | Pointer to [**map[string]interface{}**](.md) | The webhook&#39;s parameters, in configured order. Each property name is the parameter&#39;s title, lowercased with spaces replaced by underscores (for example, &#x60;Order ID&#x60; becomes &#x60;order_id&#x60;); falls back to &#x60;param_0&#x60;, &#x60;param_1&#x60;, and so on if a title is blank or collides with another. | [optional] 
 **OnError** | Pointer to [**map[string][]map[string]interface{}**](array.md) | Named error handlers evaluated when a specific error occurs. | [optional] 
 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 
 ### NewTriggerWebhookBlock
 
-`func NewTriggerWebhookBlock(type_ string, webhook TriggerWebhookBlockWebhook, ) *TriggerWebhookBlock`
+`func NewTriggerWebhookBlock(type_ string, webhook WebhookBlockReference, ) *TriggerWebhookBlock`
 
 NewTriggerWebhookBlock instantiates a new TriggerWebhookBlock object
 This constructor will assign default values to properties that have it defined,
@@ -102,20 +102,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetWebhook
 
-`func (o *TriggerWebhookBlock) GetWebhook() TriggerWebhookBlockWebhook`
+`func (o *TriggerWebhookBlock) GetWebhook() WebhookBlockReference`
 
 GetWebhook returns the Webhook field if non-nil, zero value otherwise.
 
 ### GetWebhookOk
 
-`func (o *TriggerWebhookBlock) GetWebhookOk() (*TriggerWebhookBlockWebhook, bool)`
+`func (o *TriggerWebhookBlock) GetWebhookOk() (*WebhookBlockReference, bool)`
 
 GetWebhookOk returns a tuple with the Webhook field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWebhook
 
-`func (o *TriggerWebhookBlock) SetWebhook(v TriggerWebhookBlockWebhook)`
+`func (o *TriggerWebhookBlock) SetWebhook(v WebhookBlockReference)`
 
 SetWebhook sets Webhook field to given value.
 

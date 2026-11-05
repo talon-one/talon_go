@@ -17,7 +17,7 @@ import (
 type IntegrationCustomerSessionResponse struct {
 	CustomerSession *CustomerSessionV2 `json:"customerSession,omitempty"`
 	// The returned effects.  **Note:** This endpoint returns only the effects that are valid after any rollback effects and their corresponding non-rollback effects are removed.
-	Effects *[]Effect `json:"effects,omitempty"`
+	Effects *[]map[string]interface{} `json:"effects,omitempty"`
 }
 
 // NewIntegrationCustomerSessionResponse instantiates a new IntegrationCustomerSessionResponse object
@@ -70,9 +70,9 @@ func (o *IntegrationCustomerSessionResponse) SetCustomerSession(v CustomerSessio
 }
 
 // GetEffects returns the Effects field value if set, zero value otherwise.
-func (o *IntegrationCustomerSessionResponse) GetEffects() []Effect {
+func (o *IntegrationCustomerSessionResponse) GetEffects() []map[string]interface{} {
 	if o == nil || o.Effects == nil {
-		var ret []Effect
+		var ret []map[string]interface{}
 		return ret
 	}
 	return *o.Effects
@@ -80,7 +80,7 @@ func (o *IntegrationCustomerSessionResponse) GetEffects() []Effect {
 
 // GetEffectsOk returns a tuple with the Effects field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationCustomerSessionResponse) GetEffectsOk() (*[]Effect, bool) {
+func (o *IntegrationCustomerSessionResponse) GetEffectsOk() (*[]map[string]interface{}, bool) {
 	if o == nil || o.Effects == nil {
 		return nil, false
 	}
@@ -96,8 +96,8 @@ func (o *IntegrationCustomerSessionResponse) HasEffects() bool {
 	return false
 }
 
-// SetEffects gets a reference to the given []Effect and assigns it to the Effects field.
-func (o *IntegrationCustomerSessionResponse) SetEffects(v []Effect) {
+// SetEffects gets a reference to the given []map[string]interface{} and assigns it to the Effects field.
+func (o *IntegrationCustomerSessionResponse) SetEffects(v []map[string]interface{}) {
 	o.Effects = &v
 }
 

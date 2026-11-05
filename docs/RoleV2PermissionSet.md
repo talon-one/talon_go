@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **string** | Name of the permission set. | 
-**LogicalOperations** | Pointer to **[]string** | List of logical operations in the permission set. Each logical operation must be shown under the &#x60;x-permission&#x60; tag on an endpoint level.  | 
+**LogicalOperations** | Pointer to **[]string** | List of logical operations in the permission set.  | 
 
 ## Methods
 

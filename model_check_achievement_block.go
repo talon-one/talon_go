@@ -22,8 +22,8 @@ type CheckAchievementBlock struct {
 	// Semantic labels attached to this block.
 	Tags *[]string `json:"tags,omitempty"`
 	// The comparison operator applied to the achievement.
-	Operator    string                           `json:"operator"`
-	Achievement CheckAchievementBlockAchievement `json:"achievement"`
+	Operator    string                    `json:"operator"`
+	Achievement AchievementBlockReference `json:"achievement"`
 	// Promotion blocks evaluated when this block fails or returns false.
 	OnFailure *[]map[string]interface{} `json:"onFailure,omitempty"`
 }
@@ -32,7 +32,7 @@ type CheckAchievementBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCheckAchievementBlock(type_ string, operator string, achievement CheckAchievementBlockAchievement) *CheckAchievementBlock {
+func BuildCheckAchievementBlock(type_ string, operator string, achievement AchievementBlockReference) *CheckAchievementBlock {
 	this := CheckAchievementBlock{}
 	this.Type = type_
 	this.Operator = operator
@@ -161,9 +161,9 @@ func (o *CheckAchievementBlock) SetOperator(v string) {
 }
 
 // GetAchievement returns the Achievement field value
-func (o *CheckAchievementBlock) GetAchievement() CheckAchievementBlockAchievement {
+func (o *CheckAchievementBlock) GetAchievement() AchievementBlockReference {
 	if o == nil {
-		var ret CheckAchievementBlockAchievement
+		var ret AchievementBlockReference
 		return ret
 	}
 
@@ -172,7 +172,7 @@ func (o *CheckAchievementBlock) GetAchievement() CheckAchievementBlockAchievemen
 
 // GetAchievementOk returns a tuple with the Achievement field value
 // and a boolean to check if the value has been set.
-func (o *CheckAchievementBlock) GetAchievementOk() (*CheckAchievementBlockAchievement, bool) {
+func (o *CheckAchievementBlock) GetAchievementOk() (*AchievementBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -180,7 +180,7 @@ func (o *CheckAchievementBlock) GetAchievementOk() (*CheckAchievementBlockAchiev
 }
 
 // SetAchievement sets field value
-func (o *CheckAchievementBlock) SetAchievement(v CheckAchievementBlockAchievement) {
+func (o *CheckAchievementBlock) SetAchievement(v AchievementBlockReference) {
 	o.Achievement = v
 }
 

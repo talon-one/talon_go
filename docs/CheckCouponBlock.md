@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** | Unique identifier for this block. | [optional] [readonly] 
-**Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
+**Type** | Pointer to **string** | A block discriminator of type &#x60;checkCoupon&#x60;. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **Redeem** | Pointer to **bool** | When &#x60;true&#x60;, the coupon code is redeemed. | 
 **OnFailure** | Pointer to **[]map[string]interface{}** | Promotion blocks evaluated when this block fails or returns false. | [optional] 

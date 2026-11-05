@@ -9,6 +9,9 @@ Name | Type | Description | Notes
 **CustomerProfileID** | Pointer to **string** | The integration ID of the customer profile that has expiring points. | 
 **AmountOfExpiringPoints** | Pointer to **float32** | The amount of loyalty points that will be expired soon. | 
 **SubledgerID** | Pointer to **string** | The ID of the subledger within the loyalty program where these points were added. | 
+**Created** | Pointer to [**time.Time**](time.Time.md) | The timestamp when the loyalty transaction occurred. | [optional] 
+**AwaitsActivation** | Pointer to **bool** | Indicates whether the points have an action-based start date. This property is returned only for point transactions with an action-based start date. | [optional] 
+**ValidityDuration** | Pointer to **string** | The duration for which the points remain active, relative to the activation date.  **Note**: This only applies to points for which &#x60;AwaitsActivation&#x60; is &#x60;true&#x60; and &#x60;ExpiryDate&#x60; is not set.  | [optional] 
 
 ## Methods
 
@@ -128,6 +131,81 @@ and a boolean to check if the value has been set.
 
 SetSubledgerID sets SubledgerID field to given value.
 
+
+### GetCreated
+
+`func (o *ExpiringPointsData) GetCreated() time.Time`
+
+GetCreated returns the Created field if non-nil, zero value otherwise.
+
+### GetCreatedOk
+
+`func (o *ExpiringPointsData) GetCreatedOk() (*time.Time, bool)`
+
+GetCreatedOk returns a tuple with the Created field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreated
+
+`func (o *ExpiringPointsData) SetCreated(v time.Time)`
+
+SetCreated sets Created field to given value.
+
+### HasCreated
+
+`func (o *ExpiringPointsData) HasCreated() bool`
+
+HasCreated returns a boolean if a field has been set.
+
+### GetAwaitsActivation
+
+`func (o *ExpiringPointsData) GetAwaitsActivation() bool`
+
+GetAwaitsActivation returns the AwaitsActivation field if non-nil, zero value otherwise.
+
+### GetAwaitsActivationOk
+
+`func (o *ExpiringPointsData) GetAwaitsActivationOk() (*bool, bool)`
+
+GetAwaitsActivationOk returns a tuple with the AwaitsActivation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAwaitsActivation
+
+`func (o *ExpiringPointsData) SetAwaitsActivation(v bool)`
+
+SetAwaitsActivation sets AwaitsActivation field to given value.
+
+### HasAwaitsActivation
+
+`func (o *ExpiringPointsData) HasAwaitsActivation() bool`
+
+HasAwaitsActivation returns a boolean if a field has been set.
+
+### GetValidityDuration
+
+`func (o *ExpiringPointsData) GetValidityDuration() string`
+
+GetValidityDuration returns the ValidityDuration field if non-nil, zero value otherwise.
+
+### GetValidityDurationOk
+
+`func (o *ExpiringPointsData) GetValidityDurationOk() (*string, bool)`
+
+GetValidityDurationOk returns a tuple with the ValidityDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetValidityDuration
+
+`func (o *ExpiringPointsData) SetValidityDuration(v string)`
+
+SetValidityDuration sets ValidityDuration field to given value.
+
+### HasValidityDuration
+
+`func (o *ExpiringPointsData) HasValidityDuration() bool`
+
+HasValidityDuration returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

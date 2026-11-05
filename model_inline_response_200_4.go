@@ -15,17 +15,17 @@ import (
 
 // InlineResponse2004 struct for InlineResponse2004
 type InlineResponse2004 struct {
-	HasMore bool                                          `json:"hasMore"`
-	Data    []CardLedgerTransactionLogEntryIntegrationAPI `json:"data"`
+	HasMore         *bool                   `json:"hasMore,omitempty"`
+	TotalResultSize *int64                  `json:"totalResultSize,omitempty"`
+	Data            []CustomerProfileReward `json:"data"`
 }
 
 // NewInlineResponse2004 instantiates a new InlineResponse2004 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse2004(hasMore bool, data []CardLedgerTransactionLogEntryIntegrationAPI) *InlineResponse2004 {
+func BuildInlineResponse2004(data []CustomerProfileReward) *InlineResponse2004 {
 	this := InlineResponse2004{}
-	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,74 @@ func NewInlineResponse2004WithDefaults() *InlineResponse2004 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value
+// GetHasMore returns the HasMore field value if set, zero value otherwise.
 func (o *InlineResponse2004) GetHasMore() bool {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.HasMore
+	return *o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value
+// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InlineResponse2004) GetHasMoreOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.HasMore == nil {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return o.HasMore, true
 }
 
-// SetHasMore sets field value
+// HasHasMore returns a boolean if a field has been set.
+func (o *InlineResponse2004) HasHasMore() bool {
+	if o != nil && o.HasMore != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
 func (o *InlineResponse2004) SetHasMore(v bool) {
-	o.HasMore = v
+	o.HasMore = &v
+}
+
+// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
+func (o *InlineResponse2004) GetTotalResultSize() int64 {
+	if o == nil || o.TotalResultSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.TotalResultSize
+}
+
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InlineResponse2004) GetTotalResultSizeOk() (*int64, bool) {
+	if o == nil || o.TotalResultSize == nil {
+		return nil, false
+	}
+	return o.TotalResultSize, true
+}
+
+// HasTotalResultSize returns a boolean if a field has been set.
+func (o *InlineResponse2004) HasTotalResultSize() bool {
+	if o != nil && o.TotalResultSize != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
+func (o *InlineResponse2004) SetTotalResultSize(v int64) {
+	o.TotalResultSize = &v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2004) GetData() []CardLedgerTransactionLogEntryIntegrationAPI {
+func (o *InlineResponse2004) GetData() []CustomerProfileReward {
 	if o == nil {
-		var ret []CardLedgerTransactionLogEntryIntegrationAPI
+		var ret []CustomerProfileReward
 		return ret
 	}
 
@@ -74,7 +114,7 @@ func (o *InlineResponse2004) GetData() []CardLedgerTransactionLogEntryIntegratio
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2004) GetDataOk() (*[]CardLedgerTransactionLogEntryIntegrationAPI, bool) {
+func (o *InlineResponse2004) GetDataOk() (*[]CustomerProfileReward, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +122,17 @@ func (o *InlineResponse2004) GetDataOk() (*[]CardLedgerTransactionLogEntryIntegr
 }
 
 // SetData sets field value
-func (o *InlineResponse2004) SetData(v []CardLedgerTransactionLogEntryIntegrationAPI) {
+func (o *InlineResponse2004) SetData(v []CustomerProfileReward) {
 	o.Data = v
 }
 
 func (o InlineResponse2004) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.HasMore != nil {
 		toSerialize["hasMore"] = o.HasMore
+	}
+	if o.TotalResultSize != nil {
+		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {
 		toSerialize["data"] = o.Data

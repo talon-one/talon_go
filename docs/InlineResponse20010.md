@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]Ruleset**](Ruleset.md) |  | 
+**Data** | Pointer to [**[]Application**](Application.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20010
 
-`func NewInlineResponse20010(totalResultSize int64, data []Ruleset, ) *InlineResponse20010`
+`func NewInlineResponse20010(totalResultSize int64, data []Application, ) *InlineResponse20010`
 
 NewInlineResponse20010 instantiates a new InlineResponse20010 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20010) GetData() []Ruleset`
+`func (o *InlineResponse20010) GetData() []Application`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20010) GetDataOk() (*[]Ruleset, bool)`
+`func (o *InlineResponse20010) GetDataOk() (*[]Application, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20010) SetData(v []Ruleset)`
+`func (o *InlineResponse20010) SetData(v []Application)`
 
 SetData sets Data field to given value.
 

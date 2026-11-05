@@ -37,7 +37,7 @@ type ApplicationEvent struct {
 	// Additional JSON serialized data associated with the event.
 	Attributes map[string]interface{} `json:"attributes"`
 	// An array containing the effects that were applied as a result of this event.
-	Effects []Effect `json:"effects"`
+	Effects []map[string]interface{} `json:"effects"`
 	// An array containing the rule failure reasons which happened during this event.
 	RuleFailureReasons *[]RuleFailureReason `json:"ruleFailureReasons,omitempty"`
 }
@@ -46,7 +46,7 @@ type ApplicationEvent struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildApplicationEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects []Effect) *ApplicationEvent {
+func BuildApplicationEvent(id int64, created time.Time, applicationId int64, type_ string, attributes map[string]interface{}, effects []map[string]interface{}) *ApplicationEvent {
 	this := ApplicationEvent{}
 	this.Id = id
 	this.Created = created
@@ -346,9 +346,9 @@ func (o *ApplicationEvent) SetAttributes(v map[string]interface{}) {
 }
 
 // GetEffects returns the Effects field value
-func (o *ApplicationEvent) GetEffects() []Effect {
+func (o *ApplicationEvent) GetEffects() []map[string]interface{} {
 	if o == nil {
-		var ret []Effect
+		var ret []map[string]interface{}
 		return ret
 	}
 
@@ -357,7 +357,7 @@ func (o *ApplicationEvent) GetEffects() []Effect {
 
 // GetEffectsOk returns a tuple with the Effects field value
 // and a boolean to check if the value has been set.
-func (o *ApplicationEvent) GetEffectsOk() (*[]Effect, bool) {
+func (o *ApplicationEvent) GetEffectsOk() (*[]map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -365,7 +365,7 @@ func (o *ApplicationEvent) GetEffectsOk() (*[]Effect, bool) {
 }
 
 // SetEffects sets field value
-func (o *ApplicationEvent) SetEffects(v []Effect) {
+func (o *ApplicationEvent) SetEffects(v []map[string]interface{}) {
 	o.Effects = v
 }
 

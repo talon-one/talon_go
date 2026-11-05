@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **LastActivity** | Pointer to [**time.Time**](time.Time.md) | Timestamp of the most recent event received from this customer. This field is updated on calls that trigger the Rule Engine and that are not [dry requests](https://docs.talon.one/docs/dev/integration-api/dry-requests/#overlay).  For example, [reserving a coupon](https://docs.talon.one/integration-api#tag/Coupons/operation/createCouponReservation) for a customer doesn&#39;t impact this field.  | 
 **Sandbox** | Pointer to **bool** | An indicator of whether the customer is part of a sandbox or live Application. See the [docs](https://docs.talon.one/docs/product/applications/overview#application-environments).  | [optional] 
 **AdvocateIntegrationId** | Pointer to **string** | The Integration ID of the Customer Profile that referred this Customer in the Application. | [optional] 
+**LoyaltyProgramJoinDates** | Pointer to [**[]LoyaltyMembership**](LoyaltyMembership.md) | The dates on which the customer joined the profile-based loyalty programs they are part of. Returned only when the &#x60;withLoyaltyMemberships&#x60; query parameter is &#x60;true&#x60;. | [optional] 
 
 ## Methods
 
@@ -295,6 +296,31 @@ SetAdvocateIntegrationId sets AdvocateIntegrationId field to given value.
 `func (o *ApplicationCustomer) HasAdvocateIntegrationId() bool`
 
 HasAdvocateIntegrationId returns a boolean if a field has been set.
+
+### GetLoyaltyProgramJoinDates
+
+`func (o *ApplicationCustomer) GetLoyaltyProgramJoinDates() []LoyaltyMembership`
+
+GetLoyaltyProgramJoinDates returns the LoyaltyProgramJoinDates field if non-nil, zero value otherwise.
+
+### GetLoyaltyProgramJoinDatesOk
+
+`func (o *ApplicationCustomer) GetLoyaltyProgramJoinDatesOk() (*[]LoyaltyMembership, bool)`
+
+GetLoyaltyProgramJoinDatesOk returns a tuple with the LoyaltyProgramJoinDates field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLoyaltyProgramJoinDates
+
+`func (o *ApplicationCustomer) SetLoyaltyProgramJoinDates(v []LoyaltyMembership)`
+
+SetLoyaltyProgramJoinDates sets LoyaltyProgramJoinDates field to given value.
+
+### HasLoyaltyProgramJoinDates
+
+`func (o *ApplicationCustomer) HasLoyaltyProgramJoinDates() bool`
+
+HasLoyaltyProgramJoinDates returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

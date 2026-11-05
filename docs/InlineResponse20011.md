@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TotalResultSize** | Pointer to **int64** |  | 
-**Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
+**Data** | Pointer to [**[]Campaign**](Campaign.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20011
 
-`func NewInlineResponse20011(totalResultSize int64, data []Coupon, ) *InlineResponse20011`
+`func NewInlineResponse20011(totalResultSize int64, data []Campaign, ) *InlineResponse20011`
 
 NewInlineResponse20011 instantiates a new InlineResponse20011 object
 This constructor will assign default values to properties that have it defined,
@@ -48,20 +48,20 @@ SetTotalResultSize sets TotalResultSize field to given value.
 
 ### GetData
 
-`func (o *InlineResponse20011) GetData() []Coupon`
+`func (o *InlineResponse20011) GetData() []Campaign`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20011) GetDataOk() (*[]Coupon, bool)`
+`func (o *InlineResponse20011) GetDataOk() (*[]Campaign, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20011) SetData(v []Coupon)`
+`func (o *InlineResponse20011) SetData(v []Campaign)`
 
 SetData sets Data field to given value.
 

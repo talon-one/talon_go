@@ -17,14 +17,22 @@ import (
 // Revision struct for Revision
 type Revision struct {
 	// Unique ID for this entity. Not to be confused with the Integration ID, which is set by your integration layer and used in most endpoints.
-	Id             int64            `json:"id"`
-	ActivateAt     *time.Time       `json:"activateAt,omitempty"`
-	AccountId      int64            `json:"accountId"`
-	ApplicationId  int64            `json:"applicationId"`
-	CampaignId     int64            `json:"campaignId"`
-	Created        time.Time        `json:"created"`
-	CreatedBy      int64            `json:"createdBy"`
-	ActivatedAt    *time.Time       `json:"activatedAt,omitempty"`
+	Id int64 `json:"id"`
+	// Timestamp when the revision will be activated.
+	ActivateAt *time.Time `json:"activateAt,omitempty"`
+	// The ID of the account that owns this entity.
+	AccountId int64 `json:"accountId"`
+	// The ID of the Application that owns this entity.
+	ApplicationId int64 `json:"applicationId"`
+	// The ID of the campaign that the revision was created from.
+	CampaignId int64 `json:"campaignId"`
+	// Timestamp when the revision was created.
+	Created time.Time `json:"created"`
+	// The ID of the user who created this revision.
+	CreatedBy int64 `json:"createdBy"`
+	// Timestamp when this revision was activated.
+	ActivatedAt *time.Time `json:"activatedAt,omitempty"`
+	// The ID of the user who activated this revision.
 	ActivatedBy    *int64           `json:"activatedBy,omitempty"`
 	CurrentVersion *RevisionVersion `json:"currentVersion,omitempty"`
 }

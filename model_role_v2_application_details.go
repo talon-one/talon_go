@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// RoleV2ApplicationDetails struct for RoleV2ApplicationDetails
+// RoleV2ApplicationDetails Details of the permission sets configured for an Application.
 type RoleV2ApplicationDetails struct {
 	// Name of the Application-related permission set for the given Application.
 	Application *string `json:"application,omitempty"`

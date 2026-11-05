@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **HasMore** | Pointer to **bool** |  | [optional] 
 **TotalResultSize** | Pointer to **int64** |  | [optional] 
-**Data** | Pointer to [**[]Audience**](Audience.md) |  | 
+**Data** | Pointer to [**[]ApplicationSession**](ApplicationSession.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20035
 
-`func NewInlineResponse20035(data []Audience, ) *InlineResponse20035`
+`func NewInlineResponse20035(data []ApplicationSession, ) *InlineResponse20035`
 
 NewInlineResponse20035 instantiates a new InlineResponse20035 object
 This constructor will assign default values to properties that have it defined,
@@ -79,20 +79,20 @@ HasTotalResultSize returns a boolean if a field has been set.
 
 ### GetData
 
-`func (o *InlineResponse20035) GetData() []Audience`
+`func (o *InlineResponse20035) GetData() []ApplicationSession`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20035) GetDataOk() (*[]Audience, bool)`
+`func (o *InlineResponse20035) GetDataOk() (*[]ApplicationSession, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20035) SetData(v []Audience)`
+`func (o *InlineResponse20035) SetData(v []ApplicationSession)`
 
 SetData sets Data field to given value.
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Functions** | Pointer to [**[]FunctionDef**](FunctionDef.md) | The functions defined for this application. | 
 **Templates** | Pointer to [**[]TemplateDef**](TemplateDef.md) | The templates defined for this application. | 
 **Variables** | Pointer to **string** | A stringified version of the environment&#39;s Talang variables scope. | 
-**GiveawaysPools** | Pointer to [**[]GiveawaysPool**](GiveawaysPool.md) | The giveaways pools that the application is subscribed to. | [optional] 
+**GiveawaysPools** | Pointer to [**[]GiveawaysPool**](GiveawaysPool.md) | The giveaway pools that the Application is subscribed to. | [optional] 
 **LoyaltyPrograms** | Pointer to [**[]LoyaltyProgram**](LoyaltyProgram.md) | The loyalty programs that the application is subscribed to. | [optional] 
 **Achievements** | Pointer to [**[]Achievement**](Achievement.md) | The achievements, linked to the campaigns, belonging to the application. | [optional] 
 **Attributes** | Pointer to [**[]Attribute**](Attribute.md) | The attributes that the application is subscribed to. | [optional] 

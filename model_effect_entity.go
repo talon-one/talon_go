@@ -25,7 +25,7 @@ type EffectEntity struct {
 	RuleIndex int64 `json:"ruleIndex"`
 	// The name of the rule that triggered this effect.
 	RuleName string `json:"ruleName"`
-	// The type of effect that was triggered. See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
+	// See [API effects](https://docs.talon.one/docs/dev/integration-api/api-effects).
 	EffectType string `json:"effectType"`
 	// The ID of the coupon that was being evaluated when this effect was triggered.
 	TriggeredByCoupon *int64 `json:"triggeredByCoupon,omitempty"`
@@ -49,6 +49,8 @@ type EffectEntity struct {
 	AdjustmentReferenceId *string `json:"adjustmentReferenceId,omitempty"`
 	// The ID of the reward that was being evaluated when this effect was triggered.
 	RewardId *int64 `json:"rewardId,omitempty"`
+	// The integration ID of the specific customer reward whose usage produced this effect.
+	RewardIntegrationId *string `json:"rewardIntegrationId,omitempty"`
 }
 
 // NewEffectEntity instantiates a new EffectEntity object
@@ -577,6 +579,38 @@ func (o *EffectEntity) SetRewardId(v int64) {
 	o.RewardId = &v
 }
 
+// GetRewardIntegrationId returns the RewardIntegrationId field value if set, zero value otherwise.
+func (o *EffectEntity) GetRewardIntegrationId() string {
+	if o == nil || o.RewardIntegrationId == nil {
+		var ret string
+		return ret
+	}
+	return *o.RewardIntegrationId
+}
+
+// GetRewardIntegrationIdOk returns a tuple with the RewardIntegrationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *EffectEntity) GetRewardIntegrationIdOk() (*string, bool) {
+	if o == nil || o.RewardIntegrationId == nil {
+		return nil, false
+	}
+	return o.RewardIntegrationId, true
+}
+
+// HasRewardIntegrationId returns a boolean if a field has been set.
+func (o *EffectEntity) HasRewardIntegrationId() bool {
+	if o != nil && o.RewardIntegrationId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardIntegrationId gets a reference to the given string and assigns it to the RewardIntegrationId field.
+func (o *EffectEntity) SetRewardIntegrationId(v string) {
+	o.RewardIntegrationId = &v
+}
+
 func (o EffectEntity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ExperimentId != nil {
@@ -629,6 +663,9 @@ func (o EffectEntity) MarshalJSON() ([]byte, error) {
 	}
 	if o.RewardId != nil {
 		toSerialize["rewardId"] = o.RewardId
+	}
+	if o.RewardIntegrationId != nil {
+		toSerialize["rewardIntegrationId"] = o.RewardIntegrationId
 	}
 	return json.Marshal(toSerialize)
 }

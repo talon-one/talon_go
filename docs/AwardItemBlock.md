@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **Sku** | Pointer to **string** | The stock keeping unit of the item to award. | 
 **Name** | Pointer to **string** | The display name of the item to award. | 
 **Quantity** | Pointer to **string** | The number of items to award. Supports template placeholders (e.g. \&quot;{{$Session.Total / 2}}\&quot;) for dynamic quantities. | 
-**Partial** | Pointer to **bool** | When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. | [optional] 
+**Partial** | Pointer to **bool** | When set to &#x60;true&#x60;, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application&#39;s partial discounts setting applies. | [optional] 
 **OnFailure** | Pointer to **[]map[string]interface{}** | Blocks evaluated when this block fails or returns false. | [optional] 
 **OnError** | Pointer to [**map[string][]map[string]interface{}**](array.md) | Named error handlers evaluated when a specific error occurs. | [optional] 
 

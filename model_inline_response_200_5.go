@@ -15,15 +15,15 @@ import (
 
 // InlineResponse2005 struct for InlineResponse2005
 type InlineResponse2005 struct {
-	HasMore bool                                      `json:"hasMore"`
-	Data    []LedgerTransactionLogEntryIntegrationAPI `json:"data"`
+	HasMore bool                                          `json:"hasMore"`
+	Data    []CardLedgerTransactionLogEntryIntegrationAPI `json:"data"`
 }
 
 // NewInlineResponse2005 instantiates a new InlineResponse2005 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse2005(hasMore bool, data []LedgerTransactionLogEntryIntegrationAPI) *InlineResponse2005 {
+func BuildInlineResponse2005(hasMore bool, data []CardLedgerTransactionLogEntryIntegrationAPI) *InlineResponse2005 {
 	this := InlineResponse2005{}
 	this.HasMore = hasMore
 	this.Data = data
@@ -63,9 +63,9 @@ func (o *InlineResponse2005) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse2005) GetData() []LedgerTransactionLogEntryIntegrationAPI {
+func (o *InlineResponse2005) GetData() []CardLedgerTransactionLogEntryIntegrationAPI {
 	if o == nil {
-		var ret []LedgerTransactionLogEntryIntegrationAPI
+		var ret []CardLedgerTransactionLogEntryIntegrationAPI
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse2005) GetData() []LedgerTransactionLogEntryIntegrationAPI
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse2005) GetDataOk() (*[]LedgerTransactionLogEntryIntegrationAPI, bool) {
+func (o *InlineResponse2005) GetDataOk() (*[]CardLedgerTransactionLogEntryIntegrationAPI, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,7 +82,7 @@ func (o *InlineResponse2005) GetDataOk() (*[]LedgerTransactionLogEntryIntegratio
 }
 
 // SetData sets field value
-func (o *InlineResponse2005) SetData(v []LedgerTransactionLogEntryIntegrationAPI) {
+func (o *InlineResponse2005) SetData(v []CardLedgerTransactionLogEntryIntegrationAPI) {
 	o.Data = v
 }
 

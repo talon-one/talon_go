@@ -18,20 +18,18 @@ type CheckLoyaltyBalanceBlockProgram struct {
 	// The ID of the loyalty program.
 	Id int64 `json:"id"`
 	// The internal name of the loyalty program.
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	// The display name of the loyalty program.
-	Title string `json:"title"`
+	Title *string `json:"title,omitempty"`
 }
 
 // NewCheckLoyaltyBalanceBlockProgram instantiates a new CheckLoyaltyBalanceBlockProgram object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCheckLoyaltyBalanceBlockProgram(id int64, name string, title string) *CheckLoyaltyBalanceBlockProgram {
+func BuildCheckLoyaltyBalanceBlockProgram(id int64) *CheckLoyaltyBalanceBlockProgram {
 	this := CheckLoyaltyBalanceBlockProgram{}
 	this.Id = id
-	this.Name = name
-	this.Title = title
 	return &this
 }
 
@@ -67,52 +65,68 @@ func (o *CheckLoyaltyBalanceBlockProgram) SetId(v int64) {
 	o.Id = v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *CheckLoyaltyBalanceBlockProgram) GetName() string {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckLoyaltyBalanceBlockProgram) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *CheckLoyaltyBalanceBlockProgram) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *CheckLoyaltyBalanceBlockProgram) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *CheckLoyaltyBalanceBlockProgram) GetTitle() string {
-	if o == nil {
+	if o == nil || o.Title == nil {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckLoyaltyBalanceBlockProgram) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Title == nil {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *CheckLoyaltyBalanceBlockProgram) HasTitle() bool {
+	if o != nil && o.Title != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *CheckLoyaltyBalanceBlockProgram) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
 func (o CheckLoyaltyBalanceBlockProgram) MarshalJSON() ([]byte, error) {
@@ -120,10 +134,10 @@ func (o CheckLoyaltyBalanceBlockProgram) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["id"] = o.Id
 	}
-	if true {
+	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
+	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
 	return json.Marshal(toSerialize)

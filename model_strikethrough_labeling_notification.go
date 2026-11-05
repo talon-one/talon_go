@@ -30,7 +30,7 @@ type StrikethroughLabelingNotification struct {
 	ChangedItems []StrikethroughChangedItem `json:"changedItems"`
 	// The type of notification.
 	NotificationType string `json:"NotificationType"`
-	// Timestamp at which the notification was sent.
+	// Timestamp when the notification was sent by Talon.One. There may be a delay before the notification is delivered to the user.
 	SentAt time.Time `json:"sentAt"`
 }
 

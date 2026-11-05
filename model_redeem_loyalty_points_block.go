@@ -28,8 +28,6 @@ type RedeemLoyaltyPointsBlock struct {
 	Value map[string]interface{} `json:"value"`
 	// A custom description recorded as the reason for the point deduction.
 	Name *string `json:"name,omitempty"`
-	// Promotion blocks evaluated when this block fails or returns false.
-	OnFailure *[]map[string]interface{} `json:"onFailure,omitempty"`
 }
 
 // NewRedeemLoyaltyPointsBlock instantiates a new RedeemLoyaltyPointsBlock object
@@ -245,38 +243,6 @@ func (o *RedeemLoyaltyPointsBlock) SetName(v string) {
 	o.Name = &v
 }
 
-// GetOnFailure returns the OnFailure field value if set, zero value otherwise.
-func (o *RedeemLoyaltyPointsBlock) GetOnFailure() []map[string]interface{} {
-	if o == nil || o.OnFailure == nil {
-		var ret []map[string]interface{}
-		return ret
-	}
-	return *o.OnFailure
-}
-
-// GetOnFailureOk returns a tuple with the OnFailure field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RedeemLoyaltyPointsBlock) GetOnFailureOk() (*[]map[string]interface{}, bool) {
-	if o == nil || o.OnFailure == nil {
-		return nil, false
-	}
-	return o.OnFailure, true
-}
-
-// HasOnFailure returns a boolean if a field has been set.
-func (o *RedeemLoyaltyPointsBlock) HasOnFailure() bool {
-	if o != nil && o.OnFailure != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOnFailure gets a reference to the given []map[string]interface{} and assigns it to the OnFailure field.
-func (o *RedeemLoyaltyPointsBlock) SetOnFailure(v []map[string]interface{}) {
-	o.OnFailure = &v
-}
-
 func (o RedeemLoyaltyPointsBlock) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Id != nil {
@@ -299,9 +265,6 @@ func (o RedeemLoyaltyPointsBlock) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
-	}
-	if o.OnFailure != nil {
-		toSerialize["onFailure"] = o.OnFailure
 	}
 	return json.Marshal(toSerialize)
 }

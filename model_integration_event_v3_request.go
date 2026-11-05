@@ -33,6 +33,8 @@ type IntegrationEventV3Request struct {
 	ReferralCode *string `json:"referralCode,omitempty"`
 	// Identifiers of the loyalty cards used during this event.
 	LoyaltyCards *[]string `json:"loyaltyCards,omitempty"`
+	// The integration IDs of the unlocked rewards that can be used in this event.
+	RewardIntegrationIds *[]string `json:"rewardIntegrationIds,omitempty"`
 	// Optional list of requested information to be present on the response related to the tracking custom event.
 	ResponseContent *[]string `json:"responseContent,omitempty"`
 }
@@ -321,6 +323,38 @@ func (o *IntegrationEventV3Request) SetLoyaltyCards(v []string) {
 	o.LoyaltyCards = &v
 }
 
+// GetRewardIntegrationIds returns the RewardIntegrationIds field value if set, zero value otherwise.
+func (o *IntegrationEventV3Request) GetRewardIntegrationIds() []string {
+	if o == nil || o.RewardIntegrationIds == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RewardIntegrationIds
+}
+
+// GetRewardIntegrationIdsOk returns a tuple with the RewardIntegrationIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IntegrationEventV3Request) GetRewardIntegrationIdsOk() (*[]string, bool) {
+	if o == nil || o.RewardIntegrationIds == nil {
+		return nil, false
+	}
+	return o.RewardIntegrationIds, true
+}
+
+// HasRewardIntegrationIds returns a boolean if a field has been set.
+func (o *IntegrationEventV3Request) HasRewardIntegrationIds() bool {
+	if o != nil && o.RewardIntegrationIds != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRewardIntegrationIds gets a reference to the given []string and assigns it to the RewardIntegrationIds field.
+func (o *IntegrationEventV3Request) SetRewardIntegrationIds(v []string) {
+	o.RewardIntegrationIds = &v
+}
+
 // GetResponseContent returns the ResponseContent field value if set, zero value otherwise.
 func (o *IntegrationEventV3Request) GetResponseContent() []string {
 	if o == nil || o.ResponseContent == nil {
@@ -381,6 +415,9 @@ func (o IntegrationEventV3Request) MarshalJSON() ([]byte, error) {
 	}
 	if o.LoyaltyCards != nil {
 		toSerialize["loyaltyCards"] = o.LoyaltyCards
+	}
+	if o.RewardIntegrationIds != nil {
+		toSerialize["rewardIntegrationIds"] = o.RewardIntegrationIds
 	}
 	if o.ResponseContent != nil {
 		toSerialize["responseContent"] = o.ResponseContent

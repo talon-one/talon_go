@@ -7,16 +7,15 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | Unique identifier for this block. | [optional] [readonly] 
 **Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
-**GiveawayPool** | Pointer to [**GiveawayPoolReference**](GiveawayPoolReference.md) |  | 
+**GiveawayPool** | Pointer to [**GiveawayPoolBlockReference**](GiveawayPoolBlockReference.md) |  | 
 **Profile** | Pointer to **string** | The customer profile to award the giveaway to. &#x60;Current&#x60; targets the customer in the current session; &#x60;Advocate&#x60; targets the person who invited their friend via referral program. | 
-**OnFailure** | Pointer to **[]map[string]interface{}** | Blocks evaluated when this block fails or returns false. | [optional] 
 **OnError** | Pointer to [**map[string][]map[string]interface{}**](array.md) | Named error handlers evaluated when a specific error occurs. | [optional] 
 
 ## Methods
 
 ### NewAwardGiveawayBlock
 
-`func NewAwardGiveawayBlock(type_ string, giveawayPool GiveawayPoolReference, profile string, ) *AwardGiveawayBlock`
+`func NewAwardGiveawayBlock(type_ string, giveawayPool GiveawayPoolBlockReference, profile string, ) *AwardGiveawayBlock`
 
 NewAwardGiveawayBlock instantiates a new AwardGiveawayBlock object
 This constructor will assign default values to properties that have it defined,
@@ -103,20 +102,20 @@ HasTags returns a boolean if a field has been set.
 
 ### GetGiveawayPool
 
-`func (o *AwardGiveawayBlock) GetGiveawayPool() GiveawayPoolReference`
+`func (o *AwardGiveawayBlock) GetGiveawayPool() GiveawayPoolBlockReference`
 
 GetGiveawayPool returns the GiveawayPool field if non-nil, zero value otherwise.
 
 ### GetGiveawayPoolOk
 
-`func (o *AwardGiveawayBlock) GetGiveawayPoolOk() (*GiveawayPoolReference, bool)`
+`func (o *AwardGiveawayBlock) GetGiveawayPoolOk() (*GiveawayPoolBlockReference, bool)`
 
 GetGiveawayPoolOk returns a tuple with the GiveawayPool field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetGiveawayPool
 
-`func (o *AwardGiveawayBlock) SetGiveawayPool(v GiveawayPoolReference)`
+`func (o *AwardGiveawayBlock) SetGiveawayPool(v GiveawayPoolBlockReference)`
 
 SetGiveawayPool sets GiveawayPool field to given value.
 
@@ -140,31 +139,6 @@ and a boolean to check if the value has been set.
 
 SetProfile sets Profile field to given value.
 
-
-### GetOnFailure
-
-`func (o *AwardGiveawayBlock) GetOnFailure() []map[string]interface{}`
-
-GetOnFailure returns the OnFailure field if non-nil, zero value otherwise.
-
-### GetOnFailureOk
-
-`func (o *AwardGiveawayBlock) GetOnFailureOk() (*[]map[string]interface{}, bool)`
-
-GetOnFailureOk returns a tuple with the OnFailure field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetOnFailure
-
-`func (o *AwardGiveawayBlock) SetOnFailure(v []map[string]interface{})`
-
-SetOnFailure sets OnFailure field to given value.
-
-### HasOnFailure
-
-`func (o *AwardGiveawayBlock) HasOnFailure() bool`
-
-HasOnFailure returns a boolean if a field has been set.
 
 ### GetOnError
 

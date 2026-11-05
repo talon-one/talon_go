@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// CheckTierBlock A block that checks whether a user profile is a member of a specific tier within a loyalty program.
+// CheckTierBlock A block that checks whether a customer profile is a member of a specific tier in a loyalty program.
 type CheckTierBlock struct {
 	// Unique identifier for this block.
 	Id *string `json:"id,omitempty"`
@@ -23,9 +23,9 @@ type CheckTierBlock struct {
 	Tags *[]string `json:"tags,omitempty"`
 	// An indicator of how the block compares its elements.
 	Operator string `json:"operator"`
-	// The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program's main ledger balance instead of a subledger.
+	// The name of the subledger to check a customer's tier in. Can be empty if this block checks the loyalty program's main ledger instead of a subledger. A subledger can only be used when the loyalty program that the tier is in has subledgers enabled. To specify the main ledger, provide an empty string (\"\").
 	Subledger string             `json:"subledger"`
-	Tier      CheckTierBlockTier `json:"tier"`
+	Tier      TierBlockReference `json:"tier"`
 	// Promotion blocks evaluated when this block fails or returns false.
 	OnFailure *[]map[string]interface{} `json:"onFailure,omitempty"`
 }
@@ -34,7 +34,7 @@ type CheckTierBlock struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCheckTierBlock(type_ string, operator string, subledger string, tier CheckTierBlockTier) *CheckTierBlock {
+func BuildCheckTierBlock(type_ string, operator string, subledger string, tier TierBlockReference) *CheckTierBlock {
 	this := CheckTierBlock{}
 	this.Type = type_
 	this.Operator = operator
@@ -188,9 +188,9 @@ func (o *CheckTierBlock) SetSubledger(v string) {
 }
 
 // GetTier returns the Tier field value
-func (o *CheckTierBlock) GetTier() CheckTierBlockTier {
+func (o *CheckTierBlock) GetTier() TierBlockReference {
 	if o == nil {
-		var ret CheckTierBlockTier
+		var ret TierBlockReference
 		return ret
 	}
 
@@ -199,7 +199,7 @@ func (o *CheckTierBlock) GetTier() CheckTierBlockTier {
 
 // GetTierOk returns a tuple with the Tier field value
 // and a boolean to check if the value has been set.
-func (o *CheckTierBlock) GetTierOk() (*CheckTierBlockTier, bool) {
+func (o *CheckTierBlock) GetTierOk() (*TierBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -207,7 +207,7 @@ func (o *CheckTierBlock) GetTierOk() (*CheckTierBlockTier, bool) {
 }
 
 // SetTier sets field value
-func (o *CheckTierBlock) SetTier(v CheckTierBlockTier) {
+func (o *CheckTierBlock) SetTier(v TierBlockReference) {
 	o.Tier = v
 }
 

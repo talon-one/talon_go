@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **int64** |  | 
 **Name** | Pointer to **string** | The name of this variant. | 
 **Ruleset** | Pointer to [**NewRuleset**](NewRuleset.md) |  | 
-**Weight** | Pointer to **int64** | The percentage split of this variant. The sum of all variant percentages must be 100. | 
+**Weight** | Pointer to **int64** | The percentage split of this variant. For &#x60;random&#x60; assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for &#x60;audience&#x60; and &#x60;external&#x60; assignment.  | 
+**AudienceId** | Pointer to **int64** | The ID of the audience this variant targets. Only used when the experiment &#x60;assignmentType&#x60; is &#x60;audience&#x60;.  | [optional] 
 
 ## Methods
 
@@ -107,6 +108,31 @@ and a boolean to check if the value has been set.
 
 SetWeight sets Weight field to given value.
 
+
+### GetAudienceId
+
+`func (o *UpdateExperimentVariant) GetAudienceId() int64`
+
+GetAudienceId returns the AudienceId field if non-nil, zero value otherwise.
+
+### GetAudienceIdOk
+
+`func (o *UpdateExperimentVariant) GetAudienceIdOk() (*int64, bool)`
+
+GetAudienceIdOk returns a tuple with the AudienceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAudienceId
+
+`func (o *UpdateExperimentVariant) SetAudienceId(v int64)`
+
+SetAudienceId sets AudienceId field to given value.
+
+### HasAudienceId
+
+`func (o *UpdateExperimentVariant) HasAudienceId() bool`
+
+HasAudienceId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

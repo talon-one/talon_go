@@ -13,15 +13,15 @@ import (
 	"encoding/json"
 )
 
-// RoleV2RolesGroup struct for RoleV2RolesGroup
+// RoleV2RolesGroup A map of target entities to their permission sets.
 type RoleV2RolesGroup struct {
 	// A map of the link between the Application, campaign, or draft campaign-related permission set and the Application ID the permissions apply to.
 	Applications *map[string]RoleV2ApplicationDetails `json:"applications,omitempty"`
-	// A map of the link between the loyalty program-related permission set and the Application ID the permissions apply to.
+	// A map of the link between the loyalty program-related permission set and the loyalty program ID the permissions apply to.
 	LoyaltyPrograms *map[string]string `json:"loyaltyPrograms,omitempty"`
-	// A map of the link between the campaign access group-related permission set and the Application ID the permissions apply to.
+	// A map of the link between the campaign access group-related permission set and the campaign access group ID the permissions apply to.
 	CampaignAccessGroups *map[string]string `json:"campaignAccessGroups,omitempty"`
-	// Name of the account-level permission set
+	// Name of the account-level permission set.
 	Account *string `json:"account,omitempty"`
 }
 

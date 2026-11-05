@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-// GiveawaysPool Giveaways pools is an entity for managing multiple similar giveaways.
+// GiveawaysPool A giveaway pool is an entity for managing multiple similar giveaways.
 type GiveawaysPool struct {
 	// The internal ID of this entity.
 	Id int64 `json:"id"`
@@ -22,19 +22,19 @@ type GiveawaysPool struct {
 	Created time.Time `json:"created"`
 	// The ID of the account that owns this entity.
 	AccountId int64 `json:"accountId"`
-	// The name of this giveaways pool.
+	// The name of this giveaway pool.
 	Name string `json:"name"`
-	// The description of this giveaways pool.
+	// The description of this giveaway pool.
 	Description *string `json:"description,omitempty"`
-	// A list of the IDs of the applications that this giveaways pool is enabled for.
+	// A list of the IDs of the Applications that this giveaway pool is enabled for.
 	SubscribedApplicationsIds *[]int64 `json:"subscribedApplicationsIds,omitempty"`
 	// Indicates if this program is a live or sandbox program. Programs of a given type can only be connected to Applications of the same type.
 	Sandbox bool `json:"sandbox"`
-	// Timestamp of the most recent update to the giveaways pool.
+	// Timestamp of the most recent update to the giveaway pool.
 	Modified *time.Time `json:"modified,omitempty"`
-	// ID of the user who created this giveaways pool.
+	// ID of the user who created this giveaway pool.
 	CreatedBy int64 `json:"createdBy"`
-	// ID of the user who last updated this giveaways pool if available.
+	// ID of the user who last updated this giveaway pool if available.
 	ModifiedBy *int64 `json:"modifiedBy,omitempty"`
 }
 

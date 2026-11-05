@@ -4,7 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IsVariantAssignmentExternal** | Pointer to **bool** | The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.  | 
+**AssignmentType** | Pointer to **string** | Controls how customers are assigned to experiment variants. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided; &#x60;assignmentType&#x60; takes priority when both are present. - &#x60;random&#x60;: Talon.One assigns customers randomly based on variant weights. - &#x60;external&#x60;: Variant assignment is handled externally. - &#x60;audience&#x60;: Each variant targets a specific audience; customers are   assigned based on audience membership.  | [optional] 
+**IsVariantAssignmentExternal** | Pointer to **bool** | Deprecated. Use &#x60;assignmentType&#x60; instead. Either &#x60;assignmentType&#x60; or &#x60;isVariantAssignmentExternal&#x60; must be provided. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.  | [optional] 
 **Campaign** | Pointer to [**NewCampaign**](NewCampaign.md) |  | 
 **GoalType** | Pointer to **string** | The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to &#x60;other&#x60;, multiple metrics are used.  | [default to "other"]
 **GoalDescription** | Pointer to **string** | A description of the experiment goal. Provides context for the AI summary and helps it interpret the outcome of the experiment against the stated goal.  | [optional] 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewNewExperiment
 
-`func NewNewExperiment(isVariantAssignmentExternal bool, campaign NewCampaign, goalType string, ) *NewExperiment`
+`func NewNewExperiment(campaign NewCampaign, goalType string, ) *NewExperiment`
 
 NewNewExperiment instantiates a new NewExperiment object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +28,31 @@ will change when the set of required properties is changed
 NewNewExperimentWithDefaults instantiates a new NewExperiment object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAssignmentType
+
+`func (o *NewExperiment) GetAssignmentType() string`
+
+GetAssignmentType returns the AssignmentType field if non-nil, zero value otherwise.
+
+### GetAssignmentTypeOk
+
+`func (o *NewExperiment) GetAssignmentTypeOk() (*string, bool)`
+
+GetAssignmentTypeOk returns a tuple with the AssignmentType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAssignmentType
+
+`func (o *NewExperiment) SetAssignmentType(v string)`
+
+SetAssignmentType sets AssignmentType field to given value.
+
+### HasAssignmentType
+
+`func (o *NewExperiment) HasAssignmentType() bool`
+
+HasAssignmentType returns a boolean if a field has been set.
 
 ### GetIsVariantAssignmentExternal
 
@@ -47,6 +73,11 @@ and a boolean to check if the value has been set.
 
 SetIsVariantAssignmentExternal sets IsVariantAssignmentExternal field to given value.
 
+### HasIsVariantAssignmentExternal
+
+`func (o *NewExperiment) HasIsVariantAssignmentExternal() bool`
+
+HasIsVariantAssignmentExternal returns a boolean if a field has been set.
 
 ### GetCampaign
 

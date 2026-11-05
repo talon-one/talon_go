@@ -15,17 +15,17 @@ import (
 
 // InlineResponse20022 struct for InlineResponse20022
 type InlineResponse20022 struct {
-	HasMore         *bool                      `json:"hasMore,omitempty"`
-	TotalResultSize *int64                     `json:"totalResultSize,omitempty"`
-	Data            []CollectionWithoutPayload `json:"data"`
+	HasMore bool          `json:"hasMore"`
+	Data    []LoyaltyCard `json:"data"`
 }
 
 // NewInlineResponse20022 instantiates a new InlineResponse20022 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20022(data []CollectionWithoutPayload) *InlineResponse20022 {
+func BuildInlineResponse20022(hasMore bool, data []LoyaltyCard) *InlineResponse20022 {
 	this := InlineResponse20022{}
+	this.HasMore = hasMore
 	this.Data = data
 	return &this
 }
@@ -38,74 +38,34 @@ func NewInlineResponse20022WithDefaults() *InlineResponse20022 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
+// GetHasMore returns the HasMore field value
 func (o *InlineResponse20022) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.HasMore
+
+	return o.HasMore
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
+// GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
 func (o *InlineResponse20022) GetHasMoreOk() (*bool, bool) {
-	if o == nil || o.HasMore == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.HasMore, true
+	return &o.HasMore, true
 }
 
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20022) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
+// SetHasMore sets field value
 func (o *InlineResponse20022) SetHasMore(v bool) {
-	o.HasMore = &v
-}
-
-// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
-func (o *InlineResponse20022) GetTotalResultSize() int64 {
-	if o == nil || o.TotalResultSize == nil {
-		var ret int64
-		return ret
-	}
-	return *o.TotalResultSize
-}
-
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20022) GetTotalResultSizeOk() (*int64, bool) {
-	if o == nil || o.TotalResultSize == nil {
-		return nil, false
-	}
-	return o.TotalResultSize, true
-}
-
-// HasTotalResultSize returns a boolean if a field has been set.
-func (o *InlineResponse20022) HasTotalResultSize() bool {
-	if o != nil && o.TotalResultSize != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
-func (o *InlineResponse20022) SetTotalResultSize(v int64) {
-	o.TotalResultSize = &v
+	o.HasMore = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20022) GetData() []CollectionWithoutPayload {
+func (o *InlineResponse20022) GetData() []LoyaltyCard {
 	if o == nil {
-		var ret []CollectionWithoutPayload
+		var ret []LoyaltyCard
 		return ret
 	}
 
@@ -114,7 +74,7 @@ func (o *InlineResponse20022) GetData() []CollectionWithoutPayload {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20022) GetDataOk() (*[]CollectionWithoutPayload, bool) {
+func (o *InlineResponse20022) GetDataOk() (*[]LoyaltyCard, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,17 +82,14 @@ func (o *InlineResponse20022) GetDataOk() (*[]CollectionWithoutPayload, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20022) SetData(v []CollectionWithoutPayload) {
+func (o *InlineResponse20022) SetData(v []LoyaltyCard) {
 	o.Data = v
 }
 
 func (o InlineResponse20022) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.HasMore != nil {
+	if true {
 		toSerialize["hasMore"] = o.HasMore
-	}
-	if o.TotalResultSize != nil {
-		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {
 		toSerialize["data"] = o.Data

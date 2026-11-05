@@ -29,6 +29,10 @@ type RuleEligibilityFailureDetails struct {
 	ConditionIndex *int64 `json:"conditionIndex,omitempty"`
 	// The index of the effect that caused the rule to fail.
 	EffectIndex *int64 `json:"effectIndex,omitempty"`
+	// The index of the rule that failed within the ruleset.
+	RuleIndex *int64 `json:"ruleIndex,omitempty"`
+	// The ID of the ruleset containing the rule that failed.
+	RulesetId *int64 `json:"rulesetId,omitempty"`
 	// Additional details about the failure.
 	Details string `json:"details"`
 }
@@ -268,6 +272,70 @@ func (o *RuleEligibilityFailureDetails) SetEffectIndex(v int64) {
 	o.EffectIndex = &v
 }
 
+// GetRuleIndex returns the RuleIndex field value if set, zero value otherwise.
+func (o *RuleEligibilityFailureDetails) GetRuleIndex() int64 {
+	if o == nil || o.RuleIndex == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RuleIndex
+}
+
+// GetRuleIndexOk returns a tuple with the RuleIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleEligibilityFailureDetails) GetRuleIndexOk() (*int64, bool) {
+	if o == nil || o.RuleIndex == nil {
+		return nil, false
+	}
+	return o.RuleIndex, true
+}
+
+// HasRuleIndex returns a boolean if a field has been set.
+func (o *RuleEligibilityFailureDetails) HasRuleIndex() bool {
+	if o != nil && o.RuleIndex != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRuleIndex gets a reference to the given int64 and assigns it to the RuleIndex field.
+func (o *RuleEligibilityFailureDetails) SetRuleIndex(v int64) {
+	o.RuleIndex = &v
+}
+
+// GetRulesetId returns the RulesetId field value if set, zero value otherwise.
+func (o *RuleEligibilityFailureDetails) GetRulesetId() int64 {
+	if o == nil || o.RulesetId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RulesetId
+}
+
+// GetRulesetIdOk returns a tuple with the RulesetId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RuleEligibilityFailureDetails) GetRulesetIdOk() (*int64, bool) {
+	if o == nil || o.RulesetId == nil {
+		return nil, false
+	}
+	return o.RulesetId, true
+}
+
+// HasRulesetId returns a boolean if a field has been set.
+func (o *RuleEligibilityFailureDetails) HasRulesetId() bool {
+	if o != nil && o.RulesetId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRulesetId gets a reference to the given int64 and assigns it to the RulesetId field.
+func (o *RuleEligibilityFailureDetails) SetRulesetId(v int64) {
+	o.RulesetId = &v
+}
+
 // GetDetails returns the Details field value
 func (o *RuleEligibilityFailureDetails) GetDetails() string {
 	if o == nil {
@@ -314,6 +382,12 @@ func (o RuleEligibilityFailureDetails) MarshalJSON() ([]byte, error) {
 	}
 	if o.EffectIndex != nil {
 		toSerialize["effectIndex"] = o.EffectIndex
+	}
+	if o.RuleIndex != nil {
+		toSerialize["ruleIndex"] = o.RuleIndex
+	}
+	if o.RulesetId != nil {
+		toSerialize["rulesetId"] = o.RulesetId
 	}
 	if true {
 		toSerialize["details"] = o.Details

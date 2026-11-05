@@ -19,8 +19,10 @@ type UpdateExperimentVariant struct {
 	// The name of this variant.
 	Name    string     `json:"name"`
 	Ruleset NewRuleset `json:"ruleset"`
-	// The percentage split of this variant. The sum of all variant percentages must be 100.
+	// The percentage split of this variant. For `random` assignment, the split must be between 1 and 99 and the sum across all variants must equal 100. Ignored for `audience` and `external` assignment.
 	Weight int64 `json:"weight"`
+	// The ID of the audience this variant targets. Only used when the experiment `assignmentType` is `audience`.
+	AudienceId *int64 `json:"audienceId,omitempty"`
 }
 
 // NewUpdateExperimentVariant instantiates a new UpdateExperimentVariant object
@@ -140,6 +142,38 @@ func (o *UpdateExperimentVariant) SetWeight(v int64) {
 	o.Weight = v
 }
 
+// GetAudienceId returns the AudienceId field value if set, zero value otherwise.
+func (o *UpdateExperimentVariant) GetAudienceId() int64 {
+	if o == nil || o.AudienceId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AudienceId
+}
+
+// GetAudienceIdOk returns a tuple with the AudienceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateExperimentVariant) GetAudienceIdOk() (*int64, bool) {
+	if o == nil || o.AudienceId == nil {
+		return nil, false
+	}
+	return o.AudienceId, true
+}
+
+// HasAudienceId returns a boolean if a field has been set.
+func (o *UpdateExperimentVariant) HasAudienceId() bool {
+	if o != nil && o.AudienceId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudienceId gets a reference to the given int64 and assigns it to the AudienceId field.
+func (o *UpdateExperimentVariant) SetAudienceId(v int64) {
+	o.AudienceId = &v
+}
+
 func (o UpdateExperimentVariant) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -153,6 +187,9 @@ func (o UpdateExperimentVariant) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["weight"] = o.Weight
+	}
+	if o.AudienceId != nil {
+		toSerialize["audienceId"] = o.AudienceId
 	}
 	return json.Marshal(toSerialize)
 }

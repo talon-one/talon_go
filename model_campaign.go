@@ -112,7 +112,7 @@ type Campaign struct {
 	ActiveRevisionId *int64 `json:"activeRevisionId,omitempty"`
 	// ID of the revision version that is active on the campaign.
 	ActiveRevisionVersionId *int64 `json:"activeRevisionVersionId,omitempty"`
-	// Incrementing number representing how many revisions have been activated on this campaign, starts from 0 for a new campaign.
+	// Incrementing number representing how many revisions have been activated on this campaign. Starts from `0` for a new campaign.
 	Version *int64 `json:"version,omitempty"`
 	// ID of the revision currently being modified for the campaign.
 	CurrentRevisionId *int64 `json:"currentRevisionId,omitempty"`

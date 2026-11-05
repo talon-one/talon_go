@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **Operator** | Pointer to **string** | An indicator of how the block compares its elements. | 
-**Subledger** | Pointer to **string** | The name of the subledger to check the balance of. Can be empty if this block checks the loyalty program&#39;s main ledger balance instead of a subledger. | 
-**Tier** | Pointer to [**CheckTierBlockTier**](CheckTierBlock_tier.md) |  | 
+**Subledger** | Pointer to **string** | The name of the subledger to check a customer&#39;s tier in. Can be empty if this block checks the loyalty program&#39;s main ledger instead of a subledger. A subledger can only be used when the loyalty program that the tier is in has subledgers enabled. To specify the main ledger, provide an empty string (\&quot;\&quot;). | 
+**Tier** | Pointer to [**TierBlockReference**](TierBlockReference.md) |  | 
 **OnFailure** | Pointer to **[]map[string]interface{}** | Promotion blocks evaluated when this block fails or returns false. | [optional] 
 
 ## Methods
 
 ### NewCheckTierBlock
 
-`func NewCheckTierBlock(type_ string, operator string, subledger string, tier CheckTierBlockTier, ) *CheckTierBlock`
+`func NewCheckTierBlock(type_ string, operator string, subledger string, tier TierBlockReference, ) *CheckTierBlock`
 
 NewCheckTierBlock instantiates a new CheckTierBlock object
 This constructor will assign default values to properties that have it defined,
@@ -143,20 +143,20 @@ SetSubledger sets Subledger field to given value.
 
 ### GetTier
 
-`func (o *CheckTierBlock) GetTier() CheckTierBlockTier`
+`func (o *CheckTierBlock) GetTier() TierBlockReference`
 
 GetTier returns the Tier field if non-nil, zero value otherwise.
 
 ### GetTierOk
 
-`func (o *CheckTierBlock) GetTierOk() (*CheckTierBlockTier, bool)`
+`func (o *CheckTierBlock) GetTierOk() (*TierBlockReference, bool)`
 
 GetTierOk returns a tuple with the Tier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTier
 
-`func (o *CheckTierBlock) SetTier(v CheckTierBlockTier)`
+`func (o *CheckTierBlock) SetTier(v TierBlockReference)`
 
 SetTier sets Tier field to given value.
 

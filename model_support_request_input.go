@@ -21,8 +21,8 @@ type SupportRequestInput struct {
 	CampaignId *int64 `json:"campaignId,omitempty"`
 	// Identifier of the loyalty program. You can get the ID with the [List loyalty programs](https://docs.talon.one/management-api#tag/Loyalty/operation/getLoyaltyPrograms) endpoint.
 	LoyaltyProgramId *int64 `json:"loyaltyProgramId,omitempty"`
-	// Identifier of the subledger the points are added to or deducted from. If there is no existing subledger with this ID, the subledger is created automatically.
-	SubledgerId *int64 `json:"subledgerId,omitempty"`
+	// ID of the subledger the points are added to or deducted from. Must be combined with `loyaltyProgramId`. The subledger must already exist in the given loyalty program.
+	SubledgerId *string `json:"subledgerId,omitempty"`
 	// Integration ID of the customer profile linked to the support request.
 	CustomerProfileId string `json:"customerProfileId"`
 	// Type of reward requested, including gift cards, personal coupons, and loyalty point additions or deductions.
@@ -143,9 +143,9 @@ func (o *SupportRequestInput) SetLoyaltyProgramId(v int64) {
 }
 
 // GetSubledgerId returns the SubledgerId field value if set, zero value otherwise.
-func (o *SupportRequestInput) GetSubledgerId() int64 {
+func (o *SupportRequestInput) GetSubledgerId() string {
 	if o == nil || o.SubledgerId == nil {
-		var ret int64
+		var ret string
 		return ret
 	}
 	return *o.SubledgerId
@@ -153,7 +153,7 @@ func (o *SupportRequestInput) GetSubledgerId() int64 {
 
 // GetSubledgerIdOk returns a tuple with the SubledgerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SupportRequestInput) GetSubledgerIdOk() (*int64, bool) {
+func (o *SupportRequestInput) GetSubledgerIdOk() (*string, bool) {
 	if o == nil || o.SubledgerId == nil {
 		return nil, false
 	}
@@ -169,8 +169,8 @@ func (o *SupportRequestInput) HasSubledgerId() bool {
 	return false
 }
 
-// SetSubledgerId gets a reference to the given int64 and assigns it to the SubledgerId field.
-func (o *SupportRequestInput) SetSubledgerId(v int64) {
+// SetSubledgerId gets a reference to the given string and assigns it to the SubledgerId field.
+func (o *SupportRequestInput) SetSubledgerId(v string) {
 	o.SubledgerId = &v
 }
 

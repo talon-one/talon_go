@@ -22,16 +22,16 @@ type UpdateAchievementProgressBlock struct {
 	// Semantic labels attached to this block.
 	Tags     *[]string `json:"tags,omitempty"`
 	Operator string    `json:"operator"`
-	// The value to update the progress by. Supports template placeholders (e.g. \"{{$Session.Total / 2}}\") for dynamic quantities.
-	Value       string                                    `json:"value"`
-	Achievement UpdateAchievementProgressBlockAchievement `json:"achievement"`
+	// The value to update the progress by. Either a numeric scalar or a `{{expression}}` string that resolves to a number at evaluation time.
+	Value       map[string]interface{}    `json:"value"`
+	Achievement AchievementBlockReference `json:"achievement"`
 }
 
 // NewUpdateAchievementProgressBlock instantiates a new UpdateAchievementProgressBlock object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildUpdateAchievementProgressBlock(type_ string, operator string, value string, achievement UpdateAchievementProgressBlockAchievement) *UpdateAchievementProgressBlock {
+func BuildUpdateAchievementProgressBlock(type_ string, operator string, value map[string]interface{}, achievement AchievementBlockReference) *UpdateAchievementProgressBlock {
 	this := UpdateAchievementProgressBlock{}
 	this.Type = type_
 	this.Operator = operator
@@ -161,9 +161,9 @@ func (o *UpdateAchievementProgressBlock) SetOperator(v string) {
 }
 
 // GetValue returns the Value field value
-func (o *UpdateAchievementProgressBlock) GetValue() string {
+func (o *UpdateAchievementProgressBlock) GetValue() map[string]interface{} {
 	if o == nil {
-		var ret string
+		var ret map[string]interface{}
 		return ret
 	}
 
@@ -172,7 +172,7 @@ func (o *UpdateAchievementProgressBlock) GetValue() string {
 
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAchievementProgressBlock) GetValueOk() (*string, bool) {
+func (o *UpdateAchievementProgressBlock) GetValueOk() (*map[string]interface{}, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -180,14 +180,14 @@ func (o *UpdateAchievementProgressBlock) GetValueOk() (*string, bool) {
 }
 
 // SetValue sets field value
-func (o *UpdateAchievementProgressBlock) SetValue(v string) {
+func (o *UpdateAchievementProgressBlock) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
 
 // GetAchievement returns the Achievement field value
-func (o *UpdateAchievementProgressBlock) GetAchievement() UpdateAchievementProgressBlockAchievement {
+func (o *UpdateAchievementProgressBlock) GetAchievement() AchievementBlockReference {
 	if o == nil {
-		var ret UpdateAchievementProgressBlockAchievement
+		var ret AchievementBlockReference
 		return ret
 	}
 
@@ -196,7 +196,7 @@ func (o *UpdateAchievementProgressBlock) GetAchievement() UpdateAchievementProgr
 
 // GetAchievementOk returns a tuple with the Achievement field value
 // and a boolean to check if the value has been set.
-func (o *UpdateAchievementProgressBlock) GetAchievementOk() (*UpdateAchievementProgressBlockAchievement, bool) {
+func (o *UpdateAchievementProgressBlock) GetAchievementOk() (*AchievementBlockReference, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -204,7 +204,7 @@ func (o *UpdateAchievementProgressBlock) GetAchievementOk() (*UpdateAchievementP
 }
 
 // SetAchievement sets field value
-func (o *UpdateAchievementProgressBlock) SetAchievement(v UpdateAchievementProgressBlockAchievement) {
+func (o *UpdateAchievementProgressBlock) SetAchievement(v AchievementBlockReference) {
 	o.Achievement = v
 }
 

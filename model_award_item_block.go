@@ -27,7 +27,7 @@ type AwardItemBlock struct {
 	Name string `json:"name"`
 	// The number of items to award. Supports template placeholders (e.g. \"{{$Session.Total / 2}}\") for dynamic quantities.
 	Quantity string `json:"quantity"`
-	// When set to `true`, applies a partial item reward if the remaining budget is insufficient to award the full reward.
+	// When set to `true`, applies a partial item reward if the remaining budget is insufficient to award the full reward. When omitted, the Application's partial discounts setting applies.
 	Partial *bool `json:"partial,omitempty"`
 	// Blocks evaluated when this block fails or returns false.
 	OnFailure *[]map[string]interface{} `json:"onFailure,omitempty"`

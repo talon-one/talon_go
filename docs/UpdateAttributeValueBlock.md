@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **Operator** | Pointer to **string** | The update operation applied to the attribute. | 
-**Attribute** | Pointer to [**UpdateAttributeValueBlockAttribute**](UpdateAttributeValueBlock_attribute.md) |  | 
+**Attribute** | Pointer to [**AttributeBlockReference**](AttributeBlockReference.md) |  | 
 **Value** | Pointer to [**map[string]interface{}**](.md) | The value of the attribute. Omitted when operator is set to &#x60;toggle&#x60;. | [optional] 
 **Target** | Pointer to [**UpdateAttributeValueBlockTarget**](UpdateAttributeValueBlock_target.md) |  | 
 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewUpdateAttributeValueBlock
 
-`func NewUpdateAttributeValueBlock(type_ string, operator string, attribute UpdateAttributeValueBlockAttribute, target UpdateAttributeValueBlockTarget, ) *UpdateAttributeValueBlock`
+`func NewUpdateAttributeValueBlock(type_ string, operator string, attribute AttributeBlockReference, target UpdateAttributeValueBlockTarget, ) *UpdateAttributeValueBlock`
 
 NewUpdateAttributeValueBlock instantiates a new UpdateAttributeValueBlock object
 This constructor will assign default values to properties that have it defined,
@@ -123,20 +123,20 @@ SetOperator sets Operator field to given value.
 
 ### GetAttribute
 
-`func (o *UpdateAttributeValueBlock) GetAttribute() UpdateAttributeValueBlockAttribute`
+`func (o *UpdateAttributeValueBlock) GetAttribute() AttributeBlockReference`
 
 GetAttribute returns the Attribute field if non-nil, zero value otherwise.
 
 ### GetAttributeOk
 
-`func (o *UpdateAttributeValueBlock) GetAttributeOk() (*UpdateAttributeValueBlockAttribute, bool)`
+`func (o *UpdateAttributeValueBlock) GetAttributeOk() (*AttributeBlockReference, bool)`
 
 GetAttributeOk returns a tuple with the Attribute field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAttribute
 
-`func (o *UpdateAttributeValueBlock) SetAttribute(v UpdateAttributeValueBlockAttribute)`
+`func (o *UpdateAttributeValueBlock) SetAttribute(v AttributeBlockReference)`
 
 SetAttribute sets Attribute field to given value.
 

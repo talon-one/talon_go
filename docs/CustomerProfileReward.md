@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **UsedAt** | Pointer to [**time.Time**](time.Time.md) | The date and time when the reward was used. | [optional] 
 **UsedByProfileIntegrationId** | Pointer to **string** | The integration ID of the customer profile that used the reward.   For rewards unlocked with a loyalty card, this can be any customer profile  linked to that loyalty card.   Only returned when the reward has been used.  | [optional] 
 **LoyaltyProgramId** | Pointer to **int64** | The ID of the loyalty program that the loyalty card belongs to. Only returned for rewards unlocked with a loyalty card. | [optional] 
-**LoyaltyCardIdentifier** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
+**LoyaltyCardId** | Pointer to **string** | The identifier of the loyalty card, which must match the regular expression &#x60;^[A-Za-z0-9._%+@-]+$&#x60;.  | [optional] 
 
 ## Methods
 
@@ -328,30 +328,30 @@ SetLoyaltyProgramId sets LoyaltyProgramId field to given value.
 
 HasLoyaltyProgramId returns a boolean if a field has been set.
 
-### GetLoyaltyCardIdentifier
+### GetLoyaltyCardId
 
-`func (o *CustomerProfileReward) GetLoyaltyCardIdentifier() string`
+`func (o *CustomerProfileReward) GetLoyaltyCardId() string`
 
-GetLoyaltyCardIdentifier returns the LoyaltyCardIdentifier field if non-nil, zero value otherwise.
+GetLoyaltyCardId returns the LoyaltyCardId field if non-nil, zero value otherwise.
 
-### GetLoyaltyCardIdentifierOk
+### GetLoyaltyCardIdOk
 
-`func (o *CustomerProfileReward) GetLoyaltyCardIdentifierOk() (*string, bool)`
+`func (o *CustomerProfileReward) GetLoyaltyCardIdOk() (*string, bool)`
 
-GetLoyaltyCardIdentifierOk returns a tuple with the LoyaltyCardIdentifier field if it's non-nil, zero value otherwise
+GetLoyaltyCardIdOk returns a tuple with the LoyaltyCardId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoyaltyCardIdentifier
+### SetLoyaltyCardId
 
-`func (o *CustomerProfileReward) SetLoyaltyCardIdentifier(v string)`
+`func (o *CustomerProfileReward) SetLoyaltyCardId(v string)`
 
-SetLoyaltyCardIdentifier sets LoyaltyCardIdentifier field to given value.
+SetLoyaltyCardId sets LoyaltyCardId field to given value.
 
-### HasLoyaltyCardIdentifier
+### HasLoyaltyCardId
 
-`func (o *CustomerProfileReward) HasLoyaltyCardIdentifier() bool`
+`func (o *CustomerProfileReward) HasLoyaltyCardId() bool`
 
-HasLoyaltyCardIdentifier returns a boolean if a field has been set.
+HasLoyaltyCardId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

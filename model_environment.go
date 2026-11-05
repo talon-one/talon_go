@@ -30,7 +30,7 @@ type Environment struct {
 	Templates []TemplateDef `json:"templates"`
 	// A stringified version of the environment's Talang variables scope.
 	Variables string `json:"variables"`
-	// The giveaways pools that the application is subscribed to.
+	// The giveaway pools that the Application is subscribed to.
 	GiveawaysPools *[]GiveawaysPool `json:"giveawaysPools,omitempty"`
 	// The loyalty programs that the application is subscribed to.
 	LoyaltyPrograms *[]LoyaltyProgram `json:"loyaltyPrograms,omitempty"`

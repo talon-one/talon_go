@@ -45,7 +45,7 @@ type RuleFailureReason struct {
 	Details *string `json:"details,omitempty"`
 	// The ID of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
 	EvaluationGroupID *int64 `json:"evaluationGroupID,omitempty"`
-	// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-
+	// The evaluation mode of the evaluation group. For more information, see [Managing campaign evaluation](https://docs.talon.one/docs/product/applications/managing-campaign-evaluation).
 	EvaluationGroupMode *string `json:"evaluationGroupMode,omitempty"`
 }
 

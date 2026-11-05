@@ -15,8 +15,8 @@ import (
 
 // UpdateExperiment struct for UpdateExperiment
 type UpdateExperiment struct {
-	// The source of the assignment. - false - The variant assignment is handled internally by Talon.One. - true - The variant assignment is handled externally.
-	IsVariantAssignmentExternal bool           `json:"isVariantAssignmentExternal"`
+	// Deprecated and ignored. The assignment type is set at experiment creation and cannot be changed. Use `assignmentType` when creating an experiment instead.
+	IsVariantAssignmentExternal *bool          `json:"isVariantAssignmentExternal,omitempty"`
 	Campaign                    UpdateCampaign `json:"campaign"`
 	// The goal of the experiment. Determines which single metric is used to decide the winning variant. When set to `other`, multiple metrics are used. If omitted, the current value is preserved.
 	GoalType *string `json:"goalType,omitempty"`
@@ -28,9 +28,8 @@ type UpdateExperiment struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildUpdateExperiment(isVariantAssignmentExternal bool, campaign UpdateCampaign) *UpdateExperiment {
+func BuildUpdateExperiment(campaign UpdateCampaign) *UpdateExperiment {
 	this := UpdateExperiment{}
-	this.IsVariantAssignmentExternal = isVariantAssignmentExternal
 	this.Campaign = campaign
 	return &this
 }
@@ -43,28 +42,36 @@ func NewUpdateExperimentWithDefaults() *UpdateExperiment {
 	return &this
 }
 
-// GetIsVariantAssignmentExternal returns the IsVariantAssignmentExternal field value
+// GetIsVariantAssignmentExternal returns the IsVariantAssignmentExternal field value if set, zero value otherwise.
 func (o *UpdateExperiment) GetIsVariantAssignmentExternal() bool {
-	if o == nil {
+	if o == nil || o.IsVariantAssignmentExternal == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.IsVariantAssignmentExternal
+	return *o.IsVariantAssignmentExternal
 }
 
-// GetIsVariantAssignmentExternalOk returns a tuple with the IsVariantAssignmentExternal field value
+// GetIsVariantAssignmentExternalOk returns a tuple with the IsVariantAssignmentExternal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UpdateExperiment) GetIsVariantAssignmentExternalOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || o.IsVariantAssignmentExternal == nil {
 		return nil, false
 	}
-	return &o.IsVariantAssignmentExternal, true
+	return o.IsVariantAssignmentExternal, true
 }
 
-// SetIsVariantAssignmentExternal sets field value
+// HasIsVariantAssignmentExternal returns a boolean if a field has been set.
+func (o *UpdateExperiment) HasIsVariantAssignmentExternal() bool {
+	if o != nil && o.IsVariantAssignmentExternal != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsVariantAssignmentExternal gets a reference to the given bool and assigns it to the IsVariantAssignmentExternal field.
 func (o *UpdateExperiment) SetIsVariantAssignmentExternal(v bool) {
-	o.IsVariantAssignmentExternal = v
+	o.IsVariantAssignmentExternal = &v
 }
 
 // GetCampaign returns the Campaign field value
@@ -157,7 +164,7 @@ func (o *UpdateExperiment) SetGoalDescription(v string) {
 
 func (o UpdateExperiment) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
+	if o.IsVariantAssignmentExternal != nil {
 		toSerialize["isVariantAssignmentExternal"] = o.IsVariantAssignmentExternal
 	}
 	if true {

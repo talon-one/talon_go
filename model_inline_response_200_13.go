@@ -15,17 +15,17 @@ import (
 
 // InlineResponse20013 struct for InlineResponse20013
 type InlineResponse20013 struct {
-	HasMore bool       `json:"hasMore"`
-	Data    []Referral `json:"data"`
+	TotalResultSize int64    `json:"totalResultSize"`
+	Data            []Coupon `json:"data"`
 }
 
 // NewInlineResponse20013 instantiates a new InlineResponse20013 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20013(hasMore bool, data []Referral) *InlineResponse20013 {
+func BuildInlineResponse20013(totalResultSize int64, data []Coupon) *InlineResponse20013 {
 	this := InlineResponse20013{}
-	this.HasMore = hasMore
+	this.TotalResultSize = totalResultSize
 	this.Data = data
 	return &this
 }
@@ -38,34 +38,34 @@ func NewInlineResponse20013WithDefaults() *InlineResponse20013 {
 	return &this
 }
 
-// GetHasMore returns the HasMore field value
-func (o *InlineResponse20013) GetHasMore() bool {
+// GetTotalResultSize returns the TotalResultSize field value
+func (o *InlineResponse20013) GetTotalResultSize() int64 {
 	if o == nil {
-		var ret bool
+		var ret int64
 		return ret
 	}
 
-	return o.HasMore
+	return o.TotalResultSize
 }
 
-// GetHasMoreOk returns a tuple with the HasMore field value
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20013) GetHasMoreOk() (*bool, bool) {
+func (o *InlineResponse20013) GetTotalResultSizeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return &o.TotalResultSize, true
 }
 
-// SetHasMore sets field value
-func (o *InlineResponse20013) SetHasMore(v bool) {
-	o.HasMore = v
+// SetTotalResultSize sets field value
+func (o *InlineResponse20013) SetTotalResultSize(v int64) {
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20013) GetData() []Referral {
+func (o *InlineResponse20013) GetData() []Coupon {
 	if o == nil {
-		var ret []Referral
+		var ret []Coupon
 		return ret
 	}
 
@@ -74,7 +74,7 @@ func (o *InlineResponse20013) GetData() []Referral {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20013) GetDataOk() (*[]Referral, bool) {
+func (o *InlineResponse20013) GetDataOk() (*[]Coupon, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -82,14 +82,14 @@ func (o *InlineResponse20013) GetDataOk() (*[]Referral, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20013) SetData(v []Referral) {
+func (o *InlineResponse20013) SetData(v []Coupon) {
 	o.Data = v
 }
 
 func (o InlineResponse20013) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["hasMore"] = o.HasMore
+		toSerialize["totalResultSize"] = o.TotalResultSize
 	}
 	if true {
 		toSerialize["data"] = o.Data

@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Catalog** | Pointer to [**InlineResponse20056Catalog**](inline_response_200_56_catalog.md) |  | 
-**Loyalty** | Pointer to [**map[string]LoyaltyBalances**](LoyaltyBalances.md) | The customer&#39;s loyalty balances for the specified loyalty program. Returned only when &#x60;loyaltyProgramId&#x60; is provided together with &#x60;profileIntegrationId&#x60; or &#x60;loyaltyCardId&#x60;.  | [optional] 
+**HasMore** | Pointer to **bool** |  | [optional] 
+**Data** | Pointer to [**[]AchievementV2**](AchievementV2.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20056
 
-`func NewInlineResponse20056(catalog InlineResponse20056Catalog, ) *InlineResponse20056`
+`func NewInlineResponse20056(data []AchievementV2, ) *InlineResponse20056`
 
 NewInlineResponse20056 instantiates a new InlineResponse20056 object
 This constructor will assign default values to properties that have it defined,
@@ -26,50 +26,50 @@ NewInlineResponse20056WithDefaults instantiates a new InlineResponse20056 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCatalog
+### GetHasMore
 
-`func (o *InlineResponse20056) GetCatalog() InlineResponse20056Catalog`
+`func (o *InlineResponse20056) GetHasMore() bool`
 
-GetCatalog returns the Catalog field if non-nil, zero value otherwise.
+GetHasMore returns the HasMore field if non-nil, zero value otherwise.
 
-### GetCatalogOk
+### GetHasMoreOk
 
-`func (o *InlineResponse20056) GetCatalogOk() (*InlineResponse20056Catalog, bool)`
+`func (o *InlineResponse20056) GetHasMoreOk() (*bool, bool)`
 
-GetCatalogOk returns a tuple with the Catalog field if it's non-nil, zero value otherwise
+GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCatalog
+### SetHasMore
 
-`func (o *InlineResponse20056) SetCatalog(v InlineResponse20056Catalog)`
+`func (o *InlineResponse20056) SetHasMore(v bool)`
 
-SetCatalog sets Catalog field to given value.
+SetHasMore sets HasMore field to given value.
 
+### HasHasMore
 
-### GetLoyalty
+`func (o *InlineResponse20056) HasHasMore() bool`
 
-`func (o *InlineResponse20056) GetLoyalty() map[string]LoyaltyBalances`
+HasHasMore returns a boolean if a field has been set.
 
-GetLoyalty returns the Loyalty field if non-nil, zero value otherwise.
+### GetData
 
-### GetLoyaltyOk
+`func (o *InlineResponse20056) GetData() []AchievementV2`
 
-`func (o *InlineResponse20056) GetLoyaltyOk() (*map[string]LoyaltyBalances, bool)`
+GetData returns the Data field if non-nil, zero value otherwise.
 
-GetLoyaltyOk returns a tuple with the Loyalty field if it's non-nil, zero value otherwise
+### GetDataOk
+
+`func (o *InlineResponse20056) GetDataOk() (*[]AchievementV2, bool)`
+
+GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLoyalty
+### SetData
 
-`func (o *InlineResponse20056) SetLoyalty(v map[string]LoyaltyBalances)`
+`func (o *InlineResponse20056) SetData(v []AchievementV2)`
 
-SetLoyalty sets Loyalty field to given value.
+SetData sets Data field to given value.
 
-### HasLoyalty
-
-`func (o *InlineResponse20056) HasLoyalty() bool`
-
-HasLoyalty returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -20,17 +20,18 @@ type CampaignEvaluationTreeChangedMessage struct {
 	// The total size of the result set.
 	TotalResultSize int64 `json:"TotalResultSize"`
 	// The array of changes.
-	Data *[]ApplicationNotification `json:"Data,omitempty"`
+	Data []ApplicationNotification `json:"Data"`
 }
 
 // NewCampaignEvaluationTreeChangedMessage instantiates a new CampaignEvaluationTreeChangedMessage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildCampaignEvaluationTreeChangedMessage(notificationType string, totalResultSize int64) *CampaignEvaluationTreeChangedMessage {
+func BuildCampaignEvaluationTreeChangedMessage(notificationType string, totalResultSize int64, data []ApplicationNotification) *CampaignEvaluationTreeChangedMessage {
 	this := CampaignEvaluationTreeChangedMessage{}
 	this.NotificationType = notificationType
 	this.TotalResultSize = totalResultSize
+	this.Data = data
 	return &this
 }
 
@@ -90,36 +91,28 @@ func (o *CampaignEvaluationTreeChangedMessage) SetTotalResultSize(v int64) {
 	o.TotalResultSize = v
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
+// GetData returns the Data field value
 func (o *CampaignEvaluationTreeChangedMessage) GetData() []ApplicationNotification {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		var ret []ApplicationNotification
 		return ret
 	}
-	return *o.Data
+
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *CampaignEvaluationTreeChangedMessage) GetDataOk() (*[]ApplicationNotification, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *CampaignEvaluationTreeChangedMessage) HasData() bool {
-	if o != nil && o.Data != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetData gets a reference to the given []ApplicationNotification and assigns it to the Data field.
+// SetData sets field value
 func (o *CampaignEvaluationTreeChangedMessage) SetData(v []ApplicationNotification) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o CampaignEvaluationTreeChangedMessage) MarshalJSON() ([]byte, error) {
@@ -130,7 +123,7 @@ func (o CampaignEvaluationTreeChangedMessage) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["TotalResultSize"] = o.TotalResultSize
 	}
-	if o.Data != nil {
+	if true {
 		toSerialize["Data"] = o.Data
 	}
 	return json.Marshal(toSerialize)

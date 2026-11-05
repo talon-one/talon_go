@@ -15,15 +15,15 @@ import (
 
 // InlineResponse20052 struct for InlineResponse20052
 type InlineResponse20052 struct {
-	HasMore *bool         `json:"hasMore,omitempty"`
-	Data    []Achievement `json:"data"`
+	HasMore *bool            `json:"hasMore,omitempty"`
+	Data    []ApplicationCIF `json:"data"`
 }
 
 // NewInlineResponse20052 instantiates a new InlineResponse20052 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20052(data []Achievement) *InlineResponse20052 {
+func BuildInlineResponse20052(data []ApplicationCIF) *InlineResponse20052 {
 	this := InlineResponse20052{}
 	this.Data = data
 	return &this
@@ -70,9 +70,9 @@ func (o *InlineResponse20052) SetHasMore(v bool) {
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20052) GetData() []Achievement {
+func (o *InlineResponse20052) GetData() []ApplicationCIF {
 	if o == nil {
-		var ret []Achievement
+		var ret []ApplicationCIF
 		return ret
 	}
 
@@ -81,7 +81,7 @@ func (o *InlineResponse20052) GetData() []Achievement {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20052) GetDataOk() (*[]Achievement, bool) {
+func (o *InlineResponse20052) GetDataOk() (*[]ApplicationCIF, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,7 +89,7 @@ func (o *InlineResponse20052) GetDataOk() (*[]Achievement, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20052) SetData(v []Achievement) {
+func (o *InlineResponse20052) SetData(v []ApplicationCIF) {
 	o.Data = v
 }
 

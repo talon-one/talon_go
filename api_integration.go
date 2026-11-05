@@ -584,16 +584,16 @@ func (a *IntegrationApiService) CreateCouponReservation(ctx _context.Context, co
 /*
 Execute executes the request
 
-	@return Coupon
+	@return CouponWithReservations
 */
-func (r apiCreateCouponReservationRequest) Execute() (Coupon, *_nethttp.Response, error) {
+func (r apiCreateCouponReservationRequest) Execute() (CouponWithReservations, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  Coupon
+		localVarReturnValue  CouponWithReservations
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.CreateCouponReservation")
@@ -2490,6 +2490,197 @@ func (r apiGetCustomerInventoryRequest) Execute() (CustomerInventory, *_nethttp.
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiGetCustomerRewardsRequest struct {
+	ctx                 _context.Context
+	apiService          *IntegrationApiService
+	integrationId       string
+	status              *[]string
+	pageSize            *int64
+	skip                *int64
+	withTotalResultSize *bool
+}
+
+func (r apiGetCustomerRewardsRequest) Status(status []string) apiGetCustomerRewardsRequest {
+	r.status = &status
+	return r
+}
+
+func (r apiGetCustomerRewardsRequest) PageSize(pageSize int64) apiGetCustomerRewardsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r apiGetCustomerRewardsRequest) Skip(skip int64) apiGetCustomerRewardsRequest {
+	r.skip = &skip
+	return r
+}
+
+func (r apiGetCustomerRewardsRequest) WithTotalResultSize(withTotalResultSize bool) apiGetCustomerRewardsRequest {
+	r.withTotalResultSize = &withTotalResultSize
+	return r
+}
+
+/*
+GetCustomerRewards List customer's rewards
+List the rewards held by a given customer profile. This includes shared rewards
+unlocked with a loyalty card linked to the customer.
+
+  - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+  - @param integrationId The integration identifier for this customer profile. Must be:  - Unique within the deployment. - Stable for the customer. Do not use an ID that the customer can update themselves. For example, you can use a database ID.
+
+@return apiGetCustomerRewardsRequest
+*/
+func (a *IntegrationApiService) GetCustomerRewards(ctx _context.Context, integrationId string) apiGetCustomerRewardsRequest {
+	return apiGetCustomerRewardsRequest{
+		apiService:    a,
+		ctx:           ctx,
+		integrationId: integrationId,
+	}
+}
+
+/*
+Execute executes the request
+
+	@return InlineResponse2004
+*/
+func (r apiGetCustomerRewardsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  InlineResponse2004
+	)
+
+	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetCustomerRewards")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/customer_profiles/{integrationId}/rewards"
+	localVarPath = strings.Replace(localVarPath, "{"+"integrationId"+"}", _neturl.QueryEscape(parameterToString(r.integrationId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if r.status != nil {
+		t := *r.status
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("status", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("status", parameterToString(t, "multi"))
+		}
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("pageSize", parameterToString(*r.pageSize, ""))
+	}
+	if r.skip != nil {
+		localVarQueryParams.Add("skip", parameterToString(*r.skip, ""))
+	}
+	if r.withTotalResultSize != nil {
+		localVarQueryParams.Add("withTotalResultSize", parameterToString(*r.withTotalResultSize, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if auth, ok := auth["api_key_v1"]; ok {
+				var key string
+				if auth.Prefix != "" {
+					key = auth.Prefix + " " + auth.Key
+				} else {
+					key = auth.Key
+				}
+				localVarHeaderParams["Authorization"] = key
+			}
+		}
+	}
+	req, err := r.apiService.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := r.apiService.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorResponseWithStatus
+			err = r.apiService.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = r.apiService.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiGetCustomerSessionRequest struct {
 	ctx               _context.Context
 	apiService        *IntegrationApiService
@@ -3218,16 +3409,16 @@ func (a *IntegrationApiService) GetLoyaltyCardPoints(ctx _context.Context, loyal
 /*
 Execute executes the request
 
-	@return InlineResponse2006
+	@return InlineResponse2008
 */
-func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
+func (r apiGetLoyaltyCardPointsRequest) Execute() (InlineResponse2008, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2006
+		localVarReturnValue  InlineResponse2008
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyCardPoints")
@@ -3475,16 +3666,16 @@ func (a *IntegrationApiService) GetLoyaltyCardTransactions(ctx _context.Context,
 /*
 Execute executes the request
 
-	@return InlineResponse2004
+	@return InlineResponse2005
 */
-func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2004, *_nethttp.Response, error) {
+func (r apiGetLoyaltyCardTransactionsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2004
+		localVarReturnValue  InlineResponse2005
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyCardTransactions")
@@ -3730,16 +3921,16 @@ func (a *IntegrationApiService) GetLoyaltyProgramProfilePoints(ctx _context.Cont
 /*
 Execute executes the request
 
-	@return InlineResponse2007
+	@return InlineResponse2009
 */
-func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2007, *_nethttp.Response, error) {
+func (r apiGetLoyaltyProgramProfilePointsRequest) Execute() (InlineResponse2009, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2007
+		localVarReturnValue  InlineResponse2009
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyProgramProfilePoints")
@@ -3987,16 +4178,16 @@ func (a *IntegrationApiService) GetLoyaltyProgramProfileTransactions(ctx _contex
 /*
 Execute executes the request
 
-	@return InlineResponse2005
+	@return InlineResponse2006
 */
-func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineResponse2005, *_nethttp.Response, error) {
+func (r apiGetLoyaltyProgramProfileTransactionsRequest) Execute() (InlineResponse2006, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse2005
+		localVarReturnValue  InlineResponse2006
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.GetLoyaltyProgramProfileTransactions")
@@ -4608,16 +4799,16 @@ func (a *IntegrationApiService) IntegrationRewardsCatalog(ctx _context.Context) 
 /*
 Execute executes the request
 
-	@return InlineResponse20056
+	@return InlineResponse20059
 */
-func (r apiIntegrationRewardsCatalogRequest) Execute() (InlineResponse20056, *_nethttp.Response, error) {
+func (r apiIntegrationRewardsCatalogRequest) Execute() (InlineResponse20059, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  InlineResponse20056
+		localVarReturnValue  InlineResponse20059
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.IntegrationRewardsCatalog")
@@ -6243,7 +6434,7 @@ func (r apiUnlockRewardRequest) Dry(dry bool) apiUnlockRewardRequest {
 UnlockReward Unlock a reward
 Unlock a reward for a customer. If the reward has `pointsRequired` configured, the corresponding loyalty points are deducted from the customer's balance.
 
-To unlock a reward with the points of a loyalty card, provide the card in `cardIdentifier`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card.
+To unlock a reward with the points of a loyalty card, provide the card in `loyaltyCardId`. The points are then deducted from the card, and the unlocked reward belongs to the card, which makes it available to all customer profiles linked to that card.
 
   - @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
   - @param rewardId The ID of the reward. You can get the ID with the [List rewards](#tag/Rewards/operation/listRewards) endpoint.
@@ -6261,16 +6452,16 @@ func (a *IntegrationApiService) UnlockReward(ctx _context.Context, rewardId int6
 /*
 Execute executes the request
 
-	@return IntegrationStateV2
+	@return IntegrationUnlockRewardResponse
 */
-func (r apiUnlockRewardRequest) Execute() (IntegrationStateV2, *_nethttp.Response, error) {
+func (r apiUnlockRewardRequest) Execute() (IntegrationUnlockRewardResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  IntegrationStateV2
+		localVarReturnValue  IntegrationUnlockRewardResponse
 	)
 
 	localBasePath, err := r.apiService.client.cfg.ServerURLWithContext(r.ctx, "IntegrationApiService.UnlockReward")

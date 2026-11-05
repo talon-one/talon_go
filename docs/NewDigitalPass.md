@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **PassTemplateId** | Pointer to **string** | The ID of the digital pass template used to generate the pass.  | 
 **ProfileId** | Pointer to **string** | The integration ID of the customer profile the pass is issued for. | 
 **LoyaltyCardId** | Pointer to **string** | The identifier of the loyalty card the pass is issued for.  **Note**: Only applicable for card-based loyalty programs.  | [optional] 
-**Platform** | Pointer to **string** | The wallet platform the pass is generated for. | 
+**Platform** | Pointer to **string** | The wallet platform the pass is generated for. Possible values:  - &#x60;apple&#x60;: The digital pass is generated for Apple Wallet. - &#x60;google&#x60;: The digital pass is generated for Google Wallet.  | 
 **Attributes** | Pointer to **map[string]string** | A map of placeholder values that you provide to fill in the pass template. These values are not validated against the template.  | [optional] 
 
 ## Methods

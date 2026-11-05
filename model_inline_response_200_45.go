@@ -15,17 +15,17 @@ import (
 
 // InlineResponse20045 struct for InlineResponse20045
 type InlineResponse20045 struct {
-	TotalResultSize *int64   `json:"totalResultSize,omitempty"`
-	HasMore         *bool    `json:"hasMore,omitempty"`
-	Data            []Change `json:"data"`
+	TotalResultSize int64                                   `json:"totalResultSize"`
+	Data            []WebhookWithOutgoingIntegrationDetails `json:"data"`
 }
 
 // NewInlineResponse20045 instantiates a new InlineResponse20045 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func BuildInlineResponse20045(data []Change) *InlineResponse20045 {
+func BuildInlineResponse20045(totalResultSize int64, data []WebhookWithOutgoingIntegrationDetails) *InlineResponse20045 {
 	this := InlineResponse20045{}
+	this.TotalResultSize = totalResultSize
 	this.Data = data
 	return &this
 }
@@ -38,74 +38,34 @@ func NewInlineResponse20045WithDefaults() *InlineResponse20045 {
 	return &this
 }
 
-// GetTotalResultSize returns the TotalResultSize field value if set, zero value otherwise.
+// GetTotalResultSize returns the TotalResultSize field value
 func (o *InlineResponse20045) GetTotalResultSize() int64 {
-	if o == nil || o.TotalResultSize == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.TotalResultSize
+
+	return o.TotalResultSize
 }
 
-// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value if set, nil otherwise
+// GetTotalResultSizeOk returns a tuple with the TotalResultSize field value
 // and a boolean to check if the value has been set.
 func (o *InlineResponse20045) GetTotalResultSizeOk() (*int64, bool) {
-	if o == nil || o.TotalResultSize == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.TotalResultSize, true
+	return &o.TotalResultSize, true
 }
 
-// HasTotalResultSize returns a boolean if a field has been set.
-func (o *InlineResponse20045) HasTotalResultSize() bool {
-	if o != nil && o.TotalResultSize != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTotalResultSize gets a reference to the given int64 and assigns it to the TotalResultSize field.
+// SetTotalResultSize sets field value
 func (o *InlineResponse20045) SetTotalResultSize(v int64) {
-	o.TotalResultSize = &v
-}
-
-// GetHasMore returns the HasMore field value if set, zero value otherwise.
-func (o *InlineResponse20045) GetHasMore() bool {
-	if o == nil || o.HasMore == nil {
-		var ret bool
-		return ret
-	}
-	return *o.HasMore
-}
-
-// GetHasMoreOk returns a tuple with the HasMore field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *InlineResponse20045) GetHasMoreOk() (*bool, bool) {
-	if o == nil || o.HasMore == nil {
-		return nil, false
-	}
-	return o.HasMore, true
-}
-
-// HasHasMore returns a boolean if a field has been set.
-func (o *InlineResponse20045) HasHasMore() bool {
-	if o != nil && o.HasMore != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetHasMore gets a reference to the given bool and assigns it to the HasMore field.
-func (o *InlineResponse20045) SetHasMore(v bool) {
-	o.HasMore = &v
+	o.TotalResultSize = v
 }
 
 // GetData returns the Data field value
-func (o *InlineResponse20045) GetData() []Change {
+func (o *InlineResponse20045) GetData() []WebhookWithOutgoingIntegrationDetails {
 	if o == nil {
-		var ret []Change
+		var ret []WebhookWithOutgoingIntegrationDetails
 		return ret
 	}
 
@@ -114,7 +74,7 @@ func (o *InlineResponse20045) GetData() []Change {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *InlineResponse20045) GetDataOk() (*[]Change, bool) {
+func (o *InlineResponse20045) GetDataOk() (*[]WebhookWithOutgoingIntegrationDetails, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -122,17 +82,14 @@ func (o *InlineResponse20045) GetDataOk() (*[]Change, bool) {
 }
 
 // SetData sets field value
-func (o *InlineResponse20045) SetData(v []Change) {
+func (o *InlineResponse20045) SetData(v []WebhookWithOutgoingIntegrationDetails) {
 	o.Data = v
 }
 
 func (o InlineResponse20045) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.TotalResultSize != nil {
+	if true {
 		toSerialize["totalResultSize"] = o.TotalResultSize
-	}
-	if o.HasMore != nil {
-		toSerialize["hasMore"] = o.HasMore
 	}
 	if true {
 		toSerialize["data"] = o.Data

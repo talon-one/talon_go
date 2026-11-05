@@ -8,14 +8,14 @@ Name | Type | Description | Notes
 **Type** | Pointer to **string** | Identifies the block variant and determines which additional properties are present in it. | 
 **Tags** | Pointer to **[]string** | Semantic labels attached to this block. | [optional] [readonly] 
 **Operator** | Pointer to **string** |  | 
-**Value** | Pointer to **string** | The value to update the progress by. Supports template placeholders (e.g. \&quot;{{$Session.Total / 2}}\&quot;) for dynamic quantities. | 
-**Achievement** | Pointer to [**UpdateAchievementProgressBlockAchievement**](UpdateAchievementProgressBlock_achievement.md) |  | 
+**Value** | Pointer to [**map[string]interface{}**](.md) | The value to update the progress by. Either a numeric scalar or a &#x60;{{expression}}&#x60; string that resolves to a number at evaluation time. | 
+**Achievement** | Pointer to [**AchievementBlockReference**](AchievementBlockReference.md) |  | 
 
 ## Methods
 
 ### NewUpdateAchievementProgressBlock
 
-`func NewUpdateAchievementProgressBlock(type_ string, operator string, value string, achievement UpdateAchievementProgressBlockAchievement, ) *UpdateAchievementProgressBlock`
+`func NewUpdateAchievementProgressBlock(type_ string, operator string, value map[string]interface{}, achievement AchievementBlockReference, ) *UpdateAchievementProgressBlock`
 
 NewUpdateAchievementProgressBlock instantiates a new UpdateAchievementProgressBlock object
 This constructor will assign default values to properties that have it defined,
@@ -122,40 +122,40 @@ SetOperator sets Operator field to given value.
 
 ### GetValue
 
-`func (o *UpdateAchievementProgressBlock) GetValue() string`
+`func (o *UpdateAchievementProgressBlock) GetValue() map[string]interface{}`
 
 GetValue returns the Value field if non-nil, zero value otherwise.
 
 ### GetValueOk
 
-`func (o *UpdateAchievementProgressBlock) GetValueOk() (*string, bool)`
+`func (o *UpdateAchievementProgressBlock) GetValueOk() (*map[string]interface{}, bool)`
 
 GetValueOk returns a tuple with the Value field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetValue
 
-`func (o *UpdateAchievementProgressBlock) SetValue(v string)`
+`func (o *UpdateAchievementProgressBlock) SetValue(v map[string]interface{})`
 
 SetValue sets Value field to given value.
 
 
 ### GetAchievement
 
-`func (o *UpdateAchievementProgressBlock) GetAchievement() UpdateAchievementProgressBlockAchievement`
+`func (o *UpdateAchievementProgressBlock) GetAchievement() AchievementBlockReference`
 
 GetAchievement returns the Achievement field if non-nil, zero value otherwise.
 
 ### GetAchievementOk
 
-`func (o *UpdateAchievementProgressBlock) GetAchievementOk() (*UpdateAchievementProgressBlockAchievement, bool)`
+`func (o *UpdateAchievementProgressBlock) GetAchievementOk() (*AchievementBlockReference, bool)`
 
 GetAchievementOk returns a tuple with the Achievement field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAchievement
 
-`func (o *UpdateAchievementProgressBlock) SetAchievement(v UpdateAchievementProgressBlockAchievement)`
+`func (o *UpdateAchievementProgressBlock) SetAchievement(v AchievementBlockReference)`
 
 SetAchievement sets Achievement field to given value.
 

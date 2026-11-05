@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**HasMore** | Pointer to **bool** |  | 
-**Data** | Pointer to [**[]Coupon**](Coupon.md) |  | 
+**TotalResultSize** | Pointer to **int64** |  | 
+**Data** | Pointer to [**[]Ruleset**](Ruleset.md) |  | 
 
 ## Methods
 
 ### NewInlineResponse20012
 
-`func NewInlineResponse20012(hasMore bool, data []Coupon, ) *InlineResponse20012`
+`func NewInlineResponse20012(totalResultSize int64, data []Ruleset, ) *InlineResponse20012`
 
 NewInlineResponse20012 instantiates a new InlineResponse20012 object
 This constructor will assign default values to properties that have it defined,
@@ -26,42 +26,42 @@ NewInlineResponse20012WithDefaults instantiates a new InlineResponse20012 object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetHasMore
+### GetTotalResultSize
 
-`func (o *InlineResponse20012) GetHasMore() bool`
+`func (o *InlineResponse20012) GetTotalResultSize() int64`
 
-GetHasMore returns the HasMore field if non-nil, zero value otherwise.
+GetTotalResultSize returns the TotalResultSize field if non-nil, zero value otherwise.
 
-### GetHasMoreOk
+### GetTotalResultSizeOk
 
-`func (o *InlineResponse20012) GetHasMoreOk() (*bool, bool)`
+`func (o *InlineResponse20012) GetTotalResultSizeOk() (*int64, bool)`
 
-GetHasMoreOk returns a tuple with the HasMore field if it's non-nil, zero value otherwise
+GetTotalResultSizeOk returns a tuple with the TotalResultSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetHasMore
+### SetTotalResultSize
 
-`func (o *InlineResponse20012) SetHasMore(v bool)`
+`func (o *InlineResponse20012) SetTotalResultSize(v int64)`
 
-SetHasMore sets HasMore field to given value.
+SetTotalResultSize sets TotalResultSize field to given value.
 
 
 ### GetData
 
-`func (o *InlineResponse20012) GetData() []Coupon`
+`func (o *InlineResponse20012) GetData() []Ruleset`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *InlineResponse20012) GetDataOk() (*[]Coupon, bool)`
+`func (o *InlineResponse20012) GetDataOk() (*[]Ruleset, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *InlineResponse20012) SetData(v []Coupon)`
+`func (o *InlineResponse20012) SetData(v []Ruleset)`
 
 SetData sets Data field to given value.
 
