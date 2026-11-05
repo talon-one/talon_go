@@ -114,7 +114,14 @@ func main() {
     fmt.Printf("%#v\n", integrationState)
 
     // Parsing the returned effects list, please consult https://developers.talon.one/Integration-API/handling-effects-v2 for the full list of effects and their corresponding properties
-    for _, effect := range integrationState.GetEffects() {
+    for _, rawEffect := range integrationState.GetEffects() {
+        // Decode the effect map into the generic Effect model before accessing its fields.
+        effect := talon.Effect{}
+        if err := decodeHelper(rawEffect, &effect); err != nil {
+            fmt.Printf("ERROR while decoding effect: %s\n", err)
+            continue
+        }
+
         effectType := effect.GetEffectType()
         switch {
         case "setDiscount" == effectType:
